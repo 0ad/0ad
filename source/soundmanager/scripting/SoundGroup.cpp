@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -14,15 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/**
-* =========================================================================
-* File		  : SoundGroup.cpp
-* Project	  : 0 A.D.
-* Description : Loads up a group of sound files with shared properties,
-*				and provides a simple interface for playing them.
-* =========================================================================
-*/
 
 #include "precompiled.h"
 
@@ -41,41 +32,37 @@
 
 #include <algorithm>
 
-
 extern CGame *g_Game;
 
-#define PI 3.14126f
-
-
-static const bool DISABLE_INTENSITY = true; // disable for now since it's broken
+#if CONFIG2_AUDIO
+static float RandFloat(float min, float max)
+{
+	return rand(min * 100.f, max * 100.f) / 100.f;
+}
+#endif
 
 void CSoundGroup::SetGain(float gain)
 {
-	gain = std::min(gain, 1.0f);
-	m_Gain = gain;
+	m_Gain = std::min(gain, 1.0f);
 }
 
 void CSoundGroup::SetDefaultValues()
 {
-	m_index = 0;
+	m_CurrentSoundIndex = 0;
 	m_Flags = 0;
-	m_Intensity = 0;
-	m_CurTime = 0.0f;
-
-	// sane defaults; will probably be replaced by the values read during LoadSoundGroup.
-	SetGain(0.7f);
-	m_Pitch = 1.0f;
-	m_Priority = 60;
+	m_CurTime = 0.f;
+	m_Gain = 0.7f;
+	m_Pitch = 1.f;
+	m_Priority = 60.f;
 	m_PitchUpper = 1.1f;
 	m_PitchLower = 0.9f;
-	m_GainUpper = 1.0f;
+	m_GainUpper = 1.f;
 	m_GainLower = 0.8f;
-	m_ConeOuterGain = 0.0f;
-	m_ConeInnerAngle = 360.0f;
-	m_ConeOuterAngle = 360.0f;
-	m_Decay = 3.0f;
-	m_IntensityThreshold = 3;
-	// WARNING: m_TimeWindow is currently unused and uninitialized
+	m_ConeOuterGain = 0.f;
+	m_ConeInnerAngle = 360.f;
+	m_ConeOuterAngle = 360.f;
+	m_Decay = 3.f;
+	m_IntensityThreshold = 3.f;
 }
 
 CSoundGroup::CSoundGroup()
@@ -95,46 +82,35 @@ CSoundGroup::~CSoundGroup()
 	ReleaseGroup();
 }
 
-#if CONFIG2_AUDIO
-static float RandFloat(float min, float max)
-{
-	return float(rand(min*100.0f, max*100.0f) / 100.0f);
-}
-#endif // CONFIG2_AUDIO
-
 float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, float& itemRollOff)
 {
-	float x, y;
-	float answer = 0.0;
-	const size_t screenWidth = g_Game->GetView()->GetCamera()->GetViewPort().m_Width;
-	const size_t screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
-	float bufferSize = screenWidth * 0.10;
-	float yBufferSize = 15;
-	const size_t audioWidth = screenWidth;
-	float radianCap = PI / 3;
+	const int screenWidth = g_Game->GetView()->GetCamera()->GetViewPort().m_Width;
+	const int screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
+	const float xBufferSize = screenWidth * 0.1f;
+	const float yBufferSize = 15.f;
+	const float radianCap = M_PI / 3.f;
 
+	float x, y;
 	g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, x, y);
 
 	onScreen = true;
-
-	if (x < -bufferSize)
+	float answer = 0.f;
+	if (x < -xBufferSize)
 	{
 		onScreen = false;
 		answer = -radianCap;
 	}
-	else if (x > screenWidth + bufferSize)
+	else if (x > screenWidth + xBufferSize)
 	{
 		onScreen = false;
 		answer = radianCap;
 	}
 	else
 	{
-		if ((x < 0) || (x > screenWidth))
-		{
+		if (x < 0 || x > screenWidth)
 			itemRollOff = 0.5;
-		}
-		float pixPerRadian = audioWidth / (radianCap * 2);
-		answer = (x - (screenWidth/2)) / pixPerRadian;
+
+		answer = radianCap * (x * 2 / screenWidth - 1);
 	}
 
 	if (y < -yBufferSize)
@@ -145,7 +121,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	{
 		onScreen = false;
 	}
-	else if ((y < 0) || (y > screenHeight))
+	else if (y < 0 || y > screenHeight)
 	{
 		itemRollOff = 0.5;
 	}
@@ -153,31 +129,35 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	return answer;
 }
 
-void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& position, entity_id_t source)
+void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& position, entity_id_t source)
 {
-#if CONFIG2_AUDIO
+#if !CONFIG2_AUDIO
+	UNUSED2(index);
+	UNUSED2(position);
+	UNUSED2(source);
+#else
 	if (!g_SoundManager)
 		return;
 
 	bool isOnscreen = false;
 	ALfloat itemRollOff = 0.1f;
 	float offset = RadiansOffCenter(position, isOnscreen, itemRollOff);
-	
+
 	if (!isOnscreen && !TestFlag(eDistanceless) && !TestFlag(eOmnipresent))
 		return;
 
-	if (snd_group.size() == 0)
+	if (m_SoundGroups.empty())
 		Reload();
 
-	if (snd_group.size() <= theIndex)
+	if (m_SoundGroups.size() <= index)
 		return;
 
-	CSoundData* sndData = snd_group[theIndex];
-	if (sndData == nullptr)
+	CSoundData* sndData = m_SoundGroups[index];
+	if (!sndData)
 		return;
 
 	ISoundItem* hSound = static_cast<CSoundManager*>(g_SoundManager)->ItemForEntity(source, sndData);
-	if (hSound == nullptr)
+	if (!hSound)
 		return;
 
 	if (!TestFlag(eOmnipresent))
@@ -186,7 +166,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 		float sndDist = origin.Y;
 		float itemDist = (position - origin).Length();
 
-		if ((sndDist * 2) < itemDist)
+		if (sndDist * 2 < itemDist)
 			sndDist = itemDist;
 
 		if (TestFlag(eDistanceless))
@@ -195,7 +175,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 		if (sndData->IsStereo())
 			LOGWARNING("OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName().string8());
 
-		hSound->SetLocation(CVector3D((sndDist * sin(offset)), 0, -sndDist * cos(offset)));
+		hSound->SetLocation(CVector3D(sndDist * sin(offset), 0, -sndDist * cos(offset)));
 		hSound->SetRollOff(itemRollOff);
 	}
 
@@ -209,66 +189,59 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 
 	hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
 	static_cast<CSoundManager*>(g_SoundManager)->PlayGroupItem(hSound, m_Gain);
-
-#else // !CONFIG2_AUDIO
-	UNUSED2(theIndex);
-	UNUSED2(position);
-	UNUSED2(source);
 #endif // !CONFIG2_AUDIO
 }
 
-
-static void HandleError(const CStrW& message, const VfsPath& pathname, Status err)
+static void HandleError(const std::wstring& message, const VfsPath& pathname, Status err)
 {
+	// Open failed because sound is disabled (don't log this)
 	if (err == ERR::AGAIN)
-		return;	// open failed because sound is disabled (don't log this)
+		return;
+
 	LOGERROR("%s: pathname=%s, error=%s", utf8_from_wstring(message), pathname.string8(), utf8_from_wstring(ErrorString(err)));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)
 {
-	// if no sounds, return
-	if (filenames.size() == 0)
+	if (m_Filenames.empty())
 		return;
 
-	m_index = rand(0, (size_t)filenames.size());
-	UploadPropertiesAndPlay(m_index, position, source);
+	m_CurrentSoundIndex = rand(0, m_Filenames.size());
+	UploadPropertiesAndPlay(m_CurrentSoundIndex, position, source);
 }
 
 void CSoundGroup::Reload()
 {
-	m_index = 0; // reset our index
-
+	m_CurrentSoundIndex = 0;
 #if CONFIG2_AUDIO
 	ReleaseGroup();
 
-	if ( g_SoundManager ) {
-		for (size_t i = 0; i < filenames.size(); i++)
-		{
-			VfsPath  thePath =  m_filepath/filenames[i];
-			CSoundData* itemData = CSoundData::SoundDataFromFile(thePath);
+	if (!g_SoundManager)
+		return;
 
-			if (itemData == NULL)
-				HandleError(L"error loading sound", thePath, ERR::FAIL);
-			else
-				snd_group.push_back(itemData->IncrementCount());
-		}
-
-		if (TestFlag(eRandOrder))
-			random_shuffle(snd_group.begin(), snd_group.end());
+	for (const std::wstring& filename : m_Filenames)
+	{
+		VfsPath absolutePath = m_Filepath / filename;
+		CSoundData* itemData = CSoundData::SoundDataFromFile(absolutePath);
+		if (!itemData)
+			HandleError(L"error loading sound", absolutePath, ERR::FAIL);
+		else
+			m_SoundGroups.push_back(itemData->IncrementCount());
 	}
-#endif // CONFIG2_AUDIO
+
+	if (TestFlag(eRandOrder))
+		random_shuffle(m_SoundGroups.begin(), m_SoundGroups.end());
+#endif
 }
 
 void CSoundGroup::ReleaseGroup()
 {
 #if CONFIG2_AUDIO
-	for (size_t i = 0; i < snd_group.size(); i++)
-	{
-		CSoundData::ReleaseSoundData( snd_group[i] );
-	}
-	snd_group.clear();
-#endif // CONFIG2_AUDIO
+	for (CSoundData* soundGroup : m_SoundGroups)
+		CSoundData::ReleaseSoundData(soundGroup);
+
+	m_SoundGroups.clear();
+#endif
 }
 
 void CSoundGroup::Update(float UNUSED(TimeSinceLastFrame))
@@ -283,9 +256,8 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		HandleError(L"error loading file", pathnameXML, ERR::FAIL);
 		return false;
 	}
-	// Define elements used in XML file
-	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
-	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	EL(soundgroup);
 	EL(gain);
 	EL(looping);
@@ -308,8 +280,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	EL(path);
 	EL(threshold);
 	EL(decay);
-	#undef AT
-	#undef EL
+#undef EL
 
 	XMBElement root = XeroFile.GetRoot();
 
@@ -323,98 +294,97 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	{
 		int child_name = child.GetNodeName();
 
-		if(child_name == el_gain)
+		if (child_name == el_gain)
 		{
 			SetGain(child.GetText().ToFloat());
 		}
-		else if(child_name == el_looping)
+		else if (child_name == el_looping)
 		{
-			if(child.GetText().ToInt() == 1)
+			if (child.GetText().ToInt() == 1)
 				SetFlag(eLoop);
 		}
-		else if(child_name == el_omnipresent)
+		else if (child_name == el_omnipresent)
 		{
-			if(child.GetText().ToInt() == 1)
+			if (child.GetText().ToInt() == 1)
 				SetFlag(eOmnipresent);
 		}
-		else if(child_name == el_heardby)
+		else if (child_name == el_heardby)
 		{
-			if(child.GetText().FindInsensitive( "owner" ) == 0 )
+			if (child.GetText().FindInsensitive("owner") == 0)
 				SetFlag(eOwnerOnly);
 		}
-		else if(child_name == el_distanceless)
+		else if (child_name == el_distanceless)
 		{
-			if(child.GetText().ToInt() == 1)
+			if (child.GetText().ToInt() == 1)
 				SetFlag(eDistanceless);
 		}
-		else if(child_name == el_pitch)
+		else if (child_name == el_pitch)
 		{
 			this->m_Pitch = child.GetText().ToFloat();
 		}
-		else if(child_name == el_priority)
+		else if (child_name == el_priority)
 		{
 			this->m_Priority = child.GetText().ToFloat();
 		}
-		else if(child_name == el_randorder)
+		else if (child_name == el_randorder)
 		{
-			if(child.GetText().ToInt() == 1)
+			if (child.GetText().ToInt() == 1)
 				SetFlag(eRandOrder);
 		}
-		else if(child_name == el_randgain)
+		else if (child_name == el_randgain)
 		{
-			if(child.GetText().ToInt() == 1)
+			if (child.GetText().ToInt() == 1)
 				SetFlag(eRandGain);
 		}
-		else if(child_name == el_gainupper)
+		else if (child_name == el_gainupper)
 		{
 			this->m_GainUpper = child.GetText().ToFloat();
 		}
-		else if(child_name == el_gainlower)
+		else if (child_name == el_gainlower)
 		{
 			this->m_GainLower = child.GetText().ToFloat();
 		}
-		else if(child_name == el_randpitch)
+		else if (child_name == el_randpitch)
 		{
-			if(child.GetText().ToInt() == 1)
+			if (child.GetText().ToInt() == 1)
 				SetFlag(eRandPitch);
 		}
-		else if(child_name == el_pitchupper)
+		else if (child_name == el_pitchupper)
 		{
 			this->m_PitchUpper = child.GetText().ToFloat();
 		}
-		else if(child_name == el_pitchlower)
+		else if (child_name == el_pitchlower)
 		{
 			this->m_PitchLower = child.GetText().ToFloat();
 		}
-		else if(child_name == el_conegain)
+		else if (child_name == el_conegain)
 		{
 			this->m_ConeOuterGain = child.GetText().ToFloat();
 		}
-		else if(child_name == el_coneinner)
+		else if (child_name == el_coneinner)
 		{
 			this->m_ConeInnerAngle = child.GetText().ToFloat();
 		}
-		else if(child_name == el_coneouter)
+		else if (child_name == el_coneouter)
 		{
 			this->m_ConeOuterAngle = child.GetText().ToFloat();
 		}
-		else if(child_name == el_sound)
+		else if (child_name == el_sound)
 		{
-			this->filenames.push_back(child.GetText().FromUTF8());
+			this->m_Filenames.push_back(child.GetText().FromUTF8());
 		}
-		else if(child_name == el_path)
+		else if (child_name == el_path)
 		{
-			m_filepath = child.GetText().FromUTF8();
+			m_Filepath = child.GetText().FromUTF8();
 		}
-		else if(child_name == el_threshold)
+		else if (child_name == el_threshold)
 		{
 			m_IntensityThreshold = child.GetText().ToFloat();
 		}
-		else if(child_name == el_decay)
+		else if (child_name == el_decay)
 		{
 			m_Decay = child.GetText().ToFloat();
 		}
 	}
 	return true;
 }
-

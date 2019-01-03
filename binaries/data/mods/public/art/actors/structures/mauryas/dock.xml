@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Dock">
+      <mesh>structural/maur_docks_struct.dae</mesh>
+	  <props>
+		<prop actor="props/structures/mauryas/docks_struct_b.xml" attachpoint="root"/>
+	  </props>
+      <textures>
+	    <texture file="structural/maur_struct.png" name="baseTex"/>
+    	<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
+	    <texture file="structural/ao/maur_docks_ao.png" name="aoTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

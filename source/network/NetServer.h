@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -254,7 +254,9 @@ private:
 
 	static bool OnClientHandshake(void* context, CFsmEvent* event);
 	static bool OnAuthenticate(void* context, CFsmEvent* event);
-	static bool OnInGame(void* context, CFsmEvent* event);
+	static bool OnSimulationCommand(void* context, CFsmEvent* event);
+	static bool OnSyncCheck(void* context, CFsmEvent* event);
+	static bool OnEndCommandBatch(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
 	static bool OnReady(void* context, CFsmEvent* event);
 	static bool OnClearAllReady(void* context, CFsmEvent* event);

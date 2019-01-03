@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -670,9 +670,9 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_INGAME, (uint)NMT_CLIENT_PAUSED, NSS_INGAME, (void*)&OnClientPaused, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CHAT, NSS_INGAME, (void*)&OnChat, context);
-	session->AddTransition(NSS_INGAME, (uint)NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnInGame, context);
-	session->AddTransition(NSS_INGAME, (uint)NMT_SYNC_CHECK, NSS_INGAME, (void*)&OnInGame, context);
-	session->AddTransition(NSS_INGAME, (uint)NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnInGame, context);
+	session->AddTransition(NSS_INGAME, (uint)NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnSimulationCommand, context);
+	session->AddTransition(NSS_INGAME, (uint)NMT_SYNC_CHECK, NSS_INGAME, (void*)&OnSyncCheck, context);
+	session->AddTransition(NSS_INGAME, (uint)NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnEndCommandBatch, context);
 
 	// Set first state
 	session->SetFirstState(NSS_HANDSHAKE);
@@ -1111,59 +1111,69 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	return true;
 }
-
-bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)
 {
-	// TODO: should split each of these cases into a separate method
+	ENSURE(event->GetType() == (uint)NMT_SIMULATION_COMMAND);
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	CNetMessage* message = (CNetMessage*)event->GetParamRef();
-	if (message->GetType() == (uint)NMT_SIMULATION_COMMAND)
-	{
-		CSimulationMessage* simMessage = static_cast<CSimulationMessage*> (message);
+	CSimulationMessage* message = (CSimulationMessage*)event->GetParamRef();
 
-		// Ignore messages sent by one player on behalf of another player
-		// unless cheating is enabled
-		bool cheatsEnabled = false;
-		const ScriptInterface& scriptInterface = server.GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
-		JS::RootedValue settings(cx);
-		scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
-		if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
-			scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);
+	// Ignore messages sent by one player on behalf of another player
+	// unless cheating is enabled
+	bool cheatsEnabled = false;
+	const ScriptInterface& scriptInterface = server.GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue settings(cx);
+	scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
+	if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
+		scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);
 
-		PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.find(session->GetGUID());
-		// When cheating is disabled, fail if the player the message claims to
-		// represent does not exist or does not match the sender's player name
-		if (!cheatsEnabled && (it == server.m_PlayerAssignments.end() || it->second.m_PlayerID != simMessage->m_Player))
-			return true;
+	PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.find(session->GetGUID());
+	// When cheating is disabled, fail if the player the message claims to
+	// represent does not exist or does not match the sender's player name
+	if (!cheatsEnabled && (it == server.m_PlayerAssignments.end() || it->second.m_PlayerID != message->m_Player))
+		return true;
 
-		// Send it back to all clients that have finished
-		// the loading screen (and the synchronization when rejoining)
-		server.Broadcast(simMessage, { NSS_INGAME });
+	// Send it back to all clients that have finished
+	// the loading screen (and the synchronization when rejoining)
+	server.Broadcast(message, { NSS_INGAME });
 
-		// Save all the received commands
-		if (server.m_SavedCommands.size() < simMessage->m_Turn + 1)
-			server.m_SavedCommands.resize(simMessage->m_Turn + 1);
-		server.m_SavedCommands[simMessage->m_Turn].push_back(*simMessage);
+	// Save all the received commands
+	if (server.m_SavedCommands.size() < message->m_Turn + 1)
+		server.m_SavedCommands.resize(message->m_Turn + 1);
+	server.m_SavedCommands[message->m_Turn].push_back(*message);
 
-		// TODO: we shouldn't send the message back to the client that first sent it
-	}
-	else if (message->GetType() == (uint)NMT_SYNC_CHECK)
-	{
-		CSyncCheckMessage* syncMessage = static_cast<CSyncCheckMessage*> (message);
-		server.m_ServerTurnManager->NotifyFinishedClientUpdate(*session, syncMessage->m_Turn, syncMessage->m_Hash);
-	}
-	else if (message->GetType() == (uint)NMT_END_COMMAND_BATCH)
-	{
-		// The turn-length field is ignored
-		CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (message);
-		server.m_ServerTurnManager->NotifyFinishedClientCommands(*session, endMessage->m_Turn);
-	}
+	// TODO: we shouldn't send the message back to the client that first sent it
+	return true;
+}
 
+bool CNetServerWorker::OnSyncCheck(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_SYNC_CHECK);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	CSyncCheckMessage* message = (CSyncCheckMessage*)event->GetParamRef();
+
+	server.m_ServerTurnManager->NotifyFinishedClientUpdate(*session, message->m_Turn, message->m_Hash);
+	return true;
+}
+
+bool CNetServerWorker::OnEndCommandBatch(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_END_COMMAND_BATCH);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	CEndCommandBatchMessage* message = (CEndCommandBatchMessage*)event->GetParamRef();
+
+	// The turn-length field is ignored
+	server.m_ServerTurnManager->NotifyFinishedClientCommands(*session, message->m_Turn);
 	return true;
 }
 

@@ -1104,28 +1104,16 @@ void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg)
 
 std::string CComponentManager::GenerateSchema() const
 {
-	std::string numericOperation =
-		"<optional>"
-			"<attribute name='op'>"
-				"<choice>"
-					"<value>add</value>"
-					"<value>mul</value>"
-				"</choice>"
-			"</attribute>"
-		"</optional>";
 	std::string schema =
 		"<grammar xmlns='http://relaxng.org/ns/structure/1.0' xmlns:a='http://ns.wildfiregames.com/entity' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes'>"
 			"<define name='decimal'>"
 				"<data type='decimal'/>"
-				+ numericOperation +
 			"</define>"
 			"<define name='nonNegativeDecimal'>"
 				"<data type='decimal'><param name='minInclusive'>0</param></data>"
-				+ numericOperation +
 			"</define>"
 			"<define name='positiveDecimal'>"
 				"<data type='decimal'><param name='minExclusive'>0</param></data>"
-				+ numericOperation +
 			"</define>"
 			"<define name='anything'>"
 				"<zeroOrMore>"
