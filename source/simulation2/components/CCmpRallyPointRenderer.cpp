@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -251,14 +251,7 @@ public:
 			break;
 		case MT_Destroy:
 			{
-				for (std::vector<entity_id_t>::iterator it = m_MarkerEntityIds.begin(); it < m_MarkerEntityIds.end(); ++it)
-				{
-					if (*it != INVALID_ENTITY)
-					{
-						GetSimContext().GetComponentManager().DestroyComponentsSoon(*it);
-						*it = INVALID_ENTITY;
-					}
-				}
+				Reset();
 			}
 			break;
 		case MT_PositionChanged:
@@ -338,6 +331,18 @@ public:
 
 	virtual void Reset()
 	{
+		for (entity_id_t& componentId : m_MarkerEntityIds)
+		{
+			if (componentId != INVALID_ENTITY)
+			{
+				GetSimContext().GetComponentManager().DestroyComponentsSoon(componentId);
+				componentId = INVALID_ENTITY;
+			}
+		}
+
+		m_MarkerEntityIds.clear();
+		m_LastOwner = INVALID_PLAYER;
+		m_LastMarkerCount = 0;
 		m_RallyPoints.clear();
 		RecomputeAllRallyPointPaths();
 		UpdateMessageSubscriptions();
