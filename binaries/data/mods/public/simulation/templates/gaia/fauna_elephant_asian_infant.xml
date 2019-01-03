@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish_elephant_infant">
   <Identity>
-    <SpecificName>Asian Elephant Calf</SpecificName>
+    <GenericName>Asian Elephant Calf</GenericName>
+    <SpecificName>Elephas maximus</SpecificName>
+    <Icon>gaia/fauna_elephant_african_infant.png</Icon>
   </Identity>
+  <VisualActor>
+    <Actor>fauna/elephant_african_baby.xml</Actor>
+  </VisualActor>
 </Entity>

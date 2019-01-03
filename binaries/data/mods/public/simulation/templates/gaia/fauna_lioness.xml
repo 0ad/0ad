@@ -1,39 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_wild_violent">
-  <Attack>
-    <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
-      <RepeatTime>2000</RepeatTime>
-    </Melee>
-  </Attack>
-  <Footprint>
-    <Square width="2.0" depth="4.0"/>
-    <Height>2.0</Height>
-  </Footprint>
+<Entity parent="gaia/fauna_lion">
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Lioness</SpecificName>
-    <Icon>gaia/fauna_lion.png</Icon>
+    <GenericName>Lioness</GenericName>
   </Identity>
-  <Position>
-    <Anchor>pitch</Anchor>
-  </Position>
-  <Sound>
-    <SoundGroups>
-      <select>actor/fauna/animal/lion_select.xml</select>
-      <attack_melee>actor/fauna/animal/lion_attack.xml</attack_melee>
-      <death>actor/fauna/animal/lion_death.xml</death>
-    </SoundGroups>
-  </Sound>
-  <UnitMotion>
-    <WalkSpeed op="mul">0.45</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.45</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>fauna/lioness.xml</Actor>
   </VisualActor>

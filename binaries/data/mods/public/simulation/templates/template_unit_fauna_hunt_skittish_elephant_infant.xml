@@ -11,7 +11,6 @@
   </Footprint>
   <Identity>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
-    <Icon>gaia/fauna_elephant_african_infant.png</Icon>
   </Identity>
   <Position>
     <Anchor>pitch</Anchor>
@@ -30,7 +29,4 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
-  <VisualActor>
-    <Actor>fauna/elephant_african_baby.xml</Actor>
-  </VisualActor>
 </Entity>
