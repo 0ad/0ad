@@ -12,7 +12,21 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Release|x64"
+			>
+			<DebugSettings
+			/>
+		</Configuration>
+		<Configuration
 			Name="Debug|Win32"
+			>
+			<DebugSettings
+				WorkingDirectory="..\.."
+				CommandArguments="--scripts=./../.. test"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
 			>
 			<DebugSettings
 				WorkingDirectory="..\.."

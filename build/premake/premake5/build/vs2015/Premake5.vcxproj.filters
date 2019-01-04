@@ -4,6 +4,12 @@
     <Filter Include="modules">
       <UniqueIdentifier>{FEAC8BD4-6A8C-0A70-73A4-9546DF0271D1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="modules\android">
+      <UniqueIdentifier>{4E56C0F1-BAE1-2DB6-C3F2-B0AA2FFD89B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\android\tests">
+      <UniqueIdentifier>{B043763C-1CB0-3137-E5A3-C99451CF539F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="modules\codelite">
       <UniqueIdentifier>{56255C4E-421E-7BA0-6B50-602557A85AAC}</UniqueIdentifier>
     </Filter>
@@ -57,6 +63,12 @@
     </Filter>
     <Filter Include="modules\vstudio\tests\cs2005">
       <UniqueIdentifier>{69C9B067-5584-A013-FE3B-195EEAD5EAA3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests\dotnet2005">
+      <UniqueIdentifier>{616A373C-4DBB-227E-761F-114062CFB5E7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests\fs2005">
+      <UniqueIdentifier>{4C43B06E-38FE-9F1A-E1B5-1865CD4FEAAA}</UniqueIdentifier>
     </Filter>
     <Filter Include="modules\vstudio\tests\sln2005">
       <UniqueIdentifier>{C07C5821-2C95-3F4B-F541-CFE46119D4E4}</UniqueIdentifier>
@@ -130,6 +142,9 @@
       <Filter>src\host</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\host\lua_shimtable.h">
+      <Filter>src\host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\host\path_isabsolute.h">
       <Filter>src\host</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\host\premake.h">
@@ -293,6 +308,40 @@
     <None Include="..\..\CHANGES.txt" />
     <None Include="..\..\CONTRIBUTORS.txt" />
     <None Include="..\..\LICENSE.txt" />
+    <None Include="..\..\mobdebug.lua" />
+    <None Include="..\..\modules\android\LICENSE.txt">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\README.md">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\_manifest.lua">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\_preload.lua">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\android.lua">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\tests\_tests.lua">
+      <Filter>modules\android\tests</Filter>
+    </None>
+    <None Include="..\..\modules\android\tests\test_android_project.lua">
+      <Filter>modules\android\tests</Filter>
+    </None>
+    <None Include="..\..\modules\android\vsandroid_androidproj.lua">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\vsandroid_sln2005.lua">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\vsandroid_vcxproj.lua">
+      <Filter>modules\android</Filter>
+    </None>
+    <None Include="..\..\modules\android\vsandroid_vstudio.lua">
+      <Filter>modules\android</Filter>
+    </None>
     <None Include="..\..\modules\codelite\README.md">
       <Filter>modules\codelite</Filter>
     </None>
@@ -338,7 +387,10 @@
     <None Include="..\..\modules\d\actions\gmake.lua">
       <Filter>modules\d\actions</Filter>
     </None>
-    <None Include="..\..\modules\d\actions\vstudio.lua">
+    <None Include="..\..\modules\d\actions\vcxproj.lua">
+      <Filter>modules\d\actions</Filter>
+    </None>
+    <None Include="..\..\modules\d\actions\visuald.lua">
       <Filter>modules\d\actions</Filter>
     </None>
     <None Include="..\..\modules\d\d.lua">
@@ -491,6 +543,9 @@
     <None Include="..\..\modules\gmake2\tests\_tests.lua">
       <Filter>modules\gmake2\tests</Filter>
     </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_buildcmds.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
     <None Include="..\..\modules\gmake2\tests\test_gmake2_clang.lua">
       <Filter>modules\gmake2\tests</Filter>
     </None>
@@ -506,10 +561,16 @@
     <None Include="..\..\modules\gmake2\tests\test_gmake2_linking.lua">
       <Filter>modules\gmake2\tests</Filter>
     </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_makefile.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
     <None Include="..\..\modules\gmake2\tests\test_gmake2_objects.lua">
       <Filter>modules\gmake2\tests</Filter>
     </None>
     <None Include="..\..\modules\gmake2\tests\test_gmake2_pch.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_perfile_flags.lua">
       <Filter>modules\gmake2\tests</Filter>
     </None>
     <None Include="..\..\modules\gmake2\tests\test_gmake2_target_rules.lua">
@@ -560,9 +621,6 @@
     <None Include="..\..\modules\vstudio\tests\_tests.lua">
       <Filter>modules\vstudio\tests</Filter>
     </None>
-    <None Include="..\..\modules\vstudio\tests\cs2005\projectelement.lua">
-      <Filter>modules\vstudio\tests\cs2005</Filter>
-    </None>
     <None Include="..\..\modules\vstudio\tests\cs2005\projectsettings.lua">
       <Filter>modules\vstudio\tests\cs2005</Filter>
     </None>
@@ -587,10 +645,10 @@
     <None Include="..\..\modules\vstudio\tests\cs2005\test_icon.lua">
       <Filter>modules\vstudio\tests\cs2005</Filter>
     </None>
-    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua">
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_no_warn.lua">
       <Filter>modules\vstudio\tests\cs2005</Filter>
     </None>
-    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_framework_folders.lua">
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua">
       <Filter>modules\vstudio\tests\cs2005</Filter>
     </None>
     <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_packages_config.lua">
@@ -613,6 +671,15 @@
     </None>
     <None Include="..\..\modules\vstudio\tests\cs2005\test_user_file.lua">
       <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\dotnet2005\projectelement.lua">
+      <Filter>modules\vstudio\tests\dotnet2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\dotnet2005\test_nuget_framework_folders.lua">
+      <Filter>modules\vstudio\tests\dotnet2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\fs2005\projectsettings.lua">
+      <Filter>modules\vstudio\tests\fs2005</Filter>
     </None>
     <None Include="..\..\modules\vstudio\tests\sln2005\test_dependencies.lua">
       <Filter>modules\vstudio\tests\sln2005</Filter>
@@ -722,13 +789,13 @@
     <None Include="..\..\modules\vstudio\tests\vc2010\test_floatingpoint.lua">
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_fxcompile_settings.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
     <None Include="..\..\modules\vstudio\tests\vc2010\test_globals.lua">
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
     <None Include="..\..\modules\vstudio\tests\vc2010\test_header.lua">
-      <Filter>modules\vstudio\tests\vc2010</Filter>
-    </None>
-    <None Include="..\..\modules\vstudio\tests\vc2010\test_imagexex_settings.lua">
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
     <None Include="..\..\modules\vstudio\tests\vc2010\test_item_def_group.lua">
@@ -747,6 +814,9 @@
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
     <None Include="..\..\modules\vstudio\tests\vc2010\test_nmake_props.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_nuget_package_references.lua">
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
     <None Include="..\..\modules\vstudio\tests\vc2010\test_nuget_packages_config.lua">
@@ -785,6 +855,9 @@
     <None Include="..\..\modules\vstudio\tests\vc2010\test_target_machine.lua">
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_tokens.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
     <None Include="..\..\modules\vstudio\tests\vc2010\test_user_file.lua">
       <Filter>modules\vstudio\tests\vc2010</Filter>
     </None>
@@ -798,6 +871,15 @@
       <Filter>modules\vstudio</Filter>
     </None>
     <None Include="..\..\modules\vstudio\vs2005_csproj_user.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005_dotnetbase.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005_fsproj.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005_fsproj_user.lua">
       <Filter>modules\vstudio</Filter>
     </None>
     <None Include="..\..\modules\vstudio\vs2005_solution.lua">
@@ -892,6 +974,9 @@
     </None>
     <None Include="..\..\premake4.lua" />
     <None Include="..\..\premake5.lua" />
+    <None Include="..\..\scripts\changes.lua">
+      <Filter>scripts</Filter>
+    </None>
     <None Include="..\..\scripts\embed.lua">
       <Filter>scripts</Filter>
     </None>
