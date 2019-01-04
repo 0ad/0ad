@@ -1,8 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2019
 # Coringo Luminos <noksamem@gmail.com>, 2017
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
@@ -10,19 +11,19 @@
 # Антон Курило, 2017
 # Viktor Hrechaninov <hrechaninovvf@gmail.com>, 2016
 # Антон Курило, 2017
-# Микола Франчук <thekolian1996@gmail.com>, 2018
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-26 08:58+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2019-01-03 20:52+0000\n"
+"Last-Translator: Andriy Nahirnjak <andriy.nagirnjak@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -30,7 +31,7 @@ msgstr "Ремонт на верфі"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Кораблю у гарнізоні відновлюють 10 ПЗ за секунду."
+msgstr "Корабль у гарнізоні відновлює 10 HP за секунду."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -393,9 +394,9 @@ msgstr "Храм у Наці"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Як і в усіх культурах, релігія відіграла значну роль у імперії Мерое. Близько 160 р. до н.е., цариця Шанакдахето побудувала Храм, що уособлював світанок Мерое.\n+1 до швидкості відновлення здоров'я юнітів, розміщених в храмах поблизу."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr "Як і в усіх культурах, релігія відіграла значну роль у імперії Мерое. Приблизно у 160 р. до н.е. цариця Шанакдахето побудувала Храм, що уособлював розквіт Мерое.\n+1 до швидкості відновлення здоров'я юнітів, розміщених в храмах поблизу."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -493,9 +494,9 @@ msgstr "Базилевс Мегас"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Сину Селевка Нікатора, Антіоху вдалося непросте завдання із збереження імперії,  він продовжував засновувати храми та переміг галлів, що вторглись за допомогою бойових слонів.\n-10% від вартості бойових слонів."
+msgstr "Сину Селевка Нікатора, Антіоху вдалося непросте завдання зі збереження імперії,  він продовжував засновувати храми та переміг галлів, що вторглись за допомогою бойових слонів.\n-10% від вартості Бойових Слонів."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -547,8 +548,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "+15% до швидкості побудови та ремонту для для працівників."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Храм Афіни"
+msgid "Temple of Athena Nike"
+msgstr "Храм Ніки Аптерос"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -730,12 +731,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "-20% вартості і часу побудови для храмів Апедемак і їх Хранителя Храму Мерое."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
-msgstr "Убиття вірних"
+msgid "Slaughter of the Faithful"
+msgstr "Забій Вірних"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Швидкість лікування у ворога зменшена на 50%."
+msgid "Enemy healers −50% healing rate."
+msgstr "Ворожі цілителі отримують -50% до швидкості зцілення."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -816,9 +817,9 @@ msgstr "Вчитель"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Вибрана будівля зменшує вартість та час проведення досліджень на -20% та -50% відповідно, якщо в ній розміщений гарнізон."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr "Вибрана будівля зменшує вартість та час проведення дослідження технологій на -20% та -50% відповідно, якщо в ній розміщений гарнізон."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"

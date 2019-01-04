@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 03:58+0000\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -321,8 +321,8 @@ msgid ""
 msgstr "Shift + Delete: 删除当前选中的单位/建筑而无需确认"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (正斜杠): 选择空闲的战士"
+msgid "/ (Slash): Select idle fighter"
+msgstr ""
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -345,8 +345,8 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .: 选择所有空闲的工人 (包括民兵)"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
-msgstr "\\ (BackSlash):选择空闲单位"
+msgid "\\ (Backslash): Select idle unit"
+msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -517,21 +517,21 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "对已选中的单位使用Ctrl + 右键点击:"
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- 若游标在盟军建筑物上：驻军"
+msgid "    • If the cursor is over an allied structure: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- 若游标在非盟军的建筑物上：攻击 (而不是捕获或收集)"
+msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
+"    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- 除此之外：攻击移动 (预设会将移动路线上所有的敌方单位及建筑物作为目标，利用Ctrl + Q + 右键点击来仅将单位作为目标)。"
+"units)."
+msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -644,8 +644,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R: 重置相机的缩放和方向"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: 放大 (保持按着将会连续放大)"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

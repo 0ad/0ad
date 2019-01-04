@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-12-16 18:39+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -234,6 +234,14 @@ msgstr "Залежність не знайдена: %(dep)s"
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Всі залежності дотримані"
+
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Увімкнути"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Відключити"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."

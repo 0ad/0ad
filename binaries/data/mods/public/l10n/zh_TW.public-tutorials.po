@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -14,13 +14,14 @@
 # ethan lin <ethan@tscc.tp.edu.tw>, 2018
 # xaing kai <accbb1122@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# 旭誠 張 <tea55688@gmail.com>, 2018
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-01-29 09:05+0100\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>, 2018\n"
+"Last-Translator: 旭誠 張 <tea55688@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/wildfire-games/teams/17418/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,14 +31,14 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "歡迎來到 0 A.D. 教程！"
+msgstr "歡迎來到 0 A.D. 教程。"
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
 "Left-click on a female citizen and then right-click on a berry bush to make "
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
-msgstr "先用左鍵點選一位女性公民，再用右鍵點選果樹，意思是命令她採集食物。女性公民採集蔬果的速度比其他人快。"
+msgstr "左鍵點選一位女公民，再右鍵點選果樹使她採集食物。女公民採集蔬果的速度比其他單位快。"
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -148,9 +149,9 @@ msgstr "再次點選城鎮中心，按下「II」的按鈕即可晉升到鄉鎮�
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
-"While waiting for the phasing up, you may reaffect your idle workers to "
+"While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
-msgstr "趁升級的空檔，您可以看看是否有閒置的人手，讓他們去收集短缺的物資。"
+msgstr "在等待升級時，您可以重新分派閒置的工人採集您缺乏的資源。"
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -203,8 +204,8 @@ msgstr "一但你達到城市階段的需求，選擇你的城鎮中心並升級
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
-"barracks."
-msgstr "趁升級的空檔，您可以到軍營訓練更多的士兵。"
+"Barracks."
+msgstr "等待時代變換時，您可以在軍營訓練更多士兵。"
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -619,9 +620,9 @@ msgstr "當這兩個房屋建成時，選擇您的兩個女性公民，並命令
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is constructed, the builders will automatically start "
-"gathering it.\n"
-msgstr "農場蓋好後，建築工人會自動開始採集食物。在這個例子裡，他們會去狩獵附近的山羊。\n"
+"When the field is ready, the builders will automatically start gathering "
+"it.\n"
+msgstr "農田建好後，建築工人會自動開始採集食物。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -688,27 +689,26 @@ msgstr "我們應該開始準備進入「鄉鎮階段」，這將解鎖更多的
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
-"in case of attack, so let's build barracks.\n"
-msgstr "我們現在有足夠的資源，但缺少一個建築物。 雖然這只是一個經濟教程，但是預防敵人的攻擊先做好防禦是有需要的，所以讓我們來蓋一座軍營吧。\n"
+"in case of attack, so let's build Barracks.\n"
+msgstr "現在我們有足夠的資源，但還缺少一個建築。雖然這只是個經濟教程，不過準備防禦攻擊仍然有用，我們來蓋座軍營吧。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
-"Select four of your soldiers and ask them to build a barracks: as before, "
-"start selecting the soldiers, click on the barracks icon in the production "
+"Select four of your soldiers and ask them to build a Barracks: as before, "
+"start selecting the soldiers, click on the Barracks icon in the production "
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
-msgstr ""
-"選擇你的四名士兵然後要他們建造營房：像之前一樣，圈選士兵，然後點擊生產面板中的兵營圖標，然後在離你的城鎮中心附近不遠的地方，打下兵營的地基。"
+msgstr "選擇四名士兵並讓他們建造一座軍營：就像先前一樣，圈選士兵，點擊建造面板中的軍營圖標，然後在距離您城鎮中心不遠處打下地基。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
-"Let's wait for the barracks to be built. As this construction is lengthy, "
+"Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the barracks foundation by right-clicking"
-" on it (you should see a hammer icon), and then produce two more builders by"
-" clicking on the hoplite icon twice."
+"Center and set up a rally-point on the Barracks foundation by right-clicking"
+" on it (you should see a hammer icon). Then produce two more builders by "
+"clicking on the hoplite icon twice."
 msgstr ""
-"讓我們等候軍營建造完成。由於這個建造時間會比較久一點，您可以增加兩名士兵來加快建造速度。為此，選取您的城鎮中心，並在軍營的基地上右鍵點選（您應該會看到鎚子的圖示）來設定集結點，然後在重裝步兵的圖示上點選兩次來生產兩個建造者。"
+"讓我們等待軍營建造完成。由於軍營建造時間較久，您可以增加兩名士兵以加快建造速度。要這麼做，選取您的城鎮中心，在軍營的地基上點擊右鍵以設定集結點（您應該會看到槌子的圖標），然後點擊重裝步兵的圖標兩次以生產兩個建築工人。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""

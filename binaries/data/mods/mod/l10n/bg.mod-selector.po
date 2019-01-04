@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-11-18 21:24+0000\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -237,6 +237,14 @@ msgstr "Неизпълнена зависимост: %(dep)s"
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Всички зависимости са налице"
+
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Включване"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Изключване"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."

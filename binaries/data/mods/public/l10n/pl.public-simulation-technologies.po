@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -26,6 +26,7 @@
 # Pawel Jarczak <keven204@o2.pl>, 2016
 # Paweł Stopa <pawcio980@gmail.com>, 2018
 # Piotr Lehmann <lejmus@o2.pl>, 2017
+# Przemysław Murach <moonshine133@vp.pl>, 2019
 # q <q@qq.qq>, 2015
 # rabusek <rabusek@gmail.com>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
@@ -34,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 19:24+0000\n"
-"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2019-01-01 17:45+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -990,12 +991,12 @@ msgid "Wicker Baskets"
 msgstr "Kosze wiklinowe"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "Jednostki stacjonujące w koszarach leczą się."
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "Jednostki umieszczone w koszarach leczą się z upływem czasu."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Jednostki odzyskują zdrowie, gdy stacjonują w koszarach."
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "Jednostki odzyskują zdrowie podczas obsadzenia w koszarach."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1727,9 +1728,9 @@ msgstr "Zaawansowane rzemieślnictwo"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "Znacznie zwiększ szybkość szkolenia żołnierzy w koszarach, szkoląc ich w dużych partiach lub batalionach."
+msgstr "Znacznie zwiększa szybkość szkolenia wojowników w koszarach dzięki szkoleniu ich dużymi partiami lub w batalionach."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1793,8 +1794,8 @@ msgid ""
 msgstr "Broniące jednostki (Bohaterzy) to profesjonaliści, którzy dzierżyli najlepszą broń i przeszli najlepsze szkolenie."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "Odblokuj możliwość szkolenia elitarnych jednostek w koszarach."
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr "Odblokuj umiejętność trenowania czempionów w koszarach."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"

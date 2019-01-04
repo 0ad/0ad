@@ -18,12 +18,13 @@
 # miragae <miragae@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2016
 # Paweł Stopa <pawcio980@gmail.com>, 2018
+# Przemysław Murach <moonshine133@vp.pl>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 03:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2019-01-01 17:28+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,8 +327,8 @@ msgid ""
 msgstr "Shift + Delete: Usuwa obecnie zaznaczone jednostki/budynki bez potwierdzenia"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (Ukośnik): Zaznacz bezczynnego wojownika"
+msgid "/ (Slash): Select idle fighter"
+msgstr "/ (Ukośnik prawy): Wybierz bezczynnego wojownika"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -350,8 +351,8 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .: Wybierz wszystkich bezczynnych robotników (również mieszkańcy żołnierze)"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
-msgstr "\\ : Zaznacza jednostkę bez pracy"
+msgid "\\ (Backslash): Select idle unit"
+msgstr "\\ (Ukośnik lewy): Wybierz bezczynną jednostkę"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -522,21 +523,21 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + PPM na wybranych jednostkach:"
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- Jeśli kursor znajduje się nad sprzymierzonym budynkiem: stacjonuj wewnątrz"
+msgid "    • If the cursor is over an allied structure: Garrison"
+msgstr "• Jeśli kursor znajduje się nad przyjazną budowlą: garnizon"
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- Jeśli kursor znajduje się nad niesprzymierzoną jednostką lub budynkiem: atakuj (zamiast zdobywać lub gromadzić)"
+msgstr "• Jeśli kursor znajduje się nad wrogą jednostką lub budowlą: zaatakuj (zamiast przejęcia lub gromadzenia)"
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
+"    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- W przeciwnym razie: przemieszczanie w trybie ataku (domyślnie wszystkie wrogie jednostki i budynki wzdłuż drogi są celami, użyj Ctrl + Q + prawy przycisk, aby celować tylko w jednostki)."
+"units)."
+msgstr "• W innym wypadku: atak w ruchu (domyślnie wszystkie wrogie jednostki i budowle na drodze stają się celem ataku, kliknij Ctrl + Q + PPM, aby atakować tylko wrogie jednostki)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -649,8 +650,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R: Resetuj przybliżenie/orientację kamery."
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Przybliżenie (przytrzymaj wciśnięte aby kontynuować przybliżanie)"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr "= lub +: Przybliż (przytrzymaj, aby ciągle powiększać)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

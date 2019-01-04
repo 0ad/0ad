@@ -1,23 +1,24 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Woratiklis, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2017
-# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2017
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
-# Матвей Зарубежнов <zarubezhnov@gmail.com>, 2017
 # Boris Karalnik <eyesucker@gmail.com>, 2018
+# Матвей Зарубежнов <zarubezhnov@gmail.com>, 2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-01-29 09:05+0100\n"
-"PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>, 2018\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2017-06-04 12:59+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018\n"
 "Language-Team: Russian (https://www.transifex.com/wildfire-games/teams/17418/ru/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
@@ -177,11 +178,9 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
-"While waiting for the phasing up, you may reaffect your idle workers to "
+"While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
-"В ожидании перехода к новому этапу Вы можете перенаправить своих незанятых "
-"рабочих на сбор ресурсов, запасы которых малы."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -246,10 +245,8 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
-"barracks."
+"Barracks."
 msgstr ""
-"Ожидая окончания перехода к новому этапу, Вы можете обучить больше солдат в "
-"Бараках."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -797,11 +794,9 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is constructed, the builders will automatically start "
-"gathering it.\n"
+"When the field is ready, the builders will automatically start gathering "
+"it.\n"
 msgstr ""
-"Как только постройка поля будет завершена, строители автоматически начнут "
-"собирать с него урожай.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -888,37 +883,25 @@ msgstr ""
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
-"in case of attack, so let's build barracks.\n"
+"in case of attack, so let's build Barracks.\n"
 msgstr ""
-"Сейчас накоплено достаточно ресурсов, однако не хватает ещё одной постройки."
-" Хотя это обучение посвящено экономическим аспектам игры, не помешает быть "
-"готовым защититься в случае нападения, так что давайте построим бараки.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
-"Select four of your soldiers and ask them to build a barracks: as before, "
-"start selecting the soldiers, click on the barracks icon in the production "
+"Select four of your soldiers and ask them to build a Barracks: as before, "
+"start selecting the soldiers, click on the Barracks icon in the production "
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
-"Выберите четырех ваших солдат и попросите их построить казарму: как и "
-"раньше, начните выбирать солдат, нажмите на значок казармы на панели "
-"производства, а затем заложите фундамент недалеко от вашего Городского "
-"Центра, где вы хотите построить."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
-"Let's wait for the barracks to be built. As this construction is lengthy, "
+"Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the barracks foundation by right-clicking"
-" on it (you should see a hammer icon), and then produce two more builders by"
-" clicking on the hoplite icon twice."
+"Center and set up a rally-point on the Barracks foundation by right-clicking"
+" on it (you should see a hammer icon). Then produce two more builders by "
+"clicking on the hoplite icon twice."
 msgstr ""
-"Давайте подождем, пока построят казармы. Поскольку это строительство долгое,"
-" вы можете добавить еще двух солдат, чтобы построить быстрее. Чтобы сделать "
-"это, выберите свой Городской Центр  и укажите точку сбора на фундаменте "
-"казармы, щелкнув ПКМ на нем (вы должны увидеть значок молотка), а затем "
-"обучите еще двух строителей, дважды щелкнув значок Гоплита."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""

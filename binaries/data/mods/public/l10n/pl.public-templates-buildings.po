@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -27,13 +27,13 @@
 # miragae <miragae@gmail.com>, 2014-2015
 # Night Shade <aleksandra.peter3590@gmail.com>, 2016
 # zyxist <nightstorm@tlen.pl>, 2014
-# Przemysław Murach <moonshine133@vp.pl>, 2018
+# Przemysław Murach <moonshine133@vp.pl>, 2018-2019
 # slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-07-17 03:20+0000\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2019-01-01 18:17+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -73,19 +73,19 @@ msgstr "Kolonia wojskowa"
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
 msgid "Stoa"
 msgstr "Stoa"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
 msgstr "Helleńska Królewska Stoa "
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
 msgid "Recruit special units."
 msgstr "Rekrutuj specjalne jednostki."
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:38
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:32
@@ -287,11 +287,11 @@ msgstr "Trenuj żołnierzy miejskich. Odkrywaj ulepszone metody ich trenowania."
 msgid "Barracks"
 msgstr "Koszary"
 
-#: simulation/templates/template_structure_military_barracks_range.xml:7
+#: simulation/templates/template_structure_military_barracks_range.xml:8
 msgid "Archery Range"
 msgstr "Zasięg strzelnicy"
 
-#: simulation/templates/template_structure_military_barracks_range.xml:8
+#: simulation/templates/template_structure_military_barracks_range.xml:10
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
 msgstr "Szkoli piechotę dystansową. Opracowuje ulepszenia szkoleń."
 
@@ -1580,9 +1580,9 @@ msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:32
 msgid ""
-"Cheap barracks-like structure that is buildable in neutral territory, but "
+"Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Tani budynek podobny do koszar, możesz wybudować go na ziemi niczyjej, ale nie dodaje terytorium. Możesz wytrenować w nim najemników"
+msgstr "Tania koszaropodobna budowla, którą można stawiać na neutralnym terytorium, jednak nie wpływa na jego zasięg. Szkoli najemników."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"

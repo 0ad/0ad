@@ -9,14 +9,14 @@
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2018
 # sicey <sicey224@hotmail.com>, 2015
-# Typhoon das <info@typhoonwebexpert.com>, 2017
+# Tayfun Toprakcıoğlu, 2017
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
 # yakup <mutouk@yandex.ru>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 03:58+0000\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -320,8 +320,8 @@ msgid ""
 msgstr "Shift + Delete: Seçili birimlerin / binaların onay alınmadan silinmesi"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (EğikÇizgi): Boştaki savaşçıyı seç"
+msgid "/ (Slash): Select idle fighter"
+msgstr ""
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -344,8 +344,8 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .: Tüm boşta çalışan işçileri seç (vatandaş askerler dahil)"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
-msgstr "\\ (BackSlash): Boştaki birimi seç"
+msgid "\\ (Backslash): Select idle unit"
+msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -516,21 +516,21 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Sağ Tık seçilmiş birimlerle:"
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- İmleç bir yapının üzerindeyse: Askeri Birlik"
+msgid "    • If the cursor is over an allied structure: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- Eğer imleç müttefik olmayan bir birim yada yapının üzerindeyse: Saldırı (onun yerine yakala veya topla)"
+msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
+"    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- Aksi halde: Saldırı hamlesi (öntanımlı olarak hedef yoldaki tüm düşman birimleri ve yapıları için, yalnız hedef birimleri için Ctrl + Q + Sol tıkla). "
+"units)."
+msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -643,8 +643,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R: Kamera yakınlaştırma/yönelim sıfırla"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Yakınlaştırma (Daha fazla yakınlaşmak için basılı tutun)"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

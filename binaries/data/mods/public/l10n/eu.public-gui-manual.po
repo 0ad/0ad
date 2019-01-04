@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 03:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 15:43+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -315,8 +315,8 @@ msgid ""
 msgstr "Maius + Ezabatu: ezabatutako unitate/eraikinak galdetu gabe ezabatzen ditu"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (marra diagonala): Hautatu ezer egin gabe dagoen borrokalaria"
+msgid "/ (Slash): Select idle fighter"
+msgstr "/ (marra): Hautatu ezer egin gabe dagoen borrokalaria"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -339,7 +339,7 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .: Hautatu ezer egin gabe dauden langileak (soldadu hiritarrak barne)"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
+msgid "\\ (Backslash): Select idle unit"
 msgstr "\\ (alderantzizko marra ): Hautatu ezer egin gabe dagoen unitatea"
 
 #: gui/manual/intro.txt:78
@@ -511,21 +511,21 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + eskuin klika aukeratutako unitateekin:"
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- Erakuslea eraikin aliatuaren gainean badago: Babestu"
+msgid "    • If the cursor is over an allied structure: Garrison"
+msgstr "• Erakuslea eraikin aliatuaren gainean badago: Babestu"
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- Erakuslea eraikin edo unitate ez aliatu baten gainean badago: Erasotu ( atzitu edo bildu partez)"
+msgstr " • Erakuslea eraikin edo unitate ez aliatu baten gainean badago: Erasotu ( atzitu edo bildu partez)"
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
+"    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- Bestela: Mugituz erasotu (berez, bidean topatutako etsaien eraikin eta unitate guztiak erasotuko dira, sakatu Ctrl + Q + eskuin klika unitateak baino ez erasotzeko)"
+"units)."
+msgstr "• Bestela: Mugituz erasotu (berez, bidean topatutako etsaien eraikin eta unitate guztiak erasotuko dira, sakatu Ctrl + Q + eskuin klika unitateak baino ez erasotzeko)"
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -638,8 +638,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R: Kamera bere hasierako balioetara eta norabidera eraman"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Kamera lurrera gerturatu (Jarraitu sakatzen polikiago egiteko)"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr "= edo +: Kamera lurrera gerturatu (Jarraitu sakatzen polikiago egiteko)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

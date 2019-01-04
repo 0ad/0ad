@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -19,13 +19,13 @@
 # Mat Was <wasmat0@gmail.com>, 2017
 # Michał Karol, 2016
 # Pitong, 2017
-# Przemysław Murach <moonshine133@vp.pl>, 2018
+# Przemysław Murach <moonshine133@vp.pl>, 2018-2019
 # Tomasz Goljat <goljat@protonmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-07-17 03:52+0000\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2019-01-01 17:24+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -403,9 +403,9 @@ msgstr "Świątynia w Naqa"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Jak we wszystkich kulturach, religia odegrała znaczącą rolę w Imperium Meroe. Shanakdakheto posiadał świątynię w okolicy 160 N.E. jako symbol zaawansowania Meroe.\n+1 wskaźnik leczenia w garnizonach pobliskich świątyń."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr "Religia odgrywała ważną rolę w Imperium Meroickim, tak jak we wszystkich innych kulturach. Dzięki Shanakdakheto wybudowano Świątynię około roku 160 p.n.e. jako symbol postępu cywilizacyjnego Meroitów.\n+1 do leczenia jednostek rozmieszczonych w pobliskich świątyniach"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -503,9 +503,9 @@ msgstr "Wielki Król"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Syn Selekusa Nikatora, Antioch I odniósł sukces w nietrywialnym zadaniu utrzymania imperium w całości, przy okazji stawiając świątynie i pokonując inwazję Galów korzystając ze słoni wojennych.\n-10% kosztu szkolenia Słoni Wojennych."
+msgstr "Synowi Seleukosa I Nikatora, Antiochowi udało się utrzymać zjednoczone imperium przy równoczesnym wznoszeniu świątyń i pokonaniu najeżdżających Galów za pomocą słoni bojowych.\n-10% kosztu Słoni Bojowych."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -557,8 +557,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "+15% szybkości budowania i naprawy pracowników."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Świątynia Ateny"
+msgid "Temple of Athena Nike"
+msgstr "Świątynia Ateny Nike"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -740,12 +740,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "Świątynia Apedemaka i Świątynia Meroickich Strażników jest o -20% tańsza i budowana -20% szybciej."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
-msgstr "Wymordowanie Wiernych"
+msgid "Slaughter of the Faithful"
+msgstr "Rzeź Wiernych"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Poziom leczenia wrogów zmniejszony o 50%"
+msgid "Enemy healers −50% healing rate."
+msgstr "Wrodzy uzdrowiciele leczą 50% gorzej."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -826,9 +826,9 @@ msgstr "Aura nauczyciela"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Wzmacnia budynek w którym stacjonuje bonusem -20% do kosztów i -50% do czasu badania."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr "Ulepsza budowlę 20% taniej i przyspiesza o 50% rozwój technologii, gdy się w niej znajduje."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"

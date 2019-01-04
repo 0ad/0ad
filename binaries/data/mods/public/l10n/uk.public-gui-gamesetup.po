@@ -15,13 +15,13 @@
 # Victor Ptah, 2015
 # Victor Ptah, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
-# Микола Франчук <thekolian1996@gmail.com>, 2018
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2019
 # Сергій Дубик <dubyk@ukr.net>, 2014,2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2018-12-14 18:45+0000\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2019-01-03 15:17+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -319,7 +319,7 @@ msgid "Select the difficulty of this scenario."
 msgstr "Виберіть складність даного сценарію."
 
 #: gui/gamesetup/gamesetup.js:772
-msgid "Chose the civilization for this player"
+msgid "Choose the civilization for this player"
 msgstr "Оберіть цивілізацію для цього гравця"
 
 #: gui/gamesetup/gamesetup.js:839
@@ -453,99 +453,157 @@ msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Переглянути Іст
 msgid "Configure AI: %(description)s."
 msgstr "Налаштувати ШІ: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1401
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Переключіть %(name)s вкладку налаштувань."
 
-#: gui/gamesetup/gamesetup.js:1399
+#: gui/gamesetup/gamesetup.js:1402
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Використовуйте, %(hotkey)s щоб перемістити вкладку налаштувань донизу."
 
-#: gui/gamesetup/gamesetup.js:1400
+#: gui/gamesetup/gamesetup.js:1403
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Використовуйте, %(hotkey)s щоб перемістити вкладку налаштувань догори."
 
-#: gui/gamesetup/gamesetup.js:1745
+#: gui/gamesetup/gamesetup.js:1748
 msgctxt "map selection"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1750
 msgid "Pick any of the given maps at random."
 msgstr "Виберіть будь-яку з даних карт випадковим чином."
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1782
 msgctxt "biome"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/gamesetup/gamesetup.js:1780
+#: gui/gamesetup/gamesetup.js:1783
 msgid "Pick a biome at random."
 msgstr "Виберіть біом випадковим чином."
 
-#: gui/gamesetup/gamesetup.js:2118
+#: gui/gamesetup/gamesetup.js:2121
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2123
+#: gui/gamesetup/gamesetup.js:2126
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: gui/gamesetup/gamesetup.js:2153
+#: gui/gamesetup/gamesetup.js:2156
 msgid "Yes"
 msgstr "Так"
 
-#: gui/gamesetup/gamesetup.js:2153
+#: gui/gamesetup/gamesetup.js:2156
 msgid "No"
 msgstr "Ні"
 
-#: gui/gamesetup/gamesetup.js:2160
+#: gui/gamesetup/gamesetup.js:2163
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2248
+#: gui/gamesetup/gamesetup.js:2251
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2453
+#: gui/gamesetup/gamesetup.js:2456
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Штучний Інтелект: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2461
+#: gui/gamesetup/gamesetup.js:2464
 msgid "Unassigned"
 msgstr "Непризначено"
 
-#: gui/gamesetup/gamesetup.js:2537
+#: gui/gamesetup/gamesetup.js:2540
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2544
+#: gui/gamesetup/gamesetup.js:2547
 msgid "Unknown Player"
 msgstr "Невідомий гравець"
 
-#: gui/gamesetup/gamesetup.js:2583
+#: gui/gamesetup/gamesetup.js:2586
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2584
+#: gui/gamesetup/gamesetup.js:2587
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2585
+#: gui/gamesetup/gamesetup.js:2588
 msgid "HH:mm"
 msgstr "HH:mm"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:55
+#, javascript-format
+msgid "%(name)s's game"
+msgstr "%(name)s гра"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:114
+msgid "Please enter a valid server name."
+msgstr "Будь ласка введіть дійсне ім'я сервера."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:121
+#, javascript-format
+msgid "Server port number must be between %(min)s and %(max)s."
+msgstr "Номер порту сервера має бути у проміжку з %(min)s по %(max)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:138
+msgid "Connecting to server..."
+msgstr "Підключення до сервера..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:157
+#, javascript-format
+msgid "Net message: %(message)s"
+msgstr "Мережеве повідомлення: %(message)s"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:221
+msgid "Registering with server..."
+msgstr "Реєстрація на сервері ..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:227
+msgid "Game has already started, rejoining..."
+msgstr "Гра вже запущена, заходимо..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:298
+msgid "Game name already in use."
+msgstr "Назва гри вже використовується."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:308
+msgid "Failed to host via STUN."
+msgstr "Збій створення хосту через STUN."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:322
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr "Неможливо створити гру: %(message)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
+msgid "Error"
+msgstr "Помилка"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:351
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr "Неможливо приєднатись ло гри: %(message)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:373
+#, javascript-format
+msgid "%(playername)s's game"
+msgstr "гра гравця %(playername)s"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -574,6 +632,7 @@ msgid "AI Behavior:"
 msgstr "Поведідка ШІ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -653,6 +712,49 @@ msgstr "Виберіть команду гравця."
 #: gui/gamesetup/gamesetup.xml:(tooltip):202
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Показати загальний чат у діалоговому вікні"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
+msgid "Multiplayer"
+msgstr "Багатокористувацька гра"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
+msgid "Joining an existing game."
+msgstr "Приєднатися до існуючої гри."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
+msgid "Player Name:"
+msgstr "Ім'я Гравця:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
+msgid "Server Hostname or IP:"
+msgstr "Ім’я серверу або IP-адреса:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
+msgid "Server Port:"
+msgstr "Порт сервера:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
+msgid "Set up your server to host."
+msgstr "Налаштуйте свій сервер."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
+msgid "Server Name:"
+msgstr "Ім'я Серверу:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+msgid "Use STUN to work around firewalls"
+msgstr "Використовуйте STUN щоб обійти мережеві екрани"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+msgid "Continue"
+msgstr "Продовжити"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
+msgid "Leave blank to use the default port."
+msgstr "Залиште порожнім, щоб використовувати порт за замовчуванням."
 
 #: gui/text/quotes.txt:1
 msgid ""

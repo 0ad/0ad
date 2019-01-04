@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,7 +9,7 @@
 # LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Chris Vl <inactive+chrisvl97@transifex.com>, 2014
-# firespin <dartworldgr@hotmail.com>, 2014
+# firespin, 2014
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2014-2015
 # crippledmoon <domas392@in.gr>, 2016
 # George Charoupas <labaxp@gmail.com>, 2015
@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-10-20 14:41+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2018-12-31 14:31+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,19 +78,19 @@ msgstr "Στρατιωτική Αποικία"
 msgid "Klēroukhía"
 msgstr "Κληρουχία"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
 msgid "Stoa"
 msgstr "Στοά"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
 msgstr "Ελληνική Βασιλική Στοά"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
 msgid "Recruit special units."
 msgstr "Στρατολόγηση Ειδικών Μονάδων"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:38
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:32
@@ -292,11 +292,11 @@ msgstr "Εκπαίδευσε πολίτες-στρατιώτες. Κάνε έρ�
 msgid "Barracks"
 msgstr "Στρατώνες"
 
-#: simulation/templates/template_structure_military_barracks_range.xml:7
+#: simulation/templates/template_structure_military_barracks_range.xml:8
 msgid "Archery Range"
 msgstr "Βεληνεκές Τοξοβολίας"
 
-#: simulation/templates/template_structure_military_barracks_range.xml:8
+#: simulation/templates/template_structure_military_barracks_range.xml:10
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
 msgstr "Εκπαίδευσε πολίτες-οπλίτες πεζικού εξ αποστάσεως. Ερεύνησε βελτιώσεις εκπαίδευσης."
 
@@ -1585,9 +1585,9 @@ msgstr "Στρατοπεδεία Μισθοφόρων"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:32
 msgid ""
-"Cheap barracks-like structure that is buildable in neutral territory, but "
+"Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Φθηνό κτήριο παρόμοιο με στρατώνα οικοδομήσιμο σε ουδέτερη περιοχή, όμως δεν δίνει καθόλου εδαφική επιρροή . Εκπαίδεύστε Μισθοφόρους."
+msgstr ""
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
