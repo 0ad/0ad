@@ -210,7 +210,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
 
-		this.SetNextStateAlwaysEntering("FORMATIONMEMBER.WALKING");
+		this.SetNextState("FORMATIONMEMBER.WALKING");
 	},
 
 	// Special orders:
@@ -457,9 +457,9 @@ UnitAI.prototype.UnitFsmSpec = {
 			else
 			{
 				if (this.IsAnimal())
-					this.SetNextStateAlwaysEntering("ANIMAL.COMBAT.ATTACKING");
+					this.SetNextState("ANIMAL.COMBAT.ATTACKING");
 				else
-					this.SetNextStateAlwaysEntering("INDIVIDUAL.COMBAT.ATTACKING");
+					this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
 			}
 			return;
 		}
@@ -603,7 +603,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			// so try gathering it from here.
 			// TODO: need better handling of the can't-reach-target case
 			this.StopMoving();
-			this.SetNextStateAlwaysEntering("INDIVIDUAL.GATHER.GATHERING");
+			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
 		}
 	},
 
@@ -680,7 +680,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			// so try repairing it from here.
 			// TODO: need better handling of the can't-reach-target case
 			this.StopMoving();
-			this.SetNextStateAlwaysEntering("INDIVIDUAL.REPAIR.REPAIRING");
+			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
 		}
 	},
 
@@ -920,7 +920,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			this.CallMemberFunction("Gather", [msg.data.target, false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.GatherNearPosition": function(msg) {
@@ -935,7 +935,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			this.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, msg.data.template, false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.Heal": function(msg) {
@@ -954,7 +954,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			this.CallMemberFunction("Heal", [msg.data.target, false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.Repair": function(msg) {
@@ -973,7 +973,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			this.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.ReturnResource": function(msg) {
@@ -992,19 +992,19 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			this.CallMemberFunction("ReturnResource", [msg.data.target, false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.Pack": function(msg) {
 			this.CallMemberFunction("Pack", [false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.Unpack": function(msg) {
 			this.CallMemberFunction("Unpack", [false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("MEMBER");
 		},
 
 		"IDLE": {
@@ -1155,7 +1155,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						delete this.pickup;
 					}
 					this.CallMemberFunction("Garrison", [this.order.data.target, false]);
-					this.SetNextStateAlwaysEntering("MEMBER");
+					this.SetNextState("MEMBER");
 				},
 			},
 		},
@@ -3530,17 +3530,12 @@ UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 
 //// FSM linkage functions ////
 
+// Setting the next state to the current state will leave/re-enter the top-most substate.
 UnitAI.prototype.SetNextState = function(state)
 {
 	this.UnitFsm.SetNextState(this, state);
 };
 
-// This will make sure that the state is always entered even if this means leaving it and reentering it
-// This is so that a state can be reinitialized with new order data without having to switch to an intermediate state
-UnitAI.prototype.SetNextStateAlwaysEntering = function(state)
-{
-	this.UnitFsm.SetNextStateAlwaysEntering(this, state);
-};
 
 UnitAI.prototype.DeferMessage = function(msg)
 {
