@@ -118,7 +118,9 @@ function getPointsInBoundingBox(boundingBox)
 }
 
 /**
- * Sorts the given (x, y) points so that the distance between neighboring points becomes minimal (similar to the traveling salesman problem).
+ * Get the order of the given points to get the shortest closed path (similar to the traveling salesman problem).
+ * @param {Vectro2D[]} points - Points the path should go through
+ * @returns {number[]} Ordered indices, same length as points
  */
 function sortPointsShortestCycle(points)
 {
@@ -137,9 +139,9 @@ function sortPointsShortestCycle(points)
 	for (let i = 0; i < 3; ++i)
 	{
 		order.push(i);
-		pointsToAdd.shift(i);
+		pointsToAdd.shift();
 		if (i)
-			distances.push(Math.euclidDistance2D(points[order[i]].x, points[order[i]].y, points[order[i - 1]].x, points[order[i - 1]].y));
+			distances.push(points[order[i]].distanceTo(points[order[i - 1]]));
 	}
 
 	distances.push(points[order[0]].distanceTo(points[order[order.length - 1]]));
