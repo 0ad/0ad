@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,171 +19,226 @@
 
 #include "Entity.h"
 
-#include <utility>
-
-static const size_t ENTITYMAP_DEFAULT_SIZE = 4096;
 /**
  * A fast replacement for map<entity_id_t, T>.
- * Behaves like a much faster std:map.
- * The drawback is memory usage, as this uses sparse storage.
- * So creating/deleting entities will lead to inefficiency.
+ * We make the following assumptions:
+ *  - entity id's (keys) are unique
+ *  - modifications (add / delete) are far less frequent then look-ups
+ *  - preformance for iteration is important
  */
-
-template<class V, entity_id_t FIRST_VALID_ENTITY_ID = 1, size_t initialSize = ENTITYMAP_DEFAULT_SIZE>
-class EntityMap
+template<class T> class EntityMap
 {
-	static_assert(FIRST_VALID_ENTITY_ID > INVALID_ENTITY, "Entity IDs start at INVALID_ENTITY");
 private:
-	friend class TestEntityMap;
-	
-	EntityMap(const EntityMap&) = delete;
-	EntityMap& operator=(const EntityMap&) = delete;
+	EntityMap(const EntityMap&);			// non-copyable
+	EntityMap& operator=(const EntityMap&); // non-copyable
 
 public:
 	typedef entity_id_t key_type;
-	typedef V mapped_type;
-	typedef std::pair<entity_id_t, V> value_type;
+	typedef T mapped_type;
+	template<class K, class V> struct key_val {
+		typedef K first_type;
+		typedef V second_type;
+		K first;
+		V second;
+	};
+	typedef key_val<entity_id_t, T> value_type;
 
 private:
-	std::vector<value_type> m_Data;
+	size_t m_BufferSize;		// number of elements in the buffer
+	size_t m_BufferCapacity;	// capacity of the buffer
+	value_type* m_Buffer;		// vector with all the mapped key-value pairs
 
-	// number of 'valid' entity id's
-	size_t m_Count;
+	size_t m_Count;				// number of 'valid' entity id's
 
-	// EntityMap keeps a valid entity ID at the end() so _iter<>::operator++ knows when to stop the loop
-	// Use FIRST_VALID_ENTITY_ID since we are sure that that is indeed a valid ID.
-#define ITERATOR_FENCE {FIRST_VALID_ENTITY_ID, V()}
 public:
 
-	EntityMap()
-		: m_Count(0)
+	inline EntityMap() : m_BufferSize(1), m_BufferCapacity(4096), m_Count(0)
 	{
-		m_Data.reserve(initialSize);
-		m_Data.push_back(ITERATOR_FENCE);
+		// for entitymap we allocate the buffer right away
+		// with first element in buffer being the Invalid Entity
+		m_Buffer = (value_type*)malloc(sizeof(value_type) * (m_BufferCapacity + 1));
+
+		// create the first element:
+		m_Buffer[0].first = INVALID_ENTITY;
+		m_Buffer[1].first = 0xFFFFFFFF; // ensure end() always has 0xFFFFFFFF
+	}
+	inline ~EntityMap()
+	{
+		free(m_Buffer);
 	}
 
+	// Iterators
 	template<class U> struct _iter : public std::iterator<std::forward_iterator_tag, U>
 	{
 		U* val;
-		_iter(U* init) : val(init) {}
-		template<class T>
-		_iter(const _iter<T>& it) : val(it.val) {}
-
-		U& operator*() { return *val; }
-		U* operator->() { return val; }
-
-		_iter& operator++() // ++it
+		inline _iter(U* init) : val(init) {}
+		inline U& operator*() { return *val; }
+		inline U* operator->() { return val; }
+		inline _iter& operator++() // ++it
 		{
-			do
-				++val;
-			while (val->first == INVALID_ENTITY);
+			++val;
+			while (val->first == INVALID_ENTITY) ++val; // skip any invalid entities
 			return *this;
 		}
-		_iter operator++(int) // it++
+		inline _iter& operator++(int) // it++
 		{
-			_iter orig = *this;
-			++(*this);
-			return orig;
+			U* ptr = val;
+			++val;
+			while (val->first == INVALID_ENTITY) ++val; // skip any invalid entities
+			return ptr;
 		}
-		bool operator==(_iter other) { return val == other.val; }
-		bool operator!=(_iter other) { return val != other.val; }
+		inline bool operator==(_iter other) { return val == other.val; }
+		inline bool operator!=(_iter other) { return val != other.val; }
+		inline operator _iter<U const>() const { return _iter<U const>(val); }
 	};
 
 	typedef _iter<value_type> iterator;
-	typedef _iter<const value_type> const_iterator;
+	typedef _iter<value_type const> const_iterator;
 
-	iterator begin()
+	inline iterator begin()
 	{
-		iterator it = &m_Data.front();
-		if (it->first == INVALID_ENTITY)
-			++it; // skip all invalid entities
-		return it;
+		value_type* ptr = m_Buffer + 1; // skip the first INVALID_ENTITY
+		while (ptr->first == INVALID_ENTITY) ++ptr; // skip any other invalid entities
+		return ptr;
+	}
+	inline iterator end()
+	{
+		return iterator(m_Buffer + m_BufferSize);
+	}
+	inline const_iterator begin() const
+	{
+		value_type* ptr = m_Buffer + 1; // skip the first INVALID_ENTITY
+		while (ptr->first == INVALID_ENTITY) ++ptr; // skip any other invalid entities
+		return ptr;
+	}
+	inline const_iterator end() const
+	{
+		return const_iterator(m_Buffer + m_BufferSize);
 	}
 
-	const_iterator begin() const
+	// Size
+	inline bool empty() const { return m_Count == 0; }
+	inline size_t size() const { return m_Count; }
+
+	// Modification
+	void insert(const key_type key, const mapped_type& value)
 	{
-		const_iterator it = &m_Data.front();
-		if (it->first == INVALID_ENTITY)
-			++it;
-		return it;
-	}
-
-	iterator end()
-	{
-		return iterator(&m_Data.back()); // return the ITERATOR_FENCE, see above
-	}
-
-	const_iterator end() const
-	{
-		return const_iterator(&m_Data.back()); // return the ITERATOR_FENCE, see above
-	}
-
-	bool empty() const { return m_Count == 0; }
-	size_t size() const { return m_Count; }
-
-	std::pair<iterator, bool> insert_or_assign(const key_type& key, const mapped_type& value)
-	{
-		ENSURE(key >= FIRST_VALID_ENTITY_ID);
-
-		if (key-FIRST_VALID_ENTITY_ID+1 >= m_Data.size())
+		if (key >= m_BufferCapacity) // do we need to resize buffer?
 		{
-			// Fill [end(),…,key[ invalid entities, our new key, and then add a new iterator gate at the end;
-			// resize, make sure to keep a valid entity ID at the end by adding a new ITERATOR_FENCE
-			m_Data.back().first = INVALID_ENTITY; // reset current iterator gate
-			m_Data.resize(key-FIRST_VALID_ENTITY_ID+2, {INVALID_ENTITY, V()});
-			m_Data.back() = ITERATOR_FENCE;
+			size_t newCapacity = m_BufferCapacity + 4096;
+			while (key >= newCapacity) newCapacity += 4096;
+			// always allocate +1 behind the scenes, because end() must have a 0xFFFFFFFF key
+			value_type* mem = (value_type*)realloc(m_Buffer, sizeof(value_type) * (newCapacity + 1));
+			if (!mem)
+			{
+				debug_warn("EntityMap::insert() realloc failed! Out of memory.");
+				throw std::bad_alloc(); // fail to expand and insert
+			}
+			m_BufferCapacity = newCapacity;
+			m_Buffer = mem;
+			goto fill_gaps;
 		}
-		bool inserted = false;
-		if (m_Data[key-FIRST_VALID_ENTITY_ID].first == INVALID_ENTITY)
+		else if (key > m_BufferSize) // weird insert far beyond the end
 		{
-			inserted = true;
+fill_gaps:
+			// set all entity id's to INVALID_ENTITY inside the new range
+			for (size_t i = m_BufferSize; i <= key; ++i)
+				m_Buffer[i].first = INVALID_ENTITY;
+			m_BufferSize = key; // extend the new size
+		}
+
+		value_type& item = m_Buffer[key];
+		key_type oldKey = item.first;
+		item.first = key;
+		if (key == m_BufferSize) // push_back
+		{
+			++m_BufferSize; // expand
 			++m_Count;
+			new (&item.second) mapped_type(value); // copy ctor to init
+			m_Buffer[m_BufferSize].first = 0xFFFFFFFF; // ensure end() always has 0xFFFFFFFF
 		}
-
-		m_Data[key-FIRST_VALID_ENTITY_ID] = {key, value};
-		return {iterator(&m_Data[key-FIRST_VALID_ENTITY_ID]), inserted};
-	}
-
-	size_t erase(iterator it)
-	{
-		if (it->first != INVALID_ENTITY && it != end())
+		else if(!item.first) // insert new to middle
 		{
-			it->first = INVALID_ENTITY;
-			it->second.~V(); // call dtor
+			++m_Count;
+			new (&item.second) mapped_type(value); // copy ctor to init
+		}
+		else // set existing value
+		{
+			if (oldKey == INVALID_ENTITY)
+				m_Count++;
+			item.second = value; // overwrite existing
+		}
+	}
+
+	void erase(iterator it)
+	{
+		value_type* ptr = it.val;
+		if (ptr->first != INVALID_ENTITY)
+		{
+			ptr->first = INVALID_ENTITY;
+			ptr->second.~T(); // call dtor
 			--m_Count;
-			return 1;
+		}
+	}
+	void erase(const entity_id_t key)
+	{
+		if (key < m_BufferSize)
+		{
+			value_type* ptr = m_Buffer + key;
+			if (ptr->first != INVALID_ENTITY)
+			{
+				ptr->first = INVALID_ENTITY;
+				ptr->second.~T(); // call dtor
+				--m_Count;
+			}
+		}
+	}
+	inline void clear()
+	{
+		// orphan whole range
+		value_type* ptr = m_Buffer;
+		value_type* end = m_Buffer + m_BufferSize;
+		for (; ptr != end; ++ptr)
+		{
+			if (ptr->first != INVALID_ENTITY)
+			{
+				ptr->first = INVALID_ENTITY;
+				ptr->second.~T(); // call dtor
+			}
+		}
+		m_Count = 0; // no more valid entities
+	}
+
+	// Operations
+	inline iterator find(const entity_id_t key)
+	{
+		if (key < m_BufferSize) // is this key in the range of existing entitites?
+		{
+			value_type* ptr = m_Buffer + key;
+			if (ptr->first != INVALID_ENTITY)
+				return ptr;
+		}
+		return m_Buffer + m_BufferSize; // return iterator end()
+	}
+	inline const_iterator find(const entity_id_t key) const
+	{
+		if (key < m_BufferSize) // is this key in the range of existing entitites?
+		{
+			const value_type* ptr = m_Buffer + key;
+			if (ptr->first != INVALID_ENTITY)
+				return ptr;
+		}
+		return m_Buffer + m_BufferSize; // return iterator end()
+	}
+	inline size_t count(const entity_id_t key) const
+	{
+		if (key < m_BufferSize)
+		{
+			if (m_Buffer[key].first != INVALID_ENTITY)
+				return 1;
 		}
 		return 0;
 	}
-
-	size_t erase(const key_type& key)
-	{
-		if (key-FIRST_VALID_ENTITY_ID+1 < m_Data.size())
-			return erase(&m_Data.front() + key - FIRST_VALID_ENTITY_ID);
-		return 0;
-	}
-
-	void clear()
-	{
-		m_Data.clear();
-		m_Count = 0;
-		m_Data.push_back(ITERATOR_FENCE);
-	}
-
-	iterator find(const key_type& key)
-	{
-		if (key-FIRST_VALID_ENTITY_ID+1 < m_Data.size() && m_Data[key-FIRST_VALID_ENTITY_ID].first != INVALID_ENTITY)
-			return &m_Data.front() + (key - FIRST_VALID_ENTITY_ID);
-		return end();
-	}
-
-	const_iterator find(const key_type& key) const
-	{
-		if (key-FIRST_VALID_ENTITY_ID+1 < m_Data.size() && m_Data[key-FIRST_VALID_ENTITY_ID].first != INVALID_ENTITY)
-			return &m_Data.front() + (key - FIRST_VALID_ENTITY_ID);
-		return end();
-	}
-#undef ITERATOR_FENCE
 };
 
 template<class VSerializer>
@@ -218,7 +273,7 @@ struct SerializeEntityMap
 			V v;
 			deserialize.NumberU32_Unbounded("key", k);
 			VSerializer()(deserialize, "value", v);
-			value.insert_or_assign(k, v);
+			value.insert(k, v);
 		}
 	}
 };
