@@ -8,12 +8,13 @@
 # Jerry Shen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # 張峻瑜 <a728728728@gmail.com>, 2018
+# 旭誠 張 <tea55688@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-11-29 03:05+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2019-01-03 11:59+0000\n"
+"Last-Translator: 旭誠 張 <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -316,8 +317,8 @@ msgid ""
 msgstr "Shift + Delete：不詢問確認就銷毀目前選定的單位／建築物"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ （斜線）：選取發呆的戰士"
+msgid "/ (Slash): Select idle fighter"
+msgstr "/（斜線）選取閒置戰士"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -340,8 +341,8 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .：選中發呆的工人（包括公民兵）"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
-msgstr "\\ (反斜鍵): 選取發呆單位"
+msgid "\\ (Backslash): Select idle unit"
+msgstr "\\（反斜線）選取閒置單位"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -512,21 +513,21 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + 右鍵點擊 單位選定時: "
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- 若游標在盟軍建築物上：駐軍"
+msgid "    • If the cursor is over an allied structure: Garrison"
+msgstr "．如果游標在友方建築上：進駐"
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- 若游標在非盟軍的建築物上：攻擊（而不是捕獲或收集）"
+msgstr "．如果游標在非友方單位或建築上：攻擊（而非佔領或採集）"
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
+"    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- 除此之外：攻擊移動（預設會將移動路線上所有的敵方單位及建築物作為目標，利用 Ctrl + Q + 右鍵點擊來僅將單位作為目標）。"
+"units)."
+msgstr "•否則：攻擊移動（預設路徑上的所有敵方單位及建築皆為目標，使用 Crtl + Q + 右鍵點擊只以單位為目標）"
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -639,8 +640,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R：重置視野縮放/方向"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+：放大（持續按著可以連續縮放）"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr "= 或 +：放大（按住以持續）"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

@@ -29,7 +29,7 @@
 # Pawel Jarczak <keven204@o2.pl>, 2016
 # Paweł Stopa <pawcio980@gmail.com>, 2018
 # Piotr Lehmann <lejmus@o2.pl>, 2017
-# Przemysław Murach <moonshine133@vp.pl>, 2018
+# Przemysław Murach <moonshine133@vp.pl>, 2018-2019
 # q <q@qq.qq>, 2015
 # rabusek <rabusek@gmail.com>, 2014
 # Rafał <rafix1989@interia.pl>, 2015
@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:44+0100\n"
-"PO-Revision-Date: 2018-12-28 21:44+0000\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2019-01-01 17:37+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -179,16 +179,18 @@ msgid "DELETE"
 msgstr "USUŃ"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Nie"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Tak"
 
@@ -664,7 +666,8 @@ msgstr "Użytkownicy (%(num)s): %(users)s"
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ", "
 
@@ -1255,6 +1258,35 @@ msgstr "Kliknij, aby wyświetlić więcej informacji."
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s "
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Mody: %(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr "Ten zapis gry wymaga 0 A.D. w wersji %(requiredVersion)s, a ty grasz na wersji %(currentVersion)s."
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr "Ten zapis gry wymaga starszej wersji 0 A.D."
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr "Ten zapis gry wymaga innej sekwencji modów:"
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr "Czy mimo wszystko chcesz kontynuować?"
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "Uwaga"
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1289,11 +1321,6 @@ msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Resetowanie opcji spowoduje usunięcie zapisanych ustawień. Czy chcesz kontynuować?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "Uwaga"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
@@ -1673,6 +1700,18 @@ msgstr "dd-MM-yyyy HH:mm"
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
 
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "Nie znaleziono zapisanych stanów gry"
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "Zapisane stany gry zostaną nadpisane, jesteś pewien?"
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr "NADPISANIE GRY"
+
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr "Wynik"
@@ -2009,6 +2048,78 @@ msgstr "Wyjdź"
 msgid "0 A.D. Credits"
 msgstr "Twórcy 0 A.D."
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Wczytaj grę"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "Nie znaleziono zapisanych stanów gry"
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "Usuń"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "Wczytaj"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr "Filtruj kompatybilne zapisane stany gry"
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "Gracze:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr "Czas gry:"
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Typ mapy:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Rozmiar mapy:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Zwycięstwo:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Data / Czas"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Typ mapy"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Nazwa mapy"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Opis"
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "Język"
@@ -2024,10 +2135,6 @@ msgstr "Język:"
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Kod języka:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Anuluj"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -2049,7 +2156,7 @@ msgstr "Reset "
 msgid "Revert"
 msgstr "Powrót"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "Zapisz"
 
@@ -2201,10 +2308,6 @@ msgstr "Rozgrywki"
 msgid "Campaigns"
 msgstr "Kampanie"
 
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "Wczytaj grę"
-
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
@@ -2299,18 +2402,6 @@ msgstr "Powtórki gier"
 msgid "Filter compatible replays"
 msgstr "Filtruj kompatybilne powtórki"
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Typ mapy:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Rozmiar mapy:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Zwycięstwo:"
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Spoiler"
@@ -2318,10 +2409,6 @@ msgstr "Spoiler"
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Menu główne"
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Usuń"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2336,20 +2423,10 @@ msgstr "Podsumowanie"
 msgid "Start Replay"
 msgstr "Odtwórz powtórkę"
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Data / Czas"
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Gracze"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Nazwa mapy"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2369,6 +2446,14 @@ msgstr "Czas trwania"
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Przebuduj cache powtórki od zera. Potencjalnie wolne!"
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "Zapisz grę"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "Opis:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2512,6 +2597,10 @@ msgstr "Grecki"
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
 msgstr "Łacina"
+
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr "Persjanin"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -4172,8 +4261,10 @@ msgid "- Vulnerable to infantry skirmishers."
 msgstr "- Podatny na atak pieszych oszczepników."
 
 #: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Dostępne dla: Maurjów, Ptolemeuszy, Seleucydów i Kartagińczyków."
+msgid ""
+"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr "- Dostępny dla: Kartagińczyków, Kuszytów, Maorysów, Persów, Ptolemeuszów i Seleucydów."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

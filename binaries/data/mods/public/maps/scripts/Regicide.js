@@ -1,11 +1,3 @@
-Trigger.prototype.CheckRegicideDefeat = function(data)
-{
-	if (data.entity == this.regicideHeroes[data.from])
-		TriggerHelper.DefeatPlayer(
-			data.from,
-			markForTranslation("%(player)s has been defeated (lost hero)."));
-};
-
 Trigger.prototype.InitRegicideGame = function(msg)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
@@ -123,9 +115,25 @@ Trigger.prototype.SpawnRegicideHero = function(playerID, heroTemplates, spawnPoi
 	return undefined;
 };
 
+Trigger.prototype.RenameRegicideHero = function(data)
+{
+	let index = this.regicideHeroes.indexOf(data.entity);
+	if (index != -1)
+		this.regicideHeroes[index] = data.newentity;
+};
+
+Trigger.prototype.CheckRegicideDefeat = function(data)
+{
+	if (data.entity == this.regicideHeroes[data.from])
+		TriggerHelper.DefeatPlayer(
+			data.from,
+			markForTranslation("%(player)s has been defeated (lost hero)."));
+};
+
 {
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 	cmpTrigger.regicideHeroes = [];
 	cmpTrigger.DoAfterDelay(0, "InitRegicideGame", {});
 	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckRegicideDefeat", { "enabled": true });
+	cmpTrigger.RegisterTrigger("OnEntityRenamed", "RenameRegicideHero", { "enabled": true });
 }

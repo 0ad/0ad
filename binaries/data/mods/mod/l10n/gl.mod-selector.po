@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-11-03 15:26+0000\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -233,6 +233,14 @@ msgstr "Dependencia non satisfeita: %(dep)s"
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Satisfanse todas as dependencias."
+
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Activar"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Desactivar"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."

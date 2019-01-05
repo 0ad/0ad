@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:44+0100\n"
-"PO-Revision-Date: 2018-12-28 14:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:18+0000\n"
+"Last-Translator: rentt777 <35974380@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,7 +141,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -155,16 +155,18 @@ msgid "DELETE"
 msgstr "删除"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "是"
 
@@ -628,7 +630,8 @@ msgstr "玩家 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr "，"
 
@@ -1180,6 +1183,35 @@ msgstr "点击获取更多消息"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "附加模组：%(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr ""
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr ""
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr "您仍要继续吗？"
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "警告"
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1214,11 +1246,6 @@ msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置选项会清除您已保存的设置。是否要继续?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "警告"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
@@ -1592,6 +1619,18 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "没有找到保存的游戏"
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "确定要覆盖此保存记录吗？"
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr "覆盖"
+
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr "得分"
@@ -1928,6 +1967,78 @@ msgstr "关闭"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. 职员名单"
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "载入游戏"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "未找到已保存的游戏"
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "取消"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "删除"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "加载"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr "筛选兼容版本的游戏存档"
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "玩家:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr "游戏时间："
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "地图类型:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "地图大小:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "胜利:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "日期/时间"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "地图类型"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "地图名称"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "说明"
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "语言"
@@ -1943,10 +2054,6 @@ msgstr "语言:"
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "地区:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "取消"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1968,7 +2075,7 @@ msgstr "重置"
 msgid "Revert"
 msgstr "还原"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "保存"
 
@@ -2120,10 +2227,6 @@ msgstr "对战"
 msgid "Campaigns"
 msgstr "战役"
 
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "载入游戏"
-
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
@@ -2218,18 +2321,6 @@ msgstr "重玩游戏"
 msgid "Filter compatible replays"
 msgstr "筛选兼容的回放"
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "地图类型:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "地图大小:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "胜利:"
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "捣乱者"
@@ -2237,10 +2328,6 @@ msgstr "捣乱者"
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "主菜单"
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "删除"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2255,20 +2342,10 @@ msgstr "摘要"
 msgid "Start Replay"
 msgstr "开始回放"
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "日期/时间"
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "玩家"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "地图名称"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2288,6 +2365,14 @@ msgstr "时长"
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "重建回放缓存，需较长时间，请耐心等待。"
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "保存游戏"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "描述："
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2431,6 +2516,10 @@ msgstr "希腊语"
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
 msgstr "拉丁语"
+
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -4091,8 +4180,10 @@ msgid "- Vulnerable to infantry skirmishers."
 msgstr "- 对散兵来说较为脆弱。"
 
 #: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- 可建造的：孔雀王朝，托勒密，塞琉古，以及迦太基。"
+msgid ""
+"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

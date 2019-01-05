@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-11-03 17:04+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -237,6 +237,14 @@ msgstr "Voraussetzung nicht erfüllt: %(dep)s"
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Alle Abhängigkeiten erfüllt"
+
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Deaktiviert"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."

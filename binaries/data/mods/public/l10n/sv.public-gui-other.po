@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:44+0100\n"
-"PO-Revision-Date: 2018-12-28 14:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:18+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +136,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -150,16 +150,18 @@ msgid "DELETE"
 msgstr "DELETE (Ta bort)"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Nej"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Ja"
 
@@ -627,7 +629,8 @@ msgstr "Användare (%(num)s): %(users)s"
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ","
 
@@ -1192,6 +1195,35 @@ msgstr "Klicka för att visa mer information."
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Mods: %(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr ""
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr ""
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr "Vill du fortsätta ändå?"
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "Varning"
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1226,11 +1258,6 @@ msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Återställning av optionerna raderar dina sparade inställningar. Vill du fortsätta?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "Varning"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
@@ -1606,6 +1633,18 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "Inga sparade spel hittades"
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "Det sparade spelet kommer att skrivas över permanent, är det säkert att du vill fortsätta?"
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr "SKRIV ÖVER SPARNING"
+
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr "Poäng"
@@ -1942,6 +1981,78 @@ msgstr "Stäng"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Medverkande"
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Ladda spel"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "Inga sparade spel hittades."
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "Ta bort"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "Ladda"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr "Visa kompatibla sparade spel"
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "Spelare:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr "Speltid:"
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Karttyp:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Kartstorlek:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Segervillkor:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Datum / Tid"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Karttyp"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Kartnamn"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Beskrivning"
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "Språk"
@@ -1957,10 +2068,6 @@ msgstr "Språk:"
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Locale:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Avbryt"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1982,7 +2089,7 @@ msgstr "Återställ"
 msgid "Revert"
 msgstr "Återställ"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "Spara"
 
@@ -2134,10 +2241,6 @@ msgstr "Matcher"
 msgid "Campaigns"
 msgstr "Kampanjer"
 
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "Ladda spel"
-
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
@@ -2232,18 +2335,6 @@ msgstr "Spela upp tidigare spel"
 msgid "Filter compatible replays"
 msgstr "Visa kompatibla replays"
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Karttyp:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Kartstorlek:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Segervillkor:"
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Spoiler"
@@ -2251,10 +2342,6 @@ msgstr "Spoiler"
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Huvudmeny"
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Ta bort"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2269,20 +2356,10 @@ msgstr "Sammanfattning"
 msgid "Start Replay"
 msgstr "Starta replayen"
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Datum / Tid"
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Spelare"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Kartnamn"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2302,6 +2379,14 @@ msgstr "Längd"
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Ombilda replaycachen från början. Potentiellt långsam!"
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "Spara spel"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "Beskrivning:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2445,6 +2530,10 @@ msgstr "Grekiska"
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
 msgstr "Latin"
+
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -4105,8 +4194,10 @@ msgid "- Vulnerable to infantry skirmishers."
 msgstr "- Sårbara för skärmytslingare."
 
 #: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Tillgängliga för: Mauryarna, Ptolemaier, Seleukiderna och Kartago."
+msgid ""
+"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

@@ -17,6 +17,7 @@ ifeq ($(config),release)
   mbedtls_lib_config = release
   curl_lib_config = release
   example_config = release
+  luasocket_config = release
 endif
 ifeq ($(config),debug)
   Premake5_config = debug
@@ -27,17 +28,18 @@ ifeq ($(config),debug)
   mbedtls_lib_config = debug
   curl_lib_config = debug
   example_config = debug
+  luasocket_config = debug
 endif
 
-PROJECTS := Premake5 lua-lib luashim-lib zlib-lib zip-lib mbedtls-lib curl-lib example
+PROJECTS := Premake5 lua-lib luashim-lib zlib-lib zip-lib mbedtls-lib curl-lib example luasocket
 
-.PHONY: all clean help $(PROJECTS) contrib Binary Modules
+.PHONY: all clean help $(PROJECTS) Binary Modules contrib
 
 all: $(PROJECTS)
 
-contrib: curl-lib lua-lib luashim-lib mbedtls-lib zip-lib zlib-lib
+Binary Modules: example luasocket
 
-Binary Modules: example
+contrib: curl-lib lua-lib luashim-lib mbedtls-lib zip-lib zlib-lib
 
 Premake5: lua-lib zip-lib zlib-lib curl-lib mbedtls-lib
 ifneq (,$(Premake5_config))
@@ -87,6 +89,12 @@ ifneq (,$(example_config))
 	@${MAKE} --no-print-directory -C . -f example.make config=$(example_config)
 endif
 
+luasocket: luashim-lib
+ifneq (,$(luasocket_config))
+	@echo "==== Building luasocket ($(luasocket_config)) ===="
+	@${MAKE} --no-print-directory -C . -f luasocket.make config=$(luasocket_config)
+endif
+
 clean:
 	@${MAKE} --no-print-directory -C . -f Premake5.make clean
 	@${MAKE} --no-print-directory -C . -f lua-lib.make clean
@@ -96,6 +104,7 @@ clean:
 	@${MAKE} --no-print-directory -C . -f mbedtls-lib.make clean
 	@${MAKE} --no-print-directory -C . -f curl-lib.make clean
 	@${MAKE} --no-print-directory -C . -f example.make clean
+	@${MAKE} --no-print-directory -C . -f luasocket.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -115,5 +124,6 @@ help:
 	@echo "   mbedtls-lib"
 	@echo "   curl-lib"
 	@echo "   example"
+	@echo "   luasocket"
 	@echo ""
-	@echo "For more information, see http://industriousone.com/premake/quick-start"
+	@echo "For more information, see https://github.com/premake/premake-core/wiki"

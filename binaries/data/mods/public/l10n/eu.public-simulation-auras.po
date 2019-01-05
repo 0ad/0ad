@@ -1,16 +1,16 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2018
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
 # Osoitz <oelkoro@gmail.com>, 2017
-# Thadah D. Denyse <juchuf@gmail.com>, 2016-2017
+# Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-16 19:00+0000\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2019-01-02 18:10+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -388,9 +388,9 @@ msgstr "Naqaren Tenplua"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Kultura guztietan bezala, erregetza Mungaingo Inperioan zati garrantzitsua izan zen. Shanakdakhetok Tenplua eraiki zuen K.a. 160 inguruan Meroëren aurrerapenaren sinbolo gisa.\n+1 babesa sendatzean gertuko tenpluentzako."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr "Kultura guztietan bezala, erlijioa Mungaingo Inperioan zati garrantzitsua izan zen. Shanakdakhetok Tenplua eraiki zuen K.a. 160 inguruan Meroëren aurrerapenaren sinbolo gisa.\n+1 babesa sendatzean gertuko tenpluetan babestutako unitateentzako."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -488,9 +488,9 @@ msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Selecus Nicatorren semea, Antiochusek inperioa baturik eusteko lan handia hartu zuen, tenpluak sortu eta Galiar inbasoreak gerra elefantez garaitzen zituen bitartean."
+msgstr "Seleucus Nicatorren semea, Antiochusek inperioa baturik eusteko lan handia hartu zuen, tenpluak sortu eta Galiar inbasoreak gerra elefantez garaitzen zituen bitartean."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -542,8 +542,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "%15+ eraikitze eta konpontze erritmoan langileentzat."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Atenearen Templua"
+msgid "Temple of Athena Nike"
+msgstr "Atenea Nikeren Tenplua"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -725,12 +725,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "Apedemak tenpluak eta bere Meroe Tenploaren Zaindaria %20- kostuan eta eraikuntza denboran."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
+msgid "Slaughter of the Faithful"
 msgstr "Fededunaren hilketa"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Etsaiaren osasun maila %50 gutxitu da."
+msgid "Enemy healers −50% healing rate."
+msgstr "Arerioaren sendagileek %50- txikitzen dute sendatzeko abiadura."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -811,9 +811,9 @@ msgstr "Irakaslea"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Eraikinak balioztatzen ditu ikerketaren %20- kostuarekin eta %50 azkarragoarekin bere barnean babestean."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr "Eraikinak balioztatzen ditu ikerketaren %20- kostuarekin eta %50 azkarragoarekin teknologietan bere barnean babestean."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"

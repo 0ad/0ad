@@ -44,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:44+0100\n"
-"PO-Revision-Date: 2018-12-29 18:05+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:18+0000\n"
+"Last-Translator: Vitalii Mostipaka <imprtat@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,7 +169,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -183,16 +183,18 @@ msgid "DELETE"
 msgstr "УДАЛИТЬ"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Нет"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Да"
 
@@ -668,7 +670,8 @@ msgstr "Пользователи (%(num)s): %(users)s"
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ", "
 
@@ -1259,6 +1262,35 @@ msgstr "Нажмите, чтобы посмотреть дополнительн
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Моды: %(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr ""
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr ""
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr "Вы хотите продолжить?"
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "Предупреждение"
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1293,11 +1325,6 @@ msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Восстановление удалит сохраненные настройки. Вы уверены, что хотите продолжить?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "Предупреждение"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
@@ -1677,6 +1704,18 @@ msgstr "dd.MM.yyyy HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy.MM"
 
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "Не найдено сохранённых игр "
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "Сохраненная игра будет перезаписана. Уверены?"
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
+
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr "Очки"
@@ -2013,6 +2052,78 @@ msgstr "Закрыть"
 msgid "0 A.D. Credits"
 msgstr "Внесшие вклад в 0 A.D. "
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Загрузить игру"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "Сохранённые игры не обнаружены."
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "Отмена"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "Удалить"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "Загрузить"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr "Показать только совместимые сохранения"
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "Игроки:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr "Время игры:"
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Тип карты:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Размер карты:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Победа:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Дата / Время"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Тип карты"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Название карты"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Описание"
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "Язык"
@@ -2028,10 +2139,6 @@ msgstr "Язык:"
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Место:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Отмена"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -2053,7 +2160,7 @@ msgstr "Сбросить"
 msgid "Revert"
 msgstr "Отменить"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "Сохранить"
 
@@ -2205,10 +2312,6 @@ msgstr "Сражения"
 msgid "Campaigns"
 msgstr "Кампании"
 
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "Загрузить игру"
-
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
@@ -2303,18 +2406,6 @@ msgstr "Просмотр повтора"
 msgid "Filter compatible replays"
 msgstr "Скрыть несовместимые повторы"
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Тип карты:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Размер карты:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Победа:"
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Спойлер"
@@ -2322,10 +2413,6 @@ msgstr "Спойлер"
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Главное меню"
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Удалить"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2340,20 +2427,10 @@ msgstr "Итог"
 msgid "Start Replay"
 msgstr "Начать Повтор"
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Дата / Время"
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Игроки"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Название карты"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2373,6 +2450,14 @@ msgstr "Продолжительность"
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Создать кэш повторов с нуля. Возможно, это будет медленно!"
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "Сохранить игру"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "Описание:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2516,6 +2601,10 @@ msgstr "Греческий"
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
 msgstr "Латинский"
+
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -4176,8 +4265,10 @@ msgid "- Vulnerable to infantry skirmishers."
 msgstr "- Уязвимы против стрелков-пехотинцев."
 
 #: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Доступны Маурьям, Птолемеям, Селевкидам и Карфагенянам."
+msgid ""
+"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

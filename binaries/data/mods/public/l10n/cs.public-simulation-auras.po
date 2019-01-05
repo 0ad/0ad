@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,7 +8,7 @@
 # Jakub Podlaha <j.podlaha@gmail.com>, 2018
 # Jaroslav Benkovsky <jaroslav.benkovsky@nic.cz>, 2018
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
-# J D <jonas.dyba@gmail.com>, 2016
+# Wesalius <jonas.dyba@gmail.com>, 2016
 # Marek Harok <kenturin@seznam.cz>, 2017
 # fri, 2016-2018
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-05-11 07:05+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2018-12-31 09:45+0100\n"
+"PO-Revision-Date: 2018-12-31 18:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -399,9 +399,9 @@ msgstr "Naqajský chrám"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Tak jako v jiných kulturách, náboženství hrálo důležitou roli v Meroejské říši.\nShanakdakheto měla postaven svůj chrám už kolem roku 160 před naším letopočtem, jako symbol pokrokovosti města Meroë.\n+1 k rychlosti léčení pro chrámy v blízkosti."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -499,9 +499,9 @@ msgstr "Basileus Megas (Veliký Král)"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Syn Seleuka Níkátóra Antiochos uspěl při provádění působivého úkolu udržet říši pohromadě. Zakládal chrámy a nad do země vpadnuvšími Galy vítězil pomocí válečných slonů.\n-10% ceny nákladů pro válečné slony."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -553,8 +553,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "+15% k rychlosti stavby a oprav pro dělníky."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Athénin chrám"
+msgid "Temple of Athena Nike"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -736,12 +736,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "Apademakské chrámy a jejich meroejská chrámová garda -20% nákladů a času k výcviku."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
-msgstr "Masakr věřících"
+msgid "Slaughter of the Faithful"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Snížení rychlosti uzdravování nepřítele o 50%."
+msgid "Enemy healers −50% healing rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -822,9 +822,9 @@ msgstr "Učitel"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Umožnit výstavbu za -20% z ceny a -50% z doby výzkumu, dokud je v ní ubytován."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"

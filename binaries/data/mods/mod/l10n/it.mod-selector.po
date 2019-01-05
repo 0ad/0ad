@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-11-20 17:02+0000\n"
-"Last-Translator: Lorenzo Fiaccadori <l.fiaccadori@campus.unimib.it>\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,6 +241,14 @@ msgstr "Requisiti non soddisfatti: %(dep)s"
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Tutte le dipendenze sono soddisfatte"
+
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Abilita"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Disabilita"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."

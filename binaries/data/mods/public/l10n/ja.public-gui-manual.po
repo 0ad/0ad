@@ -5,16 +5,16 @@
 # Translators:
 # Asakura, 2015,2017
 # Kanetaka Suto, 2014-2015
-# karu babu <karubabu@protonmail.com>, 2018
+# karubabu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014
 # red hare <www3@hotmail.co.jp>, 2017
 # Takaki IEKURA <tacostea@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-24 14:37+0000\n"
-"Last-Translator: karu babu <karubabu@protonmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,8 +317,8 @@ msgid ""
 msgstr "Shift + Delete: 現在選択されているユニット／建物を確認せずに削除"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (ForwardSlash): 手の空いた兵士を選択"
+msgid "/ (Slash): Select idle fighter"
+msgstr ""
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -341,8 +341,8 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .: 手の空いた労働者をすべて選択する (市民兵士を含みます)"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
-msgstr "\\ (バックスラッシュ): 手の空いたユニットを選択"
+msgid "\\ (Backslash): Select idle unit"
+msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -513,21 +513,21 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl+右クリック（ユニット選択中）："
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- カーソルが味方の建物上の場合： 駐屯"
+msgid "    • If the cursor is over an allied structure: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- カーソルが敵のユニットあるいは建物上の場合： 攻撃（占領や採集の代わりに）"
+msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
+"    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- それ以外：　攻撃移動（既定では移動中の敵のユニットと建物のすべてが攻撃対象とされます。Ctrl + Q + 右クリックを用いればユニットのみを攻撃対象とします）。"
+"units)."
+msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -640,8 +640,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R： カメラのズームと方向を戻す"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+： ズームイン（押し続けると連続ズーム）"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

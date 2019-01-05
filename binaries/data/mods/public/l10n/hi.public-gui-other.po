@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:44+0100\n"
-"PO-Revision-Date: 2018-12-28 14:38+0000\n"
+"POT-Creation-Date: 2018-12-31 09:44+0100\n"
+"PO-Revision-Date: 2018-12-31 14:18+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr ""
 msgid "%(dateString)s %(map)s"
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr ""
@@ -139,16 +139,18 @@ msgid "DELETE"
 msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "नहीं"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "हाँ"
 
@@ -616,7 +618,8 @@ msgstr ""
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ""
 
@@ -1181,6 +1184,35 @@ msgstr ""
 msgid "%(nick)s - %(name)s"
 msgstr ""
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr ""
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr ""
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr ""
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr ""
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr ""
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1214,11 +1246,6 @@ msgstr ""
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
 msgstr ""
 
 #: gui/options/options.js:349
@@ -1595,6 +1622,18 @@ msgstr ""
 msgid "yyyy-MM"
 msgstr ""
 
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr ""
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr ""
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr ""
+
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr ""
@@ -1931,6 +1970,78 @@ msgstr "बंद करे"
 msgid "0 A.D. Credits"
 msgstr ""
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "खेल लोड करें"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "नक्शा प्रकार:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr ""
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr ""
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr ""
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr ""
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr ""
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr ""
@@ -1946,10 +2057,6 @@ msgstr ""
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr ""
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "रद्द करें"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1971,7 +2078,7 @@ msgstr ""
 msgid "Revert"
 msgstr ""
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "सहेजें"
 
@@ -2123,10 +2230,6 @@ msgstr ""
 msgid "Campaigns"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "खेल लोड करें"
-
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
@@ -2221,28 +2324,12 @@ msgstr ""
 msgid "Filter compatible replays"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "नक्शा प्रकार:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr ""
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
@@ -2258,19 +2345,9 @@ msgstr ""
 msgid "Start Replay"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr ""
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
@@ -2290,6 +2367,14 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr ""
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr ""
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
 msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
@@ -2433,6 +2518,10 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
@@ -4094,7 +4183,9 @@ msgid "- Vulnerable to infantry skirmishers."
 msgstr ""
 
 #: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
+msgid ""
+"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
 msgstr ""
 
 #: gui/text/tips/whales.txt:1
