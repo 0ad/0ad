@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,6 +68,17 @@ void CMatrix3D::SetPerspective(float fov, float aspect, float near, float far)
 	_33 = -(far + near) / (near - far);
 	_34 = 2 * far * near / (near - far);
 	_43 = 1;
+}
+
+void CMatrix3D::SetPerspectiveTile(float fov, float aspect, float near, float far, int tiles, int tile_x, int tile_y)
+{
+	const float f = 1.f / tanf(fov / 2.f);
+
+	SetPerspective(fov, aspect, near, far);
+	_11 = tiles * f / aspect;
+	_22 = tiles * f;
+	_13 = -(1 - tiles + 2 * tile_x);
+	_23 = -(1 - tiles + 2 * tile_y);
 }
 
 //The following clear the matrix and set the

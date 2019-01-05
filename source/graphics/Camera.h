@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,13 +64,12 @@ class CCamera
 		void SetViewPort(const SViewPort& viewport);
 		const SViewPort& GetViewPort() const { return m_ViewPort; }
 
-		// getters
 		float GetNearPlane() const { return m_NearPlane; }
 		float GetFarPlane() const { return m_FarPlane; }
 		float GetFOV() const { return m_FOV; }
 
-		// return four points in camera space at given distance from camera
-		void GetCameraPlanePoints(float dist,CVector3D pts[4]) const;
+		// Returns four points in camera space at given distance from camera
+		void GetCameraPlanePoints(float dist, CVector3D pts[4]) const;
 
 		// Build a ray passing through the screen coordinate (px, py) and the camera
 		/////////////////////////////////////////////////////////////////////////////////////////
@@ -123,4 +122,4 @@ class CCamera
 		CFrustum		m_ViewFrustum;
 };
 
-#endif
+#endif // INCLUDED_CAMERA

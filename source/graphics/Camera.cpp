@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,9 +44,7 @@ CCamera::CCamera()
 	m_ViewPort.m_Height = 600;
 }
 
-CCamera::~CCamera()
-{
-}
+CCamera::~CCamera() = default;
 
 void CCamera::SetProjection(float nearp, float farp, float fov)
 {
@@ -61,17 +59,13 @@ void CCamera::SetProjection(float nearp, float farp, float fov)
 void CCamera::SetProjectionTile(int tiles, int tile_x, int tile_y)
 {
 	const float aspect = static_cast<float>(m_ViewPort.m_Width) / static_cast<float>(m_ViewPort.m_Height);
-	const float f = 1.f / tanf(m_FOV / 2.f);
 
-	m_ProjMat._11 = tiles * f / aspect;
-	m_ProjMat._22 = tiles * f;
-	m_ProjMat._13 = -(1 - tiles + 2 * tile_x);
-	m_ProjMat._23 = -(1 - tiles + 2 * tile_y);
+	m_ProjMat.SetPerspectiveTile(m_FOV, aspect, m_NearPlane, m_FarPlane, tiles, tile_x, tile_y);
 }
 
-//Updates the frustum planes. Should be called
-//everytime the view or projection matrices are
-//altered.
+// Updates the frustum planes. Should be called
+// everytime the view or projection matrices are
+// altered.
 void CCamera::UpdateFrustum(const CBoundingBoxAligned& scissor)
 {
 	CMatrix3D MatFinal;
