@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,33 +15,22 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Implementation of InstancingModelRenderer
- */
-
 #include "precompiled.h"
-
-#include "lib/ogl.h"
-#include "maths/Vector3D.h"
-#include "maths/Vector4D.h"
-
-#include "ps/CLogger.h"
+#include "renderer/InstancingModelRenderer.h"
 
 #include "graphics/Color.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
-
-#include "renderer/InstancingModelRenderer.h"
+#include "lib/ogl.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
+#include "ps/CLogger.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/VertexArray.h"
-
 #include "third_party/mikktspace/weldmesh.h"
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// InstancingModelRenderer implementation
 
 struct IModelDef : public CModelDefRPrivate
 {
@@ -337,11 +326,15 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 	if (m->calculateTangents)
 		shader->VertexAttribPointer(str_a_tangent, 4, GL_FLOAT, GL_TRUE, stride, base + m->imodeldef->m_Tangent.offset);
 
-	if (streamflags & STREAM_UV0)
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[0].offset);
-
-	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
-		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[1].offset);
+	// The last UV set is STREAM_UV3
+	for (size_t uv = 0; uv < 4; ++uv)
+		if (streamflags & (STREAM_UV0 << uv))
+		{
+			if (def.GetNumUVsPerVertex() >= uv + 1)
+				shader->TexCoordPointer(GL_TEXTURE0 + uv, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[uv].offset);
+			else
+				ONCE(LOGERROR("Model '%s' has no UV%d set.", def.GetName().string8().c_str(), uv));
+		}
 
 	// GPU skinning requires extra attributes to compute positions/normals
 	if (m->gpuSkinning)
