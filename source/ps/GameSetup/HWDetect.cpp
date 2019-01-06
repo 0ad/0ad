@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -271,10 +271,6 @@ void RunHardwareDetection()
 
 	ReportGLLimits(scriptInterface, settings);
 
-	scriptInterface.SetProperty(settings, "video_xres", g_VideoMode.GetXRes());
-	scriptInterface.SetProperty(settings, "video_yres", g_VideoMode.GetYRes());
-	scriptInterface.SetProperty(settings, "video_bpp", g_VideoMode.GetBPP());
-
 	scriptInterface.SetProperty(settings, "video_desktop_xres", g_VideoMode.GetDesktopXRes());
 	scriptInterface.SetProperty(settings, "video_desktop_yres", g_VideoMode.GetDesktopYRes());
 	scriptInterface.SetProperty(settings, "video_desktop_bpp", g_VideoMode.GetDesktopBPP());
@@ -316,11 +312,8 @@ void RunHardwareDetection()
 
 	scriptInterface.SetProperty(settings, "ram_total", (u32)os_cpu_MemorySize());
 	scriptInterface.SetProperty(settings, "ram_total_os", (u32)os_cpu_QueryMemorySize());
-	scriptInterface.SetProperty(settings, "ram_free", (u32)os_cpu_MemoryAvailable());
 
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings, "x86_frequency", x86_x64::ClockFrequency());
-
 	scriptInterface.SetProperty(settings, "x86_vendor", (u32)x86_x64::Vendor());
 	scriptInterface.SetProperty(settings, "x86_model", (u32)x86_x64::Model());
 	scriptInterface.SetProperty(settings, "x86_family", (u32)x86_x64::Family());
@@ -342,11 +335,14 @@ void RunHardwareDetection()
 #endif
 
 	scriptInterface.SetProperty(settings, "timer_resolution", timer_Resolution());
+	
+	// The version should be increased for every meaningful change.
+	const int reportVersion = 12;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
 		"hwdetect",
-		11,
+		reportVersion,
 		scriptInterface.StringifyJSON(&settings, false),
 		scriptInterface.StringifyJSON(&settings, true));
 
