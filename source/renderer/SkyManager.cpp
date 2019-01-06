@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -204,7 +204,7 @@ void SkyManager::RenderSky()
 	if (m_SkySet.empty())
 		return;
 
-	glDepthMask( GL_FALSE );
+	glDepthMask(GL_FALSE);
 
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -212,18 +212,16 @@ void SkyManager::RenderSky()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
-	// Translate so we are at the center of the map.
-	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
-	glTranslatef(mapSize*(TERRAIN_TILE_SIZE/2.0f), m_HorizonHeight, mapSize*(TERRAIN_TILE_SIZE/2.0f) );
+	// Translate so the sky center is at the camera space origin.
+	CVector3D cameraPos = g_Renderer.GetViewCamera().GetOrientation().GetTranslation();
+	glTranslatef(cameraPos.X, cameraPos.Y, cameraPos.Z);
 
 	// Rotate so that the "left" face, which contains the brightest part of each
 	// skymap, is in the direction of the sun from our light environment
-	glRotatef( 180.0f /*+ 45.0f*/ + RADTODEG(g_Renderer.GetLightEnv().GetRotation()), 0.0f, 1.0f, 0.0f );
+	glRotatef(180.0f + RADTODEG(g_Renderer.GetLightEnv().GetRotation()), 0.0f, 1.0f, 0.0f);
 
-	// Distance to draw the faces at
-	const float D = 1500.0f; // distance from map center
-	const float H = 500.0f; // height of the ceiling
-	const float FH = -100.0f; // height of the "floor"
+	// Currently we have a hardcoded near plane in the projection matrix.
+	glScalef(10.0f, 10.0f, 10.0f);
 
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
@@ -245,40 +243,41 @@ void SkyManager::RenderSky()
 	glBegin(GL_QUADS);
 
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
-		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
-		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
+	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_X
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
-		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
-		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
+	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
 
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
+	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
-		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
-		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
-		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
-		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
+	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
 
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
-		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
-		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
+	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
-		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
-		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
+	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+
 	glEnd();
 
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
@@ -294,7 +293,7 @@ void SkyManager::RenderSky()
 
 	glPopMatrix();
 
-	glDepthMask( GL_TRUE );
+	glDepthMask(GL_TRUE);
 
 #endif
 }
