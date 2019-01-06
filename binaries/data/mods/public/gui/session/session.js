@@ -1462,14 +1462,6 @@ function playAmbient()
 	Engine.PlayAmbientSound(pickRandom(g_Ambient), true);
 }
 
-function getBuildString()
-{
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
-		"buildDate": Engine.GetBuildTimestamp(0),
-		"revision": Engine.GetBuildTimestamp(2)
-	});
-}
-
 function showTimeWarpMessageBox()
 {
 	messageBox(

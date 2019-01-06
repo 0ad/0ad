@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,9 @@ namespace JSI_Debug
 	int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 	void DebugWarn(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 	void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& msg);
-	std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int mode);
+	std::wstring GetBuildDate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	double GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	std::wstring GetBuildRevision(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 	double GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);

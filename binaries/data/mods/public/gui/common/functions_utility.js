@@ -224,3 +224,11 @@ function hideRemaining(parentName, start = 0)
 	for (let i = start; i < objects.length; ++i)
 		objects[i].hidden = true;
 }
+
+function getBuildString()
+{
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
+		"buildDate": Engine.GetBuildDate(),
+		"revision": Engine.GetBuildRevision()
+	});
+}

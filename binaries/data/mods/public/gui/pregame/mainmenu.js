@@ -193,14 +193,6 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 	Engine.GetGUIObjectByName("MainMenuPanelRightBorderBottom").size = "100%-2 " + (bottomPosition) + " 100% 100%";
 }
 
-function getBuildString()
-{
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
-		"buildDate": Engine.GetBuildTimestamp(0),
-		"revision": Engine.GetBuildTimestamp(2)
-	});
-}
-
 function exitGamePressed()
 {
 	closeMenu();
