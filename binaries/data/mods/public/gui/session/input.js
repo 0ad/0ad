@@ -1213,7 +1213,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	}
 
 	// Rounding errors can lead to missing or too many points.
-	entityDistribution.slice(0, selection.length);
+	entityDistribution = entityDistribution.slice(0, selection.length);
 	entityDistribution = entityDistribution.concat(new Array(selection.length - entityDistribution.length).fill(inputLine[inputLine.length - 1]));
 
 	if (Vector2D.from3D(GetEntityState(selection[0]).position).distanceTo(entityDistribution[0]) +

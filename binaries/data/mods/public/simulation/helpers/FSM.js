@@ -249,15 +249,6 @@ FSM.prototype.Init = function(obj, initialState)
 FSM.prototype.SetNextState = function(obj, state)
 {
 	obj.fsmNextState = state;
-	obj.fsmReenter = false;
-};
-
-
-FSM.prototype.SetNextStateAlwaysEntering = function(obj, state)
-{
-	obj.fsmNextState = state;
-	// If reenter is true then the state will always be entered even if this means exiting it to re-enter
-	obj.fsmReenter = true;
 };
 
 FSM.prototype.ProcessMessage = function(obj, msg)
@@ -280,8 +271,7 @@ FSM.prototype.ProcessMessage = function(obj, msg)
 		var nextStateName = this.LookupState(obj.fsmStateName, obj.fsmNextState);
 		obj.fsmNextState = undefined;
 
-		if (nextStateName != obj.fsmStateName || obj.fsmReenter)
-			this.SwitchToNextState(obj, nextStateName);
+		this.SwitchToNextState(obj, nextStateName);
 	}
 
 	return ret;
@@ -349,8 +339,8 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	{
 	}
 
-	// Check if we should exit and enter the current state due to the reenter parameter. If so we go up 1 level
-	if (obj.fsmReenter && equalPrefix > 0 && equalPrefix === toState.length)
+	// If the next-state is the same as the current state, leave/enter up one level so cleanup gets triggered.
+	if (equalPrefix > 0 && equalPrefix === toState.length)
 		--equalPrefix;
 
 	for (var i = fromState.length-1; i >= equalPrefix; --i)
