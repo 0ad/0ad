@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -15,6 +15,7 @@
 # chaosville <m.hammel@gmail.com>, 2013
 # cledge <christiankletsch@gmx.de>, 2014
 # David Lucks, 2015
+# xtother90, 2019
 # endoriel <endoriel_tx@i130.de>, 2014
 # Enrico <TheEyeGer@web.de>, 2013
 # Fabian Gref <fabian.gref@gmail.com>, 2017
@@ -60,9 +61,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-01-04 09:43+0100\n"
+"PO-Revision-Date: 2019-01-04 16:43+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -504,7 +505,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr ""
+msgstr "Kunobelinos (vielleicht besser bekannt in der latinisierten Form Cunobelin) war ein mächtiger Herrscher der Catuvellauni. Er wurde von den Römern als der König der Britonen bezeichnet. Sein Herrschaftsbereich lag im Bereich der Stadt Kamulodunon (bekannt als Camulodunum), dem heutigen Colchester. Roms Niederlage in der Schlacht im Teutoburger Wald (Germanien) ermöglichte es Kunobelinos, den mit Rom verbündeten Nachbarstamm der Trinovantes zu unterwerfen, die römische Verbündete waren und keine Hilfe von den Römern mehr erhalten konnten. Kunobelinos scheint den Römern egal gewesen zu sein. Er trieb freien Handel mit ihnen, hatte gleichzeitig aber wenig Bedenken römische Verbündete zu unterwerfen und schickte sogar seinen jüngsten Sohn Adminius als Pflegekind zur Erziehung ins römische Gallien. Dadurch hatte Adminius Freundschaften unter den Römern. Er erhielt schließlich von seinem Vater die Herrschaft über die Cantaci, die das Gebiet von Kent bewohnten. Dies war die Kernregion des römischen Einflusses und Handels in Britannien und Kunobelinos sah scharfsinnig voraus, dass die Freundschaft seines jüngsten Sohnes mit mächtigen römischen und gallo-römischen Politikern und Händlern für die Verwaltung der Region von Nutzen sein würde. Seine anderen Söhne hegten dagegen keine Sympathie für die Römer. Als Kunobelinos an einer Krankheit starb, wurde er von seinem Sohn Togdumnos ersetzt, der zahlreiche römische Sympathisanten verhaftete, hinrichtete oder vertrieb. Das schloss auch seinen Bruder Adminius und den abgesetzten König der Atrebaten, Verica, ein, die ihre Verbindungen ins Römische Reich nutzten, um Unterstützung bei der Wiedererlangung ihrer Herrschaft zu bekommen. Togdumnos starb in der Schlacht gegen die Römer, worauf ihm sein Bruder Karatakos folgte. Es ist ironisch, dass es Kunobelinos' dritter Sohn war, der die römische Vergeltungsmaßnahme initiierte. Kunobelinos war während seiner Herrschaft aber möglicherweise einer der größten britischen Könige. Er eroberte weite Teile des südlichen Großbritanniens (seine Münzen wurden bis in die Grenzbereiche des späteren Wales geprägt). Er begann seine Herrschaft mit gerade einmal vier kleineren Stämmen in einer Konföderation, die Catuvellauni, und wurde am Ende als König von Britannien gesehen. Seine Anerkennung war so groß, dass selbst Stämme aus Cambria seinen Söhnen gegen die Römer und ihre britischen Verbündeten zur Hilfe kamen, und Kunobelinos wurde von den Britonen in nachrömischer Zeit als einer ihrer großen Helden verehrt; ein Eroberer und Einiger kleiner Königreiche, etwas, das die Britonen oder Romano-Briten bitter nötig hatten."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1648,14 +1649,14 @@ msgid ""
 msgstr "Makedonien war ein antikes griechisches Königreich, mittig im nordöstlichen Teil der griechischen Halbinsel. Unter der Herrschaft Alexanders des Großen eroberten makedonische Streitkräfte und ihre Verbündeten den Großteil der ihnen bekannten Welt, mit Ägypten, Persien und Teilen des indischen Subkontinents, wodurch die Vermischung der hellenischen und der östlichen Kulturen in den Jahren danach ermöglicht wurde."
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
+msgid "Mauryas"
 msgstr "Maurya-Inder"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Maurya-Inder haben einen Bevölkerungsbonus von +10% (z.B. eine Bevölkerungskapazität von 330 anstatt 300 Einheiten)."
+msgstr "Maurya-Inder haben Bonus von +10% auf ihr Bevölkerungslimit (z.B. eine Bevölkerungskapazität von 330 anstatt 300 Einheiten)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1665,15 +1666,15 @@ msgstr "König der Könige."
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
 msgstr "Das Maurya-Reich umfasste dutzende früher unabhängige Königreiche auf einer Fläche von 5 Millionen km², mit einer Bevölkerung von fast 60 Millionen Menschen. Die Maurya-Herrscher hatten den Titel Kaiser der Kaiser und kommandierten eine stehende Armee von 600.000 Infanteristen, 9000 Elefanten, 8000 Streitwagen und 30.000 Kavalleristen, wohl die größte Armee dieser Zeit."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
-msgstr "Die Maurya-Inder haben Zugriff auf 4 Gardeeinheiten."
+msgid "The Mauryas enjoy access to 4 champions."
+msgstr "Die Maurya-Inder genieße Zugriff auf 4 Gardeeinheiten."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -2070,7 +2071,7 @@ msgstr "Ptolemäer"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr ""
+msgstr "Die Ptolemäer erhalten das Söldnerlager, eine Kaserne, die im neutralem Territorium erbaut wird und Söldner ausbildet."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2744,7 +2745,7 @@ msgid ""
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr ""
+msgstr "Antiochus erbte zu Beginn seiner Herrschaft ein krisengebeuteltes Königreich. Vom Rande des Unterganges schaffte er es, das Reich, für das Seleukos I. so hart gekämpft hatte, wieder zusammenzuschweißen. Die rebellischen östlichen Satrapien von Baktrien und Parthien wurden gefügig gemacht, was kurzfristig die Ostgrenzen sicherte. Dann wandte er seine Aufmerksamkeit Griechenland zu, in einem Versuch, die Träume seines Vaters zu erfüllen, indem er dort unter dem Banner der Befreiung einmarschierte. Der Achaiische Bund und das Königreich Pergamon verbündeten sich mit Rom, um ihn in der Schlacht von Magnesia zu besiegen, womit der Traum, Alexanders Reich wieder zu vereinen, endgültig begraben war."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

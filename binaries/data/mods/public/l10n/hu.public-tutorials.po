@@ -5,15 +5,15 @@
 # Translators:
 # Balázs Úr <ur.balazs@fsf.hu>, 2017
 # Tibor Buzási, 2017
-# Balázs Meskó <meskobalazs@gmail.com>, 2018
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018
+# Balázs Meskó <meskobalazs@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>, 2019\n"
 "Language-Team: Hungarian (https://www.transifex.com/wildfire-games/teams/17418/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,6 +180,8 @@ msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"A szakaszváltásra várakozás közben a tétlen dolgozókat visszaküldheted azon "
+"nyersanyagok begyűjtésére, amivel épp híján vagy."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -247,6 +249,7 @@ msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"A szakaszváltásra várakozás közben katonákat képezhetsz ki a laktanyákban."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -789,7 +792,7 @@ msgstr ""
 msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
-msgstr ""
+msgstr "Ha a mező elkészül, az építők automatikusan begyűjtésbe kezdenek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -876,6 +879,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Most már van elég nyersanyagunk, de egy épület még hiányzik. Noha ez egy "
+"gazdasági oktatójáték, ennek ellenére hasznos felkészülni egy esetleges "
+"támadás esetén való védekezésre. Szóval, építsünk laktanyát!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -884,6 +890,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Jelölj ki négy katonát és utasítsd őket laktanya építésére: mint az előbb, "
+"kezd a katonák kijelölésével, majd kattints a laktanya ikonra a termelési "
+"panelen, végül vess alapot nem olyan messze a városházától, ahová építeni "
+"kívánsz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -893,6 +903,11 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Várjuk meg, amíg a laktanya felépül. Mivel az építkezés hosszú lehet, "
+"érdemes további két katonát az építkezésre küldeni. Ehhez jelöld ki a "
+"városházát és helyezd a gyülekezőhelyet a laktanya alapjára jobb egérgombbal"
+" való kattintással (kalapács ikonnak kell megjelennie közben), és hozz létre"
+" két új dolgozót a hoplita ikonra való kétszeri kattintással."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""

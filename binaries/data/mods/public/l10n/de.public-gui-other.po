@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -16,6 +16,7 @@
 # ... ... <jon12@gmx.de>, 2016-2017
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
+# Lukas Heiniger <kenionatus@techie.com>, 2019
 # Luksoft <luksoft999@gmail.com>, 2017
 # Lukas N <luki.niesen@gmail.com>, 2018
 # Marco tom Suden, 2015
@@ -45,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 14:18+0000\n"
-"Last-Translator: Yves_G\n"
+"POT-Creation-Date: 2019-01-04 09:43+0100\n"
+"PO-Revision-Date: 2019-01-06 16:58+0000\n"
+"Last-Translator: Lukas Heiniger <kenionatus@techie.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1233,15 +1234,15 @@ msgstr "Mods: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Für diesen Spielstand wird 0 A.D. Version %(requiredVersion)s benötigt. Sie verwenden jedoch Version %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Für diesen Spielstand wird eine ältere Version von 0 A.D. benötigt."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Dieser Spielstand benötigt eine andere Folge von Mods."
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -2448,8 +2449,8 @@ msgid "Type:"
 msgstr "Typ:"
 
 #: gui/summary/summary.xml:(caption):227
-msgid "Replay"
-msgstr "Wiederholung"
+msgid "Watch Replay"
+msgstr "Wiederholung starten"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"

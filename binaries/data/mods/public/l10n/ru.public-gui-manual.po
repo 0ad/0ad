@@ -10,6 +10,7 @@
 # anton.tsyganenko <anton-tsyganenko@yandex.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Check Tester <registruser@yandex.com>, 2018
+# Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2016
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -24,15 +25,15 @@
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2017
 # Woratiklis, 2015
-# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 14:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-01-05 17:24+0000\n"
+"Last-Translator: Dmitriy Kulikov <kulikov@dima.perm.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -336,7 +337,7 @@ msgstr "Shift + Delete: Удалить выделенных юнитов и/ил
 
 #: gui/manual/intro.txt:71
 msgid "/ (Slash): Select idle fighter"
-msgstr ""
+msgstr "/ (Слэш): Выбрать бездействующего бойца"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -360,7 +361,7 @@ msgstr "Alt + .: Выбрать всех незанятых рабочих (вк
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
-msgstr ""
+msgstr "\\ (Обратный слэш): Выбрать бездействующего юнита"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -532,20 +533,20 @@ msgstr "Ctrl + ПКМ с выбранными юнитами:"
 
 #: gui/manual/intro.txt:115
 msgid "    • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "• если курсор над союзной постройкой: Отправить в гарнизон"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr "• если курсор над недружественным юнитом или постройкой: Атаковать (вместо захвата или сбора)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units)."
-msgstr ""
+msgstr "• Иначе: Атаковать в движении (по-умолчанию все вражеские юниты и постройки атакуются по пути следования; используй Ctrl + Q + Правая кнопка мыши для атаки только юнитов)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -659,7 +660,7 @@ msgstr "R     Сброс камеры / ориентации"
 
 #: gui/manual/intro.txt:145
 msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "= или +: Увеличить (удерживайте нажатой для непрерывного увеличения)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 14:25+0000\n"
+"POT-Creation-Date: 2019-01-04 09:44+0100\n"
+"PO-Revision-Date: 2019-01-04 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -469,7 +469,7 @@ msgstr "Ενισχυμένο κύτος"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Ξεκλειδωνεί στη Φάση Χωριό."
@@ -2397,7 +2397,7 @@ msgstr "Εκπαίδευση θεραπευτών της τάξης των εκ�
 msgid "Divine Instruction"
 msgstr "Θεϊκή Καθοδήγηση"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -2407,47 +2407,47 @@ msgid ""
 "time."
 msgstr "Η Αυτοκρατορία των Μαουρύα περιελάμβανε δεκάδες πρώην ανεξάρτητα βασίλεια σε μια έκταση 5 εκατομμυρίων τετραγωνικών χιλιομέτρων, με πληθυσμό κοντά στα 60 εκατομμύρια ανθρώπους. Οι Μαουρύα αντιβασιλείς κράτησαν τον τίτλο του Αυτοκράτορα των Αυτοκρατόρων και διοικούσαν έναν μόνιμο στρατό από 600.000 πεζικό, 9.000 ελέφαντες, 8.000 άρματα και 30.000 ιππικό, καθιστώντας αναμφισβήτητα το μεγαλύτερο στρατό της εποχής του."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Οι Μαουρύα έχουν 10% περισσότερο στο μέγιστο του πληθυσμού."
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Αυτοκράτορας των Αυτοκρατόρων"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Μεγάλος Αυτοκράτορας"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
 msgstr "Οι Ινδοί είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
 msgstr "+10 μέτρα βεληνεκές για τις μονάδες που χειρίζονται τόξο. Οι τοξότες έχουν καλύτερη ευστοχία και -20% στο χρόνο εκπαιδεύσεις, αλλά και -20% στην υγεία τους."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Παράδοση στην τοξοβολία"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
+#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
 msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "Οι Μαουρύοι έχτιζαν τα τείχη της πόλης τους από ξύλο, έναν πλούσιο φυσικό πόρο της Ινδίας."
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "Τα Μαούρυα τείχη της πόλης έχουν -20% λιγότερη υγεία και -20% λιγότερο χρόνο κατασκευής."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
+#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Ξύλινα τείχη"
 
