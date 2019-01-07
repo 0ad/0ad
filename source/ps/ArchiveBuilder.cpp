@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -165,6 +165,8 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 			writer->AddFile(cachedRealPath, cachedPath);
 		}
 	}
+
+	debug_printf("Finished packaging \"%s\".", archive.string8().c_str());
 }
 
 Status CArchiveBuilder::CollectFileCB(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
