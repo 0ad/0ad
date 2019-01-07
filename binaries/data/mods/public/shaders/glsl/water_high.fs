@@ -290,16 +290,8 @@ void main()
 
 	if (refTex.a < 0.99)
 	{
-		// Calculate where we intersect with the skycube.
-		Ray myRay = Ray(vec3(worldPos.x/4.0,worldPos.y,worldPos.z/4.0),eye);
-		vec3 start = vec3(-1500.0 + mapSize/2.0,-100.0,-1500.0 + mapSize/2.0);
-		vec3 end = vec3(1500.0 + mapSize/2.0,500.0,1500.0 + mapSize/2.0);
-		float tmin = IntersectBox(myRay,start,end);
-		vec4 newpos = vec4(-worldPos.x/4.0,worldPos.y,-worldPos.z/4.0,1.0) + vec4(eye * tmin,0.0) - vec4(-mapSize/2.0,worldPos.y,-mapSize/2.0,0.0);
-		newpos *= skyBoxRot;
-		newpos.y *= 4.0;		
 		// Interpolate between the sky color and nearby objects.
-		reflColor = mix(textureCube(skyCube, newpos.rgb).rgb, refTex.rgb, refTex.a);
+		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
 	}
 
 	// reflMod is used to reduce the intensity of sky reflections, which otherwise are too extreme.

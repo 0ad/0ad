@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -772,7 +772,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		// TODO: check that this rotates in the right direction.
 		CMatrix3D skyBoxRotation;
 		skyBoxRotation.SetIdentity();
-		skyBoxRotation.RotateY(M_PI - 0.3f + lightEnv.GetRotation());
+		skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
 		m->fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
 	}
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
