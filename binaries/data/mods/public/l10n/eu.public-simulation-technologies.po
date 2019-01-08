@@ -1,17 +1,17 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Gontzal M. Pujana <juchuf@gmail.com>, 2015-2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2018
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
 # Osoitz <oelkoro@gmail.com>, 2015
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 15:51+0000\n"
+"POT-Creation-Date: 2019-01-04 09:44+0100\n"
+"PO-Revision-Date: 2019-01-04 19:04+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -462,7 +462,7 @@ msgstr "Itsasontzi krosko indartuak."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Herrixka aroan desblokeatuta."
@@ -2390,7 +2390,7 @@ msgstr "Elite mailako sendagileak trebatu."
 msgid "Divine Instruction"
 msgstr "Instrukzio Jainkotiarra "
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -2400,47 +2400,47 @@ msgid ""
 "time."
 msgstr "Maurya Inperioak lehen independente izandako hamarnaka erresuma biltzen zituen 5.000.000 kilometro koadrotan, 60 miloi pertsonako biztanleriaz. Mauryako erregeek enperadoreen enperadore izendatzen ziren eta 600000 infante, 9000 elefante, 8000 gurdi y 30000 zalduneko armada agintzen zuten, zeinengatik bere garaiko armadarik handiena den."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Mauryanoen gehienezko biztanleria %10 handitzen da."
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Mauryarren gehienezko biztanleria %10 handitzen da."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Enperadoreen Enperadore"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
 msgstr "Indiarrek arkulari usadio handia zuten eta borrokan arkulari asko erabiltzea hobesten zuten."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
 msgstr "+10 metro maila arkuz hornitutako unitateentzat. Arkulariak zehaztasuna %20- trebatzean, baino baita bizitza %20-."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Arkulari Usadioa"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
+#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
 msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
 msgstr "Mauryarrek harresiak egurrez egiten zituzten, berezko baliabide oparoa Indian."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "Mauryar hiri harresiak %20- galtzen dute gogortasunean baino eraikitzean %20- denbora gutxiago behar dute."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
+#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Egurrezko Harresiak"
 

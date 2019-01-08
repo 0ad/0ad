@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 14:25+0000\n"
+"POT-Creation-Date: 2019-01-04 09:44+0100\n"
+"PO-Revision-Date: 2019-01-04 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -461,7 +461,7 @@ msgstr "بدنه ی تقویت شده"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "قفل آن در فاز روستایی باز خواهد شد."
@@ -2389,7 +2389,7 @@ msgstr "پرورش درمانگرهای زبده"
 msgid "Divine Instruction"
 msgstr "دستور الهی"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -2399,47 +2399,47 @@ msgid ""
 "time."
 msgstr "امپراتوری مائوریان متشکل از دهها پادهاشی مستقل سابق بود که زیر پرچم مائوریان قرار گرفته بودند و وسعت این امپراتوری به بیش از 5 میلیون کیلومتر مربع با جمعیت نزدیک به 60 میلیون نفر رسیده بود. نایب السلطنه مائوریان ها که عنوان امپراتور امپراتورها را با خود داشت سپاهی با 600000 پیاده نظام، 9000 فیل جنگی، 8000 ارابه جنگی و 30000 سواره نظام را فرمان می داد که بدون شک عظیم ترین نیروی نظامی در زمان خوب بود."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "مائوریان ها 10% سقف جمعیت بیشتری دارند"
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "امپراتور امپراتوران"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
 msgstr "هندی ها بصورت سنتی دارای کمانداران بسیار ماهری بودند و تمایل عجیبی برای استفاده گسترده از کمانداران در نبرد ها داشتند"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
 msgstr "شعاع حمله +10 متر برای نیروهای کماندار. نیروهای کماندار دقت بهتری پیدا می کنند و -20% زمان پرورش کاهش می یابد اما سلامت آنها نیز -20%."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "سنت کمانداری"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
+#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
 msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "مائوریان ها دیوارهای شهر خود را از چوب می ساختند، منبع فراوانی که در هند در اختیار آنها بود."
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "دیوارهای شهر مائوریان ها -20% سلامت و -20% زمان ساخت کمتر دارد."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
+#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "دیوار های چوبی"
 

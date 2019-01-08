@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 14:25+0000\n"
+"POT-Creation-Date: 2019-01-04 09:44+0100\n"
+"PO-Revision-Date: 2019-01-04 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -461,7 +461,7 @@ msgstr "Neartachadh air sligean luinge"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Ri fhaighinn ri linn nan clachan."
@@ -2389,7 +2389,7 @@ msgstr "Trèanaich lighichean seann-ghaisgeach."
 msgid "Divine Instruction"
 msgstr "Facal dhè"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -2399,47 +2399,47 @@ msgid ""
 "time."
 msgstr "Ghabh impireachd nam Mauraidheach a-steach dusanan de rìoghachdan a bhiodh neo-eisimeileach roimhe thar ranntair de 5 mhillean cilemeatair ceàrnagach agus sluagh de faisg air 60 millean. Chuirte “Impire nan Impire” air na rìghrean Mauraidheach agus bhiodh smachd aca air feachd seasmhach de 600,000 coisridh, 9000 ailbhean, 8000 feun ’s 30,000 eachraidh. Thathar dhen bheachd gur e am feachd as motha a bh’ ann aig an àm."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Tha 10% nas motha  a shluagh ceadaichte dha na Mauraidhich."
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Impire nan impirean"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
 msgstr "Bhiodh na h-Innseanaich glè mhath air boghadaireachd is chleachdadh iad grunnan bhoghadairean air a’ bhlàr gu tric."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
 msgstr "Gheibh aonadan le bogha +10 meatairean de rainse. Gheibh boghadairean pongalachd leasaichte is thèid iad a thrèanadh nas luaithe le -20% ach caillidh iad slàinte cuideachd le -20%."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Gnàth nam boghadairean"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
+#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
 msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "Bhiodh na Mauraidhich a’ togail ballachan nam bailtean de dh’fhiodh on a bha fiodh pailt sna h-Innseachan."
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "Tha 20% as lugha a shlàinte aig ballachan-baile nam Mauraidheach ach thèid an togail nas luaithe le 20%."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
+#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Ballachan fiodha"
 

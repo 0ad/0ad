@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,6 +9,7 @@
 # Alex <yanebotan@ngs.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Christo Keller <christoniancoder@gmail.com>, 2014
+# Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -46,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 14:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-01-04 09:44+0100\n"
+"PO-Revision-Date: 2019-01-05 16:40+0000\n"
+"Last-Translator: Dmitriy Kulikov <kulikov@dima.perm.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -498,7 +499,7 @@ msgstr "Усиленный корпус"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Доступны на этапе деревни."
@@ -1003,11 +1004,11 @@ msgstr "Плетёные корзины"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
-msgstr ""
+msgstr "Юниты, размещённые в бараках, восстанавливают здоровье."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in Barracks."
-msgstr ""
+msgstr "При нахождении в бараках юниты постепенно восстанавливают здоровье."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1741,7 +1742,7 @@ msgstr "Продвинутое Ремесло"
 msgid ""
 "Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr ""
+msgstr "Существенно ускоряет обучение солдат в бараках, тренируя их большими партиями или батальонами."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1806,7 +1807,7 @@ msgstr "Гвардейцы (чемпионы) являются професси�
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the Barracks."
-msgstr ""
+msgstr "Открывает возможность обучать чемпионов в бараках."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -2426,7 +2427,7 @@ msgstr "Обучение элитных целителей."
 msgid "Divine Instruction"
 msgstr "Божественное Учение"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -2436,47 +2437,47 @@ msgid ""
 "time."
 msgstr "Империя Маурьев охватывала десятки ранее независимых царств на площади более 5 миллионов квадратных километров с населением около 60 миллионов человек. Правители Маурьев носили титул \"императора императоров\" и руководили регулярной армией из 600000 пехотинцев, 9000 слонов, 8000 колесниц, и 30000 конницы, что делает её, пожалуй, самой большой армией своего времени."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
 msgstr "У Маурьи на 10% увеличен лимит населения."
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Император императоров"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Чакраварти самрат"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
 msgstr "Индийцы традиционно были хорошими стрелками и в боях активно использовали большое количество лучников."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
 msgstr "Дальность атаки владеющих луком юнитов увеличивается на +10 метров. Лучники становятся более точными, время их обучения снижается на  -20%, но при этом здоровье снижается на -20%."
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Традиции стрельбы из лука"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
+#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
 msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "Маурьи строили городские стены из дерева, самого распространённого ресурса."
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "Маурьи строили городские стены из дерева, самого распространённого ресурса в Индии."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "Городские стены маурьев имеют на -20% меньшую прочность, но возводятся на -20% быстрее."
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
+#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Деревянные стены"
 

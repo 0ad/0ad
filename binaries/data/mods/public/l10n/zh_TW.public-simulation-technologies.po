@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2019-01-01 10:20+0000\n"
-"Last-Translator: 旭誠 張 <tea55688@gmail.com>\n"
+"POT-Creation-Date: 2019-01-04 09:44+0100\n"
+"PO-Revision-Date: 2019-01-04 15:59+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -468,7 +468,7 @@ msgstr "強化船身"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "在村莊階段解鎖。"
@@ -2396,7 +2396,7 @@ msgstr "訓練精英級治療者"
 msgid "Divine Instruction"
 msgstr "神聖指示"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -2406,47 +2406,47 @@ msgid ""
 "time."
 msgstr "孔雀王朝涵蓋了數十個原先獨立的王國，其領土面積約有5百萬平方公里，人口總數約6千萬人。孔雀王朝的統治者有著萬王之王的稱號，並指揮著60萬名步兵、9000頭大象、8000輛雙輪戰車、以及3萬名騎兵，使其可以說是當時最大型的軍隊。"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "孔雀王朝的人口上限 +10%。"
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "萬王之王"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
+#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
 msgstr "印度人有良好的箭術傳統並愛好在戰爭中運用大量弓箭手。"
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
 msgstr "執弓單位射程+10 單位，弓箭手單位有更好的準確度且訓練時間 -20% 但生命值也 -20% "
 
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
+#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "箭術傳統"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
+#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
 msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "印度擁有豐富的天然資源，孔雀王朝以木頭建造他們的城牆。"
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "孔雀王朝的城牆 -20% 生命值且建造時間 -20%。"
 
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
+#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "木牆"
 

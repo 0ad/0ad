@@ -1,10 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2018
+# Balázs Meskó <meskobalazs@gmail.com>, 2015-2019
 # Balázs Úr <ur.balazs@fsf.hu>, 2015-2017
 # Boross Péter <borosspet@web.de>, 2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015-2016
@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 14:18+0000\n"
-"Last-Translator: Attila Kocsner\n"
+"POT-Creation-Date: 2019-01-04 09:43+0100\n"
+"PO-Revision-Date: 2019-01-04 19:15+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1208,15 +1208,15 @@ msgstr "Modok: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Ehhez a játékmentéshez a 0 A.D. következő verziója szükséges: %(requiredVersion)s, te jelenleg a következő verziót használod: %(currentVersion)s"
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Ehhez a játékmentéshez egy régebbi 0 A.D. verzió szükséges."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Ez a játékmentés más modsorrendet igényel:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -2114,7 +2114,7 @@ msgstr "A mentetlen változtatások csak ezt a munkamenetet érintik"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alfa XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2423,8 +2423,8 @@ msgid "Type:"
 msgstr "Típus:"
 
 #: gui/summary/summary.xml:(caption):227
-msgid "Replay"
-msgstr "Visszajátszás"
+msgid "Watch Replay"
+msgstr "Visszajátszás megtekintése"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2536,7 +2536,7 @@ msgstr "Latin"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Perzsa"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -3093,11 +3093,11 @@ msgstr "Játékbeállítások"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Védje TLS titkosítással a bejelentkezési adait, valamint a váró kiszolgálóval történő kommunikációt."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "TLS titkosítás"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -4200,7 +4200,7 @@ msgstr "- Sebezhetőek a gyalogos csatárok számára."
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "- Elérhető a karthágóiak, kusiták, maurják, perzsák, ptolemaioszok és szeleukidák számára."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
