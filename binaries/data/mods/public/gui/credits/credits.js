@@ -29,6 +29,7 @@ function init()
 			error("Could not load credits for " + category + "!");
 			continue;
 		}
+		translateObjectKeys(json, ["Title", "Subtitle"]);
 		g_PanelData.push({
 			"label": json.Title || category,
 			"content": parseHelper(json.Content)
@@ -56,10 +57,10 @@ function parseHelper(list)
 			result += "[font=\"sans-bold-stroke-14\"]" + object.LangName + "\n";
 
 		if (object.Title)
-			result += "[font=\"sans-bold-stroke-14\"]" + translate(object.Title) + "\n";
+			result += "[font=\"sans-bold-stroke-14\"]" + object.Title + "\n";
 
 		if (object.Subtitle)
-			result += "[font=\"sans-bold-14\"]" + translate(object.Subtitle) + "\n";
+			result += "[font=\"sans-bold-14\"]" + object.Subtitle + "\n";
 
 		if (object.List)
 		{
