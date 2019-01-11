@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -14,7 +14,7 @@
 # chaosville <m.hammel@gmail.com>, 2013
 # cledge <christiankletsch@gmx.de>, 2014
 # xtother90, 2018
-# endoriel <endoriel_tx@i130.de>, 2014
+# endoriel, 2014
 # Enrico <TheEyeGer@web.de>, 2013
 # Fabian Gref <fabian.gref@gmail.com>, 2017
 # Fesa <ventessa@gmail.com>, 2013
@@ -70,9 +70,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:43+0100\n"
-"PO-Revision-Date: 2018-12-29 21:54+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2019-01-07 09:45+0100\n"
+"PO-Revision-Date: 2019-01-07 14:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1140,25 +1140,20 @@ msgstr "Bevölkerung (Aktuell / Limit)"
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximale Bevölkerung: %(popCap)s"
 
-#: gui/session/session.js:1467
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Build: %(buildDate)s (%(revision)s)"
-
-#: gui/session/session.js:1477
+#: gui/session/session.js:1469
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Anmerkung: Der Zeitreisemodus ist eine Entwickleroption und nicht für längere Zeiträume gedacht. Wenn dieser Modus falsch genutzt wird, kann dem Spiel der Speicher ausgehen oder es kann abstürzen."
 
-#: gui/session/session.js:1478
+#: gui/session/session.js:1470
 msgid "Time warp mode"
 msgstr "Zeitreisemodus"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1495
+#: gui/session/session.js:1487
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)s×)"

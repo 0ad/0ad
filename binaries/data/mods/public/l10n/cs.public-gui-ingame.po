@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -11,7 +11,7 @@
 # fri, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
 # Jakub Jelen <jakuje@gmail.com>, 2017
-# Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
+# Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
 # fri, 2014-2018
@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-28 09:43+0100\n"
-"PO-Revision-Date: 2018-12-28 14:40+0000\n"
+"POT-Creation-Date: 2019-01-07 09:45+0100\n"
+"PO-Revision-Date: 2019-01-07 14:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1119,25 +1119,20 @@ msgstr "Obyvatelstvo (nyní / limit)"
 msgid "Maximum population: %(popCap)s"
 msgstr "Nejvyšší počet obyvatel: %(popCap)s"
 
-#: gui/session/session.js:1467
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
-
-#: gui/session/session.js:1477
+#: gui/session/session.js:1469
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Poznámka: Režim cestování časem je možnost pro vývojáře a není záměrem, aby se používala po dlouhou dobu. Její špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
 
-#: gui/session/session.js:1478
+#: gui/session/session.js:1470
 msgid "Time warp mode"
 msgstr "Režim zrychlení času"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1495
+#: gui/session/session.js:1487
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
