@@ -29,6 +29,7 @@ function init()
 			error("Could not load credits for " + category + "!");
 			continue;
 		}
+		translateObjectKeys(json, ["Title", "Subtitle"]);
 		g_PanelData.push({
 			"label": json.Title || category,
 			"content": parseHelper(json.Content)
@@ -53,24 +54,28 @@ function parseHelper(list)
 	for (let object of list)
 	{
 		if (object.LangName)
-			result += "[font=\"sans-bold-stroke-14\"]" + object.LangName + "\n";
+			result += setStringTags(object.LangName + "\n", { "font": "sans-bold-stroke-14" });
 
 		if (object.Title)
-			result += "[font=\"sans-bold-stroke-14\"]" + translate(object.Title) + "\n";
+			result += setStringTags(object.Title + "\n", { "font": "sans-bold-stroke-14" });
 
 		if (object.Subtitle)
-			result += "[font=\"sans-bold-14\"]" + translate(object.Subtitle) + "\n";
+			result += setStringTags(object.Subtitle + "\n", { "font": "sans-bold-14" });
 
 		if (object.List)
 		{
 			for (let element of object.List)
 			{
+				let credit;
 				if (element.nick && element.name)
-					result += "[font=\"sans-14\"]" + sprintf(translate("%(nick)s - %(name)s"), { "nick": element.nick, "name": element.name }) + "\n";
+					credit = sprintf(translate("%(nick)s - %(name)s"), { "nick": element.nick, "name": element.name });
 				else if (element.nick)
-					result += "[font=\"sans-14\"]" + element.nick + "\n";
+					credit = element.nick;
 				else if (element.name)
-					result += "[font=\"sans-14\"]" + element.name + "\n";
+					credit = element.name;
+
+				if (credit)
+					result += setStringTags(credit + "\n", { "font": "sans-14" });
 			}
 
 			result += "\n";
