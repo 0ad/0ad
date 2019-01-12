@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-05-23 11:14+0000\n"
-"Last-Translator: Smarty <kidsmart33@gmail.com>\n"
+"POT-Creation-Date: 2019-01-07 09:44+0100\n"
+"PO-Revision-Date: 2019-01-07 13:41+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,153 +27,153 @@ msgstr ""
 msgid "Long strings"
 msgstr "дуги низови"
 
-#: lobby/XmppClient.cpp:787
+#: lobby/XmppClient.cpp:800
 msgid "unknown subtype (see logs)"
 msgstr "непознати подтип (видети белешке)"
 
-#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
-#: lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1180
 msgid "Error"
 msgstr "Грешка"
 
-#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
+#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
 msgid "No error"
 msgstr "Нема грешке"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1102
 msgid "Player already logged in"
 msgstr "Играч већ у игри"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
 msgstr "Забрањено"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1106
 msgid "Internal server error"
 msgstr "Унутрашња грешка на серверу"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1110
 msgid "Not allowed"
 msgstr "Није дозвољено"
 
-#: lobby/XmppClient.cpp:1072
+#: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
 msgstr "Није ауторизовано"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
 msgstr "Прималац привремено недоступан."
 
-#: lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1116
 msgid "Registration required"
 msgstr "Потребна регистрација"
 
-#: lobby/XmppClient.cpp:1081
+#: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
 msgstr "Сервис недоступан"
 
-#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
+#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
 msgid "Unknown error"
 msgstr "Непозната грешка"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1145
 msgid "Stream error"
 msgstr "Стреам грешка"
 
-#: lobby/XmppClient.cpp:1107
+#: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
 msgstr "Престојећа стрим верзија је неподржана."
 
-#: lobby/XmppClient.cpp:1108
+#: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
 msgstr "Стреам је угашен од стране сервера"
 
-#: lobby/XmppClient.cpp:1112
+#: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
 msgstr "Дошло је до улазно/излазне грешке"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
 msgstr "Сервер је одбио конекцију"
 
-#: lobby/XmppClient.cpp:1115
+#: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
 msgstr "Решавање имена домаћина сервера неуспело."
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
 msgstr "Систем нема довољно меморије"
 
-#: lobby/XmppClient.cpp:1118
+#: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Серверски сертификати нису верификовани или ТЛС руковање није комплентно заврешено."
 
-#: lobby/XmppClient.cpp:1119
+#: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
 msgstr "Сервер није понудио одговарајућу TLS енкрипцију"
 
-#: lobby/XmppClient.cpp:1121
+#: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Аутентификација неуспела.Нетачна шифра или акаунт не постоји."
 
-#: lobby/XmppClient.cpp:1122
+#: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
 msgstr "Играч или систем су затражили дисконекцију"
 
-#: lobby/XmppClient.cpp:1123
+#: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
 msgstr "Нема активне конекције"
 
-#: lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
 msgstr "Ваш налог је успешно регистрован."
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
 msgstr "Све обавезне информације нису обезбеђене"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1185
 msgid "Username already exists"
 msgstr "Корисничко име већ постоји"
 
-#: ps/ModIo.cpp:244
+#: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:274
+#: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:300
+#: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr ""
 
-#: ps/ModIo.cpp:325
+#: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr ""
 
-#: ps/ModIo.cpp:335
+#: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:380
+#: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr ""
 
-#: ps/ModIo.cpp:408
+#: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Преузимање неуспешно. Одговор сервера: %s; %s."
 
-#: ps/ModIo.cpp:511
+#: ps/ModIo.cpp:513
 msgid "Mismatched filesize."
 msgstr ""
 
@@ -200,21 +200,6 @@ msgstr "Снимљене поѕиције у '%s'"
 msgid "Screenshot written to '%s'"
 msgstr "Слика екрана снимљена у  '%s'"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: ps/scripting/JSInterface_Debug.cpp:88
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (посебна верзија)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#. dennis-ignore: *
-#: ps/scripting/JSInterface_Debug.cpp:94
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: ps/scripting/JSInterface_Debug.cpp:115
+#: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
 msgstr "посебна верзија"

@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2018
+# David Sowa <isithere2@yahoo.com>, 2017-2019
 # enolp <enolp@softastur.org>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 16:05+0000\n"
-"Last-Translator: enolp <enolp@softastur.org>\n"
+"PO-Revision-Date: 2019-01-11 03:37+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -308,7 +308,7 @@ msgstr "Esbillar la dificultá d'esti escenariu."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Choose the civilization for this player"
-msgstr ""
+msgstr "Escoyer la civilización d'esti xugador"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
@@ -538,46 +538,46 @@ msgstr "HH:mm"
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "Partida de %(name)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Introduz el nome d'un sirvidor válidu, por favor."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "El númberu del puertu del sirvidor tien de tar ente %(min)s y %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Coneutando col sirvidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:157
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Mensaxe net: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:221
 msgid "Registering with server..."
-msgstr ""
+msgstr "Rexistrándose en sirvidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:227
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "La partida yá ta en marcha, rexuniéndose..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:298
 msgid "Game name already in use."
-msgstr ""
+msgstr "Nomatu yá n'usu."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "Nun se llogró agospiar vía STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Nun ye posible agospiar la partida: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
 msgid "Error"
@@ -586,12 +586,12 @@ msgstr "Fallu"
 #: gui/gamesetup_mp/gamesetup_mp.js:351
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr " Nun ye posible xunise a la partida: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Partida de %(playername)s"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -707,33 +707,33 @@ msgstr "Dellos xugadores"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Xuniéndose a una partida esistente."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Nome del xugador:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Nome o IP del sirividor agospiador:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "Puertu del sirvidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Configura'l to sirvidor p'agospiar."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Nome del sirvidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Emplega STUN pa evitar tornafueos."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -742,7 +742,7 @@ msgstr "Siguir"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Dexa esto en blanco pa usar el puertu por defeutu."
 
 #: gui/text/quotes.txt:1
 msgid ""
