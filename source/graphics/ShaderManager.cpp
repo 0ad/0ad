@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -128,10 +128,10 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 		TIMER_ACCRUE(tc_ShaderValidation);
 
 		// Serialize the XMB data and pass it to the validator
-		XML_Start();
-		XML_SetPrettyPrint(false);
-		XML_WriteXMB(XeroFile);
-		bool ok = CXeromyces::ValidateEncoded("shader", wstring_from_utf8(name), XML_GetOutput());
+		XMLWriter_File shaderFile;
+		shaderFile.SetPrettyPrint(false);
+		shaderFile.XMB(XeroFile);
+		bool ok = CXeromyces::ValidateEncoded("shader", wstring_from_utf8(name), shaderFile.GetOutput());
 		if (!ok)
 			return false;
 	}

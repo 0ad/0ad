@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,88 +19,47 @@
 #define INCLUDED_XMLWRITER
 
 /*
-
-System for writing simple XML files, with human-readable formatting.
-
-Example usage:
-
-	XML_Start();
-
-	{
-		XML_Element("Scenario");
-		{
-			XML_Element("Entities");
-			for (...)
-			{
-				XML_Element("Entity");
-
-				{
-					XML_Element("Template");
-					XML_Text(entity.name);
-				}
-				// Or equivalently:
-				XML_Setting("Template", entity.name);
-
-				{
-					XML_Element("Position");
-					XML_Attribute("x", entity.x);
-					XML_Attribute("y", entity.y);
-					XML_Attribute("z", entity.z);
-				}
-
-				{
-					XML_Element("Orientation");
-					XML_Attribute("angle", entity.angle);
-				}
-			}
-		}
-	}
-
-	Handle h = vfs_open("/test.xml", FILE_WRITE|FILE_NO_AIO);
-	XML_StoreVFS(h);
-
-In general, "{ XML_Element(name); ... }" means "<name> ... </name>" -- the
-scoping braces are important to indicate where an element ends.
-
-XML_Attribute/XML_Setting are templated. To support more types, alter the
-end of XMLWriter.cpp.
-
-*/
-
-// Starts generating a new XML file.
-#define XML_Start() XMLWriter_File xml_file_
-
-// Set pretty printing (newlines, tabs). Defaults to true.
-#define XML_SetPrettyPrint(enabled) xml_file_.SetPrettyPrint(false)
-
-// Add a comment to the XML file: <!-- text -->
-#define XML_Comment(text) xml_file_.Comment(text)
-
-// Start a new element: <name ...>
-#define XML_Element(name) XMLWriter_Element xml_element_ (xml_file_, name)
-
-// Add text to the interior of the current element: <...>text</...>
-#define XML_Text(text) xml_element_.Text(text, false)
-
-// Add CDATA-escaped text to the interior of the current element: <...><![CDATA[text]]></...>
-#define XML_CDATA(text) xml_element_.Text(text, true)
-
-// Add an attribute to the current element: <... name="value" ...>
-#define XML_Attribute(name, value) xml_element_.Attribute(name, value)
-
-// Add a 'setting': <name>value</name>
-#define XML_Setting(name, value) xml_element_.Setting(name, value)
-
-#define XML_WriteXMB(xero) xml_file_.XMB(xero)
-
-// Create a VFS file from the XML data.
-// Returns true on success, false (and logs an error) on failure.
-#define XML_StoreVFS(vfs, pathname) xml_file_.StoreVFS(vfs, pathname)
-
-// Returns the contents of the XML file as a UTF-8 byte stream in a const CStr&
-// string. (Use CStr::FromUTF8 to get a Unicode string back.)
-#define XML_GetOutput() xml_file_.GetOutput()
-
+ *
+ *System for writing simple XML files, with human-readable formatting.
+ *
+ *Example usage:
+ *
+ *	XMLWriter_File exampleFile;
+ *	{
+ *		XMLWriter_Element scenarioTag (exampleFile,"Scenario");
+ *		{
+ *			XMLWriter_Element entitiesTag (exampleFile,"Entities");
+ *			for (...)
+ *			{
+ *				XMLWriter_Element entityTag (exampleFile,"Entity");
+ *				{
+ *					XMLWriter_Element templateTag (exampleFile,"Template");
+ *					templateTag.Text(entity.name);
+ *				}
+ *				// Or equivalently:
+ *				templateTag.Setting("Template", entity.name);
+ *				{
+ *					XMLWriter_Element positionTag (exampleFile,"Position");
+ *					positionTag.Attribute("x", entity.x);
+ *					positionTag.Attribute("y", entity.y);
+ *					positionTag.Attribute("z", entity.z);
+ *				}
+ *				{
+ *					XMLWriter_Element orientationTag (exampleFile,"Orientation");
+ *					orientationTag.Attribute("angle", entity.angle);
+ *				}
+ *			}
+ *		}
+ *	}
+ *	exampleFile.StoreVFS(g_VFS, "/test.xml");
+ *
+ *	In general, "{ XML_Element(name); ... }" means "<name> ... </name>" -- the
+ *	scoping braces are important to indicate where an element ends. If you don't put
+ *	them the tag won't be closed until the object's destructor is called, usually
+ *	when it goes out of scope.
+ *	xml_element_.Attribute/xml_element_.Setting are templated. To support more types, alter the
+ *	end of XMLWriter.cpp.
+ */
 
 #include "ps/CStr.h"
 #include "lib/file/vfs/vfs.h"

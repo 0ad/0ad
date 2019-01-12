@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -254,21 +254,21 @@ QUERYHANDLER(GetObjectMapSettings)
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	ENSURE(cmpTemplateManager);
 
-	XML_Start();
+	XMLWriter_File exampleFile;
 	{
-		XML_Element("Entities");
+		XMLWriter_Element entitiesTag(exampleFile, "Entities");
 		{
 			for (entity_id_t id : ids)
 			{
-				XML_Element("Entity");
+				XMLWriter_Element entityTag(exampleFile, "Entity");
 				{
 					//Template name
-					XML_Setting("Template", cmpTemplateManager->GetCurrentTemplateName(id));
+					entityTag.Setting("Template", cmpTemplateManager->GetCurrentTemplateName(id));
 
 					//Player
 					CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), id);
 					if (cmpOwnership)
-						XML_Setting("Player", (int)cmpOwnership->GetOwner());
+						entityTag.Setting("Player", static_cast<int>(cmpOwnership->GetOwner()));
 
 					//Adding position to make some relative position later
 					CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
@@ -277,29 +277,28 @@ QUERYHANDLER(GetObjectMapSettings)
 						CFixedVector3D pos = cmpPosition->GetPosition();
 						CFixedVector3D rot = cmpPosition->GetRotation();
 						{
-							XML_Element("Position");
-							XML_Attribute("x", pos.X);
-							XML_Attribute("z", pos.Z);
+							XMLWriter_Element positionTag(exampleFile, "Position");
+							positionTag.Attribute("x", pos.X);
+							positionTag.Attribute("z", pos.Z);
 							// TODO: height offset etc
 						}
 						{
-							XML_Element("Orientation");
-							XML_Attribute("y", rot.Y);
-														// TODO: X, Z maybe
+							XMLWriter_Element orientationTag(exampleFile, "Orientation");
+							orientationTag.Attribute("y", rot.Y);
+							// TODO: X, Z maybe
 						}
 					}
 
 					// Adding actor seed
 					CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), id);
 					if (cmpVisual)
-						XML_Setting("ActorSeed", (unsigned int)cmpVisual->GetActorSeed());
-
+						entityTag.Setting("ActorSeed", static_cast<unsigned int>(cmpVisual->GetActorSeed()));
 				}
 			}
 		}
 	}
 
-	const CStr& data = XML_GetOutput();
+	const CStr& data = exampleFile.GetOutput();
 	msg->xmldata = std::wstring(data.begin(), data.end());
 }
 
