@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,7 +86,6 @@ JSClass global_class = {
 
 void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 {
-
 	std::stringstream msg;
 	bool isWarning = JSREPORT_IS_WARNING(report->flags);
 	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
@@ -364,10 +363,11 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::RuntimeOptionsRef(m_cx).setExtraWarnings(1)
-		.setWerror(0)
-		.setVarObjFix(1)
-		.setStrictMode(1);
+	JS::RuntimeOptionsRef(m_cx)
+		.setExtraWarnings(true)
+		.setWerror(false)
+		.setVarObjFix(true)
+		.setStrictMode(true);
 
 	JS::CompartmentOptions opt;
 	opt.setVersion(JSVERSION_LATEST);
@@ -602,7 +602,7 @@ JS::Value ScriptInterface::GetGlobalObject() const
 	return JS::ObjectValue(*JS::CurrentGlobalOrNull(m->m_cx));
 }
 
-bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool replace)
+bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(m->m_cx);
 	JS::RootedObject global(m->m_cx, m->m_glob);
@@ -618,9 +618,13 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		}
 	}
 
-	bool ok = JS_DefineProperty(m->m_cx, global, name, value, JSPROP_ENUMERATE | JSPROP_READONLY
- 			| JSPROP_PERMANENT);
-	return ok;
+	uint attrs = 0;
+	if (constant)
+		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
+	if (enumerate)
+		attrs |= JSPROP_ENUMERATE;
+
+	return JS_DefineProperty(m->m_cx, global, name, value, attrs);
 }
 
 bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const

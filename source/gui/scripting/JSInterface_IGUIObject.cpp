@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,17 +39,12 @@ JSClass JSI_IGUIObject::JSI_class = {
 	nullptr, nullptr, JSI_IGUIObject::construct, nullptr
 };
 
-JSPropertySpec JSI_IGUIObject::JSI_props[] =
-{
-	{ 0 }
-};
-
 JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 {
-	JS_FS("toString", JSI_IGUIObject::toString, 0, 0),
-	JS_FS("focus", JSI_IGUIObject::focus, 0, 0),
-	JS_FS("blur", JSI_IGUIObject::blur, 0, 0),
-	JS_FS("getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0),
+	JS_FN("toString", JSI_IGUIObject::toString, 0, 0),
+	JS_FN("focus", JSI_IGUIObject::focus, 0, 0),
+	JS_FN("blur", JSI_IGUIObject::blur, 0, 0),
+	JS_FN("getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0),
 	JS_FS_END
 };
 
@@ -635,7 +630,7 @@ bool JSI_IGUIObject::construct(JSContext* cx, uint argc, JS::Value* vp)
 
 void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 {
-	scriptInterface.DefineCustomObjectType(&JSI_class, construct, 1, JSI_props, JSI_methods, NULL, NULL);
+	scriptInterface.DefineCustomObjectType(&JSI_class, construct, 1, nullptr, JSI_methods, nullptr, nullptr);
 }
 
 bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), JS::Value* vp)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,7 +99,7 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 	BuildDirEntListState state(cx);
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
-	return OBJECT_TO_JSVAL(state.filename_array);
+	return JS::ObjectValue(*state.filename_array);
 }
 
 // Return true iff the file exits
@@ -157,7 +157,7 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 

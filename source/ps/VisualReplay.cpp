@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -328,7 +328,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
 
 	if (!FileExists(replayFile))
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	// Get file size and modification date
 	CFileInfo fileInfo;
@@ -336,7 +336,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	const off_t fileSize = fileInfo.Size();
 
 	if (fileSize == 0)
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	std::ifstream* replayStream = new std::ifstream(OsString(replayFile).c_str());
 
@@ -345,14 +345,14 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	{
 		LOGERROR("Couldn't open %s.", replayFile.string8().c_str());
 		SAFE_DELETE(replayStream);
-		return JSVAL_NULL;
+		return JS::NullValue();
 	}
 
 	if (type != "start")
 	{
 		LOGWARNING("The replay %s doesn't begin with 'start'!", replayFile.string8().c_str());
 		SAFE_DELETE(replayStream);
-		return JSVAL_NULL;
+		return JS::NullValue();
 	}
 
 	// Parse header / first line
@@ -365,14 +365,14 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	{
 		LOGERROR("Couldn't parse replay header of %s", replayFile.string8().c_str());
 		SAFE_DELETE(replayStream);
-		return JSVAL_NULL;
+		return JS::NullValue();
 	}
 
 	// Ensure "turn" after header
 	if (!(*replayStream >> type).good() || type != "turn")
 	{
 		SAFE_DELETE(replayStream);
-		return JSVAL_NULL; // there are no turns at all
+		return JS::NullValue(); // there are no turns at all
 	}
 
 	// Don't process files of rejoined clients
@@ -381,7 +381,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	if (turn != 0)
 	{
 		SAFE_DELETE(replayStream);
-		return JSVAL_NULL;
+		return JS::NullValue();
 	}
 
 	int duration = getReplayDuration(replayStream, replayFile, fileSize);
@@ -390,7 +390,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 
 	// Ensure minimum duration
 	if (duration < minimumReplayDuration)
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	// Return the actual data
 	JS::RootedValue replayData(cx);
@@ -497,7 +497,7 @@ bool VisualReplay::HasReplayMetadata(const OsPath& directoryName)
 JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName)
 {
 	if (!HasReplayMetadata(directoryName))
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
