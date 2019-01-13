@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,11 +22,11 @@
 #ifndef INCLUDED_WATERMANAGER
 #define INCLUDED_WATERMANAGER
 
+#include "graphics/Color.h"
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
-#include "ps/Shapes.h"
 #include "renderer/VertexBufferManager.h"
 
 class CSimulation2;

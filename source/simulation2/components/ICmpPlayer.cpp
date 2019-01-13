@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,10 @@
 
 #include "ICmpPlayer.h"
 
+#include "graphics/Color.h"
 #include "maths/FixedVector3D.h"
 #include "simulation2/system/InterfaceScripted.h"
 #include "simulation2/scripting/ScriptComponent.h"
-
-#include "ps/Shapes.h"
 
 BEGIN_INTERFACE_WRAPPER(Player)
 END_INTERFACE_WRAPPER(Player)

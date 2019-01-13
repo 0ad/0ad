@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@
 
 #include "TerrainOverlay.h"
 
+#include "graphics/Color.h"
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
-#include "ps/Shapes.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/TerrainRenderer.h"
