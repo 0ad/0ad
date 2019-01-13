@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,13 +34,13 @@ class ScriptEngine : public Singleton<ScriptEngine>
 public:
 	ScriptEngine()
 	{
-		ENSURE(m_Runtimes.size() == 0 && "JS_Init must be called before any runtimes are created!");
+		ENSURE(m_Runtimes.empty() && "JS_Init must be called before any runtimes are created!");
 		JS_Init();
 	}
 
 	~ScriptEngine()
 	{
-		ENSURE(m_Runtimes.size() == 0 && "All runtimes must be destroyed before calling JS_ShutDown!");
+		ENSURE(m_Runtimes.empty() && "All runtimes must be destroyed before calling JS_ShutDown!");
 		JS_ShutDown();
 	}
 
@@ -48,7 +48,6 @@ public:
 	void UnRegisterRuntime(const JSRuntime* rt) { m_Runtimes.remove(rt); }
 
 private:
-
 	std::list<const JSRuntime*> m_Runtimes;
 };
 

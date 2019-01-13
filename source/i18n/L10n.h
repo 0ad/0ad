@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,8 +20,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef L10N_H
-#define L10N_H
+#ifndef INCLUDED_L10N
+#define INCLUDED_L10N
 
 #include <string>
 #include <vector>
@@ -41,16 +41,7 @@
  */
 class L10n : public Singleton<L10n>
 {
-	/**
-	 * Marks the L10n class as ‘noncopyable’.
-	 *
-	 * This is required, as the class works as a singleton.
-	 *
-	 * @sa #NONCOPYABLE(className)
-	 */
-	NONCOPYABLE(L10n);
 public:
-
 	/**
 	 * Creates an instance of L10n.
 	 *
@@ -590,4 +581,4 @@ private:
 	icu::DateFormat* CreateDateTimeInstance(const DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const;
 };
 
-#endif // L10N_H
+#endif // INCLUDED_L10N
