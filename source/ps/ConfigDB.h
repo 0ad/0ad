@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,12 +50,8 @@ typedef std::vector<CStr> CConfigValueSet;
 
 #define g_ConfigDB CConfigDB::GetSingleton()
 
-class CConfigDB: public Singleton<CConfigDB>
+class CConfigDB : public Singleton<CConfigDB>
 {
-	static std::map<CStr, CConfigValueSet> m_Map[];
-	static VfsPath m_ConfigFile[];
-	static bool m_HasChanges[];
-
 public:
 	CConfigDB();
 
@@ -165,6 +161,11 @@ public:
 	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value, const VfsPath& path);
 
 	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value);
+
+private:
+	static std::map<CStr, CConfigValueSet> m_Map[];
+	static VfsPath m_ConfigFile[];
+	static bool m_HasChanges[];
 };
 
 

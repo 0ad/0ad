@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -167,12 +167,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 			if (!proto)
 				throw PSERROR_Deserialize_ScriptError("Failed to find serializable prototype for object");
 
-			JS::RootedObject parent(cx, JS_GetParent(proto));
-			if (!proto || !parent)
-				throw PSERROR_Deserialize_ScriptError();
-
-			// TODO: Remove support for parent since this is dropped upstream SpiderMonkey
-			obj.set(JS_NewObjectWithGivenProto(cx, nullptr, proto, parent));
+			obj.set(JS_NewObjectWithGivenProto(cx, nullptr, proto));
 			if (!obj)
 				throw PSERROR_Deserialize_ScriptError("JS_NewObject failed");
 

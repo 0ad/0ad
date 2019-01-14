@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@
 #define INCLUDED_CINEMAMANAGER
 
 #include "lib/input.h" // InReaction - can't forward-declare enum
+#include "graphics/Color.h"
 #include "ps/CStr.h"
-#include "ps/Shapes.h"
 #include "simulation2/helpers/CinemaPath.h"
 
 

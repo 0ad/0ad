@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,36 +65,6 @@ typedef boost::flyweight<
 class CProfileNode
 {
 	NONCOPYABLE(CProfileNode);
-
-	friend class CProfileManager;
-	friend class CProfileNodeTable;
-
-	const char* name;
-
-	int calls_frame_current;
-	int calls_turn_current;
-	RingBuf<int, PROFILE_AMORTIZE_FRAMES> calls_per_frame;
-	RingBuf<int, PROFILE_AMORTIZE_TURNS> calls_per_turn;
-
-	double time_frame_current;
-	double time_turn_current;
-	RingBuf<double, PROFILE_AMORTIZE_FRAMES> time_per_frame;
-	RingBuf<double, PROFILE_AMORTIZE_TURNS> time_per_turn;
-
-	long mallocs_frame_current;
-	long mallocs_turn_current;
-	RingBuf<long, PROFILE_AMORTIZE_FRAMES> mallocs_per_frame;
-	RingBuf<long, PROFILE_AMORTIZE_TURNS> mallocs_per_turn;
-
-	double start;
-	long start_mallocs;
-	int recursion;
-
-	CProfileNode* parent;
-	std::vector<CProfileNode*> children;
-	std::vector<CProfileNode*> script_children;
-	CProfileNodeTable* display_table;
-
 public:
 	typedef std::vector<CProfileNode*>::iterator profile_iterator;
 	typedef std::vector<CProfileNode*>::const_iterator const_profile_iterator;
@@ -132,17 +102,40 @@ public:
 	void Call();
 	// Leaves the node. Returns true if the node has actually been left
 	bool Return();
+
+private:
+	friend class CProfileManager;
+	friend class CProfileNodeTable;
+
+	const char* name;
+
+	int calls_frame_current;
+	int calls_turn_current;
+	RingBuf<int, PROFILE_AMORTIZE_FRAMES> calls_per_frame;
+	RingBuf<int, PROFILE_AMORTIZE_TURNS> calls_per_turn;
+
+	double time_frame_current;
+	double time_turn_current;
+	RingBuf<double, PROFILE_AMORTIZE_FRAMES> time_per_frame;
+	RingBuf<double, PROFILE_AMORTIZE_TURNS> time_per_turn;
+
+	long mallocs_frame_current;
+	long mallocs_turn_current;
+	RingBuf<long, PROFILE_AMORTIZE_FRAMES> mallocs_per_frame;
+	RingBuf<long, PROFILE_AMORTIZE_TURNS> mallocs_per_turn;
+
+	double start;
+	long start_mallocs;
+	int recursion;
+
+	CProfileNode* parent;
+	std::vector<CProfileNode*> children;
+	std::vector<CProfileNode*> script_children;
+	CProfileNodeTable* display_table;
 };
 
 class CProfileManager : public Singleton<CProfileManager>
 {
-	CProfileNode* root;
-	CProfileNode* current;
-
-	bool needs_structural_reset;
-
-	void PerformStructuralReset();
-
 public:
 	CProfileManager();
 	~CProfileManager();
@@ -166,6 +159,14 @@ public:
 
 	inline const CProfileNode* GetCurrent() { return( current ); }
 	inline const CProfileNode* GetRoot() { return( root ); }
+
+private:
+	CProfileNode* root;
+	CProfileNode* current;
+
+	bool needs_structural_reset;
+
+	void PerformStructuralReset();
 };
 
 #define g_Profiler CProfileManager::GetSingleton()

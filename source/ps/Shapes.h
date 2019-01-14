@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,48 +16,14 @@
  */
 
 /*
-Shapes.h
-
 --Overview--
 
 	Classes mostly useful for representing 2D screen overlays;
 	includes functionality for overlay position, color, texture and borders.
-
-	CColor is used more widely for various game systems.
 */
 
 #ifndef INCLUDED_SHAPES
 #define INCLUDED_SHAPES
-
-#include "graphics/SColor.h"
-
-class CStr8;
-
-struct CColor
-{
-	CColor() : r(-1.f), g(-1.f), b(-1.f), a(1.f) {}
-	CColor(float cr,float cg,float cb,float ca) : r(cr), g(cg), b(cb), a(ca) {}
-
-	bool ParseString(const CStr8& Value, int DefaultAlpha = 255);
-
-	bool operator == (const CColor &color) const;
-
-	bool operator != (const CColor &color) const
-	{
-		return !(*this==color);
-	}
-
-	// For passing to glColor[34]fv:
-	const float* FloatArray() const { return &r; }
-
-	// For passing to CRenderer:
-	SColor4ub AsSColor4ub() const
-	{
-		return SColor4ub((u8)(r*255.0), (u8)(g*255.0), (u8)(b*255.0), (u8)(a*255.0));
-	}
-
-	float r, g, b, a;
-};
 
 class CPos;
 class CSize;

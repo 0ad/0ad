@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -142,7 +142,7 @@ public:
 	 * to set an already-defined value will fail.
 	 */
 	template<typename T>
-	bool SetGlobal(const char* name, const T& value, bool replace = false);
+	bool SetGlobal(const char* name, const T& value, bool replace = false, bool constant = true, bool enumerate = true);
 
 	/**
 	 * Set the named property on the given object.
@@ -362,7 +362,7 @@ private:
 	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const;
 	bool Eval_(const char* code, JS::MutableHandleValue ret) const;
 	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret) const;
-	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace);
+	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate);
 	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool readonly, bool enumerate) const;
 	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool readonly, bool enumerate) const;
 	bool SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool readonly, bool enumerate) const;
@@ -488,12 +488,12 @@ inline JS::HandleValue ScriptInterface::AssignOrFromJSVal<JS::HandleValue>(JSCon
 }
 
 template<typename T>
-bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
+bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetGlobal_(name, val, replace);
+	return SetGlobal_(name, val, replace, constant, enumerate);
 }
 
 template<typename T>

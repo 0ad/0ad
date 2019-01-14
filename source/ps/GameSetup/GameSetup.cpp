@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -183,8 +183,8 @@ retry:
 // display progress / description in loading screen
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
-	g_GUI->GetActiveGUI()->GetScriptInterface()->SetGlobal("g_Progress", percent, true);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->SetGlobal("g_LoadDescription", pending_task, true);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->SetGlobal("g_Progress", percent, true, false, true);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->SetGlobal("g_LoadDescription", pending_task, true, false, true);
 	g_GUI->GetActiveGUI()->SendEventToAll("progress");
 }
 

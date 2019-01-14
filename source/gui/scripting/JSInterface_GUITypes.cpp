@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ JSClass JSI_GUISize::JSI_class = {
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] =
 {
-	JS_FS("toString", JSI_GUISize::toString, 0, 0),
+	JS_FN("toString", JSI_GUISize::toString, 0, 0),
 	JS_FS_END
 };
 
@@ -57,7 +57,7 @@ bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	else if (args.length() == 4)
 	{
-		JS::RootedValue zero(cx, JSVAL_ZERO);
+		JS::RootedValue zero(cx, JS::NumberValue(0));
 		JS_SetProperty(cx, obj, "left",		args[0]);
 		JS_SetProperty(cx, obj, "top",		args[1]);
 		JS_SetProperty(cx, obj, "right",	args[2]);
@@ -69,7 +69,7 @@ bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	else
 	{
-		JS::RootedValue zero(cx, JSVAL_ZERO);
+		JS::RootedValue zero(cx, JS::NumberValue(0));
 		JS_SetProperty(cx, obj, "left",		zero);
 		JS_SetProperty(cx, obj, "top",		zero);
 		JS_SetProperty(cx, obj, "right",	zero);
@@ -141,7 +141,7 @@ JSClass JSI_GUIColor::JSI_class = {
 
 JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 {
-	JS_FS("toString", JSI_GUIColor::toString, 0, 0),
+	JS_FN("toString", JSI_GUIColor::toString, 0, 0),
 	JS_FS_END
 };
 
@@ -210,7 +210,7 @@ JSClass JSI_GUIMouse::JSI_class = {
 
 JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
 {
-	JS_FS("toString", JSI_GUIMouse::toString, 0, 0),
+	JS_FN("toString", JSI_GUIMouse::toString, 0, 0),
 	JS_FS_END
 };
 

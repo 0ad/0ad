@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 
 #include "Brushes.h"
 
-#include "ps/Game.h"
-#include "ps/Shapes.h"
-#include "ps/World.h"
+#include "graphics/Color.h"
 #include "graphics/Terrain.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/SimContext.h"

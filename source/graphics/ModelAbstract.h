@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,9 +18,9 @@
 #ifndef INCLUDED_MODELABSTRACT
 #define INCLUDED_MODELABSTRACT
 
-#include "maths/BoundingBoxOriented.h"
+#include "graphics/Color.h"
 #include "graphics/RenderableObject.h"
-#include "ps/Shapes.h"
+#include "maths/BoundingBoxOriented.h"
 #include "simulation2/helpers/Player.h"
 
 class CModel;

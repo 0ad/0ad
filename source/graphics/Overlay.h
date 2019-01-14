@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,12 +18,12 @@
 #ifndef INCLUDED_GRAPHICS_OVERLAY
 #define INCLUDED_GRAPHICS_OVERLAY
 
+#include "graphics/Color.h"
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "maths/FixedVector3D.h"
 #include "ps/CStrIntern.h"
-#include "ps/Shapes.h"
 
 class CTerrain;
 class CSimContext;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -291,7 +291,7 @@ JS::Value CMessageTerrainChanged::ToJSVal(const ScriptInterface& scriptInterface
 	SET_MSG_PROPERTY(j0);
 	SET_MSG_PROPERTY(i1);
 	SET_MSG_PROPERTY(j1);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 CMessage* CMessageTerrainChanged::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
@@ -331,7 +331,7 @@ CMessage* CMessageVisibilityChanged::FromJSVal(const ScriptInterface& scriptInte
 JS::Value CMessageWaterChanged::ToJSVal(const ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 CMessage* CMessageWaterChanged::FromJSVal(const ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))

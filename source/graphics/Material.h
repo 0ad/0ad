@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,11 +18,11 @@
 #ifndef INCLUDED_MATERIAL
 #define INCLUDED_MATERIAL
 
+#include "graphics/Color.h"
 #include "graphics/ShaderDefines.h"
 #include "graphics/Texture.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
-#include "ps/Shapes.h"
 #include "simulation2/helpers/Player.h"
 
 class CMaterial
