@@ -11,6 +11,7 @@
 # ernest olory <ernestolory@hotmail.fr>, 2017
 # François Magimel, 2018
 # François Poirotte <clicky@erebot.net>, 2016
+# Glorfindel Of Gondolin <titi.gilgien@gmail.com>, 2019
 # Leyto Leyto <machin237@yahoo.fr>, 2016
 # Loki <tontonloul@hotmail.fr>, 2016
 # Luc <luc.absil2@gmail.com>, 2016
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 14:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-01-13 13:06+0000\n"
+"Last-Translator: Glorfindel Of Gondolin <titi.gilgien@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -331,7 +332,7 @@ msgstr "Maj + Suppr : Supprimer sans confirmation les unités/bâtiments actuell
 
 #: gui/manual/intro.txt:71
 msgid "/ (Slash): Select idle fighter"
-msgstr ""
+msgstr "/ (Slash) : Sélectionner un combattant inactif."
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -355,7 +356,7 @@ msgstr "Alt + . : Sélectionner tous les ouvriers inactifs (y compris les citoye
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
-msgstr ""
+msgstr "\\ (Backslash) : Sélectionner une unité inactive."
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -527,20 +528,20 @@ msgstr "Ctrl + Clic Droit lorsque des unités sont sélectionnées :"
 
 #: gui/manual/intro.txt:115
 msgid "    • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "• Si le curseur est sur une structure alliée : Garnison"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "    • If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr "• Si le curseur est sur une unité ou un bâtiment non allié(e) : Attaque (au lieu de capture ou récolte)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "    • Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units)."
-msgstr ""
+msgstr "• Sinon : Mouvement d'attaque (par défaut, toutes les unités et structures ennemies sur votre chemin sont prises pour cible, utilisez Ctrl + Q + Clic droit pour ne cibler que les unités)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -654,7 +655,7 @@ msgstr "R : Réinitialiser le zoom/orientation de la caméra"
 
 #: gui/manual/intro.txt:145
 msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "= ou +: Zoom avant (maintenir appuyé pour zoomer en continu)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

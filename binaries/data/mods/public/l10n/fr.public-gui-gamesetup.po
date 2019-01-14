@@ -21,6 +21,7 @@
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # ernest olory <ernestolory@hotmail.fr>, 2017
 # François Poirotte <clicky@erebot.net>, 2014,2016-2017
+# Glorfindel Of Gondolin <titi.gilgien@gmail.com>, 2019
 # Hadrien Titeux <hadwarez@gmail.com>, 2013
 # Hadri man <hadriman@live.fr>, 2017
 # Jérémi Mapas <jeremi.mapas@gmail.com>, 2017
@@ -74,8 +75,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 16:05+0000\n"
-"Last-Translator: Rodrigue March <rodriguemarch@sfr.fr>\n"
+"PO-Revision-Date: 2019-01-13 12:58+0000\n"
+"Last-Translator: Glorfindel Of Gondolin <titi.gilgien@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,7 +374,7 @@ msgstr "Sélectionnez la difficulté de ce scénario."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Choose the civilization for this player"
-msgstr ""
+msgstr "Choisissez la civilisation de ce joueur"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
@@ -637,7 +638,7 @@ msgstr "Nom de partie déjà utilisé."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "Échec de l' hébergement par STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
@@ -777,7 +778,7 @@ msgstr "Rejoindre une partie existante."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Nom du joueur:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -794,11 +795,11 @@ msgstr "Configurer votre serveur hôte."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Nom du serveur:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Utiliser STUN pour éviter les pare-feu"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"

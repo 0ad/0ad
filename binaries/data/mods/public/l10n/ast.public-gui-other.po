@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2018
+# David Sowa <isithere2@yahoo.com>, 2017-2019
 # enolp <enolp@softastur.org>, 2017
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 14:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-01-14 03:10+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1197,19 +1197,19 @@ msgstr "Mods: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Esta partida guardada esixe la versión %(requiredVersion)s de 0 A.D., pero tu tas usando la versión %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Esta partida guardada esixe una versión más vieya de 0 A.D."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Esta partida guardada esixe otra secuencia de mods:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "¿Entá quies siguir?"
 
 #: gui/loadgame/load.js:172 gui/options/options.js:300
 #: gui/options/options.js:350 gui/options/options.js:376
@@ -1464,7 +1464,7 @@ msgstr "Construyío por:"
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr "Llevantao por:"
+msgstr "Allistao por:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
@@ -1488,7 +1488,7 @@ msgstr "Desendolca:"
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr "Llevanta:"
+msgstr "Allista:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
@@ -1631,11 +1631,11 @@ msgstr "Nun s'alcontraron partíes guardaes"
 
 #: gui/savegame/save.js:64
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "Les partíes guardaes van sobrescribise dafechu, ¿tas seguru?"
 
 #: gui/savegame/save.js:65
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "SOBRESCRIBIR PARTIDA"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1839,7 +1839,7 @@ msgstr "Total del equipu"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "Llevantao"
+msgstr "Allistao"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -2103,7 +2103,7 @@ msgstr "Los cambeos ensin guardar afeuten namái esta sesión"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alfa XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2313,7 +2313,7 @@ msgstr "Civilización:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "Unidaes llevantadores"
+msgstr "Unidaes allistadores"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2413,7 +2413,7 @@ msgstr "Triba:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Ver repetición"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2525,7 +2525,7 @@ msgstr "Llatín"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Persa"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -3126,11 +3126,11 @@ msgstr "Salú d'unidá mancada"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "El númberu de les unidaes llevantaes por grupu por defeutu."
+msgstr "Cuantes unidaes s'allisten por grupu por defeutu."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr "Tamañu de los grupos llevantaos"
+msgstr "Tamañu del allistamientu en masa"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3231,7 +3231,7 @@ msgstr "Iconos de rangu enriba la barra d'estáu"
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Amosar conseyos detallaos pa les unidaes que puen llevantase de les construcciones llevantadores."
+msgstr "Amosar conseyos detallaos pa les unidaes allistables nes construcciones que les producen."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Detailed Tooltips"
@@ -3537,7 +3537,7 @@ msgstr "- Escaye al propietariu del territoriu cuando se constrúi en tierres no
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Construyir equipu d'asediu y llevantar ciudadanos-soldáu."
+msgstr "- Construyir equipu d'asediu y allistar ciudadanos-soldáu."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
@@ -3553,7 +3553,7 @@ msgstr "CUARTELES"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Llevantar tolos ciudadanos-soldáu. Delles faiciones son a desbloquiar el llevantamientu de campeones tamién."
+msgstr "- Allistar tolos ciudadanos-soldáu. Delles faiciones tamién puen desbloquiar l'allistamientu de campeones."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
@@ -3563,7 +3563,7 @@ msgstr "- Desendolcar les teunoloxíes militares úniques a cada faición."
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Constrúi ún ceo pa llevantar ciudadanos-soldáu de la que l'asentamientu avance de fas."
+msgstr "- Constrúi ún ceo p'allistar ciudadanos-soldáu al empar que l'asentamientu cambie de fas."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -3599,13 +3599,13 @@ msgstr "- Los llanceros campeones y llanceros campeones montaos de Cartagu."
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr "- Los dos puen llevantase del templu, en clas de la fortaleza, a diferencia de los más de los campeones."
+msgstr "- Los dos allístense en templu, non na fortaleza, a diferencia de los más de los campeones."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "- Emplega los llanceros como infantería pesao escontra la caballería. Emplega la caballería pa cargar escontra l'equipu d'asediu y escaramuzadores."
+msgstr "- Emplega los llanceros escontra la caballería. Emplega la caballería pa cargar escontra armes d'asediu y esfregueros."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3675,7 +3675,7 @@ msgstr "- Ye a construyise en tierres amigues y neutrales."
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr "- Llevantar ciudadanos: ciudadanes, ciudadanos-soldáu y ciudadanos-soldáu montaos."
+msgstr "- Allistar a ciudadanos: ciudadanes, ciudadanos-soldáu y ciudadanos-soldáu montaos."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3687,7 +3687,7 @@ msgstr "- «Cuarteles» especiales disponibles na facción de Cartagu"
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Llevantar mercenarios de cada embaxada étnica."
+msgstr "- Allistar mercenarios de caúna de les embaxaes étniques."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
@@ -3725,7 +3725,7 @@ msgstr "- La fortaleza suel ser la construcción más fuerte de cada faición."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Llevanta a unidaes fuertes como los campeones, héroes, y armes d'asediu."
+msgstr "- Allista unidaes fuertes como'l campeón, héroe y armes d'asediu."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -3797,7 +3797,7 @@ msgstr "- Les unidaes na so formación son más rápidos y más fuertes."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr "- Los escaramuzadores van más aína demientres viva."
+msgstr "- Los esfregueros van más rápido demientres viva."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -4007,7 +4007,7 @@ msgstr "- Una estructura especial de les faiciones griegues."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Llevanta a los escaramuzadores pesaos y la infantería de la espada campeones."
+msgstr "- Allista esfregueros pesaos y campeones espadachinos."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
@@ -4183,13 +4183,13 @@ msgstr "- Cuesten muncha comida y metal pero son mui poderosos. Lo más fuerte e
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Vulnerable a los escaramuzadores d'a pie."
+msgstr "- Vulnerable a los esfregueros d'a pie."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "- Disponible a: cartaxineses, cuxites, mauria, perses, tolemaicos y seléucides."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
