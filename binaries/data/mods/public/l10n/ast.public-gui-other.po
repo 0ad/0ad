@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-14 03:10+0000\n"
+"PO-Revision-Date: 2019-01-17 23:30+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -700,7 +700,7 @@ msgstr[1] "%(minutes)s minutos"
 #: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Engarradiella"
+msgstr "Escaramuza"
 
 #: gui/common/settings.js:221
 msgid ""
@@ -1464,13 +1464,13 @@ msgstr "Construyío por:"
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr "Allistao por:"
+msgstr "Allistáu (-aos, -ada, -aes) por:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:165
 msgid "Researched at:"
-msgstr "Desendolcao en:"
+msgstr "Investigáu (-aos, -ada, -aes) en:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
@@ -1482,7 +1482,7 @@ msgstr "Constrúi:"
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr "Desendolca:"
+msgstr "Investiga:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
@@ -1839,7 +1839,7 @@ msgstr "Total del equipu"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "Allistao"
+msgstr "Allistáu (-aos, -ada, -aes)"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -3126,20 +3126,20 @@ msgstr "Salú d'unidá mancada"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "Cuantes unidaes s'allisten por grupu por defeutu."
+msgstr "Cuantes unidaes s'allisten al empar por defeutu."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr "Tamañu del allistamientu en masa"
+msgstr "Tamañu del fornáu"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "El númberu de vegaes que tienes de rodar el botón central del mur p'aumentar/amenorgar el tamañu del grupu en 1."
+msgstr "Cuantes vegaes hai que mover la rueda del mur p'aumentar/amenorgar en 1 el tamañu del fornáu."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr "Razón del incrementu del grupu per rodaxe"
+msgstr "Razón de medría del fornáu al usar la rueda'l mur"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3557,7 +3557,7 @@ msgstr "- Allistar tolos ciudadanos-soldáu. Delles faiciones tamién puen desbl
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr "- Desendolcar les teunoloxíes militares úniques a cada faición."
+msgstr "- Investigar la teunoloxía militar único a cada faición."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
@@ -3575,17 +3575,17 @@ msgstr "FRAGUA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr "- La estructura desendolcadora de toles faiciones."
+msgstr "- La estructura investigadora pa toles faiciones."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Desendolcar meyores d'armes y armadures pa les unidaes."
+msgstr "- Investigar meyores nes armes y armadures de les unidaes."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr "- Guarecer un ciudadanu-soldáu pa desendolcar más aína (ENTÁ NUN S'IMPLEMENTÓ)."
+msgstr "- Guarecer un ciudadanu-soldáu pa investigar más rápido (ENTÁ NUN S'IMPLEMENTÓ)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3605,7 +3605,7 @@ msgstr "- Los dos allístense en templu, non na fortaleza, a diferencia de los m
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "- Emplega los llanceros escontra la caballería. Emplega la caballería pa cargar escontra armes d'asediu y esfregueros."
+msgstr "- Emplega los llanceros escontra la caballería. Emplega la caballería pa cargar escontra armes d'asediu y escaramuzadores."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3797,7 +3797,7 @@ msgstr "- Les unidaes na so formación son más rápidos y más fuertes."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr "- Los esfregueros van más rápido demientres viva."
+msgstr "- Los escaramuzadores van más rápido demientres viva."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -4007,7 +4007,7 @@ msgstr "- Una estructura especial de les faiciones griegues."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Allista esfregueros pesaos y campeones espadachinos."
+msgstr "- Allista escaramuzadores pesaos y campeones espadachinos."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
@@ -4025,7 +4025,7 @@ msgstr "- Un depósitu baratu pa los recursos non alimentarios (la madera, la pi
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Desendolca teunoloxíes p'ameyorar la capacidá de recoyer a los ciudadanos."
+msgstr "- Investigar teunoloxía p'ameyorar la capacidá de recoyida a los ciudadanos."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
@@ -4183,13 +4183,13 @@ msgstr "- Cuesten muncha comida y metal pero son mui poderosos. Lo más fuerte e
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Vulnerable a los esfregueros d'a pie."
+msgstr "- Vulnerable a los escaramuzadores d'a pie."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "- Disponible a: cartaxineses, cuxites, mauria, perses, tolemaicos y seléucides."
+msgstr "- Disponible a: cartaxineses, kuxites, mauria, perses, tolemaicos y seléucides."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

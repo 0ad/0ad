@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-01-11 03:43+0000\n"
+"PO-Revision-Date: 2019-01-18 01:22+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -195,7 +195,7 @@ msgstr "Arqueru montáu de primera"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:26
 msgid "Champion Cavalry Skirmisher"
-msgstr "Escaramuzador montáu de primera"
+msgstr "Escaramuzador montáu campeón"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
@@ -235,7 +235,7 @@ msgstr "Arqueru de primera"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:29
 msgid "Champion Skirmisher"
-msgstr "Escaramuzador de primera"
+msgstr "Escaramuzador campeón"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 msgid "Maceman"
@@ -437,13 +437,13 @@ msgstr "Pesca pa comida."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 msgid "Merchantman"
-msgstr "Mercaderu"
+msgstr "Mercador"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:31
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Negocia ente puertos. Pon un comerciante a bordu pa más beneficios (un +20% pa caún guarecíu). Recueyi valoratibles ayalgues marines."
+msgstr "Negociar ente cais. Guarecer un comerciante a bordu pa más beneficios (un +20% pa caún guarecíu). Recoyer ayalgues de la mar."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:32
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -1258,7 +1258,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Negocia ente puertos. Pon un comerciante a bordu pa más beneficios (un +20% pa caún guarecíu). Recueyi valoratibles ayalgues marines. Los cartaxineses reciben un beneficiu de comerciu marín d'un +25%."
+msgstr "Negociar ente cais. Guarecer un comerciante a bordu pa más beneficios (un +20% pa caún guarecíu). Recoyer ayalgues de la mar.  Los cartaxineses reciben una bonificación del +25% pal comerciu marítimo."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
@@ -1442,7 +1442,7 @@ msgstr "iry hr ssmwtt"
 
 #: simulation/templates/units/kush_cavalry_javelinist_b.xml:7
 msgid "Napatan Light Cavalry"
-msgstr "Xinete llixeru de Napata"
+msgstr "Xinete llixeru napatán"
 
 #: simulation/templates/units/kush_cavalry_javelinist_merc_b.xml:12
 msgid "Blemmye Desert Raider"
@@ -1491,7 +1491,7 @@ msgstr "Hry pdty"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:5
 msgid "Napatan Temple Guard"
-msgstr "Guardia del templu de Napata"
+msgstr "Guardia del templu napatán"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:6
 msgid "rs ‘Imn"
@@ -1589,7 +1589,7 @@ msgstr "knw hps"
 
 #: simulation/templates/units/kush_mechanical_siege_tower.xml:5
 msgid "Kushite Siege Tower"
-msgstr "Torre d'asediu cuxita"
+msgstr "Torre d'asediu kuxita"
 
 #: simulation/templates/units/kush_mechanical_siege_tower.xml:6
 msgid "iwn n ms"
@@ -1621,7 +1621,7 @@ msgstr "Shmt"
 
 #: simulation/templates/units/kush_support_female_citizen.xml:6
 msgid "Kushite Woman"
-msgstr "Muyer cuxita"
+msgstr "Muyer kuxita"
 
 #: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "Priest"
@@ -1652,7 +1652,7 @@ msgstr "Reorganización financiera: Aliáu con Roma, Felipe reorganizó los asun
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Xinete escaramuzador odrisiu"
+msgstr "Escaramuzador montáu odrisiu"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistḕs Odrysós"
@@ -2180,7 +2180,7 @@ msgstr "Maguš Mada"
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
-msgstr "Mercaderu araméu"
+msgstr "Mercador araméu"
 
 #: simulation/templates/units/pers_support_trader.xml:11
 msgid "Tamkarum Arami"
@@ -2294,7 +2294,7 @@ msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:19
 msgid "Mercenary Thureos Skirmisher"
-msgstr "Escaramuzador mercenariu d'escudu allongáu"
+msgstr "Escaramuzador con turéu mercenariu"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:20
 msgid "Thureophóros Akrobolistḗs"
@@ -2517,7 +2517,7 @@ msgstr "Pontifex Minor"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Plebeian Merchant"
-msgstr "Mercaderu plebeyu"
+msgstr "Mercador plebeyu"
 
 #: simulation/templates/units/rome_support_trader.xml:11
 msgid "Mercator Plebeius"
