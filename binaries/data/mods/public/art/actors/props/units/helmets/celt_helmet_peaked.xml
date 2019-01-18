@@ -3,25 +3,25 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Iron">
-      <mesh>props/helmet/celt_helmet_a_7.dae</mesh>
       <textures>
         <texture file="props/helmet/celt_helmet_a7_iron.png" name="baseTex"/>
-        <texture file="props/helmet/celt_helmet_a7_norm.png" name="normTex"/>
-        <texture file="props/helmet/celt_helmet_a7_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Brass">
-      <mesh>props/helmet/celt_helmet_a_7.dae</mesh>
       <textures>
         <texture file="props/helmet/celt_helmet_a7_brass.png" name="baseTex"/>
-        <texture file="props/helmet/celt_helmet_a7_norm.png" name="normTex"/>
-        <texture file="props/helmet/celt_helmet_a7_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Bronze">
-      <mesh>props/helmet/celt_helmet_a_7.dae</mesh>
       <textures>
         <texture file="props/helmet/celt_helmet_a7_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <mesh>props/helmet/celt_helmet_a_7.dae</mesh>
+      <textures>
         <texture file="props/helmet/celt_helmet_a7_norm.png" name="normTex"/>
         <texture file="props/helmet/celt_helmet_a7_spec.png" name="specTex"/>
       </textures>
