@@ -4,12 +4,12 @@
   <group>
     <variant frequency="1" name="Celt helmet hair">
       <mesh>props/helmet/props/celt_helmet_hair.dae</mesh>
-      <textures>
-		   <texture file="props/helmet/ptol_romanized_brass.png" name="baseTex"/>
-		   <texture file="props/helmet/ptol_romanized_norm.png" name="normTex"/>
-       <texture file="props/helmet/ptol_romanized_spec.png" name="specTex"/>
-      </textures>
-   </variant> 
+        <textures>
+            <texture file="props/helmet/ptol_romanized_brass.png" name="baseTex"/>
+            <texture file="props/helmet/ptol_romanized_norm.png" name="normTex"/>
+            <texture file="props/helmet/ptol_romanized_spec.png" name="specTex"/>
+        </textures>
+    </variant> 
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>
