@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_entity_quasi">
+<Entity>
+  <AIProxy/>
   <Fogging/>
   <Identity>
     <Civ>gaia</Civ>
@@ -17,6 +18,17 @@
     <DeleteUponConstruction>false</DeleteUponConstruction>
   </Obstruction>
   <OverlayRenderer/>
+  <Ownership/>
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+    <FloatDepth>0.0</FloatDepth>
+    <TurnRate>6.0</TurnRate>
+  </Position>
+  <Selectable>
+    <EditorOnly/>
+  </Selectable>
   <StatusBars>
     <BarWidth>2.0</BarWidth>
     <BarHeight>0.333</BarHeight>
