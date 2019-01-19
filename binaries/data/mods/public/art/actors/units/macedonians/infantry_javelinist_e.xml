@@ -18,6 +18,18 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Old">
+      <props>
+        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="New">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_c.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant file="biped/base_skirmisher.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
