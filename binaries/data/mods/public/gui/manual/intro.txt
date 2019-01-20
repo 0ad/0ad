@@ -19,9 +19,9 @@ Basic controls:
 [font="sans-bold-16"]Modes
 [font="sans-14"]The main menu gives access to two game modes:
 
-• [font="sans-bold-14"]Single-player[font="sans-14"] — play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human.
+• [font="sans-bold-14"]Single-player[font="sans-14"] – play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human.
 
-• [font="sans-bold-14"]Multiplayer[font="sans-14"] — play against human opponents over the internet.
+• [font="sans-bold-14"]Multiplayer[font="sans-14"] – play against human opponents over the internet.
 
 To set up a multiplayer game, one player must select the "Host game" option. The game uses UDP port 20595, so the host must configure their NAT/firewall/etc to allow this. Other players can then select "Join game" and enter the host's IP address.
 
@@ -29,9 +29,9 @@ To set up a multiplayer game, one player must select the "Host game" option. The
 [font="sans-14"]In a multiplayer game, only the host can alter the game setup options.
 
 First, select what type of map you want to play:
-• [font="sans-bold-14"]Random map[font="sans-14"] — A map created automatically from a script
-• [font="sans-bold-14"]Scenario map[font="sans-14"] — A map created by map designers and with fixed civilisations
-• [font="sans-bold-14"]Skirmish map[font="sans-14"] — A map created by map designers but where the civilisations can be chosen
+• [font="sans-bold-14"]Random map[font="sans-14"] – A map created automatically from a script
+• [font="sans-bold-14"]Scenario map[font="sans-14"] – A map created by map designers and with fixed civilizations
+• [font="sans-bold-14"]Skirmish map[font="sans-14"] – A map created by map designers but where the civilizations can be chosen
 
 Then the maps can be further filtered. The default maps are generally playable maps. Naval maps are maps where not all opponents can be reached over land and demo maps are maps used for testing purposes (generally not useful to play on). The "All Maps" filter shows all maps together in one list.
 
@@ -48,7 +48,7 @@ Alt + F: Show/hide frame counter (FPS)
 F11: Enable/disable real-time profiler (toggles through the displays of information)
 Shift + F11: Save current profiler data to "logs/profile.txt"
 F2: Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
-Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
 Tab, Alt + S: Switch to the next tab.
 Shift + Tab, Alt + W: Switch to the previous tab.
 
@@ -85,7 +85,7 @@ Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the sele
 Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings
 Ctrl + F5 (and so on up to F8): Mark the current camera position, for jumping back to later.
 F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position.
-Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… unit shown to the training queue for all the selected buildings.
+Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected buildings.
 PageUp with units selected: Highlights the units/buildings guarded by the selection.
 PageDown with units/buildings selected: Highlights the units guarding the selection.
 Tab: See all status bars (which would also show the building progress)
@@ -112,9 +112,9 @@ O + Left Drag over units on map: Only select wounded units
 Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
 Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building.
 Ctrl + Right Click with units selected:
-    • If the cursor is over an allied structure: Garrison
-    • If the cursor is over a non-allied unit or building: Attack (instead of capture or gather)
-    • Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units).
+  • If the cursor is over an allied structure: Garrison
+  • If the cursor is over a non-allied unit or building: Attack (instead of capture or gather)
+  • Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units).
 
 [font="sans-bold-14"]Overlays
 [font="sans-14"]Alt + G: Hide/show the GUI
@@ -135,11 +135,11 @@ D or \[right]: Pan screen right
 Ctrl + W or \[up]: Rotate camera to look upward
 Ctrl + S or \[down]: Rotate camera to look downward
 Ctrl + A or \[left]: Rotate camera clockwise around terrain
-Ctrl + D or \[right]: Rotate camera anticlockwise around terrain
+Ctrl + D or \[right]: Rotate camera counter-clockwise around terrain
 Q: Rotate camera clockwise around terrain
-E: Rotate camera anticlockwise around terrain
+E: Rotate camera counter-clockwise around terrain
 Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain
-Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain
+Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around terrain
 F: Follow the selected unit (move the camera to stop it from following the unit)
 R: Reset camera zoom/orientation
 = or +: Zoom in (keep pressed for continuous zoom)

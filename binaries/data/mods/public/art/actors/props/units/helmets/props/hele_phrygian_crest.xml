@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Phrygian Crest-A">
+      <mesh>props/helmet/props/hele_phrygian_crest_a.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_phrygian_crest_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Phrygian Crest-B">
+      <mesh>props/helmet/props/hele_phrygian_crest_b.dae</mesh>
+      <textures>
+        <texture file="props/helmet/sele_hero_seleucus_nikator_diffuse.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

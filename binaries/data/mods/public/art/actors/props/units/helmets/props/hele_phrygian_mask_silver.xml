@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mask Cheeck">
+      <mesh>props/helmet/props//hele_phrygian_mask_c.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_phrygian_mask_b_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_b_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Mask Full Face">
+      <mesh>props/helmet/props//hele_phrygian_mask_b.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_phrygian_mask_a_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_a_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Mask Partial">
+      <mesh>props/helmet/props//hele_phrygian_mask_a.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_phrygian_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
