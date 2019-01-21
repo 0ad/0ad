@@ -1,13 +1,13 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:12+0000\n"
+"POT-Creation-Date: 2019-01-18 09:44+0100\n"
+"PO-Revision-Date: 2019-01-18 15:14+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Sinhala (http://www.transifex.com/wildfire-games/0ad/language/si/)\n"
 "MIME-Version: 1.0\n"
@@ -541,7 +541,7 @@ msgstr ""
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 
@@ -876,5 +876,5 @@ msgstr ""
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr ""
