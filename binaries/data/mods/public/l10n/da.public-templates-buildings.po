@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,6 +9,7 @@
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 # Martin Johansen (Promic2) <soliondk@gmail.com>, 2017
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2015
+# Nicolai Palstrøm <nicoisme@live.dk>, 2019
 # Thomas Andersen <tba@live.dk>, 2018
 # Thomas Dalvad <thdalvad@gmail.com>, 2018
 # Thomas Madsen <tem91@live.dk>, 2017
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 14:31+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-01-18 09:44+0100\n"
+"PO-Revision-Date: 2019-01-18 15:37+0000\n"
+"Last-Translator: Nicolai Palstrøm <nicoisme@live.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +110,7 @@ msgstr "Hus"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Træn healere. Garnisoner enheder for at helbrede dem hurtigere (3 HP pr. sekund). Forskning i healing og religiøse forbedringer."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -144,13 +145,13 @@ msgstr "Vagttårn"
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:36
 msgid "SentryTower"
-msgstr ""
+msgstr "VagtTårn"
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:37
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr ""
+msgstr "Skyder med pile. Garnisoner for at forbedre forsvaret. Mordhuller er påkrævet for at beskytte dens fod. Kan opgraderes til stentårn."
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -164,7 +165,7 @@ msgstr "Forsvarstårn"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Affyrer pile. Bemand for ekstra forsvar. Mordhuller påkrævet for at beskytte sin fod. Kan opgraderes til stentårn."
 
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 msgid "StoneTower"
@@ -179,7 +180,7 @@ msgid "Stone Wall"
 msgstr "Stenmur"
 
 #: simulation/templates/template_structure_defense_wall.xml:27
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:12
 msgid "Wall off your town for a stout defense."
 msgstr "Byg mure om din by for at give den et stærkt forsvar."
 
@@ -199,7 +200,7 @@ msgstr "Lange mursegmenter kan omdannes til porte."
 #: simulation/templates/template_structure_defense_wall_long.xml:48
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Dette vil tillade dig at tropper kan cirkulere igennem dine befæstninger."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:59
 msgid "Wall Turret"
@@ -209,7 +210,7 @@ msgstr "Murtårn"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Skyder pile. Garnisonér for at forsvare en bymur imod angribere."
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "City Wall"
 msgstr "Bymur"
 
@@ -264,7 +265,7 @@ msgstr "Militær"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Træn borgersoldater. Forskning i træningsforbedringer."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -277,7 +278,7 @@ msgstr "Bueskydningsbane."
 
 #: simulation/templates/template_structure_military_barracks_range.xml:10
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr ""
+msgstr "Træn bueskytter. Forskning i træningsforbedringer."
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:7
 #: simulation/templates/structures/pers_stables.xml:20
@@ -286,7 +287,7 @@ msgstr "Stalde"
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:8
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr ""
+msgstr "Træn kavaleri. Forskning i træningsforberedelser."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:33
 msgid "Research weapons and armor improvements."
@@ -345,7 +346,7 @@ msgstr "Fæstning"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Træn helte, mestre, og belejringsvåben. Forskning i forbedringer af belejringsvåben."
 
 #: simulation/templates/template_structure_military_kennel.xml:41
 #: simulation/templates/structures/brit_kennel.xml:5
@@ -354,7 +355,7 @@ msgstr "Kennel"
 
 #: simulation/templates/template_structure_military_kennel.xml:44
 msgid "Train war dogs."
-msgstr ""
+msgstr "Træn krigshunde. "
 
 #: simulation/templates/template_structure_military_workshop.xml:32
 msgid "Siege Workshop"
@@ -368,7 +369,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:36
 msgid "Workshop"
-msgstr ""
+msgstr "Værksted"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -412,7 +413,7 @@ msgstr "Bibliotek"
 
 #: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
-msgstr ""
+msgstr "Forsk i specielle teknologier."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:23
 msgid "Rotary Mill"
@@ -562,7 +563,7 @@ msgstr "Apothḗkē"
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
-msgstr ""
+msgstr "Naṓs"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -729,7 +730,7 @@ msgstr "Stonehenge"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
-msgstr ""
+msgstr "Lejlighedsbygning."
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -834,7 +835,7 @@ msgstr "Kartaginiensisk Udkigspost"
 #: simulation/templates/structures/cart_s_wall_tower.xml:6
 #: simulation/templates/structures/cart_wallset_short.xml:5
 msgid "Low Wall"
-msgstr ""
+msgstr "Lav væg."
 
 #: simulation/templates/structures/cart_storehouse.xml:8
 msgid "Maḥṣabah"
@@ -850,7 +851,7 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:46
 msgid "Shipyard"
-msgstr ""
+msgstr "Skibsværft."
 
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Construct and repair mighty warships."
@@ -864,7 +865,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Træn præstinder for at heale dine tropper. Træn Hellige Band spydmænd. Garnisoner enheder for at heale dem hurtigere."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -1048,7 +1049,7 @@ msgid "Mryt"
 msgstr ""
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
-msgid "Kushite Elephant Stables"
+msgid "Ỉ﻿ḥ Abu"
 msgstr ""
 
 #: simulation/templates/structures/kush_farmstead.xml:9
@@ -1112,7 +1113,7 @@ msgid "mr"
 msgstr ""
 
 #: simulation/templates/structures/kush_range.xml:9
-msgid "Kushite Archery Range"
+msgid "Pr-Pdt"
 msgstr ""
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
@@ -1128,7 +1129,7 @@ msgid "ḥwt-nṯr"
 msgstr ""
 
 #: simulation/templates/structures/kush_stable.xml:9
-msgid "Kushite Cavalry Stable"
+msgid "Ỉḥ Ssmt"
 msgstr ""
 
 #: simulation/templates/structures/kush_storehouse.xml:5
@@ -1176,14 +1177,14 @@ msgstr ""
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
 msgid "s3wt"
-msgstr ""
+msgstr "s3wt"
 
 #: simulation/templates/structures/kush_wonder.xml:15
 msgid "Mnw nht"
-msgstr ""
+msgstr "Mnw nht"
 
 #: simulation/templates/structures/kush_workshop.xml:5
-msgid "Kushite Siege Workshop"
+msgid "Pr-ỉwn n ms﻿"
 msgstr ""
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
@@ -1275,7 +1276,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
-msgstr ""
+msgstr "Søjle."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
@@ -1616,7 +1617,7 @@ msgstr "Specialbygning for Romerriget."
 
 #: simulation/templates/structures/rome_army_camp.xml:42
 msgid "ArmyCamp"
-msgstr ""
+msgstr "HærLejr."
 
 #: simulation/templates/structures/rome_army_camp.xml:75
 msgid "Entrenched Army Camp"
@@ -1630,7 +1631,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Byg i neutral or fjendtligt territorium. Byg belejringsvåben og træn borgersoldater. Heal garnisonerede soldater langsomt."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1750,7 +1751,7 @@ msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "En midlertidig lejr for soldater."
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
@@ -1793,7 +1794,7 @@ msgstr "Liménas"
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr ""
+msgstr "Seleucid elefantstalde."
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
@@ -1834,7 +1835,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "Pythian Apollos tempel"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"

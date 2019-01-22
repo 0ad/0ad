@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,6 +8,7 @@
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2015-2016
+# lg Fan <longgangfan@gmail.com>, 2019
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 14:31+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-01-18 09:44+0100\n"
+"PO-Revision-Date: 2019-01-20 06:33+0000\n"
+"Last-Translator: lg Fan <longgangfan@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +68,7 @@ msgstr "柱廊"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
-msgstr "柱廊"
+msgstr "希腊皇家柱廊"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
 msgid "Recruit special units."
@@ -154,7 +155,7 @@ msgstr "警戒塔"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "发射弩箭。 驻军可提供额外攻击力。 需要猎杀洞技术来取消最小射程。 可升级至石塔。"
+msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。 可升级至石塔。"
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -168,7 +169,7 @@ msgstr "防御塔"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "发射弩箭。 驻军可提供额外攻击力。 需要猎杀洞技术来取消最小射程。"
+msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。"
 
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 msgid "StoneTower"
@@ -183,7 +184,7 @@ msgid "Stone Wall"
 msgstr "石墙"
 
 #: simulation/templates/template_structure_defense_wall.xml:27
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:12
 msgid "Wall off your town for a stout defense."
 msgstr "在城镇周围建造围墙，可以用来侦查和防御。"
 
@@ -213,7 +214,7 @@ msgstr "城墙箭塔"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "箭垛。驻兵用弓箭抵御进攻者。"
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "City Wall"
 msgstr "城墙"
 
@@ -281,7 +282,7 @@ msgstr "射击范围"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:10
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "训练公民士兵远程步兵。 研究培训改进。"
+msgstr "训练民兵远程步兵。 研究培训改进。"
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:7
 #: simulation/templates/structures/pers_stables.xml:20
@@ -290,7 +291,7 @@ msgstr "马厩"
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:8
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "训练公民骑兵。 研究培训改进。"
+msgstr "训练民兵骑兵。 研究培训改进。"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:33
 msgid "Research weapons and armor improvements."
@@ -1052,8 +1053,8 @@ msgid "Mryt"
 msgstr "码头"
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
-msgid "Kushite Elephant Stables"
-msgstr "库什象厩"
+msgid "Ỉ﻿ḥ Abu"
+msgstr ""
 
 #: simulation/templates/structures/kush_farmstead.xml:9
 msgid "snwt"
@@ -1116,8 +1117,8 @@ msgid "mr"
 msgstr "小金字塔"
 
 #: simulation/templates/structures/kush_range.xml:9
-msgid "Kushite Archery Range"
-msgstr "库什射程"
+msgid "Pr-Pdt"
+msgstr ""
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
 msgid "tsmt"
@@ -1132,8 +1133,8 @@ msgid "ḥwt-nṯr"
 msgstr "神庙"
 
 #: simulation/templates/structures/kush_stable.xml:9
-msgid "Kushite Cavalry Stable"
-msgstr "库什骑兵营"
+msgid "Ỉḥ Ssmt"
+msgstr ""
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wd3t"
@@ -1187,8 +1188,8 @@ msgid "Mnw nht"
 msgstr "奇观"
 
 #: simulation/templates/structures/kush_workshop.xml:5
-msgid "Kushite Siege Workshop"
-msgstr "库什攻城器械厂"
+msgid "Pr-ỉwn n ms﻿"
+msgstr ""
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"

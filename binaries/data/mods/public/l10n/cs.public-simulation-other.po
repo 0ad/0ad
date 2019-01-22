@@ -1,10 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
-# Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
+# Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # Wesalius <jonas.dyba@gmail.com>, 2016
 # fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-12-05 12:19+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2019-01-18 09:44+0100\n"
+"PO-Revision-Date: 2019-01-18 15:14+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -557,7 +557,7 @@ msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAm
 msgid "The production queue is full."
 msgstr "Výrobní řada je plná."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Nelze najít místo na vytváření cvičených jednotek"
 
@@ -892,5 +892,5 @@ msgstr "UI Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra je výchozí počítačový hráč (AI) 0 A.D. Prosím, upozorňujte na chyby Wildfire Games (odkaz najdete v hlavní nabídce).\n\nUmělá inteligence má zvýhodnění/znevýhodnění v získávaní zdrojů (rychlost sběru nebo obchodování) začínající od -60% u pískoviště do +60% pro Velmi těžké (střední = 0%) a nejjednodušší úrovně mají pomalejší rychlost produkce a stavění. Navíc, v režimu pískoviště se umělá inteligence nerozšiřuje ani neútočí."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr ""
