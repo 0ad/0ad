@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,6 +68,7 @@ protected:
 private:
 	// Width of space available for columns
 	float m_TotalAvailableColumnWidth;
+	float m_HeadingHeight;
 };
 
 #endif // INCLUDED_COLIST
