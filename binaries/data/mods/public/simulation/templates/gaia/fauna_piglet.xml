@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="gaia/fauna_pig">
+  <Footprint>
+    <Square width="2" depth="2"/>
+    <Height>1</Height>
+  </Footprint>
+  <Identity>
+    <GenericName>Piglet</GenericName>
+  </Identity>
+  <ResourceSupply>
+    <KillBeforeGather>true</KillBeforeGather>
+    <Amount>10</Amount>
+    <Type>food.meat</Type>
+    <MaxGatherers>1</MaxGatherers>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>fauna/piglet.xml</Actor>
+  </VisualActor>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.25</WalkSpeed>
+    <Run>
+      <Speed op="mul">0.25</Speed>
+    </Run>
+  </UnitMotion>
+</Entity>
