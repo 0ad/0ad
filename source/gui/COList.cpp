@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,10 +23,12 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
+const float SORT_SPRITE_DIM = 16.0f;
+const CPos COLUMN_SHIFT = CPos(0, 4);
+
 COList::COList() : CList()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_heading");
-	AddSetting(GUIST_float,					"heading_height");
 	AddSetting(GUIST_bool,					"sortable"); // The actual sorting is done in JS for more versatility
 	AddSetting(GUIST_CStr,					"selected_column");
 	AddSetting(GUIST_int,					"selected_column_order");
@@ -61,23 +63,28 @@ void COList::SetupText()
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
-	float width = GetListRect().GetWidth();
+	m_TotalAvailableColumnWidth = GetListRect().GetWidth();
 	// remove scrollbar if applicable
 	if (scrollbar && GetScrollBar(0).GetStyle())
-		width -= GetScrollBar(0).GetStyle()->m_Width;
-
-	m_TotalAvailableColumnWidth = width;
+		m_TotalAvailableColumnWidth -= GetScrollBar(0).GetStyle()->m_Width;
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
-	for (COListColumn column : m_Columns)
+	m_HeadingHeight = SORT_SPRITE_DIM; // At least the size of the sorting sprite
+
+	for (const COListColumn& column : m_Columns)
 	{
+		float width = column.m_Width;
+		if (column.m_Width > 0 && column.m_Width < 1)
+			width *= m_TotalAvailableColumnWidth;
+
 		SGUIText* text = new SGUIText();
 		CGUIString gui_string;
 		gui_string.SetValue(column.m_Heading);
 		*text = GetGUI()->GenerateText(gui_string, font, width, buffer_zone, this);
 		AddText(text);
+		m_HeadingHeight = std::max(m_HeadingHeight, text->m_Size.cy + COLUMN_SHIFT.y);
 	}
 
 	// Generate texts
@@ -87,10 +94,14 @@ void COList::SetupText()
 	{
 		m_ItemsYPositions[i] = buffered_y;
 		float shift = 0.0f;
-		for (size_t c = 0; c < m_Columns.size(); ++c)
+		for (const COListColumn& column : m_Columns)
 		{
+			float width = column.m_Width;
+			if (column.m_Width > 0 && column.m_Width < 1)
+				width *= m_TotalAvailableColumnWidth;
+
 			CGUIList* pList_c;
-			GUI<CGUIList>::GetSettingPointer(this, "list_" + m_Columns[c].m_Id, pList_c);
+			GUI<CGUIList>::GetSettingPointer(this, "list_" + column.m_Id, pList_c);
 			SGUIText* text = new SGUIText();
 			if (!pList_c->m_Items[i].GetOriginalString().empty())
 				*text = GetGUI()->GenerateText(pList_c->m_Items[i], font, width, buffer_zone, this);
@@ -124,9 +135,7 @@ void COList::SetupText()
 
 CRect COList::GetListRect() const
 {
-	float headingHeight;
-	GUI<float>::GetSetting(this, "heading_height", headingHeight);
-	return m_CachedActualSize + CRect(0, headingHeight, 0, 0);
+	return m_CachedActualSize + CRect(0, m_HeadingHeight, 0, 0);
 }
 
 void COList::HandleMessage(SGUIMessage& Message)
@@ -151,11 +160,9 @@ void COList::HandleMessage(SGUIMessage& Message)
 		GUI<CStr>::GetSetting(this, "selected_column", selectedColumn);
 		int selectedColumnOrder;
 		GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
-		float headingHeight;
-		GUI<float>::GetSetting(this, "heading_height", headingHeight);
 
 		float xpos = 0;
-		for (COListColumn column : m_Columns)
+		for (const COListColumn& column : m_Columns)
 		{
 			bool hidden = false;
 			GUI<bool>::GetSetting(this, "hidden_" + column.m_Id, hidden);
@@ -169,7 +176,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 			CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
 			if (mouse.x >= leftTopCorner.x &&
 				mouse.x < leftTopCorner.x + width &&
-				mouse.y < leftTopCorner.y + headingHeight)
+				mouse.y < leftTopCorner.y + m_HeadingHeight)
 			{
 				if (column.m_Id != selectedColumn)
 				{
@@ -369,14 +376,11 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		}
 	}
 
-	float headingHeight;
-	GUI<float>::GetSetting(this, "heading_height", headingHeight);
-
 	// Draw line above column header
 	CGUISpriteInstance* sprite_heading = NULL;
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_heading", sprite_heading);
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
-									m_CachedActualSize.top + headingHeight);
+									m_CachedActualSize.top + m_HeadingHeight);
 	GetGUI()->DrawSprite(*sprite_heading, cell_id, bz, rect_head);
 
 	// Draw column headers
@@ -424,11 +428,11 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			else
 				GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite);
 
-			GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
+			GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text
-		DrawText(col, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
+		DrawText(col, color, leftTopCorner + COLUMN_SHIFT, bz + 0.1f, rect_head);
 		xpos += width;
 	}
 
