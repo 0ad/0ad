@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-01-01 19:54+0000\n"
+"POT-Creation-Date: 2019-01-21 09:44+0100\n"
+"PO-Revision-Date: 2019-01-22 12:29+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -112,18 +112,18 @@ msgstr "[font=\"sans-14\"]O menu principal dá acesso a dois modos de jogo:"
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Um jogador[font=\"sans-14\"] — joga uma partida sozinho no modo simulação ou contra um ou mais jogadores artificiais. A inteligência artificial ainda está em desenvolvimento e pode nem sempre estar atualizada, mas permite testar o jogo com um adversário caso não tenhas possibilidade de jogar contra um jogador humano."
+msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – joga uma partida sozinho no modo simulação ou contra um ou mais jogadores artificiais. A inteligência artificial ainda está em desenvolvimento e pode nem sempre estar atualizada, mas permite testar o jogo com um adversário caso não tenhas possibilidade de jogar contra um jogador humano."
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multijogador[font=\"sans-14\"] — jogua contra adversários humanos pela Internet."
+msgstr "• [font=\"sans-bold-14\"]Multijogador[font=\"sans-14\"] – joga contra adversários humanos pela Internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -149,21 +149,21 @@ msgstr "Primeiro, seleciona o tipo de mapa que queres jogar:"
 
 #: gui/manual/intro.txt:32
 msgid ""
-"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
+"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Mapa aleatório[font=\"sans-14\"] — Um mapa criado automaticamente a partir de um script"
+msgstr "• [font=\"sans-bold-14\"]Mapa aleatório[font=\"sans-14\"] – Um mapa criado automaticamente a partir de um script"
 
 #: gui/manual/intro.txt:33
 msgid ""
-"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
-"map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]Mapa cenário[font=\"sans-14\"] — Um mapa criado por desenhadores com civilizações fixas"
+"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
+"map designers and with fixed civilizations"
+msgstr "• [font=\"sans-bold-14\"]Mapa cenário[font=\"sans-14\"] – Um mapa criado por desenhadores com civilizações fixas"
 
 #: gui/manual/intro.txt:34
 msgid ""
-"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
-"map designers but where the civilisations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Mapa de escaramuça[font=\"sans-14\"] — Um mapa criado por desenhadores onde se pode escolher as civilizações"
+"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
+"map designers but where the civilizations can be chosen"
+msgstr "• [font=\"sans-bold-14\"]Mapa de escaramuça[font=\"sans-14\"] – Um mapa criado por desenhadores onde se pode escolher as civilizações"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -230,10 +230,10 @@ msgstr "F2: Tirar uma captura de ecrã no formato .png (a localização é mostr
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
-" displayed in the top left of the GUI after the file has been saved, and can"
-" also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Tirar uma grande captura de ecrã, de 6400px*4800px no formato .bmp (a localização é mostrada no canto superior esquerdo depois de guardar o ficheiro; se não conseguires vê-la nessa altura também podes vê-la na consola ou nos registos)"
+"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
+" is displayed in the top left of the GUI after the file has been saved, and "
+"can also be seen in the console/logs if you miss it there)"
+msgstr "Shift + F2: Tirar uma grande captura de ecrã, de 6400px por 4800px no formato .bmp (a localização é mostrada no canto superior esquerdo depois de guardar o ficheiro; se não conseguires vê-la nessa altura também podes vê-la na consola ou nos registos)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -395,9 +395,9 @@ msgstr "F5, F6, F7 e F8: mudar a câmara para a posição guardada. Se já estiv
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: com os edifícios de treino selecionados. Adiciona a 1ª, 2ª... unidade mostrada na fila de treino para todos os edifícios selecionados."
+msgstr "Z, X, C, V, B, N, M: com os edifícios de treino selecionados. Adiciona a 1ª, 2ª… unidade mostrada na fila de treino para todos os edifícios selecionados."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -514,21 +514,20 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clique Direito, com unidades selecionadas:"
 
 #: gui/manual/intro.txt:115
-msgid "    • If the cursor is over an allied structure: Garrison"
-msgstr "    • Se o cursor estiver sobre uma estrutura aliada: guarnecer no edifício"
+msgid "  • If the cursor is over an allied structure: Garrison"
+msgstr "  • Se o cursor estiver sobre uma estrutura aliada: guarnecer no edifício"
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    • If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
-msgstr "    • Se o cursor estiver sobre uma unidade ou edifício não aliado: atacar (em vez de capturar ou recolher)"
+"  • If the cursor is over a non-allied unit or building: Attack (instead of "
+"capture or gather)"
+msgstr "  • Se o cursor estiver sobre uma unidade ou edifício não aliado: atacar (em vez de capturar ou recolher)"
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    • Otherwise: Attack move (by default all enemy units and structures "
-"along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units)."
-msgstr "    • Caso contrário: movimento de ataque (por defeito, todas as unidades e estruturas ao longo da via são alvos, usar as teclas Ctrl + Q + clique com o botão direito do rato para ter como alvos apenas unidades)."
+"  • Otherwise: Attack move (by default all enemy units and structures along "
+"the way are targeted, use Ctrl + Q + Right Click to target only units)."
+msgstr "  • Caso contrário: movimento de ataque (por defeito, todas as unidades e \nestruturas ao longo da via são alvos, usar as teclas Ctrl + Q + clique \ncom o botão direito do rato para ter como alvos apenas unidades)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -610,7 +609,7 @@ msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + S ou \\[down]: Rodar a câmara à volta do terreno, no sentido horário."
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
 msgstr "Ctrl + D ou \\[right]: Rodar a câmara à volta do terreno, no sentido anti-horário."
 
 #: gui/manual/intro.txt:139
@@ -618,7 +617,7 @@ msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Rodar a câmara no sentido dos ponteiros do relógio"
 
 #: gui/manual/intro.txt:140
-msgid "E: Rotate camera anticlockwise around terrain"
+msgid "E: Rotate camera counter-clockwise around terrain"
 msgstr "E: Rodar a câmara no sentido inverso ao dos ponteiros do relógio"
 
 #: gui/manual/intro.txt:141
@@ -627,7 +626,8 @@ msgstr "Shift + Roda do rato para cima: Rodar a câmara no sentido dos ponteiros
 
 #: gui/manual/intro.txt:142
 msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
+"terrain"
 msgstr "Shift + Roda do rato para baixo: Rodar a câmara no sentido inverso ao dos ponteiros do relógio"
 
 #: gui/manual/intro.txt:143

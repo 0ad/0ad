@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 15:43+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2019-01-21 09:44+0100\n"
+"PO-Revision-Date: 2019-01-21 16:03+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,18 +109,18 @@ msgstr "[font=\"sans-14\"]Menu nagusiak bi joko mota jokatzeko aukera ematen du:
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Jokalari bakarra[font=\"sans-14\"] — jolastu froga partida bat edo AIko aurkari bat edo gehiagoren kontra. AI garapenean dago eta baliteke azken ezarpenekin ondo ez ibiltzea, baino behintzat beste aurkari baten kontra borrokatzen utziko lizuke ezingo bazenuke beste pertsonaren batekin jolastu."
+msgstr ""
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Jokalari Anitza[font=\"sans-14\"] — benetako beste jokalarien aurka jolastu internetez."
+msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -146,21 +146,21 @@ msgstr "Lehenik, aukeratu zein mapa mota jokatu nahi duzun:"
 
 #: gui/manual/intro.txt:32
 msgid ""
-"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
+"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Ausazko mapa[font=\"sans-14\"] — Script batek automatikoki sortutako mapa artifiziala"
+msgstr ""
 
 #: gui/manual/intro.txt:33
 msgid ""
-"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
-"map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]Antzeztoki mapa[font=\"sans-14\"] — Pertsona batek sortutako mapa eta zibilizazioak ezarrita datorrena"
+"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
+"map designers and with fixed civilizations"
+msgstr ""
 
 #: gui/manual/intro.txt:34
 msgid ""
-"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
-"map designers but where the civilisations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Borrokatxo mapa[font=\"sans-14\"] — Pertsona batek sortutako mapa non jokalaria taldea hautatzeko libre den."
+"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
+"map designers but where the civilizations can be chosen"
+msgstr ""
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -227,10 +227,10 @@ msgstr "F2: Pantaila atzematea ( .png formatuan, gorde ondoren kokapena interfaz
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
-" displayed in the top left of the GUI after the file has been saved, and can"
-" also be seen in the console/logs if you miss it there)"
-msgstr "Maius + F2: Pantaila atzemate oso handia egiten du (6400x4800, .bmp formatuan, gorde ondoren kokapena pantailaren goi eskuin iskinean erakusten da, kontsola eta gertakarietan ere ikus daiteke)"
+"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
+" is displayed in the top left of the GUI after the file has been saved, and "
+"can also be seen in the console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -392,9 +392,9 @@ msgstr "F5, F6, F7 eta F8: Mugitu kamera markatutako kokaleku batera. Itzuli ber
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Aukeratutako erreklutatze eraikin batekin. Gehitu 1., 2... unitatea erreklutatze ilarari aukeratutako eraikin guztientzat."
+msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -511,21 +511,20 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + eskuin klika aukeratutako unitateekin:"
 
 #: gui/manual/intro.txt:115
-msgid "    • If the cursor is over an allied structure: Garrison"
-msgstr "• Erakuslea eraikin aliatuaren gainean badago: Babestu"
+msgid "  • If the cursor is over an allied structure: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    • If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
-msgstr " • Erakuslea eraikin edo unitate ez aliatu baten gainean badago: Erasotu ( atzitu edo bildu partez)"
+"  • If the cursor is over a non-allied unit or building: Attack (instead of "
+"capture or gather)"
+msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    • Otherwise: Attack move (by default all enemy units and structures "
-"along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units)."
-msgstr "• Bestela: Mugituz erasotu (berez, bidean topatutako etsaien eraikin eta unitate guztiak erasotuko dira, sakatu Ctrl + Q + eskuin klika unitateak baino ez erasotzeko)"
+"  • Otherwise: Attack move (by default all enemy units and structures along "
+"the way are targeted, use Ctrl + Q + Right Click to target only units)."
+msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -607,16 +606,16 @@ msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A edo \\[ezkerra]: Kamera biratu lurraren inguruan erlojuaren zentzuan"
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + A edo \\[ezkerra]: Kamera biratu lurraren inguruan erlojuaren kontrako zentzuan"
+msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Biratu kamera erlojuaren zentzuan"
 
 #: gui/manual/intro.txt:140
-msgid "E: Rotate camera anticlockwise around terrain"
-msgstr "E: Biratu kamera erlojuaren kontrako zentzuan"
+msgid "E: Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -624,8 +623,9 @@ msgstr "Maius + Saguaren gurpila goraka: Kamera biratu lurraren inguruan erlojua
 
 #: gui/manual/intro.txt:142
 msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Maius + Saguaren gurpila beheraka: Kamera biratu lurraren inguruan erlojuaren kontrako zentzuan"
+"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:143
 msgid ""

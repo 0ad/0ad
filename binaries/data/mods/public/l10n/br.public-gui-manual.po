@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 14:51+0000\n"
+"POT-Creation-Date: 2019-01-21 09:44+0100\n"
+"PO-Revision-Date: 2019-01-21 16:03+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -113,18 +113,18 @@ msgstr "[font=\"sans-14\"]Al lañser-pennañ a ro an tu da haeziñ ouzh daou vod
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]c'hoarier en e-unan[font=\"sans-14\"] — loc'hañ ur c'hoari kestenn-draezh pe a-enep un enebour NA pe muioc'h. An NA/NAoù a vez war ziorren ha na vezont ket marteze a-walc'h hizivaet war an arc'hweladurioù nevesañ, gallout a rit klask koulskoude loc'hañ ar c'hoari a-enep un enebour eus ar mare-mañ ma ne vezec'h ket gouest c'hoari gant un den."
+msgstr ""
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Lies-c'hoarier[font=\"sans-14\"] — c'hoari a-enep enebourien denel a-dreuz ar genrouedad."
+msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -150,21 +150,21 @@ msgstr "Da gentañ, diuzit un doare kartenn a fellfe deoc'h c'hoari warni:"
 
 #: gui/manual/intro.txt:32
 msgid ""
-"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
+"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Kartenn dre-zegouezh[font=\"sans-14\"] — Ur gartenn krouet d'un doare emgefreek diwar ur skript"
+msgstr ""
 
 #: gui/manual/intro.txt:33
 msgid ""
-"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
-"map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]Kartenn senario[font=\"sans-14\"] — Ur gartenn krouet gant ergraferien kartennoù ha sevenadurezhioù goulakaet enni."
+"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
+"map designers and with fixed civilizations"
+msgstr ""
 
 #: gui/manual/intro.txt:34
 msgid ""
-"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
-"map designers but where the civilisations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Kartenn emgannig[font=\"sans-14\"] — Ur gartenn krouet gant dizagnerien kartennoù eo e-lec'h ma c'hall bezañ dibabet ar sevenadurioù."
+"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
+"map designers but where the civilizations can be chosen"
+msgstr ""
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -231,10 +231,10 @@ msgstr ""
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
-" displayed in the top left of the GUI after the file has been saved, and can"
-" also be seen in the console/logs if you miss it there)"
-msgstr "Lkd + F2: Kemerit un dapadenn-skramm vras divent (6400px*4800px, e stumm .bmp, diskouezet e vez al lec'hiadur e laez kleiz ar GUI goude ma vo bet dalc'het ar restr, ha gallout a ra bezañ gwelet ivez el letrin/marilhoù mard eo bet c'hwitet ganeoc'h aze)"
+"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
+" is displayed in the top left of the GUI after the file has been saved, and "
+"can also be seen in the console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -396,7 +396,7 @@ msgstr "F5, F6, F7 hag F8: Kas ar c'hamera betek ul lec'h merket. Distreiñ d'al
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
 msgstr ""
 
@@ -515,20 +515,19 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ktrl + Klik-dehou war unanennoù diuzet:"
 
 #: gui/manual/intro.txt:115
-msgid "    • If the cursor is over an allied structure: Garrison"
+msgid "  • If the cursor is over an allied structure: Garrison"
 msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    • If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
+"  • If the cursor is over a non-allied unit or building: Attack (instead of "
+"capture or gather)"
 msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    • Otherwise: Attack move (by default all enemy units and structures "
-"along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units)."
+"  • Otherwise: Attack move (by default all enemy units and structures along "
+"the way are targeted, use Ctrl + Q + Right Click to target only units)."
 msgstr ""
 
 #: gui/manual/intro.txt:119
@@ -611,7 +610,7 @@ msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr ""
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
 msgstr ""
 
 #: gui/manual/intro.txt:139
@@ -619,7 +618,7 @@ msgid "Q: Rotate camera clockwise around terrain"
 msgstr ""
 
 #: gui/manual/intro.txt:140
-msgid "E: Rotate camera anticlockwise around terrain"
+msgid "E: Rotate camera counter-clockwise around terrain"
 msgstr ""
 
 #: gui/manual/intro.txt:141
@@ -628,8 +627,9 @@ msgstr "Lkd + Treiñ rod al logodenn en nec'h: Treiñ ar c'hamera e tu biz an eu
 
 #: gui/manual/intro.txt:142
 msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Lkd + Treiñ rod al logodenn en diaz: Treiñ ar c'hamera e tu e-enep da viz an eurioù war-dro an dachenn"
+"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:143
 msgid ""
