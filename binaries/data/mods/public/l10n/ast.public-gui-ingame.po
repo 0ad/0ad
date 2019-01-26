@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-01-18 00:58+0000\n"
+"PO-Revision-Date: 2019-01-24 21:01+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -208,8 +208,8 @@ msgstr[1] "%(numberOfLandTraders)s comerciantes terrestres inactivos"
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "%(numberGarrisoned)s guarnecíu nun barcu comercial activu"
-msgstr[1] "%(numberGarrisoned)s guarecíos nun barcu mercantil activu"
+msgstr[0] "%(numberGarrisoned)s guarecíu nun mercante activu"
+msgstr[1] "%(numberGarrisoned)s guarecíos nun mercante activu"
 
 #: gui/session/menu.js:941
 #, javascript-format
@@ -219,19 +219,19 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "Hai %(numberGarrisoned)s comerciante terrestre guarnecíu nun barcu comercial activu "
-msgstr[1] "Hai %(numberGarrisoned)s comerciantes terrestres guarecíos nun barcu mercantil activu"
+msgstr[0] "Hai %(numberGarrisoned)s comerciante terrestre guarecíu nun mercante activu "
+msgstr[1] "Hai %(numberGarrisoned)s comerciantes terrestres guarecíos nun mercante activu"
 
 #: gui/session/menu.js:969
 msgid "There are no merchant ships."
-msgstr "Nun hai barcu mercantil dalu."
+msgstr "Nun hai mercante dalu."
 
 #: gui/session/menu.js:976
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "Hai %(numberTrading)s barcu comercial activu"
-msgstr[1] "Hai %(numberTrading)s barcos mercantiles comerciando"
+msgstr[0] "Hai %(numberTrading)s mercante comerciando"
+msgstr[1] "Hai %(numberTrading)s mercantes comerciando"
 
 #: gui/session/menu.js:986
 #, javascript-format
@@ -244,8 +244,8 @@ msgstr[1] "%(numberOfShipTraders)s inactivos"
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s barcu comercial inactivu"
-msgstr[1] "%(numberOfShipTraders)s barcos mercantiles inactivos"
+msgstr[0] "%(numberOfShipTraders)s mercante inactivu"
+msgstr[1] "%(numberOfShipTraders)s mercantes inactivos"
 
 #: gui/session/menu.js:1214
 msgid "Resume"
