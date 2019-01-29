@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-01-23 22:46+0000\n"
+"PO-Revision-Date: 2019-01-26 21:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -336,7 +336,7 @@ msgstr "Construcción contrachapada pa los escudones."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Pa los llanceros d'a pie +2 niveles de l'armadura contra la fura."
+msgstr "Los llanceros d'a pie +2 niveles de l'armadura antifura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -359,7 +359,7 @@ msgstr "Los meyores escudos tienen refuercios o nes equines (l'escudu romanu) o 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Pa los llanceros d'a pie +1 nivel de l'armadura contra la fura."
+msgstr "Los llanceros d'a pie +1 nivel de l'armadura antifura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -1101,15 +1101,15 @@ msgstr "Pa la infantería cuerpu a cuerpu +1 a la taya."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "L'emplegu del fierro en clas del bronce dio más puxu furadoro a les llancies."
+msgstr "L'emplegu del fierro en cuenta del bronce apurrió a les llances más potencia furadora."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr "Pa toles unidaes llanceres +2 a la taya. "
+msgstr "Toles unidaes llanceres +2 al corte. "
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr "Puntes de la llancia ferreñes"
+msgstr "Puntes de llanza ferreñes"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
@@ -1169,14 +1169,14 @@ msgstr "Les armes auxiliares frente a los irregulares"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr "El combate con llancia frente a l'amarradiella"
+msgstr "La llanza frente a l'amarradiella"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "L'armadura de la infantería contra la taya frente a l'armadura de los llanceros contra la fura "
+msgstr "L'armadura anticorte de la infantería frente a l'armadura antifura de los llanceros "
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -2274,15 +2274,15 @@ msgstr "Construcción de madera"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "L'entrenamientu na llucha cola llancia aumenta'l dañu que faen los llanceros d'a pie."
+msgstr "Trallar nel combate con llanza aumenta'l dañu de les unidaes llanceres d'a pie."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr "Los llanceros: +2 a la taya."
+msgstr "Los llanceros +2 al corte."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr "Combate d'a pie cola llancia"
+msgstr "Combate a pie con llanza"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
@@ -2328,7 +2328,7 @@ msgstr "Agospiaron y entrenaron a los espartanos dende pequeños pa ser guerrero
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "El +25% más de vida pa la infantería llancera, pero tamién el +10% más de tiempu de llevantamientu."
+msgstr "+25% de salú pa la infantería llancero, pero tamién +10% de tiempu d'allistamientu."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"

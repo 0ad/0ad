@@ -971,7 +971,9 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	// Either deduplicate or prohibit join if name is in use
 	bool duplicatePlayernames = false;
 	CFG_GET_VAL("network.duplicateplayernames", duplicatePlayernames);
-	if (duplicatePlayernames)
+	// If lobby authentication is enabled, the clients playername has already been registered.
+	// There also can't be any duplicated names.
+	if (!server.m_LobbyAuth && duplicatePlayernames)
 		username = server.DeduplicatePlayerName(username);
 	else
 	{

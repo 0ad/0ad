@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-01-23 23:46+0000\n"
+"PO-Revision-Date: 2019-01-26 21:07+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "Llanza"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:24
 msgid "Cavalry Spearman"
-msgstr "Llanceru montáu"
+msgstr "Llanceru a caballu"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
@@ -175,7 +175,7 @@ msgstr "Xavalina"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
-msgstr "Amarradiegu montáu"
+msgstr "Forfugu montáu"
 
 #: simulation/templates/template_unit_champion.xml:12
 msgid "Champion Unit"
@@ -195,11 +195,11 @@ msgstr "Arqueru montáu de primera"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:26
 msgid "Champion Cavalry Skirmisher"
-msgstr "Amarradiegu montáu campeón"
+msgstr "Forfugu montáu campeón"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
-msgstr "Llanceru montáu de primera"
+msgstr "Llanceru campeón a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:29
 msgid "Champion Cavalry Swordsman"
@@ -235,7 +235,7 @@ msgstr "Arqueru de primera"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:29
 msgid "Champion Skirmisher"
-msgstr "Amarradiegu campeón"
+msgstr "Forfugu campeón"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 msgid "Maceman"
@@ -266,7 +266,7 @@ msgstr "Ventayes: 3x escontra caballería."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 msgid "Champion Spearman"
-msgstr "Llanceru de primera"
+msgstr "Llanceru campeón"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:29
 msgid "Champion Swordsman"
@@ -308,11 +308,11 @@ msgstr "Arqueru montáu heroicu"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:30
 msgid "Hero Cavalry Skirmisher"
-msgstr "Amarradiegu montáu heroicu"
+msgstr "Forfugu montáu heroicu"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 msgid "Hero Cavalry Spearman"
-msgstr "Llanceru montáu heroicu"
+msgstr "Llanceru heroicu a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:26
 msgid "Hero Cavalry Swordsman"
@@ -336,7 +336,7 @@ msgstr "Arqueru heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:21
 msgid "Hero Skirmisher"
-msgstr "Amarradiegu heroicu"
+msgstr "Forfugu heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
@@ -374,7 +374,7 @@ msgstr "Espadachín"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Skirmisher"
-msgstr "Amarradiegu"
+msgstr "Forfugu"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
@@ -1189,7 +1189,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:20
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Amarradiegu mercenariu íberu"
+msgstr "Forfugu mercenariu íberu"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:24
 msgid "Sǝḫīr Kidōn"
@@ -1557,7 +1557,7 @@ msgstr "nhw Noba"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:21
 msgid "Nuba Skirmisher"
-msgstr "Amarradiegu nuba"
+msgstr "Forfugu nuba"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:22
 msgid "nhw ‘h3w Noba"
@@ -1652,7 +1652,7 @@ msgstr "Reorganización financiera: Aliáu con Roma, Felipe reorganizó los asun
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Amarradiegu montáu odrisiu"
+msgstr "Xinete forfugu odrisiu"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistḕs Odrysós"
@@ -1896,7 +1896,7 @@ msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:12
 msgid "Bamboo Spearman"
-msgstr "Guerreru llanza bambú"
+msgstr "Llanza de bambú"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:13
 msgid "Kauntika"
@@ -1981,7 +1981,7 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/merc_thureophoros.xml:11
 msgid "Heavy Skirmisher"
-msgstr "Amarradiegu pesáu"
+msgstr "Forfugu pesáu"
 
 #: simulation/templates/units/merc_thureophoros.xml:12
 msgid "Thyreophóros"
@@ -2120,7 +2120,7 @@ msgstr "Hoplites Kárdakes"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:12
 msgid "Cardaces Skirmisher"
-msgstr "Amarradiegu cardaz"
+msgstr "Forfugu cardaz"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:13
 msgid "Peltastes Kardakes"
@@ -2294,7 +2294,7 @@ msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:19
 msgid "Mercenary Thureos Skirmisher"
-msgstr "Amarradiegu tureóforu mercenariu"
+msgstr "Forfugu tureóforu mercenariu"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:20
 msgid "Thureophóros Akrobolistḗs"
@@ -2318,7 +2318,7 @@ msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:19
 msgid "Mercenary Thureos Spearman"
-msgstr "Llancia tureófora mercenaria"
+msgstr "Llanceru tureóforu mercenariu"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:20
 msgid "Thureophóros Misthophóros"
@@ -2421,7 +2421,7 @@ msgstr "Scipio Africanus"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:15
 msgid "Roman Skirmisher"
-msgstr "Amarradiegu romanu"
+msgstr "Forfugu romanu"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:16
 msgid "Veles"
@@ -2526,7 +2526,7 @@ msgstr "Mercator Plebeius"
 #: simulation/templates/units/samnite_skirmisher.xml:4
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
-msgstr "Amarradiegu samnita"
+msgstr "Forfugu samnita"
 
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_spearman.xml:5
@@ -2647,7 +2647,7 @@ msgstr "Chalkaspides"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:13
 msgid "Militia Thureos Spearman"
-msgstr "Llancia tureófora miliciana"
+msgstr "Llanceru tureóforu milicianu"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Thureophóros Politès"
@@ -2748,7 +2748,7 @@ msgstr "Leōnídēs"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Helot Skirmisher"
-msgstr "Amarradiegu ilota"
+msgstr "Forfugu ilota"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Akontistḗs Heílōs"
@@ -2792,7 +2792,7 @@ msgstr "Hieroû Thebaíou Lókhou Hoplítai"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
-msgstr "Llanceru de primera."
+msgstr "Llanceru campeón."
 
 #: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"

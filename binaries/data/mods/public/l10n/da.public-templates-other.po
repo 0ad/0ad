@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-01-04 14:32+0000\n"
-"Last-Translator: MrKahr <mdsandersen@gmail.com>\n"
+"POT-Creation-Date: 2019-01-25 09:44+0100\n"
+"PO-Revision-Date: 2019-01-25 14:13+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_gaia.xml:6
+#: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Moder Natur"
 
@@ -103,11 +103,11 @@ msgstr "Skat"
 msgid "A treasure that can be quickly gathered."
 msgstr "En skat der hurtigt kan indsamles."
 
-#: simulation/templates/template_structure.xml:60
+#: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Bygning"
 
-#: simulation/templates/template_unit.xml:41
+#: simulation/templates/template_unit.xml:42
 msgid "Unit"
 msgstr "Enhed"
 
@@ -389,6 +389,10 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_piglet.xml:8
+msgid "Piglet"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_pony.xml:4
@@ -753,231 +757,231 @@ msgstr "Stenskat"
 msgid "Wood Treasure"
 msgstr "Træskat"
 
-#: simulation/templates/other/bench.xml:20
+#: simulation/templates/other/bench.xml:19
 msgid "Bench"
 msgstr "Bænk"
 
-#: simulation/templates/other/bench.xml:21
+#: simulation/templates/other/bench.xml:20
 msgid "Wooden Bench"
 msgstr "Træbænk"
 
+#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
-#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Bro"
 
+#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
-#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Træbro"
 
-#: simulation/templates/other/celt_hut.xml:22
+#: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
 msgstr "Hytte"
 
-#: simulation/templates/other/celt_longhouse.xml:22
+#: simulation/templates/other/celt_longhouse.xml:21
 msgid "Longhouse"
 msgstr "Langhus"
 
-#: simulation/templates/other/column_doric.xml:20
-#: simulation/templates/other/column_doric_fallen.xml:20
-#: simulation/templates/other/column_doric_fallen_b.xml:20
+#: simulation/templates/other/column_doric.xml:19
+#: simulation/templates/other/column_doric_fallen.xml:19
+#: simulation/templates/other/column_doric_fallen_b.xml:19
 msgid "Column"
 msgstr "Søjle"
 
-#: simulation/templates/other/column_doric.xml:21
+#: simulation/templates/other/column_doric.xml:20
 msgid "Doric Column"
 msgstr "Dorisk Søjle"
 
-#: simulation/templates/other/column_doric_fallen.xml:21
-#: simulation/templates/other/column_doric_fallen_b.xml:21
+#: simulation/templates/other/column_doric_fallen.xml:20
+#: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Fallen Doric Column"
 msgstr "Falden Dorisk Søjle"
 
-#: simulation/templates/other/desert_trading_post.xml:15
+#: simulation/templates/other/desert_trading_post.xml:14
 msgid "Desert Trading Post"
 msgstr ""
 
-#: simulation/templates/other/desert_trading_post.xml:16
+#: simulation/templates/other/desert_trading_post.xml:15
 msgid "Ardatašta"
 msgstr "Ardatašta"
 
-#: simulation/templates/other/fence_long.xml:21
-#: simulation/templates/other/fence_short.xml:21
+#: simulation/templates/other/fence_long.xml:20
+#: simulation/templates/other/fence_short.xml:20
 msgid "Fence"
 msgstr "Hegn"
 
-#: simulation/templates/other/fence_long.xml:22
+#: simulation/templates/other/fence_long.xml:21
 msgid "Long Wooden Fence"
 msgstr "Langt Træhegn"
 
-#: simulation/templates/other/fence_short.xml:22
+#: simulation/templates/other/fence_short.xml:21
 msgid "Short Wooden Fence"
 msgstr "Kort Træhegn"
 
+#: simulation/templates/other/fence_stone.xml:20
 #: simulation/templates/other/fence_stone.xml:21
-#: simulation/templates/other/fence_stone.xml:22
 msgid "Stone Fence"
 msgstr "Stenhegn"
 
-#: simulation/templates/other/generic_field.xml:9
+#: simulation/templates/other/generic_field.xml:8
 msgid "Wheat Field"
 msgstr "Hvedemark"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:24
+#: simulation/templates/other/hellenic_epic_temple.xml:23
 msgid "Epic Temple"
 msgstr "Episk Tempel"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:25
+#: simulation/templates/other/hellenic_epic_temple.xml:24
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:26
+#: simulation/templates/other/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
 msgstr ""
 
-#: simulation/templates/other/hellenic_propylaea.xml:25
+#: simulation/templates/other/hellenic_propylaea.xml:24
 msgid "Portico"
 msgstr "Porticus"
 
-#: simulation/templates/other/hellenic_propylaea.xml:26
+#: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Propylaea"
 msgstr "Propylaea"
 
-#: simulation/templates/other/hellenic_stoa.xml:25
+#: simulation/templates/other/hellenic_stoa.xml:24
 msgid "Stoa"
 msgstr "Stoa"
 
-#: simulation/templates/other/hellenic_stoa.xml:26
+#: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Hellenic Stoa"
 msgstr "Hellensk Stoa"
 
-#: simulation/templates/other/obelisk.xml:20
+#: simulation/templates/other/obelisk.xml:19
 msgid "Obelisk"
 msgstr "Obelisk"
 
-#: simulation/templates/other/obelisk.xml:21
+#: simulation/templates/other/obelisk.xml:20
 msgid "Egyptian Obelisk"
 msgstr "Egyptisk Obelisk"
 
-#: simulation/templates/other/palisades_angle_spike.xml:15
+#: simulation/templates/other/palisades_angle_spike.xml:14
 msgid "Palisade Angle Spike"
 msgstr "Palisade Angle Spike"
 
-#: simulation/templates/other/palisades_angle_spike.xml:16
+#: simulation/templates/other/palisades_angle_spike.xml:15
 msgid "Big Spike"
 msgstr "Stor Pig"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:15
+#: simulation/templates/other/palisades_rocks_curve.xml:14
 msgid "Palisade Curve"
 msgstr "Palisadekurve"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:16
+#: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Wooden Wall Corner"
 msgstr "Træmurshjørne"
 
-#: simulation/templates/other/palisades_rocks_end.xml:15
+#: simulation/templates/other/palisades_rocks_end.xml:14
 msgid "Palisade End"
 msgstr "Palisade Ende"
 
-#: simulation/templates/other/palisades_rocks_end.xml:16
+#: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Wooden Wall End"
 msgstr "Træmur Endestykke"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:6
+#: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
 msgstr "Palisade Fort"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:7
+#: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_gate.xml:18
+#: simulation/templates/other/palisades_rocks_gate.xml:17
 msgid "Palisade Gate"
 msgstr "Palisadeport"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:19
+#: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Wooden Gate"
 msgstr "Træport"
+
+#: simulation/templates/other/palisades_rocks_long.xml:26
+#: simulation/templates/other/palisades_rocks_medium.xml:26
+#: simulation/templates/other/palisades_rocks_short.xml:25
+#: simulation/templates/other/palisades_rocks_straight.xml:14
+#: simulation/templates/other/palisades_rocks_tower.xml:24
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Palisade"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27
 #: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
 #: simulation/templates/other/palisades_rocks_tower.xml:25
-#: simulation/templates/other/wallset_palisade.xml:6
-msgid "Palisade"
-msgstr "Palisade"
-
-#: simulation/templates/other/palisades_rocks_long.xml:28
-#: simulation/templates/other/palisades_rocks_medium.xml:28
-#: simulation/templates/other/palisades_rocks_short.xml:27
-#: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:26
-#: simulation/templates/other/wallset_palisade.xml:5
+#: simulation/templates/other/wallset_palisade.xml:4
 msgid "Wooden Wall"
 msgstr "Træmur"
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:15
+#: simulation/templates/other/palisades_rocks_outpost.xml:14
 msgid "Outpost"
 msgstr "Udkigspost"
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:16
-#: simulation/templates/other/palisades_rocks_watchtower.xml:16
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+#: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Wooden Watch Tower"
 msgstr "Vagttårn af træ"
 
-#: simulation/templates/other/palisades_rocks_watchtower.xml:15
+#: simulation/templates/other/palisades_rocks_watchtower.xml:14
 msgid "Watchtower"
 msgstr "Vagttårn"
 
-#: simulation/templates/other/palisades_small_spikes.xml:15
+#: simulation/templates/other/palisades_small_spikes.xml:14
 msgid "Spikes Small"
 msgstr "Pigge Små"
 
-#: simulation/templates/other/palisades_small_spikes.xml:16
+#: simulation/templates/other/palisades_small_spikes.xml:15
 msgid "Small Spikes"
 msgstr "Små Pigge"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:15
+#: simulation/templates/other/palisades_tall_spikes.xml:14
 msgid "Spikes Tall"
 msgstr "Pigge Høje"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:16
+#: simulation/templates/other/palisades_tall_spikes.xml:15
 msgid "Tall Spikes"
 msgstr "Høje Pigge"
 
-#: simulation/templates/other/sele_colonnade.xml:20
+#: simulation/templates/other/sele_colonnade.xml:19
 msgid "Colonnade"
 msgstr "Kolonnade"
 
-#: simulation/templates/other/sele_colonnade.xml:21
+#: simulation/templates/other/sele_colonnade.xml:20
 msgid "Corinthian Colonnade"
 msgstr "Korintisk kolonnade"
 
-#: simulation/templates/other/stall_big.xml:12
+#: simulation/templates/other/stall_big.xml:11
 msgid "Big stall"
 msgstr "Stor bod"
 
-#: simulation/templates/other/stall_med.xml:12
+#: simulation/templates/other/stall_med.xml:11
 msgid "Medium stall"
 msgstr "Mellemstor bod"
 
-#: simulation/templates/other/stall_small_a.xml:12
-#: simulation/templates/other/stall_small_b.xml:12
+#: simulation/templates/other/stall_small_a.xml:11
+#: simulation/templates/other/stall_small_b.xml:11
 msgid "Small stall"
 msgstr "Lille bod"
 
-#: simulation/templates/other/table_rectangle.xml:20
-#: simulation/templates/other/table_square.xml:20
+#: simulation/templates/other/table_rectangle.xml:19
+#: simulation/templates/other/table_square.xml:19
 msgid "Table"
 msgstr "Bord"
 
-#: simulation/templates/other/table_rectangle.xml:21
+#: simulation/templates/other/table_rectangle.xml:20
 msgid "Rectangle Table"
 msgstr "Rektangulært Bord"
 
-#: simulation/templates/other/table_square.xml:21
+#: simulation/templates/other/table_square.xml:20
 msgid "Square Table"
 msgstr "Kvadratisk Bord"
 

@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-01-04 14:32+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2019-01-25 09:44+0100\n"
+"PO-Revision-Date: 2019-01-25 14:13+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: simulation/templates/template_gaia.xml:6
+#: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaìa"
 
@@ -102,11 +102,11 @@ msgstr "Ulaidh"
 msgid "A treasure that can be quickly gathered."
 msgstr "Ulaidh a ghabhas togail gu luath."
 
-#: simulation/templates/template_structure.xml:60
+#: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Togalach"
 
-#: simulation/templates/template_unit.xml:41
+#: simulation/templates/template_unit.xml:42
 msgid "Unit"
 msgstr "Aonad"
 
@@ -389,6 +389,10 @@ msgstr ""
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
 msgstr "Muc ’na theine"
+
+#: simulation/templates/gaia/fauna_piglet.xml:8
+msgid "Piglet"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -752,231 +756,231 @@ msgstr "Ulaidh chloiche"
 msgid "Wood Treasure"
 msgstr "Ulaidh fhiodha"
 
-#: simulation/templates/other/bench.xml:20
+#: simulation/templates/other/bench.xml:19
 msgid "Bench"
 msgstr "Being"
 
-#: simulation/templates/other/bench.xml:21
+#: simulation/templates/other/bench.xml:20
 msgid "Wooden Bench"
 msgstr "Being fhiodha"
 
+#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
-#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Drochaid"
 
+#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
-#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Drochaid fhiodha"
 
-#: simulation/templates/other/celt_hut.xml:22
+#: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
 msgstr "Bothag"
 
-#: simulation/templates/other/celt_longhouse.xml:22
+#: simulation/templates/other/celt_longhouse.xml:21
 msgid "Longhouse"
 msgstr "Taigh-fada"
 
-#: simulation/templates/other/column_doric.xml:20
-#: simulation/templates/other/column_doric_fallen.xml:20
-#: simulation/templates/other/column_doric_fallen_b.xml:20
+#: simulation/templates/other/column_doric.xml:19
+#: simulation/templates/other/column_doric_fallen.xml:19
+#: simulation/templates/other/column_doric_fallen_b.xml:19
 msgid "Column"
 msgstr "Colbh"
 
-#: simulation/templates/other/column_doric.xml:21
+#: simulation/templates/other/column_doric.xml:20
 msgid "Doric Column"
 msgstr "Colbh Dorach"
 
-#: simulation/templates/other/column_doric_fallen.xml:21
-#: simulation/templates/other/column_doric_fallen_b.xml:21
+#: simulation/templates/other/column_doric_fallen.xml:20
+#: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Fallen Doric Column"
 msgstr "Colbh Dorach na laighe"
 
-#: simulation/templates/other/desert_trading_post.xml:15
+#: simulation/templates/other/desert_trading_post.xml:14
 msgid "Desert Trading Post"
 msgstr "Ionad-malairt fàsaich"
 
-#: simulation/templates/other/desert_trading_post.xml:16
+#: simulation/templates/other/desert_trading_post.xml:15
 msgid "Ardatašta"
 msgstr "Ardatašta"
 
-#: simulation/templates/other/fence_long.xml:21
-#: simulation/templates/other/fence_short.xml:21
+#: simulation/templates/other/fence_long.xml:20
+#: simulation/templates/other/fence_short.xml:20
 msgid "Fence"
 msgstr "Feansa"
 
-#: simulation/templates/other/fence_long.xml:22
+#: simulation/templates/other/fence_long.xml:21
 msgid "Long Wooden Fence"
 msgstr "Feansa fiodha fada"
 
-#: simulation/templates/other/fence_short.xml:22
+#: simulation/templates/other/fence_short.xml:21
 msgid "Short Wooden Fence"
 msgstr "Feansa fiodha goirid"
 
+#: simulation/templates/other/fence_stone.xml:20
 #: simulation/templates/other/fence_stone.xml:21
-#: simulation/templates/other/fence_stone.xml:22
 msgid "Stone Fence"
 msgstr "Feansa cloiche"
 
-#: simulation/templates/other/generic_field.xml:9
+#: simulation/templates/other/generic_field.xml:8
 msgid "Wheat Field"
 msgstr "Achadh cruithneachd"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:24
+#: simulation/templates/other/hellenic_epic_temple.xml:23
 msgid "Epic Temple"
 msgstr "Teampall eipiceach"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:25
+#: simulation/templates/other/hellenic_epic_temple.xml:24
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:26
+#: simulation/templates/other/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
 msgstr "Cuir aonadan ’nan gearastan ann gus an slànachadh gu luath."
 
-#: simulation/templates/other/hellenic_propylaea.xml:25
+#: simulation/templates/other/hellenic_propylaea.xml:24
 msgid "Portico"
 msgstr "Sgàth-thaigh"
 
-#: simulation/templates/other/hellenic_propylaea.xml:26
+#: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Propylaea"
 msgstr "Propylaea"
 
-#: simulation/templates/other/hellenic_stoa.xml:25
+#: simulation/templates/other/hellenic_stoa.xml:24
 msgid "Stoa"
 msgstr "Stoa"
 
-#: simulation/templates/other/hellenic_stoa.xml:26
+#: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Hellenic Stoa"
 msgstr "Stoa Greugach"
 
-#: simulation/templates/other/obelisk.xml:20
+#: simulation/templates/other/obelisk.xml:19
 msgid "Obelisk"
 msgstr "Tursa Èipheiteach"
 
-#: simulation/templates/other/obelisk.xml:21
+#: simulation/templates/other/obelisk.xml:20
 msgid "Egyptian Obelisk"
 msgstr "Tursa Èipheiteach"
 
-#: simulation/templates/other/palisades_angle_spike.xml:15
+#: simulation/templates/other/palisades_angle_spike.xml:14
 msgid "Palisade Angle Spike"
 msgstr "Spìc sonnaich"
 
-#: simulation/templates/other/palisades_angle_spike.xml:16
+#: simulation/templates/other/palisades_angle_spike.xml:15
 msgid "Big Spike"
 msgstr "Spìc mhòr"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:15
+#: simulation/templates/other/palisades_rocks_curve.xml:14
 msgid "Palisade Curve"
 msgstr "Lùb sonnaich"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:16
+#: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Wooden Wall Corner"
 msgstr "Oisean balla fhiodha"
 
-#: simulation/templates/other/palisades_rocks_end.xml:15
+#: simulation/templates/other/palisades_rocks_end.xml:14
 msgid "Palisade End"
 msgstr "Deireadh sonnaich"
 
-#: simulation/templates/other/palisades_rocks_end.xml:16
+#: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Wooden Wall End"
 msgstr "Deireadh balla fhiodha"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:6
+#: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
 msgstr "Dùn sonnaich"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:7
+#: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
 msgstr "Tùr fiodha"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:18
+#: simulation/templates/other/palisades_rocks_gate.xml:17
 msgid "Palisade Gate"
 msgstr "Geata sonnaich"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:19
+#: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Wooden Gate"
 msgstr "Geata fiodha"
+
+#: simulation/templates/other/palisades_rocks_long.xml:26
+#: simulation/templates/other/palisades_rocks_medium.xml:26
+#: simulation/templates/other/palisades_rocks_short.xml:25
+#: simulation/templates/other/palisades_rocks_straight.xml:14
+#: simulation/templates/other/palisades_rocks_tower.xml:24
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Sonnach"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27
 #: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
 #: simulation/templates/other/palisades_rocks_tower.xml:25
-#: simulation/templates/other/wallset_palisade.xml:6
-msgid "Palisade"
-msgstr "Sonnach"
-
-#: simulation/templates/other/palisades_rocks_long.xml:28
-#: simulation/templates/other/palisades_rocks_medium.xml:28
-#: simulation/templates/other/palisades_rocks_short.xml:27
-#: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:26
-#: simulation/templates/other/wallset_palisade.xml:5
+#: simulation/templates/other/wallset_palisade.xml:4
 msgid "Wooden Wall"
 msgstr "Balla fiodha"
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:15
+#: simulation/templates/other/palisades_rocks_outpost.xml:14
 msgid "Outpost"
 msgstr "Gearastan"
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:16
-#: simulation/templates/other/palisades_rocks_watchtower.xml:16
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+#: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Wooden Watch Tower"
 msgstr "Tùr-faire fiodha"
 
-#: simulation/templates/other/palisades_rocks_watchtower.xml:15
+#: simulation/templates/other/palisades_rocks_watchtower.xml:14
 msgid "Watchtower"
 msgstr "Tùr-faire"
 
-#: simulation/templates/other/palisades_small_spikes.xml:15
+#: simulation/templates/other/palisades_small_spikes.xml:14
 msgid "Spikes Small"
 msgstr "Spìcean beaga"
 
-#: simulation/templates/other/palisades_small_spikes.xml:16
+#: simulation/templates/other/palisades_small_spikes.xml:15
 msgid "Small Spikes"
 msgstr "Spìcean beaga"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:15
+#: simulation/templates/other/palisades_tall_spikes.xml:14
 msgid "Spikes Tall"
 msgstr "Spìcean àrda"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:16
+#: simulation/templates/other/palisades_tall_spikes.xml:15
 msgid "Tall Spikes"
 msgstr "Spìcean àrda"
 
-#: simulation/templates/other/sele_colonnade.xml:20
+#: simulation/templates/other/sele_colonnade.xml:19
 msgid "Colonnade"
 msgstr "Colbh-thrannsa"
 
-#: simulation/templates/other/sele_colonnade.xml:21
+#: simulation/templates/other/sele_colonnade.xml:20
 msgid "Corinthian Colonnade"
 msgstr "Colbh-thrannsa Choirinteach"
 
-#: simulation/templates/other/stall_big.xml:12
+#: simulation/templates/other/stall_big.xml:11
 msgid "Big stall"
 msgstr "Stann mòr"
 
-#: simulation/templates/other/stall_med.xml:12
+#: simulation/templates/other/stall_med.xml:11
 msgid "Medium stall"
 msgstr "Stann meadhanach"
 
-#: simulation/templates/other/stall_small_a.xml:12
-#: simulation/templates/other/stall_small_b.xml:12
+#: simulation/templates/other/stall_small_a.xml:11
+#: simulation/templates/other/stall_small_b.xml:11
 msgid "Small stall"
 msgstr "Stann beag"
 
-#: simulation/templates/other/table_rectangle.xml:20
-#: simulation/templates/other/table_square.xml:20
+#: simulation/templates/other/table_rectangle.xml:19
+#: simulation/templates/other/table_square.xml:19
 msgid "Table"
 msgstr "Bòrd"
 
-#: simulation/templates/other/table_rectangle.xml:21
+#: simulation/templates/other/table_rectangle.xml:20
 msgid "Rectangle Table"
 msgstr "Bòrd ceart-cheàrnach"
 
-#: simulation/templates/other/table_square.xml:21
+#: simulation/templates/other/table_square.xml:20
 msgid "Square Table"
 msgstr "Bòrd ceàrnagach"
 
