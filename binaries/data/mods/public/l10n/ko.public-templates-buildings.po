@@ -12,7 +12,7 @@
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017
 # ks k, 2017
-# sang gyu nam <destro0419@naver.com>, 2018
+# sang gyu nam <destro0419@naver.com>, 2018-2019
 # jjj <triplej03@nate.com>, 2014
 # YongNam Kim <darkgem11@gmail.com>, 2016
 # zen kiss <gxaryu456@gmail.com>, 2017
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-25 09:44+0100\n"
-"PO-Revision-Date: 2019-01-25 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-01-31 12:40+0000\n"
+"Last-Translator: sang gyu nam <destro0419@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +112,7 @@ msgstr "주택"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "치료사를 훈련합니다. 유닛이 안에 들어갈 시 치료합니다. (1초당 3 체력). 치료 기술과 종교적 향상을 연구합니다."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -267,7 +267,7 @@ msgstr "군사의"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "시민병을 훈련하며 훈련개선 연구를 진행합니다"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -276,11 +276,11 @@ msgstr "병영"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:8
 msgid "Archery Range"
-msgstr ""
+msgstr "궁수 훈련소"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:10
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr ""
+msgstr "시민병을 훈련하며 훈련개선 연구를 진행합니다."
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:7
 #: simulation/templates/structures/pers_stables.xml:20
@@ -289,11 +289,11 @@ msgstr "마굿간"
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:8
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr ""
+msgstr "시민 기병대를 훈련하며 훈련개선 연구를 진행합니다."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:33
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "무기와 방어구 향상 연구를 진행합니다."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:34
 #: simulation/templates/template_structure_military_blacksmith.xml:30
@@ -348,7 +348,7 @@ msgstr "요새"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "영웅과 투사, 그리고 공성무기를 훈련하며, 공성무기 연구를 진행할 수 있습니다."
 
 #: simulation/templates/template_structure_military_kennel.xml:41
 msgid "Kennel"
@@ -366,7 +366,7 @@ msgstr "공성무기 제작소"
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
-msgstr ""
+msgstr "적 건물을 파괴할 수 있는 공성무기를 제작하는 건물입니다. 공성 기술을 이용해 공성무기에 미치는 영향력을 연구합니다."
 
 #: simulation/templates/template_structure_military_workshop.xml:36
 msgid "Workshop"
@@ -414,7 +414,7 @@ msgstr "도서관"
 
 #: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
-msgstr ""
+msgstr "특수 기술을 연구합니다."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:23
 msgid "Rotary Mill"
@@ -437,7 +437,7 @@ msgstr ""
 #: simulation/templates/template_structure_wonder.xml:52
 #: simulation/templates/template_structure_wonder.xml:50
 msgid "Wonder"
-msgstr "경관"
+msgstr "불가사의"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/athen_stable.xml:12
@@ -637,7 +637,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_crannog.xml:12
 msgid "Island Settlement"
-msgstr ""
+msgstr "섬터 요새"
 
 #: simulation/templates/structures/brit_crannog.xml:16
 msgid "Increase population limit and defend waterways."
@@ -678,7 +678,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_fortress.xml:16
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr ""
+msgstr "브리튼계 영웅들과 투사, 공성망치를 훈련합니다."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:5
@@ -797,7 +797,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_elephant_stables.xml:5
 msgid "Carthaginian Elephant Stables"
-msgstr ""
+msgstr "카르타고 코끼리 사육장"
 
 #: simulation/templates/structures/cart_embassy.xml:21
 msgid "Hire mercenaries."
@@ -809,7 +809,7 @@ msgstr "켈트 대사관"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "켈트인 용벙들을 고용하고 그들에 대한 개선점을 연구합니다."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:12
 msgid "Iberian Embassy"
@@ -817,15 +817,15 @@ msgstr "이베리아 대사관"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "이베리아인 용병들을 고용하고 그들에 대한 개선점을 연구합니다."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:19
 msgid "Italian Embassy"
-msgstr ""
+msgstr "이탈리아 대사관"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "이탈리아인 용병들을 고용하고 그들에 대한 개선점을 연구합니다."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -921,7 +921,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
-msgstr ""
+msgstr "바알 함몬의 신전"
 
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Coriosedlon"
@@ -1101,11 +1101,11 @@ msgstr ""
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
 msgid "Nuba Village"
-msgstr ""
+msgstr "누바인 마을"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr ""
+msgstr "누바인 몽둥이병과 누바인 사냥꾼을 훈련합니다."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1113,7 +1113,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
-msgstr ""
+msgstr "쿠시인 피라미드"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
@@ -1635,7 +1635,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
-msgstr ""
+msgstr "기념 아치"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
@@ -1643,7 +1643,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_army_camp.xml:42
 msgid "ArmyCamp"
-msgstr ""
+msgstr "군사 캠프"
 
 #: simulation/templates/structures/rome_army_camp.xml:75
 msgid "Entrenched Army Camp"
@@ -1657,7 +1657,7 @@ msgstr ""
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "자연지역 혹은 적 영역에 건설할 수 있으며, 공성무기를 제작하고 시민군을 훈련할 수 있습니다.\n유닛이 안에 들어갈 경우 천천이 치료시킵니다."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1709,7 +1709,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
-msgstr ""
+msgstr "포위용 벽 문"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
@@ -1720,7 +1720,7 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr ""
+msgstr "포위용 벽 문"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
@@ -1820,7 +1820,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr ""
+msgstr "셀레우코스 코끼리 사육장"
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
@@ -1834,7 +1834,7 @@ msgstr ""
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "공성무기를 제작하고 투사를 훈련합니다.\n건물안에 병사를 배치하여 방어를 할 수 있습니다."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1861,7 +1861,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "아폴로의 신전"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1882,7 +1882,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr ""
+msgstr "영웅을 훈련합니다."
 
 #: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Military Mess Hall"
