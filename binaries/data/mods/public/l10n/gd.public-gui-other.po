@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 14:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-03 11:02+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1237,15 +1237,15 @@ msgstr "Tuilleadain: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Feumaidh an sàbhaladh geama seo 0 A.D. tionndadh %(requiredVersion)s fhad ’s a tha thu a’ ruith an tionndadh %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Tha an sàbhaladh geama seo feumach air seann-tionndadh de 0 A.D."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Tha an sàbhaladh geama seo feumach air sreath eile dhe thuilleadain:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1386,15 +1386,15 @@ msgstr "Leabhar-mìneachaidh"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Teirmichean"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Leugh is aontaich ri teirmichean is cumhaichean a’ UserReporter."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Foillseachaichean"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -1435,7 +1435,7 @@ msgstr "Mòran taing gun cuidich thu le piseach a thoirt air 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Tha cur fiosrachaidh an comas an-dràsta."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1454,7 +1454,7 @@ msgstr "Cuidich sinn le piseach a thoirt air 0 A.D!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "’S urrainn dhut fiosrachadh a chur thugainn gu fèin-obrachail a chuidicheas ach an càraich sinn bugaichean is an doir sinn piseach air an dèanadas is co-chòrdalachd."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -2147,7 +2147,7 @@ msgstr "Cha buaidh aig na dh’atharraich thu gun a shàbhaladh air an t-seisean
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alpha XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2457,7 +2457,7 @@ msgstr "Seòrsa:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Coimhead air ath-chluiche"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2569,7 +2569,7 @@ msgstr "Laideann"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Pearsais"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -3126,11 +3126,11 @@ msgstr "Suidheachadh a’ gheama"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Dìon an clàradh a-steach is an dàta a thèid a thar-aiseag le frithealaiche an lobaidh le crioptachadh TLS."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "Crioptachadh TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -4233,7 +4233,7 @@ msgstr "• So-leònta an aghaidh streupairean."
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "- Ri fhaighinn dha na Cartagaich, Kuluš, na Mauraidhich, na Pearsaich, na Ptolamaich ’s na Seleucaich."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
+# annihilator solar <incoming@upcmail.nl>, 2019
 # bb jansen <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-01-18 15:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-03 01:58+0000\n"
+"Last-Translator: annihilator solar <incoming@upcmail.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -366,7 +367,7 @@ msgstr "%(_player_)s, ik heb besloten mijn aanbod voor een neutraliteitspact in 
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s, aangezien je niet hebt gereageerd op mijn vredesvoorstel, trek ik mijn aanbod in."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
@@ -503,8 +504,8 @@ msgstr "Je kan nu aanvallen!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s heeft gewonnen (laatste speler in leven)."
+msgstr[1] "%(players)s en %(lastPlayer)s hebben gewonnen (laatste spelers in leven)."
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
@@ -701,7 +702,7 @@ msgstr "Versnel (20x)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr ""
+msgstr "Neem alle relikwieën in die verspreid zijn over de kaart, en houd ze een bepaalde tijd in bezit om het spel te winnen."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
@@ -746,7 +747,7 @@ msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured or in allied victory when the owners alliances change."
-msgstr ""
+msgstr "Bouw als eerste een Wonder en houd het gedurende een bepaalde tijd in stand om het spel te winnen. De aftelklok vervalt wanneer het Wonder wordt vernietigd of ingenomen, of, bij geallieerde overwinning, wanneer de allianties wijzigen.   "
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -784,7 +785,7 @@ msgstr "Dodenmatch"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Kies deze moeilijkheidsgraad als je 0 A.D. wilt verkennen."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -792,7 +793,7 @@ msgstr "Heel Makkelijk "
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "Kies deze moeilijkheidsgraad als je niet graag klappen krijgt."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -801,7 +802,7 @@ msgstr "Makkelijk"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Kies deze moeilijkheidsgraad als je 0 A.D. al goed in de vingers hebt."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -810,7 +811,7 @@ msgstr "Medium"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "Kies deze moeilijkheidsgraad als je echt op de proef gesteld wilt worden."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -818,7 +819,7 @@ msgstr "Moeilijk "
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "Kies deze moeilijkheidsgraad als je het niet erg vindt in de pan gehakt te worden."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -830,7 +831,7 @@ msgstr "Mini"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "Deze kaartomvang is nauwelijks toereikend voor de meest basale grondstoffen."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -840,13 +841,13 @@ msgstr "Klein"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Kleine kaarten zijn geschikt voor 1-tegen-1 partijen omdat de spelers de vijand snel kunnen bereiken, terwijl er toch nog ruimte voor enige uitbreiding overblijft."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Kaarten van een gemiddelde omvang bieden meer dan genoeg ruimte voor twee spelers, maar zelfs acht spelers passen er op."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -856,7 +857,7 @@ msgstr "Normaal"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Dit is de ideale kaartomvang voor 4 tot 8 spelers omdat er veel ruimte is om uit te breiden terwijl je de buren toch snel kunt bereiken."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -866,7 +867,7 @@ msgstr "Groot"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "De grote kaartomvang wordt aangeraden wanneer grote delen van de kaart uit water bestaan, of uit ontoegankelijk gebergte."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -877,7 +878,7 @@ msgstr "Erg Groot"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Zeer grote kaarten worden niet aangeraden omdat het erg lang duurt om de vijand te bereiken en omdat de snelheid van het spel verminderd kan raken."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -892,4 +893,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra is de standaard 0 A.D. computerspeler (AI). Geef problemen alsjeblieft door aan Wildfire Games (zie de link in het hoofdmenu).\n\nDe AI heeft een voor- of nadeel bij het opslaan van grondstoffen (verzamelsnelheid of handelswinst):  Zandbak −58%, Heel Makkelijk −44%, Makkelijk −25%, Gemiddeld ±0%, Moeilijk +25%, Heel Moeilijk +56%. Daarnaast breidt ze op Zandbak niveau niet uit en valt ze niet aan."

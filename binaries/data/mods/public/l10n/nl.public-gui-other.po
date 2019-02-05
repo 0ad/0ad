@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
+# annihilator solar <incoming@upcmail.nl>, 2019
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
 # bb jansen <b.jansen5@students.uu.nl>, 2018
@@ -32,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 14:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-03 01:25+0000\n"
+"Last-Translator: annihilator solar <incoming@upcmail.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1498,25 +1499,25 @@ msgstr "Onderzocht door:"
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "Bouwt:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "Onderzoekt:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "Rekruteert:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Om te bouwen tot:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -2232,7 +2233,7 @@ msgstr "Klik om de 0 A.D. vertaalpagina te openen in je browser."
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Help het project met een donatie."
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
@@ -2547,7 +2548,7 @@ msgstr "Latijn"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Perzisch"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -2992,7 +2993,7 @@ msgstr "Volume van de spelelementen."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "Actievolume"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
