@@ -2,33 +2,34 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Iron">
+    <variant frequency="1" name="Iron Raven">
       <textures>
-        <texture file="props/helmet/celt_helmet_c_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_ciumesti_02_iron.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Brass">
+    <variant frequency="1" name="Brass Raven">
       <textures>
-        <texture file="props/helmet/celt_helmet_c_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_ciumesti_02_brass.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Bronze">
+    <variant frequency="1" name="Bronze Raven">
       <textures>
-        <texture file="props/helmet/celt_helmet_c_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_ciumesti_02_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Silver Raven">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_silver.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant>
-      <mesh>props/helmet/celt_helmet_c_1.dae</mesh>
+      <mesh>props/helmet/celt_ciumesti_02.dae</mesh>
       <textures>
-        <texture file="props/helmet/celt_helmet_c_norm.png" name="normTex"/>
-        <texture file="props/helmet/celt_helmet_c_spec.png" name="specTex"/>
+        <texture file="props/helmet/celt_ciumesti_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_ciumesti_02_spec.png" name="specTex"/>
       </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Celtic Conic Helmet">
       <props>
         <prop actor="props/units/helmets/props/celt_helmet_raven.xml" attachpoint="raven"/>
       </props>

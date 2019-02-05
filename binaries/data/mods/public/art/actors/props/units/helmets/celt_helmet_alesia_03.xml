@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron">
+      <textures>
+        <texture file="props/helmet/celt_alesia_2_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iron Boar">
+      <textures>
+        <texture file="props/helmet/celt_alesia_2_iron.png" name="baseTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/celt_helmet_boar.xml" attachpoint="boar"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <mesh>props/helmet/celt_alesia_03.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_alesia_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_alesia_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
