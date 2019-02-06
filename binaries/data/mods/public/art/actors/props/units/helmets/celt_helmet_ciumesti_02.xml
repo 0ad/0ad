@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_brass.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Silver">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_silver.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iron Boar">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_iron.png" name="baseTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/celt_helmet_boar.xml" attachpoint="boar"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Brass Boar">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_brass.png" name="baseTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/celt_helmet_boar.xml" attachpoint="boar"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Bronze Boar">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_bronze.png" name="baseTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/celt_helmet_boar.xml" attachpoint="boar"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Silver Boar">
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_silver.png" name="baseTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/celt_helmet_boar.xml" attachpoint="boar"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <mesh>props/helmet/celt_ciumesti_02.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_ciumesti_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_ciumesti_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -4,26 +4,26 @@
   <group>
     <variant frequency="1" name="Iron Boar">
       <textures>
-        <texture file="props/helmet/celt_helmet_boar_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_boar_iron.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Brass Boar">
       <textures>
-        <texture file="props/helmet/celt_helmet_boar_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_boar_brass.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Bronze Boar">
       <textures>
-        <texture file="props/helmet/celt_helmet_boar_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_boar_bronze.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant>
-      <mesh>props/helmet/props/celt_helmet_boar.dae</mesh>
+      <mesh>props/helmet/props/celt_boar.dae</mesh>
       <textures>
-        <texture file="props/helmet/celt_helmet_boar_norm.png" name="normTex"/>
-        <texture file="props/helmet/celt_helmet_boar_spec.png" name="specTex"/>
+        <texture file="props/helmet/celt_boar_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_boar_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
