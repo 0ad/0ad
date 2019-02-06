@@ -9,7 +9,7 @@
         <prop actor="props/units/heads/rome_imp_gallic_g_cent.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/rome_scutum_marian.xml" attachpoint="shield"/>
-        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/swordsman_shield_ready_centurion.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/imp/infantry_swordsman_c_a.dds" name="baseTex"/>
@@ -22,9 +22,23 @@
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>
-        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/swordsman_shield_ready_centurion.xml" attachpoint="root"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/formations/testudo_idle_top.xml"/>
+    <variant file="biped/formations/testudo_idle_front.xml"/>
+    <variant file="biped/formations/testudo_walk_top.xml"/>
+    <variant file="biped/formations/testudo_walk_front.xml"/>
+    <variant file="biped/formations/testudo_idle_front_left.xml"/>
+    <variant file="biped/formations/testudo_idle_front_right.xml"/>
+    <variant file="biped/formations/testudo_idle_left.xml"/>
+    <variant file="biped/formations/testudo_idle_right.xml"/>
+    <variant file="biped/formations/testudo_walk_left.xml"/>
+    <variant file="biped/formations/testudo_walk_right.xml"/>
+    <variant file="biped/formations/testudo_walk_front_left.xml"/>
+    <variant file="biped/formations/testudo_walk_front_right.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

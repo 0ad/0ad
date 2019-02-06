@@ -2,22 +2,35 @@
 <Entity parent="template_formation">
   <Formation>
     <Icon>formations/testudo.png</Icon>
-    <RequiredMemberCount>9</RequiredMemberCount>
-    <DisabledTooltip>9 melee infantry units required</DisabledTooltip>
+    <RequiredMemberCount>16</RequiredMemberCount>
+    <DisabledTooltip>16 melee infantry units required</DisabledTooltip>
+    <SortingClasses>Hero Champion Elite Advanced Basic</SortingClasses>
     <FormationName>Testudo</FormationName>
-    <UnitSeparationWidthMultiplier>0.5</UnitSeparationWidthMultiplier>
-    <UnitSeparationDepthMultiplier>0.7</UnitSeparationDepthMultiplier>
-    <WidthDepthRatio>1.5</WidthDepthRatio>
+    <FormationShape>square</FormationShape>
+    <UnitSeparationWidthMultiplier>0.50</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.50</UnitSeparationDepthMultiplier>
+    <WidthDepthRatio>0.8</WidthDepthRatio>
+    <MinColumns>8</MinColumns>
+    <MaxColumns>8</MaxColumns>
     <Animations>
       <idle>
-        1..1,1..-1: idle_testudo_front;
-        2..-1,1..-1: idle_testudo_top
+        1..1,2..7: idle_testudo_front;
+        1..1,1..1: idle_testudo_front_left;
+        1..1,8..8: idle_testudo_front_right;
+        2..-1,8..8: idle_testudo_right;
+        2..-1,2..-1: idle_testudo_top;
+        2..-1,1..1: idle_testudo_left
       </idle>
       <walk>
-        1..1,1..-1: walk_testudo_front;
-        2..-1,1..-1: walk_testudo_top
+        1..1,2..7: walk_testudo_front;
+        1..1,1..1: walk_testudo_front_left;
+        1..1,8..8: walk_testudo_front_right;
+        2..-1,8..8: walk_testudo_right;
+        2..-1,2..-1: walk_testudo_top;
+        2..-1,1..1: walk_testudo_left
       </walk>
     </Animations>
+    <SpeedMultiplier>0.25</SpeedMultiplier>
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>

@@ -16,6 +16,9 @@
     <SpecificName>Triarius</SpecificName>
     <Icon>units/rome_infantry_spearman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <Formations datatype="tokens">
+      special/formations/anti_cavalry
+    </Formations>
   </Identity>
   <Promotion>
     <Entity>units/rome_infantry_spearman_a</Entity>
