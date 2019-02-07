@@ -4,31 +4,31 @@
   <group>
     <variant frequency="1" name="Iron">
       <textures>
-        <texture file="props/helmet/celt_coolus_01_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_coolus_02_iron.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Brass">
       <textures>
-        <texture file="props/helmet/celt_coolus_01_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_coolus_02_brass.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Bronze">
       <textures>
-        <texture file="props/helmet/celt_coolus_01_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_coolus_02_bronze.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Silver">
       <textures>
-        <texture file="props/helmet/celt_coolus_01_silver.png" name="baseTex"/>
+        <texture file="props/helmet/celt_coolus_02_silver.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant>
-      <mesh>props/helmet/celt_coolus_01.dae</mesh>
+      <mesh>props/helmet/celt_coolus_02.dae</mesh>
       <textures>
-        <texture file="props/helmet/celt_coolus_01_norm.png" name="normTex"/>
-        <texture file="props/helmet/celt_coolus_01_spec.png" name="specTex"/>
+        <texture file="props/helmet/celt_coolus_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_coolus_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
