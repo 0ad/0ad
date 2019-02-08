@@ -106,9 +106,9 @@ Health.prototype.IsRepairable = function()
 
 Health.prototype.IsUnhealable = function()
 {
-	return (this.template.Unhealable == "true" ||
+	return this.template.Unhealable == "true" ||
 		this.GetHitpoints() <= 0 ||
-		this.GetHitpoints() >= this.GetMaxHitpoints());
+		this.GetHitpoints() >= this.GetMaxHitpoints();
 };
 
 Health.prototype.GetIdleRegenRate = function()
@@ -144,8 +144,8 @@ Health.prototype.CheckRegenTimer = function()
 {
 	// check if we need a timer
 	if (this.GetRegenRate() == 0 && this.GetIdleRegenRate() == 0 ||
-		this.GetHitpoints() == this.GetMaxHitpoints() && this.GetRegenRate() >= 0 && this.GetIdleRegenRate() >= 0 ||
-		this.GetHitpoints() == 0)
+	    this.GetHitpoints() == this.GetMaxHitpoints() && this.GetRegenRate() >= 0 && this.GetIdleRegenRate() >= 0 ||
+	    this.GetHitpoints() == 0)
 	{
 		// we don't need a timer, disable if one exists
 		if (this.regenTimer)
