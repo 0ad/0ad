@@ -6,6 +6,7 @@
 # Albert, 2017
 # Joop Kiefte (LaPingvino) <ikojba@gmail.com>, 2014
 # Kamparano <kamparano.viro@gmail.com>, 2015
+# kristjan <kristjan.schmidt@googlemail.com>, 2019
 # Michael Moroni <michaelmoroni@disroot.org>, 2015
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Pritchenko, 2015-2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 14:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-04 20:58+0000\n"
+"Last-Translator: kristjan <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -184,28 +185,28 @@ msgstr "bedaŭrinde ne priskribo estas disponebla"
 #: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -468,7 +469,7 @@ msgstr ""
 #: gui/common/gamedescription.js:425
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Malŝaltita"
 
 #: gui/common/gamedescription.js:426
 msgctxt "treasures"
@@ -499,12 +500,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:447
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "ŝaltita"
 
 #: gui/common/gamedescription.js:448
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "malŝaltita"
 
 #: gui/common/gamedescription.js:464
 msgid "Victorious"
@@ -2704,7 +2705,7 @@ msgstr ""
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Malŝaltita"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
