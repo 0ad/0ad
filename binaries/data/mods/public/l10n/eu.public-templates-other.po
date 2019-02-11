@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-25 09:44+0100\n"
-"PO-Revision-Date: 2019-01-28 12:10+0000\n"
+"POT-Creation-Date: 2019-02-08 09:44+0100\n"
+"PO-Revision-Date: 2019-02-10 21:47+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1001,6 +1001,15 @@ msgstr "Populazioko 5eko etxea bihurtzen da daukaten zibilizazioentzako, beste z
 msgid "Spy"
 msgstr "Espioia"
 
+#: simulation/templates/special/formations/anti_cavalry.xml:6
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "16 melee infantry units required"
+msgstr "16 buruz-buruko infanteria unitate behar dira"
+
+#: simulation/templates/special/formations/anti_cavalry.xml:7
+msgid "Anti Cavalry"
+msgstr "Zalditeria aurkakoa"
+
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr "Lerroan"
@@ -1069,11 +1078,7 @@ msgstr "16 pika unitate behar dira"
 msgid "Syntagma"
 msgstr "Syntagma"
 
-#: simulation/templates/special/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 buruz-buruko infanteria unitate behar dira"
-
-#: simulation/templates/special/formations/testudo.xml:7
+#: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
 msgstr "Dortoka "
 
