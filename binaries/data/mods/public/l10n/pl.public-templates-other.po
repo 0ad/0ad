@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adam Kol <adam.kolanowski@tlen.pl>, 2019
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014,2016
 # Arthur Glovchynski <kontakt.artix@gmail.com>, 2015
 # Bartłomiej Prokop <kuad@o2.pl>, 2017
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-25 09:44+0100\n"
-"PO-Revision-Date: 2019-01-27 14:04+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"POT-Creation-Date: 2019-02-08 09:44+0100\n"
+"PO-Revision-Date: 2019-02-09 20:05+0000\n"
+"Last-Translator: Adam Kol <adam.kolanowski@tlen.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1018,6 +1019,15 @@ msgstr "Zmiany w domach dodających 5 do limitu populacji dla cywilizacji posiad
 msgid "Spy"
 msgstr "Szpieg"
 
+#: simulation/templates/special/formations/anti_cavalry.xml:6
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "16 melee infantry units required"
+msgstr "Wymaga 16 piechurów walczących wręcz"
+
+#: simulation/templates/special/formations/anti_cavalry.xml:7
+msgid "Anti Cavalry"
+msgstr ""
+
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr "Szyk liniowy"
@@ -1086,11 +1096,7 @@ msgstr "Wymaga 16 pikinierów"
 msgid "Syntagma"
 msgstr "Syntagma"
 
-#: simulation/templates/special/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "Wymaga 9 piechurów walczących wręcz"
-
-#: simulation/templates/special/formations/testudo.xml:7
+#: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
 msgstr "Testudo"
 

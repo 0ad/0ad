@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-25 09:44+0100\n"
-"PO-Revision-Date: 2019-01-25 14:13+0000\n"
+"POT-Creation-Date: 2019-02-08 09:44+0100\n"
+"PO-Revision-Date: 2019-02-08 14:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -1007,6 +1007,15 @@ msgstr "Bu evler ile medeniyetteki ev için 5 nüfusluık değişimde, diğer ki
 msgid "Spy"
 msgstr "Casus"
 
+#: simulation/templates/special/formations/anti_cavalry.xml:6
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "16 melee infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/anti_cavalry.xml:7
+msgid "Anti Cavalry"
+msgstr ""
+
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr "Savaş Hattı"
@@ -1075,11 +1084,7 @@ msgstr "16 kargılı piyade birimi gerekli"
 msgid "Syntagma"
 msgstr "Sintagma"
 
-#: simulation/templates/special/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 yakın dövüş piyade birimi gerekli "
-
-#: simulation/templates/special/formations/testudo.xml:7
+#: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
 msgstr "Kaplumbağa tipi"
 
