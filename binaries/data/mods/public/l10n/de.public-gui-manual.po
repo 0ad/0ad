@@ -7,6 +7,7 @@
 # d00eb365ebaf2be82942fe248b3f88f3, 2015
 # xtother90, 2018-2019
 # Maximilian Wagenbach <foaly@posteo.de>, 2016
+# Jakob Raidt <jakob.raidt@hotmail.com>, 2019
 # ... ... <jon12@gmx.de>, 2017
 # leper <leper@wildfiregames.com>, 2014-2016
 # Luksoft <luksoft999@gmail.com>, 2017
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-02-07 23:11+0000\n"
-"Last-Translator: M C <stupidoman.stupid@gmail.com>\n"
+"PO-Revision-Date: 2019-02-11 17:31+0000\n"
+"Last-Translator: Jakob Raidt <jakob.raidt@hotmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,13 +125,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Einzelspieler[font=\"sans-14\"] – Spiele im Sandkastenmodus oder gegen einen oder mehrere KI. Die KI sind noch in der Entwicklung und nicht immer auf dem neusten Stand. Doch so kann man sich gegen einen Gegner ausprobieren, wenn es gerade nicht möglich ist gegen einen Mensch zu spielen.  "
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr " [font=\"sans-bold-14\"]Mehrspieler[font=\"sans-14\"] – Spiele gegen andere Spieler übers Internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -158,19 +159,19 @@ msgstr "Wähle zunächst, welchen Kartentyp du spielen möchtest:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr " [font=\"sans-bold-14\"]Zufallskarte[font=\"sans-14\"] – Automatisch erstellte Karte"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Szenarienkarte[font=\"sans-14\"] – Eine designte Karte mit vorgegebenen Zivilisationen"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Scharmützel[font=\"sans-14\"] – Eine designte Karte mit wählbaren Zivilisationen "
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -522,7 +523,7 @@ msgstr "Strg + Rechtsklick mit ausgewählten Einheiten:"
 
 #: gui/manual/intro.txt:115
 msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "Wenn der Mauszeiger über einem Gebäude eines Verbündeten ist: Garnison"
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -534,7 +535,7 @@ msgstr "• Wenn der Mauszeiger sich über einer nicht verbündeten Einheit oder
 msgid ""
 "  • Otherwise: Attack move (by default all enemy units and structures along "
 "the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr ""
+msgstr "Ansonsten: Angriff (Alle feindlichen Einheiten und Gebäude werden standardmäßig angegriffen, benutze Ctrl + Q + Rechtsklick um ausschließlich Einheiten an zu greifen)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -617,7 +618,7 @@ msgstr "Strg + A oder \\[links]: Kamera im Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "Strg + D oder \\[rechts]: Kamera gegen den Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
@@ -625,7 +626,7 @@ msgstr "Q: Kamera im Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:140
 msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "E: Kamera gegen den Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -635,7 +636,7 @@ msgstr "Umschalt + Mausrad nach oben drehen: Kamera im Uhrzeigersinn drehen"
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Umschalt + Mausrad nach unten: Kamera entgegen dem Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:143
 msgid ""
