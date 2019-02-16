@@ -308,6 +308,12 @@
 				"label": "Nick Notification",
 				"tooltip": "Receive audio notification when someone types your nick.",
 				"config": "sound.notify.nick"
+			},
+			{
+				"type": "boolean",
+				"label": "Game Setup - New Player Notification",
+				"tooltip": "Receive audio notification when a new client joins the game setup.",
+				"config": "sound.notify.gamesetup.join"
 			}
 		]
 	},
