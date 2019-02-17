@@ -26,12 +26,12 @@
     </variant>
     <variant name="lightDamage">
       <textures>
-        <texture file="skeletal/animal_pig_c.png" name="baseTex"/>
+        <texture file="skeletal/animal_pig_b.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="mediumDamage">
       <textures>
-        <texture file="skeletal/animal_pig_d.png" name="baseTex"/>
+        <texture file="skeletal/animal_pig_c.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="heavyDamage">
@@ -41,8 +41,9 @@
     </variant>
     <variant name="death">
       <textures>
-        <texture file="skeletal/animal_pig_f.png" name="baseTex"/>
+        <texture file="skeletal/animal_pig_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
+    <material>basic_trans.xml</material>
 </actor>
