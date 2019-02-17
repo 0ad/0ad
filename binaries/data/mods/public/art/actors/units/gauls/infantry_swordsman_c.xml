@@ -14,14 +14,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Agen Helmet">
+    <variant frequency="1" name="Celtic Foret Helmet">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_foret.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Classic Coolus Helmet">
+    <variant frequency="1" name="Celtic Classic Mihovo">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_classic_coolus.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Port">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
