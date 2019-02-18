@@ -17,7 +17,7 @@
 # TonyChyi <tonychee1989@gmail.com>, 2016
 # TonyChyi <tonychee1989@gmail.com>, 2016
 # volcano song <1677559@qq.com>, 2018
-# liulitchi <xingzuo88@qq.com>, 2018
+# liulitchi <xingzuo88@qq.com>, 2018-2019
 # Zou Yi <zouyi100@outlook.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2017
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 18:40+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-17 07:58+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,7 +405,7 @@ msgstr "纳卡寺庙"
 msgid ""
 "As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
 "+1 heal rate for units garrisoned in nearby temples."
-msgstr ""
+msgstr "麦罗埃帝国和其它文明类似，宗教占据了重要位置。 Shanakdakheto建于公元前160年左右。，象征了的麦罗埃文化先进。\n附近寺庙驻守的单位：治愈率+1 。"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -505,7 +505,7 @@ msgstr "巴赛勒斯·梅加斯"
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr ""
+msgstr "塞琉古一世之子，安条克完成了维持帝国的艰巨任务，建立寺庙并用战象击败了入侵的高卢人。\n战象花费-10％ 。"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -558,7 +558,7 @@ msgstr "+15% 建造和恢复速度"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
-msgstr ""
+msgstr "雅典娜神庙"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -741,11 +741,11 @@ msgstr "狮头战神神庙及麦罗埃神庙 -20％的成本和建造时间。"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
-msgstr ""
+msgstr "绝望之刃"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy healers −50% healing rate."
-msgstr ""
+msgstr "敌方医师的治愈率 -50% 。"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -828,7 +828,7 @@ msgstr "教师"
 msgid ""
 "Empower a building with -20% cost and -50% research time for technologies "
 "while he is garrisoned in it."
-msgstr ""
+msgstr "驻扎在建筑内，可 -20% 的花费，以及 -50% 的科研时间。"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
