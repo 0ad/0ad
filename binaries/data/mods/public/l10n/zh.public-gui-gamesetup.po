@@ -28,7 +28,7 @@
 # Vince Luo <vinceluo11@gmail.com>, 2017
 # xiaolong dai <1091198228@qq.com>, 2018
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014,2017-2018
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2019
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-02-04 15:29+0000\n"
-"Last-Translator: 杜茂森 <dumaosen_main01@outlook.com>\n"
+"PO-Revision-Date: 2019-02-17 10:34+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "无"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "这个玩家禁用AI。"
+msgstr "此玩家禁用AI。"
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -584,7 +584,7 @@ msgstr "请输入一个可用的服务器名称。"
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "服务器端口必须在%(min)s和%(max)s之间。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -609,7 +609,7 @@ msgstr "游戏名称现正被使用中。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "STUN主机失败"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
@@ -749,7 +749,7 @@ msgstr "加入游戏."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "玩家昵称："
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -766,11 +766,11 @@ msgstr "设成主机"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "服务器名称："
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "使用STUN解决防火墙问题"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -1099,7 +1099,7 @@ msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "你们应当慎重选择所选择的道路。但你们既行了，就要恒心忍耐。——《普里尼的偏见》(第欧根尼·拉尔修，《杰出哲学家的生活和观点》，第5卷)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -1133,13 +1133,13 @@ msgstr ""
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr ""
+msgstr "最坏的统治者就是无法管好自己的人。——老加图"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "智者从愚者处学到的比愚者从智者处学到的多。——老加图"
 
 #: gui/text/quotes.txt:55
 msgid ""
@@ -1152,7 +1152,7 @@ msgstr ""
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "如果国王充满活力，则他的臣民也将充满活力。——考底利耶"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1160,14 +1160,14 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "给予过于严厉的惩罚令人感到厌恶；给予过轻的惩罚则近乎碑鄙。但能给予轻重适中的惩罚则令人尊敬。——考底利耶"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "当希腊在刀刃边缘时,我们没有退缩,但保全了生命拯救她。——西莫尼德斯"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1295,7 +1295,7 @@ msgstr ""
 msgid ""
 "\"A coward turns away, but a brave man's choice is danger.\" - Euripides "
 "(\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "懦夫转身离开,但勇敢之人的抉择是危险的。——欧里庇得斯"
 
 #: gui/text/quotes.txt:77
 msgid ""
@@ -1307,11 +1307,11 @@ msgstr ""
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides (\"Meleager\")"
-msgstr ""
+msgstr "懦夫在战斗里不算数;他们在那里,但心不在。——欧里庇得斯"
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "机会永远与谨慎战斗。 ——欧里庇得斯"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -1325,20 +1325,20 @@ msgid ""
 "\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
 "Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
 "\"Caesar\", sec. 50)"
-msgstr ""
+msgstr "我来了，我看见了，我征服了。 ——凯撒"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
 "Gallico\", III. 18)"
-msgstr ""
+msgstr "人们心甘情愿的相信他们所希望的。——盖乌斯·儒略·凯撒"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
 " sec. 11)"
-msgstr ""
+msgstr "我不怕吃饱的长发男人，但怕见到面黄肌瘦之人。——盖乌斯·儒略·凯撒"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1394,13 +1394,13 @@ msgstr ""
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi (Hammurabi's Code, sec. 196)"
-msgstr ""
+msgstr "如果一个人挖出了另一个人的眼睛,他的眼睛也该被挖出来。——汉谟拉比"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "我不是要让意大利人捲入战争,而是要帮助意大利人对抗罗马。——汉尼拔·巴卡"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1449,13 +1449,13 @@ msgstr ""
 msgid ""
 "\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
 "122)"
-msgstr ""
+msgstr "在安稳的区域只会生出软弱的人。——希罗多德"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr ""
+msgstr "这是人们最剧烈的痛苦,有很多知识,但没有权力。——希罗多德"
 
 #: gui/text/quotes.txt:100
 msgid ""
@@ -1468,7 +1468,7 @@ msgid ""
 "\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
-msgstr ""
+msgstr "拉科尼亚人[斯巴达人]打了一场令人难忘的战斗;他们看起来就像是,他们是专家,而与业余选手对抗。——希罗多德"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1529,11 +1529,11 @@ msgstr ""
 msgid ""
 "\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
 "III., ode II., 13)"
-msgstr ""
+msgstr "为自己的国家而死是愉快且光荣的。——贺拉斯"
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "“吾为居鲁士,世界之王......”——居鲁士大帝"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1546,14 +1546,14 @@ msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr ""
+msgstr "“嫁个好男人,然后生出勇猛的小孩。” ——列奥尼达一世,在他要前往温泉关前对他的妻子说"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr ""
+msgstr "“杀光他们！” ——列奥尼达一世,于波斯的使者要求他们放下武器时"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1622,7 +1622,7 @@ msgstr ""
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "无尽的钱构成了万恶的根源。 ——马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:124
 msgid ""

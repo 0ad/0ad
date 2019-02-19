@@ -18,7 +18,7 @@
 # Shinyu Wu <shinyu@gnu.hk>, 2016
 # Tianran Yao <yaotianran@gmail.com>, 2016
 # Vince Luo <vinceluo11@gmail.com>, 2017
-# liulitchi <xingzuo88@qq.com>, 2017-2018
+# liulitchi <xingzuo88@qq.com>, 2017-2019
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 14:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-17 08:49+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1193,15 +1193,15 @@ msgstr "附加模组：%(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "游戏存档需要版本为%(requiredVersion)s，当前运行版本为%(currentVersion)s。"
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "游戏存档需要旧版游戏。"
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "游戏存档需要一套不同的附加模组："
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -2097,7 +2097,7 @@ msgstr "未保存的更改将只影响此会话"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "内测版本 24"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2407,7 +2407,7 @@ msgstr "类型: "
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "观看回放"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2519,7 +2519,7 @@ msgstr "拉丁语"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "波斯"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -4183,7 +4183,7 @@ msgstr "- 对散兵来说较为脆弱。"
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr " - 适用文明：迦太基、库什、印度、波斯、托勒密和塞琉古 。"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
