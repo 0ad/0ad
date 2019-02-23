@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/main_sail_base.xml" name="Trireme Sail">
+      <mesh>props/athen_trireme_main_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/hele_sail_01.xml" name="eye"/>
+    <variant frequency="100" file="others/ships/hele_sail_02.xml" name="pegasus"/>
+    <variant frequency="100" file="others/ships/hele_sail_03.xml" name="runner"/>
+    <variant frequency="100" file="others/ships/hele_sail_04.xml" name="star"/>
+    <variant frequency="100" file="others/ships/hele_sail_05.xml" name="hawk"/>
+    <variant frequency="100" file="others/ships/hele_sail_06.xml" name="krater"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

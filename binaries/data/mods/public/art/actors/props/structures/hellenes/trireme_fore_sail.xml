@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/rome_fore_sail_base.xml" name="Hellenic sail">
+      <mesh>props/hele_fore_sail.dae</mesh>
+      <textures>
+		    <texture file="props/sail_blank_netting_new.png" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+	    </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

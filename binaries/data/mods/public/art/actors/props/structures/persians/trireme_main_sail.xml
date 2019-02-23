@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/main_sail_base.xml" name="Persian Trireme">
+      <mesh>props/pers_trireme_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/pers_sail_01.xml" name="zoroaster"/>
+    <variant frequency="100" file="others/ships/pers_sail_02.xml" name="royal standard"/>
+    <variant frequency="100" file="others/ships/pers_sail_03.xml" name="standard"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

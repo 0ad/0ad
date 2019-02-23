@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/main_sail_base.xml" name="Trireme Sail">
+      <mesh>props/rome_trireme_main_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/rome_sail_01.xml" name="Laurel SQPR"/>
+    <variant frequency="100" file="others/ships/rome_sail_02.xml" name="Eagle SQPR"/>
+    <variant frequency="100" file="others/ships/rome_sail_03.xml" name="Pegasus SQPR"/>
+    <variant frequency="100" file="others/ships/rome_sail_04.xml" name="RR SQPR"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

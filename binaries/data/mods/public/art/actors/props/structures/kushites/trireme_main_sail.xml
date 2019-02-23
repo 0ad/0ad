@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/kush_sail_base.xml" name="Trireme Sail">
+      <mesh>props/kush_trireme_main_sail.dae</mesh>
+      <textures>
+        <texture file="props/kush_bireme_sail.png" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

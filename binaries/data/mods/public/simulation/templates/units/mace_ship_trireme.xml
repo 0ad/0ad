@@ -2,11 +2,11 @@
 <Entity parent="template_unit_mechanical_ship_trireme">
   <Identity>
     <Civ>mace</Civ>
-    <GenericName>Trireme</GenericName>
-    <SpecificName>Triḗrēs</SpecificName>
+    <SpecificName>Triḗrēs Athēnaía</SpecificName>
+    <GenericName>Macedonian Trireme</GenericName>
     <Icon>units/hele_ship_trireme.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/hellenes/trireme.xml</Actor>
+    <Actor>structures/macedonians/trireme.xml</Actor>
   </VisualActor>
 </Entity>

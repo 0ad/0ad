@@ -3,29 +3,26 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Rome Bireme">
-      <animations>
-        <animation file="mechanical/rome_bireme_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/rome_bireme_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/rome_bireme_move.dae" name="Run" speed="8"/>
-      </animations>
-      <mesh>structural/rome_bireme.dae</mesh>
+    <variant frequency="1" file="others/ships/rome_bireme_oars.xml"  name="Rome Brireme">
+      <mesh>structural/rome_ship_bireme.dae</mesh>
       <props>
+        <prop actor="props/structures/romans/bireme_fore_sail.xml" attachpoint="fore_sail"/>
+        <prop actor="props/structures/romans/bireme_main_sail.xml" attachpoint="main_sail"/>
+        <prop actor="props/structures/romans/rome_bridge_base.xml" attachpoint="bridge"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/romans/bireme_mainsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/bireme_foresail.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/bireme_shroud.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/bireme_banner_trans.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/bireme_shields.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Blue Eye">
       <textures>
         <texture file="structural/rome_bireme.png" name="baseTex"/>
+        <texture file="structural/rome_bireme_spec.png" name="specTex"/>
+        <texture file="structural/rome_bireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/rome_bireme.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <group>
+    <variant frequency="100" file="others/ships/rome_bireme_shields_01.xml" name="Roman Bireme Shields-01"/>
+    <variant frequency="100" file="others/ships/rome_bireme_shields_02.xml" name="Roman Bireme Shields-02"/>
+    <variant frequency="100" file="others/ships/rome_bireme_shields_03.xml" name="Roman Bireme Shields-03"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
