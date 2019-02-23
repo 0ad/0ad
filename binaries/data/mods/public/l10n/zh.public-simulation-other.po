@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-02-17 08:10+0000\n"
+"PO-Revision-Date: 2019-02-22 06:22+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "我正对 %(_player_)s 发动大规模军事攻击，来加入我吧。"
+msgstr "我将对 %(_player_)s 发动大规模攻击，来加入我吧。"
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -134,17 +134,17 @@ msgstr "与玩家 %(_player_)s 新建一条贸易路线，分享你们的收益�
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "现在玩家 %(_player_)s 是我盟友了。"
+msgstr "现在 %(_player_)s 是我盟友了。"
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "我和 %(_player_)s 互相中立。"
+msgstr "我和 %(_player_)s 互表中立。"
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "玩家 %(_player_)s 已与我为敌。"
+msgstr "%(_player_)s 已与我为敌。"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -156,14 +156,14 @@ msgstr "对不起，%(_player_)s ，不能接受你的结盟提议。"
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "不能和你结盟， %(_player_)s ， 不过，我会保持中立。"
+msgstr " %(_player_)s ，我不会和你结盟。不过，我会保持中立。"
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "我拒绝你的结盟提议，%(_player_)s ，不过我们互相中立。"
+msgstr "拒绝你的结盟提议，%(_player_)s ，不过我们互相中立。"
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
@@ -208,13 +208,13 @@ msgstr "%(_player_)s ，接受你的结盟请求，这让我们互利共赢。"
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr "%(_player_)s ， 我们结盟，真是再明智不过了。"
+msgstr "%(_player_)s ，双方结盟，是为明智之举。"
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr "%(_player_)s，让这项和平协议保证我们共同繁荣。"
+msgstr "%(_player_)s，愿这项和平协议保证我们共同繁荣。"
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
@@ -224,7 +224,7 @@ msgstr "我们目标一致，%(_player_)s，同意结盟。"
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "%(_player_)s ，从今往后我们就是盟友了。"
+msgstr "%(_player_)s ，往后我们就是盟友了。"
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
@@ -781,7 +781,7 @@ msgstr "新手玩家，建议选择本难度。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr "非常简单"
+msgstr "极易"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
@@ -815,7 +815,7 @@ msgstr "骨灰级难度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
-msgstr "非常困难"
+msgstr "极难"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"

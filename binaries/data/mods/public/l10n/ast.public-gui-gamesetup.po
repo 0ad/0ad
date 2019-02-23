@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-01-26 22:20+0000\n"
+"PO-Revision-Date: 2019-02-22 02:04+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Nengún"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "Esti xugador va quedar ensin IA."
+msgstr "Esti xugador va quedar cola IA desactivada."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -52,7 +52,7 @@ msgstr "Toi preparáu"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr "Conseñar que tas preparáu pa xugar."
+msgstr "Amosar que tas preparáu pa xugar."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -65,7 +65,7 @@ msgstr "Siguir preparáu"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr "Siguir preparáu mesmamente cuando cambien los axustes de la partida."
+msgstr "Siguir preparáu magar que cambien los axustes de la partida."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -73,21 +73,21 @@ msgstr "¡Nun toi preparáu!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr "Conseñar que nun tas preparáu pa xugar."
+msgstr "Amosar que nun tas preparáu pa xugar."
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
-msgstr "Cambiaron los axustes"
+msgstr "Los axustes de la partida cambiaron"
 
 #: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "Xunióse %(username)s"
+msgstr "%(username)s xunióse"
 
 #: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "Coló %(username)s"
+msgstr "%(username)s coló"
 
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
@@ -126,7 +126,7 @@ msgstr "Mapes navales"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Los mapes u faen falta barcos p'algamar al enemigu."
+msgstr "Mapes u los barcos faen falta p'algamar al enemigu."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
@@ -135,7 +135,7 @@ msgstr "Mapes de demostranza"
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Estos mapes nun puen xugase sinón que sirven de demostranza."
+msgstr "Estos mapes nun son xugables, sinón que namái sirven de demostranza."
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
@@ -144,7 +144,7 @@ msgstr "Mapes nuevos"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Los mapes que s'estrenaron nesta versión del xuegu."
+msgstr "Mapes que s'estrenaron nesta versión del xuegu."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
@@ -153,7 +153,7 @@ msgstr "Mapes disparadores"
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Los mapes que tienen acontecimientos programaos y xenerarán unidaes."
+msgstr "Mapes que vienen con eventos programaos y xenerarán unidaes enemigues."
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -185,7 +185,7 @@ msgstr "Tipu de mapa"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
-msgstr "Esbillar el tipu de mapa."
+msgstr "Esbillar un tipu de mapa."
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
@@ -217,7 +217,7 @@ msgstr "Bioma"
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
-msgstr "Esbilla la flora y la fauna."
+msgstr "Esbillar la flora y la fauna."
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
@@ -229,18 +229,18 @@ msgstr "Esbillar el númberu de xugadores."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr "Capacidá de población"
+msgstr "Llende de población"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
-msgstr "Esbillar la llende de población."
+msgstr "Esbillar la llende de la población."
 
 #: gui/gamesetup/gamesetup.js:592
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Avisu: Pue haber problemes de rindimientu si tolos xugadores %(players)s algamen la población de %(popCap)s."
+msgstr "Avisu: Pue haber problemes de rindimientu si tolos xugadores %(players)s algamen una población de %(popCap)s."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
@@ -249,7 +249,7 @@ msgstr "Recursos iniciales"
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "La cantidá inicial de cada recursu: %(resources)s."
+msgstr "Cantidá inicial de cada recursu: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
@@ -261,7 +261,7 @@ msgstr "Altu'l fueu"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
-msgstr "El tiempu afitáu nel que nun pue atacase."
+msgstr "Tiempu afitáu nel que nun pue atacase."
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Relic Count"
@@ -272,7 +272,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "El conxuntu de les reliquies que se xeneraron en mapa. La victoria per reliquia ye más realista con namái una reliquia o dos. Con más, cal prindar les reliquies pa recibir bonificaciones d'aura."
+msgstr "La cifra total de reliquies que se xeneraron en mapa. La victoria per reliquia ye más realista con namái una reliquia o dos. Con más, cal prindar les reliquies pa recibir bonificaciones nes aures."
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
@@ -280,7 +280,7 @@ msgstr "Duración de reliquies"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Los minutos fasta que'l xugador algame la victoria per reliquies."
+msgstr "Minutos fasta que'l xugador algame la victoria per reliquies."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
@@ -288,7 +288,7 @@ msgstr "Duración de maraviya"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "Los minutos fasta que'l xugador algame la victoria per maraviyes."
+msgstr "Minutos fasta que'l xugador algame la victoria per maraviyes."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
@@ -312,11 +312,11 @@ msgstr "Escoyer la civilización d'esti xugador"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr "Guarecimientu de los héroes"
+msgstr "Guarecimientu d'héroes"
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Activar/desactivar el guarecimientu de los héroes."
+msgstr "Activar/desactivar la capacidá de los héroes pa guarecese."
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
@@ -326,7 +326,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "En mou nómada, los xugadores entamen con namái unes poques unidaes y tienen qu'atopar un llugar afayadizu onde construyir la ciudá. Aconséyase l'altu'l fueu."
+msgstr "En mou nómada, los xugadores entamen con namái unes poques unidaes y tienen qu'atopar un sitiu afayadizu onde construyir una ciudá. Encamiéntase l'altu'l fueu."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -354,19 +354,19 @@ msgstr "Activar/desactivar el mapa esploráu (ver el mapa inicial)."
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
-msgstr "Desactivar les ayalgues"
+msgstr "Desactivar ayalgues"
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
-msgstr "Desactivar toles ayalgues del mapa."
+msgstr "Desactivar toles ayalgues en mapa."
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
-msgstr "Desactivar los espíes"
+msgstr "Desactivar espíes"
 
 #: gui/gamesetup/gamesetup.js:912
 msgid "Disable spies during the game."
-msgstr "Desactivar los espíes demientres la partida."
+msgstr "Desactivar espíes na partida."
 
 #: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
@@ -374,7 +374,7 @@ msgstr "Equipos fixos"
 
 #: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
-msgstr "Activar/desactivar los equipos fixos."
+msgstr "Activar/desactivar equipos fixos."
 
 #: gui/gamesetup/gamesetup.js:938
 msgid "Last Man Standing"
@@ -384,7 +384,7 @@ msgstr "El caberu de pie"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Activar/desactivar el trunfu del xugador caberu o l'alianza cabera."
+msgstr "Activar/desactivar el trunfu del caberu xugador vivu o del caberu conxuntu d'aliaos vivu."
 
 #: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
@@ -392,7 +392,7 @@ msgstr "Trampes"
 
 #: gui/gamesetup/gamesetup.js:953
 msgid "Toggle the usability of cheats."
-msgstr "Activar/desactivar l'usu de trampes."
+msgstr "Activar/desactivar la efeutividá de trampes."
 
 #: gui/gamesetup/gamesetup.js:966
 msgid "Rated Game"
@@ -400,12 +400,12 @@ msgstr "Partida clasificada"
 
 #: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Activar/desactivar la clasificación d'esta partida."
+msgstr "Activar/desactivar la clasificación d'esta partida en marcador."
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Calca %(hotkey)s p'autocompletar los nomes de los xugadores o los axustes."
+msgstr "Calca %(hotkey)s p'autocompletar nomes de xugadores o axustes."
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
@@ -427,19 +427,19 @@ msgstr "Entamar una partida nueva colos axustes actuales."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr "Entamar una partida nueva colos axustes actuales (nun s'activa fasta que tolos xugadores tean preparaos)"
+msgstr "Entamar una partida nueva colos axustes actuales (desactivao fasta que tean preparaos tolos xugadores)"
 
 #: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver hestoria / Árbole d'estructures\nL'últimu abiertu va reabrise al calcar."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Historia / Árbole d'estructures\nL'últimu abiertu va reabrise en calcando."
 
 #: gui/gamesetup/gamesetup.js:1107
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Configurar la IA: %(description)s."
+msgstr "Configurar IA: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1401
 #, javascript-format
@@ -463,7 +463,7 @@ msgstr "Al debalu"
 
 #: gui/gamesetup/gamesetup.js:1750
 msgid "Pick any of the given maps at random."
-msgstr "Escoyer al debalu cualesquier mapa dau."
+msgstr "Escoyer al debalu cualesquiera de los mapes daos."
 
 #: gui/gamesetup/gamesetup.js:1782
 msgctxt "biome"
@@ -472,7 +472,7 @@ msgstr "Al debalu"
 
 #: gui/gamesetup/gamesetup.js:1783
 msgid "Pick a biome at random."
-msgstr "Escoyer un bioma al debalu."
+msgstr "Escoyer al debalu un bioma."
 
 #: gui/gamesetup/gamesetup.js:2121
 #, javascript-format
@@ -510,7 +510,7 @@ msgstr "IA: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:2464
 msgid "Unassigned"
-msgstr "Non asignáu"
+msgstr "Ensin asignar"
 
 #: gui/gamesetup/gamesetup.js:2540
 #, javascript-format
@@ -572,12 +572,12 @@ msgstr "Nomatu yá n'usu."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr "Nun se llogró agospiar vía STUN."
+msgstr "Nun llogró agospiase per STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "Nun ye posible agospiar la partida: %(message)s."
+msgstr "Nun se pue agospiar la partida: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
 msgid "Error"
@@ -679,11 +679,11 @@ msgstr "Atrás"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr "Reafitar cualesquier civilización que s'esbillare a la predeterminada (al debalu)"
+msgstr "Reafitar cualesquier civilización que s'esbillare al por defeutu (al debalu)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr "Reafitar tolos equipos al predetermináu."
+msgstr "Reafitar tolos equipos al por defeutu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
@@ -703,7 +703,7 @@ msgstr "Amosar la sala multixugador nun ventanu de diálogu."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Dellos xugadores"
+msgstr "Multixugador"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -733,7 +733,7 @@ msgstr "Nome del sirvidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr "Emplega STUN pa evitar tornafueos."
+msgstr "Emplega STUN pa safate de tornafueos."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -742,54 +742,54 @@ msgstr "Siguir"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "Dexa esto en blanco pa usar el puertu por defeutu."
+msgstr "Dexa en blanco pa usar el puertu por defeutu."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "«Zeus \\[…] fizo señorialmente que'l deprendimientu dependa del carecimientu. \\[…] Asina que'l trabayu, polos mortales remisos, llegó a templase. Daqué violenta ye la gracia de los dioses, sentaos en tronu reverendu.» - Esquilu («La Orestíada», I. 176-183)"
+msgstr "«Zeus \\[…], cumo señor, feixo que'l deprendimientu dependa del carecimientu. \\[…] Asina que'l trabachu, polos mortales ronceiros, afloxóu. Daqué gafa ye la gracia de los dieuses \\[…].» - Esquilu («La Orestíada», I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr "«Traxo \\[Helena] como dote a Iliu l'acabación.» - Esquilu («La Orestíada», I. 406)"
+msgstr "«Traxo \\[Helena] cumo dote a Iliu l'acabación.» - Esquilu («La Orestíada», I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr "«Hai, de dalguna manera, nel tiranu esta malura: nun s'enfotar n'amigu dalu.» - Esquilu («Prometéu encadenáu», 224-225)"
+msgstr "«Hai no tiranu, de dalgún modu ou outru, esti mal: nun s'esfoutar n'amigu dengún.» - Esquilu («Prometéu encadenáu», 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr "«El tiempu enséñalo too avieyando.» - Esquilu («Prometéu encadenáu», 981)"
+msgstr "«El tiempu, al pasar, enséñalu todu.» - Esquilu («Prometéu encadenáu», 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr "«De xuru nun quier paecer el meyor sinón selo.» - Esquilu («Los siete escontra Tebes», 592)"
+msgstr "«De xuru que nun quier parecer el mechor senón selu.» - Esquilu («Los siete escontra Tebes», 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr "«El babayu prósperu ye pesáu d'arrecostinar.» -Esquilu (el fragmentu 383)"
+msgstr "«El babachu adineráu ye pesáu de ḷḷevar.» -Esquilu (fragmentu 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr "«Ruega a los dioses n'esforciándote tu mesmu, que nun reces en devanéu.» - Esopu («El carreteru ya Hércules»)"
+msgstr "«A los dioses rogando y col mazu dando.» - Esopu («El carreteru y Hércules»)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr "«Val preparar güei pa los menesteres del mañana.» - Esopu («La formiga ya la cantariella»)"
+msgstr "«El llabor de mañana güei se me faga.» - Esopu («La formiga y la cantariella»)"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
@@ -799,46 +799,46 @@ msgstr "«La xunión fai la fuercia.» - Esopu («La fexe de cañes»)"
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr "«Enxamás nun confíes nel conseyu de quien ta metíu nun pilancu.» - Esopu («La raposa ya la cabra»)"
+msgstr "«De quien mira pa les botes nun t'enfotes.» - Esopu («La raposa y la cabra»)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr "«La conocencia cría'l desinterés; el tratu ablandia la rocea.» - Esopu («La raposa ya'l lleón»)"
+msgstr "«Más val un amigu que pariente nin primu; val más un tontu conocíu qu’un llistu desconocíu.» - Esopu («La raposa y el lleón»)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr "«La soberbia pue empobinar a la ruina.» - Esopu («La xaronca ya'l güe»)"
+msgstr "«Cola fachenda que gasta, si la metieras en maíz, tenías pa comer papas ya enroscar bien la nariz.» - Esopu («La xaronca y el güe»)"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr "«Ensin priesa pero ensin posa.» - Esopu («La llebre ya la tortuga»)"
+msgstr "«Ensin priesa pero ensin posa.» - Esopu («La llebre y la tortuga»)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr "«Val más deprender de les llaceries de los demás que de les propies.» - Esopu («El lleón, el burru ya la raposa»)"
+msgstr "«El que nun oye conseyu nun llega a vieyu.» - Esopu («El lleón, el burru y la raposa»)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr "«Los enemigos dan la pallabra pa rompela.» - Esopu («L'ama ya'l llobu»)"
+msgstr "«La pallabra del enemigu nun val nin un rial.» - Esopu («L'ama y el llobu»)"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr "«Toa xida sirve al tiranu.» - Esopu («El llobu ya'l corderu»)"
+msgstr "«Cualquier xida sirvirá al tiranu.» - Esopu («El llobu y el corderu»)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr "«Si fici daqué obra curiosa, ella ye'l recuerdu de mio; pero si nenguna, entós nun lo son nin toles estatues.» - Axesiláu II d'Esparta (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 215a)"
+msgstr "«Si to fecho daqué obra curiosa, qu'ella vos alcuerde de min; si non, entós nun lo fadrán nin toles estatues.» - Axesiláu II d'Esparta (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""

@@ -32,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-02-03 01:25+0000\n"
-"Last-Translator: annihilator solar <incoming@upcmail.nl>\n"
+"POT-Creation-Date: 2019-02-18 09:43+0100\n"
+"PO-Revision-Date: 2019-02-18 14:41+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,14 +128,19 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Laden afgebroken"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Willekeurig"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Versie: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -167,7 +172,7 @@ msgstr "VERWIJDER"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Nee"
@@ -175,7 +180,7 @@ msgstr "Nee"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Ja"
@@ -1205,7 +1210,7 @@ msgstr "Klik rechts om meer informatie te zien."
 msgid "Click to view more information."
 msgstr "Klik om meer informatie te zien."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1329,40 +1334,35 @@ msgstr "OK"
 msgid "Read More"
 msgstr "Lees meer"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Versie: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ben je zeker dat je 0 A.D. wil stoppen?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Ben je zeker dat je 0 A.D. wil stoppen en de Scenario Editor wil openen?"
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "De scenariobewerker is niet beschikbaar of heeft  een probleem ondervonden. Bekijk de log voor meer informatie."
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Fout"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Handleiding"
 
@@ -3010,6 +3010,14 @@ msgstr "Ontvang een audiobericht wanneer iemand jouw alias intypt."
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
 msgstr "Alias Aankondiging"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr ""
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."

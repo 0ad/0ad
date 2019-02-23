@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-02-17 08:27+0000\n"
+"PO-Revision-Date: 2019-02-19 03:26+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "灵柩台"
 
 #: simulation/templates/template_unit_catafalque.xml:19
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "灵柩台，保存伟大领袖的遗体。"
+msgstr "灵柩台，存放伟人的遗体。"
 
 #: simulation/templates/template_unit_catafalque.xml:21
 msgid "Relic"
@@ -76,7 +76,7 @@ msgstr "士兵"
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr "基本"
+msgstr "基础"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:19
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
@@ -437,7 +437,7 @@ msgstr "喷火船"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr "快速减少敌方船只的生命值。因为着火了，所以会缓慢损失生命值，所以火攻船要尽快使用。"
+msgstr "快速消耗敌方船只的生命值。因已起火，会缓慢损失生命值，所以应尽快投入战斗。"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:35
 #: simulation/templates/units/kush_ship_fishing.xml:5
@@ -1166,7 +1166,7 @@ msgstr "神圣军团长枪兵"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
-msgstr "Mašal"
+msgstr ""
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:9
 msgid "Ḥimelqart Baraq"
@@ -1325,7 +1325,7 @@ msgstr "狂暴战士"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:17
 msgid "Gaesata"
-msgstr "狂暴战士"
+msgstr "狂战士"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Heavy Swordsman"
@@ -1698,7 +1698,7 @@ msgstr "盾牌兵"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:11
 msgid "Hypaspistḗs Argyraspídi"
-msgstr "Hypaspistḗs Argyraspídi"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_alexander.xml:20
 msgid "Alexander The Great"
@@ -1783,12 +1783,12 @@ msgstr "攻城塔"
 
 #: simulation/templates/units/mace_ship_bireme.xml:5
 msgid "Hemiolos"
-msgstr "Hemiolos"
+msgstr "轻型战船"
 
 #: simulation/templates/units/mace_ship_trireme.xml:6
 #: simulation/templates/units/spart_ship_trireme.xml:6
 msgid "Triḗrēs"
-msgstr "Triḗrēs"
+msgstr "三桨座战船 "
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikḗ"
@@ -2002,7 +2002,7 @@ msgstr "重装散兵"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"
-msgstr "Mankar Cirya"
+msgstr ""
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Persian Apple Bearer"
@@ -2010,7 +2010,7 @@ msgstr "波斯苹果搬运工"
 
 #: simulation/templates/units/pers_arstibara.xml:14
 msgid "Arštibara"
-msgstr "Arštibara"
+msgstr ""
 
 #: simulation/templates/units/pers_catafalque.xml:9
 msgid "Artaxerxes II"
@@ -2303,7 +2303,7 @@ msgstr "努比亚佣兵弓箭手"
 
 #: simulation/templates/units/ptol_infantry_archer_nubian.xml:7
 msgid "Kousít Misthophóros Toxótēs"
-msgstr "Kousít Misthophóros Toxótēs"
+msgstr ""
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:19
 msgid "Mercenary Thureos Skirmisher"
@@ -2352,7 +2352,7 @@ msgstr "双桨座战船"
 
 #: simulation/templates/units/ptol_ship_quinquereme.xml:5
 msgid "Octḗrēs"
-msgstr "Octḗrēs"
+msgstr "希腊战船"
 
 #: simulation/templates/units/ptol_ship_trireme.xml:5
 msgid "Pentḗrēs"
@@ -2400,7 +2400,7 @@ msgstr "罗马百夫长"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:15
 msgid "Centurio Legionarius"
-msgstr "Centurio Legionarius"
+msgstr ""
 
 #: simulation/templates/units/rome_champion_cavalry.xml:6
 msgid "Eques Consularis"
@@ -2656,7 +2656,7 @@ msgstr "青铜盾矛兵"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Chalkaspides"
-msgstr "Chalkaspides"
+msgstr "铜盾兵"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:13
 msgid "Militia Thureos Spearman"
@@ -2676,7 +2676,7 @@ msgstr "雇佣色雷斯剑士"
 
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
-msgstr "Pentères"
+msgstr "希腊战船"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
@@ -2785,7 +2785,7 @@ msgstr "妇女"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Períoikos"
-msgstr "Émporos Períoikos"
+msgstr ""
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:31
 msgid "Fire Raiser"
@@ -2793,7 +2793,7 @@ msgstr "火焰喷射器"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:32
 msgid "Pyrobolos"
-msgstr "Pyrobolos"
+msgstr ""
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
 msgid "Theban Sacred Band Hoplite"
@@ -2805,7 +2805,7 @@ msgstr "底比斯神圣军团重装步兵"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
-msgstr "冠军矛兵。"
+msgstr "冠勇矛兵。"
 
 #: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"
@@ -2813,7 +2813,7 @@ msgstr "铁司配亚黑衣军"
 
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Melanochitones"
-msgstr "Melanochitones"
+msgstr ""
 
 #: simulation/templates/units/viking_longship.xml:4
 msgid "Longship"

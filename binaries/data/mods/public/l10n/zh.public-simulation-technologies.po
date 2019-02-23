@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-02-17 08:53+0000\n"
+"PO-Revision-Date: 2019-02-22 06:41+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "单位升级至高级以后将获得以下属性加成：+20%生命值，+1点装甲（针对所有类型的护甲），+20%的战利品收益，近战单位+20%攻击值，远程攻击单位+4米射程并拥有更高的攻击精度，更快的移动速度，医疗兵获得额外的治疗速度和治疗距离。"
+msgstr "单位进阶后将获得以下属性加成：+20%生命值，+1点装甲（针对所有类型的护甲），+20%的战利品收益，近战单位+20%攻击值，远程攻击单位+4米射程并拥有更高的攻击精度，移动速度提高，医疗兵获得额外的治疗速度和治疗距离。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -108,7 +108,7 @@ msgstr "马头盔甲"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "于城镇阶段解锁。"
+msgstr "城镇阶段解锁。"
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -201,7 +201,7 @@ msgstr "金属盔甲(马身)。"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "于城市阶段解锁。"
+msgstr "城市阶段解锁。"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -331,7 +331,7 @@ msgstr "纯铜打造的盔甲。只有最好的士兵才可以穿戴这种盔甲
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "冠军单位 +2 劈砍盔甲等级，但也 +10 金属消耗。"
+msgstr "冠勇单位 +2 劈砍盔甲等级，但也 +10 金属消耗。"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -359,7 +359,7 @@ msgstr "加班盾牌结构"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 msgid "Aspidískos"
-msgstr "Aspidískos"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -382,7 +382,7 @@ msgstr "强化护盾"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspís"
-msgstr "Aspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
@@ -397,11 +397,11 @@ msgstr "青铜盾镶边"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr "Khalkaspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr "Khrysaspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -411,7 +411,7 @@ msgstr "只有最著名的士兵才拥有镶银盾牌，如亚历山大大帝军
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "冠军单位 +2 穿刺盔甲等级，但也 +10 金属消耗。"
+msgstr "冠勇单位 +2 穿刺盔甲等级，但也 +10 金属消耗。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -423,7 +423,7 @@ msgstr "银盾"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspís"
-msgstr "Argyraspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -503,7 +503,7 @@ msgstr "铁质武器"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr "哈斯塔长枪"
+msgstr "长枪团"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
@@ -575,12 +575,12 @@ msgstr "让你的远距离骑兵装备更好的武器。远距离骑兵 +20% 攻
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr "守卫状态的单位在战斗中拥有少见的英勇。"
+msgstr "守卫在战斗中拥有少见的英勇。"
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "护卫状态中的单位在战斗中有罕见的英勇。精英 +2 攻击力。"
+msgstr "守卫在战斗中有罕见的英勇。冠勇单位 +2 攻击力。"
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -592,7 +592,7 @@ msgstr "英雄主义"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreía"
-msgstr "Andreía"
+msgstr ""
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
@@ -722,7 +722,7 @@ msgstr "托雷多钢"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "使用碎石材料减少修建城墙所需的材料和时间"
+msgstr "使用碎石材料，减少造墙花费及时间。"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
@@ -738,7 +738,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr "晋升为精英阶层的单位获得了很多提高：20％的额外生命值，每种类型1个额外护甲等级，20％额外战利品，近战单位额外攻击20％，额外射程4米，远程单位精度更高，移动速度更快，医师的速度和额外的治疗速度和范围也有提高。"
+msgstr "晋升为精锐阶层的单位获得了很多提高：20％的额外生命值，每种类型1个额外护甲等级，20％额外战利品，近战单位额外攻击20％，额外射程4米，远程单位精度更高，移动速度更快，医师的速度和额外的治疗速度和范围也有提高。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -804,7 +804,7 @@ msgstr "对农场施加额外的营养物质。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr "工人耕种速度 +25% 。"
+msgstr "耕种速度 +25% 。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -828,7 +828,7 @@ msgstr "训练工人以增加耕种的采集速度。"
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr "工人耕种速度 +15% 。"
+msgstr "耕种速度 +15% 。"
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -836,7 +836,7 @@ msgstr "采集训练"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
-msgstr "渔网提升了捕鱼效率。"
+msgstr "使用渔网，提高效率。"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1136,7 +1136,7 @@ msgstr "长矛 vs. 马头盔甲"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr "精英 vs. 业余"
+msgstr "冠勇 vs. 业余"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -1274,7 +1274,7 @@ msgstr "城镇阶段"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "用于模板要求的虚拟技术，被 phase_town_generic or phase_town_{civ} 替代。"
+msgstr "用于模板要求的虚拟科技，被 phase_town_generic 或 phase_town_{civ} 替代。"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1416,11 +1416,11 @@ msgstr "奇观会吸引更多的人加入你的文明。"
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr "光荣扩张。每拥有一处奇迹，人口限制+40。"
+msgstr "荣耀扩张。每拥有一处奇迹，人口限制+40。"
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr "光荣扩张"
+msgstr "荣耀扩张"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1443,11 +1443,11 @@ msgstr "标枪皮带"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Himás"
-msgstr "Himás"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
-msgstr "Amentum"
+msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
@@ -1588,7 +1588,7 @@ msgstr "比起正常的哨所，在中立领土上存活时间加倍。"
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr "哨所 -50%领土衰减率。"
+msgstr "哨所的领土衰减率-50%。"
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1604,11 +1604,11 @@ msgstr "取消防御塔的最小射程"
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "猎杀洞"
+msgstr "射击孔"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "急速射手增加射出弓箭的最大射程。"
+msgstr "增加弓箭的最大射程。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
@@ -1616,7 +1616,7 @@ msgstr "防御塔的最大射程 +8米"
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr "急速射手"
+msgstr "射箭手"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
@@ -1648,7 +1648,7 @@ msgstr "哨兵"
 #: simulation/data/technologies/tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/tower_watch.jsonspecificName.mace
 msgid "Nyktophýlakes"
-msgstr "Nyktophýlakes"
+msgstr "哨兵"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1775,7 +1775,7 @@ msgstr "海军工程师"
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "警卫部队(精英)是装备最好的武器并有最佳训练的专家。"
+msgstr "警卫部队(冠勇单位)是装备最好的武器并有最佳训练的专家。"
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the Barracks."
@@ -1783,13 +1783,13 @@ msgstr "可在军营解锁训练冠军单位的科技。"
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "解锁精锐单位"
+msgstr "解锁冠勇单位"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Ágēma"
-msgstr "Ágēma"
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1815,7 +1815,7 @@ msgstr "宗教庆典"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
-msgstr "良善女神"
+msgstr "罗马良善女神"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
@@ -1948,7 +1948,7 @@ msgstr "精锐步兵民兵"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
-msgstr "Pentakosiomédimnoi"
+msgstr "梭伦改革"
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
 msgid ""
@@ -2145,7 +2145,7 @@ msgstr "与伊比利亚城镇结盟以招募时间 -20% 在伊比利亚佣兵上
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr "伊比利亚盟友"
+msgstr "伊比利亚同盟"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
@@ -2407,7 +2407,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "印度孔雀王朝，涵盖了原先数十个独立的王国。领土面积约500万平方公里，人口总数约6000万。其统治者有“万王之王”的称号，并有步兵60万、战象9000头、双轮战车8000辆以及骑兵3万名，可以说是当时军队之最。"
+msgstr "印度孔雀王朝，涵盖了原先数十个独立的王国。领土面积约500万平方公里，人口约6000万。统治者有“万王之王”的称号，并有步兵60万、战象9000头、双轮战车8000辆以及骑兵3万名，可以说是当时军队之最。"
 
 #: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
 msgid "Mauryas have a 10% higher maximum population limit."
@@ -2475,11 +2475,11 @@ msgstr "国王征召"
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr "精英盾步兵的训练速度是正常的两倍快,但会减少些许的最大生命值。"
+msgstr "冠勇盾步兵的训练速度是正常的两倍快,但会减少些许的最大生命值。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "精英盾步兵训练时间 -50%，生命值 -10%。"
+msgstr "冠勇盾步兵训练时间 -50%，生命值 -10%。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2560,7 +2560,7 @@ msgstr "所有步兵训练时间-20%，同时-5%生命值。解锁“骑兵募�
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr "罗马人，天生的战略后勤大师。"
+msgstr "罗马人，天生的后勤的战略大师。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
@@ -2613,7 +2613,7 @@ msgstr "希腊化都市"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "由一次训练一组或一个大队的精英及攻城武器，显著增加堡垒中的精英及攻城武器的训练速度。"
+msgstr "显著增加堡垒中的冠勇单位及攻城武器的训练速度。"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -2676,7 +2676,7 @@ msgstr "银盾兵，或称 Argyraspidai ，是马其顿军队中的精锐重装�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "将持盾冠军步兵升级为银盾，拥有更强大的血量和防御。"
+msgstr "将持盾冠勇步兵升级为银盾，拥有更强大的血量和防御。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
