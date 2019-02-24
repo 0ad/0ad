@@ -3,35 +3,26 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="mechanical/kart_ship_trireme_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/kart_ship_trireme_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/kart_ship_trireme_move.dae" name="Run" speed="8"/>
-      </animations>
+    <variant frequency="1" file="others/ships/kart_trireme_oars.xml" name="Carthaginian Trireme">
       <mesh>structural/kart_ship_trireme.dae</mesh>
       <props>
+        <prop actor="props/structures/carthaginians/ship_standard.xml" attachpoint="standard"/>
+        <prop actor="props/structures/carthaginians/trireme_fore_sail.xml" attachpoint="fore_sail"/>
+        <prop actor="props/structures/carthaginians/trireme_main_sail.xml" attachpoint="main_sail"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/kart_trireme.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/kart_trireme.png" name="baseTex"/>
+        <texture file="structural/kart_trireme_spec.png" name="specTex"/>
+        <texture file="structural/kart_trireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/kart_trireme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="2" name="tent">
-      <props>
-        <prop actor="props/structures/carthaginians/trireme_frontsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_mainsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_tent.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_shrouds.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="no tent">
-      <props>
-        <prop actor="props/structures/carthaginians/trireme_frontsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_mainsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_shrouds.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="100" file="others/ships/kart_trireme_shields_01.xml" name="Carthaginian trireme Shields-01"/>
+    <variant frequency="100" file="others/ships/kart_trireme_shields_02.xml" name="Carthaginian trireme Shields-02"/>
+    <variant frequency="100" file="others/ships/kart_trireme_shields_03.xml" name="Carthaginian trireme Shields-03"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

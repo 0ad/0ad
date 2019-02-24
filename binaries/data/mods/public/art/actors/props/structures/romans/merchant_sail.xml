@@ -4,8 +4,10 @@
   <group>
     <variant frequency="100" name="rome merchant sail">
       <mesh>structural/rome_merch_ship_sails.dae</mesh>
-      <textures><texture file="props/rome_sail_a.dds" name="baseTex"/></textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/rome_sail_01.xml" name="Laurel SQPR"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

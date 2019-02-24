@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="Trireme Shields">
+      <mesh>props/mace_trireme_shields.dae</mesh>
+	    <textures>
+	  	  <texture file="props/athen_prop_shields.png" name="baseTex"/>
+	    </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

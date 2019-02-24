@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skeletons>
+  <standard_skeleton title="Ship Row" id="Ship Row">
+    <bone name="Row_Root">
+      <bone name="Row_Bone">
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton title="Ship Row" target="Ship Row">
+    <identifier>
+      <root>Row_Root</root>
+    </identifier>
+    <bone name="Row_Root">
+      <target>Row_Root</target>
+      <bone name="Row_Bone">
+        <target>Row_Bone</target>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

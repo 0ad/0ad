@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Bireme_Sail_Armature" title="Bireme Sail Armature">
+    <bone name="Bireme_Sail_Root">
+      <bone name="Bireme_Sail_A_1">
+        <bone name="Bireme_Sail_A_2">
+          <bone name="Bireme_Sail_A_3">
+            <bone name="Bireme_Sail_A_4">
+              <bone name="Bireme_Sail_A_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_B_1">
+        <bone name="Bireme_Sail_B_2">
+          <bone name="Bireme_Sail_B_3">
+            <bone name="Bireme_Sail_B_4">
+              <bone name="Bireme_Sail_B_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_C_1">
+        <bone name="Bireme_Sail_C_2">
+          <bone name="Bireme_Sail_C_3">
+            <bone name="Bireme_Sail_C_4">
+              <bone name="Bireme_Sail_C_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_D_1">
+        <bone name="Bireme_Sail_D_2">
+          <bone name="Bireme_Sail_D_3">
+            <bone name="Bireme_Sail_D_4">
+              <bone name="Bireme_Sail_D_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_E_1">
+        <bone name="Bireme_Sail_E_2">
+          <bone name="Bireme_Sail_E_3">
+            <bone name="Bireme_Sail_E_4">
+              <bone name="Bireme_Sail_E_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_F_1">
+        <bone name="Bireme_Sail_F_2">
+          <bone name="Bireme_Sail_F_3">
+            <bone name="Bireme_Sail_F_4">
+              <bone name="Bireme_Sail_F_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_G_1">
+        <bone name="Bireme_Sail_G_2">
+          <bone name="Bireme_Sail_G_3">
+            <bone name="Bireme_Sail_G_4">
+              <bone name="Bireme_Sail_G_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_H_1">
+        <bone name="Bireme_Sail_H_2">
+          <bone name="Bireme_Sail_H_3">
+            <bone name="Bireme_Sail_H_4">
+              <bone name="Bireme_Sail_H_5" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Bireme_Sail_Armature" title="Bireme Sail Armature">
+    <identifier>
+      <root>Bireme_Sail_Root</root>
+    </identifier>
+    <bone name="Bireme_Sail_Root">
+      <target>Bireme_Sail_Root</target>
+      <bone name="Bireme_Sail_A_1">
+        <target>Bireme_Sail_A_1</target>
+        <bone name="Bireme_Sail_A_2">
+          <target>Bireme_Sail_A_2</target>
+          <bone name="Bireme_Sail_A_3">
+            <target>Bireme_Sail_A_3</target>
+            <bone name="Bireme_Sail_A_4">
+              <target>Bireme_Sail_A_4</target>
+              <bone name="Bireme_Sail_A_5">
+                <target>Bireme_Sail_A_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_B_1">
+        <target>Bireme_Sail_B_1</target>
+        <bone name="Bireme_Sail_B_2">
+          <target>Bireme_Sail_B_2</target>
+          <bone name="Bireme_Sail_B_3">
+            <target>Bireme_Sail_B_3</target>
+            <bone name="Bireme_Sail_B_4">
+              <target>Bireme_Sail_B_4</target>
+              <bone name="Bireme_Sail_B_5">
+                <target>Bireme_Sail_B_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_C_1">
+        <target>Bireme_Sail_C_1</target>
+        <bone name="Bireme_Sail_C_2">
+          <target>Bireme_Sail_C_2</target>
+          <bone name="Bireme_Sail_C_3">
+            <target>Bireme_Sail_C_3</target>
+            <bone name="Bireme_Sail_C_4">
+              <target>Bireme_Sail_C_4</target>
+              <bone name="Bireme_Sail_C_5">
+                <target>Bireme_Sail_C_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_D_1">
+        <target>Bireme_Sail_D_1</target>
+        <bone name="Bireme_Sail_D_2">
+          <target>Bireme_Sail_D_2</target>
+          <bone name="Bireme_Sail_D_3">
+            <target>Bireme_Sail_D_3</target>
+            <bone name="Bireme_Sail_D_4">
+              <target>Bireme_Sail_D_4</target>
+              <bone name="Bireme_Sail_D_5">
+                <target>Bireme_Sail_D_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_E_1">
+        <target>Bireme_Sail_E_1</target>
+        <bone name="Bireme_Sail_E_2">
+          <target>Bireme_Sail_E_2</target>
+          <bone name="Bireme_Sail_E_3">
+            <target>Bireme_Sail_E_3</target>
+            <bone name="Bireme_Sail_E_4">
+              <target>Bireme_Sail_E_4</target>
+              <bone name="Bireme_Sail_E_5">
+                <target>Bireme_Sail_E_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_F_1">
+        <target>Bireme_Sail_F_1</target>
+        <bone name="Bireme_Sail_F_2">
+          <target>Bireme_Sail_F_2</target>
+          <bone name="Bireme_Sail_F_3">
+            <target>Bireme_Sail_F_3</target>
+            <bone name="Bireme_Sail_F_4">
+              <target>Bireme_Sail_F_4</target>
+              <bone name="Bireme_Sail_F_5">
+                <target>Bireme_Sail_F_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_G_1">
+        <target>Bireme_Sail_G_1</target>
+        <bone name="Bireme_Sail_G_2">
+          <target>Bireme_Sail_G_2</target>
+          <bone name="Bireme_Sail_G_3">
+            <target>Bireme_Sail_G_3</target>
+            <bone name="Bireme_Sail_G_4">
+              <target>Bireme_Sail_G_4</target>
+              <bone name="Bireme_Sail_G_5">
+                <target>Bireme_Sail_G_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Bireme_Sail_H_1">
+        <target>Bireme_Sail_H_1</target>
+        <bone name="Bireme_Sail_H_2">
+          <target>Bireme_Sail_H_2</target>
+          <bone name="Bireme_Sail_H_3">
+            <target>Bireme_Sail_H_3</target>
+            <bone name="Bireme_Sail_H_4">
+              <target>Bireme_Sail_H_4</target>
+              <bone name="Bireme_Sail_H_5">
+                <target>Bireme_Sail_H_5</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

@@ -3,19 +3,22 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="mechanical/pers_tri_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/pers_tri_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/pers_tri_move.dae" name="Run" speed="8"/>
-      </animations>
-      <mesh>structural/pers_tri.dae</mesh>
+    <variant frequency="1" file="others/ships/pers_trireme_oars.xml" name="Persian Trireme">
+      <mesh>structural/pers_ship_trireme.dae</mesh>
       <props>
-        <prop actor="props/structures/persians/trireme_mast.xml" attachpoint="sail"/>
+        <prop actor="props/structures/persians/trireme_main_sail.xml" attachpoint="main_sail"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/pers_tri.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_trireme.png" name="baseTex"/>
+        <texture file="structural/pers_trireme_spec.png" name="specTex"/>
+        <texture file="structural/pers_trireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/pers_trireme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <group>
+    <variant file="others/ships/pers_trireme_shields.xml" name="Persian Trireme Shields"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

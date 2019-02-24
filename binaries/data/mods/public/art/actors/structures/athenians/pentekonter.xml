@@ -3,19 +3,19 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Greek Pentekonter">
-      <animations>
-        <animation file="mechanical/hele_ship_pentekonter_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Walk" speed="8"/>
-        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Run" speed="10"/>
-      </animations>
-      <mesh>structural/hele_ship_pentekonter.dae</mesh>
+    <variant frequency="1" file="others/ships/hele_bireme_oars.xml" name="Hellenic bireme">
+      <mesh>structural/hele_ship_bireme.dae</mesh>
       <props>
+        <prop actor="props/structures/athenians/bireme_main_sail.xml" attachpoint="sail"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/hellenes/pentekonter_mainsail.xml" attachpoint="sail"/>
       </props>
-      <textures><texture file="structural/hele_pentekonter.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_bireme.png" name="baseTex"/>
+        <texture file="structural/hele_bireme_spec.png" name="specTex"/>
+        <texture file="structural/hele_bireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/hele_bireme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

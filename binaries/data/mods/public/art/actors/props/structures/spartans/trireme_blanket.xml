@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="Trireme Blanket">
+      <mesh>props/spart_trireme_blanket.dae</mesh>
+      <textures>
+        <texture file="structural/spart_trireme_blanket.png" name="baseTex"/>
+        <texture file="structural/spart_trireme_blanket_spec.png" name="specTex"/>
+        <texture file="structural/spart_trireme_blanket_norm.png" name="normTex"/>
+        <texture file="structural/ao/spart_trireme.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
