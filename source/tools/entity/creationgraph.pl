@@ -1,9 +1,10 @@
 use strict;
 use warnings;
 
+use lib ".";
 use Entity;
 
-my @files = Entity::find_entities();
+my @files = Entity::find_entities("public");
 
 my %files = map +($_ => 1), @files;
 
@@ -13,7 +14,7 @@ print $g "digraph G {\n";
 for my $f (sort @files) {
     next if $f =~ /^template_/;
     print "# $f...\n";
-    my $ent = Entity::load_inherited($f);
+    my $ent = Entity::load_inherited($f, "public");
 
     if ($ent->{Entity}{Builder}) {
         my $ents = $ent->{Entity}{Builder}{Entities}{' content'};

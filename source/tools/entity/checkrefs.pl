@@ -4,39 +4,85 @@ use Data::Dumper;
 use File::Find;
 use XML::Simple;
 use JSON;
+use Getopt::Long qw(GetOptions);
 
+use lib ".";
 use Entity;
 
-use constant CHECK_MAPS_XML => 0;
-use constant ROOT_ACTORS => 1;
+GetOptions (
+    '--check-unused' => \(my $checkUnused = 0),
+    '--check-map-xml' => \(my $checkMapXml = 0),
+    '--validate-templates' => \(my $validateTemplates = 0),
+    '--mod-to-check=s' => \(my $modToCheck = "public")
+);
 
 my @files;
 my @roots;
 my @deps;
 
+# Force and checkMapXml if checkUnused is enabled to avoid false positives.
+$checkMapXml |= $checkUnused;
 my $vfsroot = '../../../binaries/data/mods';
+my $supportedTextureFormats = 'dds|png';
+my $mods = get_mod_dependencies_string($modToCheck);
+my $mod_list_string = $modToCheck;
+if ($mods ne "")
+{
+   $mod_list_string =  $mod_list_string."|$mods";
+}
+$mod_list_string =  $mod_list_string."|mod";
+print("Checking $modToCheck\'s integrity. \n");
+print("The following mod(s) will be loaded: $mod_list_string. \n");
+my @mods_list = split(/\|/, "$mod_list_string");
+
+sub get_mod_dependencies
+{
+    my ($mod) = @_;
+    my $modjson = parse_json_file_full_path("$vfsroot/$mod/mod.json");
+    my $modjsondeps = $modjson->{'dependencies'};
+    for my $dep (@{$modjsondeps})
+    {
+        # 0ad's folder isn't named like the mod.
+        if(index($dep, "0ad") != -1)
+        {
+            $dep = "public";
+        }
+    }
+
+    return $modjsondeps;
+}
+
+sub get_mod_dependencies_string
+{
+    my ($mod) = @_;
+    return join( '|',@{get_mod_dependencies($mod)});
+}
 
 sub vfs_to_physical
 {
-    my ($vfspath) = @_;
-    my $fn = "$vfsroot/public/$vfspath";
-    if (not -e $fn)
-    {
-        $fn = "$vfsroot/mod/$vfspath";
-    }
-    return $fn;
+    my ($vfsPath) = @_;
+    my $fn = vfs_to_relative_to_mods($vfsPath);
+    return "$vfsroot/$fn";
 }
 
 sub vfs_to_relative_to_mods
 {
-    my ($vfspath) = @_;
-    my $fn = "public/$vfspath";
-    return $fn;
+    my ($vfsPath) = @_;
+
+    for my $dep (@mods_list)
+    {
+        my $fn = "$dep/$vfsPath";
+
+        if (-e "$vfsroot/$fn")
+        {
+            return $fn;
+        }
+    }
 }
 
 sub find_files
 {
-    my ($vfspath, $extn) = @_;
+    my ($vfsPath, $extn) = @_;
     my @files;
     my $find_process = sub {
         return $File::Find::prune = 1 if $_ eq '.svn';
@@ -44,22 +90,31 @@ sub find_files
         return if /~$/;
         return unless -f $_;
         return unless /\.($extn)$/;
-        $n =~ s~\Q$vfsroot\E/(public|mod)/~~;
+        $n =~ s~\Q$vfsroot\E/($mod_list_string)/~~;
         push @files, $n;
     };
-    find({ wanted => $find_process }, "$vfsroot/public/$vfspath");
-    find({ wanted => $find_process }, "$vfsroot/mod/$vfspath") if -d "$vfsroot/mod/$vfspath";
+
+    for my $dep (@mods_list)
+    {
+        find({ wanted => $find_process },"$vfsroot/$dep/$vfsPath") if -d "$vfsroot/$dep/$vfsPath";
+    }
 
     return @files;
+}
+
+sub parse_json_file_full_path
+{
+    my ($vfspath) = @_;
+    open my $fh, $vfspath or die "Failed to open '$vfspath': $!";
+    # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
+    # (see http://trac.wildfiregames.com/ticket/1556)
+    return decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
 }
 
 sub parse_json_file
 {
     my ($vfspath) = @_;
-    open my $fh, vfs_to_physical($vfspath) or die "Failed to open '$vfspath': $!";
-    # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
-    # (see http://trac.wildfiregames.com/ticket/1556)
-    return decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+    return parse_json_file_full_path(vfs_to_physical($vfspath))
 }
 
 sub add_entities
@@ -73,7 +128,7 @@ sub add_entities
     {
         my $path = "simulation/templates/$f.xml";
         push @files, $path;
-        my $ent = Entity::load_inherited($f);
+        my $ent = Entity::load_inherited($f, "$mod_list_string");
 
         push @deps, [ $path, "simulation/templates/" . $ent->{Entity}{'@parent'}{' content'} . ".xml" ] if $ent->{Entity}{'@parent'};
 
@@ -103,9 +158,34 @@ sub add_entities
 
             if ($ent->{Entity}{Identity})
             {
-                push @deps, [ $path, "art/textures/ui/session/portraits/" . $ent->{Entity}{Identity}{Icon}{' content'} ] if $ent->{Entity}{Identity}{Icon};
+                push @deps, [ $path, "art/textures/ui/session/portraits/" . $ent->{Entity}{Identity}{Icon}{' content'} ] if $ent->{Entity}{Identity}{Icon} and $ent->{Entity}{Identity}{Icon}{' content'} ne '';
+            }
+
+            if ($ent->{Entity}{Formation})
+            {
+                push @deps, [ $path, "art/textures/ui/session/icons/" . $ent->{Entity}{Formation}{Icon}{' content'} ] if $ent->{Entity}{Formation}{Icon} and $ent->{Entity}{Formation}{Icon}{' content'} ne '';
             }
         }
+    }
+}
+
+sub push_variant_dependencies
+{
+    my ($variant, $f) = @_;
+    push @deps, [ $f, "art/variants/$variant->{file}" ] if $variant->{file};
+    push @deps, [ $f, "art/meshes/$variant->{mesh}" ] if $variant->{mesh};
+    push @deps, [ $f, "art/particles/$variant->{particles}{file}" ] if $variant->{particles}{file};
+    for my $tex (@{$variant->{textures}{texture}})
+    {
+        push @deps, [ $f, "art/textures/skins/$tex->{file}" ] if $tex->{file};
+    }
+    for my $prop (@{$variant->{props}{prop}})
+    {
+        push @deps, [ $f, "art/actors/$prop->{actor}" ] if $prop->{actor};
+    }
+    for my $anim (@{$variant->{animations}{animation}})
+    {
+        push @deps, [ $f, "art/animation/$anim->{file}" ] if $anim->{file};
     }
 }
 
@@ -117,8 +197,7 @@ sub add_actors
     for my $f (sort @actorfiles)
     {
         push @files, $f;
-
-        push @roots, $f if ROOT_ACTORS;
+        push @roots, $f;
 
         my $actor = XMLin(vfs_to_physical($f), ForceArray => [qw(group variant texture prop animation)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
@@ -126,20 +205,7 @@ sub add_actors
         {
             for my $variant (@{$group->{variant}})
             {
-                push @deps, [ $f, "art/meshes/$variant->{mesh}" ] if $variant->{mesh};
-                push @deps, [ $f, "art/particles/$variant->{particles}{file}" ] if $variant->{particles}{file};
-                for my $tex (@{$variant->{textures}{texture}})
-                {
-                    push @deps, [ $f, "art/textures/skins/$tex->{file}" ] if $tex->{file};
-                }
-                for my $prop (@{$variant->{props}{prop}})
-                {
-                    push @deps, [ $f, "art/actors/$prop->{actor}" ] if $prop->{actor};
-                }
-                for my $anim (@{$variant->{animations}{animation}})
-                {
-                    push @deps, [ $f, "art/animation/$anim->{file}" ] if $anim->{file};
-                }
+                push_variant_dependencies($variant, $f);
             }
         }
 
@@ -147,12 +213,27 @@ sub add_actors
     }
 }
 
+
+sub add_variants
+{
+    print "Loading variants...\n";
+    my @variantfiles = find_files('art/variants', 'xml');
+
+    for my $f (sort @variantfiles)
+    {
+        push @files, $f;
+        push @roots, $f;
+        my $variant = XMLin(vfs_to_physical($f), ForceArray => [qw(texture prop animation)], KeyAttr => []) or die "Failed to parse '$f': $!";
+        push_variant_dependencies($variant, $f);
+    }
+}
+
 sub add_art
 {
     print "Loading art files...\n";
-    push @files, find_files('art/textures/particles', 'dds|png|jpg|tga');
-    push @files, find_files('art/textures/terrain', 'dds|png|jpg|tga');
-    push @files, find_files('art/textures/skins', 'dds|png|jpg|tga');
+    push @files, find_files('art/textures/particles', $supportedTextureFormats);
+    push @files, find_files('art/textures/terrain', $supportedTextureFormats);
+    push @files, find_files('art/textures/skins', $supportedTextureFormats);
     push @files, find_files('art/meshes', 'pmd|dae');
     push @files, find_files('art/animation', 'psa|dae');
 }
@@ -191,12 +272,10 @@ sub add_maps_xml
     print "Loading maps XML...\n";
     my @mapfiles = find_files('maps/scenarios', 'xml');
     push @mapfiles, find_files('maps/skirmishes', 'xml');
+    push @mapfiles, find_files('maps/tutorials', 'xml');
     for my $f (sort @mapfiles)
     {
-        print "  $f\n";
-
         push @files, $f;
-
         push @roots, $f;
 
         my $map = XMLin(vfs_to_physical($f), ForceArray => [qw(Entity)], KeyAttr => []) or die "Failed to parse '$f': $!";
@@ -301,6 +380,7 @@ sub add_soundgroups
     for my $f (sort @soundfiles)
     {
         push @files, $f;
+        push @roots, $f;
 
         my $sound = XMLin(vfs_to_physical($f), ForceArray => [qw(Sound)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
@@ -404,7 +484,8 @@ sub add_gui_data
 {
     print "Loading GUI data...\n";
     push @files, find_files('gui', 'js');
-    push @files, find_files('art/textures/ui', 'dds|png|jpg|tga');
+    push @files, find_files('art/textures/ui', $supportedTextureFormats);
+    push @files, find_files('art/textures/selection', $supportedTextureFormats);
 }
 
 sub add_civs
@@ -420,7 +501,7 @@ sub add_civs
 
         my $civ = parse_json_file($f);
 
-        push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ];
+        push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ] if $civ->{Emblem};
 
         push @deps, [ $f, "audio/music/" . $_->{File} ] for @{$civ->{Music}};
     }
@@ -435,13 +516,14 @@ sub add_rms
 
     for my $f (sort @rmsdefs)
     {
+        next if $f =~ /^maps\/random\/rmbiome/;
+
         push @files, $f;
 
         push @roots, $f;
 
         my $rms = parse_json_file($f);
-
-        push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ];
+        push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ]   if $rms->{settings}{Script};
 
         # Map previews
         push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $rms->{settings}{Preview} ] if $rms->{settings}{Preview};
@@ -465,6 +547,28 @@ sub add_techs
     }
 }
 
+sub add_auras
+{
+    print "Loading auras...\n";
+
+    my @aurafiles = find_files('simulation/data/auras', 'json');
+    for my $f (sort @aurafiles)
+    {
+        push @files, $f;
+        push @roots, $f;
+
+        my $aura = parse_json_file($f);
+
+        push @deps, [ $f, $aura->{overlayIcon} ] if $aura->{overlayIcon};
+
+        if($aura->{rangeOverlay})
+        {
+            push @deps, [ $f, "art/textures/selection/" . $aura->{rangeOverlay}{lineTexture} ] if $aura->{rangeOverlay}{lineTexture};
+            push @deps, [ $f, "art/textures/selection/" . $aura->{rangeOverlay}{lineTextureMask} ] if $aura->{rangeOverlay}{lineTextureMask};
+        }
+    }
+}
+
 sub add_terrains
 {
     print "Loading terrains...\n";
@@ -476,6 +580,7 @@ sub add_terrains
         if ($f !~ /terrains.xml$/)
         {
             push @files, $f;
+            push @roots, $f;
 
             my $terrain = XMLin(vfs_to_physical($f), ForceArray => [qw(texture)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
@@ -539,43 +644,34 @@ sub check_unused
 
     for my $f (sort @files)
     {
-        next if exists $reachable{$f};
+        next if exists $reachable{$f}
+        || index($f, "art/terrains/") != -1
+        || index($f, "maps/random/") != -1
+        || index($f, "art/materials/") != -1;
         warn "Unused file '" . vfs_to_relative_to_mods($f) . "'\n";
     }
 }
 
 
-add_maps_xml() if CHECK_MAPS_XML;
-
+add_maps_xml() if $checkMapXml;
 add_maps_pmp();
-
 add_entities();
-
 add_actors();
-
+add_variants();
 add_art();
-
 add_materials();
-
 add_particles();
-
 add_soundgroups();
 add_audio();
-
 add_gui_xml();
 add_gui_data();
-
 add_civs();
-
 add_rms();
-
 add_techs();
-
 add_terrains();
+add_auras();
 
-# TODO: add non-skin textures, and all the references to them
-
-print "\n";
 check_deps();
-print "\n";
-check_unused();
+check_unused() if $checkUnused;
+print "\n" if $checkUnused;
+system("perl ../xmlvalidator/validate.pl") if $validateTemplates;

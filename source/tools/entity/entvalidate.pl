@@ -3,6 +3,7 @@ use warnings;
 
 use XML::LibXML;
 
+use lib ".";
 use Entity;
 
 my $rngschema = XML::LibXML::RelaxNG->new(location => '../../../binaries/system/entity.rng');
@@ -49,7 +50,7 @@ sub validate
 
 sub check_all
 {
-    my @files = Entity::find_entities();
+    my @files = Entity::find_entities("public");
 
     my $count = 0;
     my $failed = 0;

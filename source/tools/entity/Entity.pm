@@ -11,15 +11,15 @@ my $vfsroot = '../../../binaries/data/mods';
 
 sub get_filename
 {
-    my ($vfspath) = @_;
-    my $fn = "$vfsroot/public/simulation/templates/$vfspath.xml";
+    my ($vfspath, $mod) = @_;
+    my $fn = "$vfsroot/$mod/simulation/templates/$vfspath.xml";
     return $fn;
 }
 
 sub get_file
 {
-    my ($vfspath) = @_;
-    my $fn = get_filename($vfspath);
+    my ($vfspath, $mod) = @_;
+    my $fn = get_filename($vfspath, $mod);
     open my $f, $fn or die "Error loading $fn: $!";
     local $/;
     return <$f>;
@@ -113,13 +113,35 @@ sub apply_layer
     }
 }
 
+sub get_main_mod
+{
+    my ($vfspath, $mods) = @_;
+    my @mods_list = split(/\|/, $mods);
+    my $main_mod = $mods_list[0];
+    my $fn = "$vfsroot/$main_mod/simulation/templates/$vfspath.xml";
+    if (not -e $fn)
+    {                    
+        for my $dep (@mods_list)
+        {       
+            $fn = "$vfsroot/$dep/simulation/templates/$vfspath.xml";
+            if (-e $fn)
+            {
+                $main_mod = $dep;
+                last;
+            }
+        }
+    }
+    return $main_mod;
+}
+
 sub load_inherited
 {
-    my ($vfspath) = @_;
-    my $layer = load_xml($vfspath, get_file($vfspath));
+    my ($vfspath, $mods) = @_;
+    my $main_mod = get_main_mod($vfspath, $mods);
+    my $layer = load_xml($vfspath, get_file($vfspath, $main_mod));
 
     if ($layer->{Entity}{'@parent'}) {
-        my $parent = load_inherited($layer->{Entity}{'@parent'}{' content'});
+        my $parent = load_inherited($layer->{Entity}{'@parent'}{' content'}, $mods);
         apply_layer($parent->{Entity}, $layer->{Entity});
         return $parent;
     } else {
@@ -129,17 +151,18 @@ sub load_inherited
 
 sub find_entities
 {
+    my ($modName) = @_;
     my @files;
     my $find_process = sub {
         return $File::Find::prune = 1 if $_ eq '.svn';
         my $n = $File::Find::name;
         return if /~$/;
         return unless -f $_;
-        $n =~ s~\Q$vfsroot\E/public/simulation/templates/~~;
+        $n =~ s~\Q$vfsroot\E/$modName/simulation/templates/~~;
         $n =~ s/\.xml$//;
         push @files, $n;
     };
-    find({ wanted => $find_process }, "$vfsroot/public/simulation/templates");
+    find({ wanted => $find_process }, "$vfsroot/$modName/simulation/templates");
 
     return @files;
 }
