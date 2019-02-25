@@ -8,8 +8,7 @@
       </animations>
       <mesh>structural/spart_fortress.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/spart_5x5.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="barracks_decal_5x5">
+      <decal angle="0" depth="9" offsetx="0" offsetz="0" width="3"/>
+      <textures>
+        <texture file="props/spart_footpath_decal.png" name="baseTex"/>
+        <texture file="props/spart_footpath_decal_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm.xml</material>
+</actor>
