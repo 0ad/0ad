@@ -4,7 +4,7 @@
   <group>
     <variant name="base">
       <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/spart_3x3.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>
@@ -18,7 +18,7 @@
     <variant frequency="1" name="a">
       <mesh>structural/spart_house_a.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/spart_3x3.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/house_nature.xml" attachpoint="root"/>
       </props>
       <textures>

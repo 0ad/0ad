@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"PO-Revision-Date: 2019-02-24 04:55+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -25,74 +25,74 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "%(url)s를\n 기존의 웹 브라우저로 열고 있습니다. 잠시만 기다려 주십시오…"
 
 #: gui/common/functions_msgbox.js:60
 msgid "Opening page"
-msgstr "시작화면\n"
+msgstr "페이지를 여는중\n"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
 #: gui/common/l10n.js:46
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/l10n.js:46
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/l10n.js:143
 msgctxt "enumeration"
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/common/mod.js:17
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s (%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/common/mod.js:28
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "필요: %(mods)s"
 
 #: gui/common/mod.js:30
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "활성화: %(mods)s"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -101,21 +101,21 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "놀이 아이디를 검색하지 못했습니다.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "초기화 오류"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
 msgid "Abort"
-msgstr "중지시키다"
+msgstr "중지"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr ""
+msgstr "다시시도"
 
 #: gui/modio/modio.js:91
 #, javascript-format
@@ -124,12 +124,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "수정판(MOD) 목록을 검색할수 없습니다.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "가져오기[번역확인:팻치] 오류"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -138,12 +138,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "파일 내려받기를 실패했습니다.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "내려받기 실패"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -152,20 +152,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "파일의 확인중 오류가 발생했습니다.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "확인 오류"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "mod.io 인터페이스를 초기화하는중입니다."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "초기화하는중"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
@@ -173,35 +173,35 @@ msgstr "취소"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "사용 가능한 수정판(MOD) 목록을 가져와서 새로고치는중입니다."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "새로고치는중"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "새로고치기 취소"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "내려받는중 “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "내려받는중"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "내려받기 취소"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -210,7 +210,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "지나간 시간: %(elapsed)s\n남은 예상 시간: %(remaining)s\n평균 속도: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -221,20 +221,20 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
 msgid "Filter"
-msgstr "엄선"
+msgstr "거름망"
 
 #: gui/modmod/modmod.js:286
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
-msgstr ""
+msgstr "의존성이 만족되지 않음: %(dep)s"
 
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
-msgstr "모든 의존성이 만족합니다."
+msgstr "모든 의존성이 만족함"
 
 #: gui/modmod/modmod.js:370
 msgid "Enable"
@@ -242,7 +242,7 @@ msgstr "활성화"
 
 #: gui/modmod/modmod.js:370
 msgid "Disable"
-msgstr ""
+msgstr "비활성화"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
@@ -250,38 +250,38 @@ msgstr "선택된 모드가 없습니다."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "법적고지사항"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io 이용약관"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io 개인정보보호정책"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
-msgstr "OK"
+msgstr "확인"
 
 #. Translation: Label of a button that when pressed opens the Terms and
 #. Conditions in the default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "온라인 보기"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "%(url)s를 브라우저로 엽니다."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "mod.io 수정판(MODS)"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
-msgstr "사용가능한 모드"
+msgstr "사용가능한 수정판(MOD)"
 
 #: gui/modio/modio.xml:(caption):73
 msgid "Back"
@@ -289,11 +289,11 @@ msgstr "뒤로"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "목록 새로고치기"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "내려받기"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -308,11 +308,11 @@ msgstr "버전"
 #: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
 #: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
-msgstr "모드 수준"
+msgstr "수정판(MOD) 꼬리표"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "파일 크기"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -321,7 +321,7 @@ msgstr "의존성"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "수정(MOD)"
+msgstr "수정판(MOD)"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
@@ -333,15 +333,15 @@ msgstr "설명"
 
 #: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
-msgstr "모드가 활성화됨"
+msgstr "수정판(MOD)가 활성화됨"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "활성화/비활성화"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
-msgstr ""
+msgstr "웹사이트 방문"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
@@ -349,11 +349,11 @@ msgstr "종료"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "도움말"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "수정판(MOD) 내려받기"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -361,7 +361,7 @@ msgstr "구성 저장"
 
 #: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
-msgstr "모드 시작"
+msgstr "수정판(MOD) 시작"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
@@ -375,11 +375,11 @@ msgstr "웹사이트"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "수정판(MOD)가 시작되는 순서를 변경합니다. 이것은 모드의 의존성과 일치해야 합니다."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "파이로제네시스 수정판(MOD) 선택기"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -387,66 +387,66 @@ msgstr "닫기"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "수정판(MOD) 안내"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "mod.io 방문하기"
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "거절"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
-msgstr ""
+msgstr "수락"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. 제국 지배력 mod.io 면책사항"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "문서 날짜: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "mod.io 온라인 서비스에 연결하려고 합니다."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "이 서비스는 커뮤니티에서 만든 모델을 쉽게 내려받고 설치할 수 있는 방법을 제공하며, 인디DB와 모뎀을 지원하는 회사인 DDBolical Pty Ltd에 의해 제공됩니다."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "이 서비스는 13세 이상의 사용자를 위한것입니다."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "와일드파이어 게임즈는 이 연결을 안전하게 하기 위해 주의를 기울였고 보안 결함에 대한 방법을 검토했지만 이것이 위험을 초래하지 않는다고 보장할 수는 없습니다."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "이 서비스를 사용하면 mod.io의 이용 약관 및 개인 정보 취급 방침이 적용되며, 와일드파이어 게임즈는 이 서비스로 인해 발생하는 어떠한 손해에 대해서도 책임지지 않습니다."
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D.는 쉽게 수정 될 수 있도록 설계되었습니다. 수정판(MOD)은 .pyromod 파일 형식으로 배포되며 .zip 파일처럼 열 수 있습니다."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -456,13 +456,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "수정판(MOD)를 설치하려면 파일을 0 A.D.로 엽니다.(파일을 더블 클릭하여 게임에서 열거나 터미널에서 ″pyrogenesis file.pyromod″를 실행하십시오.) 수정판(MOD)는 수정판 선택기에서 사용할 수 있습니다. 당신은 그것을 활성화하거나 비활성화할 수 있습니다. 필요한 경우 파일 브라우저를 사용하여 수동으로 수정판(MOD)를 삭제할 수 있습니다 (https://trac.wildfiregames.com/wiki/GameDataPaths 참조)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "놀이 수정(MOD)하는 방법에 대한 자세한 내용은 온라인 수정하기 안내를 참조하십시오(아래의 수정하기 안내 단추를 클릭하십시오)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -471,4 +471,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "mod.io 서비스는 IndieDB와 ModDB 뒤에있는 DBolical에 의해 개발되었습니다. 그 웹 사이트들은 오랜 기간 동안 0 A.D.와 다른 인디 프로젝트에 관한 소문을 퍼뜨렸습니다! 오늘날, mod.io는 팀에의해 확인된 모든 개조물을 나열하고 내려받을 수 있게합니다. ″Mods 내려받기″를 클릭하여 사용해보고 설치하십시오!"

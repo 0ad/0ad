@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base1">
+      <mesh>gaia/papyrus.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="a">
+      <textures>
+        <texture file="gaia/papyrus.png" name="baseTex"/>
+        <texture file="gaia/papyrus_norm.png" name="normTex"/>
+        <texture file="gaia/papyrus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind_grain.xml</material>
+</actor>

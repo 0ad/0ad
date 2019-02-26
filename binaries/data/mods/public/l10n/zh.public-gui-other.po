@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-02-18 09:43+0100\n"
-"PO-Revision-Date: 2019-02-19 01:12+0000\n"
+"PO-Revision-Date: 2019-02-25 05:04+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "冲锋"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s：切换到建筑树。"
+msgstr "%(hotkey)s：切换到文明建筑树。"
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
@@ -363,7 +363,7 @@ msgstr "玩家不能更改初始团队。"
 
 #: gui/common/gamedescription.js:310
 msgid "Diplomacy"
-msgstr "政策"
+msgstr "外交"
 
 #: gui/common/gamedescription.js:311
 msgid "Players can make alliances and declare war on allies."
@@ -442,7 +442,7 @@ msgstr "从列表里随机挑选生物群"
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr "诺曼底模式"
+msgstr "游牧模式"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
@@ -456,7 +456,7 @@ msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
-msgstr "玩家以一个市政中心开始游戏。"
+msgstr "玩家以一个市政中心开局。"
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
@@ -469,7 +469,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:415
 msgid "Population Limit"
-msgstr "人口限制"
+msgstr "人口上限"
 
 #: gui/common/gamedescription.js:423
 msgid "Treasures"
@@ -532,7 +532,7 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "丢失服务器连接(%(seconds)s 秒)"
+msgstr "服务器连接丢失(%(seconds)s 秒)"
 
 #: gui/common/network.js:22
 #, javascript-format
@@ -562,7 +562,7 @@ msgstr "这通常是因为防火墙或杀毒软件导致主机的UDP端口20595�
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
-msgstr "主持人已结束游戏。"
+msgstr "主机已结束游戏。"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
@@ -586,11 +586,11 @@ msgstr "你已经被禁止"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "玩家名已被使用。如果您已断开连接，请过几秒后重试"
+msgstr "玩家名已被占用。如果你已断开连接，请过几秒后重试"
 
 #: gui/common/network.js:75
 msgid "Server full"
-msgstr "服务器已满"
+msgstr "服务器满员"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
@@ -599,7 +599,7 @@ msgstr "安全大厅验证失败，请通过大厅加入"
 #: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "[无效的数值 %(id)s]"
+msgstr "[无效值 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:91
@@ -718,7 +718,7 @@ msgstr "小规模战斗"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr "预设地形和玩家数量的地图，其他游戏设置可选。"
+msgstr "预设地形和玩家数量的地图，其它游戏设置可选。"
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -952,7 +952,7 @@ msgstr "%(label)s：%(value)s"
 #: gui/common/tooltips.js:324
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr "友好的火：%(enabled)s"
+msgstr "友好火力：%(enabled)s"
 
 #: gui/common/tooltips.js:341
 #, javascript-format
@@ -1210,7 +1210,7 @@ msgstr "游戏存档需要一套不同的附加模组："
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
-msgstr "您仍要继续吗？"
+msgstr "继续吗？"
 
 #: gui/loadgame/load.js:172 gui/options/options.js:300
 #: gui/options/options.js:350 gui/options/options.js:376
@@ -1250,33 +1250,33 @@ msgstr "值: %(val)s(最小: %(min)s, 最大: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "重置选项会清除您已保存的设置。是否要继续?"
+msgstr "重置选项会清除你已保存的设置。是否要继续?"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "有无效设定值！你真的要保存设置吗？"
+msgstr "有无效设定值！真的要保存设置吗？"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "您有未保存的更改，是否要关闭窗口?"
+msgstr "有未保存的更改，是否要关闭窗口?"
 
 #: gui/pregame/mainmenu.js:41
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s:观察文明结构树"
+msgstr "%(hotkey)s:观察文明建筑树"
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr "%(hotkey)s:了解各个文明特性"
+msgstr "%(hotkey)s:了解各文明特性"
 
 #: gui/pregame/mainmenu.js:49
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr "%(hotkey)s:启动多人游戏大厅，加入或开启公开的游戏,并与其他玩家聊天。"
+msgstr "%(hotkey)s:启动多人游戏大厅，加入或开启公开的游戏，并与其他玩家聊天。"
 
 #: gui/pregame/mainmenu.js:113
 #, javascript-format
@@ -1285,7 +1285,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr "%(warning)s你似乎在使用不支持着色器（固定功能）的图形处理器。此选项将在 0 A.D.的未来版本中删除，以支持更高级的图形功能。我们建议您将显卡升级到支持着色器的型号。"
+msgstr "%(warning)s你似乎在使用不支持着色器（固定功能）的图形处理器。此选项将在 0 A.D.的未来版本中删除，以支持更高级的图形功能。建议你升级显卡，来支持着色器。"
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1293,7 +1293,7 @@ msgstr "%(warning)s你似乎在使用不支持着色器（固定功能）的图�
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:121
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "点击“获取更多信息”或者点击\"确定\"继续游戏"
+msgstr "点击“获取更多信息”或者点击“确定”继续游戏"
 
 #: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
@@ -1305,7 +1305,7 @@ msgstr "确定"
 
 #: gui/pregame/mainmenu.js:123
 msgid "Read More"
-msgstr "获取更多"
+msgstr "获取更多信息"
 
 #: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1387,7 +1387,7 @@ msgstr "激活反馈"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "感谢您对改善 0 A.D. 的帮助！"
+msgstr "感谢你对改善 0 A.D. 的帮助！"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -1410,7 +1410,7 @@ msgstr "帮助改进 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "你可自动向我们发送反馈，以帮助我们修复错误，提高性能和兼容性。"
+msgstr "可自动向我们发送反馈，以帮助我们修复错误，提高性能和兼容性。"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1448,7 +1448,7 @@ msgstr "%(hotkey)s: 切换至历史"
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s:关闭结构树"
+msgstr "%(hotkey)s:关闭文明建筑树"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
@@ -1498,12 +1498,12 @@ msgstr "此回放需要一个不同的mods序列："
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr "此回放与您的游戏版本不兼容!"
+msgstr "此回放与你的游戏版本不兼容!"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr "您正在使用的游戏版本：%(version)s"
+msgstr "正在使用的游戏版本：%(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
@@ -1604,7 +1604,7 @@ msgstr "非排位赛"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "键入一个、多个、部分或完整的玩家名称来筛选回放。"
+msgstr "输入单个或多个玩家名称，来筛选回放。"
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -1621,7 +1621,7 @@ msgstr "yyyy-MM"
 
 #: gui/savegame/save.js:30
 msgid "No saved games found"
-msgstr "没有找到保存的游戏"
+msgstr "未找到保存的游戏"
 
 #: gui/savegame/save.js:64
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -1629,7 +1629,7 @@ msgstr "确定要覆盖此保存记录吗？"
 
 #: gui/savegame/save.js:65
 msgid "OVERWRITE SAVE"
-msgstr "覆盖"
+msgstr "覆盖记录"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1639,7 +1639,7 @@ msgstr "得分"
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
 #: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
 msgid "Player name"
-msgstr "玩家名字"
+msgstr "玩家昵称"
 
 #: gui/summary/layout.js:6
 msgid "Total score"
@@ -1679,7 +1679,7 @@ msgstr "哨所"
 
 #: gui/summary/layout.js:28
 msgid "Military"
-msgstr "军队"
+msgstr "军事"
 
 #: gui/summary/layout.js:29
 msgid "Fortresses"
@@ -1718,11 +1718,11 @@ msgstr "骑兵"
 
 #: gui/summary/layout.js:66
 msgid "Champion"
-msgstr "步行骑士"
+msgstr "冠勇单位"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
-msgstr "攻城"
+msgstr "攻城武器"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
@@ -1743,14 +1743,14 @@ msgstr "资源"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr "贡品"
+msgstr "进贡"
 
 #: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr "贡品\n(%(sent)s / %(received)s)"
+msgstr "进贡\n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:120
 msgid "Treasures collected"
@@ -1794,11 +1794,11 @@ msgstr "杂项"
 
 #: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
-msgstr "杀死/死亡比例"
+msgstr "杀敌/死亡比例"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr "地图控制(最高点)"
+msgstr "地图控制(最高)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
@@ -1806,15 +1806,15 @@ msgstr "地图控制(完成)"
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
-msgstr "地图勘测"
+msgstr "地图探测"
 
 #: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
-msgstr "素食者比例"
+msgstr "素食比例"
 
 #: gui/summary/layout.js:190
 msgid "Feminization"
-msgstr "女性化"
+msgstr "市民比例"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
@@ -1837,7 +1837,7 @@ msgstr "已训练"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr "建筑"
+msgstr "已建造"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
@@ -1873,7 +1873,7 @@ msgstr "杀死"
 
 #: gui/summary/summary.js:80
 msgid "Lost"
-msgstr "失去"
+msgstr "损失"
 
 #: gui/summary/summary.js:85
 msgid "Used"
@@ -1954,7 +1954,7 @@ msgstr "选择文明"
 #: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr "结构树"
+msgstr "文明建筑树"
 
 #: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
@@ -2021,7 +2021,7 @@ msgstr "胜利:"
 #: gui/replaymenu/replay_menu.xml:(heading):69
 msgctxt "replay"
 msgid "Date / Time"
-msgstr "日期/时间"
+msgstr "日期 / 时间"
 
 #: gui/loadgame/load.xml:(heading):36
 msgctxt "replay"
@@ -2037,7 +2037,7 @@ msgstr "地图名称"
 #: gui/loadgame/load.xml:(heading):44
 msgctxt "replay"
 msgid "Description"
-msgstr "说明"
+msgstr "描述"
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
@@ -2081,11 +2081,11 @@ msgstr "保存"
 
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
-msgstr "将用户设置重置为游戏的默认值"
+msgstr "重置用户设置为游戏默认值"
 
 #: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
-msgstr "还原为之前的已保存设置"
+msgstr "还原为之前已保存的设置"
 
 #: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
@@ -2103,7 +2103,7 @@ msgstr "内测版本 24"
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "警告：这是一个早期开发的游戏版本。许多功能没有被加进去。"
+msgstr "警告：为早期开发的游戏版本。许多功能还未添加。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
@@ -2111,7 +2111,7 @@ msgstr "打开 0 A.D. 游戏手册。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
-msgstr "开始经济类教学"
+msgstr "开始经济教学"
 
 #: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
@@ -2154,7 +2154,7 @@ msgstr "选择并下载模组"
 
 #: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "显示欢迎屏幕（如果被您隐藏）。"
+msgstr "显示欢迎界面。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
@@ -2168,7 +2168,7 @@ msgstr "人机对战"
 
 #: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "在多人游戏中和其他的人类玩家作战"
+msgstr "在多人游戏中和其他玩家对战"
 
 #: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
@@ -2186,21 +2186,21 @@ msgstr "退出游戏"
 
 #: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
-msgstr "点击进入游戏官网play0ad.com"
+msgstr "点击进入游戏官网 play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "点击在浏览器里打开0 A.D. IRC(网络即时聊天) - 频道#0ad 在webchat.quakenet.org"
+msgstr "点击在浏览器里，打开0 A.D. IRC(网络即时聊天)。频道（webchat.quakenet.org #0ad ）"
 
 #: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
+msgstr "单击访问 0 A.D. Trac ，提交bug、崩溃或错误。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
+msgstr "浏览器里打开0 A.D. 翻译页面。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
@@ -2208,7 +2208,7 @@ msgstr "捐赠，帮助我们改善游戏"
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
-msgstr "单击查看 0 A.D. 职员名单。"
+msgstr "查看 0 A.D. 职员名单。"
 
 #: gui/pregame/mainmenu.xml:(caption):108
 msgid "Tutorial"
@@ -2251,7 +2251,7 @@ msgstr "选项"
 
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Mod Selection"
-msgstr "Mod 选择"
+msgstr "模组选择"
 
 #: gui/pregame/mainmenu.xml:(caption):351
 msgid "Welcome Screen"
@@ -2259,7 +2259,7 @@ msgstr "欢迎界面"
 
 #: gui/pregame/mainmenu.xml:(caption):409
 msgid "Learn to Play"
-msgstr "学习如何游戏"
+msgstr "学习游戏"
 
 #: gui/pregame/mainmenu.xml:(caption):454
 msgid "Settings"
@@ -2283,7 +2283,7 @@ msgstr "聊天"
 
 #: gui/pregame/mainmenu.xml:(caption):541
 msgid "Report a Bug"
-msgstr "报告游戏错误"
+msgstr "提交游戏错误"
 
 #: gui/pregame/mainmenu.xml:(caption):553
 msgid "Translate the Game"
@@ -2315,7 +2315,7 @@ msgstr "信息"
 
 #: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
-msgstr "重玩游戏"
+msgstr "重玩"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
@@ -2380,7 +2380,7 @@ msgstr "欢迎！"
 
 #: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
-msgstr "以后显示此消息"
+msgstr "稍后显示此消息"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
@@ -2494,7 +2494,7 @@ msgstr "凯尔特竖琴"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr "锡哨子"
+msgstr "锡哨"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
@@ -2609,7 +2609,7 @@ msgstr "译者"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr "您希望如何在单人匹配中处理。"
+msgstr "你希望如何在单人匹配中处理。"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
@@ -2617,11 +2617,11 @@ msgstr "玩家名称 ( 单人玩家 )"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "您希望如何在多人匹配中处理 ( 大厅除外 ) 。"
+msgstr "你希望如何在多人匹配中处理 ( 大厅除外 ) 。"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr "玩家名称 ( 多人玩家 )"
+msgstr "玩家昵称 ( 多人玩家 )"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
@@ -2684,7 +2684,7 @@ msgstr "停火时间覆盖层"
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
 msgid "Everyone"
-msgstr "所有人"
+msgstr "全体"
 
 #: gui/options/options.json[0].options[9].list[1].label
 #: gui/options/options.json[3].options[5].list[1].label
@@ -2725,7 +2725,7 @@ msgstr "聊天时间戳"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr "通用的"
+msgstr "通用"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -2749,7 +2749,7 @@ msgstr "开启战争迷雾"
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr "战雾"
+msgstr "战争迷雾"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
@@ -2777,11 +2777,11 @@ msgstr "阴影效果"
 
 #: gui/options/options.json[1].options[6].list[0].label
 msgid "Very Low"
-msgstr "非常低"
+msgstr "极低"
 
 #: gui/options/options.json[1].options[6].list[1].label
 msgid "Low"
-msgstr "低"
+msgstr "低效"
 
 #: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
@@ -2790,11 +2790,11 @@ msgstr "中等"
 
 #: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
-msgstr "高"
+msgstr "高效"
 
 #: gui/options/options.json[1].options[6].list[4].label
 msgid "Very High"
-msgstr "非常高"
+msgstr "极高"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid ""
@@ -2924,7 +2924,7 @@ msgstr "限制进行中游戏的渲染频率来降低CPU使用率。设置为最
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
-msgstr "游戏内FPS上限"
+msgstr "FPS上限"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -2932,7 +2932,7 @@ msgstr "在性能和视觉外观之间设置平衡。"
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr "图像"
+msgstr "图形"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
@@ -2984,7 +2984,7 @@ msgstr "昵称通知"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr "有人加入时,语音提示。"
+msgstr "当有人加入时，语音提示。"
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
@@ -3061,7 +3061,7 @@ msgstr "防守"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "AI的默认行为。"
+msgstr "AI默认行为。"
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
@@ -3084,11 +3084,11 @@ msgstr "游戏设置"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "游戏服务器交换的登录和数据使用TLS加密保护。"
+msgstr "游戏服务器交换的登录和数据使用 TLS 加密保护。"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr "TLS加密保护。"
+msgstr "TLS 加密保护。"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3180,13 +3180,13 @@ msgstr "完成"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
-msgstr "所有展示"
+msgstr "显示所有"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "如果您或某个盟友已开始，中止或完成新阶段，并且所有玩家都处于观察员模式阶段，则显示聊天通知。"
+msgstr "如果你或某个盟友已开始、中止或完成新阶段，并且所有玩家都处于观察员模式阶段，则显示聊天通知。"
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
@@ -3266,31 +3266,31 @@ msgstr "当启动政策色后，显示你的颜色。"
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr "政策色：自身"
+msgstr "外交颜色：自身"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr "启动政策色时，显示联盟颜色。"
+msgstr "启动外交颜色时，显示同盟颜色。"
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr "政策色：同盟"
+msgstr "外交颜色：同盟"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "政策色启用时为中立玩家颜色"
+msgstr "启用外交颜色时为中立玩家颜色"
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr "政策色：中立"
+msgstr "外交颜色：中立"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "政策色启用时，为敌方颜色"
+msgstr "启用外交颜色时，为敌方颜色"
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr "政策色：敌人"
+msgstr "外交颜色：敌人"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3493,7 +3493,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“沙盒”或“极易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
+msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“测试”或“极易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3502,7 +3502,7 @@ msgstr "[font=\"sans-bold-20\"]  感谢你安装 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr "[字体=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
@@ -3555,7 +3555,7 @@ msgstr "兵营"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- 训练所有民兵。某些派系也可以解锁精英训练。"
+msgstr "- 训练所有民兵。某些文明可训练精锐单位。"
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
@@ -3577,11 +3577,11 @@ msgstr "铁匠铺"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr "- 研究各派的建筑."
+msgstr "- 研究各文明建筑。"
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr "- 研究升级武器和装甲."
+msgstr "- 研究升级武器和装甲。"
 
 #: gui/text/tips/blacksmith.txt:6
 msgid ""
@@ -3595,19 +3595,19 @@ msgstr "迦太基神迹"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- 迦太基精英枪兵和精英枪骑兵。"
+msgstr "- 迦太基精锐标枪兵和精锐枪骑兵。"
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr "- 两种单位都可从寺庙受训，而不是像大多数其他精英单位一样从要塞受训。"
+msgstr "- 两种单位都可从寺庙训练，而不像大多数其他精锐单位一样从城堡训练。"
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "- 枪兵可用作对抗骑兵的重装步兵。骑兵可用作对抗攻城武器和散兵的重型冲击力量。"
+msgstr "- 标枪兵可用作对抗骑兵的重装步兵。骑兵可用作对抗攻城武器和散兵的重型攻击力量。"
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3655,7 +3655,7 @@ msgstr "- 增加驻防步兵的火力。"
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- 不能像其他人一样撞击，但有更高的血量和护甲。"
+msgstr "- 不能像其他船只一样撞击，但有更高的血量和护甲。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3667,7 +3667,7 @@ msgstr "- 你的新殖民地的地基。"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr "-扩张你的领土范围"
+msgstr "-扩张你的领土"
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
@@ -3685,7 +3685,7 @@ msgstr "使馆"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- 迦太基特别的兵营."
+msgstr "- 迦太基特有的兵营."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
@@ -3703,7 +3703,7 @@ msgstr "捕鱼"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr "- 在海洋里捕鱼可以提供大量的食物。"
+msgstr "- 在海洋里捕鱼，可获取大量的食物。"
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
@@ -3711,11 +3711,11 @@ msgstr "- 每次出海，渔船都会带回大量食物。"
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr "- 捕鱼比在陆地上收集食物更快。"
+msgstr "-  比起陆地食物收集，捕鱼的效率更高。"
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- 注意！鱼不是捕捞不尽的"
+msgstr "- 注意！鱼类不是取之不竭的。"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3723,7 +3723,7 @@ msgstr "城堡"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr "-通常城堡是最坚固的建筑。"
+msgstr "- 通常，城堡是最为坚固的建筑。"
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
@@ -3735,7 +3735,7 @@ msgstr "- 增加人口."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- 驻守士兵可增加对城防造成的火力伤害。"
+msgstr "- 驻守士兵可增加建筑火力。"
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3751,11 +3751,11 @@ msgstr "- 通过战术定位，在战场上获得优势！"
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr "- 因此选择一些单位，按住鼠标右键，直线拖动，然后松开按钮。"
+msgstr "- 选择一些单位，按住鼠标右键，直线拖动，然后松开按钮。"
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr "-单位无法散开"
+msgstr "- 单位无法散开"
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3763,7 +3763,7 @@ msgstr "资源收集"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr "-让民兵和女市民采集资源"
+msgstr "- 让民兵和女市民采集资源。"
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
@@ -3771,17 +3771,17 @@ msgstr "-女市民采集浆果更高效"
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr "- 城邦步兵有更快的矿物收集速度。"
+msgstr "-  民兵的矿物收集效率更高。"
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr "- 城邦骑兵有更快的肉类收集速度。"
+msgstr "- 市民骑兵有更快的肉类收集效率。"
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of a citizen soldier (advanced, elite), the better he"
 " fights, but the less efficient he is at gathering resources."
-msgstr "-公民士兵的级别越高，战斗力越强，收集资源效率越低。"
+msgstr "- 民兵的级别越高，战斗力越强，收集资源效率也越低。"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3799,7 +3799,7 @@ msgstr "- 他编队中的单位速度更快、攻击力更高。"
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr "- 他活着时，散兵的移动速度更快。"
+msgstr "- 他存活时，散兵的移动速度更快。"
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3824,7 +3824,7 @@ msgstr "- 在其中驻守一个单位，可阻止中立领地的腐化。"
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "木栅栏"
+msgstr "栅栏"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
@@ -3832,13 +3832,13 @@ msgstr "- 一个各文明都有的廉价的木墙，建造速度快."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "- 大多数文明都能在村庄阶段建造."
+msgstr "- 大多数文明都能在乡村阶段建造。"
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr "- 能被敌方士兵攻击。不像城墙只能被攻城武器攻击."
+msgstr "- 可能被敌方士兵攻击。而城墙只能被攻城武器攻击。"
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3854,7 +3854,7 @@ msgstr "- 在他的范围内建筑物的建造速度加快。"
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr "- 在他活着的时候，寺庙的造价更加便宜。"
+msgstr "- 存活时，寺庙的造价更加便宜。"
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3866,7 +3866,7 @@ msgstr "- 波斯特有科技"
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr "- 所有的波斯建筑增加+25%的防御"
+msgstr "- 所有的波斯建筑+25%的防御"
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
@@ -3893,7 +3893,7 @@ msgstr "- 用于反击骑兵或反击其他近战步兵，以便将他们牵制�
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- 可建造的：马其顿王国、塞琉古王朝，以及托勒密王朝。"
+msgstr "- 可建造的：马其顿、塞琉古和托勒密。"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -3903,11 +3903,11 @@ msgstr "重型战舰"
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr "-最重型的标准战舰。以下势力可建造： 罗马、 迦太基、 托勒密，塞琉古。"
+msgstr "-最重型的标准战舰。以下文明可建造： 罗马、 迦太基、 托勒密和塞琉古。"
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr "- 至多运输50个单位。"
+msgstr "- 最多运输50个单位。"
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
@@ -3927,7 +3927,7 @@ msgstr "- 通常很平坦，有一些水坑和岩石"
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- 布满了猎物"
+msgstr "- 有大量猎物"
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
@@ -3949,7 +3949,7 @@ msgstr "- 独立的塔楼可以提供大面积的防御"
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr "- 一般要花费100木材和100石头。伊比利亚的塔楼要花费300石头(应为它们更强壮)"
+msgstr "- 一般要花费100木材和100石头。伊比利亚的塔楼要花费300石头(应为它们更加强壮)"
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
@@ -3965,17 +3965,17 @@ msgstr "- 是游戏里最强壮的步兵。"
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- 斯巴达的步兵很优秀"
+msgstr "- 斯巴达人可训练冠勇步兵。"
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- 使用他们来屠杀敌人的骑兵或作为一个打击力量，以支持你的常规步兵。"
+msgstr "- 可作为常规步兵，消灭敌人的骑兵。"
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- 使用方阵可以获得额外的护甲"
+msgstr "- 方阵增加护甲。"
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -3983,15 +3983,15 @@ msgstr "长矛兵"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr "- 游戏中的每一个阵营都有基本的近战步兵。"
+msgstr "- 每个文明都有基础的近战步兵。"
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for an attack bonus."
-msgstr "-反骑兵有攻击加成。"
+msgstr "- 反骑兵对骑兵有攻击加成。"
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."
-msgstr "-掌控微操节奏"
+msgstr "- 掌控微操节奏"
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
@@ -4009,25 +4009,25 @@ msgstr "- 希腊派别的一种特殊建筑。"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- 训练重装散兵和刀剑精英步兵。"
+msgstr "- 训练重装散兵和精锐步兵。"
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
-msgstr "- 人口+10"
+msgstr "- 人口 +10"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr "储藏屋"
+msgstr "仓库"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- 一种廉价的资源收集屋，可以收集木材，石头，金属，但不可以收集食物。"
+msgstr "- 廉价的收集屋，可以收集木材，石头，金属，但不可以收集食物。"
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- 研究提高公民采集能力的相关科技。"
+msgstr "- 提高市民采集效率的相关科技。"
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
@@ -4055,11 +4055,11 @@ msgstr "寺庙"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr "- 城镇时期建筑。"
+msgstr "- 城镇阶段的建筑。"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- 招募医务者来在战场上治疗你的军队。"
+msgstr "- 招募医师，在战场上治疗军队。"
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
@@ -4067,7 +4067,7 @@ msgstr "- 研究治疗术，宗教信仰及文化。"
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr "- 治疗光环会治愈附近的单位。"
+msgstr "- 治疗光环会治疗附近的单位。"
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
@@ -4075,24 +4075,24 @@ msgstr "- 把受伤的单位驻扎到里面会加快治愈."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr "领土腐化"
+msgstr "领土衰减"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- 当建筑物没有连接到一个盟军的民政中心时，会发生腐化。"
+msgstr "- 当建筑物没有连接到任何一个自己或同盟的市政中心时，会发生衰减。"
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr "- 腐化的过程可以通过在建筑中驻扎一些单位来减慢或者逆转。"
+msgstr "- 可以在建筑中驻扎单位，来减慢或者逆转衰减过程。"
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- 当腐化完成时，建筑物会被周围最有影响力的邻国占领。"
+msgstr "- 当衰减完成时，建筑物会被周围最有影响力的邻国获取。"
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4123,27 +4123,27 @@ msgstr "- 中型战船"
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- 只有罗马，迦太基，希腊和波斯可建造"
+msgstr "- 只有罗马、迦太基、希腊和波斯可建造"
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr "- 擅长输送士兵或者战斗"
+msgstr "- 擅长传送士兵或者战斗"
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr "- 在战舰上驻扎士兵以增强火力。"
+msgstr "- 在战舰上驻扎士兵，以增强火力。"
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr "- 在战舰上驻扎投手，用以远程攻城攻击 ( 尚未实现) 。"
+msgstr "- 在战舰上驻扎远程武器，用以远程攻城攻击 ( 尚未实现) 。"
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr "- 可实施的毁灭性舰队对撞攻击必须在每次使用间隔中获得补给 ( 尚未实现) 。"
+msgstr "- 可实施的毁灭性的舰队撞击，必须在每次使用间隔中获得补给 ( 尚未实现) 。"
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4157,7 +4157,7 @@ msgstr "- 鲁斯塔尼部落的伊比利亚英雄"
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr "- 在公元前147 到 139的鲁斯塔尼战争中，至少7次参加了对抗罗马的战斗。"
+msgstr "- 在公元前147-前139的鲁斯塔尼战争中，至少7次参加了对抗罗马的战斗。"
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
@@ -4167,7 +4167,7 @@ msgstr "- 移动快速，并且可以切换使用剑和火标枪。"
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr "- 他拥有\"游击战术\"的光环，在其光环下的伊比利亚士兵可以伏击他们的敌人。"
+msgstr "- 他拥有“游击战术”的光环，在其光环下的伊比利亚士兵可以伏击敌人。"
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4175,7 +4175,7 @@ msgstr "战象"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- 来自非洲和印度的巨大野兽，受过训练战争。"
+msgstr "- 来自非洲和印度的大型猛兽，训练后可加入战争。"
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -4199,7 +4199,7 @@ msgstr "鲸"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr "- 一种海洋资源"
+msgstr "- 海洋资源"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
