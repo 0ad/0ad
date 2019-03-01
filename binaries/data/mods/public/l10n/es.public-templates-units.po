@@ -17,14 +17,15 @@
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
+# soloooy0 fg <juanjo.fg@hotmail.com>, 2019
 # Swyter <Swyterzone@gmail.com>, 2014-2018
 # vega93 <arkadas_llisa@hotmail.com>, 2014-2015,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-01-04 15:31+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2019-02-25 09:44+0100\n"
+"PO-Revision-Date: 2019-02-25 15:41+0000\n"
+"Last-Translator: soloooy0 fg <juanjo.fg@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -927,6 +928,8 @@ msgid "Ploîon Phortēgikón"
 msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
+#: simulation/templates/units/mace_ship_trireme.xml:5
+#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
 msgstr "Triḗrēs Athēnaía"
 
@@ -1283,8 +1286,6 @@ msgid "Ḥameš-Mašōt"
 msgstr "Ḥameš-Mašōt"
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
-#: simulation/templates/units/mace_ship_trireme.xml:5
-#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
 msgstr "Trirreme"
 
@@ -1787,9 +1788,8 @@ msgid "Hemiolos"
 msgstr "Hemiolos"
 
 #: simulation/templates/units/mace_ship_trireme.xml:6
-#: simulation/templates/units/spart_ship_trireme.xml:6
-msgid "Triḗrēs"
-msgstr "Triḗrēs"
+msgid "Macedonian Trireme"
+msgstr "Trireme Mcedonio"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikḗ"
@@ -2775,6 +2775,10 @@ msgstr "Hoplita perieco"
 #: simulation/templates/units/spart_infantry_spearman_b.xml:16
 msgid "Hoplítēs Períoikos"
 msgstr "Hoplítēs Períoikos"
+
+#: simulation/templates/units/spart_ship_trireme.xml:6
+msgid "Spartan Trireme"
+msgstr "Trireme Espartano"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:21
 msgid "Spartan Woman"

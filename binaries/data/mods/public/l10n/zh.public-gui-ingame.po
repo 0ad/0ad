@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-02-25 04:22+0000\n"
+"PO-Revision-Date: 2019-02-26 05:44+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -744,7 +744,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:402
 msgid "Capture Points:"
-msgstr "捕获点:"
+msgstr "占领点数:"
 
 #: gui/session/selection_details.js:410
 #, javascript-format
@@ -1235,7 +1235,7 @@ msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 #: gui/session/unit_actions.js:1450
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "你无法破坏此实体，因为你的捕获点不到一半"
+msgstr "你无法破坏此建筑，因为你的占领点数不到一半。"
 
 #: gui/session/unit_actions.js:1453
 msgid "This entity is undeletable"
@@ -1479,7 +1479,7 @@ msgstr "生命值："
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
 msgid "Capture points:"
-msgstr "捕获点:"
+msgstr "占领点数:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"

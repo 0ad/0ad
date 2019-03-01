@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-02-24 13:30+0000\n"
+"POT-Creation-Date: 2019-02-25 09:44+0100\n"
+"PO-Revision-Date: 2019-02-27 11:54+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -928,6 +928,8 @@ msgid "Ploîon Phortēgikón"
 msgstr "교역선"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
+#: simulation/templates/units/mace_ship_trireme.xml:5
+#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
 msgstr ""
 
@@ -1284,8 +1286,6 @@ msgid "Ḥameš-Mašōt"
 msgstr ""
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
-#: simulation/templates/units/mace_ship_trireme.xml:5
-#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
 msgstr "3단노선"
 
@@ -1788,8 +1788,7 @@ msgid "Hemiolos"
 msgstr ""
 
 #: simulation/templates/units/mace_ship_trireme.xml:6
-#: simulation/templates/units/spart_ship_trireme.xml:6
-msgid "Triḗrēs"
+msgid "Macedonian Trireme"
 msgstr ""
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
@@ -2626,7 +2625,7 @@ msgstr "안티오코스 4세 \"현신왕\""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "안티오코스 4세 에피파네스"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:9
 msgid "Seleucus I \"The Victor\""
@@ -2634,7 +2633,7 @@ msgstr "셀레우코스 1세 \"승리왕\""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:10
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "셀레우코스 1세 니카토르"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:19
 msgid "Syrian Archer"
@@ -2775,6 +2774,10 @@ msgstr "페리오이코이 중갑 보병"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:16
 msgid "Hoplítēs Períoikos"
+msgstr ""
+
+#: simulation/templates/units/spart_ship_trireme.xml:6
+msgid "Spartan Trireme"
 msgstr ""
 
 #: simulation/templates/units/spart_support_female_citizen.xml:21
