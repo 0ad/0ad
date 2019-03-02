@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:44+0100\n"
-"PO-Revision-Date: 2019-02-19 03:26+0000\n"
+"POT-Creation-Date: 2019-02-25 09:44+0100\n"
+"PO-Revision-Date: 2019-02-26 11:50+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -926,6 +926,8 @@ msgid "Ploîon Phortēgikón"
 msgstr "商船"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
+#: simulation/templates/units/mace_ship_trireme.xml:5
+#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
 msgstr "三桨座战船"
 
@@ -1282,8 +1284,6 @@ msgid "Ḥameš-Mašōt"
 msgstr "五桨座战船"
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
-#: simulation/templates/units/mace_ship_trireme.xml:5
-#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
 msgstr "三桨座战船"
 
@@ -1786,9 +1786,8 @@ msgid "Hemiolos"
 msgstr "轻型战船"
 
 #: simulation/templates/units/mace_ship_trireme.xml:6
-#: simulation/templates/units/spart_ship_trireme.xml:6
-msgid "Triḗrēs"
-msgstr "三桨座战船 "
+msgid "Macedonian Trireme"
+msgstr "马其顿三桨座战船"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikḗ"
@@ -2400,7 +2399,7 @@ msgstr "罗马百夫长"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:15
 msgid "Centurio Legionarius"
-msgstr ""
+msgstr "军团百夫长"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:6
 msgid "Eques Consularis"
@@ -2774,6 +2773,10 @@ msgstr "矛兵"
 #: simulation/templates/units/spart_infantry_spearman_b.xml:16
 msgid "Hoplítēs Períoikos"
 msgstr "庇里阿西重装步兵"
+
+#: simulation/templates/units/spart_ship_trireme.xml:6
+msgid "Spartan Trireme"
+msgstr "斯巴达三桨座战船 "
 
 #: simulation/templates/units/spart_support_female_citizen.xml:21
 msgid "Spartan Woman"

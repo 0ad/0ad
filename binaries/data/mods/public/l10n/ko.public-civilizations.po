@@ -10,6 +10,7 @@
 # jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
+# ks k, 2019
 # Philipp Sauter <qt123@pm.me>, 2018
 # sang gyu nam <destro0419@naver.com>, 2019
 # Valtiel <shinhs6291@naver.com>, 2014
@@ -21,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-02-24 13:40+0000\n"
+"PO-Revision-Date: 2019-02-27 11:54+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -289,7 +290,7 @@ msgstr "서양 문명의 요람이며, 민주주의의 발상지로 아테네는
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr "브리튼족"
+msgstr "브리튼"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
@@ -756,7 +757,7 @@ msgstr "이베리아 용병을 고용하기"
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr "이베리아인은 용맹 한 용병으로 유명 고용주에게 충성을 다했습니다."
+msgstr "이베리아인은 용맹한 용병으로 유명 고용주에게 충성을 다했습니다."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -1137,7 +1138,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
-msgstr ""
+msgstr "쿠시인"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 msgid "The Pyramids of Meroe"
@@ -1274,7 +1275,7 @@ msgstr "아마니레나스"
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr ""
+msgstr "쿠시 아프리카인"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
@@ -1295,11 +1296,11 @@ msgstr ""
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
 msgid "History."
-msgstr ""
+msgstr "역사."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
-msgstr ""
+msgstr "아페데마크 사원"
 
 #: simulation/data/civs/kush.jsonStructures[1].Special
 msgid ""
@@ -1309,7 +1310,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr ""
+msgstr "쿠시 피라미드"
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
@@ -1609,7 +1610,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
-msgstr ""
+msgstr "마우리아"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
@@ -1676,27 +1677,27 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
-msgstr ""
+msgstr "아차르야 바드라바후"
 
 #: simulation/data/civs/maur.jsonAINames[4]
 msgid "Bindusara Maurya"
-msgstr ""
+msgstr "빈두사라 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[5]
 msgid "Dasaratha Maurya"
-msgstr ""
+msgstr "다사라타 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[6]
 msgid "Samprati Maurya"
-msgstr ""
+msgstr "삼프라티 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[7]
 msgid "Salisuka Maurya"
-msgstr ""
+msgstr "살리수카 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Devavarman Maurya"
-msgstr ""
+msgstr "데바바르만 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
@@ -1704,7 +1705,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonAINames[10]
 msgid "Brihadratha Maurya"
-msgstr ""
+msgstr "브리하드라타 마우리아"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -2024,7 +2025,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
-msgstr "프톨레마이오스 왕조"
+msgstr "프톨레마이오스"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
@@ -2135,7 +2136,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonAINames[13]
 msgid "Berenice Epiphaneia"
-msgstr ""
+msgstr "베레니케 에피파네이아"
 
 #: simulation/data/civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
@@ -2143,19 +2144,19 @@ msgstr "클레오파트라 필로파토르"
 
 #: simulation/data/civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
-msgstr ""
+msgstr "클레오파트라 셀레네"
 
 #: simulation/data/civs/ptol.jsonAINames[16]
 msgid "Cleopatra II Philometora Soteira"
-msgstr ""
+msgstr "클레오파트라 2세 필로메토라 소테이라"
 
 #: simulation/data/civs/ptol.jsonAINames[17]
 msgid "Arsinoe IV"
-msgstr ""
+msgstr "아르시노에 4세"
 
 #: simulation/data/civs/ptol.jsonAINames[18]
 msgid "Arsinoe II"
-msgstr ""
+msgstr "아르시노에 3세"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
@@ -2191,15 +2192,15 @@ msgstr "프톨레마이오스 1세 소테르"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"
-msgstr ""
+msgstr "프톨레마이오스 4세 필로파토르"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].Name
 msgid "Kleopatra H' Philopater"
-msgstr ""
+msgstr "클레오파트라 7세 필로파토르"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
-msgstr ""
+msgstr "프톨레마이오스 이집트인"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
@@ -2478,7 +2479,7 @@ msgstr ""
 #: simulation/data/civs/sele.jsonName
 #: simulation/data/civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
-msgstr ""
+msgstr "셀레우코스"
 
 #: simulation/data/civs/sele.jsonCivBonuses[0].Description
 msgid ""
@@ -2525,64 +2526,64 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
-msgstr ""
+msgstr "셀레우코스 1세 니카토르"
 
 #: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
-msgstr ""
+msgstr "안티오코스 1세 소테르"
 
 #: simulation/data/civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
-msgstr ""
+msgstr "안티오코스 2세 테오스"
 
 #: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
-msgstr ""
+msgstr "셀레우코스 2세 칼리니코스"
 
 #: simulation/data/civs/sele.jsonAINames[4]
 msgid "Seleucus III Ceraunus"
-msgstr ""
+msgstr "셀레우코스 3세 케라우노스"
 
 #: simulation/data/civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
-msgstr ""
+msgstr "안티오코스 3세 메가스"
 
 #: simulation/data/civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
-msgstr ""
+msgstr "셀레우코스 4세 필로파토르"
 
 #: simulation/data/civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
-msgstr ""
+msgstr "안티오코스 4세 에피파네스"
 
 #: simulation/data/civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
-msgstr ""
+msgstr "안티오코스 5세 에우파토르"
 
 #: simulation/data/civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
-msgstr ""
+msgstr "데메트리오스 1세 소테르"
 
 #: simulation/data/civs/sele.jsonAINames[10]
 msgid "Alexander I Balas"
-msgstr ""
+msgstr "알렉산더 1세 발라스"
 
 #: simulation/data/civs/sele.jsonAINames[11]
 #: simulation/data/civs/sele.jsonAINames[15]
 msgid "Demetrius II Nicator"
-msgstr ""
+msgstr "데메트리우스 2세 니카토르"
 
 #: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr ""
+msgstr "안티오코스 6세 디오뉘소스"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
-msgstr ""
+msgstr "디오도토스 트리폰"
 
 #: simulation/data/civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
-msgstr ""
+msgstr "안티오코스 7세 시데테스"
 
 #: simulation/data/civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
@@ -2590,55 +2591,55 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
-msgstr ""
+msgstr "클레오파트라 테아"
 
 #: simulation/data/civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
-msgstr ""
+msgstr "· 셀레우코스 5세 필로메토르"
 
 #: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
-msgstr ""
+msgstr "안티오코스 8세 그리푸스"
 
 #: simulation/data/civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr ""
+msgstr "안티오코스 9세 퀴지케노스"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
-msgstr ""
+msgstr "셀레우코스 6세 에피파네스"
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr ""
+msgstr "안티오코스 10세 에우세베스"
 
 #: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
-msgstr ""
+msgstr "데메트리오스 3세 에우카에로스"
 
 #: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr ""
+msgstr "안티오코스 11세 에피파네스"
 
 #: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
-msgstr ""
+msgstr "필리포스 1세 필라델포스"
 
 #: simulation/data/civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
-msgstr ""
+msgstr "안티오코스 12세 디오뉘소스"
 
 #: simulation/data/civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
-msgstr ""
+msgstr "셀레우코스 7세 퀴비오사크테스"
 
 #: simulation/data/civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
-msgstr ""
+msgstr "안티오코스 13세 아시아티코스"
 
 #: simulation/data/civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
-msgstr ""
+msgstr "필리포스 2세 필로로마이오스"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -2691,7 +2692,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "셀레우코스 1세 니카토르"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2708,7 +2709,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
-msgstr ""
+msgstr "안티오코스 7세 메가스"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2723,7 +2724,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "안티오코스 4세 에피파네스"
 
 #: simulation/data/civs/sele.jsonFactions[0].Description
 msgid ""
@@ -2790,7 +2791,7 @@ msgstr "스파르타가 병영에서 랭크 업그레이드를 할 때에는 시
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
-msgstr ""
+msgstr "리쿠프구스의 법률"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""
@@ -2860,7 +2861,7 @@ msgstr ""
 
 #: simulation/data/civs/spart.jsonAINames[11]
 msgid "Agesipolis"
-msgstr ""
+msgstr "아게시폴리스"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -2871,7 +2872,7 @@ msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
-msgstr ""
+msgstr "여성성의 신화??"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -2905,7 +2906,7 @@ msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
-msgstr ""
+msgstr "아고게"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].History
 msgid ""
