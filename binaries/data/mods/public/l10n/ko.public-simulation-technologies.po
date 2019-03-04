@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-02-27 11:54+0000\n"
+"PO-Revision-Date: 2019-03-02 12:42+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1688,15 +1688,15 @@ msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr ""
+msgstr "상인이 +15% 증가합니다."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
-msgstr ""
+msgstr "손재주"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% gain."
-msgstr ""
+msgstr "상인이 +15% 증가합니다."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1733,7 +1733,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "기병대 징수"
+msgstr "기병 소집"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
@@ -1782,7 +1782,7 @@ msgstr ""
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Ágēma"
-msgstr ""
+msgstr "아게마"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1823,11 +1823,11 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "디아스포라"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "상인 3명이 필요함"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -1844,7 +1844,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
-msgstr ""
+msgstr "지도제작"
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""
@@ -1859,7 +1859,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "첩자"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -1875,7 +1875,7 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr ""
+msgstr "고급 시민 기병"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
@@ -1890,7 +1890,7 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr ""
+msgstr "고급 시민 보병"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
@@ -1973,7 +1973,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
-msgstr ""
+msgstr "캘트 용병 함장??"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
 msgid ""
@@ -1998,7 +1998,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
-msgstr ""
+msgstr "루시타니아 용병 함장??"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
 msgid ""
@@ -2008,7 +2008,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
-msgstr ""
+msgstr "켈트이베리아 용병 장군"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
@@ -2023,7 +2023,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
-msgstr ""
+msgstr "이탈리아 용병 함장??"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsontooltip
 msgid ""
@@ -2033,31 +2033,31 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
-msgstr ""
+msgstr "이탈리아 용병 장군"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr ""
+msgstr "켈트 용병 비용 대 고용 시간 #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr ""
+msgstr "켈트 용병 비용 대 고용 시간 #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "이베리아 용병 비용 대 고용 시간 #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "이베리아 용병 비용 대 고용 시간 #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "이탈리아 용병 비용 대 고용 시간 #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "이탈리아 용병 비용 대 고용 시간 #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -2101,7 +2101,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
-msgstr ""
+msgstr "페니키아 해군 건축가"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
@@ -2115,7 +2115,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr ""
+msgstr "켈트 연합"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
@@ -2124,7 +2124,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
-msgstr ""
+msgstr "갈리아 패권"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
@@ -2147,7 +2147,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr "이베리아의 패권"
+msgstr "이베리아 패권"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
@@ -2162,7 +2162,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
-msgstr ""
+msgstr "이탈리아 연합"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
 msgid ""
@@ -2172,7 +2172,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
-msgstr ""
+msgstr "아탈리아 패권"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
@@ -2187,7 +2187,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
-msgstr ""
+msgstr "켈트 고급 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
@@ -2202,7 +2202,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
-msgstr ""
+msgstr "이베리아 고급 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
@@ -2217,7 +2217,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
-msgstr ""
+msgstr "이탈리아 고급 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
@@ -2231,7 +2231,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
-msgstr ""
+msgstr "이탈리아 켈트 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
@@ -2245,7 +2245,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
-msgstr ""
+msgstr "이베리아 정예 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
@@ -2260,7 +2260,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
-msgstr ""
+msgstr "이탈리아 정예 용병"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -2322,7 +2322,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
-msgstr ""
+msgstr "약체??"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
