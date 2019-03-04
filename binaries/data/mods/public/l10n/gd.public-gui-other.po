@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2018
+# GunChleoc, 2014-2019
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 14:14+0000\n"
+"POT-Creation-Date: 2019-02-18 09:43+0100\n"
+"PO-Revision-Date: 2019-02-18 14:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -111,14 +111,19 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Chaidh sgur dhen luchdadh"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Gaìa"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tuaireamach"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Togail: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -150,7 +155,7 @@ msgstr "SGUAB ÀS"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Chan eil"
@@ -158,7 +163,7 @@ msgstr "Chan eil"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Tha"
@@ -1222,7 +1227,7 @@ msgstr "Dèan briogadh deas gus barrachd fiosrachaidh a shealltainn."
 msgid "Click to view more information."
 msgstr "Briog air gus barrachd fiosrachaidh a shealltainn."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s – %(name)s"
@@ -1237,15 +1242,15 @@ msgstr "Tuilleadain: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Feumaidh an sàbhaladh geama seo 0 A.D. tionndadh %(requiredVersion)s fhad ’s a tha thu a’ ruith an tionndadh %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Tha an sàbhaladh geama seo feumach air seann-tionndadh de 0 A.D."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Tha an sàbhaladh geama seo feumach air sreath eile dhe thuilleadain:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1346,55 +1351,50 @@ msgstr "Ceart ma-thà"
 msgid "Read More"
 msgstr "Barrachd fiosrachaidh"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Togail: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "A bheil thu cinnteach gu bheil thu airson 0 A.D. fhàgail?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "A bheil thu cinnteach gu bheil thu airson 0 A.D. fhàgail agus an deasaiche chnàmh-sgeulan fhosgladh?"
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Chan eil deasaiche nan cnàmh-sgeul ri làimh no dh’fhàillig leis an luchdadh. Thoir sùil air logaichean a’ gheama airson barrachd fiosrachaidh."
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Mearachd"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "Tòisich an lobaidh ioma-chluicheadair gus pàirt a ghabhail ann an geamannan poblach no an òstadh agus airson cabadaich le cluicheadairean eile. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Leabhar-mìneachaidh"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Teirmichean"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Leugh is aontaich ri teirmichean is cumhaichean a’ UserReporter."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Foillseachaichean"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -1435,7 +1435,7 @@ msgstr "Mòran taing gun cuidich thu le piseach a thoirt air 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Tha cur fiosrachaidh an comas an-dràsta."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1454,7 +1454,7 @@ msgstr "Cuidich sinn le piseach a thoirt air 0 A.D!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "’S urrainn dhut fiosrachadh a chur thugainn gu fèin-obrachail a chuidicheas ach an càraich sinn bugaichean is an doir sinn piseach air an dèanadas is co-chòrdalachd."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1848,7 +1848,7 @@ msgstr "Marbhadh / bàs"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr "Smachd air a’  (as motha)"
+msgstr "Smachd air a’ mhapa (as airde)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
@@ -2147,7 +2147,7 @@ msgstr "Cha buaidh aig na dh’atharraich thu gun a shàbhaladh air an t-seisean
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alpha XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2457,7 +2457,7 @@ msgstr "Seòrsa:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Seall ath-chluiche"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2569,7 +2569,7 @@ msgstr "Laideann"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Pearsais"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -3032,6 +3032,14 @@ msgstr "Faigh brath fuaime nuair a sgrìobas cuideigin d’ fhar-ainm."
 msgid "Nick Notification"
 msgstr "Brath far-ainm"
 
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr ""
+
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Seall gliocasan fhad ’s a tha geama ’ga shuidheachadh."
@@ -3126,11 +3134,11 @@ msgstr "Suidheachadh a’ gheama"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Dìon an clàradh a-steach is an dàta a thèid a thar-aiseag le frithealaiche an lobaidh le crioptachadh TLS."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "Crioptachadh TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -4233,7 +4241,7 @@ msgstr "• So-leònta an aghaidh streupairean."
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "- Ri fhaighinn dha na Cartagaich, Kuluš, na Mauraidhich, na Pearsaich, na Ptolamaich ’s na Seleucaich."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

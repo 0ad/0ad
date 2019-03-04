@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-25 09:44+0100\n"
-"PO-Revision-Date: 2019-01-28 05:52+0000\n"
+"POT-Creation-Date: 2019-02-08 09:44+0100\n"
+"PO-Revision-Date: 2019-02-15 07:46+0000\n"
 "Last-Translator: Neha Deogade <n.singh@mailbox.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -47,29 +47,29 @@ msgstr "धातू खाण"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "खनिज ठेवी, मौल्यवान धातूचे दुर्मिळ रूपांमध्ये प्रवेश प्रदान करणे."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
-msgstr ""
+msgstr "खडक"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
-msgstr ""
+msgstr "दगड खाण"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr ""
+msgstr "दगडांच्या बांधकाम साहित्यासाठी ही जमीन खोदली पाहिजे. "
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "सामान्य खंड"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Ruins"
-msgstr ""
+msgstr " खंड"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
@@ -999,6 +999,15 @@ msgstr ""
 msgid "Spy"
 msgstr ""
 
+#: simulation/templates/special/formations/anti_cavalry.xml:6
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "16 melee infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/anti_cavalry.xml:7
+msgid "Anti Cavalry"
+msgstr ""
+
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr ""
@@ -1067,11 +1076,7 @@ msgstr ""
 msgid "Syntagma"
 msgstr ""
 
-#: simulation/templates/special/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr ""
-
-#: simulation/templates/special/formations/testudo.xml:7
+#: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
 msgstr ""
 

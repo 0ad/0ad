@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skeletons>
+  <standard_skeleton title="Bridge Armature" id="Bridge Armature">
+    <bone name="BR_Bridge_Root">
+      <bone name="BR_Bridge_Base">
+        <bone name="BR_Bridge_Lever_R"/>
+        <bone name="BR_Bridge_Lever_L"/>
+        <bone name="BR_Bridge_br"/>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton title="Bridge Armature" target="Bridge Armature">
+    <identifier>
+      <root>BR_Bridge_Root</root>
+    </identifier>
+    <bone name="BR_Bridge_Root">
+      <target>BR_Bridge_Root</target>
+      <bone name="BR_Bridge_Base">
+        <target>BR_Bridge_Base</target>
+        <bone name="BR_Bridge_Lever_R">
+            <target>BR_Bridge_Lever_R</target>
+        </bone>
+        <bone name="BR_Bridge_Lever_L">
+            <target>BR_Bridge_Lever_L</target>
+        </bone>
+        <bone name="BR_Bridge_br">
+            <target>BR_Bridge_br</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

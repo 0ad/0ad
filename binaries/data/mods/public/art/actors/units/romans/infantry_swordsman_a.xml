@@ -5,7 +5,7 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/rome_monte_a.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_scutum_a.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
@@ -52,6 +52,20 @@
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
+  </group>
+  <group>
+    <variant file="biped/formations/testudo_idle_top.xml"/>
+    <variant file="biped/formations/testudo_idle_front.xml"/>
+    <variant file="biped/formations/testudo_walk_top.xml"/>
+    <variant file="biped/formations/testudo_walk_front.xml"/>
+    <variant file="biped/formations/testudo_idle_front_left.xml"/>
+    <variant file="biped/formations/testudo_idle_front_right.xml"/>
+    <variant file="biped/formations/testudo_idle_left.xml"/>
+    <variant file="biped/formations/testudo_idle_right.xml"/>
+    <variant file="biped/formations/testudo_walk_left.xml"/>
+    <variant file="biped/formations/testudo_walk_right.xml"/>
+    <variant file="biped/formations/testudo_walk_front_left.xml"/>
+    <variant file="biped/formations/testudo_walk_front_right.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

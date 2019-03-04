@@ -5,8 +5,12 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/pers_merc_sail.dae</mesh>
-      <textures><texture file="props/pers_trireme_sail_d.dds" name="baseTex"/></textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/pers_sail_01.xml" name="zoroaster"/>
+    <variant frequency="100" file="others/ships/pers_sail_02.xml" name="royal standard"/>
+    <variant frequency="100" file="others/ships/pers_sail_03.xml" name="standard"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

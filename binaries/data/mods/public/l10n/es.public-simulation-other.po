@@ -10,6 +10,7 @@
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # The_Gipsy <xelectronhd@gmail.com>, 2018
 # Jesus A <jasenjot@gmail.com>, 2017
+# Jesus Covo <jurdikd@gmail.com>, 2019
 # Jhon Valencia <jhonvalencia314@gmail.com>, 2017
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # juanda097 <juanda097@protonmail.ch>, 2014-2015
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-01-18 15:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-05 14:45+0000\n"
+"Last-Translator: Jesus Covo <jurdikd@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,14 +318,14 @@ msgstr "Si me pagas %(_amount_)s %(_resource_)s como tributo, aceptaré tu petic
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "%(_player_)s, si me envías  %(_amount_)s %(_resource_)s, aceptaré un pacto de neutralidad."
+msgstr "%(_player_)s, si tu me mandas%(_amount_)s %(_resource_)s, aceptaré un pacto de neutralidad."
 
 #: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "%(_player_)s, no aceptaré tu petición de neutralidad a menos que me entregues  %(_amount_)s %(_resource_)s como tributo pronto."
+msgstr ", No aceptaré tu petición de neutralidad a menos que me entregues tributo a mí pronto."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format

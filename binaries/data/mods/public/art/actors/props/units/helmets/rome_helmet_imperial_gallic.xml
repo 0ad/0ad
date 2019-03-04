@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Rome Agen A">
+      <mesh>props/helmet/rome_imp_gallic_h.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="base">
+      <textures>
+        <texture file="props/helmet/rome_imp_gallic_h.png" name="baseTex"/>
+        <texture file="props/helmet/rome_imp_gallic_h_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_imp_gallic_h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

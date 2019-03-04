@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="Blanket">
+      <mesh>props/hele_trireme_blanket.dae</mesh>
+      <textures>
+		<texture file="props/stall_big_cloth.png" name="baseTex"/>
+	  </textures>
+    </variant>
+  </group>
+</actor>

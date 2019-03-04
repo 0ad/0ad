@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="kart_standard">
+      <mesh>props/kart_ship_standard.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+		<textures>
+			<texture file="props/kart_standard.png" name="baseTex"/>
+			<texture file="props/kart_standard_norm.png" name="normTex"/>
+			<texture file="props/kart_standard_spec.png" name="specTex"/>
+		</textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

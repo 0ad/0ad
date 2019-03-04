@@ -10,13 +10,14 @@
 # Radoslav Mitev <darkinaatrox@gmail.com>, 2016
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
+# Красимир Миков <krasimir_mikov@icloud.com>, 2019
 # Любомир Василев, 2016-2019
 # Симонъ–Севаръ С. Болокановъ <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-05 06:21+0000\n"
+"POT-Creation-Date: 2019-02-18 09:43+0100\n"
+"PO-Revision-Date: 2019-02-19 07:16+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -111,14 +112,19 @@ msgstr "Кадри/сек: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Зареждането прекратено"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Гея"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайна"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Версия: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -150,7 +156,7 @@ msgstr "ИЗТРИВАНЕ"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Не"
@@ -158,7 +164,7 @@ msgstr "Не"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Да"
@@ -1188,7 +1194,7 @@ msgstr "Щракнете с десен бутон за повече информ
 msgid "Click to view more information."
 msgstr "Щракнете, за да видите повече информация."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s — %(name)s"
@@ -1312,40 +1318,35 @@ msgstr "Добре"
 msgid "Read More"
 msgstr "Вижте повече"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Версия: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Наистина ли искате да излезете от 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Потвърждаване"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Наистина ли искате да излезете от 0 A.D. и да отворите редактора на сценарии?"
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Редакторът на сценарии не е намерен или не успя да зареди. Вижте журналите на играта за повече информация."
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Грешка"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "Отваряне на чакалнята за игра в мрежа, където можете да създавате и да се присъединявате към публично видимите игри, както и да общувате с другите играчи. \\[ИЗКЛЮЧЕНО ПРИ КОМПИЛИРАНЕТО]"
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Наръчник"
 
@@ -2993,6 +2994,14 @@ msgstr "Изпълнение на звуково известяване, ког�
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
 msgstr "Известие за псевдонима"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr "Възпроизвеждане на звуково известие, когато нов играч се присъедини към играта."
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr "Настройки на играта – Известие за нов играч"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."

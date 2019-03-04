@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Rome Bridge">
+      <mesh>props/rome_bridge.dae</mesh>
+      <animations>
+        <animation file="other/rome_bridge_idle.dae" name="idle" speed="8"/>
+        <animation file="other/rome_bridge_idle.dae" name="Walk" speed="8"/>
+      </animations>
+      <textures>
+		    <texture file="props/rome_bridge.png" name="baseTex"/>
+	    </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

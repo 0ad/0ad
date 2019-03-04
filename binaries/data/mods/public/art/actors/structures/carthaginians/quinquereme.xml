@@ -3,21 +3,25 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="quinquereme">
-      <animations>
-        <animation file="mechanical/kart_ship_quinquereme_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/kart_ship_quinquereme_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/kart_ship_quinquereme_move.dae" name="Run" speed="8"/>
-      </animations>
+    <variant frequency="1" file="others/ships/kart_quinquereme_oars.xml" name="Carthaginian Quinquereme">
       <mesh>structural/kart_ship_quinquereme.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/carthaginians/quin_mainsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/quin_foresail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/quin_shroud.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/ship_standard.xml" attachpoint="standard"/>
+        <prop actor="props/structures/carthaginians/quinquereme_main_sail.xml" attachpoint="main_sail"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/kart_quinquereme.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/kart_quinquereme.png" name="baseTex"/>
+        <texture file="structural/kart_quinquereme_spec.png" name="specTex"/>
+        <texture file="structural/kart_quinquereme_norm.png" name="normTex"/>
+        <texture file="structural/ao/kart_quinquereme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <group>
+    <variant frequency="100" file="others/ships/kart_quinquereme_shields_01.xml" name="Carthaginian Quinquereme Shields-01"/>
+    <variant frequency="100" file="others/ships/kart_quinquereme_shields_02.xml" name="Carthaginian Quinquereme Shields-02"/>
+    <variant frequency="100" file="others/ships/kart_quinquereme_shields_03.xml" name="Carthaginian Quinquereme Shields-03"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

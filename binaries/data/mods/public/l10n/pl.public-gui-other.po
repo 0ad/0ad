@@ -15,6 +15,7 @@
 # Aya Punx <inactive+hubert.slosarski@transifex.com>, 2018
 # Jacek <jacek15klb@gmail.com>, 2015
 # Jakub Kaszycki <kaszycki@mail.com>, 2016
+# Kamil Gawelek <kazalkon@gmail.com>, 2019
 # Krzysztof Grabania, 2015
 # Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
@@ -40,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-05 00:47+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"POT-Creation-Date: 2019-02-18 09:43+0100\n"
+"PO-Revision-Date: 2019-02-21 11:49+0000\n"
+"Last-Translator: Kamil Gawelek <kazalkon@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,14 +143,19 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Wczytywanie przerwane"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Gaja"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -181,7 +187,7 @@ msgstr "USUŃ"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Nie"
@@ -189,7 +195,7 @@ msgstr "Nie"
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
 #: gui/options/options.js:351 gui/options/options.js:377
-#: gui/pregame/mainmenu.js:212 gui/pregame/mainmenu.js:226
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Tak"
@@ -379,7 +385,7 @@ msgstr "Gra rankingowa"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Kiedy wyłoni się zwycięzca tej rozgrywki, punktacja w lobby będzie dostosowana."
+msgstr "Kiedy wyłoni się zwycięzca tej potyczki, punktacja w lobby będzie dostosowana."
 
 #: gui/common/gamedescription.js:305
 msgid "Locked Teams"
@@ -1253,7 +1259,7 @@ msgstr "Kliknij PPM, aby wyświetlić więcej informacji."
 msgid "Click to view more information."
 msgstr "Kliknij, aby wyświetlić więcej informacji."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s "
@@ -1377,40 +1383,35 @@ msgstr "OK"
 msgid "Read More"
 msgstr "Czytaj więcej"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D. i otworzyć Edytor Scenariuszy?"
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Edytor scenariusza jest niedostępny lub nie mógł zostać załadowany. Sprawdź logi gry aby znaleźć dodatkowe informacje."
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Błąd"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "Uruchom lobby wieloosobowe, aby dołączyć i hostować publicznie widoczne gry oraz rozmawiać z innymi graczami. \\[WYŁĄCZONE PRZEZ BUILD]"
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Poradnik"
 
@@ -2211,7 +2212,7 @@ msgstr "Kliknij tutaj by wczytać zapisaną grę."
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
-msgstr "Odtwórz poprzednie rozgrywki."
+msgstr "Odtwórz poprzednie potyczki."
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
@@ -2302,7 +2303,7 @@ msgstr "Historia"
 
 #: gui/pregame/mainmenu.xml:(caption):162
 msgid "Matches"
-msgstr "Rozgrywki"
+msgstr "Potyczka"
 
 #: gui/pregame/mainmenu.xml:(caption):176
 msgid "Campaigns"
@@ -2690,7 +2691,7 @@ msgstr "Tłumacze"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr "Czy chcesz być skierowany do rozgrywki Jednego gracza?"
+msgstr "Jak chciałbyś się nazywać w potyczkach Jednoosobowych?"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
@@ -2698,7 +2699,7 @@ msgstr "Nazwa Gracza (Jeden gracz)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "Czy chcesz być skierowany do rozgrywki Wieloosobowej (z wyjątkiem lobby)"
+msgstr "Jak chciałbyś się nazywać w potyczkach Wieloosobowych? ( z wyjątkiem poczekalni )"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
@@ -3063,6 +3064,14 @@ msgstr "Otrzymuj powiadomienie dźwiękowe gdy ktoś napisze twój Nick"
 msgid "Nick Notification"
 msgstr "Powiadomienie o Nicku"
 
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr "Otrzymuj powiadomienie dźwiękowe gdy ktoś dołączy do Twojej gry"
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr "Ustawienia gry - powiadomienie o nowym graczu"
+
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Pokazuje podpowiedzi podczas tworzenia gry."
@@ -3082,11 +3091,11 @@ msgstr "Włącz przesuwanie Panelu Ustawień"
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr "Zapisz i przywróć ustawienia rozgrywki, aby szybko hostować kolejną grę."
+msgstr "Zapisz i przywróć ustawienia potyczki, aby szybko hostować kolejną grę."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
-msgstr "Zapamiętaj ustawienia rozgrywki"
+msgstr "Zapamiętaj ustawienia potyczki."
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -3144,7 +3153,7 @@ msgstr "Domyślne zachowanie SI"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr "Automatycznie przypisuj łączących się klientów do wolnych miejsc dla graczy, podczas konfiguracji rozgrywki."
+msgstr "Automatycznie przypisuj łączących się klientów do wolnych miejsc dla graczy, podczas konfiguracji potyczki."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
@@ -3175,7 +3184,7 @@ msgstr "Historia czatu"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr "Pokaż średnią ocenę aktywnych graczy w kolumnie listy rozgrywki."
+msgstr "Pokaż średnią ocenę aktywnych graczy w kolumnie listy potyczki."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
@@ -3367,7 +3376,7 @@ msgstr "Kolory Dyplomacji: Przeciwnik"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr "Zmień opcje w zależności od ustawień podczas rozgrywki."
+msgstr "Zmień opcje w zależności od ustawień podczas potyczki."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"

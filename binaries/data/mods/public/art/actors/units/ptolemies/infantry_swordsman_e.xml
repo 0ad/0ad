@@ -13,30 +13,39 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Classic Coolus Helmet">
+    <variant frequency="1" name="Celtic Port Helmet">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_classic_coolus.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Coolus Helmet">
+    <variant frequency="1" name="Celtic Montefortino Helmet-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_coolus.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Montefortino Helmet">
+    <variant frequency="1" name="Celtic Montefortino Helmet-02">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_montefortino.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_02.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Peaked Helmet">
+    <variant frequency="1" name="Celtic Montefortino Helmet-03">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_peaked.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_03.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Lime Head">
+    <variant frequency="1" name="Celtic Coolus Helmet-01">
       <props>
-        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
-        <prop actor="" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_coolus_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Coolus Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_coolus_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Meyrick Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_meyrick.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

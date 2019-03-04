@@ -18,15 +18,15 @@
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
 # Pedro Santos <estevespubl@gmail.com>, 2017
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
-# Rui <xymarior@yandex.com>, 2018
+# Rui <xymarior@yandex.com>, 2018-2019
 # Sander Deryckere, 2014
 # Sérgio Marques <smarquespt@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-01-07 14:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-02-19 20:29+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,7 +265,7 @@ msgstr[1] "%(numberOfShipTraders)s embarcações mercantes inativas"
 
 #: gui/session/menu.js:1214
 msgid "Resume"
-msgstr "Continuar o Jogo"
+msgstr "Continuar o jogo"
 
 #: gui/session/menu.js:1214 gui/session/menu.xml:(caption):87
 msgid "Pause"
@@ -287,11 +287,11 @@ msgstr "Manual"
 
 #: gui/session/menu.js:1247
 msgid "The Developer Overlay was closed."
-msgstr "A Camada de Programação foi fechada."
+msgstr "A camada de programação foi fechada."
 
 #: gui/session/menu.js:1248
 msgid "The Developer Overlay was opened."
-msgstr "A Camada de Programação foi aberta."
+msgstr "A camada de programação foi aberta."
 
 #: gui/session/menu.js:1274
 #, javascript-format
@@ -556,11 +556,11 @@ msgstr "A fazer dumping do estado atual para %(filepath)s"
 
 #: gui/session/messages.js:728 gui/session/messages.js:739
 msgid "Out of Sync"
-msgstr "Fora de Sincronismo"
+msgstr "Fora de sincronismo"
 
 #: gui/session/messages.js:736
 msgid "Out-Of-Sync error!"
-msgstr "Erro de Fora de Sincronismo!"
+msgstr "Erro de fora de sincronismo!"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:738
@@ -604,7 +604,7 @@ msgstr "HH:mm"
 
 #: gui/session/messages.js:975
 msgid "Unknown Player"
-msgstr "Jogador Desconhecido"
+msgstr "Jogador desconhecido"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -735,7 +735,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:402
 msgid "Capture Points:"
-msgstr "Pontos de Captura:"
+msgstr "Pontos de captura:"
 
 #: gui/session/selection_details.js:410
 #, javascript-format
@@ -801,11 +801,11 @@ msgstr "Jogador: %(playername)s"
 
 #: gui/session/selection_panels.js:416
 msgid "Lock Gate"
-msgstr "Fechar o Portão"
+msgstr "Fechar o portão"
 
 #: gui/session/selection_panels.js:422
 msgid "Unlock Gate"
-msgstr "Abrir o Portão"
+msgstr "Abrir o portão"
 
 #: gui/session/selection_panels.js:472
 msgid "Pack"
@@ -817,11 +817,11 @@ msgstr "Desmontar"
 
 #: gui/session/selection_panels.js:488
 msgid "Cancel Packing"
-msgstr "Cancelar a Montagem"
+msgstr "Cancelar a montagem"
 
 #: gui/session/selection_panels.js:496
 msgid "Cancel Unpacking"
-msgstr "Cancelar a Desmontagem"
+msgstr "Cancelar a desmontagem"
 
 #: gui/session/selection_panels.js:583
 msgid "Insufficient population capacity:"
@@ -861,7 +861,7 @@ msgstr "Promover a %(name)s."
 
 #: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
-msgstr "Cancelar Promoção"
+msgstr "Cancelar promoção"
 
 #: gui/session/selection_panels.js:1091
 msgid "Cannot upgrade when the entity is already upgrading."
@@ -922,7 +922,7 @@ msgstr "Atacar inimigos que estejam no alcance, mas não se mover"
 #: gui/session/selection_panels_helpers.js:98
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "Quantidade Atual: %(count)s, Limite: %(limit)s."
+msgstr "Quantidade atual: %(count)s, Limite: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:112
 #, javascript-format
@@ -990,7 +990,7 @@ msgstr "Localizar trabalhador parado"
 #: gui/session/session.js:441 gui/session/session.js:445
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr "Alternar Cores de Diplomacia"
+msgstr "Alternar cores de diplomacia"
 
 #: gui/session/session.js:448
 #, javascript-format
@@ -1148,7 +1148,7 @@ msgstr "Ganho esperado: %(gain)s"
 
 #: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1348
 msgid "Unload All."
-msgstr "Desalojar Todos."
+msgstr "Desalojar todos."
 
 #: gui/session/unit_actions.js:1048
 msgid "Destroy the selected units or buildings."
@@ -1181,7 +1181,7 @@ msgstr "Localizar ponto de encontro."
 
 #: gui/session/unit_actions.js:1201
 msgid "Back to Work"
-msgstr "Voltar a Trabalhar"
+msgstr "Voltar a trabalhar"
 
 #: gui/session/unit_actions.js:1220
 msgid "Order the selected units to guard a building or unit."
@@ -1194,7 +1194,7 @@ msgstr "Cancelar a guarda"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr "Trocas e Comércio"
+msgstr "Trocas e comércio"
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
@@ -1401,17 +1401,17 @@ msgstr "Objetivos"
 
 #: gui/session/session.xml:(caption):66
 msgid "Game Paused"
-msgstr "Jogo em Pausa"
+msgstr "Jogo em pausa"
 
 #: gui/session/session.xml:(caption):69
 msgid "Click to Resume Game"
-msgstr "Clicar para Continuar o Jogo"
+msgstr "Clicar para continuar o jogo"
 
 #: gui/session/top_panel.xml:(tooltip):23
 #: gui/session/top_panel.xml:(caption):29
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr "Seguir Jogador"
+msgstr "Seguir jogador"
 
 #: gui/session/top_panel.xml:(tooltip):46
 msgid "Choose player to view"
@@ -1419,11 +1419,11 @@ msgstr "Escolher o jogador a visualizar"
 
 #: gui/session/top_panel.xml:(caption):54
 msgid "Observer Mode"
-msgstr "Modo Observador"
+msgstr "Modo observador"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr "Trocas e Comércio de Bens"
+msgstr "Trocas e comércio de bens"
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"
@@ -1439,7 +1439,7 @@ msgstr "Comprar:"
 
 #: gui/session/trade_window.xml:(caption):31
 msgid "No Markets Available"
-msgstr "Sem Mercados Disponíveis"
+msgstr "Sem mercados disponíveis"
 
 #: gui/session/trade_window.xml:(caption):66
 msgid "Trade"
@@ -1475,7 +1475,7 @@ msgstr "Pontos de captura:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"
-msgstr "Ataque e Armadura"
+msgstr "Ataque e armadura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
 msgid "Experience"
@@ -1497,7 +1497,7 @@ msgstr "Clica para selecionar as unidades agrupadas, clica duas vezes para junta
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr "Velocidade do Jogo"
+msgstr "Velocidade do jogo"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

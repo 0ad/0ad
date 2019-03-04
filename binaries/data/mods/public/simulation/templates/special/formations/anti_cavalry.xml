@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_formation">
+  <Formation>
+    <Icon>formations/testudo.png</Icon>
+    <RequiredMemberCount>16</RequiredMemberCount>
+    <DisabledTooltip>16 melee infantry units required</DisabledTooltip>
+    <FormationName>Anti Cavalry</FormationName>
+    <FormationShape>square</FormationShape>
+    <UnitSeparationWidthMultiplier>0.50</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.37</UnitSeparationDepthMultiplier>
+    <SortingOrder>fillFromTheSides</SortingOrder>
+    <ShiftRows>true</ShiftRows>
+    <MinColumns>8</MinColumns>
+    <MaxColumns>8</MaxColumns>
+    <MaxRows>2</MaxRows>
+    <WidthDepthRatio>0.8</WidthDepthRatio>
+    <Animations>
+      <idle>
+        1..1,1..-1: idle_anti_cavalry_front;
+        2..2,1..-1: idle_anti_cavalry_back
+      </idle>
+      <attack>
+        1..1,1..-1: attack_anti_cavalry_front;
+        2..2,1..-1: attack_anti_cavalry_back
+      </attack>
+    </Animations>
+    <SpeedMultiplier>1</SpeedMultiplier>
+  </Formation>
+  <FormationAttack>
+    <CanAttackAsFormation>true</CanAttackAsFormation>
+  </FormationAttack>
+</Entity>

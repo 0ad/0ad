@@ -12,29 +12,54 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Ciumesti Helmet">
+    <variant frequency="1" name="Celtic Ciumesti-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_ciumesti.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Berru Helmet">
+    <variant frequency="1" name="Celtic Ciumesti-02">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_berru.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_02.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Marne Helmet">
+    <variant frequency="1" name="Celtic Berru Helmet-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_marne.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_berru_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Coolus Helmet">
+    <variant frequency="1" name="Celtic Berru Helmet-02">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_coolus.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Montefortino Helmet">
+    <variant frequency="1" name="Celtic Berru Helmet-03">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_montefortino.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_berru_03.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Coolus Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_coolus_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Coolus Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_coolus_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_03.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

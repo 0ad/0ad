@@ -7,7 +7,7 @@
     ],
     "rules": {
         "no-cond-assign": 1,
-        "no-constant-condition": 1,
+        "no-constant-condition": ["error", { "checkLoops": false }],
         "no-dupe-args": 1,
         "no-dupe-keys": 1,
         "no-duplicate-case": 1,

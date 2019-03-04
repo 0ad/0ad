@@ -3,20 +3,19 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="mechanical/pers_bir_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/pers_bir_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/pers_bir_move.dae" name="Run" speed="8"/>
-      </animations>
-      <mesh>structural/pers_bir.dae</mesh>
+    <variant frequency="1" file="others/ships/pers_bireme_oars.xml" name="Persian bireme">
+      <mesh>structural/pers_ship_bireme.dae</mesh>
       <props>
-        <prop actor="props/structures/persians/bireme_mast.xml" attachpoint="root"/>
-        <prop actor="props/structures/persians/bireme_fence.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/bireme_main_sail.xml" attachpoint="sail"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/pers_bir.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_bireme.png" name="baseTex"/>
+        <texture file="structural/pers_bireme_spec.png" name="specTex"/>
+        <texture file="structural/pers_bireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/pers_bireme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

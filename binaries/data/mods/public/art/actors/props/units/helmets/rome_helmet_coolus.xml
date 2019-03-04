@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Rome Coolus A">
+      <mesh>props/helmet/rome_coolus_a.dae</mesh>
+    </variant>
+    <variant name="Rome Coolus B">
+      <mesh>props/helmet/rome_coolus_b.dae</mesh>
+    </variant>
+    <variant name="base_a">
+      <mesh>props/helmet/rome_coolus_b.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_a"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_b"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_c"/>
+        <prop actor="props/units/helmets/props/helmet_feather_b.xml" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant name="base_b">
+      <mesh>props/helmet/rome_coolus_c.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/helmet_hair_long.xml" attachpoint="hair_long"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_b"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_c"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="base">
+      <textures>
+        <texture file="props/helmet/rome_coolus.png" name="baseTex"/>
+        <texture file="props/helmet/rome_coolus_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_coolus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="idle"/>
+    <variant frequency="1" name="walk_testudo_top">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="walk_testudo_front">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="walk_testudo_front_left">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="walk_testudo_front_right">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="idle_testudo_top">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="idle_testudo_front">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="idle_testudo_front_left">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="idle_testudo_front_right">
+      <props>
+        <prop actor="" attachpoint="feather_a"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+        <prop actor="" attachpoint="feather_d"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

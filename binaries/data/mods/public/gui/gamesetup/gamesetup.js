@@ -1617,6 +1617,9 @@ function onClientJoin(newGUID, newAssignments)
 		"username": playername
 	});
 
+	if (newGUID != Engine.GetPlayerGUID() && Object.keys(g_PlayerAssignments).length)
+		soundNotification("gamesetup.join");
+
 	let isRejoiningPlayer = newAssignments[newGUID].player != -1;
 
 	// Assign the client (or only buddies if prefered) to an unused playerslot and rejoining players to their old slot
