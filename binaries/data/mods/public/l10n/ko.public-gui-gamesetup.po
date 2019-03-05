@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-02-24 14:59+0000\n"
+"PO-Revision-Date: 2019-03-02 12:49+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,7 @@ msgstr "시작시 받은 기본 자원의 양을 선택하세요."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "휴전"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
@@ -342,7 +342,7 @@ msgstr ""
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:866
 msgid "Revealed Map"
-msgstr ""
+msgstr "공개된 지도"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -354,7 +354,7 @@ msgstr ""
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:885
 msgid "Explored Map"
-msgstr ""
+msgstr "탐색된 지도"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -398,7 +398,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
-msgstr ""
+msgstr "치트"
 
 #: gui/gamesetup/gamesetup.js:953
 msgid "Toggle the usability of cheats."
@@ -469,7 +469,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1748
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "아무거나"
 
 #: gui/gamesetup/gamesetup.js:1750
 msgid "Pick any of the given maps at random."
@@ -478,7 +478,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1782
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "아무거나"
 
 #: gui/gamesetup/gamesetup.js:1783
 msgid "Pick a biome at random."
@@ -619,7 +619,7 @@ msgstr "AI 설정"
 
 #: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
-msgstr "AI 플레이어: "
+msgstr "AI 플레이어:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
@@ -636,7 +636,7 @@ msgstr "취소"
 
 #: gui/aiconfig/aiconfig.xml:(caption):52
 msgid "OK"
-msgstr "OK"
+msgstr "확인"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
@@ -644,7 +644,7 @@ msgstr "게임 설정"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
-msgstr "로딩중"
+msgstr "불러오는중"
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
@@ -652,15 +652,15 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
-msgstr "플레이어 이름 "
+msgstr "선수 이름 "
 
 #: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
-msgstr "색깔"
+msgstr "색상"
 
 #: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
-msgstr "플레이어 배치"
+msgstr "선수 배치"
 
 #: gui/gamesetup/gamesetup.xml:(caption):70
 msgid "Civilization"
@@ -668,11 +668,11 @@ msgstr "문명"
 
 #: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
-msgstr "팀"
+msgstr "편"
 
 #: gui/gamesetup/gamesetup.xml:(caption):131
 msgid "Show this message in the future"
-msgstr ""
+msgstr "계속 이 메시지를 표시"
 
 #: gui/gamesetup/gamesetup.xml:(caption):220
 msgid "Send"
@@ -713,7 +713,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "멀티 플레이"
+msgstr "여러 선수"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -722,7 +722,7 @@ msgstr "개설된 게임에 참여하기"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "선수 이름:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"

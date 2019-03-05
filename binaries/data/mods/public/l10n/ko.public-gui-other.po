@@ -4,13 +4,15 @@
 # 
 # Translators:
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# jjj <triplej03@nate.com>, 2014
+# Gu Hong Min <placidmoon1@gmail.com>, 2015
 # sang gyu nam <destro0419@naver.com>, 2018
 # jjj <triplej03@nate.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-02-18 09:43+0100\n"
-"PO-Revision-Date: 2019-02-24 14:59+0000\n"
+"PO-Revision-Date: 2019-03-02 12:49+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +44,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: 역사 닫기."
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -57,11 +59,11 @@ msgstr[0] "문명 보너스"
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "팀 보너스"
+msgstr[0] "편 보너스"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
-msgstr "특수 기술들"
+msgstr "특수 기술"
 
 #: gui/civinfo/civinfo.js:145
 msgid "Special Building"
@@ -90,13 +92,13 @@ msgstr ""
 #: gui/common/color.js:181
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "탭"
 
 #. dennis-ignore: *
 #: gui/common/functions_global_object.js:7
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #: gui/common/functions_global_object.js:79
 msgid "Loading Aborted"
@@ -104,12 +106,12 @@ msgstr ""
 
 #: gui/common/functions_utility.js:30
 msgid "Gaia"
-msgstr ""
+msgstr "가이아"
 
 #: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "아무거나"
 
 #: gui/common/functions_utility.js:231
 #, javascript-format
@@ -118,22 +120,22 @@ msgstr "건물짓기: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:23
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -141,7 +143,7 @@ msgstr "저장된 게임이 완전히 삭제됩니다, 삭제할까요?"
 
 #: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
-msgstr ""
+msgstr "삭제"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/loadgame/load.js:173 gui/options/options.js:301
@@ -182,63 +184,63 @@ msgstr ""
 #: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:141
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:151
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:154
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:158
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -249,12 +251,12 @@ msgstr ""
 
 #: gui/common/gamedescription.js:181
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "알수없는 문명"
 
 #: gui/common/gamedescription.js:188
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "패배함"
 
 #: gui/common/gamedescription.js:189
 msgctxt "playerstate"
@@ -263,12 +265,12 @@ msgstr ""
 
 #: gui/common/gamedescription.js:210
 msgid "No Team"
-msgstr ""
+msgstr "편 없음"
 
 #: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "편 %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -277,17 +279,17 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:222
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
+msgstr[0] "관찰자"
 
 #: gui/common/gamedescription.js:239
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "끝없는 놀이"
 
 #: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
@@ -365,7 +367,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
-msgstr ""
+msgstr "연합 승리"
 
 #: gui/common/gamedescription.js:322
 msgid ""
@@ -375,7 +377,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:326
 msgid "Ceasefire"
-msgstr ""
+msgstr "휴전"
 
 #: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
@@ -389,7 +391,7 @@ msgstr[0] ""
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "아무 지도"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
@@ -397,28 +399,28 @@ msgstr ""
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
-msgstr ""
+msgstr "지도 이름"
 
 #: gui/common/gamedescription.js:349
 msgid "Map Description"
-msgstr ""
+msgstr "지도 설명"
 
 #: gui/common/gamedescription.js:357
 msgid "Map Type"
-msgstr "맵 타입"
+msgstr "지도 유형"
 
 #: gui/common/gamedescription.js:363
 msgid "Map Filter"
-msgstr "지도 필터"
+msgstr "지도 거름기"
 
 #: gui/common/gamedescription.js:372
 msgid "Map Size"
-msgstr "맵 크기"
+msgstr "지도 크기"
 
 #: gui/common/gamedescription.js:381
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "아무 생물군계"
 
 #: gui/common/gamedescription.js:382
 msgid "Randomly select a biome from the list."
@@ -426,11 +428,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr ""
+msgstr "유목민 모드"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
-msgstr ""
+msgstr "시민 회관"
 
 #: gui/common/gamedescription.js:399
 msgid ""
@@ -449,15 +451,15 @@ msgstr "기본 자원"
 #: gui/common/gamedescription.js:405
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:415
 msgid "Population Limit"
-msgstr ""
+msgstr "인구 제한"
 
 #: gui/common/gamedescription.js:423
 msgid "Treasures"
-msgstr ""
+msgstr "보물"
 
 #: gui/common/gamedescription.js:425
 msgctxt "treasures"
@@ -471,15 +473,15 @@ msgstr ""
 
 #: gui/common/gamedescription.js:430
 msgid "Revealed Map"
-msgstr ""
+msgstr "공개된 지도"
 
 #: gui/common/gamedescription.js:435
 msgid "Explored Map"
-msgstr ""
+msgstr "탐색된 지도"
 
 #: gui/common/gamedescription.js:440
 msgid "Cheats"
-msgstr ""
+msgstr "치트"
 
 #: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -502,7 +504,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:464
 msgid "Victorious"
-msgstr ""
+msgstr "승리"
 
 #: gui/common/gamedescription.js:469
 msgid "Defeated"
@@ -511,7 +513,7 @@ msgstr ""
 #: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -536,7 +538,7 @@ msgstr ""
 #: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "알수 없는 이유"
 
 #: gui/common/network.js:67
 msgid ""
@@ -589,7 +591,7 @@ msgstr ""
 #: gui/common/network.js:91
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr "이유 : %(reason)s."
+msgstr "이유: %(reason)s."
 
 #: gui/common/network.js:96
 msgid "Lost connection to the server."
@@ -612,7 +614,7 @@ msgstr ""
 #: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "사용자 (%(num)s): %(users)s"
 
 #: gui/common/network.js:162 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
@@ -622,37 +624,37 @@ msgstr ""
 #: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
 #: gui/replaymenu/replay_menu.js:272
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "모래통"
 
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "매우쉬움"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "쉬움"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "보통"
 
 #: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "어려움"
 
 #: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "매우 어려움"
 
 #: gui/common/settings.js:148
 msgctxt "aiBehavior"
@@ -662,7 +664,7 @@ msgstr "임의로"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "균형적"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -672,31 +674,31 @@ msgstr "방어모드"
 #: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
-msgstr "공격적인"
+msgstr "공격적"
 
 #: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s 분"
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "휴전 없음"
 
 #: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s 분"
 
 #: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "척후병"
 
 #: gui/common/settings.js:221
 msgid ""
@@ -707,7 +709,7 @@ msgstr ""
 #: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "아무거나"
 
 #: gui/common/settings.js:227
 msgid ""
@@ -718,7 +720,7 @@ msgstr ""
 #: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "시나리오"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
@@ -731,12 +733,12 @@ msgstr ""
 #: gui/common/settings.js:359
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "모름"
 
 #: gui/common/settings.js:370
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "모름"
 
 #: gui/common/settings.js:381
 msgctxt "AI behavior"
@@ -746,7 +748,7 @@ msgstr "기본값"
 #: gui/common/settings.js:393
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "모름"
 
 #: gui/common/settings.js:405
 msgctxt "map size"
@@ -756,11 +758,11 @@ msgstr "기본값"
 #: gui/common/settings.js:417
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "모름"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "알수없는 승리 조건"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -772,7 +774,7 @@ msgstr "원거리 공격:"
 
 #: gui/common/tooltips.js:14
 msgid "Capture Attack:"
-msgstr ""
+msgstr "포위 공격:"
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
@@ -789,7 +791,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -798,7 +800,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -807,7 +809,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -816,49 +818,49 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:72
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/tooltips.js:81
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s 와 %(lastAmount)s"
 
 #: gui/common/tooltips.js:110
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
+msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:112 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:717
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
+msgstr[0] "??초"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
-msgstr "건강:"
+msgstr "건??강:"
 
 #: gui/common/tooltips.js:175
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:193
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
+msgstr[0] "화살??"
 
 #: gui/common/tooltips.js:198
 #, javascript-format
@@ -868,11 +870,11 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:209
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:220
 msgid "Armor:"
-msgstr "갑옷;"
+msgstr "갑옷??:"
 
 #: gui/common/tooltips.js:223
 #, javascript-format
@@ -895,7 +897,7 @@ msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:264
 msgid "Interval:"
-msgstr ""
+msgstr "간격:"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:715
 msgid "Rate:"
@@ -904,7 +906,7 @@ msgstr "비율:"
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:710
 msgid "Range:"
@@ -913,56 +915,56 @@ msgstr "범위:"
 #: gui/common/tooltips.js:294
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:298
 msgid "meters"
-msgstr ""
+msgstr "미터"
 
 #: gui/common/tooltips.js:299 gui/common/tooltips.js:712
 #: gui/common/tooltips.js:742
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
+msgstr[0] "미터"
 
 #: gui/common/tooltips.js:318 gui/common/tooltips.js:376
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:324
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "아군의 포격: %(enabled)s"
 
 #: gui/common/tooltips.js:341
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
-msgstr ""
+msgstr "수비대 한계"
 
 #: gui/common/tooltips.js:349
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:350 gui/common/tooltips.js:704
 msgid "Heal:"
-msgstr ""
+msgstr "회복:"
 
 #: gui/common/tooltips.js:352
 msgid "Health"
-msgstr ""
+msgstr "건??강"
 
 #: gui/common/tooltips.js:377
 msgid "Projectile Limit"
-msgstr ""
+msgstr "발사체 한계"
 
 #: gui/common/tooltips.js:382
 msgctxt "projectiles"
@@ -972,7 +974,7 @@ msgstr "기본값"
 #: gui/common/tooltips.js:387
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "부대 당??"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
@@ -1020,7 +1022,7 @@ msgstr ""
 #: gui/common/tooltips.js:505 gui/common/tooltips.js:527
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
@@ -1029,7 +1031,7 @@ msgstr ""
 #: gui/common/tooltips.js:524
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1053,11 +1055,11 @@ msgstr "탑: %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "비용:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1104,29 +1106,29 @@ msgstr "뛰기"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
 #: gui/common/tooltips.js:707
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
+msgstr[0] "체력??"
 
 #: gui/common/tooltips.js:731
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:732
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:740
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "범위:"
 
 #: gui/common/tooltips.js:757
 #, javascript-format
@@ -1138,7 +1140,7 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:769
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:784
 msgid "Classes:"
@@ -1149,7 +1151,7 @@ msgstr "계급:"
 #: gui/common/tooltips.js:811
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:821
 msgid "Loot:"
@@ -1165,17 +1167,17 @@ msgstr ""
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "클릭하면 더많은 정보를 볼수 있습니다."
 
 #: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/loadgame/load.js:118
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "수정판(Mods): %(mods)s"
 
 #: gui/loadgame/load.js:151
 #, javascript-format
@@ -1194,7 +1196,7 @@ msgstr ""
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "계속 진행하시겠습니까?"
 
 #: gui/loadgame/load.js:172 gui/options/options.js:300
 #: gui/options/options.js:350 gui/options/options.js:376
@@ -1204,31 +1206,31 @@ msgstr "경고"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "기본설정:  %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "최소: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:128
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "최소: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:130
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "최대: %(max)s"
 
 #: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "값: %(val)s (min: %(min)s, max: %(max)s)"
 
 #: gui/options/options.js:299
 msgid ""
@@ -1285,7 +1287,7 @@ msgstr "경고!"
 
 #: gui/pregame/mainmenu.js:123 gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
-msgstr "OK"
+msgstr "확인"
 
 #: gui/pregame/mainmenu.js:123
 msgid "Read More"
@@ -1321,12 +1323,12 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
-msgstr "매뉴얼"
+msgstr "설명서"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "약관"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1334,7 +1336,7 @@ msgstr ""
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "간행물"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -1354,12 +1356,12 @@ msgstr "업로드 성공"
 #: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "업로드 실패 (%(errorCode)s)"
 
 #: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "업로드 실패 (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
@@ -1380,7 +1382,7 @@ msgstr ""
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "상태: %(status)s."
 
 #: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
@@ -1388,7 +1390,7 @@ msgstr "알려지지않은"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr "0 A.D. 개선시키는데 도움주기!"
+msgstr "0 A.D. 를 개선하는데 도와주세요!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -1400,24 +1402,24 @@ msgstr ""
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
 #: gui/reference/common/draw.js:67
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "자원 공급:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
 #: gui/reference/common/draw.js:71 gui/summary/summary.js:111
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/reference/common/load.js:193
 #, javascript-format
@@ -1456,19 +1458,19 @@ msgstr ""
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "짓기:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "연구:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "훈련:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
@@ -1487,12 +1489,12 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "당신의 버전: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "필요한 버전: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
@@ -1560,19 +1562,19 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "혼자- 그리고 여러 선수"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
-msgstr "혼자서 하기"
+msgstr "혼자 선수"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
-msgstr "멀티 플레이"
+msgstr "여러 선수"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "모든?? 승리조건"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1593,19 +1595,19 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "선수: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:300
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:330
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/savegame/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "저장된 놀이 파일을 찾을수 없음"
 
 #: gui/savegame/save.js:64
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -1613,45 +1615,45 @@ msgstr ""
 
 #: gui/savegame/save.js:65
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "저장파일 덮어쓰기"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
-msgstr ""
+msgstr "점수"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
 #: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
 msgid "Player name"
-msgstr ""
+msgstr "선수 이름"
 
 #: gui/summary/layout.js:6
 msgid "Total score"
-msgstr ""
+msgstr "총 점수"
 
 #: gui/summary/layout.js:7
 msgid "Economy score"
-msgstr ""
+msgstr "경제 점수"
 
 #: gui/summary/layout.js:8
 msgid "Military score"
-msgstr ""
+msgstr "군사 점수"
 
 #: gui/summary/layout.js:9
 msgid "Exploration score"
-msgstr ""
+msgstr "탐험 점수"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Buildings"
-msgstr ""
+msgstr "건물"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
-msgstr ""
+msgstr "전체"
 
 #: gui/summary/layout.js:25
 msgid "Houses"
-msgstr ""
+msgstr "집"
 
 #: gui/summary/layout.js:26
 msgid "Economic"
@@ -1667,7 +1669,7 @@ msgstr "군사의"
 
 #: gui/summary/layout.js:29
 msgid "Fortresses"
-msgstr ""
+msgstr "요새"
 
 #: gui/summary/layout.js:30
 msgid "Civ centers"
@@ -1682,11 +1684,11 @@ msgstr ""
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "건물 통계 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
-msgstr ""
+msgstr "부대"
 
 #: gui/summary/layout.js:63
 msgid "Infantry"
@@ -1702,7 +1704,7 @@ msgstr "기병"
 
 #: gui/summary/layout.js:66
 msgid "Champion"
-msgstr "챔피언"
+msgstr "대표전사"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
@@ -1710,39 +1712,39 @@ msgstr "공성"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
-msgstr ""
+msgstr "해군"
 
 #: gui/summary/layout.js:70
 msgid "Traders"
-msgstr ""
+msgstr "상인"
 
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "부대 통계 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
-msgstr ""
+msgstr "자원"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "공물??"
 
 #: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "공물?? \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:120
 msgid "Treasures collected"
-msgstr ""
+msgstr "수집된 보물"
 
 #: gui/summary/layout.js:121
 msgid "Loot"
-msgstr ""
+msgstr "전리품"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
@@ -1774,23 +1776,23 @@ msgstr ""
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
-msgstr ""
+msgstr "기타"
 
 #: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "죽임 / 죽음 비율"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "지도 제어 (절정??)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "지도 제어 (종료??)"
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
-msgstr ""
+msgstr "지도 탐험"
 
 #: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
@@ -1817,7 +1819,7 @@ msgstr ""
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr ""
+msgstr "훈련됨"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -1919,7 +1921,7 @@ msgstr ""
 #: gui/summary/summary.js:513
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/summary/summary.js:525
 #, javascript-format
@@ -1928,17 +1930,17 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
-msgstr "문명들"
+msgstr "문명"
 
 #: gui/civinfo/civinfo.xml:(caption):32
 msgid "Civilization Selection"
-msgstr "문명 선택하기"
+msgstr "문명 선택"
 
 #: gui/civinfo/civinfo.xml:(caption):125
 #: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr ""
+msgstr "구조물 구조"
 
 #: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
@@ -1957,7 +1959,7 @@ msgstr "게임 불러오기"
 
 #: gui/loadgame/load.xml:(caption):49
 msgid "No saved games found."
-msgstr ""
+msgstr "저장된 게임이 없습니다."
 
 #: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
 #: gui/savegame/save.xml:(caption):36
@@ -1968,11 +1970,11 @@ msgstr "취소"
 #: gui/replaymenu/replay_menu.xml:(caption):231
 #: gui/savegame/save.xml:(caption):41
 msgid "Delete"
-msgstr "없애기"
+msgstr "삭제"
 
 #: gui/loadgame/load.xml:(caption):63
 msgid "Load"
-msgstr ""
+msgstr "불러오기"
 
 #: gui/loadgame/load.xml:(caption):75
 msgid "Filter compatible saved games"
@@ -1984,39 +1986,39 @@ msgstr "참가자들:"
 
 #: gui/loadgame/load.xml:(caption):89
 msgid "Played time:"
-msgstr ""
+msgstr "놀았던 시간:"
 
 #: gui/loadgame/load.xml:(caption):93
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
-msgstr ""
+msgstr "지도 유형:"
 
 #: gui/loadgame/load.xml:(caption):97
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
-msgstr ""
+msgstr "지도 크기:"
 
 #: gui/loadgame/load.xml:(caption):101
 #: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
-msgstr ""
+msgstr "승리:"
 
 #: gui/loadgame/load.xml:(heading):32
 #: gui/replaymenu/replay_menu.xml:(heading):69
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "날짜 / 시간"
 
 #: gui/loadgame/load.xml:(heading):36
 msgctxt "replay"
 msgid "Map Type"
-msgstr "지도 타입"
+msgstr "지도 유형"
 
 #: gui/loadgame/load.xml:(heading):40
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "지도 이름"
 
 #: gui/loadgame/load.xml:(heading):44
 msgctxt "replay"
@@ -2029,7 +2031,7 @@ msgstr "언어"
 
 #: gui/locale/locale.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "언어:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -2037,11 +2039,11 @@ msgstr ""
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "로케일:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "발전된(advanced)"
+msgstr "고급??(어드벤스드)"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -2049,19 +2051,19 @@ msgstr "수락"
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
-msgstr ""
+msgstr "놀이 선택사항"
 
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
-msgstr ""
+msgstr "다시 설정"
 
 #: gui/options/options.xml:(caption):48
 msgid "Revert"
-msgstr ""
+msgstr "되돌리기"
 
 #: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
-msgstr "저장하다"
+msgstr "저장하기"
 
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
@@ -2073,7 +2075,7 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
-msgstr ""
+msgstr "저장 변동사항"
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
@@ -2081,25 +2083,25 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "알파 24"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "경고: 이것은 초기버전의 게임이므로 많은 특징들이 아직 추가되지 않았습니다."
+msgstr "경고: 이것은 초기버전의 놀이 이므로 많은 특징들이 아직 추가되지 않았습니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "0 A.D. 놀이 설명서를 엽니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "경제 자습서를 시작합니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
-msgstr "새로운 싱글플레이 시작하기"
+msgstr "클릭하면 새로운 혼자 선수 놀이를 시작합니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):177
 msgid ""
@@ -2109,7 +2111,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
-msgstr "저장한 게임 불러오기"
+msgstr "저장한 놀이 불러오기"
 
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
@@ -2118,11 +2120,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
-msgstr "기존의 멀티게임 참여하기"
+msgstr "기존의 여러선수 놀이에 참여하는중??"
 
 #: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "멀티플레이 게임 만들기.\\n\\nRequires UDP port 20595"
+msgstr "여러 선서 놀이 만들기.\\n\\n만들기 위해서는 UDP 포트 20595가 필요합니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
@@ -2130,7 +2132,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
-msgstr ""
+msgstr "놀이의 언어를 선택하십시오."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
@@ -2152,7 +2154,7 @@ msgstr "컴퓨터를 상대로 혼자서 게임하기"
 
 #: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "한명 이상을 상대로 멀티플레이 하기"
+msgstr "한명 이상을 상대로 여러선수 하기"
 
 #: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
@@ -2166,7 +2168,7 @@ msgstr "새창에서 Atlas Scenario Editor열기. 실행명령어 \"-editor\"로
 
 #: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
-msgstr ""
+msgstr "놀이를 끝냅니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
@@ -2196,7 +2198,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):108
 msgid "Tutorial"
-msgstr ""
+msgstr "자습서"
 
 #: gui/pregame/mainmenu.xml:(caption):140
 #: gui/reference/structree/structree.xml:(caption):126
@@ -2205,7 +2207,7 @@ msgstr "역사"
 
 #: gui/pregame/mainmenu.xml:(caption):162
 msgid "Matches"
-msgstr "경기들"
+msgstr "경기"
 
 #: gui/pregame/mainmenu.xml:(caption):176
 msgid "Campaigns"
@@ -2214,12 +2216,12 @@ msgstr "캠페인"
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
-msgstr ""
+msgstr "다시보기"
 
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):231
 msgid "Join Game"
-msgstr "게임 참여하기"
+msgstr "놀이 참여하기"
 
 #: gui/pregame/mainmenu.xml:(caption):245
 msgid "Host Game"
@@ -2227,23 +2229,23 @@ msgstr "게임 만들기"
 
 #: gui/pregame/mainmenu.xml:(caption):261
 msgid "Game Lobby"
-msgstr ""
+msgstr "놀이 앞마당"
 
 #: gui/pregame/mainmenu.xml:(caption):311
 msgid "Options"
-msgstr "옵션"
+msgstr "선택사항"
 
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Mod Selection"
-msgstr ""
+msgstr "수정판(MOD) 선택"
 
 #: gui/pregame/mainmenu.xml:(caption):351
 msgid "Welcome Screen"
-msgstr ""
+msgstr "환영 화면"
 
 #: gui/pregame/mainmenu.xml:(caption):409
 msgid "Learn to Play"
-msgstr ""
+msgstr "놀이 배우기"
 
 #: gui/pregame/mainmenu.xml:(caption):454
 msgid "Settings"
@@ -2287,11 +2289,11 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
-msgstr ""
+msgstr "문명:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr ""
+msgstr "부대 훈련사??"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2299,7 +2301,7 @@ msgstr "정보"
 
 #: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
-msgstr ""
+msgstr "놀이 다시보기"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
@@ -2307,11 +2309,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
-msgstr ""
+msgstr "겁탈자-스포일러"
 
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
-msgstr ""
+msgstr "주 차림표"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2324,27 +2326,27 @@ msgstr "요약"
 
 #: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
-msgstr ""
+msgstr "다시보기 시작"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "선수"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "크기"
 
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "인구"
 
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "기한"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -2352,46 +2354,46 @@ msgstr ""
 
 #: gui/savegame/save.xml:(caption):14
 msgid "Save Game"
-msgstr ""
+msgstr "놀이 저장"
 
 #: gui/savegame/save.xml:(caption):28
 msgid "Description:"
-msgstr ""
+msgstr "설명:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
-msgstr ""
+msgstr "환영합니다!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
-msgstr ""
+msgstr "계속 이 메시지를 표시"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "알려진 문제점 (웹)"
 
 #: gui/summary/summary.xml:(caption):116
 msgid "Charts"
-msgstr ""
+msgstr "도표"
 
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "범주:"
 
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "값:"
 
 #: gui/summary/summary.xml:(caption):193
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "유형"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "다시보기 보기??"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2400,49 +2402,49 @@ msgstr "계속"
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "범주"
 
 #: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "값"
 
 #: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "유형"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "미술 주동자??"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "소리 관리자"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "작곡가"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "미술 관리자"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "지도 만드는중"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "아무 지도 스크립트"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D 미술"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D 미술"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2450,68 +2452,68 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "추가 음악"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "플루트"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "젬베"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
+msgstr "프레임 드럼, 다라부카, 릭, 톰"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
-msgstr ""
+msgstr "디제리두"
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "트럼펫"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "켈트 하프"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "주석 피리"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "비올라, 바이올린"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
-msgstr ""
+msgstr "음악"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 #: gui/options/options.json[2].label
 msgid "Sound"
-msgstr ""
+msgstr "소리"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "그리스어"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "라틴어"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "페르시아어"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "목소리"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "미술"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -2589,7 +2591,7 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "번역자"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2597,7 +2599,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "선수이름 (혼자 선수)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
@@ -2605,7 +2607,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "선수이름 (여러 선수)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
@@ -2623,7 +2625,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "환영 화면 활성화??인에이블"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2631,7 +2633,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "네트워크 경고"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2729,7 +2731,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "안개 활성화합니다."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -2757,28 +2759,28 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
-msgstr ""
+msgstr "그림자"
 
 #: gui/options/options.json[1].options[6].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "매우 낮음"
 
 #: gui/options/options.json[1].options[6].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "낮음"
 
 #: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "중간"
 
 #: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
-msgstr ""
+msgstr "높음"
 
 #: gui/options/options.json[1].options[6].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "매우 높음"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid ""
@@ -2932,7 +2934,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "음량"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2956,7 +2958,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "UI 양"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3001,7 +3003,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
-msgstr ""
+msgstr "모래통"
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Very Easy"
@@ -3021,7 +3023,7 @@ msgstr "매우 어려움"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "AI의 기본 난이도."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
@@ -3029,19 +3031,19 @@ msgstr ""
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
-msgstr "임의로"
+msgstr "아무거나"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "균형잡힘"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
-msgstr "공격적인"
+msgstr "공격적임"
 
 #: gui/options/options.json[3].options[4].list[3].label
 msgid "Defensive"
-msgstr "방어모드"
+msgstr "방어형"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
@@ -3049,7 +3051,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "기본 인공지능 행동"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3059,11 +3061,11 @@ msgstr ""
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
-msgstr ""
+msgstr "선수 할당"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "놀이 설정"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
@@ -3160,11 +3162,11 @@ msgstr "비활성화"
 
 #: gui/options/options.json[5].options[6].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "완료됨"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "모두 표시됨"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
@@ -3229,11 +3231,11 @@ msgstr ""
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "오름차순"
 
 #: gui/options/options.json[5].options[12].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "내림차순"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -4155,7 +4157,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "전투 코끼리"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
@@ -4175,11 +4177,11 @@ msgstr ""
 msgid ""
 "- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "- 이용 가능 : 카르타고인, 쿠시인, 모리아스인, 페르시아인, 프톨레마이오스인 및 셀레우코스인"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "고래"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
