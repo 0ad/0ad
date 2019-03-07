@@ -34,11 +34,9 @@ ResourceSupply.prototype.Init = function()
 
 	// List of IDs for each player
 	this.gatherers = [];
-	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers()
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 0; i < numPlayers; ++i)
 		this.gatherers.push([]);
-
-	this.infinite = !isFinite(+this.template.Amount);
 
 	let [type, subtype] = this.template.Type.split('.');
 	this.cachedType = { "generic": type, "specific": subtype };
@@ -46,12 +44,12 @@ ResourceSupply.prototype.Init = function()
 
 ResourceSupply.prototype.IsInfinite = function()
 {
-	return this.infinite;
+	return !isFinite(+this.template.Amount);
 };
 
 ResourceSupply.prototype.GetKillBeforeGather = function()
 {
-	return (this.template.KillBeforeGather == "true");
+	return this.template.KillBeforeGather == "true";
 };
 
 ResourceSupply.prototype.GetMaxAmount = function()
@@ -74,64 +72,82 @@ ResourceSupply.prototype.GetNumGatherers = function()
 	return this.gatherers.reduce((a, b) => a + b.length, 0);
 };
 
-/* The rate of each additionnal gatherer rate follow a geometric sequence, with diminishingReturns as common ratio. */
+/**
+ * @return {{ "generic": string, "specific": string }} An object containing the subtype and the generic type. All resources must have both.
+ */
+ResourceSupply.prototype.GetType = function()
+{
+	return this.cachedType;
+};
+
+/**
+ * @param {number} gathererID The gatherer's entity id.
+ * @param {number} player The gatherer's id.
+ * @return {boolean} Whether the ResourceSupply can have additional gatherers.
+ */
+ResourceSupply.prototype.IsAvailable = function(player, gathererID)
+{
+	return this.GetCurrentAmount() > 0 && (this.GetNumGatherers() < this.GetMaxGatherers() || this.gatherers[player].indexOf(gathererID) != -1);
+};
+
+/**
+ * Each additional gatherer decreases the rate following a geometric sequence, with diminishingReturns as ratio.
+ * @return {number} The diminishing return if any, null otherwise.
+ */
 ResourceSupply.prototype.GetDiminishingReturns = function()
 {
-	if ("DiminishingReturns" in this.template)
-	{
-		let diminishingReturns = ApplyValueModificationsToEntity("ResourceSupply/DiminishingReturns", +this.template.DiminishingReturns, this.entity);
-		if (diminishingReturns)
-		{
-			let numGatherers = this.GetNumGatherers();
-			if (numGatherers > 1)
-				return diminishingReturns == 1 ? 1 : (1. - Math.pow(diminishingReturns, numGatherers)) / (1. - diminishingReturns) / numGatherers;
-		}
-	}
+	if (!this.template.DiminishingReturns)
+		return null;
+
+	let diminishingReturns = ApplyValueModificationsToEntity("ResourceSupply/DiminishingReturns", +this.template.DiminishingReturns, this.entity);
+	if (!diminishingReturns)
+		return null;
+
+	let numGatherers = this.GetNumGatherers();
+	if (numGatherers > 1)
+		return diminishingReturns == 1 ? 1 : (1 - Math.pow(diminishingReturns, numGatherers)) / (1 - diminishingReturns) / numGatherers;
+
 	return null;
 };
 
-ResourceSupply.prototype.TakeResources = function(rate)
+/**
+ * @param {number} amount The amount of resources that should be taken from the resource supply. The amount must be positive.
+ * @return {{ "amount": number, "exhausted": boolean }} The current resource amount in the entity and whether it's exhausted or not.
+ */
+ResourceSupply.prototype.TakeResources = function(amount)
 {
 	// Before changing the amount, activate Fogging if necessary to hide changes
 	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
 	if (cmpFogging)
 		cmpFogging.Activate();
 
-	if (this.infinite)
-		return { "amount": rate, "exhausted": false };
+	if (this.IsInfinite())
+		return { "amount": amount, "exhausted": false };
 
-	// 'rate' should be a non-negative integer
+	let oldAmount = this.GetCurrentAmount();
+	this.amount = Math.max(0, oldAmount - amount);
 
-	var old = this.amount;
-	this.amount = Math.max(0, old - rate);
-	var change = old - this.amount;
-
+	let isExhausted = this.GetCurrentAmount() == 0;
 	// Remove entities that have been exhausted
-	if (this.amount === 0)
+	if (isExhausted)
 		Engine.DestroyEntity(this.entity);
 
-	Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": old, "to": this.amount });
+	Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": oldAmount, "to": this.GetCurrentAmount() });
 
-	return { "amount": change, "exhausted": (this.amount === 0) };
+	return { "amount": oldAmount - this.GetCurrentAmount(), "exhausted": isExhausted };
 };
 
-ResourceSupply.prototype.GetType = function()
-{
-	// All resources must have both type and subtype
-	return this.cachedType;
-};
-
-ResourceSupply.prototype.IsAvailable = function(player, gathererID)
-{
-	return this.amount > 0 && (this.GetNumGatherers() < this.GetMaxGatherers() || this.gatherers[player].indexOf(gathererID) !== -1);
-};
-
+/**
+ * @param {number} player The gatherer's id.
+ * @param {number} gathererID The gatherer's player id.
+ * @returns {boolean} Whether the gatherer was successfully added to the entity's gatherers list.
+ */
 ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 {
 	if (!this.IsAvailable(player, gathererID))
 		return false;
 
-	if (this.gatherers[player].indexOf(gathererID) === -1)
+	if (this.gatherers[player].indexOf(gathererID) == -1)
 	{
 		this.gatherers[player].push(gathererID);
 		// broadcast message, mainly useful for the AIs.
@@ -141,26 +157,29 @@ ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 	return true;
 };
 
-// should this return false if the gatherer didn't gather from said resource?
+/**
+ * @param {number} gathererID - The gatherer's entity id.
+ * @param {number} player - The gatherer's player id.
+ * @todo: Should this return false if the gatherer didn't gather from said resource?
+ */
 ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 {
-	// this can happen if the unit is dead
+	// This can happen if the unit is dead
 	if (player == undefined || player == INVALID_PLAYER)
 	{
-		for (var i = 0; i < this.gatherers.length; ++i)
+		for (let i = 0; i < this.gatherers.length; ++i)
 			this.RemoveGatherer(gathererID, i);
+
+		return;
 	}
-	else
-	{
-		var index = this.gatherers[player].indexOf(gathererID);
-		if (index !== -1)
-		{
-			this.gatherers[player].splice(index,1);
-			// broadcast message, mainly useful for the AIs.
-			Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
-			return;
-		}
-	}
+
+	let index = this.gatherers[player].indexOf(gathererID);
+	if (index == -1)
+		return;
+
+	this.gatherers[player].splice(index, 1);
+	// Broadcast message, mainly useful for the AIs.
+	Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
 };
 
 Engine.RegisterComponentType(IID_ResourceSupply, "ResourceSupply", ResourceSupply);
