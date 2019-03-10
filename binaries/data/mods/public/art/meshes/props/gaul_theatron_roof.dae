@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.80.45 commit date:2019-03-03, commit time:00:01, hash:ae977d13f8e9</authoring_tool>
+    </contributor>
+    <created>2019-03-09T14:18:50</created>
+    <modified>2019-03-09T14:18:50</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material-effect">
+      <profile_COMMON>
+        <newparam sid="celt_struct_red_png-surface">
+          <surface type="2D">
+            <init_from>celt_struct_red_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="celt_struct_red_png-sampler">
+          <sampler2D>
+            <source>celt_struct_red_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <texture texture="celt_struct_red_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <specular>
+              <color sid="specular">0 0.5 0 1</color>
+            </specular>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Material_004-effect">
+      <profile_COMMON>
+        <newparam sid="gaul_tile_mossy_png-surface">
+          <surface type="2D">
+            <init_from>gaul_tile_mossy_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="gaul_tile_mossy_png-sampler">
+          <sampler2D>
+            <source>gaul_tile_mossy_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <texture texture="gaul_tile_mossy_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <specular>
+              <color sid="specular">0 0.5 0 1</color>
+            </specular>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="celt_struct_red_png" name="celt_struct_red_png">
+      <init_from>celt_struct_red.png</init_from>
+    </image>
+    <image id="gaul_tile_mossy_png" name="gaul_tile_mossy_png">
+      <init_from>gaul_tile_mossy.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material-material" name="Material">
+      <instance_effect url="#Material-effect"/>
+    </material>
+    <material id="Material_004-material" name="Material.004">
+      <instance_effect url="#Material_004-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube_007-mesh" name="Cube.007">
+      <mesh>
+        <source id="Cube_007-mesh-positions">
+          <float_array id="Cube_007-mesh-positions-array" count="72">14.00245 3.14041 8.249685 10.0381 3.14041 8.249685 14.00245 3.961675 8.249685 10.0381 0.07878255 6.02398 14.00245 0.07878303 6.02398 14.00245 7.023303 6.02398 10.0381 7.023302 6.02398 10.0381 3.961675 8.249685 14.00245 3.756359 8.389824 10.0381 3.756359 8.389824 10.0381 3.345726 8.389824 14.00245 3.345726 8.389824 -14.00245 3.14041 8.249685 -10.0381 3.14041 8.249685 -14.00245 3.961675 8.249685 -10.0381 0.07878255 6.02398 -14.00245 0.07878303 6.02398 -14.00245 7.023303 6.02398 -10.0381 7.023302 6.02398 -10.0381 3.961675 8.249685 -14.00245 3.756359 8.389824 -10.0381 3.756359 8.389824 -10.0381 3.345726 8.389824 -14.00245 3.345726 8.389824</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_007-mesh-normals">
+          <float_array id="Cube_007-mesh-normals-array" count="42">1.35312e-7 -0.5637528 0.8259437 0 -0.5880105 0.8088533 -2.54218e-7 0.5880103 0.8088535 0 0.5637519 0.8259443 -2.41934e-7 -0.5637528 0.8259437 0 -0.5880103 0.8088535 0 0.5880106 0.8088534 0 -0.5637528 0.8259437 0 -0.5880103 0.8088535 0 0.5880106 0.8088534 2.41933e-7 0.563751 0.8259449 0 -0.5637528 0.8259437 2.54218e-7 0.5880103 0.8088535 -1.21119e-7 0.563751 0.8259449</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-normals-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_007-mesh-map-0">
+          <float_array id="Cube_007-mesh-map-0-array" count="96">9.91756e-5 0.9382852 0.2457499 0.9999009 9.91165e-5 0.9998991 0.24575 9.91165e-5 9.91756e-5 0.9382852 9.91756e-5 9.92218e-5 0.2460937 0 0 0.9375 0 0 0 0.9375 0.2460937 1 0 1 0.2457499 0.9999009 9.91756e-5 0.9382852 9.91165e-5 0.9998991 0.24575 9.91165e-5 9.91756e-5 0.9382852 0.24575 0.9382854 0.2460937 0 0 0.9375 0.2460937 0.9375 0.2460937 1 0 0.9375 0 1 9.91756e-5 0.9382852 0.24575 0.9382854 0.2457499 0.9999009 0.24575 9.91165e-5 0.24575 0.9382854 9.91756e-5 0.9382852 0.2460937 0 0.2460937 0.9375 0 0.9375 0 0.9375 0.2460937 0.9375 0.2460937 1 0.2457499 0.9999009 0.24575 0.9382854 9.91756e-5 0.9382852 0.24575 9.91165e-5 9.91756e-5 9.92218e-5 9.91756e-5 0.9382852 0.2460937 0 0 0 0 0.9375 0.2460937 1 0.2460937 0.9375 0 0.9375</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-map-0-array" count="48" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_007-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_007-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_004-material" count="16">
+          <input semantic="VERTEX" source="#Cube_007-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_007-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_007-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 11 0 1 10 0 2 4 1 3 1 1 4 3 1 5 6 2 6 2 2 7 5 2 8 2 3 9 9 3 10 8 3 11 23 4 12 13 4 13 22 4 14 16 5 15 13 5 16 12 5 17 18 6 18 14 6 19 19 6 20 21 3 21 14 3 22 20 3 23 1 7 24 0 7 25 11 7 26 4 8 27 0 8 28 1 8 29 6 9 30 7 9 31 2 9 32 2 10 33 7 10 34 9 10 35 23 11 36 12 11 37 13 11 38 16 1 39 15 1 40 13 1 41 18 12 42 17 12 43 14 12 44 21 13 45 19 13 46 14 13 47</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Cube_004" name="Cube.004" type="NODE">
+        <matrix sid="transform">-0.9528156 3.10467e-7 0 0 -3.10467e-7 -0.9528156 0 0 0 0 0.9528156 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_007-mesh" name="Cube.004">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material-material" target="#Material-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="Material_004-material" target="#Material_004-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
