@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/gaul_theatron_roof.dae</mesh>
+      <textures>
+        <texture file="structural/gaul_tile_mossy.png" name="baseTex"/>
+        <texture file="structural/gaul_tile_norm.png" name="normTex"/>
+        <texture file="structural/gaul_tile_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

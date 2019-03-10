@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="New">
+      <mesh>structural/gaul_theatron.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6_gaul_theatron.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/theatron_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/theatron_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/theatron_standard_boar.xml" attachpoint="standard_boar01"/>
+        <prop actor="props/structures/gauls/theatron_standard_boar.xml" attachpoint="standard_boar02"/>
+        <prop actor="props/structures/gauls/theatron_standard_boar.xml" attachpoint="standard_boar03"/>
+        <prop actor="props/structures/gauls/theatron_standard_raven.xml" attachpoint="standard_raven01"/>
+        <prop actor="props/structures/gauls/theatron_standard_raven.xml" attachpoint="standard_raven02"/>
+        <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield01"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_scutum_e.xml" attachpoint="shield02"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield03"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_scutum_e.xml" attachpoint="shield04"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_scutum_b.xml" attachpoint="shield05"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield06"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_scutum_e.xml" attachpoint="shield07"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_scutum_a.xml" attachpoint="shield08"  maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield09"  maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box01"  maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box02"  maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box03"  maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/dead_bull_head.xml" attachpoint="bullhead"/>
+        <prop actor="props/special/eyecandy/food_sack.xml" attachpoint="foodsack01"  maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/food_sack.xml" attachpoint="foodsack02"  maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_theatron.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

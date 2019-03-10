@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_dirt_6x6_gaul_theatron">
+      <decal angle="90" depth="37" offsetx="0" offsetz="0" width="37"/>
+      <textures>
+        <texture file="props/decal_struct_gaul_theatron.png" name="baseTex"/>
+        <texture file="props/decal_struct_gaul_theatron_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm.xml</material>
+</actor>

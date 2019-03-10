@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/gaul_standard_boar.dae</mesh>
+      <props>
+        <prop actor="props/structures/gauls/theatron_standard_post.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/celt_boar_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_boar_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Bronze">
+      <textures>
+        <texture file="props/helmet/celt_boar_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Brass">
+      <textures>
+        <texture file="props/helmet/celt_boar_brass.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Iron">
+      <textures>
+        <texture file="props/helmet/celt_boar_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

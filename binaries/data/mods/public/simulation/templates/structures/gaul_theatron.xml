@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special_theatron">
+  <Auras disable=""/>
+  <Identity>
+    <Civ>athen</Civ>
+  </Identity>
+  <Footprint replace="">
+    <Circle radius="17"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="30" depth="30"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/gauls/theatron.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>
