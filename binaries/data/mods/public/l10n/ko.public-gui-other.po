@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-02-18 09:43+0100\n"
-"PO-Revision-Date: 2019-03-02 12:49+0000\n"
+"PO-Revision-Date: 2019-03-10 15:35+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -311,7 +311,7 @@ msgstr[0] ""
 
 #: gui/common/gamedescription.js:279
 msgid "Relic Count"
-msgstr ""
+msgstr "유물 개수"
 
 #: gui/common/gamedescription.js:286
 msgid "Hero Garrison"
@@ -669,7 +669,7 @@ msgstr "균형적"
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr "방어모드"
+msgstr "방어적"
 
 #: gui/common/settings.js:161
 msgctxt "aiBehavior"
@@ -844,7 +844,7 @@ msgstr[0] "??초"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
-msgstr "건??강:"
+msgstr "체력:"
 
 #: gui/common/tooltips.js:175
 #, javascript-format
@@ -960,7 +960,7 @@ msgstr "회복:"
 
 #: gui/common/tooltips.js:352
 msgid "Health"
-msgstr "건??강"
+msgstr "체력"
 
 #: gui/common/tooltips.js:377
 msgid "Projectile Limit"
@@ -1566,11 +1566,11 @@ msgstr "혼자- 그리고 여러 선수"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
-msgstr "혼자 선수"
+msgstr "혼자 놀기"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
-msgstr "여러 선수"
+msgstr "함께 놀기"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2599,7 +2599,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
-msgstr "선수이름 (혼자 선수)"
+msgstr "선수이름 (혼자 놀기)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
@@ -2607,7 +2607,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr "선수이름 (여러 선수)"
+msgstr "선수이름 (함께 놀기)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
@@ -2641,7 +2641,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr ""
+msgstr "FPS 덮어씌우기-오버레이"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2657,7 +2657,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "놀이시간 오버레이??"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2665,7 +2665,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "휴전 시간 오버레이??"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2698,7 +2698,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "구경꾼 한계"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2707,11 +2707,11 @@ msgstr ""
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "대화 시간 출력"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr ""
+msgstr "장군??"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -2723,7 +2723,7 @@ msgstr "창 모드"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "오픈지엘 2.0 쉐이더를 사용합니다(권장)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2735,7 +2735,7 @@ msgstr "안개 활성화합니다."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "안개"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
@@ -2790,7 +2790,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "그림자 품질"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
@@ -2814,7 +2814,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
-msgstr ""
+msgstr "입자"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
@@ -2834,7 +2834,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[11].label
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "HQ 물 효과"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2842,7 +2842,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
-msgstr ""
+msgstr "실제 수심"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2850,7 +2850,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
-msgstr ""
+msgstr "물 반사"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2858,7 +2858,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
-msgstr ""
+msgstr "물 반사"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
@@ -2890,7 +2890,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[18].label
 msgid "VSync"
-msgstr ""
+msgstr "수직 동기화"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid ""
@@ -2918,23 +2918,23 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "그림"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "주요 음량을 조절합니다."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "주요 음량"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "놀이 음악에서 조절합니다."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
-msgstr "음량"
+msgstr "음악 음량"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2950,15 +2950,15 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "행동 음량"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "UI 소리 음량을 조정합니다."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr "UI 양"
+msgstr "UI 음량? 또는 양"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."

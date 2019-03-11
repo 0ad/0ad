@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-03-02 12:49+0000\n"
+"PO-Revision-Date: 2019-03-10 15:35+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -187,11 +187,11 @@ msgstr "선수"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "게임 타입"
+msgstr "놀이 유형"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr "지도 타입"
+msgstr "지도 유형"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
@@ -199,11 +199,11 @@ msgstr "지도 타입 정하기"
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
-msgstr "지도 필터"
+msgstr "지도 거름기"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
-msgstr "지도 필터 정하기"
+msgstr "지도 거름기 정하기"
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
@@ -211,7 +211,7 @@ msgstr "지도 선택"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
-msgstr "플레이할 지도 정하기"
+msgstr "놀이 지도 정하기"
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
@@ -219,7 +219,7 @@ msgstr "지도 크기"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "지도 사이즈 결정(큰 사이즈의 지도는 성능을 저하시킬수 있습니다)"
+msgstr "지도 크기 결정(큰 크기의 지도는 성능을 저하시킬수 있습니다.)"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
@@ -231,15 +231,15 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr "플레이어 수"
+msgstr "선수 명수"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
-msgstr " 플레이어의 수를 정하세요."
+msgstr "선수의 명수를 정하세요."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr ""
+msgstr "인구 제한"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
@@ -275,7 +275,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Relic Count"
-msgstr ""
+msgstr "유물 개수"
 
 #: gui/gamesetup/gamesetup.js:646
 msgid ""
@@ -601,17 +601,17 @@ msgstr ""
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr "%(playername)s의 게임"
+msgstr "%(playername)s의 놀이"
 
 #: gui/loading/loading.js:48
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "“%(map)s”를 로딩중"
+msgstr "“%(map)s”의 놀이를 불러오는 중"
 
 #: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "“%(map)s”맵 생성중"
+msgstr "“%(map)s”의 지도를 만드는 중"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
