@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>gaia/cattails.dae</mesh>
+      <textures>
+        <texture file="gaia/cattails.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <textures>
+        <texture file="gaia/cattails_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="2">
+      <textures>
+        <texture file="gaia/cattails_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind_grain.xml</material>
+</actor>

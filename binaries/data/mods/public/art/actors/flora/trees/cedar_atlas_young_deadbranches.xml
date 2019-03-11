@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <textures>
+        <texture file="gaia/cedar_atlas_dead.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/cedar_atlas_young_1_dead.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/cedar_atlas_young_2_dead.dae</mesh>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/cedar_atlas_young_3_dead.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>
