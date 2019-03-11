@@ -17,10 +17,11 @@
 			<WaterBody>
 				<Type>ocean</Type>
 				<Color r="0.219608" g="0.247059" b="0.356863"/>
-				<Height>21.0885</Height>
-				<Waviness>4.0</Waviness>
-				<Murkiness>0.871094</Murkiness>
 				<Tint r="0.592157" g="0.639216" b="0.756863"/>
+				<Height>21.0885</Height>
+				<Waviness>4</Waviness>
+				<Murkiness>0.871094</Murkiness>
+				<WindAngle>0</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -32,9 +33,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="535.021" y="83.4013" z="647.509"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="557.586" y="128.839" z="395.729"/>
+		<Rotation angle="-0.0105634"/>
+		<Declination angle="0.959618"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -46,6 +47,7 @@
   "LockTeams": false,
   "Name": "Sandbox - The Gauls",
   "PlayerData": [
+    null,
     {
       "AI": "",
       "Civ": "gaul",
@@ -2875,7 +2877,7 @@
 		<Entity uid="496">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="651.95887" z="550.04542"/>
+			<Position x="593.89222" z="556.59028"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="497">
@@ -2893,7 +2895,7 @@
 		<Entity uid="499">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="650.89618" z="581.01075"/>
+			<Position x="645.4375" z="555.68885"/>
 			<Orientation y="-0.32456"/>
 		</Entity>
 		<Entity uid="500">
@@ -9114,7 +9116,7 @@
 		<Entity uid="1583">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="645.44544" z="581.1792"/>
+			<Position x="622.17237" z="536.12012"/>
 			<Orientation y="-2.97464"/>
 		</Entity>
 		<Entity uid="1584">
@@ -9150,7 +9152,7 @@
 		<Entity uid="1589">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="640.36475" z="557.71436"/>
+			<Position x="609.9737" z="541.79786"/>
 			<Orientation y="0.11564"/>
 		</Entity>
 		<Entity uid="1590">
@@ -13549,25 +13551,25 @@
 		<Entity uid="2322">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="587.73914" z="548.72376"/>
+			<Position x="585.58948" z="552.5824"/>
 			<Orientation y="1.42148"/>
 		</Entity>
 		<Entity uid="2323">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="595.58545" z="548.84467"/>
+			<Position x="617.9308" z="559.28211"/>
 			<Orientation y="2.43778"/>
 		</Entity>
 		<Entity uid="2324">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="602.63263" z="536.4673"/>
+			<Position x="617.72126" z="520.75226"/>
 			<Orientation y="2.56827"/>
 		</Entity>
 		<Entity uid="2325">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="603.93262" z="532.5774"/>
+			<Position x="612.41993" z="518.26343"/>
 			<Orientation y="2.60134"/>
 		</Entity>
 		<Entity uid="2326">
@@ -15517,13 +15519,13 @@
 		<Entity uid="2652">
 			<Template>gaia/flora_tree_apple</Template>
 			<Player>0</Player>
-			<Position x="595.80243" z="557.83454"/>
+			<Position x="605.66413" z="564.81318"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2653">
 			<Template>gaia/flora_tree_apple</Template>
 			<Player>0</Player>
-			<Position x="603.99195" z="553.21637"/>
+			<Position x="623.77747" z="562.00861"/>
 			<Orientation y="0.79607"/>
 		</Entity>
 		<Entity uid="2654">
@@ -16093,7 +16095,7 @@
 		<Entity uid="2748">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="593.396" z="548.88892"/>
+			<Position x="599.54297" z="559.464"/>
 			<Orientation y="0.34087"/>
 		</Entity>
 		<Entity uid="2749">
@@ -16423,7 +16425,7 @@
 		<Entity uid="2803">
 			<Template>gaia/treasure/stone</Template>
 			<Player>0</Player>
-			<Position x="596.32605" z="546.20734"/>
+			<Position x="589.6941" z="548.39325"/>
 			<Orientation y="-1.4488"/>
 		</Entity>
 		<Entity uid="2804">
@@ -21512,7 +21514,7 @@
 		<Entity uid="3789">
 			<Template>units/gaul_hero_viridomarus</Template>
 			<Player>1</Player>
-			<Position x="532.06745" z="457.0485"/>
+			<Position x="556.44556" z="450.23682"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3790">
@@ -22038,119 +22040,119 @@
 		<Entity uid="3869">
 			<Template>units/gaul_hero_brennus</Template>
 			<Player>1</Player>
-			<Position x="529.59913" z="454.34623"/>
+			<Position x="553.97724" z="447.53455"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="50322"/>
 		</Entity>
 		<Entity uid="3870">
 			<Template>units/gaul_hero_vercingetorix</Template>
 			<Player>1</Player>
-			<Position x="534.41675" z="460.44227"/>
+			<Position x="558.79487" z="453.63059"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="10588"/>
 		</Entity>
 		<Entity uid="3871">
 			<Template>units/gaul_infantry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="524.97895" z="471.31244"/>
+			<Position x="549.35706" z="464.50077"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57418"/>
 		</Entity>
 		<Entity uid="3872">
 			<Template>units/gaul_infantry_javelinist_a</Template>
 			<Player>1</Player>
-			<Position x="526.23603" z="473.26124"/>
+			<Position x="550.61414" z="466.44956"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="50800"/>
 		</Entity>
 		<Entity uid="3873">
 			<Template>units/gaul_infantry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="527.90107" z="474.7634"/>
+			<Position x="552.27918" z="467.95173"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26718"/>
 		</Entity>
 		<Entity uid="3874">
 			<Template>units/gaul_infantry_slinger_b</Template>
 			<Player>1</Player>
-			<Position x="514.69526" z="470.39057"/>
+			<Position x="534.89216" z="447.56571"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63130"/>
 		</Entity>
 		<Entity uid="3875">
 			<Template>units/gaul_infantry_slinger_a</Template>
 			<Player>1</Player>
-			<Position x="516.0102" z="472.05311"/>
+			<Position x="536.2071" z="449.22825"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="6390"/>
 		</Entity>
 		<Entity uid="3876">
 			<Template>units/gaul_infantry_slinger_e</Template>
 			<Player>1</Player>
-			<Position x="517.3949" z="474.29224"/>
+			<Position x="537.5918" z="451.46738"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39582"/>
 		</Entity>
 		<Entity uid="3877">
 			<Template>units/gaul_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="540.22101" z="479.96766"/>
+			<Position x="547.72522" z="487.29361"/>
 			<Orientation y="-2.44526"/>
 			<Actor seed="47928"/>
 		</Entity>
 		<Entity uid="3878">
 			<Template>units/gaul_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="542.18879" z="478.5666"/>
+			<Position x="549.693" z="485.89255"/>
 			<Orientation y="-2.71683"/>
 			<Actor seed="43236"/>
 		</Entity>
 		<Entity uid="3879">
 			<Template>units/gaul_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="543.25226" z="480.38044"/>
+			<Position x="550.75647" z="487.7064"/>
 			<Orientation y="-2.67203"/>
 			<Actor seed="44020"/>
 		</Entity>
 		<Entity uid="3880">
 			<Template>units/gaul_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="540.53351" z="482.16968"/>
+			<Position x="548.03772" z="489.49564"/>
 			<Orientation y="-3.07735"/>
 			<Actor seed="24882"/>
 		</Entity>
 		<Entity uid="3881">
 			<Template>units/gaul_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="538.45472" z="481.36036"/>
+			<Position x="545.95893" z="488.68631"/>
 			<Orientation y="-2.90912"/>
 			<Actor seed="21886"/>
 		</Entity>
 		<Entity uid="3882">
 			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="546.28364" z="478.97355"/>
+			<Position x="553.78785" z="486.2995"/>
 			<Orientation y="-2.83362"/>
 			<Actor seed="23478"/>
 		</Entity>
 		<Entity uid="3883">
 			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="544.58265" z="477.12238"/>
+			<Position x="552.08686" z="484.44834"/>
 			<Orientation y="-2.27092"/>
 			<Actor seed="35226"/>
 		</Entity>
 		<Entity uid="3884">
 			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="546.58814" z="476.27082"/>
+			<Position x="554.09235" z="483.59678"/>
 			<Orientation y="-2.31164"/>
 			<Actor seed="50348"/>
 		</Entity>
 		<Entity uid="3885">
 			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="547.8855" z="477.18583"/>
+			<Position x="555.38971" z="484.51178"/>
 			<Orientation y="-2.1516"/>
 			<Actor seed="13074"/>
 		</Entity>
@@ -22601,6 +22603,54 @@
 			<Position x="526.85407" z="501.39164"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57784"/>
+		</Entity>
+		<Entity uid="3951">
+			<Template>structures/gaul_theatron</Template>
+			<Player>1</Player>
+			<Position x="528.73725" z="467.02646"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3953">
+			<Template>gaia/flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="633.90064" z="541.2497"/>
+			<Orientation y="-2.6119"/>
+			<Actor seed="2118"/>
+		</Entity>
+		<Entity uid="3954">
+			<Template>gaia/flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="622.93445" z="552.63886"/>
+			<Orientation y="-2.93343"/>
+			<Actor seed="1586"/>
+		</Entity>
+		<Entity uid="3955">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="625.79444" z="553.74946"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="497"/>
+		</Entity>
+		<Entity uid="3956">
+			<Template>gaia/flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="621.98829" z="549.02106"/>
+			<Orientation y="-2.46848"/>
+			<Actor seed="1587"/>
+		</Entity>
+		<Entity uid="3957">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="631.98444" z="523.19135"/>
+			<Orientation y="0.27245"/>
+			<Actor seed="494"/>
+		</Entity>
+		<Entity uid="3958">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="629.78211" z="513.23578"/>
+			<Orientation y="0.19803"/>
+			<Actor seed="493"/>
 		</Entity>
 	</Entities>
 	<Paths/>
