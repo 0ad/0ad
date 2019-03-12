@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_pine">
+      <decal angle="0" depth="16" offsetx="0" offsetz="0" width="16"/>
+      <textures>
+        <texture file="gaia/pine_decal.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>
