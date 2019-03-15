@@ -5,6 +5,7 @@
 # Translators:
 # Alan Ponce <ae_ponce@hotmail.com>, 2015
 # Facundo Abiega <abiegafacundo@gmail.com>, 2018
+# Facundo Decena <facundo.decena@gmail.com>, 2019
 # Franco Falleti <ezefran256@gmail.com>, 2016
 # Javier Benintendi <jbenintendi@gmail.com>, 2016
 # Juan Delhon <juandelhon@gmail.com>, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-07 03:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-03-14 03:39+0000\n"
+"Last-Translator: Facundo Decena <facundo.decena@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +85,7 @@ msgstr "Has sido silenciado "
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s ha sido silenciado"
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
