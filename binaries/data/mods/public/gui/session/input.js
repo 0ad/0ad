@@ -1177,7 +1177,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	inputState = INPUT_NORMAL;
 	let inputLine = g_FreehandSelection_InputLine;
 	g_FreehandSelection_InputLine = [];
-	if (!ev.button == SDL_BUTTON_RIGHT)
+	if (ev.button != SDL_BUTTON_RIGHT)
 		return true;
 
 	let lengthOfLine = 0;
