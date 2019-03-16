@@ -1199,7 +1199,8 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-nonvisual            disable any graphics and sounds
  * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
  *                                 located in simulation/data/settings/victory_conditions/
- *                                 (default conquest)
+ *                                 (default conquest). When the first given SCRIPTNAME is 
+ *                                 "endless", no victory conditions will apply.
  * -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory condition
  *                                 (default 10 minutes)
  * -autostart-relicduration=NUM    sets the victory duration NUM for relic victory condition

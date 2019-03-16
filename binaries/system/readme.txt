@@ -17,7 +17,7 @@ Autostart:
 -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
 -autostart-ceasefire=NUM        sets a ceasefire duration NUM (default 0 minutes)
 -autostart-nonvisual            disable any graphics and sounds
--autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME located in simulation/data/settings/victory_conditions/
+-autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME located in simulation/data/settings/victory_conditions/ (default conquest). When the first given SCRIPTNAME is "endless", no victory conditions will apply.
 -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory condition (default 10 minutes)
 -autostart-relicduration=NUM    sets the victory duration NUM for relic victory condition (default 10 minutes)
 -autostart-reliccount=NUM       sets the number of relics for relic victory condition (default 2 relics)
