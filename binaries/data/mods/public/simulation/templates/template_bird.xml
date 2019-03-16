@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This entity file is meant to make animals move
- on the map instead of just staying there,
- but not affect the gameplay in any way.
- They have a minimum number of components. -->
+<!-- This entity file is meant to make birds move
+  on the map instead of just staying there,
+  but not affect the gameplay in any way.
+  They have a minimum number of components. -->
 <Entity>
   <Position>
     <Altitude>0</Altitude>
     <Anchor>upright</Anchor>
     <Floating>false</Floating>
     <FloatDepth>0.0</FloatDepth>
-    <TurnRate>6.0</TurnRate>
+    <TurnRate>1.0</TurnRate>
   </Position>
   <Selectable>
     <EditorOnly/>
@@ -26,22 +26,27 @@
     <FormationController>false</FormationController>
     <CanGuard>false</CanGuard>
     <CanPatrol>false</CanPatrol>
-    <RoamDistance>20</RoamDistance>
+    <RoamDistance>1000.0</RoamDistance>
     <FleeDistance>10.0</FleeDistance>
     <RoamTimeMin>10000</RoamTimeMin>
     <RoamTimeMax>100000</RoamTimeMax>
     <FeedTimeMin>1</FeedTimeMin>
     <FeedTimeMax>2</FeedTimeMax>
   </UnitAI>
-  <UnitMotion>
-    <FormationController>false</FormationController>
-    <WalkSpeed op="mul">1.2</WalkSpeed>
-    <Run>
-      <Speed op="mul">1.2</Speed>
-    </Run>
+  <UnitMotionFlying>
+    <MaxSpeed>15.0</MaxSpeed>
+    <TakeoffSpeed>1.0</TakeoffSpeed>
+    <LandingSpeed>5.0</LandingSpeed>
+    <AccelRate>5.0</AccelRate>
+    <SlowingRate>5.0</SlowingRate>
+    <BrakingRate>5.0</BrakingRate>
+    <TurnRate>0.5</TurnRate>
+    <OvershootTime>2.0</OvershootTime>
+    <FlyingHeight>40.0</FlyingHeight>
+    <ClimbRate>4.0</ClimbRate>
+    <DiesInWater>false</DiesInWater>
     <PassabilityClass>unrestricted</PassabilityClass>
-    <CostClass>default</CostClass>
-  </UnitMotion>
+  </UnitMotionFlying>
   <Visibility>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
