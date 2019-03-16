@@ -142,8 +142,8 @@
 			</object>
 
 			<!-- Settings -->
-			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-715 346 100%-315 100%-60"/>
-			<object name="settingsPanel" type="image" sprite="ModernDarkBoxGold" size="100%-785 351 100%-315 100%-65" hidden="true" z="1">
+			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-785 346 100%-315 100%-60"/>
+			<object name="settingsPanel" size="100%-785 351 100%-315 100%-65" hidden="true" z="1">
 				<repeat count="60" var="n">
 					<object name="settingFrame[n]" size="0 2 320 32">
 						<object
