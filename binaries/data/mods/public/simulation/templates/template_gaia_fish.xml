@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna">
-  <Armour disable=""/>
-  <Footprint replace="">
+<Entity parent="template_gaia">
+  <Footprint>
     <Circle radius="10.0"/>
     <Height>2.5</Height>
   </Footprint>
-  <Health disable=""/>
   <Identity>
+    <GenericName>Fish</GenericName>
     <Classes datatype="tokens">SeaCreature</Classes>
     <Tooltip>Gather food from this bountiful oceanic resource.</Tooltip>
   </Identity>
+  <Minimap>
+    <Type>food</Type>
+    <Color r="227" g="130" b="141"/>
+  </Minimap>
   <Obstruction>
+    <Unit/>
     <BlockMovement>false</BlockMovement>
     <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
     <DeleteUponConstruction>true</DeleteUponConstruction>
   </Obstruction>
   <Position>
     <Altitude>-2.0</Altitude>
     <Floating>true</Floating>
-    <FloatDepth>0.0</FloatDepth>
   </Position>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
@@ -27,8 +31,8 @@
     <MaxGatherers>4</MaxGatherers>
   </ResourceSupply>
   <Selectable>
+    <EditorOnly disable=""/>
     <Overlay>
-      <Texture disable=""/>
       <Outline>
         <LineTexture>outline_border.png</LineTexture>
         <LineTextureMask>outline_border_mask.png</LineTextureMask>
@@ -41,6 +45,4 @@
     <BarHeight>0.666</BarHeight>
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>
-  <UnitAI disable=""/>
-  <UnitMotion disable=""/>
 </Entity>
