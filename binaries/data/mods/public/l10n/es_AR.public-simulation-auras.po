@@ -6,6 +6,7 @@
 # Auka Raiken, 2017
 # Axel Chicahuala Fereyra <axchfe@gmail.com>, 2016
 # Facundo Abiega <abiegafacundo@gmail.com>, 2018
+# Facundo Decena <facundo.decena@gmail.com>, 2019
 # Franco Falleti <ezefran256@gmail.com>, 2016-2017
 # Iván Pstyga <ivanpstyga@gmail.com>, 2017
 # Joaquin Marcher <joaquin.marcher@gmail.com>, 2017
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2018-12-31 18:40+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-03-12 04:26+0000\n"
+"Last-Translator: Facundo Decena <facundo.decena@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -396,7 +397,7 @@ msgstr "Templo de Naga"
 msgid ""
 "As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
 "+1 heal rate for units garrisoned in nearby temples."
-msgstr ""
+msgstr "Como en todas las culturas, la religión jugó un papel importante en el Imperio Meroe. Shanakdakheto hizo construir el templo alrededor de 160 a C. como un símbolo del desarrollo de Meroe.\n+1 punto el índice de sanación de templos cercanos para unidades guarecidas."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -496,7 +497,7 @@ msgstr "Basileus Megas"
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr ""
+msgstr "Hijo de Seleuco I Nícator, Antíoco cumplió con éxito la formidable tarea de mantener el imperio unido, construyendo templos y derrotando a los galos invasores con elefantes de guerra.\n-10% al costo de los Elefantes de Guerra."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -549,7 +550,7 @@ msgstr "Los trabajadores aumentan 15% en su índice de construcción y reparaci�
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
-msgstr ""
+msgstr "Templo de Atenea Victoriosa"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -732,11 +733,11 @@ msgstr "Los templos de Apedemak y los Guardias del Templo Meroe reducen un 20% s
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
-msgstr ""
+msgstr "Matanza de los Fieles"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy healers −50% healing rate."
-msgstr ""
+msgstr "-50% al índice de curación de curanderos enemigos"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -819,7 +820,7 @@ msgstr "Maestro"
 msgid ""
 "Empower a building with -20% cost and -50% research time for technologies "
 "while he is garrisoned in it."
-msgstr ""
+msgstr "Una vez guarecido en un edificio, este -20% el costo y  -50% el tiempo para desarrollo de tecnologías."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
