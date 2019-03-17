@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	AddColumnType(_("Base File"),  90,  "@file",      new FieldEditCtrl_File(_T("art/variants/"), _("Variants (*.xml)|*.xml|All files (*.*)|*.*")));
 	AddColumnType(_("Ratio"),      50,  "@frequency", new FieldEditCtrl_Text());
 	AddColumnType(_("Model"),      140, "mesh",       new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd, *.dae)|*.pmd;*.dae|All files (*.*)|*.*")));
+	AddColumnType(_("Particles"),  90,  "particles",  new FieldEditCtrl_File(_T("art/particles/"), _("Particle file (*.xml)|*.xml|All files (*.*)|*.*")));
 	AddColumnType(_("Textures"),   250, "textures",   new FieldEditCtrl_Dialog(&TexListEditor::Create));
 	AddColumnType(_("Animations"), 250, "animations", new FieldEditCtrl_Dialog(&AnimListEditor::Create));
 	AddColumnType(_("Props"),      220, "props",      new FieldEditCtrl_Dialog(&PropListEditor::Create));
