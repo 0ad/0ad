@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,9 +35,10 @@ class PlaceObject : public StateDrivenTool<PlaceObject>
 	Position m_ScreenPos, m_ObjPos, m_Target;
 	wxString m_ObjectID;
 	unsigned int m_ActorSeed;
+	int m_RotationDirection;
 
 public:
-	PlaceObject()
+	PlaceObject(): m_RotationDirection(0)
 	{
 		SetState(&Waiting);
 	}
@@ -108,19 +109,36 @@ public:
 			SetState(&Disabled);
 			return true;
 		}
+		else if (evt.GetKeyCode() == WXK_PAGEDOWN)
+		{
+			if (type == KEY_DOWN)
+				m_RotationDirection = 1;
+			else if (type == KEY_UP)
+				m_RotationDirection = 0;
+			else
+				return false;
+			return true;
+		}
+		else if (evt.GetKeyCode() == WXK_PAGEUP)
+		{
+			if (type == KEY_DOWN)
+				m_RotationDirection = -1;
+			else if (type == KEY_UP)
+				m_RotationDirection = 0;
+			else
+				return false;
+			return true;
+		}
 		else
 			return false;
 	}
 
 	void RotateTick(float dt)
 	{
-		int dir = 0;
-		if (wxGetKeyState(WXK_PAGEDOWN))  ++dir; // page-down key
-		if (wxGetKeyState(WXK_PAGEUP)) --dir; // page-up key
-		if (dir)
+		if (m_RotationDirection)
 		{
 			float speed = M_PI/2.f * ScenarioEditor::GetSpeedModifier(); // radians per second
-			g_DefaultAngle += (dir * dt * speed);
+			g_DefaultAngle += (m_RotationDirection * dt * speed);
 			SendObjectMsg(true);
 		}
 	}
