@@ -1,7 +1,7 @@
 Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
-			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"),
+			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in Village Phase and ultimately, your goal will be to develop and expand your empire, often by evolving to Town Phase and City Phase afterward.\n"),
 			{
 				"text": markForTranslation("\nBefore starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."),
 				"hotkey": ["togglefullscreen"]
@@ -22,7 +22,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings supports. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover the cursor over any icon to show a tooltip with more details.\n"),
-			markForTranslation("The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover the cursor over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources.")
+			markForTranslation("The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover the cursor over the II icon. The tooltip will tell us that advancing to Town Phase requires both more constructed structures as well as more Food and Wood resources.")
 		]
 	},
 	{
@@ -368,7 +368,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the cursor over the 'Town Phase' icon to see what is still needed.\n"),
+			markForTranslation("We should start preparing to phase up into Town Phase, which will unlock many more units and buildings. Select the Civic Center and hover the cursor over the Town Phase icon to see what is still needed.\n"),
 			markForTranslation("We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build Barracks.\n"),
 			markForTranslation("Select four of your soldiers and ask them to build a Barracks: as before, start selecting the soldiers, click on the Barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build.")
 		],
@@ -391,7 +391,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("You should now be able to research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"),
+			markForTranslation("You should now be able to research Town Phase. Select the Civic Center and click on the technology icon.\n"),
 			markForTranslation("If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers.")
 		],
 		"IsDone": function()

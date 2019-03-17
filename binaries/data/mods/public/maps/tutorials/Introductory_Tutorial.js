@@ -190,7 +190,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the 'II' icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
+		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the II icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
 		"IsDone": function()
 		{
 			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_generic");
