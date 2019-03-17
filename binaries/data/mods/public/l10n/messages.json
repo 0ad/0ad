@@ -647,9 +647,14 @@
         "rules": [
             {
                 "extractor": "json",
-                "filemasks": [
-                    "maps/random/**.json"
-                ],
+                "filemasks": {
+                    "includeMasks": [
+                        "maps/random/**.json"
+                    ],
+                    "excludeMasks": [
+                        "maps/random/rmbiome/**.json"
+                    ]
+                },
                 "options": {
                     "keywords": [
                         "Name",
@@ -701,10 +706,7 @@
                     "maps/random/rmbiome/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "Title",
-                        "Description"
-                    ],
+                    "keywords": ["Description"],
                     "context": "biome definition"
                 }
             }
