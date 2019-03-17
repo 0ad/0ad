@@ -176,7 +176,7 @@ function colorizeHotkey(text, hotkey)
  */
 function colorizeAutocompleteHotkey(string)
 {
-	return sprintf(string || translate("Press %(hotkey)s to autocomplete playernames."), {
+	return sprintf(string || translate("Press %(hotkey)s to autocomplete player names."), {
 		"hotkey":
 			setStringTags("\\[" + translateWithContext("hotkey", "Tab") + "]", g_HotkeyTags)
 	});
