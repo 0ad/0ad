@@ -31,6 +31,7 @@ namespace JSI_IGUIObject
 	bool focus(JSContext* cx, uint argc, JS::Value* vp);
 	bool blur(JSContext* cx, uint argc, JS::Value* vp);
 	bool getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
+	bool getTextSize(JSContext* cx, uint argc, JS::Value* vp);
 	void init(ScriptInterface& scriptInterface);
 }
 
