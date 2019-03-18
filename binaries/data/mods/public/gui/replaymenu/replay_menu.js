@@ -190,7 +190,7 @@ function sanitizeGameAttributes(attribs)
 function initHotkeyTooltips()
 {
 	Engine.GetGUIObjectByName("playersFilter").tooltip =
-		translate("Filter replays by typing one or more, partial or complete playernames.") +
+		translate("Filter replays by typing one or more, partial or complete player names.") +
 		" " + colorizeAutocompleteHotkey();
 
 	Engine.GetGUIObjectByName("deleteReplayButton").tooltip = deleteTooltip();
