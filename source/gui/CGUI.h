@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,7 +68,6 @@ class CGUI
 	NONCOPYABLE(CGUI);
 
 	friend class IGUIObject;
-	friend class IGUIScrollBarOwner;
 	friend class CInternalCGUIAccessorBase;
 
 private:
@@ -172,6 +171,8 @@ public:
 	 * Returns the GUI object under the mouse, or NULL if none.
 	 */
 	IGUIObject* FindObjectUnderMouse() const;
+
+	const SGUIScrollBarStyle* GetScrollBarStyle(const CStr& style) const;
 
 	/**
 	 * The GUI needs to have all object types inputted and

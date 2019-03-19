@@ -98,8 +98,6 @@ function init(data)
 
 /**
  * Populate the UI elements.
- *
- * @todo (c++ change) Implement and use a function that fetches height of rendered text block from text object.
  */
 function draw()
 {
@@ -111,12 +109,10 @@ function draw()
 	let entityStats = Engine.GetGUIObjectByName("entityStats");
 	entityStats.caption = buildText(g_Template, g_StatsFunctions);
 
-	// This is something of a crude hack. See above todo.
 	let entityInfo = Engine.GetGUIObjectByName("entityInfo");
-	let lines = entityStats.caption.split("\n").length;
-	let fontSize = +entityStats.font.split("-")[1] + 4;
 	let infoSize = entityInfo.size;
-	infoSize.top = Math.max(entityIcon.size.bottom, lines * fontSize + entityStats.size.top) + 8;
+	// The magic '8' below provides a gap between the bottom of the icon, and the start of the info text.
+	infoSize.top = Math.max(entityIcon.size.bottom + 8, entityStats.size.top + entityStats.getTextSize().height);
 	entityInfo.size = infoSize;
 
 	entityInfo.caption = buildText(g_Template, g_InfoFunctions, "\n\n");

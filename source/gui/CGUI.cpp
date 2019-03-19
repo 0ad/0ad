@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -475,6 +475,15 @@ void CGUI::SetFocusedObject(IGUIObject* pObject)
 	}
 }
 
+const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
+{
+	std::map<CStr, SGUIScrollBarStyle>::const_iterator it = m_ScrollBarStyles.find(style);
+	if (it == m_ScrollBarStyles.end())
+		return nullptr;
+
+ 	return &it->second;
+}
+
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
 {
@@ -540,8 +549,9 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 	// get the alignment type for the control we are computing the text for since
 	// we are computing the horizontal alignment in this method in order to not have
 	// to run through the TextCalls a second time in the CalculateTextPosition method again
-	EAlign align;
-	GUI<EAlign>::GetSetting(pObject, "text_align", align);
+	EAlign align = EAlign_Left;
+	if (pObject->SettingExists("text_align"))
+		GUI<EAlign>::GetSetting(pObject, "text_align", align);
 
 	// Go through string word by word
 	for (int i = 0; i < (int)string.m_Words.size()-1 && !done; ++i)

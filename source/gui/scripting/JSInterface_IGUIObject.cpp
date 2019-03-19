@@ -45,6 +45,7 @@ JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 	JS_FN("focus", JSI_IGUIObject::focus, 0, 0),
 	JS_FN("blur", JSI_IGUIObject::blur, 0, 0),
 	JS_FN("getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0),
+	JS_FN("getTextSize", JSI_IGUIObject::getTextSize, 0, 0),
 	JS_FS_END
 };
 
@@ -76,6 +77,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		propName == "toJSON"      ||
 		propName == "focus"       ||
 		propName == "blur"        ||
+		propName == "getTextSize" ||
 		propName == "getComputedSize"
 	   )
 		return true;
@@ -682,6 +684,77 @@ bool JSI_IGUIObject::blur(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 	e->GetGUI()->SetFocusedObject(NULL);
 
 	rec.rval().setUndefined();
+	return true;
+}
+
+bool JSI_IGUIObject::getTextSize(JSContext* cx, uint argc, JS::Value* vp)
+{
+	JSAutoRequest rq(cx);
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
+
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject thisObj(cx, &args.thisv().toObject());
+
+	IGUIObject* obj = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
+
+	if (!obj || !obj->SettingExists("caption"))
+		return false;
+
+	CStrW font;
+	if (GUI<CStrW>::GetSetting(obj, "font", font) != PSRETURN_OK || font.empty())
+		font = L"default";
+
+	CGUIString caption;
+	EGUISettingType Type;
+	obj->GetSettingType("caption", Type);
+	if (Type == GUIST_CGUIString)
+		// CText, CButton, CCheckBox, CRadioButton
+		GUI<CGUIString>::GetSetting(obj, "caption", caption);
+	else if (Type == GUIST_CStrW)
+	{
+		// CInput
+		CStrW captionStr;
+		GUI<CStrW>::GetSetting(obj, "caption", captionStr);
+		caption.SetValue(captionStr);
+	}
+	else
+		return false;
+
+	obj->UpdateCachedSize();
+	float width = obj->m_CachedActualSize.GetWidth();
+
+	if (obj->SettingExists("scrollbar"))
+	{
+		bool scrollbar;
+		GUI<bool>::GetSetting(obj, "scrollbar", scrollbar);
+		if (scrollbar)
+		{
+			CStr scrollbar_style;
+			GUI<CStr>::GetSetting(obj, "scrollbar_style", scrollbar_style);
+			const SGUIScrollBarStyle* scrollbar_style_object = obj->GetGUI()->GetScrollBarStyle(scrollbar_style);
+			if (scrollbar_style_object)
+				width -= scrollbar_style_object->m_Width;
+		}
+	}
+
+	float buffer_zone = 0.f;
+	GUI<float>::GetSetting(obj, "buffer_zone", buffer_zone);
+	SGUIText text = obj->GetGUI()->GenerateText(caption, font, width, buffer_zone, obj);
+
+	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
+	try
+	{
+		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+		pScriptInterface->SetProperty(objVal, "width", text.m_Size.cx, false, true);
+		pScriptInterface->SetProperty(objVal, "height", text.m_Size.cy, false, true);
+	}
+	catch (PSERROR_Scripting_ConversionFailed&)
+	{
+		debug_warn(L"Error creating size object!");
+		return false;
+	}
+
+	rec.rval().set(objVal);
 	return true;
 }
 
