@@ -5,13 +5,13 @@
     <Height>15.0</Height>
   </Footprint>
   <Identity>
-    <SpecificName>Dead Baobab</SpecificName>
+    <SpecificName>Banyan</SpecificName>
   </Identity>
   <Obstruction>
     <Static width="6.0" depth="6.0"/>
   </Obstruction>
   <ResourceSupply>
-    <Amount>550</Amount>
+    <Amount>600</Amount>
     <MaxGatherers>12</MaxGatherers>
   </ResourceSupply>
   <Selectable>
@@ -23,6 +23,6 @@
     </Overlay>
   </Selectable>
   <VisualActor>
-    <Actor>flora/trees/baobab_new_dead.xml</Actor>
+    <Actor>flora/trees/banyan.xml</Actor>
   </VisualActor>
 </Entity>
