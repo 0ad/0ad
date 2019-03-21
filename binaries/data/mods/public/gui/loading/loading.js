@@ -28,7 +28,10 @@ function init(data)
 	{
 			let tipText = Engine.TranslateLines(Engine.ReadFile(g_TipsTextPath + tipFile + ".txt")).split("\n");
 			Engine.GetGUIObjectByName("tipTitle").caption = tipText.shift();
-			Engine.GetGUIObjectByName("tipText").caption = tipText.join("\n");
+			Engine.GetGUIObjectByName("tipText").caption = tipText.map(
+				// Translation: A bullet point used before every item of list of tips displayed on loading screen
+				text => text && sprintf(translate("• %(tiptext)s"), { "tiptext": text })
+			).join("\n\n");
 			Engine.GetGUIObjectByName("tipImage").sprite = "stretched:" + g_TipsImagePath + tipFile + ".png";
 	}
 	else

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2019-03-18T03:25:11</created>
+    <modified>2019-03-18T03:25:11</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Circle_015-mesh" name="Circle.015">
+      <mesh>
+        <source id="Circle_015-mesh-positions">
+          <float_array id="Circle_015-mesh-positions-array" count="54">0 0.5840386 -2.185936 -0.2226347 0.1824262 -2.185936 -0.5840386 0 -2.185936 -0.4129777 -0.4129776 -2.185936 0 -0.5840386 -2.185936 0.2226347 -0.1824262 -2.185936 0.5840386 0 -2.185936 0.4129776 0.4129776 -2.185936 0 1.139969 2.247284 -0.4345545 0.3560728 2.247285 0.8060798 0.8060796 2.247284 0.4345546 -0.3560727 2.247285 1.139969 0 2.247284 -0.8060796 -0.8060796 2.247284 1.23552e-7 -1.139969 2.247284 -1.139969 0 2.247284 0.2226347 -0.1824262 -2.185936 -0.2226347 0.1824262 -2.185936</float_array>
+          <technique_common>
+            <accessor source="#Circle_015-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Circle_015-mesh-normals">
+          <float_array id="Circle_015-mesh-normals-array" count="54">0.4493962 -0.4684402 0.7606621 0.5745597 0.5745597 0.5828915 -0.4493962 0.4684402 0.7606621 -0.7016116 -0.7016116 -0.1244278 -0.7956053 0.2795254 0.5374737 -0.9240323 0.3643392 -0.1158512 0.3449594 -0.9313263 -0.1167667 0.2646951 -0.7994262 0.539309 0.7016116 0.7016116 -0.1244278 0.7956053 -0.2795254 0.5374737 0.9240323 -0.3643392 -0.1158512 -0.4498801 0.8913065 -0.05639904 -0.5745597 -0.5745597 0.5828915 0.4498801 -0.8913065 -0.05639904 -0.3449594 0.9313263 -0.1167667 -0.2646951 0.7994262 0.539309 0.8729957 -0.4839397 -0.06067174 -0.8729957 0.4839397 -0.06067174</float_array>
+          <technique_common>
+            <accessor source="#Circle_015-mesh-normals-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Circle_015-mesh-map-0">
+          <float_array id="Circle_015-mesh-map-0-array" count="132">0.1663929 0.5877444 0.2232674 0.6113026 0.1997092 0.6681771 0.2070606 7.42674e-5 0.2758225 0.9882192 0.2758224 7.42573e-5 0.1381235 7.42674e-5 0.06918716 0.9882193 0.1381239 0.9882192 0.06901127 7.4515e-5 7.5331e-5 0.9882195 7.42573e-5 7.46438e-5 0.2758224 7.42573e-5 0.2068857 0.9882193 0.2068853 7.43002e-5 0.1381235 7.42674e-5 0.2070607 0.9882192 0.2070606 7.42674e-5 2.49498e-4 7.44164e-5 0.06918716 0.9882193 0.0691865 7.43568e-5 0.1379483 7.43861e-5 0.0690121 0.9882193 0.06901127 7.4515e-5 0.1379483 7.43861e-5 0.2068857 0.9882193 0.1379489 0.9882193 0.1663929 0.6681771 0.1428348 0.6446189 0.1997092 0.6681771 0.1428348 0.6446189 0.1428348 0.6113026 0.1663929 0.5877444 0.1663929 0.5877444 0.1997092 0.5877444 0.2232674 0.6113026 0.1428348 0.6446189 0.1663929 0.5877444 0.1997092 0.6681771 0.2232674 0.6113026 0.2232674 0.6446189 0.1997092 0.6681771 0.2070606 7.42674e-5 0.2070607 0.9882192 0.2758225 0.9882192 0.1381235 7.42674e-5 0.0691865 7.43568e-5 0.06918716 0.9882193 0.06901127 7.4515e-5 0.0690121 0.9882193 7.5331e-5 0.9882195 0.2758224 7.42573e-5 0.2758225 0.9882192 0.2068857 0.9882193 0.1381235 7.42674e-5 0.1381239 0.9882192 0.2070607 0.9882192 2.49498e-4 7.44164e-5 2.50362e-4 0.9882194 0.06918716 0.9882193 0.1379483 7.43861e-5 0.1379489 0.9882193 0.0690121 0.9882193 0.1379483 7.43861e-5 0.2068853 7.43002e-5 0.2068857 0.9882193</float_array>
+          <technique_common>
+            <accessor source="#Circle_015-mesh-map-0-array" count="66" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Circle_015-mesh-vertices">
+          <input semantic="POSITION" source="#Circle_015-mesh-positions"/>
+        </vertices>
+        <triangles count="22">
+          <input semantic="VERTEX" source="#Circle_015-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Circle_015-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Circle_015-mesh-map-0" offset="2" set="0"/>
+          <p>11 0 0 10 1 1 9 2 2 3 3 3 15 4 4 2 5 5 4 6 6 11 0 7 14 7 8 7 8 9 12 9 10 6 10 11 2 5 12 9 2 13 1 11 14 4 6 15 13 12 16 3 3 17 6 10 18 11 0 19 5 13 20 0 14 21 10 1 22 7 8 23 0 14 24 9 2 25 8 15 26 15 4 27 13 12 28 9 2 29 13 12 30 14 7 31 11 0 32 11 0 33 12 9 34 10 1 35 13 12 36 11 0 37 9 2 38 10 1 39 8 15 40 9 2 41 3 3 42 13 12 43 15 4 44 4 6 45 16 16 46 11 0 47 7 8 48 10 1 49 12 9 50 2 5 51 15 4 52 9 2 53 4 6 54 14 7 55 13 12 56 6 10 57 12 9 58 11 0 59 0 14 60 8 15 61 10 1 62 0 14 63 17 17 64 9 2 65</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Circle_015" name="Circle_015" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Circle_015-mesh" name="Circle_015"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

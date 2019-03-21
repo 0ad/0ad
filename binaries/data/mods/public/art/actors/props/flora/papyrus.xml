@@ -2,16 +2,30 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Base1">
-      <mesh>gaia/papyrus.dae</mesh>
+    <variant name="Base1"/>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/papyrus_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/papyrus_2.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant name="a">
+    <variant frequency="5" name="a">
       <textures>
-        <texture file="gaia/papyrus.png" name="baseTex"/>
-        <texture file="gaia/papyrus_norm.png" name="normTex"/>
-        <texture file="gaia/papyrus_spec.png" name="specTex"/>
+        <texture file="gaia/papyrus_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="b">
+      <textures>
+        <texture file="gaia/papyrus_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="c">
+      <textures>
+        <texture file="gaia/papyrus_3.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_flora_tree">
+  <Identity>
+    <SpecificName>Baobab Sapling</SpecificName>
+  </Identity>
+  <ResourceSupply>
+    <Amount>50</Amount>
+    <MaxGatherers>2</MaxGatherers>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>flora/trees/baobab_new_sapling.xml</Actor>
+  </VisualActor>
+</Entity>

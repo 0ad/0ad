@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <textures>
+        <texture file="gaia/bamboo_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="1">
+      <mesh>gaia/bamboo_single_1.dae</mesh>
+    </variant>
+    <variant frequency="4" name="2">
+      <mesh>gaia/bamboo_single_2.dae</mesh>
+    </variant>
+    <variant frequency="3" name="3">
+      <mesh>gaia/bamboo_single_3.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

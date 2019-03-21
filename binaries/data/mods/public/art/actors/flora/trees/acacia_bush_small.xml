@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="a">
+      <textures>
+        <texture file="gaia/acacia_thorns_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="b">
+      <textures>
+        <texture file="gaia/acacia_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="1">
+      <mesh>gaia/acacia_bush_small_1.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>
