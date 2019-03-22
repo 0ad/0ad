@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
+# Mattias Münster <mattiasmun@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2017-2018
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
-"Last-Translator: theschitz <theodore@theschitz.se>\n"
+"PO-Revision-Date: 2019-03-19 15:06+0000\n"
+"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Öppnar %(url)s\ni standardwebbläsaren. Var god vänta..."
 
 #: gui/common/functions_msgbox.js:60
 msgid "Opening page"
@@ -248,15 +249,15 @@ msgstr "Ingen mod har valts."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Varning"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io villkor"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io sekretesspolicy"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -266,12 +267,12 @@ msgstr "OK"
 #. Conditions in the default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "Visa online"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Öppnar %(url)s i webbläsaren."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -397,7 +398,7 @@ msgstr "Språk"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Avböj"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -405,40 +406,40 @@ msgstr "Acceptera"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io Varning"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Dokumentdatum: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "Du håller på att ansluta till mod.io onlinetjänsten."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Denna tjänst ger ett enkelt sätt att ladda ner och installera community-made mods och tillhandahålls av DBolical Pty Ltd, företaget bakom IndieDB och ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Tjänsten är för användare som är 13 år och äldre."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games har tagit hand om att säkerställa att denna anslutning säkerställer och granskar mods för säkerhetsbrister, men kan inte garantera att detta inte medför några risker."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Genom att använda tjänsten förstår du att mod.ios användarvillkor och sekretesspolicy gäller och att Wildfire Games inte är ansvarig för eventuella skador som härrör från denna tjänst."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

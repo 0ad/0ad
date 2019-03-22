@@ -3,15 +3,19 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Asakura, 2017
+# karubabu <karubabu@protonmail.com>, 2018
 # ks k, 2019
 # ks k, 2019
 # Libert Sin <majesticer13@gmail.com>, 2018
 # Muk Myung-Hee MyungHee <exploration@ponp.be>, 2018
+# red hare <www3@hotmail.co.jp>, 2017
+# Takaki IEKURA <tacostea@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2019-03-02 12:53+0000\n"
+"PO-Revision-Date: 2019-03-18 22:04+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +81,7 @@ msgstr "강력한 신권"
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr ""
+msgstr "アメン神の神官職を強化し、君主の影響力を弱めます。\n神殿1つにつき英雄の耐久力が5%減少します。"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -94,7 +98,7 @@ msgstr "충성"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr ""
+msgstr "駐屯ユニットの建造物による忠誠度の回復率が50%上昇します。"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -152,7 +156,7 @@ msgstr "명성 전파"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "象徴を1つ確保するごとに人口上限が40増加します（「威信の伝播」技術が必要です）。"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -160,7 +164,7 @@ msgstr "작업장 수리"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr ""
+msgstr "駐屯している攻城ユニットの耐久力が毎秒3回復します。 "
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -184,7 +188,7 @@ msgstr "거상"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "同盟国との国際交易収入に10%ボーナスが付きます。"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -192,7 +196,7 @@ msgstr "드루이드교의 지혜"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "-20% research time for technologies of allies."
-msgstr ""
+msgstr "同盟国のテクノロジー研究時間が20%減少します。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -826,7 +830,7 @@ msgstr "선두 지도자"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr ""
+msgstr "騎兵剣士の攻撃力が20%増加し占領力が1増加します。"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"

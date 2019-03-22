@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-25 09:44+0100\n"
-"PO-Revision-Date: 2019-03-10 15:18+0000\n"
+"POT-Creation-Date: 2019-03-15 09:44+0100\n"
+"PO-Revision-Date: 2019-03-22 05:28+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,7 @@ msgstr "보초 탑"
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:36
 msgid "SentryTower"
-msgstr "보초 탑"
+msgstr "센트리타워"
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:37
 msgid ""
@@ -206,7 +206,7 @@ msgstr "이것은 유닛이 요새를 왔다갔다 할 수 있게 합니다."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:59
 msgid "Wall Turret"
-msgstr "작은벽탑"
+msgstr "성벽망루"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:60
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
@@ -223,7 +223,7 @@ msgstr "경제 구조"
 #: simulation/templates/template_structure_economic.xml:16
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr "경제적인"
+msgstr "경제적인=경제시설"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:32
 msgid "Dropsite for the food resource. Research food gathering improvements."
@@ -263,7 +263,7 @@ msgstr "군사 건물"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr "군사의"
+msgstr "군사 시설??"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
@@ -628,7 +628,7 @@ msgstr "고바니온"
 
 #: simulation/templates/structures/brit_civil_centre.xml:12
 msgid "Tigernotreba"
-msgstr "티거노트레바"
+msgstr "티게르노트레바"
 
 #: simulation/templates/structures/brit_corral.xml:8
 #: simulation/templates/structures/gaul_corral.xml:8
@@ -809,7 +809,7 @@ msgstr "켈트 대사관"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "켈트인 용벙들을 고용하고 그들에 대한 개선점을 연구합니다."
+msgstr "켈트인 용병들을 고용하고 그들에 대한 개선점을 연구합니다."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:12
 msgid "Iberian Embassy"
@@ -907,7 +907,7 @@ msgstr "내과의사와 신성 기병대를 훈련하세요."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
-msgstr ""
+msgstr "미즈-딜 샤우-아르"
 
 #: simulation/templates/structures/cart_wall_long.xml:29
 #: simulation/templates/structures/cart_wall_medium.xml:23
@@ -929,7 +929,7 @@ msgstr "코리오세드론"
 
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Lissos"
-msgstr "리스소스"
+msgstr "리쏘스"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
@@ -950,6 +950,14 @@ msgstr "타베르나"
 #: simulation/templates/structures/gaul_tavern.xml:25
 msgid "Recruit Naked Fanatics."
 msgstr "알몸 광전사를 고용합니다."
+
+#: simulation/templates/structures/gaul_theatron.xml:6
+msgid "Assembly of princes"
+msgstr "왕세자 의회"
+
+#: simulation/templates/structures/gaul_theatron.xml:7
+msgid "Remogantion"
+msgstr "레모간티온"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1072,7 +1080,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
-msgstr ""
+msgstr "메리트"
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
 msgid "Ỉ﻿ḥ Abu"
@@ -1148,7 +1156,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "성지"
 
 #: simulation/templates/structures/kush_shrine.xml:13
 msgid "ḥwt-nṯr"
@@ -1360,7 +1368,7 @@ msgstr "스트라토페도 미스토포론 아이깁티아코스"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "이 건물을 빼앗아 그리스계(헬레니즘) 이집트에서 용병을 양성합니다."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
@@ -1375,7 +1383,7 @@ msgstr "아파다나"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"사트라피(태수) 부족\": 식량, 목재, 석재, 금속 자원이 점차 증가합니다. 페르시아의 영웅과 \"불사\"의 호위병을 양성합니다."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1387,7 +1395,7 @@ msgstr "파드간"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-infantry units."
-msgstr ""
+msgstr "시민 보병 유닛을 소집합니다."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1411,7 +1419,7 @@ msgstr "나바스타"
 
 #: simulation/templates/structures/pers_elephant_stables.xml:5
 msgid "Persian Elephant Stables"
-msgstr ""
+msgstr "페르시아 코끼리 의자??"
 
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
@@ -1561,7 +1569,7 @@ msgstr "크훗"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "인구 제한을 늘립니다. 이집트 민가는 무료로 건설할 수 있지만 진흙 벽돌로 만들어졌기 때문에 매우 약합니다."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1575,7 +1583,7 @@ msgstr "파로스"
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "해안을 따라 지어 전체지도의 해안선을 표시합니다.?? 매우 넓은 시야 범위: 180 미터."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1593,7 +1601,7 @@ msgstr "스트라토페데이아 미스토포론"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "하찮은 병영 같은 건물로 중립지역에 건설할 수있지만 영토 확장은 되지 않습니다. 용병을 영성합니다."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1604,7 +1612,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "이 건물은 프톨레마이오스 확장 건물로, 다른 파벌의 시민 회관과 비슷합니다. 이 건물은 약하며 더 작은 영토에 영향을 주지만 싸고 더 빨리 지어집니다. 다양한 민족의 정착민-군인을 양성합니다."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1639,7 +1647,7 @@ msgstr "개선문"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr ""
+msgstr "제정 로마의 특유의 건물입니다."
 
 #: simulation/templates/structures/rome_army_camp.xml:42
 msgid "ArmyCamp"
@@ -1733,7 +1741,7 @@ msgstr "무루스 시르쿰무니티오니스"
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr ""
+msgstr "나무와 잔디 흙으로 만든 울타리로 적의 영토와 중립 지대에 건설할 수 있습니다."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
@@ -1849,7 +1857,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "이 건물은 셀레우코스의 확장 건물입니다. 다른 파벌의 시민 회관과 비슷합니다. 이 건물은 더 약하고 작은 영토 확장 영향을 주지만 싸고 더 빨리 지어집니다. 다양한 국적의 정착민 군인을 양성합니다."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1870,7 +1878,7 @@ msgstr "테이크히스마"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "공성무기를 만듭니다. 최대 20명까지 병사를 주둔시켜고 방어를 강하게 할 수 있습니다."
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"

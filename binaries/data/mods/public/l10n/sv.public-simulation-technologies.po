@@ -12,6 +12,7 @@
 # Marco tom Suden, 2014
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# Mattias Münster <mattiasmun@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
 # pilino1234 <pilino1234@zoho.eu>, 2017-2018
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-01-07 16:00+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-03-20 09:35+0000\n"
+"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -836,7 +837,7 @@ msgstr "Skörd träning"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
-msgstr ""
+msgstr "Nät förbättrar produktiviteten hos fiskebåtar."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -976,11 +977,11 @@ msgstr "Flätade korgar"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
-msgstr ""
+msgstr "Enheter garnisonerade i baracker läks med tiden."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in Barracks."
-msgstr ""
+msgstr "Enheter läks medans de är garnisonerade i baracker."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1714,7 +1715,7 @@ msgstr "Avancerat Hantverk"
 msgid ""
 "Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr ""
+msgstr "Öka träningshastigheten av soldater vid barackerna betydligt genom att utbilda dem i stora grupper eller bataljoner."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1779,7 +1780,7 @@ msgstr "Vaktenheter (Mästare) är professionella soldater som bär de bästa va
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the Barracks."
-msgstr ""
+msgstr "Lås upp förmågan att träna Mästare i Baracker."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -2411,7 +2412,7 @@ msgstr "Mauryariket omfattade tiotals tidigare självständiga riken över ett o
 
 #: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
 msgid "Mauryas have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Mauryaner har en 10% högre maximal befolkningsgräns."
 
 #: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2443,7 +2444,7 @@ msgstr "Bågskyttetradition"
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr ""
+msgstr "Mauryanerna byggde sina stadsmurar av trä, en riklig naturresurs i Indien."
 
 #: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
