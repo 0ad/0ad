@@ -16,6 +16,7 @@
 # magicae, 2014
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015
+# Mattias Münster <mattiasmun@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
 # pilino1234 <pilino1234@zoho.eu>, 2017
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 16:05+0000\n"
-"Last-Translator: Anders Persson <anders@utophia.se>\n"
+"PO-Revision-Date: 2019-03-20 18:32+0000\n"
+"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,7 +326,7 @@ msgstr "Välj svårighetsgraden för det här scenariot."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Choose the civilization for this player"
-msgstr ""
+msgstr "Välj civilisationen för denna spelaren"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
@@ -343,7 +344,7 @@ msgstr "Nomad"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "I Nomad-läge börjar spelare med endast ett fåtal enheter och måste hitta en lämplig plats att bygga sin stad. Vapenvila rekommenderas."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -451,7 +452,7 @@ msgstr "Starta ett nytt spel med nuvarande inställningar (inaktiverad tills all
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Historik / Strukturträd\nSenast öppnad kommer öppnas igen vid klick."
 
 #: gui/gamesetup/gamesetup.js:1107
 #, javascript-format
@@ -461,17 +462,17 @@ msgstr "Ställ in AI: %(description)s."
 #: gui/gamesetup/gamesetup.js:1401
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Byt till %(name)s inställningsflik."
 
 #: gui/gamesetup/gamesetup.js:1402
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Använd %(hotkey)s för att flytta en inställningsflik nedåt."
 
 #: gui/gamesetup/gamesetup.js:1403
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Använd %(hotkey)s för att flytta en inställningsflik uppåt."
 
 #: gui/gamesetup/gamesetup.js:1748
 msgctxt "map selection"
@@ -589,7 +590,7 @@ msgstr "Namnet används redan för ett spel."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "Misslyckades att vara värd via STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
@@ -634,7 +635,7 @@ msgstr "AI svårighetsgrad:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI Beteende:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
@@ -729,7 +730,7 @@ msgstr "Ansluter till ett existerande spel."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Spelarnamn:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -746,11 +747,11 @@ msgstr "Ställ in din server som värd."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Servernamn:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Använd STUN för att arbeta runt brandväggar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -766,7 +767,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[...] fastställde sin lag: Visdom kommer genom lidande. \\[...] Så män mot deras vilja lära sig att öva moderation. \\[...] En sådan nåd är hård och våldsam.\" - Aeschylus (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -790,7 +791,7 @@ msgstr "\"Tiden på lång sikt lär ut alla saker.\" - Aischylos (\"Den fjättra
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\"Hans beslut är inte att verka, men att vara den bästa.\" - Aeschylus (\"Seven Against Thebes\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
@@ -855,7 +856,7 @@ msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"Om jag har gjort någonting ädelt, det är ett tillräckligt minnesmärke, om jag inte har det, kommer alla statyer i världen inte att bevara mitt minne.\" - Agesilaos II av Sparta (Plutarch, \"Moralia\", XVI. \"Spartans Ordsprog\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -882,7 +883,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"Det är väldigt behövligt att leva i lyx, men väldigt kungligt att ta hand om. \\[...] Vet du inte att slutet och föremålet för erövring är att undvika de dämpas laster och svagheter?\" - Alexander den Store (Plutark, \"Parallellliv\", \"Alexander\", s 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -890,7 +891,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Glorious är gärningarna hos dem som genomgår arbetskraft och riskerar fara, och det är härligt att leva ett döds liv och att dö bakom odödlig härlighet.\" - Alexander den Store, adresserar sina trupper (Arrian, \"Anabasis of Alexander\", 5,26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -898,7 +899,7 @@ msgid ""
 "labours themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Jag tror att det för en modig man inte finns något slut på arbetet utom arbetet självt, förutsatt att de leder till härliga prestationer.\" - Alexander den Store, adresserar sina trupper (Arrian, \"Anabasis of Alexander\", 5,26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -906,26 +907,26 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr ""
+msgstr "\"Om jag inte var Alexander, skulle jag vilja vara Diogenes \\[av Sinope].\" - Alexander den Store, imponerad av den enklaste filosofen han hade mött (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the Great\", 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "\"Till den starkaste!\" - Alexander, på hans dödsbädd, när frågad vem som skall bli hans efterträdare som konung (Arrian, \"The Anabasis of Alexander\", 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "\"Jag stjäl inte seger.\" - Alexander den store, när han föreslog att han piskade perserna på natten (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "\"Skriftliga lagar är som spindelväv; de kommer att fånga, det är sant, de svaga och fattiga, men kommer att slitas i stycken av de rika och mäktiga.\" - Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -933,79 +934,79 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"Agoran är en etablerad plats för män att fuska varandra och uppför sig bedrägligt.\" - Anacharsis, en skytisk filosof som reste till Grekland (Diogenes Laertius, \"Lives and Opinions of Eminent Philosophers\", Anarchsis, s. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "\"Det var inte genom att ta hand om fälten, utan för oss själva, att vi förvärvade de här fälten.\" - Anaxandridas II av Sparta (Plutarch, \"Moralia\", XVI. \"Spartans Ordsprog\", 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr ""
+msgstr "\"Stater är dömda när de inte kan skilja goda män från dåliga.\" - Antisthenes (Diogenes Laertius, \"Lives and Opinions of Eminent Philosophers\", Antisthenes, s. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "\"Räven känner till många trick; igelkotten känner ett bra\" - Archilochus (fragment 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "\"Ge mig en plats att stå, och jag ska flytta världen.\" - Arkimedes, på hans användning av hävstången (Diodorus Siculus, \"The Library of History\", fragments of book XXVI, sec. 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "\"Det är från deras fiender, inte deras vänner, att städerna lära sig läxan att bygga höga murar och krigsskepp.\" - Aristofanes (\"Birds\")"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "\"Det är obligatoriskt, särskilt för en filosof, att offra även ens närmaste personliga band för att försvara sanningen.\" - Aristoteles (\"Nicomachean Ethics\", I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr ""
+msgstr "\"Lycka beror på fritid, för vi är upptagna att ha fritid och göra krig att leva i fred.\" - Aristoteles (\"Nicomachean Ethics\", X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"Människan är av natur ett politiskt djur.\" - Aristoteles (\"Politik\", I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "\"Både oligark och tyrann misstroar folket och berövar dem därför av sina armar.\" - Aristoteles (\"Politik, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "\"Jag har fått detta genom filosofi: att jag gör utan att beordras vad andra gör bara av rädsla för lagen.\" - Aristoteles (Diogenes Laertius, \"Lives and Opinions of Eminent Philosophers\", Aristotle, s 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "\"Jag räknar honom modigare som övervinner sina begär än den som övervinner sina fiender. För den svåraste segern är över jaget\" - Aristoteles (Stobaeus, \"Florilegium\", 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -1016,7 +1017,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"Alexander själv, plågad av törst, med stor smärta och svårigheter ledde ändå armén till fots. \\[...]. Vid det här tillfället hittade några av de lätta beväpnade soldaterna \\[...] vatten \\[...], hällde vattnet in i en hjälm och bär det till honom. Han tog det och berättade de män som tog det med sig, strax hällde det på marken inför allas ögon. \" - Arrian om Alexanders mars genom den Gedrosiska öknen (\"Anabasis of Alexander\", 6,26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -1027,21 +1028,21 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "Han kastade sitt spjut i Mithridates ansikte, han \\[Alexander] slog honom till marken. Då slog Rhoesaces \\[a Persian] \\[...] honom på huvudet med sitt svärd. \\[...] Alexander slängde honom också till grundade, piercing med sin lans genom hans bröstplatta in i bröstet. Sphithridates \\[a Persian] hade redan höjt sitt svärd mot Alexander bakom när Clitus \\[...] skar bort armen. - Arrian om slaget vid Granicus (\"Anabasis av Alexander\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "\"Låt var och en minnas sina efterkommare att de också är soldater som inte får förlora sina förfäders led, eller dra sig ur feghet.\" - Aspasia (Plato, \"Menexenus\", 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr ""
+msgstr "\"Quintilius Varus, ge mig tillbaka min legioner!\" - Augustus, efter att tre legioner avlivades i striden vid Teutoburgskogen (Suetonius, \"Divus Augustus\", s 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -1049,7 +1050,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr ""
+msgstr "\"På mitt nittonde år, på eget initiativ och på egen bekostnad, tog jag upp en armé som jag befriade staten, som förtryckades av en fraktionens tyranni.\" - Augustus, i sin självbiografi (\"Res Gestae Divi Augusti\", s. 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -1058,28 +1059,28 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr ""
+msgstr "\"Krig, både civila och utländska, jag ledde över hela världen, på hav och land, och när jag segrade jag alla medborgare som stämde för förlåtelse. De utländska nationerna som med säkerhet kunde bli förlåtna, föredrog jag att rädda istället för att förstöra.\" - Augustus, i sin självbiografi (\"Res Gestae Divi Augusti\", s 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "\"Välj den kurs som du antar med överläggning; men när du har antagit den, framhärda i den med fasthet.\" - Bias från Priene (Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "\"Hur dumt det var för kungen att riva ut sitt hår i sorg, som om flintskallighet var ett botemedel mot sorg.\" - Bion av Borysthenes (Cicero, \"Tusculan Disputations\", III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "\"Han har inte förvärvat en förmögenhet, förmögen har förvärvat honom.\" - Bion of Borysthenes, med hänvisning till en rik miserare (Diogenes Laertius, \"Liv och åsikter om framstående filosofer\", Bion, sek 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -1089,50 +1090,50 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
 "18)"
-msgstr ""
+msgstr "\"Ve den segrade!\" - Brennus, Gaulish chieftain som hade gripit Rom (med undantag för ett garnison på Capitoline Hill). När Camillus anlände från Veii och besegrade honom förhandlade han sitt uttag för 1000 pund guld, men inte utan att använda falska vikter och lägga svergens vikt på skalan när romarna klagade (Polybius, \"Histories\", II.18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
 "they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
 "in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr ""
+msgstr "\"Rån, slakt, plundra, de [romarna] lurar namnet på riket, de gör ett öde och kallar det frid.\" - Calgacus, Caledonian hövdad i ett tal före slaget vid Mons Graupius (Tacitus, \"Agricola\", 30)"
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "\"Ställ en tjuv att fånga en tjuv.\" - Kallimachos från Kyrene (\"Epigrams\", 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"Hela mänskligheten regerar sina kvinnor, och vi regerar hela mänskligheten, men våra kvinnor regerar oss.\" - Cato den äldre (Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr ""
+msgstr "\"Det värsta härskaren är en som inte kan härska över sig själv.\" - Cato den äldre (Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"Visa män lär sig mer av dårar än dårar från visa.\" - Cato den äldre (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "\"Dessutom anser jag att Carthage skulle förstöras.\" - Cato den äldste, som avslutade alla tal i sitt senare liv med detta uttalande (Plutarch, \"Parallel Lives\", \"Cato the Elder\", s 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"Om en kung är energisk, kommer hans undersåtar vara lika energiska.\" - Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1140,14 +1141,14 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "\"Den som ställer stränga straff blir frånstötande för folket; medan han som utfärdar mild bestraffning blir föraktad. Men den som ålägger rättvisa straff blir respektabel.\" - Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "\"Vi rörde inte en min utan gav våra liv för att rädda Grekland när hennes öde hängde på rakbladets kant.\" - Korintiska epitaf till de fallna av persiska krigen (Plutarch, \"Moralia\", XI. \"På Herodotus\", 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1156,21 +1157,21 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.\" - Curtius Rufus about the Battle of Issos "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr ""
+msgstr "\"Då flydde blodet verkligen, för de två linjerna var så nära att skölden slog mot skölden, och de körde sina svärd i varandras ansikten. Det var omöjligt för de svaga eller fegna att dra sig tillbaka, man till man kämpade de som i enkamp .\" - Curtius Rufus om slaget vid Issos (\"Historier om Alexander den stora\", III. 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
 "\"I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
 "epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
-msgstr ""
+msgstr "\"Jag är Cyrus, som vann för perserna deras imperium. Därför gör mig inte avskräckt på den här jorden som täcker mina ben.\" - Kyrus den stora epitafen (Plutark, \"Paralleliv\", \"Alexander\", s. 69)"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Jag är Darius, den stora kungen, kungarnas kungar, Persiska konungen, kungen av länder, [...] 23 landar totalt.\" - Darius I. (Behistun-inskription, kolumn I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1180,36 +1181,36 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Phraortes fångades och fördes för mig. Jag avbröt näsan, öronen och tungan och lade ett öga ut och han hölls i kedjor vid mitt palats inträde och hela folket såg honom. Sedan korsfäst jag honom i Ecbatana, och de män som var hans främsta anhängare [...] Jag flög och hängde ut sina skinn, fyllda med halm. \" - Darius I. (Behistun inskrivning, kolumn II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"By desiring little, a poor man makes himself rich.\" - Democritus "
 "(fragment)"
-msgstr ""
+msgstr "\"Genom att önska lite, gör en fattig man sig rik.\" - Democritus (fragment)"
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Det är svårt att styras av en sämre.\" - Democritus (fragment)"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"Physical strength is only noble in cattle, it is strength of character "
 "that is noble in men.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Fysisk styrka är bara ädla i nötkreatur, det är karaktärsförmåga som är ädel hos män.\" - Democritus (fragment)"
 
 #: gui/text/quotes.txt:66
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
 "Phillip II of Macedon (\"Olynthiac II\", 10)"
-msgstr ""
+msgstr "\"Det är inte möjligt att grunda en varaktig makt på orättvisa, mened, och förräderi.\" - Demosthenes, i ett av hans många tal mot den stigande Filip II av Makedonien (\"Olynthiac II\", 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
-msgstr ""
+msgstr "\"Leverans, leverans, leverans.\" - Demokritos, när frågad vad de tre viktigaste elementen av retorik är (Cicero, \"De Oratore\", 3.213)"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1218,7 +1219,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
 " the Battle of Issos (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+msgstr "\"Makedonierna höjde först en ojämn skrik följt av perserna svarade, så att hela sluttningen sluttade mot ljudet, och det andra bruset var högre än det makedoniska krigsskriet som femhundra tusen män skrek med en röst.\" - Diodorus Siculus om Slaget om Issos (\"Historiens bibliotek\", XVII., S. 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1228,7 +1229,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.\" - Diodorus Siculus,"
 " on a brave Spartan at the Battle of Pylos (\"The Library of History\", "
 "XXII., sec. 62)"
-msgstr ""
+msgstr "\"Brasidas tog sin ställning på gången och slog därmed massorna av atenier som konvergerade på honom. Och i början dödade han många när de kom till honom, men efter ett tag, som många missiler anföll honom, led han många sår på framsidan av hans kropp. \" - Diodorus Siculus, på en modig spartan i slaget vid Pylos (\"Historiens bibliotek\", XXII., S. 62)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1237,88 +1238,88 @@ msgid ""
 "lecture-room with the words: Here is Plato's man. In consequence of which "
 "there was added to the definition: having broad nails.\" - Diogenes Laertius"
 " (\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 40)"
-msgstr ""
+msgstr "\"Plato hade definierat mannen som ett djur, biped och fjäderlösa, och applåderades. Diogenes [av Sinope] plockade en fågel och förde den in i föreläsningsrummet med orden: Här är Platons man. Till följd av detta tillsattes till definitionen: med breda naglar. \" - Diogenes Laertius (\"Liv och åsikter om framstående filosofer\", \"Diogenes\", s 40)"
 
 #: gui/text/quotes.txt:71
 msgid ""
 "\"I am a citizen of the world.\" - Diogenes of Sinope (Diogenes Laertius, "
 "\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 63)"
-msgstr ""
+msgstr "\"Jag är en medborgare i världen.\" - Diogenes of Sinope (Diogenes Laertius, \"Liv och åsikter av framstående filosofer\", \"Diogenes\", sek 63)"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
-msgstr ""
+msgstr "\"Det är inte att jag är galen, det är bara att mitt huvud är annorlunda än ditt.\" - Diogenes av Sinope (Stobaeus, \"Florilegium\", 51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "\"Parallel Lives\", \"Alexander\", sec. 14)"
-msgstr ""
+msgstr "\"Ja, gå lite ur mitt solsken.\" - Diogenes från Sinope, när Alexander den Store fann honom solandes och frågade hur han kunde hjälpa honom (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"The victor is not victorious if the vanquished does not consider himself "
 "so.\" - Ennius (\"Annales\", fragment 31.493)"
-msgstr ""
+msgstr "\"Segern är inte segrande om den besegrade inte anser sig själv.\" - Ennius (\"Annales\", fragment 31.493)"
 
 #: gui/text/quotes.txt:75
 msgid ""
 "\"Stranger, go tell the Spartans that we lie here, obedient to their laws.\""
 " - Epitaph at Thermopylae for Leonidas and his men (Herodotus, \"The "
 "Histories\", VII. 228)"
-msgstr ""
+msgstr "\"Främling, säg att spartanerna är ljugna här, lydig mot deras lagar.\" - Epitaph hos Thermopylae för Leonidas och hans män (Herodotus, \"The Histories\", VII. 228)"
 
 #: gui/text/quotes.txt:76
 msgid ""
 "\"A coward turns away, but a brave man's choice is danger.\" - Euripides "
 "(\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"En feg vänder sig bort, men en modig mans val är fara.\" - Euripides (\"Iphigenia in Tauris\")"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "\"Brave men are made bolder by ordeals, but cowards achieve nothing.\" - "
 "Euripides (\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"Modiga män görs djärvare genom prövningar, men cowards uppnår ingenting.\" - Euripides (\"Iphigenia in Tauris\")"
 
 #: gui/text/quotes.txt:78
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides (\"Meleager\")"
-msgstr ""
+msgstr "\"Fegisar räknas inte i strid; de är där, men inte i den.\" - Euripides (\"Meleager\")"
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "\"Lycka kämpar på sidan av den varsamma.\" - Euripides (\"Pirithous\")"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
 "warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
-msgstr ""
+msgstr "\"Återvänd med din sköld eller på den.\" - Farväl av spartanska kvinnor till sina krigare, vilket innebär att cowards skulle kasta bort deras sköld i strid för att flyga (Plutarch, \"Moralia\", XVIII. \"Spartanska kvinnas ord\", 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
 "\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
 "Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
 "\"Caesar\", sec. 50)"
-msgstr ""
+msgstr "\"Jag kom jag såg jag erövrade.\" - Gaius Julius Caesar, efter att ha dirigerat Pharnaces II av Pontus i det första angreppet (Plutarch, \"Parallel Life\", \"Caesar\", sek 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
 "Gallico\", III. 18)"
-msgstr ""
+msgstr "\"Män tror gärna vad de önskar sig.\" - Gaius Julius Caesar (\"De Bello Gallico\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
 " sec. 11)"
-msgstr ""
+msgstr "\"Det är inte den välnärda långhåriga mannen som jag är rädd för, men den bleka och hungriga.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1327,7 +1328,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.\" - Gaius Julius Caesar about the Battle of Alesia (\"De Bello "
 "Gallico\", VII. 80)"
-msgstr ""
+msgstr "\"Efter att ha kämpat från middagstid nästan till solnedgången, med tvivelfulla seger, lade tyskarna på ena sidan fienden i en kompakt kropp och körde dem tillbaka, och när de sattes på väg var båtarna omringade och skurna i stycken. \" - Gaius Julius Caesar om slaget vid Alesia (\"De Bello Gallico\", VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1338,7 +1339,7 @@ msgid ""
 "exhausted by many and severe wounds, that he was already unable to support "
 "himself.\" - Gaius Julius Caesar about the Battle of the Sabis (\"De Bello "
 "Gallico\", II. 25)"
-msgstr ""
+msgstr "\"Alla centurionerna i den fjärde kohorten dödades, och standardbäraren dödades, standarden förlorade sig, nästan alla de andra kohorterna i de andra kohorterna, antingen sårade eller slagna, och bland dem Legionens högsta centurion, Publius Sextius Baculus, en väldigt tapper man, som var så utmattad av många och allvarliga sår, att han redan inte kunde stödja sig själv. \" - Gaius Julius Caesar om Slaget vid Sabis (\"De Bello Gallico\", II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1348,39 +1349,39 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"Men fienden [...] uppvisade ett sådant stort mod att när främre rangen hade fallit stod männen bakom dem och fortsatte kampen från ovanpå likena, när dessa dödades växte bäcken av kroppar högre, medan de överlevande använde högen som en utsiktspunkt för att kasta missiler hos våra män, eller fånga våra spjut och kasta dem tillbaka. \" - Gaius Julius Caesar om Slaget om Sabis (\"De Bello Gallico\", II.27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"The die is cast.\" - Gaius Julius Caesar, when crossing the Rubicon river "
 "with his legion into Italy, a capital offense that led to his civil war "
 "against Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr ""
+msgstr "\"Tärningen är kastad.\" - Gaius Julius Caesar, när han passerade floden Rubicon med sitt legion i Italien, ett huvudbrott som ledde till hans inbördeskrig mot Pompey (Suetonius, \"De tolv kejsarnas liv\", 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
 "\"I'd rather be the first man here than the second man in Rome.\" - Gaius "
 "Julius Caesar, when passing through a barbarian village in the Alps "
 "(Plutarch, \"Parallel Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+msgstr "\"Jag skulle hellre vara den första mannen här än den andra mannen i Rom.\" - Gaius Julius Caesar, när han passerar genom en barbarisk by i Alperna (Plutarch, \"Parallel Lives\", \"Caesar\", s 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
 " \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "\"Sluta citerar lagar, vi bär vapen!\" - Gnaeus Pompejus Magnus (Plutarch, \"Parallel Lives\", \"Pompey\", sec. 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi (Hammurabi's Code, sec. 196)"
-msgstr ""
+msgstr "\"Om en man tar ut ögat på en annan, skall hans öga tas ut.\" - Hammurabi (Hammurabi's Code, sec. 196)"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "\"Jag har inte kommit för att föra krig mot italienarna, men för att bistå italienarna mot Rom.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1388,7 +1389,7 @@ msgid ""
 "an old man.\" - Hannibal Barca's last words before his suicide, in exile "
 "with Flaminius pressuring the local ruler to hand him over (Livius, \"Ab "
 "Urbe Condita\", XXXIX. 51)"
-msgstr ""
+msgstr "\"Låt oss nu sluta romernas ångest, som inte kan vänta på en gammal människas död.\" - Hannibal Barcas sista ord före sitt självmord, i exil med Flaminius som pressade den lokala härskaren att överlämna honom (Livius, \"Ab Urbe Condita\", XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1397,58 +1398,58 @@ msgid ""
 "war, with whom at peace, they think it right that they should determine.\" -"
 " Hannibal Barca, addressing his troops (Livius, \"Ab Urbe Condita\", XXI. "
 "44)"
-msgstr ""
+msgstr "\"De mest omänskliga och mest arroganta i nationerna, de [romarna] räknar världen som deras och underkastas deras nöje. Med vem vi ska vara i krig, med vilka i fred anser de det rätt att de ska bestämma.\" - Hannibal Barca, adresserar sina trupper (Livius, \"Ab Urbe Condita\", XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
 "death.\" - Hannibal Barca, addressing his troops (Livius, \"Ab Urbe "
 "Condita\", XXI. 44)"
-msgstr ""
+msgstr "\"Du måste vara modig och förkasta alla förhoppningar om annat än seger eller död.\" - Hannibal Barca, adresserar sina trupper (Livius, \"Ab Urbe Condita\", XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The "
 "Refutation of all Heresies\", IX. 4)"
-msgstr ""
+msgstr "\"Krig är fader och kung av allting: vissa han har gjort gudar och några män, några slavar och några lediga.\" - Herakleitos (Hippolytus, \"Refutation of all Heresies\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"You could not step twice into the same river.\" - Herakleitos (Plato, "
 "\"Cratylos\", 402a)"
-msgstr ""
+msgstr "\"Du kan inte kliva två gånger i samma flod.\" - Herakleitos (Plato, \"Cratylos\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
 "Histories\", III. 52)"
-msgstr ""
+msgstr "\"Det är bättre att vara avundsjuk än att vara ledsen.\" - Herodotus (\"Historierna\", III.52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
 "122)"
-msgstr ""
+msgstr "\"I mjuka regioner föds mjuka män.\" - Herodotus (\"The Histories\", IX. 122)"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr ""
+msgstr "\"Detta är den bittraste smärta bland män, att ha mycket kunskap men ingen makt.\" - Herodotus (\"The Histories\", IX. 16)"
 
 #: gui/text/quotes.txt:100
 msgid ""
 "\"Although he \\[Xerces] had plenty of troops he had few men.\" - Herodotus "
 "(\"The Histories\", VII. 210)"
-msgstr ""
+msgstr "\"Trots att han [Xerces] hade gott om trupper hade han få män.\" - Herodotus (\"Historierna\", VII. 210)"
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
-msgstr ""
+msgstr "\"De Lakedaemonierna \\[Spartanska] kämpade en minnesvärd strid; gjorde de helt klart att de var experter, och att de krigade mot amatörer.\" - Herodotus (\"The Histories\", VII. 211)"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1459,7 +1460,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"Att bli informerad \\[...] att när barbarerna släppte sina pilar döljade de solens ljus av pilens mångfald, \\[Dienekes] \\[...] sade att deras gäst \\[...] gav dem mycket goda nyheter för om Medarna dolde solens ljus, skulle striden mot dem vara i skuggan och inte i solen. \" - Herodotus beskriver Dienekes, angiven som den modigaste spartanska soldaten i Thermopylae (Polybius, \"Histories\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1467,7 +1468,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.\" - Herodotus, later mentioning that the empire "
 "Kroisos destroyed was his own (\"The Histories\", I. 53)"
-msgstr ""
+msgstr "\"Den dom som gavs till Kroisus av var och en av de två oraklarna [Delphi och Thebes] var densamma: Om han skickade en armé mot perserna skulle han förstöra ett stort imperium.\" - Herodotus, som senare nämnde att imperiet Kroisos förstördes var hans eget (\"Historierna\", I. 53)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1477,7 +1478,7 @@ msgid ""
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I., the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr ""
+msgstr "\"Han [Darius Darius] frågade vem ateerna var och informerade, ropade på sin böja och lade en pil på strängen och sköt uppåt till himlen och sade:\" När han lät flyga skaftet: Ge mig, Zeus att hämnas mig på athenerna! \" - Herodotus, som berättar hur det athenska stödet till den Joniska revolten fångade Darius I., Persiska kungen (\"Historierna\", V. 105)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1485,55 +1486,55 @@ msgid ""
 "was spread, three times to repeat to him: Master, remember the Athenians!\" "
 "- Herodotus, narrating how the Athenian support for the Ionian revolt lead "
 "to the Persian Wars (\"The Histories\", V. 105)"
-msgstr ""
+msgstr "\"Han [Darius Darius] frågade en av sina tjänare varje dag, när hans middag spred sig, tre gånger för att upprepa till honom: Mästare, kom ihåg atenerna!\" - Herodotus, som berättar hur det athenska stödet till den Joniska revolten leder till persiska krig (\"Historierna\", V. 105)"
 
 #: gui/text/quotes.txt:106
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace (\"Epistles\", epistle I., 156-157)"
-msgstr ""
+msgstr "\"Erövrade Grekland tog fången hennes vilda erövrare och tog hennes konst till rustika Lazio.\" - Horatius (\"Epistles\", epistle I., 156-157)"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"Anger is a momentary madness, so control your passion or it will control "
 "you.\" - Horace (\"Epistles\", epistle II., 62)"
-msgstr ""
+msgstr "\"Anger är en kortvarig galenskap, så kontrollera din passion eller det kommer att styra dig.\" - Horace (\"Epistles\", epistel II., 62)"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"It is your concern when your neighbour's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr ""
+msgstr "\"Det är din oro när din grannes mur står i brand.\" - Horace (\"Epistles\", epistel XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
 "\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
 "III., ode II., 13)"
-msgstr ""
+msgstr "\"Det är sött och ärligt att dö för sitt land.\" - Horatius (\"Odes\", III., ode II., 13)"
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Jag Cyrus, världens härskare...\" - Inskription (Cyrus Cylinder)"
 
 #: gui/text/quotes.txt:111
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Kroisos, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+msgstr "\"I fred begraver söner sina fädrar, men i krig begraver fädrar sina söner.\" - Krösus, kung av Lydia (Herodotus, \"Historierna\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr ""
+msgstr "\"Gift dig med en bra man och föd upp bra barn.\" - Leonidas, till sin fru som frågade vad han skulle göra om han dog, innan han lämnade till Thermopylae (Plutarch, \"Moralia\", XVI. \"Spartans ord,\" 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr ""
+msgstr "\"Kom och ta dom!\" - Leonidas, till den Persiske budbäraren som krävde att han och sina män lägger ner sina vapen (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1544,7 +1545,7 @@ msgid ""
 "Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
 "Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Några upptäcktes ligga där levande, med lår och senor slashed, baring sina halsar och halsar och bjuder deras erövrar dränera rester av deras blod. Andra hittades med sina huvuden begravda i hål grävde i marken. De hade tydligen gjort dessa gropar för dem själva.\" - Livius, som beskriver efterföljan av slaget vid Cannae, där Hannibal orsakade det största nederlaget på romarna i hela sin historia (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1553,62 +1554,62 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Det låg tusen efter tusen romare. [...]. Här och där bland de döda rosade en gyrofigur, vars sår hade börjat törja med morgonens chill och avbröts av sina fiender.\" - Livius, som beskriver efterföljan av slaget vid Cannae, där Hannibal orsakade det största nederlaget på romarna i hela sin historia (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"A city is well-fortified which has a wall of men instead of brick.\" - "
 "Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr ""
+msgstr "\"En stad är väl befäst, som har en mur av män istället för tegelsten.\" - Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", s 19)"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide after losing a battle against Caesar's "
 "avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "\"Flykt, ja, men denna gång med mina händer, inte mina fötter.\" - Marcus Junius Brutus - innan självmord efter att ha förlorat en strid mot Caesars hämnare (Plutarch, \"Parallel Life\", \"Brutus\", s. 52)"
 
 #: gui/text/quotes.txt:118
 msgid ""
 "\"O, the times, O, the customs!\" - Marcus Tullius Cicero (\"Against "
 "Catiline\", speech I)"
-msgstr ""
+msgstr "\"O tider, o seder!\" - Marcus Tullius Cicero (\"Against Catiline\", speech I)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "\"Den ideala staten utför aldrig krig, förutom att försvara dess heder eller dess säkerhet\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "\"Den första plikten av en man är sökandet efter och undersökning av sanningen.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "\"Ingen är så gammal som att tro att han inte kan leva ytterligare ett år.\" - Marcus Tullius Cicero (\"On Old Age\", sec. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero (\"On the Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"Låt folkets välgång vara den ultimata lagen.\" - Marcus Tullius Cicero (\"On the Laws\", III., sec. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "\"Oändliga pengar bildar krigets senor.\" - Marcus Tullius Cicero (\"Philippics\", Philippica V., sec. 5)"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
 " IV., sec. 11)"
-msgstr ""
+msgstr "\"Lagar är tysta i krigstid.\" - Marcus Tullius Cicero (\"Pro Milone\", IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1616,7 +1617,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
 "(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+msgstr "\"Detta, Senatorer, är vad favör av gängen uppgår till. De avstår ifrån att mörda någon; sedan skryter de med att de har skonat honom!\" - Marcus Tullius Cicero, fördömande Mark Anthony som inte hade dödat honom (ännu) (\"Philippians\", Philippica II, sek 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1625,27 +1626,27 @@ msgid ""
 "never rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.\" - Mark Antony, taunting Augustus who delegated his duties as naval "
 "commander (Suetonius, \"Divus Augustus\", sec. 16)"
-msgstr ""
+msgstr "\"Han stod inte ens upp för att granska sin flotta när fartygen var redan på sina stridsstationer, men låg på ryggen och tittade upp på himlen, aldrig stigande för att visa att han levde tills Marcus Agrippa hade dirigerat fienden.\" - Mark Antony, taunting Augustus som delegerade sina uppgifter som sjöbefälhavare (Suetonius, \"Divus Augustus\", sek 16)"
 
 #: gui/text/quotes.txt:127
 msgid ""
 "\"We live, not as we wish to, but as we can.\" - Menander (\"Lady of "
 "Andros\", fragment 50)"
-msgstr ""
+msgstr "\"Vi lever, inte som vi vill, men som vi kan.\" - Menander (\"Lady of Andros\", fragment 50)"
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr ""
+msgstr "\"Mannen som springer kan slåss igen.\" - Menander (\"Monosticha\")"
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
 "fragment 4)"
-msgstr ""
+msgstr "\"Vem gudarna älskar dör unga.\" - Menander (\"Double Deceiver\", fragment 4)"
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "\"Jag kallar ett fikon ett fikon, en spade en spade.\" - Menander (fragment 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1655,7 +1656,7 @@ msgid ""
 "fortune and material advantages, they drove out the invaders and made our "
 "city what it is now.\" - Pericles (Thucydides, \"History of the "
 "Peloponnesian War\", I. 144.3-4)"
-msgstr ""
+msgstr "\"Den största ära är vunnet från de största farorna. När våra fäder möttes perserna kunde deras resurser inte jämföra med våra. De gav sig till och med vad de hade. Sedan genom kloka råd och dristiga gärningar, inte förmögenhet och materiella fördelar, de körde ut invaderarna och gjorde vår stad vad det är nu. \" - Periklar (Thucydider, \"Peloponnesiska krigets historia\", I. 144.3-4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1664,7 +1665,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr ""
+msgstr "\"Istället för att titta på diskussioner som ett hinder i vägen för handlingar, anser vi att det är en oumbärlig förberedelse för någon vis handling alls\". - Pericles i sin begravningsorganisation för atener som dog i krigets första år (Thucydides, \"Peloponnesiska krigets historia\", II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1672,14 +1673,14 @@ msgid ""
 "nothing, we think he is good for nothing.\" - Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "\"History of the Peloponnesian War\", II. 40.2)"
-msgstr ""
+msgstr "\"Vi ensamma tror inte att en man som är okunnig om politiken stör ingenting, vi tror att han är bra för ingenting.\" - Pericles i sin begravningsorganisation för atener som dog i krigets första år (Thucydides, \"Peloponnesiska krigets historia\", II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr ""
+msgstr "\"Framtida åldrar kommer att undra på oss, eftersom nuvarande ålder undrar på oss nu.\" - Periklar i sin begravningsorganisation för atener som dog i krigets första år (Thucydider, \"Peloponnesiska krigets historia\", II. 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1689,7 +1690,7 @@ msgid ""
 "virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.2)"
-msgstr ""
+msgstr "\"När du inser Atens kraft anser du att det var vunnet av tapper män som kände sin plikt, hade en känsla av upprörelse i kamp och, om deras företag misslyckades, hellre skulle ge sina liv än brist på medborgerlig dygd.\" - Pericles i sin begravningsorganisation för atener som dog i krigets första år (Thucydides, \"Peloponnesiska krigets historia\", II. 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1698,7 +1699,7 @@ msgid ""
 " that will outlast any monument.\" - Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, \"History of "
 "the Peloponnesian War\", II. 43.3)"
-msgstr ""
+msgstr "\"Till hjältar är hela jorden deras grav, och deras dygder kommer ihåg långt ifrån hemmet, där en epitaf förklarar dem, i en oskriven skiva av sinnet som kommer att överblicka något monument.\" - Pericles i sin begravningsorganisation för atener som dog i krigets första år (Thucydider, \"Peloponnesiska krigets historia\", II. 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1706,7 +1707,7 @@ msgid ""
 "courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.4)"
-msgstr ""
+msgstr "\"Förstå att lycka beror på frihet, och frihet beror på mod.\" - Pericles i sin begravningsorganisation för atenare som dog i krigets första år (Thucydider, \"Peloponnesiska krigets historia\", II.4.4.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
@@ -1714,14 +1715,14 @@ msgid ""
 "for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
 " in the first year of the war (Thucydides, \"History of the Peloponnesian "
 "War\", II. 45.2)"
-msgstr ""
+msgstr "\"Den största ära för kvinnor är att man minst talar om män, vare sig det är för gott eller illt.\" - Pericles i sin begravningsorganisation för atener som dog i krigets första år (Thucydides, \"Peloponnesiska krigets historia\", II. 45.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
 "politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
 " 18)"
-msgstr ""
+msgstr "\"Vänta på alla rådgivares klokaste, tid\". - Pericles, en försiktig politiker som undviker krig (Plutarch, \"Parallel Life\", \"Pericles\", s 18)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1729,40 +1730,40 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr ""
+msgstr "\"Ditt imperium är nu som en tyranni: det kan ha varit fel att ta det, det är verkligen farligt att låta det gå.\" - Pericles, adressera den atenska församlingen efter en pest hade försvagat staden (Thucydides, \"Peloponnesiska krigets historia\", II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man fears its approach in his heart.\" - Pindar (fragment 110)"
-msgstr ""
+msgstr "\"Kriget är sött för dem som inte har någon erfarenhet av det, men den erfarna mannen räddar sin inställning i sitt hjärta.\" - Pindar (fragment 110)"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr ""
+msgstr "\"Themistocles rånade sina medborgare av spjut och sköld och försämrade Atenas folk till roddkudden och åren.\" - Plato, ingen vän av den atenska flottan (Plutarch, \"Parallel Life\", \"Themistocles\", s. 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr ""
+msgstr "\"Ingen gäst är så välkommen i en väns hus att han inte kommer att bli obehag efter tre dagar.\" - Plautus (\"The Swaggering Soldier\", Act III, scen 1, 146)"
 
 #: gui/text/quotes.txt:144
 msgid ""
 "\"You cannot eat your cake and have it too, unless you think your money is "
 "immortal.\" - Plautus (\"Trinummus\", Act II, scene 4, 12)"
-msgstr ""
+msgstr "\"Du kan inte äta din tårta och få det också, om du inte tror att dina pengar är odödliga.\" - Plautus (\"Trinummus\", Act II, scen 4, 12)"
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr ""
+msgstr "\"Han [Alexander] tyckte ingenting oövervinnerligt för modiga, och inget säkert för fegt.\" - Plutarch (\"Parallel Life\", \"Alexander\", s. 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1772,7 +1773,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"En [[...] skjuter en pil på honom med sådan noggrannhet och tvingar det att genomborra sin bröstplatta och fastnar i hans revben. \\\" ... Alexander återkollade och sjönk till knäna. [...] Äntligen dödade Alexander barbaren . Men han mottog många sår, äntligen slogs han på nacken med en kappa och lutade sig mot stadsmuren, hans ögon fastnade fortfarande på sina fiender. \" - Plutarch om Mallian-kampanjen (\"Parallel Life\", \"Alexander\", sek 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1781,7 +1782,7 @@ msgid ""
 "captured, and he volunteered to pay fifty.\" - Plutarch, who mentions later "
 "that Caesar got his money back and had his captors crucified (\"Parallel "
 "Lives\", \"Caesar\", sec. 2)"
-msgstr ""
+msgstr "\"När piraterna krävde ett löneförbud på tjugo talanger för honom, bröt Caesar skratta. De visste inte, han sa, vem det var som de hade fångat, och han frivilligade att betala femtio.\" - Plutarch, som senare nämner att kejsaren fick tillbaka sina pengar och hade korsfästare (\"Parallel Life\", \"Caesar\", sek 2)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -1790,7 +1791,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
-msgstr ""
+msgstr "\"De [romarna] vill att centurionerna inte så mycket är äventyrliga och våldsamma, som naturliga ledare, av en stadig och tillförlitlig ande. De vill inte så mycket män som kommer att inleda attacker och öppna striden, men män vem kommer att hålla sin mark när de är slagna och hårt pressade och kommer att vara redo att dö på sina inlägg. \" - Polybius (\"Histories\", VI. 24)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -1798,7 +1799,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr ""
+msgstr "\"Den romerska stridslinjen är svår att bryta, eftersom det gör det möjligt för varje man att slåss både individuellt och kollektivt, så att en formgivning kan kämpa i vilken riktning som helst, med de manipuler som ligger närmast riskfältet som rullar runt för att möta det.\" - Polybius (\"Histories\", XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1809,7 +1810,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Det athenska folket står alltid i ett fartygs position utan befälhavare. Rädsla för fienden eller en storm gör besättningen av ett sinne och lyda rorsmannen, allt går bra, men om de återhämtar sig [...] strider de mot varandra, och resultatet har ofta varit att efter att ha släppt farorna med de bredaste haven och de mest våldsamma stormarna, sönder de sitt skepp i hamnen och nära stranden. \" - Polybius på den atenska konstitutionen (\"Historier\", VI.44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1818,7 +1819,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.\""
 " - Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (\"Histories\", I. 34)"
-msgstr ""
+msgstr "\"De flesta romarna trampades till döds av elefanternas enorma vikt, resten sköts ned i deras led av de många kavallerierna, och det var bara ett fåtal som försökte rädda sig med flyg.\" - Polybius på slaget vid Bagradas, där en romersk armé avlivades under första punkiska kriget (\"Historier\", I. 34)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1826,7 +1827,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr ""
+msgstr "\"Hannibal gav signalen till attack, och samtidigt skickade order till trupperna som låg i bakhåll på kullarna för att göra detsamma, och sålunda överlämnade ett angrepp mot fienden vid alla tillfällen på en gång.\" - Polybius i början av en romersk katastrof vid Trasymene-sjön (\"Histories\", III.84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1836,7 +1837,7 @@ msgid ""
 "shields and flee.\" - Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
 "26)"
-msgstr ""
+msgstr "\"I falanxen kan männen inte vända sig om sig och försvara sig: denna tribune berättade dem [bakifrån] och dödade allt han kunde få på, tills de inte kunde motstå att de var tvungna att kasta bort sina sköldar och fly.\" - Polybius, som beskriver nederlaget av Philip V. av Macedon av Flaminius i Slaget vid Cynoscephalae (\"Historier\", XVIII. 26)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -1847,7 +1848,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.\" - Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
 "XVIII. 32)"
-msgstr ""
+msgstr "\"Den romerska ordningen å andra sidan är flexibel: för varje romare, en gång beväpnad och på fältet, är lika välutrustad för varje plats, tid eller utseende av fienden. Han är dessutom ganska redo och behöver inte göra nej förändras, om han måste kämpa i huvudkroppen eller i en frihet, eller i en enda manipulering, eller ens av sig själv. \" - Polybius, förklarar hur romarna kan besegra den makedonska phalanxen (\"Historier\", XVIII. 32)"
 
 #: gui/text/quotes.txt:155
 msgid ""
@@ -1857,7 +1858,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr ""
+msgstr "\"Scipio \\ [Aeminialus], när han såg på staden \\ [Carthage] som den fullständigt förgås och i den sista trängseln av dess fullständiga förstörelse, sägs ha skjutit tårar och gråt öppet för sina fiender. Och insåg att alla städer , nationer och myndigheter måste, som män, möta deras döm. \" - Polybius, ögonvittne för förstörelsen av Carthage (\"Histories\", XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1865,31 +1866,31 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, \"Parallel Lives\", "
 "\"Pyrrhus\", sec. 21)"
-msgstr ""
+msgstr "\"En sådan sådan seger och orsaken är förlorad!\" - Pyrros av Epirus efter slaget vid Asculum, där romarna förlorade dubbelt så många män men han förlorade en större andel av sina väpnade styrkor (Plutarch, \"Parallel Lives\", \"Pyrrhus\", s 21)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "\"Ingen kan vara fri, som är en slav till och styrd av hans lustar.\" - Pythagoras (Stobaeus, \"Florilegium\", 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Säg inte några saker i många ord, men många saker med få ord.\" - Pythagoras (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Låt ditt tal vara bättre än tystnad, eller tyst.\" - Pythagoras (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "\"Enighet stärker även små stater, medan diskord undergräver de mäktigaste imperierna.\" - Sallust (\"Jugurthine War\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1897,14 +1898,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr ""
+msgstr "\"Otacksamma faderland, du kommer inte ens ha mina ben!\" - Scipio Africanus i hans epitaph, efter att han som besegrade Hannibal var upprepade gånger anklagad för brott av den romerska senaten (Valerius Maximus, \"Nio böcker om minnesvärda handlingar och ord\", 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "\"Förbered dig för krig, eftersom du inte har kunnat uthärda en fred.\" - Scipio Africanus, svarande på Hannibals erbjudande om fredsvillkor inför Slaget om Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1913,7 +1914,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr ""
+msgstr "\"Men den taktiska vetenskapen är bara en del av generalsamhället. En general måste kunna utrusta sina styrkor och försörja sina män. Han måste också vara uppfinningsrik, arbetande och vaksam, bullheaded och lysande, vänlig och hård, enkel och subtil.\" - Sokrates (Xenophon, \"Memorabilia\", 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1921,14 +1922,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr ""
+msgstr "\"Det är nödvändigt att känna stadens och fiendens styrka, så att, om staden är starkare, kan man rekommendera henne att gå i krig, men om det är svagare än fienden, får han övertyga henne.\" - Sokrates (Xenophon, \"Memorabilia\", 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr ""
+msgstr "\"Det outforskade livet är inte värt att leva.\" - Sokrates, i sitt försvar när han prövade för att fördärva ungdomen och inte dyrka de rätta gudarna (han drack senare hemlocket efter dödsdom) - Plato (\"Apology\", 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -1936,13 +1937,13 @@ msgid ""
 "to live. Which is better God only knows.\" - Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
-msgstr ""
+msgstr "\"Avgångstiden har kommit, och vi går våra vägar - jag ska dö, och du ska leva. Det är bättre Gud bara vet.\" - Sokrates, i sitt försvar när han prövade för att fördärva ungdomen och inte dyrka de rätta gudarna (han drack senare hemlösen efter dödsdom) - Plato (\"ursäkt\", 42a)"
 
 #: gui/text/quotes.txt:167
 msgid ""
 "\"Walls and ships are nothing without men living together inside them.\" - "
 "Sophocles (\"Oedipus Rex\")"
-msgstr ""
+msgstr "\"Väggar och fartyg är inget utan män som bor tillsammans inuti dem.\" - Sophocles (\"Oedipus Rex\")"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1952,24 +1953,24 @@ msgid ""
 "that the weak should be subject to the strong.\" - Speech of an Athenian "
 "embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
 "76.2)"
-msgstr ""
+msgstr "\"Vi accepterade ett imperium som erbjöds oss och vägrade att ge upp det under tre av de starkaste motivens tryck: rädsla, ära och intresse. Det var inte vi som satte exemplet, för det har alltid varit lagen som svaga bör vara utsatt för den starka. \" - Tal av en atensk ambassad i Sparta (Thucydides, \"Peloponnesiska krigets historia\", I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"He could boast that he found a city of brick and left it a city of "
 "marble.\" - Suetonius, commenting on the many building projects of Augustus "
 "in Rome (\"Divus Augustus\", sec 38)"
-msgstr ""
+msgstr "\"Han kunde skryta att han hittade en mursten och lämnade den en marmorstad.\" - Suetonius, kommenterar de många byggprojekten av Augustus i Rom (\"Divus Augustus\", s 38)"
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"Moderering i alla saker\". - Terence (\"Flickan från Andros\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "\"Förmögenhet gynnar den djärva.\" - Terence i en lek om en stor atenisk admiral (\"Phormio\", 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1977,7 +1978,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr ""
+msgstr "\"Jag vet inte hur man stämmer lyren eller spelar harpan, men jag vet hur man lyfter en stad som var liten och oväsentlig för ära och storhet.\" - Themistocles, försvarar hans brist på kulturell sofistikering (Plutarch, \"Parallel Life\", \"Themistocles\", sek 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1985,41 +1986,41 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr ""
+msgstr "\"Slå till, om du vill, men lyssna.\" - Themistocles, i en uppvärmd diskussion med den spartanska flottans befälhavare som hotade att slå honom med sin personal innan slaget vid Salamis (Plutarch, \"Parallel Life\", \"Themistocles\", s 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr ""
+msgstr "\"Athenerna beordrar resten av Grekland, jag beordrar atenerna, din mamma beordrar mig, och du beordrar din mamma.\" - Themistokles, i ett uttalande till sin son (Plutarch, \"Parallel Life\", \"Themistocles\", s 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr ""
+msgstr "\"Så små smärtor tar poppet in att ta reda på sanningen och accepterar lätt den första historien till hands.\" - Thucydider (\"Peloponnesiska krigets historia\", I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr ""
+msgstr "\"Enheten i Aten, och det larm som detta orsakade i Sparta, gjorde krig oundvikligt.\" - Thucydider (\"Peloponnesiska krigets historia\", I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr ""
+msgstr "\"Krig är en sak inte så mycket av vapen som pengar.\" - Thucydider (\"Peloponnesiska krigets historia\", I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr ""
+msgstr "\"Det är en allmän regel av mänsklig natur som folk förskämmer dem som behandlar dem väl och ser upp till dem som inte gör några eftergifter.\" - Thucydides (\"Peloponnesiska krigets historia\", III. 39.5)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -2030,7 +2031,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr ""
+msgstr "\"Det var den största åtgärden som hände i hela detta krig och alla andra som vi hört talas om bland grekerna, att vara till segrarna mest glorious och mest calamitous för de besegrade. För de var helt och alls besegrade, och deras lidande var många. Armé och flotta och allt de någonsin hade förgåtts, inget blev frälst och få av så många återvände hemma. Så slutade den sicilianska expeditionen. \" - Thucydides (\"Peloponnesiska krigets historia\", VII 87.6-7)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -2038,7 +2039,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr ""
+msgstr "\"När världen går, är rättvisa bara en fråga mellan likvärdiga, medan de starka gör vad de kan och de svaga lider vad de måste\". - Thucydider, som beskriver atenere som tar itu med de besegrade melierna som inte vill ge upp sig (\"Peloponnesiska krigets historia\", V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -2047,7 +2048,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "\"När lakedaemonierna inte längre kunde springa efter dem, tog skirmisherna [...] alla dem på en gång och kastade stenar, pilar och pilar till närmaste man till hands.\" - Thucydides, som beskriver den spartanska katastrofen i Slaget vid Spakterier (\"Peloponnesiska krigets historia\", IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2057,7 +2058,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
 "\"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"Soldaterna kämpar och dör för att stödja andra i rikedom och lyx och de kallas världens mästare utan att äga en enda bondgård på egen hand.\" - Tiberius Gracchus, som förespråkade reformen av marken till förmån för hemlösa och arbetslösa veteraner vars länder ofta köptes upp varför de var på kampanj (Plutarch, \"Parallel Life\", \"Tiberius Gracchus\", s. 9)"
 
 #: gui/text/quotes.txt:183
 msgid ""
@@ -2067,24 +2068,24 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"De vilda djuren i Italien har sina grottor att gå i pension, men de modiga veteranerna som slängde sitt blod i sin sak har ingenting kvar utan luft och ljus. De vandrar runt hemlösa med sina fruar och barn.\" - Tiberius Gracchus, som förespråkade reformen av marken till förmån för hemlösa och arbetslösa veteraner vars länder ofta köptes upp varför de var på kampanj (Plutarch, \"Parallel Life\", \"Tiberius Gracchus\", s. 9)"
 
 #: gui/text/quotes.txt:184
 msgid ""
 "\"Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.\" - Virgil (\"Aeneid\", II. 48-49)"
-msgstr ""
+msgstr "\"Lita inte på hästen, trojaner! Jag fruktar grekerna även när de tar med gåvor.\" - Virgil (\"Aeneid\", II. 48-49)"
 
 #: gui/text/quotes.txt:185
 msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
-msgstr ""
+msgstr "\"Förberedd för antingen alternativ.\" - Virgil (\"Aeneid\", II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
 "\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "\"Homer och Hesiod tillskrivs sina gudar allt som är en skam bland de dödliga: stjäla, äktenskapsbrott, lura varandra\". - Xenofaner (fragment 11)"
 
 #: gui/text/quotes.txt:187
 msgid ""
@@ -2092,13 +2093,13 @@ msgid ""
 " of art as men do, horses would paint the forms of the gods like horses, and"
 " oxen like oxen, and make their God's bodies each in their own image.\" - "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "\"Om oxar och hästar och lejon hade händer och kunde måla och producera konstverk som män gör, skulle hästar måla gudens former som hästar och oxar som oxar och göra sina guds kroppar var och en i sin egen bild. \" - Xenofaner (fragment 15)"
 
 #: gui/text/quotes.txt:188
 msgid ""
 "\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
-msgstr ""
+msgstr "\"Etiopierna gör sina gudar svarta och snub-nosed, Thraciansna säger att de har blå ögon och rött hår.\" Xenofaner (fragment 16)"
 
 #: gui/text/quotes.txt:189
 msgid ""
@@ -2106,21 +2107,21 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "\"Det här är de rätta frågorna att fråga om vinteren runt elden [...]: Vem är du, vän? Vad är ditt land? Och hur gammal var du när Medesna [Perserna] kom?\" - Xenophanes, som sannolikt hänvisar till en straffad expedition mot grekiska städer i Ionia (fragment 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""
 "\"A prudent commander will never take risks unnecessarily, except when it is"
 " clear beforehand that he will have the advantage.\" - Xenophon (\"The "
 "Cavalry General\", 4.13)"
-msgstr ""
+msgstr "\"En försiktig befälhavare kommer aldrig att ta risker i onödan, förutom när det är klart på förhand att han kommer att ha fördelen.\" - Xenophon (\"The Cavalry General\", 4.13)"
 
 #: gui/text/quotes.txt:191
 msgid ""
 "\"Attack the enemy where he is weakest, even if that is a long way off, "
 "since hard work is less dangerous than a struggle against superior forces.\""
 " - Xenophon (\"The Cavalry General\", sec. 4.14)"
-msgstr ""
+msgstr "\"Attackera fienden där han är som svagast, även om det är långt ifrån, eftersom hårt arbete är mindre farligt än en kamp mot överlägsna styrkor.\" - Xenophon (\"The Cavalry General\", s. 4.14)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2128,14 +2129,14 @@ msgid ""
 "small force appear large and a large one small, to appear absent when close "
 "at hand, and within striking distance when a long way off.\" - Xenophon "
 "(\"The Cavalry General\", sec. 5)"
-msgstr ""
+msgstr "\"Han borde vara uppfinningsrik, redo att utnyttja alla omständigheter, för att få en liten kraft att se stor ut och en stor en liten, som inte kan förekomma när den är nära, och inom slående avstånd när det är långt ifrån.\" - Xenophon (\"The Cavalry General\", sek 5)"
 
 #: gui/text/quotes.txt:193
 msgid ""
 "\"People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.\" - Xenophon (\"The Education of "
 "Cyrus\", 1.6.22)"
-msgstr ""
+msgstr "\"Människor är glada att lyda mannen som de tror är klokare än sig själva för att sträva efter sina intressen.\" - Xenophon (\"Utbildningen av Cyrus\", 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2144,13 +2145,13 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.\" - Xenophon (\"The Education "
 "of Cyrus\", 1.6.25)"
-msgstr ""
+msgstr "\"I sina kampanjer under sommaren måste generalen visa att han kan uthärda solen bättre än soldaterna, på vintern måste han visa att han kan utstå kallt bättre, och genom alla svårigheter kan han uthärda svårigheter bättre. Det hjälper till att göra honom älskad av hans män. \" - Xenophon (\"Utbildningen av Cyrus\", 1.6.25)"
 
 #: gui/text/quotes.txt:195
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr ""
+msgstr "\"Strider bestäms mer av människors moral än deras fysiska styrka.\" - Xenophon (\"Utbildningen av Cyrus\", 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2158,7 +2159,7 @@ msgid ""
 " that we are human beings! We've got to appear to them like an "
 "uncontrollable nightmare of shields, swords, battle-axes and spears!\" - "
 "Xenophon (\"The Education of Cyrus\", 4.2.22)"
-msgstr ""
+msgstr "\"Låt oss inte ge dem tillräckligt med tid för att ordna ett försvar eller för att ens insett att vi är människor! Vi måste se dem som en okontrollerad mardröm av sköldar, svärd, stridsaxlar och spjut!\" - Xenophon (\"Utbildningen av Cyrus\", 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2166,7 +2167,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr ""
+msgstr "\"Jag antar att du förstår, män som förföljer, handlar slag och död, plundring, berömmelse, frihet, makt - alla dessa är vinstvinster, de fega naturligtvis lider motsatt.\" - Xenophon (\"Utbildningen av Cyrus\", 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2174,7 +2175,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr ""
+msgstr "\"Den man som vill ha det måste vara scheming och listig, vild och bedräglig, en tjuv och en rånare, som överger fienden vid varje tillfälle.\" - Xenophon om hur man bäst kan dra fördel över fienden (\"Utbildning av Cyrus\", 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2182,10 +2183,10 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr ""
+msgstr "\"Mina män har blivit kvinnor och mina kvinnor till män!\" - Xerxes såg Artemisia ramma ett skepp medan den största delen av hans flotta drabbades av motsatsen, utan att veta att det sjunkna fartyget var hans egna (Herodotus, \"The Histories\", VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"För ett tänkande är vishet där hemma.\" - Zoroaster, grundare av den zoroastriska religionen (\"Ahunuvaiti Gatha\", yasna 30.9)"

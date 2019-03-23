@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-10 15:57+0000\n"
+"PO-Revision-Date: 2019-03-18 22:59+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -38,11 +38,11 @@ msgstr "아테네"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "금속 채굴 속도가 시대 경과마다 10% 증가합니다."
+msgstr "금속 채굴 속도가 시대 경과할마다 10% 증가합니다."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr "은 올빼미들(올빼미 은화)"
+msgstr "은색 올빼미-올빼미 은화"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -56,7 +56,7 @@ msgstr "아티카 지방의 라우리온 광산에서 생산하는 은은 아테
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "테아토론를 건설하면 모든 건물의 영지 반경이 20% 증가합니다."
+msgstr "테아트론(그리스 극장)을 건설하면 모든 건물의 영지 반경이 20% 증가합니다."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -186,7 +186,7 @@ msgstr "플레이어는 창 무장 병력을 팔랑크스 진형으로 주문하
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr "밀집 진형 전술"
+msgstr "오티스모스<-밀집 진형 전술"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -252,7 +252,7 @@ msgstr "그리스의 극장에서는 아이스킬로스와 소포클레스의 �
 
 #: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr "김나지움(체육장)"
+msgstr "김나지움-체육장"
 
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
@@ -1745,7 +1745,7 @@ msgstr "아차랴 차나캬"
 
 #: simulation/data/civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "마우리아 인도"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
@@ -1792,7 +1792,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
-msgstr ""
+msgstr "산호 낙타 그리고 말"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].History
 msgid ""
@@ -1840,7 +1840,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
-msgstr ""
+msgstr "키루스 2세 대왕"
 
 #: simulation/data/civs/pers.jsonAINames[1]
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[1].Name
@@ -1882,7 +1882,7 @@ msgstr "아르타크세르크세스 3세"
 
 #: simulation/data/civs/pers.jsonAINames[10]
 msgid "Haxamanish"
-msgstr ""
+msgstr "아케메네스"
 
 #: simulation/data/civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
@@ -1931,7 +1931,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"
-msgstr "이모탈"
+msgstr "불멸"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
@@ -1961,7 +1961,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
-msgstr "쿠루쉬 2세"
+msgstr "키루스 2세"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2061,7 +2061,7 @@ msgstr "나일 강 삼각주"
 #: simulation/data/civs/ptol.jsonCivBonuses[1].History
 #: simulation/data/civs/ptol.jsonCivBonuses[2].History
 msgid "Unknown."
-msgstr "알수없는."
+msgstr "알수없음."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."

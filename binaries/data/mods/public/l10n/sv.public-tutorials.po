@@ -5,13 +5,14 @@
 # Translators:
 # pilino1234 <pilino1234@zoho.eu>, 2017
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2018
+# Mattias Münster <mattiasmun@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Kristoffer Grundström <hamnisdude@gmail.com>, 2018\n"
+"Last-Translator: Mattias Münster <mattiasmun@gmail.com>, 2019\n"
 "Language-Team: Swedish (https://www.transifex.com/wildfire-games/teams/17418/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,6 +30,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Vänsterklicka på en kvinnlig medborgare och högerklicka på en bärbuske för "
+"att den kvinnliga medborgaren ska samla mat. Kvinnliga medborgare samlar mat"
+" snabbare än andra enheter."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -36,6 +40,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Välj medborgarsoldaten, högerklicka på ett träd nära samhällscentret för att"
+" börja samla ved. Medborgarsoldater samlar ved snabbare än kvinnliga "
+"medborgare."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -43,6 +50,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Välj samhällscentret och håll %(hotkey)s samtidigt som du klickar på hoplit-"
+"ikonen en gång för att börja träna en grupp hopliter."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -52,6 +61,8 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Glöm inte att trycka snabbtangenten för gruppträning medan du klickar för "
+"att producera flera enheter."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
@@ -71,6 +82,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"När de är klara, välj de nyutbildade hopliterna och tilldela dem att bygga "
+"ett lagerhus bredvid några närliggande träd. De kommer att börja samla trä "
+"när den är konstruerad."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -78,16 +92,20 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Träna en grupp skärmytslingar genom att hålla %(hotkey)s och klicka på "
+"skärmytslings-ikonen i samhällscentret."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Klicka på skärmytslings-ikonen."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Bygg en bondgård i ett öppet utrymme bredvid samhällscentret med hjälp av "
+"lediga byggare."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
@@ -109,6 +127,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Fältets byggare börjar nu automatiskt samla mat från fältet. Med hjälp av "
+"den nyskapade gruppen skirmishers, få dem att bygga ett annat hus i "
+"närheten."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -116,6 +137,9 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Träna en grupp hopliter i samhällscentret. Välj samhällscentret och välj det"
+" med högerklick på ett träd i närheten. Enheter från samhällscentret kommer "
+"nu automatiskt att samla ved."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
@@ -126,6 +150,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Markera samhällscentret, sväva markören över trädet och högerklicka när du "
+"ser markören byta till en ved-ikon."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -143,22 +169,29 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Välj samhällscentret igen och gå vidare till stadsfasen genom att klicka på "
+"ikonen 'II' (du måste vänta på att utposten ska byggas först). Detta gör det"
+" möjligt att bygga stadsfasbyggnader."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Medan du väntar på fasbytet kan du omplacera dina lediga arbetare för att "
+"samla de resurser du saknar."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Börja träna en grupp av kvinnliga medborgare i samhällscentret och sätt dess"
+" samlingspunkt på åkern (högerklicka på den)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Klicka på ikonen för kvinnlig medborgare."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
@@ -173,6 +206,9 @@ msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Förbered dig för en attack från en fiendspelare. Träna mer soldater med "
+"hjälp av kasernerna och få lediga soldater att bygga ett försvarstorn nära "
+"din outpost."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
@@ -184,7 +220,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Fienden kommer. Träna mer soldater för att slåss mot fienderna."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
@@ -195,24 +231,31 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Fiendens attack har blivit motsatt. Bygg nu en marknad och ett tempel medan "
+"du tilldelar nya enheter att samla nödvändiga resurser."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"När du väl uppfyller stadskraven, välj ditt samhällscentret och avancera "
+"till storstadsfasen."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
-msgstr ""
+msgstr "Medan du väntar på fasbytet kan du träna fler soldater på kasernen."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Nu när du befinner dig i stadens fas, bygg en fästning i närheten (samla in "
+"någon sten först om det behövs) och använd sedan den för att bygga 2 "
+"murbräckor."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -220,6 +263,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Sluta alla dina soldater samla resurser och istället uppgifta små grupper "
+"att hitta fiendens samhällscenter på kartan. När fiendens bas har upptäckts,"
+" skicka dina belägringsvapen och alla återstående soldater för att förstöra "
+"den.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -248,12 +295,16 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Innan du börjar kan du växla mellan fullskärm och fönsterläge med %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Du kan ändra zoomnivån med hjälp av mushjulet och kameravyn med något av "
+"tangentbordets piltangenter.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -265,6 +316,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"Du kan också växla mellan att visa och gömma denna handledningspanel när som helst med hjälp av %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -286,6 +339,14 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Nu när samhällscentret är valt kommer du att märka att en produktionspanel "
+"kommer att visas längst ned till höger på din skärm som beskriver de "
+"åtgärder som byggnaderna stöder. För produktionspanelen maskeras "
+"tillgängliga åtgärder inte i någon färg, medan en ikon som är maskerad i "
+"antingen grå eller röd indikerar att åtgärden inte har låsts upp eller du "
+"inte har tillräckliga resurser för att utföra den åtgärden. Dessutom kan du "
+"sväva markören över en ikon för att visa ett verktygstips med mer "
+"information.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -295,6 +356,11 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"Den övre raden av knappar innehåller porträtt av enheter som kan utbildas i "
+"byggnaden, medan de nedre en eller två raderna kommer att ha teknologier som"
+" kan forskas fram. Håll musen över ikonen \"II\". Verktygstipset berättar "
+"för oss att vidareutveckling till \"Stadsfasen\" kräver både mer "
+"konstruerade strukturer och mer mat och träresurser."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -306,6 +372,14 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Det finns två huvudtyper av startenheter: Kvinnliga medborgare och "
+"medborgarsoldater. Kvinnliga medborgare är rent ekonomiska enheter; de har "
+"låg HP, ingen rustning, och lite till ingen attack. Medborgarsoldater är som"
+" standard arbetare, men i tider av nöd kan de använda ett vapen för att "
+"slåss. Det finns två kategorier av medborgarsoldater: infanteri och "
+"kavalleri. Kvinnliga medborgare och infanteri medborgarsoldater kan samla "
+"alla markresurser, medan kavalleri medborgarsoldater bara kan samla mat från"
+" jagade djur.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -323,6 +397,9 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Just nu är mat och trä de viktigaste resurserna för att utveckla din "
+"ekonomi, så låt oss börja med att samla mat. Kvinnor samlar mat snabbare än "
+"andra enheter.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -342,6 +419,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Klicka på en av enheterna och lägg sedan till ytterligare enheter till "
+"urvalet genom att hålla ner Shift och klicka på varje ytterligare enhet "
+"(eller med urvalsrektangel enligt ovan).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -360,6 +440,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Du kan klicka på ett tomt område på kartan för att återställa urvalet. Testa"
+" alla dessa metoder innan du skickar alla dina kvinnliga medborgare att "
+"samla vindruvor till sydost om ditt samhällscenter genom att högerklicka på "
+"vindruvorna när du har valt alla kvinnliga medborgare."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -411,6 +495,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Markera samhällscentret, sväva markören över ett träd och högerklicka när du"
+" ser markören byta till en ved-ikon."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -428,14 +514,19 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Medborgarsoldater samlar ved snabbare än kvinnliga medborgare. Välj "
+"samhällscentret och håll ner Shift och klicka på andra enhets-symbolen, "
+"hoplit (nerhållen Shift utbildar en grupp om fem enheter). Du kan även träna"
+" enskilda enheter genom att bara klicka, men det går snabbare att träna 5 "
+"enheter tillsammans än individuellt."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
-msgstr ""
+msgstr "Glöm inte att hålla ner Shift för att träna flera enheter åt gången."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Håll ner Shift och klicka på Hoplit-ikonen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
@@ -485,6 +576,13 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Men så fort de måste lämna resurserna vid samhällscentret, minskar deras "
+"effektivitet på grund av sträckan. För att åtgärda detta kan vi bygga ett "
+"lagerhus, en samlingsplats för trä, sten och metall, i närheten av träden. "
+"För att göra detta, välja dina nyligen utbildade medborgarsoldater och titta"
+" på konstruktionspanelen nere till höger. Klicka på Lagerhus-symbolen, "
+"flytta huset så nära träden som möjligt och klicka på ett tillåtet område "
+"för att bygga en dropplats.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -498,6 +596,8 @@ msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"De valda arbetarna kommer automatiskt att börja bygga byggnaden när du har "
+"placerat fundamentet."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
@@ -511,14 +611,17 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Låt oss träna några kvinnliga medborgare för att samla mer mat. Välj "
+"samhällscentret, håll ner Shift och klicka på Kvinno-ikonen för att träna 5 "
+"kvinnor."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
-msgstr ""
+msgstr "Glöm inte att hålla ner Shift och klicka för att träna flera enheter."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Håll ner Shift och klicka på Kvinno-ikonen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -579,12 +682,23 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Välj två av dina nyutbildade kvinnliga medborgare och be dem att bygga dessa"
+" hus i det tomma utrymmet öster om samhällscentret. För att göra det, klicka"
+" på husikonen längst ned till höger och håll ner Shift, klicka först på "
+"positionen i kartan där du vill bygga det första huset och klicka sedan på "
+"positionen där du vill bygga det andra huset (när du ger ett kommando medan "
+"du håller ner Shift, lägger du kommandot i en kö; enheter växlar automatiskt"
+" till nästa kommando i sin kö när de avslutar sitt nuvarande kommando). "
+"Tryck på Escape för att bli av med husmarkören så att du inte spamar hus "
+"över kartan.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Påminnelse: för att välja endast två kvinnliga medborgare, klicka på den "
+"första, håll ner Shift och klicka sedan på den andre."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -610,6 +724,8 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Välj de tre övriga (lediga) kvinnliga medborgarna och beordra dem att bygga "
+"en bondgård i mitten på det stora öppna området väster om samhällscentret.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -630,6 +746,12 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Om du försöker välja de tre lediga kvinnliga medborgarna genom att klicka "
+"och dra en urvalsrektangel över dem, kan du av misstag välja ytterligare "
+"enheter. För att undvika det håller du I-tangenten medan du väljer så att "
+"endast lediga enheter är markerade. Om du av misstag väljer en kavalleri, "
+"håller du Ctrl och klickar på ikonen för kavalleri på valpanelen längst ner "
+"på skärmen för att ta bort kavalleriet från det aktuella valet."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -654,12 +776,17 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"När båda husen är byggda väljer du dina två kvinnliga medborgare och "
+"beställer dem att bygga ett fält så nära som möjligt till gården, vilket är "
+"en dropplats för alla typer av mat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"När åkern är klar kommer dess byggare automatiskt att börja samla mat från "
+"den.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -696,14 +823,16 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Klicka på kvinno-ikonen tre gånger i panelen nere till höger för att träna "
+"tre ytterligare bönder."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Klicka utan att hålla ner Shift för att träna en enda enhet."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Klicka på ikonen för kvinnlig medborgare."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -721,6 +850,10 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Jordbruksfrekvensen kan till exempel förbättras med en forskningsteknisk på "
+"bondgården. Välj gården och titta på dess produktionspanel längst ned till "
+"höger. Du kommer att se flera undersökbara tekniker. Håll markören över dem "
+"för att se deras kostnader och effekter och klicka på den du vill undersöka."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -728,6 +861,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Vi bör börja förbereda oss för att komma in i \"stadsfasen\", vilket låser "
+"upp många fler enheter och byggnader. Välj samhällscentret och svep markören"
+" över ikonen \"stadsfas\" för att se vad som behövs.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -735,6 +871,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Vi har nu tillräckligt med resurser, men en struktur saknas. Även om det här"
+" är en ekonomisk handledning, är det ändå användbart att vara förberedd för "
+"försvar vid angrepp, så låt oss bygga baracker."
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -743,6 +882,9 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Välj fyra av dina soldater och fråga dem om att bygga en kasern: Börja med "
+"att välja soldaterna, klicka på barack-ikonen i produktionspanelen och lägg "
+"ner en grund inte långt från samhällscentret där du vill bygga."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -752,6 +894,11 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Låt oss vänta på att kasernen byggs. Eftersom denna konstruktion är lång, "
+"kan du lägga till två soldater för att bygga den snabbare. För att göra det,"
+" välj ditt samhällscenter och sätt upp en samlingspunkt på barackens "
+"fundament genom att högerklicka på den (du ska se en hammarikon). Producera "
+"sedan ytterligare två byggare genom att klicka på hoplit-ikonen två gånger."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -789,6 +936,11 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"För att göra det kan vi välja tre medborgarsoldater och högerklicka på "
+"stengruvan väster om samhällscentret (markören ändras när du svävar över "
+"stengruvan medan dina soldater väljs). Men dessa soldater samlade ved, så de"
+" kan fortfarande bära lite ved som skulle gå förlorad när man börjar samla "
+"en annan resurs."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -798,6 +950,11 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Således bör vi beställa dem att lasta av sin ved i samhällscentret på vägen."
+" För att göra så håller vi ner Shift medan du klickar på beställningar: välj"
+" dina soldater, håll ner Shift och högerklicka på samhällscentret för att "
+"deponera ved och håll sedan ner Shift och högerklicka på stenbrottet för att"
+" samla in det."
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""

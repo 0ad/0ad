@@ -7,6 +7,7 @@
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2015
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# Mattias Münster <mattiasmun@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
 # pilino1234 <pilino1234@zoho.eu>, 2017-2018
 # theschitz <theodore@theschitz.se>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-01-21 16:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-03-19 14:57+0000\n"
+"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,13 +118,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Singelspelare[font=\"sans-14\"] – spela ett sandlåde-spel eller mot en eller flera AI motståndare. AI är under utveckling och är kanske inte uppdaterade med nya detaljer, men du kan testa att spela spelet mot en verklig motspelare om du inte kan spela med en människa."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Flera Spelare[font=\"sans-14\"] – spela mot andra spelare över internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -151,19 +152,19 @@ msgstr "Börja med att välja vilken sorts karta du vill spela på:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Slumpmässig karta[font=\"sans-14\"] – En karta som generats automatiskt av ett skript"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scenariokarta[font=\"sans-14\"] – En karta som gjorts av designare med bestämda civilisationer"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Skärmytslingkarta[font=\"sans-14\"] – En karta som gjorts av designare men där civilisationerna kan väljas"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -233,15 +234,15 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
 " is displayed in the top left of the GUI after the file has been saved, and "
 "can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Skift + F2: Ta stor skärmdump (6400px*4800px, i .bmp-format, platsen visas i hörnet uppe till vänster av GUI efter att filen har sparats, och kan också ses i console/logs om du saknar den där)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "Tab, Alt + S: Växla till nästa flik."
 
 #: gui/manual/intro.txt:53
 msgid "Shift + Tab, Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "Shift + Tab, Alt + W: Växla till föregående flik."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -319,7 +320,7 @@ msgstr "Skift  + Delete: Ta bort nuvarande valda enheter/byggnader utan bekäfte
 
 #: gui/manual/intro.txt:71
 msgid "/ (Slash): Select idle fighter"
-msgstr ""
+msgstr "/ (Snedstreck): Välj sysslolösa krigare"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -343,7 +344,7 @@ msgstr "Alt + .: Välj alla sysslolösa arbetare (inkluderar stadens soldater)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
-msgstr ""
+msgstr "\\ (Backslash): Välj ledig enhet"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -397,7 +398,7 @@ msgstr "F5, F6, F7, och F8: Flytta kameran till en markerad position. Hoppa till
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Med träningsbyggnader markerade. Lägg till 1:a, 2:a… enheten som kan tränas till träningskön för alla valda byggnader."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -421,7 +422,7 @@ msgstr "Ctrl + Tab: Visa sammanfattningsfönster."
 
 #: gui/manual/intro.txt:93
 msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Alt + L: Visa multiplayerlobbyn i en dialogruta."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
@@ -433,11 +434,11 @@ msgstr "Ctrl + P: Visa handledningspanel i spelet."
 
 #: gui/manual/intro.txt:96
 msgid "Alt + Shift + T: Toggle structure tree."
-msgstr ""
+msgstr "Alt + Shift + T: Växla struktur träd."
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Shift + H: Toggle civilization info."
-msgstr ""
+msgstr "Alt + Shift + H: Växla civilisationsinformation."
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -515,19 +516,19 @@ msgstr "Ctrl + Högerklick med enheter valda:"
 
 #: gui/manual/intro.txt:115
 msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "• Om muspekaren är över en allierad byggnad: Garnison"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  • If the cursor is over a non-allied unit or building: Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "• Om muspekaren är över in icke-allierad enhet eller byggnad: Attackera (istället för erövra eller samla)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  • Otherwise: Attack move (by default all enemy units and structures along "
 "the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr ""
+msgstr "• Annars: Attackrörelse (standardmässigt attackeras alla enheter och byggnader längs vägen, använd Ctrl + Q + Högerklick för att bara attackera enheter)"
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -560,7 +561,7 @@ msgstr "Alt + Z: Växla himmel"
 
 #: gui/manual/intro.txt:125
 msgid "Alt + X: Toggle diplomacy colors"
-msgstr ""
+msgstr "Alt + X: Växla Diplomatifärger"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -610,7 +611,7 @@ msgstr "Ctrl + A eller \\[Vänster]: Rotera kameran medurs runt terrängen"
 
 #: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D eller \\[höger]: Rotera kameran moturs runt terrängen"
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
@@ -618,7 +619,7 @@ msgstr "Q: Rotera kameran medurs runt terrängen"
 
 #: gui/manual/intro.txt:140
 msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "E: Rotera kameran moturs runt terrängen"
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -628,7 +629,7 @@ msgstr "Skift + Scrolla Upåt: Rotera kameran medurs runt terräng"
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Skift + Scrolla Nedåt: Rotera kameran moturs runt terräng"
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -642,7 +643,7 @@ msgstr "R: Nollställ kamerazoom/orientering"
 
 #: gui/manual/intro.txt:145
 msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "= eller +: Zooma in (håll nertryckt för kontinuerlig zoom)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

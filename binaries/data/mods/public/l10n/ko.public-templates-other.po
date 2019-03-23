@@ -5,6 +5,7 @@
 # Translators:
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
+# Asakura, 2017
 # 신 희윤 <eustaph7725@gmail.com>, 2017
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -13,15 +14,18 @@
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017
+# naoki yoshida <oimotanaka1122@gmail.com>, 2015
+# red hare <www3@hotmail.co.jp>, 2017
 # sang gyu nam <destro0419@naver.com>, 2018
 # Taejin Kim <manowar72@gmail.com>, 2015
+# Takaki IEKURA <tacostea@gmail.com>, 2018
 # Valtiel <shinhs6291@naver.com>, 2014
 # YongNam Kim <darkgem11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-02-08 09:44+0100\n"
-"PO-Revision-Date: 2019-03-08 19:03+0000\n"
+"POT-Creation-Date: 2019-03-15 09:45+0100\n"
+"PO-Revision-Date: 2019-03-18 22:59+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +90,7 @@ msgstr "잔해"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr "자원을 채굴 할 수 있는 유적"
+msgstr "자원을 채굴 할 수 있는 유적입니다."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
@@ -112,7 +116,7 @@ msgstr "보물"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr "빨리 채취할 수 있는 보물"
+msgstr "빨리 채취할 수 있는 보물입니다."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -124,7 +128,7 @@ msgstr "유닛"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr "알렉산더 대왕의 군대"
+msgstr "알렉산더 대왕의 군대."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
@@ -146,7 +150,7 @@ msgstr "마케도니아인들의 군대"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
-msgstr "레오니다스 1세의 군대"
+msgstr "레오니다스 1세의 군대."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
@@ -188,7 +192,7 @@ msgstr "그리스 종교 성역"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:4
 msgid "Arctic Wolf"
-msgstr ""
+msgstr "ホッキョクギツネ"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
@@ -205,11 +209,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_boar.xml:17
 msgid "Wild Boar"
-msgstr ""
+msgstr "イノシシ"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Sus scrofa"
-msgstr ""
+msgstr "イノシシ"
 
 #: simulation/templates/gaia/fauna_camel.xml:8
 msgid "Dromedary"
@@ -275,7 +279,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant Calf"
-msgstr ""
+msgstr "アジアゾウの子供"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
@@ -302,7 +306,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
-msgstr ""
+msgstr "ホッキョクギツネ"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
@@ -310,7 +314,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
-msgstr ""
+msgstr "アカギツネ"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
@@ -367,7 +371,7 @@ msgstr "암사자"
 
 #: simulation/templates/gaia/fauna_mastiff.xml:4
 msgid "Mastiff"
-msgstr ""
+msgstr "マスティフ"
 
 #: simulation/templates/gaia/fauna_mastiff.xml:5
 #: simulation/templates/gaia/fauna_wolfhound.xml:5
@@ -388,7 +392,7 @@ msgstr "공작새"
 
 #: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Pavo cristatus"
-msgstr ""
+msgstr "インドクジャク"
 
 #: simulation/templates/gaia/fauna_pig.xml:8
 msgid "Pig"
@@ -400,7 +404,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
-msgstr ""
+msgstr "炎豚"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
@@ -408,7 +412,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
-msgstr ""
+msgstr "ポニー"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
@@ -488,7 +492,7 @@ msgstr "늑대"
 
 #: simulation/templates/gaia/fauna_wolfhound.xml:4
 msgid "Wolfhound"
-msgstr ""
+msgstr "ウルフハウンド"
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
@@ -500,7 +504,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_zebu.xml:8
 msgid "Zebu"
-msgstr ""
+msgstr "コブウシ"
 
 #: simulation/templates/gaia/fauna_zebu.xml:9
 msgid "Bos taurus indicus"
@@ -550,6 +554,19 @@ msgstr "바오밥나무"
 msgid "Carob Tree"
 msgstr "카롭 나무"
 
+#: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
+msgid "Atlas Cedar Sapling"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
+#: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
+msgid "Atlas Cedar"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
+msgid "Dead Atlas Cedar"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
@@ -580,6 +597,10 @@ msgstr "무화과"
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "음식으로 쓰일 무화과를 모으세요."
+
+#: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
+msgid "Fir Sapling"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -614,13 +635,18 @@ msgstr "열대 야자수"
 msgid "Pine Tree"
 msgstr "소나무"
 
+#: simulation/templates/gaia/flora_tree_pine_black.xml:4
+#: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
+msgid "Black Pine"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
 msgstr "포플러 나무"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
-msgstr ""
+msgstr "セイヨウハコヤナギ"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -669,7 +695,7 @@ msgstr "프톨레마이오스의 이집트 동상"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:9
 msgid "Kushite Statue"
-msgstr ""
+msgstr "クシュの像"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:9
 msgid "Roman Statues"
@@ -811,11 +837,11 @@ msgstr "추락한 도리스 지방의 기둥(칼럼)"
 
 #: simulation/templates/other/desert_trading_post.xml:14
 msgid "Desert Trading Post"
-msgstr ""
+msgstr "砂漠の交易所"
 
 #: simulation/templates/other/desert_trading_post.xml:15
 msgid "Ardatašta"
-msgstr "아르다타스타"
+msgstr "Ardatašta"
 
 #: simulation/templates/other/fence_long.xml:20
 #: simulation/templates/other/fence_short.xml:20
@@ -905,7 +931,7 @@ msgstr "방어벽 요새"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
-msgstr ""
+msgstr "木の塔"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:17
 msgid "Palisade Gate"
@@ -1010,7 +1036,7 @@ msgstr "인구수를 5명으로 만드는 것은 다른 문명에서는 삭제�
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
-msgstr ""
+msgstr "첩자"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1023,7 +1049,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "전투 라인"
+msgstr "전선"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "4 units required"
@@ -1031,19 +1057,19 @@ msgstr "4개의 유닛이 필요함"
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "박스"
+msgstr "방진 - 사각대형"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr ""
+msgstr "강행군"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "기둥이 열렸습니다."
+msgstr "개열진-산개 종대"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "8 units required"
-msgstr "8개의 유닛이 필요함"
+msgstr "유닛 8기가 필요함"
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1051,11 +1077,11 @@ msgstr "측면"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr ""
+msgstr "밀집대형"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
-msgstr ""
+msgstr "산개대형"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
@@ -1063,11 +1089,11 @@ msgstr "없음"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "10 hoplite infantry required"
-msgstr ""
+msgstr "重装歩兵が10必要"
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "방진"
+msgstr "밀집 창대형"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1083,11 +1109,11 @@ msgstr "접전지역"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "16 pike infantry units required"
-msgstr ""
+msgstr "長槍歩兵が16ユニット必要"
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
-msgstr "구성"
+msgstr "산테그마?-구성"
 
 #: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
@@ -1095,7 +1121,7 @@ msgstr "바다거북이"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "6 cavalry units required"
-msgstr ""
+msgstr " 騎兵が6ユニット必要"
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
