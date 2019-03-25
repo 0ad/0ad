@@ -13,11 +13,15 @@
     <variant frequency="1" name="a">
       <textures>
         <texture file="gaia/cedar_atlas_1.png" name="baseTex"/>
+        <texture file="gaia/cedar_atlas_1_norm.png" name="normTex"/>
+        <texture file="gaia/cedar_atlas_1_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="b">
       <textures>
         <texture file="gaia/cedar_atlas_2.png" name="baseTex"/>
+        <texture file="gaia/cedar_atlas_2_norm.png" name="normTex"/>
+        <texture file="gaia/cedar_atlas_2_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -32,5 +36,5 @@
       <mesh>gaia/cedar_atlas_3.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>trans_wind_parallax_spec.xml</material>
 </actor>

@@ -2,17 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="a">
+    <variant frequency="100" name="base">
+      <textures>
+        <texture file="gaia/mangrove_norm.png" name="normTex"/>
+        <texture file="gaia/mangrove_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
       <textures>
         <texture file="gaia/mangrove_1.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="b">
       <textures>
         <texture file="gaia/mangrove_2.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="c">
       <textures>
         <texture file="gaia/mangrove_3.png" name="baseTex"/>
       </textures>
@@ -26,5 +34,5 @@
       <mesh>gaia/mangrove_2_leaves.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>trans_wind_parallax_spec.xml</material>
 </actor>
