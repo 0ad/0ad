@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="base">
+      <textures>
+        <texture file="gaia/palm_nipa_spec.png" name="specTex"/>
+        <texture file="gaia/palm_nipa_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="a">
+      <textures>
+        <texture file="gaia/palm_nipa_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="b">
+      <textures>
+        <texture file="gaia/palm_nipa_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="c">
+      <textures>
+        <texture file="gaia/palm_nipa_3.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/palm_nipa_1.dae</mesh>
+    </variant>
+    <variant frequency="3" name="2">
+      <mesh>gaia/palm_nipa_2.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

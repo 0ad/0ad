@@ -5,6 +5,8 @@
     <variant name="base">
       <textures>
         <texture file="gaia/bamboo_1.png" name="baseTex"/>
+        <texture file="gaia/bamboo_1_norm.png" name="normTex"/>
+        <texture file="gaia/bamboo_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -19,5 +21,5 @@
       <mesh>gaia/bamboo_single_3.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>trans_wind_parallax_spec.xml</material>
 </actor>

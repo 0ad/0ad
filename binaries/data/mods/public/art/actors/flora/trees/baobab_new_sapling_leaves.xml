@@ -8,16 +8,22 @@
     <variant frequency="1" name="a">
       <textures>
         <texture file="gaia/tree_baobab.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="b">
       <textures>
         <texture file="gaia/tree_baobab_thin.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_thin_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_thin_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="c">
       <textures>
         <texture file="gaia/tree_baobab_sparse.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_sparse_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_sparse_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -26,5 +32,5 @@
       <mesh>gaia/baobab_sapling_1_leaves.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>trans_wind_parallax_spec.xml</material>
 </actor>

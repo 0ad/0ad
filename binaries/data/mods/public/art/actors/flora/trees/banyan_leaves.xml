@@ -2,6 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
+    <variant name="base">
+      <textures>
+        <texture file="gaia/banyan_leaves_1_norm.png" name="normTex"/>
+        <texture file="gaia/banyan_leaves_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
     <variant name="a">
       <textures>
         <texture file="gaia/banyan_leaves_1.png" name="baseTex"/>
@@ -16,5 +24,5 @@
       <mesh>gaia/banyan_2_leaves.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>trans_wind_parallax_spec.xml</material>
 </actor>

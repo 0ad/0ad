@@ -897,7 +897,7 @@ var g_Checkboxes = Object.assign(
 		},
 		"disableTreasures": {
 			"title": () => translate("Disable Treasures"),
-			"tooltip": () => translate("Disable all treasures on the map."),
+			"tooltip": () => translate("Do not add treasures to the map."),
 			"default": () => false,
 			"defined": () => g_GameAttributes.settings.DisableTreasures !== undefined,
 			"get": () => g_GameAttributes.settings.DisableTreasures,
