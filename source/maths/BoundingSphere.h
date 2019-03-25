@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,35 +18,18 @@
 #ifndef INCLUDED_BOUNDINGSPHERE
 #define INCLUDED_BOUNDINGSPHERE
 
-#include "maths/BoundingBoxAligned.h"
 #include "maths/Vector3D.h"
+
+class BoundingBoxAligned;
 
 class CBoundingSphere
 {
-private:
-	CVector3D m_Center;
-	float m_Radius;
-
 public:
-	CBoundingSphere() : m_Radius(0) { }
+	CBoundingSphere() : m_Radius(0.0f) { }
 
 	CBoundingSphere(const CVector3D& center, float radius) : m_Center(center), m_Radius(radius) { }
 
-	/**
-	 * Construct a bounding sphere that encompasses a bounding box
-	 * swept through all possible rotations around the origin.
-	 */
-	static CBoundingSphere FromSweptBox(const CBoundingBoxAligned& bbox)
-	{
-		float maxX = std::max(fabsf(bbox[0].X), fabsf(bbox[1].X));
-		float maxY = std::max(fabsf(bbox[0].Y), fabsf(bbox[1].Y));
-		float maxZ = std::max(fabsf(bbox[0].Z), fabsf(bbox[1].Z));
-		float radius = sqrtf(maxX*maxX + maxY*maxY + maxZ*maxZ);
-
-		return CBoundingSphere(CVector3D(0.f, 0.f, 0.f), radius);
-	}
-
-	const CVector3D& GetCenter()
+	const CVector3D& GetCenter() const
 	{
 		return m_Center;
 	}
@@ -57,21 +40,20 @@ public:
 	}
 
 	/**
-	 * Check if the ray, defined by an origin point and a direction unit vector
-	 * interesects with the sphere
+	 * Construct a bounding sphere that encompasses a bounding box
+	 * swept through all possible rotations around the origin.
 	 */
-	bool RayIntersect(const CVector3D& origin, const CVector3D& dir) const
-	{
-		CVector3D v = m_Center - origin; // Vector v from the origin of the ray to the center of the sphere
-		float pcLen = dir.Dot(v); // Length of the projection of v onto the direction vector of the ray
-		if(pcLen <= 0)
-			return false; // Sphere behind the ray
-		// Get the shortest distance from the center of the sphere to the ray
-		v  = (dir * pcLen) - v;
-		if (v.LengthSquared() > m_Radius * m_Radius)
-			return false; // Distance to sphere center more than radius
-		return true;
-	}
+	static CBoundingSphere FromSweptBox(const CBoundingBoxAligned& bbox);
+
+	/**
+	 * Check if the ray, defined by an origin point and a direction unit vector
+	 * interesects with the sphere. The direction should be normalized.
+	 */
+	bool RayIntersect(const CVector3D& origin, const CVector3D& dir) const;
+
+private:
+	CVector3D m_Center;
+	float m_Radius;
 };
 
 #endif // INCLUDED_BOUNDINGSPHERE
