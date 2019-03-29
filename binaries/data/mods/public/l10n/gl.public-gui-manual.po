@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrian Chaves <adrian@chaves.io>, 2018
+# Adrian Chaves <adrian@chaves.io>, 2018-2019
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
 # Chema Fernández <chemafdzgar@gmail.com>, 2016
 # mandruis <manuiglesias96@yahoo.es>, 2016
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-01-21 16:03+0000\n"
+"PO-Revision-Date: 2019-03-23 22:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -116,13 +116,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Un xogador[font=\"sans-14\"] – xogar unha partida de zona segura contra un ou máis opoñentes da intelixencia artificial. As intelixencias artificiais están en desenvolvemento e poden non estar sempre preparadas para as funcionalidades máis novas, pero pode probar a xogar contra un opoñente de verdade se non pode xogar cun humano."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Varios xogadores[font=\"sans-14\"] – xogar contra opoñentes humanos por internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -150,19 +150,19 @@ msgstr "En primeiro lugar, seleccionar o tipo de mapa que quere xogar:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa aleatorio[font=\"sans-14\"] – Un mapa creado automaticamente a partir dun script"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa de escenario[font=\"sans-14\"] – Un mapa creado por un deseñador de mapas con civilizacións fixas"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa de escaramuza[font=\"sans-14\"] – Un mapa creado por deseñadores de mapas pero que permite escoller as civilizacións"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -232,7 +232,7 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
 " is displayed in the top left of the GUI after the file has been saved, and "
 "can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Maiús + F2: Sacar unha captura de pantalla enorme (6400px por 4800px, en formato .bmp, o lugar móstrase na parte superior esquerda da interface gráfica de usuario tras gardar o ficheiro, e tamén pode consultarse na consola ou no rexistro se non lle da tempo a velo)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -318,7 +318,7 @@ msgstr "Mayús + Eliminar: Eliminar unidades/edificios seleccionados sen confirm
 
 #: gui/manual/intro.txt:71
 msgid "/ (Slash): Select idle fighter"
-msgstr ""
+msgstr "/ (barra inclinada): Seleccionar un loitador inactivo"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -342,7 +342,7 @@ msgstr "Alt + .: Seleccionar todos os traballadores inactivos (incluíndo cidad�
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
-msgstr ""
+msgstr "\\ (barra invertida): Seleccionar unha unidade inactiva"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -396,7 +396,7 @@ msgstr "F5, F6, F7 e F8: Activar a vista previamente gardada. Se a cámara xa es
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Con edificios de adestramento seleccionados. Engadir a primeira, segunda, etc. unidades que se mostran na cola de adestramento a todos os edificios seleccionados."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -514,19 +514,19 @@ msgstr "Ctrl + botón secundario con unidades seleccionadas:"
 
 #: gui/manual/intro.txt:115
 msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "  • Se o cursor está sobre unha estrutura aliada: Acuartelar"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  • If the cursor is over a non-allied unit or building: Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "  • Se o cursor está situado sobre unha unidade ou estrutura non aliada: atacar (en vez de capturar ou recoller)."
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  • Otherwise: Attack move (by default all enemy units and structures along "
 "the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr ""
+msgstr "  • Senón: Movemento de ataque (de maneira predeterminada atácanse todas as unidades e estruturas inimigas polo camiño, use Ctrl + Q + clic dereito para atacar só unidades)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -609,7 +609,7 @@ msgstr "Ctrl + A ou frecha cara a esquerda: Rotar a vista no sentido das agullas
 
 #: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D ou \\[right]: Rotar a cámara en sentido antihorario polo terreo"
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
@@ -617,7 +617,7 @@ msgstr "Q: Rotar a vista no sentido das agullas do reloxo."
 
 #: gui/manual/intro.txt:140
 msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "E: Rotar a cámara en sentido antihorario polo terreo"
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -627,7 +627,7 @@ msgstr "Maiús + roda do rato cara atrás: Rotar a vista no sentido das agullas 
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Maiús + roda do rato cara abaixo: Rotar a cámara en sentido antihorario polo terreo"
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -641,7 +641,7 @@ msgstr "R: Restablecer o nivel de ampliación e maila orientación da vista."
 
 #: gui/manual/intro.txt:145
 msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "= ou +: Ampliar (manter premido para ampliar continuamente)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

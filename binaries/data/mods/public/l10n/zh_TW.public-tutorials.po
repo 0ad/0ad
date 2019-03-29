@@ -1,25 +1,25 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2017
-# Hsu Karinsu <m80126colin@gmail.com>, 2017
 # Hank Liao, 2017
 # Chi-Feng Tsai <ktpss95112@gmail.com>, 2018
 # sea bluegreen <wfzhang0511@gmail.com>, 2018
-# Hiunn-hué <hiunnhue108@ymail.com>, 2018
-# Jerry Shen <jerry82422@gmail.com>, 2018
+# JerryShen <jerry82422@gmail.com>, 2018
+# Hsu Karinsu <m80126colin@gmail.com>, 2018
 # ethan lin <ethan@tscc.tp.edu.tw>, 2018
 # xaing kai <accbb1122@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # 旭誠 張 <tea55688@gmail.com>, 2018
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: 旭誠 張 <tea55688@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/wildfire-games/teams/17418/zh_TW/)\n"
@@ -143,9 +143,9 @@ msgstr "請指派閒置的散兵，在領土東北方的邊境建造一個前哨
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
-"'II' icon (you have to wait for the outpost to be built first). This will "
+"II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
-msgstr "再次點選城鎮中心，按下「II」的按鈕即可晉升到鄉鎮階段 ( 必須等待前哨站建造完成 )。之後您就可以建造鄉鎮階段的建築物了。"
+msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
@@ -231,11 +231,10 @@ msgstr "敵人已經被打敗，這個教程任務已經完成。"
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
 "This tutorial will teach the basics of developing your economy. Typically, "
-"you will start with a Civic Center and a couple units in 'Village Phase' and"
-" ultimately, your goal will be to develop and expand your empire, often by "
-"evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"you will start with a Civic Center and a couple units in Village Phase and "
+"ultimately, your goal will be to develop and expand your empire, often by "
+"evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"本教程將介紹開發經濟的基礎知識。通常情況下，您將從城鎮中心和「村莊階段」中的兩個單位開始，接著最後，您的目標將是開發和擴大您的帝國，往往是演進到「鄉鎮階段」和「城市階段」之後。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -288,12 +287,10 @@ msgstr ""
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
-"technologies. Hover the cursor over the 'II' icon. The tooltip will tell us "
-"that advancing to 'Town Phase' requires both more constructed structures as "
+"technologies. Hover the cursor over the II icon. The tooltip will tell us "
+"that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
-"頂部的按鈕包含可能在建築物進行訓練的單位的頭像，而底部的一行或兩行將具有可研究的技術。將滑鼠游標懸停在「II」的圖示上。 "
-"工具提示將告訴我們，進入「鄉鎮階段」需要更多的建設以及更多的食物和木材資源。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -374,19 +371,18 @@ msgstr "現在所有人都在忙著採集，我們要培養更多人手才行！
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
-"First, let's set a rally-point. Setting a rally point on a building that can"
+"First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
 "Wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"首先，我們來設置一個集合點。集合點可以用來指派任務給剛訓練好的人員。舉例來說，我們想要剛訓練好的人員自動到城鎮中心南方的樹林收集木材，這時要先點選城鎮中心，再用右鍵點選樹林。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
-"Rally-Points are indicated by a small flag at the end of the blue line."
-msgstr "藍線的終點有一面小旗子，那就是集合點。"
+"Rally points are indicated by a small flag at the end of the blue line."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -396,9 +392,9 @@ msgstr "點選城鎮中心，然後將游標挪到隨便一棵樹上，等游標
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
-"Now that the rally-point is set, we can produce additional units and they "
+"Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
-msgstr "現在集合點已經設置好了，我們可以生產額外的人口，他們會自動執行分派到的任務。\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -499,11 +495,10 @@ msgstr "先按住 Shift 鍵，再按女性公民的圖示。"
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally-point of the Civic Center away from gathering Wood."
+"remove the current rally point of the Civic Center away from gathering Wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
-"the flag icon indicating the rally-point is crossed out)."
+"the flag icon indicating the rally point is crossed out)."
 msgstr ""
-"於此同時，我們應該有足夠的工人採集木頭。我們應該把目前城鎮中心的集合點從採集木頭移除。為了達到該目的，先選取城鎮中心再用右鍵點擊它（旗幟標示代表集合點已經移除）。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -637,12 +632,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally-point on a field by "
+"gatherers, select the Civic Center and setup a rally point on a field by "
 "right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally-point will help building it, while they will gather it when "
+"sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
-"一塊農田最多可以容納五個農夫在其上工作。要加入更多採集者，選取城鎮中心並右鍵點選農田來設定集結點。只要農田還沒建造完成，被送到集結點的新工人就會協助建造它，然後她們就會在建造完成後開始採集。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -680,10 +674,10 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
-"We should start preparing to phase up into 'Town Phase', which will unlock "
+"We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
-"over the 'Town Phase' icon to see what is still needed.\n"
-msgstr "我們應該開始準備進入「鄉鎮階段」，這將解鎖更多的單位和建築物。選擇城鎮中心，將游標停在「鄉鎮階段」圖標上，查看需要什麼資源。\n"
+"over the Town Phase icon to see what is still needed.\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -704,17 +698,16 @@ msgstr "選擇四名士兵並讓他們建造一座軍營：就像先前一樣，
 msgid ""
 "Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the Barracks foundation by right-clicking"
+"Center and set up a rally point on the Barracks foundation by right-clicking"
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
-"讓我們等待軍營建造完成。由於軍營建造時間較久，您可以增加兩名士兵以加快建造速度。要這麼做，選取您的城鎮中心，在軍營的地基上點擊右鍵以設定集結點（您應該會看到槌子的圖標），然後點擊重裝步兵的圖標兩次以生產兩個建築工人。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
-"You should now be able to research 'Town Phase'. Select the Civic Center and"
-" click on the technology icon.\n"
-msgstr "您現在應該能夠研發「鄉鎮階段」。選擇城鎮中心並點選科技圖示。\n"
+"You should now be able to research Town Phase. Select the Civic Center and "
+"click on the technology icon.\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""

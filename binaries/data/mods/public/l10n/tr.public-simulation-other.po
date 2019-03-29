@@ -8,6 +8,7 @@
 # Emir Öksüz <emir-2901@hotmail.com>, 2019
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
+# Günay Yılmaz <turkoman07@gmail.com>, 2019
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Muha Aliss <muhaaliss@gmail.com>, 2017
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-03-20 17:52+0000\n"
-"Last-Translator: Emir Öksüz <emir-2901@hotmail.com>\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2019-03-27 12:09+0000\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr "%(_player_)s a karşı büyük bir askeri seferberliğe başlıyorum, ge
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "%(_player_)s ezip geçmek için kocaman bir ordu kurdum. Bana katıl ve ganimetten pay al."
+msgstr "%(_player_)s'i ezip geçmek için kocaman bir ordu kurdum. Bana katıl ve ganimetten pay al."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -496,7 +497,7 @@ msgstr "%(time)s içinde saldırabilirsin"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "Şimdi sen saldırabilirsin!"
+msgstr "Şimdi saldırabilirsin!"
 
 #: simulation/components/EndGameManager.js:171
 #, javascript-format
@@ -606,11 +607,11 @@ msgstr "Rüşvet birimleri yok"
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
-msgstr "Birim(ler) garnizona yerleşemiyor"
+msgstr "Birim(ler) garnizondan çıkarılamıyor."
 
 #: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
-msgstr "Bazı birim(ler) çalışmaa geri dönemiyor"
+msgstr "Bazı birim(ler) çalışmaya geri dönemiyor"
 
 #: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
@@ -744,8 +745,9 @@ msgstr "Kralı öldürme"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Oyunu kazanmak için ilk Harika yı siz inşa edin yada birini ele geçirip belirli bir süre koruyun. Harika yok edildiğinde yada başkası tarafından ele geçirildiğinde veyahut Harika yı elinde bulunduran müttefik iniz taraf değiştirdiğin de zamanlayıcı sıfırlanır."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Oyunu kazanmak için ilk Harika'yı inşa et ya da ele geçir ve belli bir süre elinde tut. Zamanlayıcı Harika yok edildiğinde ya da el değiştirdiğinde sıfırlanacak. Eğer müttefik zaferi modu açıksa, zamanlayıcı Harika sahibinin ittifak değiştirmesiyle de sıfırlanacak."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

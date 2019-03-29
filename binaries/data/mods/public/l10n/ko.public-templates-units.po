@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# 이정희 <daemul72@gmail.com>, 2019
 # 신 희윤 <eustaph7725@gmail.com>, 2017
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
@@ -23,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-02-25 09:44+0100\n"
-"PO-Revision-Date: 2019-03-18 22:43+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-25 19:59+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "시민"
 #: simulation/templates/template_unit_hero.xml:33
 #: simulation/templates/template_unit_infantry.xml:64
 msgid "Soldier"
-msgstr "군인"
+msgstr "병사"
 
 #: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_dog.xml:40
@@ -298,10 +299,6 @@ msgstr "군견"
 #: simulation/templates/template_unit_dog.xml:41
 msgid "Cannot attack structures."
 msgstr "건축물을 공격할수 없습니다."
-
-#: simulation/templates/template_unit_fauna_fish.xml:11
-msgid "Gather food from this bountiful oceanic resource."
-msgstr "이 풍부한 해양 자원에서 식량을 모으십시오."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill, then gather food from this bountiful oceanic resource."

@@ -1,24 +1,23 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Abdullah Ilgaz <abdullahilgaz@live.com>, 2017
 # Tuğberk Korkut <t7krkt@gmail.com>, 2018
-# Ata Atatanır <sanal119_ata@hotmail.com>, 2018
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # ali topçu <ali134636@gmail.com>, 2018
 # yakup <mutouk@yandex.ru>, 2018
 # Cem Aktas <cemwstone@gmail.com>, 2018
 # salih aktaş <salihwhitestone2@gmail.com>, 2018
-# Emre JILTA <jilta.e@gmail.com>, 2018
+# Günay Yılmaz <turkoman07@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Emre JILTA <jilta.e@gmail.com>, 2018\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>, 2019\n"
 "Language-Team: Turkish (https://www.transifex.com/wildfire-games/teams/17418/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +27,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "0 A.D. öğreticisine hoşgeldiniz."
+msgstr "0 A.D. rehberine hoşgeldiniz."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -46,8 +45,8 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
-"Vatandaş-askerleri seçin, odun toplamaya başlamak için şehir merkezine yakın"
-" bir ağaca sağ tıklayın. Vatandaş-askerler odunu kadın vatandaşlardan daha "
+"Vatandaş-askerleri seçin, odun toplamaya başlamak için Kent Merkezine yakın "
+"bir ağaca sağ tıklayın. Vatandaş-askerler odunu kadın vatandaşlardan daha "
 "hızlı toplarlar."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
@@ -56,6 +55,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Kent Merkezi Binasını seç ve bir Hoplite grubun eğitmek için "
+"%(hotkey)stuşunu basılı tutarak Hoplite resmine bir kez tıklayın."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -70,7 +71,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr "Hoplit simgesine tıklayın."
+msgstr "Hoplite simgesine tıklayın."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
@@ -96,16 +97,18 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"%(hotkey)stuşuna basılı tutarak ve Kent Merkezindeki Avcı resmine tıklayarak"
+" bir grup Avcı eğitin."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "'Avcı' simgesine tıklayın"
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
-msgstr "İşçileri kullanarak şehir merkezinin yanına çiftlik inşa edin."
+msgstr "İşçileri kullanarak Kent Merkezinin yanına çiftlik inşa edin."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
@@ -127,6 +130,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Alandaki inşacılar şimdi otomatik olarak alandan yiyecek toplamaya "
+"başlayacaklar. Yeni eğitilen avcı gruplarını, yakında bir başka ev inşa "
+"etmek için yolla."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -134,20 +140,20 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
-"Şehir Merkezi'nde bir grup Hopliti eğitin. Şehir Merkezi'ni seçin ve onunla "
-"birlikte yakındaki bir ağaç üzerinde sağ tıklayın seçin. Şehir Merkezi'ndeki"
-" birimler otomatik olarak Odun toplayacaklardır."
+"Kent Merkezi'nde bir grup Hoplite eğitin. Kent Merkezi'ni seçin ve onunla "
+"birlikte yakındaki bir ağaç üzerinde sağ tıklayın seçin. Kent Merkezi'ndeki "
+"birimler otomatik olarak Odun toplayacaklardır."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr "Hoplit simgesine tıklayın."
+msgstr "Hoplite simgesine tıklayın."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
-"Şehir merkezini seçin, sonra imlecinizi ağacın üzerine getirin ve imleciniz "
+"Kent Merkezini seçin, sonra imlecinizi ağacın üzerine getirin ve imleciniz "
 "odun simgesine dönüştüğünde sağ tıklayın."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
@@ -156,25 +162,35 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Boşta olan Avcılara, sana ait olan bölgenin kuzey doğu ucunda bir karakol "
+"inşa etme emri ver. Bu, Kasaba Aşamasına geçmeni sağlayan inşa ettiğin 5. "
+"Köy Aşaması binası olacak."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
-"'II' icon (you have to wait for the outpost to be built first). This will "
+"II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Tekrar Kent Merkezini seç ve 'II' ikonuna tıklayarak Kasaba Aşaması geç (ilk"
+" önce karakolun inşasını beklemen gerek). Bu, Kasaba Aşaması binalarını inşa"
+" etmene olanak sağlayacak."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Şehir seviyesinin gelişmesini beklerken, boştaki çalışanlarını sende az "
+"bulunan kaynaklara toplamak üzere görevlendirmek isteyebilirsin."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Kent Merkezinde bir grup kadın vatandaş eğit ve toplanma noktasını çiftlik "
+"olarak ayarla (sağ tıklayarak)"
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
@@ -185,22 +201,29 @@ msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"Yakına bir kışa inşa et. Nüfus Sınırına ulaştığın zaman yapabilecek çalışan "
+"birimlerini kullanarak fazladan ev inşa et."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Düşman oyuncudan gelecek olan bir saldırı için hazırlan. Kışlaları "
+"kullanarak daha fazla asker eğit, ve boştaki askerleri karakolun yakınına "
+"bir kule inşa etmek için yolla."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"Demirci Atölyesi inşa et ve piyade Darbe atağını artırmak için piyade "
+"eğitimi teknolojisini araştır (kılıç resmi)"
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Düşman geliyor. Düşmanla savaşmak için daha fazla asker eğitin."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
@@ -211,24 +234,32 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"\n"
+"Düşman saldırısı engellendi. Şimdi gerekli kaynakları toplamak için yeni birimler tayin ederken bir pazar ve bir tapınak inşa edin."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Şehir Aşaması gereklerinin yerine getirdiğinizde, Kent Merkezini seçin ve "
+"Şehir Aşamasına geçin."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"Çağ atlamayı beklerken, kışlalardan daha fazla asker eğitmek "
+"isteyebilirsiniz."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Şimdi Şehir Aşamasındasınız, yakınlarda bir kale inşa edin (gerekirse, önce "
+"biraz taş toplayın) ve sonra bunu 2 adet Koçbaşı yapmak için kullanın."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -236,7 +267,7 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
-"Tüm askerlerinize kaynak toplatmaktan vazgeçin ve haritada düşman Şehir "
+"Tüm askerlerinize kaynak toplatmaktan vazgeçin ve haritada düşman Kent "
 "Merkezini bulmak için küçük gruplar halinde görevlendirin. Bir kez düşman "
 "üssü tespit edildiğinde, onu yok etmek için kuşatma silahları ve kalan tüm "
 "askerleri gönderin."
@@ -252,10 +283,14 @@ msgstr "Düşman yenildi. Bu öğreticideki görevler şimdi tamamlandı."
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
 "This tutorial will teach the basics of developing your economy. Typically, "
-"you will start with a Civic Center and a couple units in 'Village Phase' and"
-" ultimately, your goal will be to develop and expand your empire, often by "
-"evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"you will start with a Civic Center and a couple units in Village Phase and "
+"ultimately, your goal will be to develop and expand your empire, often by "
+"evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Bu rehber size temelleri ve ekonominizi geliştirmeyi öğretecek. Tipik "
+"olarak, bir Kent Merkeziyle ve Köy Aşamasında biraz birimle ve sonunda, "
+"hedefiniz imparatorluğunuzu geliştirip yaymak olacak, sıklıkla sonrasında "
+"Kasaba Aşaması ve Şehir Aşamasına gelişerek."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -263,6 +298,8 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"Başlamadan önce, %(hotkey)stuşunu kullanarak tam ekran ve pencere modu "
+"arasında geçiş yapabilirsiniz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
@@ -282,6 +319,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"Ayrıca her zaman %(hotkey)s tuşunu kullanarak bu öğretici panosunu gösterip "
+"gizleyebilirsiniz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -289,8 +328,8 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
-"Başlayalım, binanı seç, Şehir Merkezi üzerine tıklıyorsun. Tıkladıktan "
-"sonra, uygarlık rengi bir seçim halkası içinde gösterilecektir."
+"Başlayalım, binanı seç, Kent Merkezi üzerine tıklıyorsun. Tıkladıktan sonra,"
+" uygarlık rengi bir seçim halkası içinde gösterilecektir."
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -302,7 +341,7 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
-"Artık Şehir Merkez'i seçildiğine göre, ekranınızın sağ alt tarafında, "
+"Artık Kent Merkezi'i seçildiğine göre, ekranınızın sağ alt tarafında, "
 "binaların desteklediği eylemleri detaylandıran bir üretim paneli "
 "görünecektir. Üretim paneli için kullanılabilir eylemler herhangi bir renkte"
 " maskelenmezken, gri veya kırmızı renkte maskelenen bir simge, eylemin "
@@ -314,10 +353,14 @@ msgstr ""
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
-"technologies. Hover the cursor over the 'II' icon. The tooltip will tell us "
-"that advancing to 'Town Phase' requires both more constructed structures as "
+"technologies. Hover the cursor over the II icon. The tooltip will tell us "
+"that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"En üstteki düğme sırası, araştırılabilir teknolojileri içerirken, binalar "
+"eğitilebilecek birimlerin simgelerini içerir. İmleci II simgesinin üzerine "
+"getirin. Bu araç ipucu bize Kasaba Aşamasına ilerlemenin hem daha fazla yapı"
+" hem de daha fazla Gıda ve Ağaç kaynağı gerektirdiğini söyleyecektir."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -343,6 +386,8 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
+"Genel bir kural olarak, sol tıklamak seçimi temsil ederken, seçilen varlık "
+"ile sağ tıklamak bir emri temsil eder (topla, inşa et, dövüş, vb.)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -350,16 +395,21 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Bu noktada, yiyecek ve odun ekonominizi geliştirmek için en önemli "
+"kaynaklardır, o yüzden yiyecek toplamaya başlayalım. Kadın vatandaşlar "
+"sebzeleri diğer birimlerden daha hızlı toplar."
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Birimleri seçmek için temel olarak üç yöntem var:"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Sol fare düğmesini basılı tutun ve sürükleyerek seçmek istediğiniz "
+"birimleri içine alan bir dikdörtgen oluşturun."
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -367,6 +417,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Onlardan birine tıklayın ve daha sonra Shift tuşunu basılı tutarken her "
+"bir ek birime tıklayarak (veya yukarıdaki seçim dikdörtgeniyle) seçiminize "
+"ilave birimler ekleyin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -374,6 +427,8 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"Bir birime çift tıkla. Bunu yapmak haritanın senin gördüğün kısmında aynı tipteki tüm birimleri seçer.\n"
+"Üç kez tıklamak tüm haritada aynı tipteki birimlerin hepsini seçer."
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -382,6 +437,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Seçimi sıfırlamak için haritadaki boş bir alana tıklayabilirsiniz. Tüm kadın"
+" vatandaşları seçtikten sonra üzümleri sağ tıklatarak üzümleri Kent "
+"Merkezinin güneydoğusundan toplamak için tüm kadın vatandaşlarınızı "
+"görevlendirmeden önce bu yöntemlerin her birini deneyin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -389,45 +448,61 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"Şimdi Piyade Vatandaş Askerlerinizle birlikte biraz Odun toplayalım. Piyade "
+"Vatandaş Askerlerinizi seçin ve en yakın ağacı sağ tıklatarak Odun "
+"toplamalarını emredin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Süvari Vatandaş Askerler avcılık için iyidir. Süvarilerinizi seçin ve Kent "
+"Merkezinizdeki tavukları benzer şekilde avlamasını isteyin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Şu anda tüm birimleriniz kaynak topluyorlar. Daha fazla birim eğitmeliyiz!"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
-"First, let's set a rally-point. Setting a rally point on a building that can"
+"First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
 "Wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"İlk önce bir toplanma noktası belirleyelim. Birimleri eğitebilecek bir "
+"binaya bir toplanma noktası ayarlamak, eğitimi tamamladıktan sonra otomatik "
+"olarak yeni birime bir görev atayacaktır. Odun toplayacak yeni eğitilmiş "
+"birimleri, Kent Merkezinin güneyine, ağaç grubu üzerinde göndermek "
+"istiyoruz. Bunu yapmak için, üzerine tıklayarak Şehir Merkezini seçin ve "
+"ardından ağaçlardan birine sağ tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
-"Rally-Points are indicated by a small flag at the end of the blue line."
+"Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
-"Toplanma noktaları mavi çizginin sonunda küçük bir bayrakla belirtilmiştir."
+"Toplanma noktaları mavi çizginin sonunda küçük bir bayrakla gösteriliyor."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Kent Merkezini seçin, sonrasında fare göstergesini bir ağacın üzerine "
+"götürün ve gösterge odun simgesine dönüşünce sağ tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
-"Now that the rally-point is set, we can produce additional units and they "
+"Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Toplanma noktası belirlenmesiyle; daha fazla birim elde edebilir ve "
+"görevlerini kendiliğinden yerine getirebilirler."
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -437,6 +512,11 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Vatandaş askerler, kadın vatandaşlardan daha hızlı odun toplamaktadır. Kent "
+"Merkezini seçin ve Shift tuşunu basılı tutarken, ikinci birim simgesine; "
+"Hoplite'lara tıklayın (Shift tuşunu basılı tutmak beş birimden oluşan bir "
+"grup eğitir). Ayrıca birimleri tıklatarak tek tek eğitebilirsiniz, ancak 5 "
+"birimi birlikte eğitmek, 5 birimi tek tek eğitmekten daha az zaman alır."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -444,7 +524,7 @@ msgstr "Birden fazla birim eğitmek için Shift+Tıkla yapmayı unutmayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr "Shift'e basılı tut ve mızraklı ağır piyade simgesine tıkla."
+msgstr "Shift'e basılı tut ve Hoplite simgesine tıkla."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
@@ -459,6 +539,10 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Beklerken, dikkatinizi ekranın en üstündeki panele yönlendirin. Sol üstte, "
+"mevcut kaynak tedarikinizi (Gıda, Odun, Taş ve Metal) göreceksiniz. Her işçi"
+" kaynakları Kent Merkezine (veya başka bir Depolama Alanına) geri "
+"getirdiğinde, karşılık gelen kaynak artışının miktarını göreceksiniz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -467,12 +551,17 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Bu akılda tutulması gereken çok önemli bir kavramdır: Toplanan kaynaklar, "
+"hesaba katılması için bir Depolama Alanına geri getirilmelidir ve toplama "
+"verimliliğinizi artırmak için her zaman kaynak ile en yakın Depolama Alanı "
+"arasındaki mesafeyi en aza indirmeye çalışmalısınız."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"Yeni eğitilen birimler kendiliğinden ağaçlara gidip odun toplayacaklar."
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -484,24 +573,37 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Ancak depolamak için onu Kent Merkezine geri getirmek zorunda olduklarından,"
+" toplama etkinlikleri mesafeden ötürü zarar görüyor. Bunu düzeltmek için, "
+"ağaçlara yakın bir yerde Ahşap, Taş ve Metal için açılan bir depo inşa "
+"edebiliriz. Bunu yapmak için, yeni eğitilmiş beş Vatandaş Askerinizi seçin "
+"ve sağ altta bulunan inşaat panelindeki depo simgesini tıklayın, fareyi "
+"toplamak istediğiniz ağaçlara mümkün olduğunca yakın yerleştirin ve inşa "
+"etmek için geçerli bir yere tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"Geçersiz (engellenmiş) pozisyonlar, bina önizlemesinde kırmızı renkli olarak"
+" gösterilir."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Temel attığınızda, seçili vatandaşlar kendiliğinden binayı inşa etmeye "
+"başlayacaklar."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"İnşa tamamlandığında, öntanımlı olarak inşacılar kendiliğinden Odun "
+"toplamaya ayarlanmıştır."
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -509,10 +611,15 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Hadi daha fazla besin toplamak için biraz kadın vatandaş eğitelim. Kent "
+"Merkezini seçin, 5 kadın vatandaş eğitmek için Shift tuşunu basılı tutarak "
+"kadın vatandaş simgesine tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Birden fazla birim eğitmek için Shift tuşunu basılı tutarak tıklamayı "
+"unutmayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
@@ -521,14 +628,18 @@ msgstr "Shift tuşuna basılı tutarak  kadın vatandaşa tıklayın"
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally-point of the Civic Center away from gathering Wood."
+"remove the current rally point of the Civic Center away from gathering Wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
-"the flag icon indicating the rally-point is crossed out)."
+"the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Bu arada, odun toplayacak kadar işçimiz var. Kent Merkezinin şu anki "
+"toplanma noktasını odun toplama noktasından uzaklaştırmalıyız. Bu amaçla, "
+"Kent Merkezini seçtiğinizde sağ tıklayın (ve toplanma noktasını belirten "
+"bayrak simgesini silin)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr "Üniteler yakında hazır olacak \n"
+msgstr "Birimler yakında hazır olacak ."
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -549,12 +660,16 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Nüfus sınırına neredeyse ulaştığınızda, daha fazla birim eğitmek "
+"istiyorsanız yeni yapılar inşa ederek nüfus sınırını arttırmalısınız. Nüfus "
+"sınırınızı artıracak en uygun maliyetteki yapı evdir."
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Şimdi birimler hazır. Hadi tek seferde nasıl bir sürü ev kuruluyor görelim."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -569,12 +684,24 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Yeni eğitilen kadın vatandaşlarınızdan ikisini seçin ve onlardan Kent "
+"Merkezinin doğusundaki boş alana bu evleri inşa etmelerini isteyin. Bunun "
+"için, kadın vatandaşları seçtikten sonra, sağ alt paneldeki ev simgesine "
+"tıklayın ve Shift tuşunu basılı tutarken, önce ilk evi inşa etmek "
+"istediğiniz haritadaki konumu tıklayın ve ardından konumu seçin. ikinci evi "
+"inşa etmek istiyorsanız (Shift tuşunu basılı tutarak komut verirseniz, "
+"komutlarınızı bir sıraya koyarsınız; birimler otomatik olarak sıradaki "
+"komutlarına getirdiklerinde diğer sıradaki komuta geçerler). Ev "
+"göstergesinden kurtulmak için Esc tuşuna basın, böylece haritanın her "
+"tarafını evlerle doldurmazsınız."
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"\n"
+"Hatırlatma: Sadece iki kadın vatandaş seçmek için, birinciye tıklayın ve daha sonra Shift tuşunu basılı tutarak ikinciye tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -582,12 +709,17 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Meyvelerin sınırlı bir besin kaynağı olduğunu fark edebilirsiniz. Daha "
+"kalıcı bir gıda kaynağına ihtiyacımız olacak. Tarlalar sınırsız bir gıda "
+"kaynağı üretir, ancak toplanabilir meyvelerden daha yavaş toplanırlar."
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"Ama tarla ve yiyecek depolama alanı arasındaki mesafeyi en aza indirmek için"
+" önce çiftlik kuracağız."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -595,6 +727,8 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Geriye kalan üç (boşta) kadın vatandaşı seçin ve Kent Merkezinin batısındaki"
+" geniş açık alanın merkezinde bir çiftlik inşa etmelerini isteyin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -602,6 +736,9 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Tarlaları inşa etmek için çiftlik çevresinde uygun bir alana ihtiyacımız "
+"olacak. Ayrıca, yiyecek toplama etkinliğimizi daha da arttırmak istersek "
+"batı tarafta avlayabileceğimiz keçileri görüyoruz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -624,12 +761,16 @@ msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Çiftlik inşaatı tamamlandığında inşaatçılar otomatik olarak yiyecek arayacak"
+" ve bu durumda yakındaki keçilerin peşinden gidecekler."
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Ama ev inşacıları sadece başka bir şey kurmaya bakacaklar ve hiç  yoksa "
+"boşta kalacaklar. Evleri inşa etmelerini bekleyelim."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -637,12 +778,16 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Her iki ev de inşa edildiğinde, iki kadın vatandaşınızı seçin ve tarlalara "
+"mümkün olduğunca yakın her türlü besin kaynağı için depolama alanı olan "
+"çiftlik inşa etmelerini isteyin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"Tarla hazır olduğunda, inşacılar kendiliğinden toplamaya başlayacaklar."
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -651,39 +796,53 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Süvari birimi bütün tavukları şimdiye kadar katletmiştir. Tekrar seçin ve "
+"güneybatı bölgesini keşfedin: Etrafında deve kuşları olan bir göl var. "
+"Süvarilerinizi, göndermek istediğiniz noktaya sağ tıklayarak hareket ettirin"
+" ve bir deve sürüsü gördüğünüzde, yiyecek avlamaya başlamak için bir "
+"tanesine sağ tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally-point on a field by "
+"gatherers, select the Civic Center and setup a rally point on a field by "
 "right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally-point will help building it, while they will gather it when "
+"sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Bir tarlada çalışan en fazla beş çiftçi bulunabilir. Ek toplayıcılar eklemek"
+" için, Kent Merkezini seçin ve bir alana sağ tıklatarak bir toplanma noktası"
+" oluşturun. Alan henüz inşa edilmediği sürece, bir toplanma noktasına "
+"gönderilen yeni işçiler inşaya yardım edecekler, inşa edildiğinde ise hasat "
+"yapacaklar."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Kent Merkezini seçin ve Tarlaya sağ tıklayın"
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Şimdi üç ek çiftçi yetiştirmek için sağ alt paneldeki kadın vatandaş "
+"simgesine üç kez tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Tek bir birim eğitmek için Shift tuşuna basılı tutmadan tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Kadın Vatandaş simgesine tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Bazı binalardaki yeni teknolojileri araştırarak işçilerinizin verimliliğini "
+"artırabilirsiniz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -701,10 +860,13 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
-"We should start preparing to phase up into 'Town Phase', which will unlock "
+"We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
-"over the 'Town Phase' icon to see what is still needed.\n"
+"over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Daha birçok birimin ve binaların kilidini açacak olan Şehir Aşamasına "
+"geçmeye hazırlanmalıyız. Kent Merkezini seçin ve hala neyin gerekli olduğunu"
+" görmek için imleci Kasaba Aşaması simgesinin üzerine getirin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -712,6 +874,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Artık yeterli kaynağımız var, ancak bir yapı eksik. Her ne kadar bu ekonomik"
+" bir eğitim olsa da, saldırı durumunda savunma için hazırlıklı olmakta fayda"
+" var, hadi Kışla inşa edelim."
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -720,27 +885,39 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"4 askerinizi seçin ve Kışla inşa etmelerini isteyin; önceden olduğu gibi, "
+"askerleri seçin, üretim panosundaki Kışla simgesine tıklayın ve Kent "
+"Merkezinden uzak olmayan istediğiniz bir yere temel atın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
 "Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the Barracks foundation by right-clicking"
+"Center and set up a rally point on the Barracks foundation by right-clicking"
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Kışlaların inşasını bekleyelim. Bu inşaat uzun olduğundan, daha hızlı inşa "
+"etmek için iki asker ekleyebilirsiniz. Bunu yapmak için, Kent Merkezinizi "
+"seçin ve Kışla temeline sağ tıklayarak bir toplanma noktası kurun (bir çekiç"
+" simgesi göreceksiniz). Ardından, hoplite simgesine iki kez tıklayarak iki "
+"tane daha inşaatçı üretin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
-"You should now be able to research 'Town Phase'. Select the Civic Center and"
-" click on the technology icon.\n"
+"You should now be able to research Town Phase. Select the Civic Center and "
+"click on the technology icon.\n"
 msgstr ""
+"Şimdi Şehir Aşamasını araştırabilirsin. Kent Merkezini seçin ve teknoloji "
+"simgesine tıklayın.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Hala bazı kaynaklar eksikse (kırmızı simgeyle gösterilir), işçilerin "
+"toplamasını bekleyin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -749,6 +926,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"Daha sonraki aşamalarda, daha büyük yapılar inşa etmek ve daha iyi askerler "
+"yetiştirmek için genellikle Taş ve Metal'e ihtiyacınız var. Bu nedenle, "
+"araştırmanın yapılmasını beklerken, boştaki Vatandaş Askerlerinizin yarısını"
+" (Kışlaları inşa etmeyi bitirenler) Taş ve diğer yarısını Metal toplamak "
+"için göndereceksiniz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -758,6 +940,11 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Bunu yapmak için, üç Vatandaş Asker seçebilir ve Kent Merkezinin batısındaki"
+" Taş madenine sağ tıklamalıyız (gösterge askerleriniz seçiliyken ve Taş "
+"madeni üzerindeyken değişir). Bununla birlikte, bu askerler Odun "
+"topluyorlardı, bu nedenle başka bir kaynak toplamaya başlarken kaybolacak "
+"Odun taşıyabilirler."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -767,22 +954,33 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Bu nedenle, Odunları yol üzerindeki Kent Merkezine depolamalarını "
+"emretmeliyiz. Bunu yapmak için Shift tuşunu basılı tutarken emir sırasına "
+"tıklayacağız: askerleri seçip, Shift tuşunu basılı tutun ve Odunları "
+"bırakmak için Kent Merkezine sağ tıklayın ve ardından toplamak için Shift "
+"tuşunu basılı tutarak Taş madenine sağ tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Kalan askerler ve batıdaki Metal madeni için benzer bir emir sırası "
+"uygulayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"Bu örneklerin sonu. Bu size ekonominizi kurmanın temelleri hakkında iyi bir "
+"fikir verecektir."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr ""
+"\n"
+"Bu, 0 A.D. oynamaya başlamanız için temel bir rehberdir."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -803,6 +1001,9 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Bu harita oyuna etkili bir şekilde başlamak için kaba bir rehber olacaktır. "
+"Oyunun başında en önemli şey kaynakları olabildiğince hızlı toplamaktır, "
+"böylece daha sonra yeterince asker oluşturabilirsiniz."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

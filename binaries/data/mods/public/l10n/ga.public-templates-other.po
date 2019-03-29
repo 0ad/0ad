@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-15 09:45+0100\n"
-"PO-Revision-Date: 2019-03-21 21:33+0000\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-26 10:09+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,15 @@ msgstr ""
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"
+
+#: simulation/templates/template_gaia_fish.xml:8
+#: simulation/templates/gaia/fauna_fish.xml:4
+msgid "Fish"
+msgstr "Iasc"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Gather food from this bountiful oceanic resource."
+msgstr "Bailigh bia don acmhainn aigéin sin."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
@@ -109,6 +118,14 @@ msgstr "Struchtúr"
 #: simulation/templates/template_unit.xml:42
 msgid "Unit"
 msgstr "Aonad"
+
+#: simulation/templates/template_wallset.xml:11
+msgid "City Wall"
+msgstr "Balla Cathrach"
+
+#: simulation/templates/template_wallset.xml:12
+msgid "Wall off your town for a stout defense."
+msgstr "Teastaíonn do bhaile a fhálú do chosanta trom a fháil."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -272,13 +289,6 @@ msgstr "Eilifint Foraoise na hAfraice"
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
 msgstr "Loxodonta cyclotis"
-
-#: simulation/templates/gaia/fauna_fish.xml:4
-#: simulation/templates/gaia/fauna_fish.xml:5
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
-#: simulation/templates/gaia/fauna_fish_tuna.xml:5
-msgid "Fish"
-msgstr "Iasc"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
@@ -530,9 +540,31 @@ msgstr "Péine Aileppeach"
 msgid "Apple Tree"
 msgstr "Crann Úll"
 
+#: simulation/templates/gaia/flora_tree_bamboo.xml:4
+#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Bambú"
+
+#: simulation/templates/gaia/flora_tree_banyan.xml:8
+msgid "Banyan"
+msgstr "Bainian"
+
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
 msgstr "Baobab"
+
+#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr "Buinneán Baobaib"
+
+#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Baobab Óg"
+
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
+msgid "Dead Baobab"
+msgstr "Baobab Marbh"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -1024,8 +1056,8 @@ msgstr "Brathadóir"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "16 melee infantry units required"
-msgstr "Tá 16 choisí trodach ag teastáil"
+msgid "At least 16 melee infantry units required."
+msgstr "Tá 16 choisí trodaccha ag teastáil ar a laghad."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1036,8 +1068,8 @@ msgid "Battle Line"
 msgstr "Imeall Catha"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "4 units required"
-msgstr "Tá 4 aonad riachtanach"
+msgid "At least 4 units required."
+msgstr "Tá 4 aonad ag teastáil ar a laghad."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1052,8 +1084,8 @@ msgid "Column Open"
 msgstr "Colún Oscailte"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Tá 8 n-aonad riachtanach"
+msgid "At least 8 units required."
+msgstr "Tá 8 n-aonad ag teastáil ar a laghad."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1072,8 +1104,8 @@ msgid "None"
 msgstr "Folamh"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "Tá 10 coisithe hoiplíteacha ina riachtanach"
+msgid "At least 10 hoplite infantry required."
+msgstr "Tá 10 coisí hoiplíteach ag teastáil ar a laghad."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1084,7 +1116,7 @@ msgid "Scatter"
 msgstr "Scaip"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
+msgid "Only ranged units allowed."
 msgstr "Níl ach aonaid raonta ceadaithe"
 
 #: simulation/templates/special/formations/skirmish.xml:6
@@ -1092,8 +1124,8 @@ msgid "Skirmish"
 msgstr "Coimheascar"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "Tá 16 bhfear píce ina riachtanach"
+msgid "At least 16 pike infantry units required."
+msgstr "Tá 16 bhfear píce ag teastáil ar a laghad."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1104,8 +1136,8 @@ msgid "Testudo"
 msgstr "Turtar"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "Tá 6 n-aonad marcra ina riachtanach"
+msgid "At least 6 cavalry units required."
+msgstr "Tá 6 n-aonad marcra ag teastáil ar a laghad."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

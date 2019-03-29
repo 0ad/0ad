@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-01-09 15:31+0000\n"
+"POT-Creation-Date: 2019-03-22 09:43+0100\n"
+"PO-Revision-Date: 2019-03-26 10:03+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -407,8 +407,8 @@ msgstr "Scoránaigh má tá an cluiche seo rátála ar an gclár ceann riain."
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Brúigh %(hotkey)s agus ainm imreoirí nó socruithe a fhéinlíonadh."
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "Brúigh %(hotkey)s chun ainmneacha imreora nó socruithe a clóscríobh go huathoibríoch."
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
@@ -459,82 +459,82 @@ msgstr "Úsáid %(hotkey)s do tháb socruithe a bhog síos."
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Úsáid %(hotkey)s do tháb socruithe a bhog suas."
 
-#: gui/gamesetup/gamesetup.js:1748
+#: gui/gamesetup/gamesetup.js:1751
 msgctxt "map selection"
 msgid "Random"
 msgstr "Léarscáil Fánach"
 
-#: gui/gamesetup/gamesetup.js:1750
+#: gui/gamesetup/gamesetup.js:1753
 msgid "Pick any of the given maps at random."
 msgstr "Roghnaigh aon léarscáil sa chlár seo."
 
-#: gui/gamesetup/gamesetup.js:1782
+#: gui/gamesetup/gamesetup.js:1785
 msgctxt "biome"
 msgid "Random"
 msgstr "Bithóm Fánach"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1786
 msgid "Pick a biome at random."
 msgstr "Roghnaigh aon bhithóm go fánach."
 
-#: gui/gamesetup/gamesetup.js:2121
+#: gui/gamesetup/gamesetup.js:2124
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2126
+#: gui/gamesetup/gamesetup.js:2129
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Anaithnid"
 
-#: gui/gamesetup/gamesetup.js:2156
+#: gui/gamesetup/gamesetup.js:2159
 msgid "Yes"
 msgstr "Sea"
 
-#: gui/gamesetup/gamesetup.js:2156
+#: gui/gamesetup/gamesetup.js:2159
 msgid "No"
 msgstr "Ní hea"
 
-#: gui/gamesetup/gamesetup.js:2163
+#: gui/gamesetup/gamesetup.js:2166
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2251
+#: gui/gamesetup/gamesetup.js:2254
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2456
+#: gui/gamesetup/gamesetup.js:2459
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IS: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2464
+#: gui/gamesetup/gamesetup.js:2467
 msgid "Unassigned"
 msgstr "Neamhthugtha"
 
-#: gui/gamesetup/gamesetup.js:2540
+#: gui/gamesetup/gamesetup.js:2543
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2547
+#: gui/gamesetup/gamesetup.js:2550
 msgid "Unknown Player"
 msgstr "Imreoir Anaithnid"
 
-#: gui/gamesetup/gamesetup.js:2586
+#: gui/gamesetup/gamesetup.js:2589
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2587
+#: gui/gamesetup/gamesetup.js:2590
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2588
+#: gui/gamesetup/gamesetup.js:2591
 msgid "HH:mm"
 msgstr "UU:nn"
 
@@ -596,12 +596,19 @@ msgstr "Ní féidir le glac leis an gcluiche: %(message)s."
 msgid "%(playername)s's game"
 msgstr "Cluiche %(playername)s"
 
-#: gui/loading/loading.js:48
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading screen
+#: gui/loading/loading.js:33
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "Tá “%(map)s” ag lódáil"
 
-#: gui/loading/loading.js:52
+#: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "Tá “%(map)s” ag giniúint"

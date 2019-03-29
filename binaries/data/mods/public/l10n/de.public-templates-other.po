@@ -13,14 +13,14 @@
 # Lukas Heiniger <kenionatus@techie.com>, 2019
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2017
-# Raymond Vetter, 2014-2018
+# Raymond Vetter, 2014-2019
 # xtother90, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-15 09:45+0100\n"
-"PO-Revision-Date: 2019-03-16 14:31+0000\n"
-"Last-Translator: Jakob Raidt <jakob.raidt@hotmail.com>\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-26 09:20+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,15 @@ msgstr ""
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"
+
+#: simulation/templates/template_gaia_fish.xml:8
+#: simulation/templates/gaia/fauna_fish.xml:4
+msgid "Fish"
+msgstr "Fisch"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Gather food from this bountiful oceanic resource."
+msgstr "Sammle Nahrung von dieser reichen maritimen Ressource."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
@@ -119,6 +128,14 @@ msgstr "Gebäude"
 #: simulation/templates/template_unit.xml:42
 msgid "Unit"
 msgstr "Einheit"
+
+#: simulation/templates/template_wallset.xml:11
+msgid "City Wall"
+msgstr "Stadtmauer"
+
+#: simulation/templates/template_wallset.xml:12
+msgid "Wall off your town for a stout defense."
+msgstr "Ummauere deine Stadt, um die Verteidigung zu verbessern."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -282,13 +299,6 @@ msgstr "Waldelefant"
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
 msgstr "Loxodonta cyclotis"
-
-#: simulation/templates/gaia/fauna_fish.xml:4
-#: simulation/templates/gaia/fauna_fish.xml:5
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
-#: simulation/templates/gaia/fauna_fish_tuna.xml:5
-msgid "Fish"
-msgstr "Fisch"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
@@ -540,9 +550,31 @@ msgstr "Aleppo-Kiefer"
 msgid "Apple Tree"
 msgstr "Apfelbaum"
 
+#: simulation/templates/gaia/flora_tree_bamboo.xml:4
+#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
+msgid "Bamboo"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_banyan.xml:8
+msgid "Banyan"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
 msgstr "Baobab"
+
+#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
+msgid "Dead Baobab"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -1034,8 +1066,8 @@ msgstr "Spion"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "16 melee infantry units required"
-msgstr "16 Nahkampfinfanteristen benötigt"
+msgid "At least 16 melee infantry units required."
+msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1046,8 +1078,8 @@ msgid "Battle Line"
 msgstr "Gefechtslinie"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 Einheiten benötigt"
+msgid "At least 4 units required."
+msgstr "4 Einheiten benötigt."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1062,8 +1094,8 @@ msgid "Column Open"
 msgstr "Offene Kolonnenformation"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 Einheiten benötigt"
+msgid "At least 8 units required."
+msgstr "8 Einheiten benötigt."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1082,8 +1114,8 @@ msgid "None"
 msgstr "Kein"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "10 Hopliteninfanteristen benötigt"
+msgid "At least 10 hoplite infantry required."
+msgstr "10 Hopliteninfanteristen benötigt."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1094,16 +1126,16 @@ msgid "Scatter"
 msgstr "Lose Formation"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Nur Fernkämpfer erlaubt"
+msgid "Only ranged units allowed."
+msgstr "Nur Fernkämpfer erlaubt."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Lockere Formation"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 Pikeninfanterieeinheiten benötigt"
+msgid "At least 16 pike infantry units required."
+msgstr "16 Pikeninfanterieeinheiten benötigt."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1114,8 +1146,8 @@ msgid "Testudo"
 msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 Kavallerieeinheiten benötigt"
+msgid "At least 6 cavalry units required."
+msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

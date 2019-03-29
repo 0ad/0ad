@@ -8,6 +8,7 @@
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
 # karubabu <karubabu@protonmail.com>, 2018
+# karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # llen_llen, 2014,2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-02-18 09:43+0100\n"
-"PO-Revision-Date: 2019-03-22 05:06+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-27 13:07+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr "충돌"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: 建築早見表へ切り替える"
+msgstr "%(hotkey)s: 트리 구조로 전환하십시오."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
@@ -55,26 +56,26 @@ msgstr "%(hotkey)s: 역사 닫기."
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)sの特性"
+msgstr "%(civilization) 게임 플레이"
 
 #: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "문명 포상"
+msgstr[0] "문명 보너스"
 
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "편 포상"
+msgstr[0] "팀 보너스"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
-msgstr "특수 기술"
+msgstr "특별한 기술"
 
 #: gui/civinfo/civinfo.js:145
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] "특별한 건물"
+msgstr[0] "특별한 건축물"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -88,12 +89,12 @@ msgstr "%(civilization)s의 역사"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "未割り当てのホットキー: %(hotkeyName)s"
+msgstr "할당 해제된 단축키 : %(hotkeyName)"
 
 #: gui/common/color.js:179
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "%(hotkey)sを押してプレイヤー名を自動決定します。"
+msgid "Press %(hotkey)s to autocomplete player names."
+msgstr "%(hotkey)을(를) 눌러 플레이어 이름을 자동 완성합니다."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -108,7 +109,7 @@ msgstr "FPS: %(fps)4s"
 
 #: gui/common/functions_global_object.js:79
 msgid "Loading Aborted"
-msgstr "読込みを中止しました"
+msgstr "로드 중단됨"
 
 #: gui/common/functions_utility.js:30
 msgid "Gaia"
@@ -117,12 +118,12 @@ msgstr "가이아"
 #: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
-msgstr "아무거나"
+msgstr "랜덤"
 
 #: gui/common/functions_utility.js:231
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "건물짓기: %(buildDate)s (%(revision)s)"
+msgstr "건물 : %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -170,20 +171,20 @@ msgstr "예"
 #: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr "%(hotkey)sで選択した項目を削除します。"
+msgstr "Delete the selected entry using %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr "確認せずに削除するには、%(hotkey)sを押し続けます。"
+msgstr "Hold %(hotkey)s to delete without confirmation."
 
 #: gui/common/gamedescription.js:59
 msgid "A randomly selected map."
-msgstr "ランダムに選択されるマップです。"
+msgstr "A randomly selected map."
 
 #: gui/common/gamedescription.js:68 gui/common/gamedescription.js:352
 msgid "Sorry, no description available."
-msgstr "すみませんが、説明はありません。"
+msgstr "Sorry, no description available."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -257,7 +258,7 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:181
 msgid "Unknown Civilization"
-msgstr "알수없는 문명"
+msgstr "알 수 없는 문명"
 
 #: gui/common/gamedescription.js:188
 msgctxt "playerstate"
@@ -267,16 +268,16 @@ msgstr "패배함"
 #: gui/common/gamedescription.js:189
 msgctxt "playerstate"
 msgid "won"
-msgstr "勝利"
+msgstr "승리함"
 
 #: gui/common/gamedescription.js:210
 msgid "No Team"
-msgstr "편 없음"
+msgstr "팀 없음"
 
 #: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "편 %(team)s"
+msgstr "팀 %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -290,30 +291,30 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:222
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] "관찰자"
+msgstr[0] "옵저버"
 
 #: gui/common/gamedescription.js:239
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "끝없는 놀이"
+msgstr "끝 없는 게임"
 
 #: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "全員が敗北しても勝者は確定しません。"
+msgstr "No winner will be determined, even if everyone is defeated."
 
 #: gui/common/gamedescription.js:251
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] "象徴 (%(min)s minutes)"
+msgstr[0] "불가사의 (%(min)s minutes)"
 
 #: gui/common/gamedescription.js:263
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] "遺跡争奪 (%(min)s 分)"
+msgstr[0] "유물 쟁취 (%(min)s 分)"
 
 #: gui/common/gamedescription.js:279
 msgid "Relic Count"
@@ -321,11 +322,11 @@ msgstr "유물의 수"
 
 #: gui/common/gamedescription.js:286
 msgid "Hero Garrison"
-msgstr "英雄の駐屯"
+msgstr "영웅의 주둔"
 
 #: gui/common/gamedescription.js:287
 msgid "Heroes can be garrisoned."
-msgstr "英雄は駐屯することができます。"
+msgstr "Heroes can be garrisoned."
 
 #: gui/common/gamedescription.js:291
 msgid "Exposed Heroes"
@@ -333,25 +334,25 @@ msgstr "들어난 영웅들"
 
 #: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "영웅들은 수비할 수 없고 습격에 취약합니다."
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
-msgstr "レーティングゲーム"
+msgstr "등급 게임"
 
 #: gui/common/gamedescription.js:300
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "このゲームの勝者が決定されると、ロビースコアが更新されます。"
+msgstr "When the winner of this match is determined, the lobby score will be adapted."
 
 #: gui/common/gamedescription.js:305
 msgid "Locked Teams"
-msgstr "고정된 편"
+msgstr "팀 고정"
 
 #: gui/common/gamedescription.js:306
 msgid "Players can't change the initial teams."
-msgstr "初期のチームを変更することはできません。"
+msgstr "Players can't change the initial teams."
 
 #: gui/common/gamedescription.js:310
 msgid "Diplomacy"
@@ -359,17 +360,17 @@ msgstr "외교"
 
 #: gui/common/gamedescription.js:311
 msgid "Players can make alliances and declare war on allies."
-msgstr "プレイヤーは同盟を結ぶことも同盟国に宣戦布告することもできます。"
+msgstr "Players can make alliances and declare war on allies."
 
 #: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
-msgstr "最後の生き残り"
+msgstr "마지막 생존자"
 
 #: gui/common/gamedescription.js:317
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "勝利できるプレイヤーは一人だけです。 残りのプレイヤーが同盟している場合は、一人になるまでゲームは続きます。"
+msgstr "Only one player can win the game. If the remaining players are allies, the game continues until only one remains."
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
@@ -379,7 +380,7 @@ msgstr "연합 승리"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "同盟国の一人が勝利すれば、その同盟国のすべてが勝利者となります。"
+msgstr "If one player wins, his or her allies win too. If one group of allies remains, they win."
 
 #: gui/common/gamedescription.js:326
 msgid "Ceasefire"
@@ -392,7 +393,7 @@ msgstr "비활성화"
 #: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "開始%(min)s分間は他のプレイヤーと中立を維持します。"
+msgstr[0] "For the first minute, other players will stay neutral."
 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
@@ -401,7 +402,7 @@ msgstr "아무 지도"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
-msgstr "リストの中からマップをランダムに選択します。"
+msgstr "Randomly select a map from the list."
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
@@ -430,11 +431,11 @@ msgstr "아무 생물군계"
 
 #: gui/common/gamedescription.js:382
 msgid "Randomly select a biome from the list."
-msgstr "リストの中からバイオームをランダムに選択します。 "
+msgstr "Randomly select a biome from the list."
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr "유목민 모드"
+msgstr "유목민 모드됨"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
@@ -444,11 +445,11 @@ msgstr "시민 회관"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "プレイヤーはわずかなユニットだけでスタートし、都市を建設するのに適する土地を探す必要があります。"
+msgstr "Players start with only few units and have to find a suitable place to build their city."
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
-msgstr "プレイヤーは市民センターを所持した状態で開始します。"
+msgstr "Players start with a Civic Center."
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
@@ -475,7 +476,7 @@ msgstr "無効"
 #: gui/common/gamedescription.js:426
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "マップで定義されています。"
+msgstr "As defined by the map."
 
 #: gui/common/gamedescription.js:430
 msgid "Revealed Map"
@@ -501,20 +502,20 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:447
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr "有効化"
+msgstr "활성화됨"
 
 #: gui/common/gamedescription.js:448
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr "無効"
+msgstr "비활성화됨"
 
 #: gui/common/gamedescription.js:464
 msgid "Victorious"
-msgstr "승리"
+msgstr "승리를 거둠"
 
 #: gui/common/gamedescription.js:469
 msgid "Defeated"
-msgstr "敗者"
+msgstr "패배함"
 
 #: gui/common/gamedescription.js:478
 #, javascript-format
@@ -524,22 +525,22 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "サーバーとの接続が切断状態です(%(seconds)s 秒)"
+msgstr "Losing connection to server (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s losing connection (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Bad connection to server (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Bad connection to %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
@@ -550,48 +551,48 @@ msgstr "알수 없는 이유"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr "これはファイアーウォールやアンチウイルスソフトウェアによってホスト側のUDPポート20595が転送されないことが原因です"
+msgstr "This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall, or anti-virus software"
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
-msgstr "ホストがゲームを終了しました"
+msgstr "The host has ended the game"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
-msgstr "ネットワークプロトコルのバージョン不適合"
+msgstr "Incorrect network protocol version"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr "ゲーム読込み中です。後ほどやり直してください"
+msgstr "Game is loading, please try again later"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
-msgstr "ゲームはすでに始まっています。観戦はできません"
+msgstr "Game has already started, no observers allowed"
 
 #: gui/common/network.js:72
 msgid "You have been kicked"
-msgstr "あなたは跳ね除けられました (kick)"
+msgstr "You have been kicked"
 
 #: gui/common/network.js:73
 msgid "You have been banned"
-msgstr "あなたは締め出されました (ban)"
+msgstr "You have been banned"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "そのプレイヤー名は既に使用されています。切断された場合、数秒後に再試行してください"
+msgstr "Playername in use. If you were disconnected, retry in few seconds"
 
 #: gui/common/network.js:75
 msgid "Server full"
-msgstr "サーバーが満員です"
+msgstr "Server full"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "Secure lobby authentication failed. Join via lobby"
 
 #: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "\\[無効な値 %(id)s]"
+msgstr "\\[Invalid value %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:91
@@ -601,19 +602,19 @@ msgstr "이유: %(reason)s."
 
 #: gui/common/network.js:96
 msgid "Lost connection to the server."
-msgstr "サーバーとの接続が切れました。"
+msgstr "Lost connection to the server."
 
 #: gui/common/network.js:97
 msgid "Failed to connect to the server."
-msgstr "サーバへの接続に失敗しました。"
+msgstr "Failed to connect to the server."
 
 #: gui/common/network.js:99
 msgid "Disconnected"
-msgstr "通信遮断"
+msgstr "연결이 끊어짐"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr "クライアントを跳ね除ける (kick) ことができるのはホストだけです！"
+msgstr "Only the host can kick clients!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -635,7 +636,7 @@ msgstr ", "
 #: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "모래통"
+msgstr "샌드박스"
 
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
@@ -665,7 +666,7 @@ msgstr "매우 어려움"
 #: gui/common/settings.js:148
 msgctxt "aiBehavior"
 msgid "Random"
-msgstr "임의로"
+msgstr "랜덤"
 
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
@@ -715,7 +716,7 @@ msgstr ""
 #: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
-msgstr "아무거나"
+msgstr "랜덤"
 
 #: gui/common/settings.js:227
 msgid ""
@@ -734,17 +735,17 @@ msgstr ""
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
-msgstr "無制限"
+msgstr "제한 없음"
 
 #: gui/common/settings.js:359
 msgctxt "AI name"
 msgid "Unknown"
-msgstr "모름"
+msgstr "알 수 없음"
 
 #: gui/common/settings.js:370
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr "모름"
+msgstr "알 수 없음"
 
 #: gui/common/settings.js:381
 msgctxt "AI behavior"
@@ -754,7 +755,7 @@ msgstr "기본값"
 #: gui/common/settings.js:393
 msgctxt "map type"
 msgid "Unknown"
-msgstr "모름"
+msgstr "알 수 없음"
 
 #: gui/common/settings.js:405
 msgctxt "map size"
@@ -764,11 +765,11 @@ msgstr "기본값"
 #: gui/common/settings.js:417
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr "모름"
+msgstr "알 수 없음"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr "알수없는 승리 조건"
+msgstr "알 수 없는 승리 조건"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -866,7 +867,7 @@ msgstr[0] "%(arrowcount)s %(arrows)s"
 #: gui/common/tooltips.js:195
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] "화살??"
+msgstr[0] "화살"
 
 #: gui/common/tooltips.js:198
 #, javascript-format
@@ -980,7 +981,7 @@ msgstr "기본값"
 #: gui/common/tooltips.js:387
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr "부대 당??"
+msgstr "유닛 당"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
@@ -1023,7 +1024,7 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:502
 msgid "Gather Rates:"
-msgstr "採集速度："
+msgstr "획득 속도 :"
 
 #: gui/common/tooltips.js:505 gui/common/tooltips.js:527
 #, javascript-format
@@ -1079,7 +1080,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:641
 msgid "Population Bonus:"
-msgstr "추가 인구: "
+msgstr "인구 보너스 :"
 
 #: gui/common/tooltips.js:662
 msgid "Insufficient resources:"
@@ -1119,7 +1120,7 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:707
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] "체력??"
+msgstr[0] "HP"
 
 #: gui/common/tooltips.js:731
 #, javascript-format
@@ -1167,7 +1168,7 @@ msgstr "약탈:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr "右クリックで詳細情報を表示"
+msgstr "Right-click to view more information."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1246,17 +1247,17 @@ msgstr ""
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "いくつかの設定は無効な値になっています！本当に保存しますか？"
+msgstr "Some setting values are invalid! Are you sure to save them?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "保存していない変更があります。本当にウインドウを閉じますか？"
+msgstr "You have unsaved changes, do you want to close this window?"
 
 #: gui/pregame/mainmenu.js:41
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: 0 A.D.に登場する文明の建設早見表を表示します。"
+msgstr "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
@@ -1315,7 +1316,7 @@ msgstr ""
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "シナリオエディターが利用可能でないか読み込みできません。追加情報ははゲームログを参照してください。"
+msgstr "The scenario editor is not available or failed to load. See the game logs for additional information."
 
 #: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
@@ -1444,43 +1445,43 @@ msgstr ""
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:139
+#: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
 msgstr ""
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:152
+#: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
 msgstr ""
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:165
+#: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
 msgstr ""
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:177
+#: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
 msgstr "짓기:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:198
+#: gui/reference/viewer/viewer.js:194
 msgid "Researches:"
 msgstr "연구:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:210
+#: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
 msgstr "훈련:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:223
+#: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
 msgstr ""
 
@@ -1490,7 +1491,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr "このリプレイはゲームのバージョンが適合していません。"
+msgstr "This replay is not compatible with your version of the game!"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
@@ -1595,7 +1596,8 @@ msgid "Unrated games"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.js:193
-msgid "Filter replays by typing one or more, partial or complete playernames."
+msgid ""
+"Filter replays by typing one or more, partial or complete player names."
 msgstr ""
 
 #: gui/replaymenu/replay_menu.js:273
@@ -1694,7 +1696,7 @@ msgstr "건물 통계 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
-msgstr "부대"
+msgstr "유닛"
 
 #: gui/summary/layout.js:63
 msgid "Infantry"
@@ -1727,7 +1729,7 @@ msgstr "상인"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr "부대 통계 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
+msgstr "유닛 통계 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -1735,7 +1737,7 @@ msgstr "자원"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr "공물??"
+msgstr "공물"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1897,19 +1899,19 @@ msgstr "現在の得点"
 
 #: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
-msgstr "ゲーム終了時の得点です。"
+msgstr "Scores at the end of the game."
 
 #: gui/summary/summary.js:495
 msgid "You have been disconnected."
-msgstr "接続が切れました。"
+msgstr "You have been disconnected."
 
 #: gui/summary/summary.js:497
 msgid "You have left the game."
-msgstr "ゲームを離れました。"
+msgstr "You have left the game."
 
 #: gui/summary/summary.js:499
 msgid "You have won the battle!"
-msgstr "戦いに勝利しました！"
+msgstr "You have won the battle!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
@@ -1917,7 +1919,7 @@ msgstr ""
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
-msgstr "ゲームを放棄しました。"
+msgstr "You have abandoned the game."
 
 #: gui/summary/summary.js:505
 #, javascript-format
@@ -2117,12 +2119,12 @@ msgstr "歴史的軍事キャンペーンを通じて歴史を追体験します
 
 #: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
-msgstr "저장한 놀이 불러오기"
+msgstr "저장된 게임을 로드하려면 여기를 클릭하십시오."
 
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
-msgstr "以前のゲームを再生します。"
+msgstr "Playback previous games."
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
@@ -2134,7 +2136,7 @@ msgstr "함께 놀기용 놀이를 만듭니다.\\n\\n만들기 위해서는 UDP
 
 #: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
-msgstr "ゲームの設定を調整します。"
+msgstr "Adjust game settings."
 
 #: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
@@ -2146,7 +2148,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "歓迎スクリーンを表示します。誤ってこの表示を隠したときに有用です。"
+msgstr "Show the Welcome Screen. Useful if you hid it by mistake."
 
 #: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
@@ -2188,11 +2190,11 @@ msgstr "인터넷에서 0 A.D. IRC 채팅창 열기 (#0ad on webchat.quakenet.or
 
 #: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "クリックして0 A.D. Tracへバグや異常終了、エラーを報告します。"
+msgstr "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 
 #: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "クリックして0 A.D.の翻訳サイトをウェブブラウザーで開きます。"
+msgstr "Click to open the 0 A.D. translate page in your browser."
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
@@ -2259,7 +2261,7 @@ msgstr "설정"
 
 #: gui/pregame/mainmenu.xml:(caption):469
 msgid "Scenario Editor"
-msgstr "시나리오 편집"
+msgstr "시나리오 팀집"
 
 #: gui/pregame/mainmenu.xml:(caption):483
 msgid "Exit"
@@ -2299,7 +2301,7 @@ msgstr "문명:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "부대 훈련사??"
+msgstr "트레이너 유닛"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2399,7 +2401,7 @@ msgstr "유형"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr "다시보기 보기??"
+msgstr "리플레이 보기"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2643,7 +2645,7 @@ msgstr "네트워크 경고"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "1秒あたりの表示更新回数を右上隅に表示します。"
+msgstr "Show frames per second in top right corner."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
@@ -2651,7 +2653,7 @@ msgstr "FPS 덮어씌우기-오버레이"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
-msgstr "現在時刻を右上隅に表示します。"
+msgstr "Show current system time in top right corner."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Realtime Overlay"
@@ -2659,7 +2661,7 @@ msgstr "現在時刻オーバーレイ"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr "現在のシミュレーション時間を右上隅に表示します。"
+msgstr "Show current simulation time in top right corner."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
@@ -2667,7 +2669,7 @@ msgstr "놀이시간 오버레이??"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr "停戦の残り時間を常に表示します。"
+msgstr "Always show the remaining ceasefire time."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
@@ -2704,7 +2706,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
-msgstr "구경꾼 한계"
+msgstr "옵저버 제한"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2717,7 +2719,7 @@ msgstr "대화 시간 출력"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr "장군??"
+msgstr "장군"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -2749,7 +2751,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
-msgstr "後処理"
+msgstr "후 처리"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2757,11 +2759,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "셰이더 효과"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "그림자 활성화."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2792,7 +2794,7 @@ msgstr "매우 높음"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
@@ -2800,23 +2802,23 @@ msgstr "그림자 품질"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "부드러운 그림자."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
-msgstr "影のフィルタリング"
+msgstr "그림자 필터링"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "건물 뒤에 유닛 윤곽을 표시하십시오."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
-msgstr "ユニットのシルエット"
+msgstr "유닛 윤곽"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "입자 활성화."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2826,7 +2828,7 @@ msgstr "입자"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr "OFF の場合は、可能な限り低い設定を使用して水面を描画します。 他の設定とは無関係です。"
+msgstr "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water Effects"
@@ -2836,7 +2838,7 @@ msgstr ""
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "水面に高品質な効果を与え、岸辺の波、泡、船の航跡を描画します。"
+msgstr "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails."
 
 #: gui/options/options.json[1].options[11].label
 msgid "HQ Water Effects"
@@ -2872,7 +2874,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
-msgstr "水面の影"
+msgstr "수면의 그림자"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2880,19 +2882,19 @@ msgstr ""
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
-msgstr "滑らかな視界移動"
+msgstr "부드러운 시야 이동"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "하늘 렌더링."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
-msgstr "空の表示"
+msgstr "하늘 표시"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "垂直同期を実行して画面の乱れを修正します。ゲームの再起動が必要です。"
+msgstr "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 
 #: gui/options/options.json[1].options[18].label
 msgid "VSync"
@@ -2902,7 +2904,7 @@ msgstr "수직 동기화"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr "CPU の負荷を抑えるため、すべてのメニューで描画頻度を制限します。制限を無効にするには、最大に設定します。"
+msgstr "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling."
 
 #: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Menus"
@@ -2912,7 +2914,7 @@ msgstr ""
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "CPU の負荷を抑えるため、ゲーム中の描画頻度を制限します。制限を無効にするには、最大に設定します。"
+msgstr "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling."
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
@@ -2936,7 +2938,7 @@ msgstr "주요 음량"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr "놀이 음악에서 조절합니다."
+msgstr "게임 음악 조절"
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2944,15 +2946,15 @@ msgstr "음악 음량"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "게임 앰비언트 사운드 조절."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "주변 볼륨"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "게임 유닛 액션 사운드 조절."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -2960,52 +2962,52 @@ msgstr "행동 음량"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr "UI 소리 음량을 조정합니다."
+msgstr "음량 조절 UI"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr "UI 음량? 또는 양"
+msgstr "볼륨 UI"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Receive audio notification when someone types your nick."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
-msgstr ""
+msgstr "Nick Notification"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Receive audio notification when a new client joins the game setup."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr ""
+msgstr "Game Setup - New Player Notification"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "Show tips when setting up a game."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable Game Setting Tips"
-msgstr ""
+msgstr "Enable Game Setting Tips"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "Slide the settings panel when opening, closing or resizing."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "Enable Settings Panel Slide"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "Save and restore match settings for quick reuse when hosting another game."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
-msgstr "対戦設定の保持"
+msgstr "Persist Match Settings"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -3076,91 +3078,91 @@ msgstr "놀이 설정"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Protect login and data exchanged with the lobby server using TLS encryption."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "TLS Encryption"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Number of backlogged messages to load when joining the lobby."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
-msgstr "チャット過去ログ"
+msgstr "Chat Backlog"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Show the average rating of the participating players in a column of the gamelist."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "Game Rating Column"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "These settings only affect the multiplayer."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr "앞마당"
+msgstr "로비"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "The wounded unit hotkey considers the selected units as wounded if their health percentage falls below this number."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "Wounded Unit Health"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Number of units trained per batch by default."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr ""
+msgstr "Batch Training Size"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Number of times you have to scroll to increase/decrease the batchsize by 1."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "Scroll Batch Increment Ratio"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Show a chat notification if you are attacked by another player."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "Chat Notification Attack"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Chat Notification Tribute"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Show a chat notification to observers when a player bartered resources."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Chat Notification Barter"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3178,49 +3180,49 @@ msgstr "모두 표시됨"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Chat Notification Phase"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Display the attack range of selected defensive structures (can also be toggled in-game with the hotkey)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Attack Range Visualization"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Aura Range Visualization"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Display the healing range of selected units (can also be toggled in-game with the hotkey)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Heal Range Visualization"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Show rank icons above status bars."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Rank icon above status bar"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3229,7 +3231,7 @@ msgstr "ユニット養成施設で養成可能なユニットの詳細なツー
 
 #: gui/options/options.json[5].options[11].label
 msgid "Detailed Tooltips"
-msgstr "詳細なツールチップ"
+msgstr "Detailed Tooltips"
 
 #: gui/options/options.json[5].options[12].list[0].label
 msgid "Unordered"
@@ -3246,67 +3248,67 @@ msgstr "내림차순"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "Dynamically sort players in the resources and population tooltip by value."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Sort resources and population tooltip"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Color of your units when diplomacy colors are enabled."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "Diplomacy Colors: Self"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Color of allies when diplomacy colors are enabled."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Diplomacy Colors: Ally"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "Color of neutral players when diplomacy colors are enabled."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Diplomacy Colors: Neutral"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Color of enemies when diplomacy colors are enabled."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Diplomacy Colors: Enemy"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Change options regarding the in-game settings."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr ""
+msgstr "In-Game"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Harvest from animals, berry bushes, fish, or fields."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Mine from metal mines or quarries."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Mine from rocks, stone quarries or ruins."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Cut down from trees or groves."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3516,691 +3518,607 @@ msgstr "[imgleft=\"iconFormation\"]陣形は未完成ですが、組んだり解
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr "ローマ軍営"
+msgstr "ROMAN ARMY CAMP"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
-"- Build anywhere on the map, even in enemy territory. Good for building a "
-"secret base behind enemy lines or to consolidate gains within enemy "
-"territory."
-msgstr "- マップ内のどこでも、敵領内でも建設できます。秘密基地を敵陣の背後に築いたり、敵領内の獲得地域を編入したりするのに好都合です。"
+"Buildable in neutral or enemy territory. Good for building a secret base "
+"behind enemy lines or to consolidate gains within enemy territory."
+msgstr "Buildable in neutral or enemy territory. Good for building a secret base behind enemy lines or to consolidate gains within enemy territory."
+
+#: gui/text/tips/army_camp.txt:3
+msgid "Construct siege weapons and train citizen-soldiers."
+msgstr "Construct siege weapons and train citizen-soldiers."
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr "- 同盟領以外の土地に建設した場合、徐々に領主に所有が移ります。"
-
-#: gui/text/tips/army_camp.txt:6
-msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- 攻城兵器の建造と市民兵士の養成を行います。"
-
-#: gui/text/tips/army_camp.txt:8
 msgid ""
-"- Garrison up to 40 units to slowly heal the units and protect the army camp"
-" from attacks and decay."
-msgstr "- 最大40ユニットまで駐屯させることで、緩やかに回復させ、また、軍営を攻撃と劣化から守ります。"
+"Garrison units to slowly heal them and protect the army camp from attacks "
+"and decay."
+msgstr "Garrison units to slowly heal them and protect the army camp from attacks and decay."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "兵営"
+msgstr "BARRACKS"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"- Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- 全種の市民兵士を養成します。勢力によってはチャンピオン養成の解禁もできます。"
+msgstr "Train all citizen-soldiers. Some factions can unlock the training of champions as well."
+
+#: gui/text/tips/barracks.txt:3
+msgid "Research military technologies unique to each faction."
+msgstr "Research military technologies unique to each faction."
 
 #: gui/text/tips/barracks.txt:4
-msgid "- Research military technologies unique to each faction."
-msgstr "- 各勢力に特有の軍事テクノロジーを研究できます。"
-
-#: gui/text/tips/barracks.txt:6
 msgid ""
-"- Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- 中心を進化させている間に一つ建てて、早めに市民兵士を養成しましょう。"
+msgstr "Build one early to train citizen-soldiers while you phase up your settlement."
 
-#: gui/text/tips/barracks.txt:8
-msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr "- 前線の基地に建てることで、戦場にすばやく兵力を補充できます。"
+#: gui/text/tips/barracks.txt:5
+msgid "Build in a forward base to resupply your assault with fresh troops."
+msgstr "Build in a forward base to resupply your assault with fresh troops."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr "鍛冶屋"
+msgstr "BLACKSMITH"
 
 #: gui/text/tips/blacksmith.txt:2
-msgid "- Research structure for all factions."
-msgstr "- すべての勢力にある研究施設です。"
+msgid "Research structure for all factions."
+msgstr "Research structure for all factions."
 
-#: gui/text/tips/blacksmith.txt:4
-msgid "- Research weapon and armor upgrades for your units."
-msgstr "- ユニット用の武器と装甲の改良を研究します。"
-
-#: gui/text/tips/blacksmith.txt:6
-msgid ""
-"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
-"YET)."
-msgstr "- 市民兵士を駐屯させると研究速度が速くなります（未実装）。"
+#: gui/text/tips/blacksmith.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr "Research weapon and armor upgrades for your units."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr "カルタゴ神聖隊"
+msgstr "CARTHAGINIAN SACRED BAND"
 
 #: gui/text/tips/carth_sacred_band.txt:2
-msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- カルタゴのチャンピオン槍兵とチャンピオン槍騎兵です。"
+msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+
+#: gui/text/tips/carth_sacred_band.txt:3
+msgid ""
+"Both are trainable from the Temple, instead of the Fortress like most other "
+"champions."
+msgstr "Both are trainable from the Temple, instead of the Fortress like most other champions."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both are trainable from the Temple, instead of the Fortress like most "
-"other champions."
-msgstr "- いずれも神殿で養成できます。多くの他のチャンピオンと違い要塞ではありません。"
-
-#: gui/text/tips/carth_sacred_band.txt:6
-msgid ""
-"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
-"heavy shock against siege weapons and skirmishers."
-msgstr "- 槍兵は対騎兵の重装歩兵として用います。騎兵は攻城兵器と散兵に対して重い衝撃を与えるのに用います。"
+"Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
+" shock against siege weapons and skirmishers."
+msgstr "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy shock against siege weapons and skirmishers."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr "投石機"
+msgstr "CATAPULTS"
 
 #: gui/text/tips/catapults.txt:2
-msgid "- Ranged siege engines that are good against buildings."
-msgstr "- 建物に対して攻撃力が高い遠隔攻撃の攻城兵器です。"
+msgid "Ranged siege engines that are good against buildings."
+msgstr "Ranged siege engines that are good against buildings."
+
+#: gui/text/tips/catapults.txt:3
+msgid "Expensive and slow."
+msgstr "Expensive and slow."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
-"- May upgrade to flaming projectiles for extra effectiveness against "
-"buildings and units."
-msgstr "- アップグレードによって建物とユニットに追加ダメージを与える火炎弾を発射できます。"
-
-#: gui/text/tips/catapults.txt:6
-msgid "- Expensive and slow."
-msgstr "- コストが高く、移動速度が遅いです。"
-
-#: gui/text/tips/catapults.txt:8
-msgid ""
-"- Pack up into carts for movement, and unpack into stationary engines for "
+"Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- 移動時は車両に梱包し、攻撃時は展開して固定兵器になります。"
+msgstr "Pack up into carts for movement, and unpack into stationary engines for attack!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr "ケルト軍用はしけ"
+msgstr "CELTIC WAR BARGE"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "- A medium \"trireme\"-class warship."
-msgstr "- 中型の「三段櫂船」級の軍艦です。"
+msgid "A medium trireme-class warship."
+msgstr "A medium trireme-class warship."
+
+#: gui/text/tips/celtic_war_barge.txt:3
+msgid "Available to Britons, Gauls, and Iberians."
+msgstr "Available to Britons, Gauls, and Iberians."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr ""
+msgid "Can transport up to 40 units."
+msgstr "Can transport up to 40 units."
 
-#: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Can transport up to 40 units across the waters."
-msgstr "- 最大40ユニットを水上輸送できます。"
-
-#: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
-
-#: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr ""
+#: gui/text/tips/celtic_war_barge.txt:5
+msgid "Increases firepower with garrisoned infantry."
+msgstr "Increases firepower with garrisoned infantry."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "町の中心"
+msgstr "CIVIC CENTERS"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The foundation of your new colony."
-msgstr ""
+msgid "The foundation of your new colony."
+msgstr "The foundation of your new colony."
+
+#: gui/text/tips/civic_centres.txt:3
+msgid "Claim large tracts of territory."
+msgstr "Claim large tracts of territory."
 
 #: gui/text/tips/civic_centres.txt:4
-msgid "- Claim large tracts of territory."
-msgstr "- 広大な範囲の領地を得ます。"
+msgid "Can be built in friendly and neutral territory."
+msgstr "Can be built in friendly and neutral territory."
 
-#: gui/text/tips/civic_centres.txt:6
-msgid "- Can be built in friendly and neutral territory."
-msgstr "- 同盟国の領内や中立地帯に建設できます。"
-
-#: gui/text/tips/civic_centres.txt:8
+#: gui/text/tips/civic_centres.txt:5
 msgid ""
-"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
-"citizen soldiers."
-msgstr ""
+"Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
+"citizen-soldiers."
+msgstr "Train citizens: female citizens, infantry citizen-soldiers, and cavalry citizen-soldiers."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr "大使館"
+msgstr "EMBASSIES"
 
 #: gui/text/tips/embassies.txt:2
-msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- カルタゴのみ利用できる特殊な「兵営」です。"
+msgid "Special Barracks available to the Carthaginians."
+msgstr "Special Barracks available to the Carthaginians."
+
+#: gui/text/tips/embassies.txt:3
+msgid "Train mercenaries from each of the ethnically-themed embassies."
+msgstr "Train mercenaries from each of the ethnically-themed embassies."
 
 #: gui/text/tips/embassies.txt:4
-msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- それぞれの大使館の部族の傭兵が養成できます。"
-
-#: gui/text/tips/embassies.txt:6
 msgid ""
-"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
-"Metal cost."
-msgstr "- 傭兵の「市民兵士」は通常の食料コストの代わりにその分の金属コストがかかります。"
+"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
+"cost."
+msgstr "Mercenary citizen-soldiers have their normal Food cost converted to Metal cost."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr "漁業"
+msgstr "FISHING"
 
 #: gui/text/tips/fishing.txt:2
-msgid "- Fish the seas for a bountiful harvest."
-msgstr "- 豊富な資源を求めて海へ駆り出しましょう。"
+msgid "Fish the seas for a bountiful harvest."
+msgstr "Fish the seas for a bountiful harvest."
+
+#: gui/text/tips/fishing.txt:3
+msgid "Fishing boats carry a large amount of food per trip."
+msgstr "Fishing boats carry a large amount of food per trip."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgid "Fishing is faster than gathering food on fields."
+msgstr "Fishing is faster than gathering food on fields."
 
-#: gui/text/tips/fishing.txt:6
-msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
-
-#: gui/text/tips/fishing.txt:8
-msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- 魚は無尽蔵ではないことを忘れずに！"
+#: gui/text/tips/fishing.txt:5
+msgid "Careful! Fish are not an infinite resource!"
+msgstr "Careful! Fish are not an infinite resource!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr "要塞"
+msgstr "FORTRESS"
 
 #: gui/text/tips/fortress.txt:2
-msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- 要塞は通常それぞれの勢力で最強の建物となります。"
+msgid "The Fortress is usually each faction's strongest building."
+msgstr "The Fortress is usually each faction's strongest building."
+
+#: gui/text/tips/fortress.txt:3
+msgid "Trains Champions, Heroes, and Siege Weapons."
+msgstr "Trains Champions, Heroes, and Siege Weapons."
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- チャンピオン、英雄、攻城兵器といった強力なユニットを養成/建造できます。"
+msgid "Gives a population boost."
+msgstr "Gives a population boost."
 
-#: gui/text/tips/fortress.txt:6
-msgid "- Gives a population boost."
-msgstr "- 人口上限を増やします。"
-
-#: gui/text/tips/fortress.txt:8
-msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- 兵士を駐屯させて防衛火力を増強できます。"
+#: gui/text/tips/fortress.txt:5
+msgid "Garrison soldiers inside to add more firepower to its defense."
+msgstr "Garrison soldiers inside to add more firepower to its defense."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "FREEHAND POSITION"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
-"- Gain an advantage on the battleground by tactically positioning your "
-"units!"
-msgstr ""
+"Gain an advantage on the battleground by tactically positioning your units!"
+msgstr "Gain an advantage on the battleground by tactically positioning your units!"
+
+#: gui/text/tips/freehand_position.txt:3
+msgid ""
+"Therefore select some units, press and hold the right mouse button, draw any"
+" line, then release the button."
+msgstr "Therefore select some units, press and hold the right mouse button, draw any line, then release the button."
 
 #: gui/text/tips/freehand_position.txt:4
-msgid ""
-"- Therefore select some units, press and hold the right mouse button, draw "
-"any line, then release the button."
-msgstr ""
-
-#: gui/text/tips/freehand_position.txt:6
-msgid "- Your units will now spread out on this line."
-msgstr ""
+msgid "Your units will now spread out on this line."
+msgstr "Your units will now spread out on this line."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr "資源採集"
+msgstr "RESOURCE GATHERING"
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgid "Use citizen-soldiers and female citizens to gather resources."
+msgstr "Use citizen-soldiers and female citizens to gather resources."
+
+#: gui/text/tips/gathering.txt:3
+msgid "Female citizens gather vegetable resources faster."
+msgstr "Female citizens gather vegetable resources faster."
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgid "Infantry citizen-soldiers are faster gathering minerals."
+msgstr "Infantry citizen-soldiers are faster gathering minerals."
+
+#: gui/text/tips/gathering.txt:5
+msgid "Cavalry citizen-soldiers are faster gathering meat."
+msgstr "Cavalry citizen-soldiers are faster gathering meat."
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
-
-#: gui/text/tips/gathering.txt:8
-msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
-
-#: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of a citizen soldier (advanced, elite), the better he"
-" fights, but the less efficient he is at gathering resources."
-msgstr ""
+"The higher the level of a citizen-soldier (advanced, elite), the better he "
+"fights, but the less efficient he is at gathering resources."
+msgstr "The higher the level of a citizen-soldier (advanced, elite), the better he fights, but the less efficient he is at gathering resources."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr "イピクラテス"
+msgstr "IPHICRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
-"- The Athenian general who reformed the Athenian army to be faster and more "
+"The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- アテナイ軍をより速く機動性の高い軍隊へ改革したアテナイの将軍です。"
+msgstr "The Athenian general who reformed the Athenian army to be faster and more maneuverable."
+
+#: gui/text/tips/iphicrates.txt:3
+msgid "Units in his formation are faster and stronger."
+msgstr "Units in his formation are faster and stronger."
 
 #: gui/text/tips/iphicrates.txt:4
-msgid "- Units in his formation are faster and stronger."
-msgstr "- 彼の隊列にいるユニットは速く強力になります。"
-
-#: gui/text/tips/iphicrates.txt:6
-msgid "- Skirmishers move faster while he lives."
-msgstr "- 彼の生存中は散兵の移動が速くなります。"
+msgid "Skirmishers move faster while he lives."
+msgstr "Skirmishers move faster while he lives."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr "前哨地"
+msgstr "OUTPOSTS"
 
 #: gui/text/tips/outposts.txt:2
-msgid "- Build in neutral territory for a large scouting range."
-msgstr "- 中立地帯に建設して、広い視界を確保できます。"
+msgid "Build in neutral territory for a large scouting range."
+msgstr "Build in neutral territory for a large scouting range."
+
+#: gui/text/tips/outposts.txt:3
+msgid "Cheap, at 80 Wood."
+msgstr "Cheap, at 80 Wood."
 
 #: gui/text/tips/outposts.txt:4
-msgid "- Cheap, at 80 Wood."
-msgstr "- 木材80と安価です。"
+msgid "They construct quickly, but are weak."
+msgstr "They construct quickly, but are weak."
 
-#: gui/text/tips/outposts.txt:6
-msgid "- They construct quickly, but are weak."
-msgstr "- 速く建設できますが、耐久力が弱いです。"
-
-#: gui/text/tips/outposts.txt:8
-msgid ""
-"- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "- ユニットを駐屯させると中立地帯での劣化を防げます。"
+#: gui/text/tips/outposts.txt:5
+msgid "Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr "Garrison a unit in it to stop them from decaying in neutral territory."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "柵"
+msgstr "PALISADE WALLS"
 
 #: gui/text/tips/palisades.txt:2
-msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- すべての勢力にある安価で手早く作れる木の防壁です。"
+msgid "A quick, cheap wooden wall available to all factions."
+msgstr "A quick, cheap wooden wall available to all factions."
 
-#: gui/text/tips/palisades.txt:4
-msgid "- Most factions have access to them in Village Phase."
-msgstr "- ほとんどの勢力で村の段階から建てることができます。"
-
-#: gui/text/tips/palisades.txt:6
-msgid ""
-"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
-" by siege weapons."
-msgstr "- 攻城兵器でしか攻撃できない城壁と異なり、敵の兵士でも攻撃できます。"
+#: gui/text/tips/palisades.txt:3
+msgid "Most factions have access to them in Village Phase."
+msgstr "Most factions have access to them in Village Phase."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr "ペリクレス"
+msgstr "PERICLES"
 
 #: gui/text/tips/pericles.txt:2
-msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr "- 紀元前5世紀に登場したアテナイ屈指の政治家です。"
+msgid "The foremost Athenian politician of the 5th century BC."
+msgstr "The foremost Athenian politician of the 5th century BC."
+
+#: gui/text/tips/pericles.txt:3
+msgid "Buildings construct faster within his range."
+msgstr "Buildings construct faster within his range."
 
 #: gui/text/tips/pericles.txt:4
-msgid "- Buildings construct faster within his range."
-msgstr "- 彼の視界内の建物は建設が速くなります。"
-
-#: gui/text/tips/pericles.txt:6
-msgid "- Temples are cheaper while he lives."
-msgstr "- 彼の生存中は神殿が安くなります。"
+msgid "Temples are cheaper while he lives."
+msgstr "Temples are cheaper while he lives."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr "ペルシア建築"
+msgstr "PERSIAN ARCHITECTURE"
 
 #: gui/text/tips/persian_architecture.txt:2
-msgid "- Special Technology for the Persians."
-msgstr "- ペルシャ特有のテクノロジー。"
+msgid "Special technology for the Persians."
+msgstr "Special technology for the Persians."
+
+#: gui/text/tips/persian_architecture.txt:3
+msgid "All Persian buildings +25% stronger."
+msgstr "All Persian buildings +25% stronger."
 
 #: gui/text/tips/persian_architecture.txt:4
-msgid "- All Persian buildings +25% stronger."
-msgstr "- すべてのペルシアの建物が25%強化されます。"
+msgid "Build time lengthened by +20% as a consequence."
+msgstr "Build time lengthened by +20% as a consequence."
 
-#: gui/text/tips/persian_architecture.txt:6
-msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- 建設時間が20%結果として伸びます。"
-
-#: gui/text/tips/persian_architecture.txt:8
+#: gui/text/tips/persian_architecture.txt:5
 msgid ""
-"- Persians also have access to a great number of structural & defensive "
+"Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "- ペルシアはまた、建物と防御に関する多数のテクノロジーを開発可能です。"
+msgstr "Persians also have access to a great number of structural and defensive technologies."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr "長槍兵"
+msgstr "PIKEMEN"
 
 #: gui/text/tips/pikemen.txt:2
-msgid "- Heavily armored and slow. Low attack."
-msgstr "- 重装甲で遅く、攻撃力は低いです。"
+msgid "Heavily armored and slow. Low attack."
+msgstr "Heavily armored and slow. Low attack."
+
+#: gui/text/tips/pikemen.txt:3
+msgid ""
+"Used against cavalry or against other melee infantry to pin them in place."
+msgstr "Used against cavalry or against other melee infantry to pin them in place."
 
 #: gui/text/tips/pikemen.txt:4
-msgid ""
-"- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- 騎兵や他の近接攻撃歩兵を足止めするのに用います。"
-
-#: gui/text/tips/pikemen.txt:6
-msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- マケドニア・セレウコス朝・プトレマイオス朝で養成可能です。"
+msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
+msgstr "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "HEAVY WARSHIP"
-msgstr "大型軍艦"
+msgid "QUINQUEREME"
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
-"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
-"and Seleucids."
-msgstr "- 最大の標準軍艦です。ローマ、カルタゴ、プトレマイオス朝、セレウコス朝で建造可能です。"
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
+"Romans, and Seleucids."
+msgstr "The heaviest standard warship. Available to: Carthaginians, Ptolemies, Romans, and Seleucids."
+
+#: gui/text/tips/quinquereme.txt:3
+msgid "Transports up to 50 units."
+msgstr "Transports up to 50 units."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Transports up to 50 units."
-msgstr ""
-
-#: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
-
-#: gui/text/tips/quinquereme.txt:8
-msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- 衝角攻撃で敵船を沈めることができます（未実装）。"
+msgid "Increases firepower with garrisoned catapults."
+msgstr "Increases firepower with garrisoned catapults."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr "サバンナ生物群系"
+msgstr "SAVANNA BIOME"
 
 #: gui/text/tips/savanna_biome.txt:2
-msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- 水場やゴツゴツした崖が散在する平坦な地形です。"
+msgid "Generally flat, with a few watering holes and rocky outcrops."
+msgstr "Generally flat, with a few watering holes and rocky outcrops."
+
+#: gui/text/tips/savanna_biome.txt:3
+msgid "Chock full of herd animals for plentiful hunting."
+msgstr "Chock full of herd animals for plentiful hunting."
 
 #: gui/text/tips/savanna_biome.txt:4
-msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- 狩りの獲物になる動物たちが大群をなして生息しています。"
+msgid "Rich in all types of mining."
+msgstr "Rich in all types of mining."
 
-#: gui/text/tips/savanna_biome.txt:6
-msgid "- Rich in all types of mining."
-msgstr "- 石材と金属が豊富に存在します。"
-
-#: gui/text/tips/savanna_biome.txt:8
-msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- 木はたいていまばらですが、木材の量が多いバオバブの木が生えています。"
+#: gui/text/tips/savanna_biome.txt:5
+msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr "Wood tends to be sparse, but consists of high-yield Baobab trees."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr "防御塔"
+msgstr "DEFENSE TOWERS"
 
 #: gui/text/tips/scout_towers.txt:2
-msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- 辺境の広い地域を守るのに適した、自立した塔です。"
+msgid "Free-standing towers good for defending large areas of countryside."
+msgstr "Free-standing towers good for defending large areas of countryside."
+
+#: gui/text/tips/scout_towers.txt:3
+msgid ""
+"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
+"Wood and 250 Stone (because they're stronger)."
+msgstr "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 Wood and 250 Stone (because they're stronger)."
 
 #: gui/text/tips/scout_towers.txt:4
-msgid ""
-"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
-"Stone (because they're stronger)."
-msgstr "- 建設には通常木材100と石材100が必要ですが、イベリアの防御塔は石材300が必要です（より頑丈なため）。"
-
-#: gui/text/tips/scout_towers.txt:6
-msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- 駐屯ユニット 1 体ごとに遠隔攻撃の回数が増加します。"
+msgid "Has a ranged attack that increases for each garrisoned unit."
+msgstr "Has a ranged attack that increases for each garrisoned unit."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "スパルタ市民"
+msgstr "SPARTIATES"
 
 #: gui/text/tips/spartan_hoplites.txt:2
-msgid "- Strongest infantry unit in the game."
-msgstr "- 本ゲーム最強の歩兵ユニットです。"
+msgid "Strongest infantry unit in the game."
+msgstr "Strongest infantry unit in the game."
+
+#: gui/text/tips/spartan_hoplites.txt:3
+msgid "Champion Infantry available to the Spartans."
+msgstr "Champion Infantry available to the Spartans."
 
 #: gui/text/tips/spartan_hoplites.txt:4
-msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- チャンピオン歩兵がスパルタで利用可能になります。"
-
-#: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- 敵の騎兵を屠るか、あるいは自軍の通常歩兵を支援する突撃隊として用いましょう。"
-
-#: gui/text/tips/spartan_hoplites.txt:8
-msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- ファランクス陣形を採用して追加装甲ボーナスを得ましょう。"
+msgstr "Use them to slaughter enemy cavalry or as a shock force to support your regular infantry."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr "槍兵"
+msgstr "SPEARMEN"
 
 #: gui/text/tips/spearmen.txt:2
-msgid "- The basic melee infantry for every faction in the game."
-msgstr "- 基本となる近接攻撃歩兵で、本ゲームの全勢力に登場します。"
+msgid "The basic melee infantry for every faction in the game."
+msgstr "The basic melee infantry for every faction in the game."
+
+#: gui/text/tips/spearmen.txt:3
+msgid "Used against cavalry for an attack bonus."
+msgstr "Used against cavalry for an attack bonus."
 
 #: gui/text/tips/spearmen.txt:4
-msgid "- Used against cavalry for an attack bonus."
-msgstr ""
+msgid "Decent hack attack make them good front line troops."
+msgstr "Decent hack attack make them good front line troops."
 
-#: gui/text/tips/spearmen.txt:6
-msgid "- Decent hack attack make them good front line troops."
-msgstr ""
-
-#: gui/text/tips/spearmen.txt:8
+#: gui/text/tips/spearmen.txt:5
 msgid ""
-"- They are countered by ranged units and swordsmen, so support your spearmen"
-" with slingers or cavalry."
-msgstr "- 遠隔攻撃ユニットと剣士が苦手なため、投石兵や騎兵で援護してください。"
+"They are countered by ranged units and swordsmen, so support your spearmen "
+"with slingers or cavalry."
+msgstr "They are countered by ranged units and swordsmen, so support your spearmen with slingers or cavalry."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr "柱廊"
+msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special structure for Greek factions."
-msgstr ""
+msgid "A special structure for  Athenians, Macedonians, and Spartans."
+msgstr "A special structure for  Athenians, Macedonians, and Spartans."
+
+#: gui/text/tips/stoa.txt:3
+msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr "Trains Heavy Skirmishers and Sword Infantry Champions."
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Grants +10 Population."
-msgstr "- 人口上限を10増やします。"
+msgid "Grants +10 Population."
+msgstr "Grants +10 Population."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr "倉庫"
+msgstr "STOREHOUSES"
 
 #: gui/text/tips/storehouses.txt:2
-msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- 食料以外の資源（木材、石材、金属）の安価な回収場所です。"
+msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
 
-#: gui/text/tips/storehouses.txt:4
+#: gui/text/tips/storehouses.txt:3
 msgid ""
-"- Research technologies to improve the gathering capabilities of your "
+"Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- 市民の採集能力を高めるテクノロジーを研究できます。"
-
-#: gui/text/tips/syntagma.txt:1
-msgid "SYNTAGMA FORMATION"
-msgstr "シンタグマ陣形"
-
-#: gui/text/tips/syntagma.txt:2
-msgid "- A formation for 'pikeman' style infantry."
-msgstr "- 「長槍兵」型歩兵のための陣形です。"
-
-#: gui/text/tips/syntagma.txt:4
-msgid "- Formation is slow and cumbersome."
-msgstr "- 陣形を組んでいる時は移動が遅く小回りが利きません。"
-
-#: gui/text/tips/syntagma.txt:6
-msgid "- Nearly invulnerable from the front."
-msgstr "- 正面からはほぼ無敵です。"
-
-#: gui/text/tips/syntagma.txt:8
-msgid "- Vulnerable to attacks from the rear."
-msgstr "- 後方からの攻撃に弱いです。"
+msgstr "Research technologies to improve the gathering capabilities of your citizens."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr "神殿"
+msgstr "TEMPLES"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure."
-msgstr "- 町の段階から建てられます。"
+msgid "Town Phase structure."
+msgstr "Town Phase structure."
+
+#: gui/text/tips/temples.txt:3
+msgid "Recruit Healers to heal your troops on the battlefield."
+msgstr "Recruit Healers to heal your troops on the battlefield."
 
 #: gui/text/tips/temples.txt:4
-msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- 戦場の兵士を回復する治療者を召集することができます。"
+msgid "Research healing technologies."
+msgstr "Research healing technologies."
+
+#: gui/text/tips/temples.txt:5
+msgid "Its aura heals nearby units."
+msgstr "Its aura heals nearby units."
 
 #: gui/text/tips/temples.txt:6
-msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- 治療、宗教、文化に関するテクノロジーを研究できます。"
-
-#: gui/text/tips/temples.txt:8
-msgid "- Its \"aura\" heals nearby units."
-msgstr "- 「オーラ」によって近くにいるユニットを回復させます。"
-
-#: gui/text/tips/temples.txt:10
-msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- ダメージを受けたユニットを駐屯させてより早く回復できます。"
+msgid "Garrison wounded units inside for quicker healing."
+msgstr "Garrison wounded units inside for quicker healing."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr "領外劣化"
+msgstr "TERRITORY DECAY"
+
+#: gui/text/tips/territory_decay.txt:2
+msgid ""
+"Decay happens when buildings are not connected to an allied Civil Center."
+msgstr "Decay happens when buildings are not connected to an allied Civil Center."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- 劣化は建物が同盟の町の中心から途絶しているときに起こります。"
+"The decay process can be slowed down or reversed by garrisoning some units "
+"in the structure."
+msgstr "The decay process can be slowed down or reversed by garrisoning some units in the structure."
 
-#: gui/text/tips/territory_decay.txt:5
+#: gui/text/tips/territory_decay.txt:4
 msgid ""
-"- The decay process can be slowed down or reversed by garrisoning some units"
-" in the structure."
-msgstr "- 劣化の進行は緩めたり逆行させたりすることが、建物内にいくらかのユニットを駐屯させることで可能です。"
-
-#: gui/text/tips/territory_decay.txt:7
-msgid ""
-"- When the decay is completed, the building will be given to the most "
+"When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- 劣化が完了すると、建物は最も影響力のある近隣者のものとなります。"
+msgstr "When the decay is completed, the building will be given to the most influential neighbor."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr "テミストクレス"
+msgstr "THEMISTOCLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
-"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- アルテミシオンとサラミスの大海戦でギリシア軍を率いたアテナイの英雄です。"
+msgstr "Athenian hero who commanded the Greeks at the great naval battles of Artemisium and Salamis."
+
+#: gui/text/tips/themistocles.txt:3
+msgid "All ships are built faster while he lives."
+msgstr "All ships are built faster while he lives."
 
 #: gui/text/tips/themistocles.txt:4
-msgid "- All ships are built faster while he lives."
-msgstr "- 彼の生存中はすべての船舶の建造が速くなります。"
-
-#: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgid "The ship he is garrisoned inside sails much faster."
+msgstr "The ship he is garrisoned inside sails much faster."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr "三段櫂船"
+msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
-msgid "- The Medium Warship."
-msgstr "- 中型の軍艦です。"
+msgid "The Medium Warship."
+msgstr "The Medium Warship."
+
+#: gui/text/tips/triremes.txt:3
+msgid "Good for transporting or fighting."
+msgstr "Good for transporting or fighting."
 
 #: gui/text/tips/triremes.txt:4
-msgid ""
-"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- ローマ、カルタゴ、ギリシア諸勢力、ペルシアが利用できます。"
-
-#: gui/text/tips/triremes.txt:6
-msgid "- Good for transporting or fighting."
-msgstr "- 輸送と戦闘に適しています。"
-
-#: gui/text/tips/triremes.txt:8
-msgid "- Garrison troops aboard to increase fire power."
-msgstr "- 兵を乗船させると火力が増します。"
-
-#: gui/text/tips/triremes.txt:10
-msgid ""
-"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
-"YET)."
-msgstr "- 投石機を船に乗せると長距離砲撃が可能になります（未実装）。"
-
-#: gui/text/tips/triremes.txt:12
-msgid ""
-"- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use (NOT IMPLEMENTED YET)."
-msgstr "- 敵船に破壊的な衝角攻撃を実行できます。再度発動まで準備時間が必要です（未実装）。"
+msgid "Garrison troops aboard to increase fire power."
+msgstr "Garrison troops aboard to increase fire power."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr "ヴィリアト"
+msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
-msgid "- Iberian hero of the Lusitani tribe."
-msgstr "- ルシタニ族のイベリアの英雄です。"
+msgid "Iberian hero of the Lusitani tribe."
+msgstr "Iberian hero of the Lusitani tribe."
+
+#: gui/text/tips/viriato.txt:3
+msgid ""
+"At least seven campaigns against the Romans during the Lusitani Wars from "
+"147 to 139 BC."
+msgstr "At least seven campaigns against the Romans during the Lusitani Wars from 147 to 139 BC."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
-"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
-"147 to 139 B.C."
-msgstr "- 少なくとも7度のローマとの戦闘が、紀元前147年から139年にかけての「ルシタニア戦争」でありました。"
-
-#: gui/text/tips/viriato.txt:6
-msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- 移動が速く、剣と火投槍の両方を使えます。"
-
-#: gui/text/tips/viriato.txt:8
-msgid ""
-"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
-"to ambush their opponents."
-msgstr "- 彼の「オーラ」は「ゲリラ戦術」であり、近くのイベリアユニットが待ち伏せして敵を攻撃できるようになります。"
+"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
+"their opponents."
+msgstr "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush their opponents."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr "전투 코끼리"
+msgstr "WAR ELEPHANTS"
 
 #: gui/text/tips/war_elephants.txt:2
-msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- 戦闘用に訓練された、アフリカ・インド原産の巨獣です。"
+msgid "Huge beasts from Africa and India, trained for war."
+msgstr "Huge beasts from Africa and India, trained for war."
+
+#: gui/text/tips/war_elephants.txt:3
+msgid "High Food and Metal cost, but very powerful."
+msgstr "High Food and Metal cost, but very powerful."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
-"- High Food and Metal cost, but very powerful. Strongest against Structures "
-"and Cavalry."
-msgstr "- 多くの食料と金属が必要ですが、非常に強力です。特に建物と騎兵に対して効果的です。"
-
-#: gui/text/tips/war_elephants.txt:6
-msgid "- Vulnerable to infantry skirmishers."
-msgstr "- 散兵には弱いです。"
-
-#: gui/text/tips/war_elephants.txt:8
-msgid ""
-"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "- 이용 가능 : 카르타고인, 쿠시인, 모리아스인, 페르시아인, 프톨레마이오스인 및 셀레우코스인"
+msgstr "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and Seleucids."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
 msgstr "고래"
 
 #: gui/text/tips/whales.txt:2
-msgid "- An oceanic resource."
-msgstr "- 海洋資源です。"
+msgid "An oceanic resource."
+msgstr "An oceanic resource."
+
+#: gui/text/tips/whales.txt:3
+msgid "2000 Food."
+msgstr "2000 Food."
 
 #: gui/text/tips/whales.txt:4
-msgid "- 2000 Food."
-msgstr "- 食料2000。"
+msgid "Gatherable by Fishing Boats after the whale is killed."
+msgstr "Gatherable by Fishing Boats after the whale is killed."
 
-#: gui/text/tips/whales.txt:6
-msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- クジラを倒した後、漁船で採集できます。"
-
-#: gui/text/tips/whales.txt:8
-msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- 海の中をさまよっており、攻撃すると逃走します。"
+#: gui/text/tips/whales.txt:5
+msgid "Roam around the oceans of the game and flee when attacked."
+msgstr "Roam around the oceans of the game and flee when attacked."

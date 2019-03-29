@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrian Chaves <adrian@chaves.io>, 2018
+# Adrian Chaves <adrian@chaves.io>, 2018-2019
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 # mandruis <manuiglesias96@yahoo.es>, 2016
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-15 09:45+0100\n"
-"PO-Revision-Date: 2019-03-15 15:20+0000\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-23 21:15+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,15 @@ msgstr ""
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"
+
+#: simulation/templates/template_gaia_fish.xml:8
+#: simulation/templates/gaia/fauna_fish.xml:4
+msgid "Fish"
+msgstr "Peixe"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Gather food from this bountiful oceanic resource."
+msgstr "Recolle alimento deste rico recurso mariño."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
@@ -113,6 +122,14 @@ msgstr "Estrutura"
 msgid "Unit"
 msgstr "Unidade"
 
+#: simulation/templates/template_wallset.xml:11
+msgid "City Wall"
+msgstr "Muralla urbana"
+
+#: simulation/templates/template_wallset.xml:12
+msgid "Wall off your town for a stout defense."
+msgstr "Rodea a túa vila para reforzar a súa defensa."
+
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
 msgstr "Exército de Alexandre Magno"
@@ -184,15 +201,15 @@ msgstr "Lobo ártico"
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgid "Canis lupus"
-msgstr ""
+msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_bear.xml:17
 msgid "Brown Bear"
-msgstr ""
+msgstr "Oso pardo"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Ursus arctos"
-msgstr ""
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_boar.xml:17
 msgid "Wild Boar"
@@ -204,11 +221,11 @@ msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:8
 msgid "Dromedary"
-msgstr ""
+msgstr "Dromedario"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camelus dromedarius"
-msgstr ""
+msgstr "Camelus dromedarius"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -216,7 +233,7 @@ msgstr "Galiña"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr ""
+msgstr "Gallus gallus domesticus"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:17
 msgid "Nile Crocodile"
@@ -228,19 +245,19 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Cervo vermello"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
-msgstr ""
+msgstr "Cervus elaphus"
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Burro"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
-msgstr ""
+msgstr "Equus africanus asinus"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
@@ -249,11 +266,11 @@ msgstr "Elefante africano de sabana"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
 msgid "Loxodonta africana"
-msgstr ""
+msgstr "Loxodonta africana"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Bush Elephant Calf"
-msgstr ""
+msgstr "Cría de elefante africano de sabana"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
@@ -262,7 +279,7 @@ msgstr "Elefante asiático"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:5
 msgid "Elephas maximus"
-msgstr ""
+msgstr "Elephas maximus"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant Calf"
@@ -270,26 +287,19 @@ msgstr "Cría de elefante asiático"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
-msgstr ""
+msgstr "Elefante africano de bosque"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
-msgstr ""
-
-#: simulation/templates/gaia/fauna_fish.xml:4
-#: simulation/templates/gaia/fauna_fish.xml:5
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
-#: simulation/templates/gaia/fauna_fish_tuna.xml:5
-msgid "Fish"
-msgstr "Peixe"
+msgstr "Loxodonta cyclotis"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
-msgstr ""
+msgstr "Tilapia"
 
 #: simulation/templates/gaia/fauna_fish_tuna.xml:4
 msgid "Tuna"
-msgstr ""
+msgstr "Atún"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
@@ -297,7 +307,7 @@ msgstr "Raposo ártico"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
-msgstr ""
+msgstr "Vulpes lagopus"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
@@ -305,28 +315,28 @@ msgstr "Raposo"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
-msgstr ""
+msgstr "Vulpes vulpes"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:8
 msgid "Thomson's Gazelle"
-msgstr ""
+msgstr "Gacela de Thomson"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Eudorcas thomsonii"
-msgstr ""
+msgstr "Eudorcas thomsonii"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr ""
+msgstr "Xirafa"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffa camelopardalis"
-msgstr ""
+msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:8
 msgid "Juvenile Giraffe"
-msgstr ""
+msgstr "Xirafa nova"
 
 #: simulation/templates/gaia/fauna_goat.xml:8
 msgid "Goat"
@@ -334,7 +344,7 @@ msgstr "Cabra"
 
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
-msgstr ""
+msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -342,7 +352,7 @@ msgstr "Cabalo "
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Equus ferus caballus"
-msgstr ""
+msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_lion.xml:17
 msgid "Lion"
@@ -350,7 +360,7 @@ msgstr "León"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Panthera leo"
-msgstr ""
+msgstr "Panthera leo"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -363,7 +373,7 @@ msgstr "Mastín"
 #: simulation/templates/gaia/fauna_mastiff.xml:5
 #: simulation/templates/gaia/fauna_wolfhound.xml:5
 msgid "Canis lupus familiaris"
-msgstr ""
+msgstr "Canis lupus familiaris"
 
 #: simulation/templates/gaia/fauna_muskox.xml:8
 msgid "Muskox"
@@ -371,7 +381,7 @@ msgstr "Boi almiscrado"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Ovibos moschatus"
-msgstr ""
+msgstr "Ovibos moschatus"
 
 #: simulation/templates/gaia/fauna_peacock.xml:7
 msgid "Peacock"
@@ -387,7 +397,7 @@ msgstr "Porco"
 
 #: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Sus scrofa domesticus"
-msgstr ""
+msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -395,7 +405,7 @@ msgstr "Porco en chamas"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Bácoro"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -407,23 +417,23 @@ msgstr "Coello"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr ""
+msgstr "Oryctolagus cuniculus"
 
 #: simulation/templates/gaia/fauna_rhino.xml:17
 msgid "White Rhinoceros"
-msgstr ""
+msgstr "Rinoceronte branco"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Ceratotherium simum"
-msgstr ""
+msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Tiburón branco"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr ""
+msgstr "Carcharodon carcharias"
 
 #: simulation/templates/gaia/fauna_sheep.xml:8
 msgid "Sheep"
@@ -431,7 +441,7 @@ msgstr "Ovella"
 
 #: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Ovis aries"
-msgstr ""
+msgstr "Ovis aries"
 
 #: simulation/templates/gaia/fauna_tiger.xml:17
 msgid "Tiger"
@@ -439,7 +449,7 @@ msgstr "Tigre"
 
 #: simulation/templates/gaia/fauna_tiger.xml:18
 msgid "Panthera tigris"
-msgstr ""
+msgstr "Panthera tigris"
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
@@ -447,7 +457,7 @@ msgstr "Morsa"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
-msgstr ""
+msgstr "Odobenus rosmarus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
@@ -455,7 +465,7 @@ msgstr "Rorcual común"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:9
 msgid "Balaenoptera physalus"
-msgstr ""
+msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
@@ -463,15 +473,15 @@ msgstr "Xibardo"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:9
 msgid "Megaptera novaeangliae"
-msgstr ""
+msgstr "Megaptera novaeangliae"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:8
 msgid "Blue Wildebeest"
-msgstr ""
+msgstr "Ñu azul"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Connochaetes taurinus"
-msgstr ""
+msgstr "Connochaetes taurinus"
 
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
@@ -483,11 +493,11 @@ msgstr "Lobo de caza"
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
-msgstr ""
+msgstr "Cebra común"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
-msgstr ""
+msgstr "Equus quagga"
 
 #: simulation/templates/gaia/fauna_zebu.xml:8
 msgid "Zebu"
@@ -495,7 +505,7 @@ msgstr "Cebú"
 
 #: simulation/templates/gaia/fauna_zebu.xml:9
 msgid "Bos taurus indicus"
-msgstr ""
+msgstr "Bos taurus indicus"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -533,9 +543,31 @@ msgstr "Piñeiro carrasco"
 msgid "Apple Tree"
 msgstr "Maceira"
 
+#: simulation/templates/gaia/flora_tree_bamboo.xml:4
+#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Bambú"
+
+#: simulation/templates/gaia/flora_tree_banyan.xml:8
+msgid "Banyan"
+msgstr "Figueira"
+
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
 msgstr "Baobab"
+
+#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr "Baobab novo"
+
+#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Baobab novo"
+
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
+msgid "Dead Baobab"
+msgstr "Baobab morto"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -543,16 +575,16 @@ msgstr "Alfarrobeira"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Cedro do Atlas novo"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Cedro do Atlas"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Cedro do Atlas morto"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -587,7 +619,7 @@ msgstr "Recolle figos de alimento."
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Abeto novo"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -625,7 +657,7 @@ msgstr "Piñeiro"
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "Piñeiro negral"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -1027,20 +1059,20 @@ msgstr "Espía"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "16 melee infantry units required"
-msgstr ""
+msgid "At least 16 melee infantry units required."
+msgstr "Necesítanse polo menos 16 unidades de infantaría corpo a corpo."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "Anti cabalaría"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr "Liña de batalla"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "4 units required"
-msgstr "Necesítanse 4 unidades."
+msgid "At least 4 units required."
+msgstr "Necesítanse polo menos 4 unidades."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1055,8 +1087,8 @@ msgid "Column Open"
 msgstr "Columna aberta"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Necesítanse 8 unidades."
+msgid "At least 8 units required."
+msgstr "Necesítanse polo menos 8 unidades."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1075,8 +1107,8 @@ msgid "None"
 msgstr "Ningunha"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "Necesítase 10 unidades de infantería hoplitas"
+msgid "At least 10 hoplite infantry required."
+msgstr "Necesítanse polo menos 10 de infantaría de hoplitas."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1087,7 +1119,7 @@ msgid "Scatter"
 msgstr "Esparexidos"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
+msgid "Only ranged units allowed."
 msgstr "Só se permiten unidades de proxectís."
 
 #: simulation/templates/special/formations/skirmish.xml:6
@@ -1095,8 +1127,8 @@ msgid "Skirmish"
 msgstr "Escaramuza"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "Necesítanse 16 unidades de infantería piqueiros"
+msgid "At least 16 pike infantry units required."
+msgstr "Necesítanse polo menos 16 unidades de infantaría de picas."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1107,8 +1139,8 @@ msgid "Testudo"
 msgstr "Tartaruga"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "Necesítanse 6 unidades de cabalaría"
+msgid "At least 6 cavalry units required."
+msgstr "Necesítanse polo menos 6 unidades de cabalaría."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

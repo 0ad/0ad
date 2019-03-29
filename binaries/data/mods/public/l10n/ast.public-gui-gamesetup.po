@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2019-03-21 17:43+0000\n"
+"POT-Creation-Date: 2019-03-22 09:43+0100\n"
+"PO-Revision-Date: 2019-03-28 20:52+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -404,8 +404,8 @@ msgstr "Activar/desactivar la clasificación d'esta partida en marcador."
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Calca %(hotkey)s p'autocompletar nomes de xugadores o axustes."
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "Calca %(hotkey)s p'autocompletar nomes de xugadores o axustes. "
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
@@ -456,82 +456,82 @@ msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'abaxo."
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'arriba."
 
-#: gui/gamesetup/gamesetup.js:1748
+#: gui/gamesetup/gamesetup.js:1751
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1750
+#: gui/gamesetup/gamesetup.js:1753
 msgid "Pick any of the given maps at random."
 msgstr "Escoyer al debalu cualesquiera de los mapes daos."
 
-#: gui/gamesetup/gamesetup.js:1782
+#: gui/gamesetup/gamesetup.js:1785
 msgctxt "biome"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1786
 msgid "Pick a biome at random."
 msgstr "Escoyer al debalu un bioma."
 
-#: gui/gamesetup/gamesetup.js:2121
+#: gui/gamesetup/gamesetup.js:2124
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2126
+#: gui/gamesetup/gamesetup.js:2129
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Desconozse"
 
-#: gui/gamesetup/gamesetup.js:2156
+#: gui/gamesetup/gamesetup.js:2159
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/gamesetup/gamesetup.js:2156
+#: gui/gamesetup/gamesetup.js:2159
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:2163
+#: gui/gamesetup/gamesetup.js:2166
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2251
+#: gui/gamesetup/gamesetup.js:2254
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2456
+#: gui/gamesetup/gamesetup.js:2459
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2464
+#: gui/gamesetup/gamesetup.js:2467
 msgid "Unassigned"
 msgstr "Ensin asignar"
 
-#: gui/gamesetup/gamesetup.js:2540
+#: gui/gamesetup/gamesetup.js:2543
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2547
+#: gui/gamesetup/gamesetup.js:2550
 msgid "Unknown Player"
 msgstr "Xugador desconocíu"
 
-#: gui/gamesetup/gamesetup.js:2586
+#: gui/gamesetup/gamesetup.js:2589
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2587
+#: gui/gamesetup/gamesetup.js:2590
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2588
+#: gui/gamesetup/gamesetup.js:2591
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -593,12 +593,19 @@ msgstr " Nun ye posible xunise a la partida: %(message)s."
 msgid "%(playername)s's game"
 msgstr "Partida de %(playername)s"
 
-#: gui/loading/loading.js:48
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading screen
+#: gui/loading/loading.js:33
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "Cargando «%(map)s»"
 
-#: gui/loading/loading.js:52
+#: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "Xenerando «%(map)s»"
@@ -1896,7 +1903,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr "«Pero la táutica ye namái una de les estremaes partes del mandu militar. Porque na guerra l'estrategu tamién tien que saber aperiar les fuercies y aprovir los estatriotes de suministros, arriendes de ser atélite, llaboriegu, curiosu, paciente y xagaz; falatible y cruel, francu y cuciu.» - Sócrates (Xenofonte, «Memories», 3.1.6)"
+msgstr "«Pero la táutica é ñada más una parte del mandu militar. Porque ena guerra l'estrategu tamién tien que saber armar las ḥorcias y aprovir los estatriotas de suministros, amás de ser atélite, llaboriegu, curiosu, paciente y avisáu; rellambíu y cruel, francu y sotil.» - Sócrates (Xenofonte, «Memories», 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1904,14 +1911,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr "«Ún tien que conocer tanto'l poder de la polis como'l de los adversarios, pa que, si'l de la polis ye mayor,-y encamiente facer guerra, pero si menor que'l de los adversarios, la convenza pa poner procuru.» - Sócrates (Xenofonte, «Memories», 3.6.8)"
+msgstr "«Hai que coñocer el poder de la polis y el del enemigu, pa que, si la polis e más ḥuerte que'l enemigu,-y encamiente ḥer la guerra, pero si é más débil, la convenza pa tener curiáu.» - Sócrates (Xenofonte, «Memories», 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr "«La vida ensin esaminar nun ye vidable pa naide.» - Sócrates, na so defensa cuando lu xulgaben por malvar a los rapazos ya nun adorar a los dioses afayadizos (más sero, tres la sentencia de muerte, bebería cicuta) - Platón («Apoloxía de Sócrates», 38a)"
+msgstr "«La vida sin esaminar ñun é vidable pal home.» - Sócrates, demientres la so defensa cuando lu xulgaben por malvar a los rapazos y nun adorar a los dioses correutos (más sero bebe cicuta en recibiendo la sentencia de muerte) - Platón («Apoloxía de Sócrates», 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -1919,7 +1926,7 @@ msgid ""
 "to live. Which is better God only knows.\" - Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
-msgstr "«Yá ye hora de dimos: yo a morrer, vós a vivir. ¿Qué fechu d'entrambos mos vien meyor? Nun ta nidio a denguién sacante, de xacíu, a Dios.» - Sócrates, na so defensa cuando lu xulgaben por malvar a los rapazos ya nun adorar a los dioses afayadizos (más sero, tres la sentencia de muerte, bebería cicuta) - Platón («Apoloxía de Sócrates», 42a)"
+msgstr "«Yá é hora de dimos: yo a morrer, vós a vivir. ¿Qué ḥechu d'entrambos mos vien meyor? Ñun lo sabrá ñaide, sacante Dios.» - Sócrates, demientres la so defensa cuando lu xulgaben por malvar a los rapazos y nun adorar a los dioses correutos (más sero bebe cicuta en recibiendo la sentencia de muerte) - Platón («Apoloxía de Sócrates», 42a)"
 
 #: gui/text/quotes.txt:167
 msgid ""
@@ -1935,14 +1942,14 @@ msgid ""
 "that the weak should be subject to the strong.\" - Speech of an Athenian "
 "embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
 "76.2)"
-msgstr "«Si garremos un imperiu que se mos apurría ya nun lu arrenunciemos foi por tres de los mayores motivos: l'honor, el respetu ya'l provechu. Pero, per otru llau, d'esta miente nun entamemos primeros, mas establecióse dende peronia que'l débil se suxete al poderosu.» - Discursu d'un unviáu ateniense n'Esparta (Tucídides, «Hestoria de la guerra del Peloponesu», I. 76.2)"
+msgstr "«Si tomemos un imperiu que se mos apurría y nun lu arrenunciemos fo por tres motivos fundamentales: l'honor, el respetu y el provechu. Per otru llau, nun fomos los primeros en facelo, sinón que lleva siendo normal dende peronia que'l ruin se suxete al fuerte.» - Discursu d'un unviáu ateniense n'Esparta (Tucídides, «Historia de la guerra del Peloponesu», I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"He could boast that he found a city of brick and left it a city of "
 "marble.\" - Suetonius, commenting on the many building projects of Augustus "
 "in Rome (\"Divus Augustus\", sec 38)"
-msgstr "«Pero podemos gloriallu con razón por dexar en mármole la ciudá que recibiera enlladriyada.» - Suetoniu, falando de los munchos proxectos de construcción d'Augustu en Roma («Augustu'l Divín», seic 28)"
+msgstr "«Podemos glorialu con razón por dexar en mármole la ciudá que recibiera enlladriyada.» - Suetoniu, falando de los munchos proxectos de construcción d'Augustu en Roma («Divus Augustus», seic 38)"
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
@@ -1952,7 +1959,7 @@ msgstr "«Nada en demasía.» - Terenciu («Andria», 61)"
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr "«La fortuna axuda al fuerte.» - Terenciu nuna pieza sobro'l gran almirante ateniense («Formión», 203)"
+msgstr "«La fortuna axuda al fuerte.» - Terenciu nuna pieza sobro un gran almirante ateniense («Formión», 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1960,7 +1967,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr "«Nun sé afinar el lliriu nin remanar el salteriu, pero recibir una ciudá pequeña ya descoñocida ya perfacela notable ya grande, eso sí.» - Temístocles, en defensa de la so falta de sofisticación cultural (Plutarcu, «Les vides paraleles», «Temístocles», seic. 2)"
+msgstr "«Nun sé afinar el lliriu nin tocar el salteriu, pero tomar una ciudadaca pequeña y desconocida y facela notable y grande, eso sí.» - Temístocles, en defensa de la so falta de sofisticación cultural (Plutarcu, «Vides paraleles», «Temístocles», seic. 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1968,41 +1975,41 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr "«Cuti, pero ascucha.» - Temístocles, nun discutiniu encaloráu col comandante de la flota espartana que-y amenazó con cutilu col blagu, enanties de la batalla de Salamina (Plutarcu, «Les vides paraleles», «Temístocles», seic. 11)"
+msgstr "«Cuti, pero ascucha.» - Temístocles, nun discutiniu encaloráu col comandante de la flota espartana que-y amenazó con apurri-y un cayadazu, enanties de la batalla de Salamina (Plutarcu, «Vides paraleles», «Temístocles», seic. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr "«A los griegos-yos manden los atenienses, a los atenienses yo, a min to ma, pero a ma tu.» - Temístocles, en chancia al so ñeñu (Plutarcu, «Les vides paraleles», «Temístocles», seic. 18)"
+msgstr "«A los griegos mánden-yos los atenienses, a los atenienses mándo-y yo, a min mándame to ma, pero a to ma mándes-y tu.» - Temístocles, en chancia al so ñeñu (Plutarcu, «Vides paraleles», «Temístocles», seic. 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr "«Los cuentos d'antaño, masque rala vez confirmaos con pruebes, diéronse por fechu ensin reparos.» - Tucídides («Hestoria del guerra del Peloponesu», I. 21.3)"
+msgstr "«Los cuentos d'antaño, masque rala vez confirmaos con pruebes, diéronse por fechu ensin reparos.» - Tucídides («Historia del guerra del Peloponesu», I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr "«Camiento que'l motivu verdaderu que los llevó a la guerra, anque anubiertu nel discursu, foi que los atenienses se volvíen mayores ya metíen mieu a los lacedemonios.» - Tucídides («Hestoria de la guerra del Peloponesu», I. 23.6)"
+msgstr "«Camiento que'l verdaderu motivu que los llevó a la guerra, anque anubiertu pol discursu, foi que los atenienses se volvíen más fuertes y atarrecíen a los lacedemonios.» - Tucídides («Historia de la guerra del Peloponesu», I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr "«La guerra nun ye tanto una cuestión d'armes como de dineru.» - Tucídides («Historia de la guerra del Peloponesu», I. 83.2)"
+msgstr "«La guerra nun ye tanto una cuestión d'armes como de perres.» - Tucídides («Historia de la guerra del Peloponesu», I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr "«L'home ye predispuestu a despreciar al combayón, pero almirar al que nun cede.» - Tucídides («Hestoria de la guerra del Peloponesu», III. 39.5)"
+msgstr "«L'home ye predispuestu a despreciar al combayón y almirar al que nun cede un res.» - Tucídides («Historia de la guerra del Peloponesu», III. 39.5)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -2013,7 +2020,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr "«El fechu esi foi'l más grande de tolos acontecimientos de la guerra, pero, pa mio idea, tamién lo foi de tolos de qu'oyemos falar ente los griegos. A los vencedores-yos abultó espléndidu ya a los vencíos llaceriosu, porque, vencíos en toa riegla, ya sufriendo enforma, l'exércitu, les naves, too s'escontarmó, aniquilao dafechu, según dizse, ya de los munchos pocos tornaron a casa. Asina asocedió la espedición a Sicilia.» - Tucídides («Hestoria de la guerra del Peloponesu», VII. 87.6-7)"
+msgstr "«Esi foi'l mayor acontecimientu de tolo asocedío na guerra y, pa mio idea, de tolo que los griegos oyimos falar. A los vencedores abultó-yos gloriosu y a los vencíos una llaceria; pos, vencíos en toa regla y sufriendo enforma, l'exércitu, los barcos, too s'escontarmó, aniquilao dafechu; y de los munchos pocos tornaron a casa. Asina acabó la espedición a Sicilia.» - Tucídides («Historia de la guerra del Peloponesu», VII. 87.6-7)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -2021,7 +2028,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr "«N'asuntos humanos, la xusteza acútase pa poderes iguales, pero los fuertes llogren imponese ya los débiles agachen.» - Tucídides, describiendo como los atenienses se dirixíen a los melinos que, vencíos, se ñegaben a rindise («Hestoria de la guerra del Peloponesu», V. 89.1)"
+msgstr "«N'asuntos humanos, la xusticia acútase pa poderes iguales; los fuertes llogren imponese y los débiles agachen.» - Tucídides, describiendo como los atenienses se dirixeron a los melinos que, vencíos, se ñegaben a rindise («Historia de la guerra del Peloponesu», V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""

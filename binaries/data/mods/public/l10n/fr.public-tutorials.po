@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -7,21 +7,20 @@
 # Baptiste Finck <baptiste.finck.bf@gmail.com>, 2017
 # Florent Fraysse <roflcopterindaspaceship@gmail.com>, 2017
 # curieux de l'être <skimandco@gmail.com>, 2017
-# Rémi Letot <hobbes@poukram.net>, 2017
 # David D, 2018
-# Alt Ober <altober333@gmail.com>, 2018
 # l p <llenaick.lp23@gmail.com>, 2018
-# Polakrity <sxk-fr@live.fr>, 2018
-# Goulven <goulvenbreizh@hotmail.fr>, 2018
-# Jo Du <jojo337@live.fr>, 2018
-# Requin <dylanroux34@gmail.com>, 2018
 # oiseauroch <tobollive@aol.com>, 2018
+# Jo Du <jojo337@live.fr>, 2018
+# Polakrity <sxk-fr@live.fr>, 2018
+# Alt Ober <altober333@gmail.com>, 2018
+# Requin <dylanroux34@gmail.com>, 2018
+# Goulven <goulvenbreizh@hotmail.fr>, 2018
 # Glorfindel Of Gondolin, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Glorfindel Of Gondolin, 2019\n"
 "Language-Team: French (https://www.transifex.com/wildfire-games/teams/17418/fr/)\n"
@@ -184,13 +183,9 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
-"'II' icon (you have to wait for the outpost to be built first). This will "
+"II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
-"Sélectionnez à nouveau le centre civique et avancez jusqu'à la phase des "
-"villes en cliquant sur l'icône «II» (vous devez attendre que l'avant-poste "
-"soit construit en premier). Cela permettra de construire les bâtiments de la"
-" phase des villes."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
@@ -304,15 +299,10 @@ msgstr "L'ennemi a été vaincu. Ce tutoriel est maintenant terminé."
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
 "This tutorial will teach the basics of developing your economy. Typically, "
-"you will start with a Civic Center and a couple units in 'Village Phase' and"
-" ultimately, your goal will be to develop and expand your empire, often by "
-"evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"you will start with a Civic Center and a couple units in Village Phase and "
+"ultimately, your goal will be to develop and expand your empire, often by "
+"evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"Ce tutoriel va vous apprendre les bases du développement de votre économie. "
-"Typiquement, vous allez commencer avec un centre ville et quelques unités "
-"dans la \"phase des villages\" et en fin de compte, votre but sera de "
-"développer et d'étendre votre empire, souvent en évoluant vers la \"phase "
-"des villes\" et la \"phase des cités\" par la suite.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -378,15 +368,10 @@ msgstr ""
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
-"technologies. Hover the cursor over the 'II' icon. The tooltip will tell us "
-"that advancing to 'Town Phase' requires both more constructed structures as "
+"technologies. Hover the cursor over the II icon. The tooltip will tell us "
+"that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
-"La première rangée de boutons contient les unités qui peuvent être "
-"entrainées. Les rangées en dessous indiquent des technologies à rechercher. "
-"Passer le curseur de la souris sur l'icône \"II\". L'info-bulle indique "
-"qu'avancer vers la \"phase des villes\" nécessite de construire plus de "
-"structures ainsi que plus de ressources de nourriture et de bois."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -502,27 +487,18 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
-"First, let's set a rally-point. Setting a rally point on a building that can"
+"First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
 "Wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"Premièrement, créons un point de ralliement. Programmer un point de "
-"ralliement sur un bâtiment pouvant créer des unités va automatiquement "
-"désigner une tâche aux nouvelles unités quand leur entrainement sera "
-"terminé. Nous voulons envoyer les unités nouvellement créées collecter du "
-"bois sur le groupe d'arbres au sud du centre ville. Pour ce faire, "
-"sélectionnez le centre ville en cliquant dessus puis faites un clic droit "
-"sur un des arbres.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
-"Rally-Points are indicated by a small flag at the end of the blue line."
+"Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
-"Les points de ralliement  sont indiqués par un petit drapeau à la fin d'une "
-"ligne bleue."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -534,12 +510,9 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
-"Now that the rally-point is set, we can produce additional units and they "
+"Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
-"Maintenant que le point de ralliement est défini, on peut produire des "
-"unités supplémentaires et ils iront automatiquement faire leur tâche "
-"assignée.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -669,15 +642,10 @@ msgstr "Maintenez Maj appuyé et cliquez sur l'icône 'Citoyenne' "
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally-point of the Civic Center away from gathering Wood."
+"remove the current rally point of the Civic Center away from gathering Wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
-"the flag icon indicating the rally-point is crossed out)."
+"the flag icon indicating the rally point is crossed out)."
 msgstr ""
-"Pendant ce temps, il semble que nous ayons assez d'ouvriers récoltant du "
-"bois. Nous devrions retirer l'actuel point de ralliement du centre ville de "
-"la récolte de bois. Pour cela, faites un clic droit sur le centre ville "
-"quand il est sélectionné (et que l'icône de drapeau indiquant le point de "
-"ralliement est barrée)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -857,17 +825,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally-point on a field by "
+"gatherers, select the Civic Center and setup a rally point on a field by "
 "right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally-point will help building it, while they will gather it when "
+"sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
-"Un champ peut posséder jusqu'à cinq fermiers travaillant dessus. Pour "
-"ajouter d'autres collecteurs, sélectionnez le centre ville et créez un point"
-" de ralliement sur un champ en faisant un clic droit. Tant que le champ "
-"n'est pas encore construit, les nouveaux travailleurs envoyés par le point "
-"de ralliement aideront à le construire, tandis qu'ils iront le collecter "
-"quand il sera construit."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -913,14 +875,10 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
-"We should start preparing to phase up into 'Town Phase', which will unlock "
+"We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
-"over the 'Town Phase' icon to see what is still needed.\n"
+"over the Town Phase icon to see what is still needed.\n"
 msgstr ""
-"Nous devrions commencer à nous préparer à passer à la \"Phase des Villes\", "
-"qui débloquera beaucoup d'unités et de bâtiments. Sélectionnez le centre "
-"ville et passez votre curseur sur l'icône Phase des Villes pour voir ce qui "
-"est nécessaire.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -949,24 +907,16 @@ msgstr ""
 msgid ""
 "Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the Barracks foundation by right-clicking"
+"Center and set up a rally point on the Barracks foundation by right-clicking"
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
-"Attendons que la caserne soit construite. Comme ce type de construction est "
-"long, vous pouvez y ajouter deux soldats afin de la construire plus vite. "
-"Pour cela, sélectionnez votre centre-ville et placez un point de ralliement "
-"sur les fondations de la caserne en faisant un clique-droit dessus (vous "
-"devriez voir une icône de marteau), puis produire deux autres constructeurs "
-"en cliquant deux fois sur l'icône des Hoplites."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
-"You should now be able to research 'Town Phase'. Select the Civic Center and"
-" click on the technology icon.\n"
+"You should now be able to research Town Phase. Select the Civic Center and "
+"click on the technology icon.\n"
 msgstr ""
-"Vous devriez maintenant être capable de rechercher la \"Phase des Villes\". "
-"Sélectionnez le centre ville et cliquez sur l'icône de la technologie.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""

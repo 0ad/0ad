@@ -7,14 +7,15 @@
 # Catalanoic <catalanoic@gmail.com>, 2015-2016,2018
 # Guillem Poy <guplem@gmail.com>, 2015
 # Klan Ruiz Martin <rodamit@gmail.com>, 2017
+# Marc Masip Compte <marcmc421@gmail.com>, 2019
 # Marc Miró <mmirosanchez@gmail.com>, 2017
 # Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-15 09:45+0100\n"
-"PO-Revision-Date: 2019-03-15 15:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-27 02:19+0000\n"
+"Last-Translator: Marc Masip Compte <marcmc421@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +26,15 @@ msgstr ""
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Natura"
+
+#: simulation/templates/template_gaia_fish.xml:8
+#: simulation/templates/gaia/fauna_fish.xml:4
+msgid "Fish"
+msgstr "peix"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Gather food from this bountiful oceanic resource."
+msgstr "Recol·lecteu menjar d'aquest abundant recurs oceànic."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
@@ -114,6 +124,14 @@ msgstr "Estructura"
 msgid "Unit"
 msgstr "Unitat"
 
+#: simulation/templates/template_wallset.xml:11
+msgid "City Wall"
+msgstr "Muralla de la ciutat"
+
+#: simulation/templates/template_wallset.xml:12
+msgid "Wall off your town for a stout defense."
+msgstr "Emmuralleu la ciutat per defensar-la."
+
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
 msgstr "Exèrcit d'Alexandre el Gran."
@@ -185,15 +203,15 @@ msgstr "Llop àrtic"
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgid "Canis lupus"
-msgstr ""
+msgstr "Llop"
 
 #: simulation/templates/gaia/fauna_bear.xml:17
 msgid "Brown Bear"
-msgstr ""
+msgstr "Ós Bru"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Ursus arctos"
-msgstr ""
+msgstr "Ós bru"
 
 #: simulation/templates/gaia/fauna_boar.xml:17
 msgid "Wild Boar"
@@ -205,7 +223,7 @@ msgstr "Porc senglar"
 
 #: simulation/templates/gaia/fauna_camel.xml:8
 msgid "Dromedary"
-msgstr ""
+msgstr "Dromedari"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camelus dromedarius"
@@ -229,7 +247,7 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Cérvol"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
@@ -237,7 +255,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Ruc"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
@@ -277,13 +295,6 @@ msgstr ""
 msgid "Loxodonta cyclotis"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_fish.xml:4
-#: simulation/templates/gaia/fauna_fish.xml:5
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
-#: simulation/templates/gaia/fauna_fish_tuna.xml:5
-msgid "Fish"
-msgstr "peix"
-
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
 msgstr ""
@@ -318,7 +329,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr ""
+msgstr "Girafa"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
@@ -396,7 +407,7 @@ msgstr "Porcs incendiaris"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Garrí"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -412,7 +423,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_rhino.xml:17
 msgid "White Rhinoceros"
-msgstr ""
+msgstr "Rinoceront Blanc"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Ceratotherium simum"
@@ -420,7 +431,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Gran Tauró Blanc "
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -484,7 +495,7 @@ msgstr "Gos llop"
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
-msgstr ""
+msgstr "Zebra Comuna"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
@@ -534,9 +545,31 @@ msgstr "Pi blanc"
 msgid "Apple Tree"
 msgstr "Pomera"
 
+#: simulation/templates/gaia/flora_tree_bamboo.xml:4
+#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Bambú"
+
+#: simulation/templates/gaia/flora_tree_banyan.xml:8
+msgid "Banyan"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
 msgstr "Baobab"
+
+#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Baobab jove"
+
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
+msgid "Dead Baobab"
+msgstr "Baobab mort"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -1028,20 +1061,20 @@ msgstr "Espia"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "16 melee infantry units required"
-msgstr ""
+msgid "At least 16 melee infantry units required."
+msgstr "Es requereixen almenys 16 unitats d'infanteria cos a cos."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "Anti Cavalleria"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr "En línia"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "4 units required"
-msgstr "Calen 4 unitats"
+msgid "At least 4 units required."
+msgstr "Es requereixen almenys 4 unitats."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1056,8 +1089,8 @@ msgid "Column Open"
 msgstr "Columna oberta"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Calen 8 unitats"
+msgid "At least 8 units required."
+msgstr "Es requereixen almenys 8 unitats."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1076,8 +1109,8 @@ msgid "None"
 msgstr "Cap"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "Es necessiten 10 unitats d'hoplites"
+msgid "At least 10 hoplite infantry required."
+msgstr "Es requereixen almenys 10 infanteria hoplita."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1088,7 +1121,7 @@ msgid "Scatter"
 msgstr "Dispersa"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
+msgid "Only ranged units allowed."
 msgstr "Només es permeten unitats a distància"
 
 #: simulation/templates/special/formations/skirmish.xml:6
@@ -1096,8 +1129,8 @@ msgid "Skirmish"
 msgstr "Formació oberta"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "Es necessiten 16 unitats de piquers"
+msgid "At least 16 pike infantry units required."
+msgstr "Es requereixen almenys 16 unitats d'infanteria piquera."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1108,8 +1141,8 @@ msgid "Testudo"
 msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "Es necessiten 6 unitats de cavalleria"
+msgid "At least 6 cavalry units required."
+msgstr "Es requereixen almenys 6 unitats de cavalleria."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

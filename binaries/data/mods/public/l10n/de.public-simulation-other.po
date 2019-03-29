@@ -20,14 +20,14 @@
 # Thelxinoe, 2015
 # 4c905de7e2c9950b7d83273a8070b072, 2017
 # qwertz, 2015
-# Raymond Vetter, 2014-2018
+# Raymond Vetter, 2014-2019
 # xtother90, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-02-14 16:55+0000\n"
-"Last-Translator: Jakob Raidt <jakob.raidt@hotmail.com>\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2019-03-24 13:42+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -749,8 +749,9 @@ msgstr "Königsmord"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Sei der Erste, der ein Wunder baut oder erobert und es für eine bestimmte Zeit behält, um das Spiel zu gewinnen. Der Timer wird zurückgesetzt, wenn das Wunder zerstört oder erobert wird oder wenn die Allianz der Besitzer sich ändert."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Sei der Erste, der ein Wunder baut oder erobert und es für eine bestimmte Zeit hält, um das Spiel zu gewinnen. Der Timer wird zurückgesetzt, wenn das Wunder zerstört oder erobert wird oder wenn die Allianz der Besitzer sich ändert."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

@@ -13,6 +13,7 @@
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # mahmut özcan <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
+# Günay Yılmaz <turkoman07@gmail.com>, 2019
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2017
@@ -43,8 +44,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-01-29 23:48+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2019-03-27 05:10+0000\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +137,7 @@ msgstr "Yok"
 #: gui/session/menu.js:465 gui/session/messages.js:178
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr "Dost"
+msgstr "Müttefik"
 
 #: gui/session/menu.js:466 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
@@ -1228,7 +1229,7 @@ msgstr "Müttefiklerin bu açılır listeyi  kullanmalarına izin vermek için t
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Müttefiklerin bu açılır listeyi kullanmasını önlemek için tıklayın"
+msgstr "Müttefiklerin bu depolama alanını kullanmasını önlemek için tıklayın"
 
 #: gui/session/unit_actions.js:1369
 msgid "You are allowed to use this dropsite"
@@ -1236,7 +1237,7 @@ msgstr "Bu açılır listeyi kullanmanıza izniniz var"
 
 #: gui/session/unit_actions.js:1374
 msgid "The use of this dropsite is prohibited"
-msgstr "Bu açılır listeyi kullanmanıza izniniz yok"
+msgstr "Bu depolama alanını kullanamazsınız."
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
@@ -1311,7 +1312,7 @@ msgstr "Tıkama kaplaması"
 
 #: gui/session/developer_overlay.xml:(caption):67
 msgid "Unit motion overlay"
-msgstr "Birim hareket kaplaması"
+msgstr "Birim hareket göstergesi"
 
 #: gui/session/developer_overlay.xml:(caption):77
 msgid "Range overlay"
