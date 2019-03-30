@@ -6,6 +6,7 @@
 # ali topçu <ali134636@gmail.com>, 2018
 # Cem Aktas <cemwstone@gmail.com>, 2018
 # Hüseyin Cem KOÇ <hckweb@gmail.com>, 2015
+# Günay Yılmaz <turkoman07@gmail.com>, 2019
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2016
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
@@ -15,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-15 09:45+0100\n"
-"PO-Revision-Date: 2019-03-15 15:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-28 16:13+0000\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +28,20 @@ msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
-msgstr "Toprak ana"
+msgstr "Doğa"
+
+#: simulation/templates/template_gaia_fish.xml:8
+#: simulation/templates/gaia/fauna_fish.xml:4
+msgid "Fish"
+msgstr "Balık"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Gather food from this bountiful oceanic resource."
+msgstr "Bu verimli okyanusal kaynaktan gıda topla."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
-msgstr "Çalı"
+msgstr "Böğürtlen"
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -117,6 +127,14 @@ msgstr "Yapı"
 msgid "Unit"
 msgstr "Birim"
 
+#: simulation/templates/template_wallset.xml:11
+msgid "City Wall"
+msgstr "Şehir Duvarı"
+
+#: simulation/templates/template_wallset.xml:12
+msgid "Wall off your town for a stout defense."
+msgstr "Sağlam bir savunma için şehrine duvar ör."
+
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
 msgstr "Büyük İskenderin Ordusu."
@@ -188,15 +206,15 @@ msgstr "Kutup Kurdu"
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgid "Canis lupus"
-msgstr ""
+msgstr "Kurt"
 
 #: simulation/templates/gaia/fauna_bear.xml:17
 msgid "Brown Bear"
-msgstr ""
+msgstr "Kahverengi Ayı"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Ursus arctos"
-msgstr ""
+msgstr "Boz Ayı"
 
 #: simulation/templates/gaia/fauna_boar.xml:17
 msgid "Wild Boar"
@@ -204,15 +222,15 @@ msgstr "Yaban domuzu"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Sus scrofa"
-msgstr "Sus scrofa"
+msgstr "Yaban Domuzu"
 
 #: simulation/templates/gaia/fauna_camel.xml:8
 msgid "Dromedary"
-msgstr ""
+msgstr "Deve"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camelus dromedarius"
-msgstr ""
+msgstr "Deve"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -220,7 +238,7 @@ msgstr "Tavuk"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr ""
+msgstr "Tavuk"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:17
 msgid "Nile Crocodile"
@@ -232,19 +250,19 @@ msgstr "Nil timsahı"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Kızıl Geyik"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
-msgstr ""
+msgstr "Kızıl Geyik"
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Eşek"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
-msgstr ""
+msgstr "Eşek"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
@@ -253,11 +271,11 @@ msgstr "Afrika Çalı Fili"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
 msgid "Loxodonta africana"
-msgstr ""
+msgstr "Afrika Savan Fili"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Bush Elephant Calf"
-msgstr ""
+msgstr "Afrika Savan Fili Yavrusu"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
@@ -266,7 +284,7 @@ msgstr "Asya Fili"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:5
 msgid "Elephas maximus"
-msgstr ""
+msgstr "Asya Fili"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant Calf"
@@ -274,26 +292,19 @@ msgstr "Asya Yavru Fili"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
-msgstr ""
+msgstr "Afrika Orman Fili"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
-msgstr ""
-
-#: simulation/templates/gaia/fauna_fish.xml:4
-#: simulation/templates/gaia/fauna_fish.xml:5
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
-#: simulation/templates/gaia/fauna_fish_tuna.xml:5
-msgid "Fish"
-msgstr "Balık"
+msgstr "Afrika Orman Fili"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
-msgstr ""
+msgstr "Çipura"
 
 #: simulation/templates/gaia/fauna_fish_tuna.xml:4
 msgid "Tuna"
-msgstr ""
+msgstr "Ton Balığı"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
@@ -301,7 +312,7 @@ msgstr "Kutup Tilkisi"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
-msgstr ""
+msgstr "Kutup Tilkisi"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
@@ -309,28 +320,28 @@ msgstr "Kızıl Tilki"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
-msgstr ""
+msgstr "Kızıl Tilki"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:8
 msgid "Thomson's Gazelle"
-msgstr ""
+msgstr "Thomson Ceylanı"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Eudorcas thomsonii"
-msgstr ""
+msgstr "Thomson Ceylanı"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr ""
+msgstr "Zürafa"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffa camelopardalis"
-msgstr ""
+msgstr "Zürafa"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:8
 msgid "Juvenile Giraffe"
-msgstr ""
+msgstr "Zürafa Yavrusu"
 
 #: simulation/templates/gaia/fauna_goat.xml:8
 msgid "Goat"
@@ -338,7 +349,7 @@ msgstr "Keçi"
 
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
-msgstr ""
+msgstr "Keçi"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -346,7 +357,7 @@ msgstr "At"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Equus ferus caballus"
-msgstr ""
+msgstr "At"
 
 #: simulation/templates/gaia/fauna_lion.xml:17
 msgid "Lion"
@@ -354,7 +365,7 @@ msgstr "Aslan"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Panthera leo"
-msgstr ""
+msgstr "Aslan"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -367,7 +378,7 @@ msgstr "Çoban köpeği"
 #: simulation/templates/gaia/fauna_mastiff.xml:5
 #: simulation/templates/gaia/fauna_wolfhound.xml:5
 msgid "Canis lupus familiaris"
-msgstr ""
+msgstr "Köpek"
 
 #: simulation/templates/gaia/fauna_muskox.xml:8
 msgid "Muskox"
@@ -375,7 +386,7 @@ msgstr "Yabani Manda"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Ovibos moschatus"
-msgstr ""
+msgstr "Misk Sığırı"
 
 #: simulation/templates/gaia/fauna_peacock.xml:7
 msgid "Peacock"
@@ -383,7 +394,7 @@ msgstr "Tavuskuşu"
 
 #: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Pavo cristatus"
-msgstr "Pavo cristatus"
+msgstr "Hint Tavuskuşu"
 
 #: simulation/templates/gaia/fauna_pig.xml:8
 msgid "Pig"
@@ -391,7 +402,7 @@ msgstr "Domuz"
 
 #: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Sus scrofa domesticus"
-msgstr ""
+msgstr "Domuz"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -399,7 +410,7 @@ msgstr "Yanan Domuz"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Domuz"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -411,23 +422,23 @@ msgstr "Tavşan"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr ""
+msgstr "Avrupa Ada Tavşanı"
 
 #: simulation/templates/gaia/fauna_rhino.xml:17
 msgid "White Rhinoceros"
-msgstr ""
+msgstr "Beyaz Gergedan"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Ceratotherium simum"
-msgstr ""
+msgstr "Gergedan"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Büyük Beyaz Köpekbalığı"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr ""
+msgstr "Büyük beyaz Köpekbalığı"
 
 #: simulation/templates/gaia/fauna_sheep.xml:8
 msgid "Sheep"
@@ -435,7 +446,7 @@ msgstr "Koyun"
 
 #: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Ovis aries"
-msgstr ""
+msgstr "Koyun"
 
 #: simulation/templates/gaia/fauna_tiger.xml:17
 msgid "Tiger"
@@ -443,7 +454,7 @@ msgstr "Kaplan"
 
 #: simulation/templates/gaia/fauna_tiger.xml:18
 msgid "Panthera tigris"
-msgstr ""
+msgstr "Kaplan"
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
@@ -451,7 +462,7 @@ msgstr "Deniz Ayısı"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
-msgstr ""
+msgstr "Mors"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
@@ -459,7 +470,7 @@ msgstr "Fin Balinası"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:9
 msgid "Balaenoptera physalus"
-msgstr ""
+msgstr "Oluklu Balina"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
@@ -467,15 +478,15 @@ msgstr "Kambur Balina"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:9
 msgid "Megaptera novaeangliae"
-msgstr ""
+msgstr "Kambur Balina"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:8
 msgid "Blue Wildebeest"
-msgstr ""
+msgstr "Antilop"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Connochaetes taurinus"
-msgstr ""
+msgstr "Antilop"
 
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
@@ -487,11 +498,11 @@ msgstr "Kurt köpeği"
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
-msgstr ""
+msgstr "Zebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
-msgstr ""
+msgstr "Zeba"
 
 #: simulation/templates/gaia/fauna_zebu.xml:8
 msgid "Zebu"
@@ -499,7 +510,7 @@ msgstr "Hint Sığırı"
 
 #: simulation/templates/gaia/fauna_zebu.xml:9
 msgid "Bos taurus indicus"
-msgstr ""
+msgstr "Zebu"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -507,11 +518,11 @@ msgstr "Dayanıklı Çalı"
 
 #: simulation/templates/gaia/flora_bush_berry.xml:4
 msgid "Berries"
-msgstr "Meyveler"
+msgstr "Dut"
 
 #: simulation/templates/gaia/flora_bush_berry.xml:5
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Besin biriktirmek için bu çalılıklardan meyve toplayın."
+msgstr "Besin elde etmek için bu çalılıklardan meyve toplayın."
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
@@ -537,9 +548,31 @@ msgstr "Halep Çamı Ağacı"
 msgid "Apple Tree"
 msgstr "Elma Ağacı"
 
+#: simulation/templates/gaia/flora_tree_bamboo.xml:4
+#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Bambu"
+
+#: simulation/templates/gaia/flora_tree_banyan.xml:8
+msgid "Banyan"
+msgstr "Banyan"
+
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
 msgstr "Baobab"
+
+#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr "Baobab Fidanı"
+
+#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Genç Baobab"
+
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
+msgid "Dead Baobab"
+msgstr "Ölü Baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -547,16 +580,16 @@ msgstr "Keçiboynuzu Ağacı"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Atlas Sediri Fidanı"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Atlas Sediri"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Ölü Atlas Sediri"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -591,7 +624,7 @@ msgstr "Besing için incileri topla."
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Göknar Fidanı"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -629,7 +662,7 @@ msgstr "Çam Ağacı"
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "Karaçam"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -819,12 +852,12 @@ msgstr "Sütun"
 
 #: simulation/templates/other/column_doric.xml:20
 msgid "Doric Column"
-msgstr "Dorik Sütunu"
+msgstr "Kaba Sütun"
 
 #: simulation/templates/other/column_doric_fallen.xml:20
 #: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Fallen Doric Column"
-msgstr "Düşen Dor Sütunu"
+msgstr "Zayıf Kaba Sütun"
 
 #: simulation/templates/other/desert_trading_post.xml:14
 msgid "Desert Trading Post"
@@ -1031,20 +1064,20 @@ msgstr "Casus"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "16 melee infantry units required"
-msgstr ""
+msgid "At least 16 melee infantry units required."
+msgstr "En az 16 yakın piyade birimi gerekli."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "Anti Süvari"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
 msgstr "Savaş Hattı"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 birim gerekli"
+msgid "At least 4 units required."
+msgstr "En az 4 birim gerekli."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1052,35 +1085,35 @@ msgstr "Kutu"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "Zorlu Mart"
+msgstr "Zorlama Yürüyüş"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "Sütun Açık"
+msgstr "Açık Sütun"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 birim gerekli"
+msgid "At least 8 units required."
+msgstr "En az 8 birim gerekli."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "Böğür"
+msgstr "Kanat"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "Emri Kapat"
+msgstr "Kapalı Düzen"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
-msgstr "Emir Aç"
+msgstr "Açık Düzen"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
 msgstr "Yok"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "10 mızraklı ağır piyade gerekli"
+msgid "At least 10 hoplite infantry required."
+msgstr "En az 10 hoplite piyadesi gerekli."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1088,19 +1121,19 @@ msgstr "Falanks"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
-msgstr "Saçılma"
+msgstr "Dağınık"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Sadece birimlerin izinleri değiştirildi"
+msgid "Only ranged units allowed."
+msgstr "Sadece menzilli birimler için."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Çatışma"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 kargılı piyade birimi gerekli"
+msgid "At least 16 pike infantry units required."
+msgstr "En az 16 uzun mızrak piyade birimi gerekli."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1111,12 +1144,12 @@ msgid "Testudo"
 msgstr "Kaplumbağa tipi"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 süvari birimi gerekli"
+msgid "At least 6 cavalry units required."
+msgstr "En az 6 süvari birimi gerekli."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
-msgstr "Takoz"
+msgstr "Kama"
 
 #: simulation/templates/special/player/player.xml:60
 msgid "Player"

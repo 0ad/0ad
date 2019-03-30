@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-03-18 22:43+0000\n"
-"Last-Translator: ks k\n"
+"PO-Revision-Date: 2019-03-27 13:07+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,17 +62,17 @@ msgstr "접속종료."
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s가 로비 제목을 %(subject)s으로 바꿨습니다."
+msgstr "%(nick)가 로비 제목을 %(subject)으로 바꿨습니다"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s님이 오셨습니다."
+msgstr "%(nick)님이 오셨습니다."
 
 #: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s님이 나갔습니다."
+msgstr "%(nick)님이 나갔습니다."
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
@@ -81,7 +81,7 @@ msgstr "소리를 없앴습니다."
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr "%(nick)s 님이 소리를 없앴습니다."
+msgstr "%(nick) 님이 소리를 없앴습니다."
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
@@ -90,7 +90,7 @@ msgstr "당신은 이제 진행자(방장?)가 되었습니다."
 #: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s님이 진행자(방장?)가 되었습니다."
+msgstr "%(nick)님이 진행자(방장?)가 되었습니다."
 
 #: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
@@ -99,7 +99,7 @@ msgstr "소리를 켰습니다."
 #: gui/lobby/lobby.js:229
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s 님이 소리를 켰습니다."
+msgstr "%(nick) 님이 소리를 켰습니다."
 
 #: gui/lobby/lobby.js:231
 msgid "You are not a moderator anymore."
@@ -108,12 +108,12 @@ msgstr "당신은 더 이상 진행자가 아닙니다."
 #: gui/lobby/lobby.js:232
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s 님은 더 이상 진행자가 아닙니다."
+msgstr "%(nick) 님은 더 이상 진행자가 아닙니다."
 
 #: gui/lobby/lobby.js:247
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "예전의 %(oldnick)s님은 지금 %(newnick)s님입니다."
+msgstr "예전의 %(oldnick)님은 지금 %(newnick)님입니다."
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
@@ -121,43 +121,43 @@ msgstr "공지사항"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr "상태를 '자리 비움'으로 설정하십시오."
+msgstr "상태를 '자리 비움'으로 설정하세요."
 
 #: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
-msgstr "상태를 '온라인'으로 설정하십시오."
+msgstr "상태를 '온라인'으로 설정하세요."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "지정한 사용자를 강제로 추방시킵니다. 사용법: /kick 사용자이름 이유."
+msgstr "지정한 사용자를 강제로 추방시킵니다. 사용법 : /kick 닉네임 이유"
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "지정한 사용자를 차단합니다. 사용법: /ban 사용자이름 이유"
+msgstr "지정한 사용자를 차단합니다. 사용법 : /ban 사용자이름 이유"
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
-msgstr "이 도움말을 표시하십시오."
+msgstr "이 도움말을 표시하세요."
 
 #: gui/lobby/lobby.js:353
 msgid "Chat commands:"
-msgstr "대화 명령어:"
+msgstr "대화 명령어 :"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr "%(command)s - %(description)s"
+msgstr "%(command) - %(description)"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "자신에 대한 채팅 메시지를 보냅니다. 예 : /me 수영하러 갑니다."
 
 #: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "문자 메시지를 대화 메시지로 보냅니다(슬래시로 시작하는 경우에도). 예 : /say /help는 훌륭한 명령입니다."
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
@@ -169,7 +169,7 @@ msgstr "주 메뉴로 돌아갑니다."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "로비에서 연결이 끊어졌습니다. 다시 연결 하시겠습니까?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
 #: gui/prelobby/common/credentials/credentials.js:55
@@ -215,90 +215,90 @@ msgstr "아무거나"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)"
 
 #: gui/lobby/lobby.js:548
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr "< %(rating)s"
+msgstr "< %(rating)"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "당신은 로비에서 차단되었습니다!"
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "당신은 로비에서 추방되었습니다!"
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)이(가) 로비에서 차단되었습니다."
 
 #: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)이(가) 로비에서 추방되었습니다."
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr "이유: %(reason)s"
+msgstr "이유 : %(reason)"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr "차단당함"
+msgstr "차단됨"
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr "추방당함"
+msgstr "추방됨"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "친구로 표시 취소"
 
 #: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "친구로 표시"
 
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
 msgid "N/A"
-msgstr "없음"
+msgstr "이용할 수 없음"
 
 #: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "사용자를 찾을 수 없습니다. - %(nick)s"
+msgstr "사용자를 찾을 수 없습니다. - %(nick)"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1143
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "게임이 %(time)s에 시작합니다."
+msgstr "게임이 %(time)에 시작합니다"
 
 #: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1524
 msgid "HH:mm"
-msgstr "시간:분"
+msgstr "시 : 분"
 
 #: gui/lobby/lobby.js:1148
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr "플레이어들: %(current)s/%(total)s"
+msgstr "플레이어들 : %(current)/%(total)"
 
 #: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "사용 중인 모드는 이 게임의 모드와 일치하지 않습니다."
 
 #: gui/lobby/lobby.js:1191
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "모드 선택 페이지로 전환 하시겠습니까?"
 
 #: gui/lobby/lobby.js:1192
 msgid "Incompatible mods"
-msgstr ""
+msgstr "호환되지 않는 모드"
 
 #: gui/lobby/lobby.js:1209
 msgid "The game has already started. Do you want to join as observer?"
@@ -307,53 +307,53 @@ msgstr "게임이 이미 시작되었습니다. 관전하시겠습니까?"
 #: gui/lobby/lobby.js:1243
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "게임 주소  '%(ip)s'가 유효하지 않습니다."
+msgstr "게임 주소  '%(ip)'가 유효하지 않습니다."
 
 #: gui/lobby/lobby.js:1359
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "'%(cmd)s' 명령은 지원되지 않습니다."
 
 #: gui/lobby/lobby.js:1371
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "'%(cmd)s' 명령은 조정자로 제한됩니다."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1444
 #, javascript-format
 msgid "* %(sender)s"
-msgstr "* %(sender)s"
+msgstr "* %(sender)"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:1449
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr "%(sender)s %(action)s"
+msgstr "%(sender) %(action)"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:1458 gui/lobby/lobby.js:1479 gui/lobby/lobby.js:1506
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr "<%(sender)s>"
+msgstr "<%(sender)>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:1463 gui/lobby/lobby.js:1484 gui/lobby/lobby.js:1511
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr "%(sender)s %(message)s"
+msgstr "%(sender) %(message)"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:1473
 #, javascript-format
 msgid "== %(message)s"
-msgstr "== %(message)s"
+msgstr "== %(message)"
 
 #: gui/lobby/lobby.js:1501
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr "(%(private)s) <%(sender)s>"
+msgstr "(%(private)) <%(sender)>"
 
 #: gui/lobby/lobby.js:1502
 msgid "Private"
@@ -364,18 +364,18 @@ msgstr "개인"
 #: gui/lobby/lobby.js:1527
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
+msgstr "\\[%(time)]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:1532
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
+msgstr "%(time) %(message)"
 
 #: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr "%(nick)s (%(rating)s)"
+msgstr "%(nick) (%(rating))"
 
 #: gui/lobby/lobby.js:1587
 msgctxt "Used for an undefined winning rate"
@@ -385,47 +385,47 @@ msgstr "-"
 #: gui/lobby/lobby.js:1589
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
+msgstr "%(percentage)%%"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr "사용자 별명을 입력하세요."
+msgstr "사용자 이름을 입력하세요"
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
-msgstr ""
+msgstr "잘못된 사용자 이름"
 
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "비밀번호를 입력하세요"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "비밀번호를 입력하세요"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "더 긴 비밀번호를 선택하세요"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
-msgstr "비밀번호를 다시 입력하세요."
+msgstr "암호를 다시 입력하세요"
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr "비밀번호가 서로 맞지 않습니다."
+msgstr "비밀번호가 일치하지 않습니다"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "연결한 후 암호를 삭제하시겠습니까?"
 
 #: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "알 수 없는 오류. 이것은 일반적으로 동일한 IP 주소가한 시간 내에 둘 이상의 계정을 등록할 수 없기 때문에 발생합니다."
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
@@ -433,7 +433,7 @@ msgstr "서비스 약관"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr ""
+msgstr "서비스 약관을 읽고 동의하세요."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
@@ -441,7 +441,7 @@ msgstr "사용자 약관"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "이용 약관을 읽고 동의하세요."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
@@ -449,7 +449,7 @@ msgstr "개인정보보호정책"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "개인 정보 보호 정책을 읽고 동의하세요."
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -517,32 +517,32 @@ msgstr "순위"
 #: gui/lobby/lobby_panels.xml:(caption):52
 #: gui/lobby/lobby_panels.xml:(caption):331
 msgid "Current Rank:"
-msgstr "현재 등수:"
+msgstr "현재 등수 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):56
 #: gui/lobby/lobby_panels.xml:(caption):335
 msgid "Highest Rating:"
-msgstr "가장 높은 점수:"
+msgstr "가장 높은 점수 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):60
 #: gui/lobby/lobby_panels.xml:(caption):339
 msgid "Total Games:"
-msgstr "총 게임 수:"
+msgstr "총 게임 수 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):64
 #: gui/lobby/lobby_panels.xml:(caption):343
 msgid "Wins:"
-msgstr "승리:"
+msgstr "승리 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):68
 #: gui/lobby/lobby_panels.xml:(caption):347
 msgid "Losses:"
-msgstr "패배:"
+msgstr "패배 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):72
 #: gui/lobby/lobby_panels.xml:(caption):351
 msgid "Win Rate:"
-msgstr "승률:"
+msgstr "승률 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):86
 #: gui/lobby/lobby_panels.xml:(caption):279
@@ -556,11 +556,11 @@ msgstr "사용자 정보 찾기"
 
 #: gui/lobby/lobby_panels.xml:(caption):120
 msgid "Map Type:"
-msgstr "지도 종류"
+msgstr "지도 유형 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):132
 msgid "Map Size:"
-msgstr "지도 크기"
+msgstr "지도 크기 :"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby_panels.xml:(caption):157
@@ -590,7 +590,7 @@ msgstr "새로고침"
 
 #: gui/lobby/lobby_panels.xml:(caption):317
 msgid "Enter username:"
-msgstr "사용자 이름 입력"
+msgstr "사용자 이름 입력 :"
 
 #: gui/lobby/lobby_panels.xml:(caption):323
 msgid "View Profile"
@@ -602,15 +602,15 @@ msgstr "사용자 이름을 입력하세요."
 
 #: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
-msgstr "비밀번호 다시:"
+msgstr "비밀번호 다시 :"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr "로그인"
+msgstr "로그인 :"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr "암호:"
+msgstr "암호 :"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
@@ -641,28 +641,28 @@ msgstr "등록"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0. A.D. Ascendant 멀티 플레이어r 로비 개인 정보 보호 정책 적용[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr "[font=\"sans-bold-14\"]문서 날짜:[/font] 2018-10-16"
+msgstr "[font=\"sans-bold-14\"]문서 날짜 :[/font] 2018-10-16"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Wildfire Games에서 처리한 개인 데이터 및 처리 목적 :[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Playername[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "플레이어는 등록 당시 플레이어가 선택한 이름으로 식별됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -670,7 +670,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "플레이어, 조정자 및 개발자가 전에 만난 플레이어를 식별하고, 게임에 대해 커뮤니케이션하고, 경기를 조정하고, 운영자가 이용 약관을 시행할 수있게하기 위해 고유한 플레이어 이름을 갖는 것이 요구 사항입니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -679,61 +679,61 @@ msgid ""
 " information (such as the realname) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "플레이어 이름은 닉네임의 역할을합니다. 플레이어의 신원 정보 (자연인)는 Wildfire Games에 알려져 있지 않습니다. 여기에는 실명과 같은 개인 식별 정보(예 : 실명)가 로비 채팅, Wildfire Games의 다른 서비스 또는 기타 공공 장소에서 공개된 경우 또는 IP 주소가 형사 소송을 제기하는 데 사용됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. 암호[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "플레이어는 등록시 플레이어가 선택한 비밀번호를 사용하여 인증됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr ""
+msgstr "Wildfire Games은 비밀번호의 암호화된 버전 만 수신하므로 사용자가 선택한 비밀번호는 Wildfire Games이나 다른 사람에게 공개되지 않습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP 주소[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "플레이어가 멀티 플레이어 로비에서 게임을 호스팅하면 해당 플레이어의 IP 주소가 온라인 상태 인 모든 플레이어에게 보내 지므로 다른 플레이어가 해당 게임에 참여할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr ""
+msgstr "Wildfire Games는 플레이어의 IP 주소를 저장하고 IP 주소에서 공개적으로 사용 가능한 위치 정보 및 인터넷 서비스 공급자 데이터 (예 : \"geolite2\")를 다음과 같이 유추할 수 있습니다"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr ""
+msgstr " 1. Wildfire Games 허가없이 여러 계정을 만들 때, 특히 이용 약관을 위반하여 서비스에서 금지된 경우 이용 약관을 시행합니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr ""
+msgstr "    IP 주소는이 목적으로 3 년 이상 저장되지 않습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr ""
+msgstr " 2. 사이버 공격의 경우 형사 소송을 제기할 수 있습니다 (EU 법원 보도 자료 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -741,66 +741,66 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Wildfire Games는 다른 용도, 특히 마케팅을 목적으로 IP 주소 로그를 사용하지 않으며 IP 주소를 공공 또는 제 3 자에게 공개하지 않으며 명시된 목적과 관련이없는 경우 IP 주소를 지우지 않습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. 온라인 접속[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "현재 어떤 플레이어가 멀티 플레이어 로비에 연결되어 있고 그들이 합류한 플레이어가 모든 온라인 플레이어에게 표시됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. 채팅 메시지[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr ""
+msgstr "멀티 플레이어 로비에는 플레이어가 게임에 대해 토론하고 멀티 플레이어 경기를 구성할 수있는 공개 채팅방이 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr ""
+msgstr "Wildfire Games는 다음과 같은 목적을 달성하기 위해 공개 채팅 메시지 및 온라인 참석 정보를 저장합니다 :"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr ""
+msgstr " 1. 조정자는 채팅 메시지를 화면에 표시하여 이용 약관을 시행할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr ""
+msgstr " 2. Wildfire Games은 버그 리포트를 처리하거나 채팅방의 플레이어가 지정한 문제점이나 기능 제안을 조정할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr ""
+msgstr " 3. Wildfire Games는 토론된 주제들 사이의 동향, 활발한 커뮤니티의 성장을 평가하고 게임 및 서비스의 평가, 개선 및 직접 개발을 위해 이러한 지표를 피드백으로 사용할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. 경기 통계[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr ""
+msgstr "플레이어는 게임에서 자신의 기술을 반영하는 멀티 플레이 로비에서 등급을 얻을 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr ""
+msgstr "모든 플레이어의 평점은 Wildfire Games에서 게시하며, 원하는 경우 플레이어는 경쟁적이거나 균형 잡힌 중매에 집중할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -808,62 +808,62 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr ""
+msgstr "등급 매치 중 플레이어는 Wildfire Games에 게임과 관련된 데이터 (예 : 교육된 유닛 수, 수집된 리소스 및 매치의 승자)를 보내 Wildfire Games이 이러한 통계를 기반으로 플레이어 평점을 조정할 수 있도록합니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr ""
+msgstr "Wildfire Games는 일치 통계를 다음에 저장합니다 :"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr ""
+msgstr " 1. 등급 점수의 정확성을 검증하고 그에 관한 이용 약관 위반을 확인하고 시행하십시오."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr ""
+msgstr " 2. 예를 들어 게임의 균형을 개선하거나 게임의 특정 측면을 더 매력적으로 만들기 위해 게임 및 서비스를 개선하기 위한 커뮤니티 통계를 계산하고 게시하십시오."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]처리의 보안 :[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
 "The transmission of personal data is secured using TLS encryption (GDPR 32)."
-msgstr ""
+msgstr "개인 데이터의 전송은 TLS 암호화 (GDPR 32)를 사용하여 보호됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:43
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr ""
+msgstr "개인 데이터는 추가 시간 (GDPR 30.1.g, GDPR 32) 동안 암호화된 백업의 의도하지 않은 손실로부터 보호됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid ""
 "All personal data that Wildfire Games processes is obtained from the user "
 "(GDPR 14)."
-msgstr ""
+msgstr "Wildfire Games가 처리하는 모든 개인 데이터는 사용자(GDPR 14)에서 가져옵니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
 "Wildfire Games reserves the right to delete any service data (including "
 "personal data) at any time, except where a user has objected to the erasure "
 "of his or her personal data for performance of a legal claim."
-msgstr ""
+msgstr "Wildfire Games는 사용자가 법적 클레임을 이행하기 위해 개인 데이터의 삭제를 반대한 경우를 제외하고 언제든지 모든 서비스 데이터(개인 데이터 포함)를 삭제할 수 있는 권한을 보유합니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]처리를 위한 법적 근거 :[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr ""
+msgstr "1. 이 프로세싱은 (GDPR 6.1.b) 용어로 정의된 서비스의 성능을 위해 필요합니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -871,67 +871,67 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr ""
+msgstr "2. Wildfire Games는 멀티 플레이어 로비, 0 A.D.의 개발 및 개선, 사용 약관 시행 및 사이버 공격 보호(GDPR 6.1.f)에 있어 합법적인 관심을 가지고 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr ""
+msgstr "3. Wildfire Games는 멀티 플레이어 로비에 대한 추가 데이터를 처리하지 않으며 데이터 처리에 대한 동의를 요청하지 않습니다(GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]사용자 권한 :[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr ""
+msgstr "1. Wildfire Games에 문의하려면 webmaster (wildfiregames.com) (GDPR 13.1.a, GDPR 13.1.b)로 전자 메일을 보내십시오."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "   To exercise any user right, please refer to this contact."
-msgstr ""
+msgstr "   사용자 권한을 행사하려면 이 연락처를 참조하시기 바랍니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
-msgstr ""
+msgstr "2. 그와 관련된 개인 데이터에 대한 액세스 권한(GDPR 15)입니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
-msgstr ""
+msgstr "3. 개인 데이터를 기계에서 읽을 수 있는 형식(GDPR 20)으로 가져올 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
-msgstr ""
+msgstr "4. 부정확한 개인 데이터를 수정할 수 있습니다(GDPR 16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
-msgstr ""
+msgstr "5. 지정된 목적과 관련이 없는 경우, 또는 데이터가 불법적으로 처리된 경우 또는 사용자가 처리를 거부하여 합법적인 근거를 재정의하는 경우(GDPR 17) 개인 데이터를 삭제할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
-msgstr ""
+msgstr "6. 데이터의 정확성에 대해 사용자가 이의를 제기하는 경우, 데이터가 불법적으로 처리된 경우 또는 사용자가 법적 클레임을 위해 데이터를 필요로 하는 경우(GDPR 18) 개인 데이터 처리를 제한할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
-msgstr ""
+msgstr "7. 특정 상황(GDPR 21)을 근거로 그와 관련된 개인 데이터의 처리에 반대할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
 "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
-msgstr ""
+msgstr "8. 감독기관에 고소할 권리(GDPR 13.2.d, GDPR 77)입니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:63
 msgid ""
@@ -941,13 +941,13 @@ msgstr "명백하게 근거가 없거나 과도한 요청은 응답하지 않거
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Wildfire Games 의무는 다음과 같습니다 :[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
-msgstr ""
+msgstr " 1. Wildfire Games는 GDPR 준수를 입증합니다 (GDPR 5.2 '책임')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
@@ -969,33 +969,33 @@ msgid ""
 "is processed, recipients of personal data and where applicable, transfer of "
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
-msgstr ""
+msgstr " 4. Wildfire Games는 개인 데이터 처리의 목적, 법적 근거, 정당한 이익 및 보존 기간, 개인 데이터 수신자 및 해당되는 경우 제 3 국으로의 개인 데이터 전송 및 자동 의사 결정 (GDPR 13.1 .cf, GDPR 13.2.a, GDPR 13.2.ef, GDPR 15.1, GDPR 15.4)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
-msgstr ""
+msgstr " 5. Wildfire Games는 지정된 목적 이외의 목적으로 개인 데이터를 처리하지 않습니다(GDPR 5.1.b, '목적 제한', GDPR 13.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
-msgstr ""
+msgstr " 6. Wildfire Games는 지정된 용도에 필요하지 않은 개인 데이터를 처리하지 않습니다(GDPR 5.1.c, '데이터 최소화')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
-msgstr ""
+msgstr " 7. Wildfire Games는 필요 이상으로 오랫동안 자연인을 식별할 수 없는 스토리지 양식을 사용합니다(GDPR 5.1.e '저장 제한')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
-msgstr ""
+msgstr " 8. Wildfire Games는 개인 데이터 처리를 보호하여 무단 처리 또는 불법 처리 및 우발적 손실을 방지합니다(GDPR 5.1.f. '무결성과 기밀성')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
@@ -1009,14 +1009,14 @@ msgstr " 9. 와일드 파이어 게임즈는 개인 데이터를 액세스, 수�
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
-msgstr "10. 와일드 파이어 게임즈는 가능한 한 사용자 권리를 과도하게 지체하지 않고 (gdpr 12.2) 쉽게 행사할 수 있도록 합니다 (gdpr 12.3)."
+msgstr "10. 와일드 파이어 게임즈는 가능한한 사용자 권리를 과도하게 지체하지 않고 (gdpr 12.2) 쉽게 행사할 수 있도록 합니다 (gdpr 12.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
 "11. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr ""
+msgstr "11. Wildfire Games informs the users that to exercise their rights, users might need to provide additional information to identify the natural person or the data (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
@@ -1024,7 +1024,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr ""
+msgstr "12. Wildfire Games will not knowingly collect personal data from children under the age of 13 (Children's Online Privacy Protection Act). If you believe Wildfire Games received any personal data from or about a child under 13, please contact Wildfire Games."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
@@ -1035,19 +1035,19 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr ""
+msgstr "13. Where Wildfire Games processes sensitive personal data based on legitimate interests, Wildfire Games considers performing, recording and periodically reviewing Legitimate Interests Assessments and Data Protection Impact Assessments (GDPR 35) to become confident that the individual's interests do not override Wildfire Games legitimate interests, and that Wildfire Games is not using personal data in intrusive ways unless there is a very good reason to."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr "와일드파이어 게임의 개인 정보 보호 정책에 대한 자세한 내용은 https://trac.wildfiregames.com/wiki/UserDataProtection을 참조하십시오."
+msgstr "Wildfire Games의 개인 정보 보호 정책에 대한 자세한 내용은 https ://trac.wildfiregames.com/wiki/UserDataProtection을 참조하세요"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]\n0 A.D. Empires 어센 던트 멀티 플레이어 로비 이용 약관[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1055,75 +1055,75 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr ""
+msgstr "0 A.D. Empires Ascendant 멀티 플레이어r Lobby는 Wildfire Games에서 제공하는 온라인 서비스로, 플레이어가 온라인 멀티 플레이어 매치를 설정하고, 공개 채팅방에서 게임을 토론하고, 자신의 기술을 반영한 등급을 받을 수 있습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr ""
+msgstr "역사적인 전쟁의 주제 때문에, 폭력에 대한 설명과 묘사 그리고 멀티 플레이어 로비의 언어, 0 A.D. 및 멀티 플레이어 로비(COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr ""
+msgstr "멀티 플레이어 로비를 사용할 수 있는 최소 연령은 13세입니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]0 A.D. 멀티 플레이어r Lobby를 사용하면 다음과 같은 것에 동의하게됩니다 :[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
-msgstr "1. 모든 사용 약관을 따릅니다."
+msgstr " 1. 모든 사용 약관을 따릅니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:12
 msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr ""
+msgstr " 2. 이 서비스는 Wildfire Games 팀원의 권한이 없는한 업데이트된 약관에 대해 사용자에게 알리지 않도록 하는 타사 소프트웨어 또는 모드와 함께 사용하지 않습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""
 " 3. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for the content posted by users or damages resulting from "
 "this service."
-msgstr ""
+msgstr " 3. 자신의 책임하에 서비스를 사용하십시오. Wildfire Games는 사용자가 게시한 콘텐츠 또는이 서비스로 인해 발생한 손해에 대해 책임을 지지 않습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
-msgstr "[font=\"sans-bold-14\"]와일드 파이어 게임즈는 다음과 같은 권리를 보유함:[/font]"
+msgstr "[font=\"sans-bold-14\"]Wildfire Games는 다음 권리를 보유합니다 :[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:16
 msgid ""
 " 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
 "suspending or terminating user accounts."
-msgstr ""
+msgstr " 1. 서비스를 중간화합니다. 즉, 사용자 계정을 제한, 일시 중단 또는 종료하여 사용 약관을 적용합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
-msgstr "2. 다른 사람으로 하여금 서비스를 중재하도록 지명합니다."
+msgstr " 2. 서비스를 간소화할 수 있도록 다른 사용자를 지정합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid " 3. Discontinue or interrupt any part of the service at any time."
-msgstr ""
+msgstr " 3. 언제든지 서비스의 일부를 중단하거나 중단합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:19
 msgid ""
 " 4. Change the service or the terms. The document date of the terms indicate"
 " its version, and the user is informed of the new terms before being able to"
 " use the service again."
-msgstr ""
+msgstr " 4. 서비스 또는 약관을 변경합니다. 용어의 문서 날짜는 해당 버전을 나타내며, 사용자는 서비스를 다시 사용할 수 있기 전에 새 용어를 알립니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
 " 5. Process personal data in accordance with the Lobby Privacy Policy, the "
 "General Data Protection Regulation (GDPR) and the Children's Online Privacy "
 "Protection Act (COPPA) where applicable."
-msgstr ""
+msgstr " 5. 해당되는 경우 로비 개인 정보 보호 정책, 일반 데이터 보호 규정(GDPR) 및 아동 온라인 개인 정보 보호법(COPPA)에 따라 개인 데이터를 처리합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:22
 msgid ""
@@ -1135,34 +1135,34 @@ msgstr "이 약관의 일부가 불법이거나 시행 불가능한 것으로 �
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0. A.D. Ascendant 멀티 플레이어 로비 이용 약관[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]문서 날짜:[/font] 2018-10-13"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
 " 1. Only create one account per person on the service unless authorized by "
 "Wildfire Games."
-msgstr ""
+msgstr " 1. Wildfire Games에서 승인하지 않는한 서비스에 대해 1인당 하나의 계정만 작성합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr ""
+msgstr " 2. 서비스의 다른 사용자를 가장하지 않고 멀티 플레이어 일치에만 등록된 사용자 이름을 사용합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
-msgstr ""
+msgstr " 3. 욕설, 경멸적인 용어, 포르노 콘텐츠가 아닙니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
-msgstr ""
+msgstr " 4. 괴롭히거나, 해를 끼치거나, 위협하거나, 차별하거나, 위협하거나, 명예를 훼손하거나, 본 서비스를 사용하는 다른 사람의 가치를 의도적으로 떨어뜨리지 않습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
@@ -1170,11 +1170,11 @@ msgid ""
 "information (for example real name, location, ID) or private details (for "
 "example social media or messenger account names) of others without their "
 "consent."
-msgstr ""
+msgstr " 5. 타인의 개인 식별 정보(예: 실명, 위치, ID) 또는 개인 정보(예: 소셜 미디어 또는 메신저 계정 이름)를 동의 없이 공개하여 타인의 개인 정보를 침해하지 않습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid " 6. Not incite violence or promote illegal acts."
-msgstr ""
+msgstr " 6. 폭력을 조장하거나 불법 행위를 조장하지 않습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
@@ -1182,29 +1182,29 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. 인위적으로 서비스 사용자의 레이팅 점수를 조작하려고 하거나, 그것에 영향을 줄수 있는 행위를 해서는 안됩니다. (예를 들어 다음과 같은 행위를 해서는 안되며, 나쁜 행위는 다음과 같은 것에만 국한하는 것은 아닙니다.: 랭크 게임에서 사기치기, 서비스를 리버스 엔지니어링하기, 서비스에서 다른 사람 이용해먹기)"
+msgstr " 7. 인위적으로 서비스 사용자의 레이팅 점수를 조작하려고 하거나, 그것에 영향을 줄수 있는 행위를 해서는 안됩니다. (예를 들어 다음과 같은 행위를 해서는 안되며, 나쁜 행위는 다음과 같은 것에만 국한하는 것은 아닙니다. : 랭크 게임에서 사기치기, 서비스를 리버스 엔지니어링하기, 서비스에서 다른 사람 이용해먹기)"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr ""
+msgstr " 8. 의도된 게임 플레이를 손상시키거나 고의적으로 멀티 플레이어 게임에서 불공정한 이점을 얻지 않습니다(예: 부정 행위, 공격 또는 버그 사용)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
-msgstr ""
+msgstr " 9. 서비스에 스팸을 보내지 않고 대량의 반복 또는 원하지 않는 메시지를 게시하지 않습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
-msgstr ""
+msgstr "10. Wildfire Games의 승인을 받지 않는한 이 서비스를 사용하여 특정 상품, 서비스 또는 제품을 홍보할 수 없습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:17
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
-msgstr ""
+msgstr "진행자가 사용자의 행동이 이러한 조건과 일치하지 않는다고 판단하는 경우 계정이 제한, 일시 중단 또는 종료될 수 있습니다."

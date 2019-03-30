@@ -10,12 +10,13 @@
 # Mortimer <doug.mortimer@netcourrier.com>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # Polakrity <sxk-fr@live.fr>, 2014,2018
+# Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
-"Last-Translator: jy jrts <lucashavard35@hotmail.fr>\n"
+"PO-Revision-Date: 2019-03-24 11:27+0000\n"
+"Last-Translator: Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +165,7 @@ msgstr "Erreur de vérification"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "Initialisation de l'interface mod.io"
+msgstr "Initialisation de l'interface mod.io."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
@@ -176,7 +177,7 @@ msgstr "Annuler"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr "Récupération et mise à jour de la liste de mods disponibles."
+msgstr "Récupération et mise à jour de la liste des mods disponibles."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
@@ -189,7 +190,7 @@ msgstr "Annuler la mise à jour"
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Téléchargement de  “%(modname)s”"
+msgstr "Téléchargement de “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
@@ -257,11 +258,11 @@ msgstr "Mentions légales"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr "conditions d'utilisation de mod.io"
+msgstr "Conditions d'Utilisation de mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "Politique de vie privée de mod.io"
+msgstr "Politique de Confidentialité de mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -271,12 +272,12 @@ msgstr "OK"
 #. Conditions in the default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr "Regarder en ligne"
+msgstr "Voir en ligne"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr "Ouvrir %(url)sdans le navigateur."
+msgstr "Ouvrir %(url)s dans le navigateur."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -378,7 +379,7 @@ msgstr "Site Web"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Change l'ordre dans lequel les mods sont lancés. Ce doit correspondre aux dépendances des mods."
+msgstr "Change l'ordre dans lequel les mods sont lancés. Cela devrait correspondre aux dépendances des mods."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"

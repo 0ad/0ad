@@ -7,11 +7,13 @@
 # Ender Türsen <ado.ender@gmail.com>, 2014
 # ali topçu <ali134636@gmail.com>, 2018
 # Cem Aktas <cemwstone@gmail.com>, 2018
+# Emir Öksüz <emir-2901@hotmail.com>, 2019
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # Emre JILTA <jilta.e@gmail.com>, 2018
 # Ender Türsen <ado.ender@gmail.com>, 2016
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
+# Günay Yılmaz <turkoman07@gmail.com>, 2019
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Muha Aliss <muhaaliss@gmail.com>, 2017
@@ -23,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-02-18 09:43+0100\n"
-"PO-Revision-Date: 2019-02-18 14:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-29 07:42+0000\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,17 +38,17 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr "Birebir"
+msgstr "Darbe"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr "Fişek"
+msgstr "Delme"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr "Darbe"
+msgstr "Yıkım"
 
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
@@ -101,8 +103,8 @@ msgstr "Atanmamış kısayol tuşu: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "Oyuncu adlarını otomatik tamamlamak için %(hotkey)s e bas."
+msgid "Press %(hotkey)s to autocomplete player names."
+msgstr "Oyuncu adlarını otomatik tamamlamak için %(hotkey)s tuşuna basın."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -345,7 +347,7 @@ msgstr "Korunmasız Kahramanlar"
 
 #: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Kahramanlar binalara yerleştirilemez ve yağmalara açıktırlar."
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
@@ -439,11 +441,11 @@ msgstr "Harita Boyutu"
 #: gui/common/gamedescription.js:381
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Rastgele Biyom"
 
 #: gui/common/gamedescription.js:382
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Listeden rastgele bir yaşam ortamı seçin."
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
@@ -599,7 +601,7 @@ msgstr "Sunucu dolu"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "Güvenli lobi kimlik doğrulaması başarısız oldu. Lobiden katılın"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -648,7 +650,7 @@ msgstr ","
 #: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Sanal alan"
+msgstr "Kum Havuzu"
 
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
@@ -787,11 +789,11 @@ msgstr "Bilinmeyen Galibiyet Şartları"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
-msgstr "Yakın dövüş saldırısı:"
+msgstr "Yakın Dövüş Saldırısı:"
 
 #: gui/common/tooltips.js:13
 msgid "Ranged Attack:"
-msgstr "Saldırı Sırası:"
+msgstr "Menzilli Saldırı:"
 
 #: gui/common/tooltips.js:14
 msgid "Capture Attack:"
@@ -1089,7 +1091,7 @@ msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr "Tutar:"
+msgstr "Maliyet:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1199,7 +1201,7 @@ msgstr "Daha fazla bilgi için sağ tıklayın."
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr "Daha fazlası için tıklayın."
+msgstr "Daha fazla bilgi için tıklayın."
 
 #: gui/credits/credits.js:71
 #, javascript-format
@@ -1216,15 +1218,15 @@ msgstr "Modlar: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Bu oyun kaydı 0 A.D %(requiredVersion)s sürümüne ihtiyaç duyar. Siz şu an %(currentVersion)s sürümünü kullanıyorsunuz."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Bu oyun kaydı daha eski bir 0 A.D sürümüne ihtiyaç duyar."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Bu oyun kaydı daha farklı bir mod serisi gerektirir."
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1294,7 +1296,7 @@ msgstr "%(hotkey)s: 0 A.D.'de öne çıkan birçok medeniyetle ilgili daha fazla
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: Herkese açık oyunlara katılmak ve ev sahipliği yapmak ve diğer oyuncularla sohbet etmek için çok oyunculu lobiyi açar."
 
 #: gui/pregame/mainmenu.js:113
 #, javascript-format
@@ -1351,7 +1353,7 @@ msgstr "Hata"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Herkese açık oyunlara katılmak ve ev sahipliği yapmak ve diğer oyuncularla sohbet etmek için çok oyunculu lobiyi başlatın. \\ [YAPI TARAFINDAN DEVRE DIŞI BIRAKILDI]"
 
 #: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
@@ -1360,15 +1362,15 @@ msgstr "Kılavuz"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Koşullar"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Lütfen UserReporter Hüküm ve Koşullarını okuyup kabul edin."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Duyurular"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -1409,7 +1411,7 @@ msgstr "0 A.D'nin gelişimine yardımcı olduğunuz için teşekkür ederiz!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Geribildirim şu anda etkin."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1428,7 +1430,7 @@ msgstr "0 A.D'nin gelişmesine yardım edin!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Hataları düzeltmemize ve performansı ve uyumluluğu iyileştirmemize yardımcı olabilecek geribildirimleri otomatik olarak bize gönderebilirsiniz."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1470,43 +1472,43 @@ msgstr "%(hotkey)s: Yapı Ağacını kapat."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:139
+#: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
 msgstr "İnşa edildi:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:152
+#: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
 msgstr "Eğitildi:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:165
+#: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
 msgstr "Araştırıldı:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:177
+#: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
 msgstr "Yapılar:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:198
+#: gui/reference/viewer/viewer.js:194
 msgid "Researches:"
 msgstr "Araştırmalar:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:210
+#: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
-msgstr "Eğitimler:"
+msgstr "Eğitir:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:223
+#: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
 msgstr "Geliştirildi:"
 
@@ -1623,8 +1625,9 @@ msgid "Unrated games"
 msgstr "Oylanmamış oyunlar"
 
 #: gui/replaymenu/replay_menu.js:193
-msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Filtreler bir veya daha fazla, kısmi veya tam oyun adı yazarak tekrarlar."
+msgid ""
+"Filter replays by typing one or more, partial or complete player names."
+msgstr "Bir veya daha fazla, kısmi veya tam oyuncu adı yazarak tekrarları filtreleme."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -2117,7 +2120,7 @@ msgstr "Kaydedilmemiş değişiklikler sadece bu oturumu etkiler"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alfa 24"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2131,7 +2134,7 @@ msgstr "0 A.D. Oyun Rehberini aç."
 
 #: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
-msgstr "Ekonomi öğreticisini başlat."
+msgstr "Ekonomi rehberini başlat."
 
 #: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
@@ -2232,7 +2235,7 @@ msgstr "0 A.D. katkıcılarını görmek için tıklayın."
 
 #: gui/pregame/mainmenu.xml:(caption):108
 msgid "Tutorial"
-msgstr "Öğretici"
+msgstr "Rehber"
 
 #: gui/pregame/mainmenu.xml:(caption):140
 #: gui/reference/structree/structree.xml:(caption):126
@@ -2311,7 +2314,7 @@ msgstr "Bu oyunu çevir "
 
 #: gui/pregame/mainmenu.xml:(caption):565
 msgid "Donate"
-msgstr "Bağışla"
+msgstr "Bağışta Bulunun"
 
 #: gui/pregame/mainmenu.xml:(caption):577
 msgid "Credits"
@@ -2427,7 +2430,7 @@ msgstr "Tip:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Tekrarı İzle"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2539,7 +2542,7 @@ msgstr "Latin"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Pers"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -2741,7 +2744,7 @@ msgstr "İletilerin lobide, oyun grubuna ve oyun içi sohbere gönderildiği zam
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat Timestamp"
-msgstr "Sohbet Zaman damgası"
+msgstr "Sohbet Zaman Göstergesi"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2773,7 +2776,7 @@ msgstr "Sis"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Ekran boşluğu son işlem filtrelerini (High Dynamic Range, Bloom, Net Alan Derinliği, vb.) Kullanın."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2872,7 +2875,7 @@ msgstr "HQ Su Efektleri"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Hesaplamalarda gerçek su derinliğini kullanın."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2880,7 +2883,7 @@ msgstr "Gerçek Su Derinliği"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Suyun ayna görüntüsü yansıtmasına izin verin."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
@@ -2888,7 +2891,7 @@ msgstr "Su Yansımaları"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Şeffaflık değil gerçek bir su kırılma haritası kullanın."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2896,7 +2899,7 @@ msgstr "Su Kırılması"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr ""
+msgstr "Suda gölgeler oluşsun."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
@@ -2904,7 +2907,7 @@ msgstr "Suyun Üzerinde Gölgeler"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr ""
+msgstr "Karanlığı ve savaş sisini sorunsuz bir şekilde kaldırın."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
@@ -3004,11 +3007,11 @@ msgstr "İsim bildirimi"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Yeni bir oyuncu oyun kurulumuna katıldığında sesli bildirim alın."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr ""
+msgstr "Oyun Kurulumu - Yeni Oyuncu Bildirimi"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3020,16 +3023,16 @@ msgstr "Oyun Ayarları İpuçlarını Aktif et"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "Açarken, kapatırken veya yeniden boyutlandırırken ayarlar panelini kaydırın."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "Ayarlar Panelini Kaydırmayı Etkinleştir"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "Başka bir oyuna ev sahipliği yaparken hızlı yeniden kullanım için oyun ayarlarını kaydedin ve geri yükleyin."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -3037,7 +3040,7 @@ msgstr "Maç Ayarlarını Devam Ettir"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
-msgstr "Sanal alan"
+msgstr "Kum Havuzu"
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Very Easy"
@@ -3104,15 +3107,15 @@ msgstr "Oyun Kurulumu"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Giriş ve Taşıma Katmanı Güvenliği şifrelemesini kullanarak lobi sunucusuyla değiştirilen verileri koruyun."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "Taşıma Güvenliği Katmanı Şifrelemesi"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Lobiye katılırken yeniden yüklenecek mesaj sayısı."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
@@ -3140,11 +3143,11 @@ msgstr "Lobi"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "Yaralı birim kısayol tuşu, sağlık yüzdeleri bu sayının altına düşerse, seçilen birimleri yaralı olarak kabul eder."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "Yaralı Birim Canı"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3152,43 +3155,43 @@ msgstr "Seri eğitilebilen birimlerin varsayılan miktarı"
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr "Eğitim Boyutu Kuyruğu"
+msgstr "Toplu Eğitim Büyüklüğü"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Grup büyüklüğünü artırmak/azaltmak için gereken kaydırma sayısı"
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "Kaydırma Toplu Artış Oranı"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Başka bir oyuncu tarafından saldırıya uğradıysanız bir sohbet bildirimi görün."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "Sohbet Bildirimi Saldırı"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "İzleyici modundayken; takımlar sabitlenmişse bir müttefik bir diğerine kaynak gönderdiğinde sohbet bildirimi göster."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Sohbet Bildirimi Kaynak Bağışı"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Bir oyuncu ticaretteki takas kaynaklarını değiştirdiğinde gözlemcilere sohbet bildirimi göster."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Sohbet Bildirimi Takas"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3206,21 +3209,21 @@ msgstr "Tümü gösterildi"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Gözlemci modundayken siz veya bir müttefikiniz yeni bir aşamayı başlattıysanız, iptal ettiyseniz veya tamamladıysanız ve tüm oyuncuların aşamaları hakkında bir sohbet bildirimi gösterin.\n"
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Sohbet Bildirimi Yerleşim Aşaması"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Seçili savunma yapılarının saldırı menzilini göster (ayrıca kısayol tuşu ile oyunda da değiştirilebilir)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Saldırı Menzili Görselleri"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3274,11 +3277,11 @@ msgstr "Azalan"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "Oyuncuların kaynaklarını ve nüfus göstergelerini değerine göre dinamik olarak sınıflandır."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Kaynakları ve nüfus göstergesini sınıflandır"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -3314,7 +3317,7 @@ msgstr "Diplomatik Renkler: Düşman"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Oyun içi ayarlarla ilgili seçenekleri değiştirin."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
@@ -3548,24 +3551,19 @@ msgstr "ROMALI ORDU KAMPI"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
-"- Build anywhere on the map, even in enemy territory. Good for building a "
-"secret base behind enemy lines or to consolidate gains within enemy "
-"territory."
-msgstr "Harita üzerinde herhangi bir yere inşa edin, hatta düşman topraklarında. Düşman hatlarının gerisinde veya düşman topraklarında kazanımları pekiştirmek için gizli bir üs oluşturmak için iyi."
+"Buildable in neutral or enemy territory. Good for building a secret base "
+"behind enemy lines or to consolidate gains within enemy territory."
+msgstr "Tarafsız veya düşman topraklarında inşa edilebilir. Düşman hattının arkasına gizli bir üs inşa etmek ya da düşman bölgesi üzerindeki kazancı pekiştirmek için iyidir."
+
+#: gui/text/tips/army_camp.txt:3
+msgid "Construct siege weapons and train citizen-soldiers."
+msgstr "Kuşatma silahları inşa edin ve vatandaş askerleri eğitin."
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr "- Müttefik olmayan kendi bölgelerindeki yapıların çürür."
-
-#: gui/text/tips/army_camp.txt:6
-msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Kuşatma silahları üret ve sivil-askerleri eğit."
-
-#: gui/text/tips/army_camp.txt:8
 msgid ""
-"- Garrison up to 40 units to slowly heal the units and protect the army camp"
-" from attacks and decay."
-msgstr "- Garnizonda 40 birime kadar birimler yavaş yavaş iyileşir ve saldırı ve çürümelere karşı korunulur."
+"Garrison units to slowly heal them and protect the army camp from attacks "
+"and decay."
+msgstr "Birimleri yavaşça iyileştirmek ve kampı yıkılmaktan ve saldırılardan korumak için birim yerleştirin."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3573,235 +3571,218 @@ msgstr "KIŞLA"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"- Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Tüm vatandaş-askerleri eğit. Bazı gruplar şampiyon eğitim kilidini açabilir."
+msgstr "Tüm vatandaş-askerleri eğitin. Bazı medeniyetlerde aynı zamanda şampiyonların eğitilmesine de olanak sağlayabilir."
+
+#: gui/text/tips/barracks.txt:3
+msgid "Research military technologies unique to each faction."
+msgstr "Her medeniyet için farklı olan askeri teknolojileri araştırın."
 
 #: gui/text/tips/barracks.txt:4
-msgid "- Research military technologies unique to each faction."
-msgstr "- Her grup için özebir askeri teknolojiler araştır."
-
-#: gui/text/tips/barracks.txt:6
 msgid ""
-"- Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Yapıda vatandaş askerlerin eğitimi yerleşimlerin aşamasını yükseltir."
+msgstr "Siz yerleşiminizi ilerletirken vatandaş-asker yetiştirmek için erkenden bir tane inşa edin."
 
-#: gui/text/tips/barracks.txt:8
-msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr "- Yeni birliklerin ile saldırı ikmali için bir ileri üs oluşturun."
+#: gui/text/tips/barracks.txt:5
+msgid "Build in a forward base to resupply your assault with fresh troops."
+msgstr "Taze askerlerle saldırılarını desteklemek için ileri bir üs inşa et."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
 msgstr "DEMİRCİ"
 
 #: gui/text/tips/blacksmith.txt:2
-msgid "- Research structure for all factions."
-msgstr "- Her grup için yapı araştır."
+msgid "Research structure for all factions."
+msgstr "Tüm medeniyetler için araştırma binası."
 
-#: gui/text/tips/blacksmith.txt:4
-msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Her birliğiniz için silah ve zırh iyileştirmesi araştırın."
-
-#: gui/text/tips/blacksmith.txt:6
-msgid ""
-"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Daha hızlı araştırabilmek için binaya vatandaş-askeri garnizon kur (HENÜZ AKTİF DEĞİL)."
+#: gui/text/tips/blacksmith.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr "Birimlerin için silah ve zırh gelişimleri araştır."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
 msgstr "KARTACA KUTSAL BANDI"
 
 #: gui/text/tips/carth_sacred_band.txt:2
-msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- Kartacalılar için Mükemmel Mızraklılar ve Mükemmel Süvari Mızraklıları."
+msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr "Kartaca için Şampiyon Mızrakçı ve Şampiyon Süvari."
+
+#: gui/text/tips/carth_sacred_band.txt:3
+msgid ""
+"Both are trainable from the Temple, instead of the Fortress like most other "
+"champions."
+msgstr "Diğer çoğu şampiyon birimin kalelerden eğitilebilmesi yerine, bu birimlerin ikisi de tapınaktan eğitilebilir."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both are trainable from the Temple, instead of the Fortress like most "
-"other champions."
-msgstr "- Diğer çoğu Kaledeki şampiyon gibi, Tapınaktan eğitilebilir."
-
-#: gui/text/tips/carth_sacred_band.txt:6
-msgid ""
-"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
-"heavy shock against siege weapons and skirmishers."
-msgstr "- Süvarilere karşı Mızraklı gibi ağır piyade kullanın. Kuşatma silahlarının ve avcıların ağır şoklarından kurtulmak için süvari kullanın."
+"Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
+" shock against siege weapons and skirmishers."
+msgstr "Mızrakçıları, süvarilere karşı ağır piyade olarak kullanın. Süvarileri, kuşatma silahlarına ve avcılara karşı şiddetli şok için kullanın."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "MANCINIKLAR"
 
 #: gui/text/tips/catapults.txt:2
-msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Menzilli kuşatma araçları yapılara karşı iyidir."
+msgid "Ranged siege engines that are good against buildings."
+msgstr "Binalara karşı iyi olan menzilli kuşatma silahları"
+
+#: gui/text/tips/catapults.txt:3
+msgid "Expensive and slow."
+msgstr "Pahalı ve yavaş."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
-"- May upgrade to flaming projectiles for extra effectiveness against "
-"buildings and units."
-msgstr "- Ateşli silahlarınızı yapıları ve birimleri daha iyi korumak için yükseltebilirsiniz."
-
-#: gui/text/tips/catapults.txt:6
-msgid "- Expensive and slow."
-msgstr "- Pahalı ve yavaş."
-
-#: gui/text/tips/catapults.txt:8
-msgid ""
-"- Pack up into carts for movement, and unpack into stationary engines for "
+"Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- Hareket için sepetlerinin içine topla, ve sabit motorlar içine saldırı için ambalajından çıkarın!"
+msgstr "Hareket hızı için at arabalarına yükleyin, ve saldırı için sabit makineler olarak geri indirin."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
 msgstr "SELTİK SAVAŞ DUBASI"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "- A medium \"trireme\"-class warship."
-msgstr "Bir orta \"kadırga\" -sınıf savaş gemisi."
+msgid "A medium trireme-class warship."
+msgstr "Bir orta Trireme sınıfı savaş gemisi."
+
+#: gui/text/tips/celtic_war_barge.txt:3
+msgid "Available to Britons, Gauls, and Iberians."
+msgstr "Britonlar, Galyalılar ve İberyalılar kullanabilir."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr "- Kelt Grup Düzeni Kullanılabilir (Biritanyalılar, Galyalılar)."
+msgid "Can transport up to 40 units."
+msgstr "40 birime kadar taşıyabilir."
 
-#: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Can transport up to 40 units across the waters."
-msgstr "- Su üzerinden en fazla 40 birim taşıyabilir."
-
-#: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrisoned infantry."
-msgstr "Garnizon piyadeleri ile ateş gücü artar."
-
-#: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- Diğer üçlüler gibi koç olamaz, ancak daha fazla sağlık ve zırh vardır."
+#: gui/text/tips/celtic_war_barge.txt:5
+msgid "Increases firepower with garrisoned infantry."
+msgstr "Yerleştirilen piyadelerle ateş gücü artar."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
 msgstr "ŞEHİR MERKEZLERİ"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The foundation of your new colony."
-msgstr "- Yeni koloninin temeli."
+msgid "The foundation of your new colony."
+msgstr "Sana ait yeni koloninin temeli."
+
+#: gui/text/tips/civic_centres.txt:3
+msgid "Claim large tracts of territory."
+msgstr "Büyük bölgeler elde edin."
 
 #: gui/text/tips/civic_centres.txt:4
-msgid "- Claim large tracts of territory."
-msgstr "- Bölgenin büyük parçalarını talep et."
+msgid "Can be built in friendly and neutral territory."
+msgstr "Dost ve tarafsız bölgelerde inşa edilebilir."
 
-#: gui/text/tips/civic_centres.txt:6
-msgid "- Can be built in friendly and neutral territory."
-msgstr "- Dost ve tarafsız bölgelerde inşa yapılabilir."
-
-#: gui/text/tips/civic_centres.txt:8
+#: gui/text/tips/civic_centres.txt:5
 msgid ""
-"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
-"citizen soldiers."
-msgstr "- Vatandaş eğit: kadın vatandaşlar, piyade vatandaş askerler ve süvari vatandaş askerler"
+"Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
+"citizen-soldiers."
+msgstr "Vatandaşları eğitin: kadın vatandaşlar, piyade vatandaşlar askerler, süvari vatandaş askerler."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
 msgstr "ELÇİLİKLER"
 
 #: gui/text/tips/embassies.txt:2
-msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- Özel \"Kışla\" Kartaca hizip kullanılabilir."
+msgid "Special Barracks available to the Carthaginians."
+msgstr "Kartacalılara özel Kışlalar."
+
+#: gui/text/tips/embassies.txt:3
+msgid "Train mercenaries from each of the ethnically-themed embassies."
+msgstr "Etnik elçiliklerin her birinden paralı askerler eğitin."
 
 #: gui/text/tips/embassies.txt:4
-msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Etnik elçiliklerden gelen her paralı askeri eğitin."
-
-#: gui/text/tips/embassies.txt:6
 msgid ""
-"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
-"Metal cost."
-msgstr "Paralı asker \"vatandaş-askerlerin\" normal Yiyecek maliyeti Metal maliyetine çevrildi."
+"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
+"cost."
+msgstr "Vatandaş paralı askerlerin olağan Besin maliyeti Metal maliyetine dönüştürüldü."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
 msgstr "BALIKÇILIK"
 
 #: gui/text/tips/fishing.txt:2
-msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Denizlerde bol balık hasadı."
+msgid "Fish the seas for a bountiful harvest."
+msgstr "Boş bir hasat için denizde balıkçılık yapın."
+
+#: gui/text/tips/fishing.txt:3
+msgid "Fishing boats carry a large amount of food per trip."
+msgstr "Balıkçı tekneleri her gidiş gelişte büyük miktarda besin taşır."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of food per trip."
-msgstr "- Balıkcı kayıtkları her yolculukta önemli miktarda Besin taşır."
+msgid "Fishing is faster than gathering food on fields."
+msgstr "Balıkçılık, tarlalarda besin üretmekten daha hızlıdır."
 
-#: gui/text/tips/fishing.txt:6
-msgid "- Fishing is faster than gathering food on fields."
-msgstr "- Balık tutma tarladan yiyecek toplamaktan daha hızlıdır."
-
-#: gui/text/tips/fishing.txt:8
-msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Dikkat Et! Balık tükenmez bir kaynak değildir!"
+#: gui/text/tips/fishing.txt:5
+msgid "Careful! Fish are not an infinite resource!"
+msgstr "Dikkatli ol! Balıklar tükenmez bir kaynak değil!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "KALE"
 
 #: gui/text/tips/fortress.txt:2
-msgid "- The Fortress is usually each faction's strongest building."
+msgid "The Fortress is usually each faction's strongest building."
 msgstr "- Kale genellikle her grubun en kuvvetli binasıdır."
 
+#: gui/text/tips/fortress.txt:3
+msgid "Trains Champions, Heroes, and Siege Weapons."
+msgstr "Şampiyonlar, Kahramanlar ve Kuşatma Makinaları eğitir."
+
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Güçlü birimler Şampiyon savaşçılar, Kahramanlar ve Kuşatma Silahları gibi yetiştirilebilir."
+msgid "Gives a population boost."
+msgstr "Nüfus artırımı verir."
 
-#: gui/text/tips/fortress.txt:6
-msgid "- Gives a population boost."
-msgstr "- Nüfusa artış verin."
-
-#: gui/text/tips/fortress.txt:8
-msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- Garnizondaki askeri daha iyi savunmak için içeri bir ateş gücü ekleyin."
+#: gui/text/tips/fortress.txt:5
+msgid "Garrison soldiers inside to add more firepower to its defense."
+msgstr "Savunmasına daha fazla ateş gücü eklemek için içine birim yerleştirin."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "Eller Serbest Pozisyonu"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
-"- Gain an advantage on the battleground by tactically positioning your "
-"units!"
-msgstr ""
+"Gain an advantage on the battleground by tactically positioning your units!"
+msgstr "Birimleriniz taktiksel konumlandırarak rakiplerinize savaş alanına avantaj sağlayın!"
+
+#: gui/text/tips/freehand_position.txt:3
+msgid ""
+"Therefore select some units, press and hold the right mouse button, draw any"
+" line, then release the button."
+msgstr "Bu nedenle, bazı birimleri seçin, farenin sağ tuşuna basın ve basılı tutun, herhangi bir alanı seçin, ardından düğmeyi bırakın."
 
 #: gui/text/tips/freehand_position.txt:4
-msgid ""
-"- Therefore select some units, press and hold the right mouse button, draw "
-"any line, then release the button."
-msgstr ""
-
-#: gui/text/tips/freehand_position.txt:6
-msgid "- Your units will now spread out on this line."
-msgstr "- Birimlerin bu çizginin ötesine geçemez."
+msgid "Your units will now spread out on this line."
+msgstr "Şimdi birimler bu hat üzerinde yayılacak."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
 msgstr "KAYNAK TOPLAMA"
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr "- Kaynakları toplamak için vatandaş askerleri veya kadın vatandaşları kullan."
+msgid "Use citizen-soldiers and female citizens to gather resources."
+msgstr "Asker vatandaşları ve kadın vatandaşları kaynak toplamak için kullanın."
+
+#: gui/text/tips/gathering.txt:3
+msgid "Female citizens gather vegetable resources faster."
+msgstr "Kadın vatandaşlar sebze kaynaklarını daha hızlı toplar."
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female citizens are faster gathering vegetable resources."
-msgstr "-Kadınlar sebze toplamada daha hızlıdır."
+msgid "Infantry citizen-soldiers are faster gathering minerals."
+msgstr "Piyade vatandaşlar mineralleri daha hızlı toplar."
+
+#: gui/text/tips/gathering.txt:5
+msgid "Cavalry citizen-soldiers are faster gathering meat."
+msgstr "Süvari vatandaşlar daha hızlı et toplar."
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr "- Piyade vatandaş askerler mineralleri daha hızlı toplarlar."
-
-#: gui/text/tips/gathering.txt:8
-msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr "-Süvariler et toplamada daha hızlıdır."
-
-#: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of a citizen soldier (advanced, elite), the better he"
-" fights, but the less efficient he is at gathering resources."
-msgstr ""
+"The higher the level of a citizen-soldier (advanced, elite), the better he "
+"fights, but the less efficient he is at gathering resources."
+msgstr "Vatandaş askerlerin seviyesi arttıkça (gelişmiş, seçkin) daha iyi savaşır; ama kaynak toplama hızı düşer."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3809,310 +3790,275 @@ msgstr "İPHİKRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
-"- The Athenian general who reformed the Athenian army to be faster and more "
+"The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- Atinalı orduları daha hızlı ve manevra kabiliyetini daha yüksek yapmak için uzman Atinalı general"
+msgstr "Atina ordusunu daha hızlı ve manevra yeteneği daha yüksek halde düzenleyen Atina generali."
+
+#: gui/text/tips/iphicrates.txt:3
+msgid "Units in his formation are faster and stronger."
+msgstr "Bu düzendeki birimler daha hızlı ve güçlü."
 
 #: gui/text/tips/iphicrates.txt:4
-msgid "- Units in his formation are faster and stronger."
-msgstr "- Birimler bu dizilişte daha hızlı ve daha güçlüdürler. "
-
-#: gui/text/tips/iphicrates.txt:6
-msgid "- Skirmishers move faster while he lives."
-msgstr "- Avcılar yaşarken daha hızlı hareket eder."
+msgid "Skirmishers move faster while he lives."
+msgstr "Yaşadığı sürece avcılar daha hızlı hareket eder."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
 msgstr "KARAKOLLAR"
 
 #: gui/text/tips/outposts.txt:2
-msgid "- Build in neutral territory for a large scouting range."
-msgstr "- Daha geniş gözlem mesefasi için tarafsız bölgede inşa et."
+msgid "Build in neutral territory for a large scouting range."
+msgstr "Geniş bir gözetleme alanı için tarafsız bölgede inşa edin."
+
+#: gui/text/tips/outposts.txt:3
+msgid "Cheap, at 80 Wood."
+msgstr "Ucuz, 80 Odun."
 
 #: gui/text/tips/outposts.txt:4
-msgid "- Cheap, at 80 Wood."
-msgstr "- Ucuz, 80 Odun."
+msgid "They construct quickly, but are weak."
+msgstr "Çabuk inşa ediyorlar ama zayıflar."
 
-#: gui/text/tips/outposts.txt:6
-msgid "- They construct quickly, but are weak."
-msgstr "- Hızlı inşa eder, ama zayıftır."
-
-#: gui/text/tips/outposts.txt:8
-msgid ""
-"- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "- Garnizon içinde bir birim tarafsız bölgede çürümeden durabilir."
+#: gui/text/tips/outposts.txt:5
+msgid "Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr "Tarafsız bölgede yıkılmasını önlemek için içine birim yerleştirin."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
 msgstr "KAZIKLI ÇİT DUVARLARI"
 
 #: gui/text/tips/palisades.txt:2
-msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Tüm gruplar için mevcut olan hızlı, ucuz ahşap duvar."
+msgid "A quick, cheap wooden wall available to all factions."
+msgstr "Tüm medeniyetlerde kullanılabilen ucuz, çabuk ahşap duvar."
 
-#: gui/text/tips/palisades.txt:4
-msgid "- Most factions have access to them in Village Phase."
-msgstr "- En hiziplere Köy Aşamasında ulaşabilirsiniz."
-
-#: gui/text/tips/palisades.txt:6
-msgid ""
-"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
-" by siege weapons."
-msgstr "- Saldırgan düşman askeri, Şehir Duvarları aksine, sadece kuşatma silahlarıyla birlikteyse saldırır."
+#: gui/text/tips/palisades.txt:3
+msgid "Most factions have access to them in Village Phase."
+msgstr "Çoğu medeniyet köy aşamasında kullanabiliyor."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
 msgstr "PERİKLES"
 
 #: gui/text/tips/pericles.txt:2
-msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr "- M.Ö 5. yüzyılda önde gelen Atinalı politikacı."
+msgid "The foremost Athenian politician of the 5th century BC."
+msgstr "M.Ö 5. yüzyılın önde gelen Atinalı politikacılarından."
+
+#: gui/text/tips/pericles.txt:3
+msgid "Buildings construct faster within his range."
+msgstr "Görüş alanındaki binalar daha hızlı inşa edilir."
 
 #: gui/text/tips/pericles.txt:4
-msgid "- Buildings construct faster within his range."
-msgstr "- Yapı bu aralığın içersinde daha hızlı inşa edilir."
-
-#: gui/text/tips/pericles.txt:6
-msgid "- Temples are cheaper while he lives."
-msgstr "- O yaşarken Tapınaklar daha ucuzdur."
+msgid "Temples are cheaper while he lives."
+msgstr "Yaşadığı sürece tapınaklar daha ucuz."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
 msgstr "PERS MİMARİSİ"
 
 #: gui/text/tips/persian_architecture.txt:2
-msgid "- Special Technology for the Persians."
-msgstr "- Persler için özel teknoloji."
+msgid "Special technology for the Persians."
+msgstr "Perslere özel teknoloji"
+
+#: gui/text/tips/persian_architecture.txt:3
+msgid "All Persian buildings +25% stronger."
+msgstr "Tüm Pers binaları +%25 daha güçlü."
 
 #: gui/text/tips/persian_architecture.txt:4
-msgid "- All Persian buildings +25% stronger."
-msgstr "- Tüm Pers yapıları +25% daha güçlü."
+msgid "Build time lengthened by +20% as a consequence."
+msgstr "Yan etki olarak inşa süresi +%20 uzadı."
 
-#: gui/text/tips/persian_architecture.txt:6
-msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- Sonuç olarak +20% inşa süresini uzatır."
-
-#: gui/text/tips/persian_architecture.txt:8
+#: gui/text/tips/persian_architecture.txt:5
 msgid ""
-"- Persians also have access to a great number of structural & defensive "
+"Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "- Perslerde yapısal ve savunma teknolojilerinin çok sayıda erişebilirsiniz."
+msgstr "Persler büyük sayıda inşaat ve savunma teknolojisine de sahipler."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
 msgstr "KARGILILAR"
 
 #: gui/text/tips/pikemen.txt:2
-msgid "- Heavily armored and slow. Low attack."
-msgstr "- Ağır zırhlı ve yavaşlık. Düşük saldırıya sebep olur."
+msgid "Heavily armored and slow. Low attack."
+msgstr "Ağır zırhlı ve yavaş. Düşük saldırı."
+
+#: gui/text/tips/pikemen.txt:3
+msgid ""
+"Used against cavalry or against other melee infantry to pin them in place."
+msgstr "Süvarileri ya da diğer yakın piyadeleri tutmak için kullanılır."
 
 #: gui/text/tips/pikemen.txt:4
-msgid ""
-"- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- Süvarilere karşı kullanılan veya diğer yakın dövüş piyadesine karşı onları kullanın."
-
-#: gui/text/tips/pikemen.txt:6
-msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- Kullanılabilir olanlar: Makedon, Selevkoslu, ve Ptolemaioslular."
+msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
+msgstr "Kuşitler, Makedonlar, Ptolemiler ve Seleukoslular kullanabilir."
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "HEAVY WARSHIP"
-msgstr "AĞIR SAVAŞ GEMİSİ"
+msgid "QUINQUEREME"
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
-"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
-"and Seleucids."
-msgstr "- Ağır standart savaş gemisi. Kullanılabilir olanlar: Roma, Kartaca, Ptolemaios, ve  Selevkos."
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
+"Romans, and Seleucids."
+msgstr "En ağır standart savaş gemisi. Kartacalılar, Ptolemiler, Romalılar ve Seleukoslular kullanabilir."
+
+#: gui/text/tips/quinquereme.txt:3
+msgid "Transports up to 50 units."
+msgstr "50 birime kadar taşıyabilir."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Transports up to 50 units."
-msgstr "- 50 birime kadar nakliye."
-
-#: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrisoned catapults."
-msgstr "Garnizon mancınıkları ile ateş gücü artar."
-
-#: gui/text/tips/quinquereme.txt:8
-msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- Çakma saldırısı düşman gemilerini batırır (HENÜZ AKTİF DEĞİL)."
+msgid "Increases firepower with garrisoned catapults."
+msgstr "Yerleştirilen mancınıklarla ateş gücü yükselir."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
 msgstr "SAVANA EKOSİSTEMİ"
 
 #: gui/text/tips/savanna_biome.txt:2
-msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- Genellikle düz, birkaç sulama deliği ve kayalık mostralarlı."
+msgid "Generally flat, with a few watering holes and rocky outcrops."
+msgstr "Genellikle birkaç sulama deliği ve kayalık fosilleri olan düzlük."
+
+#: gui/text/tips/savanna_biome.txt:3
+msgid "Chock full of herd animals for plentiful hunting."
+msgstr "Bol avcılık için sürüsüyle hayvanlarla dolu."
 
 #: gui/text/tips/savanna_biome.txt:4
-msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- Bol av için hayvanlarla dolu yerleri engellerle çevirin."
+msgid "Rich in all types of mining."
+msgstr "Tüm madencilikler açısından zengin."
 
-#: gui/text/tips/savanna_biome.txt:6
-msgid "- Rich in all types of mining."
-msgstr "- Tüm madenlik türlerinde zengindir."
-
-#: gui/text/tips/savanna_biome.txt:8
-msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- Odun seyrek olma eğilimindedir, ancak yüksek verim Baobab ağaçları vardır."
+#: gui/text/tips/savanna_biome.txt:5
+msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr "Odun seyrek olma eğilimindedir, ancak yüksek verimli Baobab ağaçlarından oluşur."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "SAVUNMA KULELERİ"
 
 #: gui/text/tips/scout_towers.txt:2
-msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- Kırsal alandaki büyük geniş alanları savunmak için bağımsız ayakta duran kuleler iyidir."
+msgid "Free-standing towers good for defending large areas of countryside."
+msgstr "Serbest duran kuleler, geniş kırsal alanları korumak için iyidir."
+
+#: gui/text/tips/scout_towers.txt:3
+msgid ""
+"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
+"Wood and 250 Stone (because they're stronger)."
+msgstr "Genellikle 100 Odun ve 100 Taşa mal olurlar. İberya savunma kuleleri 50 Odun ve 250 taşa mal oluyor (çünkü daha güçlüler)"
 
 #: gui/text/tips/scout_towers.txt:4
-msgid ""
-"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
-"Stone (because they're stronger)."
-msgstr "- Onların maliyeti genellikle 100 Odun ve 100 Taştır. İber Savunma Kuleleri ise 300 Taştır (çünkü onlar daha güçlüdür)."
-
-#: gui/text/tips/scout_towers.txt:6
-msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Her garnizon birimi için artarak değişen bir saldırı vardır."
+msgid "Has a ranged attack that increases for each garrisoned unit."
+msgstr "Yerleştirilen her birimle artan bir menzilli saldırıya sahip."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
 msgstr "SPARTALILAR"
 
 #: gui/text/tips/spartan_hoplites.txt:2
-msgid "- Strongest infantry unit in the game."
-msgstr "- Oyundaki en güçlü piyade."
+msgid "Strongest infantry unit in the game."
+msgstr "Oyundaki en güçlü piyade birimi."
+
+#: gui/text/tips/spartan_hoplites.txt:3
+msgid "Champion Infantry available to the Spartans."
+msgstr "Spartalıların Şampiyon Piyadeleri"
 
 #: gui/text/tips/spartan_hoplites.txt:4
-msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Mükemmel Piyadeler Spartalılar için kullanılmalıdır."
-
-#: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- Düşman süvarilerinin katliam ve şok saldırılarına karşı düzenli hat piyadelerini kullanın."
-
-#: gui/text/tips/spartan_hoplites.txt:8
-msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Ek ödül elde etmek için 'Falanks' kullan."
+msgstr "Düşman süvarilerini katletmek için ya da normal piyadenizi desteklemek için bir şok kuvveti olarak kullanın."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
 msgstr "MIZRAKLILAR"
 
 #: gui/text/tips/spearmen.txt:2
-msgid "- The basic melee infantry for every faction in the game."
-msgstr "- Bu temel yakın dövüş süvarisi oyundaki her fonksiyon içindir."
+msgid "The basic melee infantry for every faction in the game."
+msgstr "Oyundaki tüm medeniyetler için temel yakın dövüş piyadesi."
+
+#: gui/text/tips/spearmen.txt:3
+msgid "Used against cavalry for an attack bonus."
+msgstr "Süvarilere karşı bir saldırı bonusu için kullanılır."
 
 #: gui/text/tips/spearmen.txt:4
-msgid "- Used against cavalry for an attack bonus."
-msgstr "- Atak bonusu için süvari aleyhinde kullanıldı."
+msgid "Decent hack attack make them good front line troops."
+msgstr "Yeterli Darbe saldırısı onları iyi ileri hat birimleri yapıyor."
 
-#: gui/text/tips/spearmen.txt:6
-msgid "- Decent hack attack make them good front line troops."
-msgstr "- İyi kesme saldırısı onlara iyi cephe birlikleri yapıyor."
-
-#: gui/text/tips/spearmen.txt:8
+#: gui/text/tips/spearmen.txt:5
 msgid ""
-"- They are countered by ranged units and swordsmen, so support your spearmen"
-" with slingers or cavalry."
-msgstr "- Onlar düzenli birimlere ve kılıçlılara karşı koyabilir, yani senin mızraklı destek birimlerin ile mızraklalı veya süvarilerle birlikte."
+"They are countered by ranged units and swordsmen, so support your spearmen "
+"with slingers or cavalry."
+msgstr "Menzilli birimlere ve kılıçlı birimlere karşı zayıf, bu yüzden mızrakçıları sapancılarla ya da süvarilerle destekleyin."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
 msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special structure for Greek factions."
-msgstr "- Yunan hizipler için özel bir yapı."
+msgid "A special structure for  Athenians, Macedonians, and Spartans."
+msgstr "Atinalılar, Makedonlar ve Spartalılara özel bir bina."
+
+#: gui/text/tips/stoa.txt:3
+msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr "Ağır Avcılar ve Kılıçlı Piyade Şampiyonları eğitir."
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Ağır Öncü Birliklerin ve Şampiyon Kılıçlı Piyadelerin Eğitimi."
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Grants +10 Population."
-msgstr "- Hibeler +10 Nüfus."
+msgid "Grants +10 Population."
+msgstr "+10 nüfus verir."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
 msgstr "AMBAR"
 
 #: gui/text/tips/storehouses.txt:2
-msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- Gıda dışı kaynaklar için ucuz bir biriktirme yeri (ahşap, taş, metal)."
+msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr "Yiyecek haricindeki kaynaklar için ucuz bir depolama alanı (Odun, Taş, Metal)"
 
-#: gui/text/tips/storehouses.txt:4
+#: gui/text/tips/storehouses.txt:3
 msgid ""
-"- Research technologies to improve the gathering capabilities of your "
+"Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Toplamacılığı geliştirmek için teknolojileri araştır."
-
-#: gui/text/tips/syntagma.txt:1
-msgid "SYNTAGMA FORMATION"
-msgstr "SYNTAGMA FORMASYONU"
-
-#: gui/text/tips/syntagma.txt:2
-msgid "- A formation for 'pikeman' style infantry."
-msgstr "- 'mızraklı' formatı için piyade sitili."
-
-#: gui/text/tips/syntagma.txt:4
-msgid "- Formation is slow and cumbersome."
-msgstr "- Formasyon yavaş ve hantal."
-
-#: gui/text/tips/syntagma.txt:6
-msgid "- Nearly invulnerable from the front."
-msgstr "- Önden gelen saldırılara karşı çok dayanıklı."
-
-#: gui/text/tips/syntagma.txt:8
-msgid "- Vulnerable to attacks from the rear."
-msgstr "- Arkadan gelen saldırılara karşı zayıf."
+msgstr "Vatandaşlarının toplama yeteneklerini geliştirmek için teknolojiler araştır."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
 msgstr "TAPINAKLAR"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure."
-msgstr "- Kasaba Aşaması yapıları."
+msgid "Town Phase structure."
+msgstr "Kasaba Aşaması binası"
+
+#: gui/text/tips/temples.txt:3
+msgid "Recruit Healers to heal your troops on the battlefield."
+msgstr "Savaş alanında askerlerinizi iyileştirmek için şifacılar eğitin."
 
 #: gui/text/tips/temples.txt:4
-msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "Savaşta olan askerlerinizi  iyileştirmek için sağlıkçıları silah altına alın."
+msgid "Research healing technologies."
+msgstr "Şifacılık teknolojileri araştır."
+
+#: gui/text/tips/temples.txt:5
+msgid "Its aura heals nearby units."
+msgstr "Bunun atmosferi yakındaki birimleri iyileştirir."
 
 #: gui/text/tips/temples.txt:6
-msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- İyileştirme araştırması, dini bağlılık, ve kültürel teknolojiler."
-
-#: gui/text/tips/temples.txt:8
-msgid "- Its \"aura\" heals nearby units."
-msgstr "- \"Aura\"sı yakındaki birimleri iyileştirir."
-
-#: gui/text/tips/temples.txt:10
-msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Hasar almış garnizon birimleri daha hızlı iyileştirme için içeride."
+msgid "Garrison wounded units inside for quicker healing."
+msgstr "Daha hızlı iyileştirme için birim yerleştirin."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
 msgstr "ÇÜRÜME BÖLGESİ"
 
+#: gui/text/tips/territory_decay.txt:2
+msgid ""
+"Decay happens when buildings are not connected to an allied Civil Center."
+msgstr "Binalar müttefik bir Kent Merkezine bağlı olmadığında çürüme meydana gelir."
+
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- Yapılar çürürken müttefik Halk merkezleriyle irtibat kuramazlar."
+"The decay process can be slowed down or reversed by garrisoning some units "
+"in the structure."
+msgstr "Yıkılma süreci, binanın içine birim yerleştirerek yavaşlatılabilir ya da tersine çevrilebilir."
 
-#: gui/text/tips/territory_decay.txt:5
+#: gui/text/tips/territory_decay.txt:4
 msgid ""
-"- The decay process can be slowed down or reversed by garrisoning some units"
-" in the structure."
-msgstr "- Çürüme süreci yavaşlar veya süreç tersine dönerse birimler yapılara yerleştirilebilir."
-
-#: gui/text/tips/territory_decay.txt:7
-msgid ""
-"- When the decay is completed, the building will be given to the most "
+"When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- Çürüme tamamlandığında, bu yapı yakınındakilere çok fazla etki edecektir."
+msgstr "Çürüme tamamlandığında, bina en etkili komşuya verilir."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4120,115 +4066,88 @@ msgstr "THEMISTOKLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
-"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Artemisium ve Salamis arasındaki deniz savaşında Atinalı komutan Yunanlıları komuta etti."
+msgstr "Büyük Artemisium ve Salamis deniz savaşlarında Yunanlıları komuta eden Atinalı kahraman."
+
+#: gui/text/tips/themistocles.txt:3
+msgid "All ships are built faster while he lives."
+msgstr "Yaşadığı sürece tüm gemiler daha hızlı inşa edilir."
 
 #: gui/text/tips/themistocles.txt:4
-msgid "- All ships are built faster while he lives."
-msgstr "- O yaşarken bütün gemiler daha hızlı inşa edilir."
-
-#: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside sails much faster."
-msgstr "- İçinde görevlendirilen gemi çok daha hızlı yelken açıyor."
+msgid "The ship he is garrisoned inside sails much faster."
+msgstr "İçinde bulunduğu gemi çok hızlı hareket eder."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
 msgstr "TRİREME"
 
 #: gui/text/tips/triremes.txt:2
-msgid "- The Medium Warship."
-msgstr "- Orta Savaş Gemisi."
+msgid "The Medium Warship."
+msgstr "Orta Savaş Gemisi"
+
+#: gui/text/tips/triremes.txt:3
+msgid "Good for transporting or fighting."
+msgstr "Taşımak ve savaşmak için iyi."
 
 #: gui/text/tips/triremes.txt:4
-msgid ""
-"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Romalılar, Kartacalılar, Hellenic ve Persler için kullanılabilir."
-
-#: gui/text/tips/triremes.txt:6
-msgid "- Good for transporting or fighting."
-msgstr "- Ticaret ya da savaş için iyi."
-
-#: gui/text/tips/triremes.txt:8
-msgid "- Garrison troops aboard to increase fire power."
-msgstr "- Garnizon birlikleri gemiye alınarak ateş gücü arttırılabilir."
-
-#: gui/text/tips/triremes.txt:10
-msgid ""
-"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Uzun menzilli kuşatma saldırısı için garnizona bir mancınık (HENÜZ AKTİF DEĞİL)."
-
-#: gui/text/tips/triremes.txt:12
-msgid ""
-"- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use (NOT IMPLEMENTED YET)."
-msgstr "- Yıkıcı bir gemiye karşı gemi saldırısında her çarpma saldırında bir tekrar yenilenmesi gerekiyor (HENÜZ AKTİF DEĞİL)."
+msgid "Garrison troops aboard to increase fire power."
+msgstr "Güverteye birim yerleştirerek ateş gücünü artırın."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
 msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
-msgid "- Iberian hero of the Lusitani tribe."
-msgstr "- Lusitani kabilesinin İber kahramanı."
+msgid "Iberian hero of the Lusitani tribe."
+msgstr "Lusitina kabilesinin İberyalı kahramanı."
+
+#: gui/text/tips/viriato.txt:3
+msgid ""
+"At least seven campaigns against the Romans during the Lusitani Wars from "
+"147 to 139 BC."
+msgstr "M.Ö 147 ve 139 yılları arasındaki Lusitani savaşlarında Romalılara karşı en az 7 seferberlik."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
-"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
-"147 to 139 B.C."
-msgstr "- M.Ö. 147 den 139'a kadar Romalılara karşı 'Lusitani Savaşlarında' en az 7 kez sefer düzenlenmiştir."
-
-#: gui/text/tips/viriato.txt:6
-msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Hızlı hareket ve kılıç ile alevli cirit arasında değiştirme yapabilirsiniz."
-
-#: gui/text/tips/viriato.txt:8
-msgid ""
-"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
-"to ambush their opponents."
-msgstr "- Onun \"gücü\" \"Taktik Gerilla\" yakındaki Iber birimini pusuya düşürür."
+"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
+"their opponents."
+msgstr "Yakındaki İberya birliklerinin rakiplerini tuzağa düşürmesine olanak sağlayan Gerilla Taktikleri atmosferine sahip."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
 msgstr "SAVAŞ FİLLERİ"
 
 #: gui/text/tips/war_elephants.txt:2
-msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- Afrika ve Hindistan'dan gelen savaş için eğitilmiş büyük hayvanlar."
+msgid "Huge beasts from Africa and India, trained for war."
+msgstr "Afrika ve Hindistan'dan savaş için eğitilmiş büyük yaratıklar"
+
+#: gui/text/tips/war_elephants.txt:3
+msgid "High Food and Metal cost, but very powerful."
+msgstr "Yüksek Besin ve Metal maliyeti ama çok güçlü."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
-"- High Food and Metal cost, but very powerful. Strongest against Structures "
-"and Cavalry."
-msgstr "- Yüksek Gıda ve Metal, çok güçlendiricidir. Yapılara ve Süvarilere karşı güçlü kılar."
-
-#: gui/text/tips/war_elephants.txt:6
-msgid "- Vulnerable to infantry skirmishers."
-msgstr "-Piyade çarpismaya karşı savunmasızdır."
-
-#: gui/text/tips/war_elephants.txt:8
-msgid ""
-"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Kartacalılar, Kuşitler, Mauryalılar, Persler, Ptolemiler ve Seleukoslular kullanabilir."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
 msgstr "BALİNALAR"
 
 #: gui/text/tips/whales.txt:2
-msgid "- An oceanic resource."
-msgstr "- Bir okyanus kaynağı."
+msgid "An oceanic resource."
+msgstr "Bir okyanus kaynağı."
+
+#: gui/text/tips/whales.txt:3
+msgid "2000 Food."
+msgstr "2000 Besin"
 
 #: gui/text/tips/whales.txt:4
-msgid "- 2000 Food."
-msgstr "- 2000 Gıda."
+msgid "Gatherable by Fishing Boats after the whale is killed."
+msgstr "Balina öldürüldükten sonra balıkçı tekneleri tarafından toplanabilir."
 
-#: gui/text/tips/whales.txt:6
-msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- Balina öldürüldükten sonra Balıkçı Kayıkları ile toplanabilir."
-
-#: gui/text/tips/whales.txt:8
-msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Saldırılardan kaçmak ve oyunda okyanus etrafı için etrafta dolaşın."
+#: gui/text/tips/whales.txt:5
+msgid "Roam around the oceans of the game and flee when attacked."
+msgstr "Oyunun okyanuslarında gez ve saldırıl aldığında kaç."

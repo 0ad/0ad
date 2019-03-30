@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-15 09:45+0100\n"
-"PO-Revision-Date: 2019-03-15 17:08+0000\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-22 20:29+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,15 @@ msgstr ""
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"
+
+#: simulation/templates/template_gaia_fish.xml:8
+#: simulation/templates/gaia/fauna_fish.xml:4
+msgid "Fish"
+msgstr "Peixe"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Gather food from this bountiful oceanic resource."
+msgstr "Recolhe comida deste recurso oceânico abundante."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
@@ -114,6 +123,14 @@ msgstr "Edifício"
 #: simulation/templates/template_unit.xml:42
 msgid "Unit"
 msgstr "Unidade"
+
+#: simulation/templates/template_wallset.xml:11
+msgid "City Wall"
+msgstr "Muralha"
+
+#: simulation/templates/template_wallset.xml:12
+msgid "Wall off your town for a stout defense."
+msgstr "Cerca a tua povoação com muralhas para uma defesa mais robusta."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -277,13 +294,6 @@ msgstr "Elefante Africano da Floresta"
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
 msgstr "Loxodonta cyclotis"
-
-#: simulation/templates/gaia/fauna_fish.xml:4
-#: simulation/templates/gaia/fauna_fish.xml:5
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
-#: simulation/templates/gaia/fauna_fish_tuna.xml:5
-msgid "Fish"
-msgstr "Peixe"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
@@ -535,9 +545,31 @@ msgstr "Pinheiro-de-Alepo"
 msgid "Apple Tree"
 msgstr "Macieira"
 
+#: simulation/templates/gaia/flora_tree_bamboo.xml:4
+#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Babu"
+
+#: simulation/templates/gaia/flora_tree_banyan.xml:8
+msgid "Banyan"
+msgstr "Baniano"
+
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
 msgstr "Embondeiro"
+
+#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr "Rebento de embondeiro"
+
+#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Pequeno embondeiro"
+
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
+msgid "Dead Baobab"
+msgstr "Embondeiro morto"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -684,7 +716,7 @@ msgstr "Estátuas dos Egípcios Ptolemaicos"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:9
 msgid "Kushite Statue"
-msgstr "Estátua Cuxita"
+msgstr "Estátua cuxita"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:9
 msgid "Roman Statues"
@@ -1029,8 +1061,8 @@ msgstr "Espião"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "16 melee infantry units required"
-msgstr "Requer 16 unidades de Infantaria de luta corpo-a-corpo\n"
+msgid "At least 16 melee infantry units required."
+msgstr "Requer pelo menos 16 unidades de infantaria de combate corpo-a-corpo."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1041,8 +1073,8 @@ msgid "Battle Line"
 msgstr "Linha de Batalha"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "4 units required"
-msgstr "Requer 4 unidades"
+msgid "At least 4 units required."
+msgstr "Requer pelo menos 4 unidades."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1057,8 +1089,8 @@ msgid "Column Open"
 msgstr "Coluna aberta"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Requer 8 unidades"
+msgid "At least 8 units required."
+msgstr "Requer pelo menos 8 unidades."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1077,8 +1109,8 @@ msgid "None"
 msgstr "Nenhuma"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "Requer 10 unidades de infantaria Hoplita"
+msgid "At least 10 hoplite infantry required."
+msgstr "Requer pelo menos 10 unidades de infantaria Hoplita."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1089,16 +1121,16 @@ msgid "Scatter"
 msgstr "Espalhados"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Apenas são permitidas as unidades de combate à distância"
+msgid "Only ranged units allowed."
+msgstr "Apenas são permitidas as unidades de combate à distância."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Escaramuça"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "Necessário 16 unidades de infantaria piqueira"
+msgid "At least 16 pike infantry units required."
+msgstr "Requer pelo menos 16 unidades de infantaria piqueira."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1109,8 +1141,8 @@ msgid "Testudo"
 msgstr "Tartaruga"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "Necessário 6 unidades de cavalaria."
+msgid "At least 6 cavalry units required."
+msgstr "Requer pelo menos 6 unidades de cavalaria."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

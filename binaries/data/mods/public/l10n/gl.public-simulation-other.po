@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrian Chaves <adrian@chaves.io>, 2018
+# Adrian Chaves <adrian@chaves.io>, 2018-2019
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 # mandruis <manuiglesias96@yahoo.es>, 2016
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-01-18 15:14+0000\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2019-03-23 21:15+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -735,8 +735,9 @@ msgstr "Rexicidio"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Se o primeiro e construír ou capturar unha marabilla e mantena durante un certo tempo para gañar a partida. O temporizador restabelecerase cando se destrúa a marabilla, cando se capture ou, en caso de permitirse a vitoria dos aliados, cando cambie a alianza do propietario."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Se a primeira persoa en construír ou capturar unha marabilla e mantela durante un certo tempo para gañar a partida. O temporizador restabelecerase cando a marabilla se destrúa ou a capturen. Se o modo de vitoria de aliados está activado, o temporizador tamén se restabelecerá cando as alianzas do seu dono cambien."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -882,4 +883,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra é o robot de intelixencia artificial predeterminado de 0 d.C. Informe de calquera problema a Wildfire Games (consulte a ligazón no menú principal).\n\nA taxa de recolección de recursos e ganancias por comercio da intelixencia artificial dependen do nivel de dificultade: −58% en nula, −44% en moi fácil, −25% en fácil, ±0% en media, +25% en difícil, +56% en moi difícil. Os niveis máis doados tamén teñen unhas taxas de investigación, adestramento e construción máis lentas. Ademais, no nivel de dificultade nula non se expande nin ataca."

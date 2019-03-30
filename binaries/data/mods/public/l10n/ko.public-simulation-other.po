@@ -4,8 +4,10 @@
 # 
 # Translators:
 # Asakura, 2015,2017
+# 이정희 <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
+# karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # llen_llen, 2016
@@ -16,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-18 09:44+0100\n"
-"PO-Revision-Date: 2019-03-18 22:59+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2019-03-27 07:38+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,357 +33,357 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "当方は%(_player_)sに対する大規模な軍事作戦を展開中です。参戦を願います。"
+msgstr "%(_player_)님에게 대항하여 대규모 군사 캠페인을 시작할 것입니다. 참전 하세요."
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "当方は%(_player_)sを壊滅すべく巨大な軍隊を編成しました。参戦いただければ、相応の戦利品を衝突得るでしょう。"
+msgstr "%(_player_)님을 격파하기 위해 거대한 군대를 편성했습니다. 저희와 함께하면 그 전리품은 당신 몫이 될 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr "%(_player_)sに対して攻撃を開始しています。"
+msgstr "%(_player_)님에게 대해 공격을 시작합니다."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr "%(_player_)sに対して軍を派遣しました。"
+msgstr "방금 %(_player_)님에게 대항하여 군대를 보냈습니다."
 
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "我が軍を再編成した上で、貴殿に加わり%(_player_)sへ対抗します。"
+msgstr "군대를 다시 편성하고 %(_player_)님에게 대항하여 여러분과 함께 하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "%(_player_)sを攻撃する準備が整いました。"
+msgstr "%(_player_)님을 공격하기 위한 준비를 마칩니다."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "残念ながら今のところ我が兵が足りていないのですが、次の攻撃では%(_player_)sを狙っています。"
+msgstr "죄송합니다. 현재 병력이 부족합니다. 하지만 다음 공격은 %(_player_)님을 공략합니다."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "ごめんなさい、まだ軍隊を強化する必要があります。しかし、次に%(_player_)sを攻撃するつもりです。 "
+msgstr "죄송합니다. 아직 군대를 강화해야 합니다. 그러나 다음에 %(_player_)를 공격하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "今%(_player_2)sに攻撃しようとしているため、あなたと%(_player_)sの戦いは助けに行けません。"
+msgstr "당분간 %(_player_)님을 도울 수 없습니다. %(_player_2)님을 먼저 공격할 계획입니다."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "%(_player_)sへの贈り物です。お役立てください。"
+msgstr "%(_player_)님을 위한 선물입니다. 잘 활용하세요."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "%(_player_)sと険悪な状況とお見受けします。これがお役に立てば幸いです。"
+msgstr "%(_player_)이(가) 좋지 않은 상황에 처해 있는 것으로 알고 있습니다. 이것이 도움이 되었으면 좋겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr "今回は%(_player_)s を援助しますが、今後はもっと資源を慎重に管理してください。"
+msgstr "이번에는 %(_player_)님을 도와드릴 수 있지만, 앞으로는 자원을 좀 더 신중하게 관리해야 합니다."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "%(resource)sが必要なのですが、援助して頂けませんか。後ほど埋め合わせしますので。"
+msgstr "%(resource)이(가) 필요한데 도와주시겠어요? 보상해 드릴께요."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr " %(resource)sをいくらか供与していただければ、我らが共に戦う上での効率を高められます。"
+msgstr "몇 가지 %(resource)을(를) 제공해 주신다면 우리의 공동의 전쟁 노력에 더욱 효율적으로 참여하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "もし%(resource)sをいただけるなら、我が軍を強化することができることでしょう。"
+msgstr "%(resource)을(를) 절약 할 수 있다면, 군대를 강화시킬 수 있을 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr "新たな交易路を%(_player_)sとの間に設けました。交易は我々すべてに利益をもたらすことでしょう。"
+msgstr "%(_player_)님과 새로운 경로를 설정했습니다. 거래는 우리 모두에게 이익이 될 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr "%(_player_)sとの間に新しい貿易ルートが設定されています。利益の分配を受けます。"
+msgstr "새로운 무역 경로가 %(_player_)님으로 설정됩니다. 이익을 나누십시오."
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "%(_player_)sと我が国は現在同盟関係にあります。"
+msgstr "%(_player_)님과 나는 이제 동맹국입니다."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "%(_player_)sと我が国は現在中立を保っています。"
+msgstr "%(_player_)s님과 나는 이제 중립국입니다."
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "%(_player_)sと我が国は現在敵対しています。"
+msgstr "%(_player_)님과 나는 이제 적이 되었습니다."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr "%(_player_)s、あなたとは同盟になれません。"
+msgstr "%(_player_)님, 동맹이 되겠다는 당신의 제안을 받아들일 수 없습니다."
 
 #: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "%(_player_)s、あなたの同盟にはなりません。が、中立なら考えます。"
+msgstr "%(_player_)님, 나는 당신의 동맹이 되지 않을 겁니다. 하지만, 중립 협정은 고려해 보겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "%(_player_)s、あなたとの同盟は却下しますが、中立ならなれます。"
+msgstr "%(_player_)님, 동맹에 대한 당신의 요청을 거절합니다. 하지만 우리는 중립국이 될 수 있습니다."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)님, 나는 중립 협정만 생각하고 있습니다."
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "%(_player_)님, 우리의 이전 동맹은 잘 진행되지 않았습니다. 당신의 제안을 거절합니다."
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr "再び%(_player_)sと同盟することはないでしょう！"
+msgstr "%(_player_)님, 다시는 당신과 동맹을 맺지 않겠습니다!"
 
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)님, 우리 사이에 더 이상 동맹은 없습니다!"
 
 #: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)님, 당신의 평화 요구는 더 이상 내게 아무런 의미도 없습니다!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)님, 당신의 거듭된 평화 제안에 대한 나의 답변은 전쟁을 유지합니다!"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "%(_player_)님, 동맹이 되겠다는 당신의 제안을 받아들이겠습니다. 우리는 모두 이 협력의 혜택을 누릴 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)님, 우리 사이의 동맹은 좋은 생각입니다."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)님, 우리 두 민족이 평화적인 결사로부터 번영하도록 합시다."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "%(_player_)님, 우리는 공통점을 발견했습니다. 그 동맹에 찬성합니다."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "%(_player_)s、私達との同盟を今から考えてみてください。"
+msgstr "%(_player_)님, 앞으로 우리 동맹국들을 고려해주십시오."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s님과 동맹을 맺겠습니다. 그러나 %(_resource_) %(_amount_)의 공물을 나에게 보낼 경우에만 가능합니다."
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)님, 당신과 동맹을 맺기 전에 나에게 %(_resource_) %(_amount_)의 공물을 보내야만 합니다."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "%(_player_)님, 나에게 %(_resource_) %(_amount_)를 보내지 않는다면, 동맹은 맺어지지 않을 것입니다,"
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)님, 내 제안은 여전히 유효합니다. %(_resource_) %(_amount_)의 공물을 보낼 경우에만 귀하와 동맹을 맺겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)님, 나는 아직도 당신과의 동맹을 수락하기 전에 %(_resource_) %(_amount_)을(를) 기다리고 있습니다."
 
 #: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)님, 조만간 %(_resource_) %(_amount_)의 공물을 보내지 않는다면, 우리의 협상을 중단하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr "%(_player_)sと中立関係にはなれないでしょう。"
+msgstr "%(_player_)님, 당신과는 중립국이 되지 않을 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr "%(_player_)sとの中立協定の申請を辞退しなければなりません。"
+msgstr "%(_player_)님, 중립 협정에 대한 당신의 요청을 거절하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "%(_player_)님, 우리의 이전의 중립 협정은 실패로 끝났습니다. 나는 다른 중립 협정은 고려하지 않을 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:102
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr ""
+msgstr "%(_player_)님, 우리 문명간의 평화에 대한 당신의 요청을 환영합니다. 받아들이겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)님, 당신의 중립 요청을 받아들이겠습니다. 우리 두 문명 모두 혜택을 받을 수 있기를 바랍니다."
 
 #: simulation/ai/petra/chatHelper.js:106
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)님, 만약 당신이 %(_resource_) %(_amount_)의 공물을 보내준다면, 나는 당신의 중립 요청을 받아들일 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)님, 나에게 %(_resource_) %(_amount_)을(를) 보내면 중립 협약을 수락하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)님, 조만간 %(_resource_) %(_amount_)의 경의를 표하지 않면 나는 당신의 중립 요청을 받아들이지 않을 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)님, 우리가 동맹을 맺으면 두 문명 모두에 도움이 될 것입니다. 만약 당신이 나와 동맹이 된다면, 친절하게 대응하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)님, 동맹에 대한 제의 기한이 만료되었습니다."
 
 #: simulation/ai/petra/chatHelper.js:123
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)님, 나는 우리 사이의 동맹에 대한 이전의 제안을 철회했습니다."
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)님, 나는 우리 문명간에 중립 협정을 요청하고 싶습니다. 만약 당신이 나와 중립국이 된다면, 친절하게 대응하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)님, 우리가 중립 협정을 협상한다면 그것은 우리 모두에게 이익이 될 것입니다. 당신이 똑같이 한다면 나는 당신에게 중립국이 될 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)님, 중립 협정을 위한 나의 제안을 취소하기로 결정했습니다."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)님, 당신이 우리 사이의 평화에 대한 나의 요청에 응답하지 않았기 때문에, 나의 제안을 포기했습니다."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "%(name)sは原因不明のエラーのため建設できません。"
+msgstr "알 수 없는 오류로 인해 %(name)을(를) 건설할 수 없습니다"
 
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)sは未探索の地域に建設できません。"
+msgstr "%(name)은(는) 미개척 지역에 건설할 수 없습니다"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)sは他の建物や資源の上に建設できません。"
+msgstr "%(name)은(는) 다른 건물이나 자원에 건설할 수 없습니다"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "%(name)sは不適合な地形に建設できません。"
+msgstr "잘못된 지형에서는 %(name)을(를) 건설할 수 없습니다"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -395,28 +397,28 @@ msgstr "자국령"
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr "飛び地の自国領"
+msgstr "분리된 자국령"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr "同盟国"
+msgstr "동맹국"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr "離れた同盟国"
+msgstr "단절된 동맹국"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
-msgstr "중립"
+msgstr "중립국"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -430,12 +432,12 @@ msgstr "적군"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)sは%(territoryType)sに建設できません。建設できるのは%(validTerritories)sです。"
+msgstr "%(territoryType) 지역에서는 %(name)를 구축 할 수 없습니다. 유효한 지역 : %(validTerritories)"
 
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)sは適切な岸辺に建設しなければいけません。"
+msgstr "%(name)은(는) 적절한 해안선에 건설되어야 합니다"
 
 #: simulation/components/BuildRestrictions.js:256
 #, javascript-format
@@ -445,7 +447,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)sが%(category)sに近すぎます。少なくとも%(distance)sメートル離さなければなりません。"
+msgstr[0] "%(name)이(가) %(category)에 너무 가까이 있으며, 적어도 %(distance)m 이상 떨어져 있어야 합니다"
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -453,7 +455,7 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)sが%(category)sから離れすぎています。%(distance)sメートル以内でなければなりません。"
+msgstr[0] "%(name)이(가) %(category)에서 너무 멀리 떨어져 있으며, %(distance)m 내에 있어야 합니다"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -467,14 +469,14 @@ msgstr "자국령"
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
-msgstr "아군"
+msgstr "동맹국"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr "중립"
+msgstr "중립국"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -486,55 +488,55 @@ msgstr "적군"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "%(time)sで攻撃可能です"
+msgstr "%(time) 간격으로 공격할 수 있습니다"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "現在攻撃可能です！"
+msgstr "당신은 지금 공격 할 수 있습니다!"
 
 #: simulation/components/EndGameManager.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
+msgstr[0] "%(players)님과 %(lastPlayer)님이 승리했습니다 (마지막 플레이어 생존)."
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
-msgstr "最後に残ったプレイヤーが勝利します。"
+msgstr "마지막으로 남은 플레이어가 승리 합니다."
 
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(category)sは建造数量リミットの%(limit)sに達しました"
+msgstr "%(limit)의 %(category) 건설 한도에 도달했습니다"
 
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)sは訓練リミットの%(limit)sに達しました"
+msgstr "%(limit)의 %(category) 훈련 한도에 도달했습니다"
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr "%(category)sリミットの%(limit)sに達しました"
+msgstr "%(limit)의 %(category) 한도에 도달했습니다"
 
 #: simulation/components/Player.js:352
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s"
+msgstr "자원 부족 - %(resourceAmount1) %(resourceType1)"
 
 #: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "자원 부족 -  %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr "자원 부족 - %(resourceAmount1) %(resourceType1), %(resourceAmount2) %(resourceType2)"
 
 #: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr "자원 부족 - %(resourceAmount1) %(resourceType1), %(resourceAmount2) %(resourceType2), %(resourceAmount3) %(resourceType3)"
 
 #: simulation/components/Player.js:358
 #, javascript-format
@@ -542,76 +544,76 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr "자원 부족 - %(resourceAmount1) %(resourceType1), %(resourceAmount2) %(resourceType2), %(resourceAmount3) %(resourceType3), %(resourceAmount4) %(resourceType4)"
 
 #: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
-msgstr "生産キューが満杯です。"
+msgstr "생산 대기열이 가득 찼습니다."
 
 #: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
-msgstr "養成したユニットを配置する場所がありません"
+msgstr "훈련 된 유닛을 소환할 여유 공간을 찾을 수 없습니다"
 
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)은(는) (cheat)을(를) 물리 쳤습니다."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "유닛을 훈련시키는 건물을 선택해야 합니다."
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(치트- 모든 유닛 통제)"
 
 #: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(치트- 지도 표시)"
 
 #: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)가 받아들였습니다."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(치트 - 유닛 승격)"
 
 #: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr "距離の条件を満たしていないか、地形的な問題のためアップグレードできません。"
+msgstr "거리의 조건이 충족하지 않거나 지형이 막혀 업그레이드할 수 없습니다."
 
 #: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
-msgstr "駐屯中のエンティティはアップグレードできません。"
+msgstr "주둔중인 개체는 업그레이드할 수 없습니다."
 
 #: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "%(_player_)s への攻撃要求です。"
+msgstr "%(_player_)님의 공격 요청입니다."
 
 #: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
-msgstr "買収できるユニットがいません。"
+msgstr "매수할 수 있는 유닛이 없습니다"
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "유닛을 배치할 수 없습니다."
 
 #: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "일부 유닛은 다시 작업할 수 없습니다"
 
 #: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
-msgstr "この建物に必要な技術を満たしていません。"
+msgstr "이 건물에 필요한 기술이 충족되지 않았습니다."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "自然"
+msgstr "가이아 (지구)"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
@@ -647,19 +649,19 @@ msgstr "플레이어 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
-msgstr "거북이 속도 (0.1x)"
+msgstr "굼뱅이 속도 (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr "느리게 (0.25x)"
+msgstr "느린 속도 (0.25x)이"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr "여유있는 (0.5x)"
+msgstr "여유로운 속도 (0.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr "편안한 (0.75x)"
+msgstr "편안한 속도 (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
@@ -667,15 +669,15 @@ msgstr "정상 속도 (1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25x)"
-msgstr "빠르게 (1.25x)"
+msgstr "고속 (1.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5x)"
-msgstr "아주 빠르게 (1.5x)"
+msgstr "초고속 (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
-msgstr "당신 미쳤네요 (2x)"
+msgstr "미친 속도 (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
@@ -693,17 +695,17 @@ msgstr "빨리 돌리기 (20x)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "マップ上に散らばっているすべての遺跡を占領し、一定の時間それらを確保すると勝利。"
+msgstr "지도 곳곳에 흩어져 있는 모든 유적을 점령한 뒤, 일정한 시간 동안 이들을 확보하면 승리합니다."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "유적 점령"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "모든 유닛을 죽이고 모든 구조물을 파괴하여 적들을 물리칩니다."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -711,38 +713,39 @@ msgstr "정복"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "모든 구조물을 파괴하여 상대편을 물리칩니다."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr "정복건물??"
+msgstr "건축물 점령"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "모든 유닛을 죽여 상대를 물리칩니다."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "정복유닛??"
+msgstr "유닛 정복"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "영웅을 죽임으로써 상대를 물리칩니다."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr "왕을처형??"
+msgstr "국왕 처형"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr ""
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "가장 먼저 불가사의를 건설하거나 점령한 후, 일정 시간동안 지켜내야 게임에서 승리합니다. 불가사의가 파괴되거나 점령되면 타이머가 초기화됩니다. 연합군의 승리 모드가 활성화된 경우나, 자국의 동맹이 바뀌면 타이머가 초기화 됩니다."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr "불가사의??"
+msgstr "불가사의"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
@@ -772,19 +775,19 @@ msgstr "매우높음"
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr "사생결단"
+msgstr "데스매치"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "당신이 0 A.D를 발견한다면 이 난이도를 선택하세요."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr "아주 쉬움"
+msgstr "매우 쉬움"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "당신이 쓰러지는 것을 좋아하지 않는다면 이 난이도를 선택하세요."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -793,7 +796,7 @@ msgstr "쉬움"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "당신이 이미 0 A.D에 대한 좋은 경험을 가지고 있다면 이 난이도를 선택하세요."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -802,7 +805,7 @@ msgstr "보통"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "정말 도전받고 싶다면 이 난이도를 선택하세요."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -810,7 +813,7 @@ msgstr "어려움"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "당신이 휩쓸려 나가도 상관없다면 이 난이도를 선택하십시오."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -818,62 +821,62 @@ msgstr "매우 어려움"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
-msgstr "아주 작음"
+msgstr "초소형"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "このマップサイズには、基本的な資源でさえほとんど余裕がありません。"
+msgstr "이 지도 크기는 가장 기본적인 자원조차 쓸 수 있는 공간이 거의 없습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr "작음"
+msgstr "소형"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "この小さなマップは１対１の対戦に適しています。プレイヤーは敵に素早く手を伸ばし、さらに拡大する余地があります。"
+msgstr "소형 지도는 1v1 매치에 적합합니다. 플레이어가 확장할 공간이 있는 상태에서 신속하게 적에게 접근할 수 있습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr "中サイズのマップは2人のプレイヤーに十分な空間を提供しますが、8人のプレイヤーにも手頃です。"
+msgstr "중간 크기의 지도는 두 명의 플레이어에게 충분한 공간을 제공하지만 여덟 명의 플레이어도 적당합니다."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
-msgstr "일반"
+msgstr "평균"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "これは、4～8人のプレイヤーのための理想的なマップサイズです。拡張する空間が十分にあり、かつ隣人にはすばやく到達できるためです。"
+msgstr "4~8명의 플레이어가 사용할 수 있는 이상적인 지도입니다. 이웃이 빠르게 접근하는 동안, 확장 가능한 공간이 충분하기 때문입니다."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr "큼"
+msgstr "대형"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Tooltip
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr "マップの大部分が水または近づけない山々で覆われている場合、大マップがお勧めです。"
+msgstr "대형 지도 크기는 지도의 많은 부분이 물이나 접근할 수 없는 산으로 덮여 있을 때 권장됩니다."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr "아주 큼"
+msgstr "초대형"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "特大マップは、敵に到達するまでには時間がかかり、ゲームのパフォーマンスを低下させるため、お勧めしません。"
+msgstr "초대형 지도는 적에게 도달하는 데 아주 오래 걸리고, 게임 성능이 저하될 수 있기 때문에 권장하지 않습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
-msgstr "거인"
+msgstr "대형"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -884,4 +887,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "페트라는 기본 0 A.D. AI 봇입니다. Wildfire Games에 문제를 보고해 주세요(메인 메뉴의 링크 참조).\n\nAI의 자원 채집율과 교역 이익은 난이도(샌드박스 -58%, 매우 쉬움 -44%, 쉬움 -25%, 보통 +0%, 어려움 +25%, 매우 어려움 +56%)에 따라 달라집니다. 또한 가장 쉬운 레벨은 연구, 교육 및 건축 비율이 더 느립니다. 또한 샌드박스 레벨은 확장되거나 공격되지 않습니다."

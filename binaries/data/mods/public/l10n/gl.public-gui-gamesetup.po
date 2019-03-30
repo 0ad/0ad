@@ -1,9 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrian Chaves <adrian@chaves.io>, 2018
+# Adrian Chaves <adrian@chaves.io>, 2018-2019
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 # Gonzalo Corral <gcorralhdez@gmail.com>, 2018
@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:44+0100\n"
-"PO-Revision-Date: 2018-12-31 16:05+0000\n"
+"POT-Creation-Date: 2019-03-22 09:43+0100\n"
+"PO-Revision-Date: 2019-03-28 08:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Escoller a dificultade do escenario."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Choose the civilization for this player"
-msgstr ""
+msgstr "Escoller a civilización deste xogador"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
@@ -408,8 +408,8 @@ msgstr "Activa esta opción para que os puntos que cada xogador obteña na parti
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Pulsa %(hotkey)s para autocompletar os axustes ou nomes de xogadores."
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "Preme %(hotkey)s para completar automaticamente nomes de xogadores ou opcións."
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
@@ -460,82 +460,82 @@ msgstr "Usar %(hotkey)s para baixar a lapela de configuración."
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Usar %(hotkey)s para subir a lapela de configuración."
 
-#: gui/gamesetup/gamesetup.js:1748
+#: gui/gamesetup/gamesetup.js:1751
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleatorio"
 
-#: gui/gamesetup/gamesetup.js:1750
+#: gui/gamesetup/gamesetup.js:1753
 msgid "Pick any of the given maps at random."
 msgstr "Escoller calquera dos mapas indicados de maneira aleatoria."
 
-#: gui/gamesetup/gamesetup.js:1782
+#: gui/gamesetup/gamesetup.js:1785
 msgctxt "biome"
 msgid "Random"
 msgstr "Aleatorio"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1786
 msgid "Pick a biome at random."
 msgstr "Escoller un bioma aleatorio."
 
-#: gui/gamesetup/gamesetup.js:2121
+#: gui/gamesetup/gamesetup.js:2124
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2126
+#: gui/gamesetup/gamesetup.js:2129
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#: gui/gamesetup/gamesetup.js:2156
+#: gui/gamesetup/gamesetup.js:2159
 msgid "Yes"
 msgstr "Si"
 
-#: gui/gamesetup/gamesetup.js:2156
+#: gui/gamesetup/gamesetup.js:2159
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:2163
+#: gui/gamesetup/gamesetup.js:2166
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2251
+#: gui/gamesetup/gamesetup.js:2254
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2456
+#: gui/gamesetup/gamesetup.js:2459
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2464
+#: gui/gamesetup/gamesetup.js:2467
 msgid "Unassigned"
 msgstr "Non asignado"
 
-#: gui/gamesetup/gamesetup.js:2540
+#: gui/gamesetup/gamesetup.js:2543
 #, javascript-format
 msgid "== %(message)s"
 msgstr "— %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2547
+#: gui/gamesetup/gamesetup.js:2550
 msgid "Unknown Player"
 msgstr "Xogador descoñecido"
 
-#: gui/gamesetup/gamesetup.js:2586
+#: gui/gamesetup/gamesetup.js:2589
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2587
+#: gui/gamesetup/gamesetup.js:2590
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2588
+#: gui/gamesetup/gamesetup.js:2591
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -546,12 +546,12 @@ msgstr "Partida de %(name)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Escriba un nome de servidor válido."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "O número de porto do servidor debe estar entre %(min)s e %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -576,7 +576,7 @@ msgstr "O nome da partida xa está en uso."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "Non se puido aloxar mediante STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
@@ -597,12 +597,19 @@ msgstr "Non é posíbel unirse á partida: %(message)s."
 msgid "%(playername)s's game"
 msgstr "Partida de %(playername)s"
 
-#: gui/loading/loading.js:48
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading screen
+#: gui/loading/loading.js:33
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "Cargando «%(map)s»"
 
-#: gui/loading/loading.js:52
+#: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "Xerando «%(map)s»"
@@ -716,7 +723,7 @@ msgstr "Unirse a unha partida existente."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Nome do xogador:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -725,7 +732,7 @@ msgstr "Nome ou IP do servidor:"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "Porto do servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
@@ -733,11 +740,11 @@ msgstr "Configurar o seu computador como anfitrión."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Nome do servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Usar STUN para evitar devasas"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -746,14 +753,14 @@ msgstr "Continuar"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Deixar baleiro para usar o porto predeterminado."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "«Zeus \\[…] estabeleceu a súa lei: o sufrimento leva á sabedoría. \\[…] Así que as persoas aprenden contra a súa vontade a practicar a moderación. \\[…] Esa graza é dura e violenta.» — Esquilo («Oresteia», I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -842,7 +849,7 @@ msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "«Se fixen algo nobre, iso é lembranza dabondo; senón, nin todas as estatuas do mundo poderán preservar a miña memoria.» — Agesilao II de Esparta (Plutarco de Queronea, «Moralia», XVI. «Ditos dos espartanos», 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -855,13 +862,13 @@ msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "«Non chores por min, que sufro inxustamente, peor o teñen os meus asasinos.» — Axis IV de Esparta (Plutarco de Queronea, «Vidas paralelas», «Axis», sec. 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "«Abondan o sexo e o sono para concienciarme da miña mortalidade.» — Alexandre o Grande (Plutarco de Queronea, «Vidas paralelas», «Alexandre», sec. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -869,7 +876,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "«É moi servil vivir en luxo, pero moi leal esforzarse. \\[…] Non sabes que a finalidade da conquista é evitar os vicios e as debilidades dos sometidos?» — Alexandre o Grande (Plutarco de Queronea, «Vidas paralelas», «Alexandre», sec. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -877,7 +884,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "«Gloriosas son as fazañas dos traballan e arriscan; e é un pracer vivir unha vida de valor e morrer deixando atrás unha gloria inmortal.» — Alexandre o Grande, dirixíndose ás súas tropas (Arriano de Nicomedia, «Anábase alexandrina», 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -885,7 +892,7 @@ msgid ""
 "labours themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "«Pois eu penso que, para a persoa valente, non hai unha finalidade nos traballos alén dos propios traballos, sempre que leven a logros gloriosos.» — Alexandre o Grande, dirixíndose ás súas tropas (Arriano de Nicomedia, «Anábase alexandrina», 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -893,26 +900,26 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr ""
+msgstr "«Se non fose Alexandre, gustaríame ser Dióxenes \\[de Sínope].» — Alexandre o Grande, impresionado pola sinxeleza do filósofo que coñecera (Plutarco de Queronea, «Moralia», XXII. «Sobre as fortunas de Alexandre o Grande», 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "«O máis forte!» — Alexandre o Grance, no seu leito de morte, ao preguntárenlle quen debería sucedelo como rei (Arriano de Nicomedia, «Anábase alexandrina», 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "«Eu non roubo as vitorias.» — Alexandre o Grande, tras suxerírenlle atacar aos persas pola noite (Plutarco de Queronea, «Vidas paralelas», «Alexandre», sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "«As leis escritas son como teas de arañas; é certo que atraparán aos febles e aos pobres, pero os ricos e poderosos racharanas completamente.» — Anacarsis (Plutarco de Queronea, «Vidas paralelas», «Solón», sec. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -920,79 +927,79 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "«A ágora é o lugar onde as persoas van para enganarse as unhas ás outras, e comportarse de maneira cobizosa.» — Anacarsis, un filósofo escita que viaxou a Grecia (Dióxenes Laercio, «As vidas e as opinións de filósofos eminentes», Anacarsis, sec. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "«Non foi coidando os campos, senón de nós mesmos, que nos fixemos cos campos.» — Anaxandridas II de Esparta  (Plutarco de Queronea, «Moralia», XVI. «Ditos dos espartanos», 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr ""
+msgstr "«Os estados están condenados se non poden distinguir as boas persoas das malas.» — Antístenes (Dióxenes Laercio, «As vidas e as opinións de filósofos eminentes», Antístenes, sec. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "«O raposo sabe moitos trucos; o ourizo sabe un moi bo.» — Arquíloco (fragmento 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "«Dáme un lugar onde estar e moverei o mundo.» — Arquímedes, sobre o uso da panca (Diodoro Sículo, «Bibliotheca Historica», fragmentos do libro XXVI, sec. 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "«É dos inimigos, non dos amigos, de quen as cidades aprenden a construír murallas altas e naves de guerra.» — Aristófanes («Paxaros»)"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "«É unha obriga, especialmente para un filósofo, sacrificar incluso os lazos persoais máis próximos en defensa da verdade.» — Aristóteles («Ética a Nicómaco», I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr ""
+msgstr "«A felicidade depende do lecer, porque non temos tempo de lecer e facemos a guerra para vivir en paz.» — Aristóteles («Ética a Nicómaco», X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "«As persoas son, por natureza, animais políticos.» — Aristóteles («Política», I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "«Tanto os oligarcas como os tiranos teñen medo da xente, por iso lles arrebatan as armas.» - Aristotle (\"Politics, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "«Grazas á filosofía fago sen que mo ordenen o que outros só fan por medo á lei.» — Aristóteles (Dióxenes Laercio, «As vidas e as opinións de filósofos eminentes», Aristóteles, sec. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "«Paréceme máis valente quen supera os seus desexos que quen conquista aos seus inimigos, é máis duro vencerse a un mesmo.» — Aristóteles (Estobeo, «Florilexio», 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""

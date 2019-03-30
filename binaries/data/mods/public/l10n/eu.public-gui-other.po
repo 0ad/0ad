@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-02-18 09:43+0100\n"
-"PO-Revision-Date: 2019-02-21 22:16+0000\n"
+"POT-Creation-Date: 2019-03-22 09:44+0100\n"
+"PO-Revision-Date: 2019-03-27 12:36+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "Esleitu gabeko tekla: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames."
+msgid "Press %(hotkey)s to autocomplete player names."
 msgstr "Sakatu %(hotkey)s jokalariaren izena automatikoki betetzeko."
 
 #: gui/common/color.js:181
@@ -1456,43 +1456,43 @@ msgstr "%(hotkey)s: Itxi Egitura Zuhaitza."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:139
+#: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
 msgstr "Eraikia:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:152
+#: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
 msgstr "Trebatuta:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:165
+#: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
 msgstr "Ikertua:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:177
+#: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
 msgstr "Eraikitzen:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:198
+#: gui/reference/viewer/viewer.js:194
 msgid "Researches:"
 msgstr "Ikerketak:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:210
+#: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
 msgstr "Trebatuak:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:223
+#: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
 msgstr "Eguneratzea:"
 
@@ -1609,7 +1609,8 @@ msgid "Unrated games"
 msgstr "Sailkapenik gabeko partidak"
 
 #: gui/replaymenu/replay_menu.js:193
-msgid "Filter replays by typing one or more, partial or complete playernames."
+msgid ""
+"Filter replays by typing one or more, partial or complete player names."
 msgstr "Iragazi errepikapenak jokalari izen bat edo batzuk, edo izen moztuak idatziz. "
 
 #: gui/replaymenu/replay_menu.js:273
@@ -3534,24 +3535,19 @@ msgstr "ERROMATAR ARMADAREN KANPAMENDUA"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
-"- Build anywhere on the map, even in enemy territory. Good for building a "
-"secret base behind enemy lines or to consolidate gains within enemy "
-"territory."
+"Buildable in neutral or enemy territory. Good for building a secret base "
+"behind enemy lines or to consolidate gains within enemy territory."
 msgstr "- Eraiki mapan nonahi, etsaiaren lurraldean ere. Ona sekretupeko base bat eraikitzeko etsaiaren lerroen atzean edo etsaiaren lurraldeari egindako irabaziak sendotzeko"
 
+#: gui/text/tips/army_camp.txt:3
+msgid "Construct siege weapons and train citizen-soldiers."
+msgstr "Setio armak eraiki eta hiritar-gudariak erreklutatu."
+
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr "- Jaitsi egiten da bere jabetza bertakoen eskuetan geratuz aliatuak ez diren lurraldetan."
-
-#: gui/text/tips/army_camp.txt:6
-msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Setio armak eraiki eta hiritar-gudariak erreklutatu."
-
-#: gui/text/tips/army_camp.txt:8
 msgid ""
-"- Garrison up to 40 units to slowly heal the units and protect the army camp"
-" from attacks and decay."
-msgstr "40 unitate artean babestu azkarrago sendatzeko eta kanpamentua erasoetatik eta utzikeriatik babesteko. "
+"Garrison units to slowly heal them and protect the army camp from attacks "
+"and decay."
+msgstr "Babes unitateak poliki sendatzeko eta kanpamentua erasoetatik eta utzikeriatik babesteko. "
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3559,60 +3555,54 @@ msgstr "KUARTELA"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"- Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Entrenatu soldadu hiritar guztiak. Fakzio batzuk aldezkariak entrenatzeko gaitasuna desblokeatu dezakete ere."
+msgstr "Entrenatu soldadu hiritar guztiak. Fakzio batzuk aldezkariak entrenatzeko gaitasuna desblokeatu dezakete ere."
+
+#: gui/text/tips/barracks.txt:3
+msgid "Research military technologies unique to each faction."
+msgstr "Fakzio bakoitzarendako militar teknologia paregabeetan ikertu."
 
 #: gui/text/tips/barracks.txt:4
-msgid "- Research military technologies unique to each faction."
-msgstr "- Fakzio bakoitzarendako militar teknologia paregabeetan ikertu."
-
-#: gui/text/tips/barracks.txt:6
 msgid ""
-"- Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Ahalik eta azkarren bat eraiki hiritar-gudariak erreklutatzeko zure faseko egonkortzean aurrera zoazela."
+msgstr "Ahalik eta azkarren bat eraiki hiritar-gudariak erreklutatzeko zure faseko egonkortzean aurrera zoazela."
 
-#: gui/text/tips/barracks.txt:8
-msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr "- Eraiki ezazu base aurreratu batean zure erasoei armada berriak emateko."
+#: gui/text/tips/barracks.txt:5
+msgid "Build in a forward base to resupply your assault with fresh troops."
+msgstr "Eraiki ezazu base aurreratu batean zure erasoei armada berriak emateko."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
 msgstr "BURDINOLA"
 
 #: gui/text/tips/blacksmith.txt:2
-msgid "- Research structure for all factions."
-msgstr "- Fakzio guztientzako ikerketa eraikina."
+msgid "Research structure for all factions."
+msgstr "Fakzio guztientzako ikerketa eraikina."
 
-#: gui/text/tips/blacksmith.txt:4
-msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Ikertu arma eta armaduren hobekuntzak zure unitateentzat."
-
-#: gui/text/tips/blacksmith.txt:6
-msgid ""
-"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Gorde barruan hiritar-gudari bat azkarrago ikertzeko. (ORAINDIK EZ DAGO MARTXAN)"
+#: gui/text/tips/blacksmith.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr "Ikertu arma eta armaduren hobekuntzak zure unitateentzat."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
 msgstr "KARTAGOTARREN BATAILOI SAKARATUA  "
 
 #: gui/text/tips/carth_sacred_band.txt:2
-msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- Lantzari aldezkariak eta lantzari zalditeria aldezkariak Kartagorentzat."
+msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr "Lantzari aldezkariak eta lantzari zalditeria aldezkariak Kartagorentzat."
+
+#: gui/text/tips/carth_sacred_band.txt:3
+msgid ""
+"Both are trainable from the Temple, instead of the Fortress like most other "
+"champions."
+msgstr "Biak entrenatu daitezke tenplutik, ez gotorlekutik, beste aldezkari gehienak ez bezala."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both are trainable from the Temple, instead of the Fortress like most "
-"other champions."
-msgstr "- Biak entrenatu daitezke tenplutik, ez gotorlekutik, beste aldezkari gehienak ez bezala."
-
-#: gui/text/tips/carth_sacred_band.txt:6
-msgid ""
-"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
-"heavy shock against siege weapons and skirmishers."
+"Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
+" shock against siege weapons and skirmishers."
 msgstr "Lantzariak erabili Zalditeriaren kontrako infanteri gisa. Erabili Zalditeria setio Armen eta Gerrillarien kontrako txoke pieza gisa."
 
 #: gui/text/tips/catapults.txt:1
@@ -3620,128 +3610,118 @@ msgid "CATAPULTS"
 msgstr "KATAPULTAK"
 
 #: gui/text/tips/catapults.txt:2
-msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Eraikinen kontrako eragin luzeko setio makinak."
+msgid "Ranged siege engines that are good against buildings."
+msgstr "Eraikinen kontrako eragin luzeko setio makinak."
+
+#: gui/text/tips/catapults.txt:3
+msgid "Expensive and slow."
+msgstr "Garesti eta motelak"
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
-"- May upgrade to flaming projectiles for extra effectiveness against "
-"buildings and units."
-msgstr "- Eraginkortasun gehiagorako su jaurtigailuz hobetu daiteke eraikin eta unitateen kontra."
-
-#: gui/text/tips/catapults.txt:6
-msgid "- Expensive and slow."
-msgstr "Garesti eta motelak"
-
-#: gui/text/tips/catapults.txt:8
-msgid ""
-"- Pack up into carts for movement, and unpack into stationary engines for "
+"Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- Desarmaturik garraiatzen ziren gurdietan, eta muntatzean...makina suntsitzaile bihurtzen ziren!"
+msgstr "Desarmaturik garraiatzen ziren gurdietan, eta muntatzean...makina suntsitzaile bihurtzen ziren!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
 msgstr "GERRA GABARRA ZELTA"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "- A medium \"trireme\"-class warship."
-msgstr "- Trirreme klaseko gerra itsasontzi ertaina."
+msgid "A medium trireme-class warship."
+msgstr "Trirreme klaseko gerra itsasontzi ertaina."
+
+#: gui/text/tips/celtic_war_barge.txt:3
+msgid "Available to Britons, Gauls, and Iberians."
+msgstr "Britainiar, Galiar, eta Iberiarrentzako eskuragarri."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr "- Zelta Taldeentzat eskuragarria (Britanikok eta Galiarrak)"
+msgid "Can transport up to 40 units."
+msgstr "40 unitate arte garraia ditzake."
 
-#: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Can transport up to 40 units across the waters."
-msgstr "- Uretatik 40 unitate arte garraia ditzake."
-
-#: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrisoned infantry."
-msgstr "- Tiro ahalmena handitzen du infanteria babestean."
-
-#: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- Ez du beste trirremeen moduan eraso egiten, baino iraunkortasun eta babes handiagoa eskaintzen du."
+#: gui/text/tips/celtic_war_barge.txt:5
+msgid "Increases firepower with garrisoned infantry."
+msgstr "Tiro ahalmena handitzen du infanteria babestean."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
 msgstr "ZENTRO ZIBILAK"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The foundation of your new colony."
-msgstr "- Zure kolonia berriaren oinarriak."
+msgid "The foundation of your new colony."
+msgstr "Zure kolonia berriaren oinarriak."
+
+#: gui/text/tips/civic_centres.txt:3
+msgid "Claim large tracts of territory."
+msgstr "Lur eremu zabalak eskatu."
 
 #: gui/text/tips/civic_centres.txt:4
-msgid "- Claim large tracts of territory."
-msgstr "- Lur eremu zabalak eskatu."
+msgid "Can be built in friendly and neutral territory."
+msgstr "Lur neutral edo aliatuan eraiki daitezke."
 
-#: gui/text/tips/civic_centres.txt:6
-msgid "- Can be built in friendly and neutral territory."
-msgstr "- Lur neutral edo aliatuan eraiki daitezke."
-
-#: gui/text/tips/civic_centres.txt:8
+#: gui/text/tips/civic_centres.txt:5
 msgid ""
-"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
-"citizen soldiers."
-msgstr "- Erreklutatu hiritarrak: emakume hiritarrak, infanteriako hiritar soldaduak eta zaldizko hiritar soldaduak."
+"Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
+"citizen-soldiers."
+msgstr "Erreklutatu hiritarrak: emakume hiritarrak, infanteriako hiritar soldaduak eta zaldizko hiritar soldaduak."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
 msgstr "ENBAXADAK"
 
 #: gui/text/tips/embassies.txt:2
-msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- \"Kuartel\" bereziak, Kartagotarren talderako eskuragarri."
+msgid "Special Barracks available to the Carthaginians."
+msgstr "Kuartel bereziak, Kartagotarrentzako eskuragarri."
+
+#: gui/text/tips/embassies.txt:3
+msgid "Train mercenaries from each of the ethnically-themed embassies."
+msgstr "Mertzenarioak entrenatu enbaxada etniko bakoitzetik."
 
 #: gui/text/tips/embassies.txt:4
-msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Mertzenarioak entrenatu enbaxada etniko bakoitzetik."
-
-#: gui/text/tips/embassies.txt:6
 msgid ""
-"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
-"Metal cost."
-msgstr "- Hiritar-soldaduen Janariaren kostu arrunta Metal kostua bihurtzen da."
+"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
+"cost."
+msgstr "Hiritar-soldaduen Janariaren kostu arrunta Metal kostua bihurtzen da."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
 msgstr "ARRANTZA"
 
 #: gui/text/tips/fishing.txt:2
-msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Arrantzatu itsasoetan elikagai oparo hau."
+msgid "Fish the seas for a bountiful harvest."
+msgstr "Arrantzatu itsasoetan elikagai oparo hau."
+
+#: gui/text/tips/fishing.txt:3
+msgid "Fishing boats carry a large amount of food per trip."
+msgstr "Arrantzontziek janari kopuru handiak eraman ditzakete bidai bakoitzean."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of food per trip."
-msgstr "- Arrantzontziek janari kopuru handiak eraman ditzakete bidai bakoitzean."
+msgid "Fishing is faster than gathering food on fields."
+msgstr "Arrantza janarien landaketa baino azkarragoa da."
 
-#: gui/text/tips/fishing.txt:6
-msgid "- Fishing is faster than gathering food on fields."
-msgstr "- Arrantza janarien landaketa baino azkarragoa da."
-
-#: gui/text/tips/fishing.txt:8
-msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Baino kontuz! Arraia ez da bukaezineko baliabidea."
+#: gui/text/tips/fishing.txt:5
+msgid "Careful! Fish are not an infinite resource!"
+msgstr "Baino kontuz! Arraia ez da bukaezineko baliabidea."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "GOTORLEKUA"
 
 #: gui/text/tips/fortress.txt:2
-msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- Fortea gehienetan talde bakoitzaren eraikin sendoena da."
+msgid "The Fortress is usually each faction's strongest building."
+msgstr "Fortea gehienetan talde bakoitzaren eraikin sendoena da."
+
+#: gui/text/tips/fortress.txt:3
+msgid "Trains Champions, Heroes, and Siege Weapons."
+msgstr "Aldezkariak, Heroiak eta Setiorako armak trebatzen ditu."
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Unitate sendoak entrenatzen ditu, Aldezkariak, Heroiak eta Setiorako armak adibidez."
+msgid "Gives a population boost."
+msgstr "Populazio hobekuntza eskaintzen du."
 
-#: gui/text/tips/fortress.txt:6
-msgid "- Gives a population boost."
-msgstr ". Populazio hobekuntza eskaintzen du."
-
-#: gui/text/tips/fortress.txt:8
-msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- Soldaduak gordetzen ditu babesari su ahalmen handiagoa emateko."
+#: gui/text/tips/fortress.txt:5
+msgid "Garrison soldiers inside to add more firepower to its defense."
+msgstr "Soldaduak gordetzen ditu babesari su ahalmen handiagoa emateko."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3749,45 +3729,44 @@ msgstr "ESKUAK LIBRE EGOERA"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
-"- Gain an advantage on the battleground by tactically positioning your "
-"units!"
-msgstr "- Lortu abantaila guda zelaian zure unitateak era taktikoan jarriz!"
+"Gain an advantage on the battleground by tactically positioning your units!"
+msgstr "Lortu abantaila guda zelaian zure unitateak era taktikoan jarriz!"
+
+#: gui/text/tips/freehand_position.txt:3
+msgid ""
+"Therefore select some units, press and hold the right mouse button, draw any"
+" line, then release the button."
+msgstr "Aukeratu unitate batzuk, sakatu saguaren eskuineko botoia, lerro bat marraztu eta, ondoren, askatu botoia."
 
 #: gui/text/tips/freehand_position.txt:4
-msgid ""
-"- Therefore select some units, press and hold the right mouse button, draw "
-"any line, then release the button."
-msgstr "- Aukeratu unitate batzuk, sakatu saguaren eskuineko botoia, lerro bat marraztu eta, ondoren, askatu botoia."
-
-#: gui/text/tips/freehand_position.txt:6
-msgid "- Your units will now spread out on this line."
-msgstr "- Unitateak lerro honetan zabalduko dira orain."
+msgid "Your units will now spread out on this line."
+msgstr "Unitateak lerro honetan zabalduko dira orain."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
 msgstr "BALIABIDEAK JASO"
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr "- Erabili soldadu hiritarrak eta emakumezko hiritarrak baliabideak biltzeko."
+msgid "Use citizen-soldiers and female citizens to gather resources."
+msgstr "Erabili soldadu hiritarrak eta emakumezko hiritarrak baliabideak biltzeko."
+
+#: gui/text/tips/gathering.txt:3
+msgid "Female citizens gather vegetable resources faster."
+msgstr "- Hiritar emakumezkoak landare-baliabideak azkarrago biltzen dituzte."
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female citizens are faster gathering vegetable resources."
-msgstr "- Hiritar emakumezkoak landare-baliabideak biltzen ari dira."
+msgid "Infantry citizen-soldiers are faster gathering minerals."
+msgstr "Infanteriako hiritar soldaduak mineralen bilketan azkarragoak dira."
+
+#: gui/text/tips/gathering.txt:5
+msgid "Cavalry citizen-soldiers are faster gathering meat."
+msgstr "Zalditeriako hiritar soldaduak haragiaren bilketan azkarragoak dira."
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr "- Infanteriako hiritar soldaduak mineralen bilketan azkarragoak dira."
-
-#: gui/text/tips/gathering.txt:8
-msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr "- Zalditeriako hiritar soldaduak haragiaren bilketan azkarragoak dira."
-
-#: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of a citizen soldier (advanced, elite), the better he"
-" fights, but the less efficient he is at gathering resources."
-msgstr "- Hiritar-soldaduaren maila zenbat eta gorago egon (aurreratua, elite), hobe borrokatzen da, baino baliabideak biltzean kaskarragoa izango da."
+"The higher the level of a citizen-soldier (advanced, elite), the better he "
+"fights, but the less efficient he is at gathering resources."
+msgstr "Hiritar-soldaduaren maila zenbat eta gorago egon (aurreratua, elite), hobe borrokatzen da, baino baliabideak biltzean kaskarragoa izango da."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3795,310 +3774,275 @@ msgstr "IPHICRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
-"- The Athenian general who reformed the Athenian army to be faster and more "
+"The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- Armada Atenastarra azkarrago eta erabil erraza izan zedin berritu zuen Atenastar jenerala."
+msgstr "Armada Atenastarra azkarrago eta erabil erraza izan zedin berritu zuen Atenastar jenerala."
+
+#: gui/text/tips/iphicrates.txt:3
+msgid "Units in his formation are faster and stronger."
+msgstr "Unitateak formazioan azkarrago eta indartsuagoak dira."
 
 #: gui/text/tips/iphicrates.txt:4
-msgid "- Units in his formation are faster and stronger."
-msgstr "- Unitateak formazioan azkarrago eta indartsuagoak dira."
-
-#: gui/text/tips/iphicrates.txt:6
-msgid "- Skirmishers move faster while he lives."
-msgstr "- Gerrilariak azkarrago mugitzen dira bizirik dirauen bitartean."
+msgid "Skirmishers move faster while he lives."
+msgstr "Gerrillariak azkarrago mugitzen dira bizirik dirauen bitartean."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
 msgstr "AITZINDARIAK"
 
 #: gui/text/tips/outposts.txt:2
-msgid "- Build in neutral territory for a large scouting range."
-msgstr "- Eremu neutralean eraiki itzazu gune zabal bat aurkitzeko."
+msgid "Build in neutral territory for a large scouting range."
+msgstr "Eremu neutralean eraiki itzazu gune zabal bat aurkitzeko."
+
+#: gui/text/tips/outposts.txt:3
+msgid "Cheap, at 80 Wood."
+msgstr "Merkeak, Egurretik 80ko balioa dute."
 
 #: gui/text/tips/outposts.txt:4
-msgid "- Cheap, at 80 Wood."
-msgstr "- Merkeak, Egurretik 80ko balioa dute."
+msgid "They construct quickly, but are weak."
+msgstr "Azkar eraikitzen dira, baino ahulak dira."
 
-#: gui/text/tips/outposts.txt:6
-msgid "- They construct quickly, but are weak."
-msgstr "- Azkar eraikitzen dira, baino ahulak dira."
-
-#: gui/text/tips/outposts.txt:8
-msgid ""
-"- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "- Babestu unitateren bat egitura eremu neutralean eror ez dedin."
+#: gui/text/tips/outposts.txt:5
+msgid "Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr "Babestu unitateren bat egitura eremu neutralean eror ez dedin."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
 msgstr "ZUR HESIAK"
 
 #: gui/text/tips/palisades.txt:2
-msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Egurrezko harresi merkea eta eraikitzen erraza fakzio guztientzat eskuragarri."
+msgid "A quick, cheap wooden wall available to all factions."
+msgstr "Egurrezko harresi merkea eta eraikitzen erraza fakzio guztientzat eskuragarri."
 
-#: gui/text/tips/palisades.txt:4
-msgid "- Most factions have access to them in Village Phase."
-msgstr "- Fakzio gehienek erabil dezakete Hasiera Fasean."
-
-#: gui/text/tips/palisades.txt:6
-msgid ""
-"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
-" by siege weapons."
-msgstr "- Soldadu etsaiek eraso ditzakete, hiriko harresiak ez bezala, setio makinekin baino ezin direla eraitsi."
+#: gui/text/tips/palisades.txt:3
+msgid "Most factions have access to them in Village Phase."
+msgstr "Fakzio gehienek erabil dezakete Hasiera Fasean."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
 msgstr "PERICLES"
 
 #: gui/text/tips/pericles.txt:2
-msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr "- K.A, 5. mendeko politikaririk garrantzitsuena."
+msgid "The foremost Athenian politician of the 5th century BC."
+msgstr "K.A, 5. mendeko politikaririk garrantzitsuena."
+
+#: gui/text/tips/pericles.txt:3
+msgid "Buildings construct faster within his range."
+msgstr "Bere irismen barruko eraikuntzak azkarrago eraikiko dira."
 
 #: gui/text/tips/pericles.txt:4
-msgid "- Buildings construct faster within his range."
-msgstr "- Bere irismen barruko eraikuntzak azkarrago eraikiko dira."
-
-#: gui/text/tips/pericles.txt:6
-msgid "- Temples are cheaper while he lives."
-msgstr "- Tenpluak merkeagoak dira bizirik dagoen bitartean."
+msgid "Temples are cheaper while he lives."
+msgstr "Tenpluak merkeagoak dira bizirik dagoen bitartean."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
 msgstr "PERSIAR ARKITEKTURA"
 
 #: gui/text/tips/persian_architecture.txt:2
-msgid "- Special Technology for the Persians."
-msgstr "- Pertsiarren Teknologia Esklusiba."
+msgid "Special technology for the Persians."
+msgstr "Pertsiarren teknologia Esklusiba."
+
+#: gui/text/tips/persian_architecture.txt:3
+msgid "All Persian buildings +25% stronger."
+msgstr "Eraikin guztiak %25+ indartsuago bihurtzen dira"
 
 #: gui/text/tips/persian_architecture.txt:4
-msgid "- All Persian buildings +25% stronger."
-msgstr "- Eraikin guztiak %25+ indartsuago bihurtzen dira"
+msgid "Build time lengthened by +20% as a consequence."
+msgstr "Eraikitze-denbora +%20 luzatuta ondorioz."
 
-#: gui/text/tips/persian_architecture.txt:6
-msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- Eraikitze-denbora +%20 luzatuta ondorioz."
-
-#: gui/text/tips/persian_architecture.txt:8
+#: gui/text/tips/persian_architecture.txt:5
 msgid ""
-"- Persians also have access to a great number of structural & defensive "
+"Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "- Pertsiarrak ere babes eta egiturazko teknologia asko eskuragarri dituzte."
+msgstr "Pertsiarrak ere babes eta egiturazko teknologia asko eskuragarri dituzte."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
 msgstr "PIKARIAK"
 
 #: gui/text/tips/pikemen.txt:2
-msgid "- Heavily armored and slow. Low attack."
-msgstr "- Armadura askokoak eta motelak. Eraso baxua."
+msgid "Heavily armored and slow. Low attack."
+msgstr "Armadura askokoak eta motelak. Eraso baxua."
+
+#: gui/text/tips/pikemen.txt:3
+msgid ""
+"Used against cavalry or against other melee infantry to pin them in place."
+msgstr "Zalditeriaren kontra edo beste buruz-buruko infanteria baten kontra erabiltzen da bertan geldiarazteko."
 
 #: gui/text/tips/pikemen.txt:4
-msgid ""
-"- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- Zalditeriaren kontra edo beste buruz-buruko infanteria baten kontra erabiltzen da bertan geldiarazteko."
-
-#: gui/text/tips/pikemen.txt:6
-msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- Hauek eskuragarri: Mazedoniok, Seleuziarrak eta Ptolemaikoak. "
+msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
+msgstr "Hauentzat eskuragarri: Kushitarrak, Macedoniarrak, Ptolemiarrak, eta Seleuzidarrak."
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "HEAVY WARSHIP"
-msgstr "ITSASONTZI ASTUNA"
+msgid "QUINQUEREME"
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
-"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
-"and Seleucids."
-msgstr "-Ohiko gerra itsasontzirik astunena. Hauentzako eskuragarri: Erroma, Kartago, Ptolomeo eta Seleuziar."
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
+"Romans, and Seleucids."
+msgstr "-Ohiko gerra itsasontzirik astunena. Hauentzako eskuragarri: Kartago, Ptolomeo, Erromatar eta Seleuziar."
+
+#: gui/text/tips/quinquereme.txt:3
+msgid "Transports up to 50 units."
+msgstr "50 unitate arte garraia ditzake."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Transports up to 50 units."
-msgstr "- 50 unitate arte garraia ditzake."
-
-#: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrisoned catapults."
-msgstr "- Tiro ahalmena handitzen du katapultak babestean."
-
-#: gui/text/tips/quinquereme.txt:8
-msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- Etsaien itsasontziak hondoratzen dituen erasoa du (ORAINDIK EZ DABIL)."
+msgid "Increases firepower with garrisoned catapults."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
 msgstr "SABANAKO KLIMA"
 
 #: gui/text/tips/savanna_biome.txt:2
-msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- Gehienetan lur laukoa, aska gutxi batzuk eta harri azaleratzekin."
+msgid "Generally flat, with a few watering holes and rocky outcrops."
+msgstr ""
+
+#: gui/text/tips/savanna_biome.txt:3
+msgid "Chock full of herd animals for plentiful hunting."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:4
-msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- Animali talde oparoaz beterik ehiza ugarirako."
+msgid "Rich in all types of mining."
+msgstr ""
 
-#: gui/text/tips/savanna_biome.txt:6
-msgid "- Rich in all types of mining."
-msgstr "- Meatzetan aberatsa."
-
-#: gui/text/tips/savanna_biome.txt:8
-msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- Egurra eskas xamarra izaten da, baino dagoena Baobab handi eta oparoak dira."
+#: gui/text/tips/savanna_biome.txt:5
+msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "DEFENTSA DORREAK"
 
 #: gui/text/tips/scout_towers.txt:2
-msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- Dorre bakartuak eremu zabal irekien babeserako oso lagungarriak."
+msgid "Free-standing towers good for defending large areas of countryside."
+msgstr ""
+
+#: gui/text/tips/scout_towers.txt:3
+msgid ""
+"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
+"Wood and 250 Stone (because they're stronger)."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:4
-msgid ""
-"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
-"Stone (because they're stronger)."
-msgstr "- Gehienetan 100 egurretan eta 100 harrian dute kostua. Iberiarren babes dorreak 300 harrian dute kostua (sendoagoak direlako)."
-
-#: gui/text/tips/scout_towers.txt:6
-msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Luzerako erasoa dute, bere barnean babesten den unitate bakoitzarekin hobetzen dena."
+msgid "Has a ranged attack that increases for each garrisoned unit."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
 msgstr "SPARTIATAK"
 
 #: gui/text/tips/spartan_hoplites.txt:2
-msgid "- Strongest infantry unit in the game."
-msgstr "- Jokoko infanteria unitate sendoena."
+msgid "Strongest infantry unit in the game."
+msgstr ""
+
+#: gui/text/tips/spartan_hoplites.txt:3
+msgid "Champion Infantry available to the Spartans."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:4
-msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Infanteria aldezkaria eskuragarri Espartar fakziorako."
-
-#: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- Erabil itzazu etsaien zalditeria sarraskitzeko edo txoke indar moduan zure ohiko infanteria laguntzeko."
-
-#: gui/text/tips/spartan_hoplites.txt:8
-msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "Falange-eraketa erabili armaduraren hobekuntza gehigarrirako."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
 msgstr "LANTZARIAK"
 
 #: gui/text/tips/spearmen.txt:2
-msgid "- The basic melee infantry for every faction in the game."
-msgstr "- Oinarrizko buruz-buruko infanteria jokoaren fakzio guztientzat"
+msgid "The basic melee infantry for every faction in the game."
+msgstr ""
+
+#: gui/text/tips/spearmen.txt:3
+msgid "Used against cavalry for an attack bonus."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
-msgid "- Used against cavalry for an attack bonus."
-msgstr "- Zalditeriaren kontra erabili bina bikoizteko."
+msgid "Decent hack attack make them good front line troops."
+msgstr ""
 
-#: gui/text/tips/spearmen.txt:6
-msgid "- Decent hack attack make them good front line troops."
-msgstr "- Mozte min dezentea dute, lerroko talde on bihurtzen dituena. "
-
-#: gui/text/tips/spearmen.txt:8
+#: gui/text/tips/spearmen.txt:5
 msgid ""
-"- They are countered by ranged units and swordsmen, so support your spearmen"
-" with slingers or cavalry."
-msgstr "- Luzerako unitate eta ezpatarien kontra ahulak dira, zure lantzariak honda jaurtitzailez eta zalditeriaz lagundu beharko dituzu."
+"They are countered by ranged units and swordsmen, so support your spearmen "
+"with slingers or cavalry."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
 msgstr "ESTOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special structure for Greek factions."
-msgstr "- Heleniar fakzioentzako egitura bakarra."
+msgid "A special structure for  Athenians, Macedonians, and Spartans."
+msgstr ""
+
+#: gui/text/tips/stoa.txt:3
+msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Gerrillari Astunak erreklutatu eta Infanteria Garailea."
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Grants +10 Population."
-msgstr "- Populazioan +10 ematen du."
+msgid "Grants +10 Population."
+msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
 msgstr "BILTEGIAK"
 
 #: gui/text/tips/storehouses.txt:2
-msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- Zenbat baliabideentzako deskarga puntu merkea, janaria salbu (egurra, harria, metala)."
+msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr ""
 
-#: gui/text/tips/storehouses.txt:4
+#: gui/text/tips/storehouses.txt:3
 msgid ""
-"- Research technologies to improve the gathering capabilities of your "
+"Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Ikertu teknologietan zure hiritarren biltze ahalmena hobetu dadin."
-
-#: gui/text/tips/syntagma.txt:1
-msgid "SYNTAGMA FORMATION"
-msgstr "SINTAGMA LERROKATZEA"
-
-#: gui/text/tips/syntagma.txt:2
-msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Pikari unitateentzako lerrokatze bat."
-
-#: gui/text/tips/syntagma.txt:4
-msgid "- Formation is slow and cumbersome."
-msgstr "- Lerrokatze hau motela eta ezerosoa da."
-
-#: gui/text/tips/syntagma.txt:6
-msgid "- Nearly invulnerable from the front."
-msgstr "- Ia erasoezina da paretik."
-
-#: gui/text/tips/syntagma.txt:8
-msgid "- Vulnerable to attacks from the rear."
-msgstr "- Ahula da atzeko erasoen kontra."
+msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
 msgstr "TENPLUAK"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure."
-msgstr "- Fase ertaineko egitura."
+msgid "Town Phase structure."
+msgstr ""
+
+#: gui/text/tips/temples.txt:3
+msgid "Recruit Healers to heal your troops on the battlefield."
+msgstr ""
 
 #: gui/text/tips/temples.txt:4
-msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- Sendagileak erreklutatu zure taldeak guda zelaian sendatzeko."
+msgid "Research healing technologies."
+msgstr ""
+
+#: gui/text/tips/temples.txt:5
+msgid "Its aura heals nearby units."
+msgstr ""
 
 #: gui/text/tips/temples.txt:6
-msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- Sendatze, erlijio debozio eta kultur teknologiak ikertu."
-
-#: gui/text/tips/temples.txt:8
-msgid "- Its \"aura\" heals nearby units."
-msgstr "- Ber \"aura\"k inguruko unitateak sendatzen ditu."
-
-#: gui/text/tips/temples.txt:10
-msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Zauritutako unitateak barnean babestu sendatze azkarrago baterako."
+msgid "Garrison wounded units inside for quicker healing."
+msgstr ""
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
 msgstr "LURRALDE DEKADENTZIA"
 
+#: gui/text/tips/territory_decay.txt:2
+msgid ""
+"Decay happens when buildings are not connected to an allied Civil Center."
+msgstr ""
+
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- Dekadentzia ematen da eraikinak ez daudenean aliatuen inongo gizarte zentrutik gertu."
+"The decay process can be slowed down or reversed by garrisoning some units "
+"in the structure."
+msgstr ""
 
-#: gui/text/tips/territory_decay.txt:5
+#: gui/text/tips/territory_decay.txt:4
 msgid ""
-"- The decay process can be slowed down or reversed by garrisoning some units"
-" in the structure."
-msgstr "- Dekadentzia prozesua gelditu edo atzera bueltatu dezakezu unitateak egituran babestuz."
-
-#: gui/text/tips/territory_decay.txt:7
-msgid ""
-"- When the decay is completed, the building will be given to the most "
+"When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- Dekadentzia garaia amaitzean, eraikina inguruko eragin handiko fakzio bati utziko zaio."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4106,115 +4050,88 @@ msgstr "TEMISTOKLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
-"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Atenastar heroia, Artemiso eta Salaminako itsas borroka handietan greziarren nagusi."
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:3
+msgid "All ships are built faster while he lives."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:4
-msgid "- All ships are built faster while he lives."
-msgstr "- Ontzi guztiak azkarrago eraikitzen dira bizirik dirauen bitartean."
-
-#: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside sails much faster."
-msgstr "- Itsasontzi baten barruan egon ezkero azkarrago doa."
+msgid "The ship he is garrisoned inside sails much faster."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
 msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
-msgid "- The Medium Warship."
-msgstr "- Guda Ontzi Ertaina"
+msgid "The Medium Warship."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:3
+msgid "Good for transporting or fighting."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid ""
-"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Erromatar, kartagoar, Heleniar Fakzio eta Pertsiarrentzako eskuragarri."
-
-#: gui/text/tips/triremes.txt:6
-msgid "- Good for transporting or fighting."
-msgstr "- Ona garraiorako eta borrokarako."
-
-#: gui/text/tips/triremes.txt:8
-msgid "- Garrison troops aboard to increase fire power."
-msgstr "- Babestu itsasontzi hau zure taldeez bere luzerako su indarra handitzeko."
-
-#: gui/text/tips/triremes.txt:10
-msgid ""
-"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Jaso katapulta bat barruan luzerako setio erasoentzako (ORAINDIK EZ DAGO MARTXAN)."
-
-#: gui/text/tips/triremes.txt:12
-msgid ""
-"- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use (NOT IMPLEMENTED YET)."
-msgstr "- Aurreko eraso suntsitzailea egiteko gai, erabilera bakoitzaren ondoren birkargatu egin behar dena (ORAINDIK EZ DAGO MARTXAN)."
+msgid "Garrison troops aboard to increase fire power."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
 msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
-msgid "- Iberian hero of the Lusitani tribe."
-msgstr "- Lusitaniar tribuko Iberiar heroia."
+msgid "Iberian hero of the Lusitani tribe."
+msgstr ""
+
+#: gui/text/tips/viriato.txt:3
+msgid ""
+"At least seven campaigns against the Romans during the Lusitani Wars from "
+"147 to 139 BC."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
-"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
-"147 to 139 B.C."
-msgstr "- Gutxienez 7 kanpaina erromatarren kontra K.a. 147tik 139rako Lusitaniar Gerretan."
-
-#: gui/text/tips/viriato.txt:6
-msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Azkar mugitzen da eta alda dezake ezpata suzko jabalinagatik."
-
-#: gui/text/tips/viriato.txt:8
-msgid ""
-"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
-"to ambush their opponents."
-msgstr "- Bere \"aura\" \"gerrilla taktika\" da, alboko iberiar unitateei euren aurkariak enboskatzeko aukera ematen die."
+"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
+"their opponents."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
 msgstr "GERRA ELEFANTEAK"
 
 #: gui/text/tips/war_elephants.txt:2
-msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- Afrika eta Indiako izaki erraldoiak, gerrarako heziak."
+msgid "Huge beasts from Africa and India, trained for war."
+msgstr ""
+
+#: gui/text/tips/war_elephants.txt:3
+msgid "High Food and Metal cost, but very powerful."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
-"- High Food and Metal cost, but very powerful. Strongest against Structures "
-"and Cavalry."
-msgstr "- Metal eta janarietan kostu handia dute baino oso indartsuak dira. Indartsuagoak eraikin eta zalditeriaren kontra."
-
-#: gui/text/tips/war_elephants.txt:6
-msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Gerrillari infanteriaren aurrean ahula."
-
-#: gui/text/tips/war_elephants.txt:8
-msgid ""
-"- Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "- Hauentzat eskuragarri: Kartagoarrak, Kushitarrak, Mauryarrak, Persiarrak, Ptolemiarrak, eta Seleuzidarrak."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
 msgstr "BALEAK"
 
 #: gui/text/tips/whales.txt:2
-msgid "- An oceanic resource."
-msgstr "- Ozeanoko baliabide bat"
+msgid "An oceanic resource."
+msgstr ""
+
+#: gui/text/tips/whales.txt:3
+msgid "2000 Food."
+msgstr ""
 
 #: gui/text/tips/whales.txt:4
-msgid "- 2000 Food."
-msgstr "- 2000 Jana."
+msgid "Gatherable by Fishing Boats after the whale is killed."
+msgstr ""
 
-#: gui/text/tips/whales.txt:6
-msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- Arrantza txalupen bidez jaso daiteke behin balea hilda."
-
-#: gui/text/tips/whales.txt:8
-msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Jokoko ozeanoetatik nora ezean ibili eta erasopean ihes egin."
+#: gui/text/tips/whales.txt:5
+msgid "Roam around the oceans of the game and flee when attacked."
+msgstr ""
