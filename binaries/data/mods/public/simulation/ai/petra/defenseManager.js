@@ -498,7 +498,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		}
 	}
 
-	// If shortage of defenders, produce infantry garrisoned in nearest civil centre
+	// If shortage of defenders, produce infantry garrisoned in nearest civil center
 	let armiesPos = [];
 	for (let a = 0; a < armiesNeeding.length; ++a)
 		armiesPos.push(armiesNeeding[a].army.foePosition);

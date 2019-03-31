@@ -932,7 +932,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 };
 
 /**
- * Returns the best position to build a new Civil Centre
+ * Returns the best position to build a new Civil Center
  * Whose primary function would be to reach new resources of type "resource".
  */
 m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, proximity, fromStrategic)
@@ -1132,7 +1132,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 };
 
 /**
- * Returns the best position to build a new Civil Centre
+ * Returns the best position to build a new Civil Center
  * Whose primary function would be to assure territorial continuity with our allies
  */
 m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
@@ -2060,7 +2060,7 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 };
 
 /**
- * train with highest priority ranged infantry in the nearest civil centre from a given set of positions
+ * train with highest priority ranged infantry in the nearest civil center from a given set of positions
  * and garrison them there for defense
  */
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
