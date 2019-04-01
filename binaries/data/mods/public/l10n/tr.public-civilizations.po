@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-29 08:32+0000\n"
+"PO-Revision-Date: 2019-03-30 18:13+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "Laureion, Attica'daki madenler Atina'ya ünlü ve değerli Atina sikkesi
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "Bir Tiyatro inşası bölgedeki diğer tüm yapıları %+20 oranında etkiler."
+msgstr "Tiyatro inşası diğer tüm yapıların bölge etkisini +%20 artırır."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -99,7 +99,7 @@ msgstr "Yunanlılar birçok yabancıyı Helenleştirmek konusunda çok başarıl
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "Gemiler %25 daha hızlı inşa eder."
+msgstr "Gemiler %25 daha hızlı inşa edilir."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -178,7 +178,7 @@ msgstr "Demostenes"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Atinalılar üç sıra kürekli kadırga denizcilik yönetimi yapabilirler (Epibastes Athenaikos)."
+msgstr "Atina Trireme'leri Deniz Piyadesi eğitebilirler. (Epibastes Athenaikos)."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -188,7 +188,7 @@ msgstr "İphikrates Yenilikleri"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "Taş surlar tarafsız bölgede yapılabilir. Surların inşa süresi %50 düşürüldü."
+msgstr "Taş surlar tarafsız bölgede inşa edilebilir. Surların inşa süresi %50 düşürüldü."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -211,7 +211,7 @@ msgstr "Oyuncu mızraklı birliklere daha fazla saldırı ve zırh veren Falanks
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr "Hoplit"
+msgstr "Othismos"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -219,7 +219,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "Klasik falanks düzeni millattan önce yaklaşık VIII. yüzyılda geliştirildi. Sekiz insan derinliğinde ve sekiz yüz insan genişliğindeydi. Birimler kalkanlarını birbirine geçirerek 8 feet mızraktan daha büyük bir görkemli kalkan oluşturuyordu."
+msgstr "Klasik falanks düzeni M.Ö yaklaşık VIII. yüzyılda düzenlendi. Sekiz insan derinliğinde ve sekiz yüz insan genişliğindeydi. Birimler kalkanlarını birbirine geçirerek 2.5 metre mızraklarla sıkı bir kalkan duvarı oluşturuyordu."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -230,7 +230,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr "Atinalıları, gümüş madenlerinden kazandıklarını, 200 kadırgalık savaş donanmasına yatırmalarına ikna eden general. Pers savaşlarındaki kilit isim, M.Ö. 479'daki belirleyici Salamis savaşında Atina donanmasına komuta etmiştir. Sonrasında Ege'de Perslere karşı aktif bir politika izlemiş, böylece gelecekteki Atina gücünün temellerini atmıştır. Ancak, sonunda Atinalılar tarafından dışlanmış ve Perslerin himayesine kaçmaya zorlanmıştır."
+msgstr "Atinalıları, gümüş madenlerinden kazandıklarını, 200 Trireme'lik savaş donanmasına yatırmalarına ikna eden general. Pers savaşlarındaki kilit isim, M.Ö. 479'daki belirleyici Salamis savaşında Atina donanmasına komuta etmiştir. Sonrasında Ege'de Perslere karşı aktif bir politika izlemiş, böylece gelecekteki Atina gücünün temellerini atmıştır. Ancak, sonunda Atinalılar tarafından dışlanmış ve Perslerin himayesine kaçmaya zorlanmıştır."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -277,12 +277,12 @@ msgstr "Yunan tiyatroları, Eshilos, Sofokles ve daha bir çok yetenekli oyun ya
 
 #: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr "Antrenman Alanı"
+msgstr "Gymnasion"
 
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Mükemmel birimleri eğit ve mükemmel birliklere yönelik teknolojileri araştır."
+msgstr "Şampiyon birimleri eğit ve şampiyon birliklere yönelik teknolojileri araştır."
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
@@ -292,7 +292,7 @@ msgstr "Gymnasion Helenik şehirlerde fiziksel egzersizlerin yapıldığı ve so
 
 #: simulation/data/civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr "Belediye Binası"
+msgstr "Prytaneion"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
@@ -315,7 +315,7 @@ msgstr "Batı medeniyetinin beşiği ve demokrasinin doğum yeri olan Atina, san
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Britanyalılar "
+msgstr "Britonlar"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
@@ -335,7 +335,7 @@ msgstr "Kelt tarım yöntemleri temsil eder,"
 #: simulation/data/civs/brit.jsonCivBonuses[1].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Rahipleri askerlere yakınlaştırmak saldırı sıklığını biraz artırır."
+msgstr "Druidler yakındaki askerlerin saldırı hızını biraz artırır."
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Name
@@ -349,7 +349,7 @@ msgstr "Kelt dini ve Druidlik onların savaşçı zihniyet ilham verir."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "-20% resources cost for allies healers."
-msgstr "Müttefik şifacılar için -20% kaynak masrafı."
+msgstr "Müttefik şifacılar için -%20 kaynak masrafı."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -1393,7 +1393,7 @@ msgstr "Yunanistan'ın birleşmesinden sonra Philip II, bütün şehir devletler
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "Mızraklı piyade birimleri yavaş ve güçlü Sintagma tertibini kullanabilirler "
+msgstr "Kargıcı piyade birimleri yavaş ve güçlü Sintagma düzenini kullanabilirler ."
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Name
 msgid "Syntagma"
@@ -1507,7 +1507,7 @@ msgstr "Philip || Makedonya tahtına çıktığında Makedonya ordusunu total bi
 msgid ""
 "Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
 "and armor, but also greater cost."
-msgstr "Hypaspist Champion Piyade Silver Shields'e yükseltin, saldırı ve zırh daha büyük, ancak daha yüksek maliyet."
+msgstr "Hypaspist Şampiyon Piyade Silver Shields'e yükseltin, saldırı ve zırh daha büyük, ancak daha yüksek maliyet."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
@@ -1780,7 +1780,7 @@ msgstr "Fil Ahırları"
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr "Town Phase'de Elephant Archer ve Worker Elephant'ı eğitir, sonra Savaş Fili şehir fazında şampiyon ekler."
+msgstr "Kasaba aşamasında  Filli Okçu ve İşçi Fil'ı eğitir, şehir aşamasında Şampiyon Savaş Fili ekler."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1952,7 +1952,7 @@ msgstr "Persler, Sardis'ten Susa'ya kadar uzanan 2700 kilometrelik muhteşem Cen
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr "Yarı yarıya Anusiya mükemmel piyade için eğitim süresini azaltır."
+msgstr "Anusiya Şampiyon piyade için eğitim süresini yarıya düşürür."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"

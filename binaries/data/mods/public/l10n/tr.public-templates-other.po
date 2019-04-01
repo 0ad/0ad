@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-03-28 16:13+0000\n"
+"POT-Creation-Date: 2019-03-29 09:46+0100\n"
+"PO-Revision-Date: 2019-03-30 04:53+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -626,9 +626,13 @@ msgstr "Besing için incileri topla."
 msgid "Fir Sapling"
 msgstr "Göknar Fidanı"
 
+#: simulation/templates/gaia/flora_tree_mangrove.xml:4
+msgid "Mangrove"
+msgstr "Mangrov"
+
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr "Akdeniz Palmiyesi"
+msgstr "Akdeniz Yelpaze Palmiyesi"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
@@ -645,6 +649,14 @@ msgstr "Büyük Meşe Ağacı"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Zeytin Ağacı"
+
+#: simulation/templates/gaia/flora_tree_palm_doum.xml:4
+msgid "Doum Palm"
+msgstr "Doum Palmiyesi"
+
+#: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
+msgid "Palmyra Palm"
+msgstr "Palmira Palmiyesi"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -931,7 +943,7 @@ msgstr "Eğik Çivili Çit"
 
 #: simulation/templates/other/palisades_angle_spike.xml:15
 msgid "Big Spike"
-msgstr "büyük çivi"
+msgstr "Büyük Kama"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:14
 msgid "Palisade Curve"
@@ -1133,7 +1145,7 @@ msgstr "Çatışma"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "At least 16 pike infantry units required."
-msgstr "En az 16 uzun mızrak piyade birimi gerekli."
+msgstr "En az 16 Kargıcı piyade birimi gerekli."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"

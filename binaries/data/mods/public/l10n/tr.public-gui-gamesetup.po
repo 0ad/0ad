@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:43+0100\n"
-"PO-Revision-Date: 2019-03-27 12:07+0000\n"
+"POT-Creation-Date: 2019-03-29 09:45+0100\n"
+"PO-Revision-Date: 2019-03-30 05:16+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -216,11 +216,11 @@ msgstr "Oyuncu"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "Oyun Tipi"
+msgstr "Oyun Türü"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr "Harita Tipi"
+msgstr "Harita Türü"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
@@ -396,8 +396,8 @@ msgid "Disable Treasures"
 msgstr "Hazineleri Devre Dışı Bırak"
 
 #: gui/gamesetup/gamesetup.js:900
-msgid "Disable all treasures on the map."
-msgstr "Hazineleri haritada gösterme."
+msgid "Do not add treasures to the map."
+msgstr "Haritaya hazine eklemeyin."
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
@@ -611,7 +611,7 @@ msgstr "Oyun ismi zaten kullanılıyor."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr "STUN sunucusu kullanarak oyuna evsahipliği yapmak başarısız oldu."
+msgstr "STUN sunucusu kullanarak oyun kurma başarısız oldu."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format

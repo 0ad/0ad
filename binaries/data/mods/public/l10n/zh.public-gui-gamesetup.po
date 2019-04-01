@@ -45,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:43+0100\n"
-"PO-Revision-Date: 2019-03-22 15:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-03-29 09:45+0100\n"
+"PO-Revision-Date: 2019-03-29 15:40+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -357,7 +357,7 @@ msgstr "触发英雄是否可以驻守。"
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr "诺曼底"
+msgstr "游牧"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
@@ -394,8 +394,8 @@ msgid "Disable Treasures"
 msgstr "取消宝藏系统"
 
 #: gui/gamesetup/gamesetup.js:900
-msgid "Disable all treasures on the map."
-msgstr "停用在地图上的所有宝藏。"
+msgid "Do not add treasures to the map."
+msgstr "不要在地图上添加宝藏。"
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
@@ -442,7 +442,7 @@ msgstr "切换本比赛是否算入排位。"
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "按下%(hotkey)s后，自动完成昵称或设置。"
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
