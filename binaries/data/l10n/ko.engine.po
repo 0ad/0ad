@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-03-06 03:11+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2019-03-29 18:33+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "오류 없음"
 
 #: lobby/XmppClient.cpp:1102
 msgid "Player already logged in"
-msgstr "이미 로그인 한 플레이어"
+msgstr "이미 로그인 한 플레이어or 선수는 이미 로그인되었습니다."
 
 #: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
@@ -63,19 +63,19 @@ msgstr "허용되지 않음"
 
 #: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
-msgstr "권한이 없음"
+msgstr "권한이 없음 or 없습니다"
 
 #: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
-msgstr "수신자 일시적으로 사용할 수 없음"
+msgstr "수신자가 일시적으로 사용 불가능"
 
 #: lobby/XmppClient.cpp:1116
 msgid "Registration required"
-msgstr "등록 필요"
+msgstr "등록이 필요합니다"
 
 #: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
-msgstr "서비스를 사용할 수 없음"
+msgstr "서비스를 이용할수 없습니다"
 
 #: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
 msgid "Unknown error"
@@ -83,49 +83,49 @@ msgstr "알 수 없는 오류"
 
 #: lobby/XmppClient.cpp:1145
 msgid "Stream error"
-msgstr "스트림 오류"
+msgstr "스트림 에러"
 
 #: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
-msgstr "수신 스트림 버전이 지원되지 않습니다"
+msgstr "받은 스트림 버전이 지원되지 않습니다"
 
 #: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
-msgstr "스트림이 서버에 의해 닫혔습니다"
+msgstr "서버가 스트림을 닫았습니다"
 
 #: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
-msgstr "입출력 오류 발생"
+msgstr "입출력 오류가 발생했습니다"
 
 #: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
-msgstr "서버에서 연결이 되었습니다"
+msgstr "서버가 연결을 거부했습니다"
 
 #: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
-msgstr "서버의 호스트 이름을 확인 하지 못했습니다"
+msgstr "서버가 호스트 이름 확인에 실패했습니다"
 
 #: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
-msgstr "이 시스템의 메모리가 부족 합니다"
+msgstr "이 시스템의 메모리가 부족합니다"
 
 #: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "서버의 인증서를 확인할 수 없거나 TLS 응답 확인 방식이 성공적으로 완료되지 않았습니다"
+msgstr "서버의 인증서를 확인할 수 없거나 TLS 핸드셰이크가 제대로 완료되지 않았습니다"
 
 #: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
-msgstr "서버에서 필요한 TLS 암호화를 제공하지 않았습니다"
+msgstr "이 서버는 필요한 TLS 암호화를 제공하지 않았습니다"
 
 #: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "인증 실패. 잘못된 암호 또는 계정이 존재하지 않습니다"
+msgstr "인증에 실패했습니다. 암호가 다르거나 계정이 존재하지 않습니다"
 
 #: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
-msgstr "사용자 또는 시스템이 연결 해제를 요청했습니다"
+msgstr "사용자나 시스템이 연결을 끊도록 요쳥했습니다"
 
 #: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
@@ -133,59 +133,59 @@ msgstr "활성화된 연결이 없습니다"
 
 #: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
-msgstr "계정이 성공적으로 등록되었습니다"
+msgstr "계정이 등록되었습니다"
 
 #: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
-msgstr "필요한 모든 정보가 제공되지 않았습니다"
+msgstr "필요한 정보가 전부 준비되지 않았습니다"
 
 #: lobby/XmppClient.cpp:1185
 msgid "Username already exists"
-msgstr "이미 존재 하는 사용자 이름"
+msgstr "사용자 이름은 이미 존재합니다"
 
 #: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "게임 ID 오류에 대한 쿼리를 시작하는 동안 오류가 발생했습니다 : %s; %s."
+msgstr "놀이 ID에 대한 조회를 시작하는 동안 오류가 발생했습니다. 오류: %s;%s"
 
 #: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "모드(MOD)에 대한 쿼리 시작하는 동안 오류가 발생했습니다. 오류: %s; %s."
+msgstr "수정판(MOD)에 대한 조회를 시작하는 동안 오류가 발생했습니다 : %s ; %s."
 
 #: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "모드(MOD) 디렉터리를 만들 수 없습니다 : %s."
+msgstr "수정판(MOD) 디렉토리를 만들 수 없습니다: %s."
 
 #: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "모드(MOD) 다운로드에 대한 임시 파일을 열 수 없습니다 : %s."
+msgstr "수정판(MOD) 내려받기를 위한 임시 파일을 열 수 없습니다: %s."
 
 #: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "다운로드를 시작하지 못했습니다. 오류: %s; %s."
+msgstr "내려받기를 시작하지 못했습니다. 오류: %s; %s."
 
 #: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "비동기 다운로드 실패: %s, %s."
+msgstr "비동기 내려받기가 실패했습니다: %s, %s."
 
 #: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "다운로드 실패. 서버 응답: %s; %s."
+msgstr "내려받기가 실패했습니다. 서버 응답: %s; %s."
 
 #: ps/ModIo.cpp:513
 msgid "Mismatched filesize."
-msgstr "일치하지 않는 파일 크기."
+msgstr "파일 크기가 일치하지 않습니다."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "유효하지 않은 파일. md5 %s 예상, %s 받음."
+msgstr "파일이 잘못되었습니다. 예상 md5 값: %s, 받은 md5 값: %s"
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
@@ -193,18 +193,18 @@ msgstr "최종 해시를 계산하지 못했습니다."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr "서명을 확인 하지 못했습니다."
+msgstr "서명을 확인하지 못했습니다."
 
 #: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "'%s'에 저장된 게임"
+msgstr "'%s'에 게임이 저장됨"
 
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "'%s'에 기록된 스크린샷"
+msgstr "'%s' 로 스크린샷을 저장함"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
-msgstr "사용자 정의 빌드"
+msgstr "건축모드 or 사용자 정의 빌드"

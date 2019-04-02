@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-03-22 15:12+0000\n"
-"Last-Translator: rentt777 <35974380@qq.com>\n"
+"PO-Revision-Date: 2019-03-29 14:41+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,7 @@ msgstr "未分配热键: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "按下%(hotkey)s后，自动完成昵称或设置。"
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -1605,7 +1605,7 @@ msgstr "非排位赛"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "输入单字，或完整的玩家名称来过滤重放。"
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -3531,17 +3531,17 @@ msgstr "罗马军营"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "可建在中立区域或敌方领土上。 适合建立敌后的秘密基地，或巩固敌方领土内的收益。"
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "建造攻城武器，并训练民兵。"
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "驻守单位，对其进行缓慢治疗，并保护军营免遭攻击以及防止腐化。"
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3551,11 +3551,11 @@ msgstr "兵营"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "训练所有民兵。某些文明可训练冠勇单位。"
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "研究不同文明特有的军事技术"
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -3609,7 +3609,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "昂贵，慢速。"
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -3623,19 +3623,19 @@ msgstr "凯尔特战船"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "中型三列桨战船。"
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "适用于布利吞、高卢和伊比利亚。"
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "可传输40单位。"
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "驻扎步兵，以加强火力。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3643,21 +3643,21 @@ msgstr "市政中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "新殖民地的地基。"
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "扩张领土"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "可建在友好或中立区域。"
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "训练市民：女市民、步兵民兵和骑兵民兵。"
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3665,7 +3665,7 @@ msgstr "使馆"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "迦太基特有的兵营。"
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
@@ -3977,7 +3977,7 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "人后 +10"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -3985,7 +3985,7 @@ msgstr "仓库"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "廉价的收集屋，可以收集木材，石头，金属，但不可以收集食物。"
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -3999,23 +3999,23 @@ msgstr "寺庙"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "城镇阶段的建筑。"
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "招募医师，在战场上治疗军队。"
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "研发治疗科技。"
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "治疗光环会治疗附近的单位。"
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "驻扎受伤单位，加快治愈。"
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4062,15 +4062,15 @@ msgstr "三列桨座战船"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "中型战船"
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "擅长传送士兵或战斗。"
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "驻扎士兵，以增强火力。"
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4078,19 +4078,19 @@ msgstr "维里亚托 "
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "伊比利亚半岛西部卢西塔尼部落（为一印欧部落）的英雄"
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "在卢西塔尼战争(公元前147—前139年)中，至少参加了7次对抗罗马的战斗。"
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "拥有“游击战术”的光环，在其光环下的伊比利亚士兵可以伏击敌人。"
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4098,17 +4098,17 @@ msgstr "战象"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "来自非洲和印度的大型猛兽，训练后可加入战争。"
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "花费较高食物和金属，但非常强大。"
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "文明：迦太基、库什、印度、波斯、托勒密和塞琉古。"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4116,16 +4116,16 @@ msgstr "鲸"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "海洋资源"
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 食物。"
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "鲸被杀死后，渔船可以收集食物。"
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "在海洋里漫游，被攻击时会逃走。"

@@ -2,16 +2,30 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Berries">
-      <mesh>gaia/berrybush.dae</mesh>
+    <variant frequency="1" name="Berry Bush Base">
       <props>
-        <prop actor="props/flora/berries.xml" attachpoint="root"/>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="green">
-      <textures><texture file="gaia/berry_bushes.png" name="baseTex"/></textures>
+    <variant frequency="1" name="Berry Bush Mesh 01">
+      <mesh>gaia/berry_bush_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Berry Bush Mesh 02">
+      <mesh>gaia/berry_bush_02.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Berry Bush Texture 01">
+      <textures>
+        <texture file="gaia/berry_bush_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Berry Bush Texture 02">
+      <textures>
+        <texture file="gaia/berry_bush_02.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

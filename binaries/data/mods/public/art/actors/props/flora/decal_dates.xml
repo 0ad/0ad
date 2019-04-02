@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_dates">
+      <decal angle="0" depth="12" offsetx="0" offsetz="0" width="12"/>
+      <textures>
+        <texture file="gaia/decal_dates.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>

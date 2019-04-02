@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="a">
+      <textures>
+        <texture file="gaia/stonequarry_savanna.png" name="baseTex"/>
+        <texture file="gaia/stone_cubic_1_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="1">
+      <mesh>gaia/stone_cubic_1.dae</mesh>
+    </variant>
+    <variant name="2">
+      <mesh>gaia/stone_cubic_2.dae</mesh>
+    </variant>
+    <variant name="3">
+      <mesh>gaia/stone_cubic_3.dae</mesh>
+    </variant>
+    <variant name="4">
+      <mesh>gaia/stone_cubic_4.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans_parallax.xml</material>
+</actor>

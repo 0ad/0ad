@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-03-27 05:10+0000\n"
+"PO-Revision-Date: 2019-03-30 05:16+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -317,7 +317,7 @@ msgstr "Bu Geliştirici Kaplaması açıldı."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "%(playerName)s oyuncusuna %(resourceAmount)s %(resourceType)s hediye et. Üst karakter+tıklama %(greaterAmount)s hediye et."
+msgstr "%(playerName)s oyuncusuna %(resourceAmount)s %(resourceType)s kaynakları gönder.  Shift + tıklayarak %(greaterAmount)s gönder."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:106
@@ -539,12 +539,12 @@ msgstr "Oyuncular: %(players)s"
 #: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "Oyun durumunuz ev sahibi oyun durumuyla aynıdır."
+msgstr "Oyun durumunuz oyun kurucunun oyun durumuyla aynıdır."
 
 #: gui/session/messages.js:706
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "Oyun durumunuz ev sahibi oyun durumundan farklıdır."
+msgstr "Oyun durumunuz oyun kurucunun oyun durumundan farklıdır."
 
 #: gui/session/messages.js:712
 msgctxt "Out-Of-Sync"
@@ -811,7 +811,7 @@ msgstr "Kaldır %(name)s"
 
 #: gui/session/selection_panels.js:379
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Tek tıklamayla 1 tane kaldır. Üst karakter + tıklama ile bu tipteki tümünü kaldır."
+msgstr "Tek tıklamayla 1 tane kaldır. Shift + tıklama ile bu türdeki tümünü kaldır."
 
 #: gui/session/selection_panels.js:381 gui/session/selection_panels.js:871
 #, javascript-format

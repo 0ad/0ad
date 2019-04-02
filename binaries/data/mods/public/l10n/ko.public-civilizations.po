@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-25 19:39+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2019-03-29 18:56+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -181,12 +181,12 @@ msgstr "아테네의 장성은 만만찮은 테미스토클레스의 후원하�
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "플레이어는 창 무장 병력을 팔랑크스 진형으로 주문하여 공격력과 방어력을 향상시킨다."
+msgstr "선수는 창 무장 병력을 팔랑크스 진형으로 주문하여 공격력과 방어력을 향상시킨다."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr "오티스모스<-밀집 진형 전술"
+msgstr "오티스모스or 밀집 진형 전술"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -532,7 +532,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
-msgstr "카르타고인"
+msgstr "카르타고"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid ""
@@ -558,7 +558,7 @@ msgstr "코끼리 장착형 (전쟁 코끼리) 또는 말 장착형 유닛 (기�
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr "몰아들이기?? 검거??"
+msgstr "몰아들이기or 검거"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].History
 msgid ""
@@ -729,11 +729,11 @@ msgstr "켈트 용병을 고용합니다."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr "캘트는 용맹한 전사를 카르타고 군의 용병으로 배출했습니다.??"
+msgstr "켈트는 용맹한 전사를 카르타고 군의 용병으로 배출했습니다.??"
 
 #: simulation/data/civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr "이타리오테스 대사관???"
+msgstr "이타리오테 대사관"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
@@ -928,7 +928,7 @@ msgstr "메로나스"
 
 #: simulation/data/civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr "캘트인은 최초로 회전식 밀링 기계를 만들었습니다."
+msgstr "켈트인은 최초로 회전식 밀링 기계를 만들었습니다."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
@@ -1173,57 +1173,57 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
-msgstr "코끼리 보급품"
+msgstr "코끼리 물품보급자"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid ""
 "Reduces the cost and train time for elephants with 20% for allies of Kushite"
 " players."
-msgstr "쿠시테 플레이어의 동맹국을 위해 코끼리의 비용과 훈련 시간을 20 % 단축합니다."
+msgstr "쿠시를 선택한 선수의 동맹을 위해 코끼리의 비용과 훈련 시간을 20% 단축합니다."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
-msgstr ""
+msgstr "카쉬타"
 
 #: simulation/data/civs/kush.jsonAINames[1]
 msgid "Alara"
-msgstr ""
+msgstr "알아라"
 
 #: simulation/data/civs/kush.jsonAINames[2]
 msgid "Pebatjma"
-msgstr ""
+msgstr "페바트즈마"
 
 #: simulation/data/civs/kush.jsonAINames[3]
 msgid "Shabaka"
-msgstr ""
+msgstr "샤바카"
 
 #: simulation/data/civs/kush.jsonAINames[4]
 msgid "Shebitku"
-msgstr ""
+msgstr "쉐비트쿠"
 
 #: simulation/data/civs/kush.jsonAINames[5]
 msgid "Qalhata"
-msgstr ""
+msgstr "칼하타"
 
 #: simulation/data/civs/kush.jsonAINames[6]
 msgid "Takahatenamun"
-msgstr ""
+msgstr "타카하테나문"
 
 #: simulation/data/civs/kush.jsonAINames[7]
 msgid "Tantamani"
-msgstr ""
+msgstr "탄타마니"
 
 #: simulation/data/civs/kush.jsonAINames[8]
 msgid "Atlanersa"
-msgstr ""
+msgstr "아트라네르사"
 
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
-msgstr ""
+msgstr "나살사"
 
 #: simulation/data/civs/kush.jsonAINames[10]
 msgid "Malewiebamani"
-msgstr ""
+msgstr "마레위에바마니"
 
 #: simulation/data/civs/kush.jsonAINames[11]
 msgid "Harsiotef"
@@ -1231,11 +1231,11 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[12]
 msgid "Shanakdakhete"
-msgstr ""
+msgstr "샤나크다케테"
 
 #: simulation/data/civs/kush.jsonAINames[13]
 msgid "Amanishakheto"
-msgstr ""
+msgstr "아마니샤케토"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 msgid "Monumental Architecture"
@@ -1263,11 +1263,11 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
-msgstr ""
+msgstr "나스타센"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
 msgid "Arakamani"
-msgstr ""
+msgstr "아라카마니"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
 msgid "Amanirenas"
@@ -1853,7 +1853,7 @@ msgstr "캄비세스 2세"
 
 #: simulation/data/civs/pers.jsonAINames[3]
 msgid "Bardiya"
-msgstr ""
+msgstr "바르디야"
 
 #: simulation/data/civs/pers.jsonAINames[4]
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[2].Name
@@ -2069,7 +2069,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr "모든 동맹국들은 자동적으로 서서히 식량 수입이 증가합니다."
+msgstr "모든 동맹의 식량이 자동으로 서서히 증가합니다."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2321,7 +2321,7 @@ msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "루키우스 유니우스 브루투스"
 
 #: simulation/data/civs/rome.jsonAINames[1]
 msgid "Lucius Tarquinius Collatinus"
@@ -2804,7 +2804,7 @@ msgstr ""
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "스파르타 플레이어의 동맹국에 대해 시민 창병의 체력을 10% 증가시킵니다."
+msgstr "스파르타 선수의 동맹국에 대해 시민 창병의 체력을 10% 증가시킵니다."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2853,11 +2853,11 @@ msgstr "에케스트라토스"
 
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
-msgstr ""
+msgstr "에우리크라테스"
 
 #: simulation/data/civs/spart.jsonAINames[10]
 msgid "Eucleidas"
-msgstr ""
+msgstr "에우크레이다스"
 
 #: simulation/data/civs/spart.jsonAINames[11]
 msgid "Agesipolis"
@@ -2954,7 +2954,7 @@ msgstr "아기스 3세"
 
 #: simulation/data/civs/spart.jsonStructures[1].Name
 msgid "Syssition"
-msgstr ""
+msgstr "시스시티온"
 
 #: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
