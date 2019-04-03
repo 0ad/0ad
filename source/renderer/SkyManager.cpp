@@ -42,7 +42,7 @@
 
 
 SkyManager::SkyManager()
-	: m_RenderSky(true), m_HorizonHeight(-150.0f), m_SkyCubeMap(0)
+	: m_RenderSky(true), m_SkyCubeMap(0)
 {
 }
 
