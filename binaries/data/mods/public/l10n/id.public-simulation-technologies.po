@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-01-07 16:00+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-01 14:26+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -1946,23 +1946,6 @@ msgstr "Infanteri Rakyat Elit"
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
 
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "Bangsa Kartago membangun tembok kota mereka dalam tiga sirkuit yang konsentris. Tembok-tembok ini tidak pernah ditembus. Walaupun kota mereka diambil alih oleh bangsa Romawi, caranya adalah melewati pelabuhan kota, bukan dengan menyerang tembok mereka."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Tembok, gerbang, dan menara tembok Kartago memiliki 3x nyawa dari tembok biasa, tapi juga berharga dua kali lipat dan butuh dibangun dua kali lipat lebih lama."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Tembok Tiga Lapis"
-
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
@@ -2265,19 +2248,120 @@ msgstr "Tingkatkan semua prajurit bayaran Italia Anda ke pangkat Elit. Ini menin
 msgid "Elite Italiote Mercenaries"
 msgstr "Prajurit Bayaran Italia Elit"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Bangsa Kartago membangun tembok kota mereka dalam tiga sirkuit yang konsentris. Tembok-tembok ini tidak pernah ditembus. Walaupun kota mereka diambil alih oleh bangsa Romawi, caranya adalah melewati pelabuhan kota, bukan dengan menyerang tembok mereka."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Tembok, gerbang, dan menara tembok Kartago memiliki 3x nyawa dari tembok biasa, tapi juga berharga dua kali lipat dan butuh dibangun dua kali lipat lebih lama."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Tembok Tiga Lapis"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Bangunan Kelt kebanyakan dibuat dari kayu dan fondasi puing."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Bangunan Kelt punya 20% lebih sedikit nyawa, tapi juga 20% lebih murah dan lebih cepat dibangun."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Pembangunan Kayu"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Bangsa Yunani menggunakan bangunan batu dari awal zaman Mykenai."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Semua bangunan memiliki 10% lebih banyak nyawa dan poin ambil alih, tapi juga membutuhkan 10% waktu pembangunan lebih lama."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Arsitektur Yunani"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Kekaisaran Maurya meliputi puluhan kerajaan yang dulunya terpisah pada daerah seluas 5 juta kilometer persegi dengan populasi mendekati 60 juta jiwa. Bupati Maurya bergelar Kaisar para Kaisar dan memimpin pasukan sebanyak 600.000 infanteri, 9000 gajah, 8000 kereta, dan 30.000 pasukan kuda, menjadikannya pasukan terbesar pada masa itu."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Kaisar para Kaisar"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Tembok kota Maurya punya -20% nyawa dan -20% waktu pembangunan."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Tembok Kayu"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Bangsa Persia pernah menerapkan pajak untuk sejumlah besar infanteri pada masa perang karena luasnya Kekaisaran Akhemeniyah dan cara pemungutannya. Secara umum infanteri Persia dilatih dengan baik dan bertarung dengan gigih. Akan tetapi infanteri mereka lemah dalam peperangan jarak dekat. Selain itu infanteri Persia bukanlah pasukan ahli, kecuali resimen elit mereka."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Persia punya 10% batas populasi maksimal lebih banyak."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Pajak Raja Agung"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Bangsa Sparta tidak memiliki pasukan terbesar di dunia, tetapi mereka memiliki pasukan terhebat di dunia pada masanya. Dikatakan bahwa Sparta tidak memerlukan tembok yang kokoh karena prajurit mereka adalah temboknya."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Sparta punya 10% populasi maksimal lebih sedikit."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Anak Bawang"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2296,36 +2380,6 @@ msgstr "Pertarungan Infanteri Tombak"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Bangsa Yunani menggunakan bangunan batu dari awal zaman Mykenai."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Semua bangunan memiliki 10% lebih banyak nyawa dan poin ambil alih, tapi juga membutuhkan 10% waktu pembangunan lebih lama."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Arsitektur Yunani"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Bangsa Sparta tidak memiliki pasukan terbesar di dunia, tetapi mereka memiliki pasukan terhebat di dunia pada masanya. Dikatakan bahwa Sparta tidak memerlukan tembok yang kokoh karena prajurit mereka adalah temboknya."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Sparta punya 10% populasi maksimal lebih sedikit."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Anak Bawang"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2373,7 +2427,7 @@ msgstr "Tembok Panjang Athena"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -2395,28 +2449,6 @@ msgstr ""
 msgid "Divine Instruction"
 msgstr ""
 
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Kekaisaran Maurya meliputi puluhan kerajaan yang dulunya terpisah pada daerah seluas 5 juta kilometer persegi dengan populasi mendekati 60 juta jiwa. Bupati Maurya bergelar Kaisar para Kaisar dan memimpin pasukan sebanyak 600.000 infanteri, 9000 gajah, 8000 kereta, dan 30.000 pasukan kuda, menjadikannya pasukan terbesar pada masa itu."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Kaisar para Kaisar"
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
@@ -2434,38 +2466,6 @@ msgstr ""
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Tradisi Panahan"
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
-msgid ""
-"The Mauryas built their city walls out of wood, an abundant natural resource"
-" in India."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Tembok kota Maurya punya -20% nyawa dan -20% waktu pembangunan."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Tembok Kayu"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Bangsa Persia pernah menerapkan pajak untuk sejumlah besar infanteri pada masa perang karena luasnya Kekaisaran Akhemeniyah dan cara pemungutannya. Secara umum infanteri Persia dilatih dengan baik dan bertarung dengan gigih. Akan tetapi infanteri mereka lemah dalam peperangan jarak dekat. Selain itu infanteri Persia bukanlah pasukan ahli, kecuali resimen elit mereka."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Persia punya 10% batas populasi maksimal lebih banyak."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Pajak Raja Agung"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

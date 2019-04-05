@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-01-09 15:45+0000\n"
-"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-01 14:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1940,23 +1940,6 @@ msgstr "Míle-Shaoránaigh Éilíte"
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
 
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "Thógáil na Cartagaigh a mballaí cathracha i dtrí thimpill chomhlárnacha. Ní fuair na ballaí seo bearnaithe riamh. Fiú nuair a thitim an cathair do na Rómhánaigh, thóg iad an cathair tríd an gcuan, ná leis na mballaí a stoirmeáil."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Tá sláinte x3 do bhallaí, geataí agus túir bhalla Cartagacha i gcomparáid le ballaí normálta, ach tá costas faoi dhó acu agus tá a -n-am tógála níos fada faoi dhó freisin."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Balla Faoi Thrí"
-
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
@@ -2259,19 +2242,120 @@ msgstr "Uasghradaigh d'amhais Iodálacha ar fad go an rang Éilite. Méadaíonn 
 msgid "Elite Italiote Mercenaries"
 msgstr "Amhais Iodálacha Éilíte"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Thógáil na Cartagaigh a mballaí cathracha i dtrí thimpill chomhlárnacha. Ní fuair na ballaí seo bearnaithe riamh. Fiú nuair a thitim an cathair do na Rómhánaigh, thóg iad an cathair tríd an gcuan, ná leis na mballaí a stoirmeáil."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Tá sláinte x3 do bhallaí, geataí agus túir bhalla Cartagacha i gcomparáid le ballaí normálta, ach tá costas faoi dhó acu agus tá a -n-am tógála níos fada faoi dhó freisin."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Balla Faoi Thrí"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Bhí tógtha den chuid is mó as adhmad iad foirgnimh Cheilteacha, le bunsraitheanna as spallaí."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Tá sláinte 20% níos lú ag foirgnimh Cheilteacha, ach tá siad 20% níos saoire agus le ham tógála níos lú freisin."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Tógáil Adhmaid"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "D'úsáid na Gréigigh cloch ina bhfoirgníocht ó am luath na Micéinigh."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Tá sláinte is pointí gabhála 10% níos mó do gach foirgneamh, ach tóg siad 10% níos fada a thógáil."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Ailtireacht Heilléineach"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Chuimsigh Impireacht na Mauiriaigh ar roinnt ríochtaí iarneamhspleácha thar cheantar do 5 mhilliún méadair chearnaigh, agus ag daonra in aice le 60 milliún duine. Tá teideal Ard Impire ar na ríthe Mauiriaigh, agus tá siad ina gceannasaí ar arm seasta le 600,000 coisí, 9000 eilifint, 8000 carbad, agus 30,000 marcra aige, agus chuir sé mar arm is mó san am seo."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Tá uasdhaonra 10% níos mó ag na Mauiriaigh."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Ard Impire"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "Thóg na Mauiriagh a mballaí cathracha as adhmad, acmhainn flúirseach san India."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Tá sláinte -20% níos lú agus am tógála -20% níos lú ag ballaí cathracha na Mauiriagh."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Ballaí Adhmaid"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Is féidir leis na Peirisgh a líostáil agus líostáil siad uimhir mhór coisithe le linn an chogaidh, mar gheall ar an méid mhór Impireacht na hAcaeiméinigh agus na forais atá aige. Go ginearálta, bhí na coisithe Peireacha dea-oilte agus throid siad le láidreacht mhór. Áfach, nuair a bhí fíor é, bhí siad lag sa troid freisin. Agus, ach amháin do na reisimintí éilite, ní arm seasta iad na coisithe Peirseacha."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Tá uasdhaonra 10% níos mó ag na Peirisigh."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Cíos an Rí Mhóir"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Ní raibh an t-arm is mó sa domhain ag na Spartaigh, ach bhí an t-arm is fearr san aoise acu. Cad nach raibh siad i méid, bhí siad i mbun caighdeán. Dúradh gur níor theastaíonn ballaí láidre cathracha ar na Spartaigh, mar ba na fir a mballaí."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Tá uasdhaonra 10% níos lú ag na Spartaigh."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Íochtaráin"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2290,36 +2374,6 @@ msgstr "Sleádóireacht na gCoisithe"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "D'úsáid na Gréigigh cloch ina bhfoirgníocht ó am luath na Micéinigh."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Tá sláinte is pointí gabhála 10% níos mó do gach foirgneamh, ach tóg siad 10% níos fada a thógáil."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Ailtireacht Heilléineach"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Ní raibh an t-arm is mó sa domhain ag na Spartaigh, ach bhí an t-arm is fearr san aoise acu. Cad nach raibh siad i méid, bhí siad i mbun caighdeán. Dúradh gur níor theastaíonn ballaí láidre cathracha ar na Spartaigh, mar ba na fir a mballaí."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Tá uasdhaonra 10% níos lú ag na Spartaigh."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Íochtaráin"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2367,9 +2421,9 @@ msgstr "Ballaí Fada Aithneacha"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "AS +25% agus am tógála -50% d'Ionaid Cathartha, Teampaill, Pirimidí agus Iontais."
+msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2389,28 +2443,6 @@ msgstr ".Traenáil cneasaithe éilite."
 msgid "Divine Instruction"
 msgstr "Teagasc Diaga"
 
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Chuimsigh Impireacht na Mauiriaigh ar roinnt ríochtaí iarneamhspleácha thar cheantar do 5 mhilliún méadair chearnaigh, agus ag daonra in aice le 60 milliún duine. Tá teideal Ard Impire ar na ríthe Mauiriaigh, agus tá siad ina gceannasaí ar arm seasta le 600,000 coisí, 9000 eilifint, 8000 carbad, agus 30,000 marcra aige, agus chuir sé mar arm is mó san am seo."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Tá uasdhaonra 10% níos mó ag na Mauiriaigh."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Ard Impire"
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
@@ -2428,38 +2460,6 @@ msgstr "Raon +10 méadar do boghdóirí. Cruinneas níos fearr ag saighdeoirí, 
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Nós Saighdeoireachta"
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
-msgid ""
-"The Mauryas built their city walls out of wood, an abundant natural resource"
-" in India."
-msgstr "Thóg na Mauiriagh a mballaí cathracha as adhmad, acmhainn flúirseach san India."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Tá sláinte -20% níos lú agus am tógála -20% níos lú ag ballaí cathracha na Mauiriagh."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Ballaí Adhmaid"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Is féidir leis na Peirisgh a líostáil agus líostáil siad uimhir mhór coisithe le linn an chogaidh, mar gheall ar an méid mhór Impireacht na hAcaeiméinigh agus na forais atá aige. Go ginearálta, bhí na coisithe Peireacha dea-oilte agus throid siad le láidreacht mhór. Áfach, nuair a bhí fíor é, bhí siad lag sa troid freisin. Agus, ach amháin do na reisimintí éilite, ní arm seasta iad na coisithe Peirseacha."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Tá uasdhaonra 10% níos mó ag na Peirisigh."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Cíos an Rí Mhóir"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

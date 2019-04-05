@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-01-11 16:47+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-03 21:45+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1941,23 +1941,6 @@ msgstr "Elitezko Infanteria Zibila"
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
 
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "Kartagoarrek hiriko harresiak zentro bakarreko hiru zirkuluz osatzen zituzten. Horren babes onaren aurrean erromatarrek nahiago izan zuten kaitik hartu hiria harresietatik igoz egin ordez."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartagoarren harresi, ate eta dorreek 3 aldiz gogorragoak dira, baino bi bider garestiagoak dira eta eraikitzeko denbora ere bikoitza da."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Harresi hirukoitza"
-
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
@@ -2260,19 +2243,120 @@ msgstr "Sustatu zure Italiar mertzenario guztiak Aurreratua mailara. Gudarako tr
 msgid "Elite Italiote Mercenaries"
 msgstr "Eliteko Italiar Mertzenarioak"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Kartagoarrek hiriko harresiak zentro bakarreko hiru zirkuluz osatzen zituzten. Horren babes onaren aurrean erromatarrek nahiago izan zuten kaitik hartu hiria harresietatik igoz egin ordez."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Kartagoarren harresi, ate eta dorreek 3 aldiz gogorragoak dira, baino bi bider garestiagoak dira eta eraikitzeko denbora ere bikoitza da."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Harresi hirukoitza"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Zelta eraikuntzak  egurrez eraikitzen ziren zabor oinarrien gainean."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Eraikin zeltak %20 gogortasun gutxiago dute, baino era beran %20 merkeagoak eta azkarragoak dira eraikitzean."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Egurrezko Eraikinak"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Grekoek aro Mezenikotik erabiltzen zuten harri eraikinak. "
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Egitura guztiek %10 gehiago dute gogortasunean eta atzitze puntuetan, baino %10 gehiago behar dute eraikitzean."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Heleniar Arkitektura"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Maurya Inperioak lehen independente izandako hamarnaka erresuma biltzen zituen 5.000.000 kilometro koadrotan, 60 miloi pertsonako biztanleriaz. Mauryako erregeek enperadoreen enperadore izendatzen ziren eta 600000 infante, 9000 elefante, 8000 gurdi y 30000 zalduneko armada agintzen zuten, zeinengatik bere garaiko armadarik handiena den."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Mauryarren gehienezko biztanleria %10 handitzen da."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Enperadoreen Enperadore"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "Mauryarrek harresiak egurrez egiten zituzten, berezko baliabide oparoa Indian."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Mauryar hiri harresiak %20- galtzen dute gogortasunean baino eraikitzean %20- denbora gutxiago behar dute."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Egurrezko Harresiak"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Persiarrek infanteriako derrigorrezko erreklutatzeak egin ahal izan zituzten eta egin zituzten gerra garaian Arkemenida inperioaren tamaina handia eta berau osatzeko era zela eta. Orokorrean, infanteria ondo erakutsita zegoen eta indartsu oldartzen zen, nahiz aurrez-aurreko borroketan ahul ibili. Aipatzekoa da eliteko erregimentuez aparte, persiar infanteria ez zegoela profesional gisa edo egonkor bezala ikusia."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Persiarren gehienezko biztanleria %10 handitzen da."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Errege Handiaren Erreklutatzea"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Espartakok ez zuten munduko armadarik handiena, baina bere garaiko armadarik onena zuten. Kopuruan ez zutena kalitatearekin berdintzen zuten. Aitzinean esaten zen Espartak ez zituela harresi handirik behar, bere gizonak zirela bere harresiak. "
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Espartarrek %10 gehienezko biztanle gutxiago dute."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Zapalduak"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2291,36 +2375,6 @@ msgstr "Lantza Borroka"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Grekoek aro Mezenikotik erabiltzen zuten harri eraikinak. "
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Egitura guztiek %10 gehiago dute gogortasunean eta atzitze puntuetan, baino %10 gehiago behar dute eraikitzean."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Heleniar Arkitektura"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Espartakok ez zuten munduko armadarik handiena, baina bere garaiko armadarik onena zuten. Kopuruan ez zutena kalitatearekin berdintzen zuten. Aitzinean esaten zen Espartak ez zituela harresi handirik behar, bere gizonak zirela bere harresiak. "
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Espartarrek %10 gehienezko biztanle gutxiago dute."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Zapalduak"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2368,9 +2422,9 @@ msgstr "Atenastar Harresi Handiak"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "%25+ HP eta %50- Zentro Zibilak, Tenpluak, Piramideak eta Mirariak eraikitzeko denboran,."
+msgstr "% 25+ bizitza puntuak eta %50- eraikitzeko denbora Giza Zentroak, Tenpluak, Piramideak eta Mirarientzako."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2390,28 +2444,6 @@ msgstr "Elite mailako sendagileak trebatu."
 msgid "Divine Instruction"
 msgstr "Instrukzio Jainkotiarra "
 
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Maurya Inperioak lehen independente izandako hamarnaka erresuma biltzen zituen 5.000.000 kilometro koadrotan, 60 miloi pertsonako biztanleriaz. Mauryako erregeek enperadoreen enperadore izendatzen ziren eta 600000 infante, 9000 elefante, 8000 gurdi y 30000 zalduneko armada agintzen zuten, zeinengatik bere garaiko armadarik handiena den."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Mauryarren gehienezko biztanleria %10 handitzen da."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Enperadoreen Enperadore"
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
@@ -2429,38 +2461,6 @@ msgstr "+10 metro maila arkuz hornitutako unitateentzat. Arkulariak zehaztasuna 
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Arkulari Usadioa"
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
-msgid ""
-"The Mauryas built their city walls out of wood, an abundant natural resource"
-" in India."
-msgstr "Mauryarrek harresiak egurrez egiten zituzten, berezko baliabide oparoa Indian."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Mauryar hiri harresiak %20- galtzen dute gogortasunean baino eraikitzean %20- denbora gutxiago behar dute."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Egurrezko Harresiak"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Persiarrek infanteriako derrigorrezko erreklutatzeak egin ahal izan zituzten eta egin zituzten gerra garaian Arkemenida inperioaren tamaina handia eta berau osatzeko era zela eta. Orokorrean, infanteria ondo erakutsita zegoen eta indartsu oldartzen zen, nahiz aurrez-aurreko borroketan ahul ibili. Aipatzekoa da eliteko erregimentuez aparte, persiar infanteria ez zegoela profesional gisa edo egonkor bezala ikusia."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Persiarren gehienezko biztanleria %10 handitzen da."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Errege Handiaren Erreklutatzea"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

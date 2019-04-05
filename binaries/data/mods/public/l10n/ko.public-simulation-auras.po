@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2019-03-29 18:56+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-04 03:41+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -173,60 +173,56 @@ msgid "Delian League"
 msgstr "델로스 동맹"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "선박이 25% 더 빨리 건조됩니다."
+msgid "Allied warships −25% construction time."
+msgstr "동맹의 전함 건조 시간이 -25% 단축됩니다."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "드루이드"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "동맹국은 치료사 훈련 비용이 -20% 감소합니다."
+msgid "Allied healers −20% resource costs."
+msgstr "동맹의 치료사 훈련 자원 소모가 -20% 감소합니다."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "거상"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "동맹국과의 국제 교역 수입에 10%보너스가 붙습니다."
+msgid "Allied markets +10% international trade bonus."
+msgstr "동맹 시장의 국제 교역 보너스가 -10% 증가합니다."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "드루이드의 지혜"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "동맹국의 기술 연구 시간이 -20% 감소합니다."
+msgid "Allied structures −20% technology research time."
+msgstr "동맹 건축물의 기술 연구 시간이 -20% 감소합니다."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "사리페코"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "이베리아 선수 동맹의 경우 20%의 시민권 교전 비용이 감소합니다"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "동맹의 시민군 투창병 양성 자원 비용이 -20% 감소합니다. "
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "코끼리 공급자"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "쿠시테 플레이어의 동맹국을 위해 코끼리의 비용과 훈련 시간을 20 % 단축합니다."
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "동맹의 코끼리 양성 자원 비용과 훈련 시간이 -20% 감소합니다."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "통화 표준화 or 표준화된 통화"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "시장 판매 가격이 +20% 상승합니다."
+msgid "Allies +20% barter sell prices."
+msgstr "동맹의 판매가격이 +20% 증가합니다."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -234,51 +230,49 @@ msgstr "아소카의 종교적 지원"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "동맹국의 사원과 사원 기술 비용이 자원과 시간에서 -50% 감소합니다."
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "동맹의 사원 짓는 자원비용과 건설 시간을 -50% 감소시킵니다; 사원 기술의 자원 비용과 연구시간을 -50% 감소시킵니다."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "왕도"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "동맹국 상인들의 육로 교역로 수입이 +15% 증가합니다."
+msgid "Allied land traders +15% trade gain."
+msgstr "동맹의 육로 상인의 교역 수입을 +15% 증가시킵니다."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "지중해의 곡창 지대"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "모든 동맹국들은 자동적으로 서서히 식량 수입이 증가합니다."
+msgid "Allies +1.0 food trickle rate."
+msgstr "동맹의 식량 공급률을 +1.0 증가시킵니다."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "징병"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "동맹국 시민군 보병 훈련 시간이 -20% 감소합니다."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "동맹 시민군 보병 훈련 시간이 -20% 감소합니다."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "시리아 테트라폴리스"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "셀레우코스 플레이어의 동맹국에 대해 20%의 시민 회관 비용이 감소합니다"
+msgid "Allied civil centers −20% resource costs."
+msgstr "동맹 시민회관의 자원 소비가 -20% 감소됩니다"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "펠로폰네소스 동맹"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "스파르타 선택 선수의 동맹국에 대해 시민 창병의 체력을 10% 증가시킵니다."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "동맹 시민군 창 보병의 체력이 +10% 빨라집니다."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -405,7 +399,7 @@ msgstr "도시의 약탈자"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
 msgstr ""
 

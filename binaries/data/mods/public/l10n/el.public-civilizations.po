@@ -32,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-09 16:15+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-01 16:10+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,8 +84,8 @@ msgid ""
 msgstr "Οι Έλληνες ήταν επιτυχείς στον Εξελληνισμό διαφόρων ξένων. Κατά τη διάρκεια της Ελληνιστικής περιόδου, τα Ελληνικά ήταν η Κοινή Γλώσσα -\"lingua franca\"- του Αρχαίου Κόσμου, ευρέως ομιλούμενη από την Ισπανία ως την Ινδία."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Τα πλοία κατασκευάζονται 25% γρηγορότερα."
+msgid "Allied warships −25% construction time."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -334,8 +334,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Η Κέλτικη θρησκεία και ο Δρυιδισμός ενέπνευσε την πολεμοχαρή νοοτροπία τους."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% στο κόστος των πόρων για τους θεραπευτές των συμμάχων."
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -579,8 +579,8 @@ msgid ""
 msgstr "Σε αντίθεση με την Ιβηρική Χερσόνησο, η Βόρεια Αφρική ήταν γνωστή ως η χώρα των αλόγων, ικανή να παράγει μέχρι και 100.000 νέους ιππείς κάθε χρόνο. Ήταν επίσης το σπίτι των των Βόρειο-Αφρικανικών ελεφάντων του δάσους."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% επιπλέον εμπορικό κέρδος στις συμμαχικές διεθνείς διαδρομές."
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -786,8 +786,8 @@ msgid "Gauls"
 msgstr "Γαλάτες"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% στο χρόνο έρευνας στις τεχνολογίες των συμμάχων."
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -986,10 +986,8 @@ msgid ""
 msgstr "Σε αντίθεση με την Νουμιδία στη Βόρεια Αφρική η Ιβηρική Χερσόνησος ήταν γνωστή ως η χώρα των αλόγων, ικανή να παράγει μέχρι και 100.000 νέους ιππείς κάθε χρόνο."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "Οι πολίτες-οπλίτες πεζικάριοι ακροβολιστές και οι ιππείς ακροβολιστές στοιχίζουν -20% για τους συμμάχους."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1187,10 +1185,8 @@ msgid "Elephant Suppliers"
 msgstr "Προμηθευτές Ελεφάντων"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Μειώνει το κόστος και το χρόνο εκπαίδευσης κατά 20% για τους ελέφαντες των συμμάχους των Κουσίτων παικτών."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1254,9 +1250,9 @@ msgstr "Μνημειώδη Αρχιτεκτονική"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+50% ζωή και -50% στο χρόνο κατασκευής για τα Αστικά Κέντρα, του Ναούς, τις Πυραμίδες και τα Θαύματα."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1399,8 +1395,8 @@ msgid ""
 msgstr "Οι Έλληνες ήταν επιτυχείς στον Εξελληνισμό διαφόρων ξένων. Κατά τη διάρκεια της Ελληνιστικής περιόδου, τα Ελληνικά ήταν η Κοινή Γλώσσα -\"lingua franca\"- του Αρχαίου Κόσμου, ευρέως ομιλούμενη από την Ισπανία ως την Ινδία."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% στις τιμές πώλησης στην αγορά."
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1660,8 +1656,10 @@ msgid ""
 msgstr "Η Κασατρίγα ή Καστριγα, που σημαίνει πολεμιστής, είναι μία από τις τέσσερις Βάρνας (κοινωνικές τάξεις) στον Ινδουισμό. Παραδοσιακά οι Κασατρίγα απαρτούσαν το στρατό και την άρχουσα ελίτ του Βεδικού-Ινδουιστικού κοινωνικού συστήματος που περιγράφεται από τις Βέδες και τους Νόμους του Μανού."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "Οι συμμαχικοί ναοί και οι τεχνολογίες ναών στοιχίζουν -50% σε κόστος και χρόνο έρευνας."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1834,8 +1832,8 @@ msgid ""
 msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρώσει έναν μεγάλο αριθμό πεζικού κατά τη διάρκεια του πολέμου, λόγω του μεγάλου μεγέθους της αυτοκρατορία των Αχαιμενιδών και τον τρόπο με τον οποίο ήταν οργανωμένη. Σε γενικές γραμμές το περσικό πεζικό ήταν καλά εκπαιδευμένο και πολεμούσαν με μεγάλη επιμονή. Ωστόσο, η αλήθεια ήταν ότι το πεζικό ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Υψηλότερες απολαβές (+15%) από τους χερσαίους εμπορικούς δρόμους για τους εμπόρους των συμμάχων."
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2049,6 +2047,7 @@ msgid "Mercenary Army"
 msgstr "Μισθοφορικό Στρατό"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2079,8 +2078,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Μπορεί να πίασει Γαίας ελέφαντες και καμήλες για να μειώθει το κόστος της εκπαίδευσης τους."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Όλοι οι σύμμαχοι λαμβάνουν αυτόματα μια αργή ροή εισοδήματος τροφής."
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2235,18 +2234,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Πρέπει να κατασκευαστεί σε ουδέτερο έδαφος. Δεν επιδρά στην επέκταση του εδάφους. Εκπαιδεύει όλες της 'μισθοφορικές' μονάδες."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Η Ελληνο-Μακεδονική δυναστεία των Πτολεμαίων στηρίχθηκε σε μεγάλο αριθμό Ελλήνων και ξένων μισθοφόρων για το μεγαλύτερο μέρος της στρατιωτικής της δύναμης, κυρίως επειδή η πίστη των ντόπιων αιγυπτιακών μονάδων ήταν συχνά ύποπτη. Πράγματι, κατά τη διάρκεια μιας γηγενείς εξέγερσης, η Άνω Αίγυπτος χάθηκε από τους Πτολεμαίους για δεκαετίες. Των μισθοφόρων συχνά η μαχητικότητα και η πίστη τους, μπορούσαν να αγοραστούν, μερικές φορές φθηνά, μερικές φορές καθόλου φτηνά. Αυτό δεν είχε καμία σημασία, δεδομένου ότι η Αίγυπτος υπό τους Πτολεμαίους ήταν τόσο ευημερούσα ώστε να είναι η πλουσιότερη περιοχή των διαδόχων του Αλεξάνδρου."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Φάρος"
@@ -2312,8 +2299,8 @@ msgid ""
 msgstr "Η Ιδιότητα του Ρωμαίου πολίτη είχε ιδιαίτερη αξία στον αρχαίο κόσμο. Βασικά δικαιώματα και προνόμια που κατείχαν οι Ρωμαίοι πολίτες στερήθηκαν στους άλλους κατακτημένους λαούς. Λέγεται ότι βλάπτοντας ένα Ρωμαίο πολίτη ήταν σαν να βλάπτετε η ίδια η Ρώμη, και μπορούσε να προκαλέσει το σύνολο της δύναμη της Ρώμης να πέσει πάνω στον δράστη."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% στο χρόνο εκπαίδευσης για το πεζικό των συμμάχων."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2522,8 +2509,8 @@ msgid ""
 msgstr "Οι Σελευκίδες εξελίχθηκαν και μάλιστα στο πόλεμο των Διάδοχων κατά τη διάρκεια του 3ου και 2ου αιώνα. Συνόρευαν Ανατολικά με ανερχόμενες δυνάμεις όπως οι Πάρθοι και είχαν διαρκείς επαναστάσεις στις περιφερειακές σατραπείες, όπως η Βακτριανή ανάγκασαν τους Σελευκίδες να μεταρρυθμίσουν το στρατό τους και να αλλάξουν την τακτική τους, ειδικά στο ιππικό βραχίονα. Ο πόλεμος με τους Ρωμαίους από τη Δύση και οι εισβολές από τους Γαλάτες ανάγκασαν επίσης τους Σελευκίδες να μεταρρυθμίσουν τα συντάγματα πεζικού ώστε να είναι πιο ευέλικτα."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Τα Συμμαχικά Aστικά Κέντρα είναι 20% φθηνότερα."
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2812,10 +2799,8 @@ msgid ""
 msgstr "Υπό το Σύνταγμα που γράφτηκε από τον μυθικό νομοθέτη Λυκούργο, εγκαθιδρύθηκε το καθεστώς της Αγωγής, όπου οι Σπαρτιάτες εκπαιδεύονταν από 6 χρονών για να γίνουν ανώτεροι πολεμιστές για την άμυνα της Σπάρτης. "
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Αυξάνει την υγεία τον πολιτών-στρατιωτών πεζικάριων λογχοφόρων κατά 10% για τους συμμάχους των Σπαρτιατών."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

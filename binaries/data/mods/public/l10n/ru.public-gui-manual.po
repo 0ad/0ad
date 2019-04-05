@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-01-21 16:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-01 23:14+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,13 +135,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"]  — игра в песочнице или против ИИ. ИИ находится на стадии разработки и не учитывает новые возможности в игре, но Вы можете поиграть против фактического противника, если нет возможности играть с человеком."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Многопользовательская[font=\"sans-bold-14\"] — игра с соперниками, по интернету."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -169,19 +169,19 @@ msgstr "Сначала выберите тип карты, на которой �
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Случайная карта[font=\"sans-14\"] — карта, созданная автоматически на основе скрипта"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Сценарий[font=\"sans-14\"] — карта, разработанная дизайнером карт, с фиксированными цивилизациями"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Схватка[font=\"sans-14\"] — карта, разработанная дизайнером карт, с возможностью выбора цивилизаций"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -251,7 +251,7 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
 " is displayed in the top left of the GUI after the file has been saved, and "
 "can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Shift + F2: Сделать огромный скриншот (6400x4800 пикселей, в формате .bmp, местоположение показывается в верхнем левом углу GUI после того, как файл был сохранён. Можно также посмотреть в консоли/логах, если вы пропустите его там)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -415,7 +415,7 @@ msgstr "F5, F6, F7 и F8      Переместит камеру в указан�
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M при выбранных постройках: добавить 1-го, 2-го... отображаемого юнита в очередь тренировки во всех выбранных постройках."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -533,19 +533,19 @@ msgstr "Ctrl + ПКМ с выбранными юнитами:"
 
 #: gui/manual/intro.txt:115
 msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "• если курсор над союзной постройкой: Отправить в гарнизон"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  • If the cursor is over a non-allied unit or building: Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "• если курсор над недружественным юнитом или постройкой: Атаковать (вместо захвата или сбора)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  • Otherwise: Attack move (by default all enemy units and structures along "
 "the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr ""
+msgstr "• Иначе: Атаковать в движении (по-умолчанию все вражеские юниты и постройки атакуются по пути следования; используй Ctrl + Q + Правая кнопка мыши для атаки только юнитов)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -628,7 +628,7 @@ msgstr "Ctrl + A или \\[left]: Повернуть камеру по часо�
 
 #: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D или \\[right]: Повернуть камеру против часовой стрелки"
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
@@ -636,7 +636,7 @@ msgstr "Q     Поворот камеры по часовой стрелке в�
 
 #: gui/manual/intro.txt:140
 msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "E: Поворот камеры против часовой стрелки"
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -646,7 +646,7 @@ msgstr "Shift + колесо мыши вверх      Поворот камер�
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Shift + колесо мыши вниз: поворот камеры против часовой стрелки"
 
 #: gui/manual/intro.txt:143
 msgid ""

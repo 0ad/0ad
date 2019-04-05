@@ -3,6 +3,8 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# moolow <copyhyeon@gmail.com>, 2019
+# 이정희 <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hong Won Gi <timmy0807@naver.com>, 2016
 # jjj <triplej03@nate.com>, 2014
@@ -12,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-03-29 18:34+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-05 05:28+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +30,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "유닛들을 정예 계층으로 승격되면 많은 질적 향상을 얻을 수 있습니다: 20% 추가 체력, 1 모든 유형의 아머 추가 레벨, 20% 추가 전리품, 근접 유닛 20% 추가 공격력, 원거리 유닛들 4m 추가 범위와 더 나은 정확도, 더 빠른 이동 속도와 힐러들 추가 회복 속도와 범위."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -40,7 +42,7 @@ msgstr "말의 얼굴을 위한 금속갑옷"
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr ""
+msgstr "당신의 기병 말들에게 갑옷을 채우세요. 모든 기병의 타격과 관통 아머 레벨이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -101,7 +103,7 @@ msgstr "안면 투구"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr ""
+msgstr "작은 도시 단계 잠금 해제"
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -114,7 +116,7 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
-msgstr ""
+msgstr "프로메토피디온"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -194,27 +196,27 @@ msgstr "말을 위한 철 갑옷."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr ""
+msgstr "큰 도시 단계 잠금 해제"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr ""
+msgstr "당신의 기병 말들에게 갑옷을 채우세요. 모든 기병의 타격 아머 레벨이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr ""
+msgstr "고대인들에게 가장 단단한 금속으로 알려진 철로 완전히 만들어진 갑옷입니다."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr ""
+msgstr "모든 영웅들의 타격 아머 레벨과 관통 아머 레벨이 +2 증가하지만 금속 비용이 +50 증가합니다."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr ""
+msgstr "철제 영웅 갑옷"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -320,11 +322,11 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr ""
+msgstr "완전히 청동으로 만들어진 갑옷입니다. 아주 비싸고 가공하는 데 시간이 많이 걸리기 때문에 최고의 병사들만이 갑옷을 입었다. "
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "대표전사들의 타격 아머 레벨이 +2 증가하지만 금속 비용이 +10 증가합니다"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -340,11 +342,11 @@ msgstr "큰 방패를 위한 합판 구조"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr ""
+msgstr "보병 창병의 관통 아머 레벨이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr ""
+msgstr "합판 방패 구조"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
@@ -358,16 +360,16 @@ msgstr ""
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr ""
+msgstr "최고의 방패들은 모서리(Roman scutum)나 테두리 둘레(Greek aspis)에 보강재가 있습니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr ""
+msgstr "보병 창병 관통 아머 레벨이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
-msgstr ""
+msgstr "강화된 방패"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
@@ -375,7 +377,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspís"
-msgstr ""
+msgstr "아스피스"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
@@ -390,11 +392,11 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr ""
+msgstr "크할카스피스"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr ""
+msgstr "크흐리사스피스"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -416,15 +418,15 @@ msgstr "은 방패"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspís"
-msgstr ""
+msgstr "아르기라스피스"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "납으로 싸는 것은 선체를 보호합니다."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "납으로 싸는 것은 선체를 보호합니다. 모든 선박 아머 종류에 대해 레벨이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -467,16 +469,16 @@ msgstr "강화된 선체"
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr ""
+msgstr "마을 단계 잠금 해제."
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr ""
+msgstr "기병들을 위해 특별히 만들어진 긴 창."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr ""
+msgstr "당신의 근접 기병에게 더 좋은 무기를 장착합니다. 근접 기병의 타격 공격력을 +2 증가시킵니다."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -488,7 +490,7 @@ msgstr "기마병 창"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 msgid "Xystón"
-msgstr ""
+msgstr "시스톤"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
@@ -500,11 +502,11 @@ msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr ""
+msgstr "이 훈련은 근접 공격력을 증가시킵니다."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "근접 기병 공격력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -531,7 +533,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
-msgstr ""
+msgstr "크시스톤"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -541,7 +543,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "당신의 근접 기병에게 더 좋은 무기를 장착합니다. 근접 기병의 타격 공격력을 +2 증가시킵니다."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -551,20 +553,20 @@ msgstr "철제 무기"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr ""
+msgstr "이 훈련은 원거리 공격력을 증가시킵니다."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "원거리 기병 공격력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "원거리 전투 기병 훈련"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "당신의 원거리 기병에게 더 좋은 무기를 장착합니다. 원거리 기병 공격력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -585,11 +587,11 @@ msgstr "영웅적 행위"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreía"
-msgstr ""
+msgstr "안드레이아"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
-msgstr "용기"
+msgstr "포르티투도-용기"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
 #: simulation/data/technologies/melee_inf_sidearms.jsondescription
@@ -602,7 +604,7 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "근접 보병 공격력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -620,7 +622,7 @@ msgstr "휴대 무기"
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
-msgstr ""
+msgstr "크시포스"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
@@ -629,7 +631,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "청동 대신 철을 사용하는 것은 무기에 추가적인 힘을 주었습니다."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
@@ -641,12 +643,12 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "원거리 보병의 공격력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "원거리 보병 비정규군"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -664,7 +666,7 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
 msgid "Átaktoi"
-msgstr ""
+msgstr "아타크토이"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
@@ -672,12 +674,12 @@ msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
-msgstr ""
+msgstr "전투의지는 승리에 결정적입니다."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr ""
+msgstr "당신의 군대에게 더 높은 임금으로 복돋우세요. 모든 육해군 공격력 +25%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -689,7 +691,7 @@ msgstr "전투의지"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dýnamis"
-msgstr ""
+msgstr "디나미스"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -699,7 +701,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "모든 검병과 철퇴병의 타격 공격력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -715,11 +717,11 @@ msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr ""
+msgstr "돌무더기 자재를 사용하는 것은 비용을 절감하고 벽을 쌓을 수 있습니다."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr ""
+msgstr "성벽 건설 시간 -20%로 줄어들지만 충돌 아머 레벨 -1 이 됩니다."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -731,15 +733,15 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "유닛들을 정예 계층으로 승격되면 많은 질적 향상을 얻을 수 있습니다: 20% 추가 체력, 1 모든 유형의 아머 추가 레벨 , 20% 추가 전리품, 20% 근접 유닛들 추가 공격, 원거리 유닛들 4m 추가 범위와 더 나은 정확도, 더 빠른 이동 속도와 힐러들 추가 회복 속도와 범위."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
-msgstr ""
+msgstr "식량으로 쓰일 가축 기르기."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr ""
+msgstr "가축(양, 염소, 소, 그 외) 기르는 시간을 -25% 단축시킵니다."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -749,11 +751,11 @@ msgstr "목축"
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid "Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "실어 나르는 자원 용량을 증가시킵니다."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "일꾼들이 바구니를 사용합니다. 실어 나르는 자원 용량을 +5 증가시킵니다.."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -761,31 +763,31 @@ msgstr "바구니"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr ""
+msgstr "일꾼들이 말이 끄는 수레를 사용합니다. 실어 나르는 자원 용량이 +10."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
-msgstr ""
+msgstr "말이 끄는 수레"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "소금에 절이면 물고기를 오래 보존할 수 있습니다."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr ""
+msgstr "고기잡이 배가 잡아들이는 물고기양을 +20 증가시킵니다."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "물고기를 소금에 절이기"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "＂작은 도시 단계＂를 잠금해제합니다. 그럴려면 낚시 그물이 필요합니다."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "일꾼들이 외바퀴 손수레를 사용합니다. 실어 나르는 자원 용량 +5."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -797,7 +799,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr ""
+msgstr "일꾼 농업률 EHSMS 수확량 을 +25% 증가시킵니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -805,11 +807,11 @@ msgstr "비료"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid "A horse drawn instrument to turn the sod."
-msgstr ""
+msgstr "말이 잔디를 놓기 위해 기구를 끕니다."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr ""
+msgstr "일꾼들이 철 쟁기를 장착합니다. 농업율 +15%."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -817,51 +819,51 @@ msgstr "철 쟁기"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "일꾼들의 농업 채집속도를 증가시키기 위한 훈련."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr ""
+msgstr "일꾼 농업율을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr ""
+msgstr "채집 훈련"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
-msgstr ""
+msgstr "그물은 물고기잡이 배의 생산성을 개선시킵니다."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "물고기잡이 배에서 그물을 사용합니다. 어업 비율 EHSMS 어획량 EHSMS 물고기잡는양 을 +30% 증가시킵니다. 물고기 소금에 절이기 잠금 해제를 합니다."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr ""
+msgstr "고기잡이 그물"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr ""
+msgstr "나무 목재 채집률이 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr ""
+msgstr "일꾼 나무 벌목률을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
-msgstr ""
+msgstr "쇠 도끼날"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
-msgstr ""
+msgstr "일꾼 나무 벌목률을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
-msgstr ""
+msgstr "날카로운 도끼날"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Ax"
@@ -871,12 +873,12 @@ msgstr "더 강력한 도끼"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr ""
+msgstr "석재 채집율이 증가합니다."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "농노들에게 석재를 채굴하는 일꾼들을 돕게 합니다. 석재 채집율 +15%."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -886,11 +888,11 @@ msgstr "농노"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
 msgid "Heílōtes"
-msgstr ""
+msgstr "헤이로테스"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "석재를 채굴하는 걸 돕기 위해 하인을 고용합니다. 석재 채집율을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -900,7 +902,7 @@ msgstr "하인"
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
 msgid "Doûloi"
-msgstr ""
+msgstr "도우로이"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
@@ -910,7 +912,7 @@ msgstr "금속 채집률을 상승시키다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr ""
+msgstr "수갱을 이용한 채굴을 개발합니다. 금속 채집율 EHSMS 채광률 EHSMS 생산량 을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -918,7 +920,7 @@ msgstr "수갱을 이용한 채굴"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr ""
+msgstr "희귀한 은광맥을 찾아냅니다. 금속 채집율을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -935,7 +937,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr ""
+msgstr "석재를 채굴하는 걸 돕기 위해 노예를 삽니다. 석재 채집률을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -945,53 +947,53 @@ msgstr "노예들"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
 msgid "Andrápoda"
-msgstr ""
+msgstr "안드라포다"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "일꾼들이 유용한 도구를 장착합니다. 금속 채집률을 +15%. 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
-msgstr ""
+msgstr "쐐기와 나무망치"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets for foraging."
-msgstr ""
+msgstr "채집용 바구니."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr ""
+msgstr "채집꾼이 고리버들 바구니를 장착합니다. 과일 채집율을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr ""
+msgstr "고리버들 바구니 EHSMS 광주리"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
-msgstr ""
+msgstr "병영에 주둔한 유닛은 시간이 흐르면 체력이 회복됩니다."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in Barracks."
-msgstr ""
+msgstr "병영에 주둔하고 있는 유닛은 시간이 흐르면서 건강해집니다."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
-msgstr ""
+msgstr "생존 조건"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr ""
+msgstr "모든 치료자들의 회복과 시야 범위를 증가시킵니다."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
-msgstr ""
+msgstr "치료자의 회복과 시야 범위를 +5 증가시킵니다."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "치유 범위"
+msgstr "회복 범위"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
@@ -1001,23 +1003,23 @@ msgstr "올림픽 판테온"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "치유 범위 2"
+msgstr "회복 범위 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadḗmeia"
-msgstr ""
+msgstr "아카데메이아"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr ""
+msgstr "모든 치료자의 회복률이 증가합니다."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "힐러들은 +25% 치유 속도를 갖습니다."
+msgstr "치료자의 치유속도를 +25% 증가시킵니다."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -1027,7 +1029,7 @@ msgstr "회복률"
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 msgid "Sphágia"
-msgstr ""
+msgstr "스프하기아"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -1041,11 +1043,11 @@ msgstr ""
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr ""
+msgstr "사원에 주둔하고 있는 유닛들은 더 빠르게 회복됩니다."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr ""
+msgstr "사원에 주둔하는 유닛 회복률을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
@@ -1065,23 +1067,23 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "베틀은 정착민들을 위한 질 높은 옷을 생산 가능하게 합니다. 집안의 여자들은 어릴 떄부터 베틀을 짜는 법을 배웠고 그 후에도 삶의 대부분을 베틀과 함께 일하면서 보냈습니다."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "여성 시민 체력을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "베틀"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr ""
+msgstr "유닛 체력 회복을 잠금 해제 합니다."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "생물은 유휴 상태일 때 시간이 흐르면서 체력이 서서히 회복합니다."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1089,31 +1091,31 @@ msgstr "전장 의술"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr ""
+msgstr "기하학적인 석조를 사용하면 방어벽의 견고성이 증가합니다."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr ""
+msgstr "성벽의 충돌 아머 레벨 +2 이지만 건설 시간 +10%."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
-msgstr ""
+msgstr "기하학적인 석조"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr ""
+msgstr "근접 보병의 타격 공격력 +1"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr ""
+msgstr "청동 대신 철을 사용하면 창에 추가적인 관통력을 더할 수 있습니다."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr ""
+msgstr "창을 사용하는 유닛의 타격 공격력 +2."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr ""
+msgstr "쇠창날"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
@@ -1121,11 +1123,11 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
 msgid "Sidḗreai Aikhmaí"
-msgstr ""
+msgstr "시데레아이 아이크흐마이"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
-msgstr ""
+msgstr "마창 vs. 안면투구"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
@@ -1133,11 +1135,11 @@ msgstr ""
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
-msgstr ""
+msgstr "하인 vs. 쐐기와 나무망치"
 
 #: simulation/data/technologies/pair_gather_02.jsongenericName
 msgid "Serfs vs. Shaft Mining"
-msgstr ""
+msgstr "농노 vs. 수갱을 이용한 채굴"
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
@@ -1145,19 +1147,19 @@ msgstr "노예 vs. 은 채굴"
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
-msgstr ""
+msgstr "쇠 도끼 vs. 외바퀴 손수레"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
-msgstr "치료 범위와 비율"
+msgstr "회복 범위와 비율"
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr ""
+msgstr "회복 범위와 비율 #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr "Garrison Healing vs. 자기치료"
+msgstr "주둔 회복 vs. 자기회복"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 msgid "Females vs. Population"
@@ -1165,38 +1167,38 @@ msgstr "여성들 vs. 인구수"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "여성 시민 vs 인구수"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
-msgstr "보조무기 vs. 비정규군"
+msgstr "휴대 무기 vs. 비정규군"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr ""
+msgstr "창 전투 vs. 소규모 접전"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr ""
+msgstr "보병 타격 아머 vs. 창병 관통 아머"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
-msgstr ""
+msgstr "보병 소집 vs. 기병 소집"
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
-msgstr "공격력 vs. 가격"
+msgstr "공격력 vs. 비용"
 
 #: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
 msgid "Attack vs. Packing"
-msgstr ""
+msgstr "공격 vs. 짐싸기"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr ""
+msgstr "비용 vs. 갑옷"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
@@ -1210,7 +1212,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr ""
+msgstr "큰 도시 단계"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1242,7 +1244,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 msgid "Megalópolis"
-msgstr ""
+msgstr "메가로포리스"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1261,7 +1263,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr ""
+msgstr "작은 도시 단계"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1294,7 +1296,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmópolis"
-msgstr ""
+msgstr "코모포리스"
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1310,7 +1312,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr ""
+msgstr "마을 단계"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1329,7 +1331,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Thólos"
-msgstr ""
+msgstr "트호로스"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
 msgid ""
@@ -1343,15 +1345,15 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
-msgstr ""
+msgstr "대중 집회"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
-msgstr ""
+msgstr "코미티움"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklēsía"
-msgstr ""
+msgstr "에크크레시아"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1424,7 +1426,7 @@ msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr ""
+msgstr "모든 투창 유닛의 관통 공격력 +2와 범위 +4."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
@@ -1436,7 +1438,7 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Himás"
-msgstr ""
+msgstr "히마스"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
@@ -1500,7 +1502,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
-msgstr "포병 교사들"
+msgstr "포병 교관"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
@@ -1549,7 +1551,7 @@ msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "공격에 대비하여 기초를 강화합니다."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
@@ -1641,7 +1643,7 @@ msgstr "보초병"
 #: simulation/data/technologies/tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/tower_watch.jsonspecificName.mace
 msgid "Nyktophýlakes"
-msgstr ""
+msgstr "니크토프히라케스"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1804,7 +1806,7 @@ msgstr ""
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophória"
-msgstr ""
+msgstr "테스모포리아"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1920,7 +1922,7 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr ""
+msgstr "정예 시민 기병"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
@@ -1935,30 +1937,13 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr ""
+msgstr "정예 시민 보병"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
-msgstr ""
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr ""
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr ""
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "삼중 방벽"
+msgstr "펜타코시오메딤노이"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -1983,7 +1968,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
-msgstr ""
+msgstr "갈리아 용병 장군 EHSMS 대장"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
@@ -2249,32 +2234,133 @@ msgstr "이베리아 정예 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr ""
+msgstr "모든 이탈리아 용병을 정예 계급으로 승급합니다"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr ""
+msgstr "모든 이탈리아 용병을 정예 계급으로 승급합니다. 용병의 군사 기량을 향상시키지만 자원 채집율이 -25% 로 떨어집니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
 msgstr "이탈리아 정예 용병"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "삼중 방벽"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr ""
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr ""
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "목조 건축"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "황제 중의 황제"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "차크라바르티 삼라트"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "마우리아 성벽은 체력이 -20% 이고 건설 시간이 -20% 입니다."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "목조 방벽"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "약체??"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2282,7 +2368,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr ""
+msgstr "창병의 타격 공격력을 +2 상승시킵니다."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
@@ -2292,37 +2378,7 @@ msgstr ""
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "약체??"
+msgstr "도라티스모스"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2370,7 +2426,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -2392,28 +2448,6 @@ msgstr ""
 msgid "Divine Instruction"
 msgstr ""
 
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr ""
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr ""
-
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
@@ -2430,38 +2464,6 @@ msgstr ""
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr ""
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
-msgid ""
-"The Mauryas built their city walls out of wood, an abundant natural resource"
-" in India."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "목조 방벽"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr ""
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
 msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsondescription
@@ -2625,15 +2627,15 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr ""
+msgstr "모든 기병 체력을 +20% 증가시킵니다."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
-msgstr ""
+msgstr "니산 전투마"
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
-msgstr ""
+msgstr "니시오이"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The reform army of the Seleucids."

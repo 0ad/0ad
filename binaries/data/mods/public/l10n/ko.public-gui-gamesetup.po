@@ -7,7 +7,7 @@
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
-# Hyeon june choi <copyhyeon@gmail.com>, 2018
+# moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Suhyeon Park <qkr5145@gmail.com>, 2018
@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-29 09:45+0100\n"
-"PO-Revision-Date: 2019-03-29 18:38+0000\n"
+"PO-Revision-Date: 2019-04-04 04:28+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "게임을 시작할 때 임의로 한 문명을 선택합니다."
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "%(username)s 님은 준비되지 않았습니다."
+msgstr "* %(username)s 님은 준비되지 않았습니다."
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
@@ -68,7 +68,7 @@ msgstr "시작할 준비가 된 상태입니다."
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "*%(username)s 님은 준비되었습니다!"
+msgstr "* %(username)s 님은 준비되었습니다!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
@@ -260,7 +260,7 @@ msgstr "시작시 기본 자원"
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "각 자원의 초기 양 : %(resources)s."
+msgstr "각 자원의 초기 양: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
@@ -291,7 +291,7 @@ msgstr "유물 지속시간"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "플레이어가 유물 승리를 획득 할 때까지의 시간."
+msgstr "선수가 유물 승리를 획득 할 때까지의 시간."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
@@ -337,7 +337,7 @@ msgstr "유목민"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "유목민 모드에서 플레이어는 소수 유닛으로 시작하여 도시 건설에 적합한 장소를 찾아야합니다. 휴전을 권장합니다."
+msgstr "유목민 모드에서 선수는 소수 유닛으로 시작하여 도시 건설에 적합한 장소를 찾아야합니다. 휴전을 권장합니다."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -395,7 +395,7 @@ msgstr "마지막 생존"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "마지막 남은 플레이어 또는 마지막 남은 동맹군이 승리할지 여부를 토글합니다."
+msgstr "마지막 남은 선수 또는 마지막 남은 동맹군이 승리할지 여부를 토글합니다."
 
 #: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
@@ -438,14 +438,14 @@ msgstr "현재 설정으로 새로운 놀이를 시작합니다."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr "현재 설정으로 새 게임을 시작합니다 (모든 플레이어가 준비될 때까지 사용안함)."
+msgstr "현재 설정으로 새 게임을 시작합니다 (모든 선수가 준비될 때까지 사용안함)."
 
 #: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo) / %(hotkey_structree) : 역사/트리구조?? 보기\n마지막으로 열리면 클릭 시 다시 열립니다."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s : 역사/건물 도감 보기\n마지막으로 열리면 클릭 시 다시 열립니다."
 
 #: gui/gamesetup/gamesetup.js:1107
 #, javascript-format
@@ -455,17 +455,17 @@ msgstr "인공지능 환경설정: %(description)s."
 #: gui/gamesetup/gamesetup.js:1401
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr "%(name) 설정 탭 여부를 토글합니다."
+msgstr "%(name)s 설정 탭 여부를 토글합니다."
 
 #: gui/gamesetup/gamesetup.js:1402
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "%(hotkey)을(를) 사용하여 설정 탭을 아래로 이동합니다."
+msgstr "%(hotkey)s 을(를) 사용하여 설정 탭을 아래로 이동합니다."
 
 #: gui/gamesetup/gamesetup.js:1403
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "%(hotkey)을(를) 사용하여 설정 탭을 위로 이동합니다."
+msgstr "%(hotkey)s 을(를) 사용하여 설정 탭을 위로 이동합니다."
 
 #: gui/gamesetup/gamesetup.js:1751
 msgctxt "map selection"
@@ -549,7 +549,7 @@ msgstr "HH:mm"
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
 msgid "%(name)s's game"
-msgstr "%(name)s 의 놀이"
+msgstr "%(name)s 님의 놀이"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
@@ -558,7 +558,7 @@ msgstr "올바른 서버 이름을 입력하십시오."
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr "서버 포트 번호는%(min)s와 %(max)s사이 여야합니다."
+msgstr "서버 포트 번호는 %(min)s 부터 %(max)s 사이 여야합니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -602,7 +602,7 @@ msgstr "게임에 참여할 수 없음: %(message)s."
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr "%(playername)s의 놀이"
+msgstr "%(playername)s 의 놀이"
 
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading screen
@@ -697,7 +697,7 @@ msgstr "뒤로"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr "기본값으로 선택된 모든 문명을 재설정합니다 (랜덤)."
+msgstr "기본값으로 선택된 모든 문명을 재설정합니다 (아무거나)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
@@ -767,13 +767,13 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "\"제우스 \\ [...] 그의 법을 확립했습니다 : 지혜는 고통을 통해 옵니다. \\[…] 그래서 그들의 의지에 반하는 사람들은 절제를 실천하는 법을 배웁니다. \\[…] 그런 은혜는 가혹하고 폭력적입니다.\" - 아이스킬로스 (\"오레스테이아\", I. 176-183)"
+msgstr "\"제우스 \\[…] 그의 법을 확립했습니다: 지혜는 고통을 통해 옵니다. \\[…] 그래서 그들의 의지에 반하는 사람들은 절제를 실천하는 법을 배웁니다. \\[…] 그런 은혜는 가혹하고 폭력적입니다.\" - 아이스킬로스 (\"오레스테이아\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr "\"그녀 \\ [헬렌]은 엘리움에게 지참금과 파괴를 가져 왔습니다.\" - 아이스킬로스 (\"오레스테이아\", I. 406)"
+msgstr "\"그녀 \\[헬렌]은 엘리움에게 지참금과 파괴를 가져 왔습니다.\" - 아이스킬로스 (\"오레스테이아\", I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -907,7 +907,7 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr "\"내가 알렉산더가 아니면 나는 [시노페 의]/디오게네스가 되고 싶다.\" - 알렉산더 대왕, 그가 만난 철학자의 순박함에 감명받으며 (플루타르크, \"모랄리아\", XXII. \"알렉산더 대왕의 운명에 관하여\", 332a-b)"
+msgstr "\"내가 알렉산더가 아니면 나는 \\[시노페 의] 디오게네스가 되고 싶다.\" - 알렉산더 대왕, 그가 만난 철학자의 순박함에 감명받으며 (플루타르크, \"모랄리아\", XXII. \"알렉산더 대왕의 운명에 관하여\", 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -1017,7 +1017,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr "\"알렉산더 자신은 큰 고통과 어려움으로 갈증에 시달렸지만 그럼에도 불구하고 군대를 도보로 이끌었다. [...].이 때 무장 한 병사 몇 명이 \\ [...] 물을 발견했다. [...], 병사가 물을 헬멧에 쏟아 부었다. 그는 그것을 가져다가 가져온 병사들을 칭찬하고 곧바로 그것을 땅바닥에 쏟아 부었다. \" - 알렉산더가 게드로시안 사막을 통과하는 행진에 대해 ,아리안 (\"알렉산더의 원정기\", 6.26)"
+msgstr "\"알렉산더 자신은 큰 고통과 어려움으로 갈증에 시달렸지만 그럼에도 불구하고 군대를 도보로 이끌었다. \\[…].이 때 무장 한 병사 몇 명이 \\[…] 물을 발견했다. \\[…], 병사가 물을 헬멧에 쏟아 부었다. 그는 그것을 가져다가 가져온 병사들을 칭찬하고 곧바로 그것을 땅바닥에 쏟아 부었다. \" - 알렉산더가 게드로시안 사막을 통과하는 행진에 대해 ,아리안 (\"알렉산더의 원정기\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -1028,7 +1028,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr "\"그의 창을 미트리다테스의 얼굴에 밀어 넣고, 알렉산더는 그를 땅바닥에 내던졌다. 그런 다음 로이사케스[페르시아인]을\\ [...] 그의 칼로 머리를 때렸다. \\ [...] 알렉산더는 그를 땅바닥에 던지면서 가슴에 가슴 판을 뚫고 창을 찔렀다. 스피트리다더스[페르시아인]는 클레이토스가 팔을 베었을 때 이미 뒤에서 알렉산더에게 칼을 치켜든 상태였다. \" - 그라니코스 강 전투에 대해 ,아리안 (\"알렉산더의 원정기\", 1.15)"
+msgstr "\"그의 창을 미트리다테스의 얼굴에 밀어 넣고, 알렉산더는 그를 땅바닥에 내던졌다. 그런 다음 로이사케스 \\[페르시아인]을 \\[…] 그의 칼로 머리를 때렸다. \\[…] 알렉산더는 그를 땅바닥에 던지면서 가슴에 가슴 판을 뚫고 창을 찔렀다. 스피트리다더스 \\[페르시아인]는 클레이토스가 팔을 베었을 때 이미 뒤에서 알렉산더에게 칼을 치켜든 상태였다. \" - 그라니코스 강 전투에 대해 ,아리안 (\"알렉산더의 원정기\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""

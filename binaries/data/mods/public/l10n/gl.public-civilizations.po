@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-23 22:23+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-04 19:14+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -63,8 +63,8 @@ msgid ""
 msgstr "Os gregos conseguiron con éxito helenizar a varios estranxeiros. Durante o período helenístico, o grego era a lingua franca do mundo coñecido, falado amplamente desde a Península Ibérica ata a India."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "As embarcacións constrúense un 25% máis rápido."
+msgid "Allied warships −25% construction time."
+msgstr "−25% de tempo de construción para as naves de guerra aliadas."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -313,8 +313,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "A relixión celta e mailo druidismo inspiraron a mentalidade guerreira deste pobo."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% de custo de recursos para os sandadores dos aliados."
+msgid "Allied healers −20% resource costs."
+msgstr "−20% de custes de recursos para os sandadores aliados."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -558,8 +558,8 @@ msgid ""
 msgstr "De xeito similar á Península Ibérica, o norte de África era coñecido pola abundancia de cabalos. Nesa parte de África podían producirse ata 100.000 novas bestas cada ano. Ademais os seus bosques eran o hábitat do chamado «elefante do norte de África»."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% de bonificación para os beneficios do comercio polas rutas internacionais cos aliados."
+msgid "Allied markets +10% international trade bonus."
+msgstr "+10% de bonificación para o comercio internacional para os mercados aliados."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -765,8 +765,8 @@ msgid "Gauls"
 msgstr "Galos"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% de tempo de investigación de tecnoloxías para os aliados."
+msgid "Allied structures −20% technology research time."
+msgstr "−20% de tempo de investigación de tecnoloxías para as estruturas aliadas."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -965,10 +965,8 @@ msgid ""
 msgstr "De xeito similar a Numidia no norte de África, a Península Ibérica era coñecida pola abundancia de cabalos. Na península podían producirse ata 100.000 novas bestas cada ano."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "O custo dos cidadáns-soldado escaramuzadores de infantaría e cabalaría redúcese nun -20% para os aliados."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "−20% de custos de recursos para os cidadáns-soldado xavelinistas aliados."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1166,10 +1164,8 @@ msgid "Elephant Suppliers"
 msgstr "Proveedores de elefantes."
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Reduce nun -20% o coste e tempo de reclutamento dos elefantes para os aliados dos kushitas."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "−20% de custos de recursos e tempo de adestramento para os elefantes aliados."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1233,9 +1229,9 @@ msgstr "Arquitectura monumental"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+50% de vida e -50% de tempo de construción para centros cívicos, templos, pirámides e marabillas."
+msgstr "+50% de vida e -50% de tempo de construción para os centros cívicos, os templos, as pirámides e as marabillas."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1378,8 +1374,8 @@ msgid ""
 msgstr "Os gregos conseguiron con éxito helenizar a varios estranxeiros. Durante o período helenístico, o grego era a lingua franca do mundo coñecido, falado amplamente desde a Península Ibérica ata a India."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "Aumento nun +20% dos prezos de venta nos mercados."
+msgid "Allies +20% barter sell prices."
+msgstr "+20% de prezos de venda de comercio para os aliados."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1639,8 +1635,10 @@ msgid ""
 msgstr "Os chatrías (“guerreiros”) eran unha das catro castas da India. Os chatrías constitúen tradicionalmente a elite político-militar do sistema social veda e hindú, rexido polos Vedas e mailas Leis de Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "-50% de custo e tempo de investigación para os templos dos aliados e as súas tecnoloxías."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "−50% de custos de recursos e tempo de construción para os templos aliados; −50% de custos de recursos e tempo de construción para as tecnoloxías dos templos."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1813,8 +1811,8 @@ msgid ""
 msgstr "Os persas podían recrutar levas de infantaría en gran número durante os tempos de guerra debido ás enormes dimensións do imperio aqueménida e da forma en que estaba organizado. En xeral, a infantaría persa estaba ben adestraba e loitaba con gran tenacidade. Pero a pesar disto a infantaría deixaba bastante que desexan no combate a curta distancia, man a man. Ademais, salvo polos rexementos de elite, a infantaría persa non era unha forza verdadeiramente profesional."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Maiores ingresos (+15%) por rutas comerciais terrestres para os comerciantes aliados."
+msgid "Allied land traders +15% trade gain."
+msgstr "+15% de ganancia de comercio para os comerciantes terrestres aliados."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2028,6 +2026,7 @@ msgid "Mercenary Army"
 msgstr "Exército de mercenarios"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2058,8 +2057,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Pode capturar elefantes da natureza e dromedarios para reducir os seus custos de adestramento."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Todos os aliados gañan automaticamente un pequeno aumento da comida que conseguen."
+msgid "Allies +1.0 food trickle rate."
+msgstr "+1.0 de taxa de aumento constante da comida para os aliados."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2214,18 +2213,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Debe construírse en territorio neutral. Non ten efecto no territorio. Permite adestrar todas as unidades de mercenarios."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "A dinastía greco-macedonia dos tolemaicos confiaba nun gran número de mercenarios estranxeiros gregos para reforzar a súa forza militar, principalmente porque dubidaban da lealdade das unidades nativas do Exipto. Ben é certo que durante un dos levantamentos de nativos, os tolemaicos perderon o Alto Exipto e non o volveron recuperar ata décadas máis tarde. Os mercenarios adoitaban ter experiencia en combate e a súa lealdade podía comprarse, ás veces a un bo prezo, ás veces a un gran prezo. Pero isto non supuña ningún problema, dado que Exipto, baixo o reinado dos tolemaicos, gozou dunha prosperidade que o converteu no estado máis rico dos sucesores de Alexandre."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Faro"
@@ -2291,8 +2278,8 @@ msgid ""
 msgstr "A cidadanía romana era moi prezada no mundo antigo. Aos cidadáns romanos concedíanselles dereitos e privilexios básicos que se lles negaban aos pobos conquistados. Adoitaba dicirse que atacar a un cidadán romano equivalía a atacar á propia Roma, polo que sobre o culpábel caería todo o peso de Roma."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% de tempo de adestramento para a infantería aliada."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "−20% de tempo de adestramento para os cidadáns-soldado de infantaría aliados."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2501,8 +2488,8 @@ msgid ""
 msgstr "As tácticas de guerra dos seléucidas e desde logo dos sucesores evolucionaron durante o transcurso do terceiro e segundo séculos antes de cristo. O contacto coas novas civilizacións do leste coma os partos e as constantes revoltas das satrapías da periferia como Bactria obrigaron aos seléucidas a reformar o seu exército e cambiar as súas tácticas, especialmente no brazo da cabalaría. A guerra cos romanos polo oeste e as invasións dos gálatas tamén obrigaron aos seléucidas a reformar os seus reximentos de infantaría para facelos máis flexíbeis."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "O custo dos centros cívicos dos aliados redúcese nun -20%."
+msgid "Allied civil centers −20% resource costs."
+msgstr "−20% de custos de recursos para os centros cívicos aliados."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2791,10 +2778,8 @@ msgid ""
 msgstr "Baixo a constitución redactada polo mítico lexislador Licurgo, estabeleceuse a institución da agoxé, onde os espartanos adestraban desde os 6 anos para ser guerreiros superiores na defensa do estado espartano."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Aumenta en +10% a saúde dos cidadáns-soldado con lanza para os aliados dos espartanos."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "+10% de vida para os lanceiros cidadáns-soldado de infantaría aliados."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2019-01-02 18:10+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-03 21:41+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -166,60 +166,56 @@ msgid "Delian League"
 msgstr "Delosko Liga"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "Itsasontziak %25 bizkorrago eraikitzen dira."
+msgid "Allied warships −25% construction time."
+msgstr "Guda itsasontziak %25 gutxiago egiteko denboran."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "Aztiak"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "Aliatuei kostua %20 gutxitzen zaie sendagileak trebatzean."
+msgid "Allied healers −20% resource costs."
+msgstr "Sendagile aliatuak %20 gutxiago baliabide kostuetan."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Merkataritza maisuak"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "%10+ irabazia merkataritzan aliatuen bide internazionaletatik."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Aliatuen merkataritza %10 gehiago nazioarteko merkataritzan."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "Druidic Wisdom"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "%20- ikertze denboran aliatuen teknologientzako."
+msgid "Allied structures −20% technology research time."
+msgstr "Aliatuen egiturak %20 gutxiago teknologiak garatzen."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "Iberiarren aliatuei hiritar gudarien kostua %20 jaisten die."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Aliatuen hiritar soldadu lantzariak %20 gutxiago baliabideak eskuratzean."
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "Elefante Hornitzaileak"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Elefanteen kostua eta trebatzea murrizten ditu % 20 Kushite jokalarien aliatuentzat."
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Elefante aliatuak %20 gutxiago baliabide kostuetan eta trebatze denboran."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "Moneta estandarizatua"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "%20+ prezioak saldu merkatuan."
+msgid "Allies +20% barter sell prices."
+msgstr "Aliatuak %20 gehiago truke saklmentetan."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -227,51 +223,49 @@ msgstr "Ashokaren Laguntza Erlijiosoa "
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "Bakoitzaren eta aliatuen tenpluen teknologiak %50- gutxitzen dute bere kostua eta ikerketa denbora."
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Aliatuen tenpluak %50 gutxiago baliabide eta eraikitze kostuetan; tenpluaren teknologiak %50 gutxiago baliabideen kostuetan eta eraikitze denboran."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "Errege Ibilbidea"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Irabazi handiagoak (%15+) lurretik egiten duten ibilbideentzat aliatutako merkatarientzako."
+msgid "Allied land traders +15% trade gain."
+msgstr "Eskualdeko merkatari aliatuak %15 gehiago merkataritzan."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Mediterraneoko Despentsa"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Aliatu guztiek automatikoki irabazten dute jan gehigarri jario motela."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Aliatuak 1.0 jaki jasotze tasa."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "Derrigorrezko erreklutatzea"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "%20- entrenatzen aliatuen hiritar soldaduen infanteriarako."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Aliatuen hiritar soldaduen infanteria %20 gutxiago trebatzean."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Tetrapoli Siriarra"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "Seleukotarren aliatuei %20 jaisten die gizarte zentroen kostua. "
+msgid "Allied civil centers −20% resource costs."
+msgstr "Aliatuen zentro zibilak %20 gutxiago baliabide kostuetan."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "Liga Peloponesoarra"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Espartar jokalarien aliatuei infanteriako lantzari hiritar gudarien kostua %10 igotzen die."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Aliatuen infanteriako hiritar soldadu lantzariak %10 gehiago bizitzan."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -398,7 +392,7 @@ msgstr "Hiri Lapurrak"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
 msgstr "Mazedoniako Lehen Gerra bitartean, Felipe eta bere tropek Thermum, Etoliako gune erlijioso eta politikoa, arpilatu zuten.\n+5 janari eta egurrean hildako etsai unitate edo eraitsitako egitura bakoitzeko."
 

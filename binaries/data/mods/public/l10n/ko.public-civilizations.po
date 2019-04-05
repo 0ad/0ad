@@ -6,11 +6,12 @@
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
-# Hyeon june choi <copyhyeon@gmail.com>, 2018
+# moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019
+# moolow <copyhyeon@gmail.com>, 2018
 # Philipp Sauter <qt123@pm.me>, 2018
 # sang gyu nam <destro0419@naver.com>, 2019
 # Valtiel <shinhs6291@naver.com>, 2014
@@ -21,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-29 18:56+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-04 03:41+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -73,8 +74,8 @@ msgid ""
 msgstr "그리스는 많은 외국인들을 헬레니즘 문명화하는 것에 상당히 성공했습니다. 헬레니즘 시대동안, 그리스어는 고대 시대의 세계 공용어로서 스페인에서 인도에 이르기까지 폭넓게 사용되었습니다."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "선박 제조가 25% 빨라집니다."
+msgid "Allied warships −25% construction time."
+msgstr "동맹의 군함 제조속도가 -25% 빨라집니다."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -323,8 +324,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "켈트인의 종교와 드루이드 교는 그들의 호전적인 사상을 고취했다."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "동맹군 힐러에게는 -20%의 자원이 소비됩니다."
+msgid "Allied healers −20% resource costs."
+msgstr "동맹의 치료사 훈련 자원 소모가 -20% 감소합니다."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -568,8 +569,8 @@ msgid ""
 msgstr "이베리아 반도와 마찬가지로 북아프리카는 말의 나라로 알려져 매년 10 만 마리의 생산이 가능했습니다. 북아프리카는 둥근귀 코끼리의 산지이기도했습니다."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "동맹국과의 국제 교역 수입에 10% 보너스가 붙습니다."
+msgid "Allied markets +10% international trade bonus."
+msgstr "동맹 시장의 국제 교역 보너스가 +10% 증가합니다."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -775,8 +776,8 @@ msgid "Gauls"
 msgstr "갈리아"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "동맹국 기술에 대한 10% 연구 시간이 감소합니다."
+msgid "Allied structures −20% technology research time."
+msgstr "동맹의 건축물 기술 연구 시간이 -20% 감소합니다."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -975,10 +976,8 @@ msgid ""
 msgstr "북 아프리카의 누미디아와 마찬가지로 이베리아 반도는 매년 최대 10만 마리의 말을 생산할수있는 ′말의 나라′로 알려졌습니다."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr ""
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "동맹의 시민군 투창병 양성 자원 비용이 -20% 감소합니다. "
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1176,10 +1175,8 @@ msgid "Elephant Suppliers"
 msgstr "코끼리 물품보급자"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "쿠시를 선택한 선수의 동맹을 위해 코끼리의 비용과 훈련 시간을 20% 단축합니다."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "동맹의 코끼리 양성 자원 비용과 훈련 시간이 -20% 감소합니다."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1243,7 +1240,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -1388,8 +1385,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "시장 판매 가격이 20% 상승합니다."
+msgid "Allies +20% barter sell prices."
+msgstr "동맹의 판매가격이 +20% 증가합니다."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1620,7 +1617,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr ""
+msgstr "황제들중의 황제"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].History
 msgid ""
@@ -1638,7 +1635,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
-msgstr ""
+msgstr "크샤트리아 전사 계급."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1649,8 +1646,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr ""
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "동맹의 사원 짓는 자원비용과 건설 시간을 -50% 감소시킵니다; 사원 기술의 자원 비용과 연구시간을 -50% 감소시킵니다."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1673,7 +1672,7 @@ msgstr "아소카 대왕"
 
 #: simulation/data/civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
-msgstr ""
+msgstr "아소카바르드한 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
@@ -1701,7 +1700,7 @@ msgstr "데바바르만 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
-msgstr ""
+msgstr "사타드한반 마우리아"
 
 #: simulation/data/civs/maur.jsonAINames[10]
 msgid "Brihadratha Maurya"
@@ -1729,7 +1728,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "마우리아 제국의 건국자."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
@@ -1823,8 +1822,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "동맹국 간의 육로 교역 수입이 증가 (+15%)합니다."
+msgid "Allied land traders +15% trade gain."
+msgstr "동맹의 육로 상인의 교역 수입을 +15% 증가시킵니다."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1886,7 +1885,7 @@ msgstr "아케메네스"
 
 #: simulation/data/civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
-msgstr ""
+msgstr "끄샤야르샤 2세"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
@@ -1894,7 +1893,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr ""
+msgstr "해군?? 장인기술"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1941,7 +1940,7 @@ msgstr ""
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
-msgstr ""
+msgstr "니산 전투마"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
@@ -2038,6 +2037,7 @@ msgid "Mercenary Army"
 msgstr "용병대"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2068,12 +2068,12 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "모든 동맹의 식량이 자동으로 서서히 증가합니다."
+msgid "Allies +1.0 food trickle rate."
+msgstr "동맹의 식량 공급률을 +1.0 증가시킵니다."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
-msgstr "지중해의 빵상자"
+msgstr "지중해의 곡창지대"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].History
 msgid ""
@@ -2224,18 +2224,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr ""
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr ""
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "등대"
@@ -2301,8 +2289,8 @@ msgid ""
 msgstr "로마 시민권을 고대 세계에서 매우 가치가 높았습니다. 로마 시민들의 기본 권리와 특권들은 다른 점령 주민들에게는 제공되지 않는 것이였습니다. 심지어 로마 시민을 해하는 일은 로마를 해하는것과 같으며, 로마 전체가 그 해친자를 잡으러 올수 있게 할수 있다고 하는 말도 있었습니다."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "연합 군인의 생산 시간이 20% 감소합니다."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "동맹의 시민군 보병 양성 시간이 -20% 감소합니다."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2361,7 +2349,7 @@ msgstr "푸블리우스 코르넬리우스 스키피오 아프리카누스"
 
 #: simulation/data/civs/rome.jsonAINames[10]
 msgid "Publius Sempronius Tuditanus"
-msgstr ""
+msgstr "푸블리우스 셈프로니우스 투디타누스"
 
 #: simulation/data/civs/rome.jsonAINames[11]
 msgid "Marcus Cornelius Cethegus"
@@ -2511,8 +2499,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr ""
+msgid "Allied civil centers −20% resource costs."
+msgstr "동맹의 시민 회관의 자원 비용을 -20% 감소시킵니다."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2587,7 +2575,7 @@ msgstr "안티오코스 7세 시데테스"
 
 #: simulation/data/civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
-msgstr ""
+msgstr "알렉산더 2세 자비나스"
 
 #: simulation/data/civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
@@ -2801,10 +2789,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "스파르타 선수의 동맹국에 대해 시민 창병의 체력을 10% 증가시킵니다."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "동맹의 시민군 소속 창 보병의 체력이 +10% 증가합니다."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

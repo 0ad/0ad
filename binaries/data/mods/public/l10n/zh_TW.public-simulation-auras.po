@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,7 +8,7 @@
 # EriCSN Chang <ericsning@gmail.com>, 2016
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2016-2017
-# Jerry Shen <jerry82422@gmail.com>, 2018
+# JerryShen <jerry82422@gmail.com>, 2018
 # Money <abc12207@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # Zou Yi <zouyi100@outlook.com>, 2017
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:45+0100\n"
-"PO-Revision-Date: 2019-01-03 12:02+0000\n"
-"Last-Translator: 旭誠 張 <tea55688@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-01 18:04+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,60 +175,56 @@ msgid "Delian League"
 msgstr "提洛同盟"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "船隻建造快 25％。"
+msgid "Allied warships −25% construction time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "德魯伊"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "盟友訓練醫療者的花費 -20%"
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "貿易大師"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "盟友的國際貿易路線多 10% 貿易利潤。"
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "德魯伊的睿智"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "盟友的科技 -20% 研發時間。"
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "伊比利玩家的盟友之公民散兵花費減少 20% 。"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "大象供應商"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "庫施的盟友大象的花費與訓練時間 - 20%"
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "標準化的貨幣"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "市集賣價 +20%。"
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -236,51 +232,49 @@ msgstr "阿育王的宗教支持"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "盟友的神廟與神廟科技 -50% 資源與時間花費。"
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "皇家大道"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "盟友的商人可從陸地貿易取得較高的利潤 (+15%)。"
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "地中海的糧倉"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "所有盟友會自動獲得一個緩慢的食物收入。"
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "徵兵制"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "同盟的公民步兵單位訓練時間 -20%。"
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "敘利亞四城"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "塞琉古玩家的盟友的城鎮中心減少 20% 花費"
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "伯羅奔尼撒聯盟"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "斯巴達玩家盟友的公民矛步兵的生命值多 10%。"
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -407,9 +401,9 @@ msgstr "城市掠奪者"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr "在第一次馬其頓戰爭期間，腓力國王與他的軍隊掠奪了埃托利亞的宗教與政治中心，Thermum。\n每個被殺死的單位或被摧毀的建築物 +5 食物與木頭。"
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"

@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 15:48+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-01 16:10+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -71,8 +71,8 @@ msgid ""
 msgstr "ギリシアは様々な異民族をギリシア化させることに大成功を収めました。ヘレニズム時代には、ギリシア語は古代世界の共通語として、スペインからインドにかけて広く使われました。"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "船舶が25%速く建造できます。"
+msgid "Allied warships −25% construction time."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -321,8 +321,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "ケルトの宗教とドルイド教は彼らの好戦的思想を鼓舞しました。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "同盟の治療者のためには-20％資源コストが必要です。"
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -566,8 +566,8 @@ msgid ""
 msgstr "イベリア半島と同様に、北アフリカは馬の国として知られ、毎年10万頭の生産が可能でした。北アフリカはマルミミゾウの産地でもありました。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "同盟国との国際交易収入に10%ボーナスが付きます。"
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -773,8 +773,8 @@ msgid "Gauls"
 msgstr "ガリア"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "同盟国のテクノロジー研究時間が10%減少します。"
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -973,10 +973,8 @@ msgid ""
 msgstr "北アフリカのヌミディアと同様に、イベリア半島は「馬の国」として知られ、毎年10万頭もの生産が可能でした。"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "味方の市民散兵と市民騎馬散兵のコストが20%安くなります。"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1174,9 +1172,7 @@ msgid "Elephant Suppliers"
 msgstr ""
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
+msgid "Allied elephants −20% resource costs and training time."
 msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
@@ -1241,7 +1237,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -1386,8 +1382,8 @@ msgid ""
 msgstr "ギリシア人は様々な異民族をギリシア化することに大きな成功を収めました。ヘレニズム時代においては、ギリシア語は古代世界の共通語として、広くスペインからインドまで通用しました。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "市場販売価格が20%上昇する。"
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1647,8 +1643,10 @@ msgid ""
 msgstr "クシャトリヤまたはカシュトリヤとは、戦士を意味し、ヒンドゥー教の4つのヴァルナ（社会階層）の中の1つです。伝統的にクシャトリヤは軍人や支配エリート層として、ヴェーダとマヌ法典に基づいたヴェーダ・ヒンドゥー教の社会システムを構成してきました。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "同盟の寺院と寺院テクノロジーはコストと研究時間が50%減少します。"
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1821,8 +1819,8 @@ msgid ""
 msgstr "ペルシアは戦時に大人数の歩兵の召集を、アケメネス朝帝国の巨大さとそれを実現する手法によって可能にし、実際しました。一般にペルシアの歩兵は良く鍛えられていて、粘り強く戦いました。しかし、その一方で、歩兵はつかみ合いの接近戦に弱かったのでした。また、精鋭部隊を除き、ペルシア歩兵は専任の常備軍ではありませんでした。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "同盟国間での陸路の交易収入がアップ (+15%) します。　"
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2036,6 +2034,7 @@ msgid "Mercenary Army"
 msgstr "雇兵部隊"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2066,8 +2065,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "野生の象とラクダを捕えて養成コストを低減することができます。"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "すべての同盟国の食料が自動で徐々に増加します。"
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2222,18 +2221,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "中立地帯に建設しなければなりません。領地半径効果を持ちません。全種の「傭兵」ユニットを養成します。"
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "ギリシア・マケドニア系のプトレマイオス王朝は大勢のギリシア人および外国人の傭兵に軍の兵力を依存していました。これはおもに国内のエジプト人部隊の忠誠が疑われていたためでした。実際に、ある国内の反乱の間、上エジプトは数十年にわたってプトレマイオス朝の手を離れました。傭兵は多くの場合戦場慣れしていて、忠誠を、あるときは安い金で、またあるときは安からぬ金で買えました。このことは問題とはなりませんでした。エジプトはプトレマイオス朝の下でたいそう繁栄し、アレクサンドロスの後継の中で最富裕国だったからです。"
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "灯台"
@@ -2299,8 +2286,8 @@ msgid ""
 msgstr "ローマ市民権は古代世界で大変貴重なものでした。他の被征服民には認められない基本的な権利と特権がローマ市民には与えられました。ローマ市民を傷つけることは、ローマそのものを傷つけることと同等であり、またローマの全権力が加害者に行使されることになりかねないと言われました。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "同盟兵士の生産時間が 20% 減少します。"
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2509,8 +2496,8 @@ msgid ""
 msgstr "セレウコス朝と後継者たちの紛争は、紀元前3から2世紀にかけて勃発しました。パルティアなど東部の成り上がりとの接触とバクトリアなど辺境州の頻発する反乱の結果、セレウコス朝に軍の再編成と戦術、特に騎兵の装備に関して変更がもたらされました。西からのローマとの戦争とガラティア人の侵入もまた、セレウコス朝に歩兵連隊をより柔軟に再編成することを強いました。"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "同盟国の町の中心は20%安くなります。"
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2799,10 +2786,8 @@ msgid ""
 msgstr "伝説的立法者のリュクルゴスが定めた国制のもと、スパルタ教育の制度が確立されました。スパルタ人はスパルタ防衛の優れた戦士となるため、6歳から訓練を受けました。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "スパルタプレイヤーの同盟国に対して、市民兵の槍兵の体力を10％増加させます。"
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-03-21 16:59+0000\n"
+"PO-Revision-Date: 2019-04-04 04:28+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -293,40 +293,40 @@ msgstr "%(resourceAmount)s 개의 %(resourceType)s 를 %(playerName)s 에게 줍
 #: gui/session/messages.js:106
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s 이(가) 놀이에 다시 들어오고 있습니다."
+msgstr "%(player)s 님이 놀이에 다시 들어오고 있습니다."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:108
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s 이(가) 놀이에 참가하고 있습니다."
+msgstr "%(player)s 님이 놀이에 참가하고 있습니다."
 
 #: gui/session/messages.js:112
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s 이(가) 놀이를 떠났습니다."
+msgstr "%(player)s 님이 놀이를 떠났습니다."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:119
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s 이(가) 다시 놀이에 들어왔습니다."
+msgstr "%(player)s 님이 다시 놀이에 들어왔습니다."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s 이(가) 놀이에 참가했습니다."
+msgstr "%(player)s 님이 놀이에 참가했습니다."
 
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s 이(가) 접근금지 당했습니다(밴)"
+msgstr "%(username)s 님이 접근금지 당했습니다(밴)"
 
 #: gui/session/messages.js:128
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s 이(가) 쫓겨났습니다(킥)"
+msgstr "%(username)s 님이 쫓겨났습니다(킥)"
 
 #: gui/session/messages.js:150
 msgid "Connection to the server has been authenticated."
@@ -447,12 +447,12 @@ msgstr "%(player)s 와(과) 중립이 되었습니다."
 #: gui/session/messages.js:275
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s 이(가) 우리편이 되었습니다."
+msgstr "%(player)s 님이 우리편이 되었습니다."
 
 #: gui/session/messages.js:276
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s 이(가) 당신에게 선전포고를 했습니다."
+msgstr "%(player)s 님이 당신에게 선전포고를 했습니다."
 
 #: gui/session/messages.js:277
 #, javascript-format
@@ -462,17 +462,17 @@ msgstr "%(player)s 은(는) 당신과 중립이 되었습니다."
 #: gui/session/messages.js:280
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s 는 이제 %(player2)s 와 동맹입니다."
+msgstr "%(player)s 는 이제 %(player2)s 님과 동맹입니다."
 
 #: gui/session/messages.js:281
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s 이(가) %(player2)s 에게 선전포고를 했습니다."
+msgstr "%(player)s 님이 %(player2)s 님에게 선전포고를 했습니다."
 
 #: gui/session/messages.js:282
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s 이(가) %(player2)s 와(과) 중립이 되었습니다."
+msgstr "%(player)s 님이 %(player2)s 님과 중립이 되었습니다."
 
 #: gui/session/messages.js:590
 msgid "Click to quit this tutorial."
@@ -484,7 +484,7 @@ msgstr "종료"
 
 #: gui/session/messages.js:595
 msgid "Click when ready."
-msgstr "준비가되면 클릭하십시오."
+msgstr "준비가 되면 클릭하십시오."
 
 #: gui/session/messages.js:599
 msgid "Follow the instructions."
@@ -570,7 +570,7 @@ msgstr "우리편"
 #: gui/session/messages.js:814
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr "적"
+msgstr "적국"
 
 #: gui/session/messages.js:820
 msgctxt "chat addressee"
@@ -604,22 +604,22 @@ msgstr ", "
 #: gui/session/messages.js:1032
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s 이(가) 당신에게 %(amounts)s 을(를) 보냈습니다."
+msgstr "%(player)s 님이 당신에게 %(amounts)s 자원을 보냈습니다."
 
 #: gui/session/messages.js:1034
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "당신은 %(player2)s 에게 % (amounts) s 을(를) 보냈습니다."
+msgstr "당신은 %(player2)s 에게 %(amounts)s 자원을 보냈습니다."
 
 #: gui/session/messages.js:1039
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s 이(가) %(player2)s 에게 %(amounts)s 을(를) 보냈습니다."
+msgstr "%(player)s 님이 %(player2)s 님에게 %(amounts)s 자원을 보냈습니다."
 
 #: gui/session/messages.js:1059
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr "%(player)s 이(가) %(amountsBought)s의 %(amountsSold)s 로 물물교환 했습니다."
+msgstr "%(player)s 님이 %(amountsBought)s 의 %(amountsSold)s 로 물물교환 했습니다."
 
 #: gui/session/messages.js:1072
 #, javascript-format
@@ -634,17 +634,17 @@ msgstr "%(attacker)s 에게 공격받고 있습니다!"
 #: gui/session/messages.js:1090
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s 이(가) %(phaseName)s 로 발전하는 중입니다."
+msgstr "%(player)s 님이 %(phaseName)s 로 발전하는 중입니다."
 
 #: gui/session/messages.js:1092
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "%(player)s 이(가) %(phaseName)s 로 발전을 중단 했습니다."
+msgstr "%(player)s 님이 %(phaseName)s 로 발전을 중단 했습니다."
 
 #: gui/session/messages.js:1095
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s 이(가) %(phase Name)s 로 발전했습니다."
+msgstr "%(player)s 님이 %(phaseName)s 로 발전했습니다."
 
 #: gui/session/messages.js:1147
 #, javascript-format
@@ -777,7 +777,7 @@ msgstr "비상 상황이 끝났습니다."
 #: gui/session/selection_panels.js:378
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr "%(name)s 을(를) 내립니다"
+msgstr "%(name)s 님을 내립니다"
 
 #: gui/session/selection_panels.js:379
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
@@ -840,12 +840,12 @@ msgstr ", "
 #: gui/session/selection_panels.js:1064
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr "%(name)s으로 갱신 합니다. %(tooltip)s"
+msgstr "%(name)s 님으로 갱신 합니다. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1069
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr "%(name)s으로 갱신 합니다."
+msgstr "%(name)s 님으로 갱신 합니다."
 
 #: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
@@ -969,7 +969,7 @@ msgstr "%(hotkey)s 키를 눌러 우리편 대화창을 엽니다."
 #: gui/session/session.js:433
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "이전에 선택한 비공개 대화를 열려면 %(hotkey)s 을(를) 누르십시오."
+msgstr "이전에 선택한 비공개 대화를 열려면 %(hotkey)s 키를 누르십시오."
 
 #: gui/session/session.js:437
 msgid "Find idle worker"
@@ -995,7 +995,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "맨 위 줄에서 판매할 자원을 선택하십시오. 아랫줄의 버튼이 눌릴때마다 위에 자원%(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 거래량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
+msgstr "맨 위 줄에서 판매할 자원을 선택하십시오. 아랫줄의 버튼이 눌릴때마다 위에 자원 %(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 거래량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
 
 #: gui/session/session.js:654
 #, javascript-format

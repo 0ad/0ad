@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-30 18:13+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-01 18:43+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -98,8 +98,8 @@ msgid ""
 msgstr "Yunanlılar birçok yabancıyı Helenleştirmek konusunda çok başarılıydılar. Helenik Çağ'da, Yunanca İspanya'dan Hindistan'a kadar Antik Dünya'nın ortak diliydi."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Gemiler %25 daha hızlı inşa edilir."
+msgid "Allied warships −25% construction time."
+msgstr "Müttefik Savaş Gemilerine -%25 inşa süresi."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -348,8 +348,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Kelt dini ve Druidlik onların savaşçı zihniyet ilham verir."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "Müttefik şifacılar için -%20 kaynak masrafı."
+msgid "Allied healers −20% resource costs."
+msgstr "Müttefik şifacılara -%20 kaynak bedeli."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -593,8 +593,8 @@ msgid ""
 msgstr "İber Yarımadası'nın aksine, Kuzey Afrika  at ülkesi olarak bilinir, her yıl 100.000 yeni at sağlar. Ayrıca Kuzey Afrika Ormanları fillere ev sahipliği yapar."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "Müttefiklerin uluslararası ticaret rotaları için %10 kâr bonusu."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Müttefik pazarlara +%10 uluslararası ticaret bonusu."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -800,8 +800,8 @@ msgid "Gauls"
 msgstr "Galyalılar"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "Müttefiklerin araştırma sürelerini %10 kısaltır."
+msgid "Allied structures −20% technology research time."
+msgstr "Müttefik binalara -%20 teknoloji araştırma süresi."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -1000,10 +1000,8 @@ msgid ""
 msgstr "Kuzey afrikadaki Numidia'nın aksine, İber yarımadası \"at ülkesi\" olarak bilinir, ve her yıl 100.000 at sağlar."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "Vatandaş asker piyade avcılar ve süvari avcılar tüm müttefikler için %-20 maliyet sağlar."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Müttefik ciritçi vatandaşlara -%25 kaynak maliyeti."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1201,10 +1199,8 @@ msgid "Elephant Suppliers"
 msgstr "Fil Tedarikçisi"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Kuşit müttefiklerinin fil eğitim süresi ve maliyetini %10 azaltır."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Müttefik fillere -%20 kaynak maliyeti ve eğitim süresi."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1268,9 +1264,9 @@ msgstr "Anıtsal Yapı"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "Kent Merkezleri, Tapınaklar, Piramitler ve Harikalar için % + 50 HP ve % -50 inşa süresi."
+msgstr "Kent Merkezleri, Tapınaklar, Piramitler ve Harikalar için +%25 Can ve -%50 inşa süresi."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1413,8 +1409,8 @@ msgid ""
 msgstr "Yunanlılar birçok yabancıyı Helenleştirmek konusunda çok başarılıydılar. Helenik Çağ'da, Yunanca İspanya'dan Hindistan'a kadar Antik Dünya'nın ortak diliydi."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "Markette +20% satış fiyatı."
+msgid "Allies +20% barter sell prices."
+msgstr "Müttefiklere takasta +%20 satış bedeli."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1674,8 +1670,10 @@ msgid ""
 msgstr "Kshatriya ya da Kashtriya, savaşçı demek, Hinduizmdeki dört türden (toplumsal düzen) biridir. Geleneksel olarak Kshatriya, Vedalar ve Manu Yasalarıyla tasvir edilen Vedik-Hindu toplumsal sisteminin askeri ve egemen seçkinlerini oluşturur."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "Müttefik tapınakları ve tapınak teknolojileri -50% maliyet ve araştırma zamanı sağlar."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Müttefik tapınaklara -%50 kaynak bedeli ve inşa süresi, tapınak teknolojilerine -%50 kaynak bedeli ve araştırma süresi."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1848,8 +1846,8 @@ msgid ""
 msgstr "Ahameniş Hanedanlığı imparatorluğun yapısı ve büyüklüğü sebebiyle savaş zamanları çok büyük miktarlarda askere alma imkanına sahipti ve öyle de yaptı. Genellikle Pers piyadeleri iyi eğitimliydi ve yüksek cesaretle savaşırlardı. Ancak, yine de yakın dövüşte zayıf kalıyorlardı. Ayrıca, seçkin birlikler haricinde, Pers piyadeleri sürekli silah altında tutulan kuvvetler değildi."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Müttefik tüccarların arazilerinde ticaret yolları (+15%) daha yüksek gelir sağlar."
+msgid "Allied land traders +15% trade gain."
+msgstr "Müttefik kara tüccarlarına +%15 kazanç."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2063,6 +2061,7 @@ msgid "Mercenary Army"
 msgstr "Paralı Ordu"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2093,8 +2092,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Gaiayı elegeçirebilir ve filler ve develerin eğitim maliyetlerini düşürebilirsin."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Tüm müttefikler otomatik olarak yavaş yavaş gıda geliri kazanır."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Müttefiklere saniyede +1 besin geliri."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2249,18 +2248,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Tarafsız bölgede inşa edilmiş. Herhangibir çevre etkisi yoktur. Tüm birimler 'paralı' olarak eğitilir."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Greko-Makedon Ptolemi Hanedanlığı, askeri gücünü büyük miktarda Yunan ve yabancı paralı asker kullanıyordu, zira esas olarak yerli Mısır birimlerinin sadakati genellikle şüpheli idi. Nitekim, bir yerli ayaklanma sırasında, Üst Mısır onlarca yıl boyunca Ptolemeioslar tarafından kaybedildi. Paralı askerler sık sık savaşa zorlandılar ve bağlılıkları bazen ucuza, bazen de ucuza satılmamalıydı. Bu, sorun değildi, çünkü Ptolemeios altındaki Mısır, İskender'in halefi devletlerinin en zenginleri olacak kadar müreffehti."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Deniz Feneri"
@@ -2326,8 +2313,8 @@ msgid ""
 msgstr "Roma vatandaşlığı antik dünyada çok değerlidir. Temel haklar ve ayrıcalıklar, diğer fethedilen halkları reddeden Roma vatandaşlarına tanınmıştı. Bir Roma vatandaşına zarar vermek, Roma'nın kendisine zarar vermeye benzer ve Roma'nın bütün gücünün failin üzerine düşmesine neden olacağı söylenir."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "Müttefik askerler için -20% eğitim süresi."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Müttefik piyade vatandaşlara -%20 eğitim süresi."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2536,8 +2523,8 @@ msgid ""
 msgstr "3. ve 2. yüzyıl boyunca Seleukid ve Gerçekten Başarıyla savaş gelişti. Parthians ve Bactria gibi periferik satrapies sürekli isyanlar gibi Doğu upstarts ile İletişim, Seleukids kendi askeri reform ve taktiklerini değiştirmeye, özellikle süvari kolu neden oldu. Batı'dan Romalılarla savaş ve Galatyalı istilalar da Seleukids'i piyade alaylarını daha esnek olmak için değiştirmeye zorladı."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Müttefik Halk Merkezleri %20 daha ucuzdur."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Müttefik Kent Merkezlerine -%20 kaynak maliyeti."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2826,10 +2813,8 @@ msgid ""
 msgstr "Mitolojik kanuni veren Lycurgus tarafından yazılan Anayasa uyarınca Spartalıların Spartalı devletin savunmasında üstün savaşçılar olmak için Spartalıların 6 yaşından itibaren eğitildiği Agogenin kuruluşu kuruldu."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Spartalı oyuncuların müttefikleri için vatandaş-asker mızraklı piyadelerin sağlığını %10 artırır."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Müttefik mızrakçı vatandaşlara +%10 Can."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

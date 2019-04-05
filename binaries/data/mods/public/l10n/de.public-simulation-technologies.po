@@ -6,7 +6,7 @@
 # Wuzzy <almikes@aol.com>, 2014-2018
 # xtother90, 2018
 # Fabian Gref <fabian.gref@gmail.com>, 2017
-# Glorfindel Of Gondolin <titi.gilgien@gmail.com>, 2019
+# Glorfindel Of Gondolin, 2019
 # Kilian Seizinger <Kilian.Seizinger@gmx.de>, 2019
 # leper <leper@wildfiregames.com>, 2014-2016
 # Lukas Heiniger <kenionatus@techie.com>, 2019
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:46+0100\n"
-"PO-Revision-Date: 2019-01-13 14:08+0000\n"
-"Last-Translator: Glorfindel Of Gondolin <titi.gilgien@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-01 14:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1955,23 +1955,6 @@ msgstr "Elite-Bürgerinfantrie"
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
 
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "Karthager bauten ihre Stadtmauern in drei konzentrischen Kreisen. Diese Mauern wurden nie durchbrochen. Selbst, als die Stadt von den Römern erobert wurde, geschah dies über den Stadthafen, nicht, indem die Stadtmauern erstürmt wurden."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Karthagische Mauern, Tore und Türme haben die 3x Lebenspunkte einer Standardmauer, aber auch doppelte Kosten und Bauzeit."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Dreifache Mauer"
-
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
@@ -2274,19 +2257,120 @@ msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das
 msgid "Elite Italiote Mercenaries"
 msgstr "Italiotische Elitesöldner"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Karthager bauten ihre Stadtmauern in drei konzentrischen Kreisen. Diese Mauern wurden nie durchbrochen. Selbst, als die Stadt von den Römern erobert wurde, geschah dies über den Stadthafen, nicht, indem die Stadtmauern erstürmt wurden."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Karthagische Mauern, Tore und Türme haben die 3x Lebenspunkte einer Standardmauer, aber auch doppelte Kosten und Bauzeit."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Dreifache Mauer"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Keltische Gebäude wurden hauptsächlich aus Holz mit einem Fundament aus Schotter gebaut."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Keltische Gebäude haben 20% weniger Gesundheit, sind aber ajuch 20% günstiger und schneller zu bauen."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Holzkonstruktion"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Die Griechen nutzten Steinbautechniken aus der frühen mykenischen Zeit."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Alle Gebäude haben 10% mehr Gesundheit und Eroberungspunkte, aber der Bau dauert auch 10% länger."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Hellenische Architektur"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Das Maurya-Reich umfasste dutzende früher unabhängige Königreiche auf einer Fläche von 5 Millionen km², mit einer Bevölkerung von fast 60 Millionen Menschen. Die Maurya-Herrscher hatten den Titel Kaiser der Kaiser und kommandierten eine stehende Armee von 600.000 Infanteristen, 9000 Elefanten, 8000 Streitwagen und 30.000 Kavalleristen, wohl die größte Armee dieser Zeit."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Maurya haben eine um 10% höhere Bevölkerungsgrenze."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "König der Könige"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "Die Maurya bauten ihre Stadtmauern aus Holz, einer in Indien reichlich vorkommenden natürlichen Ressource."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Maurya-Stadtmauern haben -20% Gesundheit und -20% Bauzeit."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Holzwälle"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches und der Art und Weise, wie es aufgebaut war, während der Kriegszeit eine große Menge an Infanterie ausheben. Allgemein war die persische Infanterie gut ausgebildet und kämpfte mit großer Hartnäckigkeit, allerdings war sie trotzdem eher schlecht im Kampf Mann gegen Mann. Außerdem war die persische Infanterie – mit Ausnahme der Eliteregimenter – keine stehende professionelle Streitmacht."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Perser haben ein 10% höheres maximales Bevölkerungslimit.   "
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Großkönigliche Musterung"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten die beste Armee ihrer Zeit. Was sie nicht an Quantität hatten, machten sie mit Qualität wett. Es heißt, das Sparta keine starken Stadtmauern brauche, da seine Männer die Mauern bilden."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Spartaner haben 10% weniger Bevölkerungsmaximum."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Underdogs"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2305,36 +2389,6 @@ msgstr "Infanterie-Speerkampf"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Die Griechen nutzten Steinbautechniken aus der frühen mykenischen Zeit."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Alle Gebäude haben 10% mehr Gesundheit und Eroberungspunkte, aber der Bau dauert auch 10% länger."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Hellenische Architektur"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten die beste Armee ihrer Zeit. Was sie nicht an Quantität hatten, machten sie mit Qualität wett. Es heißt, das Sparta keine starken Stadtmauern brauche, da seine Männer die Mauern bilden."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Spartaner haben 10% weniger Bevölkerungsmaximum."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Underdogs"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2382,9 +2436,9 @@ msgstr "Athenische Lange Mauern"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% TP und -50% Bauzeit für Verwaltungssitze, Tempel, Pyramiden und Wunder."
+msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2404,28 +2458,6 @@ msgstr "Bilde Elite-Heiler aus."
 msgid "Divine Instruction"
 msgstr "Göttliche Eingebung"
 
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Das Maurya-Reich umfasste dutzende früher unabhängige Königreiche auf einer Fläche von 5 Millionen km², mit einer Bevölkerung von fast 60 Millionen Menschen. Die Maurya-Herrscher hatten den Titel Kaiser der Kaiser und kommandierten eine stehende Armee von 600.000 Infanteristen, 9000 Elefanten, 8000 Streitwagen und 30.000 Kavalleristen, wohl die größte Armee dieser Zeit."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Maurya haben eine um 10% höhere Bevölkerungsgrenze."
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "König der Könige"
-
-#: simulation/data/technologies/mauryas/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
 #: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
@@ -2443,38 +2475,6 @@ msgstr "+10 Meter Reichweite für Einheiten mit Bogen. Bessere Genauigkeit für 
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
 msgstr "Bogenschießtradition"
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsondescription
-msgid ""
-"The Mauryas built their city walls out of wood, an abundant natural resource"
-" in India."
-msgstr "Die Maurya bauten ihre Stadtmauern aus Holz, einer in Indien reichlich vorkommenden natürlichen Ressource."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Maurya-Stadtmauern haben -20% Gesundheit und -20% Bauzeit."
-
-#: simulation/data/technologies/mauryas/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Holzwälle"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches und der Art und Weise, wie es aufgebaut war, während der Kriegszeit eine große Menge an Infanterie ausheben. Allgemein war die persische Infanterie gut ausgebildet und kämpfte mit großer Hartnäckigkeit, allerdings war sie trotzdem eher schlecht im Kampf Mann gegen Mann. Außerdem war die persische Infanterie – mit Ausnahme der Eliteregimenter – keine stehende professionelle Streitmacht."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Perser haben ein 10% höheres maximales Bevölkerungslimit.   "
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Großkönigliche Musterung"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

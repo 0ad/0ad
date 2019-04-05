@@ -10,7 +10,7 @@
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hn Dsu <lomio97@naver.com>, 2016
-# Hyeon june choi <copyhyeon@gmail.com>, 2018
+# moolow <copyhyeon@gmail.com>, 2018
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017
@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-29 09:46+0100\n"
-"PO-Revision-Date: 2019-03-29 18:24+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-04 03:48+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgstr "빨리 채취할 수 있는 보물입니다."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
-msgstr "구조물"
+msgstr "건축물"
 
 #: simulation/templates/template_unit.xml:42
 msgid "Unit"
@@ -612,6 +612,10 @@ msgstr "사이프러스 나무"
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
 msgstr "대추야자"
+
+#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
+msgid "Fruiting Date Palm"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
