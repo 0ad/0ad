@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,10 +45,9 @@ class toXmlChar
 public:
 	toXmlChar(const std::wstring& str)
 	{
-		for (size_t i = 0; i < str.length(); ++i)
+		for(wchar_t ch : str)
 		{
 			unsigned short bytesToWrite;
-			wchar_t ch = str[i];
 
 			if (ch < 0x80) bytesToWrite = 1;
 			else if (ch < 0x800) bytesToWrite = 2;
@@ -124,7 +123,7 @@ AtObj AtlasObject::LoadFromXML(const std::string& xml)
 
 	xmlNodePtr root = xmlDocGetRootElement(doc);
 	AtObj obj;
-	obj.p = ConvertNode(root);
+	obj.m_Node = ConvertNode(root);
 
 	AtObj rootObj;
 	rootObj.set((const char*)root->name, obj);
@@ -149,7 +148,7 @@ static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 		xmlFree(content);
 
 		AtNode* newNode = new AtNode(value.c_str());
-		obj->children.insert(AtNode::child_pairtype(
+		obj->m_Children.insert(AtNode::child_pairtype(
 			name.c_str(), AtNode::Ptr(newNode)
 		));
 	}
@@ -159,7 +158,7 @@ static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 	{
 		if (cur_node->type == XML_ELEMENT_NODE)
 		{
-			obj->children.insert(AtNode::child_pairtype(
+			obj->m_Children.insert(AtNode::child_pairtype(
 				(const char*)cur_node->name, ConvertNode(cur_node)
 			));
 		}
@@ -168,19 +167,19 @@ static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 			xmlChar* content = xmlNodeGetContent(cur_node);
 			std::wstring value (fromXmlChar(content));
 			xmlFree(content);
-			obj->value += value;
+			obj->m_Value += value;
 		}
 	}
 
 	// Trim whitespace surrounding the string value
 	const std::wstring whitespace = L" \t\r\n";
-	size_t first = obj->value.find_first_not_of(whitespace);
+	size_t first = obj->m_Value.find_first_not_of(whitespace);
 	if (first == std::wstring::npos)
-		obj->value = L"";
+		obj->m_Value = L"";
 	else
 	{
-		size_t last = obj->value.find_last_not_of(whitespace);
-		obj->value = obj->value.substr(first, 1+last-first);
+		size_t last = obj->m_Value.find_last_not_of(whitespace);
+		obj->m_Value = obj->m_Value.substr(first, 1+last-first);
 	}
 
 	return obj;
@@ -191,30 +190,33 @@ static void BuildDOMNode(xmlDocPtr doc, xmlNodePtr node, AtNode::Ptr p)
 {
 	if (p)
 	{
-		if (p->value.length())
-			xmlNodeAddContent(node, toXmlChar(p->value));
+		if (p->m_Value.length())
+			xmlNodeAddContent(node, toXmlChar(p->m_Value));
 
-		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)
+		for (const AtNode::child_maptype::value_type& child : p->m_Children)
 		{
+			const xmlChar* first_child = reinterpret_cast<const xmlChar*>(child.first.c_str());
+
 			// Test for attribute nodes (whose names start with @)
-			if (it->first.length() && it->first[0] == '@')
+			if (child.first.length() && child.first[0] == '@')
 			{
-				assert(it->second);
-				assert(it->second->children.empty());
-				xmlNewProp(node, (const xmlChar*)it->first.c_str()+1, toXmlChar(it->second->value));
+				assert(child.second);
+				assert(child.second->m_Children.empty());
+				xmlNewProp(node, first_child + 1, toXmlChar(child.second->m_Value));
 			}
 			else
 			{
-				if (node == NULL) // first node in the document - needs to be made the root node
+				// First node in the document - needs to be made the root node
+				if (node == nullptr)
 				{
-					xmlNodePtr root = xmlNewNode(NULL, (const xmlChar*)it->first.c_str());
+					xmlNodePtr root = xmlNewNode(nullptr, first_child);
 					xmlDocSetRootElement(doc, root);
-					BuildDOMNode(doc, root, it->second);
+					BuildDOMNode(doc, root, child.second);
 				}
 				else
 				{
-					xmlNodePtr child = xmlNewChild(node, NULL, (const xmlChar*)it->first.c_str(), NULL);
-					BuildDOMNode(doc, child, it->second);
+					xmlNodePtr newChild = xmlNewChild(node, nullptr, first_child, nullptr);
+					BuildDOMNode(doc, newChild, child.second);
 				}
 			}
 		}
@@ -223,16 +225,16 @@ static void BuildDOMNode(xmlDocPtr doc, xmlNodePtr node, AtNode::Ptr p)
 
 std::string AtlasObject::SaveToXML(AtObj& obj)
 {
-	if (!obj.p || obj.p->children.size() != 1)
+	if (!obj.m_Node || obj.m_Node->m_Children.size() != 1)
 	{
 		assert(! "SaveToXML: root must only have one child");
 		return "";
 	}
 
-	AtNode::Ptr firstChild (obj.p->children.begin()->second);
+	AtNode::Ptr firstChild (obj.m_Node->m_Children.begin()->second);
 
 	xmlDocPtr doc = xmlNewDoc((const xmlChar*)"1.0");
-	BuildDOMNode(doc, NULL, obj.p);
+	BuildDOMNode(doc, nullptr, obj.m_Node);
 
 	xmlChar* buf;
 	int size;

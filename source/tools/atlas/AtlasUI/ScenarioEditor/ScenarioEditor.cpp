@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -739,8 +739,8 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 	SetOpenFilename(name);
 
 	{	// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
-		qPing qry;
-		qry.Post();
+		qPing pingQuery;
+		pingQuery.Post();
 	}
 
 	NotifyOnMapReload();
