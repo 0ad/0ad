@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-03-22 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-02 11:29+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgstr "Nem kiosztott gyorsgomb: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Nyomd meg a játékosnevek automatikus kiegészítéséhez: %(hotkey)s"
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -1622,7 +1622,7 @@ msgstr "Nem pontozott játékok"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "A visszajátszások szűrése egy vagy több részleges vagy teljes játékosnév beírásával."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -3548,11 +3548,11 @@ msgstr "RÓMAI HADSEREG TÁBORA"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Semleges vagy ellenséges területre építhető. Jól használható titkos bázisként az ellenséges frontvonal mögött, vagy a terjeszkedés megszilárdítására az ellenséges területen."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "Ostromgépek építése és polgári katonák kiképzése."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -3626,7 +3626,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Drága és lassú."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""

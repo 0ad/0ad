@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,7 +127,7 @@ ObjectSidebar::ObjectSidebar(
 	wxWindow* bottomBarContainer
 )
 	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer),
-	  p(new ObjectSidebarImpl(scenarioEditor))
+	m_Impl(new ObjectSidebarImpl(scenarioEditor))
 {
 	wxSizer* scrollSizer = new wxBoxSizer(wxVERTICAL);
 	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
@@ -159,8 +159,8 @@ ObjectSidebar::ObjectSidebar(
 
 	// ------------------------------------------------------------------------------------------
 
-	p->m_ObjectListBox = new wxListBox(scrolledWindow, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
-	scrollSizer->Add(p->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
+	m_Impl->m_ObjectListBox = new wxListBox(scrolledWindow, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE|wxLB_HSCROLL);
+	scrollSizer->Add(m_Impl->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
 	scrollSizer->AddSpacer(3);
 
 	// ------------------------------------------------------------------------------------------
@@ -173,32 +173,32 @@ ObjectSidebar::ObjectSidebar(
 		bottomBarContainer,
 		scenarioEditor.GetObjectSettings(),
 		scenarioEditor.GetMapSettings(),
-		p
+		m_Impl
 	);
 
-	p->m_ToolConn = scenarioEditor.GetToolManager().GetCurrentTool().RegisterObserver(0, &ObjectSidebar::OnToolChange, this);
+	m_Impl->m_ToolConn = scenarioEditor.GetToolManager().GetCurrentTool().RegisterObserver(0, &ObjectSidebar::OnToolChange, this);
 }
 
 ObjectSidebar::~ObjectSidebar()
 {
-	delete p;
+	delete m_Impl;
 }
 
 void ObjectSidebar::OnToolChange(ITool* tool)
 {
 	if (wxString(tool->GetClassInfo()->GetClassName()) == _T("ActorViewerTool"))
 	{
-		p->m_ActorViewerActive = true;
-		p->ActorViewerPostToGame();
+		m_Impl->m_ActorViewerActive = true;
+		m_Impl->ActorViewerPostToGame();
 		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Return to game view"));
 	}
 	else
 	{
-		p->m_ActorViewerActive = false;
+		m_Impl->m_ActorViewerActive = false;
 		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Switch to Actor Viewer"));
 	}
 
-	static_cast<ObjectBottomBar*>(m_BottomBar)->ShowActorViewer(p->m_ActorViewerActive);
+	static_cast<ObjectBottomBar*>(m_BottomBar)->ShowActorViewer(m_Impl->m_ActorViewerActive);
 }
 
 void ObjectSidebar::OnFirstDisplay()
@@ -210,7 +210,7 @@ void ObjectSidebar::OnFirstDisplay()
 	// Get the list of objects from the game
 	AtlasMessage::qGetObjectsList qry;
 	qry.Post();
-	p->m_Objects = *qry.objects;
+	m_Impl->m_Objects = *qry.objects;
 	// Display first group of objects
 	FilterObjects();
 }
@@ -220,9 +220,9 @@ void ObjectSidebar::FilterObjects()
 	int filterType = wxDynamicCast(FindWindow(ID_ObjectType), wxChoice)->GetSelection();
 	wxString filterName = wxDynamicCast(FindWindow(ID_ObjectFilter), wxTextCtrl)->GetValue();
 
-	p->m_ObjectListBox->Freeze();
-	p->m_ObjectListBox->Clear();
-	for (std::vector<AtlasMessage::sObjectsListItem>::iterator it = p->m_Objects.begin(); it != p->m_Objects.end(); ++it)
+	m_Impl->m_ObjectListBox->Freeze();
+	m_Impl->m_ObjectListBox->Clear();
+	for (std::vector<AtlasMessage::sObjectsListItem>::iterator it = m_Impl->m_Objects.begin(); it != m_Impl->m_Objects.end(); ++it)
 	{
 		if (it->type == filterType)
 		{
@@ -231,16 +231,16 @@ void ObjectSidebar::FilterObjects()
 
 			if (name.Lower().Find(filterName.Lower()) != wxNOT_FOUND)
 			{
-				p->m_ObjectListBox->Append(name, new wxStringClientData(id));
+				m_Impl->m_ObjectListBox->Append(name, new wxStringClientData(id));
 			}
 		}
 	}
-	p->m_ObjectListBox->Thaw();
+	m_Impl->m_ObjectListBox->Thaw();
 }
 
 void ObjectSidebar::OnToggleViewer(wxCommandEvent& WXUNUSED(evt))
 {
-	if (p->m_ActorViewerActive)
+	if (m_Impl->m_ActorViewerActive)
 	{
 		m_ScenarioEditor.GetToolManager().SetCurrentTool(_T(""), NULL);
 	}
@@ -264,11 +264,11 @@ void ObjectSidebar::OnSelectObject(wxCommandEvent& evt)
 
 	// Always update the actor viewer's state even if it's inactive,
 	// so it will be correct when first enabled
-	p->m_ActorViewerEntity = id;
+	m_Impl->m_ActorViewerEntity = id;
 
-	if (p->m_ActorViewerActive)
+	if (m_Impl->m_ActorViewerActive)
 	{
-		p->ActorViewerPostToGame();
+		m_Impl->ActorViewerPostToGame();
 	}
 	else
 	{
@@ -544,10 +544,9 @@ void ObjectBottomBar::OnFirstDisplay()
 	qryPlayers.Post();
 	AtObj playerData = AtlasObject::LoadFromJSON(*qryPlayers.defaults);
 	AtObj playerDefs = *playerData["PlayerData"];
-	for (AtIter p = playerDefs["item"]; p.defined(); ++p)
-	{
-		players.Add(wxString(p["Name"]));
-	}
+	for (AtIter iterator = playerDefs["item"]; iterator.defined(); ++iterator)
+		players.Add(wxString(iterator["Name"]));
+
 	wxDynamicCast(FindWindow(ID_PlayerSelect), PlayerComboBox)->SetPlayers(players);
 
 	// Initialise the game with the default settings

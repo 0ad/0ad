@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-21 12:45+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-03 15:35+0000\n"
 "Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -76,8 +76,8 @@ msgid ""
 msgstr "Grekerna var mycket framgångsrika i att hellenisera olika främlingar. Under den hellenistiska tiden var grekiskan \"lingua franca\" av den antika världen, och talades från Spanien till Indien."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Skepp konstrueras 25% fortare."
+msgid "Allied warships −25% construction time."
+msgstr "Allierade krigsskepp −25% konstruktions tid."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -326,8 +326,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Keltiska religionen och druider inspirerade deras krigiska tänkande."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% resurskostnad för allierades läkare."
+msgid "Allied healers −20% resource costs."
+msgstr "Allierade läkare −20% resurskostnader."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -571,8 +571,8 @@ msgid ""
 msgstr "Inte olikt den iberiska halvön, var Nordafrika känt som häst-land, som kunde producera upp till 100.000 nya riddjur varje år. Det var också hem för den nordafrikanska skogselefanten."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% extra handelsvinst för allierades internationella handelsvägar."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Allierade marknader +10% internationell handelsbonus."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -778,8 +778,8 @@ msgid "Gauls"
 msgstr "Galler"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% forskningstid för allierades teknologi."
+msgid "Allied structures −20% technology research time."
+msgstr "Allierade strukturer −20% teknik forskningstid."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -978,10 +978,8 @@ msgid ""
 msgstr "I motsats till Numidia i Nordafrika var den iberiska halvön känd som \"hästland\", som kan producera upp till 100 000 nya fästen varje år."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "Medborgarsoldater infanteriskärmytslingare och kavalleriskärmytslingare -20% kostnad för allierade."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Allierad medborgare-soldat skärmytslingar −20% resurskostnader."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1179,10 +1177,8 @@ msgid "Elephant Suppliers"
 msgstr "Elefantleverantörer"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Reducerar kostnaden och träningstiden för elefanter med 20% för kushitiska spelares allierade."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Allierade elefanter −20% resurskostnader och träningstid."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1246,9 +1242,9 @@ msgstr "Monumental Arkitektur"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+ 50% HP och -50% byggtid för Civic Centers, Temples, Pyramids and Wonders."
+msgstr "+50% HP och -50% byggtid för samhällscenter, tempel, pyramider och under."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1391,8 +1387,8 @@ msgid ""
 msgstr "Grekerna var mycket framgångsrika i Hellenizing olika utlänningar. Under den hellenistiska tidsåldern var grekiska den lingua franca i den antika världen, som talas mycket från Spanien till Indien."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% försäljningspriser på marknaden."
+msgid "Allies +20% barter sell prices."
+msgstr "Allierade +20% byteshandel säljpriser."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1652,8 +1648,10 @@ msgid ""
 msgstr "Kshatriya eller Kashtriya, som betyder krigare, är en av de fyra varnasna (sociala order) i hinduismen. Traditionellt utgör Kshatriya den militära och styrande eliten i det vediska-hinduiska sociala systemet som skisseras av vederna och Manuens lagar."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "Allierade tempel och tempelforskning -50% kostnad och forskningstid."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Allierade tempel −50% resurskostnader och byggnadstid; tempelteknik –50% resurskostnader och forskningstid."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1826,8 +1824,8 @@ msgid ""
 msgstr "Perserna kunde och uppbådade faktiskt ett sort antal infanteri under krigstid på grund av den enorma storleken av Akemenidiska Riket och sättet på vilket det var organiserat. I allmänhet var persiska infanteriet välutbildat och slogs med stor uthållighet. Men de var också dåliga närstridskämpar. Med undantag av elitregementen, så var det Persiska infanteriet inte en stående professionell styrka."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Högre vinst (+15%) från handelsvägar över land för allierades handelsmän."
+msgid "Allied land traders +15% trade gain."
+msgstr "Allierade markhandelsmän +15% handelsvinst."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2041,6 +2039,7 @@ msgid "Mercenary Army"
 msgstr "Legosoldatsarmé"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2071,8 +2070,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Kan fånga gaia elefanter och kameler för att reducera deras träningskostnad."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Alla allierade får ett långsamt tillflöde av mat."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Allierade +1.0 mat sipprande hastighet."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2227,18 +2226,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Måste byggas i neutralt territorium. Har ingen territorieeffekt. Tränar alla 'legosoldat' enheter."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Den greco-makedonska Ptolemy-dynastin förlitade sig på ett stort antal grekiska och utländska legosoldater för huvuddelen av sin militära styrka, främst på grund av att trojan från inhemska egyptiska enheter ofta misstänktes. Faktum är att under ett infödande uppror var övre Egypten förlorad till ptolemierna i årtionden. Mercenaries var ofta kamphärdade och deras lojalitet kan köpas, ibland billigt, ibland inte billigt. Detta var oavsett, eftersom Egypten under ptolemänerna var så framgångsrik att de var rikaste av Alexanders efterföljande stater."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Fyr"
@@ -2304,8 +2291,8 @@ msgid ""
 msgstr "Romerska medborgarskapet var högt uppskattat i den antika världen. Grundläggande rättigheter och privilegier gavs romerska medborgare som nekades andra erövrade människor. Det sägs att skada en romersk medborgare var förknippad med att skada Rom själv, och skulle få hela Romans makt att falla på förövaren."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% träningstid för allierades infanteri."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Allierad medborgarsoldat infanteri −20% träningstid."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2514,8 +2501,8 @@ msgid ""
 msgstr "Seleucid och verkligen Successor warfare utvecklades under tredje och andra århundradet. Kontakt med östra uppstarter som parthians och ständiga uppror av perifera satrapier som Bactria orsakade seleuciderna att reformera sin militär och förändra sin taktik, speciellt i kavalleriet. Krig med romarna från väst och invasioner från galaterna tvingar också seleuciderna att reformera sina infanteribestanser för att vara mer flexibla."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Allierade Samhällscentrum är 20% billigare."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Allierade samhällscentrum −20% resurskostnader."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2804,10 +2791,8 @@ msgid ""
 msgstr "Enligt konstitutionen, som skrevs av den mytiska lagstiftaren Lycurgus, inrättades Agoges institution, där spartaner utbildades från 6 års ålder för att vara överlägsna krigare för att försvara den spartanska staten."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Ökar hälsan för medborgarsoldat infanterispjutmän med 10% för spartanska spelares allierade."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Allierad medborgarsoldat infanterispjutman +10% hälsa."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

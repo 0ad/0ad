@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-03-29 19:12+0000\n"
+"PO-Revision-Date: 2019-04-04 04:34+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "충돌"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey): 건축 도감으로 바꿉니다."
+msgstr "%(hotkey): 건축물 도감으로 바꿉니다."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
@@ -75,7 +75,7 @@ msgstr "특수 기술"
 #: gui/civinfo/civinfo.js:145
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] "특별한 건물"
+msgstr[0] "특수 건물"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -258,7 +258,7 @@ msgstr "%(playerName)s 님 (%(state)s)"
 
 #: gui/common/gamedescription.js:181
 msgid "Unknown Civilization"
-msgstr "알수없는 문명"
+msgstr "알 수 없는 문명"
 
 #: gui/common/gamedescription.js:188
 msgctxt "playerstate"
@@ -277,7 +277,7 @@ msgstr "편 없음"
 #: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "편 %(team)s"
+msgstr "%(team)s 편"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -402,7 +402,7 @@ msgstr "아무 지도"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
-msgstr "Randomly select a map from the list."
+msgstr "목록에서 지도를 아무거나 선택하십시오."
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
@@ -445,11 +445,11 @@ msgstr "시민 회관"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Players start with only few units and have to find a suitable place to build their city."
+msgstr "선수는 단 몇 기의 유닛으로 시작하며 도시를 건설하기에 적합한 장소를 찾아야 합니다."
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
-msgstr "Players start with a Civic Center."
+msgstr "선수는 시민 회관으로 시작합니다."
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
@@ -476,7 +476,7 @@ msgstr "사용안함"
 #: gui/common/gamedescription.js:426
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "As defined by the map."
+msgstr "지도에서 정의한 대로."
 
 #: gui/common/gamedescription.js:430
 msgid "Revealed Map"
@@ -1179,7 +1179,7 @@ msgstr "클릭하면 더많은 정보를 볼수 있습니다."
 #: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr "%(nick)s - %(name)s"
+msgstr "%(nick)s - %(name)s 님"
 
 #: gui/loadgame/load.js:118
 #, javascript-format
@@ -1756,12 +1756,12 @@ msgstr "전리품"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "가축 사육"
 
 #: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "자원 통계 (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
 msgid "Market"
@@ -1831,11 +1831,11 @@ msgstr "훈련됨"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "지어짐"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
-msgstr ""
+msgstr "수집됨"
 
 #: gui/summary/summary.js:45
 msgid "Sent"
@@ -1851,7 +1851,7 @@ msgstr "수입"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
-msgstr "포획됨"
+msgstr "점령됨"
 
 #: gui/summary/summary.js:65
 msgid "Succeeded"
@@ -1924,7 +1924,7 @@ msgstr "You have abandoned the game."
 #: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr "놀이 진행 시간: % (time) s"
+msgstr "놀이 진행 시간: %(time)s"
 
 #: gui/summary/summary.js:513
 #, javascript-format
@@ -1948,7 +1948,7 @@ msgstr "문명 선택"
 #: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr "구조물 구조"
+msgstr "건축물 도감"
 
 #: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
@@ -2706,7 +2706,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
-msgstr "관중=구경꾼 한계"
+msgstr "관중ehsms 구경꾼 한계"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2723,7 +2723,7 @@ msgstr "장군??"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "0 A.D를 창 모드로 시작합니다."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -2759,7 +2759,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr "셰이더 효과"
+msgstr "그림자 효과"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
@@ -2954,7 +2954,7 @@ msgstr "배경 음량"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "게임 유닛 액션 사운드 조절."
+msgstr "놀이에서 유닛 행동 소리 조절."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -4101,7 +4101,7 @@ msgstr "High Food and Metal cost, but very powerful."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "이용 가능 : 카르타고, 쿠시, 모리아스, 페르시아, 프톨레마이오스, 셀레우코스"
+msgstr "이용 가능: 카르타고, 쿠시, 모리아스, 페르시아, 프톨레마이오스, 셀레우코스"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

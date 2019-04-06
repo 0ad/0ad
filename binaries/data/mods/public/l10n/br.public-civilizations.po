@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-25 17:51+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-01 16:10+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,8 +67,8 @@ msgid ""
 msgstr "Ar Greked o deus graet kalz a berzh en ur Hellenisaat meur a estren. E-pad ar mare hellenistek, ar grekeg a oa lingua franca an hen-bed, komzet e oa kalz etre Bro-Spagn ha Bro-India."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Savet e vez 25% buanoc'h al listri."
+msgid "Allied warships −25% construction time."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -317,8 +317,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Ar relijion hag an drouizelezh o deus awenet o foellouriezh brezel."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% a goust mammennoù evit pareerien ar re gevreded."
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -562,8 +562,8 @@ msgid ""
 msgstr "Ne oa ket heñvel al Ledenez Iberian ouzh Afrika an Hanternoz hag a oa anavezet evel bezañ bro ar c'hezeg ha gouest da broduiñ betek 100,000 jav nevez bep bloaz. Bez e oa ivez 'ti' olifanted ar c'hoadeier eus Afrika an Hanternoz."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% a c'hounid-kenwerzh evit hentoù etrebroadel ar re gevreded."
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -769,8 +769,8 @@ msgid "Gauls"
 msgstr "Galianed"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% a amzer-enklask evit teknologiezhioù ar re gevredet."
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -969,10 +969,8 @@ msgid ""
 msgstr "En un doare disheñvel diouzh Numidia en Afrika an Hanternoz, al Ledenez Iberian a oa anavezet evel bezañ 'bro ar marc'h', gouest da broduiñ muioc'h evit 100,000 jav nevez bep bloaz."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "-20% a goust evit ar soudarded-keodedour tennataer war droad hag an dennataerien war-varc'h gant ar re a zo kevredet ganeoc'h."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1170,10 +1168,8 @@ msgid "Elephant Suppliers"
 msgstr "Pourvezer olifanted"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Digreskiñ a ra koust hag amzer-stummañ an olifanted eus 20% evit pep c'hoarier Kushite kevredet."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1237,9 +1233,9 @@ msgstr "Savouriezh Mentek"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+50% PB ha -50% a amzer sevel evit ar C'hreizennoù Keodedel, Temploù, Piramidennoù ha Marzennoù."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1382,8 +1378,8 @@ msgid ""
 msgstr "Ar Greked o deus graet kalz a berzh en ur Hellenaat meur a estren. E-pad an Oadvezh Hellenistek, ar grekeg a oa \"lingua franca\" an hen-bed, komzet e oa kalz etre Bro-Spagn ha Bro-India."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20 % a brizioù gwerzhañ er marc'had."
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1643,8 +1639,10 @@ msgid ""
 msgstr "Unan eus pevar varna (renkadoù sokial) an Hindouegezh eo ar Kshatriya, pe Kashtriya, a dalvez kement ha \"brezelour\". En hengoun eo ar Kshatriya ar renkad brezelourien a ren war ar sistem sokial vedik-hindou, evel m'eo diskouezet er Vedaioù hag e Lezennoù Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "Templ ar re gevredet ha teknologiezhioù an templ a goust -50% e mammenn hag e amzer."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1817,8 +1815,8 @@ msgid ""
 msgstr "Ar Bersianed a c'halle sevel un niver bras a droadeien e-pad un amzer-vrezel abalamour d'ar ment bras a oa gant an Impalaeriezh Akaemeninat ha dre an doare e oa bet rannet. Dre vras e oa gourdonet mat an droadegiezh Bers ha stourm a rae gant birvidigezh-vras. Koulskoude daoust ma oa gwir, gwan e oa an droadegiezh en emgannoù a-dost. Ma, nemet rejimantoù ar rejimantoù gwellañ, ne oa ket an droadegiezh Pers un nerzh micherel brudet."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Gounidegezh uheloc'h (+15%) evit kenwerzhourien ar re gevreded war an hentoù-kenwerzh war an douar."
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2032,6 +2030,7 @@ msgid "Mercenary Army"
 msgstr "Arme a c'hoprsoudarded"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2062,8 +2061,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "A c'hall pakout olifanted ha kañvaled Gaïa da zigreskiñ o c'houst stummañ."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "An holl re gevredet a c'hounez en un doare emgefreek ur buzad moan a voued."
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2218,18 +2217,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Da vezañ savet war un tiriad neptuek. Na lak ket da greskiñ an tiriadoù. Stummañ a ra an holl goprsoudarded."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Ar riez Greko-Makedonian eus ar bPtolemed a gonte war un niver bras a c'hoprsoudarded Gresian hag estren evit al lodenn vrasañ diouzh e nerzhioù milourel, dreist-holl peogwir e veze fall lealded an unanennoù Ejipsian engenidik alies. Evit gwir, da vare un emsavadeg gant ar re enginidik, Ejipt-Uhel a oa kollet evit ar re bPtoleme evit dek-vloaziadoù. Ar c'hoprsoudarded a oa gourdonet diouzh ar brezel alies hag o lealded a c'hall bezañ prenet, gwechoù 'zo marc'had-mat a-walc'h, a-wechoù ket. Un hanter netra e oa, abaoe ma oa Egipt dindan ar re bPtoleme ken bleunius ha ma oa ar stad pinvidikañ diskennad da Aleksandr."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Tour-Tan"
@@ -2295,8 +2282,8 @@ msgid ""
 msgstr "Ar geodedelezh Roman a oa priziet kenañ en Henamzer. Ar gwirioù diazez hag ar brientoù a veze profet d'ar geodedourien Roman a veze nac'het d'ar pobloù aloubet. Lavaret e oa neuze ober droug d'ur c'heodedour Roman a oa ober droug da Roma hec'h-unan, hag-holl galloud Roma da gouezhañ war an hini kablus."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% a amzer stummañ evit soudarded war-droad ar re gevredet."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2505,8 +2492,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Kreizennoù Keodedel ar re gevredet a zo marc'hadmatoc'h eus 20%."
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2795,10 +2782,8 @@ msgid ""
 msgstr "Dindan ar Vonreizh a skrivas al lezennour mojennel Lycurgus, diazezet e oa saverezh an Agoge, a lakae ar Spartaned da vezañ stummet adalek o 6vet bloavezh da vezañ brezelourien hep o far da zifenn ar Stad Spartanel."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Lakaat da greskiñ yec'hed ar soudarded-keodedour goafer war droad eus 10% evit ar re a zo kevredet gant ar c'hoarierien Spart."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

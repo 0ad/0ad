@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ AtObj AtlasObject::LoadFromJSON(const std::string& json)
 	json_spirit::read_string(json, rootnode);
 
 	AtObj obj;
-	obj.p = ConvertNode(rootnode);
+	obj.m_Node = ConvertNode(rootnode);
 	return obj;
 }
 
@@ -47,7 +47,7 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 
 	if (node.type() == json_spirit::str_type)
 	{
-		obj->value = std::wstring(node.get_str().begin(),node.get_str().end());
+		obj->m_Value = std::wstring(node.get_str().begin(),node.get_str().end());
 	}
 	else if (node.type() == json_spirit::int_type || node.type() == json_spirit::real_type)
 	{
@@ -57,25 +57,25 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 		if (node.type() == json_spirit::real_type)
 			stream << node.get_real();
 
-		obj->value = stream.str().c_str();
-		obj->children.insert(AtNode::child_pairtype(
+		obj->m_Value = stream.str().c_str();
+		obj->m_Children.insert(AtNode::child_pairtype(
 			"@number", AtSmartPtr<AtNode>(new AtNode())
 		));
 	}
 	else if (node.type() == json_spirit::bool_type)
 	{
 		if (node.get_bool())
-			obj->value = L"true";
+			obj->m_Value = L"true";
 		else
-			obj->value = L"false";
+			obj->m_Value = L"false";
 
-		obj->children.insert(AtNode::child_pairtype(
+		obj->m_Children.insert(AtNode::child_pairtype(
 			"@boolean", AtSmartPtr<AtNode>(new AtNode())
 		));
 	}
 	else if (node.type() == json_spirit::array_type)
 	{
-		obj->children.insert(AtNode::child_pairtype(
+		obj->m_Children.insert(AtNode::child_pairtype(
 			"@array", AtSmartPtr<AtNode>(new AtNode())
 		));
 
@@ -84,7 +84,7 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 
 		for (; itr != nodeChildren.end(); ++itr)
 		{
-			obj->children.insert(AtNode::child_pairtype(
+			obj->m_Children.insert(AtNode::child_pairtype(
 				"item", ConvertNode(*itr)
 			));
 		}
@@ -95,7 +95,7 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 		json_spirit::Object::iterator itr = objectProperties.begin();
 		for (; itr != objectProperties.end(); ++itr)
 		{
-			obj->children.insert(AtNode::child_pairtype(
+			obj->m_Children.insert(AtNode::child_pairtype(
 				itr->name_, ConvertNode(itr->value_)
 			));
 		}
@@ -122,21 +122,21 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 	}
 
 	// Special case for numbers/booleans to allow round-tripping
-	if (p->children.count("@number"))
+	if (p->m_Children.count("@number"))
 	{
 		// Convert to double
 		std::wstringstream str;
-		str << p->value;
+		str << p->m_Value;
 		double val = 0;
 		str >> val;
 
 		json_spirit::Value rval(val);
 		return rval;
 	}
-	else if (p->children.count("@boolean"))
+	else if (p->m_Children.count("@boolean"))
 	{
 		bool val = false;
-		if (p->value == L"true")
+		if (p->m_Value == L"true")
 			val = true;
 
 		json_spirit::Value rval(val);
@@ -144,19 +144,19 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 	}
 
 	// If no children, then use the value string instead
-	if (p->children.empty())
+	if (p->m_Children.empty())
 	{
-		json_spirit::Value rval(std::string(p->value.begin(), p->value.end()));
+		json_spirit::Value rval(std::string(p->m_Value.begin(), p->m_Value.end()));
 		return rval;
 	}
 
-	if (p->children.find("@array") != p->children.end())
+	if (p->m_Children.find("@array") != p->m_Children.end())
 	{
 		json_spirit::Array rval;
 
 		// Find the <item> children
-		AtNode::child_maptype::const_iterator lower = p->children.lower_bound("item");
-		AtNode::child_maptype::const_iterator upper = p->children.upper_bound("item");
+		AtNode::child_maptype::const_iterator lower = p->m_Children.lower_bound("item");
+		AtNode::child_maptype::const_iterator upper = p->m_Children.upper_bound("item");
 
 		unsigned int idx = 0;
 		for (AtNode::child_maptype::const_iterator it = lower; it != upper; ++it)
@@ -173,7 +173,7 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 	{
 		json_spirit::Object rval;
 
-		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)
+		for (AtNode::child_maptype::const_iterator it = p->m_Children.begin(); it != p->m_Children.end(); ++it)
 		{
 			json_spirit::Value child = BuildJSONNode(it->second);
 			// We don't serialize childs with null value.
@@ -189,7 +189,6 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 
 std::string AtlasObject::SaveToJSON(AtObj& obj)
 {
-	json_spirit::Value root = BuildJSONNode(obj.p);
-	std::string ret = json_spirit::write_string(root, 0);
-	return ret;
+	json_spirit::Value root = BuildJSONNode(obj.m_Node);
+	return json_spirit::write_string(root, 0);
 }

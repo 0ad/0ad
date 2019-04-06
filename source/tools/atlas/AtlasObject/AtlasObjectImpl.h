@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,9 +39,9 @@ class AtNode
 public:
 	typedef AtSmartPtr<const AtNode> Ptr;
 
-	AtNode() : refcount(0) {}
-	explicit AtNode(const AtNode* n) { *this = *n; refcount = 0; }
-	explicit AtNode(const wchar_t* text) : refcount(0), value(text) {}
+	AtNode() : m_Refcount(0) {}
+	explicit AtNode(const AtNode* n) { *this = *n; m_Refcount = 0; }
+	explicit AtNode(const wchar_t* text) : m_Refcount(0), m_Value(text) {}
 
 	// Create a new AtNode (since AtNodes are immutable, so it's not possible
 	// to just change this one), with the relevant alterations to its content.
@@ -57,15 +57,15 @@ public:
 //private:	// (but not actually private, since I'm still too lazy to waste
 			// time with dozens of friends)
 
-	std::wstring value;
+	std::wstring m_Value;
 
 	typedef std::multimap<std::string, AtNode::Ptr> child_maptype;
 	typedef std::pair<std::string, AtNode::Ptr> child_pairtype;
 
-	child_maptype children;
+	child_maptype m_Children;
 
 private:
-	mutable unsigned int refcount;
+	mutable unsigned int m_Refcount;
 };
 
 // Implementation of AtIter
@@ -74,13 +74,13 @@ class AtIterImpl
 	friend class AtSmartPtr<AtIterImpl>;
 
 public:
-	AtIterImpl() : refcount(0) {}
+	AtIterImpl() : m_Refcount(0) {}
 
 	AtIterImpl(AtNode::child_maptype::const_iterator it, AtNode::child_maptype::const_iterator up)
-		: refcount(0), iter(it), iter_upperbound(up) {}
+		: m_Refcount(0), iter(it), iter_upperbound(up) {}
 
 	AtNode::child_maptype::const_iterator iter, iter_upperbound;
 
 private:
-	mutable unsigned int refcount;
+	mutable unsigned int m_Refcount;
 };

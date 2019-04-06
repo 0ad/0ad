@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,7 +67,7 @@ public:
 	// Override ->
 	T* operator->() const { return ptr; }
 	// Test whether the pointer is pointing to anything
-	explicit operator bool() const { return ptr != NULL; }
+	explicit operator bool() const { return ptr != nullptr; }
 };
 
 template<class ConstSmPtr, class T>
@@ -123,7 +123,7 @@ public:
 
 	// Private implementation. (But not 'private:', because it's a waste of time
 	// adding loads of friend functions)
-	AtSmartPtr<AtIterImpl> p;
+	AtSmartPtr<AtIterImpl> m_Impl;
 };
 
 
@@ -131,7 +131,7 @@ class AtObj
 {
 public:
 	AtObj() {}
-	AtObj(const AtObj& r) : p(r.p) {}
+	AtObj(const AtObj& r) : m_Node(r.m_Node) {}
 
 	// Return an iterator to the children matching 'key'
 	const AtIter operator[] (const char* key) const;
@@ -146,7 +146,7 @@ public:
 	int getInt() const;
 
 	// Check whether the object contains anything (even if those things are empty)
-	bool defined() const { return (bool)p; }
+	bool defined() const { return static_cast<bool>(m_Node); }
 
 	// Check recursively whether there's actually any non-empty data in the object
 	bool hasContent() const;
@@ -169,7 +169,7 @@ public:
 	void setString(const wchar_t* value);
 	void addOverlay(AtObj& data);
 
-	AtSmartPtr<const AtNode> p;
+	AtSmartPtr<const AtNode> m_Node;
 };
 
 

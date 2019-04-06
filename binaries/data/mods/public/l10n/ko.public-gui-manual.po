@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# moolow <copyhyeon@gmail.com>, 2019
 # 손가현 <sgh991002@gmail.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -17,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-03-29 18:57+0000\n"
+"PO-Revision-Date: 2019-04-04 04:27+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +64,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"] Alt + Enter 를 눌러서 창모드와 전체화면 간에 전환할 수 있습니다. 창모드에서 창 크기를 조절할 수 있습니다. 만약 게임이 너무 느리다면 옵션 창에서 약간의 설정을 바꿀 수 있습니다: \"HQ 물 효과\"와 \"그림자\" 옵션을 비활성화해보세요."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -120,13 +121,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]혼자놀기[font=\"sans-14\"] – AI 난이도에서 샌드박스 게임을 선택하여 게임을 하거나, 한 명 이상의 인공지능 상대방과 게임을 해보세요. 인공지능들은 개발 중이며 아마도 항상 최신 게임 버전에 적용되어 있지는 않을 수도 있습니다만, 만약 여러분이 사람과 게임을 하기가 여의치 않으면, 여러분은 인공지능 상대로 게임을 해볼 수 있습니다."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]함께놀기[font=\"sans-14\"] – 인터넷을 통하여 사람과 게임을 합니다."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -148,25 +149,25 @@ msgstr "[font=\"sans-14\"]함께 놀기에서는 오직 호스트만이 놀이 �
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr "우선, 어떤 종류의 맵을 플레이하기를 원하는지 정하세요."
+msgstr "우선, 어떤 종류의 지도를 사용할지 결정하십시오:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]아무 지도[font=\"sans-14\"] – 스크립트를 통해서 자동으로 만들어진 지도"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]시나리오 지도[font=\"sans-14\"] – 문명이 정해져있고 지도 디자이너에 의해 미리 제작된 지도"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]접전지역 지도[font=\"sans-14\"] – 지도 디자이너에 의해 제작되었지만 문명을 선택할 수 있는 지도"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -192,7 +193,7 @@ msgstr "시작할 준비가 되면, \"게임 시작하기\"버튼을 누르세�
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]단축키:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
@@ -236,15 +237,15 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
 " is displayed in the top left of the GUI after the file has been saved, and "
 "can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: 대용량 스크린샷을 찍습니다.(6400 x 4800 px, .bmp 확장자로 저장됩니다, 파일이 저장되고 난 후 저장된 위치는 화면의 왼쪽 상단에 표시됩니다. 그리고 만약 보지 못했을 경우를 위해서 콘솔화면과 로그 내용에도 기록됩니다.)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "Tab, Alt + S: 다음 탭으로 전환합니다."
 
 #: gui/manual/intro.txt:53
 msgid "Shift + Tab, Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "Shift + Tab, Alt + W: 이전 탭으로 전환합니다."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -254,25 +255,25 @@ msgstr ""
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]마우스 왼쪽 더블 클릭 \\[on unit]: 화면에서 같은 유형의 유닛을 전부 선택합니다. (다른 등급이라도)"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "마우스 왼쪽 세번 연속 클릭 \\[on unit]: 화면에서 유형과 등급이 같은 유닛을 전부 선택합니다."
 
 #: gui/manual/intro.txt:58
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + 마우스 왼쪽 더블 클릭 \\[on unit]: 전체 지도에서 같은 유형의 유닛을 전부 선택합니다. (다른 등급이라도)"
 
 #: gui/manual/intro.txt:59
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + 마우스 왼쪽 세번 연속 클릭 \\[on unit]: 전체 지도에서 유형과 등급이 같은 유닛을 전부 선택합니다."
 
 #: gui/manual/intro.txt:60
 msgid "Shift + F5: Quicksave"
@@ -292,7 +293,7 @@ msgstr "F12: 흐른시간 카운터 보이기/숨기기"
 
 #: gui/manual/intro.txt:64
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: 모든 대화상자를 닫기(대화, 메뉴) 또는 선택된 유닛 지우기"
 
 #: gui/manual/intro.txt:65
 msgid "Enter/return: Open/send chat"
@@ -304,7 +305,7 @@ msgstr "T: 단체 채팅 보내기"
 
 #: gui/manual/intro.txt:67
 msgid "L: Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L: 이전에 선택한 비공개 대화 파트너와 대화"
 
 #: gui/manual/intro.txt:68
 msgid "Pause: Pause/resume the game"
@@ -322,7 +323,7 @@ msgstr "Shift + Delete: 현재 선택된 유닛들/건물들을 확인 없이 �
 
 #: gui/manual/intro.txt:71
 msgid "/ (Slash): Select idle fighter"
-msgstr ""
+msgstr "/ (슬래시): 유휴 전사를 선택하기"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -334,27 +335,27 @@ msgstr "Alt + /: 모든 유휴 전사를 선택"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (마침표): 유휴 일꾼 선택하기 (시민군인 포함)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: 유휴 일꾼을 선택에 추가 (시민군인 포함)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr ""
+msgstr "Alt + .: 모든 유휴 일꾼 선택하기 (시민군인 포함)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
-msgstr ""
+msgstr "\\ (백슬래시): 유휴 유닛 선택하기"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\: 유휴 유닛을 선택에 추가"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: 모든 유휴 유닛을 선택하기"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -362,11 +363,11 @@ msgstr "H: 현재 선택된 유닛들을 멈추기(정지)"
 
 #: gui/manual/intro.txt:81
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Y: 유닛이 하던 일로 돌아가기"
 
 #: gui/manual/intro.txt:82
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: 선택된 건물에 주둔된 유닛 해체하기"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -382,7 +383,7 @@ msgstr "1 (그리고 0까지): 컨트롤 그룹 1에서(0까지) 유닛들/건�
 #: gui/manual/intro.txt:85
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Ctrl + 1 (그리고 Ctrl + 0까지): 선택된 유닛들/건물들로 부터 제어그룹을 1 에서 (0까지) 만들기"
 
 #: gui/manual/intro.txt:86
 msgid ""
@@ -400,7 +401,7 @@ msgstr "F5, F6, F7, 그리고 F8: 지정된 카메라 위치로 이동하기. �
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: 선택된 건물들 중에 훈련 건물이 선택되면 훈련 대기열에 유닛이 나타나며 순서대로 1번째, 2번째, ... 를 추가합니다."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -416,7 +417,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:91
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: 모든 상태 막대기 보기 (건물 진행 상태도)"
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
@@ -424,15 +425,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:93
 msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Alt + L: 대화창에서 함께놀기 앞마당을 표시합니다."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Ctrl + B: 게임 내부의 거래와 교역 페이지를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctrl + P: 놀이 내부의 자습서 패널을 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:96
 msgid "Alt + Shift + T: Toggle structure tree."
@@ -440,7 +441,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Shift + H: Toggle civilization info."
-msgstr ""
+msgstr "Alt + Shift + H: 문명 정보를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -448,26 +449,26 @@ msgstr ""
 
 #: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]건물에 Ctrl + 마우스 오른쪽 버튼 클릭: 주둔하기"
 
 #: gui/manual/intro.txt:101
 msgid "J + Right Click on building: Repair"
-msgstr ""
+msgstr "건물에 J + 마우스 오른쪽 버튼 클릭: 고치기"
 
 #: gui/manual/intro.txt:102
 msgid "P + Right Click: Patrol"
-msgstr ""
+msgstr "P + 마우스 오른쪽 버튼 클릭: 순찰"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + 마우스 오른쪽 버튼 클릭: 이동/건설/채집/그 외 명령 대기열을 만들기"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr ""
+msgstr "Alt + 마우스 오른쪽 버튼 클릭: 현재 선택에서 한 유닛에게 이동/건설/채집/기타 명령하고 선택에서 뺍니다. 유닛들을 빠르게 특정 작업으로 파견시킬 때 사용됩니다."
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -478,92 +479,92 @@ msgstr ""
 #: gui/manual/intro.txt:106
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + Left Click or Left Drag over unit on map: 선택 항목에서 유닛을 추가합니다."
 
 #: gui/manual/intro.txt:107
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + Left Click or Left Drag over unit on map: 선택 항목에서 유닛을 뺍니다."
 
 #: gui/manual/intro.txt:108
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + Left Drag over units on map: 군사 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "Alt + Y + Left Drag over units on map: 비군사 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + Left Drag over units on map: 유휴 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "O + Left Drag over units on map: 부상을 입은 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgstr "여러 유닛이 선택된 상태에서 유닛/그룹 아이콘을 Ctrl + Left Click: 선택해제하기"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr ""
+msgstr "건물/건물들을 선택한 상태에서 오른쪽 클릭: 건물에서 유닛들이 생산/주둔해제될 경우 집결지를 설정하기"
 
 #: gui/manual/intro.txt:114
 msgid "Ctrl + Right Click with units selected:"
-msgstr ""
+msgstr "유닛들을 선택한 상태에서 Ctrl + 오른쪽 클릭:"
 
 #: gui/manual/intro.txt:115
 msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "  • 아군 구조물에 커서가 위치하면: 주둔하기"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  • If the cursor is over a non-allied unit or building: Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "  • 아군이 아닌 유닛이나 건물에 커서가 위치하면: 공격하기 (포획 또는 채집 대신에)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  • Otherwise: Attack move (by default all enemy units and structures along "
 "the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr ""
+msgstr "  • 다른 경우: 공격 이동 (기본적으로 목표로 향하는 길을 따라 모든 적 유닛과 구조물, 유닛들만 겨냥하려면 Ctrl + Q + Right Click 를 사용하세요)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]오버레이"
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: GUI 숨기기/보이기"
 
 #: gui/manual/intro.txt:121
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D: 개발자용 오버레이 보이기/숨기기 (개발자용 옵션)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Shift + W: 와이어프레임 모드로 토글하기 (한번 누르면 텍스쳐 모델에 덮어씌워지고 두번 누르면 텍스쳐 따라 색칠된 와이어프레임만 보입니다. 세번째엔 정상 텍스쳐 모드로 돌아옵니다)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Shift + S: 유닛 윤곽들을 토글하기 (약간의 성능 향상이 있다)"
 
 #: gui/manual/intro.txt:124
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt + Z: 하늘 토글하기"
 
 #: gui/manual/intro.txt:125
 msgid "Alt + X: Toggle diplomacy colors"
-msgstr ""
+msgstr "Alt + X: 국경 색 토글하기"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -581,7 +582,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]카메라 조종"
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
@@ -637,11 +638,11 @@ msgstr ""
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
+msgstr "F: 선택한 유닛을 따라가기 (유닛을 따라가는 중에 카메라를 움직이면 해제됨)"
 
 #: gui/manual/intro.txt:144
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: 카메라 줌/방향 리셋"
 
 #: gui/manual/intro.txt:145
 msgid "= or +: Zoom in (keep pressed for continuous zoom)"
@@ -661,7 +662,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]건물 배치 도중"
 
 #: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
@@ -679,7 +680,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]저장된 게임을 볼러올 때"
 
 #: gui/manual/intro.txt:156
 msgid ""

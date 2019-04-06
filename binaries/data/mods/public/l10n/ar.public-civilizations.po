@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 15:48+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-01 16:10+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -69,8 +69,8 @@ msgid ""
 msgstr "كان اليونانيّون ناجحين للغاية في هَلْيَنة مختلف الأجانب. ففي العصر الهيلينستيّ، كانت اليونانيّة لغة تواصل العالم القديم المشتركة، ويتحدّث بها النّاس من إسپانيا حتّى الهند."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "تُبنى السّفن أسرع بنسبة ٢٥٪"
+msgid "Allied warships −25% construction time."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -319,8 +319,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "الدين الكلتيّ والدرويديّة الكلتيّة ألهمت عقليّتهم المولعة بالحرب."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "تكلفة الموارد لمعالجي الحلفاء تقلّ بنسبة ٢٠٪."
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -564,8 +564,8 @@ msgid ""
 msgstr "كان شمال أفريقيا كشبه الجزيرة الأيبيريّة مشهورًا بأنه ريف خيول قادر على إنتاج مئة ألف مطيّة كل عام. كما كان موطن فيل الغابات شمال الأفريقيّ."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "مكافأة 10% من ارباح التجارة لطرق الحلفاء الدولية."
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -771,8 +771,8 @@ msgid "Gauls"
 msgstr "الغاليّون"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "يقلّ وقت البحث بنسبة ١٠٪ لتقنيّات الحلفاء."
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -971,10 +971,8 @@ msgid ""
 msgstr "كان شبه الجزيرة الأيبيرية مثل نوميديا في شمال أفريقيا مشهورًا بأنه بلد أحصنة قادر على إنتاج 100.000 حصان كل عام."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "جنود المشاة والخيالة المواطنيين سعر أقل بـ -20% للحلفاء."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1172,10 +1170,8 @@ msgid "Elephant Suppliers"
 msgstr "مزودون الفيلة"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "تُقلّل من تكلفة ووقت تدريب الفيلة بنسبة 20% لحلفاء اللاعبين الكوشيّين."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1239,7 +1235,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -1384,8 +1380,8 @@ msgid ""
 msgstr "كان اليونانيّون ناجحين للغاية في هَلْيَنة مختلف الأجانب. ففي العصر الهيلينستيّ، كانت اليونانيّة لغة تواصل العالم القديم المشتركة، ويتحدّث بها النّاس من إسپانيا حتّى الهند."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "تزيد أسعار البيع في السوق بنسبة ٢٠٪."
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1645,8 +1641,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "تقلّ كلفة ووقت البحث بنسبة 50% للمعابد المتحالفة وتقنيّات المعابد."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1819,7 +1817,7 @@ msgid ""
 msgstr "استطاع الفُرس تجنيد عدد ضخم من الخيّالة أثناء الحروب وذلك بسبب الحجم الكبير للإمبراطوريّة الأخمينيّة والطريقة التي كانت تقوم عليها. يمكن القول بشكل عام أنّ الخيّالة الفارسيّة كانت مدرّبة جيّدًا وقد حاربت بصلابة عالية، إلّا أن (ورغم صحّة ما قيل) الخيّالة كانت ضعيفة إن تحدّثنا عن القتال اليدويّ أو القتال بالاشتباك. كما وأنّ الخيّالة الفارسيّة (وباستثناء أفواج النخبة) لم تكن قوّة احترافيّة ذات مكانة."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgid "Allied land traders +15% trade gain."
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
@@ -2034,6 +2032,7 @@ msgid "Mercenary Army"
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2064,8 +2063,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "يمكنه السيطرة على الفيلة والجمال لكى يقلل سعر التدريب."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "كل الحلفاء تلقائيا يكسبون دلف بطئ من دخل الطعام"
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2220,18 +2219,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "يجب ان تبني فى منطقة حيادية. ليس لديها تاثير أقليمى. يدرب كل وحدات المرتزقة."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr ""
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "منارة"
@@ -2297,8 +2284,8 @@ msgid ""
 msgstr "كانت المواطَنة الرومانيّة ذات شأن رفيع في العالم القديم، فكان المواطنون الرومان يُمنحون حقوقًا أساسيّة وامتيازات تُمنع عن الشعوب المحتلّة الأخرى. يُقال أنّ إلحاق أيّ أذًى بمواطن روماني كان يعادل إيذاء روما نفسها، ويستدعي أن يقع بأس روما كلّه على الجاني."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "يقلّ وقت تدريب مشاة الحلفاء بنسبة ٢٠٪."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2507,7 +2494,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
+msgid "Allied civil centers −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
@@ -2797,9 +2784,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name

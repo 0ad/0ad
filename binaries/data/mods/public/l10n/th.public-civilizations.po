@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-01-04 15:48+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-01 16:10+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/wildfire-games/0ad/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
+msgid "Allied warships −25% construction time."
 msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
@@ -309,7 +309,7 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
+msgid "Allied healers −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
@@ -554,7 +554,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
+msgid "Allied markets +10% international trade bonus."
 msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
@@ -761,7 +761,7 @@ msgid "Gauls"
 msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
+msgid "Allied structures −20% technology research time."
 msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
@@ -961,9 +961,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
@@ -1162,9 +1160,7 @@ msgid "Elephant Suppliers"
 msgstr ""
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
+msgid "Allied elephants −20% resource costs and training time."
 msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
@@ -1229,7 +1225,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -1374,7 +1370,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
+msgid "Allies +20% barter sell prices."
 msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
@@ -1635,7 +1631,9 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
 msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
@@ -1809,7 +1807,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgid "Allied land traders +15% trade gain."
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
@@ -2024,6 +2022,7 @@ msgid "Mercenary Army"
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2054,7 +2053,7 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
+msgid "Allies +1.0 food trickle rate."
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
@@ -2210,18 +2209,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr ""
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr ""
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr ""
@@ -2287,7 +2274,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
+msgid "Allied citizen-soldier infantry −20% training time."
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
@@ -2497,7 +2484,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
+msgid "Allied civil centers −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
@@ -2787,9 +2774,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name

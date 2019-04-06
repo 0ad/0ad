@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,13 +32,13 @@ static std::wstring ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = 
 
 	std::wstring result;
 
-	bool has_value = (obj->value.length() != 0);
-	bool has_children = (obj->children.size() != 0);
+	bool has_value = !obj->m_Value.empty();
+	bool has_children = !obj->m_Children.empty();
 
 	if (has_value && has_children)
-		result = obj->value + L" ";
+		result = obj->m_Value + L" ";
 	else if (has_value)
-		result = obj->value;
+		result = obj->m_Value;
 	// else no value; result = L""
 
 	if (has_children)
@@ -48,16 +48,14 @@ static std::wstring ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = 
 
 		bool first_child = true; // so we can add ", " in appropriate places
 
-		for (AtNode::child_maptype::const_iterator it = obj->children.begin();
-			it != obj->children.end();
-			++it)
+		for (const AtNode::child_maptype::value_type& child : obj->m_Children)
 		{
-			if (! first_child)
+			if (!first_child)
 				result += L", ";
 			else
 				first_child = false;
 
-			result += ConvertRecursive(it->second);
+			result += ConvertRecursive(child.second);
 		}
 
 		if (use_brackets)
@@ -69,5 +67,5 @@ static std::wstring ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = 
 
 std::wstring AtlasObject::ConvertToString(const AtObj& obj)
 {
-	return ConvertRecursive(obj.p, false);
+	return ConvertRecursive(obj.m_Node, false);
 }

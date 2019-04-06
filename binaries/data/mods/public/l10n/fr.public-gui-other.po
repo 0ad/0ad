@@ -40,7 +40,7 @@
 # robin moussu <robin.moussu+transifex@gmail.com>, 2015
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # Polakrity <sxk-fr@live.fr>, 2014,2017-2018
-# Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2018
+# Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2018-2019
 # Valentin Ambroise <valentin.amb@hotmail.com>, 2015
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
 # Xavier Tardieu <xapitoun@gmail.com>, 2016,2018
@@ -48,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-03-22 15:12+0000\n"
-"Last-Translator: Loki <tontonloul@hotmail.fr>\n"
+"PO-Revision-Date: 2019-04-03 15:16+0000\n"
+"Last-Translator: Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,12 +75,12 @@ msgstr "Écrasant"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Passer à l'arbre de la structure."
+msgstr "%(hotkey)s : Passer à l'Arbre Technologique."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: Fermer l'historique."
+msgstr "%(hotkey)s : Fermer l'Historique."
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -126,7 +126,7 @@ msgstr "Raccourci non assigné : %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Appuyez sur %(hotkey)s pour compléter automatiquement les noms des joueurs."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -145,7 +145,7 @@ msgstr "Chargement abandonné"
 
 #: gui/common/functions_utility.js:30
 msgid "Gaia"
-msgstr "Gaia"
+msgstr "Gaïa"
 
 #: gui/common/functions_utility.js:103
 msgctxt "map selection"
@@ -208,7 +208,7 @@ msgstr "Supprimez l'entrée sélectionnée avec %(hotkey)s."
 #: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr "Pressez %(hotkey)s pour supprimer sans confirmation."
+msgstr "Maintenez %(hotkey)s pour supprimer sans confirmation."
 
 #: gui/common/gamedescription.js:59
 msgid "A randomly selected map."
@@ -349,7 +349,7 @@ msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Capture la Relique (%(min)s minute)"
-msgstr[1] "Capture la Relique (%(min)s minutes)"
+msgstr[1] "Capturez la Relique (%(min)s minutes)"
 
 #: gui/common/gamedescription.js:279
 msgid "Relic Count"
@@ -369,7 +369,7 @@ msgstr "Héros exposés"
 
 #: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Les héros ne peuvent pas être mis en garnison et ils sont vulnérables aux raids."
+msgstr "Les héros ne peuvent pas être mis en garnison et sont vulnérables aux raids."
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
@@ -379,7 +379,7 @@ msgstr "Partie classée"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Quand le vainqueur de ce match sera déterminé, le tableau des scores sera mis à jour."
+msgstr "Quand le vainqueur de cette partie sera déterminé, le tableau des scores sera mis à jour."
 
 #: gui/common/gamedescription.js:305
 msgid "Locked Teams"
@@ -434,7 +434,7 @@ msgstr[1] "Durant les %(min)s premières minutes, les autres joueurs restent neu
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr "Carte au hasard"
+msgstr "Carte aléatoire"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
@@ -489,7 +489,7 @@ msgstr "Les joueurs commencent avec un Centre-ville"
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
-msgstr "Ressources de départ"
+msgstr "Ressources initiales"
 
 #: gui/common/gamedescription.js:405
 #, javascript-format
@@ -707,7 +707,7 @@ msgstr "Aléatoire"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr "Equilibré"
+msgstr "Équilibré"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -749,7 +749,7 @@ msgstr "Escarmouche"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr "Une carte avec un paysage et un nombre de joueurs prédéfini. Les autres options de la partie sont configurables librement."
+msgstr "Une carte avec un paysage et un nombre de joueurs prédéfinis. Les autres options de la partie sont configurables librement."
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -760,7 +760,7 @@ msgstr "Aléatoire"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Créer une carte originale avec une répartition des ressources différemment à chaque fois. Choisissez librement le nombre de joueurs et d'équipes."
+msgstr "Créez une carte originale avec une répartition des ressources différente à chaque fois. Choisissez librement le nombre de joueurs et d'équipes."
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -983,7 +983,7 @@ msgstr[1] "mètres"
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr "%(label)s: %(value)s"
+msgstr "%(label)s : %(value)s"
 
 #: gui/common/tooltips.js:324
 #, javascript-format
@@ -993,7 +993,7 @@ msgstr "Tir ami : %(enabled)s"
 #: gui/common/tooltips.js:341
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr "%(label)s: %(garrisonLimit)s"
+msgstr "%(label)s : %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
@@ -1248,7 +1248,7 @@ msgstr "Cette sauvegarde nécessite une version plus ancienne de 0 A.D."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr "Cette sauvegarde nécessite un ensemble de mods différent:"
+msgstr "Cette sauvegarde nécessite un ensemble de mods différent :"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1286,7 +1286,7 @@ msgstr "Max : %(max)s"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr "Valeur : %(val)s (min: %(min)s, max: %(max)s)"
+msgstr "Valeur : %(val)s (min : %(min)s, max : %(max)s)"
 
 #: gui/options/options.js:299
 msgid ""
@@ -1296,7 +1296,7 @@ msgstr "Remettre les options à zéro va effacer vos paramètres enregistrés. V
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "Des valeurs dans les options sont invalides ! Êtes-vous sur de vouloir les sauvegarder ?"
+msgstr "Des valeurs dans les options sont invalides ! Êtes-vous sûrs de vouloir les sauvegarder ?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1306,12 +1306,12 @@ msgstr "Vous avez des modifications non enregistrées, voulez-vous fermer cette 
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s : Voir la structure en arbre des civilisations existantes dans 0 A.D."
+msgstr "%(hotkey)s : Voir l'arbre technologique des civilisations présentes dans 0 A.D."
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: En apprendre sur les nombreuses civilisations qui se retrouvent dans 0 A.D."
+msgstr "%(hotkey)s : En apprendre plus sur les nombreuses civilisations présentes dans 0 A.D."
 
 #: gui/pregame/mainmenu.js:49
 #, javascript-format
@@ -1384,7 +1384,7 @@ msgstr "Manuel"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr "Conditions d'utilisation"
+msgstr "Conditions d'Utilisation"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1392,7 +1392,7 @@ msgstr "Veuillez lire et accepter les conditions d'utilisation du Retour d'Usage
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr "Parutions"
+msgstr "Publications"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -1649,7 +1649,7 @@ msgstr "Partie non classée."
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Filtrez les replays en saisissant un ou plusieurs noms de joueurs partiaux ou complets."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -2684,7 +2684,7 @@ msgstr "Si vous le désactivez, l'écran d'accueil apparait tout de même lorsqu
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
-msgstr "Activer l'écran d'accueil"
+msgstr "Activer la page de bienvenue"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2745,7 +2745,7 @@ msgstr "Désactivé"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Autoriser tout le monde ou seulement ses amis à rejoindre la partie après son lancement en temps qu'observateur."
+msgstr "Autoriser tout le monde ou seulement ses amis à rejoindre la partie après qu'elle ait commencé."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -3589,7 +3589,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "CASERNES"
+msgstr "CASERNE"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
@@ -3874,7 +3874,7 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr "ARCHITECTURE PERSANE"
+msgstr "ARCHITECTURE PERSE"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
@@ -4118,7 +4118,7 @@ msgstr ""
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr "VIRIATO"
+msgstr "VIRIATE"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."

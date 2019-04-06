@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-29 09:46+0100\n"
-"PO-Revision-Date: 2019-03-29 15:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-02 11:26+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,11 +548,11 @@ msgstr "Almafa"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bambusz"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "Banyán"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
@@ -561,15 +561,15 @@ msgstr "Majomkenyérfa"
 
 #: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "Majomkenyérfa csemete"
 
 #: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr ""
+msgstr "Fiatal majomkenyérfa"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Halott majomkenyérfa"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -577,16 +577,16 @@ msgstr "Szentjánoskenyérfa"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Atlaszcédrus csemete"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Atlaszcédrus"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Halott atlaszcédrus"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -601,6 +601,10 @@ msgstr "Ciprusfa"
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
 msgstr "Datolyapálma"
+
+#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
+msgid "Fruiting Date Palm"
+msgstr "Gyümölcsöző datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
@@ -621,11 +625,11 @@ msgstr "Füge szüretelése élelemért."
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Jegenyefenyő csemete"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Mangrove"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -649,11 +653,11 @@ msgstr "Olajfa"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
-msgstr ""
+msgstr "Mézeskalács-pálma"
 
 #: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
 msgid "Palmyra Palm"
-msgstr ""
+msgstr "Palmira-pálma"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -671,7 +675,7 @@ msgstr "Fenyő"
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "Feketefenyő"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -1074,7 +1078,7 @@ msgstr "Kém"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "At least 16 melee infantry units required."
-msgstr ""
+msgstr "Legalább 16 közelharci gyalogos egység szükséges."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1086,7 +1090,7 @@ msgstr "Harcvonal"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "At least 4 units required."
-msgstr ""
+msgstr "Legalább 4 egység szükséges."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1102,7 +1106,7 @@ msgstr "Nyílt oszlop"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "At least 8 units required."
-msgstr ""
+msgstr "Legalább 8 karakter szükséges."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1122,7 +1126,7 @@ msgstr "Nincs"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "At least 10 hoplite infantry required."
-msgstr ""
+msgstr "Legalább 10 hoplita gyalogos szükséges."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1134,7 +1138,7 @@ msgstr "Szétszóródás"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Only ranged units allowed."
-msgstr ""
+msgstr "Csak távolsági egységek engedélyezettek."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1142,7 +1146,7 @@ msgstr "Csatározás"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "At least 16 pike infantry units required."
-msgstr ""
+msgstr "Legalább 16 pikás gyalogos egység szükséges."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1154,7 +1158,7 @@ msgstr "Teknős"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "At least 6 cavalry units required."
-msgstr ""
+msgstr "Legalább 6 lovassági egység szükséges."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

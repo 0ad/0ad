@@ -32,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-04 09:43+0100\n"
-"PO-Revision-Date: 2019-03-07 06:59+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-04-04 12:17+0000\n"
+"Last-Translator: 杜茂森 <dumaosen_main01@outlook.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,8 +84,8 @@ msgid ""
 msgstr "希腊人很擅长同化异族人。在希腊文化的高峰期，希腊语是世界的通用语言，从西班牙到印度它都被广泛使用。"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "船只建造速度加快 25%"
+msgid "Allied warships −25% construction time."
+msgstr "盟军战舰 - 建造时间为25％。"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -334,8 +334,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "凯尔特人的宗教信仰和德鲁伊人激发了他们好战心态。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "为盟军治疗-20％的资源成本"
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -579,8 +579,8 @@ msgid ""
 msgstr "与伊比利亚半岛不同，北非以盛产马匹而知名，能够每年生产多达100,000个新坐骑。这里也是北非森林大象的家园。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "己方盟友间的贸易利润+10%。"
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -786,8 +786,8 @@ msgid "Gauls"
 msgstr "高卢"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "同盟的科技研究时间-10%。"
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -986,10 +986,8 @@ msgid ""
 msgstr "同北非的努米底亚不同，伊比利亚半岛被称为“马国”，每年能够生产多达100,000匹新坐骑。"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "盟友的公民步骑兵花费 -20%"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1187,10 +1185,8 @@ msgid "Elephant Suppliers"
 msgstr "战象供应"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "库什的盟友战象的花费与训练时间- 20% "
+msgid "Allied elephants −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1254,9 +1250,9 @@ msgstr "纪念建筑"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "市政中心、神庙、金字塔和奇观： +50 HP，-50%建造时间。"
+msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1399,8 +1395,8 @@ msgid ""
 msgstr "希腊人非常成功地希腊化了许多外国人。在那一段古希腊文明，希腊语从西班牙传布至印度。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "市场里+20%货物售价"
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1660,8 +1656,10 @@ msgid ""
 msgstr "刹帝利或 Kashtriya,意思是战士,是四个印度教种姓(社会阶级)其中之一。传统上来说,刹帝利在印度教社会系统中构成了军队及统治阶级的精锐,在吠陀经及摩奴法典中所描述。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "同盟的神庙和神庙科技-50%资源花费和建造时间。"
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1834,8 +1832,8 @@ msgid ""
 msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精锐部队以外，波斯步兵不是职业的常备军。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "所有盟友的陆路商人收入 +15% 。"
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2049,6 +2047,7 @@ msgid "Mercenary Army"
 msgstr "雇佣军"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2079,8 +2078,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "可以捕捉大象和骆驼，来降低骑兵的生产成本。"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "缓慢增加盟友的食物收益。"
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2235,18 +2234,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "须在中立区修建。无领土半径的影响。训练全部“雇佣军”单位。"
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "希腊─马其顿托勒密王朝依靠大量的希腊及外国雇佣兵作为大多数的军事力量，主要是因为怀疑当地的埃及部队的忠诚度。事实上，在一次当地的反抗以后，上埃及便脱离了托勒密的掌控几十年。佣兵们往往久经沙场，而他们的忠诚可以用钱买到，有时便宜，有时昂贵。这并不重要，因为托勒密埃及是所有亚历山大继业者的国家里最富有的。"
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "灯塔"
@@ -2312,8 +2299,8 @@ msgid ""
 msgstr "在古时的世界罗马国籍很受尊重。罗马公民被赋予了其他被征服的民族没有的基本权利和特权。据说，伤害一个罗马公民就是以罗马为敌，整个罗马都会团结在一起来制住施暴者。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20％的同盟步兵训练时间。"
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2522,8 +2509,8 @@ msgid ""
 msgstr "在继业者战争中，塞琉古逐步向东发展。并与东方的新起之秀如如帕提亚接壤。就像在巴克特里亚，经常发生叛乱，促使塞琉古改变战术，特别是改进骑兵武器。其后与西方的罗马人的战争，及加反抗拉太人的入侵，都迫使塞琉古改革步兵军团，以适应灵活作战。"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "同盟的市政中心花费 -20% 。"
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2812,10 +2799,8 @@ msgid ""
 msgstr "根据被赋予神权的莱克格斯制定的宪法，确立了斯巴达教育制度。男孩在6岁前是由双亲抚养的，但其父母从小则会训练他们成为独立坚强的战士，甚至有点冷酷无情。7岁后便会编入团队进行军事训练。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "为斯巴达玩家的盟友+10%民兵步兵生命值"
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
