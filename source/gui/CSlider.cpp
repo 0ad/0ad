@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,6 +44,17 @@ CSlider::~CSlider()
 {
 }
 
+float CSlider::GetSliderRatio() const
+{
+	return (m_MaxValue - m_MinValue) / (m_CachedActualSize.GetWidth() - m_ButtonSide);
+}
+
+void CSlider::IncrementallyChangeValue(const float difference)
+{
+	m_Value = Clamp(m_Value + difference, m_MinValue, m_MaxValue);
+	UpdateValue();
+}
+
 void CSlider::HandleMessage(SGUIMessage& Message)
 {
 	switch (Message.type)
@@ -61,25 +72,22 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	{
 		if (m_IsPressed)
 			break;
-		m_Value = std::max(m_Value - 0.01f, m_MinValue);
-		UpdateValue();
+		IncrementallyChangeValue(-0.01f);
 		break;
 	}
 	case GUIM_MOUSE_WHEEL_UP:
 	{
 		if (m_IsPressed)
 			break;
-		m_Value = std::min(m_Value + 0.01f, m_MaxValue);
-		UpdateValue();
+		IncrementallyChangeValue(0.01f);
 		break;
 	}
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		if (GetButtonRect().PointInside(GetMousePos()))
-		{
-			m_Mouse = GetMousePos();
-			m_IsPressed = true;
-		}
+		m_Mouse = GetMousePos();
+		m_IsPressed = true;
+
+		IncrementallyChangeValue((m_Mouse.x - GetButtonRect().CenterPoint().x) * GetSliderRatio());
 		break;
 	}
 	case GUIM_MOUSE_RELEASE_LEFT:
@@ -93,11 +101,9 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 			m_IsPressed = false;
 		if (m_IsPressed)
 		{
-			float ratio = (m_MaxValue - m_MinValue) / (m_CachedActualSize.GetWidth() - m_ButtonSide);
-			float difference = float(GetMousePos().x - m_Mouse.x) * ratio;
+			float difference = float(GetMousePos().x - m_Mouse.x) * GetSliderRatio();
 			m_Mouse = GetMousePos();
-			m_Value = Clamp(m_Value + difference, m_MinValue, m_MaxValue);
-			UpdateValue();
+			IncrementallyChangeValue(difference);
 		}
 		break;
 	}
@@ -127,7 +133,7 @@ void CSlider::Draw()
 }
 
 void CSlider::UpdateValue()
-{	
+{
 	GUI<float>::SetSetting(this, "value", m_Value);
 	ScriptEvent("valuechange");
 }
