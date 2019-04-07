@@ -792,8 +792,6 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 			if (!pCaption->empty() && m_iBufferPos < (int)pCaption->length())
 			{
-				CStrW searchString = *pCaption;
-
 				// Select chars to the right until we hit whitespace
 				while (++m_iBufferPos < (int)pCaption->length())
 				{
