@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="a">
+      <textures>
+        <texture file="gaia/stonequarry_desert.png" name="baseTex"/>
+        <texture file="gaia/stonequarry_desert_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/stone_quarried_1.dae</mesh>
+      <textures>
+        <texture file="gaia/stone_quarried_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/stone_quarried_2.dae</mesh>
+      <textures>
+        <texture file="gaia/stone_quarried_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/stone_quarried_3.dae</mesh>
+      <textures>
+        <texture file="gaia/stone_quarried_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="4">
+      <mesh>gaia/stone_quarried_4.dae</mesh>
+      <textures>
+        <texture file="gaia/stone_quarried_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax.xml</material>
+</actor>
