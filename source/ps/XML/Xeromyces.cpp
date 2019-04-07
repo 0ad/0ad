@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -377,7 +377,6 @@ PSRETURN CXeromyces::CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer)
 	// Version
 	writeBuffer.Append(&XMBVersion, 4);
 
-	std::set<std::string>::iterator it;
 	u32 i;
 
 	// Find the unique element/attribute names
