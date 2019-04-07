@@ -850,7 +850,7 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 	}
 	else
 	{
-		/* During the initialization process, we recieve join messages for everyone
+		/* During the initialization process, we receive join messages for everyone
 		 * currently in the room. We don't want to display these, so we filter them
 		 * out. We will always be the last to join during initialization.
 		 */

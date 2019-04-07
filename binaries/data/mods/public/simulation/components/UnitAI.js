@@ -2812,7 +2812,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!oldData.autocontinue)
 					return;
 
-				// If this building was e.g. a farm of ours, the entities that recieved
+				// If this building was e.g. a farm of ours, the entities that received
 				// the build command should start gathering from it
 				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
