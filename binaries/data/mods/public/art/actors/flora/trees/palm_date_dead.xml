@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="3" name="base">
+      <textures>
+        <texture file="gaia/palm_date_new_norm.png" name="normTex"/>
+        <texture file="gaia/palm_date_new_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="a">
+      <textures>
+        <texture file="gaia/palm_dead.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="1">
+      <mesh>gaia/palm_dead_1.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/palm_dead_2.dae</mesh>
+    </variant>
+    <variant frequency="2" name="3">
+      <mesh>gaia/palm_dead_3.dae</mesh>
+    </variant>
+    <variant frequency="4" name="4">
+      <mesh>gaia/palm_dead_4.dae</mesh>
+    </variant>
+    <variant frequency="4" name="5">
+      <mesh>gaia/palm_dead_5.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

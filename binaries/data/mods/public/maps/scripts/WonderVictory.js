@@ -3,7 +3,7 @@ Trigger.prototype.WonderVictoryEntityRenamed = function(data)
 	if (this.wonderVictoryMessages[data.entity] && Engine.QueryInterface(data.newentity, IID_Wonder))
 	{
 		// When an entity is renamed, we first create a new entity,
-		// which in case it is a wonder will recieve a timer.
+		// which in case it is a wonder will receive a timer.
 		// However on a rename we want to use the timer from the old entity,
 		// so we need to remove the timer of the new entity.
 		this.WonderVictoryDeleteTimer(data.newentity);

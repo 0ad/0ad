@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2019-04-07T14:52:54</created>
+    <modified>2019-04-07T14:52:54</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="Cube_008-mesh" name="Cube.008">
+      <mesh>
+        <source id="Cube_008-mesh-positions">
+          <float_array id="Cube_008-mesh-positions-array" count="24">2.500272 2.52417 -8.692635 2.500272 2.52417 1.569314 0.3653401 -3.150034 -8.692635 0.3653401 -3.150034 1.32055 -1.516477 3.746216 -8.692635 -1.516477 3.746216 1.569314 -2.985881 -3.061007 -8.692635 -2.985881 -3.061007 1.32055</float_array>
+          <technique_common>
+            <accessor source="#Cube_008-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_008-mesh-normals">
+          <float_array id="Cube_008-mesh-normals-array" count="30">0.9359433 -0.3521507 0 -0.02655619 -0.9996474 0 -0.9774862 0.2109997 0 0.2910651 0.9567033 0 -9.64538e-4 -0.03631174 0.9993401 0.9359434 -0.3521506 0 -0.02655619 -0.9996474 0 -0.9774862 0.2109998 0 0.2910651 0.9567033 0 -0.01195806 -0.03930497 0.9991558</float_array>
+          <technique_common>
+            <accessor source="#Cube_008-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_008-mesh-map-0">
+          <float_array id="Cube_008-mesh-map-0-array" count="60">0.9882124 0.003365874 0.7424221 0.392234 0.7419808 0.003645479 0.7424221 0.392234 0.4957491 0.003925085 0.7419808 0.003645479 0.4961905 0.3925136 0.2495176 0.004204571 0.4957491 0.003925085 0.2499588 0.3927931 0.003286063 0.004484176 0.2495176 0.004204571 0.004006683 0.6393043 0.2499588 0.3927931 0.2502383 0.6390247 0.9882124 0.003365874 0.9886537 0.3919544 0.7424221 0.392234 0.7424221 0.392234 0.4961905 0.3925136 0.4957491 0.003925085 0.4961905 0.3925136 0.2499588 0.3927931 0.2495176 0.004204571 0.2499588 0.3927931 0.003727078 0.3930727 0.003286063 0.004484176 0.004006683 0.6393043 0.003727078 0.3930727 0.2499588 0.3927931</float_array>
+          <technique_common>
+            <accessor source="#Cube_008-mesh-map-0-array" count="30" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_008-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_008-mesh-positions"/>
+        </vertices>
+        <triangles count="10">
+          <input semantic="VERTEX" source="#Cube_008-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_008-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_008-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 3 0 1 2 0 2 3 1 3 6 1 4 2 1 5 7 2 6 4 2 7 6 2 8 5 3 9 0 3 10 4 3 11 3 4 12 5 4 13 7 4 14 0 5 15 1 5 16 3 5 17 3 6 18 7 6 19 6 6 20 7 7 21 5 7 22 4 7 23 5 8 24 1 8 25 0 8 26 3 9 27 1 9 28 5 9 29</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Cube_008" name="Cube_008" type="NODE">
+        <matrix sid="transform">-4.37114e-8 -1 0 0 1 -4.37114e-8 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_008-mesh" name="Cube_008"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
