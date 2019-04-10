@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/helmets/hele_iar_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
@@ -12,8 +12,53 @@
         <prop actor="props/units/quiver_greek_back.xml" attachpoint="back"/>
         <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield_arm"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="psiloi-original">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <textures>
         <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-1">
+      <textures>
+        <texture file="skeletal/hele_psiloi_padded_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-2">
+      <textures>
+        <texture file="skeletal/hele_psiloi_padded_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-3">
+      <textures>
+        <texture file="skeletal/hele_psiloi_padded_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-4">
+      <textures>
+        <texture file="skeletal/hele_psiloi_padded_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-5">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_7.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-6">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_4.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-7">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="psiloi-8">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_10.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
