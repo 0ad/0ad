@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant file="biped/base_hoplite.xml">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
@@ -12,6 +12,64 @@
       </props>
       <textures>
         <texture file="skeletal/athen_epilektos_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="epilektoi-original">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/athen_epilektos_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-1">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-2">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-3">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_3.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-4">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_4.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-5">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_5.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-6">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_6.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-7">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_7.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-8">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_8.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-9">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-10">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_10.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
