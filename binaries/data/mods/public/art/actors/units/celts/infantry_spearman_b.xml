@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -12,29 +12,65 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Clothes-1">
+    <variant name="Clothes-1">
       <textures>
         <texture file="skeletal/celt_isw_b_01.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Clothes-2">
+    <variant name="Clothes-2">
       <textures>
         <texture file="skeletal/celt_isw_b_02.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Clothes-3">
+    <variant name="Clothes-3">
       <textures>
         <texture file="skeletal/celt_isw_b_03.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Clothes-4">
+    <variant name="Clothes-4">
       <textures>
         <texture file="skeletal/celt_isw_b_04.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="Clothes-5">
+    <variant name="Clothes-5">
       <textures>
         <texture file="skeletal/celt_ijv_b_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pants-basic-1">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/gaul_pants_basic_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pants-basic-2">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/gaul_pants_basic_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pants-basic-3">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/gaul_pants_basic_3.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pants-basic-4">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/gaul_pants_basic_4.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pants-basic-5">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/gaul_pants_basic_5.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pants-basic-6">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/gaul_pants_basic_6.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
