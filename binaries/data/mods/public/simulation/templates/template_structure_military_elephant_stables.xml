@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <BuildRestrictions>
-    <Category>Barracks</Category>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>300</BuildTime>
     <Resources>
@@ -18,11 +15,8 @@
   </Footprint>
   <GarrisonHolder>
     <Max>5</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Elephant</List>
     <BuffHeal>1</BuffHeal>
-    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>3000</Max>
@@ -58,9 +52,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Root>false</Root>
     <Radius>38</Radius>
-    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

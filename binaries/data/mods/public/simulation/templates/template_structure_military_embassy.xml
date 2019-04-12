@@ -27,11 +27,8 @@
   </Footprint>
   <GarrisonHolder>
     <Max>6</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry</List>
     <BuffHeal>1</BuffHeal>
-    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>
@@ -61,9 +58,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Root>false</Root>
     <Radius>25</Radius>
-    <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>24</Range>

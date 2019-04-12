@@ -3,9 +3,6 @@
   <Auras datatype="tokens">
     structures/workshop_repair
   </Auras>
-  <BuildRestrictions>
-    <Category>Barracks</Category>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -18,11 +15,7 @@
   </Footprint>
   <GarrisonHolder>
     <Max>2</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Siege</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>
@@ -67,9 +60,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Root>false</Root>
     <Radius>38</Radius>
-    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

@@ -56,9 +56,7 @@
   <GarrisonHolder>
     <Max>20</Max>
     <EjectHealth>0.075</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry Siege</List>
-    <BuffHeal>0</BuffHeal>
     <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
@@ -103,9 +101,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Root>false</Root>
     <Radius>100</Radius>
-    <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>80</Range>
