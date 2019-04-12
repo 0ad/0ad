@@ -10,6 +10,7 @@
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# ks k, 2019
 # llen_llen, 2014,2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # sang gyu nam <destro0419@naver.com>, 2018
@@ -19,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-04-04 04:34+0000\n"
+"PO-Revision-Date: 2019-04-10 14:38+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +114,7 @@ msgstr "불러오기 중단"
 
 #: gui/common/functions_utility.js:30
 msgid "Gaia"
-msgstr "가이아"
+msgstr "가이아EHSMS대자연"
 
 #: gui/common/functions_utility.js:103
 msgctxt "map selection"
@@ -370,7 +371,7 @@ msgstr "최후 생존자"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Only one player can win the game. If the remaining players are allies, the game continues until only one remains."
+msgstr "오직 한 명의 선수만 경기에서 이길 수 있습니다. 남은 선수가 동맹일 경우 경기는 한명만 남을 때까지 경기는 지속됩니다."
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
@@ -380,7 +381,7 @@ msgstr "우리편 승리"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "If one player wins, his or her allies win too. If one group of allies remains, they win."
+msgstr "한 선수라도 이기면 동맹도 이기게 됩니다. 한 무리의 동맹이 남아 있으면 그들은 승리합니다."
 
 #: gui/common/gamedescription.js:326
 msgid "Ceasefire"
@@ -525,22 +526,22 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "Losing connection to server (%(seconds)ss)"
+msgstr "서버에 대한 연결이 (%(seconds)s 초) 동안 끊어짐"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr "%(player)s losing connection (%(seconds)ss)"
+msgstr "%(player)s 님의 연결이 (%(seconds)s 초) 끊어짐"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "Bad connection to server (%(milliseconds)sms)"
+msgstr "서버 연결 불량 (%(milliseconds)s 밀리초)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Bad connection to %(player)s (%(milliseconds)sms)"
+msgstr "%(player)s에 대한 연결이 잘못되었습니다 (%(milliseconds)s 밀리초)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
@@ -551,7 +552,7 @@ msgstr "알수 없는 이유"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr "This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall, or anti-virus software"
+msgstr "이는 UDP 포트 20595가 호스트 측, 방화벽 또는 바이러스 백신 소프트웨어에서 전달되지 않는 경우가 많습니다"
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
@@ -559,15 +560,15 @@ msgstr "호스트가 놀이를 끝냈습니다"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
-msgstr "Incorrect network protocol version"
+msgstr "잘못된 네트워크 프로토콜 버전"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr "Game is loading, please try again later"
+msgstr "놀이가 불러오는 중이므로 나중에 다시 시도하십시오"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
-msgstr "Game has already started, no observers allowed"
+msgstr "놀이가 이미 시작되었으므로 관찰자가 허용되지 않음"
 
 #: gui/common/network.js:72
 msgid "You have been kicked"
@@ -579,7 +580,7 @@ msgstr "당신은 차단당했습니다"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Playername in use. If you were disconnected, retry in few seconds"
+msgstr "사용 중인 선수 이름 입니다. 연결이 끊어진 경우 몇 초 후에 다시 시도하십시오"
 
 #: gui/common/network.js:75
 msgid "Server full"
@@ -587,12 +588,12 @@ msgstr "서버가 가득찼습니다"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "Secure lobby authentication failed. Join via lobby"
+msgstr "보안 앞마당 인증에 실패했습니다. 앞마당을 통해 가입하십시오"
 
 #: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "\\[Invalid value %(id)s]"
+msgstr "\\[잘못된 값 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:91
@@ -602,11 +603,11 @@ msgstr "이유: %(reason)s."
 
 #: gui/common/network.js:96
 msgid "Lost connection to the server."
-msgstr "Lost connection to the server."
+msgstr "서버에 대한 연결이 끊어졌습니다."
 
 #: gui/common/network.js:97
 msgid "Failed to connect to the server."
-msgstr "Failed to connect to the server."
+msgstr "서버에 연결하는 데 실패했습니다."
 
 #: gui/common/network.js:99
 msgid "Disconnected"
@@ -711,7 +712,7 @@ msgstr "척후병"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "미리 정의된 풍경과 선수명수가 있는 지도입니다. 다른 놀이 설정을 자유롭게 선택하십시오."
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -722,7 +723,7 @@ msgstr "아무거나"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "매번 다른 자원 분배로 고유 한 지도를 작성하십시오. 선수와 편의 수를 자유롭게 선택하십시오."
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -731,7 +732,7 @@ msgstr "시나리오"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "미리 정의된 풍경과 일치 설정이 있는 지도입니다."
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
@@ -785,11 +786,11 @@ msgstr "포위 공격:"
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "원형 범위 피해"
 
 #: gui/common/tooltips.js:21
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "선형 범위 피해"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -981,18 +982,18 @@ msgstr "기본값"
 #: gui/common/tooltips.js:387
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr "부대 당??"
+msgstr "유닛 당"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr ""
+msgstr "수리 갯수:"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "다른 작업자를 추가하여 수리 속도를 %(second)s 초 단축하십시오."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
@@ -1033,7 +1034,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "자원 흐름??:"
 
 #: gui/common/tooltips.js:524
 #, javascript-format
@@ -1384,7 +1385,7 @@ msgstr "0 A.D.를 개선시키는데 도움을 주셔서 감사합니다!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "피드백은 현재 활성화되어 있습니다."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -2719,7 +2720,7 @@ msgstr "대화 시간 출력"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr "장군??"
+msgstr "일반"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
