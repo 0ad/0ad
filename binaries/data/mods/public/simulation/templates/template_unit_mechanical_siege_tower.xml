@@ -8,12 +8,15 @@
       <MaxRange>55.0</MaxRange>
       <MinRange>10.0</MinRange>
       <ElevationBonus>10</ElevationBonus>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
-      <Spread>2.0</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <Speed>75.0</Speed>
+        <Spread>2.0</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
       <RangeOverlay>
         <LineTexture>outline_border.png</LineTexture>

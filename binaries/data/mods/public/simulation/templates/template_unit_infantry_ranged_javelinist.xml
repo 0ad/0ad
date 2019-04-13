@@ -11,10 +11,12 @@
       <Crush>0</Crush>
       <MaxRange>24.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <ProjectileSpeed>62.5</ProjectileSpeed>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1250</RepeatTime>
-      <Spread>4.0</Spread>
+      <Projectile>
+        <Speed>62.5</Speed>
+        <Spread>4.0</Spread>
+      </Projectile>
     </Ranged>
   </Attack>
   <Cost>

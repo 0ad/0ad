@@ -7,11 +7,8 @@
       <Crush>100.0</Crush>
       <MaxRange>72.0</MaxRange>
       <MinRange>10.0</MinRange>
-      <ProjectileSpeed>37.5</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>2000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
-      <Spread>4.0</Spread>
       <Delay>0</Delay>
       <Splash>
         <Shape>Circular</Shape>
@@ -21,6 +18,12 @@
         <Pierce>15.0</Pierce>
         <Crush>35.0</Crush>
       </Splash>
+      <Projectile>
+        <Speed>37.5</Speed>
+        <Spread>4.0</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <PreferredClasses datatype="tokens">Ship Structure</PreferredClasses>
     </Ranged>
   </Attack>

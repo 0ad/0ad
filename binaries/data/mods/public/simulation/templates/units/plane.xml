@@ -7,12 +7,15 @@
       <Crush>227.0</Crush>
       <MaxRange>120</MaxRange>
       <MinRange>80</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>0</PrepareTime>
       <RepeatTime>10000</RepeatTime>
-      <Spread>1.0</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <Speed>75.0</Speed>
+        <Spread>1.0</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
     </Ranged>
   </Attack>
   <BuildingAI>

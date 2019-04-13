@@ -7,9 +7,6 @@
       <Crush>25.0</Crush>
       <MaxRange>80.0</MaxRange>
       <MinRange>26.0</MinRange>
-      <Spread>2.0</Spread>
-      <ProjectileSpeed>150.0</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>3000</PrepareTime>
       <RepeatTime>4000</RepeatTime>
       <Delay>0</Delay>
@@ -21,6 +18,12 @@
         <Pierce>75.0</Pierce>
         <Crush>5.0</Crush>
       </Splash>
+      <Projectile>
+        <Speed>150.0</Speed>
+        <Spread>2.0</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <PreferredClasses datatype="tokens">Human Siege</PreferredClasses>
     </Ranged>
   </Attack>
