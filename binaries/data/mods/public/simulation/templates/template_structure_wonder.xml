@@ -47,6 +47,7 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Wonder</GenericName>
     <Tooltip>Bring glory to your civilization and add large tracts of land to your empire.</Tooltip>
     <VisibleClasses datatype="tokens">City Wonder</VisibleClasses>

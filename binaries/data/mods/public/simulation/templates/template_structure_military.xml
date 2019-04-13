@@ -10,8 +10,23 @@
       <Crush>1</Crush>
     </Foundation>
   </Armour>
+  <BuildRestrictions>
+    <Category>Military</Category>
+  </BuildRestrictions>
+  <GarrisonHolder>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
   <Identity>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Military Structure</GenericName>
     <VisibleClasses datatype="tokens">Military</VisibleClasses>
   </Identity>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>50</Radius>
+    <Weight>40000</Weight>
+  </TerritoryInfluence>
 </Entity>

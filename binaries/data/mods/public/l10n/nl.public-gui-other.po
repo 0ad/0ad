@@ -7,12 +7,14 @@
 # annihilator solar <incoming@upcmail.nl>, 2019
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
-# bb jansen <b.jansen5@students.uu.nl>, 2018
+# bb <b.jansen5@students.uu.nl>, 2019
+# bb <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Ellen Roels, 2015
 # Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Freagarach . <freagarach@gmail.com>, 2019
 # 魔大农, 2015
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
@@ -33,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-03-22 15:12+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"PO-Revision-Date: 2019-04-11 15:58+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +113,7 @@ msgstr "Sneltoets niet toegewezen: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Druk op %(hotkey)s om spelersnamen automatisch aan te vullen."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -808,11 +810,11 @@ msgstr "Verover Aanval"
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Circulaire Omgevingsschade"
 
 #: gui/common/tooltips.js:21
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Lineaire Omgevingsschade"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -1065,7 +1067,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Grondstoffen Bonus:"
 
 #: gui/common/tooltips.js:524
 #, javascript-format
@@ -1369,7 +1371,7 @@ msgstr "Handleiding"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Gebruikersvoorwaarden"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1377,7 +1379,7 @@ msgstr ""
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Publicaties"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -2127,7 +2129,7 @@ msgstr "Niet-opgeslagen veranderingen hebben alleen effect op deze sessie"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alfa XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2437,7 +2439,7 @@ msgstr "Type:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Bekijk Herhaling"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"

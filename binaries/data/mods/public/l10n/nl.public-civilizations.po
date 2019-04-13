@@ -11,6 +11,7 @@
 # BoucheDag <bouche4dag@gmail.com>, 2014
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # ClementL <lewisclement@gmail.com>, 2014
+# Freagarach . <freagarach@gmail.com>, 2019
 # Ilya <ilya.crols@gmail.com>, 2014
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Jos Arends <Tekno23@hotmail.nl>, 2014
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-01 10:07+0200\n"
-"PO-Revision-Date: 2019-04-01 16:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-11 15:50+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +88,7 @@ msgstr "De Grieken waren erg succesvol in de Hellenisatie van ettelijke andere g
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied warships −25% construction time."
-msgstr ""
+msgstr "Geallieerde aanvalsschepen -25% bouwtijd."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -337,7 +338,7 @@ msgstr "Keltische religie inspireerde hun moed om te vechten."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied healers −20% resource costs."
-msgstr ""
+msgstr "Geallieerde helers kosten -20% grondstoffen."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -582,7 +583,7 @@ msgstr "Zoals het Iberische schiereiland was Noord Afrika gekend als paardenland
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allied markets +10% international trade bonus."
-msgstr ""
+msgstr "Geallieerde markten +10% internationale bonus."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -789,7 +790,7 @@ msgstr "Gallië"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied structures −20% technology research time."
-msgstr ""
+msgstr "Technologieën in geallieerde gebouwen -20% onderzoekstijd."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -989,7 +990,7 @@ msgstr "Zoals Numidië in Noord-Afrika was ook het Iberische schiereiland gekend
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldier javelinists −20% resource costs."
-msgstr ""
+msgstr "Geallieerde burgersoldaat speerwerpers kosten -20% grondstoffen."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1153,13 +1154,13 @@ msgstr "Koesjiten "
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 msgid "The Pyramids of Meroe"
-msgstr ""
+msgstr "De Pyramides van Meroë."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 msgid ""
 "Building a Kushite pyramid increases Civic Center territory influence by "
 "+10% for each one built."
-msgstr ""
+msgstr "Het bouwen van een Koesjitische pyramide vergroot het territoriumbereik van een Stadscentrum met 10% per gebouwde pyramide."
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Name
 msgid "Mineral Deposits"
@@ -1169,7 +1170,7 @@ msgstr ""
 msgid ""
 "Kushite players receive a free extra Metal Mine somewhere in their home "
 "territory."
-msgstr ""
+msgstr "Koesjitische spelers ontvangen gratis een extra Metaalmijn ergens binnen hun startterritorium."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1188,7 +1189,7 @@ msgstr "Olifant Leveranciers"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Geallieerde olifanten kosten -20% grondstoffen en trainingstijd."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1254,7 +1255,7 @@ msgstr "Monumentale Architectuur"
 msgid ""
 "+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+50% Levenspunten en -50% bouwtijd voor Stadscentra, Tempels, Piramides en Wonderen."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1262,7 +1263,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Hoogepriester van Amun"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1294,18 +1295,18 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[0].Name
 msgid "Temple of Amun"
-msgstr ""
+msgstr "Tempel van Amun"
 
 #: simulation/data/civs/kush.jsonStructures[0].Special
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "De Koesjiten kunnen individuele Tempels opwaarderen tot Tempels van Amun, welke Napatan Tempel Bewakers kampioenen kunnen rekruteren alsmede eenheden vlugger kunnen herstellen."
 
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
 msgid "History."
-msgstr ""
+msgstr "Geschiedenis."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1315,11 +1316,11 @@ msgstr "Tempel van Apedemak"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "De Koesjiten kunnen individuele Tempels opwaarderen tot Tempels van Apedemak, welke Meroë Tempel Bewakers kampioenen kunnen rekruteren alsmede eenheden vlugger kunnen herstellen."
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr ""
+msgstr "Koesjitische Piramides"
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
@@ -1330,7 +1331,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr ""
+msgstr "De Koesjititen hebben meer dan 200 pyramides gebouwd in Nubië."
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -1398,7 +1399,7 @@ msgstr "De Grieken waren erg succesvol in de vergrieksing van ettelijke andere g
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "Allies +20% barter sell prices."
-msgstr ""
+msgstr " Geallieerden +20% verkoopprijzen van grondstoffen. "
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -2081,7 +2082,7 @@ msgstr "Kan gaia olifanten en kamelen vangen om de rekruteringskosten van dergel
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "Allies +1.0 food trickle rate."
-msgstr ""
+msgstr "Geallieerden +1.0 voedselbonus."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2302,7 +2303,7 @@ msgstr "Romeins burgerschap was veel waard in de klassieke oudheid. Basisrechten
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldier infantry −20% training time."
-msgstr ""
+msgstr "Geallieerde burgersoldaat voetsoldaten -20% trainingstijd."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2802,7 +2803,7 @@ msgstr "Onder de wetten geschreven door de mythische wetgever Lygurcus, werd het
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldier infantry spearmen +10% health."
-msgstr ""
+msgstr "Geallieerde burgersoldaat speerdragers -20% trainingstijd."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

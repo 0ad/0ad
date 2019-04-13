@@ -30,6 +30,7 @@
     <GenericName>Persian Special Building</GenericName>
     <SpecificName>Ishtar Gate of Babylon</SpecificName>
     <Tooltip>Increases the loyalty regeneration of nearby structures, making them harder to capture.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <Icon>structures/pers_gate.png</Icon>
   </Identity>
   <Loot>

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-04-04 04:28+0000\n"
+"PO-Revision-Date: 2019-04-10 14:33+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +258,7 @@ msgstr "계속 하기"
 
 #: gui/session/menu.js:1214 gui/session/menu.xml:(caption):87
 msgid "Pause"
-msgstr "멈춤"
+msgstr "일시중지"
 
 #: gui/session/menu.js:1218
 #, javascript-format
@@ -825,7 +825,7 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] "%(class)s 계급 %(number)s??"
+msgstr[0] "%(class)s 종류가 %(number)s 개"
 
 #: gui/session/selection_panels.js:753
 #, javascript-format
@@ -1393,7 +1393,7 @@ msgstr "놀이 일시 중지"
 
 #: gui/session/session.xml:(caption):69
 msgid "Click to Resume Game"
-msgstr "다시 하려면 누르세요"
+msgstr "놀이를 계속 진행 하려면 클릭하십시오"
 
 #: gui/session/top_panel.xml:(tooltip):23
 #: gui/session/top_panel.xml:(caption):29

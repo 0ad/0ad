@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-29 09:45+0100\n"
-"PO-Revision-Date: 2019-04-04 04:28+0000\n"
+"PO-Revision-Date: 2019-04-10 14:30+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "인구 제한을 선택하세요."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "경고??: %(players)s 명의 모든 선수가 %(popCap)s 명의 인구에 도달하면 성능 문제가 있을 수 있습니다."
+msgstr "경고: %(players)s 명의 모든 선수가 %(popCap)s 명의 인구에 도달하면 성능 문제가 있을 수 있습니다."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
@@ -445,7 +445,7 @@ msgstr "현재 설정으로 새 게임을 시작합니다 (모든 선수가 준�
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s : 역사/건물 도감 보기\n마지막으로 열리면 클릭 시 다시 열립니다."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 역사/건물 도감 보기\n마지막으로 열리면 클릭 시 다시 열립니다."
 
 #: gui/gamesetup/gamesetup.js:1107
 #, javascript-format
@@ -575,11 +575,11 @@ msgstr "서버에 등록하는 중"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:227
 msgid "Game has already started, rejoining..."
-msgstr "게임이 이미 시작되었습니다. 재가입 중"
+msgstr "놀이가 이미 시작되었습니다. 다시 가입 중"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:298
 msgid "Game name already in use."
-msgstr "게임명이 이미 사용중입니다."
+msgstr "놀이 이름이 이미 사용중입니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
@@ -875,7 +875,7 @@ msgstr "\"나를 위해 울지 말라, 내가 부당하게 고통당하는 것�
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr "\"섹스와 수면만으로는 내가 필멸의 존재임을 의식하게 됩니다.\" - 알렉산더 대왕 (플루타르크, \"플루타르코스 영웅전\", \"알렉산더\", 22항)"
+msgstr "\"섹스와 수면만으로는 내가 죽을 수 있다는 것을 깨닫게 된다.\" - 알렉산더 대왕 (플루타르크, \"플루타르코스 영웅전\", \"알렉산더\", 22항)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -999,7 +999,7 @@ msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr "\"나는 이것을 철학으로 얻었습니다. : 다른 사람이 율법을 두려워하여 일을 하지만, 나는 명령받지 않고 하는 것이다.\" - 아리스토텔레스 (디오게네스 라에르티오스, \"저명한 철학자들의 삶과 의견\", 아리스토텔레스, 20항)"
+msgstr "\"나는 이것을 철학으로 얻었습니다: 다른 사람이 율법을 두려워하여 일을 하지만, 나는 명령받지 않고 하는 것이다.\" - 아리스토텔레스 (디오게네스 라에르티오스, \"저명한 철학자들의 삶과 의견\", 아리스토텔레스, 20항)"
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -1042,7 +1042,7 @@ msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr "\"퀸틸리우스 바라스, 내 군대를 돌려줘!\" - 아우구스투스, 테우토부르크 숲 전투에서 3개 군단이 전멸한 후 (수에토니우스, \"신성 아우구스투스\", 23항)"
+msgstr "\"퀸틸리우스 바루스, 내 군대를 돌려줘!\" - 아우구스투스, 테우토부르크 숲 전투에서 3개 군단이 전멸한 후 (수에토니우스, \"신성 아우구스투스\", 23항)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -1412,31 +1412,31 @@ msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The "
 "Refutation of all Heresies\", IX. 4)"
-msgstr "\"War is the father and king of all things: some he has made gods, and some men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The Refutation of all Heresies\", IX. 4)"
+msgstr "\"War is the father and king of all things: some he has made gods, and some men; some slaves and some free.\" - 헤라클레이토스 (Hippolytus, \"The Refutation of all Heresies\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"You could not step twice into the same river.\" - Herakleitos (Plato, "
 "\"Cratylos\", 402a)"
-msgstr "\"You could not step twice into the same river.\" - Herakleitos (플라톤, \"Cratylos\", 402a)"
+msgstr "\"같은 강으로 두 번 걸을 수는 없다.\" - 헤라클레이토스 (플라톤, \"크라틸로스\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
 "Histories\", III. 52)"
-msgstr "\"It is better to be envied than to be pitied.\" - Herodotus (\"The 역사\", III. 52)"
+msgstr "\"불쌍히 여기기보다는 부러움을 사는 것이 낫다.\" - 헤로도토스 (\"역사\", 3권. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
 "122)"
-msgstr "\"In soft regions are born soft men.\" - Herodotus (\"The 역사\", IX. 122)"
+msgstr "\"부드러운 지역에서는 부드러운 사람이 태어난다.\" - 헤로도토스 (\"역사\", 4권. 122)"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr "\"This is the bitterest pain among men, to have much knowledge but no power.\" - Herodotus (\"The 역사\", IX. 16)"
+msgstr "\"지식은 많지만 힘이 없다는것은 사람들 사이에 괴로운 고통이다.\" - 헤로도토스 (\"역사\", 4권. 16)"
 
 #: gui/text/quotes.txt:100
 msgid ""
