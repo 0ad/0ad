@@ -75,7 +75,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				"Speed": 10,
 				"Spread": 2,
 				"Gravity": 1
-			}
+			},
 			"PreferredClasses": {
 				"_string": "Archer"
 			},
