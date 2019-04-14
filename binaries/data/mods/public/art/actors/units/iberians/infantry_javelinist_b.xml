@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -10,8 +10,32 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/shields/iberian_buckler_basic.xml" attachpoint="shield"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Tunic-1a">
       <textures>
-        <texture file="skeletal/iber_isw_b_3.dds" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-1b">
+      <textures>
+        <texture file="skeletal/iber_tunic_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-1c">
+      <textures>
+        <texture file="skeletal/iber_tunic_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-1d">
+      <textures>
+        <texture file="skeletal/iber_tunic_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-1e">
+      <textures>
+        <texture file="skeletal/iber_tunic_1_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

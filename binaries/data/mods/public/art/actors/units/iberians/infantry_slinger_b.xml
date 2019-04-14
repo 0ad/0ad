@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -12,14 +12,24 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic-brown">
+    <variant frequency="1" name="tunic-sleeveless-slinger-1a">
       <textures>
-        <texture file="skeletal/iber_isl_b_1.dds" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_sleeveless_slinger_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic-beige">
+    <variant frequency="1" name="tunic-sleeveless-slinger-1b">
       <textures>
-        <texture file="skeletal/iber_isl_b_2.dds" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_sleeveless_slinger_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-sleeveless-slinger-1c">
+      <textures>
+        <texture file="skeletal/iber_tunic_sleeveless_slinger_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-sleeveless-slinger-1d">
+      <textures>
+        <texture file="skeletal/iber_tunic_sleeveless_slinger_1_d.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/iber_scutum_isp_e.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
@@ -13,9 +13,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Scale-Mail">
+    <variant frequency="3" name="scale-chainmail-1a">
       <textures>
-        <texture file="skeletal/iber_isp_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/iber_scale_chainmail_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-chainmail-1b">
+      <textures>
+        <texture file="skeletal/iber_scale_chainmail_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-chainmail-1c">
+      <textures>
+        <texture file="skeletal/iber_scale_chainmail_1_c.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

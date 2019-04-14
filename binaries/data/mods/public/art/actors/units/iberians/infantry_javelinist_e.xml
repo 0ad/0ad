@@ -1,18 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Berru Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chainmail-javelinist-2a">
       <textures>
-        <texture file="skeletal/kart_ijv_e_2.dds" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_javelinist_2_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-javelinist-2b">
+      <textures>
+        <texture file="skeletal/iber_chainmail_javelinist_2_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-javelinist-2c">
+      <textures>
+        <texture file="skeletal/iber_chainmail_javelinist_2_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-javelinist-1a">
+      <textures>
+        <texture file="skeletal/iber_chainmail_javelinist_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-javelinist-1b">
+      <textures>
+        <texture file="skeletal/iber_chainmail_javelinist_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-javelinist-1c">
+      <textures>
+        <texture file="skeletal/iber_chainmail_javelinist_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-cardiopylax-champion-1a">
+      <textures>
+        <texture file="skeletal/iber_chainmail_cardiopylax_champion_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-cardiopylax-champion-1b">
+      <textures>
+        <texture file="skeletal/iber_chainmail_cardiopylax_champion_1_b.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -12,22 +12,28 @@
     </variant>
   </group>
   <group>
-    <variant frequency="2" name="armour-pectoral-1">
+    <variant frequency="1" name="armour-pectoral-1">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/iber_su_inf_1.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="armour-pectoral-2">
+    <variant frequency="1" name="armour-pectoral-2">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/iber_su_inf_2.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="armour-chainmail">
+    <variant frequency="1" name="armour-chainmail">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/iber_champ_inf_3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="padded-scale-1a">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/iber_padded_scale_1_a.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
