@@ -1130,35 +1130,9 @@ function doAction(action, ev)
 	if (!controlsPlayer(g_ViewedPlayer))
 		return false;
 
-	// If shift is down, add the order to the unit's order queue instead
-	// of running it immediately
-	var orderone = Engine.HotkeyIsPressed("session.orderone");
-	var queued = Engine.HotkeyIsPressed("session.queue");
-	var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-
-	if (g_UnitActions[action.type] && g_UnitActions[action.type].execute)
-	{
-		let selection = g_Selection.toList();
-		if (orderone)
-		{
-			// pick the first unit that can do this order.
-			let unit = selection.find(entity =>
-				["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
-					g_UnitActions[action.type][method] &&
-					g_UnitActions[action.type][method](action.target || undefined, [entity])
-				));
-			if (unit)
-			{
-				selection = [unit];
-				g_Selection.removeList(selection);
-			}
-		}
-		return g_UnitActions[action.type].execute(target, action, selection, queued);
-	}
-
-	error("Invalid action.type " + action.type);
-	return false;
+	return handleUnitAction(Engine.GetTerrainAtScreenPoint(ev.x, ev.y), action);
 }
+
 
 function positionUnitsFreehandSelectionMouseMove(ev)
 {
@@ -1251,18 +1225,40 @@ function handleMinimapEvent(target)
 	if (inputState != INPUT_NORMAL)
 		return false;
 
-	var fromMinimap = true;
-	var action = determineAction(undefined, undefined, fromMinimap);
+	let action = determineAction(undefined, undefined, true);
 	if (!action)
 		return false;
 
-	var selection = g_Selection.toList();
+	return handleUnitAction(target, action);
+}
 
-	var queued = Engine.HotkeyIsPressed("session.queue");
-	if (g_UnitActions[action.type] && g_UnitActions[action.type].execute)
-		return g_UnitActions[action.type].execute(target, action, selection, queued);
-	error("Invalid action.type " + action.type);
-	return false;
+function handleUnitAction(target, action)
+{
+	if (!g_UnitActions[action.type] || !g_UnitActions[action.type].execute)
+	{
+		error("Invalid action.type " + action.type);
+		return false;
+	}
+
+	let selection = g_Selection.toList();
+	if (Engine.HotkeyIsPressed("session.orderone"))
+	{
+		// Pick the first unit that can do this order.
+		let unit = selection.find(entity =>
+			["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
+				g_UnitActions[action.type][method] &&
+				g_UnitActions[action.type][method](action.target || undefined, [entity])
+			));
+		if (unit)
+		{
+			selection = [unit];
+			g_Selection.removeList(selection);
+		}
+	}
+
+	// If the session.queue hotkey is down, add the order to the unit's order queue instead
+	// of running it immediately
+	return g_UnitActions[action.type].execute(target, action, selection, Engine.HotkeyIsPressed("session.queue"));
 }
 
 function getEntityLimitAndCount(playerState, entType)
