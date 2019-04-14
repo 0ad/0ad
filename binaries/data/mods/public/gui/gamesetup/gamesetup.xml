@@ -79,7 +79,7 @@
 						sprite_over="iconResetWhite"
 						size="85%-16 0 85% 16"
 					>
-						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random)</translatableAttribute>
+						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random).</translatableAttribute>
 						<action on="Press">resetCivilizations();</action>
 					</object>
 
@@ -104,19 +104,13 @@
 						<object name="playerBox[n]" size="0 0 100% 32">
 							<object name="playerColor[n]" type="image" size="0 0 100% 100%"/>
 							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 22% 30"/>
-							<object name="playerColorPicker[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 22%+33 30" sprite="" scrollbar="false" button_width="22" font="sans-stroke-14" tooltip_style="onscreenToolTip">
-								<translatableAttribute id="tooltip">Pick a color.</translatableAttribute>
-							</object>
-							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+37 2 50%+35 30" tooltip_style="onscreenToolTip">
-								<translatableAttribute id="tooltip">Select player.</translatableAttribute>
-							</object>
+							<object name="playerColorPicker[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 22%+33 30" sprite="" scrollbar="false" button_width="22" font="sans-stroke-14" tooltip_style="onscreenToolTip"/>
+							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+37 2 50%+35 30" tooltip_style="onscreenToolTip"/>
 							<object name="playerAssignmentText[n]" type="text" style="ModernLabelText" size="22%+5 0 50%+35 30"/>
 							<object name="playerConfig[n]" type="button" style="StoneButton" size="50%+40 4 50%+64 28" tooltip_style="onscreenToolTip" font="sans-bold-stroke-12" sprite="ModernGear" sprite_over="ModernGearHover" sprite_pressed="ModernGearPressed"/>
 							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="50%+69 2 85% 30" tooltip_style="onscreenToolTip" dropdown_size="424"/>
 							<object name="playerCivText[n]" type="text" style="ModernLabelText" size="50%+65 0 85% 30"/>
-							<object name="playerTeam[n]" type="dropdown" style="ModernDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip">
-								<translatableAttribute id="tooltip">Select player's team.</translatableAttribute>
-							</object>
+							<object name="playerTeam[n]" type="dropdown" style="ModernDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip"/>
 							<object name="playerTeamText[n]" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%"/>
 						</object>
 					</repeat>
@@ -128,7 +122,7 @@
 				<object size="4 10 28 34" type="image" sprite="ModernGear"/>
 				<object name="aiTips" size="32 0 100%-20 100%-32" type="text" style="ModernLeftLabelText"/>
 				<object size="30 100%-30 100% 100%-8" type="text" style="ModernLeftLabelText">
-					<translatableAttribute id="caption">Show this message in the future</translatableAttribute>
+					<translatableAttribute id="caption">Show this message in the future.</translatableAttribute>
 				</object>
 				<object name="displaySPTips" size="8 100%-30 28 100%-8" type="checkbox" style="ModernTickBox">
 					<action on="Press">saveSettingAndWriteToUserConfig("gui.gamesetup.enabletips", String(this.checked));</action>

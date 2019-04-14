@@ -724,6 +724,7 @@ var g_Dropdowns = {
  */
 var g_PlayerDropdowns = {
 	"playerAssignment": {
+		"tooltip": (playerIdx) => translate("Select player."),
 		"labels": (playerIdx) => g_PlayerAssignmentList.Name || [],
 		"colors": (playerIdx) => g_PlayerAssignmentList.Color || [],
 		"ids": (playerIdx) => g_PlayerAssignmentList.Choice || [],
@@ -758,6 +759,7 @@ var g_PlayerDropdowns = {
 		"autocomplete": 100,
 	},
 	"playerTeam": {
+		"tooltip": (playerIdx) => translate("Select player's team."),
 		"labels": (playerIdx) => g_PlayerTeamList.label,
 		"ids": (playerIdx) => g_PlayerTeamList.id,
 		"default": (playerIdx) => 0,
@@ -769,7 +771,7 @@ var g_PlayerDropdowns = {
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 	},
 	"playerCiv": {
-		"tooltip": (hoverIdx, playerIdx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Choose the civilization for this player"),
+		"tooltip": (hoverIdx, playerIdx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Choose the civilization for this player."),
 		"labels": (playerIdx) => g_PlayerCivList.name,
 		"colors": (playerIdx) => g_PlayerCivList.color,
 		"ids": (playerIdx) => g_PlayerCivList.code,
@@ -783,6 +785,7 @@ var g_PlayerDropdowns = {
 		"autocomplete": 90,
 	},
 	"playerColorPicker": {
+		"tooltip": (playerIdx) => translate("Pick a color."),
 		"labels": (playerIdx) => g_PlayerColorPickerList.map(color => "■"),
 		"colors": (playerIdx) => g_PlayerColorPickerList.map(color => rgbToGuiColor(color)),
 		"ids": (playerIdx) => g_PlayerColorPickerList.map((color, index) => index),
@@ -1027,7 +1030,7 @@ var g_MiscControls = {
 				!g_IsNetworked || Object.keys(g_PlayerAssignments).every(guid =>
 					g_PlayerAssignments[guid].status || g_PlayerAssignments[guid].player == -1) ?
 					translate("Start a new game with the current settings.") :
-					translate("Start a new game with the current settings (disabled until all players are ready)"),
+					translate("Start a new game with the current settings (disabled until all players are ready)."),
 		"enabled": () => !g_GameStarted && (
 		                   !g_IsController ||
 		                   Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].status ||
