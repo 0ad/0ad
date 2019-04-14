@@ -7,12 +7,15 @@
       <Crush>0.0</Crush>
       <MaxRange>32.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <ProjectileSpeed>62.5</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1250</RepeatTime>
-      <Spread>1.0</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <Speed>62.5</Speed>
+        <Spread>1.0</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>
   </Attack>

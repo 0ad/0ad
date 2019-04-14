@@ -28,7 +28,20 @@ function Test_Generic()
 	let attacker = 11;
 	let atkPlayerEntity = 1;
 	let attackerOwner = 6;
-	let cmpAttack = ConstructComponent(attacker, "Attack", { "Ranged": { "ProjectileSpeed": 500, "Gravity": 9.81, "Spread": 0.5, "MaxRange": 50, "MinRange": 0, "Delay": 0 } } );
+	let cmpAttack = ConstructComponent(attacker, "Attack",
+		{
+			"Ranged": {
+				"MaxRange": 50,
+				"MinRange": 0,
+				"Delay": 0,
+				"Projectile": {
+					"Speed": 75.0,
+					"Spread": 0.5,
+					"Gravity": 9.81,
+					"LaunchPoint": { "@y": 3 }
+				}
+			}
+		});
 	let damage = 5;
 	let target = 21;
 	let targetOwner = 7;

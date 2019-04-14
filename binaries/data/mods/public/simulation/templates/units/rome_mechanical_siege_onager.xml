@@ -4,8 +4,6 @@
     <Ranged>
       <MaxRange>76</MaxRange>
       <MinRange>26.0</MinRange>
-      <ProjectileSpeed>37.5</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>3700</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Splash>
@@ -16,6 +14,10 @@
         <Pierce>0.0</Pierce>
         <Crush>40.0</Crush>
       </Splash>
+      <Projectile>
+        <Speed>37.5</Speed>
+        <Gravity>9.81</Gravity>
+      </Projectile>
     </Ranged>
   </Attack>
   <Cost>

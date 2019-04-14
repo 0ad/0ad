@@ -71,9 +71,11 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 			"MaxRange": 80,
 			"PrepareTime": 300,
 			"RepeatTime": 500,
-			"ProjectileSpeed": 50,
-			"Gravity": 9.81,
-			"Spread": 2.5,
+			"Projectile": {
+				"Speed": 10,
+				"Spread": 2,
+				"Gravity": 1
+			},
 			"PreferredClasses": {
 				"_string": "Archer"
 			},
