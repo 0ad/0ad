@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_military_barracks_range">
+<Entity parent="template_structure_military_range">
   <Footprint>
     <Square width="27.0" depth="25.0"/>
-    <Height>12.0</Height>
   </Footprint>
-  <Health>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <Civ>athen</Civ>
   </Identity>
@@ -15,6 +11,5 @@
   </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/range.xml</Actor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

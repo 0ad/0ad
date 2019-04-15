@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military">
+  <Cost>
+    <BuildTime>150</BuildTime>
+    <Resources>
+      <wood>300</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+    <List datatype="tokens">Infantry</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Practice Range</GenericName>
+    <Tooltip>Train citizen-soldier ranged infantry. Research training improvements.</Tooltip>
+    <VisibleClasses datatype="tokens">Village Range</VisibleClasses>
+    <Icon>structures/range.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+  </Identity>
+  <Loot>
+    <wood>30</wood>
+    <stone>10</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_infantry_javelinist_b
+      units/{civ}_infantry_slinger_b
+      units/{civ}_infantry_archer_b
+    </Entities>
+    <Technologies datatype="tokens">
+      heal_barracks
+      training_conscription
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <constructed>interface/complete/building/complete_range.xml</constructed>
+      <select>interface/select/building/sel_barracks.xml</select>
+    </SoundGroups>
+  </Sound>
+  <Vision>
+    <Range>32</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>
