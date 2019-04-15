@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -10,8 +10,17 @@
         <prop actor="props/units/weapons/sling.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tunic-slinger-1a">
       <textures>
-        <texture file="skeletal/iber_isw_b_3.dds" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_slinger_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-slinger-1b">
+      <textures>
+        <texture file="skeletal/iber_tunic_slinger_1_b.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
