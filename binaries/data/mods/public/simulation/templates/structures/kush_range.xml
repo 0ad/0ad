@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_range">
   <Footprint>
-    <Square width="28.0" depth="26.0"/>
+    <Square width="27.0" depth="25.0"/>
   </Footprint>
   <Identity>
     <Civ>kush</Civ>
     <SpecificName>Pr-Pdt</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="24.0" depth="22.0"/>
+    <Static width="25.0" depth="23.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/kushites/range.xml</Actor>
