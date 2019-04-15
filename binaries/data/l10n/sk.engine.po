@@ -11,12 +11,13 @@
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2018
+# T Hanax <nospam@hanax.eu>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-01-07 13:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-14 07:50+0000\n"
+"Last-Translator: T Hanax <nospam@hanax.eu>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,22 +143,22 @@ msgstr "Užívateľské meno už existuje"
 #: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Zlyhanie počas frontovania pre ID hry. Chyba: %s; %s."
+msgstr "Zlyhanie počas získavania ID hry. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Zlyhanie počas frontovania módov. Chyba: %s; %s."
+msgstr "Zlyhanie počas získavania modov. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nepodarilo sa vytvoriť adresár módu: %s . "
+msgstr "Nepodarilo sa vytvoriť adresár modu: %s . "
 
 #: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nepodarilo sa otvoriť dočasný súbor na prevzatie módu: %s."
+msgstr "Nepodarilo sa otvoriť dočasný súbor na prevzatie modu: %s."
 
 #: ps/ModIo.cpp:336
 #, c-format
@@ -167,12 +168,12 @@ msgstr "Preberanie sa nepodarilo spustiť. Chyba: %s; %s."
 #: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Asynchrónne zlyhanie sťahovania: %s, %s."
+msgstr "Zlyhanie asynchrónneho sťahovania: %s, %s."
 
 #: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Sťahovanie zlyhalo. Odozva server: %s; %s."
+msgstr "Sťahovanie zlyhalo. Odozva servera: %s; %s."
 
 #: ps/ModIo.cpp:513
 msgid "Mismatched filesize."

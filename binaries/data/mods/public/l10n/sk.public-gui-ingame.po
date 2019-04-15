@@ -18,12 +18,13 @@
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2017-2018
+# T Hanax <nospam@hanax.eu>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-01-07 14:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-14 07:48+0000\n"
+"Last-Translator: T Hanax <nospam@hanax.eu>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -528,7 +529,7 @@ msgstr ","
 #: gui/session/messages.js:696
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Chyba mimo synchronizácie (Out-Of-Sync error) na ťahu %(turn)s."
+msgstr "Synchronizačná chyba (Out-Of-Sync error) na ťahu %(turn)s."
 
 #: gui/session/messages.js:700
 #, javascript-format
@@ -575,11 +576,11 @@ msgstr "Vypisovanie pamäti aktuálneho stavu do %(filepath)s"
 
 #: gui/session/messages.js:728 gui/session/messages.js:739
 msgid "Out of Sync"
-msgstr "Mimo synchronizáciu "
+msgstr "Nesynchronizované"
 
 #: gui/session/messages.js:736
 msgid "Out-Of-Sync error!"
-msgstr "Chyba mimo synchronizácie!"
+msgstr "Synchronizačná chyba!"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:738
@@ -1028,7 +1029,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Začni výberom suroviny ktorú si praješ predať z horného riadku. Za každým stlačením, %(quantity)s hornej suroviny bude predaná a zobrazí sa lacnejšie. Stlač a podrž %(hotkey)s na dočasné vynásobenie obchodnej sumy o %(multiplier)s."
+msgstr "V hornom riadku vyber surovinu, ktorú si praješ predať. Po každé, keď stlačíš tlačidlá nižšie, %(quantity)s hornej suroviny bude predaných za množstvo zobrazené nižšie. Stlač a podrž %(hotkey)s na dočasné vynásobenie obchodovaného množstva %(multiplier)s."
 
 #: gui/session/session.js:654
 #, javascript-format
@@ -1530,4 +1531,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIV"
-msgstr ""
+msgstr "ALFA XXIV"

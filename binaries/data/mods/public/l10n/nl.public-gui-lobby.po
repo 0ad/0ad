@@ -5,10 +5,11 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # Bart Groeneveld, 2017
-# bb jansen <b.jansen5@students.uu.nl>, 2018
+# bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # echotangoecho . <echotangoecho1@gmail.com>, 2017
 # Ellen Roels, 2015
+# Freagarach . <freagarach@gmail.com>, 2019
 # Jan Jasper de Kroon <jajadekroon@gmail.com>, 2019
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Marijn Billiet <marijnbilliet@gmail.com>, 2017-2018
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-01-23 13:22+0000\n"
-"Last-Translator: Jan Jasper de Kroon <jajadekroon@gmail.com>\n"
+"PO-Revision-Date: 2019-04-14 13:13+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +87,7 @@ msgstr "%(nick)s heeft zich afgemeld."
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
-msgstr "Je bent gedempt."
+msgstr "U bent gedempt."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
@@ -95,7 +96,7 @@ msgstr "%(nick)s is gedempt."
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr "Je bent nu een moderator."
+msgstr "U bent nu een moderator."
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
@@ -104,7 +105,7 @@ msgstr "%(nick)s is nu een moderator."
 
 #: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
-msgstr "Je bent nu niet meer gedempt."
+msgstr "U bent nu niet meer gedempt."
 
 #: gui/lobby/lobby.js:229
 #, javascript-format
@@ -113,7 +114,7 @@ msgstr "%(nick)s is nu niet meer gedempt."
 
 #: gui/lobby/lobby.js:231
 msgid "You are not a moderator anymore."
-msgstr "Je bent geen moderator meer."
+msgstr "U bent geen moderator meer."
 
 #: gui/lobby/lobby.js:232
 #, javascript-format
@@ -131,11 +132,11 @@ msgstr "Let op"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr "Zet je status naar 'Afwezig'."
+msgstr "Zet uw status naar 'Afwezig'."
 
 #: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
-msgstr "Zet je status naar 'Online'."
+msgstr "Zet uw status naar 'Online'."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -161,7 +162,7 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Verstuur een chatbericht over jezelf. Voorbeeld: /me gaat zwemmen."
+msgstr "Verstuur een chatbericht over uzelf. Voorbeeld: /me gaat zwemmen."
 
 #: gui/lobby/lobby.js:374
 msgid ""
@@ -179,7 +180,7 @@ msgstr "Keer terug naar het hoofdmenu."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "De connectie met de lobby is verbroken. Wil je opnieuw verbinding maken?"
+msgstr "De connectie met de lobby is verbroken. Wilt u opnieuw verbinding maken?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
 #: gui/prelobby/common/credentials/credentials.js:55
@@ -235,11 +236,11 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
-msgstr "Je bent verbannen van de lobby"
+msgstr "U bent verbannen van de lobby"
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr "Je bent uit de lobby gezet"
+msgstr "U bent uit de lobby gezet"
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
@@ -300,11 +301,11 @@ msgstr "Spelers: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
-msgstr "Je geactiveerde modificaties komen niet overeen met die van dit spel."
+msgstr "Uw geactiveerde modificaties komen niet overeen met die van dit spel."
 
 #: gui/lobby/lobby.js:1191
 msgid "Do you want to switch to the mod selection page?"
-msgstr "Wil je naar de mod selectie pagina?"
+msgstr "Wilt u naar de mod selectie pagina?"
 
 #: gui/lobby/lobby.js:1192
 msgid "Incompatible mods"
@@ -312,7 +313,7 @@ msgstr "Onverenigbare modificaties"
 
 #: gui/lobby/lobby.js:1209
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Het spel is al begonnen. Wil je als waarnemer deelnemen?"
+msgstr "Het spel is al begonnen. Wilt u als waarnemer deelnemen?"
 
 #: gui/lobby/lobby.js:1243
 #, javascript-format
@@ -399,7 +400,7 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr "Gelieve je gebruikersnaam in te voeren"
+msgstr "Gelieve uw gebruikersnaam in te voeren"
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
@@ -408,12 +409,12 @@ msgstr "Onjuiste gebruikersnaam"
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr "Gelieve je wachtwoord in te voeren"
+msgstr "Gelieve uw wachtwoord in te voeren"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr "Gelieve je wachtwoord in te voeren"
+msgstr "Gelieve uw wachtwoord in te voeren"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
@@ -421,7 +422,7 @@ msgstr "Kies een langer wachtwoord"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
-msgstr "Gelieve je wachtwoord te bevestigen"
+msgstr "Gelieve uw wachtwoord te bevestigen"
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
@@ -429,7 +430,7 @@ msgstr "Wachtwoorden komen niet overeen"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "Weet je zeker dat je je wachtwoord niet wilt onthouden?"
+msgstr "Weet u zeker dat u uw wachtwoord niet wilt onthouden?"
 
 #: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
@@ -1083,11 +1084,11 @@ msgstr "De minimumleeftijd om de Multiplayer Lobby te gebruiken is 13."
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Door de 0 A.D. Multiplayer Lobby te gebruiken, ga je akkoord met:[/font]"
+msgstr "[font=\"sans-bold-14\"]Door de 0 A.D. Multiplayer Lobby te gebruiken, gaat u akkoord met:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
-msgstr "1. Je alle gebruikersvoorwaarden zal volgen."
+msgstr "1. U alle gebruikersvoorwaarden zal volgen."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:12
 msgid ""
@@ -1192,7 +1193,7 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. Niet proberen om op een artificiële manier de statistieken die invloed hebben op je eigen of een andere score te wijzigen. (Bijvoorbeeld, maar niet gelimiteerd tot: valsspelen in competitiespellen, reverse engineering van de service en andere gebruikers van de service misbruiken.)"
+msgstr "7. Niet proberen om op een artificiële manier de statistieken die invloed hebben op uw eigen of een andere score te wijzigen. (Bijvoorbeeld, maar niet gelimiteerd tot: valsspelen in competitiespellen, reverse engineering van de service en andere gebruikers van de service misbruiken.)"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""

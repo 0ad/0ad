@@ -5,13 +5,14 @@
 # Translators:
 # LeviTaule <levi.taule@gmail.com>, 2017
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
+# T Hanax <nospam@hanax.eu>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>, 2018\n"
+"Last-Translator: T Hanax <nospam@hanax.eu>, 2019\n"
 "Language-Team: Slovak (https://www.transifex.com/wildfire-games/teams/17418/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,9 +30,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
-" Najprv kliknite ľavým tlačidlom myši na občianku, potom pravým na neďaleký "
-"krík s bobuľami na začatie získavania jedla. Občianky získavajú "
-"vegetariánske jedlo rýchlejšie ako ostatné jednotky."
+"Klikni ľavým tlačidlom myši na ženu-občianku, potom pravým na neďaleký krík "
+"s bobuľami. Tá sa vyberie zbierať jedlo. Ženy získavajú plodiny jedlo "
+"rýchlejšie ako ostatné jednotky."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -103,7 +104,7 @@ msgid ""
 "builders."
 msgstr ""
 "Postav statok na otvorenom priestranstve pri Občianskom Centre použitím "
-"ľubovoľných ničnerobiacich staviteľov."
+"ľubovoľných nečinných staviteľov."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
@@ -125,8 +126,8 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
-"Stavitelia poľa teraz automaticky začnú zberať jedlo z poľa. Použi novo "
-"vytvorenú skupinu harcovníkov aby si nablízku postavil ďalší dom."
+"Stavitelia poľa teraz automaticky začnú zbierať jedlo z poľa. Použi novo-"
+"vytvorenú skupinu harcovníkov a postav nablízku ďalší dom."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -166,12 +167,17 @@ msgid ""
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Opätovne označ Občianske Cetrum a prejdi do Fáze Mesta kliknutím na ikonu II"
+" (musíš najprv počkať, kým sa dostavia rozhľadňa). Umožní ti to stavať "
+"budovy fázy mesta. "
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Pokým čakáš na ďalšiu fázu, bolo by múdre poslať nečinných pracovníkov ťažiť"
+" surovininy, ktorých máš málo."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -190,23 +196,23 @@ msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
-"V blízkosti postav Kasárne. Ak dosiahnete populačný limit, postav ďalší dom "
-"pomocou akejkoľvek stavebnej jednotky k dispozícii."
+"V blízkosti postav Kasárne. Ak dosiahneš populačný limit, postav ďalší dom "
+"pomocou akejkoľvek stavebnej jednotky, ktorú máš k dispozícii."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
-"Priprav sa na útok od nepriateľského hráča. V Kasárňach vycvič ďalších "
-"vojakov a nečinným vojakom prikáž postaviť obrannú vežu neďaleko rozhľadne."
+"Priprav sa na útok nepriateľského hráča. V Kasárňach vycvič ďalších vojakov "
+"a nečinným vojakom prikáž postaviť obrannú vežu neďaleko rozhľadne."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
-"Postav Kováčsku dielňu a vyskúmaj technológiu Tréning Pechoty (ikona meča) "
+"Postav Kováčsku dielňu a vyskúmaj technológiu Tréning Pechoty (ikona meča), "
 "aby si vylepšil sečný útok pechoty."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
@@ -239,6 +245,7 @@ msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"Počas čakania na ďalšiu fázu môžeš v Kasárňach vytrénovať ďalších vojakov."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -274,6 +281,10 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Tento sprievodca ťa naučí základy vývoja ekonomiky. Typicky začínaš s "
+"Občianskym Centrom a skupinkou jednotiek vo Fáze Dediny a tvojim cieľom bude"
+" vyvinúť a rozšíriť tvoju ríšu, väčšinou prostredníctvom postupného vývoja "
+"do 'Fázy Mesta' a  'Fázy Metropoly'.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -338,6 +349,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"Horný riadok tlačidiel obsahuje znázornenia jednotiek, ktoré je možné v "
+"budove vytrénovať. Dolu (v jednom alebo v dvoch riadkoch) sú zobrazené "
+"technológie, ktoré možno vyskúmať. Keď prejdeš kurzorom ponad ikonu II, "
+"zobrazí sa vysvetlivka, kde sa dozvieš, že na postup do Fáze Mesta "
+"potrebuješ postaviť viac budov, ako aj viac jedla a dreva."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -349,6 +365,13 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Na začiatku máš k dispozícii dva typy jednotiek: ženy-občianky a občania-"
+"vojaci. Ženy občianky sú čisto ekonomické jednotky; majú nízke HP, žiadny "
+"pancier a slabú alebo úplne žiadnu útočnú silu. Štandardnou úlohou občanov-"
+"vojakov je pracovať, ale v čase núdze vedia do rúk zobrať zbraň. K "
+"dispozícii máš dve kategórie vojakov - pechotu a jazdu. Ženy a pešiaci vedia"
+" zbierať či ťažiť všetky suroviny, no jazdci vedia iba zbierať mäso z "
+"ulovených zvierat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -366,6 +389,9 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Teraz sú pre vývoj ekonomiky najdôležitejšími surovinami jedlo a drevo, "
+"takže začnime zbierať jedlo. Ženy-občianky zbierajú plodiny rýchlejšie ako "
+"ostatné jednotky."
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -406,6 +432,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Ak chceš zrušiť výber, klikni na prázdne miesto na mape. Vyskúšaj si každý "
+"zo spomínaných spôsobov a vyber tak všetky svoje ženy-občianky. Potom ich "
+"pošli zbierať hrozno smerom na juhovýchod od Občianskeho Centra tak, že "
+"pravým tlačidlom klikneš na niektorý krík."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -413,6 +443,9 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"Teraz je čas, aby tvoji pešiaci (peší občania - vojaci) nazbierali nejaké "
+"drevo. Vyber ich a pošli zbierať drevo kliknutím pravým tlačilom na "
+"najbližší strom."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""

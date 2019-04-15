@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-04 03:41+0000\n"
+"PO-Revision-Date: 2019-04-15 05:35+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "농업 보너스"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
-msgstr "노동자의 논밭에서 채집률이 +25% 됩니다."
+msgstr "노동자의 논밭에서 채집율을 +25% 증가시킵니다."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -290,7 +290,7 @@ msgstr "경제 개혁"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "+15% gather rate for workers."
-msgstr ""
+msgstr "솔론이 상업과 농업을 장려하는 몇 가지 경제 개혁을 도입합니다.\n노동자의 수집율을 +15% 증가시킵니다."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -311,7 +311,7 @@ msgstr "게릴라 전술"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "+15% movement speed and vision range for all soldiers."
-msgstr ""
+msgstr "로마 군대에 대항하여 쓸데이 견고한 방어력을 지니고있는 카시벨라누스는 게릴라 전술에 의지했다. 이것은 나중에 다른 수장들에게도 고용되었습니다.\n모든 병사들이 이동 속도와 시야 범위를 +15% 증가시킵니다."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -321,7 +321,7 @@ msgstr "척후병의 고민거리"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr ""
+msgstr "카시벨라누스는 로마 군대와 약탈자들을 괴롭히기 위해 빠르게 움직이는 산병전 대형을 전개 했습니다. 산병전 대형 투창병의 공격 범위를 +20% 증가시킵니다."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -544,7 +544,7 @@ msgstr "노동자의 건설과 수리 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
-msgstr ""
+msgstr "아테나 니케의 신전"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -591,7 +591,7 @@ msgstr "브리타니아 국왕or 브리탄노룸 렉스(브리탄 왕)"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "+0.8 HP per second healing rate."
-msgstr ""
+msgstr "HP 회복율을 초당 +0.8 씩 회복시킵니다."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"

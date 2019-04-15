@@ -4,9 +4,10 @@
 # 
 # Translators:
 # annihilator solar <incoming@upcmail.nl>, 2019
-# bb jansen <b.jansen5@students.uu.nl>, 2018
+# bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
+# Freagarach . <freagarach@gmail.com>, 2019
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # LTom, 2015
 # 477f07d437f0da0e33ec4ecd7b8e2b62, 2017
@@ -15,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-01 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-12 09:49+0200\n"
+"PO-Revision-Date: 2019-04-14 13:28+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,7 +133,7 @@ msgstr "Stadsmuur"
 
 #: simulation/templates/template_wallset.xml:12
 msgid "Wall off your town for a stout defense."
-msgstr "Omwal je stad voor een sterke defensie."
+msgstr "Omwal uw stad voor een sterke verdediging."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -603,6 +604,10 @@ msgstr "Cipres"
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
 msgstr "Dadelboom"
+
+#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
+msgid "Dead Palm"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
@@ -1080,7 +1085,7 @@ msgstr "Spion"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "At least 16 melee infantry units required."
-msgstr ""
+msgstr "Minstens 16 mêlee infanteriesoldaten vereist."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1092,7 +1097,7 @@ msgstr "Aanvalslijn"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "At least 4 units required."
-msgstr ""
+msgstr "Minimaal 4 eenheden vereist."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1108,7 +1113,7 @@ msgstr "Open kolom"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "At least 8 units required."
-msgstr ""
+msgstr "Minimaal 8 eenheden vereist."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1128,7 +1133,7 @@ msgstr "Geen"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "At least 10 hoplite infantry required."
-msgstr ""
+msgstr "Minimaal 10 hoplieten vereist."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1140,7 +1145,7 @@ msgstr "Verspreiden"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Only ranged units allowed."
-msgstr ""
+msgstr "Enkel afstandseenheden toegestaan."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1148,7 +1153,7 @@ msgstr "Schermutselen"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "At least 16 pike infantry units required."
-msgstr ""
+msgstr "Minimaal 16 piekeniers vereist."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1160,7 +1165,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "At least 6 cavalry units required."
-msgstr ""
+msgstr "Minimaal 6 ruiter-eenheden vereist."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

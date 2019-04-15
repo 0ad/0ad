@@ -14,6 +14,7 @@
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # ClementL <lewisclement@gmail.com>, 2014
 # Ellen Roels, 2015
+# Freagarach . <freagarach@gmail.com>, 2019
 # Ilya <ilya.crols@gmail.com>, 2014
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Jana Valcke <jana.valcke93@gmail.com>, 2016
@@ -43,8 +44,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-04-08 15:46+0000\n"
-"Last-Translator: bb <b.jansen5@students.uu.nl>\n"
+"PO-Revision-Date: 2019-04-14 13:19+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgstr "Kan hier geen muur bouwen!"
 
 #: gui/session/menu.js:161
 msgid "Are you sure you want to resign?"
-msgstr "Ben je zeker dat je jezelf wilt overgeven?"
+msgstr "Ben u zeker dat u uzelf wilt overgeven?"
 
 #: gui/session/menu.js:162 gui/session/menu.js:194 gui/session/menu.js:205
 msgid "Confirmation"
@@ -91,15 +92,15 @@ msgstr "Ja"
 #: gui/session/menu.js:175
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Ben je zeker dat je wilt stoppen? Door te stoppen worden alle andere spelers uit het spel gegooid."
+msgstr "Bent u zeker dat u wilt stoppen? Door te stoppen worden alle andere spelers uit het spel gegooid."
 
 #: gui/session/menu.js:179 gui/session/menu.js:183
 msgid "Are you sure you want to quit?"
-msgstr "Ben je zeker dat je wil stoppen?"
+msgstr "Bent u zeker dat u wilt stoppen?"
 
 #: gui/session/menu.js:204
 msgid "Do you want to resign or will you return soon?"
-msgstr "Wil je opgeven, of zal je binnenkort terugkeren?"
+msgstr "Wilt u opgeven, of zal u binnenkort terugkeren?"
 
 #: gui/session/menu.js:206
 msgid "I will return"
@@ -111,7 +112,7 @@ msgstr "Ik geef op"
 
 #: gui/session/menu.js:226
 msgid "Destroy everything currently selected?"
-msgstr "Vernietig je huidige selectie?"
+msgstr "Vernietig uw huidige selectie?"
 
 #: gui/session/menu.js:227
 msgid "Delete"
@@ -163,7 +164,7 @@ msgstr "Koop een willekeurig eenheid om van deze speler, en deel in zijn gezicht
 
 #: gui/session/menu.js:605
 msgid "A failed bribe will cost you:"
-msgstr "Een mislukte omkoping kost je:"
+msgstr "Een mislukte omkoping kost u:"
 
 #: gui/session/menu.js:786
 #, javascript-format
@@ -452,21 +453,21 @@ msgstr "Privé chat"
 
 #: gui/session/messages.js:261
 msgid "You have won!"
-msgstr "Je hebt gewonnen!"
+msgstr "U hebt gewonnen!"
 
 #: gui/session/messages.js:262
 msgid "You have been defeated!"
-msgstr "Je bent verslagen!"
+msgstr "U bent verslagen!"
 
 #: gui/session/messages.js:270
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Je bent nu geallieerd met %(player)s."
+msgstr "U bent nu geallieerd met %(player)s."
 
 #: gui/session/messages.js:271
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Je bent nu in staat van oorlog met %(player)s."
+msgstr "U bent nu in staat van oorlog met %(player)s."
 
 #: gui/session/messages.js:272
 #, javascript-format
@@ -513,7 +514,7 @@ msgstr "Afsluiten"
 
 #: gui/session/messages.js:595
 msgid "Click when ready."
-msgstr "Klik wanneer je klaar bent."
+msgstr "Klik wanneer u klaar bent."
 
 #: gui/session/messages.js:599
 msgid "Follow the instructions."
@@ -538,12 +539,12 @@ msgstr "Spelers: %(players)s"
 #: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "Jouw spelstatus is identiek aan de spelstatus van de gast."
+msgstr "Uw spelstatus is identiek aan de spelstatus van de gast."
 
 #: gui/session/messages.js:706
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "Jouw spelstatus is anders dan de spelstatus van de gast."
+msgstr "Uw spelstatus is anders dan de spelstatus van de gast."
 
 #: gui/session/messages.js:712
 msgctxt "Out-Of-Sync"
@@ -633,12 +634,12 @@ msgstr ","
 #: gui/session/messages.js:1032
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s heeft je %(amounts)s gestuurd."
+msgstr "%(player)s heeft u %(amounts)s gestuurd."
 
 #: gui/session/messages.js:1034
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "Je hebt %(player2)s %(amounts)s gestuurd."
+msgstr "U hebt %(player2)s %(amounts)s gestuurd."
 
 #: gui/session/messages.js:1039
 #, javascript-format
@@ -658,7 +659,7 @@ msgstr "Je vee werd aangevallen door %(attacker)s!"
 #: gui/session/messages.js:1073
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr "Je bent aangevallen door %(attacker)s!"
+msgstr "U bent aangevallen door %(attacker)s!"
 
 #: gui/session/messages.js:1090
 #, javascript-format
@@ -1008,7 +1009,7 @@ msgstr "Zoek een ongebruikte werkkracht"
 #: gui/session/session.js:441 gui/session/session.js:445
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr "Zet diplomaat kleuren aan/uit."
+msgstr "Zet Diplomatie Kleuren aan/uit."
 
 #: gui/session/session.js:448
 #, javascript-format
@@ -1016,7 +1017,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Selecteer het type goederen dat je wilt veranderen door er op te klikken. Gebruik dan de pijlen bij de andere goederen om hun deel te veranderen. Je kunt ook %(hotkey)sindrukken terwijl je een type selecteert, om het aandeel naar 100 %% te brengen."
+msgstr "Selecteer het type goederen dat u wilt veranderen door er op te klikken. Gebruik dan de pijlen bij de andere goederen om hun deel te veranderen. U kunt ook %(hotkey)sindrukken terwijl u een type selecteert, om het aandeel naar 100 %% te brengen."
 
 #: gui/session/session.js:452
 #, javascript-format
@@ -1025,7 +1026,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Start door het selecteren van het middel dat je wilt verkopen van de bovenste rij. Voor elke keer dat de onderste knoppen worden aangeklikt, wordt%(quantity)svan het bovenste middel verkocht voor de weergegeven hoeveelheid van het onderste middel. Houd %(hotkey)singedrukt om de hoeveelheid tijdelijk met %(multiplier)s te vermenigvuldigen."
+msgstr "Start door het selecteren van het middel dat u wilt verkopen van de bovenste rij. Voor elke keer dat de onderste knoppen worden aangeklikt, wordt%(quantity)svan het bovenste middel verkocht voor de weergegeven hoeveelheid van het onderste middel. Houd %(hotkey)singedrukt om de hoeveelheid tijdelijk met %(multiplier)s te vermenigvuldigen."
 
 #: gui/session/session.js:654
 #, javascript-format
@@ -1037,7 +1038,7 @@ msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Bekijk Geschiedenis 
 
 #: gui/session/session.js:899
 msgid "Do you want to quit?"
-msgstr "Wil je stoppen?"
+msgstr "Wilt u stoppen?"
 
 #: gui/session/session.js:905
 msgid "VICTORIOUS!"
@@ -1054,7 +1055,7 @@ msgstr "OK"
 #: gui/session/session.js:981
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "Het herspelen is klaar. Wil je stoppen?"
+msgstr "Het herspelen is klaar. Wilt u stoppen?"
 
 #: gui/session/session.js:982
 msgctxt "replayFinished"
@@ -1117,7 +1118,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Let op: terug gaan in de tijd is een ontwikkeloptie, en niet bedoeld voor gebruik over een lange periode. Incorrect gebruik kan er voor zorgen dat je computer geheugen tekort komt, en zo het spel laten crashen (of zelfs andere programma's)."
+msgstr "Let op: terug gaan in de tijd is een ontwikkeloptie, en niet bedoeld voor gebruik over een lange periode. Incorrect gebruik kan er voor zorgen dat uw computer geheugen tekort komt, en zo het spel laten crashen (of zelfs andere programma's)."
 
 #: gui/session/session.js:1470
 msgid "Time warp mode"
@@ -1232,11 +1233,11 @@ msgstr "Klik om geallieerden toegang tot dit pakhuis te ontzeggen."
 
 #: gui/session/unit_actions.js:1369
 msgid "You are allowed to use this dropsite"
-msgstr "Je kan dit pakhuis gebruiken."
+msgstr "U kan dit pakhuis gebruiken."
 
 #: gui/session/unit_actions.js:1374
 msgid "The use of this dropsite is prohibited"
-msgstr "Je kan dit pakhuis niet gebruiken."
+msgstr "U kan dit pakhuis niet gebruiken."
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
