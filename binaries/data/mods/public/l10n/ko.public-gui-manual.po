@@ -7,6 +7,7 @@
 # 손가현 <sgh991002@gmail.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# ks k, 2019
 # Philipp Sauter <qt123@pm.me>, 2018
 # 손가현 <sgh991002@gmail.com>, 2016
 # Suhyeon Park <qkr5145@gmail.com>, 2018
@@ -18,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-04-10 14:32+0000\n"
+"PO-Revision-Date: 2019-04-13 04:14+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -176,7 +177,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "그런 다음지도를 추가로 걸러내기 할 수 있습니다. 기본지도는 일반적으로 놀기 가능한 지도입니다. 해군 지도는 모든 상대방이 육지에 도달 할 수있는 지도가 아니며 시연용 지도는 실험 목적으로 사용되는 지도입니다 (일반적으로는 유용하지 않습니다.). ＂모든지도＂ 거름기는 모든 지도를 하나의 목록에 모두 표시합니다."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -185,7 +186,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "마지막으로 설정을 변경하십시오. 아무 지도에서는 참여 선수의 수, 지도의 크기 등이 포함됩니다. 시나리오에서는 누가 어떤 선수를 조작할지 선택할 수 있습니다 (지도에서 시작하는 위치 등 결정합니다). 선택사항은 사람, 인공지능, 선수 없음중 하나를 선택합니다 (상대방은 그냥 대기 상태가 됩니다)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -197,7 +198,7 @@ msgstr "[font=\"sans-bold-16\"]단축키:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]프로그램-전체"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -249,7 +250,7 @@ msgstr "Shift + Tab, Alt + W: 이전 탭으로 전환합니다."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]놀이 내"
 
 #: gui/manual/intro.txt:56
 msgid ""
@@ -407,13 +408,13 @@ msgstr "Z, X, C, V, B, N, M: 선택된 건물들 중에 훈련 건물이 선택�
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "유닛 선택후 PageUp: 선택으로 지키고 있는 유닛/건물을 강조 표시합니다."
 
 #: gui/manual/intro.txt:90
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "유닛/건물 선택 후 PageDown: 해당 유닛을 지키고있는 유닛을 강조 표시합니다."
 
 #: gui/manual/intro.txt:91
 msgid "Tab: See all status bars (which would also show the building progress)"
@@ -421,7 +422,7 @@ msgstr "Tab: 모든 상태 막대기 보기 (건물 진행 상태도)"
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ctrl + Tab: 요약 창을 켜고 끕니다."
 
 #: gui/manual/intro.txt:93
 msgid "Alt + L: Show the multiplayer lobby in a dialog window."
@@ -437,7 +438,7 @@ msgstr "Ctrl + P: 놀이 내부의 자습서 패널을 표시하거나 숨깁니
 
 #: gui/manual/intro.txt:96
 msgid "Alt + Shift + T: Toggle structure tree."
-msgstr ""
+msgstr "Alt + Shift + T: 건축물 도감을 켜고 끕니다."
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Shift + H: Toggle civilization info."
@@ -445,7 +446,7 @@ msgstr "Alt + Shift + H: 문명 정보를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font = \"sans-bold-14\"]마우스 움직임 바꾸기"
 
 #: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
@@ -474,7 +475,7 @@ msgstr "Alt + 마우스 오른쪽 버튼 클릭: 현재 선택에서 한 유닛�
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "유닛 양성때 Shift + 왼쪽 클릭: 배치 단위 추가 (배치 크기는 기본적으로 5 이며 선택사항에서 변경할 수 있음)"
 
 #: gui/manual/intro.txt:106
 msgid ""
@@ -569,16 +570,16 @@ msgstr "Alt + X: 국경 색 토글하기"
 #: gui/manual/intro.txt:126
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C: 선택한 방어 구조의 공격 범위 시각화 켜고 끄기"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
+msgstr "Alt + V: 선택한 유닛과 건축물의 오라 범위 시각화 켜고 끄기"
 
 #: gui/manual/intro.txt:128
 msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "Alt + B: 선택한 유닛의 치유 범위 시각화 켜고 끄기"
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -586,43 +587,43 @@ msgstr "[font=\"sans-bold-14\"]카메라 조종"
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W 또는 \\[위쪽 화살키]: 화면을 위쪽으로 이동"
 
 #: gui/manual/intro.txt:132
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S 또는 \\[아래쪽 화살키]: 화면을 아래쪽으로 이동"
 
 #: gui/manual/intro.txt:133
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A 또는 \\[왼쪽 화살키]: 화면을 왼쪽으로 이동"
 
 #: gui/manual/intro.txt:134
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D 또는 \\[오른쪽 화살키]: 화면을 오른쪽으로 이동"
 
 #: gui/manual/intro.txt:135
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W 또는 \\[위쪽 화살키]: 카메라를 위쪽으로 돌리기"
 
 #: gui/manual/intro.txt:136
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S 또는 \\[아래쪽 화살키]: 카메라를 아래쪽으로 돌리기"
 
 #: gui/manual/intro.txt:137
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A 또는 \\[왼쪽 화살키]: 카메라를 왼쪽으로 돌리기"
 
 #: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D 또는 \\[오른쪽 화살키]: 카메라를 오른쪽으로 돌리기"
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: 지형 주위에서 카메라 시계 방향으로 돌리기"
 
 #: gui/manual/intro.txt:140
 msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "E: 지형 주위에서 카메라 반시계 방향으로 돌리기"
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
