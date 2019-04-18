@@ -717,6 +717,24 @@ extern_lib_defs = {
 			})
 		end,
 	},
+	grpc = {
+        compile_settings = function()
+            if os.istarget("windows") then
+                add_default_include_paths("grpc")
+                add_default_include_paths("grpc++")
+                add_default_include_paths("protobuf")
+            else
+                pkgconfig.add_includes("grpc")
+                pkgconfig.add_includes("grpc++")
+                pkgconfig.add_includes("protobuf")
+            end
+        end,
+        link_settings = function()
+            add_default_lib_paths("grpc")
+            add_default_lib_paths("grpc++")
+            add_default_lib_paths("protobuf")
+        end
+    }
 }
 
 
