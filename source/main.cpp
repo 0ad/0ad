@@ -79,6 +79,13 @@ that of Atlas depending on commandline parameters.
 #include "scriptinterface/ScriptEngine.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
+#include "rlinterface/RLInterfaceImpl.cpp"
+
+#include <grpc/grpc.h>
+#include <grpcpp/server.h>
+#include <grpcpp/server_builder.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/security/server_credentials.h>
 
 #if OS_UNIX
 #include <unistd.h> // geteuid
@@ -456,6 +463,19 @@ static void MainControllerShutdown()
 	in_reset_handlers();
 }
 
+static void StartRLAPI()
+{
+    std::string server_address("0.0.0.0:50051");
+    RLInterfaceImpl service;
+
+    grpc::ServerBuilder builder;
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+    builder.RegisterService(&service);
+    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+    std::cout << "Server listening on " << server_address << std::endl;
+    server->Wait();
+}
+
 // moved into a helper function to ensure args is destroyed before
 // exit(), which may result in a memory leak.
 static void RunGameOrAtlas(int argc, const char* argv[])
@@ -620,6 +640,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			installedMods = installer.GetInstalledMods();
 		}
 
+        StartRLAPI();
 		if (isNonVisual)
 		{
 			InitNonVisual(args);

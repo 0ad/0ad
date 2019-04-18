@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+service RLInterface {
+    rpc Step(Actions) returns (Observation) {}
+    rpc Reset(ResetRequest) returns (Observation) {}
+    rpc Connect(ConnectRequest) returns (Observation) {}
+}
+
+message Actions {
+    repeated WalkAction actions = 1;
+}
+
+message WalkAction {
+    string id = 1;
+    double x = 2;
+    double y = 3;
+}
+
+message Observation {}
+message ResetRequest {}
+message ConnectRequest {}
