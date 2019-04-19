@@ -48,8 +48,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-12 09:48+0200\n"
-"PO-Revision-Date: 2019-04-13 07:58+0000\n"
+"POT-Creation-Date: 2019-04-15 09:50+0200\n"
+"PO-Revision-Date: 2019-04-16 07:56+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -152,7 +152,7 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "Default"
-msgstr "Varsayılan"
+msgstr "Öntanımlı"
 
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
@@ -346,23 +346,35 @@ msgstr "Zorluk"
 msgid "Select the difficulty of this scenario."
 msgstr "Bu senaryo için zorluk seçin."
 
-#: gui/gamesetup/gamesetup.js:772
-msgid "Choose the civilization for this player"
-msgstr "Bu kullanıcı için medeniyeti seçiniz"
+#: gui/gamesetup/gamesetup.js:727
+msgid "Select player."
+msgstr "Oyuncu seç."
 
-#: gui/gamesetup/gamesetup.js:839
+#: gui/gamesetup/gamesetup.js:762
+msgid "Select player's team."
+msgstr "Oyuncunun takımını seç."
+
+#: gui/gamesetup/gamesetup.js:774
+msgid "Choose the civilization for this player."
+msgstr "Bu oyuncu için uygarlık seçin."
+
+#: gui/gamesetup/gamesetup.js:788
+msgid "Pick a color."
+msgstr "Bir renk seçin."
+
+#: gui/gamesetup/gamesetup.js:842
 msgid "Hero Garrison"
 msgstr "Kahraman Garnizonu"
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:843
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Kahramanın garnizon edilebilirliğini göster."
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:855
 msgid "Nomad"
 msgstr "Göçebe"
 
-#: gui/gamesetup/gamesetup.js:853
+#: gui/gamesetup/gamesetup.js:856
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -370,208 +382,208 @@ msgstr "Göçebe modunda, oyuncular sadece kısıtlı sayıda birimle başlar ve
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:869
 msgid "Revealed Map"
 msgstr "Açılmış Harita"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:869
+#: gui/gamesetup/gamesetup.js:872
 msgid "Toggle revealed map (see everything)."
 msgstr "Açığa çıkarılan haritası değiştir(her şeyi gör)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
+#: gui/gamesetup/gamesetup.js:888
 msgid "Explored Map"
 msgstr "Keşfedilmiş Harita"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:891
 msgid "Toggle explored map (see initial map)."
 msgstr "Keşfedilmiş haritayı kapat (başlangıç haritasına dön)."
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:902
 msgid "Disable Treasures"
 msgstr "Hazineleri Devre Dışı Bırak"
 
-#: gui/gamesetup/gamesetup.js:900
+#: gui/gamesetup/gamesetup.js:903
 msgid "Do not add treasures to the map."
 msgstr "Haritaya hazine eklemeyin."
 
-#: gui/gamesetup/gamesetup.js:911
+#: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
 msgstr "Casusları devre dışı bırak:"
 
-#: gui/gamesetup/gamesetup.js:912
+#: gui/gamesetup/gamesetup.js:915
 msgid "Disable spies during the game."
 msgstr "Oyun sırasında casusları devre dışı bırak."
 
-#: gui/gamesetup/gamesetup.js:923
+#: gui/gamesetup/gamesetup.js:926
 msgid "Teams Locked"
 msgstr "Takımlar Kilitli"
 
-#: gui/gamesetup/gamesetup.js:924
+#: gui/gamesetup/gamesetup.js:927
 msgid "Toggle locked teams."
 msgstr "Takımları kilitle."
 
-#: gui/gamesetup/gamesetup.js:938
+#: gui/gamesetup/gamesetup.js:941
 msgid "Last Man Standing"
 msgstr "Son Kalan Kişi"
 
-#: gui/gamesetup/gamesetup.js:939
+#: gui/gamesetup/gamesetup.js:942
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "En son kalan oyuncu veya son kalan müttefikler kazanma şansını değiştirin."
 
-#: gui/gamesetup/gamesetup.js:952
+#: gui/gamesetup/gamesetup.js:955
 msgid "Cheats"
 msgstr "Hileler"
 
-#: gui/gamesetup/gamesetup.js:953
+#: gui/gamesetup/gamesetup.js:956
 msgid "Toggle the usability of cheats."
 msgstr "Hile kullanımını aç."
 
-#: gui/gamesetup/gamesetup.js:966
+#: gui/gamesetup/gamesetup.js:969
 msgid "Rated Game"
 msgstr "Oylanmış Oyun"
 
-#: gui/gamesetup/gamesetup.js:967
+#: gui/gamesetup/gamesetup.js:970
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Eğer bu oyun liderlik tablosu için oylanacaksa seçimi değiştir."
 
-#: gui/gamesetup/gamesetup.js:1000
+#: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "Oyuncu adlarını ve ayarlarını otomatik tamamlamak için %(hotkey)s basın"
 
-#: gui/gamesetup/gamesetup.js:1008
+#: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
 msgstr "Bekleme salonuna geri dön."
 
-#: gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:1012
 msgid "Return to the main menu."
 msgstr "Ana menüye dönün."
 
-#: gui/gamesetup/gamesetup.js:1013
+#: gui/gamesetup/gamesetup.js:1016
 msgid "Start Game!"
 msgstr "Oyuna Başla!"
 
-#: gui/gamesetup/gamesetup.js:1029
+#: gui/gamesetup/gamesetup.js:1032
 msgid "Start a new game with the current settings."
 msgstr "Geçerli ayarlarla yeni bir oyun başlat."
 
-#: gui/gamesetup/gamesetup.js:1030
+#: gui/gamesetup/gamesetup.js:1033
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
-"ready)"
-msgstr "Geçerli ayarlarla yeni bir oyun başlatın (tüm oyuncular hazır oluncaya dek devre dışı bırakın)"
+"ready)."
+msgstr "Mevcut ayarlarla yeni bir oyun başlatın (tüm oyuncular hazır olmadıkça kullanılamaz)."
 
-#: gui/gamesetup/gamesetup.js:1042
+#: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Geçmişi Görüntüle / Yapı Ağacı\nTıkladığınızda son açılan yeniden açılacak."
 
-#: gui/gamesetup/gamesetup.js:1107
+#: gui/gamesetup/gamesetup.js:1110
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "AI Yapılandırması: %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1401
+#: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "%(name)s ayarlar sekmesini değiştir."
 
-#: gui/gamesetup/gamesetup.js:1402
+#: gui/gamesetup/gamesetup.js:1405
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Ayarlar sekmesini aşağıya indirmek için %(hotkey)s kullan."
 
-#: gui/gamesetup/gamesetup.js:1403
+#: gui/gamesetup/gamesetup.js:1406
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Ayarlar sekmesini yukarı kaldırmak için %(hotkey)s kullan."
 
-#: gui/gamesetup/gamesetup.js:1751
+#: gui/gamesetup/gamesetup.js:1754
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1753
+#: gui/gamesetup/gamesetup.js:1756
 msgid "Pick any of the given maps at random."
 msgstr "Verilen haritalardan birini rastgele seç."
 
-#: gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1786
+#: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
 msgstr "Rastgele bir biyom seç."
 
-#: gui/gamesetup/gamesetup.js:2124
+#: gui/gamesetup/gamesetup.js:2127
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s"
 
-#: gui/gamesetup/gamesetup.js:2129
+#: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#: gui/gamesetup/gamesetup.js:2159
+#: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/gamesetup/gamesetup.js:2159
+#: gui/gamesetup/gamesetup.js:2162
 msgid "No"
 msgstr "Hayır"
 
-#: gui/gamesetup/gamesetup.js:2166
+#: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s"
 
-#: gui/gamesetup/gamesetup.js:2254
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2459
+#: gui/gamesetup/gamesetup.js:2462
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "YZ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2467
+#: gui/gamesetup/gamesetup.js:2470
 msgid "Unassigned"
 msgstr "Atanmamış"
 
-#: gui/gamesetup/gamesetup.js:2543
+#: gui/gamesetup/gamesetup.js:2546
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2550
+#: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
 msgstr "Bilinmeyen Oyuncu"
 
-#: gui/gamesetup/gamesetup.js:2589
+#: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2590
+#: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2591
+#: gui/gamesetup/gamesetup.js:2594
 msgid "HH:mm"
 msgstr "SS:dd"
 
@@ -707,44 +719,32 @@ msgstr "Medeniyet"
 msgid "Team"
 msgstr "Takım"
 
-#: gui/gamesetup/gamesetup.xml:(caption):131
-msgid "Show this message in the future"
-msgstr "Gelecekte bu mesajı göster"
+#: gui/gamesetup/gamesetup.xml:(caption):125
+msgid "Show this message in the future."
+msgstr "Bu iletiyi gelecekte göster."
 
-#: gui/gamesetup/gamesetup.xml:(caption):220
+#: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
 msgstr "Gönder"
 
-#: gui/gamesetup/gamesetup.xml:(caption):237
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Cheats enabled."
 msgstr "Hileler aktif."
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):254
 msgid "Back"
 msgstr "Geri"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
-"Reset any civilizations that have been selected to the default (random)"
-msgstr "Seçili uygarlıkları varsayılana (rasgele) sıfırlayın"
+"Reset any civilizations that have been selected to the default (random)."
+msgstr "Öntanımlı olarak seçilmiş tüm uygarlıkları yenileyin (rastgele)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "Tüm takımları varsayılana sıfırlayın."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
-msgid "Pick a color."
-msgstr "Bir renk seçin."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
-msgid "Select player."
-msgstr "Oyuncu seç."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):118
-msgid "Select player's team."
-msgstr "Oyuncunun takımını seç."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):202
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Diyalog penceresinde çok oyuncu lobisini göster."
 
@@ -1341,7 +1341,7 @@ msgstr "\"Geldim gördüm yendim.\" - Sezar, ilk saldırıda Pontus'un Pharnaces
 msgid ""
 "\"Men willingly believe what they wish.\" - Caesar (\"De Bello Gallico\", "
 "III. 18)"
-msgstr "\"İnsanlar kasıtlı olarak istediklerine inanırlar.\" - Sezar (\"De Bello Gallico\", III. 18)"
+msgstr "\"İnsanlar kasıtlı olarak kendi istediklerine inanırlar.\" - Sezar (\"De Bello Gallico\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""

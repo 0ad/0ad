@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-04-14 13:33+0000\n"
+"PO-Revision-Date: 2019-04-16 18:13+0000\n"
 "Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -747,7 +747,7 @@ msgstr "Willekeurig"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Creëer een unieke kaart met elke keer een andere grondstoffenverdeling. Het aantal spelers en de teams kunnen vrij gekozen worden."
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -2667,7 +2667,7 @@ msgstr "Achtergrondpauze"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Als u het uitschakeld wordt het welkomsscherm slechts éénmaal getoond, elke keer wanneer er een nieuwe versie beschikbaar is. U kunt het altijd openen uit het hoofdmenu."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
@@ -2687,7 +2687,7 @@ msgstr "Toon de frames per seconde teller in de rechter bovenhoek"
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr "FPS overlay"
+msgstr "FPS Overlay"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -3187,20 +3187,20 @@ msgstr "Chat aanvalsnotificatie"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Laat een chatnotificatie zien wanneer een geallieerde grondstoffen geschonken heeft aan een teamgenoot als Vaste Teams aan staat en alle schenkingen in waarnemer modus."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Chatnotificatie Schenking"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Laat een chatnotificatie zien aan waarnemers als een speler grondstoffen heeft geruild."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Chatnotificatie Ruilen"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3222,13 +3222,13 @@ msgstr "Laat een chatnotificatie zien wanneer u of een geallieerde het onderzoek
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Chatnotificatie Fasen"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Laat het aanvalsbereik van de geselecteerde verdedigingswerken zien (dit kan ook omgezet worden tijdens het spelen door de sneltoets)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
@@ -3238,7 +3238,7 @@ msgstr "Zichtbaar aanvalsbereik"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Laat het aurabereik van de geselecteerde eenheden en bouwwerken zien (dit kan ook omgezet worden tijdens het spelen door de sneltoets)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
@@ -3248,7 +3248,7 @@ msgstr "Aura bereik visualisatie"
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Laat het helingsbereik van de geselecteerde eenheden zien (dit kan ook omgezet worden tijdens het spelen door de sneltoets)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
@@ -3256,11 +3256,11 @@ msgstr "Helingsbereik visualisatie"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Laat Rang icoon boven statusbalken zien."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Rang icoon boven statusbalk"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3572,7 +3572,7 @@ msgstr "Bouw belegeringswapens en rekruteer burgersoldaten."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Stationeer eenheden om ze traag te genezen en ze het Legerkamp te laten beschermen tegen aanvallen en verval."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3596,7 +3596,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Bouw dicht bij de frontlijn om de aanval van verse troepen te kunnen voorzien."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3662,7 +3662,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "Kan tot 40 eenheden vervoeren."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
@@ -3674,15 +3674,15 @@ msgstr "BESCHAVINGSCENTRA"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "Het fundament van uw nieuwe kolonie."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Eigen grote delen territorium toe."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "Kan in geallieerd en neutraal territorium gebouwd worden."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
@@ -3706,7 +3706,7 @@ msgstr ""
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Huurlingen kosten Metaal in plaats van Voedsel."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3714,7 +3714,7 @@ msgstr "VISSEN"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Bevis de zeeën voor een overvloedige oogst."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -3726,7 +3726,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Voorzichtig! Vis is geen onuitputtelijke grondstof!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3738,11 +3738,11 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Rekruteer Kampioenen en Helden en maak Belegeringswapenen."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Geeft een bevolkingsbonus."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -3773,11 +3773,11 @@ msgstr "GRONDSTOFFEN VERZAMELEN"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Gebruik burgersoldaten en vrouwelijke burgers om grondstoffen te verzamelen."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Vrouwelijke burgers zijn sneller in het verzamelen van plantaardig voedsel."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
@@ -3821,11 +3821,11 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
-msgstr ""
+msgstr "Goedkoop, slechts 80 Hout."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Ze zijn snel te maken, maar niet sterk."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
@@ -3837,7 +3837,7 @@ msgstr "PALISSADEN SCHUTTING"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Een snelle, goedkope schutting beschikbaar voor alle beschavingen."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
@@ -3849,7 +3849,7 @@ msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "De bekendste Atheense politicus van de 5de eeuw V.C."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
@@ -3865,11 +3865,11 @@ msgstr "PERZISCHE ARCHITECTUUR"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Speciale technologie voor de Perzen."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Alle Perzische gebouwen zijn 25% sterker."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -3926,7 +3926,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Vol makke dieren die eenvoudig bejaagd kunnen worden."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
@@ -3948,11 +3948,11 @@ msgstr ""
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Ze kosten normaal 100 Hout en 100 Steen. Iberische Verdedigingstorens kosten 50 Hout en 250 Steen (omdat ze sterker zijn)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Hoe meer bemanning, hoe meer pijlen er geschoten worden."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3960,7 +3960,7 @@ msgstr "Spartanen"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "Sterkste Infanterie eenheid in het spel."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
@@ -3978,7 +3978,7 @@ msgstr "SPEERVECHTERS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "De basis Mêlee Infanterie voor elke beschaving in het spel."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
@@ -4004,11 +4004,11 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Rekruteert Zwaar Bewapende Speerwerpers en Kampioen Zwaardvechters."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "Geeft +10 Bevolkingsbonus."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4030,7 +4030,7 @@ msgstr "TEMPELS"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Gebouw uit de Stadsfase."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
@@ -4042,11 +4042,11 @@ msgstr "Onderzoek genezings technologieën."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Heeft een aura om nabije eenheden te helen."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Breng gekwetste eenheden binnen om sneller te genezen."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4061,7 +4061,7 @@ msgstr ""
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Het verval kan vertraagd of teniet gedaan worden door enkele eenheden het gebouw te laten bemannen."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -4085,7 +4085,7 @@ msgstr "Alle schepen worden sneller gebouwd tijdens zijn leven."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Het schip waarin hij zich bevindt kan sneller zeilen."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4093,7 +4093,7 @@ msgstr "TRIREEM"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Middelgroot Oorlogsschip."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
@@ -4101,7 +4101,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Beman met troepen om de vuurkracht te verhogen."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

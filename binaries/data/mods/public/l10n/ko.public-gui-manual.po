@@ -4,10 +4,13 @@
 # 
 # Translators:
 # moolow <copyhyeon@gmail.com>, 2019
+# EK lee <sodadida@gmail.com>, 2019
 # 손가현 <sgh991002@gmail.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
+# ks k, 2019
+# moolow <copyhyeon@gmail.com>, 2019
 # Philipp Sauter <qt123@pm.me>, 2018
 # 손가현 <sgh991002@gmail.com>, 2016
 # Suhyeon Park <qkr5145@gmail.com>, 2018
@@ -19,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-04-13 04:14+0000\n"
+"PO-Revision-Date: 2019-04-16 05:30+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -294,7 +297,7 @@ msgstr "F12: 흐른시간 카운터 보이기/숨기기"
 
 #: gui/manual/intro.txt:64
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: 모든 대화상자를 닫기(대화, 메뉴) 또는 선택된 유닛 지우기"
+msgstr "ESC: 모든 대화상자를 닫기(대화, 차림표) 또는 선택된 유닛 지우기"
 
 #: gui/manual/intro.txt:65
 msgid "Enter/return: Open/send chat"
@@ -627,13 +630,13 @@ msgstr "E: 지형 주위에서 카메라 반시계 방향으로 돌리기"
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + 마우스휠 올리기: 지형 주위에 카메라 시계방향으로 돌리기 "
 
 #: gui/manual/intro.txt:142
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Shift + 마우스휠 내리기: 지형 주위에 카메라 반시계 방향으로 돌리기 "
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -647,15 +650,15 @@ msgstr "R: 카메라 줌/방향 리셋"
 
 #: gui/manual/intro.txt:145
 msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "= 또는 +: 카메라 줌 인 (누르고 있으면 계속 줌 인)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "-: 줌 아웃 (누르고 있으면 계속 줌 아웃)"
 
 #: gui/manual/intro.txt:147
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: 와이어프레임 모드로 켜고 끄기"
 
 #: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"

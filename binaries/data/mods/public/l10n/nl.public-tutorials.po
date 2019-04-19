@@ -126,7 +126,7 @@ msgid ""
 msgstr ""
 "Zodra de boerderij gebouwd is, zullen de werkers automatisch beginnen met "
 "het verzamelen van voedsel, als het dichtbij te vinden is. Selecteer de "
-"werkers en laat ze een veld maken bij de boerderij in plaats van te zoeken "
+"werkers en laat ze een akker maken bij de boerderij in plaats van te zoeken "
 "naar voedsel. "
 
 #: maps/tutorials/Introductory_Tutorial.js:136
@@ -135,8 +135,8 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
-"De werkers aan het veld zullen nu onmiddellijk beginnen met oogsten. Gebruik"
-" de nieuwe groep speerwerpers om een nieuw huis te bouwen."
+"De werkers aan de akker zullen nu onmiddellijk beginnen met het oogsten van "
+"voedsel. Gebruik de nieuwe groep speerwerpers om een nieuw huis te bouwen."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -500,6 +500,8 @@ msgstr ""
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Verzamelpunten zijn te herkennen door een kleine vlag op het einde van de "
+"blauwe lijn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -565,6 +567,11 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Dit is een zeer belangrijk concept om in gedachten te houden: verzamelde "
+"grondstoffen moeten eerst naar een pakhuis gebracht worden alvorens ze "
+"meegeteld worden. Daarom dient u altijd de afstand tussen de grondstof en "
+"het dichtsbijzijnde pakhuis zo klein als mogelijk te houden om de "
+"verzamelefficiëntie te verbeteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
@@ -659,6 +666,11 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Verplaats ondertussen uw aandacht naar het aantal inwoners, te zien op het "
+"bovenste paneel. Het is het vijfde item van links, juist na de grondstoffen."
+" Het is verstandig om hier op te blijven letten. Het geeft uw huidige "
+"bevolking aan (inclusief diegenen die nog worden gerekruteerd) en de huidige"
+" bevolkingslimiet, die wordt bepaald door uw gebouwde structuren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -666,12 +678,18 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Omdat u bijna de bevolkingslimiet bereikt heeft moet u deze verhogen door "
+"een aantal nieuwe gebouwen te bouwen als u meer eenheden wilt rekruteren. "
+"Het gebouw wat het meest kostenefficiënt de bevolkingslimiet verhoogd is het"
+" Huis.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Nu dat de eenheden gereed zijn, laten we kijken hoe we meerdere huizen in "
+"een rij kunnen bouwen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -686,6 +704,17 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Selecteer twee van uw nieuw gerekruteerde Vrouwelijke Burgers en beveel hen "
+"om de huizen in het lege gebied ten oosten van het Beschavingscentrum te "
+"bouwen. Om dit te doen klikt u op het Huis icoon in het paneel rechtsonderin"
+" terwijl u de Vrouwelijke Burgers geselecteerd hebt en, terwijl u Shift "
+"ingedrukt houdt, klikt u allereerst op de positie op de kaart waar u het "
+"eerste Huis gebouwd wilt hebben en vervolgens klikt u op de positie waar u "
+"het tweede Huis gebouwd wilt hebben. (Als u een bevel geeft terwijl u Shift "
+"ingedrukt houdt komt dat bevel in een wachtrij te staan; eenheden schakelen "
+"automatisch naar het volgende bevel in de rij zodra het huidige bevel "
+"uitgevoerd is.) Druk op Escape om van de huizencursor af te komen, zodat u "
+"niet onnodig veel huizen over de gehele kaart plaatst.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
@@ -703,7 +732,7 @@ msgid ""
 "slower to gather than forageable fruits.\n"
 msgstr ""
 "U hebt misschien gemerkt dat bessen een eindige voedselbron zijn. We hebben "
-"een meer duurzame voedselbron nodig. Velden zijn een oneindige voedselbron, "
+"een meer duurzame voedselbron nodig. Akkers zijn een oneindige voedselbron, "
 "maar het oogsten duurt langer dan bij plukbaar fruit.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
@@ -720,6 +749,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Selecteer de drie overgebleven (inactieve) vrouwelijke burgers en beveel hen"
+" om een Boerderij in het midden van de grote open vlakte ten westen van het "
+"Beschavingscentrum te bouwen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -727,6 +759,9 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"We zullen een redelijk stuk grond rondom de boerderij nodig hebben om akkers"
+" te bouwen. Bovendien zien we geiten aan de westzijde welke we kunnen "
+"bejagen om onze voedselverzamelingsefficiëntie te verbeteren.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -743,12 +778,17 @@ msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Zodra de boerderij klaar is zullen de bouwers automatisch op zoek gaan naar "
+"voedsel. In dit geval zullen ze achter de nabije geiten aan gaan.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Doch uw bouwlieden zullen enkel op zoek gaan naar iets anders om te bouwen "
+"en zullen, wanneer ze niets vinden, inactief worden. Wacht totdat ze de "
+"huizen gebouwd hebben."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -756,13 +796,16 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Selecteer, zodra beide huizen gebouwd zijn, uw twee Vrouwelijke Burgers en "
+"beveel hen om een Akker zo dicht als mogelijk bij de Boerderij, een pakhuis "
+"voor voedsel, te maken."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
-"Zodra het veld klaar is, zullen de bouwers automatisch beginnen met "
+"Zodra de akker klaar is, zullen de bouwers automatisch beginnen met "
 "oogsten.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
@@ -772,6 +815,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"De Ruitereenheid zou nu alle kippen geslacht moeten hebben. Selecteer de "
+"Ruiter en verken het zuid-westelijke gebied: hier is een meertje met enige "
+"kamelen eromheen. Verplaats uw Ruiter door rechts te klikken op het punt "
+"waar u wilt dat hij heen gaat en, wanneer u de kudde kamelen ziet, klik "
+"rechts op één van hen om te beginnen met het jagen voor Voedsel."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -784,27 +832,32 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Selecteer het Beschavingscentrum en klik rechts op de Akker."
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Klik nu drie maal op het Vrouwelijke Burger icoon in het paneel rechtsonder "
+"om nog drie landbouwers te rekruteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
 msgstr ""
+"Klik zonder Shift ingedrukt te houden om enkele eenheden te rekruteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Klik op het icoon van de Vrouwelijk Burger."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"U kunt de verzamelingssnelheden van uw werkers vergroten door nieuwe "
+"technologieën te onderzoeken welke beschikbaar zijn in sommige gebouwen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -857,6 +910,8 @@ msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Als u nog wat grondstoffen mist (icoon met de rode overlay), wacht dan "
+"totdat ze verzameld zijn door uw werkers."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""

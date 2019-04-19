@@ -10,6 +10,7 @@
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# moolow <copyhyeon@gmail.com>, 2018
 # Suhyeon Park <qkr5145@gmail.com>, 2018
 # Taejin Kim <manowar72@gmail.com>, 2015
 # Taejin Kim <manowar72@gmail.com>, 2015
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-12 09:48+0200\n"
-"PO-Revision-Date: 2019-04-12 14:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-15 09:50+0200\n"
+"PO-Revision-Date: 2019-04-16 05:21+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,23 +318,35 @@ msgstr "난이도"
 msgid "Select the difficulty of this scenario."
 msgstr "이 시나리오의 난이도를 선택하십시오."
 
-#: gui/gamesetup/gamesetup.js:772
-msgid "Choose the civilization for this player"
-msgstr "이 선수의 문명을 선택하세요"
+#: gui/gamesetup/gamesetup.js:727
+msgid "Select player."
+msgstr "선수를 선택하십시오."
 
-#: gui/gamesetup/gamesetup.js:839
+#: gui/gamesetup/gamesetup.js:762
+msgid "Select player's team."
+msgstr "편을 선택하십시오."
+
+#: gui/gamesetup/gamesetup.js:774
+msgid "Choose the civilization for this player."
+msgstr "이 선수의 문명을 선택하십시오."
+
+#: gui/gamesetup/gamesetup.js:788
+msgid "Pick a color."
+msgstr "색을 고르십시오."
+
+#: gui/gamesetup/gamesetup.js:842
 msgid "Hero Garrison"
 msgstr "영웅 주둔지"
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:843
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "영웅 배치 여부를 토글합니다."
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:855
 msgid "Nomad"
 msgstr "유목민"
 
-#: gui/gamesetup/gamesetup.js:853
+#: gui/gamesetup/gamesetup.js:856
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -341,208 +354,208 @@ msgstr "유목민 모드에서 선수는 소수 유닛으로 시작하여 도시
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:869
 msgid "Revealed Map"
 msgstr "지도 공개"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:869
+#: gui/gamesetup/gamesetup.js:872
 msgid "Toggle revealed map (see everything)."
 msgstr "지도 공개 여부를 토글합니다 (모두 보기)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
+#: gui/gamesetup/gamesetup.js:888
 msgid "Explored Map"
 msgstr "탐색된 지도"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:891
 msgid "Toggle explored map (see initial map)."
 msgstr "지도 탐험 여부를 토글합니다.(초기지도 참조)"
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:902
 msgid "Disable Treasures"
 msgstr "보물 비활성화"
 
-#: gui/gamesetup/gamesetup.js:900
+#: gui/gamesetup/gamesetup.js:903
 msgid "Do not add treasures to the map."
 msgstr "지도에 보물을 추가 하지 마십시오."
 
-#: gui/gamesetup/gamesetup.js:911
+#: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
-msgstr "스파이 비활성화"
+msgstr "첩자 활동 비활성화"
 
-#: gui/gamesetup/gamesetup.js:912
+#: gui/gamesetup/gamesetup.js:915
 msgid "Disable spies during the game."
-msgstr "게임중에 스파이 활동을 비활성화 합니다."
+msgstr "게임중에 첩자 활동을 비활성화 합니다."
 
-#: gui/gamesetup/gamesetup.js:923
+#: gui/gamesetup/gamesetup.js:926
 msgid "Teams Locked"
 msgstr "편을 고정"
 
-#: gui/gamesetup/gamesetup.js:924
+#: gui/gamesetup/gamesetup.js:927
 msgid "Toggle locked teams."
 msgstr "편의 고정 여부를 토글합니다."
 
-#: gui/gamesetup/gamesetup.js:938
+#: gui/gamesetup/gamesetup.js:941
 msgid "Last Man Standing"
 msgstr "마지막 생존"
 
-#: gui/gamesetup/gamesetup.js:939
+#: gui/gamesetup/gamesetup.js:942
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "마지막 남은 선수 또는 마지막 남은 동맹군이 승리할지 여부를 토글합니다."
 
-#: gui/gamesetup/gamesetup.js:952
+#: gui/gamesetup/gamesetup.js:955
 msgid "Cheats"
 msgstr "치트"
 
-#: gui/gamesetup/gamesetup.js:953
+#: gui/gamesetup/gamesetup.js:956
 msgid "Toggle the usability of cheats."
 msgstr "치트의 사용할지 여부를 토글합니다."
 
-#: gui/gamesetup/gamesetup.js:966
+#: gui/gamesetup/gamesetup.js:969
 msgid "Rated Game"
 msgstr "게임 순위등급"
 
-#: gui/gamesetup/gamesetup.js:967
+#: gui/gamesetup/gamesetup.js:970
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "이 게임이 순위표에 등급이 기록될지 여부를 토글합니다."
 
-#: gui/gamesetup/gamesetup.js:1000
+#: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "%(hotkey)s 키를 누르면 선수 이름이나 설정이 자동 완성됩니다."
 
-#: gui/gamesetup/gamesetup.js:1008
+#: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
 msgstr "앞마당으로 돌아갑니다."
 
-#: gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:1012
 msgid "Return to the main menu."
 msgstr "메인메뉴로 돌아갑니다."
 
-#: gui/gamesetup/gamesetup.js:1013
+#: gui/gamesetup/gamesetup.js:1016
 msgid "Start Game!"
 msgstr "놀이 시작!"
 
-#: gui/gamesetup/gamesetup.js:1029
+#: gui/gamesetup/gamesetup.js:1032
 msgid "Start a new game with the current settings."
 msgstr "현재 설정으로 새로운 놀이를 시작합니다."
 
-#: gui/gamesetup/gamesetup.js:1030
+#: gui/gamesetup/gamesetup.js:1033
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
-"ready)"
+"ready)."
 msgstr "현재 설정으로 새 게임을 시작합니다 (모든 선수가 준비될 때까지 사용안함)."
 
-#: gui/gamesetup/gamesetup.js:1042
+#: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 역사/건물 도감 보기\n마지막으로 열리면 클릭 시 다시 열립니다."
 
-#: gui/gamesetup/gamesetup.js:1107
+#: gui/gamesetup/gamesetup.js:1110
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "인공지능 환경설정: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1401
+#: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "%(name)s 설정 탭 여부를 토글합니다."
 
-#: gui/gamesetup/gamesetup.js:1402
+#: gui/gamesetup/gamesetup.js:1405
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "%(hotkey)s 을(를) 사용하여 설정 탭을 아래로 이동합니다."
 
-#: gui/gamesetup/gamesetup.js:1403
+#: gui/gamesetup/gamesetup.js:1406
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "%(hotkey)s 을(를) 사용하여 설정 탭을 위로 이동합니다."
 
-#: gui/gamesetup/gamesetup.js:1751
+#: gui/gamesetup/gamesetup.js:1754
 msgctxt "map selection"
 msgid "Random"
 msgstr "아무거나"
 
-#: gui/gamesetup/gamesetup.js:1753
+#: gui/gamesetup/gamesetup.js:1756
 msgid "Pick any of the given maps at random."
 msgstr "무작위로 주어진 지도를 선택합니다."
 
-#: gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
 msgstr "아무거나"
 
-#: gui/gamesetup/gamesetup.js:1786
+#: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
 msgstr "무작위로 생물군집을 선택합니다."
 
-#: gui/gamesetup/gamesetup.js:2124
+#: gui/gamesetup/gamesetup.js:2127
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2129
+#: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: gui/gamesetup/gamesetup.js:2159
+#: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
 msgstr "예"
 
-#: gui/gamesetup/gamesetup.js:2159
+#: gui/gamesetup/gamesetup.js:2162
 msgid "No"
 msgstr "아니오"
 
-#: gui/gamesetup/gamesetup.js:2166
+#: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2254
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s 님 %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2459
+#: gui/gamesetup/gamesetup.js:2462
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2467
+#: gui/gamesetup/gamesetup.js:2470
 msgid "Unassigned"
 msgstr "지정되지 않음"
 
-#: gui/gamesetup/gamesetup.js:2543
+#: gui/gamesetup/gamesetup.js:2546
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2550
+#: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
 msgstr "알수없는 선수"
 
-#: gui/gamesetup/gamesetup.js:2589
+#: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2590
+#: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2591
+#: gui/gamesetup/gamesetup.js:2594
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -678,44 +691,32 @@ msgstr "문명"
 msgid "Team"
 msgstr "편"
 
-#: gui/gamesetup/gamesetup.xml:(caption):131
-msgid "Show this message in the future"
-msgstr "계속 이 메시지를 표시"
+#: gui/gamesetup/gamesetup.xml:(caption):125
+msgid "Show this message in the future."
+msgstr "이 메시지를 계속 표시합니다."
 
-#: gui/gamesetup/gamesetup.xml:(caption):220
+#: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
 msgstr "보내기"
 
-#: gui/gamesetup/gamesetup.xml:(caption):237
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Cheats enabled."
 msgstr "치트를 사용하였습니다."
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):254
 msgid "Back"
 msgstr "뒤로"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
-"Reset any civilizations that have been selected to the default (random)"
+"Reset any civilizations that have been selected to the default (random)."
 msgstr "기본값으로 선택된 모든 문명을 재설정합니다 (아무거나)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "모든 팀을 기본값으로 재설정합니다."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
-msgid "Pick a color."
-msgstr "색을 고르십시오."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
-msgid "Select player."
-msgstr "선수를 선택하십시오."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):118
-msgid "Select player's team."
-msgstr "편을 선택하십시오."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):202
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "대화창에서 함께 놀기 앞마당을 표시합니다."
 
@@ -767,13 +768,13 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Agamemnon\", 176-183)"
-msgstr ""
+msgstr "\"제우스 \\[…] 그의 법을 확립했습니다: 지혜는 고통을 통해 옵니다. \\[…] 그래서 그들의 의지에 반하는 사람들은 절제를 실천하는 법을 배웁니다. \\[…] 그런 은혜는 가혹하고 폭력적입니다.\" - 아이스킬로스 (\"아가멤논\", 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Agamemnon\", 406)"
-msgstr ""
+msgstr "\"그녀 \\[헬렌]은 엘리움에게 지참금과 파괴를 가져 왔습니다.\" - 아이스킬로스 (\"아가멤논\", 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -856,7 +857,7 @@ msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaus"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"만약 내가 고귀한 일을 했다면, 그것은 충분한 기념비적인 것이다; 내가 하지 않으면, 세계의 모든 조각상들은 나의 기억을 보존하지 못할 것이기 때문이다.\" - 스파르타의 아게실라우스 2세 (플루타르크, \"모랄리아\", XVI. \"스파르타인의 명언,\" 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -891,7 +892,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "\"영광은 노동을 하고 위험을 무릅쓰는 사람들의 행위이며, 용맹한 삶을 살고 불멸의 영광을 남기고 죽는 것은 즐거운 일입니다.\" - 알렉산더 대왕, 그의 군대 연설에서 (아리안, \"알렉산더의 원정기\", 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -899,7 +900,7 @@ msgid ""
 "labors themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"나는 용감한 사람에게, 영광스러운 업적으로 이어진다면, 노력 그 자체 외에는 노동의 끝이 없다고 생각합니다.\" - 알렉산더 대왕, 그의 군대 연설에서 (아리안, \"알렉산더의 원정기\", 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -934,7 +935,7 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"아고라는 남자들이 서로 속이고, 탐스럽게 행동할 수 있다고 인정된 장소입니다.\" - 아나카르시스, 그리스를 여행한 스키타이족 철학자 (디오게네스 라에르티오스, \"저명한 철학자들의 삶과 의견\", 아나카시스, 5항)"
 
 #: gui/text/quotes.txt:29
 msgid ""
@@ -1157,7 +1158,7 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.\" - Curtius Rufus about the Battle of Issus "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr ""
+msgstr "\"Then the blood really flowed, for the two lines were so close that shield struck against shield, and they drove their swords into each other's faces. It was impossible for the weak or cowardly to retreat; man to man they fought like in single combat.\" - Curtius Rufus about the Battle of Issos (\"역사 of 알렉산더 대왕\", III. 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
@@ -1171,7 +1172,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"I am Darius, the great king, king of kings, the king of Persia, the king of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, column I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1181,7 +1182,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Phraortes was captured and brought before me. I cut off his nose, his ears, and his tongue, and I put out one eye, and he was kept in chains at my palace entrance, and all the people saw him. Then I crucified him in Ecbatana; and the men who were his foremost followers \\[…] I flayed and hung out their skins, stuffed with straw.\" - Darius I. (Behistun inscription, column II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1204,7 +1205,7 @@ msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
 "Philip II of Macedon (\"Olynthiac II\", 10)"
-msgstr ""
+msgstr "\"It is not possible to found a lasting power upon injustice, perjury, and treachery.\" - Demosthenes, in one of his many speeches against the rising Phillip II of Macedon (\"Olynthiac II\", 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
@@ -1219,7 +1220,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
 " the Battle of Issus (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+msgstr "\"The Macedonians first raised an unearthly shout followed by the Persians answering, so that the whole hillside bordering the battlefield echoed back the sound, and that second roar was louder than the Macedonian war cry as five hundred thousand men shouted with one voice.\" - 디오도로스 시쿨루스 about the Battle of Issos (\"역사의 도서관\", XVII., 33항)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1292,7 +1293,7 @@ msgstr "\"Cowards do not count in battle; they are there, but not in it.\" - 에
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr "\"Chance fights ever on the side of the prudent.\" - 에우리피데스 (\"피리토우스\")"
+msgstr "\"기회는 항상 신중함과 싸운다.\" - 에우리피데스 (\"피리토우스\")"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -1306,19 +1307,19 @@ msgid ""
 "\"I came, I saw, I conquered.\" - Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. "
 "50)"
-msgstr ""
+msgstr "\"왔노라 보았노라 이겼노라.\" - 가이우스 율리우스 카이사르, 폰토스의 파르나케스 2세를 처음 공격한후 (플루타르코스, \"플루타르코스 영웅전\", \"카이사르\", 50항??)"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Caesar (\"De Bello Gallico\", "
 "III. 18)"
-msgstr ""
+msgstr "\"사람들은 바라는 바를 기꺼이 믿는다.\" - 가이우스 율리우스 카이사르 (\"갈리아 전기\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
-msgstr ""
+msgstr "\"내가 두려워하는 것은 이처럼 잘 먹은 얼굴에 긴 머리를 가진 사람들이 아니고, 창백하고 배고파 보이는 사람들이다.\" - 가이우스 율리우스 카이사르 (플루타르크, \"플루타르코스 영웅전\", \"안토니\", 11항)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1327,7 +1328,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.\" - Caesar about the Battle of Alesia (\"De Bello Gallico\", "
 "VII. 80)"
-msgstr ""
+msgstr "\"After fighting from noon almost to sunset, with victory doubtful, the Germans, on one side charged the enemy in a compact body, and drove them back; and, when they were put to flight, the archers were surrounded and cut to pieces.\" - 가이우스 율리우스 카이사르 about the Battle of Alesia (\"갈리아 전기\", VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1338,7 +1339,7 @@ msgid ""
 "exhausted by many and severe wounds, that he was already unable to support "
 "himself.\" - Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
 " 25)"
-msgstr ""
+msgstr "\"All the centurions of the fourth cohort were slain, and the standard-bearer killed, the standard itself lost, almost all the centurions of the other cohorts either wounded or slain, and among them the chief centurion of the legion, Publius Sextius Baculus, a very valiant man, who was so exhausted by many and severe wounds, that he was already unable to support himself.\" - 가이우스 율리우스 카이사르, 사비스 전투에 대해서 (\"갈리아 전기\", II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1348,27 +1349,27 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Caesar about "
 "the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"But the enemy \\[…] displayed such great courage, that when the front rank had fallen the men behind them stood on them and continue the fight from on top of the corpses; when these were killed the pile of bodies grew higher, while the survivors used the heap as a vantage point for throwing missiles at our men, or catching our spears and throwing them back.\" - 가이우스 율리우스 카이사르 사비스 전투에 대해서 (\"갈리아 전기\", II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"The die is cast.\" - Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr ""
+msgstr "\"The die is cast.\" - 가이우스 율리우스 카이사르, when crossing the Rubicon river with his legion into Italy, a capital offense that led to his civil war against Pompey (수에토니우스, \"The Lives of the Twelve 카이사르s\", 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
 "\"I'd rather be the first man here than the second man in Rome.\" - Caesar, "
 "when passing through a barbarian village in the Alps (Plutarch, \"Parallel "
 "Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+msgstr "\"I'd rather be the first man here than the second man in Rome.\" - 가이우스 율리우스 카이사르, when passing through a barbarian village in the Alps (플루타르크, \"플루타르코스 영웅전\", \"카이사르\", 11항)"
 
 #: gui/text/quotes.txt:89
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Pompey (Plutarch, \"Parallel "
 "Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (플루타르크, \"플루타르코스 영웅전\", \"Pompey\", 10항)"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1380,7 +1381,7 @@ msgstr "\"If a man put out the eye of another man, his eye shall be put out.\" -
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "\"나는 이탈리아인들과 전쟁을 하기 위해서가 아니라 로마에 대항하는 이탈리아인들을 돕기 위해 왔다.\" - 한니발 바르카 (폴리비오스, \"역사\", III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1388,7 +1389,7 @@ msgid ""
 "an old man.\" - Hannibal's last words before his suicide, in exile with "
 "Flaminius pressuring the local ruler to hand him over (Livy, \"History of "
 "Rome\", XXXIX. 51)"
-msgstr ""
+msgstr "\"Let us now end the anxiety of the Romans, who can't wait for the death of an old man.\" - Hannibal Barca's last words before his suicide, in exile with Flaminius pressuring the local ruler to hand him over (리비우스, \"로마 건설 이래\", XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1396,27 +1397,27 @@ msgid ""
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.\" -"
 " Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. 44)"
-msgstr ""
+msgstr "\"Most inhuman and most arrogant of nations, they \\[the Romans] reckon the world as theirs and subject to their pleasure. With whom we are to be at war, with whom at peace, they think it right that they should determine.\" - Hannibal Barca, 그의 군대 연설에서 (리비우스, \"로마 건설 이래\", XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
 "death.\" - Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. "
 "44)"
-msgstr ""
+msgstr "\"You must be brave and discard all hopes of anything but victory or death.\" - Hannibal Barca, 그의 군대 연설에서 (리비우스, \"로마 건설 이래\", XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.\" - Heraclitus (Hippolytus, \"The Refutation"
 " of all Heresies\", IX. 4)"
-msgstr ""
+msgstr "\"War is the father and king of all things: some he has made gods, and some men; some slaves and some free.\" - 헤라클레이토스 (Hippolytus, \"The Refutation of all Heresies\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"You could not step twice into the same river.\" - Heraclitus (Plato, "
 "\"Cratylus\", 402a)"
-msgstr ""
+msgstr "\"같은 강으로 두 번 걸을 수는 없다.\" - 헤라클레이토스 (플라톤, \"크라틸로스\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
@@ -1440,7 +1441,7 @@ msgstr "\"지식은 많지만 힘이 없다는것은 사람들 사이에 괴로�
 msgid ""
 "\"Although he \\[Xerxes] had plenty of troops he had few men.\" - Herodotus "
 "(\"The Histories\", VII. 210)"
-msgstr ""
+msgstr "\"Although he \\[Xerxes] had plenty of troops he had few men.\" - Herodotus (\"The 역사\", VII. 210)"
 
 #: gui/text/quotes.txt:101
 msgid ""
@@ -1458,7 +1459,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dieneces,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"Being informed \\[…] that when the Barbarians discharged their arrows they obscured the light of the sun by the multitude of the arrows, he \\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, for if the Medes obscured the light of the sun, the battle against them would be in the shade and not in the sun.\" - Herodotus describing Dienekes, reputedly the bravest Spartan soldier at Thermopylae (폴리비오스, \"역사\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1466,7 +1467,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.\" - Herodotus, later mentioning that the empire "
 "Croesus destroyed was his own (\"The Histories\", I. 53)"
-msgstr ""
+msgstr "\"The judgement given to Kroisus by each of the two oracles \\[Delphi and Thebes] was the same: If he sent an army against the Persians, he would destroy a great empire.\" - Herodotus, later mentioning that the empire Kroisos destroyed was his own (\"The 역사\", I. 53)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1476,7 +1477,7 @@ msgid ""
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I, the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr ""
+msgstr "\"He \\[King Darius] asked who the Athenians were, and, being informed, called for his bow, and placing an arrow on the string, shot upward into the sky, saying, as he let fly the shaft: Grant me, Zeus, to revenge myself on the Athenians!\" - Herodotus, narrating how the Athenian support for the Ionian revolt caught the wrath of Darius I., the Persian king (\"The 역사\", V. 105)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1502,7 +1503,7 @@ msgstr "\"Anger is a momentary madness, so control your passion or it will contr
 msgid ""
 "\"It is your concern when your neighbor's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr ""
+msgstr "\"이웃집 벽에 불이 났을 때 걱정거리이다.\" - 호라티우스 (\"에피스트레스\", 에피스트레 XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
@@ -1518,7 +1519,7 @@ msgstr "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+msgstr "\"In peace the sons bury their fathers, but in war the fathers bury their sons.\" - Kroisos, king of Lydia (Herodotus, \"The 역사\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
@@ -1543,7 +1544,7 @@ msgid ""
 "Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"History "
 "of Rome\", XXII. 51)"
-msgstr ""
+msgstr "\"Some were discovered lying there alive, with thighs and tendons slashed, baring their necks and throats and bidding their conquerors drain the remnant of their blood. Others were found with their heads buried in holes dug in the ground. They had apparently made these pits for themselves.\" - 리비우스, describing the aftermath of the Battle of Cannae, where Hannibal inflicted the greatest defeat on the Romans in all their history (\"로마 건설 이래\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1552,7 +1553,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livy, describing the aftermath"
 " of the Battle of Cannae, where Hannibal inflicted the greatest defeat on "
 "the Romans in all their history (\"History of Rome\", XXII. 51)"
-msgstr ""
+msgstr "\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst the slain rose a gory figure whose wounds had begun to throb with the chill of dawn, and was cut down by his enemies.\" - 리비우스, describing the aftermath of the Battle of Cannae, where Hannibal inflicted the greatest defeat on the Romans in all their history (\"로마 건설 이래\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1565,45 +1566,45 @@ msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Brutus, before "
 "committing suicide after losing a battle against Caesar's avengers "
 "(Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius Brutus, before committing suicide after losing a battle against 카이사르's avengers (플루타르크, \"플루타르코스 영웅전\", \"Brutus\", 52항)"
 
 #: gui/text/quotes.txt:118
 msgid "\"O, the times, O, the customs!\" - Cicero (\"Against Catiline\", I.)"
-msgstr ""
+msgstr "\"오, 시대, 오, 세속!\" - 마르쿠스 툴리우스 키케로 (\"카틸리나 탄핵\", 연설 I.)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "\"A war is never undertaken by the ideal State, except in defense of its honor or its safety.\" - 마르쿠스 툴리우스 키케로 (\"De Re Publica\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "\"The first duty of a man is the seeking after and the investigation of truth.\" - 마르쿠스 툴리우스 키케로 (\"On Duties\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Cicero"
 " (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "\"No one is so old as to think that he cannot live one more year.\" - 마르쿠스 툴리우스 키케로 (\"On Old Age\", 24항)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Cicero (\"On the "
 "Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"Let the welfare of the people be the ultimate law.\" - 마르쿠스 툴리우스 키케로 (\"On the Laws\", III., 3항)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Cicero (\"Philippics\", V., "
 "sec. 5)"
-msgstr ""
+msgstr "\"끝없는 돈은 전쟁의 원동력이 된다.\" - 마르쿠스 툴리우스 키케로 (\"피리피크스\", 피리피카 V., 5항)"
 
 #: gui/text/quotes.txt:124
 msgid "\"Laws are silent in time of war.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
-msgstr ""
+msgstr "\"전쟁 중에는 법은 침묵한다.\" - 마르쿠스 툴리우스 키케로 (\"프로 미로네\", IV., 11항)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1611,7 +1612,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Cicero, "
 "condemning Mark Anthony who had not killed him (yet) (\"Philippics\", II., "
 "sec. 5)"
-msgstr ""
+msgstr "\"That, Senators, is what a favour from gangs amounts to. They refrain from murdering someone; then they boast that they have spared him!\" - 마르쿠스 툴리우스 키케로, condemning Mark Anthony who had not killed him (yet) (\"Philippics\", Philippica II, 5항)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1804,7 +1805,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbor and close to shore.\" - Polybius on the Athenian "
 "constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"The Athenian people are always in the position of a ship without a commander. Fear of the enemy or a storm make the crew be of one mind and obey the helmsman, everything goes well; but if they recover \\[…] they quarrel with each other \\[…], and the result has often been that, after escaping the dangers of the widest seas and the most violent storms, they wreck their ship in harbour and close to shore.\" - 폴리비오스 on the Athenian constitution (\"역사\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1899,7 +1900,7 @@ msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livy, \"History of Rome\", XXX. 31)"
-msgstr ""
+msgstr "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio Africanus, replying to Hannibal's offer of peace terms before the Battle of Zama (리비우스, \"로마 건설 이래\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""

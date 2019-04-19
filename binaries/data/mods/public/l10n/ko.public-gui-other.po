@@ -11,6 +11,7 @@
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
+# ks k, 2019
 # llen_llen, 2014,2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # sang gyu nam <destro0419@naver.com>, 2018
@@ -20,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-04-10 14:38+0000\n"
+"PO-Revision-Date: 2019-04-16 05:36+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +125,7 @@ msgstr "아무거나"
 #: gui/common/functions_utility.js:231
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "건물짓기: %(buildDate)s (%(revision)s)"
+msgstr "만듦새: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -394,7 +395,7 @@ msgstr "비활성화"
 #: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "For the first minute, other players will stay neutral."
+msgstr[0] "처음 %(min)s 분 동안은 다른 선수들이 중립을 지킬것입니다."
 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
@@ -1385,7 +1386,7 @@ msgstr "0 A.D.를 개선시키는데 도움을 주셔서 감사합니다!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr "피드백은 현재 활성화되어 있습니다."
+msgstr "현재 의견제출기능이 활성화되어 있습니다."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1884,15 +1885,15 @@ msgstr "매각"
 
 #: gui/summary/summary.js:100
 msgid "Outcome"
-msgstr ""
+msgstr "결과"
 
 #: gui/summary/summary.js:105
 msgid "Failed"
-msgstr ""
+msgstr "실패함"
 
 #: gui/summary/summary.js:335
 msgid "Time elapsed"
-msgstr ""
+msgstr "진행된 시간"
 
 #: gui/summary/summary.js:491
 msgid "Current Scores"
@@ -1900,27 +1901,27 @@ msgstr "현재 점수"
 
 #: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
-msgstr "Scores at the end of the game."
+msgstr "놀이 끝날때의 점수입니다."
 
 #: gui/summary/summary.js:495
 msgid "You have been disconnected."
-msgstr "You have been disconnected."
+msgstr "연결이 끊어졌습니다."
 
 #: gui/summary/summary.js:497
 msgid "You have left the game."
-msgstr "You have left the game."
+msgstr "놀이를 그만두었다."
 
 #: gui/summary/summary.js:499
 msgid "You have won the battle!"
-msgstr "You have won the battle!"
+msgstr "전투에서 승리하였습니다!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr ""
+msgstr "패배했습니다…"
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
-msgstr "You have abandoned the game."
+msgstr "놀이를 포기했습니다."
 
 #: gui/summary/summary.js:505
 #, javascript-format
@@ -2048,11 +2049,11 @@ msgstr "언어:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "로케일:"
+msgstr "현장:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "고급??(어드벤스드)"
+msgstr "고급"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"

@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-12 09:48+0200\n"
-"PO-Revision-Date: 2019-04-15 07:53+0000\n"
-"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
+"POT-Creation-Date: 2019-04-15 09:50+0200\n"
+"PO-Revision-Date: 2019-04-16 03:33+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -324,23 +324,35 @@ msgstr "Svårighetsgrad"
 msgid "Select the difficulty of this scenario."
 msgstr "Välj svårighetsgraden för det här scenariot."
 
-#: gui/gamesetup/gamesetup.js:772
-msgid "Choose the civilization for this player"
-msgstr "Välj civilisationen för denna spelaren"
+#: gui/gamesetup/gamesetup.js:727
+msgid "Select player."
+msgstr "Välj spelare."
 
-#: gui/gamesetup/gamesetup.js:839
+#: gui/gamesetup/gamesetup.js:762
+msgid "Select player's team."
+msgstr "Välj spelarens lag."
+
+#: gui/gamesetup/gamesetup.js:774
+msgid "Choose the civilization for this player."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:788
+msgid "Pick a color."
+msgstr "Välj en färg."
+
+#: gui/gamesetup/gamesetup.js:842
 msgid "Hero Garrison"
 msgstr "Hjältegarnison"
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:843
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Välj om hjältar kan garnisoneras."
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:855
 msgid "Nomad"
 msgstr "Nomad"
 
-#: gui/gamesetup/gamesetup.js:853
+#: gui/gamesetup/gamesetup.js:856
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -348,208 +360,208 @@ msgstr "I Nomad-läge börjar spelare med endast ett fåtal enheter och måste h
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:869
 msgid "Revealed Map"
 msgstr "Synlig Karta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:869
+#: gui/gamesetup/gamesetup.js:872
 msgid "Toggle revealed map (see everything)."
 msgstr "Växla avslöjad karta (se allt)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
+#: gui/gamesetup/gamesetup.js:888
 msgid "Explored Map"
 msgstr "Utforskad Karta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:891
 msgid "Toggle explored map (see initial map)."
 msgstr "Växla upptäckt karta (se kartan i början)."
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:902
 msgid "Disable Treasures"
 msgstr "Inaktivera Skatter"
 
-#: gui/gamesetup/gamesetup.js:900
+#: gui/gamesetup/gamesetup.js:903
 msgid "Do not add treasures to the map."
 msgstr "Lägg inte till skatter på kartan."
 
-#: gui/gamesetup/gamesetup.js:911
+#: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
 msgstr "Inaktivera Spioner"
 
-#: gui/gamesetup/gamesetup.js:912
+#: gui/gamesetup/gamesetup.js:915
 msgid "Disable spies during the game."
 msgstr "Inaktivera spioner under spelet."
 
-#: gui/gamesetup/gamesetup.js:923
+#: gui/gamesetup/gamesetup.js:926
 msgid "Teams Locked"
 msgstr "Låsta Lag"
 
-#: gui/gamesetup/gamesetup.js:924
+#: gui/gamesetup/gamesetup.js:927
 msgid "Toggle locked teams."
 msgstr "Växla låsta lag."
 
-#: gui/gamesetup/gamesetup.js:938
+#: gui/gamesetup/gamesetup.js:941
 msgid "Last Man Standing"
 msgstr "Sista Man Stående"
 
-#: gui/gamesetup/gamesetup.js:939
+#: gui/gamesetup/gamesetup.js:942
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Välj om sista överlevande spelare eller sista överlevande grupp allierade vinner."
 
-#: gui/gamesetup/gamesetup.js:952
+#: gui/gamesetup/gamesetup.js:955
 msgid "Cheats"
 msgstr "Fusk"
 
-#: gui/gamesetup/gamesetup.js:953
+#: gui/gamesetup/gamesetup.js:956
 msgid "Toggle the usability of cheats."
 msgstr "Växla om fusk ska gå att använda."
 
-#: gui/gamesetup/gamesetup.js:966
+#: gui/gamesetup/gamesetup.js:969
 msgid "Rated Game"
 msgstr "Värderat Spel"
 
-#: gui/gamesetup/gamesetup.js:967
+#: gui/gamesetup/gamesetup.js:970
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Välj om detta spel ska värderas för topplistan."
 
-#: gui/gamesetup/gamesetup.js:1000
+#: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "Tryck %(hotkey)s för att automatiskt komplettera spelarnamn och inställningar."
 
-#: gui/gamesetup/gamesetup.js:1008
+#: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
 msgstr "Återgå till lobbyn."
 
-#: gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:1012
 msgid "Return to the main menu."
 msgstr "Återgå till huvudmenyn."
 
-#: gui/gamesetup/gamesetup.js:1013
+#: gui/gamesetup/gamesetup.js:1016
 msgid "Start Game!"
 msgstr "Starta Spelet!"
 
-#: gui/gamesetup/gamesetup.js:1029
+#: gui/gamesetup/gamesetup.js:1032
 msgid "Start a new game with the current settings."
 msgstr "Starta ett nytt spel med nuvarande inställningar."
 
-#: gui/gamesetup/gamesetup.js:1030
+#: gui/gamesetup/gamesetup.js:1033
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
-"ready)"
-msgstr "Starta ett nytt spel med nuvarande inställningar (inaktiverad tills alla spelare är redo)."
+"ready)."
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1042
+#: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Historik / Strukturträd\nSenast öppnad kommer öppnas igen vid klick."
 
-#: gui/gamesetup/gamesetup.js:1107
+#: gui/gamesetup/gamesetup.js:1110
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "Ställ in AI: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1401
+#: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Byt till %(name)s inställningsflik."
 
-#: gui/gamesetup/gamesetup.js:1402
+#: gui/gamesetup/gamesetup.js:1405
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Använd %(hotkey)s för att flytta en inställningsflik nedåt."
 
-#: gui/gamesetup/gamesetup.js:1403
+#: gui/gamesetup/gamesetup.js:1406
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Använd %(hotkey)s för att flytta en inställningsflik uppåt."
 
-#: gui/gamesetup/gamesetup.js:1751
+#: gui/gamesetup/gamesetup.js:1754
 msgctxt "map selection"
 msgid "Random"
 msgstr "Slumpmässig"
 
-#: gui/gamesetup/gamesetup.js:1753
+#: gui/gamesetup/gamesetup.js:1756
 msgid "Pick any of the given maps at random."
 msgstr "Välj en av de angivna kartorna slumpmässigt."
 
-#: gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
 msgstr "Slumpmässig"
 
-#: gui/gamesetup/gamesetup.js:1786
+#: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
 msgstr "Välj en av de angivna biomerna slumpmässigt."
 
-#: gui/gamesetup/gamesetup.js:2124
+#: gui/gamesetup/gamesetup.js:2127
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2129
+#: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: gui/gamesetup/gamesetup.js:2159
+#: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:2159
+#: gui/gamesetup/gamesetup.js:2162
 msgid "No"
 msgstr "Nej"
 
-#: gui/gamesetup/gamesetup.js:2166
+#: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2254
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2459
+#: gui/gamesetup/gamesetup.js:2462
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2467
+#: gui/gamesetup/gamesetup.js:2470
 msgid "Unassigned"
 msgstr "Otilldelad"
 
-#: gui/gamesetup/gamesetup.js:2543
+#: gui/gamesetup/gamesetup.js:2546
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2550
+#: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
 msgstr "Okänd Spelare"
 
-#: gui/gamesetup/gamesetup.js:2589
+#: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2590
+#: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2591
+#: gui/gamesetup/gamesetup.js:2594
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -685,44 +697,32 @@ msgstr "Civilisation"
 msgid "Team"
 msgstr "Lag"
 
-#: gui/gamesetup/gamesetup.xml:(caption):131
-msgid "Show this message in the future"
-msgstr "Visa detta meddelande i framtiden"
+#: gui/gamesetup/gamesetup.xml:(caption):125
+msgid "Show this message in the future."
+msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):220
+#: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
 msgstr "Skicka"
 
-#: gui/gamesetup/gamesetup.xml:(caption):237
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Cheats enabled."
 msgstr "Fusk är påslagna"
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):254
 msgid "Back"
 msgstr "Tillbaka"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
-"Reset any civilizations that have been selected to the default (random)"
-msgstr "Återställ alla civilisationer som har blivit valda till standardvärde (tillfälliga)"
+"Reset any civilizations that have been selected to the default (random)."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "Återställ alla lag to grundinställningarna."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
-msgid "Pick a color."
-msgstr "Välj en färg."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
-msgid "Select player."
-msgstr "Välj spelare."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):118
-msgid "Select player's team."
-msgstr "Välj spelarens lag."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):202
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Visa multiplayerlobbyn i en dialogruta."
 
@@ -1483,7 +1483,7 @@ msgid ""
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I, the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr ""
+msgstr "\"Han \\[Kung Darius] frågade vilka athenarna var och blev informerad, ropade han på sin pilbåge och lade en pil på strängen och sköt uppåt till himlen och sade:\" När han lät skaftet flyga: Ge mig, Zeus att hämnas mig på athenarna! \" - Herodotus, som berättar hur det athenska stödet till den Joniska revolten fångade Darius I, Persiska kungen (\"Historierna\", V. 105)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1509,7 +1509,7 @@ msgstr "\"Anger är en kortvarig galenskap, så kontrollera din passion eller de
 msgid ""
 "\"It is your concern when your neighbor's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr ""
+msgstr "\"Det är din oro när din grannes mur står i brand.\" - Horace (\"Epistles\", epistel XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
@@ -1525,7 +1525,7 @@ msgstr "\"Jag Cyrus, världens härskare...\" - Inskription (Cyrus Cylinder)"
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+msgstr "\"I fred begraver söner sina fädrar, men i krig begraver fädrar sina söner.\" - Croesus, kung av Lydia (Herodotus, \"Historierna\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
@@ -1550,7 +1550,7 @@ msgid ""
 "Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"History "
 "of Rome\", XXII. 51)"
-msgstr ""
+msgstr "\"Några upptäcktes ligga där levande, med lår och senor snittade, blottar sina nackar och halsar och inbjuder deras erövrare att dränera resten av deras blod. Andra hittades med sina huvuden begravda i hål nergrävda i marken. De hade tydligen gjort dessa gropar för dem själva.\" - Livy, som beskriver efterföljden av slaget vid Cannae, där Hannibal orsakade det största nederlaget på romarna i hela sin historia (\"History of Rome\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1559,7 +1559,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livy, describing the aftermath"
 " of the Battle of Cannae, where Hannibal inflicted the greatest defeat on "
 "the Romans in all their history (\"History of Rome\", XXII. 51)"
-msgstr ""
+msgstr "\"Det låg tusen efter tusen romare \\[...]. Här och där bland de döda rosade en gyrofigur, vars sår hade börjat bulta med morgonens köld och avbröts av sina fiender.\" - Livy, som beskriver efterföljden av slaget vid Cannae, där Hannibal orsakade det största nederlaget på romarna i hela sin historia (\"History of Rome\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1572,45 +1572,45 @@ msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Brutus, before "
 "committing suicide after losing a battle against Caesar's avengers "
 "(Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "\"Flykt, ja, men denna gång med mina händer, inte mina fötter.\" - Brutus, innan självmord efter att ha förlorat en strid mot Caesars hämnare (Plutarch, \"Parallel Lives\", \"Brutus\", s. 52)"
 
 #: gui/text/quotes.txt:118
 msgid "\"O, the times, O, the customs!\" - Cicero (\"Against Catiline\", I.)"
-msgstr ""
+msgstr "\"O tider, o seder!\" - Cicero (\"Against Catiline\", I.)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "\"Den ideala staten utför aldrig krig, förutom att försvara dess heder eller dess säkerhet.\" - Cicero (\"De Re Publica\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "\"Den första plikten av en man är sökandet efter och undersökning av sanningen.\" - Cicero (\"On Duties\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Cicero"
 " (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "\"Ingen är så gammal som att tro att han inte kan leva ytterligare ett år.\" - Cicero (\"On Old Age\", sec. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Cicero (\"On the "
 "Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"Låt folkets välgång vara den ultimata lagen.\" - Cicero (\"On the Laws\", III., sec. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Cicero (\"Philippics\", V., "
 "sec. 5)"
-msgstr ""
+msgstr "\"Oändliga pengar bildar krigets senor.\" - Cicero (\"Philippics\", V., sec. 5)"
 
 #: gui/text/quotes.txt:124
 msgid "\"Laws are silent in time of war.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
-msgstr ""
+msgstr "\"Lagar är tysta i krigstid.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1618,7 +1618,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Cicero, "
 "condemning Mark Anthony who had not killed him (yet) (\"Philippics\", II., "
 "sec. 5)"
-msgstr ""
+msgstr "\"Detta, Senatorer, är vad en favör av gäng uppgår till. De avstår ifrån att mörda någon; sedan skryter de med att de har skonat honom!\" - Cicero, fördömande Mark Anthony som inte hade dödat honom (ännu) (\"Philippics\", II., sec. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1811,7 +1811,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbor and close to shore.\" - Polybius on the Athenian "
 "constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Det athenska folket står alltid i ett fartygs position utan befälhavare. Rädsla för fienden eller en storm gör besättningen av ett sinne och lyda rorsmannen, allt går bra, men om de återhämtar sig \\[...] strider de mot varandra \\[...], och resultatet har ofta varit att efter att ha släppt farorna med de bredaste haven och de mest våldsamma stormarna, skrotar de sitt skepp i hamnen och nära stranden. \" - Polybius på den atenska konstitutionen (\"Historier\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1906,7 +1906,7 @@ msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livy, \"History of Rome\", XXX. 31)"
-msgstr ""
+msgstr "\"Förbered dig för krig, eftersom du inte har kunnat uthärda en fred.\" - Scipio Africanus, svarande på Hannibals erbjudande om fredsvillkor inför Slaget om Zama (Livy, \"History of Rome\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""

@@ -5,7 +5,7 @@
 # Translators:
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Balázs Meskó <meskobalazs@gmail.com>, 2015-2019
-# Balázs Úr <ur.balazs@fsf.hu>, 2015-2017
+# Balázs Úr, 2015-2017
 # Boross Péter <borosspet@web.de>, 2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015-2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018
@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-04-02 11:29+0000\n"
+"PO-Revision-Date: 2019-04-16 15:43+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -3558,7 +3558,7 @@ msgstr "Ostromgépek építése és polgári katonák kiképzése."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Egységek beszállásolása a lassú gyógyításukhoz, valamint megvédi a hadi tábort a támadásoktól és a pusztulástól."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3568,21 +3568,21 @@ msgstr "LAKTANYÁK"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Minden polgári katona képzése. Egyes nemzetek a bajnokok képzését is feloldhatják."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "Egyedi katonai technológiák kutatása minden népnek."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Építs egyet korán, hogy polgári katonákat toborozz, míg felépíted a településed."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Építsd egy előretolt bázisra, hogy friss csapatutánpótlással támogasd a támadást."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3590,11 +3590,11 @@ msgstr "KOVÁCSMŰHELY"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Kutatóépítmény minden nép számára."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Fegyver- és páncélfejlesztések kutatása az egységeid számára."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3602,19 +3602,19 @@ msgstr "KARTHÁGÓI SZENT CSAPAT"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Karthágói bajnok lándzsás és bajnok lovas lándzsás."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "A többi bajnoktól eltérően mindkettő a templomban képezhető az erőd helyett."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "A lándzsások nehézgyalogságként használható a lovasság ellen. A lovassággal az ostromgépek és a csatárok helyezhetők sokkoló nyomás alá."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3622,7 +3622,7 @@ msgstr "KATAPULTOK"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "Távolsági ostromgépek, melyek kiválóak épületek ellen."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3632,7 +3632,7 @@ msgstr "Drága és lassú."
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Szekérré kell összecsomagolni a mozgatásukhoz, támadáshoz pedig álló gépekké kell kibontani."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3640,19 +3640,19 @@ msgstr "KELTA HARCI BÁRKA"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Egy közepes triérész-osztályú hadihajó."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Elérhető a britonoknak, a galloknak és az ibériaiknak."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "Legfeljebb 40 egységet tud szállítani."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Növeli a tűzerejét a beszállásolt gyalogsággal."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3660,21 +3660,21 @@ msgstr "VÁROSHÁZÁK"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "Az új kolóniád alapja."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Nagy területek elfoglalása."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "Barátságos vagy semleges területre építhető."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Polgárok képzése: női polgárok, gyalogos polgári katonák és lovas polgári katonák."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3682,17 +3682,17 @@ msgstr "KÖVETSÉGEK"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Különleges „laktanyák” érhetőek el a karthágóiaknak."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Zsoldosok képezhetők minden etnikai témájú követségen."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "A zsoldos polgári katona normál élelmezési költségét fém költségen kell megtéríteni."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3700,19 +3700,19 @@ msgstr "HALÁSZAT"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Halássz a tengereken a remek zsákmányért."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "A halászhajók nagy mennyiségű élelmet képesek magukkal vinni."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "A halászat gyorsabb, mint az élelem gyűjtése a mezőkről."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Vigyázz! A halak nem tartanak ki örökké!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3720,19 +3720,19 @@ msgstr "ERŐD"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "Az Erőd általában a népek legerősebb építménye."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Bajnok egységek, hősök és ostromgépek képzése."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Népességnövekedést okoz."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Katonák beszállásolása, hogy még nagyobb tűzerő védje."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3741,17 +3741,17 @@ msgstr "SZABADKÉZI POZÍCIÓ"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Szerezz előnyt a harcmezőn, az egységeid taktikus elhelyezésével."
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Ezért válassz ki néhány egységet, nyomd le és tartsd a jobb egérgombot, húzz egy vonalat, és engedd el a gombot."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Az egységeid a vonalon fognak felállni."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3759,25 +3759,25 @@ msgstr "NYERSANYAGGYŰJTÉS"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Használj polgári katonákat és női polgárokat a nyersanyagok begyűjtéséhez."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "A női polgárok gyorsabban gyűjtik a növényi nyersanyagokat."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "A gyalogos polgári katonák gyorsabban gyűjtik az érceket."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "A lovas polgári katonák gyorsabban gyűjtik a húst."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "A magasabb szintű polgári katonák (fejlett, elit) jobbak az ütközetekben, de kevésbé hatékonyak a gyűjtésben."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3787,15 +3787,15 @@ msgstr "IPHIKRATÉSZ"
 msgid ""
 "The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "Az athéni tábornok, aki megreformálta az athéni hadsereget, hogy az gyorsabb legyen és jobban tudjon manőverezni."
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Az egységek ebben az alakzatban gyorsabbak és erősebbek."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "A csatárok gyorsabban mozognak, amíg ő él."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3803,19 +3803,19 @@ msgstr "ELŐŐRSÖK"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "Semleges területre építhető a nagy felderítési hatókör érdekében."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
-msgstr ""
+msgstr "Olcsó, 80 fát igényel."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Gyorsan felépülnek, de gyengék."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "Semleges területen egy egység beszállásolásával megállítható a pusztulása."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3823,11 +3823,11 @@ msgstr "PALÁNKFALAK"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Egy gyors, olcsó fából készült fal minden nép számára."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "A legtöbb nép számára elérhető a falusi szakaszban."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3835,15 +3835,15 @@ msgstr "PERIKLÉSZ"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "A legkiválóbb athéni politikus az i. e. 5 században."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
-msgstr ""
+msgstr "Az épületek gyorsabban épülnek a környezetében."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "A templomok olcsóbbak, amíg ő él."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3851,21 +3851,21 @@ msgstr "PERZSA ÉPÍTÉSZET"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Különleges technológia a perzsáknak."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Minden perzsa épület +25%-kal erősebb."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Ennek következtében az építési idő +20%-kal meghosszabbodik."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "A perzsák számos védelmi és strukturális technológiát érhetnek el."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3873,34 +3873,34 @@ msgstr "PIKÁSOK"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Nehezen páncélozottak és lassúak. Gyengén támadnak."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Lovasság ellen használható, vagy más közelharci egységek ellen, hogy helyben tartsák azokat."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Elérhető a kusiták, makedónok, ptolemaioszok és szeleukidák számára."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr ""
+msgstr "PENTÉRÉSZ"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "A legnehezebb szabványos hadihajó. Elérhető a karthágóiak, ptolemaioszok, rómaiak és szeleukidák számára."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "Legfeljebb 50 egységet tud szállítani."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Növeli a tűzerejét a beszállásolt katapultokkal."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -3908,19 +3908,19 @@ msgstr "SZAVANNA ÉLETKÖZÖSSÉG"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Általában sík néhány vízlelelőhellyel és szikla előbukkanásával."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Csordultig van állatcsordákkal a bőséges vadászathoz."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Minden bányászati forrásban gazdag."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Fa ritkán fordul elő, de a majomkenyérfa hozama bőséges."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -3928,17 +3928,17 @@ msgstr "VÉDŐTORNYOK"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "A szabadon álló tornyok ideálisak a nagyobb területek megvédésére a vidéken."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Általában 100 fát és 100 követ igényelnek. Az ibériai védőtornyok 300 követ igényelnek (mivel azok erősebbek)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Távolsági támadása van, mely minden elszállásolt katona után növekszik."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3946,17 +3946,17 @@ msgstr "HOMOIOSZ"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "A legerősebb gyalogsági egység a játékban."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "A bajnok gyalogos a Spártaiak számára érthető el."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Alkalmazhatóak az ellenséges lovasság lemészárlására vagy sokkoló erőként a rendes gyalogság támogatására."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -3964,21 +3964,21 @@ msgstr "LÁNDZSÁS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Egyszerű közelharcos gyalogság minden nép számára."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Támadóbónusszal használható lovasság ellen."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "A megfelelő vágó támadás jó első vonalbeli harcossá teszi őket."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Képesek ellensúlyozni a távolsági egységeket és a kardforgatókat, ezért érdemes a lándzsásokat parittyásokkal vagy lovassággal támogatni."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -3986,15 +3986,15 @@ msgstr "OSZLOPCSARNOK"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Egy különleges épület az athéniaknak, makedónoknak és spártaiaknak."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Nehéz csatárokat és kardforgató gyalogsági bajnokokat képez ki."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "+10 népességet ad."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4002,13 +4002,13 @@ msgstr "RAKTÁRAK"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Olcsó lerakóhely a nem-élelmiszer jellegű nyersanyagoknak (fa, kő, érc)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "A technológiák kutatásával fejleszthető a polgárok gyűjtési hatékonysága."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4016,23 +4016,23 @@ msgstr "TEMPLOMOK"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Városi szakaszhoz tartozó épület."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Gyógyítók kiképzése, akik a harcmezőn képesek a csapatok  gyógyítására."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Gyógyítási technológiák kutatása."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Az aurája gyógyítja a közeli egységeket."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Az egységeket beszállásolva gyorsabban gyógyít."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4041,19 +4041,19 @@ msgstr "TERÜLET HANYATLÁSA"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Valami akkor indul pusztulásnak, ha az épületek nem csatlakoznak egy szövetséges városközponthoz."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Az épület pusztulása megállítható vagy visszafordítható néhány egység beszállásolásával."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "A pusztulás végén az épület átadódik a legbefolyásosabb szomszédnak."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4063,15 +4063,15 @@ msgstr "THEMISZTOKLÉSZ"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Athéni hős, aki a görögöket vezette a nagy artemiszioni és szalamiszi tengeri csatákban."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Minden hajó gyorsabban épül, amíg ő él."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "A hajó, melybe be lett hajózva, sokkal gyorsabban vitorlázik."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4079,15 +4079,15 @@ msgstr "TRIÉRÉSZ"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "A közepes csatahajó."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Jó szállításra és küzdelemre is."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Csapatokat behajózva növekszik a tűzereje."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4095,19 +4095,19 @@ msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr " Ibériai hős a luzitán törzsből."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Legalább 7 hadjárat a Rómaiak ellen az Ibériai háborúk alatt i. e. 147-től 139-ig."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Gerilla taktika aurája van, amely lehetővé teszi a közelben lévő ibériai egységeknek, hogy csapdát állítsanak az ellenfeleiknek."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4115,17 +4115,17 @@ msgstr "HARCI ELEFÁNTOK"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Hatalmas afrikai vagy indiai vadállatok, melyek harci kiképzést kaptak."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Magas élelmezési és fém költséget igényelnek, de nagyon erőteljesek. Legerősebbek épületek és lovasság ellen."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Elérhető a karthágóiak, kusiták, maurják, perzsák, ptolemaioszok és szeleukidák számára."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4133,16 +4133,16 @@ msgstr "BÁLNÁK"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Óceáni nyersanyag."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 élelem."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Halászhajókból gyűjthető be a bálna megölése után."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Az óceánban kóborol és támadás esetén menekül."

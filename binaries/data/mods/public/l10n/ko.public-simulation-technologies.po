@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-13 04:19+0000\n"
+"PO-Revision-Date: 2019-04-16 04:58+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -799,7 +799,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr "일꾼 농업률 EHSMS 수확량 을 +25% 증가시킵니다."
+msgstr "일꾼의 수확량을 +25% 증가시킵니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -846,7 +846,7 @@ msgstr "고기잡이 그물"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr "나무 목재 채집률이 증가합니다."
+msgstr "나무 목재 채집율을 증가시킵니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
@@ -873,12 +873,12 @@ msgstr "더 강력한 도끼"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr "석재 채집율이 증가합니다."
+msgstr "석재 채집율을 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "농노들에게 석재를 채굴하는 일꾼들을 돕게 합니다. 석재 채집율 +15%."
+msgstr "농노들에게 석재를 채굴하는 일꾼들을 돕게 합니다. 석재 채집율을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -908,11 +908,11 @@ msgstr "도우로이"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "금속 채집률을 상승시키다."
+msgstr "금속 채집율을 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "수갱을 이용한 채굴을 개발합니다. 금속 채집율 EHSMS 채광률 EHSMS 생산량 을 +15% 증가시킵니다."
+msgstr "수갱을 이용한 채굴을 개발합니다. 금속 채집율을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -937,7 +937,7 @@ msgstr "라우레이온 광산"
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "석재를 채굴하는 걸 돕기 위해 노예를 삽니다. 석재 채집률을 +50% 증가시킵니다."
+msgstr "석재를 채굴하는 걸 돕기 위해 노예를 삽니다. 석재 채집율을 +50% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -951,7 +951,7 @@ msgstr "안드라포다"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "일꾼들이 유용한 도구를 장착합니다. 금속 채집률을 +15%. 증가시킵니다."
+msgstr "일꾼들이 유용한 도구를 장착합니다. 금속 채집율을 +15% 증가시킵니다."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1083,7 +1083,7 @@ msgstr "유닛 체력 회복을 잠금 해제 합니다."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "생물은 유휴 상태일 때 시간이 흐르면서 체력이 서서히 회복합니다."
+msgstr "생물 유닛은 대기 상태일 때 흐르면서 서서히 체력을 회복합니다."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1690,7 +1690,7 @@ msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr "상인이 +15% 증가합니다."
+msgstr "상인의 수익이 +15% 증가합니다."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
@@ -1702,7 +1702,7 @@ msgstr "상인의 수익이 +15% 증가합니다."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
-msgstr "고도의 수공예"
+msgstr "고급 수공예"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
@@ -1788,7 +1788,7 @@ msgstr "아게마"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
-msgstr ""
+msgstr "레기오 코호로스"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1800,7 +1800,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
-msgstr ""
+msgstr "다산 축제"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
@@ -1825,7 +1825,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr "디아스포라"
+msgstr "흩어진 민족"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
@@ -2241,7 +2241,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "모든 이탈리아 용병을 정예 계급으로 승급합니다. 용병의 군사 기량을 향상시키지만 자원 채집율이 -25% 로 떨어집니다."
+msgstr "모든 이탈리아 용병을 정예 계급으로 승급합니다. 용병의 군사 기량을 향상시키지만 자원 채집율을 -25% 감소시킵니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
