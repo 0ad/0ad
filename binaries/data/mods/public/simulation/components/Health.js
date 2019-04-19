@@ -171,78 +171,83 @@ Health.prototype.Kill = function()
 };
 
 /**
- * Reduces entity's health by amount HP.
- * Returns object of the form { "killed": false, "change": -12 }
+ * Reduces entity's health by amount HP. Kill if required.
+ * @return {{ "killed": boolean, "change": Number }} the status change of the entity.
  */
 Health.prototype.Reduce = function(amount)
 {
+	// If we are dead, do not do anything
+	// (The entity will exist a little while after calling DestroyEntity so this
+	// might get called multiple times)
+	// Likewise if the amount is 0.
+	if (!amount || !this.hitpoints)
+		return {"killed": false, "change": 0};
+
 	// Before changing the value, activate Fogging if necessary to hide changes
 	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
 	if (cmpFogging)
 		cmpFogging.Activate();
 
-	let state = { "killed": false };
-	if (amount >= 0 && this.hitpoints == this.GetMaxHitpoints())
+	let oldHitpoints = this.hitpoints;
+	// If we reached 0, then die.
+	if (amount >= this.hitpoints)
+	{
+		this.hitpoints = 0;
+		this.RegisterHealthChanged(oldHitpoints);
+		this.HandleDeath();
+		return {"killed": true, "change": -oldHitpoints};
+	}
+
+	// If we are not marked as injured, do it now
+	if (this.hitpoints == this.GetMaxHitpoints())
 	{
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager)
 			cmpRangeManager.SetEntityFlag(this.entity, "injured", true);
 	}
-	let oldHitpoints = this.hitpoints;
-	if (amount >= this.hitpoints)
-	{
-		// If this is the first time we reached 0, then die.
-		// (The entity will exist a little while after calling DestroyEntity so this
-		// might get called multiple times)
-		if (this.hitpoints)
-		{
-			this.hitpoints = 0;
-			this.RegisterHealthChanged(oldHitpoints);
-			state.killed = true;
 
-			let cmpDeathDamage = Engine.QueryInterface(this.entity, IID_DeathDamage);
-			if (cmpDeathDamage)
-				cmpDeathDamage.CauseDeathDamage();
-
-			PlaySound("death", this.entity);
-
-			if (this.template.SpawnEntityOnDeath)
-				this.CreateDeathSpawnedEntity();
-
-			switch (this.template.DeathType)
-			{
-			case "corpse":
-				this.CreateCorpse();
-				break;
-
-			case "remain":
-			{
-				let resource = this.CreateCorpse(true);
-				if (resource != INVALID_ENTITY)
-					Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": resource });
-				break;
-			}
-
-			case "vanish":
-				break;
-
-			default:
-				error("Invalid template.DeathType: " + this.template.DeathType);
-				break;
-			}
-
-			Engine.DestroyEntity(this.entity);
-		}
-
-	}
-	else
-	{
-		this.hitpoints -= amount;
-		this.RegisterHealthChanged(oldHitpoints);
-	}
-	state.change = this.hitpoints - oldHitpoints;
-	return state;
+	this.hitpoints -= amount;
+	this.RegisterHealthChanged(oldHitpoints);
+	return {"killed": false, "change": (this.hitpoints - oldHitpoints)};
 };
+
+/**
+ * Handle what happens when the entity dies.
+ */
+Health.prototype.HandleDeath = function()
+{
+	let cmpDeathDamage = Engine.QueryInterface(this.entity, IID_DeathDamage);
+	if (cmpDeathDamage)
+		cmpDeathDamage.CauseDeathDamage();
+	PlaySound("death", this.entity);
+
+	if (this.template.SpawnEntityOnDeath)
+		this.CreateDeathSpawnedEntity();
+
+	switch (this.template.DeathType)
+	{
+	case "corpse":
+		this.CreateCorpse();
+		break;
+
+	case "remain":
+	{
+		let resource = this.CreateCorpse(true);
+		if (resource != INVALID_ENTITY)
+			Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": resource });
+		break;
+	}
+
+	case "vanish":
+		break;
+
+	default:
+		error("Invalid template.DeathType: " + this.template.DeathType);
+		break;
+	}
+
+	Engine.DestroyEntity(this.entity);
+}
 
 Health.prototype.Increase = function(amount)
 {
