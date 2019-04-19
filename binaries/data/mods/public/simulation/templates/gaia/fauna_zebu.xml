@@ -18,11 +18,7 @@
   </ResourceSupply>
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
-    </Run>
+    <RunMultiplier>2.5</RunMultiplier>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/zebu.xml</Actor>

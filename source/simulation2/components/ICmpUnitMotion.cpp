@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,10 +31,11 @@ DEFINE_INTERFACE_METHOD_3("MoveToFormationOffset", void, ICmpUnitMotion, MoveToF
 DEFINE_INTERFACE_METHOD_2("FaceTowardsPoint", void, ICmpUnitMotion, FaceTowardsPoint, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("StopMoving", void, ICmpUnitMotion, StopMoving)
 DEFINE_INTERFACE_METHOD_CONST_0("GetCurrentSpeed", fixed, ICmpUnitMotion, GetCurrentSpeed)
-DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)
+DEFINE_INTERFACE_METHOD_CONST_0("GetRunSpeedMultiplier", fixed, ICmpUnitMotion, GetRunSpeedMultiplier)
+DEFINE_INTERFACE_METHOD_1("SetSpeedRatio", void, ICmpUnitMotion, SetSpeedRatio, fixed)
 DEFINE_INTERFACE_METHOD_CONST_0("IsMoving", bool, ICmpUnitMotion, IsMoving)
+DEFINE_INTERFACE_METHOD_CONST_0("GetSpeed", fixed, ICmpUnitMotion, GetSpeed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
-DEFINE_INTERFACE_METHOD_CONST_0("GetRunSpeed", fixed, ICmpUnitMotion, GetRunSpeed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetPassabilityClassName", std::string, ICmpUnitMotion, GetPassabilityClassName)
 DEFINE_INTERFACE_METHOD_CONST_0("GetUnitClearance", entity_pos_t, ICmpUnitMotion, GetUnitClearance)
 DEFINE_INTERFACE_METHOD_1("SetFacePointAfterMove", void, ICmpUnitMotion, SetFacePointAfterMove, bool)
@@ -86,9 +87,14 @@ public:
 		return m_Script.Call<fixed>("GetCurrentSpeed");
 	}
 
-	virtual void SetSpeed(fixed speed)
+	virtual void SetSpeedRatio(fixed ratio)
 	{
-		m_Script.CallVoid("SetSpeed", speed);
+		m_Script.CallVoid("SetSpeedRatio", ratio);
+	}
+
+	virtual fixed GetRunSpeedMultiplier() const
+	{
+		return m_Script.Call<fixed>("GetRunSpeedMultiplier");
 	}
 
 	virtual bool IsMoving() const
@@ -96,14 +102,14 @@ public:
 		return m_Script.Call<bool>("IsMoving");
 	}
 
+	virtual fixed GetSpeed() const
+	{
+		return m_Script.Call<fixed>("GetSpeed");
+	}
+
 	virtual fixed GetWalkSpeed() const
 	{
 		return m_Script.Call<fixed>("GetWalkSpeed");
-	}
-
-	virtual fixed GetRunSpeed() const
-	{
-		return m_Script.Call<fixed>("GetRunSpeed");
 	}
 
 	virtual void SetFacePointAfterMove(bool facePointAfterMove)
@@ -114,6 +120,11 @@ public:
 	virtual pass_class_t GetPassabilityClass() const
 	{
 		return m_Script.Call<pass_class_t>("GetPassabilityClass");
+	}
+
+	virtual fixed GetSpeedRatio() const
+	{
+		return m_Script.Call<fixed>("GetSpeedRatio");
 	}
 
 	virtual std::string GetPassabilityClassName() const

@@ -304,20 +304,25 @@ UnitMotionFlying.prototype.GetWalkSpeed = function()
 	return +this.template.MaxSpeed;
 };
 
-UnitMotionFlying.prototype.SetSpeed = function()
+UnitMotionFlying.prototype.SetSpeedRatio = function()
 {
 	// ignore this, the speed is always the walk speed
 };
 
-UnitMotionFlying.prototype.GetRunSpeed = function()
+UnitMotionFlying.prototype.GetRunSpeedMultiplier = function()
 {
-	return this.GetWalkSpeed();
+	return 1;
 };
 
 UnitMotionFlying.prototype.GetCurrentSpeed = function()
 {
 	return this.speed;
 };
+
+UnitMotionFlying.prototype.GetSpeedRatio = function()
+{
+	return this.GetCurrentSpeed() / this.GetWalkSpeed();
+}
 
 UnitMotionFlying.prototype.GetPassabilityClassName = function()
 {
