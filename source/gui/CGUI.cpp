@@ -282,6 +282,8 @@ CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 	: m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 {
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
+	m_ScriptInterface->SetCallbackData(this);
+
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
 	m_BaseObject = new CGUIDummyObject;
