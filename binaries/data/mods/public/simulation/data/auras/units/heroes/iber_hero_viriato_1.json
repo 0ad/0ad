@@ -3,8 +3,7 @@
 	"radius": 60,
 	"affects": ["Soldier"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.2 },
-		{ "value": "UnitMotion/Run/Speed", "multiply": 1.2 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.2 }
 	],
 	"auraDescription": "+20% movement speed for soldiers.",
 	"auraName": "Guerrilla Tactics",

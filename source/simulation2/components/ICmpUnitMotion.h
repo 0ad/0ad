@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,25 +92,37 @@ public:
 	virtual fixed GetCurrentSpeed() const = 0;
 
 	/**
-	 * Set the current movement speed.
-	 */
-	virtual void SetSpeed(fixed speed) = 0;
-
-	/**
 	 * Get whether the unit is moving.
 	 */
 	virtual bool IsMoving() const = 0;
 
 	/**
-	 * Get the default speed that this unit will have when walking, in metres per second.
+	 * Get how much faster/slower we are than normal.
 	 */
-	virtual fixed GetWalkSpeed() const = 0;
+	virtual fixed GetSpeedRatio() const = 0;
 
 	/**
-	 * Get the default speed that this unit will have when running, in metres per second.
+	 * Get how much faster than our regular speed we can go.
 	 */
-	virtual fixed GetRunSpeed() const = 0;
+	virtual fixed GetRunSpeedMultiplier() const = 0;
 
+	/**
+	 * Set the current movement speed.
+	 * @param speed A ratio of GetWalkSpeed().
+	 */
+	virtual void SetSpeedRatio(fixed ratio) = 0;
+
+	/**
+	 * Get the unit theoretical speed in metres per second.
+	 * This is affected by SetSpeedRatio.
+	 */
+	virtual fixed GetSpeed() const = 0;
+
+	/**
+	 * Get the unit "raw"/template walk speed after technologies.
+	 * Calls to SetSpeedRatio have no effect on this (as that affects actual speed, not template).
+	 */
+	virtual fixed GetWalkSpeed() const = 0;
 	/**
 	 * Set whether the unit will turn to face the target point after finishing moving.
 	 */

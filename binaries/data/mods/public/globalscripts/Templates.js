@@ -398,8 +398,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 		ret.speed = {
 			"walk": getEntityValue("UnitMotion/WalkSpeed"),
 		};
-		if (template.UnitMotion.Run)
-			ret.speed.run = getEntityValue("UnitMotion/Run/Speed");
+		ret.speed.run = getEntityValue("UnitMotion/WalkSpeed");
+		if (template.UnitMotion.RunMultiplier)
+			ret.speed.run *= getEntityValue("UnitMotion/RunMultiplier");
 	}
 
 	if (template.Upgrade)

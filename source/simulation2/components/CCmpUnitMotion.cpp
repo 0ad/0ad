@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -131,14 +131,18 @@ public:
 	// Template state:
 
 	bool m_FormationController;
-	fixed m_WalkSpeed, m_OriginalWalkSpeed; // in metres per second
-	fixed m_RunSpeed, m_OriginalRunSpeed;
+
+	fixed m_TemplateWalkSpeed, m_TemplateRunSpeedMultiplier;
 	pass_class_t m_PassClass;
 	std::string m_PassClassName;
 
 	// Dynamic state:
 
 	entity_pos_t m_Clearance;
+
+	// cached for efficiency
+	fixed m_WalkSpeed, m_RunSpeedMultiplier;
+
 	bool m_Moving;
 	bool m_FacePointAfterMove;
 
@@ -229,7 +233,10 @@ public:
 	entity_pos_t m_TargetMinRange;
 	entity_pos_t m_TargetMaxRange;
 
+	// Actual unit speed, after technology and ratio
 	fixed m_Speed;
+	// Convenience variable to avoid recomputing the ratio every time. Synchronised.
+	fixed m_SpeedRatio;
 
 	// Current mean speed (over the last turn).
 	fixed m_CurSpeed;
@@ -259,14 +266,8 @@ public:
 				"<ref name='positiveDecimal'/>"
 			"</element>"
 			"<optional>"
-				"<element name='Run'>"
-					"<interleave>"
-						"<element name='Speed'><ref name='positiveDecimal'/></element>"
-						"<element name='Range'><ref name='positiveDecimal'/></element>"
-						"<element name='RangeMin'><ref name='nonNegativeDecimal'/></element>"
-						"<element name='RegenTime'><ref name='positiveDecimal'/></element>"
-						"<element name='DecayTime'><ref name='positiveDecimal'/></element>"
-					"</interleave>"
+				"<element name='RunMultiplier' a:help='How much faster the unit goes when running (as a multiple of walk speed)'>"
+					"<ref name='positiveDecimal'/>"
 				"</element>"
 			"</optional>"
 			"<element name='PassabilityClass' a:help='Identifies the terrain passability class (values are defined in special/pathfinder.xml)'>"
@@ -281,14 +282,13 @@ public:
 		m_Moving = false;
 		m_FacePointAfterMove = true;
 
-		m_WalkSpeed = m_OriginalWalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
-		m_Speed = m_WalkSpeed;
+		m_WalkSpeed = m_TemplateWalkSpeed = m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
+		m_SpeedRatio = fixed::FromInt(1);
 		m_CurSpeed = fixed::Zero();
 
-		if (paramNode.GetChild("Run").IsOk())
-			m_RunSpeed = m_OriginalRunSpeed = paramNode.GetChild("Run").GetChild("Speed").ToFixed();
-		else
-			m_RunSpeed = m_OriginalRunSpeed = m_WalkSpeed;
+		m_RunSpeedMultiplier = m_TemplateRunSpeedMultiplier = fixed::FromInt(1);
+		if (paramNode.GetChild("RunMultiplier").IsOk())
+			m_RunSpeedMultiplier = m_TemplateRunSpeedMultiplier = paramNode.GetChild("RunMultiplier").ToFixed();
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -338,7 +338,8 @@ public:
 		serialize.NumberFixed_Unbounded("target min range", m_TargetMinRange);
 		serialize.NumberFixed_Unbounded("target max range", m_TargetMaxRange);
 
-		serialize.NumberFixed_Unbounded("speed", m_Speed);
+		serialize.NumberFixed_Unbounded("speed ratio", m_SpeedRatio);
+
 		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
 
 		serialize.Bool("moving", m_Moving);
@@ -417,17 +418,13 @@ public:
 			if (!cmpValueModificationManager)
 				break;
 
-			fixed newWalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_OriginalWalkSpeed, GetEntityId());
-			fixed newRunSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/Run/Speed", m_OriginalRunSpeed, GetEntityId());
+			m_WalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_TemplateWalkSpeed, GetEntityId());
+			m_RunSpeedMultiplier = cmpValueModificationManager->ApplyModifications(L"UnitMotion/RunMultiplier", m_TemplateRunSpeedMultiplier, GetEntityId());
 
-			// update m_Speed (the actual speed) if set to one of the variables
-			if (m_Speed == m_WalkSpeed)
-				m_Speed = newWalkSpeed;
-			else if (m_Speed == m_RunSpeed)
-				m_Speed = newRunSpeed;
+			// Adjust our speed. UnitMotion cannot know if this speed is on purpose or not so always adjust and let unitAI and such adapt.
+			m_SpeedRatio = std::min(m_SpeedRatio, m_RunSpeedMultiplier);
+			m_Speed = m_SpeedRatio.Multiply(GetWalkSpeed());
 
-			m_WalkSpeed = newWalkSpeed;
-			m_RunSpeed = newRunSpeed;
 			break;
 		}
 		}
@@ -444,14 +441,30 @@ public:
 		return m_Moving;
 	}
 
+	virtual fixed GetSpeedRatio() const
+	{
+		return m_SpeedRatio;
+	}
+
+	virtual fixed GetRunSpeedMultiplier() const
+	{
+		return m_RunSpeedMultiplier;
+	}
+
+	virtual void SetSpeedRatio(fixed ratio)
+	{
+		m_SpeedRatio = std::min(ratio, m_RunSpeedMultiplier);
+		m_Speed = m_SpeedRatio.Multiply(GetWalkSpeed());
+	}
+
+	virtual fixed GetSpeed() const
+	{
+		return m_Speed;
+	}
+
 	virtual fixed GetWalkSpeed() const
 	{
 		return m_WalkSpeed;
-	}
-
-	virtual fixed GetRunSpeed() const
-	{
-		return m_RunSpeed;
 	}
 
 	virtual pass_class_t GetPassabilityClass() const
@@ -475,11 +488,6 @@ public:
 	virtual fixed GetCurrentSpeed() const
 	{
 		return m_CurSpeed;
-	}
-
-	virtual void SetSpeed(fixed speed)
-	{
-		m_Speed = speed;
 	}
 
 	virtual void SetFacePointAfterMove(bool facePointAfterMove)
@@ -855,12 +863,10 @@ void CCmpUnitMotion::Move(fixed dt)
 		// Keep track of the current unit's position during the update
 		CFixedVector2D pos = initialPos;
 
+		fixed basicSpeed = m_Speed;
 		// If in formation, run to keep up; otherwise just walk
-		fixed basicSpeed;
 		if (IsFormationMember())
-			basicSpeed = GetRunSpeed();
-		else
-			basicSpeed = m_Speed; // (typically but not always WalkSpeed)
+			basicSpeed = m_Speed.Multiply(m_RunSpeedMultiplier);
 
 		// Find the speed factor of the underlying terrain
 		// (We only care about the tile we start on - it doesn't matter if we're moving

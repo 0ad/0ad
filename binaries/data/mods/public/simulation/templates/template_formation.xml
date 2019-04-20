@@ -49,14 +49,15 @@
   </Trader>
   <UnitAI>
     <DefaultStance>aggressive</DefaultStance>
-    <FleeDistance>12.0</FleeDistance>
     <FormationController>true</FormationController>
+    <FleeDistance>12.0</FleeDistance>
     <CanGuard>true</CanGuard>
     <CanPatrol>true</CanPatrol>
   </UnitAI>
   <UnitMotion>
     <FormationController>true</FormationController>
     <WalkSpeed>1.0</WalkSpeed>
+    <RunMultiplier>100.0</RunMultiplier> <!-- = Max formation speed -->
     <PassabilityClass>large</PassabilityClass>
   </UnitMotion>
 </Entity>

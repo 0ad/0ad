@@ -858,7 +858,7 @@ Formation.prototype.ComputeMotionParameters = function()
 	minSpeed *= this.GetSpeedMultiplier();
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpUnitMotion.SetSpeed(minSpeed);
+	cmpUnitMotion.SetSpeedRatio(minSpeed / cmpUnitMotion.GetWalkSpeed());
 };
 
 Formation.prototype.ShapeUpdate = function()

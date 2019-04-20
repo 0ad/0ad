@@ -1660,7 +1660,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"leave": function(msg) {
-					this.SetMoveSpeed(this.GetWalkSpeed());
+					this.ResetMoveSpeed();
 					this.StopTimer();
 					this.SetDefaultAnimationVariant();
 				},
@@ -1675,13 +1675,13 @@ UnitAI.prototype.UnitFsmSpec = {
 						{
 							var speed = cmpUnitAI.GetWalkSpeed();
 							if (speed < this.GetWalkSpeed())
-								this.SetMoveSpeed(speed);
+								this.SetMoveSpeedRatio(speed / this.GetWalkSpeed());
 						}
 					}
 				},
 
 				"MoveCompleted": function() {
-					this.SetMoveSpeed(this.GetWalkSpeed());
+					this.ResetMoveSpeed();
 					if (!this.MoveToTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
 						this.SetNextState("GUARDING");
 				},
@@ -1738,19 +1738,16 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.PlaySound("panic");
 
 				// Run quickly
-				var speed = this.GetRunSpeed();
 				this.SelectAnimation("move");
-				this.SetMoveSpeed(speed);
+				this.SetMoveSpeedRatio(this.GetRunMultiplier());
 			},
 
 			"HealthChanged": function() {
-				var speed = this.GetRunSpeed();
-				this.SetMoveSpeed(speed);
+				this.SetMoveSpeedRatio(this.GetRunMultiplier());
 			},
 
 			"leave": function() {
-				// Reset normal speed
-				this.SetMoveSpeed(this.GetWalkSpeed());
+				this.ResetMoveSpeed();
 			},
 
 			"MoveCompleted": function() {
@@ -2034,23 +2031,12 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpUnitAI && cmpUnitAI.IsFleeing())
 					{
 						// Run after a fleeing target
-						var speed = this.GetRunSpeed();
-						this.SetMoveSpeed(speed);
+						this.SetMoveSpeedRatio(this.GetRunMultiplier());
 					}
 					this.StartTimer(1000, 1000);
 				},
 
-				"HealthChanged": function() {
-					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
-					if (!cmpUnitAI || !cmpUnitAI.IsFleeing())
-						return;
-					var speed = this.GetRunSpeed();
-					this.SetMoveSpeed(speed);
-				},
-
 				"leave": function() {
-					// Reset normal speed in case it was changed
-					this.SetMoveSpeed(this.GetWalkSpeed());
 					// Show carried resources when walking.
 					this.SetDefaultAnimationVariant();
 
@@ -3132,7 +3118,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"ROAMING": {
 			"enter": function() {
 				// Walk in a random direction
-				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				this.SelectAnimation("walk", false, 1);
 				this.SetFacePointAfterMove(false);
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
@@ -3976,20 +3962,18 @@ UnitAI.prototype.OnPackFinished = function(msg)
 
 UnitAI.prototype.GetWalkSpeed = function()
 {
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (!cmpUnitMotion)
+		return 0;
 	return cmpUnitMotion.GetWalkSpeed();
 };
 
-UnitAI.prototype.GetRunSpeed = function()
+UnitAI.prototype.GetRunMultiplier = function()
 {
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	var runSpeed = cmpUnitMotion.GetRunSpeed();
-	var walkSpeed = cmpUnitMotion.GetWalkSpeed();
-	if (runSpeed <= walkSpeed)
-		return runSpeed;
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	var health = cmpHealth.GetHitpoints()/cmpHealth.GetMaxHitpoints();
-	return (health*runSpeed + (1-health)*walkSpeed);
+	if (!cmpUnitMotion)
+		return 0;
+	return cmpUnitMotion.GetRunSpeedMultiplier();
 };
 
 /**
@@ -4225,7 +4209,7 @@ UnitAI.prototype.SelectAnimation = function(name, once = false, speed = 1.0)
 	if (name == "move")
 	{
 		// Speed to switch from walking to running animations
-		cmpVisual.SelectMovementAnimation((this.GetWalkSpeed() + this.GetRunSpeed()) / 2);
+		cmpVisual.SelectMovementAnimation(this.GetWalkSpeed());
 		return;
 	}
 
@@ -5593,11 +5577,21 @@ UnitAI.prototype.GetStanceName = function()
 	return this.stance;
 };
 
-
-UnitAI.prototype.SetMoveSpeed = function(speed)
+/*
+ * Make the unit walk at its normal pace.
+ */
+UnitAI.prototype.ResetMoveSpeed = function()
 {
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpMotion.SetSpeed(speed);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpUnitMotion)
+		cmpUnitMotion.SetSpeedRatio(1);
+};
+
+UnitAI.prototype.SetMoveSpeedRatio = function(speed)
+{
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpUnitMotion)
+		cmpUnitMotion.SetSpeedRatio(speed);
 };
 
 UnitAI.prototype.SetHeldPosition = function(x, z)

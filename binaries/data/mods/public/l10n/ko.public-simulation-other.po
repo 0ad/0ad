@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-04-10 14:30+0000\n"
+"PO-Revision-Date: 2019-04-16 05:08+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -433,12 +433,12 @@ msgstr "적군"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)s 님은 %(territoryType)s 영역에서는 구축 할 수 없습니다. 유효한 지역: %(validTerritories)s"
+msgstr "%(name)s 은(는) %(territoryType)s 영역에서는 지을 수 없습니다. 유효한 지역: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s 님은 적절한 해안선에 건설되어야 합니다"
+msgstr "%(name)s 은(는) 적절한 해안선에 건설되어야 합니다"
 
 #: simulation/components/BuildRestrictions.js:256
 #, javascript-format
@@ -448,7 +448,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)s 님이 %(category)s 에 너무 가까이 있으며, 적어도 %(distance)s 미터 이상 떨어져 있어야 합니다"
+msgstr[0] "%(name)s 은(는) %(category)s 에 너무 가까이 있으며, 적어도 %(distance)s 미터 이상 떨어져 있어야 합니다"
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -456,7 +456,7 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s 님이 %(category)s 에서 너무 멀리 떨어져 있으며, %(distance)s 미터 이내에 있어야 합니다"
+msgstr[0] "%(name)s 은(는) %(category)s 에서 너무 멀리 떨어져 있으며, %(distance)s 미터 이내에 있어야 합니다"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
