@@ -13,12 +13,12 @@
       units/{civ}_champion_infantry
       units/{civ}_champion_maiden
       units/{civ}_champion_chariot
-      -units/{civ}_mechanical_siege_ballista_packed
-      -units/{civ}_mechanical_siege_scorpio_packed
-      -units/{civ}_mechanical_siege_oxybeles_packed
-      -units/{civ}_mechanical_siege_lithobolos_packed
-      -units/{civ}_mechanical_siege_ram
-      -units/{civ}_mechanical_siege_tower
+      -units/{civ}_siege_ballista_packed
+      -units/{civ}_siege_scorpio_packed
+      -units/{civ}_siege_oxybeles_packed
+      -units/{civ}_siege_lithobolos_packed
+      -units/{civ}_siege_ram
+      -units/{civ}_siege_tower
     </Entities>
     <Technologies datatype="tokens">
       attack_soldiers_will

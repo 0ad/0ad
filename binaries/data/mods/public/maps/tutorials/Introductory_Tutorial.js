@@ -345,7 +345,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate == "units/spart_mechanical_siege_ram")
+			if (msg.unitTemplate == "units/spart_siege_ram")
 				++this.ramCount;
 			if (this.IsDone())
 			{
