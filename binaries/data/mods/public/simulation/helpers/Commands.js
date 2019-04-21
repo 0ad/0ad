@@ -897,9 +897,7 @@ function ExtractFormations(ents)
 		entities.push(ent);
 	}
 
-	var ids = [ id for (id in members) ];
-
-	return { "entities": entities, "members": members, "ids": ids };
+	return { "entities": entities, "members": members };
 }
 
 /**
@@ -1473,11 +1471,12 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 	var formation = ExtractFormations(formedEnts);
 
 	var formationUnitAIs = [];
-	if (formation.ids.length == 1)
+	let formationIds = Object.keys(formation.members);
+	if (formationIds.length == 1)
 	{
 		// Selected units either belong to this formation or have no formation
 		// Check that all its members are selected
-		var fid = formation.ids[0];
+		var fid = formationIds[0];
 		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
 		if (cmpFormation && cmpFormation.GetMemberCount() == formation.members[fid].length
 			&& cmpFormation.GetMemberCount() == formation.entities.length)

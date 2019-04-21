@@ -108,11 +108,6 @@ public:
 	bool GetPreDefinedColor(const CStr& name, CColor& output) const;
 
 	/**
-	 * See CGUI::FindObjectByName; applies to the currently active page.
-	 */
-	IGUIObject* FindObjectByName(const CStr& name) const;
-
-	/**
 	 * See CGUI::SendEventToAll; applies to the currently active page.
 	 */
 	void SendEventToAll(const CStr& eventName) const;
@@ -166,7 +161,6 @@ private:
 
 	shared_ptr<CGUI> top() const;
 
-	shared_ptr<CGUI> m_CurrentGUI; // used to latch state during TickObjects/LoadPage (this is kind of ugly)
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 

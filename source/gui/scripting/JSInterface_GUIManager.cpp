@@ -19,6 +19,7 @@
 
 #include "JSInterface_GUIManager.h"
 
+#include "gui/CGUI.h"
 #include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
 #include "ps/GameSetup/Config.h"
@@ -46,9 +47,11 @@ void JSI_GUIManager::PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, JS::Ha
 	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
-JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& name)
+JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
 {
-	IGUIObject* guiObj = g_GUI->FindObjectByName(name);
+	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
+
+	IGUIObject* guiObj = guiPage->FindObjectByName(name);
 	if (!guiObj)
 		return JS::UndefinedValue();
 
