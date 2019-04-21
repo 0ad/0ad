@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall">
+<Entity parent="template_structure_defensive_palisade">
   <Cost>
     <BuildTime>18</BuildTime>
+    <Resources>
+      <wood>15</wood>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="5.0" depth="5.0"/>
     <Height>12.0</Height>
   </Footprint>
-  <Health>
-    <Max>1000</Max>
-  </Health>
   <Identity>
     <SpecificName>Watchtower</SpecificName>
-    <GenericName>Wooden Watch Tower</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade Tower</Classes>
   </Identity>
-  <Loot>
-    <wood>10</wood>
-    <stone>0</stone>
-  </Loot>
   <Obstruction>
     <Static width="5.0" depth="5.0"/>
     <ControlPersist/>

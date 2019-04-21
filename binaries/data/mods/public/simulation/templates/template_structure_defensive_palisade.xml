@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive">
+  <Armour>
+    <Hack>4</Hack>
+    <Pierce>25</Pierce>
+    <Crush>2</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <PlacementType>land-shore</PlacementType>
+    <Category>Wall</Category>
+  </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>1200</CapturePoints>
+  </Capturable>
+  <Health>
+    <Max>1000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Classes datatype="tokens">Palisade</Classes>
+    <GenericName>Wooden Wall</GenericName>
+    <Tooltip>Wall off your town for a stout defense.</Tooltip>
+    <Icon>gaia/special_palisade.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+  </Identity>
+  <Loot>
+    <wood>10</wood>
+  </Loot>
+  <ProductionQueue disable=""/>
+  <RallyPoint disable=""/>
+  <Repairable>
+    <RepairTimeRatio>4.5</RepairTimeRatio>
+  </Repairable>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_wall.xml</select>
+      <constructed>interface/complete/building/complete_wall.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay>
+    <DecayRate>5.0</DecayRate>
+  </TerritoryDecay>
+  <Vision>
+    <Range>20</Range>
+  </Vision>
+</Entity>

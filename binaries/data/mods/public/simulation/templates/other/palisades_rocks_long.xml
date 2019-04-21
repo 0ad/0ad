@@ -1,54 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall_long">
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>25.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
+<Entity parent="template_structure_defensive_palisade">
   <Cost>
     <BuildTime>11</BuildTime>
     <Resources>
       <wood>13</wood>
-      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
     <Square width="15" depth="3.0"/>
     <Height>9.0</Height>
   </Footprint>
-  <GarrisonHolder disable=""/>
   <Health>
-    <Max op="mul">0.25</Max>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
+    <Max op="mul">0.75</Max>
   </Health>
   <Identity>
     <SelectionGroupName>other/wallset_palisade</SelectionGroupName>
     <SpecificName>Palisade</SpecificName>
-    <GenericName>Wooden Wall</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
-    <Icon>gaia/special_palisade.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
-  <Loot>
-    <wood>10</wood>
-    <stone>0</stone>
-  </Loot>
   <Obstruction>
     <Static width="14" depth="2.0"/>
   </Obstruction>
-  <RallyPoint disable=""/>
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence disable=""/>
   <Upgrade>
     <Gate>
       <Entity>other/palisades_rocks_gate</Entity>
       <Cost>
-        <stone>0</stone>
         <wood>20</wood>
       </Cost>
       <Time>5</Time>
+      <Tooltip>This will allow you to let units circulate through your fortifications.</Tooltip>
     </Gate>
   </Upgrade>
   <VisualActor>

@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall_gate">
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>25.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
+<Entity parent="template_structure_defensive_palisade">
+  <Cost>
+    <BuildTime>11</BuildTime>
+    <Resources>
+      <wood>20</wood>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="16" depth="3.0"/>
     <Height>9.0</Height>
   </Footprint>
+  <Gate>
+    <PassRange>20</PassRange>
+  </Gate>
   <Health>
-    <Max op="mul">0.25</Max>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
+    <Max op="mul">0.64</Max>
   </Health>
   <Identity>
+    <Classes datatype="tokens">Gates</Classes>
     <SpecificName>Palisade Gate</SpecificName>
-    <GenericName>Wooden Gate</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
     <Icon>structures/wooden_gate.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Tooltip>Allow units access through a palisade wall. Can be locked to prevent access.</Tooltip>
   </Identity>
-  <Loot>
-    <wood>10</wood>
-    <stone>0</stone>
-  </Loot>
   <Obstruction>
     <Obstructions>
       <Right width="2" depth="2" x="6" z="0"/>
@@ -31,10 +29,19 @@
       <Door width="10" depth="2" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gate.xml</select>
+      <constructed>interface/complete/building/complete_gate.xml</constructed>
+      <gate_closing>actor/gate/stonegate_close.xml</gate_closing>
+      <gate_opening>actor/gate/stonegate_open.xml</gate_opening>
+      <gate_locked>interface/select/building/sel_gate.xml</gate_locked>
+      <gate_unlocked>interface/select/building/sel_gate.xml</gate_unlocked>
+    </SoundGroups>
+  </Sound>
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <FoundationActor>structures/fndn_1x3pal.xml</FoundationActor>
     <Actor>props/special/palisade_rocks_gate.xml</Actor>

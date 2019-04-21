@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall">
+<Entity parent="template_structure_defensive_palisade">
   <Cost>
     <BuildTime>8</BuildTime>
+    <Resources>
+      <wood>5</wood>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="3.5" depth="1.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>500</Max>
+    <Max op="mul">0.5</Max>
   </Health>
   <Identity>
-    <SpecificName>Palisade Angle Spike</SpecificName>
-    <GenericName>Big Spike</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
+    <SpecificName>Angle Spike</SpecificName>
   </Identity>
-  <Loot>
-    <wood>10</wood>
-    <stone>0</stone>
-  </Loot>
   <Obstruction>
     <Static width="3.5" depth="1.5"/>
   </Obstruction>
   <TerritoryDecay disable=""/>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>props/special/palisade_angle_spike.xml</Actor>
   </VisualActor>
