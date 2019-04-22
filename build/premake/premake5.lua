@@ -589,6 +589,16 @@ function setup_all_libs ()
 	end
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
+    -- Add RLInterface
+    -- TODO: Make this into an optional build flag?
+    source_dirs = {
+        "rlinterface"
+    }
+	extern_libs = {
+		"grpc",
+    }
+    setup_static_lib_project("rlinterface", source_dirs, extern_libs, { no_pch = 1 })
+
 	source_dirs = {
 		"third_party/tinygettext/src",
 	}
