@@ -928,6 +928,7 @@ used_extern_libs = {
 	"libsodium",
 
 	"valgrind",
+	"grpc",
 }
 
 if not os.istarget("windows") and not _OPTIONS["android"] and not os.istarget("macosx") then
