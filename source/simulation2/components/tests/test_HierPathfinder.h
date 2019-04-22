@@ -75,7 +75,7 @@ public:
 		TS_ASSERT(i == 89 && j == 34);
 
 		for (auto& chunk : hierPath.m_Chunks[PASS_1])
-			TS_ASSERT(chunk.m_RegionsID.size() == 1);
+			TS_ASSERT(chunk.m_NumRegions == 1);
 
 		// number of connected regions: 4 in the middle, 2 in the corners.
 		TS_ASSERT(hierPath.m_Edges[PASS_1][hierPath.Get(120, 120, PASS_1)].size() == 4);
@@ -432,42 +432,5 @@ public:
 		// bit of leeway for cell placement
 		TS_ASSERT(abs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), pi, pj)-20) < 1.5f);
 		TS_ASSERT(abs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), oi, oj) - euclidian(pi, pj, oi, oj)) < 22.0f);
-	}
-
-	void test_regions_flood_fill()
-	{
-		// Partial test of region inner flood filling.
-		// This highlights that internal region IDs can become higher than the number of regions.
-		pathClassMask = {
-			{ "1", 1 },
-			{ "2", 2 },
-		};
-		nonPathClassMask = {
-			{ "3", 4 }
-		};
-
-		// 0 is passable, 1 is not.
-		// i is vertical, j is horizontal;
-#define _ 0
-#define X 1
-		NavcellData gridDef[5][5] = {
-			{X,_,X,_,_},
-			{_,_,X,X,_},
-			{X,_,X,_,_},
-			{_,_,X,X,_},
-			{X,_,X,_,_}
-		};
-#undef _
-#undef X
-		HierarchicalPathfinder hierPath;
-		Grid<NavcellData> grid(5, 5);
-		Grid<u8> dirtyGrid(5, 5);
-		for (size_t i = 0; i < 5; ++i)
-			for (size_t j = 0; j < 5; ++j)
-					grid.set(i, j, gridDef[i][j]);
-		hierPath.Recompute(&grid, nonPathClassMask, pathClassMask);
-
-		TS_ASSERT_EQUALS(hierPath.m_Chunks[pathClassMask["1"]][0].m_RegionsID.size(), 2);
-		TS_ASSERT_EQUALS(hierPath.m_Chunks[pathClassMask["1"]][0].m_RegionsID.back(), 4);
 	}
 };
