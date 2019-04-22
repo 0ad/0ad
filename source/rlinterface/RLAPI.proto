@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-service RLInterface {
+service RLAPI {
     rpc Step(Actions) returns (Observation) {}
     rpc Reset(ResetRequest) returns (Observation) {}
     rpc Connect(ConnectRequest) returns (Observation) {}
