@@ -16,6 +16,14 @@ message WalkAction {
     double y = 3;
 }
 
-message Observation {}
-message ResetRequest {}
-message ConnectRequest {}
+message Observation {
+    string content = 1;
+}
+
+message ResetRequest {
+    string map = 1;
+}
+
+message ConnectRequest {
+    string map = 1;
+}

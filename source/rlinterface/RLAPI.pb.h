@@ -422,11 +422,26 @@ class Observation final :
 
   // accessors -------------------------------------------------------
 
+  // string content = 1;
+  void clear_content();
+  static const int kContentFieldNumber = 1;
+  const ::std::string& content() const;
+  void set_content(const ::std::string& value);
+  #if LANG_CXX11
+  void set_content(::std::string&& value);
+  #endif
+  void set_content(const char* value);
+  void set_content(const char* value, size_t size);
+  ::std::string* mutable_content();
+  ::std::string* release_content();
+  void set_allocated_content(::std::string* content);
+
   // @@protoc_insertion_point(class_scope:Observation)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr content_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -527,11 +542,26 @@ class ResetRequest final :
 
   // accessors -------------------------------------------------------
 
+  // string map = 1;
+  void clear_map();
+  static const int kMapFieldNumber = 1;
+  const ::std::string& map() const;
+  void set_map(const ::std::string& value);
+  #if LANG_CXX11
+  void set_map(::std::string&& value);
+  #endif
+  void set_map(const char* value);
+  void set_map(const char* value, size_t size);
+  ::std::string* mutable_map();
+  ::std::string* release_map();
+  void set_allocated_map(::std::string* map);
+
   // @@protoc_insertion_point(class_scope:ResetRequest)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr map_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -632,11 +662,26 @@ class ConnectRequest final :
 
   // accessors -------------------------------------------------------
 
+  // string map = 1;
+  void clear_map();
+  static const int kMapFieldNumber = 1;
+  const ::std::string& map() const;
+  void set_map(const ::std::string& value);
+  #if LANG_CXX11
+  void set_map(::std::string&& value);
+  #endif
+  void set_map(const char* value);
+  void set_map(const char* value, size_t size);
+  ::std::string* mutable_map();
+  ::std::string* release_map();
+  void set_allocated_map(::std::string* map);
+
   // @@protoc_insertion_point(class_scope:ConnectRequest)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr map_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -770,13 +815,172 @@ inline void WalkAction::set_y(double value) {
 
 // Observation
 
+// string content = 1;
+inline void Observation::clear_content() {
+  content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Observation::content() const {
+  // @@protoc_insertion_point(field_get:Observation.content)
+  return content_.GetNoArena();
+}
+inline void Observation::set_content(const ::std::string& value) {
+  
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Observation.content)
+}
+#if LANG_CXX11
+inline void Observation::set_content(::std::string&& value) {
+  
+  content_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Observation.content)
+}
+#endif
+inline void Observation::set_content(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Observation.content)
+}
+inline void Observation::set_content(const char* value, size_t size) {
+  
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Observation.content)
+}
+inline ::std::string* Observation::mutable_content() {
+  
+  // @@protoc_insertion_point(field_mutable:Observation.content)
+  return content_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Observation::release_content() {
+  // @@protoc_insertion_point(field_release:Observation.content)
+  
+  return content_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Observation::set_allocated_content(::std::string* content) {
+  if (content != nullptr) {
+    
+  } else {
+    
+  }
+  content_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), content);
+  // @@protoc_insertion_point(field_set_allocated:Observation.content)
+}
+
 // -------------------------------------------------------------------
 
 // ResetRequest
 
+// string map = 1;
+inline void ResetRequest::clear_map() {
+  map_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ResetRequest::map() const {
+  // @@protoc_insertion_point(field_get:ResetRequest.map)
+  return map_.GetNoArena();
+}
+inline void ResetRequest::set_map(const ::std::string& value) {
+  
+  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ResetRequest.map)
+}
+#if LANG_CXX11
+inline void ResetRequest::set_map(::std::string&& value) {
+  
+  map_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ResetRequest.map)
+}
+#endif
+inline void ResetRequest::set_map(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ResetRequest.map)
+}
+inline void ResetRequest::set_map(const char* value, size_t size) {
+  
+  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ResetRequest.map)
+}
+inline ::std::string* ResetRequest::mutable_map() {
+  
+  // @@protoc_insertion_point(field_mutable:ResetRequest.map)
+  return map_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ResetRequest::release_map() {
+  // @@protoc_insertion_point(field_release:ResetRequest.map)
+  
+  return map_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ResetRequest::set_allocated_map(::std::string* map) {
+  if (map != nullptr) {
+    
+  } else {
+    
+  }
+  map_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), map);
+  // @@protoc_insertion_point(field_set_allocated:ResetRequest.map)
+}
+
 // -------------------------------------------------------------------
 
 // ConnectRequest
+
+// string map = 1;
+inline void ConnectRequest::clear_map() {
+  map_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ConnectRequest::map() const {
+  // @@protoc_insertion_point(field_get:ConnectRequest.map)
+  return map_.GetNoArena();
+}
+inline void ConnectRequest::set_map(const ::std::string& value) {
+  
+  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ConnectRequest.map)
+}
+#if LANG_CXX11
+inline void ConnectRequest::set_map(::std::string&& value) {
+  
+  map_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ConnectRequest.map)
+}
+#endif
+inline void ConnectRequest::set_map(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ConnectRequest.map)
+}
+inline void ConnectRequest::set_map(const char* value, size_t size) {
+  
+  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ConnectRequest.map)
+}
+inline ::std::string* ConnectRequest::mutable_map() {
+  
+  // @@protoc_insertion_point(field_mutable:ConnectRequest.map)
+  return map_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ConnectRequest::release_map() {
+  // @@protoc_insertion_point(field_release:ConnectRequest.map)
+  
+  return map_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ConnectRequest::set_allocated_map(::std::string* map) {
+  if (map != nullptr) {
+    
+  } else {
+    
+  }
+  map_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), map);
+  // @@protoc_insertion_point(field_set_allocated:ConnectRequest.map)
+}
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
