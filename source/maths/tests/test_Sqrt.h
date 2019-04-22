@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 #include "maths/Sqrt.h"
 
 #include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_int.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
 #include <boost/random/variate_generator.hpp>
 
 class TestSqrt : public CxxTest::TestSuite
@@ -76,13 +76,13 @@ public:
 		// (TODO: This might be making non-portable assumptions about sqrt(double))
 
 		boost::mt19937 rng;
-		boost::uniform_int<u64> ints(0, (u64)-1);
-		boost::variate_generator<boost::mt19937&, boost::uniform_int<u64> > gen(rng, ints);
+		boost::random::uniform_int_distribution<u64> ints(0, (u64)-1);
+		boost::variate_generator<boost::mt19937&, boost::random::uniform_int_distribution<u64>> gen(rng, ints);
 
 		for (size_t i = 0; i < 1024; ++i)
 		{
 			u64 n = gen();
-			s(n, (u64)sqrt((double)n));
+			s(n, static_cast<u64>(sqrt(static_cast<double>(n))));
 		}
 	}
 };
