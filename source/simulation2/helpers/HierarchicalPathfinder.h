@@ -42,10 +42,19 @@
  * region and then doing a relatively small graph search.
  */
 
+#ifdef TEST
+class TestCmpPathfinder;
+class TestHierarchicalPathfinder;
+#endif
+
 class HierarchicalOverlay;
 
 class HierarchicalPathfinder
 {
+#ifdef TEST
+	friend class TestCmpPathfinder;
+	friend class TestHierarchicalPathfinder;
+#endif
 public:
 	struct RegionID
 	{
@@ -142,6 +151,13 @@ private:
 		void RegionNavcellNearest(u16 r, int iGoal, int jGoal, int& iBest, int& jBest, u32& dist2Best) const;
 
 		bool RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const;
+
+#ifdef TEST
+		bool operator==(const Chunk& b) const
+		{
+			return (m_ChunkI == b.m_ChunkI && m_ChunkJ == b.m_ChunkJ && m_NumRegions == b.m_NumRegions && memcmp(&m_Regions, &b.m_Regions, sizeof(u16) * CHUNK_SIZE * CHUNK_SIZE) == 0);
+		}
+#endif
 	};
 
 	typedef std::map<RegionID, std::set<RegionID> > EdgesMap;
