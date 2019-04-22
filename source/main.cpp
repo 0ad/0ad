@@ -79,7 +79,7 @@ that of Atlas depending on commandline parameters.
 #include "scriptinterface/ScriptEngine.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
-#include "rlinterface/RLInterface.h"
+#include "rlinterface/RLInterface.cpp"
 
 #if OS_UNIX
 #include <unistd.h> // geteuid
