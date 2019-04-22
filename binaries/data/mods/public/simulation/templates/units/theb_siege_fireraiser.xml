@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege">
+  <Attack>
+    <Ranged>
+      <Hack>50.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>50.0</Crush>
+      <MaxRange>12</MaxRange>
+      <MinRange>8.0</MinRange>
+      <PrepareTime>2000</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+      <Delay>0</Delay>
+      <Projectile>
+        <Speed>10.0</Speed>
+        <Spread>2.0</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
+    </Ranged>
+  </Attack>
+  <DeathDamage>
+    <Shape>Circular</Shape>
+    <Range>20</Range>
+    <FriendlyFire>true</FriendlyFire>
+    <Hack>200.0</Hack>
+    <Pierce>200.0</Pierce>
+    <Crush>200.0</Crush>
+  </DeathDamage>
+  <Footprint replace="">
+    <Square width="6.0" depth="20.0"/>
+    <Height>4.5</Height>
+  </Footprint>
+  <Identity>
+    <GenericName>Fire Raiser</GenericName>
+    <SpecificName>Pyrobolos</SpecificName>
+    <Icon>units/hele_siege_lithobolos.png</Icon>
+  </Identity>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/thebans/siege_fireraiser.xml</Actor>
+  </VisualActor>
+</Entity>

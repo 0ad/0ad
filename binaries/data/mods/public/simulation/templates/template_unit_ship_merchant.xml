@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>5</Pierce>
+    <Crush>2</Crush>
+  </Armour>
+  <Cost>
+    <Resources>
+      <wood>0</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <GarrisonHolder>
+    <Max>15</Max>
+    <EjectHealth>0</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Healer Dog</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry Dog</List>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>10</LoadingRange>
+    <Pickup>true</Pickup>
+  </GarrisonHolder>
+  <Health>
+    <Max>400</Max>
+  </Health>
+  <Identity>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <Formations disable=""/>
+    <GenericName>Merchantman</GenericName>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Tooltip>Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures.</Tooltip>
+    <VisibleClasses datatype="tokens">Trader Bribable</VisibleClasses>
+  </Identity>
+  <Loot>
+    <xp>25</xp>
+    <wood>15</wood>
+    <metal>0</metal>
+  </Loot>
+  <ResourceGatherer>
+    <MaxDistance>12.0</MaxDistance>
+    <Capacities>
+      <food>75</food>
+      <wood>75</wood>
+      <stone>50</stone>
+      <metal>50</metal>
+    </Capacities>
+  </ResourceGatherer>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.5</BarHeight>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
+  <Trader>
+    <GainMultiplier>0.75</GainMultiplier>
+  </Trader>
+  <UnitAI>
+    <DefaultStance>passive</DefaultStance>
+    <CanGuard>false</CanGuard>
+    <CanPatrol>false</CanPatrol>
+  </UnitAI>
+  <UnitMotion>
+    <PassabilityClass>ship-small</PassabilityClass>
+    <WalkSpeed op="mul">1.35</WalkSpeed>
+  </UnitMotion>
+  <Vision>
+    <Range>50</Range>
+  </Vision>
+  <VisionSharing>
+    <Bribable>true</Bribable>
+  </VisionSharing>
+</Entity>

@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall">
+<Entity parent="template_structure_defensive_palisade">
   <Cost>
     <BuildTime>12</BuildTime>
+    <Resources>
+      <wood>10</wood>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="3.5" depth="8.5"/>
     <Height>9.0</Height>
   </Footprint>
-  <Health>
-    <Max>1000</Max>
-  </Health>
   <Identity>
     <SpecificName>Palisade Curve</SpecificName>
-    <GenericName>Wooden Wall Corner</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
-    <Icon>gaia/special_palisade.png</Icon>
   </Identity>
-  <Loot>
-    <wood>10</wood>
-    <stone>0</stone>
-  </Loot>
   <Obstruction>
     <Static width="3.0" depth="8.0"/>
   </Obstruction>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>props/special/palisade_rocks_curve.xml</Actor>
   </VisualActor>

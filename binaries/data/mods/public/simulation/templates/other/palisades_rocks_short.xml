@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall_short">
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>25.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
+<Entity parent="template_structure_defensive_palisade">
   <Cost>
     <BuildTime>5</BuildTime>
     <Resources>
       <wood>4</wood>
-      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -18,15 +12,10 @@
   </Footprint>
   <Health>
     <Max op="mul">0.25</Max>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <SelectionGroupName>other/wallset_palisade</SelectionGroupName>
     <SpecificName>Palisade</SpecificName>
-    <GenericName>Wooden Wall</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
-    <Icon>gaia/special_palisade.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="4.5" depth="2.0"/>
@@ -34,7 +23,6 @@
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>props/special/palisade_rocks_short.xml</Actor>
     <FoundationActor>structures/fndn_1x1pal.xml</FoundationActor>

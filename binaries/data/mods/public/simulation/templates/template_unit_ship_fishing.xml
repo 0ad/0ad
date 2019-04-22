@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>5</Pierce>
+    <Crush>2</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>10.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <RestrictedClasses datatype="tokens">!SeaCreature</RestrictedClasses>
+    </Melee>
+  </Attack>
+  <Footprint>
+    <Square width="4.0" depth="10.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>1</Max>
+    <EjectHealth>0</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Healer</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry</List>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>10</LoadingRange>
+    <Pickup>true</Pickup>
+  </GarrisonHolder>
+  <Identity>
+    <Classes datatype="tokens">FishingBoat -ConquestCritical</Classes>
+    <Formations disable=""/>
+    <GenericName>Fishing Boat</GenericName>
+    <Tooltip>Fish the waters for food.</Tooltip>
+  </Identity>
+  <Loot>
+    <xp>1</xp>
+    <wood>10</wood>
+    <metal>0</metal>
+  </Loot>
+  <ResourceGatherer>
+    <MaxDistance>6.0</MaxDistance>
+    <BaseSpeed>1.0</BaseSpeed>
+    <Rates>
+      <food.fish>1.8</food.fish>
+      <treasure disable=""/>
+    </Rates>
+  </ResourceGatherer>
+  <Sound>
+    <SoundGroups>
+      <order_walk>actor/ship/boat_move.xml</order_walk>
+      <order_attack>actor/ship/boat_move.xml</order_attack>
+    </SoundGroups>
+  </Sound>
+  <UnitAI>
+    <DefaultStance>passive</DefaultStance>
+    <CanGuard>false</CanGuard>
+    <CanPatrol>false</CanPatrol>
+  </UnitAI>
+  <UnitMotion>
+    <PassabilityClass>ship-small</PassabilityClass>
+    <WalkSpeed op="mul">1.1</WalkSpeed>
+  </UnitMotion>
+  <Vision>
+    <Range>30</Range>
+  </Vision>
+</Entity>

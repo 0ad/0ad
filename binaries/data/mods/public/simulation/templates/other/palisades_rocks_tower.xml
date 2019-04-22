@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall">
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>25.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
+<Entity parent="template_structure_defensive_palisade">
   <Cost>
     <BuildTime>7</BuildTime>
     <Resources>
       <wood>5</wood>
-      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -17,20 +11,13 @@
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max op="mul">0.25</Max>
+    <Max op="mul">0.75</Max>
   </Health>
   <Identity>
     <SelectionGroupName>other/wallset_palisade</SelectionGroupName>
     <SpecificName>Palisade</SpecificName>
-    <GenericName>Wooden Wall</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade Tower</Classes>
-    <Icon>gaia/special_palisade.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Classes datatype="tokens">Tower</Classes>
   </Identity>
-  <Loot>
-    <wood>10</wood>
-    <stone>0</stone>
-  </Loot>
   <Obstruction>
     <Static width="4.0" depth="4.0"/>
     <ControlPersist/>
@@ -38,7 +25,6 @@
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>props/special/palisade_rocks_tower.xml</Actor>
     <FoundationActor>structures/fndn_1x1pal.xml</FoundationActor>
