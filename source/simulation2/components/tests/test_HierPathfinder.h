@@ -42,16 +42,18 @@ public:
 	std::map<std::string, pass_class_t> pathClassMask;
 	std::map<std::string, pass_class_t> nonPathClassMask;
 
-	void debug_grid(Grid<NavcellData>& grid) {
+	void debug_grid(Grid<NavcellData>& grid)
+	{
 		for (size_t i = 0; i < grid.m_W; ++i)
 		{
 			for (size_t j = 0; j < grid.m_H; ++j)
-				printf("%i", grid.get(i,j));
+				printf("%i", grid.get(i, j));
 			printf("\n");
 		}
 	}
 
-	void debug_grid_points(Grid<NavcellData>& grid, u16 i1, u16 j1, u16 i2, u16 j2) {
+	void debug_grid_points(Grid<NavcellData>& grid, u16 i1, u16 j1, u16 i2, u16 j2)
+	{
 		for (size_t i = 0; i < grid.m_W; ++i)
 		{
 			for (size_t j = 0; j < grid.m_H; ++j)
@@ -61,7 +63,7 @@ public:
 				else if (i == i2 && j == j2)
 					printf("B");
 				else
-					printf("%i", grid.get(i,j));
+					printf("%i", grid.get(i, j));
 			}
 			printf("\n");
 		}
@@ -92,11 +94,11 @@ public:
 
 	void test_reachability_and_update()
 	{
-		pathClassMask = {
+		pathClassMask = std::map<std::string, pass_class_t> {
 			{ "1", 1 },
 			{ "2", 2 },
 		};
-		nonPathClassMask = {
+		nonPathClassMask = std::map<std::string, pass_class_t> {
 			{ "3", 4 }
 		};
 
@@ -240,20 +242,23 @@ public:
 		TS_ASSERT(hierPath.m_Edges[PASS_1][hierPath.Get(120, 120, PASS_1)].size() == 2);
 	}
 
-	u16 manhattan(u16 i, u16 j, u16 gi, u16 gj) {
+	u16 manhattan(u16 i, u16 j, u16 gi, u16 gj)
+	{
 		return abs(i - gi) + abs(j - gj);
 	}
 
-	double euclidian(u16 i, u16 j, u16 gi, u16 gj) {
-		return sqrt((i - gi)*(i - gi) + (j - gj)*(j - gj));
+	double euclidian(u16 i, u16 j, u16 gi, u16 gj)
+	{
+		return sqrt((i - gi) * (i - gi) + (j - gj) * (j - gj));
 	}
+
 	void test_passability()
 	{
-		pathClassMask = {
+		pathClassMask = std::map<std::string, pass_class_t> {
 			{ "1", 1 },
 			{ "2", 2 },
 		};
-		nonPathClassMask = {
+		nonPathClassMask = std::map<std::string, pass_class_t> {
 			{ "3", 4 }
 		};
 
@@ -332,7 +337,9 @@ public:
 	if (expected_manhattan == -1) \
 	{ \
 		TS_ASSERT(oi == pi && oj == pj); \
-	} else { \
+	} \
+	else \
+	{ \
 		TS_ASSERT(IS_PASSABLE(grid.get(pi, pj), PASS_1)); \
 		TS_ASSERT(manhattan(pi, pj, oi, oj) == expected_manhattan); \
 	}
