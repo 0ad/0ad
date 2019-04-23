@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ public:
 	{
 	}
 
-	float GetSmoothedValue()
+	float GetSmoothedValue() const
 	{
 		return m_Current;
 	}
@@ -98,7 +98,7 @@ public:
 		m_Current += value;
 	}
 
-	float GetValue()
+	float GetValue() const
 	{
 		return m_Target;
 	}
@@ -114,7 +114,7 @@ public:
 		if (fabs(m_Target - m_Current) < m_MinDelta)
 			return 0.0f;
 
-		double p = pow((double)m_Smoothness, 10.0 * (double)time);
+		double p = pow(static_cast<double>(m_Smoothness), 10.0 * static_cast<double>(time));
 		// (add the factor of 10 so that smoothnesses don't have to be tiny numbers)
 
 		double delta = (m_Target - m_Current) * (1.0 - p);
@@ -124,13 +124,13 @@ public:
 
 	void ClampSmoothly(float min, float max)
 	{
-		m_Target = Clamp(m_Target, (double)min, (double)max);
+		m_Target = Clamp(m_Target, static_cast<double>(min), static_cast<double>(max));
 	}
 
 	// Wrap so 'target' is in the range [min, max]
 	void Wrap(float min, float max)
 	{
-		double t = fmod(m_Target - min, (double)(max - min));
+		double t = fmod(m_Target - min, static_cast<double>(max - min));
 		if (t < 0)
 			t += max - min;
 		t += min;
@@ -139,14 +139,14 @@ public:
 		m_Target = t;
 	}
 
+	float m_Smoothness;
+
 private:
 	double m_Target; // the value which m_Current is tending towards
 	double m_Current;
 	// (We use double because the extra precision is worthwhile here)
 
 	float m_MinDelta; // cutoff where we stop moving (to avoid ugly shimmering effects)
-public:
-	float m_Smoothness;
 };
 
 class CGameViewImpl
@@ -312,7 +312,7 @@ public:
 };
 
 #define IMPLEMENT_BOOLEAN_SETTING(NAME) \
-bool CGameView::Get##NAME##Enabled() \
+bool CGameView::Get##NAME##Enabled() const \
 { \
 	return m->NAME; \
 } \
@@ -356,10 +356,10 @@ CGameView::CGameView(CGame *pGame):
 	m(new CGameViewImpl(pGame))
 {
 	SViewPort vp;
-	vp.m_X=0;
-	vp.m_Y=0;
-	vp.m_Width=g_xres;
-	vp.m_Height=g_yres;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	vp.m_Width = g_xres;
+	vp.m_Height = g_yres;
 	m->ViewCamera.SetViewPort(vp);
 
 	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
@@ -383,7 +383,7 @@ void CGameView::SetViewport(const SViewPort& vp)
 	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 }
 
-CObjectManager& CGameView::GetObjectManager() const
+CObjectManager& CGameView::GetObjectManager()
 {
 	return m->ObjectManager;
 }
@@ -464,7 +464,6 @@ void CGameView::RegisterInit()
 	// CGameView init
 	RegMemFun(this, &CGameView::Initialize, L"CGameView init", 1);
 
-	// previously done by CGameView::InitResources
 	RegMemFun(g_TexMan.GetSingletonPtr(), &CTerrainTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
 	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 5);
 }
@@ -893,46 +892,23 @@ void CGameView::Update(const float deltaRealTime)
 	m->ViewCamera.UpdateFrustum();
 }
 
-float CGameView::GetCameraX()
+CVector3D CGameView::GetCameraPivot() const
 {
-	CCamera targetCam = m->ViewCamera;
-	CVector3D pivot = GetSmoothPivot(targetCam);
-	return pivot.X;
+	return GetSmoothPivot(m->ViewCamera);
 }
 
-float CGameView::GetCameraZ()
+CVector3D CGameView::GetCameraPosition() const
 {
-	CCamera targetCam = m->ViewCamera;
-	CVector3D pivot = GetSmoothPivot(targetCam);
-	return pivot.Z;
+	return CVector3D(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
 }
 
-float CGameView::GetCameraPosX()
+CVector3D CGameView::GetCameraRotation() const
 {
-	return m->PosX.GetValue();
+	// The angle of rotation around the Z axis is not used.
+	return CVector3D(m->RotateX.GetValue(), m->RotateY.GetValue(), 0.0f);
 }
 
-float CGameView::GetCameraPosY()
-{
-	return m->PosY.GetValue();
-}
-
-float CGameView::GetCameraPosZ()
-{
-	return m->PosZ.GetValue();
-}
-
-float CGameView::GetCameraRotX()
-{
-	return m->RotateX.GetValue();
-}
-
-float CGameView::GetCameraRotY()
-{
-	return m->RotateY.GetValue();
-}
-
-float CGameView::GetCameraZoom()
+float CGameView::GetCameraZoom() const
 {
 	return m->Zoom.GetValue();
 }

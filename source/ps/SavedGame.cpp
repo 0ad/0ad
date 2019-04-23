@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,11 @@
 
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
+#include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/archive_zip.h"
-#include "i18n/L10n.h"
 #include "lib/utf8.h"
+#include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -94,11 +95,13 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 	// get some camera data
 	JS::RootedValue cameraMetadata(cx);
 	simulation.GetScriptInterface().Eval("({})", &cameraMetadata);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosX", g_Game->GetView()->GetCameraPosX());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosY", g_Game->GetView()->GetCameraPosY());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosZ", g_Game->GetView()->GetCameraPosZ());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotX", g_Game->GetView()->GetCameraRotX());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotY", g_Game->GetView()->GetCameraRotY());
+	const CVector3D cameraPosition = g_Game->GetView()->GetCameraPosition();
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosX", cameraPosition.X);
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosY", cameraPosition.Y);
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosZ", cameraPosition.Z);
+	const CVector3D cameraRotation = g_Game->GetView()->GetCameraRotation();
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotX", cameraRotation.X);
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotY", cameraRotation.Y);
 	simulation.GetScriptInterface().SetProperty(cameraMetadata, "Zoom", g_Game->GetView()->GetCameraZoom());
 	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);

@@ -489,7 +489,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --disable-shared && make ${JOBS} && make install) || die "GMP build failed"
+  (./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-fat --disable-shared && make ${JOBS} && make install) || die "GMP build failed"
   popd
   touch .already-built
 else
@@ -632,7 +632,7 @@ LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
 LIB_URL="http://download.icu-project.org/files/icu4c/59.1/"
 
-mkdir -p icu
+mkdir -p $LIB_DIRECTORY
 pushd icu > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]

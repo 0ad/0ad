@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 
-#include <boost/random/uniform_int.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
 
 CObjectBase::CObjectBase(CObjectManager& objectManager)
 : m_ObjectManager(objectManager)
@@ -554,7 +554,7 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 				if (allZero) totalFreq = (int)grp->size();
 
 				// Choose a random number in the interval [0..totalFreq)
-				int randNum = boost::uniform_int<>(0, totalFreq-1)(rng);
+				int randNum = boost::random::uniform_int_distribution<int>(0, totalFreq-1)(rng);
 
 				// and use that to choose one of the variants
 				for (size_t i = 0; i < grp->size(); ++i)

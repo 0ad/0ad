@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 
-#include <boost/random/uniform_real.hpp>
+#include <boost/random/uniform_real_distribution.hpp>
 
 
 /**
@@ -120,7 +120,7 @@ public:
 
 	virtual float Compute(CParticleEmitterType& type, CParticleEmitter& UNUSED(emitter))
 	{
-		return boost::uniform_real<>(m_Min, m_Max)(type.m_Manager.m_RNG);
+		return boost::random::uniform_real_distribution<float>(m_Min, m_Max)(type.m_Manager.m_RNG);
 	}
 
 	virtual float Min(CParticleEmitterType& UNUSED(type))

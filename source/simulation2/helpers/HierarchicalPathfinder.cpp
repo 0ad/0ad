@@ -556,15 +556,15 @@ void HierarchicalPathfinder::AddDebugEdges(pass_class_t passClass)
 	}
 }
 
-HierarchicalPathfinder::RegionID HierarchicalPathfinder::Get(u16 i, u16 j, pass_class_t passClass)
+HierarchicalPathfinder::RegionID HierarchicalPathfinder::Get(u16 i, u16 j, pass_class_t passClass) const
 {
 	int ci = i / CHUNK_SIZE;
 	int cj = j / CHUNK_SIZE;
 	ENSURE(ci < m_ChunksW && cj < m_ChunksH);
-	return m_Chunks[passClass][cj*m_ChunksW + ci].Get(i % CHUNK_SIZE, j % CHUNK_SIZE);
+	return m_Chunks.at(passClass)[cj*m_ChunksW + ci].Get(i % CHUNK_SIZE, j % CHUNK_SIZE);
 }
 
-void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass)
+void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass) const
 {
 	PROFILE2("MakeGoalReachable");
 	RegionID source = Get(i0, j0, passClass);
@@ -633,14 +633,14 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 	goal = newGoal;
 }
 
-void HierarchicalPathfinder::FindNearestPassableNavcell(u16& i, u16& j, pass_class_t passClass)
+void HierarchicalPathfinder::FindNearestPassableNavcell(u16& i, u16& j, pass_class_t passClass) const
 {
 	std::set<RegionID> regions;
 	FindPassableRegions(regions, passClass);
 	FindNearestNavcellInRegions(regions, i, j, passClass);
 }
 
-void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID>& regions, u16& iGoal, u16& jGoal, pass_class_t passClass)
+void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID>& regions, u16& iGoal, u16& jGoal, pass_class_t passClass) const
 {
 	// Find the navcell in the given regions that's nearest to the goal navcell:
 	// * For each region, record the (squared) minimal distance to the goal point
@@ -697,21 +697,26 @@ void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID
 	jGoal = jBest;
 }
 
-void HierarchicalPathfinder::FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass)
+void HierarchicalPathfinder::FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass) const
 {
 	// Flood-fill the region graph, starting at 'from',
 	// collecting all the regions that are reachable via edges
+	reachable.insert(from);
+
+	const EdgesMap& edgeMap = m_Edges.at(passClass);
+	if (edgeMap.find(from) == edgeMap.end())
+		return;
 
 	std::vector<RegionID> open;
+	open.reserve(64);
 	open.push_back(from);
-	reachable.insert(from);
 
 	while (!open.empty())
 	{
 		RegionID curr = open.back();
 		open.pop_back();
 
-		for (const RegionID& region : m_Edges[passClass][curr])
+		for (const RegionID& region : edgeMap.at(curr))
 			// Add to the reachable set; if this is the first time we added
 			// it then also add it to the open list
 			if (reachable.insert(region).second)
@@ -719,10 +724,10 @@ void HierarchicalPathfinder::FindReachableRegions(RegionID from, std::set<Region
 	}
 }
 
-void HierarchicalPathfinder::FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass)
+void HierarchicalPathfinder::FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass) const
 {
 	// Construct a set of all regions of all chunks for this pass class
-	for (const Chunk& chunk : m_Chunks[passClass])
+	for (const Chunk& chunk : m_Chunks.at(passClass))
 	{
 		// region 0 is impassable tiles
 		for (int r = 1; r <= chunk.m_NumRegions; ++r)
@@ -730,14 +735,14 @@ void HierarchicalPathfinder::FindPassableRegions(std::set<RegionID>& regions, pa
 	}
 }
 
-void HierarchicalPathfinder::FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid)
+void HierarchicalPathfinder::FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid) const
 {
 	ENSURE(grid.m_W == m_W && grid.m_H == m_H);
 
 	int i0 = region.ci * CHUNK_SIZE;
 	int j0 = region.cj * CHUNK_SIZE;
 
-	const Chunk& c = m_Chunks[passClass][region.cj * m_ChunksW + region.ci];
+	const Chunk& c = m_Chunks.at(passClass)[region.cj * m_ChunksW + region.ci];
 
 	for (int j = 0; j < CHUNK_SIZE; ++j)
 		for (int i = 0; i < CHUNK_SIZE; ++i)
@@ -745,7 +750,7 @@ void HierarchicalPathfinder::FillRegionOnGrid(const RegionID& region, pass_class
 				grid.set(i0 + i, j0 + j, value);
 }
 
-Grid<u16> HierarchicalPathfinder::GetConnectivityGrid(pass_class_t passClass)
+Grid<u16> HierarchicalPathfinder::GetConnectivityGrid(pass_class_t passClass) const
 {
 	Grid<u16> connectivityGrid(m_W, m_H);
 	connectivityGrid.reset();

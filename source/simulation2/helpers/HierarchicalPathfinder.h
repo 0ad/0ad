@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,10 +42,19 @@
  * region and then doing a relatively small graph search.
  */
 
+#ifdef TEST
+class TestCmpPathfinder;
+class TestHierarchicalPathfinder;
+#endif
+
 class HierarchicalOverlay;
 
 class HierarchicalPathfinder
 {
+#ifdef TEST
+	friend class TestCmpPathfinder;
+	friend class TestHierarchicalPathfinder;
+#endif
 public:
 	struct RegionID
 	{
@@ -54,7 +63,7 @@ public:
 
 		RegionID(u8 ci, u8 cj, u16 r) : ci(ci), cj(cj), r(r) { }
 
-		bool operator<(RegionID b) const
+		bool operator<(const RegionID& b) const
 		{
 			// Sort by chunk ID, then by per-chunk region ID
 			if (ci < b.ci)
@@ -68,7 +77,7 @@ public:
 			return r < b.r;
 		}
 
-		bool operator==(RegionID b) const
+		bool operator==(const RegionID& b) const
 		{
 			return ((ci == b.ci) && (cj == b.cj) && (r == b.r));
 		}
@@ -86,7 +95,7 @@ public:
 
 	void Update(Grid<NavcellData>* grid, const Grid<u8>& dirtinessGrid);
 
-	RegionID Get(u16 i, u16 j, pass_class_t passClass);
+	RegionID Get(u16 i, u16 j, pass_class_t passClass) const;
 
 	/**
 	 * Updates @p goal so that it's guaranteed to be reachable from the navcell
@@ -98,18 +107,18 @@ public:
 	 * In the case of a non-point reachable goal, it is replaced with a point goal
 	 * at the reachable navcell of the goal which is nearest to the starting navcell.
 	 */
-	void MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass);
+	void MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass) const;
 
 	/**
 	 * Updates @p i, @p j (which is assumed to be an impassable navcell)
 	 * to the nearest passable navcell.
 	 */
-	void FindNearestPassableNavcell(u16& i, u16& j, pass_class_t passClass);
+	void FindNearestPassableNavcell(u16& i, u16& j, pass_class_t passClass) const;
 
 	/**
 	 * Generates the connectivity grid associated with the given pass_class
 	 */
-	Grid<u16> GetConnectivityGrid(pass_class_t passClass);
+	Grid<u16> GetConnectivityGrid(pass_class_t passClass) const;
 
 	pass_class_t GetPassabilityClass(const std::string& name) const
 	{
@@ -142,29 +151,36 @@ private:
 		void RegionNavcellNearest(u16 r, int iGoal, int jGoal, int& iBest, int& jBest, u32& dist2Best) const;
 
 		bool RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const;
+
+#ifdef TEST
+		bool operator==(const Chunk& b) const
+		{
+			return (m_ChunkI == b.m_ChunkI && m_ChunkJ == b.m_ChunkJ && m_NumRegions == b.m_NumRegions && memcmp(&m_Regions, &b.m_Regions, sizeof(u16) * CHUNK_SIZE * CHUNK_SIZE) == 0);
+		}
+#endif
 	};
 
 	typedef std::map<RegionID, std::set<RegionID> > EdgesMap;
 
 	void FindEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
 
-	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass);
+	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass) const;
 
-	void FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass);
+	void FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass) const;
 
 	/**
 	 * Updates @p iGoal and @p jGoal to the navcell that is the nearest to the
 	 * initial goal coordinates, in one of the given @p regions.
 	 * (Assumes @p regions is non-empty.)
 	 */
-	void FindNearestNavcellInRegions(const std::set<RegionID>& regions, u16& iGoal, u16& jGoal, pass_class_t passClass);
+	void FindNearestNavcellInRegions(const std::set<RegionID>& regions, u16& iGoal, u16& jGoal, pass_class_t passClass) const;
 
-	Chunk& GetChunk(u8 ci, u8 cj, pass_class_t passClass)
+	const Chunk& GetChunk(u8 ci, u8 cj, pass_class_t passClass) const
 	{
-		return m_Chunks[passClass].at(cj * m_ChunksW + ci);
+		return m_Chunks.at(passClass).at(cj * m_ChunksW + ci);
 	}
 
-	void FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid);
+	void FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid) const;
 
 	u16 m_W, m_H;
 	u16 m_ChunksW, m_ChunksH;
