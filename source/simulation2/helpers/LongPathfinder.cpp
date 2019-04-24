@@ -388,7 +388,7 @@ LongPathfinder::~LongPathfinder()
 
 // Calculate heuristic cost from tile i,j to goal
 // (This ought to be an underestimate for correctness)
-PathCost LongPathfinder::CalculateHeuristic(int i, int j, int iGoal, int jGoal)
+PathCost LongPathfinder::CalculateHeuristic(int i, int j, int iGoal, int jGoal) const
 {
 	int di = abs(i - iGoal);
 	int dj = abs(j - jGoal);
@@ -397,7 +397,7 @@ PathCost LongPathfinder::CalculateHeuristic(int i, int j, int iGoal, int jGoal)
 }
 
 // Do the A* processing for a neighbour tile i,j.
-void LongPathfinder::ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg, PathfinderState& state)
+void LongPathfinder::ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg, PathfinderState& state) const
 {
 	// Reject impassable tiles
 	if (!PASSABLE(i, j))
@@ -501,7 +501,7 @@ inline bool OnTheWay(int i, int j, int di, int dj, int iGoal, int jGoal)
 }
 
 
-void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, PathfinderState& state, bool detectGoal)
+void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -543,7 +543,7 @@ void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, Pathfinder
 }
 
 // Returns the i-coordinate of the jump point if it exists, else returns i
-int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state, bool detectGoal)
+int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -579,7 +579,7 @@ int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state,
 	}
 }
 
-void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderState& state, bool detectGoal)
+void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -621,7 +621,7 @@ void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderS
 }
 
 // Returns the j-coordinate of the jump point if it exists, else returns j
-int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, bool detectGoal)
+int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -661,7 +661,7 @@ int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, 
  * We never cache diagonal jump points - they're usually so frequent that
  * a linear search is about as cheap and avoids the setup cost and memory cost.
  */
-void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, PathfinderState& state)
+void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, PathfinderState& state) const
 {
 	// 	ProcessNeighbour(i, j, i + di, j + dj, g, state);
 	// 	return;
@@ -712,13 +712,16 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 	}
 }
 
-void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path)
+void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const
 {
 	PROFILE("ComputePathJPS");
 	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
 	PathfinderState state = { 0 };
 
-	state.jpc = m_JumpPointCache[passClass].get();
+	auto it = m_JumpPointCache.find(passClass);
+	ENSURE(it != m_JumpPointCache.end());
+	state.jpc = it->second.get();
+
 	if (m_UseJPSCache && !state.jpc)
 	{
 		state.jpc = new JumpPointCache;
@@ -905,7 +908,7 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 
 #undef PASSABLE
 
-void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0)
+void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0) const
 {
 	if (path.m_Waypoints.empty())
 		return;
