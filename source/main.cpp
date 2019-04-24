@@ -603,6 +603,11 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	const double res = timer_Resolution();
 	g_frequencyFilter = CreateFrequencyFilter(res, 30.0);
 
+    if (args.Has("rpc-server")) {
+        StartRLInterface();
+        return;
+    }
+
 	// run the game
 	int flags = INIT_MODS;
 	do
@@ -629,7 +634,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			installedMods = installer.GetInstalledMods();
 		}
 
-        StartRLInterface();
 		if (isNonVisual)
 		{
 			InitNonVisual(args);
