@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,14 +110,14 @@ void HierarchicalPathfinder::Chunk::InitRegions(int ci, int cj, Grid<NavcellData
 		}
 	}
 
-	// Directly point the root ID
-	m_NumRegions = 0;
+	// Mark connected regions as being the same ID (i.e. the lowest)
+	m_RegionsID.clear();
 	for (u16 i = 1; i < regionID+1; ++i)
 	{
-		if (connect[i] == i)
-			++m_NumRegions;
-		else
+		if (connect[i] != i)
 			connect[i] = RootID(i, connect);
+		else
+			m_RegionsID.push_back(connect[i]);
 	}
 
 	// Replace IDs by the root ID
@@ -361,11 +361,11 @@ void HierarchicalPathfinder::Recompute(Grid<NavcellData>* grid,
 	m_W = grid->m_W;
 	m_H = grid->m_H;
 
+	ENSURE((grid->m_W + CHUNK_SIZE - 1) / CHUNK_SIZE < 256 && (grid->m_H + CHUNK_SIZE - 1) / CHUNK_SIZE < 256); // else the u8 Chunk::m_ChunkI will overflow
+
 	// Divide grid into chunks with round-to-positive-infinity
 	m_ChunksW = (grid->m_W + CHUNK_SIZE - 1) / CHUNK_SIZE;
 	m_ChunksH = (grid->m_H + CHUNK_SIZE - 1) / CHUNK_SIZE;
-
-	ENSURE(m_ChunksW < 256 && m_ChunksH < 256); // else the u8 Chunk::m_ChunkI will overflow
 
 	m_Chunks.clear();
 	m_Edges.clear();
@@ -728,11 +728,8 @@ void HierarchicalPathfinder::FindPassableRegions(std::set<RegionID>& regions, pa
 {
 	// Construct a set of all regions of all chunks for this pass class
 	for (const Chunk& chunk : m_Chunks.at(passClass))
-	{
-		// region 0 is impassable tiles
-		for (int r = 1; r <= chunk.m_NumRegions; ++r)
+		for (int r : chunk.m_RegionsID)
 			regions.insert(RegionID(chunk.m_ChunkI, chunk.m_ChunkJ, r));
-	}
 }
 
 void HierarchicalPathfinder::FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid) const

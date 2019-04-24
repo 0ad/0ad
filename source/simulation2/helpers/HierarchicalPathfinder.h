@@ -27,7 +27,7 @@
 /**
  * Hierarchical pathfinder.
  *
- * It doesn't find shortest paths, but deals with connectivity.
+ * Deals with connectivity (can point A reach point B?).
  *
  * The navcell-grid representation of the map is split into fixed-size chunks.
  * Within a chunk, each maximal set of adjacently-connected passable navcells
@@ -132,15 +132,15 @@ public:
 
 private:
 	static const u8 CHUNK_SIZE = 96; // number of navcells per side
-									 // TODO PATHFINDER: figure out best number. Probably 64 < n < 128
+									 // TODO: figure out best number. Probably 64 < n < 128
 
 	struct Chunk
 	{
 		u8 m_ChunkI, m_ChunkJ; // chunk ID
-		u16 m_NumRegions; // number of local region IDs (starting from 1)
+		std::vector<u16> m_RegionsID; // IDs of local regions, 0 (impassable) excluded
 		u16 m_Regions[CHUNK_SIZE][CHUNK_SIZE]; // local region ID per navcell
 
-		cassert(CHUNK_SIZE*CHUNK_SIZE/2 < 65536); // otherwise we could overflow m_NumRegions with a checkerboard pattern
+		cassert(CHUNK_SIZE*CHUNK_SIZE/2 < 65536); // otherwise we could overflow m_RegionsID with a checkerboard pattern
 
 		void InitRegions(int ci, int cj, Grid<NavcellData>* grid, pass_class_t passClass);
 
@@ -155,7 +155,7 @@ private:
 #ifdef TEST
 		bool operator==(const Chunk& b) const
 		{
-			return (m_ChunkI == b.m_ChunkI && m_ChunkJ == b.m_ChunkJ && m_NumRegions == b.m_NumRegions && memcmp(&m_Regions, &b.m_Regions, sizeof(u16) * CHUNK_SIZE * CHUNK_SIZE) == 0);
+			return (m_ChunkI == b.m_ChunkI && m_ChunkJ == b.m_ChunkJ && m_RegionsID.size() == b.m_RegionsID.size() && memcmp(&m_Regions, &b.m_Regions, sizeof(u16) * CHUNK_SIZE * CHUNK_SIZE) == 0);
 		}
 #endif
 	};
@@ -183,7 +183,7 @@ private:
 	void FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid) const;
 
 	u16 m_W, m_H;
-	u16 m_ChunksW, m_ChunksH;
+	u8 m_ChunksW, m_ChunksH;
 	std::map<pass_class_t, std::vector<Chunk> > m_Chunks;
 
 	std::map<pass_class_t, EdgesMap> m_Edges;
