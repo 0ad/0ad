@@ -1334,7 +1334,7 @@ var g_BatchSize = getDefaultBatchTrainingSize();
 function OnTrainMouseWheel(dir)
 {
 	if (!Engine.HotkeyIsPressed("session.batchtrain"))
-	return;
+		return;
 
 	g_BatchSize += dir / Engine.ConfigDB_GetValue("user", "gui.session.scrollbatchratio");
 	if (g_BatchSize < 1 || !Number.isFinite(g_BatchSize))
