@@ -718,11 +718,7 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
 	PathfinderState state = { 0 };
 
-	auto it = m_JumpPointCache.find(passClass);
-	ENSURE(it != m_JumpPointCache.end());
-	state.jpc = it->second.get();
-
-	if (m_UseJPSCache && !state.jpc)
+	if (m_UseJPSCache && m_JumpPointCache.find(passClass) == m_JumpPointCache.end())
 	{
 		state.jpc = new JumpPointCache;
 		state.jpc->reset(m_Grid, passClass);
