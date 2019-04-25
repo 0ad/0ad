@@ -217,7 +217,7 @@ public:
 	 * along the path.
 	 */
 	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
-		pass_class_t passClass, WaypointPath& path)
+		pass_class_t passClass, WaypointPath& path) const
 	{
 		if (!m_Grid)
 		{
@@ -250,34 +250,36 @@ public:
 	Grid<NavcellData>* m_Grid;
 	u16 m_GridSize;
 
-	// Debugging - output from last pathfind operation:
-	LongOverlay* m_DebugOverlay;
-	PathfindTileGrid* m_DebugGrid;
-	u32 m_DebugSteps;
-	double m_DebugTime;
-	PathGoal m_DebugGoal;
-	WaypointPath* m_DebugPath;
-	pass_class_t m_DebugPassClass;
+	// Debugging - output from last pathfind operation.
+	// mutable as making these const would require a lot of boilerplate code
+	// and they do not change the behavioural const-ness of the pathfinder.
+	mutable LongOverlay* m_DebugOverlay;
+	mutable PathfindTileGrid* m_DebugGrid;
+	mutable u32 m_DebugSteps;
+	mutable double m_DebugTime;
+	mutable PathGoal m_DebugGoal;
+	mutable WaypointPath* m_DebugPath;
+	mutable pass_class_t m_DebugPassClass;
 
 private:
-	PathCost CalculateHeuristic(int i, int j, int iGoal, int jGoal);
-	void ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg, PathfinderState& state);
+	PathCost CalculateHeuristic(int i, int j, int iGoal, int jGoal) const;
+	void ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg, PathfinderState& state) const;
 
 	/**
 	 * JPS algorithm helper functions
 	 * @param detectGoal is not used if m_UseJPSCache is true
 	 */
-	void AddJumpedHoriz(int i, int j, int di, PathCost g, PathfinderState& state, bool detectGoal);
-	int HasJumpedHoriz(int i, int j, int di, PathfinderState& state, bool detectGoal);
-	void AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderState& state, bool detectGoal);
-	int HasJumpedVert(int i, int j, int dj, PathfinderState& state, bool detectGoal);
-	void AddJumpedDiag(int i, int j, int di, int dj, PathCost g, PathfinderState& state);
+	void AddJumpedHoriz(int i, int j, int di, PathCost g, PathfinderState& state, bool detectGoal) const;
+	int HasJumpedHoriz(int i, int j, int di, PathfinderState& state, bool detectGoal) const;
+	void AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderState& state, bool detectGoal) const;
+	int HasJumpedVert(int i, int j, int dj, PathfinderState& state, bool detectGoal) const;
+	void AddJumpedDiag(int i, int j, int di, int dj, PathCost g, PathfinderState& state) const;
 
 	/**
 	 * See LongPathfinder.cpp for implementation details
 	 * TODO: cleanup documentation
 	 */
-	void ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path);
+	void ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const;
 	void GetDebugDataJPS(u32& steps, double& time, Grid<u8>& grid) const;
 
 	// Helper functions for ComputePath
@@ -290,7 +292,7 @@ private:
 	 * If @param maxDist is non-zero, path waypoints will be espaced by at most @param maxDist.
 	 * In that case the distance between (x0, z0) and the first waypoint will also be made less than maxDist.
 	 */
-	void ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0);
+	void ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0) const;
 
 	/**
 	 * Generate a passability map, stored in the 16th bit of navcells, based on passClass,
@@ -299,7 +301,11 @@ private:
 	void GenerateSpecialMap(pass_class_t passClass, std::vector<CircularRegion> excludedRegions);
 
 	bool m_UseJPSCache;
-	std::map<pass_class_t, shared_ptr<JumpPointCache> > m_JumpPointCache;
+	// Mutable may be used here as caching does not change the external const-ness of the Long Range pathfinder.
+	// This is thread-safe as it is order independent (no change in the output of the function for a given set of params).
+	// Obviously, this means that the cache should actually be a cache and not return different results
+	// from what would happen if things hadn't been cached.
+	mutable std::map<pass_class_t, shared_ptr<JumpPointCache> > m_JumpPointCache;
 
 	HierarchicalPathfinder m_PathfinderHier;
 };

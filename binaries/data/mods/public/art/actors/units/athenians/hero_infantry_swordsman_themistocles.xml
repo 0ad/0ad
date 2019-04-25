@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -10,8 +10,12 @@
         <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/athen_aspis_themistocles.xml" attachpoint="shield_arm"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="cuirass">
       <textures>
-        <texture file="skeletal/hele_themistocles.dds" name="baseTex"/>
+        <texture file="skeletal/athen_themistocles.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
