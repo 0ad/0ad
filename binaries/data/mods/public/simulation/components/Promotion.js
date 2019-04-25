@@ -166,6 +166,8 @@ Promotion.prototype.IncreaseXp = function(amount)
 		}
 		this.Promote(promotedTemplateName);
 	}
+
+	Engine.PostMessage(this.entity, MT_ExperienceChanged, {});
 };
 
 Promotion.prototype.OnValueModification = function(msg)

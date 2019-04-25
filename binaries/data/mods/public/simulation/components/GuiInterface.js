@@ -851,7 +851,7 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
 		if (!cmpStatusBars)
 			continue;
-		cmpStatusBars.SetEnabled(cmd.enabled, cmd.showRank);
+		cmpStatusBars.SetEnabled(cmd.enabled, cmd.showRank, cmd.showExperience);
 
 		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (!cmpAuras)

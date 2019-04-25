@@ -6,7 +6,7 @@ StatusBars.prototype.Schema =
 	"<element name='BarWidth'>" +
 		"<data type='decimal'/>" +
 	"</element>" +
-	"<element name='BarHeight'>" +
+	"<element name='BarHeight' a:help='Height of a normal sized bar. Some bars are scaled accordingly.'>" +
 		"<data type='decimal'/>" +
 	"</element>" +
 	"<element name='HeightOffset'>" +
@@ -21,6 +21,7 @@ StatusBars.prototype.Schema =
  * provide the right methods.
  */
 StatusBars.prototype.Sprites = [
+	"ExperienceBar",
 	"PackBar",
 	"ResourceSupplyBar",
 	"CaptureBar",
@@ -33,6 +34,7 @@ StatusBars.prototype.Init = function()
 {
 	this.enabled = false;
 	this.showRank = false;
+	this.showExperience = false;
 
 	// Whether the status bars used the player colors anywhere (e.g. in the capture bar)
 	this.usedPlayerColors = false;
@@ -54,14 +56,15 @@ StatusBars.prototype.Deserialize = function(data)
 	this.auraSources = data.auraSources;
 };
 
-StatusBars.prototype.SetEnabled = function(enabled, showRank)
+StatusBars.prototype.SetEnabled = function(enabled, showRank, showExperience)
 {
 	// Quick return if no change
-	if (enabled == this.enabled && showRank == this.showRank)
+	if (enabled == this.enabled && showRank == this.showRank && showExperience == this.showExperience)
 		return;
 
 	this.enabled = enabled;
 	this.showRank = showRank;
+	this.showExperience = showExperience;
 
 	// Update the displayed sprites
 	this.RegenerateSprites();
@@ -107,6 +110,12 @@ StatusBars.prototype.OnPackProgressUpdate = function(msg)
 		this.RegenerateSprites();
 };
 
+StatusBars.prototype.OnExperienceChanged = function()
+{
+	if (this.enabled)
+		this.RegenerateSprites();
+};
+
 StatusBars.prototype.UpdateColor = function()
 {
 	if (this.usedPlayerColors)
@@ -127,11 +136,11 @@ StatusBars.prototype.RegenerateSprites = function()
 /**
  * Generic piece of code to add a bar.
  */
-StatusBars.prototype.AddBar = function(cmpOverlayRenderer, yoffset, type, amount)
+StatusBars.prototype.AddBar = function(cmpOverlayRenderer, yoffset, type, amount, heightMultiplier = 1)
 {
 	// Size of health bar (in world-space units)
 	let width = +this.template.BarWidth;
-	let height = +this.template.BarHeight;
+	let height = +this.template.BarHeight * heightMultiplier;
 
 	// World-space offset from the unit's position
 	let offset = { "x": 0, "y": +this.template.HeightOffset, "z": 0 };
@@ -155,6 +164,18 @@ StatusBars.prototype.AddBar = function(cmpOverlayRenderer, yoffset, type, amount
 	);
 
 	return height * 1.2;
+};
+
+StatusBars.prototype.AddExperienceBar = function(cmpOverlayRenderer, yoffset)
+{
+	if (!this.enabled || !this.showExperience)
+		return 0;
+
+	let cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
+	if (!cmpPromotion || !cmpPromotion.GetCurrentXp() || !cmpPromotion.GetRequiredXp())
+		return 0;
+
+	return this.AddBar(cmpOverlayRenderer, yoffset, "pack", cmpPromotion.GetCurrentXp() / cmpPromotion.GetRequiredXp(), 2/3);
 };
 
 StatusBars.prototype.AddPackBar = function(cmpOverlayRenderer, yoffset)
