@@ -20,6 +20,7 @@
 
 #include "lib/config2.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/types.h"
 #include "simulation2/system/Entity.h"
 #include "soundmanager/data/SoundData.h"
 
@@ -80,6 +81,10 @@ private:
 
 	void SetDefaultValues();
 #if CONFIG2_AUDIO
+	inline u32 FastRand();
+	// Contains the current sound seed for the generator
+	u32 m_Seed;
+	float RandFloat(float min, float max);
 	// We store the handles so we can load now and play later
 	std::vector<CSoundData*> m_SoundGroups;
 #endif
@@ -104,7 +109,7 @@ private:
 	float m_PitchUpper;
 	float m_Priority;
 	// Up to eight individual parameters, use with eSndGrpFlags.
-	uint8_t m_Flags;
+	u8 m_Flags;
 };
 
 #endif //#ifndef INCLUDED_SOUNDGROUP_H
