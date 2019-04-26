@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:44+0100\n"
-"PO-Revision-Date: 2019-04-16 05:36+0000\n"
+"PO-Revision-Date: 2019-04-26 07:47+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -395,7 +395,7 @@ msgstr "비활성화"
 #: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "처음 %(min)s 분 동안은 다른 선수들이 중립을 지킬것입니다."
+msgstr[0] "처음 1분 동안은 다른 선수들이 중립을 지킬것입니다."
 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
@@ -994,30 +994,30 @@ msgstr "수리 갯수:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "다른 작업자를 추가하여 수리 속도를 %(second)s 초 단축하십시오."
+msgstr[0] "수리 속도를 %(초)초까지 높이기 위해 다른 작업자를 추가하십시오.ehsms 합니다."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "작업자를 추가하여 %(second)s 초 내에 수리를 완료하십시오."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "만드는 유닛의 숫자:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "작업자를 한 명 더 추가하여 공사 속도를 %(second)s초 단위로 높입니다."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "작업자를 추가하여 %(second)s 초 내에 공사를 완료하십시오."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1073,7 +1073,7 @@ msgstr "비용:"
 #: gui/common/tooltips.js:628
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "%(technology)s 가 필요합니다"
 
 #: gui/common/tooltips.js:640
 #, javascript-format
@@ -1193,15 +1193,15 @@ msgstr "수정판(Mods): %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "이 저장놀이는 당신이 %(currentVersion)s 버전을 실행하는 동안 0 A.D. 버전 %(requiredVersion)s이 필요합니다."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "이 저장놀이는 0 A.D.의 이전 버전이 필요합니다."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "이 저장놀이는 다른 수정판(MOD)의 순서를 필요로 합니다:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1245,33 +1245,33 @@ msgstr "값: %(val)s (min: %(min)s, max: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "선택사항을 다시 설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "Some setting values are invalid! Are you sure to save them?"
+msgstr "일부 설정 값이 잘못되었습니다! 저장 하시겠습니까?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "You have unsaved changes, do you want to close this window?"
+msgstr "바뀐 내용을 저장하지 않으셨습니다. 이 창을 닫으시겠습니까?"
 
 #: gui/pregame/mainmenu.js:41
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
+msgstr "%(hotkey)s: 서기 0년에 나타난 문명의 건축물 도감을 보십시오."
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 서기 0년에 나타난 많은 문명들에 대해 배웁니다"
 
 #: gui/pregame/mainmenu.js:49
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: 함께놀기 앞마당을 실행하여 공개적으로 볼 수 있는 놀이를 개최하고 다른 선수와 대화할 수 있습니다."
 
 #: gui/pregame/mainmenu.js:113
 #, javascript-format
@@ -1312,13 +1312,13 @@ msgstr "확인"
 
 #: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "0 A.D.를 종료하고 시나리오 편집기를 열려시겠습니까?"
 
 #: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "The scenario editor is not available or failed to load. See the game logs for additional information."
+msgstr "시나리오 편집기를 사용할 수 없거나 불러오지 못했습니다. 추가 정보는 놀이 기록을 참조하십시오."
 
 #: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
@@ -1341,7 +1341,7 @@ msgstr "약관"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "사용자보고서 이용 약관을 읽고 동의하십시오."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -1374,11 +1374,11 @@ msgstr "업로드 실패 (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
-msgstr "フィードバック\n無効化"
+msgstr "의견제출기능\n비활성화"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
-msgstr "フィードバック\n有効化"
+msgstr "의견제출기능\n사용"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1405,7 +1405,7 @@ msgstr "0 A.D. 를 개선하는데 도와주십시오!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "버그를 수정하고 성능과 호환성을 향상시키는 데 도움이 되는 의견제출기능을 자동으로 보내주십시오."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1433,35 +1433,35 @@ msgstr "∞"
 #: gui/reference/common/load.js:193
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s 부터 %(health_max)s"
 
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr ""
+msgstr "%(hotkey)s: 역사로 바꿉니다."
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: 건축물 도감을 닫습니다."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
-msgstr ""
+msgstr "다음에 의해 만들어짐:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
-msgstr ""
+msgstr "훈련받은 사람:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
-msgstr ""
+msgstr "연구 분야:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
@@ -1485,11 +1485,11 @@ msgstr "훈련:"
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
-msgstr ""
+msgstr "향상 대상:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "이 다시보기는 다른 순서의 수정판(MOD)가 필요합니다."
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -1511,11 +1511,11 @@ msgstr "호환되지않는 다시보기"
 
 #: gui/replaymenu/replay_actions.js:117
 msgid "No summary data available."
-msgstr ""
+msgstr "사용할 수있는 요약 자료가 없습니다."
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "이 다시보기를 영구적으로 삭제 하시겠습니까?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
@@ -1587,20 +1587,20 @@ msgstr "모든?? 승리조건"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "평점 및 등급 없음 게임"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "정격 게임??"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "등급이 매겨지지 않은 게임들"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "하나 이상의 부분 또는 전체 선수 이름을 입력하여 재생을 걸러냅니다."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -1621,7 +1621,7 @@ msgstr "저장된 놀이 파일을 찾을수 없음"
 
 #: gui/savegame/save.js:64
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "저장된 게임을 영구적으로 덮어 씁니다. 확실합니까?"
 
 #: gui/savegame/save.js:65
 msgid "OVERWRITE SAVE"
@@ -1841,11 +1841,11 @@ msgstr "수집됨"
 
 #: gui/summary/summary.js:45
 msgid "Sent"
-msgstr ""
+msgstr "보내짐"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "샀었음"
 
 #: gui/summary/summary.js:55
 msgid "Income"
@@ -1936,7 +1936,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: 함께놀기 앞마당을 대화 상자 창으로 켜고 끕니다."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -2541,11 +2541,11 @@ msgstr ""
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr ""
+msgstr "기부자"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "머리"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -2561,23 +2561,23 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "특별히 감사한분들"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "프로그래밍"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "다음을 추모함??"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. 설립자"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "프로젝트 지도자"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
@@ -3942,7 +3942,7 @@ msgstr "창병"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr "The basic melee infantry for every faction in the game."
+msgstr "놀이 내에서 모든 진영을 위한 기본 근접전 보병."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."

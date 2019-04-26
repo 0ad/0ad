@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-12 09:49+0200\n"
-"PO-Revision-Date: 2019-04-14 13:38+0000\n"
+"PO-Revision-Date: 2019-04-20 22:13+0000\n"
 "Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -535,7 +535,7 @@ msgstr "Uvas"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
-msgstr "Colete uvas desse vinhedo para comida."
+msgstr "Colete uvas desse vinhedo por comida."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
@@ -556,11 +556,11 @@ msgstr "Macieira"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bambu"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "Figueira-de-bengala"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
@@ -569,15 +569,15 @@ msgstr "Baobá"
 
 #: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "Broto de Baobá"
 
 #: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr ""
+msgstr "Baobá jovem"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Baobá morto"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -585,16 +585,16 @@ msgstr "Alfarrobeira"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Broto de Cedro-do-atlas"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Cedro-do-atlas"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Cedro-do-atlas morto"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -612,11 +612,11 @@ msgstr "Palmeira"
 
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
 msgid "Dead Palm"
-msgstr ""
+msgstr "Tamareira"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
-msgstr ""
+msgstr "Tamareira frutífera"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
@@ -633,15 +633,15 @@ msgstr "Figo"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
-msgstr "Colete Figos por comida"
+msgstr "Colete figos por comida."
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Broto de Abeto"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Mangue"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -665,11 +665,11 @@ msgstr "Oliveira"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
-msgstr ""
+msgstr "Palmeira do Egito"
 
 #: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
 msgid "Palmyra Palm"
-msgstr ""
+msgstr "Palmeira-de-leque"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -1090,7 +1090,7 @@ msgstr "Espião"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "At least 16 melee infantry units required."
-msgstr ""
+msgstr "Requer pelo menos 16 unidades de infantaria de combate corpo-a-corpo."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1102,7 +1102,7 @@ msgstr "Linha de Batalha"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "At least 4 units required."
-msgstr ""
+msgstr "Requer pelo menos 4 unidades."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1118,7 +1118,7 @@ msgstr "Coluna Aberta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "At least 8 units required."
-msgstr ""
+msgstr "Requer pelo menos 8 unidades."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1138,7 +1138,7 @@ msgstr "Nenhum"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "At least 10 hoplite infantry required."
-msgstr ""
+msgstr "Requer pelo menos 10 Hoplitas."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1150,7 +1150,7 @@ msgstr "Espalhar"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Only ranged units allowed."
-msgstr ""
+msgstr "São permitidas apenas arqueiros."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1158,7 +1158,7 @@ msgstr "Escaramuça"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "At least 16 pike infantry units required."
-msgstr ""
+msgstr "Requer pelo menos 16 piqueiros."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1170,7 +1170,7 @@ msgstr "Tartaruga"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "At least 6 cavalry units required."
-msgstr ""
+msgstr "Requer pelo menos 6 unidades de cavalaria."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

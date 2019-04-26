@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-04-04 17:40+0000\n"
+"PO-Revision-Date: 2019-04-20 18:07+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgstr "El sirvidor nun ufrió'l cifráu TLS riquíu"
 
 #: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falló l'autenticación. Nun esiste la cuenta o clave incorreuta"
+msgstr "Falló l'autenticación. Clave incorreuta o la cuenta nun esiste"
 
 #: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
@@ -156,7 +156,7 @@ msgstr "Nun pudo abrise'l ficheru temporal pa la baxada'l camudu: %s."
 #: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Hebo un fallu al entamar la baxada. Fallu: %s; %s."
+msgstr "Falló al entamar la baxada. Fallu: %s; %s."
 
 #: ps/ModIo.cpp:381
 #, c-format
@@ -179,11 +179,11 @@ msgstr "Ficheru non válidu. Albidróse md5 %s, recibió %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr "Hebo un fallu al calcular el hash final."
+msgstr "Falló al calcular el hash final."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr "Hebo un fallu al verificar la robla."
+msgstr "Falló al verificar la robla."
 
 #: ps/SavedGame.cpp:128
 #, c-format

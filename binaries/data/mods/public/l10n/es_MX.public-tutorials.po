@@ -5,13 +5,14 @@
 # Translators:
 # Daniel Bautista <danielbautista@live.com>, 2017
 # Dianiel García <jdangarr@gmail.com>, 2018
+# José Pinto <jpinto.shift@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Dianiel García <jdangarr@gmail.com>, 2018\n"
+"Last-Translator: José Pinto <jpinto.shift@gmail.com>, 2019\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/wildfire-games/teams/17418/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,6 +30,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Da clic izquierdo en la Ciudadana, después haz clic derecho en el arbusto de"
+" bayas para que la mujer recolecte la comida. Las Ciudadanas recolectan los "
+"vegetales más rápido que otras unidades."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -36,6 +40,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Selecciona al soldado, da clic derecho en el árbol que esta cerca del centro"
+" civico para que recolecte madera. Los soldados recolectan madera más rápido"
+" que las mujeres."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -43,6 +50,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Selecciona el Centro Civico y mantén %(hotkey)smientras das clic en el ícono"
+" de Hoplita para iniciar con el entrenamiento de un grupo de Hoplitas."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -52,16 +61,21 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"No olvides presionar la tecla rápida de grupo de entrenamiento mientras "
+"haces clic para entrenar múltiples unidades."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Da clic en el ícono Hoplita."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"Selecciona a las dos mujeres que estan desocupadas y constuye una casa cerca"
+" seleccionando e ícono de casa. Coloca la casa haciendo clic izquierdo en un"
+" pedazo de tierra."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -69,6 +83,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Cuando estén listos, selecciona a los Hoplitas recién entrenados y asígnalos"
+" para construir un almacén cerca de los árboles. Comenzarán a recolectar "
+"madera cuando esté construida."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -76,20 +93,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Entrena a un grupo de hostigadores manteniendo %(hotkey)s y haciendo clic en"
+" el ícono hostigador en el Centro Civico."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Da clic en el ícono Hostigador."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Construye una granja en un espacio abierto a un lado del Centro Civico "
+"usando a cuaquier constructor desocupado."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Esperemos a que se construya la granja."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -97,6 +118,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Una vez que la granja este construida, los constructores automáticamente "
+"recolectarán comida si hubiera alguna cerca. Selecciona a los constructures "
+"para que construyan un campo al lado de la granja."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -104,6 +128,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Los constructores del campo, automáticamente empezarán a recolectar comida "
+"del campo. Usa a los recien creados Hostigadores para que construyan otra "
+"casa cerca."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -114,7 +141,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Da clic en el ícono Hoplita."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
@@ -150,7 +177,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Da clic en el ícono Ciudadana."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
@@ -176,7 +203,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "Intenta repeler el ataque."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
@@ -211,11 +238,13 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
-msgstr ""
+msgstr "Las Ciudadanas deberían continuar con la recolección de recursos."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr ""
+"El enemigo a sido derrotado. Las actividades de este tutorial han sido "
+"completadas."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -237,10 +266,12 @@ msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Puedes cambiar el nivel de detalle usando la rueda del ratón y la vista de "
+"camara usando las flechas del teclado."
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Ajusta la ventana de juego a tu preferencia."
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -303,7 +334,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Hay tres maneras de seleccionar las unidades."
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
@@ -390,15 +421,17 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"No olvides mantener presionado la tecla Shift mientras das clic en entrenar "
+"varias unidades."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Mantén presionado la tecla Shift y da clic en el ícono Hoplita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Esperemos a que las unidades estén entrenadas."
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -439,6 +472,8 @@ msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"Las posiciones no válidas (obstruidas) se mostrarán en una superposición del"
+" edificio en rojo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
@@ -462,10 +497,12 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"No olvides mantener presionada la tecla Shift y dar clic en entrenar varias "
+"unidades."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Mantén presionado la tecla Shift y dar clic en el ícono Ciudadana."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -477,7 +514,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Las unidades deberán estar listas pronto."
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -602,7 +639,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Selecciona el Centro Civico y da clic derecho en el campo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
@@ -612,11 +649,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Da clic sin pulsar Shift para entrenar una sola unidad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Da clic en el ícono Ciudadana."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -713,10 +750,12 @@ msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"Este es el final del tutorial. Esto debería darte una buena idea de los "
+"conceptos básicos para establecer tu economía."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Este es un tutorial básico para que comiences a jugar 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -725,11 +764,11 @@ msgstr "Jugador 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "Jugador 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Tutorial de introducción."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -740,4 +779,4 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "Comenzando el tutorial de economía."
