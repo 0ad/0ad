@@ -5,13 +5,13 @@
     <variant file="helmets/hele_illyrian_base.xml" name="Base"/>
   </group>
   <group>
-    <variant frequency="1" name="black">
+    <variant frequency="3" name="black">
       <textures>
         <texture file="props/helmet/hele_illyrian_black_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" file="helmets/hele_illyrian_bronze_01.xml" name="illyrian-no-crest-bronze-a"/>
-    <variant frequency="1" file="helmets/hele_illyrian_bronze_02.xml" name="illyrian-no-crest-bronze-b"/>
+    <variant file="helmets/hele_illyrian_bronze_01.xml" frequency="9" name="illyrian-no-crest-bronze-a"/>
+    <variant file="helmets/hele_illyrian_bronze_02.xml" frequency="9" name="illyrian-no-crest-bronze-b"/>
     <variant frequency="1" name="tin">
       <textures>
         <texture file="props/helmet/hele_illyrian_tin_01.png" name="baseTex"/>

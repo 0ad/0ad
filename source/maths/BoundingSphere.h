@@ -20,7 +20,7 @@
 
 #include "maths/Vector3D.h"
 
-class BoundingBoxAligned;
+class CBoundingBoxAligned;
 
 class CBoundingSphere
 {

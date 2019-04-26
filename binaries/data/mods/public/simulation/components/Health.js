@@ -171,8 +171,8 @@ Health.prototype.Kill = function()
 };
 
 /**
- * Reduces entity's health by amount HP. Kill if required.
- * @return {{ "killed": boolean, "change": Number }} the status change of the entity.
+ * @param {number} amount - The amount of hitpoints to substract. Kills the entity if required.
+ * @return {{killed:boolean, change:number}} -  Number of health points lost and whether the entity was killed.
  */
 Health.prototype.Reduce = function(amount)
 {
@@ -181,7 +181,7 @@ Health.prototype.Reduce = function(amount)
 	// might get called multiple times)
 	// Likewise if the amount is 0.
 	if (!amount || !this.hitpoints)
-		return {"killed": false, "change": 0};
+		return { "killed": false, "change": 0 };
 
 	// Before changing the value, activate Fogging if necessary to hide changes
 	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
@@ -195,7 +195,7 @@ Health.prototype.Reduce = function(amount)
 		this.hitpoints = 0;
 		this.RegisterHealthChanged(oldHitpoints);
 		this.HandleDeath();
-		return {"killed": true, "change": -oldHitpoints};
+		return { "killed": true, "change": -oldHitpoints };
 	}
 
 	// If we are not marked as injured, do it now
@@ -208,7 +208,7 @@ Health.prototype.Reduce = function(amount)
 
 	this.hitpoints -= amount;
 	this.RegisterHealthChanged(oldHitpoints);
-	return {"killed": false, "change": (this.hitpoints - oldHitpoints)};
+	return { "killed": false, "change": this.hitpoints - oldHitpoints };
 };
 
 /**
@@ -247,7 +247,7 @@ Health.prototype.HandleDeath = function()
 	}
 
 	Engine.DestroyEntity(this.entity);
-}
+};
 
 Health.prototype.Increase = function(amount)
 {

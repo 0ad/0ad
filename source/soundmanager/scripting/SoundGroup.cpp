@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+﻿/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,12 +21,14 @@
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "lib/rand.h"
-#include "ps/Game.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
+#include "ps/Game.h"
 #include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
+#include "simulation2/components/ICmpVisual.h"
+#include "simulation2/system/Component.h"
 #include "soundmanager/items/ISoundItem.h"
 #include "soundmanager/SoundManager.h"
 
@@ -35,9 +37,17 @@
 extern CGame *g_Game;
 
 #if CONFIG2_AUDIO
-static float RandFloat(float min, float max)
+inline u32 CSoundGroup::FastRand()
 {
-	return rand(min * 100.f, max * 100.f) / 100.f;
+	// This is a mixed linear congruential random number generator.
+	// The magic numbers are chosen so that they generate pseudo random numbers over a big enough period (0xFFFF).
+	m_Seed = 214013 * m_Seed + 2531011;
+	return (m_Seed >> 16) & 0xFFFF;
+}
+
+float CSoundGroup::RandFloat(float min, float max)
+{
+	return (static_cast<float>(FastRand()) / (0xFFFF)) * (max - min) + min;
 }
 #endif
 
@@ -62,6 +72,7 @@ void CSoundGroup::SetDefaultValues()
 	m_ConeInnerAngle = 360.f;
 	m_ConeOuterAngle = 360.f;
 	m_Decay = 3.f;
+	m_Seed = 0;
 	m_IntensityThreshold = 3.f;
 }
 
@@ -179,10 +190,11 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& positio
 		hSound->SetRollOff(itemRollOff);
 	}
 
-	if (TestFlag(eRandPitch))
-		hSound->SetPitch(RandFloat(m_PitchLower, m_PitchUpper));
-	else
-		hSound->SetPitch(m_Pitch);
+	CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), source);
+	if (cmpVisual)
+		m_Seed = cmpVisual->GetActorSeed();
+
+	hSound->SetPitch(TestFlag(eRandPitch) ? RandFloat(m_PitchLower, m_PitchUpper) : m_Pitch);
 
 	if (TestFlag(eRandGain))
 		m_Gain = RandFloat(m_GainLower, m_GainUpper);

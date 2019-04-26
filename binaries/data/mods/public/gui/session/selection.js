@@ -19,7 +19,8 @@ function _setStatusBars(ents, enabled)
 	Engine.GuiInterfaceCall("SetStatusBars", {
 		"entities": ents,
 		"enabled": enabled,
-		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true"
+		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true",
+		"showExperience": Engine.ConfigDB_GetValue("user", "gui.session.experiencestatusbar") == "true"
 	});
 }
 
