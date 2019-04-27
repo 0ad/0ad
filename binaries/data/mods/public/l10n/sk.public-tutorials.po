@@ -471,6 +471,11 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Najprv nastavme zhromaždisko. Nastavením zhromaždiska na budovách v ktorých "
+"sa trénujú jednotky dostanú nové jednotky automaticky úlohu, ktorú majú "
+"vykonávať. Chceme, aby nové jednotky šli ťažiť drevo zo stromov na juhu od "
+"Občianskeho Centra. Na to je potrebné zvoliť Občianske Centrum (kliknutím "
+"naň) a potom kliknúť pravým tlačidlom na niektorý strom."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -501,6 +506,11 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Občania-vojaci ťažia drevo rýchlejšie ako ženy. Zvoľ Občianske Centrum a "
+"potom s podržaným Shiftom klikni na druhú ikonu - Hoplit (podržanie Shiftu "
+"spôsobí trénovanie skupiny piatich jednotiek). Jednotky môžeš síce trénovať "
+"aj po jednej (jednoducho klikaním na ikonu), no trénovanie skupiny 5 "
+"jednotiek zaberie menej času, ako trénovanie 5 jednotiek po jednej."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -525,6 +535,10 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Pokým čakáš, venuj pozornosť panelu v hornej časti obrazovky. Naľavo hore je"
+" zobrazený stav zásob jednotlivých surovín (jedlo, drevo, kameň, kov). "
+"Zakaždým, keď pracovník donesie nejakú surovinu do Občianskeho Centra (alebo"
+" iného zberného miesta), uvidíš, ako vzrastie počet pre danú surovinu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -533,6 +547,10 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Je dôležité mať na pamäti, že aby sa získané suroviny započítali, musia byť "
+"donesené do nejakého zberného miesta. Preto sa vždy snaž minimalizovať "
+"vzdialenosť medzi surovinou a najbližším zberným miestom - dosiahneš tak "
+"vyššiu efektivitu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
@@ -677,6 +695,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Zvoľ tri zostávajúce (nečinné) ženy-občianky a pošli ich, aby postavili "
+"statok v strede veľkého otvoreného priestranstva, ktoré sa nachádza na západ"
+" od  Občianskeho Centra.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -684,6 +705,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Aby sme mohli postaviť polia, budeme okolo statku potrebovať celkom slušný "
+"kus otvorenej zeme. Na západnej strane môžeme tiež vidieť pasúce sa kozy. "
+"Poslúžia na zvýšenie efektivity získavania jedla, ak sa niekedy rozhodneš "
+"uloviť ich.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -700,12 +725,18 @@ msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Keď pracovníci, ktorí stavajú statok, stavbu dokončia, automaticky sa "
+"porozhliadnu po nejakom jedle. V tomto prípade to budú kozy pasúce sa "
+"neďaleko."
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"No pracovníci, ktorí stavajú dom, budú hľadať iba niečo iné, čo by mohli "
+"stavať. Ak nič také nenájdu, ostanú nečinní. Počkajme teda, pokým dostavajú "
+"domy."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -713,12 +744,15 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Keď budú oba domy dostavané, vyber dve ženy-občianky a prikáž im, aby "
+"postavili pole čo najbližšie k statku - ten je zberným miestom pre všetky "
+"typy jedla."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
-msgstr ""
+msgstr "Keď bude pole dokončené, robotníci na ňom začnú automaticky pracovať."
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -727,6 +761,10 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Jazdec už mal doteraz pozabíjať všetky sliepky. Zvoľ ho a pošli preskúmať "
+"územie na juho-západe: je tam jazero a okolo neho nejaké ťavy. Pošli jazdca "
+"pravým kliknutím na miesto, kam ho chceš poslať, a keď zbadáš stádo tiav, "
+"klikni pravým tlačidlom na nejakú z nich - takto začneš znova loviť jedlo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -736,6 +774,10 @@ msgid ""
 "sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Na poli môže pracovať až päť farmárov. Aby si pridal ďalších zberačov, zvoľ "
+"Občianske Centrum a pomocou kliknutia pravým tlačidlom nastav zhromaždisko "
+"na poli. Pokiaľ pole ešte nie je postavené, noví pracovníci ho pomôžu "
+"dostavať, potom pomôžu so zbieraním."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -762,6 +804,8 @@ msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Efektivitu svojich pracovníkov môžeš zvýšiť výskumom technológií dostupným v"
+" niektorých budovách.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -778,6 +822,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Mali by sme sa pripraviť na prechod do Fázy Mesta, ktorá odomkne mnoho "
+"ďalších jednotiek a budov. Aby si videl, čo ešte k tomu potrebuješ, zvoľ "
+"Občianske Centrum a prejdi kurzorom ponad ikonu Fáza Mesta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -785,6 +832,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Síce máme teraz dostatok surovín, ale chýba jedna budova. Aj keď táto výučba"
+" je zameraná na ekonomiku, je užitočné byť pripravený a vedieť sa obrániť "
+"proti prípadnému útoku. Takže poďme postaviť Kasárne.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -793,6 +843,9 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Zvoľ štyroch svojich vojakov a požiadaj ich, aby postavili Kasárne: ako "
+"doposiaľ - začni výberom vojakov, klikni na ikonu Kasárni na paneli a potom "
+"neďaleko Občianskeho Centra umiestni základy tam, kde chceš budovu postaviť."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -802,18 +855,27 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Počkajme, kým sa Kasárne postavia. Pretože táto stavba je zdĺhavá, môžeš "
+"pridať ďalších dvoch vojakov, aby sa vec urýchlila. Sprav to takto: zvoľ "
+"Občianske Centrum a pravým klikom na základy Kasárni ich nastavíš ako "
+"zhromaždisko (mal by si zbadať kurzor kladiva). Potom dvakrát klikni na "
+"ikonu Hoplita, čím vyprodukuješ ďalších dvoch pracovníkov."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
+"Teraz by si už mal byť schopný vyskúmať Fázu Mesta. Zvoľ Občianske Centrum a"
+" klikni na ikonu technológie.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Ak ti ešte chýbajú nejaké zdroje (ikona ofarbená na červeno), počkaj, kým "
+"ich pracovníci získajú."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -822,6 +884,10 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"V neskorších fázach budeš obyčajne potrebovať kameň a kov, aby si mohol "
+"postaviť väčšie budovy a vytrénovať lepších vojakov. Takže pokým teraz čakáš"
+" na dokončenie výskumu, pošli polovicu svojich nečinných občanov-vojakov "
+"(ktorí dostavali Kasárne) ťažiť kameň a druhú polovicu pošli ťažiť kov.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -831,6 +897,12 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Mohli by sme to spraviť tak, že by sme zvolili troch občanov-vojakov a potom"
+" by sme klikli pravým tlačidlom na kamennú baňu nachádzajúcu sa na západe od"
+" Občianskeho Centra (kurzor sa zmení, keď máš zvolených vojakov a prejdeš "
+"myšou ponad kamennú baňu). Ibaže títo vojaci predtým ťažili drevo, takže "
+"možno ešte nejaké drevo nesú so sebou. A to by sa stratilo, ak by si ich "
+"poslal ťažiť inú surovinu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -840,12 +912,19 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Čiže by bolo dobré poslať ich cestou zložiť drevo do Občianskeho Centra. Aby"
+" sme to dosiahli, budeme klikať poradie príkazov s podržanou klávesou Shift."
+" Najprv teda označíme vojakov, potom podržíme Shift a klikneme pravým "
+"tlačidlom na Občianske Centrum (aby odovzdali drevo), a potom zase s "
+"podržaným Shiftom klikneme na kamennú baňu, aby začali ťažiť kameň.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Podobné poradie príkazov sprav aj pre ostatných vojakov a kovovú baňu na "
+"západe."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -857,7 +936,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Toto je výučba, ktorá ťa naučí základy hry 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39

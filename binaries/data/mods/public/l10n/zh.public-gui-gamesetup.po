@@ -10,6 +10,7 @@
 # Bun Eang VINH <buneang.v@gmail.com>, 2018
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
+# ciaran <ciaranchen@qq.com>, 2019
 # Feng Chang <chang_196700@hotmail.com>, 2018
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
@@ -46,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-20 09:47+0000\n"
+"Last-Translator: ciaran <ciaranchen@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,7 +354,7 @@ msgstr "选择玩家的组队"
 
 #: gui/gamesetup/gamesetup.js:774
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "为此玩家选择文明"
 
 #: gui/gamesetup/gamesetup.js:788
 msgid "Pick a color."
@@ -476,7 +477,7 @@ msgstr "使用当前的设置开始一局新游戏."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家准备好)"
 
 #: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
@@ -718,7 +719,7 @@ msgstr "组队"
 
 #: gui/gamesetup/gamesetup.xml:(caption):125
 msgid "Show this message in the future."
-msgstr ""
+msgstr "稍后显示此消息"
 
 #: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"

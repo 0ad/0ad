@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-04-16 05:30+0000\n"
+"PO-Revision-Date: 2019-04-21 13:33+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "[font=\"sans-14\"] Alt + Enter 를 눌러서 창모드와 전체화면 �
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr "[font=\"sans-bold-16\"]게임 플레이하기"
+msgstr "[font=\"sans-bold-16\"]놀이를 하고있는중"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -112,11 +112,11 @@ msgstr "마우스 휠 또는 \"+\" 과 \"-\" 로 줌인,줌 아웃하기"
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr "[font=\"sans-bold-16\"]모드들"
+msgstr "[font=\"sans-bold-16\"]수정판(MOD)"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]메인 메뉴는 두 개의 게임 모드를 제공합니다."
+msgstr "[font=\"sans-14\"]메인 차림표는 두 개의 놀이 수정판(MOD)를 제공합니다:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -125,13 +125,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "[font=\"sans-bold-14\"]혼자놀기[font=\"sans-14\"] – AI 난이도에서 샌드박스 게임을 선택하여 게임을 하거나, 한 명 이상의 인공지능 상대방과 게임을 해보세요. 인공지능들은 개발 중이며 아마도 항상 최신 게임 버전에 적용되어 있지는 않을 수도 있습니다만, 만약 당신이 사람과 게임을 하기가 여의치 않으면, 당신은 인공지능 상대로 게임을 해볼 수 있습니다."
+msgstr "[font=\"sans-bold-14\"]혼자놀기[font=\"sans-14\"] – AI 난이도에서 모래통 놀이를 선택하여 놀이를 하거나, 한 명 이상의 인공지능 상대방과 게임을 해보세요. 인공지능들은 개발 중이며 아마도 항상 최신 놀이 판에 적용되어 있지는 않을 수도 있습니다만, 만약 당신이 사람과 게임을 하기가 여의치 않으면, 인공지능 상대로 게임을 해볼 수 있습니다."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]함께놀기[font=\"sans-14\"] – 인터넷을 통하여 사람과 게임을 합니다."
+msgstr "• [font=\"sans-bold-14\"]함께놀기[font=\"sans-14\"] – 인터넷을 통하여 사람과 놀이를 합니다."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -139,7 +139,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "함께 놀기를 하기위해서 \"게임 만들기\"를 눌러야합니다. 이 게임은 UDP port 20595를 사용하며 놀이 주최자가 NAT/firewall/etc로 환경설정을 해야합니다. 다른 선수들은 \"게임 참여하기\"를 선택해서 와 게임 주최자의 IP 주소로 들어갈 수 있습니다."
+msgstr "함께 놀기를 하기위해서 \"놀이 만들기\"를 눌러야합니다. 이 게임은 UDP port 20595를 사용하며 놀이 주최자가 NAT/firewall/etc로 환경설정을 해야합니다. 다른 선수들은 \"놀이 참여하기\"를 선택해서 와 게임 주최자의 IP 주소로 들어갈 수 있습니다."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -149,7 +149,7 @@ msgstr "[font=\"sans-bold-16\"]게임 설정"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]함께 놀기에서는 오직 호스트만이 놀이 선택사항을 바꿀 수 있습니다."
+msgstr "[font=\"sans-14\"]함께 놀기에서는 오직 주최자만이 놀이 선택사항을 바꿀 수 있습니다."
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
@@ -180,7 +180,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "그런 다음지도를 추가로 걸러내기 할 수 있습니다. 기본지도는 일반적으로 놀기 가능한 지도입니다. 해군 지도는 모든 상대방이 육지에 도달 할 수있는 지도가 아니며 시연용 지도는 실험 목적으로 사용되는 지도입니다 (일반적으로는 유용하지 않습니다.). ＂모든지도＂ 거름기는 모든 지도를 하나의 목록에 모두 표시합니다."
+msgstr "그런 다음 지도를 추가로 걸러내기 할 수 있습니다. 기본지도는 일반적으로 놀기 가능한 지도입니다. 해군 지도는 모든 상대방이 육지에 도달 할 수있는 지도가 아니며 시연용 지도는 실험 목적으로 사용되는 지도입니다 (일반적으로는 유용하지 않습니다.). ＂모든지도＂ 거름기는 모든 지도를 하나의 목록에 모두 표시합니다."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -205,7 +205,7 @@ msgstr "[font=\"sans-bold-14\"]프로그램-전체"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: 확인 절차 없이 게임을 바로 종료합니다."
+msgstr "[font=\"sans-14\"]Alt + F4: 확인 절차 없이 게임을 바로 종료합니다"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -213,7 +213,7 @@ msgstr "Alt + Enter: 전체화면과 윈도우창 켜고 끄는 토글 키"
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
-msgstr "~ or F9:콘솔 보이기/숨기기"
+msgstr "~ or F9: 콘솔 보이기/숨기기"
 
 #: gui/manual/intro.txt:47
 msgid "Alt + F: Show/hide frame counter (FPS)"
@@ -241,7 +241,7 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
 " is displayed in the top left of the GUI after the file has been saved, and "
 "can also be seen in the console/logs if you miss it there)"
-msgstr "F2: 대용량 스크린샷을 찍습니다.(6400 x 4800 px, .bmp 확장자로 저장됩니다, 파일이 저장되고 난 후 저장된 위치는 화면의 왼쪽 상단에 표시됩니다. 그리고 만약 보지 못했을 경우를 위해서 콘솔화면과 로그 내용에도 기록됩니다.)"
+msgstr "F2: 대용량 스크린샷을 찍습니다.(6400 x 4800px, .bmp 확장자로 저장됩니다, 파일이 저장되고 난 후 저장된 위치는 화면의 왼쪽 상단에 표시됩니다. 그리고 만약 보지 못했을 경우를 위해서 콘솔화면과 로그 내용에도 기록됩니다.)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -327,39 +327,39 @@ msgstr "Shift + Delete: 현재 선택된 유닛들/건물들을 확인 없이 �
 
 #: gui/manual/intro.txt:71
 msgid "/ (Slash): Select idle fighter"
-msgstr "/ (슬래시): 유휴 전사를 선택하기"
+msgstr "/ (슬래시): 대기중인 전사를 선택하기"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr "Shift + /: 유휴 전사를 선택에 추가"
+msgstr "Shift + /: 대기중인 전사를 선택에 추가"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
-msgstr "Alt + /: 모든 유휴 전사를 선택"
+msgstr "Alt + /: 모든 대기중인 전사를 선택"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ". (마침표): 유휴 일꾼 선택하기 (시민군인 포함)"
+msgstr ". (마침표): 대기중인 일꾼 선택하기 (시민군인 포함)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr "Shift + .: 유휴 일꾼을 선택에 추가 (시민군인 포함)"
+msgstr "Shift + .: 대기중인 일꾼을 선택에 추가 (시민군인 포함)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt + .: 모든 유휴 일꾼 선택하기 (시민군인 포함)"
+msgstr "Alt + .: 모든 대기중인 일꾼 선택하기 (시민군인 포함)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
-msgstr "\\ (백슬래시): 유휴 유닛 선택하기"
+msgstr "\\ (백슬래시): 대기중인 유닛 선택하기"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr "Shift + \\: 유휴 유닛을 선택에 추가"
+msgstr "Shift + \\: 대기중인 유닛을 선택에 추가"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr "Alt + \\: 모든 유휴 유닛을 선택하기"
+msgstr "Alt + \\: 모든 대기중인 유닛을 선택하기"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -483,33 +483,33 @@ msgstr "유닛 양성때 Shift + 왼쪽 클릭: 배치 단위 추가 (배치 크
 #: gui/manual/intro.txt:106
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + Left Click or Left Drag over unit on map: 선택 항목에서 유닛을 추가합니다."
+msgstr "Shift + 지도에서 유닛을 왼쪽 클릭 또는 왼쪽 드래그 오버: 선택 항목에서 유닛을 추가합니다."
 
 #: gui/manual/intro.txt:107
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Left Click or Left Drag over unit on map: 선택 항목에서 유닛을 뺍니다."
+msgstr "Ctrl + 지도에서 유닛을 왼쪽 클릭 또는 왼쪽 드래그 오버: 선택 항목에서 유닛을 뺍니다."
 
 #: gui/manual/intro.txt:108
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + Left Drag over units on map: 군사 유닛들만 선택하기"
+msgstr "Alt + 지도에서 유닛을 왼쪽 드래그 오버: 군사 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr "Alt + Y + Left Drag over units on map: 비군사 유닛들만 선택하기"
+msgstr "Alt + Y + 지도에서 유닛을 왼쪽 드래그 오버: 비군사 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr "I + Left Drag over units on map: 유휴 유닛들만 선택하기"
+msgstr "I + 지도에서 유닛을 왼쪽 드래그 오버: 대기중인 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr "O + Left Drag over units on map: 부상을 입은 유닛들만 선택하기"
+msgstr "O + 지도에서 유닛을 왼쪽 드래그 오버: 부상을 입은 유닛들만 선택하기"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "여러 유닛이 선택된 상태에서 유닛/그룹 아이콘을 Ctrl + Left Click: 선택해제하기"
+msgstr "여러 유닛이 선택된 상태에서 유닛/그룹 아이콘을 Ctrl + 왼쪽 클릭: 선택해제하기"
 
 #: gui/manual/intro.txt:113
 msgid ""
@@ -662,7 +662,7 @@ msgstr "Alt + W: 와이어프레임 모드로 켜고 끄기"
 
 #: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "마우스 가운데 버튼: 누른 상태로 마우스를 움직이면 팬이 움직입니다"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
@@ -670,17 +670,17 @@ msgstr "[font=\"sans-bold-14\"]건물 배치 도중"
 
 #: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"]\\[: 건물을 시계 반대 방향으로 15도 돌림"
 
 #: gui/manual/intro.txt:152
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]: 건물을 시계 방향으로 15도 돌림"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "왼쪽 드래그: 마우스를 사용하여 건물을 돌립니다 (토대는 마우스를 놓을 때 배치됩니다)"
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
@@ -689,8 +689,8 @@ msgstr "[font=\"sans-bold-14\"]저장된 게임을 볼러올 때"
 #: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Delete: 선택하고 저장된 놀이를 삭제하고 확인을 요청합니다(번역확인??)"
 
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Shift: 저장된 게임을 삭제할 때 확인을 요청하지 않음"

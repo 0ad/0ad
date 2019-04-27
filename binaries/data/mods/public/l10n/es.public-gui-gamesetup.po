@@ -36,6 +36,7 @@
 # Joaquín <joaquin95uru@gmail.com>, 2013
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # Jose Raul Cruz R. <jraulc@gmail.com>, 2017
+# juanda097 <juanda097@protonmail.ch>, 2019
 # Lenny Hans Andreu <landreuhs@outlook.com>, 2013
 # Brookhaven Alt <Lion.Kanzen@gmail.com>, 2013
 # matiasng37 <matiasng37@gmail.com>, 2013
@@ -60,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-22 00:32+0000\n"
+"Last-Translator: juanda097 <juanda097@protonmail.ch>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,7 +368,7 @@ msgstr "Elige el equipo del jugador."
 
 #: gui/gamesetup/gamesetup.js:774
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Elige la civilización para este jugador."
 
 #: gui/gamesetup/gamesetup.js:788
 msgid "Pick a color."
@@ -421,7 +422,7 @@ msgstr "Desactivar tesoros"
 
 #: gui/gamesetup/gamesetup.js:903
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "No agregue tesoros al mapa."
 
 #: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
@@ -468,7 +469,7 @@ msgstr "Marca esta opción si quieres que esta partida cuente para la clasificac
 #: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Presione %(hotkey)s para autocompletar los nombres de jugador o los ajustes."
 
 #: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
@@ -490,7 +491,7 @@ msgstr "Comenzar una nueva partida con los ajustes actuales."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Comenzar una nueva partida con la configuración actual (desactivada hasta que todos los jugadores estén listos)."
 
 #: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
@@ -635,7 +636,7 @@ msgstr "El nombre de la partida ya está en uso. "
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "No se pudo alojar a través de STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
@@ -661,7 +662,7 @@ msgstr "Partida de %(playername)s"
 #: gui/loading/loading.js:33
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -732,7 +733,7 @@ msgstr "Equipo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):125
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Muestre este mensaje en el futuro."
 
 #: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
@@ -749,7 +750,7 @@ msgstr "Atrás"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Restablecer cualquier civilización que haya sido seleccionada al valor predeterminado (aleatorio)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
@@ -791,7 +792,7 @@ msgstr "Nombre del Servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Utilice STUN para trabajar alrededor de los cortafuegos"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -807,13 +808,13 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Agamemnon\", 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[…] estableció su ley: la sabiduría viene a través del sufrimiento. \\[…] Para que los hombres contra su voluntad aprendan a practicar la moderación. \\[…] Tal gracia es dura y violenta.\" - Esquilo (\"Agamenón\", 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Agamemnon\", 406)"
-msgstr ""
+msgstr "\"Ella \\[Helena] trajo a Ilium su dote, su destrucción.\" - Esquilo (\"Agamenón\", 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -896,7 +897,7 @@ msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaus"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"Si he hecho algo noble, ese es un memorial suficiente; si no lo he hecho, todas las estatuas del mundo no conservarán mi memoria.\" - Agesilaus II de Esparta (Plutarco, \"Moralia\", XVI, \"Dichos de los espartanos\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -931,7 +932,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Gloriosas son las acciones de los que se esfuerzan y corren el riesgo del peligro; y es delicioso vivir una vida de valor y morir dejando atrás la gloria inmortal.\" - Alejandro Magno, dirigiéndose a sus tropas (Arrian, \"Los Anabasis de Alejandro\", 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -939,7 +940,7 @@ msgid ""
 "labors themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Yo creo que para un hombre valiente no hay fin a las labores excepto las propias, siempre y cuando conduzcan a logros gloriosos.\" - Alejandro Magno, dirigiéndose a sus tropas (Arrian, \"Los Anabasis de Alejandro\", 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -974,7 +975,7 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"El ágora es un lugar establecido para que los hombres se engañen unos a otros y se comporten con codicia.\" - Anacarsis, un filósofo escita que viajó a Grecia (Diógenes Laercio, \"Las vidas y opiniones de filósofos eminentes\", Anarquía, sec. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
@@ -1197,7 +1198,7 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.\" - Curtius Rufus about the Battle of Issus "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr ""
+msgstr "\"Entonces la sangre realmente fluía, porque las dos líneas estaban tan cerca que el escudo golpeó contra el escudo, y se clavaron sus espadas en la cara del otro. Era imposible que los débiles o cobardes se retiraran; de hombre a hombre luchaban como en un solo combate\". - Curtius Rufus sobre la batalla de Issus (\"Historias de Alejandro Magno\", III. 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
@@ -1211,7 +1212,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Soy Darío, el gran rey, rey de reyes, el rey de Persia, el rey de los países, \\[…] 23 tierras en total.\" - Darío I (Inscripción de Behistún, columna I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1221,7 +1222,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Phraortes fue capturado y traído ante mí. Le corté la nariz, las orejas y la lengua, y le saqué un ojo, y estaba encadenado a la entrada de mi palacio, y toda la gente lo vio. Entonces lo crucifiqué en Ecbatana, y a los hombres que eran sus principales seguidores, \\[…] los desollé y colgué sus pieles, rellenas de paja\". - Darío I (inscripción Behistun, columna II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1244,7 +1245,7 @@ msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
 "Philip II of Macedon (\"Olynthiac II\", 10)"
-msgstr ""
+msgstr "\"No es posible fundar un poder duradero sobre la injusticia, el perjurio y la traición.\" - Demóstenes, en uno de sus muchos discursos contra el ascenso de Felipe II de Macedonia (\"Olynthiac II\", 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
@@ -1259,7 +1260,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
 " the Battle of Issus (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+msgstr "\"Los macedonios levantaron primero un grito sobrenatural seguido de la respuesta de los persas, de modo que toda la ladera de la colina que bordeaba el campo de batalla hacía eco del sonido, y ese segundo rugido fue más fuerte que el grito de guerra macedonio, cuando quinientos mil hombres gritaron con una sola voz\". - Diodoro Sículo sobre la batalla de Issus (\"La Biblioteca de Historia\", XVII., sec. 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1346,19 +1347,19 @@ msgid ""
 "\"I came, I saw, I conquered.\" - Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. "
 "50)"
-msgstr ""
+msgstr "\"I came, I saw, I conquered.\" - Caesar, after routing Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Caesar (\"De Bello Gallico\", "
 "III. 18)"
-msgstr ""
+msgstr "\"Los hombres creen voluntariamente lo que desean.\" - César (\"De Bello Gallico\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
-msgstr ""
+msgstr "\"No es el hombre bien alimentado de pelo largo lo que temo, sino el pálido y hambriento.\" - César (Plutarco, \"Vidas paralelas\", \"Antonio\", sec. 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1367,7 +1368,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.\" - Caesar about the Battle of Alesia (\"De Bello Gallico\", "
 "VII. 80)"
-msgstr ""
+msgstr "\"Después de luchar desde el mediodía hasta la puesta del sol, con la victoria dudosa, los alemanes, por un lado, cargaron al enemigo en un cuerpo compacto, y lo hicieron retroceder; y, cuando fueron puestos a huir, los arqueros fueron rodeados y cortados en pedazos\". - César sobre la batalla de Alesia (\"De Bello Gallico\", VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1378,7 +1379,7 @@ msgid ""
 "exhausted by many and severe wounds, that he was already unable to support "
 "himself.\" - Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
 " 25)"
-msgstr ""
+msgstr "\"Todos los centuriones de la cuarta cohorte fueron asesinados, y el abanderado mató, el estandarte mismo perdió, casi todos los centuriones de las otras cohortes, heridos o muertos, y entre ellos el centurión principal de la legión, Publio Sexto Baco, un hombre muy valiente, que estaba tan agotado por muchas y severas heridas, que ya no podía mantenerse a sí mismo\". - César sobre la batalla de los Sabis (\"De Bello Gallico\", II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1395,20 +1396,20 @@ msgid ""
 "\"The die is cast.\" - Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr ""
+msgstr "\"La suerte está echada.\" - César, al cruzar el río Rubicón con su legión hacia Italia, una ofensa capital que llevó a su guerra civil contra Pompeyo (Suetonio, \"Las vidas de los doce césares\", 32)."
 
 #: gui/text/quotes.txt:88
 msgid ""
 "\"I'd rather be the first man here than the second man in Rome.\" - Caesar, "
 "when passing through a barbarian village in the Alps (Plutarch, \"Parallel "
 "Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+msgstr "\"Prefiero ser el primer hombre aquí que el segundo en Roma.\" - César, al pasar por un pueblo bárbaro en los Alpes (Plutarco, \"Vidas paralelas\", \"César\", sec. 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Pompey (Plutarch, \"Parallel "
 "Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "\"¡Deja de citar leyes, llevamos armas!\" - Pompeyo (Plutarco, \"Vidas paralelas\", \"Pompeyo\", sec. 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1420,7 +1421,7 @@ msgstr "«Si un hombre saca el ojo de otro hombre, su ojo se sacará.» - Hammur
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "\"No he venido a hacer la guerra a los italianos, sino a ayudar a los italianos contra Roma.\" - Aníbal (Polybius, \"Histories\", III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1428,7 +1429,7 @@ msgid ""
 "an old man.\" - Hannibal's last words before his suicide, in exile with "
 "Flaminius pressuring the local ruler to hand him over (Livy, \"History of "
 "Rome\", XXXIX. 51)"
-msgstr ""
+msgstr "\"Terminemos con la ansiedad de los romanos, que no pueden esperar la muerte de un anciano.\" - Las últimas palabras de Aníbal antes de su suicidio, en el exilio con Flaminio presionando al gobernante local para que lo entregara (Livy, \"History of Rome\", XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1443,20 +1444,20 @@ msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
 "death.\" - Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. "
 "44)"
-msgstr ""
+msgstr "\"Debes ser valiente y descartar toda esperanza de victoria o muerte.\" - Aníbal, dirigiéndose a sus tropas (Livy, \"Historia de Roma\", XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.\" - Heraclitus (Hippolytus, \"The Refutation"
 " of all Heresies\", IX. 4)"
-msgstr ""
+msgstr "\"La guerra es el padre y el rey de todas las cosas: a unos los ha hecho dioses, a otros hombres, a otros esclavos y a otros libres.\" - Heráclito (Hipólito, \"La refutación de todas las herejías\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"You could not step twice into the same river.\" - Heraclitus (Plato, "
 "\"Cratylus\", 402a)"
-msgstr ""
+msgstr "\"No se puede pisar dos veces el mismo río.\" - Heráclito (Platón, \"Cratylus\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
@@ -1542,7 +1543,7 @@ msgstr "«La ira es una locura momentánea, así que controla tu pasión o ella 
 msgid ""
 "\"It is your concern when your neighbor's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr ""
+msgstr "\"Es asunto tuyo cuando la pared de tu vecino está ardiendo.\" - Horacio (\"Epístolas\", epístola XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
@@ -1558,7 +1559,7 @@ msgstr "«Soy Ciro, rey del mundo...». - Inscripción (Cilindro de Ciro)"
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+msgstr "\"En paz los hijos entierran a sus padres, pero en guerra los padres entierran a sus hijos.\" - Creso, rey de Lidia (Herodoto, \"Las historias\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
@@ -1583,7 +1584,7 @@ msgid ""
 "Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"History "
 "of Rome\", XXII. 51)"
-msgstr ""
+msgstr "\"Algunos fueron descubiertos yaciendo vivos, con los muslos y los tendones acuchillados, mostrando sus cuellos y gargantas y ordenando a sus conquistadores que drenen el remanente de su sangre. Otros fueron encontrados con sus cabezas enterradas en agujeros excavados en el suelo. Aparentemente habían hecho estos hoyos para ellos mismos.\" - Livy, describiendo las secuelas de la batalla de Cannae, donde Aníbal infligió la mayor derrota a los romanos de toda su historia (\"Historia de Roma\", XXII. 51)."
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1605,45 +1606,45 @@ msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Brutus, before "
 "committing suicide after losing a battle against Caesar's avengers "
 "(Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "\"Escapar, sí, pero esta vez con mis manos, no con mis pies.\" - Bruto, antes de suicidarse tras perder una batalla contra los vengadores del César (Plutarco, \"Vidas paralelas\", \"Bruto\", art. 52)."
 
 #: gui/text/quotes.txt:118
 msgid "\"O, the times, O, the customs!\" - Cicero (\"Against Catiline\", I.)"
-msgstr ""
+msgstr "\"¡Oh, los tiempos, oh, las costumbres!\" - Cicerón (\"Contra Catilina\", I.)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "\"Una guerra nunca es emprendida por el Estado ideal, excepto en defensa de su honor o su seguridad.\" - Cicerón (\"De Re Publica\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "\"El deber principal de un hombre es buscar e investigar la verdad.\" - Cicerón (\"Sobre los Deberes\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Cicero"
 " (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "\"Nadie es tan viejo como para pensar que no puede vivir un año más.\" - Cicerón (\"Sobre la vejez\", art. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Cicero (\"On the "
 "Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"Que el bienestar del pueblo sea la ley suprema\". - Cicerón (\"Sobre las Leyes\", III., sec. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Cicero (\"Philippics\", V., "
 "sec. 5)"
-msgstr ""
+msgstr "\"El dinero sin fin forma los nervios de la guerra.\" - Cicerón (\"Filipenses\", V., sec. 5)"
 
 #: gui/text/quotes.txt:124
 msgid "\"Laws are silent in time of war.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
-msgstr ""
+msgstr "\"Las leyes son silenciosas en tiempos de guerra.\" - Cicerón (\"Pro Milone\", IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1651,7 +1652,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Cicero, "
 "condemning Mark Anthony who had not killed him (yet) (\"Philippics\", II., "
 "sec. 5)"
-msgstr ""
+msgstr "\"Eso, senadores, es lo que significa un favor de las pandillas. Se abstienen de asesinar a alguien; entonces se jactan de haberle perdonado\". - Cicerón, condenando a Marco Antonio que no lo había matado (todavía) (\"Filipenses\", II., sec. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1844,7 +1845,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbor and close to shore.\" - Polybius on the Athenian "
 "constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"El pueblo ateniense siempre está en la posición de un barco sin comandante. El miedo al enemigo o a la tormenta hace que la tripulación sea unánime y obedezca al timonel, todo va bien; pero si se recuperan \\[…] se pelean entre sí \\[…], y el resultado ha sido que a menudo, después de escapar de los peligros de los mares más anchos y de las tormentas más violentas, destrozan su barco en el puerto y cerca de la orilla\". - Polibio sobre la constitución ateniense (\"Historias\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1939,7 +1940,7 @@ msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livy, \"History of Rome\", XXX. 31)"
-msgstr ""
+msgstr "\"Prepárate para la guerra, ya que no has podido soportar la paz.\" - Escipión africano, respondiendo a la oferta de Aníbal de términos de paz antes de la batalla de Zama (Livy, \"Historia de Roma\", XXX. 31)."
 
 #: gui/text/quotes.txt:163
 msgid ""
