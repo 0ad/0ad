@@ -6,9 +6,20 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_adv.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/iber_helmet_isp_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet_1">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet_3">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_a.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
