@@ -20,11 +20,11 @@ class RLInterface final : public RLAPI::Service
 
     public:
 
-        // TODO: Add a mutex for interacting with the game
         grpc::Status Connect(ServerContext* context, const ConnectRequest* _, Observation* obs) override
         {
             std::lock_guard<std::mutex> lock(m_lock);
             std::cout << ">>> Connect" << std::endl;
+            m_GameCommands.push(1);
             // TODO: Initialize the scenario
             return grpc::Status::OK;
         }
@@ -44,7 +44,10 @@ class RLInterface final : public RLAPI::Service
             // TODO: Update this...
             //debug_printf("Turn %u (%u)...\n", m_Turn++, DEFAULT_TURN_LENGTH_SP);
 
-            msg_chan.push(200);
+            m_GameCommands.push(2);
+            int state = 0;
+            m_GameStates.pop(state);
+            std::cout << "game state is " << state << std::endl;
 
             //g_Profiler.Frame();
 
@@ -55,6 +58,7 @@ class RLInterface final : public RLAPI::Service
         {
             std::lock_guard<std::mutex> lock(m_lock);
             std::cout << ">>> Reset" << std::endl;
+            m_GameCommands.push(3);
             // TODO: Initialize the scenario and return the game state
             return grpc::Status::OK;
         }
@@ -70,16 +74,16 @@ class RLInterface final : public RLAPI::Service
             std::cout << "Server listening on " << server_address << std::endl;
 
             // TODO: Create two channels for interacting with the game engine...
-            int msg = 1;
-            while (boost::fibers::channel_op_status::success == msg_chan.pop(msg))
+            int msg = 0;
+            while (boost::fibers::channel_op_status::success == m_GameCommands.pop(msg))
             {
                 // TODO: handle the message and return the game state
-                if (msg == 200) {
+                if (msg == 2) {
                     std::cout << "updating game state" << std::endl;
                     g_Game->GetSimulation2()->Update(200);
+                    m_GameStates.push(5);
                 }
             }
-            m_Server->Wait();
         }
 
         // TODO: Add a render method??
@@ -91,6 +95,6 @@ class RLInterface final : public RLAPI::Service
         float m_StepsBtwnActions = 10.0f;
         unsigned int m_Turn = 0;
         std::mutex m_lock;
-        channel_t msg_chan;
-        channel_t state_chan;
+        channel_t m_GameCommands;
+        channel_t m_GameStates;
 };
