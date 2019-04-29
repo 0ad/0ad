@@ -607,7 +607,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	int flags = INIT_MODS;
 
     if (args.Has("rpc-server")) {
-		if (!Init(args, flags))
+		while (!Init(args, flags))
 		{
 			flags &= ~INIT_MODS;
 			Shutdown(SHUTDOWN_FROM_CONFIG);
@@ -626,7 +626,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			installedMods = installer.GetInstalledMods();
 		}
 
-        std::cout << "About to init things" << std::endl;
 		if (isNonVisual)
 		{
 			InitNonVisual(args);
@@ -634,6 +633,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		else
 		{
 			InitGraphics(args, 0, installedMods);
+			MainControllerInit();
 		}
 
         StartRLInterface();
