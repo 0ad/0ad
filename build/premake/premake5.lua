@@ -595,6 +595,9 @@ function setup_all_libs ()
         "rlinterface"
     }
 	extern_libs = {
+		"boost",
+		"spidermonkey",
+		"sdl",	-- key definitions
 		"grpc",
     }
     setup_static_lib_project("rlinterface", source_dirs, extern_libs, { no_pch = 1 })

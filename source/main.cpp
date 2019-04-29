@@ -603,13 +603,43 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	const double res = timer_Resolution();
 	g_frequencyFilter = CreateFrequencyFilter(res, 30.0);
 
+	// run the game
+	int flags = INIT_MODS;
+
     if (args.Has("rpc-server")) {
+		if (!Init(args, flags))
+		{
+			flags &= ~INIT_MODS;
+			Shutdown(SHUTDOWN_FROM_CONFIG);
+		}
+
+		std::vector<CStr> installedMods;
+		if (!modsToInstall.empty())
+		{
+			Paths paths(args);
+			CModInstaller installer(paths.UserData() / "mods", paths.Cache());
+
+			// Install the mods without deleting the pyromod files
+			for (const OsPath& modPath : modsToInstall)
+				installer.Install(modPath, g_ScriptRuntime, true);
+
+			installedMods = installer.GetInstalledMods();
+		}
+
+        std::cout << "About to init things" << std::endl;
+		if (isNonVisual)
+		{
+			InitNonVisual(args);
+		}
+		else
+		{
+			InitGraphics(args, 0, installedMods);
+		}
+
         StartRLInterface();
         return;
     }
 
-	// run the game
-	int flags = INIT_MODS;
 	do
 	{
 		g_Shutdown = ShutdownType::None;
