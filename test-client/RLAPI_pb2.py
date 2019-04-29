@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0bRLAPI.proto\"\'\n\x07\x41\x63tions\x12\x1c\n\x07\x61\x63tions\x18\x01 \x03(\x0b\x32\x0b.WalkAction\".\n\nWalkAction\x12\n\n\x02id\x18\x01 \x01(\t\x12\t\n\x01x\x18\x02 \x01(\x01\x12\t\n\x01y\x18\x03 \x01(\x01\"\x1e\n\x0bObservation\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1b\n\x0cResetRequest\x12\x0b\n\x03map\x18\x01 \x01(\t\"\x1d\n\x0e\x43onnectRequest\x12\x0b\n\x03map\x18\x01 \x01(\t2}\n\x05RLAPI\x12 \n\x04Step\x12\x08.Actions\x1a\x0c.Observation\"\x00\x12&\n\x05Reset\x12\r.ResetRequest\x1a\x0c.Observation\"\x00\x12*\n\x07\x43onnect\x12\x0f.ConnectRequest\x1a\x0c.Observation\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0bRLAPI.proto\"#\n\x07\x41\x63tions\x12\x18\n\x07\x61\x63tions\x18\x01 \x03(\x0b\x32\x07.Action\"\x19\n\x06\x41\x63tion\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1e\n\x0bObservation\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1b\n\x0cResetRequest\x12\x0b\n\x03map\x18\x01 \x01(\t\"\x1d\n\x0e\x43onnectRequest\x12\x0b\n\x03map\x18\x01 \x01(\t2}\n\x05RLAPI\x12 \n\x04Step\x12\x08.Actions\x1a\x0c.Observation\"\x00\x12&\n\x05Reset\x12\r.ResetRequest\x1a\x0c.Observation\"\x00\x12*\n\x07\x43onnect\x12\x0f.ConnectRequest\x1a\x0c.Observation\"\x00\x62\x06proto3')
 )
 
 
@@ -53,35 +53,21 @@ _ACTIONS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=15,
-  serialized_end=54,
+  serialized_end=50,
 )
 
 
-_WALKACTION = _descriptor.Descriptor(
-  name='WalkAction',
-  full_name='WalkAction',
+_ACTION = _descriptor.Descriptor(
+  name='Action',
+  full_name='Action',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='WalkAction.id', index=0,
+      name='content', full_name='Action.content', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='x', full_name='WalkAction.x', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='y', full_name='WalkAction.y', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -97,8 +83,8 @@ _WALKACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=56,
-  serialized_end=102,
+  serialized_start=52,
+  serialized_end=77,
 )
 
 
@@ -128,8 +114,8 @@ _OBSERVATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=104,
-  serialized_end=134,
+  serialized_start=79,
+  serialized_end=109,
 )
 
 
@@ -159,8 +145,8 @@ _RESETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=136,
-  serialized_end=163,
+  serialized_start=111,
+  serialized_end=138,
 )
 
 
@@ -190,13 +176,13 @@ _CONNECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=165,
-  serialized_end=194,
+  serialized_start=140,
+  serialized_end=169,
 )
 
-_ACTIONS.fields_by_name['actions'].message_type = _WALKACTION
+_ACTIONS.fields_by_name['actions'].message_type = _ACTION
 DESCRIPTOR.message_types_by_name['Actions'] = _ACTIONS
-DESCRIPTOR.message_types_by_name['WalkAction'] = _WALKACTION
+DESCRIPTOR.message_types_by_name['Action'] = _ACTION
 DESCRIPTOR.message_types_by_name['Observation'] = _OBSERVATION
 DESCRIPTOR.message_types_by_name['ResetRequest'] = _RESETREQUEST
 DESCRIPTOR.message_types_by_name['ConnectRequest'] = _CONNECTREQUEST
@@ -209,12 +195,12 @@ Actions = _reflection.GeneratedProtocolMessageType('Actions', (_message.Message,
   ))
 _sym_db.RegisterMessage(Actions)
 
-WalkAction = _reflection.GeneratedProtocolMessageType('WalkAction', (_message.Message,), dict(
-  DESCRIPTOR = _WALKACTION,
+Action = _reflection.GeneratedProtocolMessageType('Action', (_message.Message,), dict(
+  DESCRIPTOR = _ACTION,
   __module__ = 'RLAPI_pb2'
-  # @@protoc_insertion_point(class_scope:WalkAction)
+  # @@protoc_insertion_point(class_scope:Action)
   ))
-_sym_db.RegisterMessage(WalkAction)
+_sym_db.RegisterMessage(Action)
 
 Observation = _reflection.GeneratedProtocolMessageType('Observation', (_message.Message,), dict(
   DESCRIPTOR = _OBSERVATION,
@@ -245,8 +231,8 @@ _RLAPI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=196,
-  serialized_end=321,
+  serialized_start=171,
+  serialized_end=296,
   methods=[
   _descriptor.MethodDescriptor(
     name='Step',
