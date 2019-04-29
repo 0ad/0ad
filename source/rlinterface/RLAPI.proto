@@ -7,13 +7,11 @@ service RLAPI {
 }
 
 message Actions {
-    repeated WalkAction actions = 1;
+    repeated Action actions = 1;
 }
 
-message WalkAction {
-    string id = 1;
-    double x = 2;
-    double y = 3;
+message Action {
+    string content = 1;
 }
 
 message Observation {

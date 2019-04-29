@@ -16,15 +16,15 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 
-extern PROTOBUF_INTERNAL_EXPORT_RLAPI_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_WalkAction_RLAPI_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_RLAPI_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Action_RLAPI_2eproto;
 class ActionsDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Actions> _instance;
 } _Actions_default_instance_;
-class WalkActionDefaultTypeInternal {
+class ActionDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<WalkAction> _instance;
-} _WalkAction_default_instance_;
+  ::google::protobuf::internal::ExplicitlyConstructed<Action> _instance;
+} _Action_default_instance_;
 class ObservationDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Observation> _instance;
@@ -50,21 +50,21 @@ static void InitDefaultsActions_RLAPI_2eproto() {
 
 ::google::protobuf::internal::SCCInfo<1> scc_info_Actions_RLAPI_2eproto =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsActions_RLAPI_2eproto}, {
-      &scc_info_WalkAction_RLAPI_2eproto.base,}};
+      &scc_info_Action_RLAPI_2eproto.base,}};
 
-static void InitDefaultsWalkAction_RLAPI_2eproto() {
+static void InitDefaultsAction_RLAPI_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_WalkAction_default_instance_;
-    new (ptr) ::WalkAction();
+    void* ptr = &::_Action_default_instance_;
+    new (ptr) ::Action();
     ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::WalkAction::InitAsDefaultInstance();
+  ::Action::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_WalkAction_RLAPI_2eproto =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsWalkAction_RLAPI_2eproto}, {}};
+::google::protobuf::internal::SCCInfo<0> scc_info_Action_RLAPI_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsAction_RLAPI_2eproto}, {}};
 
 static void InitDefaultsObservation_RLAPI_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -110,7 +110,7 @@ static void InitDefaultsConnectRequest_RLAPI_2eproto() {
 
 void InitDefaults_RLAPI_2eproto() {
   ::google::protobuf::internal::InitSCC(&scc_info_Actions_RLAPI_2eproto.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_WalkAction_RLAPI_2eproto.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Action_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Observation_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ResetRequest_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ConnectRequest_RLAPI_2eproto.base);
@@ -128,13 +128,11 @@ const ::google::protobuf::uint32 TableStruct_RLAPI_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Actions, actions_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::WalkAction, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::Action, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::WalkAction, id_),
-  PROTOBUF_FIELD_OFFSET(::WalkAction, x_),
-  PROTOBUF_FIELD_OFFSET(::WalkAction, y_),
+  PROTOBUF_FIELD_OFFSET(::Action, content_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Observation, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -156,15 +154,15 @@ const ::google::protobuf::uint32 TableStruct_RLAPI_2eproto::offsets[] PROTOBUF_S
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Actions)},
-  { 6, -1, sizeof(::WalkAction)},
-  { 14, -1, sizeof(::Observation)},
-  { 20, -1, sizeof(::ResetRequest)},
-  { 26, -1, sizeof(::ConnectRequest)},
+  { 6, -1, sizeof(::Action)},
+  { 12, -1, sizeof(::Observation)},
+  { 18, -1, sizeof(::ResetRequest)},
+  { 24, -1, sizeof(::ConnectRequest)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::_Actions_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_WalkAction_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::_Action_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_Observation_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_ResetRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_ConnectRequest_default_instance_),
@@ -177,20 +175,19 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_RLAPI_2eproto[] =
-  "\n\013RLAPI.proto\"\'\n\007Actions\022\034\n\007actions\030\001 \003("
-  "\0132\013.WalkAction\".\n\nWalkAction\022\n\n\002id\030\001 \001(\t"
-  "\022\t\n\001x\030\002 \001(\001\022\t\n\001y\030\003 \001(\001\"\036\n\013Observation\022\017\n"
-  "\007content\030\001 \001(\t\"\033\n\014ResetRequest\022\013\n\003map\030\001 "
-  "\001(\t\"\035\n\016ConnectRequest\022\013\n\003map\030\001 \001(\t2}\n\005RL"
-  "API\022 \n\004Step\022\010.Actions\032\014.Observation\"\000\022&\n"
-  "\005Reset\022\r.ResetRequest\032\014.Observation\"\000\022*\n"
-  "\007Connect\022\017.ConnectRequest\032\014.Observation\""
-  "\000b\006proto3"
+  "\n\013RLAPI.proto\"#\n\007Actions\022\030\n\007actions\030\001 \003("
+  "\0132\007.Action\"\031\n\006Action\022\017\n\007content\030\001 \001(\t\"\036\n"
+  "\013Observation\022\017\n\007content\030\001 \001(\t\"\033\n\014ResetRe"
+  "quest\022\013\n\003map\030\001 \001(\t\"\035\n\016ConnectRequest\022\013\n\003"
+  "map\030\001 \001(\t2}\n\005RLAPI\022 \n\004Step\022\010.Actions\032\014.O"
+  "bservation\"\000\022&\n\005Reset\022\r.ResetRequest\032\014.O"
+  "bservation\"\000\022*\n\007Connect\022\017.ConnectRequest"
+  "\032\014.Observation\"\000b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_RLAPI_2eproto = {
   false, InitDefaults_RLAPI_2eproto, 
   descriptor_table_protodef_RLAPI_2eproto,
-  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 329,
+  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 304,
 };
 
 void AddDescriptors_RLAPI_2eproto() {
@@ -273,13 +270,13 @@ const char* Actions::_InternalParse(const char* begin, const char* end, void* ob
     ptr = ::google::protobuf::io::Parse32(ptr, &tag);
     GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
     switch (tag >> 3) {
-      // repeated .WalkAction actions = 1;
+      // repeated .Action actions = 1;
       case 1: {
         if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
         do {
           ptr = ::google::protobuf::io::ReadSize(ptr, &size);
           GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-          parser_till_end = ::WalkAction::_InternalParse;
+          parser_till_end = ::Action::_InternalParse;
           object = msg->add_actions();
           if (size > end - ptr) goto len_delim_till_end;
           ptr += size;
@@ -319,7 +316,7 @@ bool Actions::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .WalkAction actions = 1;
+      // repeated .Action actions = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
@@ -357,7 +354,7 @@ void Actions::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .WalkAction actions = 1;
+  // repeated .Action actions = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->actions_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -379,7 +376,7 @@ void Actions::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .WalkAction actions = 1;
+  // repeated .Action actions = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->actions_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -408,7 +405,7 @@ size_t Actions::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .WalkAction actions = 1;
+  // repeated .Action actions = 1;
   {
     unsigned int count = static_cast<unsigned int>(this->actions_size());
     total_size += 1UL * count;
@@ -485,81 +482,70 @@ void Actions::InternalSwap(Actions* other) {
 
 // ===================================================================
 
-void WalkAction::InitAsDefaultInstance() {
+void Action::InitAsDefaultInstance() {
 }
-class WalkAction::HasBitSetters {
+class Action::HasBitSetters {
  public:
 };
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int WalkAction::kIdFieldNumber;
-const int WalkAction::kXFieldNumber;
-const int WalkAction::kYFieldNumber;
+const int Action::kContentFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-WalkAction::WalkAction()
+Action::Action()
   : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:WalkAction)
+  // @@protoc_insertion_point(constructor:Action)
 }
-WalkAction::WalkAction(const WalkAction& from)
+Action::Action(const Action& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.id().size() > 0) {
-    id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
+  content_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.content().size() > 0) {
+    content_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.content_);
   }
-  ::memcpy(&x_, &from.x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&y_) -
-    reinterpret_cast<char*>(&x_)) + sizeof(y_));
-  // @@protoc_insertion_point(copy_constructor:WalkAction)
+  // @@protoc_insertion_point(copy_constructor:Action)
 }
 
-void WalkAction::SharedCtor() {
+void Action::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
-      &scc_info_WalkAction_RLAPI_2eproto.base);
-  id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&y_) -
-      reinterpret_cast<char*>(&x_)) + sizeof(y_));
+      &scc_info_Action_RLAPI_2eproto.base);
+  content_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-WalkAction::~WalkAction() {
-  // @@protoc_insertion_point(destructor:WalkAction)
+Action::~Action() {
+  // @@protoc_insertion_point(destructor:Action)
   SharedDtor();
 }
 
-void WalkAction::SharedDtor() {
-  id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+void Action::SharedDtor() {
+  content_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-void WalkAction::SetCachedSize(int size) const {
+void Action::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const WalkAction& WalkAction::default_instance() {
-  ::google::protobuf::internal::InitSCC(&::scc_info_WalkAction_RLAPI_2eproto.base);
+const Action& Action::default_instance() {
+  ::google::protobuf::internal::InitSCC(&::scc_info_Action_RLAPI_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void WalkAction::Clear() {
-// @@protoc_insertion_point(message_clear_start:WalkAction)
+void Action::Clear() {
+// @@protoc_insertion_point(message_clear_start:Action)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&y_) -
-      reinterpret_cast<char*>(&x_)) + sizeof(y_));
+  content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
 
 #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-const char* WalkAction::_InternalParse(const char* begin, const char* end, void* object,
+const char* Action::_InternalParse(const char* begin, const char* end, void* object,
                   ::google::protobuf::internal::ParseContext* ctx) {
-  auto msg = static_cast<WalkAction*>(object);
+  auto msg = static_cast<Action*>(object);
   ::google::protobuf::int32 size; (void)size;
   int depth; (void)depth;
   ::google::protobuf::uint32 tag;
@@ -569,13 +555,13 @@ const char* WalkAction::_InternalParse(const char* begin, const char* end, void*
     ptr = ::google::protobuf::io::Parse32(ptr, &tag);
     GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
     switch (tag >> 3) {
-      // string id = 1;
+      // string content = 1;
       case 1: {
         if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
         ptr = ::google::protobuf::io::ReadSize(ptr, &size);
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        ctx->extra_parse_data().SetFieldName("WalkAction.id");
-        object = msg->mutable_id();
+        ctx->extra_parse_data().SetFieldName("Action.content");
+        object = msg->mutable_content();
         if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
           parser_till_end = ::google::protobuf::internal::GreedyStringParserUTF8;
           goto string_till_end;
@@ -583,20 +569,6 @@ const char* WalkAction::_InternalParse(const char* begin, const char* end, void*
         GOOGLE_PROTOBUF_PARSER_ASSERT(::google::protobuf::internal::StringCheckUTF8(ptr, size, ctx));
         ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
         ptr += size;
-        break;
-      }
-      // double x = 2;
-      case 2: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 17) goto handle_unusual;
-        msg->set_x(::google::protobuf::io::UnalignedLoad<double>(ptr));
-        ptr += sizeof(double);
-        break;
-      }
-      // double y = 3;
-      case 3: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 25) goto handle_unusual;
-        msg->set_y(::google::protobuf::io::UnalignedLoad<double>(ptr));
-        ptr += sizeof(double);
         break;
       }
       default: {
@@ -623,51 +595,25 @@ len_delim_till_end:
                                {parser_till_end, object}, size);
 }
 #else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-bool WalkAction::MergePartialFromCodedStream(
+bool Action::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:WalkAction)
+  // @@protoc_insertion_point(parse_start:Action)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // string id = 1;
+      // string content = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_id()));
+                input, this->mutable_content()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->id().data(), static_cast<int>(this->id().length()),
+            this->content().data(), static_cast<int>(this->content().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WalkAction.id"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // double x = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (17 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &x_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // double y = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (25 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &y_)));
+            "Action.content"));
         } else {
           goto handle_unusual;
         }
@@ -686,85 +632,65 @@ bool WalkAction::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:WalkAction)
+  // @@protoc_insertion_point(parse_success:Action)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:WalkAction)
+  // @@protoc_insertion_point(parse_failure:Action)
   return false;
 #undef DO_
 }
 #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-void WalkAction::SerializeWithCachedSizes(
+void Action::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:WalkAction)
+  // @@protoc_insertion_point(serialize_start:Action)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string id = 1;
-  if (this->id().size() > 0) {
+  // string content = 1;
+  if (this->content().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->id().data(), static_cast<int>(this->id().length()),
+      this->content().data(), static_cast<int>(this->content().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WalkAction.id");
+      "Action.content");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->id(), output);
-  }
-
-  // double x = 2;
-  if (this->x() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->x(), output);
-  }
-
-  // double y = 3;
-  if (this->y() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->y(), output);
+      1, this->content(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         _internal_metadata_.unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:WalkAction)
+  // @@protoc_insertion_point(serialize_end:Action)
 }
 
-::google::protobuf::uint8* WalkAction::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* Action::InternalSerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:WalkAction)
+  // @@protoc_insertion_point(serialize_to_array_start:Action)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string id = 1;
-  if (this->id().size() > 0) {
+  // string content = 1;
+  if (this->content().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->id().data(), static_cast<int>(this->id().length()),
+      this->content().data(), static_cast<int>(this->content().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WalkAction.id");
+      "Action.content");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->id(), target);
-  }
-
-  // double x = 2;
-  if (this->x() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->x(), target);
-  }
-
-  // double y = 3;
-  if (this->y() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->y(), target);
+        1, this->content(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:WalkAction)
+  // @@protoc_insertion_point(serialize_to_array_end:Action)
   return target;
 }
 
-size_t WalkAction::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:WalkAction)
+size_t Action::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Action)
   size_t total_size = 0;
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -776,21 +702,11 @@ size_t WalkAction::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string id = 1;
-  if (this->id().size() > 0) {
+  // string content = 1;
+  if (this->content().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->id());
-  }
-
-  // double x = 2;
-  if (this->x() != 0) {
-    total_size += 1 + 8;
-  }
-
-  // double y = 3;
-  if (this->y() != 0) {
-    total_size += 1 + 8;
+        this->content());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -798,72 +714,64 @@ size_t WalkAction::ByteSizeLong() const {
   return total_size;
 }
 
-void WalkAction::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:WalkAction)
+void Action::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Action)
   GOOGLE_DCHECK_NE(&from, this);
-  const WalkAction* source =
-      ::google::protobuf::DynamicCastToGenerated<WalkAction>(
+  const Action* source =
+      ::google::protobuf::DynamicCastToGenerated<Action>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WalkAction)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Action)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:WalkAction)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Action)
     MergeFrom(*source);
   }
 }
 
-void WalkAction::MergeFrom(const WalkAction& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:WalkAction)
+void Action::MergeFrom(const Action& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Action)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.id().size() > 0) {
+  if (from.content().size() > 0) {
 
-    id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
-  }
-  if (from.x() != 0) {
-    set_x(from.x());
-  }
-  if (from.y() != 0) {
-    set_y(from.y());
+    content_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.content_);
   }
 }
 
-void WalkAction::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:WalkAction)
+void Action::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Action)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void WalkAction::CopyFrom(const WalkAction& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:WalkAction)
+void Action::CopyFrom(const Action& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Action)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool WalkAction::IsInitialized() const {
+bool Action::IsInitialized() const {
   return true;
 }
 
-void WalkAction::Swap(WalkAction* other) {
+void Action::Swap(Action* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void WalkAction::InternalSwap(WalkAction* other) {
+void Action::InternalSwap(Action* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  id_.Swap(&other->id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  content_.Swap(&other->content_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(x_, other->x_);
-  swap(y_, other->y_);
 }
 
-::google::protobuf::Metadata WalkAction::GetMetadata() const {
+::google::protobuf::Metadata Action::GetMetadata() const {
   ::google::protobuf::internal::AssignDescriptors(&::assign_descriptors_table_RLAPI_2eproto);
   return ::file_level_metadata_RLAPI_2eproto[kIndexInFileMessages];
 }
@@ -1766,8 +1674,8 @@ namespace protobuf {
 template<> PROTOBUF_NOINLINE ::Actions* Arena::CreateMaybeMessage< ::Actions >(Arena* arena) {
   return Arena::CreateInternal< ::Actions >(arena);
 }
-template<> PROTOBUF_NOINLINE ::WalkAction* Arena::CreateMaybeMessage< ::WalkAction >(Arena* arena) {
-  return Arena::CreateInternal< ::WalkAction >(arena);
+template<> PROTOBUF_NOINLINE ::Action* Arena::CreateMaybeMessage< ::Action >(Arena* arena) {
+  return Arena::CreateInternal< ::Action >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Observation* Arena::CreateMaybeMessage< ::Observation >(Arena* arena) {
   return Arena::CreateInternal< ::Observation >(arena);

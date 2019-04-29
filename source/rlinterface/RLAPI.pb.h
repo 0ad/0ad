@@ -48,6 +48,9 @@ struct TableStruct_RLAPI_2eproto {
   static const ::google::protobuf::uint32 offsets[];
 };
 void AddDescriptors_RLAPI_2eproto();
+class Action;
+class ActionDefaultTypeInternal;
+extern ActionDefaultTypeInternal _Action_default_instance_;
 class Actions;
 class ActionsDefaultTypeInternal;
 extern ActionsDefaultTypeInternal _Actions_default_instance_;
@@ -60,16 +63,13 @@ extern ObservationDefaultTypeInternal _Observation_default_instance_;
 class ResetRequest;
 class ResetRequestDefaultTypeInternal;
 extern ResetRequestDefaultTypeInternal _ResetRequest_default_instance_;
-class WalkAction;
-class WalkActionDefaultTypeInternal;
-extern WalkActionDefaultTypeInternal _WalkAction_default_instance_;
 namespace google {
 namespace protobuf {
+template<> ::Action* Arena::CreateMaybeMessage<::Action>(Arena*);
 template<> ::Actions* Arena::CreateMaybeMessage<::Actions>(Arena*);
 template<> ::ConnectRequest* Arena::CreateMaybeMessage<::ConnectRequest>(Arena*);
 template<> ::Observation* Arena::CreateMaybeMessage<::Observation>(Arena*);
 template<> ::ResetRequest* Arena::CreateMaybeMessage<::ResetRequest>(Arena*);
-template<> ::WalkAction* Arena::CreateMaybeMessage<::WalkAction>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 
@@ -170,16 +170,16 @@ class Actions final :
 
   // accessors -------------------------------------------------------
 
-  // repeated .WalkAction actions = 1;
+  // repeated .Action actions = 1;
   int actions_size() const;
   void clear_actions();
   static const int kActionsFieldNumber = 1;
-  ::WalkAction* mutable_actions(int index);
-  ::google::protobuf::RepeatedPtrField< ::WalkAction >*
+  ::Action* mutable_actions(int index);
+  ::google::protobuf::RepeatedPtrField< ::Action >*
       mutable_actions();
-  const ::WalkAction& actions(int index) const;
-  ::WalkAction* add_actions();
-  const ::google::protobuf::RepeatedPtrField< ::WalkAction >&
+  const ::Action& actions(int index) const;
+  ::Action* add_actions();
+  const ::google::protobuf::RepeatedPtrField< ::Action >&
       actions() const;
 
   // @@protoc_insertion_point(class_scope:Actions)
@@ -187,31 +187,31 @@ class Actions final :
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::WalkAction > actions_;
+  ::google::protobuf::RepeatedPtrField< ::Action > actions_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
 // -------------------------------------------------------------------
 
-class WalkAction final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:WalkAction) */ {
+class Action final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Action) */ {
  public:
-  WalkAction();
-  virtual ~WalkAction();
+  Action();
+  virtual ~Action();
 
-  WalkAction(const WalkAction& from);
+  Action(const Action& from);
 
-  inline WalkAction& operator=(const WalkAction& from) {
+  inline Action& operator=(const Action& from) {
     CopyFrom(from);
     return *this;
   }
   #if LANG_CXX11
-  WalkAction(WalkAction&& from) noexcept
-    : WalkAction() {
+  Action(Action&& from) noexcept
+    : Action() {
     *this = ::std::move(from);
   }
 
-  inline WalkAction& operator=(WalkAction&& from) noexcept {
+  inline Action& operator=(Action&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -223,34 +223,34 @@ class WalkAction final :
   static const ::google::protobuf::Descriptor* descriptor() {
     return default_instance().GetDescriptor();
   }
-  static const WalkAction& default_instance();
+  static const Action& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const WalkAction* internal_default_instance() {
-    return reinterpret_cast<const WalkAction*>(
-               &_WalkAction_default_instance_);
+  static inline const Action* internal_default_instance() {
+    return reinterpret_cast<const Action*>(
+               &_Action_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  void Swap(WalkAction* other);
-  friend void swap(WalkAction& a, WalkAction& b) {
+  void Swap(Action* other);
+  friend void swap(Action& a, Action& b) {
     a.Swap(&b);
   }
 
   // implements Message ----------------------------------------------
 
-  inline WalkAction* New() const final {
-    return CreateMaybeMessage<WalkAction>(nullptr);
+  inline Action* New() const final {
+    return CreateMaybeMessage<Action>(nullptr);
   }
 
-  WalkAction* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<WalkAction>(arena);
+  Action* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Action>(arena);
   }
   void CopyFrom(const ::google::protobuf::Message& from) final;
   void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const WalkAction& from);
-  void MergeFrom(const WalkAction& from);
+  void CopyFrom(const Action& from);
+  void MergeFrom(const Action& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -272,7 +272,7 @@ class WalkAction final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(WalkAction* other);
+  void InternalSwap(Action* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return nullptr;
@@ -288,40 +288,26 @@ class WalkAction final :
 
   // accessors -------------------------------------------------------
 
-  // string id = 1;
-  void clear_id();
-  static const int kIdFieldNumber = 1;
-  const ::std::string& id() const;
-  void set_id(const ::std::string& value);
+  // string content = 1;
+  void clear_content();
+  static const int kContentFieldNumber = 1;
+  const ::std::string& content() const;
+  void set_content(const ::std::string& value);
   #if LANG_CXX11
-  void set_id(::std::string&& value);
+  void set_content(::std::string&& value);
   #endif
-  void set_id(const char* value);
-  void set_id(const char* value, size_t size);
-  ::std::string* mutable_id();
-  ::std::string* release_id();
-  void set_allocated_id(::std::string* id);
+  void set_content(const char* value);
+  void set_content(const char* value, size_t size);
+  ::std::string* mutable_content();
+  ::std::string* release_content();
+  void set_allocated_content(::std::string* content);
 
-  // double x = 2;
-  void clear_x();
-  static const int kXFieldNumber = 2;
-  double x() const;
-  void set_x(double value);
-
-  // double y = 3;
-  void clear_y();
-  static const int kYFieldNumber = 3;
-  double y() const;
-  void set_y(double value);
-
-  // @@protoc_insertion_point(class_scope:WalkAction)
+  // @@protoc_insertion_point(class_scope:Action)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::ArenaStringPtr id_;
-  double x_;
-  double y_;
+  ::google::protobuf::internal::ArenaStringPtr content_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -696,31 +682,31 @@ class ConnectRequest final :
 #endif  // __GNUC__
 // Actions
 
-// repeated .WalkAction actions = 1;
+// repeated .Action actions = 1;
 inline int Actions::actions_size() const {
   return actions_.size();
 }
 inline void Actions::clear_actions() {
   actions_.Clear();
 }
-inline ::WalkAction* Actions::mutable_actions(int index) {
+inline ::Action* Actions::mutable_actions(int index) {
   // @@protoc_insertion_point(field_mutable:Actions.actions)
   return actions_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::WalkAction >*
+inline ::google::protobuf::RepeatedPtrField< ::Action >*
 Actions::mutable_actions() {
   // @@protoc_insertion_point(field_mutable_list:Actions.actions)
   return &actions_;
 }
-inline const ::WalkAction& Actions::actions(int index) const {
+inline const ::Action& Actions::actions(int index) const {
   // @@protoc_insertion_point(field_get:Actions.actions)
   return actions_.Get(index);
 }
-inline ::WalkAction* Actions::add_actions() {
+inline ::Action* Actions::add_actions() {
   // @@protoc_insertion_point(field_add:Actions.actions)
   return actions_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::WalkAction >&
+inline const ::google::protobuf::RepeatedPtrField< ::Action >&
 Actions::actions() const {
   // @@protoc_insertion_point(field_list:Actions.actions)
   return actions_;
@@ -728,87 +714,59 @@ Actions::actions() const {
 
 // -------------------------------------------------------------------
 
-// WalkAction
+// Action
 
-// string id = 1;
-inline void WalkAction::clear_id() {
-  id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// string content = 1;
+inline void Action::clear_content() {
+  content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& WalkAction::id() const {
-  // @@protoc_insertion_point(field_get:WalkAction.id)
-  return id_.GetNoArena();
+inline const ::std::string& Action::content() const {
+  // @@protoc_insertion_point(field_get:Action.content)
+  return content_.GetNoArena();
 }
-inline void WalkAction::set_id(const ::std::string& value) {
+inline void Action::set_content(const ::std::string& value) {
   
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:WalkAction.id)
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Action.content)
 }
 #if LANG_CXX11
-inline void WalkAction::set_id(::std::string&& value) {
+inline void Action::set_content(::std::string&& value) {
   
-  id_.SetNoArena(
+  content_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:WalkAction.id)
+  // @@protoc_insertion_point(field_set_rvalue:Action.content)
 }
 #endif
-inline void WalkAction::set_id(const char* value) {
+inline void Action::set_content(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:WalkAction.id)
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Action.content)
 }
-inline void WalkAction::set_id(const char* value, size_t size) {
+inline void Action::set_content(const char* value, size_t size) {
   
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:WalkAction.id)
+  // @@protoc_insertion_point(field_set_pointer:Action.content)
 }
-inline ::std::string* WalkAction::mutable_id() {
+inline ::std::string* Action::mutable_content() {
   
-  // @@protoc_insertion_point(field_mutable:WalkAction.id)
-  return id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:Action.content)
+  return content_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* WalkAction::release_id() {
-  // @@protoc_insertion_point(field_release:WalkAction.id)
+inline ::std::string* Action::release_content() {
+  // @@protoc_insertion_point(field_release:Action.content)
   
-  return id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return content_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void WalkAction::set_allocated_id(::std::string* id) {
-  if (id != nullptr) {
+inline void Action::set_allocated_content(::std::string* content) {
+  if (content != nullptr) {
     
   } else {
     
   }
-  id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), id);
-  // @@protoc_insertion_point(field_set_allocated:WalkAction.id)
-}
-
-// double x = 2;
-inline void WalkAction::clear_x() {
-  x_ = 0;
-}
-inline double WalkAction::x() const {
-  // @@protoc_insertion_point(field_get:WalkAction.x)
-  return x_;
-}
-inline void WalkAction::set_x(double value) {
-  
-  x_ = value;
-  // @@protoc_insertion_point(field_set:WalkAction.x)
-}
-
-// double y = 3;
-inline void WalkAction::clear_y() {
-  y_ = 0;
-}
-inline double WalkAction::y() const {
-  // @@protoc_insertion_point(field_get:WalkAction.y)
-  return y_;
-}
-inline void WalkAction::set_y(double value) {
-  
-  y_ = value;
-  // @@protoc_insertion_point(field_set:WalkAction.y)
+  content_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), content);
+  // @@protoc_insertion_point(field_set_allocated:Action.content)
 }
 
 // -------------------------------------------------------------------
