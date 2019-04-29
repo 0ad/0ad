@@ -992,25 +992,18 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 
 	if(setup_vmode)
 	{
-        std::cout << "-2" << std::endl;
 		InitSDL();
-        std::cout << "-1" << std::endl;
 
 		if (!g_VideoMode.InitSDL())
         {
-            std::cout << "0" << std::endl;
 			throw PSERROR_System_VmodeFailed(); // abort startup
         }
 	}
 
-    std::cout << "1" << std::endl;
 	RunHardwareDetection();
-    std::cout << "2" << std::endl;
 
 	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
-    std::cout << "3" << std::endl;
 	SetTextureQuality(quality);
-    std::cout << "4" << std::endl;
 
 	ogl_WarnIfError();
 
@@ -1249,7 +1242,6 @@ bool Autostart(const CmdLineArgs& args)
 		return false;
 
 	const bool nonVisual = args.Has("autostart-nonvisual");
-    std::cout << "1" << std::endl;
 	g_Game = new CGame(nonVisual, !nonVisual);
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
@@ -1633,7 +1625,6 @@ bool AutostartVisualReplay(const std::string& replayFile)
 	if (!FileExists(OsPath(replayFile)))
 		return false;
 
-    std::cout << "2" << std::endl;
 	g_Game = new CGame(false, false);
 	g_Game->SetPlayerID(-1);
 	g_Game->StartVisualReplay(replayFile);
