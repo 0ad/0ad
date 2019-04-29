@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-04-10 14:33+0000\n"
+"PO-Revision-Date: 2019-04-27 08:16+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "편"
 
 #: gui/session/messages.js:180 gui/session/session.js:518
 msgid "Observer"
-msgstr "관중"
+msgstr "관찰자"
 
 #: gui/session/messages.js:181
 msgid "Private"
@@ -414,7 +414,7 @@ msgstr "적 대화"
 #: gui/session/messages.js:248
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "관중 대화"
+msgstr "관찰자 대화"
 
 #: gui/session/messages.js:255
 msgctxt "chat history filter"
@@ -575,7 +575,7 @@ msgstr "적국"
 #: gui/session/messages.js:820
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "관중"
+msgstr "관찰자"
 
 #: gui/session/messages.js:849 gui/session/selection_details.js:79
 #, javascript-format
@@ -959,7 +959,7 @@ msgstr "%(hotkey)s 키를 눌러 공개 대화창을 엽니다."
 #: gui/session/session.js:430
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "%(hotkey)s 키를 눌러 관중 대화창을 엽니다."
+msgstr "%(hotkey)s 키를 눌러 관찰자 대화창을 엽니다."
 
 #: gui/session/session.js:431
 #, javascript-format
@@ -1407,7 +1407,7 @@ msgstr "보려는 사용자를 선택하세요"
 
 #: gui/session/top_panel.xml:(caption):54
 msgid "Observer Mode"
-msgstr "관중 모드"
+msgstr "관찰자 모드"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
@@ -1497,4 +1497,4 @@ msgstr "차림표"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIV"
-msgstr "ALPHA XXIV"
+msgstr "알파 24"
