@@ -52,7 +52,7 @@ class RLInterface final : public RLAPI::Service
             std::vector<std::string> action_v;
             for (int i = 0; i < size; i++) 
             {
-                std::string json_cmd = commands->commands(i).content();
+                std::string json_cmd = commands->actions(i).content();
                 action_v.push_back(json_cmd);
             }
             m_GameCommands.push(action_v);
