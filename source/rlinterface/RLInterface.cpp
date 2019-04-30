@@ -1,4 +1,5 @@
 #include <mutex>
+#include <vector>
 #include <grpc/grpc.h>
 #include <grpcpp/server.h>
 #include <grpcpp/server_builder.h>
@@ -8,6 +9,8 @@
 
 #include "lib/precompiled.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpAIInterface.h"
+#include "simulation2/system/TurnManager.h"
 #include "ps/Game.h"
 #include "ps/ThreadUtil.h"
 #include <boost/fiber/unbuffered_channel.hpp>
@@ -16,7 +19,8 @@ using grpc::ServerContext;
 
 class RLInterface final : public RLAPI::Service
 {
-    typedef boost::fibers::unbuffered_channel<int> channel_t;
+    typedef boost::fibers::unbuffered_channel<std::vector<std::string>> test_channel_t;
+    typedef boost::fibers::unbuffered_channel<std::string> channel_t;
 
     public:
 
@@ -24,18 +28,15 @@ class RLInterface final : public RLAPI::Service
         {
             std::lock_guard<std::mutex> lock(m_lock);
             std::cout << ">>> Connect" << std::endl;
-            m_GameCommands.push(1);
+            //m_GameCommands.push(1);
             // TODO: Initialize the scenario
             return grpc::Status::OK;
         }
 
-        grpc::Status Step(ServerContext* context, const Actions* actions, Observation* obs) override
+        grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override
         {
             std::lock_guard<std::mutex> lock(m_lock);
             std::cout << ">>> Step" << std::endl;
-            // TODO: Step the game X ticks and return the resultant game state
-            // TODO: If the game is over, set that in the observation, too??
-
             //g_Profiler2.RecordFrameStart();
             //PROFILE2("frame");
             //g_Profiler2.IncrementFrameNumber();
@@ -44,10 +45,20 @@ class RLInterface final : public RLAPI::Service
             // TODO: Update this...
             //debug_printf("Turn %u (%u)...\n", m_Turn++, DEFAULT_TURN_LENGTH_SP);
 
-            m_GameCommands.push(2);
-            int state = 0;
+            // Interactions with the game engine (g_Game) must be done in the main
+            // thread as there are specific checks for this. We will pass our commands
+            // to the main thread to be applied
+            const int size = commands->actions_size();
+            std::vector<std::string> action_v;
+            for (int i = 0; i < size; i++) 
+            {
+                std::string json_cmd = commands->commands(i).content();
+                action_v.push_back(json_cmd);
+            }
+            m_GameCommands.push(action_v);
+            std::string state;
             m_GameStates.pop(state);
-            std::cout << "game state is " << state << std::endl;
+            obs->set_content(state);
 
             //g_Profiler.Frame();
 
@@ -58,7 +69,7 @@ class RLInterface final : public RLAPI::Service
         {
             std::lock_guard<std::mutex> lock(m_lock);
             std::cout << ">>> Reset" << std::endl;
-            m_GameCommands.push(3);
+            //m_GameCommands.push(3);
             // TODO: Initialize the scenario and return the game state
             return grpc::Status::OK;
         }
@@ -73,17 +84,36 @@ class RLInterface final : public RLAPI::Service
             m_Server = builder.BuildAndStart();
             std::cout << "Server listening on " << server_address << std::endl;
 
-            // TODO: Create two channels for interacting with the game engine...
-            int msg = 0;
-            while (boost::fibers::channel_op_status::success == m_GameCommands.pop(msg))
+            // Apply and edits from the RPC messages to the game engine
+            std::vector<std::string> commands;
+            while (boost::fibers::channel_op_status::success == m_GameCommands.pop(commands))
             {
-                // TODO: handle the message and return the game state
-                if (msg == 2) {
-                    std::cout << "updating game state" << std::endl;
-                    g_Game->GetSimulation2()->Update(200);
-                    m_GameStates.push(5);
+                for (std::string cmd : commands)  // Apply the game commands
+                {
+                    const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                    JSContext* cx = scriptInterface.GetContext();
+                    JS::RootedValue command(cx);
+                    scriptInterface.ParseJSON(cmd, &command);
+                    std::cout << "Posting command: " << cmd << std::endl;
+                    g_Game->GetTurnManager()->PostCommand(command);
                 }
+
+                g_Game->GetSimulation2()->Update(200);  // FIXME: This updates a fixed time when we want a fixed number of steps...? Or do we want to use time?
+
+                // Get the Game State
+                m_GameStates.push(GetGameState());
             }
+        }
+
+        std::string GetGameState()
+        {
+            const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+            const auto simContext = g_Game->GetSimulation2()->GetSimContext();
+            CmpPtr<ICmpAIInterface> cmpAIInterface(simContext.GetSystemEntity());
+            JSContext* cx = scriptInterface.GetContext();
+            JS::RootedValue state(cx);
+            cmpAIInterface->GetFullRepresentation(&state, true);
+            return scriptInterface.StringifyJSON(&state, false);
         }
 
         // TODO: Add a render method??
@@ -95,6 +125,6 @@ class RLInterface final : public RLAPI::Service
         float m_StepsBtwnActions = 10.0f;
         unsigned int m_Turn = 0;
         std::mutex m_lock;
-        channel_t m_GameCommands;
+        test_channel_t m_GameCommands;
         channel_t m_GameStates;
 };
