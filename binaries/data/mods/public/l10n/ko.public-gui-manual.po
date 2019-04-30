@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-04-21 13:33+0000\n"
+"PO-Revision-Date: 2019-04-27 08:15+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr "[font=\"sans-14\"] Alt + Enter 를 눌러서 창모드와 전체화면 간에 전환할 수 있습니다. 창모드에서 창 크기를 조절할 수 있습니다. 만약 게임이 너무 느리다면 옵션 창에서 약간의 설정을 바꿀 수 있습니다: \"HQ 물 효과\"와 \"그림자\" 옵션을 비활성화해보세요."
+msgstr "[font=\"sans-14\"]Alt + Enter 키를 눌러서 창모드와 전체화면 간에 전환할 수 있습니다. 창모드에서 창 크기를 조절할 수 있습니다. 만약 게임이 너무 느리다면 옵션 창에서 약간의 설정을 바꿀 수 있습니다: \"HQ 물 효과\"와 \"그림자\" 옵션을 비활성화해보세요."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -88,27 +88,27 @@ msgstr "기본 조작법:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "마우스 왼쪽 클릭으로 유닛 선택하기"
+msgstr "• 마우스 왼쪽 클릭으로 유닛 선택하기"
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "마우스 왼쪽을 누르고 드래그하여 유닛들을 선택하기"
+msgstr "• 마우스 왼쪽을 누르고 드래그하여 유닛들을 선택하기"
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "마우스 오른쪽을 클릭하여 유닛들을 표적으로 보내기"
+msgstr "• 마우스 오른쪽을 클릭하여 유닛들을 표적으로 보내기"
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "화살표키 또는 WASD로 카메라 이동하기"
+msgstr "• 화살표키 또는 WASD로 카메라 이동하기"
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "Ctrl + 화살표키 또는 shift + 마우스 휠로 카메라 회전하기"
+msgstr "• Ctrl + 화살표키 또는 shift + 마우스 휠로 카메라 회전하기"
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "마우스 휠 또는 \"+\" 과 \"-\" 로 줌인,줌 아웃하기"
+msgstr "• 마우스 휠 또는 \"+\" 과 \"-\" 로 줌인,줌 아웃하기"
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -159,7 +159,7 @@ msgstr "우선, 어떤 종류의 지도를 사용할지 결정하십시오:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "[font=\"sans-bold-14\"]아무 지도[font=\"sans-14\"] – 스크립트를 통해서 자동으로 만들어진 지도"
+msgstr "• [font=\"sans-bold-14\"]아무 지도[font=\"sans-14\"] – 스크립트를 통해서 자동으로 만들어진 지도"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -377,23 +377,23 @@ msgstr "U: 선택된 건물에 주둔된 유닛 해체하기"
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (그리고 Ctrl + 0까지): 선택된 유닛들/건물들로 부터 제어그룹을 1 에서 (0까지) 만들기"
+msgstr "Ctrl + 1 (~ Ctrl + 0 까지): 선택된 유닛들/건물들로 부터 제어그룹을 1 에서 (0까지) 만들기"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (그리고 0까지): 컨트롤 그룹 1에서(0까지) 유닛들/건물들 선택하기"
+msgstr "1 (~ 0 까지): 제어 그룹 1에서( ~ 0 까지) 유닛들/건물들 선택하기"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Ctrl + 1 (그리고 Ctrl + 0까지): 선택된 유닛들/건물들로 부터 제어그룹을 1 에서 (0까지) 만들기"
+msgstr "Shift + 1 (~ 0 까지): 선택된 유닛들/건물들로 부터 제어그룹을 1 에서 (0까지) 만들기"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (그리고 F8까지): 나중에 돌아갈 수 있도록 현재 카메라 위치 지정하기"
+msgstr "Ctrl + F5 (~ F8 까지): 나중에 돌아갈 수 있도록 현재 카메라 위치 지정하기"
 
 #: gui/manual/intro.txt:87
 msgid ""

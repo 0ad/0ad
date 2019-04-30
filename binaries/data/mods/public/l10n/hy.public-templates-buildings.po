@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-19 09:43+0200\n"
-"PO-Revision-Date: 2019-04-19 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-26 09:43+0200\n"
+"PO-Revision-Date: 2019-04-26 15:29+0000\n"
+"Last-Translator: Gags98 <gagspapikyan@gmail.com>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,6 +113,15 @@ msgstr "Տաճար"
 msgid "Defensive Structure"
 msgstr "Պաշտպանողական կառույց"
 
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr "Փայտե պարիսպ"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:27
+msgid "Wall off your town for a stout defense."
+msgstr "Պարսպապատել սեփական քաղաքը՝ ամուր պաշտպանության նպատակով։"
+
 #: simulation/templates/template_structure_defensive_tower.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -170,10 +179,6 @@ msgstr "Քարեաշտարակ"
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
 msgstr "Քարե պարիսպ"
-
-#: simulation/templates/template_structure_defensive_wall.xml:27
-msgid "Wall off your town for a stout defense."
-msgstr "Պարսպապատել սեփական քաղաքը՝ ամուր պաշտպանության նպատակով։"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:14
 msgid "City Gate"
@@ -386,8 +391,9 @@ msgid "Field"
 msgstr "Դաշտ"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Բանջարեղենի հավաքում՝ սննդի համար։ Հավաքողների մաքսիմալ քանակ՝ 5։"
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
+msgstr ""
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"

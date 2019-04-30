@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-19 09:43+0200\n"
-"PO-Revision-Date: 2019-04-19 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-26 09:43+0200\n"
+"PO-Revision-Date: 2019-04-26 15:29+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,6 +126,15 @@ msgstr "神庙"
 msgid "Defensive Structure"
 msgstr "防御建筑"
 
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr "木墙"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:27
+msgid "Wall off your town for a stout defense."
+msgstr "在城镇周围建造围墙，可以用来侦查和防御。"
+
 #: simulation/templates/template_structure_defensive_tower.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -183,10 +192,6 @@ msgstr "石塔"
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
 msgstr "石墙"
-
-#: simulation/templates/template_structure_defensive_wall.xml:27
-msgid "Wall off your town for a stout defense."
-msgstr "在城镇周围建造围墙，可以用来侦查和防御。"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:14
 msgid "City Gate"
@@ -399,8 +404,9 @@ msgid "Field"
 msgstr "农田"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "收获蔬菜作为食物。采集者上限：5。"
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
+msgstr ""
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"

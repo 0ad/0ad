@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-19 09:43+0200\n"
-"PO-Revision-Date: 2019-04-19 17:56+0000\n"
+"POT-Creation-Date: 2019-04-26 09:43+0200\n"
+"PO-Revision-Date: 2019-04-27 08:09+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -127,6 +127,15 @@ msgstr "사원"
 msgid "Defensive Structure"
 msgstr "방어 건물"
 
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr "목조 방벽"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:27
+msgid "Wall off your town for a stout defense."
+msgstr "강력한 방어를 위해 마을을 보호하십시오.(번역확인??)"
+
 #: simulation/templates/template_structure_defensive_tower.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -184,10 +193,6 @@ msgstr "스톤타워"
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
 msgstr "돌벽"
-
-#: simulation/templates/template_structure_defensive_wall.xml:27
-msgid "Wall off your town for a stout defense."
-msgstr "강력한 방어를 위해 마을을 보호하십시오.(번역확인??)"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:14
 msgid "City Gate"
@@ -400,8 +405,9 @@ msgid "Field"
 msgstr "밭"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "식량으로 채소를 재배합니다. 최대 생산량: 5."
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
+msgstr "식량을 위해 곡식을 거둡니다. 이후의 각각의 후속 수집자들은 덜 효율적으로 일합니다."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"

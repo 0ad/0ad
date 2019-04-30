@@ -29,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-19 09:43+0200\n"
-"PO-Revision-Date: 2019-04-20 21:50+0000\n"
-"Last-Translator: Tiago\n"
+"POT-Creation-Date: 2019-04-26 09:43+0200\n"
+"PO-Revision-Date: 2019-04-26 15:29+0000\n"
+"Last-Translator: Sturm <gravador202@yahoo.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,6 +134,15 @@ msgstr "Templo"
 msgid "Defensive Structure"
 msgstr "Estrutura Defensiva"
 
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr "Muralha de Madeira"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:27
+msgid "Wall off your town for a stout defense."
+msgstr "Mure sua cidade para uma defesa robusta."
+
 #: simulation/templates/template_structure_defensive_tower.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -191,10 +200,6 @@ msgstr "Torre de Defesa"
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
 msgstr "Muralha de Pedra"
-
-#: simulation/templates/template_structure_defensive_wall.xml:27
-msgid "Wall off your town for a stout defense."
-msgstr "Mure sua cidade para uma defesa robusta."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:14
 msgid "City Gate"
@@ -407,8 +412,9 @@ msgid "Field"
 msgstr "Campo Agrícola"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Colher vegetais para comida. Máximo de coletores: 5"
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
+msgstr ""
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"

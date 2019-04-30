@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2019-04-17 20:16+0000\n"
+"PO-Revision-Date: 2019-04-27 00:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Abriendo %(url)s\n en restolador por defeutu. Espera por favor…"
 
 #: gui/common/functions_msgbox.js:60
 msgid "Opening page"
-msgstr "Abriendo la páxina"
+msgstr "Abriendo páxina"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -99,7 +99,7 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recuperase la ID del xuegu.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recobrase la ID del xuegu.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
@@ -122,12 +122,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recuperase'l llistáu de camudos.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recobrase'l llistáu de camudos.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Fallu na recuperación"
+msgstr "Fallu nel recobramientu"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -208,7 +208,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Tiempu trescurríu: %(elapsed)s\nTiempu estimáu restante: %(remaining)s\nVelocidá media: %(avgSpeed)s"
+msgstr "Tiempu trescurrío: %(elapsed)s\nTiempu estimao que queda: %(remaining)s\nVelocidá media: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -232,7 +232,7 @@ msgstr "Dependencia non satisfecha: %(dep)s"
 
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
-msgstr "Toles dependencies satisfeches"
+msgstr "Satisfixéronse toles dependencies"
 
 #: gui/modmod/modmod.js:370
 msgid "Enable"
@@ -244,7 +244,7 @@ msgstr "Desactivar"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
-msgstr "Nun escoyesti dengún camudu."
+msgstr "Nun s'esbilló camudu dalu."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -347,7 +347,7 @@ msgstr "Colar"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr "Ayuda"
+msgstr "Aida"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
@@ -373,7 +373,7 @@ msgstr "Sitiu Web"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Cambiar l'orde nel que se llancien los camudos. Esto debe concasar coles dependencies de los camudos."
+msgstr "Cambiar l'orde nel que los camudos se llancien. Esti ha concasar coles dependencies de los camudos."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -385,7 +385,7 @@ msgstr "Zarrar"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Guía de la fechura de camudos"
+msgstr "Guía de camudamientu"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -409,18 +409,18 @@ msgstr "Descargu de responsabilidá de 0 A.D. Empires Ascendant mod.io"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "Fecha de documentu: 2018-10-12"
+msgstr "Fecha del documentu: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "Tas por coneutate col serviciu en llinia de mod.io."
+msgstr "Tas por coneutate col serviciu na rede de mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Esti seriviciu apurre un xeitu amañosu de baxar y instalar camudos fechos pola comunidá. Fórnelu DBolical Pty Ltd, la compaña detrás d'IndieDb y ModDB."
+msgstr "Esti seriviciu apurre un xeitu amañosu de baxar y instalar camudos fechos pola comunidá. Fórnelu DBolical Pty Ltd, la compaña darrera d'IndieDb y ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -431,20 +431,20 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games tien puesto procuru en facer esta conexón segura y esaminao los camudos pa defeutos de seguranza, anque nun pue garantizar qu'esto nun suponga riesgos."
+msgstr "Wildfire Games tien puesto procuru en facer esta conexón segura y esaminao los camudos pa defeutos de seguranza, anque nun pue garantizar qu'esti nun suponga riesgos."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Al usar esti serviciu, entiendes que los Términos d'Usu y Política de Privacidá de mod.io s'apliquen y que Wildfire Games nun ye responsable de dengún dañu que resulte d'esti serviciu."
+msgstr "Al usar esti serviciu, entiendes que los Términos d'usu y Política de privacidá de mod.io s'apliquen y que Wildfire Games nun ye responsable de dengún dañu que resulte d'esti serviciu."
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. ta diseñáu pa ser camudable de mou fácil. Los camudos distribúinse en forma de ficheros .pyromod que pue abrise como ficheros ZIP."
+msgstr "0 A.D. ta diseñáu pa que se camude fácilmente. Los camudos repártense en forma de ficheros .pyromod que puen abrise como ficheros ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -454,13 +454,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Pa instalar un camudu, namái abri'l ficheru con 0 A.D. (quier faciendo clic doblu en ficheru y escoyendo abrir col xuegu, quier executando «pyrogenesis ficheru.pyromod» nuna terminal). El camudu va tar disponible nel seleutor de camudos. Pues activalu y desactivalu cuando quieras, o desanicialu a mano usando'l restolador de ficheros si lo precises (mira https://trac.wildfiregames.com/wiki/GameDataPaths)"
+msgstr "Pa instalar un camudu, a cencielles abri'l ficheru con 0 A.D. (o bien calcando dos vegaes nel ficheru y escoyendo abrir col xuegu, o bien executando «pyrogenesis ficheru.pyromod» nun terminal). El camudu va tar disponible nel esbillador de camudos. Pues activalu y desactivalu cuando quieras. Pues desaniciar el camudu manualmente pel restolador de ficheros si fai falta (mira https://trac.wildfiregames.com/wiki/GameDataPaths)"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Pa más información tocante al camudamientu del xuegu, mira la Guía de facer camudos (primi nel botón d'embaxo)."
+msgstr "Pa más información tocántenes al camudamientu del xuegu, mira na rede la Guía de camudamientu (calca nel botón de la Guía de camudamientu embaxo)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -469,4 +469,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El serviciu mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Esto sitios web falaron de 0 A.D. y otros proxeutos indie demientres munchu tiempu! Güei mod.io permítenos llistar y baxar tolos camudos que verificó l'equipu. ¡Primi «Baxar camudos» pa probar ya instalar dalgún!"
+msgstr "El serviciu mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Estos sitios web falaron de 0 A.D. y otros proxeutos indie demientres munchu tiempu! Güei mod.io permítenos llistar y baxar tolos camudos que verificó l'equipu. ¡Primi «Baxar camudos» pa probalu y instalar dalgún!"

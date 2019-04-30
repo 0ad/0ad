@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-19 09:43+0200\n"
-"PO-Revision-Date: 2019-04-24 00:16+0000\n"
+"POT-Creation-Date: 2019-04-26 09:43+0200\n"
+"PO-Revision-Date: 2019-04-26 22:24+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -113,6 +113,15 @@ msgstr "Templu"
 msgid "Defensive Structure"
 msgstr "Construcción de defensa"
 
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr "Muria de madera"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:27
+msgid "Wall off your town for a stout defense."
+msgstr "Cerca la ciudá pa una defensa fuerte."
+
 #: simulation/templates/template_structure_defensive_tower.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -170,10 +179,6 @@ msgstr "TorrePiedra"
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
 msgstr "Muralla de piedra"
-
-#: simulation/templates/template_structure_defensive_wall.xml:27
-msgid "Wall off your town for a stout defense."
-msgstr "Cerca la ciudá pa una defensa fuerte."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:14
 msgid "City Gate"
@@ -386,8 +391,9 @@ msgid "Field"
 msgstr "Eru"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Acollecha hortalexes pa comida. Recoyedores máx.: 5."
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
+msgstr "Acollecha grana pa pescanciar comida. Cada recoyedor amestáu rinde menos que l'anterior."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
