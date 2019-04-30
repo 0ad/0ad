@@ -98,6 +98,7 @@ class RLInterface final : public RLAPI::Service
                     g_Game->GetTurnManager()->PostCommand(command);
                 }
 
+                g_Game->GetTurnManager()->Update(200, 2);
                 g_Game->GetSimulation2()->Update(200);  // FIXME: This updates a fixed time when we want a fixed number of steps...? Or do we want to use time?
 
                 // Get the Game State
