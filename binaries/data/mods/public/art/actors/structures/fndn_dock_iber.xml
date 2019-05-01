@@ -1,19 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
+  <float/>
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/found_dock_iber.dae</mesh>
-      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/structures/decals/dirt_2x4.xml" attachpoint="dirt"/>
+        <prop actor="props/special/eyecandy/awning_wood_large.xml" attachpoint="shed" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/object_pile.xml" attachpoint="stuff" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/delimitator.xml" attachpoint="delimitator_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/delimitator.xml" attachpoint="delimitator_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/wood_stick.xml" attachpoint="post_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/wood_stick.xml" attachpoint="post_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/wood_stick.xml" attachpoint="post_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_01"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_02"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_03"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_04"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_05"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_06"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_07"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_08"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_09"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_10"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_11"/>
+        <prop actor="props/structures/iberians/iber_dock_stone_post.xml" attachpoint="stone_post_12"/>
+      </props>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-   <group>
-    <variant frequency="1">
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="scaffold">
       <props>
+        <prop actor="props/structures/decals/dirt_2x4.xml" attachpoint="dirt"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
-		<prop actor="props/special/eyecandy/awning_wood_large.xml" attachpoint="shed" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/object_pile.xml" attachpoint="stuff" maxheight="20" minheight="-20"/>			
       </props>
     </variant>
   </group>
+  <material>default.xml</material>
 </actor>

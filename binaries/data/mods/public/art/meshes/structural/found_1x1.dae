@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author>Blender User</author>
-      <authoring_tool>Blender 2.69.0 r60995</authoring_tool>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
     </contributor>
-    <created>2014-03-06T22:22:38</created>
-    <modified>2014-03-06T22:22:38</modified>
-    <unit name="inch" meter="0.0254"/>
+    <created>2019-04-05T15:29:45</created>
+    <modified>2019-04-05T15:29:45</modified>
+    <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
   <library_geometries>
-    <geometry id="Object14_Pivot001Mesh_006-mesh" name="Object14_Pivot001Mesh.006">
+    <geometry id="foundation_1x1_mesh_001-mesh" name="foundation_1x1_mesh.001">
       <mesh>
-        <source id="Object14_Pivot001Mesh_006-mesh-positions">
-          <float_array id="Object14_Pivot001Mesh_006-mesh-positions-array" count="9">-0.3303697 -0.3389979 -1.997207 -0.3303769 0.102842 -1.997207 0.1114461 0.102848 -1.997207</float_array>
+        <source id="foundation_1x1_mesh_001-mesh-positions">
+          <float_array id="foundation_1x1_mesh_001-mesh-positions-array" count="9">-0.1803882 -0.04630732 -1.951926 -0.1803883 -0.04198902 -1.951926 -0.1760702 -0.04198902 -1.951926</float_array>
           <technique_common>
-            <accessor source="#Object14_Pivot001Mesh_006-mesh-positions-array" count="3" stride="3">
+            <accessor source="#foundation_1x1_mesh_001-mesh-positions-array" count="3" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Object14_Pivot001Mesh_006-mesh-normals">
-          <float_array id="Object14_Pivot001Mesh_006-mesh-normals-array" count="3">0 0 1</float_array>
+        <source id="foundation_1x1_mesh_001-mesh-normals">
+          <float_array id="foundation_1x1_mesh_001-mesh-normals-array" count="3">0 0 1</float_array>
           <technique_common>
-            <accessor source="#Object14_Pivot001Mesh_006-mesh-normals-array" count="1" stride="3">
+            <accessor source="#foundation_1x1_mesh_001-mesh-normals-array" count="1" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Object14_Pivot001Mesh_006-mesh-map-0">
-          <float_array id="Object14_Pivot001Mesh_006-mesh-map-0-array" count="6">0.753448 0.295875 0.712383 0.295875 0.712383 0.381111</float_array>
+        <source id="foundation_1x1_mesh_001-mesh-map-0">
+          <float_array id="foundation_1x1_mesh_001-mesh-map-0-array" count="6">0.753448 0.295875 0.712383 0.295875 0.712383 0.381111</float_array>
           <technique_common>
-            <accessor source="#Object14_Pivot001Mesh_006-mesh-map-0-array" count="3" stride="2">
+            <accessor source="#foundation_1x1_mesh_001-mesh-map-0-array" count="3" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Object14_Pivot001Mesh_006-mesh-vertices">
-          <input semantic="POSITION" source="#Object14_Pivot001Mesh_006-mesh-positions"/>
+        <vertices id="foundation_1x1_mesh_001-mesh-vertices">
+          <input semantic="POSITION" source="#foundation_1x1_mesh_001-mesh-positions"/>
         </vertices>
-        <polylist count="1">
-          <input semantic="VERTEX" source="#Object14_Pivot001Mesh_006-mesh-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#Object14_Pivot001Mesh_006-mesh-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#Object14_Pivot001Mesh_006-mesh-map-0" offset="2" set="0"/>
-          <vcount>3 </vcount>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#foundation_1x1_mesh_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#foundation_1x1_mesh_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#foundation_1x1_mesh_001-mesh-map-0" offset="2" set="0"/>
           <p>2 0 0 1 0 1 0 0 2</p>
-        </polylist>
+        </triangles>
       </mesh>
-      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_controllers/>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Object14_Pivot001" name="Object14_Pivot001" type="NODE">
-        <matrix sid="transform">0.988599 0 0 -1.06e-4 0 0.988599 0 0 0 0 0.988599 0 0 0 0 1</matrix>
-        <instance_geometry url="#Object14_Pivot001Mesh_006-mesh"/>
+      <node id="foundation_1x1" name="foundation_1x1" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#foundation_1x1_mesh_001-mesh" name="foundation_1x1"/>
         <node id="prop_Delimitator002" name="prop_Delimitator002" type="NODE">
-          <matrix sid="transform">-0.405128 -3.54174e-8 0 3.239527 3.54174e-8 -0.405128 0 -2.472237 0 0 0.405128 0 0 0 0 1</matrix>
+          <matrix sid="transform">-1 -1.50996e-7 0 2 1.50996e-7 -1 0 -2 0 0 1 0 0 0 0 1</matrix>
         </node>
         <node id="prop_Delimitator001" name="prop_Delimitator001" type="NODE">
-          <matrix sid="transform">-1.14299e-7 0.405128 0 3.239527 -0.405128 -1.14299e-7 0 2.47224 0 0 0.405128 0 0 0 0 1</matrix>
+          <matrix sid="transform">-2.8213e-7 1 0 2 -1 -2.8213e-7 0 2 0 0 1 0 0 0 0 1</matrix>
         </node>
         <node id="prop_Delimitator003" name="prop_Delimitator003" type="NODE">
-          <matrix sid="transform">-1.14299e-7 -0.405128 0 -3.23614 0.405128 -1.14299e-7 0 -2.472237 0 0 0.405128 0 0 0 0 1</matrix>
+          <matrix sid="transform">-2.8213e-7 -1 0 -2 1 -2.8213e-7 0 -2 0 0 1 0 0 0 0 1</matrix>
         </node>
         <node id="prop_Delimitator004" name="prop_Delimitator004" type="NODE">
-          <matrix sid="transform">0.405128 7.08348e-8 0 -3.23953 -7.08348e-8 0.405128 0 2.47224 0 0 0.405128 0 0 0 0 1</matrix>
+          <matrix sid="transform">1 0 0 -2 0 1 0 2 0 0 1 0 0 0 0 1</matrix>
         </node>
       </node>
     </visual_scene>

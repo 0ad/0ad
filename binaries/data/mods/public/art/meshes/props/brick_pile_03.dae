@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.45 commit date:2019-02-27, commit time:01:36, hash:168d3fd528c4</authoring_tool>
+    </contributor>
+    <created>2019-04-24T17:15:09</created>
+    <modified>2019-04-24T17:15:09</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="brick_pile_03_001-mesh" name="brick_pile_03.001">
+      <mesh>
+        <source id="brick_pile_03_001-mesh-positions">
+          <float_array id="brick_pile_03_001-mesh-positions-array" count="9">-0.1803882 -0.03457802 -1.951926 -0.1803883 -0.03135353 -1.951926 -0.1760702 -0.03135353 -1.951926</float_array>
+          <technique_common>
+            <accessor source="#brick_pile_03_001-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="brick_pile_03_001-mesh-normals">
+          <float_array id="brick_pile_03_001-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#brick_pile_03_001-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="brick_pile_03_001-mesh-map-0">
+          <float_array id="brick_pile_03_001-mesh-map-0-array" count="6">0.753448 0.295875 0.712383 0.295875 0.712383 0.381111</float_array>
+          <technique_common>
+            <accessor source="#brick_pile_03_001-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="brick_pile_03_001-mesh-vertices">
+          <input semantic="POSITION" source="#brick_pile_03_001-mesh-positions"/>
+        </vertices>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#brick_pile_03_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#brick_pile_03_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#brick_pile_03_001-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 1 0 1 0 0 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="brick_pile_03" name="brick_pile_03" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 0.7467079 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#brick_pile_03_001-mesh" name="brick_pile_03"/>
+        <node id="prop_brick_01" name="prop_brick_01" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 0.005971238 1 -1.62921e-7 0 -3.550351 0 0 1 -0.001207567 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_02" name="prop_brick_02" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 0.04137634 1 -1.62921e-7 0 -1.325137 0 0 1 -0.001207469 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_03" name="prop_brick_03" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 -0.03380232 1 -1.62921e-7 0 0.2003912 0 0 1 -0.001207403 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_04" name="prop_brick_04" type="NODE">
+          <matrix sid="transform">-0.05955664 -0.9988535 0 0.0351172 0.9987011 -0.05956573 0 2.220416 0 0 1 -0.001207314 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_05" name="prop_brick_05" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 -0.08454958 1 -1.62921e-7 0 4.412178 0 0 1 -0.001207245 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_06" name="prop_brick_06" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 -0.02529094 1 -1.62921e-7 0 1.038604 0 0 1 0.7668586 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_07" name="prop_brick_07" type="NODE">
+          <matrix sid="transform">0.07219824 -0.9983129 0 -0.02439359 0.9980652 0.07221615 0 -0.7316298 0 0 1 0.7668586 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_08" name="prop_brick_08" type="NODE">
+          <matrix sid="transform">0.2189367 -0.9839221 0 0.02822165 0.9817607 0.2194187 0 -2.542217 0 0 1 0.7693006 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

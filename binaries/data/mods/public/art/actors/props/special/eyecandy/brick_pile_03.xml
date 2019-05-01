@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/brick_pile_03.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_04" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_05" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_06" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_07" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/brick.xml" attachpoint="brick_08" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/foundation.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

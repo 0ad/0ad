@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/scaf_3x3_wall.dae</mesh>
+      <textures>
+        <texture file="props/scaffold.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

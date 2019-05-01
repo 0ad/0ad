@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2019-04-20T23:44:26</created>
+    <modified>2019-04-20T23:44:26</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="delimitator-mesh-mesh" name="delimitator-mesh">
+      <mesh>
+        <source id="delimitator-mesh-mesh-positions">
+          <float_array id="delimitator-mesh-mesh-positions-array" count="72">-0.1847453 -1.725593 -0.325879 -0.1847494 -2.029194 -0.02226501 0.1606579 -1.725592 -0.325879 0.1606636 -2.029214 -0.02226501 -0.1847462 0.1638751 1.563572 -0.1847269 -0.1397567 1.867185 0.1606673 0.1638728 1.563572 0.160672 -0.1397492 1.867185 -0.2146812 -0.2146973 0 0.2146912 -0.2146844 0 -0.2146912 0.2146974 0 0.2146813 0.2146838 0 -0.2146812 -0.2146973 2.672086 0.2146912 -0.2146844 2.672086 -0.2146912 0.2146974 2.672086 0.2146813 0.2146838 2.672086 1.78167 -0.1746793 -0.325879 2.085298 -0.1746873 -0.02226501 1.781683 0.1746948 -0.325879 2.085301 0.1747152 -0.02226501 -0.1077672 -0.1746824 1.563571 0.1958541 -0.1746858 1.867185 -0.1077747 0.1746986 1.563571 0.1958332 0.1747145 1.867185</float_array>
+          <technique_common>
+            <accessor source="#delimitator-mesh-mesh-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="delimitator-mesh-mesh-normals">
+          <float_array id="delimitator-mesh-mesh-normals-array" count="66">9.65661e-7 0 1 1 5.24695e-6 -1.02181e-5 0.7071035 4.23909e-5 0.7071101 1 2.30666e-5 0 3.16852e-5 1 0 3.00541e-5 -1 0 -2.51785e-5 1 -2.71186e-5 -0.7071092 -1.5323e-5 -0.7071044 -4.1005e-5 -0.707104 0.7071096 -1.34e-5 -1 -1.25783e-5 -1 1.27218e-5 -8.18864e-7 4.37225e-6 0.7071042 -0.7071094 -1 -2.32729e-5 0 0 0 1 1 7.18209e-6 -1.16187e-5 0.7071079 -5.61807e-6 0.7071057 -3.37797e-5 1 -3.3456e-5 -0.7071053 2.63048e-5 -0.7071083 1.52413e-5 -0.7071092 0.7071044 -4.79846e-6 -1 -6.44185e-6 -1 -3.20527e-5 3.15376e-5 -2.06657e-6 0.7071036 -0.70711</float_array>
+          <technique_common>
+            <accessor source="#delimitator-mesh-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="delimitator-mesh-mesh-map-0">
+          <float_array id="delimitator-mesh-mesh-map-0-array" count="156">0.8730469 0.7382813 0.8339844 0.8203125 0.8730469 0.8203125 0.9246127 0.9063142 0.9639399 0.1941968 0.9639399 0.9063142 0.8339844 0.7382813 0.8730469 0.046875 0.8730469 0.7382813 0.8339844 0.046875 0.8730469 0.7382813 0.8339844 0.7382813 0.9246127 0.1941968 0.9639399 0.9063142 0.9246127 0.9063142 0.9246127 0.1941968 0.9639399 0.9063142 0.9246127 0.9063142 0.9246127 0.9063142 0.9639399 0.1941968 0.9639399 0.9063142 0.8339844 0.7382813 0.8730469 0.046875 0.8730469 0.7382813 0.8339844 0.828125 0.7890625 0.0234375 0.8339844 0.0234375 0.9639399 0.9063142 0.9246127 0.1941968 0.9639399 0.1941968 0.9639399 0.9063142 0.9246127 0.1941968 0.9639399 0.1941968 0.7890625 0.0234375 0.8339844 0.828125 0.7890625 0.828125 0.8339844 0.046875 0.8730469 0.7382813 0.8339844 0.7382813 0.8730469 0.7382813 0.8339844 0.7382813 0.8339844 0.8203125 0.9246127 0.9063142 0.9246127 0.1941968 0.9639399 0.1941968 0.8339844 0.7382813 0.8339844 0.046875 0.8730469 0.046875 0.8339844 0.046875 0.8730469 0.046875 0.8730469 0.7382813 0.9246127 0.1941968 0.9639399 0.1941968 0.9639399 0.9063142 0.9246127 0.1941968 0.9639399 0.1941968 0.9639399 0.9063142 0.9246127 0.9063142 0.9246127 0.1941968 0.9639399 0.1941968 0.8339844 0.7382813 0.8339844 0.046875 0.8730469 0.046875 0.8339844 0.828125 0.7890625 0.828125 0.7890625 0.0234375 0.9639399 0.9063142 0.9246127 0.9063142 0.9246127 0.1941968 0.9639399 0.9063142 0.9246127 0.9063142 0.9246127 0.1941968 0.7890625 0.0234375 0.8339844 0.0234375 0.8339844 0.828125 0.8339844 0.046875 0.8730469 0.046875 0.8730469 0.7382813</float_array>
+          <technique_common>
+            <accessor source="#delimitator-mesh-mesh-map-0-array" count="78" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="delimitator-mesh-mesh-vertices">
+          <input semantic="POSITION" source="#delimitator-mesh-mesh-positions"/>
+        </vertices>
+        <triangles count="26">
+          <input semantic="VERTEX" source="#delimitator-mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#delimitator-mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#delimitator-mesh-mesh-map-0" offset="2" set="0"/>
+          <p>15 0 0 12 0 1 13 0 2 7 1 3 2 1 4 6 1 5 21 2 6 19 2 7 23 2 8 9 3 9 15 3 10 13 3 11 11 4 12 14 4 13 15 4 14 8 5 15 13 5 16 12 5 17 23 6 18 18 6 19 22 6 20 22 7 21 16 7 22 20 7 23 7 8 24 1 8 25 3 8 26 21 9 27 16 9 28 17 9 29 5 10 30 0 10 31 1 10 32 2 11 33 4 11 34 6 11 35 10 12 36 12 12 37 14 12 38 15 13 39 14 13 40 12 13 41 7 14 42 3 14 43 2 14 44 21 15 45 17 15 46 19 15 47 9 3 48 11 3 49 15 3 50 11 4 51 10 4 52 14 4 53 8 5 54 9 5 55 13 5 56 23 16 57 19 16 58 18 16 59 22 17 60 18 17 61 16 17 62 7 18 63 5 18 64 1 18 65 21 19 66 20 19 67 16 19 68 5 20 69 4 20 70 0 20 71 2 21 72 0 21 73 4 21 74 10 12 75 8 12 76 12 12 77</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="delimitator" name="delimitator" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#delimitator-mesh-mesh" name="delimitator"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
