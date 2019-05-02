@@ -91,7 +91,7 @@ class RLInterface final : public RLAPI::Service
             // Apply and edits from the RPC messages to the game engine
             std::vector<std::string> commands;
             std::chrono::milliseconds duration(50);
-            while (boost::fibers::channel_op_status::success == m_GameCommands.pop_wait_for(commands, duration))
+            if (boost::fibers::channel_op_status::success == m_GameCommands.pop_wait_for(commands, duration))
             {
                 for (std::string cmd : commands)  // Apply the game commands
                 {
