@@ -8,19 +8,21 @@
 #include "rlinterface/RLAPI.grpc.pb.h"
 
 #include "lib/precompiled.h"
+#include "lib/external_libraries/libsdl.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/system/TurnManager.h"
 #include "ps/Game.h"
+#include "ps/VideoMode.h"
+#include "ps/GameSetup/GameSetup.h"
 #include "ps/ThreadUtil.h"
 #include <boost/fiber/unbuffered_channel.hpp>
 
 using grpc::ServerContext;
+using boost::fibers::unbuffered_channel;
 
 class RLInterface final : public RLAPI::Service
 {
-    typedef boost::fibers::unbuffered_channel<std::vector<std::string>> test_channel_t;
-    typedef boost::fibers::unbuffered_channel<std::string> channel_t;
 
     public:
 
@@ -77,16 +79,19 @@ class RLInterface final : public RLAPI::Service
         void Listen(std::string server_address)
         {
             g_Game->SetSimRate(m_StepsBtwnActions);
-
             grpc::ServerBuilder builder;
             builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
             builder.RegisterService(this);
             m_Server = builder.BuildAndStart();
             std::cout << "Server listening on " << server_address << std::endl;
+        }
 
+        void ApplyEvents()
+        {
             // Apply and edits from the RPC messages to the game engine
             std::vector<std::string> commands;
-            while (boost::fibers::channel_op_status::success == m_GameCommands.pop(commands))
+            std::chrono::milliseconds duration(50);
+            while (boost::fibers::channel_op_status::success == m_GameCommands.pop_wait_for(commands, duration))
             {
                 for (std::string cmd : commands)  // Apply the game commands
                 {
@@ -98,8 +103,9 @@ class RLInterface final : public RLAPI::Service
                     g_Game->GetTurnManager()->PostCommand(command);
                 }
 
-                g_Game->GetTurnManager()->Update(200, 2);
-                g_Game->GetSimulation2()->Update(200);  // FIXME: This updates a fixed time when we want a fixed number of steps...? Or do we want to use time?
+                // FIXME: Why am I updating the turn manager??
+                //g_Game->GetTurnManager()->Update(200, 2);
+                g_Game->Update(200);
 
                 // Get the Game State
                 m_GameStates.push(GetGameState());
@@ -126,6 +132,7 @@ class RLInterface final : public RLAPI::Service
         float m_StepsBtwnActions = 10.0f;
         unsigned int m_Turn = 0;
         std::mutex m_lock;
-        test_channel_t m_GameCommands;
-        channel_t m_GameStates;
+        unbuffered_channel<std::vector<std::string>> m_GameCommands;
+        unbuffered_channel<std::string> m_GameStates;
+        //unbuffered_channel<std::string> m_GameConfigs;
 };
