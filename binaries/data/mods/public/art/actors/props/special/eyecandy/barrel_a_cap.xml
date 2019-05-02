@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/wrld_barrel_a_cap.dae</mesh>
+      <textures>
+        <texture file="props/celt_prop_1.png" name="baseTex"/>
+        <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+        <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

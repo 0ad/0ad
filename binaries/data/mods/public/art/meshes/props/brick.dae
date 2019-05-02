@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2019-04-20T19:55:31</created>
+    <modified>2019-04-20T19:55:31</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="brick_006-mesh" name="brick.006">
+      <mesh>
+        <source id="brick_006-mesh-positions">
+          <float_array id="brick_006-mesh-positions-array" count="24">0.640266 -0.3555387 0.76836 0.6402605 0.355524 0.76836 -0.6402609 0.3555386 0.7683601 -0.640266 -0.3555277 0.7683601 0.640266 -0.3555386 0 0.6402605 0.3555241 0 -0.6402609 0.3555387 1.19209e-7 -0.640266 -0.3555277 0</float_array>
+          <technique_common>
+            <accessor source="#brick_006-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="brick_006-mesh-normals">
+          <float_array id="brick_006-mesh-normals-array" count="30">0 0 1 0 0 1 1 7.74579e-6 0 1 7.6367e-6 0 1.14041e-5 1 0 1.14041e-5 1 0 -1 7.09118e-6 0 -1 6.98209e-6 0 -8.54133e-6 -1 0 -8.54134e-6 -1 0</float_array>
+          <technique_common>
+            <accessor source="#brick_006-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="brick_006-mesh-map-0">
+          <float_array id="brick_006-mesh-map-0-array" count="60">0 0.75 0.125 0.75 0.125 1 0.125 1 0 1 0 0.75 0 0.75 0.125 0.75 0.125 1 0.125 1 0 1 0 0.75 0 0.75 0.125 0.75 0.125 1 0.125 1 0 1 0 0.75 0 0.75 0.125 0.75 0.125 1 0.125 1 0 1 0 0.75 0 0.75 0.125 0.75 0.125 1 0.125 1 0 1 0 0.75</float_array>
+          <technique_common>
+            <accessor source="#brick_006-mesh-map-0-array" count="30" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="brick_006-mesh-vertices">
+          <input semantic="POSITION" source="#brick_006-mesh-positions"/>
+        </vertices>
+        <triangles count="10">
+          <input semantic="VERTEX" source="#brick_006-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#brick_006-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#brick_006-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2 2 1 3 3 1 4 0 1 5 4 2 6 5 2 7 1 2 8 1 3 9 0 3 10 4 3 11 5 4 12 6 4 13 2 4 14 2 5 15 1 5 16 5 5 17 6 6 18 7 6 19 3 6 20 3 7 21 2 7 22 6 7 23 7 8 24 4 8 25 0 8 26 0 9 27 3 9 28 7 9 29</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="brick_003" name="brick_003" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#brick_006-mesh" name="brick_003"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

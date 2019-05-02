@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="6">
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
+		<Water>
+			<WaterBody>
+				<Type>ocean</Type>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<Height>5</Height>
+				<Waviness>4</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<WindAngle>0</WindAngle>
+			</WaterBody>
+		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
+	</Environment>
+	<Camera>
+		<Position x="404.373" y="246.916" z="217.003"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name": "Unnamed map",
+  "Description": "Give an interesting description of your map.",
+  "PlayerData": [
+    null,
+    {
+      "Civ": "athen"
+    },
+    {
+      "Civ": "cart"
+    },
+    {
+      "Civ": "gaul"
+    },
+    {
+      "Civ": "iber"
+    },
+    {
+      "Civ": "mace"
+    },
+    {
+      "Civ": "pers"
+    },
+    {
+      "Civ": "rome"
+    },
+    {
+      "Civ": "spart"
+    }
+  ],
+  "CircularMap": true,
+  "VictoryConditions": [
+    "conquest"
+  ]
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>actor|structures/fndn_1x1.xml</Template>
+			<Position x="361.92734" z="263.32108"/>
+			<Orientation y="2.37467"/>
+			<Actor seed="3232"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>actor|structures/fndn_1x1pal.xml</Template>
+			<Position x="367.40055" z="257.40677"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61324"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>actor|structures/fndn_1x2.xml</Template>
+			<Position x="374.69126" z="250.58143"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18148"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>actor|structures/fndn_1x3.xml</Template>
+			<Position x="384.43406" z="240.29374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21830"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>actor|structures/fndn_2x1.xml</Template>
+			<Position x="374.69712" z="264.60196"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29154"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>actor|structures/fndn_2x2.xml</Template>
+			<Position x="381.89002" z="257.56757"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36110"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>actor|structures/fndn_2x3.xml</Template>
+			<Position x="391.72464" z="247.59186"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13684"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>actor|structures/fndn_2x4.xml</Template>
+			<Position x="404.5604" z="234.71363"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43342"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>actor|structures/fndn_2x5.xml</Template>
+			<Position x="420.0911" z="219.03086"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25264"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>actor|structures/fndn_2x6.xml</Template>
+			<Position x="438.51606" z="200.81131"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35080"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>actor|structures/fndn_3x1.xml</Template>
+			<Position x="384.61" z="274.56675"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32722"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>actor|structures/fndn_3x2.xml</Template>
+			<Position x="391.69425" z="267.42792"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3476"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>actor|structures/fndn_3x3.xml</Template>
+			<Position x="402.35538" z="257.47501"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60482"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>actor|structures/fndn_3x4.xml</Template>
+			<Position x="414.39805" z="244.66498"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40688"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>actor|structures/fndn_3x5.xml</Template>
+			<Position x="429.96891" z="229.0749"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50980"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>actor|structures/fndn_3x6.xml</Template>
+			<Position x="448.53019" z="210.77189"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34436"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>actor|structures/fndn_4x2.xml</Template>
+			<Position x="404.4206" z="280.159"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24660"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>actor|structures/fndn_4x3.xml</Template>
+			<Position x="414.36554" z="269.77341"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10344"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>actor|structures/fndn_4x4.xml</Template>
+			<Position x="427.12336" z="257.34913"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31738"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>actor|structures/fndn_4x5.xml</Template>
+			<Position x="442.74589" z="241.69639"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48432"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>actor|structures/fndn_4x6.xml</Template>
+			<Position x="461.15671" z="223.2483"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60866"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>actor|structures/fndn_5x2.xml</Template>
+			<Position x="420.10575" z="295.63044"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51960"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>actor|structures/fndn_5x3.xml</Template>
+			<Position x="430.07483" z="285.60904"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5036"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>actor|structures/fndn_5x4.xml</Template>
+			<Position x="442.78913" z="273.0446"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4998"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>actor|structures/fndn_5x5.xml</Template>
+			<Position x="457.97022" z="257.81553"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63592"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>actor|structures/fndn_5x6.xml</Template>
+			<Position x="477.1764" z="239.06138"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19936"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>actor|structures/fndn_6x2.xml</Template>
+			<Position x="438.48234" z="313.93885"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40294"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>actor|structures/fndn_6x3.xml</Template>
+			<Position x="448.4982" z="303.95057"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43836"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>actor|structures/fndn_6x4.xml</Template>
+			<Position x="461.59058" z="291.69193"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="970"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>actor|structures/fndn_6x5.xml</Template>
+			<Position x="477.14032" z="276.21186"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64726"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>actor|structures/fndn_6x6.xml</Template>
+			<Position x="496.11261" z="257.6283"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48692"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>actor|structures/fndn_7x4.xml</Template>
+			<Position x="482.72883" z="312.81995"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39632"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>actor|structures/fndn_7x5.xml</Template>
+			<Position x="498.40302" z="297.39222"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24598"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>actor|structures/fndn_7x7.xml</Template>
+			<Position x="537.72657" z="258.25718"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57022"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>actor|structures/fndn_7x6.xml</Template>
+			<Position x="517.2032" z="279.01246"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5558"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>actor|structures/fndn_6x7.xml</Template>
+			<Position x="516.0293" z="236.34415"/>
+			<Orientation y="-0.80091"/>
+			<Actor seed="1276"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>actor|structures/fndn_5x7.xml</Template>
+			<Position x="497.89649" z="217.95167"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48240"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>actor|structures/fndn_2x7.xml</Template>
+			<Position x="459.43723" z="179.82148"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60944"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>actor|structures/fndn_3x7.xml</Template>
+			<Position x="469.63715" z="189.62967"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49958"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>actor|structures/fndn_4x7.xml</Template>
+			<Position x="482.40244" z="202.2511"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54330"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>actor|structures/fndn_7x2.xml</Template>
+			<Position x="459.64734" z="335.20392"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44248"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>actor|structures/fndn_7x3.xml</Template>
+			<Position x="469.6302" z="325.3397"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6540"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>actor|structures/fndn_7x8.xml</Template>
+			<Position x="561.67414" z="233.2801"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19530"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>actor|structures/fndn_8x7.xml</Template>
+			<Position x="561.9253" z="282.18973"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58186"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>actor|structures/fndn_8x8.xml</Template>
+			<Position x="585.6764" z="257.4326"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41936"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>actor|structures/fndn_9x8.xml</Template>
+			<Position x="612.50721" z="284.14557"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11810"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>actor|structures/fndn_9x9.xml</Template>
+			<Position x="639.55475" z="257.23505"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60896"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>actor|structures/fndn_8x9.xml</Template>
+			<Position x="612.60248" z="230.35688"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42110"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>actor|structures/fndn_9x7.xml</Template>
+			<Position x="588.86695" z="309.31351"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38376"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>actor|structures/fndn_9x6.xml</Template>
+			<Position x="568.47883" z="330.06528"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14480"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>actor|structures/fndn_7x9.xml</Template>
+			<Position x="588.40351" z="206.6876"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26332"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>actor|structures/fndn_6x9.xml</Template>
+			<Position x="567.45075" z="185.68662"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24270"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>actor|structures/fndn_9x5.xml</Template>
+			<Position x="549.43293" z="348.09076"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26592"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>actor|structures/fndn_9x4.xml</Template>
+			<Position x="533.83271" z="363.80549"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32920"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>actor|structures/fndn_9x3.xml</Template>
+			<Position x="520.48652" z="376.04432"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46794"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>actor|structures/fndn_9x2.xml</Template>
+			<Position x="510.49683" z="386.00712"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41246"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>actor|structures/fndn_5x9.xml</Template>
+			<Position x="548.41852" z="166.93448"/>
+			<Orientation y="-7.06788"/>
+			<Actor seed="38164"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>actor|structures/fndn_4x9.xml</Template>
+			<Position x="533.36536" z="151.12214"/>
+			<Orientation y="-7.06788"/>
+			<Actor seed="2232"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>actor|structures/fndn_3x9.xml</Template>
+			<Position x="520.23627" z="138.79352"/>
+			<Orientation y="-7.06788"/>
+			<Actor seed="6422"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>actor|structures/fndn_2x9.xml</Template>
+			<Position x="510.5709" z="128.6431"/>
+			<Orientation y="-7.06788"/>
+			<Actor seed="25108"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>actor|structures/fndn_8x3.xml</Template>
+			<Position x="493.60901" z="349.3332"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31786"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>actor|structures/fndn_8x2.xml</Template>
+			<Position x="483.79206" z="359.34034"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63672"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>actor|structures/fndn_8x4.xml</Template>
+			<Position x="506.6768" z="336.71518"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24634"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>actor|structures/fndn_8x5.xml</Template>
+			<Position x="522.37433" z="321.05851"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16280"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>actor|structures/fndn_2x8.xml</Template>
+			<Position x="483.84427" z="155.78324"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15646"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>actor|structures/fndn_3x8.xml</Template>
+			<Position x="493.50068" z="165.28693"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61176"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>actor|structures/fndn_4x8.xml</Template>
+			<Position x="506.44797" z="178.18451"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12036"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>actor|structures/fndn_5x8.xml</Template>
+			<Position x="521.83973" z="193.62494"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57122"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>actor|structures/fndn_6x8.xml</Template>
+			<Position x="540.31116" z="212.00586"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31652"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>actor|structures/fndn_8x6.xml</Template>
+			<Position x="541.19916" z="303.06952"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45448"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>actor|structures/fndn_dock_iber.xml</Template>
+			<Position x="364.87531" z="234.86518"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28530"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>actor|structures/fndn_3x3_wall.xml</Template>
+			<Position x="367.52894" z="297.11353"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27418"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>actor|structures/fndn_6x3_wall.xml</Template>
+			<Position x="383.41889" z="312.58503"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15378"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>actor|structures/fndn_9x3_wall.xml</Template>
+			<Position x="407.29996" z="336.61591"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7962"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

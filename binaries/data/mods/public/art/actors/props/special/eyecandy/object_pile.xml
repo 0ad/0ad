@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/Object_pile.dae</mesh>
+      <mesh>props/object_pile.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/box.xml" attachpoint="box_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_01" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/iber_struct.dds" name="baseTex"/>
+        <texture file="structural/iber_struct_norm.png" name="normTex"/>
+        <texture file="structural/iber_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="foundation">
-      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

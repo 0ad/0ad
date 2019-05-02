@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2019-04-29T12:27:03</created>
+    <modified>2019-04-29T12:27:03</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="found_dock_iber001Mesh_002-mesh" name="found_dock_iber001Mesh.002">
+      <mesh>
+        <source id="found_dock_iber001Mesh_002-mesh-positions">
+          <float_array id="found_dock_iber001Mesh_002-mesh-positions-array" count="60">-0.2455626 -0.2456 7 0.2455376 0.2456 7 0.2455376 -0.2456 7 -0.2455626 0.2456 7 0.4000377 -0.2456 6.845601 0.4000377 0.2456 4.76837e-7 0.4000377 -0.2456 4.76837e-7 0.4000377 0.2456 6.845601 -0.2455626 -0.4 6.845601 0.2455376 -0.4 4.76837e-7 -0.2455626 -0.4 4.76837e-7 0.2455376 -0.4 6.845601 -0.3999626 0.2456 6.845601 -0.4000627 -0.2456 4.76837e-7 -0.3999626 0.2456 4.76837e-7 -0.3999626 -0.2456 6.845601 0.2455376 0.4 6.845601 -0.2455626 0.4 4.76837e-7 0.2455376 0.4 4.76837e-7 -0.2455626 0.4 6.845601</float_array>
+          <technique_common>
+            <accessor source="#found_dock_iber001Mesh_002-mesh-positions-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="found_dock_iber001Mesh_002-mesh-normals">
+          <float_array id="found_dock_iber001Mesh_002-mesh-normals-array" count="60">0.3414488 -0.3416014 0.8756263 0.3414488 0.3416014 0.8756263 -0.3415693 -0.3415693 0.8755918 -0.3415693 0.3415693 0.8755918 0.9238174 -0.3828334 0 0.9238174 0.3828334 0 0.8754973 -0.3416903 0.3416903 0.8754973 0.3416903 0.3416903 -0.3825297 -0.9239432 0 0.3825297 -0.9239432 0 -0.3415693 -0.8755918 0.3415693 0.3414488 -0.8756263 0.3416014 -0.9238435 0.3827705 0 -0.9238544 -0.3827444 0 -0.8755918 0.3415693 0.3415693 -0.8755918 -0.3415693 0.3415693 0.3825297 0.9239432 0 -0.3826816 0.9238803 0 0.3414488 0.8756263 0.3416014 -0.3415693 0.8755918 0.3415693</float_array>
+          <technique_common>
+            <accessor source="#found_dock_iber001Mesh_002-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="found_dock_iber001Mesh_002-mesh-map-0">
+          <float_array id="found_dock_iber001Mesh_002-mesh-map-0-array" count="180">0.06149995 0.2525 0.06149995 0.2106 0.08349996 0.2525 0.08349996 0.2106 0.08349996 0.2525 0.06149995 0.2106 0.06579995 5e-4 0.04469996 5e-4 0.06579995 0.2821 0.04469996 0.2821 0.06579995 0.2821 0.04469996 5e-4 0.09589999 5e-4 0.07479995 5e-4 0.09589999 0.2821 0.07479995 0.2821 0.09589999 0.2821 0.07479995 5e-4 0.126 5e-4 0.1049 5e-4 0.126 0.2821 0.1049 0.2821 0.126 0.2821 0.1049 5e-4 0.03569996 5e-4 0.01459997 5e-4 0.03569996 0.2821 0.01459997 0.2821 0.03569996 0.2821 0.01459997 5e-4 0.03569996 0.2821 0.04019999 0.297 0.04469996 0.2821 0.06579995 0.2821 0.07029998 0.297 0.07479995 0.2821 0.005599975 0.2821 0.01009994 0.297 0.01459997 0.2821 0.09589999 0.2821 0.1004 0.297 0.1049 0.2821 0.06579995 0.2821 0.04469996 0.2821 0.04019999 0.297 0.04019999 0.297 0.07029998 0.297 0.06579995 0.2821 0.09589999 0.2821 0.07479995 0.2821 0.07029998 0.297 0.07029998 0.297 0.1004 0.297 0.09589999 0.2821 0.126 0.2821 0.1049 0.2821 0.1004 0.297 0.1004 0.297 0.1305 0.297 0.126 0.2821 0.03569996 0.2821 0.01459997 0.2821 0.01009994 0.297 0.01009994 0.297 0.04019999 0.297 0.03569996 0.2821 0.07479995 5e-4 0.06579995 5e-4 0.07479995 0.2821 0.06579995 0.2821 0.07479995 0.2821 0.06579995 5e-4 0.03569996 0.2821 0.04469996 0.2821 0.03569996 5e-4 0.04469996 5e-4 0.03569996 5e-4 0.04469996 0.2821 0.1049 5e-4 0.09589999 5e-4 0.1049 0.2821 0.09589999 0.2821 0.1049 0.2821 0.09589999 5e-4 0.01459997 0.2821 0.01459997 5e-4 0.005599975 5e-4 0.005599975 5e-4 0.005599975 0.2821 0.01459997 0.2821</float_array>
+          <technique_common>
+            <accessor source="#found_dock_iber001Mesh_002-mesh-map-0-array" count="90" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="found_dock_iber001Mesh_002-mesh-vertices">
+          <input semantic="POSITION" source="#found_dock_iber001Mesh_002-mesh-positions"/>
+        </vertices>
+        <triangles count="30">
+          <input semantic="VERTEX" source="#found_dock_iber001Mesh_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#found_dock_iber001Mesh_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#found_dock_iber001Mesh_002-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 1 1 1 0 2 2 3 3 3 0 2 4 1 1 5 6 4 6 5 5 7 4 6 8 7 7 9 4 6 10 5 5 11 10 8 12 9 9 13 8 10 14 11 11 15 8 10 16 9 9 17 14 12 18 13 13 19 12 14 20 15 15 21 12 14 22 13 13 23 18 16 24 17 17 25 16 18 26 19 19 27 16 18 28 17 17 29 16 18 30 1 1 31 7 7 32 4 6 33 2 0 34 11 11 35 12 14 36 3 3 37 19 19 38 8 10 39 0 2 40 15 15 41 4 6 42 7 7 43 1 1 44 1 1 45 2 0 46 4 6 47 8 10 48 11 11 49 2 0 50 2 0 51 0 2 52 8 10 53 12 14 54 15 15 55 0 2 56 0 2 57 3 3 58 12 14 59 16 18 60 19 19 61 3 3 62 3 3 63 1 1 64 16 18 65 9 9 66 6 4 67 11 11 68 4 6 69 11 11 70 6 4 71 16 18 72 7 7 73 18 16 74 5 5 75 18 16 76 7 7 77 13 13 78 10 8 79 15 15 80 8 10 81 15 15 82 10 8 83 19 19 84 17 17 85 14 12 86 14 12 87 12 14 88 19 19 89</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="found_dock_iber001_001" name="found_dock_iber001_001" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#found_dock_iber001Mesh_002-mesh" name="found_dock_iber001_001"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

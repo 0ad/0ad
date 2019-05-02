@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant name="decal_dirt_6x4">
-      <decal angle="180" depth="16" offsetx="0" offsetz="0" width="26"/>
+    <variant frequency="1" name="Base">
+      <decal angle="0" depth="10" offsetx="0" offsetz="0" width="18"/>
       <textures>
         <texture file="props/decal_struct_sand_long.png" name="baseTex"/>
         <texture file="props/decal_struct_sand_long_norm.png" name="normTex"/>
