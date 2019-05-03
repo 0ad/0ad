@@ -10,7 +10,12 @@
         <prop actor="props/structures/hellenes/propylaea_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/propylaea_walls.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/athen_propylaea.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -27,5 +32,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
