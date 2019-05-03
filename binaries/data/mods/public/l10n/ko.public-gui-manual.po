@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-04-27 08:15+0000\n"
+"PO-Revision-Date: 2019-05-01 14:36+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "온라인에서 보기"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]0 A.D. 게임 내 설명서"
+msgstr "[font=\"sans-bold-18\"]0 A.D. 놀이 내 설명서"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -56,7 +56,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "0 A.D.를 설치해주셔서 감사합니다! 이 페이지에서는 개발중인 알파버전의 게임에 이용가능한 특징들을 간단히 대략적으로 살펴볼 것입니다."
+msgstr "0 A.D.를 설치해주셔서 감사합니다! 이 페이지에서는 개발중인 알파버전의 놀이에 이용가능한 특징들을 간단히 대략적으로 살펴볼 것입니다."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -68,7 +68,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr "[font=\"sans-14\"]Alt + Enter 키를 눌러서 창모드와 전체화면 간에 전환할 수 있습니다. 창모드에서 창 크기를 조절할 수 있습니다. 만약 게임이 너무 느리다면 옵션 창에서 약간의 설정을 바꿀 수 있습니다: \"HQ 물 효과\"와 \"그림자\" 옵션을 비활성화해보세요."
+msgstr "[font=\"sans-14\"]Alt + Enter 키를 눌러서 창모드와 전체화면 간에 전환할 수 있습니다. 창모드에서 창 크기를 조절할 수 있습니다. 만약 놀이가 너무 느리다면 옵션 창에서 약간의 설정을 바꿀 수 있습니다: \"HQ 물 효과\"와 \"그림자\" 옵션을 비활성화해보세요."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -80,7 +80,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]컨트롤과 게임플레이는 전통적인 RTS게임 선수들에게 아주 익숙해야 합니다. 현재로서는 부족한 요소가 많이 있을 것이고, 균형이 잘 맞지 않는 속성값들이 있을 것이며, 당신은 아마도 베타버전을 기다리셔야 합니다."
+msgstr "[font=\"sans-14\"]컨트롤과 놀이놀기는 전통적인 RTS놀이 선수들에게 아주 익숙해야 합니다. 현재로서는 부족한 요소가 많이 있을 것이고, 균형이 잘 맞지 않는 속성값들이 있을 것이며, 당신은 아마도 베타버전을 기다리셔야 합니다."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -125,13 +125,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "[font=\"sans-bold-14\"]혼자놀기[font=\"sans-14\"] – AI 난이도에서 모래통 놀이를 선택하여 놀이를 하거나, 한 명 이상의 인공지능 상대방과 게임을 해보세요. 인공지능들은 개발 중이며 아마도 항상 최신 놀이 판에 적용되어 있지는 않을 수도 있습니다만, 만약 당신이 사람과 게임을 하기가 여의치 않으면, 인공지능 상대로 게임을 해볼 수 있습니다."
+msgstr "• [font=\"sans-bold-14\"]혼자 놀기[font=\"sans-14\"] – AI 난이도에서 모래통 놀이를 선택하여 놀이를 하거나, 한 명 이상의 인공지능 상대방과 놀이을 해보세요. 인공지능들은 개발 중이며 아마도 항상 최신 놀이 판에 적용되어 있지는 않을 수도 있습니다만, 만약 당신이 사람과 놀이를 하기가 여의치 않으면, 인공지능 상대로 놀이를 해볼 수 있습니다."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]함께놀기[font=\"sans-14\"] – 인터넷을 통하여 사람과 놀이를 합니다."
+msgstr "• [font=\"sans-bold-14\"]함께 놀기[font=\"sans-14\"] – 인터넷을 통하여 사람과 놀이를 합니다."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -139,11 +139,11 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "함께 놀기를 하기위해서 \"놀이 만들기\"를 눌러야합니다. 이 게임은 UDP port 20595를 사용하며 놀이 주최자가 NAT/firewall/etc로 환경설정을 해야합니다. 다른 선수들은 \"놀이 참여하기\"를 선택해서 와 게임 주최자의 IP 주소로 들어갈 수 있습니다."
+msgstr "함께 놀기를 하기위해서 \"놀이 만들기\"를 눌러야합니다. 이 놀이는 UDP port 20595를 사용하며 놀이 주최자가 NAT/firewall/etc로 환경설정을 해야합니다. 다른 선수들은 \"놀이 참여하기\"를 선택해서 와 놀이 주최자의 IP 주소로 들어갈 수 있습니다."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr "[font=\"sans-bold-16\"]게임 설정"
+msgstr "[font=\"sans-bold-16\"]놀이 설정"
 
 #: gui/manual/intro.txt:29
 msgid ""
@@ -193,7 +193,7 @@ msgstr "마지막으로 설정을 변경하십시오. 아무 지도에서는 참
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "시작할 준비가 되면, \"게임 시작하기\"버튼을 누르세요."
+msgstr "시작할 준비가 되면, \"놀이 시작하기\"버튼을 누르세요."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -205,11 +205,11 @@ msgstr "[font=\"sans-bold-14\"]프로그램-전체"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: 확인 절차 없이 게임을 바로 종료합니다"
+msgstr "[font=\"sans-14\"]Alt + F4: 확인 절차 없이 놀이를 바로 종료합니다"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: 전체화면과 윈도우창 켜고 끄는 토글 키"
+msgstr "Alt + Enter: 전체 화면모드와 창모드 켜고 끔"
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
@@ -313,7 +313,7 @@ msgstr "L: 이전에 선택한 비공개 대화 파트너와 대화"
 
 #: gui/manual/intro.txt:68
 msgid "Pause: Pause/resume the game"
-msgstr "Pause: 게임을 중단/재개"
+msgstr "Pause: 놀이를 중단/재개"
 
 #: gui/manual/intro.txt:69
 msgid "Delete: Delete currently selected units/buildings"
@@ -339,15 +339,15 @@ msgstr "Alt + /: 모든 대기중인 전사를 선택"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ". (마침표): 대기중인 일꾼 선택하기 (시민군인 포함)"
+msgstr ". (마침표): 대기중인 일꾼 선택하기 (시민 군인 포함)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr "Shift + .: 대기중인 일꾼을 선택에 추가 (시민군인 포함)"
+msgstr "Shift + .: 대기중인 일꾼을 선택에 추가 (시민 군인 포함)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt + .: 모든 대기중인 일꾼 선택하기 (시민군인 포함)"
+msgstr "Alt + .: 모든 대기중인 일꾼 선택하기 (시민 군인 포함)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (Backslash): Select idle unit"
@@ -429,11 +429,11 @@ msgstr "Ctrl + Tab: 요약 창을 켜고 끕니다."
 
 #: gui/manual/intro.txt:93
 msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr "Alt + L: 대화창에서 함께놀기 앞마당을 표시합니다."
+msgstr "Alt + L: 대화창에서 함께 놀기 앞마당을 표시합니다."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr "Ctrl + B: 게임 내부의 거래와 교역 페이지를 표시하거나 숨깁니다."
+msgstr "Ctrl + B: 놀이 내부의 거래와 교역 페이지를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
@@ -449,7 +449,7 @@ msgstr "Alt + Shift + H: 문명 정보를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font = \"sans-bold-14\"]마우스 움직임 바꾸기"
+msgstr "[font=\"sans-bold-14\"]마우스 움직임 바꾸기"
 
 #: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
@@ -684,7 +684,7 @@ msgstr "왼쪽 드래그: 마우스를 사용하여 건물을 돌립니다 (토�
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr "[font=\"sans-bold-14\"]저장된 게임을 볼러올 때"
+msgstr "[font=\"sans-bold-14\"]저장된 놀이를 볼러올 때"
 
 #: gui/manual/intro.txt:156
 msgid ""
@@ -693,4 +693,4 @@ msgstr "[font=\"sans-14\"]Delete: 선택하고 저장된 놀이를 삭제하고 
 
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr "Shift: 저장된 게임을 삭제할 때 확인을 요청하지 않음"
+msgstr "Shift: 저장된 놀이를 삭제할 때 확인을 요청하지 않음"

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-26 15:23+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -542,87 +542,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "連線至 %(player)s 不佳（%(milliseconds)s 毫秒）"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "未知原因"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "這通常是因為主持端未轉發 UDP 20595 埠所造成的，可能是由防火牆或防毒軟體阻擋。"
+" by a firewall, or anti-virus software."
+msgstr ""
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr ""
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "主持端已結束遊戲"
+msgid "Incorrect network protocol version."
+msgstr ""
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "網路協定版本不正確"
+msgid "Game is loading, please try again later."
+msgstr ""
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "遊戲載入中，請稍後再試"
+msgid "Game has already started, no observers allowed."
+msgstr ""
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "遊戲已經開始，不允許觀察者"
+msgid "You have been kicked."
+msgstr ""
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "您已被踢出"
+msgid "You have been banned."
+msgstr ""
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "您已被封禁"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr ""
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "玩家名使用中。若您曾經斷線，請等待數秒再重試"
+msgid "Server full."
+msgstr ""
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "伺服器已滿"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr ""
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "安全大廳認證失敗了，Join via lobby"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[無效的值 %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "原因：%(reason)s。"
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "失去與伺服器的連線。"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "連線至伺服器失敗。"
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "已中斷連線"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "只有主持人可以踢出玩家！"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "使用者 (%(num)s)：%(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685

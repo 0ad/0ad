@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-27 10:57+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-30 13:49+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -563,87 +563,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Погане з'єднання з %(player)s (%(milliseconds)sмс"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Невідома причина"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Це часто викликано тим, що UDP порт 20595 не відкритий на стороні хоста, через брандмауер або антивірусне програмне забезпечення"
+" by a firewall, or anti-virus software."
+msgstr "Це часто викликано тим, що UDP порт 20595 не відкритий на стороні хосту, через брандмауер або антивірусне програмне забезпечення."
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr "Хост закінчив гру."
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "Хост закінчив гру"
+msgid "Incorrect network protocol version."
+msgstr "Неправильна версія мережевого протоколу."
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Неправильна версія мережевого протоколу"
+msgid "Game is loading, please try again later."
+msgstr "Гра завантажується, будь ласка, спробуйте знову пізніше."
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "Гра завантажується, будь ласка, спробуйте знову пізніше"
+msgid "Game has already started, no observers allowed."
+msgstr "Гра вже почалася, глядачі не дозволені."
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "Гра вже почалася. Глядачі не дозволені."
+msgid "You have been kicked."
+msgstr "Вас вигнали."
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Вас вигнали"
+msgid "You have been banned."
+msgstr "Вас заблокували."
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Вас заблокували"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr "Ім'я гравця уже використовується. Якщо ви були роз'єднані, спробуйте через декілька секунд."
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Ім'я гравця уже використовується. Якщо ви були роз'єднані, спробуйте через декілька секунд"
+msgid "Server full."
+msgstr "Сервер переповнений."
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "Сервер переповнений"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr "Захищена аутентифікація до лобі не вдалася. Приєднайтеся за допомогою лобі."
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "Захищена аутентифікація до лоббі не вдалася. Приєднайтеся за допомогою лоббі"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Неправильне значення %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Причини: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Втрачено підключення до серверу."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Помилка підключення до серверу."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Відключено"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Лише хост може викинути клієнтів!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Користувачі (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
@@ -1663,7 +1652,7 @@ msgstr "Ігри без оцінки"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Фільтрувати повтори за набором одного чи декількох, повних чи часткових імен гравців."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -3713,7 +3702,7 @@ msgstr "База вашої нової колонії."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Утримує великі ділянки території."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -3749,7 +3738,7 @@ msgstr "РИБАЛЬСТВО"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Рибальство в морі приносить щедрий улов."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -4174,7 +4163,7 @@ msgstr ""
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Доступно для: Карфагенян, Кушитів, Маур'їв, Персів, Птолемеїв та Селевкідів."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4182,11 +4171,11 @@ msgstr "КИТИ"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Океанічний ресурс."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 Харчів."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."

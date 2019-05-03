@@ -63,8 +63,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:45+0100\n"
-"PO-Revision-Date: 2019-01-07 14:24+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 14:53+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -158,7 +158,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Нет"
 
-#: gui/session/menu.js:465 gui/session/messages.js:178
+#: gui/session/menu.js:465 gui/session/messages.js:175
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Союзник"
@@ -167,7 +167,7 @@ msgstr "Союзник"
 msgid "Neutral"
 msgstr "Нейтрал"
 
-#: gui/session/menu.js:466 gui/session/messages.js:179
+#: gui/session/menu.js:466 gui/session/messages.js:176
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Враг"
@@ -337,7 +337,7 @@ msgstr "Пауза"
 msgid "Paused by %(players)s"
 msgstr "Приостановлено игроком %(players)s"
 
-#: gui/session/menu.js:1219 gui/session/messages.js:701
+#: gui/session/menu.js:1219 gui/session/messages.js:698
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ", "
@@ -412,313 +412,307 @@ msgstr "Подключен к серверу."
 msgid "Connection to the server has been lost."
 msgstr "Подключение к серверу разорвано."
 
-#. Translation: States the reason why the client disconnected from the server.
 #: gui/session/messages.js:154
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Причина: %(reason)s."
-
-#: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
 msgstr "Ожидание подключения игроков"
 
-#: gui/session/messages.js:158
-msgid "Synchronising gameplay with other players…"
-msgstr "Синхронизация игры с другими игроками..."
+#: gui/session/messages.js:155
+msgid "Synchronizing gameplay with other players…"
+msgstr ""
 
-#: gui/session/messages.js:167
+#: gui/session/messages.js:164
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:168
+#: gui/session/messages.js:165
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:171
+#: gui/session/messages.js:168
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:172
+#: gui/session/messages.js:169
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:177 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:174 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Команда"
 
-#: gui/session/messages.js:180 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:518
 msgid "Observer"
 msgstr "Наблюдатель"
 
-#: gui/session/messages.js:181
+#: gui/session/messages.js:178
 msgid "Private"
 msgstr "Личный"
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:214
 msgctxt "chat history filter"
 msgid "Chat and notifications"
 msgstr "Чат и уведомления"
 
-#: gui/session/messages.js:222
+#: gui/session/messages.js:219
 msgctxt "chat history filter"
 msgid "Chat messages"
 msgstr "Сообщения чата"
 
-#: gui/session/messages.js:227
+#: gui/session/messages.js:224
 msgctxt "chat history filter"
 msgid "Players chat"
 msgstr "Чат игроков"
 
-#: gui/session/messages.js:234
+#: gui/session/messages.js:231
 msgctxt "chat history filter"
 msgid "Ally chat"
 msgstr "Чат союзников"
 
-#: gui/session/messages.js:241
+#: gui/session/messages.js:238
 msgctxt "chat history filter"
 msgid "Enemy chat"
 msgstr "Чат врагов"
 
-#: gui/session/messages.js:248
+#: gui/session/messages.js:245
 msgctxt "chat history filter"
 msgid "Observer chat"
 msgstr "Чат зрителей"
 
-#: gui/session/messages.js:255
+#: gui/session/messages.js:252
 msgctxt "chat history filter"
 msgid "Private chat"
 msgstr "Личный чат"
 
-#: gui/session/messages.js:261
+#: gui/session/messages.js:258
 msgid "You have won!"
 msgstr "Вы выиграли!"
 
-#: gui/session/messages.js:262
+#: gui/session/messages.js:259
 msgid "You have been defeated!"
 msgstr "Вам нанесли поражение!"
 
-#: gui/session/messages.js:270
+#: gui/session/messages.js:267
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Вы заключили союз с %(player)s."
 
-#: gui/session/messages.js:271
+#: gui/session/messages.js:268
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Вы объявили войну %(player)s."
 
-#: gui/session/messages.js:272
+#: gui/session/messages.js:269
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Вы в нейтральных отношениях с %(player)s."
 
-#: gui/session/messages.js:275
+#: gui/session/messages.js:272
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s заключил с вами союз."
 
-#: gui/session/messages.js:276
+#: gui/session/messages.js:273
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s объявил вам войну."
 
-#: gui/session/messages.js:277
+#: gui/session/messages.js:274
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s с вами в нейтральных отношениях."
 
-#: gui/session/messages.js:280
+#: gui/session/messages.js:277
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s теперь в союзе с %(player2)s."
 
-#: gui/session/messages.js:281
+#: gui/session/messages.js:278
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s теперь в состоянии войны с %(player2)s."
 
-#: gui/session/messages.js:282
+#: gui/session/messages.js:279
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s теперь нейтрален к %(player2)s."
 
-#: gui/session/messages.js:590
+#: gui/session/messages.js:587
 msgid "Click to quit this tutorial."
 msgstr "Нажмите, чтобы покинуть обучение."
 
-#: gui/session/messages.js:591
+#: gui/session/messages.js:588
 msgid "Quit"
 msgstr "Выйти"
 
-#: gui/session/messages.js:595
+#: gui/session/messages.js:592
 msgid "Click when ready."
 msgstr "Нажмите, когда будете готовы."
 
-#: gui/session/messages.js:599
+#: gui/session/messages.js:596
 msgid "Follow the instructions."
 msgstr "Следуйте указаниям."
 
-#: gui/session/messages.js:690
+#: gui/session/messages.js:687
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:696
+#: gui/session/messages.js:693
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr "Ошибка синхронизации на %(turn)s ходу."
 
-#: gui/session/messages.js:700
+#: gui/session/messages.js:697
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
 msgstr "Игроки: %(players)s"
 
-#: gui/session/messages.js:705
+#: gui/session/messages.js:702
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
 msgstr "Состояние вашей игры идентично состоянию игр хостов."
 
-#: gui/session/messages.js:706
+#: gui/session/messages.js:703
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
 msgstr "Состояние вашей игры отличается от состояния игр хостов."
 
-#: gui/session/messages.js:712
+#: gui/session/messages.js:709
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr "Переподключение к многопользовательским играм с ИИ ещё не поддерживается!"
 
-#: gui/session/messages.js:715
+#: gui/session/messages.js:712
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
 msgstr "Убедитесь, что все игроки используют одни и те же моды моды."
 
-#: gui/session/messages.js:716
+#: gui/session/messages.js:713
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
 msgstr "Кликните по кнопке \"Сообщить об ошибке\" в главном меню, чтобы помочь исправить это."
 
-#: gui/session/messages.js:717
+#: gui/session/messages.js:714
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
 msgstr "Повтор сохранен в %(filepath)s"
 
-#: gui/session/messages.js:720
+#: gui/session/messages.js:717
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr "Запись текущего состояния в %(filepath)s"
 
-#: gui/session/messages.js:728 gui/session/messages.js:739
+#: gui/session/messages.js:725 gui/session/messages.js:736
 msgid "Out of Sync"
 msgstr "Рассинхронизация"
 
-#: gui/session/messages.js:736
+#: gui/session/messages.js:733
 msgid "Out-Of-Sync error!"
 msgstr "Ошибка синхронизации!"
 
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:738
+#: gui/session/messages.js:735
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr "Текущее состояние игры отличается от первоначального."
 
-#: gui/session/messages.js:802
+#: gui/session/messages.js:799
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Все"
 
-#: gui/session/messages.js:810
+#: gui/session/messages.js:807
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Союзники"
 
-#: gui/session/messages.js:814
+#: gui/session/messages.js:811
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Враги"
 
-#: gui/session/messages.js:820
+#: gui/session/messages.js:817
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Наблюдатели"
 
-#: gui/session/messages.js:849 gui/session/selection_details.js:79
+#: gui/session/messages.js:846 gui/session/selection_details.js:79
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[НЕ В СЕТИ] %(player)s"
 
-#: gui/session/messages.js:930
+#: gui/session/messages.js:927
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:931
+#: gui/session/messages.js:928
 msgid "HH:mm"
 msgstr "ЧЧ:мм"
 
-#: gui/session/messages.js:975
+#: gui/session/messages.js:972
 msgid "Unknown Player"
 msgstr "Неизвестный Игрок"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:1000
+#: gui/session/messages.js:997
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:1032
+#: gui/session/messages.js:1029
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s передал вам %(amounts)s."
 
-#: gui/session/messages.js:1034
+#: gui/session/messages.js:1031
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Вы передали %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:1039
+#: gui/session/messages.js:1036
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s отправил %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:1059
+#: gui/session/messages.js:1056
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s обменял %(amountsBought)s на %(amountsSold)s."
 
-#: gui/session/messages.js:1072
+#: gui/session/messages.js:1069
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "%(attacker)s напал на Ваш скот!"
 
-#: gui/session/messages.js:1073
+#: gui/session/messages.js:1070
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Вас атаковал %(attacker)s!"
 
-#: gui/session/messages.js:1090
+#: gui/session/messages.js:1087
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s начал переход к этапу %(phaseName)s."
 
-#: gui/session/messages.js:1092
+#: gui/session/messages.js:1089
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "Игрок %(player)s отменил переход к этапу %(phaseName)s."
 
-#: gui/session/messages.js:1095
+#: gui/session/messages.js:1092
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s достиг этапа %(phaseName)s."
 
-#: gui/session/messages.js:1147
+#: gui/session/messages.js:1144
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -1157,20 +1151,20 @@ msgstr "Население (текущее / предел)"
 msgid "Maximum population: %(popCap)s"
 msgstr "Предел населения: %(popCap)s"
 
-#: gui/session/session.js:1469
+#: gui/session/session.js:1470
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Заметка: режим искривления времени - это опция для разработчиков, не предназначенная для длительного использования. Неправильное использование данной опции может стать причиной переполнения памяти или краха."
 
-#: gui/session/session.js:1470
+#: gui/session/session.js:1471
 msgid "Time warp mode"
 msgstr "Искажение времени"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1487
+#: gui/session/session.js:1488
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"

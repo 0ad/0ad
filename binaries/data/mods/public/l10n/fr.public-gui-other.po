@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-26 15:23+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -581,87 +581,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Mauvaise connexion avec %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Raison inconnue"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Ceci est souvent causé par le port UDP 20595 qui doit être routé du côté de l'hôte, par un pare-feu, ou par un logiciel anti-virus."
+" by a firewall, or anti-virus software."
+msgstr ""
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr ""
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "L'hôte a mis fin à la partie"
+msgid "Incorrect network protocol version."
+msgstr ""
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Version de protocole réseau incorrecte"
+msgid "Game is loading, please try again later."
+msgstr ""
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "La partie est en cours de chargement, veuillez réessayer plus tard."
+msgid "Game has already started, no observers allowed."
+msgstr ""
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "La partie a déjà commencé, pas de spectateurs autorisés"
+msgid "You have been kicked."
+msgstr ""
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Vous avez été éjecté(e)"
+msgid "You have been banned."
+msgstr ""
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Vous avez été banni(e)"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr ""
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Nom de joueur déjà utilisé. Si vous avez été déconnecté(e), réessayez dans quelques secondes"
+msgid "Server full."
+msgstr ""
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "Serveur complet"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr ""
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "L'authentification sécurisée au hall a échoué. Rejoignez via le hall"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valeur invalide %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Motif : %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Connexion au serveur perdue."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Échec de connexion au serveur."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Déconnecté"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Seul l'hôte peut exclure les clients !"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Utilisateurs (%(num)s) : %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685

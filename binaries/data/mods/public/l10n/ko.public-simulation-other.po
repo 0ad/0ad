@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-04-27 08:13+0000\n"
+"PO-Revision-Date: 2019-05-01 15:22+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "이번에는 %(_player_)s 님을 도와드릴 수 있지만, 앞으로�
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "저는 %(resource)s 자원이 필요합니다. 도와주시겠어요? 보상해 드리겠습니다."
+msgstr "나는 %(resource)s 자원이 필요합니다. 도와주시겠습니까? 보상해 드리겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
@@ -365,27 +365,27 @@ msgstr "%(_player_)s 님, 중립 협정을 위한 나의 제안을 취소하기�
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr "%(_player_)s 님, 당신이 우리 사이의 평화에 대한 나의 요청에 응답하지 않았기 때문에, 나의 제안을 포기했습니다."
+msgstr "%(_player_)s 님, 당신이 우리 사이의 평화에 대한 나의 요청에 응답하지 않았기 때문에, 나의 협정을 파기합니다."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "알 수 없는 오류로 인해 %(name)을(를) 건설할 수 없습니다"
+msgstr "알 수 없는 오류로 인해 %(name)s 건축물을 지을 수 없습니다"
 
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)s 님은 미개척 지역에 건설할 수 없습니다"
+msgstr "%(name)s 건축물은 미개척 지역에 건설할 수 없습니다"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)s 님은 다른 건물이나 자원에 건설할 수 없습니다"
+msgstr "%(name)s 건축물은 다른 건물이나 자원에 건설할 수 없습니다"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "%(name)s 건물은 잘못된 지형에 건설할 수 없습니다"
+msgstr "%(name)s 건축물은 잘못된 지형에 건설할 수 없습니다"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -427,7 +427,7 @@ msgstr "중립국"
 #: simulation/components/BuildRestrictions.js:209
 msgctxt "Territory type"
 msgid "enemy"
-msgstr "적군"
+msgstr "적국"
 
 #: simulation/components/BuildRestrictions.js:214
 #, javascript-format
@@ -509,12 +509,12 @@ msgstr "마지막으로 남은 선수가 승리 합니다."
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(limit)s의 %(category)s 건설 한도에 도달했습니다"
+msgstr "%(limit)s 의 %(category)s 건설 한도에 도달했습니다"
 
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(limit)s의 %(category)s 훈련 한도에 도달했습니다"
+msgstr "%(limit)s 의 %(category)s 훈련 한도에 도달했습니다"
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
@@ -743,7 +743,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "가장 먼저 불가사의를 짓거나 점령or 빼앗은 후, 일정 시간동안 지켜내야 게임에서 승리합니다. 불가사의가 파괴되거나 점령되면 타이머가 초기화됩니다. 연합군의 승리 모드가 활성화된 경우나, 자국의 동맹이 바뀌면 타이머가 초기화 됩니다."
+msgstr "가장 먼저 불가사의를 짓거나 점령or 빼앗은 후, 일정 시간동안 지켜내야 놀이에서 승리합니다. 불가사의가 파괴되거나 점령되면 타이머가 초기화됩니다. 연합군의 승리 모드가 활성화된 경우나, 자국의 동맹이 바뀌면 타이머가 초기화 됩니다."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -837,7 +837,7 @@ msgstr "작음"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "소형 지도는 1v1 매치에 적합합니다. 선수가 확장할 공간이 있는 상태에서 신속하게 적에게 접근할 수 있습니다."
+msgstr "소형 지도는 1v1 경기들에 적합합니다. 선수가 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -874,7 +874,7 @@ msgstr "아주 큼"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "초대형 지도는 적에게 도달하는 데 아주 오래 걸리고, 게임 성능이 저하될 수 있기 때문에 권장하지 않습니다."
+msgstr "초대형 지도는 적에게 도달하는 데 아주 오래 걸리고, 놀이 성능이 저하될 수 있기 때문에 권장하지 않습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"

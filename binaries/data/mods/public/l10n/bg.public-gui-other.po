@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-27 20:31+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 19:39+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -548,87 +548,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Лоша връзка с%(player)s (%(milliseconds)sмсек)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Неизвестна причина"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Най-честата причина за това е, че портът за UDP с номер 20595 при сървъра не се препраща. Но може да бъде проблем със защитна стена или антивирусна програма"
+" by a firewall, or anti-virus software."
+msgstr "Най-честата причина за това е, че портът за UDP с номер 20595 при сървъра не се препраща. Но може да бъде проблем със защитна стена или антивирусна програма."
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr "Сървърът прекрати играта."
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "Сървърът прекрати играта"
+msgid "Incorrect network protocol version."
+msgstr "Неправилна версия на мрежовия протокол."
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Неправилна версия на мрежовия протокол"
-
-#: gui/common/network.js:70
-msgid "Game is loading, please try again later"
+msgid "Game is loading, please try again later."
 msgstr "Играта зарежда. Моля, опитайте отново по-късно."
 
-#: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
+#: gui/common/network.js:70
+msgid "Game has already started, no observers allowed."
 msgstr "Играта вече е започнала. Наблюдатели не са позволени."
 
-#: gui/common/network.js:72
-msgid "You have been kicked"
+#: gui/common/network.js:71
+msgid "You have been kicked."
 msgstr "Вие бяхте изритан(а) от играта."
 
+#: gui/common/network.js:72
+msgid "You have been banned."
+msgstr "Вие получихте забрана за достъп."
+
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Вие получихте забрана за достъп"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr "Името е заето. Ако сте били разкачен(а), опитайте отново след няколко секунди."
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Името е заето. Ако сте били разкачен(а), опитайте отново след няколко секунди"
+msgid "Server full."
+msgstr "Сървърът е пълен."
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "Сървърът е пълен"
-
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
+msgid "Secure lobby authentication failed. Join via lobby."
 msgstr "Защитеното удостоверяване в чакалнята беше неуспешно. Присъединете се чрез чакалнята."
 
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Неправилна стойност %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Причина: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Изгубена връзка към сървъра."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Неуспешно свързване към сървъра."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Разкачен"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Само сървърът може да изритва клиентите!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Потребители (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685

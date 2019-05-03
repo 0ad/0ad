@@ -5,14 +5,14 @@
 # Translators:
 # LeviTaule <levi.taule@gmail.com>, 2017
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
-# T Hanax <nospam@hanax.eu>, 2019
+# Tom Hanax, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: T Hanax <nospam@hanax.eu>, 2019\n"
+"Last-Translator: Tom Hanax, 2019\n"
 "Language-Team: Slovak (https://www.transifex.com/wildfire-games/teams/17418/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,8 +50,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
-"Vyber budovu občianskeho centra, drž %(hotkey)s a raz klikni na ikonu "
-"Hoplitu aby si začal trénovať skupinu Hoplitov."
+"Vyber budovu Občianskeho Centra. Stlač a podrž %(hotkey)s, pričom raz "
+"klikneš na ikonu Hoplita - začne sa trénovať skupina Hoplitov."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -61,8 +61,8 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
-"Nezabudni pri kliknutí podržať klávesu pre skupinový tréning na vytvorenie "
-"viacerých jednotiek."
+"Nezabudni pri kliknutí podržať klávesu pre skupinový tréning - tak sa "
+"vytvorí viacero jednotiek v skupine."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
@@ -148,8 +148,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
-"Označ občianske Centrum a potom pravým tlačidlom myši klikni na stromy, hneď"
-" ako sa ti kurzor zmení na ikonu dreva. "
+"Označ občianske Centrum a prejdi kurzorom myši ponad strom. Keď sa kurzor "
+"zmení na ikonu dreva, klikni pravým tlačidlom na stromy."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -184,12 +184,12 @@ msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
-"Začni výcvik skupiny občianok v Občianskom Centre a ako jeho zhromaždisko "
-"nastav farmu (klikni na ňu pravým tlačidlom myši)."
+"Začni s tréningom skupiny žien-občianok v Občianskom Centre - ako jeho "
+"zhromaždisko nastav farmu (klikni na ňu pravým tlačidlom myši)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr "Klikni na ikonu občianky."
+msgstr "Klikni na ikonu ženy-občianky."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
@@ -218,7 +218,7 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr ""
-"Prichádza nepriateľ. Vytrénuj väčšie vojsko na odrazenie útoku nepriateľov."
+"Prichádza nepriateľ. Vytrénuj ďalších vojakov, aby si odrazil jeho útok."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
@@ -237,8 +237,8 @@ msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
-"Po dosiahnutí požiadavkov na Fázu Mesta, vyber Občianske Centrum a postúp do"
-" Fázy Mesta. "
+"Keď splníš požiadavky na Fázu Mesta, vyber Občianske Centrum a postúp do "
+"Fázy Mesta. "
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
@@ -272,7 +272,8 @@ msgstr "Občianky by mali naďalej získavať suroviny."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr "Nepriateľ bol porazený. Splnil si všetky úlohy tutoriálu."
+msgstr ""
+"Nepriateľ bol porazený. Splnil si všetky úlohy tejto výučby (tutoriálu)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -293,15 +294,15 @@ msgid ""
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
 "\n"
-"Pred  spustením, môžeš prepínať medzi celou obrazovkou a windows móde použitím %(hotkey)s."
+"Než začneme - môžeš prepínať medzi celou obrazovkou a módom \"v okne\" použitím %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
-"Môžeš zmeniť úroveň priblíženia pomocou kolečka na myši a kamery pomocou "
-"rôznych šípkových klávesov.\n"
+"Môžeš meniť úroveň priblíženia pomocou kolieska myši a polohu kamery pomocou"
+" šípok na klávesnici.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -314,7 +315,7 @@ msgid ""
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
 "\n"
-"Môžeš prepínať medzi ukázaním a schovaním tohto tutoriál panelu kedykoľvek použitím %(hotkey)s.\n"
+"Tiež môžeš kedykoľvek prepínať medzi zobrazením a schovaním tohto výučbového panelu použitím %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -335,11 +336,12 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
-"Po označení Občianskeho Centra sa zobrazia nižšie v pravo akcie ktoré budova"
-" podporuje. Pre panel produkcie, dostupné akcie nie sú zamaskované žiadnou "
-"farbou, no ikony zafarbené šedou alebo červenou nie sú ešte dostupné alebo "
-"nemáš dostatočné prostriedky na prevedenie akcie. Navyše môžeš umiestniť "
-"kurzor na ikonu pre zobrazenie popisky s podrobnosťami.\n"
+"Po označení Občianskeho Centra sa zobrazia vpravo dolu zobrazí panel "
+"produkcie s vyobrazením akcií, ktoré budova umožňuje vykonať. V paneli "
+"produkcie nie sú dostupné akcie zamaskované žiadnou farbou, no ikony "
+"zafarbené šedou alebo červenou nie sú ešte dostupné, alebo nemáš na "
+"vykonanie akcie dostatočné prostriedky. Navyše môžeš umiestniť kurzor na "
+"ikonu pre zobrazenie informácie s podrobnosťami.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -403,7 +405,7 @@ msgid ""
 "the units you want to select.\n"
 msgstr ""
 "1) Podrž ľavé tlačidlo myši a ťahaj výberový obdĺžnik, ktorý obklopuje "
-"jednotky, ktoré chceš vybrať."
+"jednotky, ktoré chceš vybrať.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -452,14 +454,14 @@ msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
-"Vojenský Občania Jazdy sú výborný lovci. Označ svoju jazdu a prikáž mu "
-"uloviť sliepky okolo tvojho Občianskeho Centra podobným spôsobom "
+"Vojenskí občania - jazdci sú výborní lovci. Označ svojho jazdca a prikáž mu "
+"podobným spôsobom, aby šiel loviť sliepky okolo Občianskeho Centra."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
-"Všetky tvoje jednotky zbierajú zdroje. Mali by sme vytrénovať viac "
+"Všetky tvoje jednotky teraz zbierajú zdroje. Mali by sme vytrénovať viac "
 "jednotiek!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
@@ -471,11 +473,11 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"Najprv nastavme zhromaždisko. Nastavením zhromaždiska na budovách v ktorých "
-"sa trénujú jednotky dostanú nové jednotky automaticky úlohu, ktorú majú "
+"Najprv nastavme zhromaždisko. Nastavením zhromaždiska na budovách, v ktorých"
+" sa trénujú jednotky, dostanú nové jednotky automaticky úlohu, ktorú majú "
 "vykonávať. Chceme, aby nové jednotky šli ťažiť drevo zo stromov na juhu od "
 "Občianskeho Centra. Na to je potrebné zvoliť Občianske Centrum (kliknutím "
-"naň) a potom kliknúť pravým tlačidlom na niektorý strom."
+"naň) a potom kliknúť pravým tlačidlom na niektorý strom.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -487,8 +489,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
-"Označ Občianske Centrum a potom pravým tlačidlom myši klikni na stromy, hneď"
-" ako sa ti kurzor zmení na ikonu dreva. "
+"Označ občianske Centrum a prejdi kurzorom myši ponad strom. Keď sa kurzor "
+"zmení na ikonu dreva, klikni pravým tlačidlom na stromy."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -515,8 +517,8 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
-"Nezabudni podržať Shift počas trénovania na vycvičenie niekoľkých jednotiek."
-" "
+"Nezabudni pri kliknutí podržať klávesu pre skupinový tréning - tak sa "
+"vytvorí viacero jednotiek v skupine."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
@@ -570,6 +572,13 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Pretože ho však musia nosiť do Občianskeho Centra na uskladnenie, ich "
+"efektivita ťažby klesá s rastúcou vzdialenosťou. Pomohlo by, keby sme blízko"
+" stromov postavili Sklad - je to zberné miesto pre drevo, kameň a kov. "
+"Urobme to: vyber piatich novo-vytrénovaných občanov-vojakov a pohľadaj panel"
+" výstavby na pravom dolnom okraji obrazovky. Klikni na ikonu Skladu, presuň "
+"kurzor myši čo najbližšie k stromom, ktoré chceš ťažiť, a kliknutím ho "
+"postav.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -599,16 +608,19 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
-"Poďme vytrénovať nejaké občianky pre ťažbu viac jedla. Označ Občianske "
-"Centrum, podrž Shift a klikni na ikonu občianky pre vytvorenie 5 občianok. "
+"Poďme vytrénovať nejaké ženy-občianky, aby sme získali viac jedla. Označ "
+"Občianske Centrum, podrž Shift a klikni na ikonu ženy-občianky na vytvorenie"
+" 5 občianok. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
-msgstr "Nezabudni podržať Shift a kliknúť na tréning niekoľkých jednotiek. "
+msgstr ""
+"Nezabudni pri kliknutí podržať klávesu pre skupinový tréning - tak sa "
+"vytvorí viacero jednotiek v skupine."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr "Podrž Shift a klikni na ikonu Občianky. "
+msgstr "Podrž Shift a klikni na ikonu Ženy-občianky. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -617,6 +629,10 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Zdá sa, že teraz máme už dosť pracovníkov, ktorí ťažia drevo. Bolo by dobré "
+"nastaviť zhromaždisko Občianskeho Centra niekde mimo stromov. Najlepšie bude"
+" ho zrušiť. Zvoľ Občianske Centrum a potom naň klikni  pravým tlačidlom "
+"(ikonka vlajky indikujúca zhromaždisko bude preškrtnutá)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -630,6 +646,11 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Medzitým upriam svoju pozornosť na počítadlo populácie v hornom paneli. Je "
+"to piata položka zľava, vedľa počítadiel surovín. Bolo by obozretné ju "
+"priebežne sledovať. Indikuje aktuálny stav populácie (zahŕňajúc práve "
+"trénované jednotky) a aktuálny limit obyvateľstva, ktorý určujú postavené "
+"budovy."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -662,6 +683,15 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Vyber svoje dve novo-vytrénované ženy-občianky a pošli ich postaviť "
+"spomínané domy na voľnom priestranstve na východ od Občianskeho Centra. "
+"Spravíš to tak, že po vybratí žien klikneš v paneli dolu vpravo na ikonu "
+"Dom. Teraz podržíš Shift a klikneš na mape na miesto, kde chceš postaviť "
+"prvý dom. Potom klikneš na miesto, kde chceš postaviť druhý dom. Tým, že si "
+"držal Shift si nasledujúci príkaz stavby zaradil do poradia - jednotky, "
+"ktoré skončia s aktuálnou robotou, pokračujú nasledujúcim príkazom v poradí."
+" Aby si nenarobil domy po celej mape, stlač Esc, čím ukončíš mód výstavby "
+"domu.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
@@ -719,6 +749,12 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Ak sa pokúsiš vybrať tri nečinné ženy-občianky tak, že klikneš a budeš ťahať"
+" výberový obdĺžnik ponad ne, môže sa ti stať, že nechtiac vyberieš aj iné "
+"jednotky. Aby si sa tomu vyhol, pri vyberaní podrž klávesu I - budú vybraté "
+"iba nečinné jednotky. Ak náhodou zvolíš jazdca, podrž Ctrl a klikni na ikonu"
+" jazdca na výberovom paneli v dolnej časti obrazovky - jednotka jazdca bude "
+"z aktuálneho výberu odstránená."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -815,6 +851,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Napríklad môžeš zvýšiť rýchlosť farmárčenia, ak vyskúmaš technológiu v "
+"budove statku. Zvoľ teda statok a pozri sa na panel produkcie v pravom "
+"dolnom rohu obrazovky. Uvidíš tam viacero technológii na vyskúmanie. "
+"Poprechádzaj kurzorom myši ponad ne a popozeraj si ich ceny a efekty (čo "
+"nimi získaš). Klikni na tú, ktorá sa ti zapáči, a spusť výskum."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -949,7 +990,7 @@ msgstr "hráč  2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr "Úvodný tutoriál"
+msgstr "Úvodná výučba (tutoriál)"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""

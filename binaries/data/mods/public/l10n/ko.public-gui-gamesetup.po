@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-20 09:26+0000\n"
+"PO-Revision-Date: 2019-05-01 14:28+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "아무거나"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr "게임을 시작할 때 임의로 한 문명을 선택합니다."
+msgstr "놀이를 시작할 때 임의로 한 문명을 선택합니다."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -77,7 +77,7 @@ msgstr "준비 상태 유지"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr "게임 설정이 변경되더라도 준비 상태를 유지합니다."
+msgstr "놀이 설정이 변경되더라도 준비 상태를 유지합니다."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -138,7 +138,7 @@ msgstr "해군 지도"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "적에게 접근하기 위해 선박이 필요한 곳의 지도."
+msgstr "적국에게 접근하기 위해 선박이 필요한 곳의 지도."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
@@ -390,7 +390,7 @@ msgstr "첩자 활동 비활성화"
 
 #: gui/gamesetup/gamesetup.js:915
 msgid "Disable spies during the game."
-msgstr "게임중에 첩자 활동을 비활성화 합니다."
+msgstr "놀이중에 첩자 활동을 비활성화 합니다."
 
 #: gui/gamesetup/gamesetup.js:926
 msgid "Teams Locked"
@@ -420,11 +420,11 @@ msgstr "치트의 사용할지 여부를 토글합니다."
 
 #: gui/gamesetup/gamesetup.js:969
 msgid "Rated Game"
-msgstr "게임 순위등급"
+msgstr "놀이 순위 등급"
 
 #: gui/gamesetup/gamesetup.js:970
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "이 게임이 순위표에 등급이 기록될지 여부를 토글합니다."
+msgstr "이 놀이가 순위표에 등급이 기록될지 여부를 토글합니다."
 
 #: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
@@ -451,7 +451,7 @@ msgstr "현재 설정으로 새로운 놀이를 시작합니다."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "현재 설정으로 새 게임을 시작합니다 (모든 선수가 준비될 때까지 사용안함)."
+msgstr "현재 설정으로 새 놀이를 시작합니다 (모든 선수가 준비될 때까지 사용안함)."
 
 #: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
@@ -588,7 +588,7 @@ msgstr "서버에 등록하는 중"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:227
 msgid "Game has already started, rejoining..."
-msgstr "놀이가 이미 시작되었습니다. 다시 가입 중"
+msgstr "놀이가 이미 시작되었습니다. 다시 합류 중..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:298
 msgid "Game name already in use."
@@ -601,7 +601,7 @@ msgstr "STUN을 통해 호스트하지 못함."
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "게임을 호스트할 수 없음: %(message)s."
+msgstr "놀이를 호스트할 수 없음: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
 msgid "Error"
@@ -610,7 +610,7 @@ msgstr "오류"
 #: gui/gamesetup_mp/gamesetup_mp.js:351
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr "게임에 참여할 수 없음: %(message)s."
+msgstr "놀이에 참여할 수 없음: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
@@ -661,7 +661,7 @@ msgstr "확인"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
-msgstr "설정 일치"
+msgstr "경기 설정"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
@@ -722,7 +722,7 @@ msgstr "대화창에서 함께 놀기 앞마당을 표시합니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "함께놀기"
+msgstr "함께 놀기"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -846,7 +846,7 @@ msgstr "\"자신의 불행보다 다른 사람의 불행으로 현명하게 대�
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr "\"적들의 약속은 깨졌습니다.\" - 이솝 (\"간호사와 늑대\")"
+msgstr "\"적국들의 약속은 깨졌습니다.\" - 이솝 (\"간호사와 늑대\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
@@ -863,7 +863,7 @@ msgstr "\"만약 내가 고귀한 일을 했다면, 그것은 충분한 기념�
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr "\"스파르타인들은 몇 명인지 묻지 않고 오직 적이 어디에 있는지 묻습니다.\" - 아기스 II of Sparta (플루타르크, \"모랄리아\", XVI. \"스파르타인의 명언\", 215d)"
+msgstr "\"스파르타인들은 몇 명인지 묻지 않고 오직 적국이 어디에 있는지 묻습니다.\" - 아기스 II of Sparta (플루타르크, \"모랄리아\", XVI. \"스파르타인의 명언\", 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -1873,19 +1873,19 @@ msgstr "\"None can be free who is a slave to, and ruled by, his passions.\" - �
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr "\"Do not say few things in many words, but many things in few words.\" - 피타고라스 (스토바에우스, \"플로릴레기움\", 24)"
+msgstr "\"많은 단어로 적은 말을 하지 말고, 적은 단어로 많은 것을 말을 하라.\" - 피타고라스 (스토바에우스, \"플로리레기움\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr "\"Let your speech be better than silence, or be silent.\" - 피타고라스 (스토바에우스, \"플로릴레기움\", 24)"
+msgstr "\"침묵보다 연설을 더 낫게 하든지, 아니면 조용히 하든지.\" - 피타고라스 (스토바에우스, \"플로릴레기움\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr "\"Unity strengthens even small states, while discord undermines the mightiest empires.\" - 살루스티우스 (\"유구르타 전쟁\", 10.6)"
+msgstr "\"단결은 작은 국가들조차 강화시키는 반면, 갈등은 가장 강력한 제국도 약화시킨다.\" - 살루스티우스 (\"유구르타 전쟁\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -2170,7 +2170,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr "\"그것을 원하는 사람은 계획적이고 교활하고, 지혜롭고 기만적이고, 도둑과 강도가 있어야 하며, 모든 점에서 적을 과장해야 합니다.\" - 적보다 우위를 점할 수 있는 최선의 방법에 대한 크세노폰 ( \"키로스의 교육\", 1.6.26)"
+msgstr "\"그것을 원하는 사람은 계획적이고 교활하고, 지혜롭고 기만적이고, 도둑과 강도가 있어야 하며, 모든 점에서 적국을 과장해야 합니다.\" - 적국보다 우위를 점할 수 있는 최선의 방법에 대한 크세노폰 ( \"키로스의 교육\", 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""

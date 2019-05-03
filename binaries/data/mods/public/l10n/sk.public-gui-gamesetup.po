@@ -20,12 +20,13 @@
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2017-2019
+# Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-04-29 18:59+0000\n"
+"Last-Translator: Tom Hanax\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -331,7 +332,7 @@ msgstr "Výberte hráčov tím."
 
 #: gui/gamesetup/gamesetup.js:774
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Zvoľ civilizáciu tohto hráča."
 
 #: gui/gamesetup/gamesetup.js:788
 msgid "Pick a color."
@@ -343,7 +344,7 @@ msgstr "Ubytovanie hrdinu "
 
 #: gui/gamesetup/gamesetup.js:843
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Nastav, či môžu byť hrdinovia umiestnení v budovách."
 
 #: gui/gamesetup/gamesetup.js:855
 msgid "Nomad"
@@ -385,7 +386,7 @@ msgstr "Zakázať poklady"
 
 #: gui/gamesetup/gamesetup.js:903
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Nepridávaj na mapu poklady."
 
 #: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
@@ -432,7 +433,7 @@ msgstr "Prepnúť, či bude hra hodnotená a umiestnená v rebríčku."
 #: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Stlačte %(hotkey)s pre automatické doplnenie hráčskych mien alebo nastavení."
 
 #: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
@@ -454,7 +455,7 @@ msgstr "Začať novú hru so súčasnými nastaveniami."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Začať novú hru s aktuálnymi nastaveniami (nemožné kým všetci hráči nie sú pripravení)."
 
 #: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
@@ -471,7 +472,7 @@ msgstr "Konfigurovať AI: %(description)s."
 #: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Prepína %(name)s záložky nastavení."
 
 #: gui/gamesetup/gamesetup.js:1405
 #, javascript-format
@@ -625,7 +626,7 @@ msgstr "Hra hráča %(playername)s"
 #: gui/loading/loading.js:33
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -696,7 +697,7 @@ msgstr "Tím"
 
 #: gui/gamesetup/gamesetup.xml:(caption):125
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Zobraziť túto správu aj v budúcnosti."
 
 #: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
@@ -713,7 +714,7 @@ msgstr "Späť"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Vrátiť všetky nastavenia vybratých civilizácií na predvolenú hodnotu (náhodné)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."

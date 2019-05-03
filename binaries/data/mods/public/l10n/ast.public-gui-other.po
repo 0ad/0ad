@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-27 00:44+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-05-02 18:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -541,87 +541,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Mala conexón con %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Razón desconocida"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Esto prodúcenlo davezu una non remisión del puertu UDP 20595 pel llau del agospiu, un tornafuéu o un programa antivirus"
+" by a firewall, or anti-virus software."
+msgstr "Esto prodúcenlo davezu una non remisión del puertu UDP 20595 pel llau del agospiu, un tornafuéu o un programa antivirus."
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr "L'agospiu finó la partida."
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "L'agospiu finó la partida"
+msgid "Incorrect network protocol version."
+msgstr "Versión incorreuta del protocolu de rede."
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Versión incorreuta del protocolu de rede"
+msgid "Game is loading, please try again later."
+msgstr "La partida ta cargándose, vuelvi a tentalo más sero."
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "La partida ta cargándose, vuelvi a tentalo más sero"
+msgid "Game has already started, no observers allowed."
+msgstr "La partida yá ta en marcha, nun se permiten espeutadores."
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "La partida yá ta en marcha, nun se permiten espeutadores"
+msgid "You have been kicked."
+msgstr "Espuxáronte."
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Espuxáronte"
+msgid "You have been banned."
+msgstr "Torgáronte."
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Torgáronte"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr "Nome de xugador n'usu. Si te desconeutesti, reténtalo en dellos segundos."
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Nome de xugador n'usu. Si te desconeutesti, reténtalo en dellos segundos"
+msgid "Server full."
+msgstr "Sirvidor enllén."
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "Sirvidor enllén"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr "Falló l'autenticación segura de la sala. Xúnite pela sala."
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "Falló l'autenticación segura de la sala. Xúnite pela sala"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[valor non válidu %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Razón: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Perdióse la conexón al sirvidor."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Falló al coneutar col sirvidor."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Desconeutóse."
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "¡Namái l'agospiu pue espuxar a veceros!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Usuarios (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
@@ -3223,7 +3212,7 @@ msgstr "Visualización d'algame d'aura"
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr "Amosar l'algame de cura d'unidaes esbillaes (tamién pue activase en xuegu col atayu de tecláu)."
+msgstr "Amosar l'algame de curamientu d'unidaes esbillaes (tamién pue activase en xuegu col atayu de tecláu)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
@@ -4029,7 +4018,7 @@ msgstr "La so aura cura a unidaes averaes."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "Guarez unidaes mancaes pa una curación más rápida."
+msgstr "Guarez unidaes mancaes pa curales más rápido."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
