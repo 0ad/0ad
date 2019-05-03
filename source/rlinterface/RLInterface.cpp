@@ -103,12 +103,8 @@ class RLInterface final : public RLAPI::Service
                     g_Game->GetTurnManager()->PostCommand(command);
                 }
 
-                // FIXME: Why am I updating the turn manager??
-                //g_Game->GetTurnManager()->Update(200, 2);
                 g_Game->Update(200);
-
-                // Get the Game State
-                m_GameStates.push(GetGameState());
+                m_GameStates.push(GetGameState());  // Send the game state back to the request
             }
         }
 
