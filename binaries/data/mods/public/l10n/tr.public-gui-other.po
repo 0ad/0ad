@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-26 16:37+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 16:43+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -557,87 +557,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Kötü bağlantı %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Bilinmeyen sebep"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Bu çoğunlukla, ana bilgisayar tarafında, güvenlik duvarı veya anti-virüs yazılımı tarafından yönlendirilen 20595 UDP bağlantı noktası nedeniyle oluşur"
+" by a firewall, or anti-virus software."
+msgstr "Buna UDP girişi 20595'in evsahibinde ilerlememesi, güvenlik duvarı ya da antivirüs yazılımı neden olur."
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr "Evsahibi oyunu sonlandırdı."
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "Oyun kurucu oyunu sona erdirdi."
+msgid "Incorrect network protocol version."
+msgstr "Yanlış ağ protokolü sürümü."
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Geçersiz ağ protokol sürümü"
+msgid "Game is loading, please try again later."
+msgstr "Oyun yükleniyor, lütfen daha sonra tekrar deneyin."
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "Oyun yükleniyor, lütfen daha sonra tekrar deneyin"
+msgid "Game has already started, no observers allowed."
+msgstr "Oyun zaten başlatıldı, izleyicilere izin verilmiyor."
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "Oyun zaten başladı, izleyicilere izin verilmemektedir"
+msgid "You have been kicked."
+msgstr "Atıldın."
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Atıldın"
+msgid "You have been banned."
+msgstr "Banlandın."
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Yasaklandın"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr "Kullanıcı adı kullanımda. Bağlantınız kesildiyse, birkaç saniye içinde tekrar deneyin."
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Kullanıcı adı kullanılıyor. Eğer bağlantı kesildiyse, birkaç saniye sonra tekrar dene."
+msgid "Server full."
+msgstr "Sunucu dolu."
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "Sunucu dolu"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr "Güvenli lobi kimlik doğrulaması başarısız oldu. Lobiden katılın."
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "Güvenli lobi kimlik doğrulaması başarısız oldu. Lobiden katılın"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Geçersiz değer %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Sebep: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Sunucuya bağlantı kaybedildi."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Sunucuya bağlanırken Hata oluştu"
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Bağlatı kesildi"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Yanlız oyun kurucu diğer oyuncuları atabilir."
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Kullanıcılar (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -11,52 +11,63 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Clothing-red-stripes">
+    <variant name="kidaris-tied-yellow-a">
       <props>
         <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_kidaris_tied_yellow.xml" attachpoint="helmet"/>
       </props>
-      <textures>
-        <texture file="skeletal/pers_isp_a_1.dds" name="baseTex"/>
-      </textures>
     </variant>
-    <variant frequency="1" name="Clothing-blue-stripes">
+    <variant name="kidaris-tied-white-a">
       <props>
-        <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_pers_tiara.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
       </props>
-      <textures>
-        <texture file="skeletal/pers_isp_a_2.dds" name="baseTex"/>
-      </textures>
     </variant>
-    <variant frequency="1" name="Clothing-gold-stripes">
-      <props>
-        <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
-      </props>
-      <textures>
-        <texture file="skeletal/pers_isp_a_3.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Clothing-emerald">
+    <variant name="kidaris-tied-white-b">
       <props>
         <prop actor="props/units/heads/new/head_pers_tiara.xml" attachpoint="head"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tunic-basic-1a">
       <textures>
-        <texture file="skeletal/pers_isp_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_basic_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Clothing-gold">
-      <props>
-        <prop actor="props/units/heads/new/head_pers_tiara.xml" attachpoint="head"/>
-      </props>
+    <variant frequency="1" name="tunic-basic-1b">
       <textures>
-        <texture file="skeletal/pers_isp_e_2.dds" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_basic_1_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="Clothing-brown-stripes">
-      <props>
-        <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
-      </props>
+    <variant frequency="1" name="tunic-basic-1c">
       <textures>
-        <texture file="skeletal/pers_isp_b_1.dds" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_basic_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-basic-1d">
+      <textures>
+        <texture file="skeletal/pers_tunic_basic_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-basic-1e">
+      <textures>
+        <texture file="skeletal/pers_tunic_basic_1_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-basic-1f">
+      <textures>
+        <texture file="skeletal/pers_tunic_basic_1_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-basic-1g">
+      <textures>
+        <texture file="skeletal/pers_tunic_basic_1_g.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-basic-1h">
+      <textures>
+        <texture file="skeletal/pers_tunic_basic_1_h.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -67,7 +78,7 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_ranged_cavalry_javelin.xml"/>
-    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_pers.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_javelin.xml"/>

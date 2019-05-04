@@ -1,17 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_cav_crest.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_ball.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/pers_spearman_e.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="armor-1">
       <textures>
         <texture file="skeletal/pers_car_e_r.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_amband_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-armband-1a">
+      <textures>
+        <texture file="skeletal/pers_scale_amband_1_a.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_amband_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-armband-1b">
+      <textures>
+        <texture file="skeletal/pers_scale_amband_1_b.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_amband_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-armband-full-1a">
+      <textures>
+        <texture file="skeletal/pers_scale_amband_full_1_a.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_amband_full_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-armband-full-1b">
+      <textures>
+        <texture file="skeletal/pers_scale_amband_full_1_b.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_amband_full_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-sleeve-top-1a">
+      <textures>
+        <texture file="skeletal/pers_scale_sleeve_top_1_a.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_sleeve_top_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-sleeve-top-1b">
+      <textures>
+        <texture file="skeletal/pers_scale_sleeve_top_1_b.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_sleeve_top_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-sleeve-full-1a">
+      <textures>
+        <texture file="skeletal/pers_scale_sleeve_full_1_a.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-sleeve-full-1b">
+      <textures>
+        <texture file="skeletal/pers_scale_sleeve_full_1_b.png" name="baseTex"/>
+        <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -21,10 +74,10 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/promotion.xml" />
+    <variant file="biped/rider/promotion.xml"/>
     <variant file="biped/rider/attack_slaughter_pers.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec_helmet.xml</material>
 </actor>

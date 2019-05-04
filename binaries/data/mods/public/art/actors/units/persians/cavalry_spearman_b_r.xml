@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
@@ -13,14 +13,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Rider-Texture-1">
+    <variant frequency="3" name="pers_isp_a_padded_1g">
       <textures>
-        <texture file="skeletal/pers_csp_b_1.dds" name="baseTex"/>
+        <texture file="skeletal/pers_padded_1_g.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Rider-Texture-2">
+    <variant frequency="1" name="pers_isp_a_padded_1h">
       <textures>
-        <texture file="skeletal/pers_csp_b_2.dds" name="baseTex"/>
+        <texture file="skeletal/pers_padded_1_h.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1i">
+      <textures>
+        <texture file="skeletal/pers_padded_1_i.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -30,7 +35,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/promotion.xml" />
+    <variant file="biped/rider/promotion.xml"/>
     <variant file="biped/rider/attack_slaughter_pers.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death.xml"/>

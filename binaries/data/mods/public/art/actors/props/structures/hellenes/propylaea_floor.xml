@@ -8,8 +8,9 @@
         <texture file="props/hele_tile_c.dds" name="baseTex"/>
         <texture file="props/hele_tile_c_norm.png" name="normTex"/>
         <texture file="props/hele_tile_c_spec.png" name="specTex"/>
+        <texture file="structural/ao/athen_propylaea.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans_parallax_spec.xml</material>
+  <material>basic_trans_ao_parallax_spec.xml</material>
 </actor>

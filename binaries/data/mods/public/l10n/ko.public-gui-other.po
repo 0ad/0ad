@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-27 21:10+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-05-01 15:30+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,7 @@ msgstr "%(hotkey)s: 역사 닫기."
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s 놀이놀기??"
+msgstr "%(civilization)s 놀이 놀기??"
 
 #: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
@@ -341,7 +341,7 @@ msgstr "영웅들은 수비할 수 없고 습격에 취약합니다."
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
-msgstr "등급 게임"
+msgstr "등급 놀이"
 
 #: gui/common/gamedescription.js:300
 msgid ""
@@ -377,7 +377,7 @@ msgstr "오직 한 명의 선수만 경기에서 이길 수 있습니다. 남은
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
-msgstr "우리편 승리"
+msgstr "동맹 승리"
 
 #: gui/common/gamedescription.js:322
 msgid ""
@@ -396,7 +396,7 @@ msgstr "비활성화"
 #: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "처음 1분 동안은 다른 선수들이 중립을 지킬것입니다."
+msgstr[0] "처음 %(min)s 분 동안은 다른 선수들이 중립을 지킬것입니다."
 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
@@ -546,87 +546,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "%(player)s에 대한 연결이 잘못되었습니다 (%(milliseconds)s 밀리초)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "알수 없는 이유"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "이는 UDP 포트 20595가 호스트 측, 방화벽 또는 바이러스 백신 소프트웨어에서 전달되지 않는 경우가 많습니다"
+" by a firewall, or anti-virus software."
+msgstr "이는 UDP 포트 20595가 호스트 측, 방화벽 또는 바이러스 백신 소프트웨어에서 전달되지 않는 경우가 많습니다."
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr "호스트가 놀이를 끝냈습니다."
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "호스트가 놀이를 끝냈습니다"
+msgid "Incorrect network protocol version."
+msgstr "잘못된 네트워크 프로토콜 버전."
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "잘못된 네트워크 프로토콜 버전"
+msgid "Game is loading, please try again later."
+msgstr "놀이가 불러오는 중이므로 나중에 다시 시도하십시오."
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "놀이가 불러오는 중이므로 나중에 다시 시도하십시오"
+msgid "Game has already started, no observers allowed."
+msgstr "놀이가 이미 시작되었으므로 관찰자가 허용되지 않음."
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "놀이가 이미 시작되었으므로 관찰자가 허용되지 않음"
+msgid "You have been kicked."
+msgstr "당신은 추방당했습니다."
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "당신은 추방당했습니다"
+msgid "You have been banned."
+msgstr "당신은 차단당했습니다."
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "당신은 차단당했습니다"
-
-#: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
 msgstr "사용 중인 선수 이름 입니다. 연결이 끊어진 경우 몇 초 후에 다시 시도하십시오"
 
+#: gui/common/network.js:74
+msgid "Server full."
+msgstr "서버가 가득찼습니다."
+
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "서버가 가득찼습니다"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr "보안 앞마당 인증에 실패했습니다. 앞마당을 통해 가입하십시오."
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "보안 앞마당 인증에 실패했습니다. 앞마당을 통해 가입하십시오"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[잘못된 값 %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "이유: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "서버에 대한 연결이 끊어졌습니다."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "서버에 연결하는 데 실패했습니다."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "연결 끊김"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "호스트 만이 클라이언트를 추방(kick)할 수 있습니다!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "사용자 (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
@@ -734,7 +723,7 @@ msgstr "시나리오"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr "미리 정의된 풍경과 일치 설정이 있는 지도입니다."
+msgstr "미리 정의된 풍경과 경기 설정이 있는 지도입니다."
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
@@ -776,15 +765,15 @@ msgstr "알 수 없는 승리 조건"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
-msgstr "근접 공격:"
+msgstr "근접 공격력:"
 
 #: gui/common/tooltips.js:13
 msgid "Ranged Attack:"
-msgstr "원거리 공격:"
+msgstr "원거리 공격력:"
 
 #: gui/common/tooltips.js:14
 msgid "Capture Attack:"
-msgstr "포위 공격:"
+msgstr "포위 공격력:"
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
@@ -801,7 +790,7 @@ msgstr "선형 범위 피해"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s 부터 %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s 까지"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -819,7 +808,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relative
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s 부터 %(maxRange)s %(rangeUnit)s, %(rate)s 까지"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -884,7 +873,7 @@ msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:220
 msgid "Armor:"
-msgstr "방어도:"
+msgstr "방어력:"
 
 #: gui/common/tooltips.js:223
 #, javascript-format
@@ -995,7 +984,7 @@ msgstr "수리 갯수:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "수리 속도를 %(초)초까지 높이기 위해 다른 작업자를 추가하십시오.ehsms 합니다."
+msgstr[0] "수리 속도를 %(second)s 초까지 높이기 위해 다른 작업자를 추가하십시오.ehsms 합니다."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
@@ -1027,7 +1016,7 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:502
 msgid "Gather Rates:"
-msgstr "채집율:"
+msgstr "채집 속도:"
 
 #: gui/common/tooltips.js:505 gui/common/tooltips.js:527
 #, javascript-format
@@ -1074,7 +1063,7 @@ msgstr "비용:"
 #: gui/common/tooltips.js:628
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr "%(technology)s 가 필요합니다"
+msgstr "%(technology)s 이(가) 필요합니다"
 
 #: gui/common/tooltips.js:640
 #, javascript-format
@@ -1096,7 +1085,7 @@ msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:679
 msgid "Speed:"
-msgstr "속도:"
+msgstr "이동 속도:"
 
 #: gui/common/tooltips.js:681 gui/common/tooltips.js:686
 #, javascript-format
@@ -1154,7 +1143,7 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:784
 msgid "Classes:"
-msgstr "계급:"
+msgstr "분류:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
@@ -1165,7 +1154,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:821
 msgid "Loot:"
-msgstr "약탈:"
+msgstr "이 유닛이 약탈 당했을때 보상:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1240,7 +1229,7 @@ msgstr "최대: %(max)s"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr "값: %(val)s (min: %(min)s, max: %(max)s)"
+msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 
 #: gui/options/options.js:299
 msgid ""
@@ -1272,7 +1261,7 @@ msgstr "%(hotkey)s: 0 A.D. 에 나타난 많은 문명들에 대해 배웁니다
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr "%(hotkey)s: 함께놀기 앞마당을 실행하여 공개적으로 볼 수 있는 놀이를 개최하고 다른 선수와 대화할 수 있습니다."
+msgstr "%(hotkey)s: 함께 놀기 앞마당을 실행하여 공개적으로 볼 수 있는 놀이를 개최하고 다른 선수와 대화할 수 있습니다."
 
 #: gui/pregame/mainmenu.js:113
 #, javascript-format
@@ -1281,7 +1270,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr "당신은 그림자가 아닌(고정 함수) 그래픽을 사용하는 것처럼 보입니다. 이 선택사항은 보다 고급 그래픽 기능을 사용하기위해 향후 0 A.D. 출시때 제거될것입니다.  그래픽 카드를 보다 최신의 쉐이더 호환 모델로 업그레이드하는 것이 좋습니다."
+msgstr "%(warning)s 당신은 그림자가 아닌(고정 함수) 그래픽을 사용하는 것처럼 보입니다. 이 선택사항은 보다 고급 그래픽 기능을 사용하기위해 향후 0 A.D. 출시때 제거될것입니다. 그래픽 카드를 보다 최신의 쉐이더 호환 모델로 업그레이드하는 것이 좋습니다."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1329,7 +1318,7 @@ msgstr "오류"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr "함께놀기 앞마당을 시작하여 공개적으로 볼 수있는 놀이에 참여하고 다른 선수와 대화 할 수 있습니다. \\[제작사에 의해 사용 불가]"
+msgstr "함께 놀기 앞마당을 시작하여 공개적으로 볼 수있는 놀이에 참여하고 다른 선수와 대화 할 수 있습니다. \\[제작사에 의해 사용 불가]"
 
 #: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
@@ -1450,13 +1439,13 @@ msgstr "%(hotkey)s: 건축물 도감을 닫습니다."
 #. structure selected.
 #: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
-msgstr "다음에 의해 만들어짐:"
+msgstr "다음 유닛으로 이 건축물을 지을 수 있음:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
-msgstr "훈련받은 사람:"
+msgstr "이 유닛을 생산할 수 있는 건축물:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
@@ -1468,7 +1457,7 @@ msgstr "연구 분야:"
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
-msgstr "짓기:"
+msgstr "이 유닛으로 지을 수 있는 건축물:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
@@ -1480,7 +1469,7 @@ msgstr "연구:"
 #. structure can train.
 #: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
-msgstr "훈련:"
+msgstr "이 건축물로 생산할 수 있는 유닛:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
@@ -1572,7 +1561,7 @@ msgstr "%(min)s - %(max)s 분"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr "혼자- 그리고 여러 선수"
+msgstr "혼자- 그리고 함께 놀기"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
@@ -1588,15 +1577,15 @@ msgstr "모든 승리 조건"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr "평점 및 등급 없음 게임"
+msgstr "평점 및 등급 없음 놀이"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr "정격 게임??"
+msgstr "정격 놀이??"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr "등급이 매겨지지 않은 게임들"
+msgstr "등급이 매겨지지 않은 놀이들"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
@@ -1622,7 +1611,7 @@ msgstr "저장된 놀이 파일을 찾을수 없음"
 
 #: gui/savegame/save.js:64
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "저장된 게임을 영구적으로 덮어 씁니다. 확실합니까?"
+msgstr "저장된 놀이를 영구적으로 덮어 씁니다. 확실합니까?"
 
 #: gui/savegame/save.js:65
 msgid "OVERWRITE SAVE"
@@ -1937,7 +1926,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: 함께놀기 앞마당을 대화 상자 창으로 켜고 끕니다."
+msgstr "%(hotkey)s: 함께 놀기 앞마당을 대화 상자 창으로 켜고 끕니다."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -1966,11 +1955,11 @@ msgstr "0 A.D. 제작자"
 
 #: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
 msgid "Load Game"
-msgstr "게임 불러오기"
+msgstr "놀이 불러오기"
 
 #: gui/loadgame/load.xml:(caption):49
 msgid "No saved games found."
-msgstr "저장된 게임이 없습니다."
+msgstr "저장된 놀이가 없습니다."
 
 #: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
 #: gui/savegame/save.xml:(caption):36
@@ -2127,7 +2116,7 @@ msgstr "여기를 클릭하면 저장된 놀이를 불러옵니다."
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
-msgstr "이전 게임을 재생합니다."
+msgstr "이전 놀이를 재생합니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
@@ -2161,11 +2150,11 @@ msgstr "놀이, 자습서를 시작하기, 기술 나무를 발견하기, 문명
 
 #: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
-msgstr "컴퓨터를 상대로 혼자서 게임하기"
+msgstr "컴퓨터 선수를 상대로 혼자 놀기에 도전하십시오."
 
 #: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "한명 이상을 상대로 여러선수 하기"
+msgstr "함께 놀기 놀이에서 한 명 이상의 인간 선수와 싸웁니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
@@ -2175,7 +2164,7 @@ msgstr "놀이 선택사항 및 수정판(MOD) 선택."
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "새창에서 아틀라스 시나리오 편집기 열기. 실행명령어 \"-editor\"로 이 게임을 더 안정적으로 시작할 수 있습니다."
+msgstr "새로운 창에서 아틀라스 시나리오 편집기 열기. 실행명령어 \"-editor\"로 이 놀이를 더 안정적으로 시작할 수 있습니다."
 
 #: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
@@ -2189,7 +2178,7 @@ msgstr "인터넷에서 play0ad.com 열기"
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "인터넷에서 0 A.D. IRC 채팅창 열기 (#0ad on webchat.quakenet.org)"
+msgstr "인터넷에서 0 A.D. IRC 대화창 열기 (#0ad on webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
@@ -2236,7 +2225,7 @@ msgstr "놀이 참여하기"
 
 #: gui/pregame/mainmenu.xml:(caption):245
 msgid "Host Game"
-msgstr "게임 만들기"
+msgstr "놀이 만들기"
 
 #: gui/pregame/mainmenu.xml:(caption):261
 msgid "Game Lobby"
@@ -2272,23 +2261,23 @@ msgstr "끝내기"
 
 #: gui/pregame/mainmenu.xml:(caption):517
 msgid "Website"
-msgstr "웹사이트"
+msgstr "누리집"
 
 #: gui/pregame/mainmenu.xml:(caption):529
 msgid "Chat"
-msgstr "채팅"
+msgstr "대화"
 
 #: gui/pregame/mainmenu.xml:(caption):541
 msgid "Report a Bug"
-msgstr "버그 신고하기"
+msgstr "버그 신고"
 
 #: gui/pregame/mainmenu.xml:(caption):553
 msgid "Translate the Game"
-msgstr "게임 번역하기"
+msgstr "놀이 번역"
 
 #: gui/pregame/mainmenu.xml:(caption):565
 msgid "Donate"
-msgstr "기부하기"
+msgstr "기부"
 
 #: gui/pregame/mainmenu.xml:(caption):577
 msgid "Credits"
@@ -2304,7 +2293,7 @@ msgstr "문명:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "부대 훈련사??"
+msgstr "유닛 훈련사??"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2404,7 +2393,7 @@ msgstr "유형"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr "다시보기 시작??"
+msgstr "다시보기 보기"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2614,7 +2603,7 @@ msgstr "선수이름 (혼자 놀기)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "함께놀기 경기 (앞마당 제외)에서 어떻게 대처해야하는지."
+msgstr "함께 놀기 경기 (앞마당 제외)에서 어떻게 대처해야하는지."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
@@ -2652,7 +2641,7 @@ msgstr "오른쪽 상단 모서리에 초당 프레임을 표시합니다."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr "FPS 표시"
+msgstr "FPS 덧판 보이기"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2660,7 +2649,7 @@ msgstr "오른쪽 상단 모서리에 현재 시스템 시간을 표시합니다
 
 #: gui/options/options.json[0].options[6].label
 msgid "Realtime Overlay"
-msgstr "현재 시간 표시"
+msgstr "현재 시간 덧판 보이기"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2668,7 +2657,7 @@ msgstr "오른쪽 상단 모서리에 현재 모의실험 시간을 표시합니
 
 #: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
-msgstr "놀이시간 표시"
+msgstr "놀이 시간 덧판 보이기"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2676,7 +2665,7 @@ msgstr "항상 남은 휴전시간을 표시합니다."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
-msgstr "휴전 시간 표시"
+msgstr "휴전 시간 덧판 보이기"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2697,7 +2686,7 @@ msgstr "사용안함"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "모든 사람 또는 친구들이 놀이를 시작한 후에는 관찰자로 게임에 참여할 수 있습니다."
+msgstr "모든 사람 또는 친구들이 놀이를 시작한 후에는 관찰자로 놀이에 참여할 수 있습니다."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -2797,7 +2786,7 @@ msgstr "매우 높음"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
+msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 놀이가 중단될 수 있습니다!"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
@@ -2981,7 +2970,7 @@ msgstr "별칭 알림"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr "새 클라이언트가 게임 설정에 참여하면 오디오 알림을 받습니다."
+msgstr "새 클라이언트가 놀이 설정에 참여하면 오디오 알림을 받습니다."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
@@ -2989,7 +2978,7 @@ msgstr "놀이 설정 - 새로운 선수 알림"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr "게임을 설정할 때 도움말ehsms 유용한 정보를 표시합니다."
+msgstr "놀이를 설정할 때 도움말ehsms 유용한 정보를 표시합니다."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable Game Setting Tips"
@@ -3107,7 +3096,7 @@ msgstr "놀이 등급 열"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr "이러한 설정은 함께놀기에만 영향을 줍니다."
+msgstr "이러한 설정은 함께 놀기에만 영향을 줍니다."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
@@ -3498,7 +3487,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "숙련된 선수에게는 쉽겠지만, 아직 기본적인 구조를 모르는 새로운 선수에게는 기본 인공지능 수준은 상당히 어려울수 있습니다. 초보자는 낮은 수준의 인공지능(모래통 또는 매우 쉬움)을 상대로 게임을 시작하는것이 좋습니다. 위의 선택판에서 수정할 선수 옆의 톱니바퀴 아이콘을 클릭하여 인공지능 수준을 바꿀 수 있습니다."
+msgstr "숙련된 선수에게는 쉽겠지만, 아직 기본적인 구조를 모르는 새로운 선수에게는 기본 인공지능 수준은 상당히 어려울수 있습니다. 초보자는 낮은 수준의 인공지능(모래통 또는 매우 쉬움)을 상대로 놀이를 시작하는것이 좋습니다. 위의 선택판에서 수정할 선수 옆의 톱니바퀴 아이콘을 클릭하여 인공지능 수준을 바꿀 수 있습니다."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3513,13 +3502,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]이 게임은 아직 개발 중입니다. 필요한 기능이 없어지거나 버그가 있을수 도 있습니다."
+msgstr "[imgleft=\"constructionIcon\"]이 놀이는 아직 개발 중입니다. 필요한 기능이 없어지거나 버그가 있을수 도 있습니다."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]특히 큰 지도와 유닛 많아질때 게임은 성능상의 문제를 일으킬 수 있습니다."
+msgstr "[imgleft=\"iconLag\"]특히 큰 지도와 유닛 많아질때 놀이는 성능상의 문제를 일으킬 수 있습니다."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""

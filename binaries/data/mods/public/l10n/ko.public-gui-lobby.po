@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-04-04 04:28+0000\n"
+"PO-Revision-Date: 2019-05-01 14:37+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "뒤로"
 #: gui/lobby/lobby.js:461
 msgctxt "previous page"
 msgid "Main Menu"
-msgstr "주요 메뉴"
+msgstr "주 차림표"
 
 #: gui/lobby/lobby.js:530
 msgctxt "map size"
@@ -225,21 +225,21 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
-msgstr "당신은 로비에서 차단되었습니다!"
+msgstr "당신은 앞마당에서 차단되었습니다!"
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr "당신은 로비에서 추방되었습니다!"
+msgstr "당신은 앞마당에서 추방되었습니다!"
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick) 님이 로비에서 차단되었습니다."
+msgstr "%(nick)s 님이 앞마당에서 차단되었습니다."
 
 #: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick) 님이 로비에서 추방되었습니다."
+msgstr "%(nick)s 님이 앞마당에서 추방되었습니다."
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
@@ -249,11 +249,11 @@ msgstr "이유: %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr "차단당함 or 차단됨"
+msgstr "차단당함ehsms차단됨"
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr "추방당함 or 추방됨"
+msgstr "추방당함ehsms추방됨"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
@@ -266,7 +266,7 @@ msgstr "친구로 표시"
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
 msgid "N/A"
-msgstr "이용할 수 없음or 없음"
+msgstr "이용할 수 없음ehsms없음"
 
 #: gui/lobby/lobby.js:913
 #, javascript-format
@@ -277,7 +277,7 @@ msgstr "사용자를 찾을 수 없습니다. - %(nick)s"
 #: gui/lobby/lobby.js:1143
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "게임이 %(time)s 에 시작합니다"
+msgstr "놀이가 %(time)s 에 시작합니다"
 
 #: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1524
 msgid "HH:mm"
@@ -302,12 +302,12 @@ msgstr "호환되지 않는 모드"
 
 #: gui/lobby/lobby.js:1209
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "게임이 이미 시작되었습니다. 관전하시겠습니까?"
+msgstr "놀이가 이미 시작되었습니다. 관찰하시겠습니까?"
 
 #: gui/lobby/lobby.js:1243
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "게임 주소  '%(ip)s'가 유효하지 않습니다."
+msgstr "놀이 주소  '%(ip)s'가 유효하지 않습니다."
 
 #: gui/lobby/lobby.js:1359
 #, javascript-format
@@ -474,7 +474,7 @@ msgstr "등록된"
 #: gui/lobby/lobby.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "함께놀기 앞마당"
+msgstr "함께 놀기 앞마당"
 
 #: gui/lobby/lobby_panels.xml:(heading):24
 msgid "Status"
@@ -527,7 +527,7 @@ msgstr "가장 높은 점수:"
 #: gui/lobby/lobby_panels.xml:(caption):60
 #: gui/lobby/lobby_panels.xml:(caption):339
 msgid "Total Games:"
-msgstr "총 게임 수:"
+msgstr "총 놀이 수:"
 
 #: gui/lobby/lobby_panels.xml:(caption):64
 #: gui/lobby/lobby_panels.xml:(caption):343
@@ -565,11 +565,11 @@ msgstr "지도 크기:"
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby_panels.xml:(caption):157
 msgid "Join Game"
-msgstr "게임 참여하기"
+msgstr "놀이 참여하기"
 
 #: gui/lobby/lobby_panels.xml:(caption):163
 msgid "Host Game"
-msgstr "게임 만들기"
+msgstr "놀이 만들기"
 
 #: gui/lobby/lobby_panels.xml:(caption):244
 msgid "Show only open games"
@@ -784,7 +784,7 @@ msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr " 3. 와일드 파이어 게임즈는 토론된 주제들 사이의 동향, 활발한 커뮤니티의 성장을 평가하고 게임 및 서비스의 평가, 개선 및 직접 개발을 위해 이러한 지표를 의견제시or 피드백으로 사용할 수 있습니다."
+msgstr " 3. 와일드 파이어 게임즈는 토론된 주제들 사이의 동향, 활발한 커뮤니티의 성장을 평가하고 놀이 및 서비스의 평가, 개선 및 직접 개발을 위해 이러한 지표를 의견제시or 피드백으로 사용할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
@@ -812,7 +812,7 @@ msgstr "등급 경기 중 선수는 와일드 파이어 게임즈에 놀이와 �
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr "와일드 파이어 게임즈는 일치 통계를 다음에 저장합니다:"
+msgstr "와일드 파이어 게임즈는 경기 통계를 다음에 저장합니다:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
@@ -1041,7 +1041,7 @@ msgstr "13. Where Wildfire Games processes sensitive personal data based on legi
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr "와일드 파이어 게임의 개인 정보 보호 정책에 대한 자세한 내용은 https://trac.wildfiregames.com/wiki/UserDataProtection을 참조하십시오."
+msgstr "와일드 파이어 게임즈의 개인 정보 보호 정책에 대한 자세한 내용은 https://trac.wildfiregames.com/wiki/UserDataProtection을 참조하십시오."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
@@ -1055,7 +1055,7 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr "0 A.D. 제국의 상승 함께놀기 앞마당은 와일드 파이어 게임즈에서 제공하는 온라인 서비스로, 선수가 온라인 함께 놀기 경기를 설정하고, 공개 대화방에서 놀이에대해 토론하고, 자신의 기술을 반영한 등급을 받을 수 있습니다."
+msgstr "0 A.D. 제국의 상승 함께 놀기 앞마당은 와일드 파이어 게임즈에서 제공하는 온라인 서비스로, 선수가 온라인 함께 놀기 경기를 설정하고, 공개 대화방에서 놀이에대해 토론하고, 자신의 기술을 반영한 등급을 받을 수 있습니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
@@ -1123,7 +1123,7 @@ msgid ""
 " 5. Process personal data in accordance with the Lobby Privacy Policy, the "
 "General Data Protection Regulation (GDPR) and the Children's Online Privacy "
 "Protection Act (COPPA) where applicable."
-msgstr " 5. 해당되는 경우 로비 개인 정보 보호 정책, 일반 자료 보호 규정(GDPR) 및 아동 온라인 개인 정보 보호법(COPPA)에 따라 개인 자료를 처리합니다."
+msgstr " 5. 해당되는 경우 앞마당 개인 정보 보호 정책, 일반 자료 보호 규정(GDPR) 및 아동 온라인 개인 정보 보호법(COPPA)에 따라 개인 자료를 처리합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:22
 msgid ""
@@ -1151,7 +1151,7 @@ msgstr " 1. 와일드 파이어 게임즈에서 승인하지 않는한 서비스
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr " 2. 서비스의 다른 사용자를 가장하지 않고 멀티 선수 일치에만 등록된 사용자 이름을 사용합니다."
+msgstr " 2. 서비스의 다른 사용자를 가장하지 않고 함께 놀기 경기들에만 등록된 사용자 이름을 사용합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
@@ -1189,7 +1189,7 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr " 8. 의도된 놀이 선수를 손상시키거나 고의적으로 함께놀기 에서 불공정한 이점을 얻지 않습니다(예: 부정 행위, 공격 또는 버그 사용)."
+msgstr " 8. 의도된 놀이 선수를 손상시키거나 고의적으로 함께 놀기 에서 불공정한 이점을 얻지 않습니다(예: 부정 행위, 공격 또는 버그 사용)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""

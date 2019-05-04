@@ -5,12 +5,13 @@
 # Translators:
 # Edgar Carballo <karvayoEdgar@gmail.com>, 2015
 # Ivan <navicgamboa@gmail.com>, 2015
+# José Roberto Gutiérrez <gtztraductor@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-07 03:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-02 17:59+0000\n"
+"Last-Translator: José Roberto Gutiérrez <gtztraductor@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +42,7 @@ msgstr "Desconocido"
 
 #: gui/lobby/lobby.js:58
 msgid "Moderator"
-msgstr ""
+msgstr "Moderador"
 
 #: gui/lobby/lobby.js:59
 msgid "Player"
@@ -49,62 +50,62 @@ msgstr "Jugador"
 
 #: gui/lobby/lobby.js:60
 msgid "Muted Player"
-msgstr ""
+msgstr "Jugador Silenciado"
 
 #: gui/lobby/lobby.js:156
 msgid "Disconnected."
-msgstr ""
+msgstr "Desconectado."
 
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)scambió el asunto del lobby a %(subject)s"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s se ha unido."
+msgstr "%(nick)s se unió."
 
 #: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s ha salido."
+msgstr "%(nick)s salió."
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
-msgstr ""
+msgstr "Te silenciaron."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "Silenciaron a %(nick)s."
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Ahora tu eres el moderador."
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "Ahora %(nick)s es el moderador."
 
 #: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Te quitaron el silenciamiento."
 
 #: gui/lobby/lobby.js:229
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "A %(nick)s le quitaron el silenciamiento."
 
 #: gui/lobby/lobby.js:231
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Ya no eres el moderador."
 
 #: gui/lobby/lobby.js:232
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s ya no es el moderador."
 
 #: gui/lobby/lobby.js:247
 #, javascript-format
@@ -113,7 +114,7 @@ msgstr "%(oldnick)s ahora es conocido como %(newnick)s."
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
-msgstr ""
+msgstr "Aviso"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."

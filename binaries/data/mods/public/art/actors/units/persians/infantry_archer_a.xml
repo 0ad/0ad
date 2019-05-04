@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_loose_all.xml" attachpoint="helmet"/>
@@ -15,19 +15,54 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="pants brown">
+    <variant frequency="1" name="tunic-1a">
       <textures>
-        <texture file="skeletal/pers_iar_a_1.png" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_advanced_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="pants green">
+    <variant frequency="1" name="tunic-1b">
       <textures>
-        <texture file="skeletal/pers_iar_a_2.png" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_advanced_1_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="pants black white">
+    <variant frequency="1" name="tunic-1c">
       <textures>
-        <texture file="skeletal/pers_iar_a_3.png" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_advanced_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1d">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1e">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1f">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1g">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_g.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1h">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_h.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1i">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_i.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-1j">
+      <textures>
+        <texture file="skeletal/pers_tunic_advanced_1_j.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

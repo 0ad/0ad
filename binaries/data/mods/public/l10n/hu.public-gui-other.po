@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-26 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-30 09:42+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -552,87 +552,76 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Rossz kapcsolat %(player)s játékoshoz (%(milliseconds)s ms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Ismeretlen ok"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
+" by a firewall, or anti-virus software."
 msgstr "Ezt gyakran az okozza, hogy a 20595-es UDP port nincs továbbítva a kiszolgáló oldalán, tűzfal vagy vírusirtó szoftver miatt."
 
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr "A játékgazda befejezte a játékot."
+
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "A játékgazda befejezte a játékot"
+msgid "Incorrect network protocol version."
+msgstr "Helytelen hálózati protokoll verzió."
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Helytelen hálózati protokoll verzió"
+msgid "Game is loading, please try again later."
+msgstr "A játék töltődik, próbálkozz később."
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "A játék betöltődik, próbálkozz később"
+msgid "Game has already started, no observers allowed."
+msgstr "A játék már elkezdődött, a megfigyelők nem engedélyezettek."
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "A játék már elkezdődött, megfigyelők nem engedélyezettek"
-
-#: gui/common/network.js:72
-msgid "You have been kicked"
+msgid "You have been kicked."
 msgstr "Kirúgtak."
 
-#: gui/common/network.js:73
-msgid "You have been banned"
+#: gui/common/network.js:72
+msgid "You have been banned."
 msgstr "Kitiltottak."
 
-#: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
+#: gui/common/network.js:73
+msgid "Playername in use. If you were disconnected, retry in few seconds."
 msgstr "A játékosnév használatban van. Ha szétkapcsolódtál, próbáld meg néhány másodperc múlva."
 
-#: gui/common/network.js:75
-msgid "Server full"
-msgstr "Kiszolgáló tele"
+#: gui/common/network.js:74
+msgid "Server full."
+msgstr "A kiszolgáló megtelt."
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
+#: gui/common/network.js:75
+msgid "Secure lobby authentication failed. Join via lobby."
 msgstr "A biztonságos váró hitelesítése meghiúsult. Csatlakozz a várón keresztül."
 
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[érvénytelen érték: %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Ez okból: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "A szerverkapcsolat megszakadt."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "A kiszolgálóhoz kapcsolódás sikertelen."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Lekapcsolódott"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Csak a gazda rúghat ki ügyfeleket!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Felhasználók (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
@@ -3250,11 +3239,11 @@ msgstr "Rang ikon az állapotsáv felett"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Tapasztalatsáv megjelenítése minden kiválasztott egység felett."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Tapasztalat állapotsáv"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
