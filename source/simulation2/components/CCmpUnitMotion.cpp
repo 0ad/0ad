@@ -909,7 +909,7 @@ void CCmpUnitMotion::Move(fixed dt)
 					pos = target;
 
 					// Spend the rest of the time heading towards the next waypoint
-					timeLeft = timeLeft - (offsetLength / maxSpeed);
+					timeLeft = (maxdist - offsetLength) / maxSpeed;
 
 					if (m_ShortPath.m_Waypoints.empty())
 						m_LongPath.m_Waypoints.pop_back();
