@@ -351,7 +351,7 @@ void HierarchicalPathfinder::Recompute(Grid<NavcellData>* grid,
 	const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks,
 	const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 {
-	PROFILE3("Hierarchical Recompute");
+	PROFILE2("Hierarchical Recompute");
 
 	m_PassClassMasks = pathfindingPassClassMasks;
 
@@ -399,7 +399,6 @@ void HierarchicalPathfinder::Recompute(Grid<NavcellData>* grid,
 
 	if (m_DebugOverlay)
 	{
-		PROFILE("debug overlay");
 		m_DebugOverlayLines.clear();
 		AddDebugEdges(GetPassabilityClass("default"));
 	}
@@ -448,7 +447,6 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 
 	if (m_DebugOverlay)
 	{
-		PROFILE("debug overlay");
 		m_DebugOverlayLines.clear();
 		AddDebugEdges(GetPassabilityClass("default"));
 	}

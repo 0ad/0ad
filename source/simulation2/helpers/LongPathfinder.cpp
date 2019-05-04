@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -289,7 +289,7 @@ public:
 
 	void reset(const Grid<NavcellData>* terrain, pass_class_t passClass)
 	{
-		PROFILE3("JumpPointCache reset");
+		PROFILE2("JumpPointCache reset");
 		TIMER(L"JumpPointCache reset");
 
 		m_Width = terrain->m_W;
