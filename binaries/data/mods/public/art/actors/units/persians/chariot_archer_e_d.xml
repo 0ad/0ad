@@ -1,14 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant file="biped/base_driver_chariot.xml">
-      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_loose_all.xml" attachpoint="helmet"/>
       </props>
-      <textures><texture file="skeletal/pers_car_a_r.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/pers_scale_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="scale-2a">
+      <textures>
+        <texture file="skeletal/pers_scale_2_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-2b">
+      <textures>
+        <texture file="skeletal/pers_scale_2_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-2c">
+      <textures>
+        <texture file="skeletal/pers_scale_2_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-2d">
+      <textures>
+        <texture file="skeletal/pers_scale_2_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-2e">
+      <textures>
+        <texture file="skeletal/pers_scale_2_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-2f">
+      <textures>
+        <texture file="skeletal/pers_scale_2_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scale-2g">
+      <textures>
+        <texture file="skeletal/pers_scale_2_g.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -17,5 +56,5 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

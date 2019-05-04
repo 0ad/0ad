@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_conical.xml" attachpoint="helmet"/>
@@ -13,22 +13,25 @@
         <prop actor="props/units/quiver_hip.xml" attachpoint="sheath_L"/>
         <prop actor="props/units/shields/pers_pelta_a_b_reverse.xml" attachpoint="back"/>
       </props>
+      <textures>
+        <texture file="skeletal/pers_scale_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="scale mail 1">
+    <variant frequency="1" name="scale-2a">
       <textures>
-        <texture file="skeletal/pers_iar_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/pers_scale_2_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="scale mail 2">
+    <variant frequency="1" name="scale-2b">
       <textures>
-        <texture file="skeletal/pers_iar_e_2.dds" name="baseTex"/>
+        <texture file="skeletal/pers_scale_2_c.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="scale mail 3">
+    <variant frequency="1" name="scale-2c">
       <textures>
-        <texture file="skeletal/pers_iar_e_3.dds" name="baseTex"/>
+        <texture file="skeletal/pers_scale_2_d.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -57,5 +60,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
