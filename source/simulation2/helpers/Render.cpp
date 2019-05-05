@@ -35,8 +35,6 @@
 void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vector<float>& xz,
 		SOverlayLine& overlay, bool floating, float heightOffset)
 {
-	PROFILE("ConstructLineOnGround");
-
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);

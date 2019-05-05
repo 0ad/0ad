@@ -208,6 +208,7 @@ Mirage.prototype.UpdateTraders = function(msg)
 
 Mirage.prototype.OnVisibilityChanged = function(msg)
 {
+	// Mirages get VIS_HIDDEN when the original entity becomes VIS_VISIBLE.
 	if (msg.player != this.player || msg.newVisibility != VIS_HIDDEN)
 		return;
 

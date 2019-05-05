@@ -179,15 +179,16 @@ public:
 		if (CProfileManager::IsInitialised())
 		{
 			// The profiler is only safe to use on the main thread
-			ENSURE(ThreadUtil::IsMainThread());
 
-			g_Profiler.Start(name);
+			if(ThreadUtil::IsMainThread())
+				g_Profiler.Start(name);
 		}
 	}
 	~CProfileSample()
 	{
 		if (CProfileManager::IsInitialised())
-			g_Profiler.Stop();
+			if(ThreadUtil::IsMainThread())
+				g_Profiler.Stop();
 	}
 };
 

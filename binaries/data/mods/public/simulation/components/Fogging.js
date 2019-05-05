@@ -182,28 +182,33 @@ Fogging.prototype.WasSeen = function(player)
 	return this.seen[player];
 };
 
-Fogging.prototype.OnDestroy = function(msg)
+Fogging.prototype.OnOwnershipChanged = function(msg)
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	for (var player = 0; player < this.mirages.length; ++player)
+	// Always activate fogging for non-Gaia entities
+	if (msg.to > 0)
+		this.Activate();
+
+	if (msg.to != -1)
+		return;
+
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	for (let player in this.mirages)
 	{
+		if (this.mirages[player] == INVALID_ENTITY)
+			continue;
+
+		// When this.entity is in the line of sight of the player, its mirage is hidden, rather than destroyed, to save on performance.
+		// All hidden mirages can be destroyed now (they won't be needed again), and other mirages will destroy themselves when they get out of the fog.
 		if (cmpRangeManager.GetLosVisibility(this.mirages[player], player) == "hidden")
 		{
 			Engine.DestroyEntity(this.mirages[player]);
 			continue;
 		}
 
-		var cmpMirage = Engine.QueryInterface(this.mirages[player], IID_Mirage);
+		let cmpMirage = Engine.QueryInterface(this.mirages[player], IID_Mirage);
 		if (cmpMirage)
 			cmpMirage.SetParent(INVALID_ENTITY);
 	}
-};
-
-Fogging.prototype.OnOwnershipChanged = function(msg)
-{
-	// Always activate fogging for non-Gaia entities
-	if (msg.to > 0)
-		this.Activate();
 };
 
 Fogging.prototype.OnVisibilityChanged = function(msg)
