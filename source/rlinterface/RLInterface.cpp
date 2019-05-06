@@ -21,6 +21,12 @@
 using grpc::ServerContext;
 using boost::fibers::unbuffered_channel;
 
+enum GameMessageType { Reset, Command };
+struct GameMessage {
+    GameMessageType type;
+    std::string data;
+};
+
 class RLInterface final : public RLAPI::Service
 {
 
@@ -28,22 +34,29 @@ class RLInterface final : public RLAPI::Service
 
         grpc::Status Connect(ServerContext* context, const ConnectRequest* _, Observation* obs) override
         {
+            std::cout << ">>> Aquiring lock for Connect" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
-            std::cout << ">>> Connect" << std::endl;
-            //m_GameCommands.push(1);
-            // TODO: Initialize the scenario
+
+            std::cout << ">>> Acquired!" << std::endl;
+            std::string config("scenarios/Arcadia");
+            std::cout << "1" << std::endl;
+            struct GameMessage msg = { GameMessageType::Reset, config };
+            std::cout << "2" << std::endl;
+            m_GameMessages.push_back(msg);
+
+            std::cout << ">>> waiting for game state..." << std::endl;
+            std::string state;
+            m_GameStates.pop(state);
+            obs->set_content(state);
+
+            std::cout << ">>> Connect Complete" << std::endl;
             return grpc::Status::OK;
         }
 
         grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override
         {
+            std::cout << ">>> Acquiring lock for Step" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
-            std::cout << ">>> Step" << std::endl;
-            //g_Profiler2.RecordFrameStart();
-            //PROFILE2("frame");
-            //g_Profiler2.IncrementFrameNumber();
-            //PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
-
             // TODO: Update this...
             //debug_printf("Turn %u (%u)...\n", m_Turn++, DEFAULT_TURN_LENGTH_SP);
 
@@ -51,28 +64,27 @@ class RLInterface final : public RLAPI::Service
             // thread as there are specific checks for this. We will pass our commands
             // to the main thread to be applied
             const int size = commands->actions_size();
-            std::vector<std::string> action_v;
             for (int i = 0; i < size; i++) 
             {
                 std::string json_cmd = commands->actions(i).content();
-                action_v.push_back(json_cmd);
+                struct GameMessage msg = { GameMessageType::Command, json_cmd };
+                m_GameMessages.push_back(msg);
             }
-            m_GameCommands.push(action_v);
             std::string state;
             m_GameStates.pop(state);
             obs->set_content(state);
 
-            //g_Profiler.Frame();
-
+            std::cout << ">>> Step Complete" << std::endl;
             return grpc::Status::OK;
         }
 
         grpc::Status Reset(ServerContext* context, const ResetRequest* _, Observation* obs) override
         {
+            std::cout << ">>> Acquiring lock for Reset" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
-            std::cout << ">>> Reset" << std::endl;
-            //m_GameCommands.push(3);
+            //m_GameMessages.push(3);
             // TODO: Initialize the scenario and return the game state
+            std::cout << ">>> Reset Complete" << std::endl;
             return grpc::Status::OK;
         }
 
@@ -89,18 +101,29 @@ class RLInterface final : public RLAPI::Service
         void ApplyEvents()
         {
             // Apply and edits from the RPC messages to the game engine
-            std::vector<std::string> commands;
-            std::chrono::milliseconds duration(50);
-            if (boost::fibers::channel_op_status::success == m_GameCommands.pop_wait_for(commands, duration))
+            const bool hasMessages(m_GameMessages.size() > 0);
+            if (hasMessages)
             {
-                for (std::string cmd : commands)  // Apply the game commands
+                while (m_GameMessages.size() > 0)
                 {
-                    const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-                    JSContext* cx = scriptInterface.GetContext();
-                    JS::RootedValue command(cx);
-                    scriptInterface.ParseJSON(cmd, &command);
-                    std::cout << "Posting command: " << cmd << std::endl;
-                    g_Game->GetTurnManager()->PostCommand(command);
+                    GameMessage msg = m_GameMessages.back();
+                    m_GameMessages.pop_back();
+
+                    std::cout << "Applying game message!" << std::endl;
+                    switch (msg.type)
+                    {
+                        case GameMessageType::Reset:
+                            std::cout << "Received reset command!!" << std::endl;
+                            break;
+                        case GameMessageType::Command:
+                            const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                            JSContext* cx = scriptInterface.GetContext();
+                            JS::RootedValue command(cx);
+                            scriptInterface.ParseJSON(msg.data, &command);
+                            std::cout << "Posting command: " << msg.data << std::endl;
+                            g_Game->GetTurnManager()->PostCommand(command);
+                            break;
+                    }
                 }
 
                 g_Game->Update(200);
@@ -128,7 +151,7 @@ class RLInterface final : public RLAPI::Service
         float m_StepsBtwnActions = 10.0f;
         unsigned int m_Turn = 0;
         std::mutex m_lock;
-        unbuffered_channel<std::vector<std::string>> m_GameCommands;
+        std::vector<GameMessage> m_GameMessages;
         unbuffered_channel<std::string> m_GameStates;
         //unbuffered_channel<std::string> m_GameConfigs;
 };
