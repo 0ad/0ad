@@ -5,6 +5,7 @@
     <variant>
       <mesh>structural/rome_hc1.dae</mesh>
       <props>
+        <prop actor="props/structures/decals/dirt_5x9.xml" attachpoint="root"/>
         <prop actor="particle/sparks.xml" attachpoint="flame01"/>
         <prop actor="particle/flame_firepit_1.xml" attachpoint="flame01"/>
         <prop actor="particle/flame_firepit_2.xml" attachpoint="flame01"/>
