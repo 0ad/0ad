@@ -52,6 +52,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "ps/GameSetup/GameConfig.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
@@ -1180,6 +1181,308 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 	return mapElement.GetText();
 }
 
+bool Autostart(const GameConfig& config)
+{
+	g_Game = new CGame(config.nonVisual, !config.nonVisual);
+
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue attrs(cx);
+	scriptInterface.Eval("({})", &attrs);
+	JS::RootedValue settings(cx);
+	scriptInterface.Eval("({})", &settings);
+	JS::RootedValue playerData(cx);
+	scriptInterface.Eval("([])", &playerData);
+
+	// The directory in front of the actual map name indicates which type
+	// of map is being loaded. Drawback of this approach is the association
+	// of map types and folders is hard-coded, but benefits are:
+	// - No need to pass the map type via command line separately
+	// - Prevents mixing up of scenarios and skirmish maps to some degree
+    CStr fullName = utf8_from_wstring(config.getFullName());
+	std::wstring mapDirectory = config.getMapDirectory();
+
+	if (config.type == L"random")
+	{
+		// Random map definition will be loaded from JSON file, so we need to parse it
+		std::wstring scriptPath = L"maps/" + fullName.FromUTF8() + L".json";
+		JS::RootedValue scriptData(cx);
+		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "settings", &settings))
+		{
+			// JSON loaded ok - copy script name over to game attributes
+			std::wstring scriptFile;
+			scriptInterface.GetProperty(settings, "Script", scriptFile);
+			scriptInterface.SetProperty(attrs, "script", scriptFile);				// RMS filename
+		}
+		else
+		{
+			// Problem with JSON file
+			LOGERROR("Autostart: Error reading random map script '%s'", utf8_from_wstring(scriptPath));
+			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
+		}
+
+		scriptInterface.SetProperty(settings, "Size", config.size);		// Random map size (in patches)
+
+		// Set up player data
+		for (size_t i = 0; i < config.numPlayers; ++i)
+		{
+			JS::RootedValue player(cx);
+			scriptInterface.Eval("({})", &player);
+
+			// We could load player_defaults.json here, but that would complicate the logic
+			// even more and autostart is only intended for developers anyway
+            // FIXME: enable setting the civilizations
+			scriptInterface.SetProperty(player, "Civ", std::string("athen"));
+			scriptInterface.SetPropertyInt(playerData, i, player);
+		}
+	}
+	else if (config.type == L"scenario" || config.type == L"skirmish")
+	{
+		// Initialize general settings from the map data so some values
+		// (e.g. name of map) are always present, even when autostart is
+		// partially configured
+		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + fullName + ".xml");
+		scriptInterface.ParseJSON(mapSettingsJSON, &settings);
+
+		// Initialize the playerData array being modified by autostart
+		// with the real map data, so sensible values are present:
+		scriptInterface.GetProperty(settings, "PlayerData", &playerData);
+	}
+	else
+	{
+		LOGERROR("Autostart: Unrecognized map type '%s'", utf8_from_wstring(mapDirectory));
+		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
+	}
+
+	scriptInterface.SetProperty(attrs, "mapType", config.type);
+	scriptInterface.SetProperty(attrs, "map", std::string("maps/" + fullName));
+	scriptInterface.SetProperty(settings, "mapType", config.type);
+	scriptInterface.SetProperty(settings, "CheatsEnabled", true);
+
+	// The seed is used for both random map generation and simulation
+	scriptInterface.SetProperty(settings, "Seed", config.seed);
+
+	// Set seed for AIs
+	scriptInterface.SetProperty(settings, "AISeed", config.aiseed);
+
+	// Set player data for AIs
+	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }
+	//		            or = { PlayerData: [ null, { AI: ... }, ... ] } when gaia set
+	int offset = 1;
+	JS::RootedValue player(cx);
+	if (scriptInterface.GetPropertyInt(playerData, 0, &player) && player.isNull())
+		offset = 0;
+
+	// Set teams
+    std::vector<std::tuple<int, int>> civArgs = config.teams;
+    for (size_t i = 0; i < config.teams.size(); ++i)
+    {
+        int playerID = std::get<0>(config.teams[i]);
+        int teamID = std::get<1>(config.teams[i]);
+
+        // Instead of overwriting existing player data, modify the array
+        JS::RootedValue player(cx);
+        if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+        {
+            if (mapDirectory == L"skirmishes")
+            {
+                // playerID is certainly bigger than this map player number
+                LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
+                continue;
+            }
+            scriptInterface.Eval("({})", &player);
+        }
+
+        scriptInterface.SetProperty(player, "Team", teamID);
+        scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+	}
+
+	scriptInterface.SetProperty(settings, "Ceasefire", config.ceasefire);
+
+    for (size_t i = 0; i < config.ai.size(); ++i)
+    {
+        int playerID = std::get<0>(config.ai[i]);
+        CStr name = std::get<1>(config.ai[i]);
+
+        // Instead of overwriting existing player data, modify the array
+        JS::RootedValue player(cx);
+        if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+        {
+            if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
+            {
+                // playerID is certainly bigger than this map player number
+                LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
+                continue;
+            }
+            scriptInterface.Eval("({})", &player);
+        }
+
+        scriptInterface.SetProperty(player, "AI", std::string(name));
+        scriptInterface.SetProperty(player, "AIDiff", 3);
+        scriptInterface.SetProperty(player, "AIBehavior", std::string("balanced"));
+        scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+    }
+	// Set AI difficulty
+    for (size_t i = 0; i < config.difficulties.size(); ++i)
+    {
+        int playerID = std::get<0>(config.difficulties[i]);
+        int difficulty = std::get<1>(config.difficulties[i]);
+
+        // Instead of overwriting existing player data, modify the array
+        JS::RootedValue player(cx);
+        if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+        {
+            if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
+            {
+                // playerID is certainly bigger than this map player number
+                LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
+                continue;
+            }
+            scriptInterface.Eval("({})", &player);
+        }
+
+        scriptInterface.SetProperty(player, "AIDiff", difficulty);
+        scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+    }
+	// Set player data for Civs
+    if (config.type != L"scenario")
+    {
+        for (size_t i = 0; i < config.civs.size(); ++i)
+        {
+            int playerID = std::get<0>(config.civs[i]);
+            CStr name = std::get<1>(config.civs[i]);
+
+            // Instead of overwriting existing player data, modify the array
+            JS::RootedValue player(cx);
+            if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+            {
+                if (mapDirectory == L"skirmishes")
+                {
+                    // playerID is certainly bigger than this map player number
+                    LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
+                    continue;
+                }
+                scriptInterface.Eval("({})", &player);
+            }
+
+            scriptInterface.SetProperty(player, "Civ", std::string(name));
+            scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+        }
+    }
+    else if (config.civs.size() > 0)
+        LOGWARNING("Autostart: Option 'autostart-civ' is invalid for scenarios");
+
+	// Add player data to map settings
+	scriptInterface.SetProperty(settings, "PlayerData", playerData);
+
+	// Add map settings to game attributes
+	scriptInterface.SetProperty(attrs, "settings", settings);
+
+	// Get optional playername
+	CStrW userName = config.username;
+
+	// Add additional scripts to the TriggerScripts property
+	std::vector<CStrW> triggerScriptsVector;
+	JS::RootedValue triggerScripts(cx);
+
+	if (scriptInterface.HasProperty(settings, "TriggerScripts"))
+	{
+		scriptInterface.GetProperty(settings, "TriggerScripts", &triggerScripts);
+		FromJSVal_vector(cx, triggerScripts, triggerScriptsVector);
+	}
+
+	if (config.nonVisual)
+	{
+		CStr nonVisualScript = "scripts/NonVisualTrigger.js";
+		triggerScriptsVector.push_back(nonVisualScript.FromUTF8());
+	}
+
+	std::vector<CStr> victoryConditions;
+    for (size_t i = 0; i < config.victoryConditions.size(); ++i)
+    {
+        victoryConditions.push_back(config.victoryConditions[i]);
+    }
+
+	if (victoryConditions.size() == 1 && victoryConditions[0] == "endless")
+		victoryConditions.clear();
+
+	scriptInterface.SetProperty(settings, "VictoryConditions", victoryConditions);
+
+	for (const CStr& victory : victoryConditions)
+	{
+		JS::RootedValue scriptData(cx);
+		JS::RootedValue data(cx);
+		JS::RootedValue victoryScripts(cx);
+
+		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
+		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
+			&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
+		{
+			std::vector<CStrW> victoryScriptsVector;
+			FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
+			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
+		}
+		else
+		{
+			LOGERROR("Autostart: Error reading victory script '%s'", utf8_from_wstring(scriptPath));
+			throw PSERROR_Game_World_MapLoadFailed("Error reading victory script.\nCheck application log for details.");
+		}
+	}
+
+	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
+	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
+
+	scriptInterface.SetProperty(settings, "WonderDuration", config.wonderDuration);
+	scriptInterface.SetProperty(settings, "RelicDuration", config.relicDuration);
+	scriptInterface.SetProperty(settings, "RelicCount", config.relicCount);
+
+	if (config.isNetworkHost())
+	{
+		InitPsAutostart(true, attrs);
+
+		g_NetServer = new CNetServer(false, config.maxPlayersToHost);
+		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
+
+		bool ok = g_NetServer->SetupConnection(PS_DEFAULT_PORT);
+		ENSURE(ok);
+
+		g_NetClient = new CNetClient(g_Game, true);
+		g_NetClient->SetUserName(userName);
+		g_NetClient->SetupConnection("127.0.0.1", PS_DEFAULT_PORT);
+	}
+	else if (config.isNetworkClient())
+	{
+		InitPsAutostart(true, attrs);
+
+		g_NetClient = new CNetClient(g_Game, false);
+		g_NetClient->SetUserName(userName);
+
+		bool ok = g_NetClient->SetupConnection(config.hostAddress, PS_DEFAULT_PORT);
+		ENSURE(ok);
+	}
+	else
+	{
+		g_Game->SetPlayerID(config.playerID);
+
+		g_Game->StartGame(&attrs, "");
+
+		if (config.nonVisual)
+		{
+			// TODO: Non progressive load can fail - need a decent way to handle this
+			LDR_NonprogressiveLoad();
+			ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
+		}
+		else
+			InitPsAutostart(false, attrs);
+	}
+
+	return true;
+}
+
 /*
  * Command line options for autostart
  * (keep synchronized with binaries/system/readme.txt):
@@ -1241,383 +1544,8 @@ bool Autostart(const CmdLineArgs& args)
 	if (autoStartName.empty())
 		return false;
 
-	const bool nonVisual = args.Has("autostart-nonvisual");
-	g_Game = new CGame(nonVisual, !nonVisual);
-
-	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue attrs(cx);
-	scriptInterface.Eval("({})", &attrs);
-	JS::RootedValue settings(cx);
-	scriptInterface.Eval("({})", &settings);
-	JS::RootedValue playerData(cx);
-	scriptInterface.Eval("([])", &playerData);
-
-	// The directory in front of the actual map name indicates which type
-	// of map is being loaded. Drawback of this approach is the association
-	// of map types and folders is hard-coded, but benefits are:
-	// - No need to pass the map type via command line separately
-	// - Prevents mixing up of scenarios and skirmish maps to some degree
-	Path mapPath = Path(autoStartName);
-	std::wstring mapDirectory = mapPath.Parent().Filename().string();
-	std::string mapType;
-
-	if (mapDirectory == L"random")
-	{
-		// Random map definition will be loaded from JSON file, so we need to parse it
-		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
-		JS::RootedValue scriptData(cx);
-		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
-		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "settings", &settings))
-		{
-			// JSON loaded ok - copy script name over to game attributes
-			std::wstring scriptFile;
-			scriptInterface.GetProperty(settings, "Script", scriptFile);
-			scriptInterface.SetProperty(attrs, "script", scriptFile);				// RMS filename
-		}
-		else
-		{
-			// Problem with JSON file
-			LOGERROR("Autostart: Error reading random map script '%s'", utf8_from_wstring(scriptPath));
-			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
-		}
-
-		// Get optional map size argument (default 192)
-		uint mapSize = 192;
-		if (args.Has("autostart-size"))
-		{
-			CStr size = args.Get("autostart-size");
-			mapSize = size.ToUInt();
-		}
-
-		scriptInterface.SetProperty(settings, "Size", mapSize);		// Random map size (in patches)
-
-		// Get optional number of players (default 2)
-		size_t numPlayers = 2;
-		if (args.Has("autostart-players"))
-		{
-			CStr num = args.Get("autostart-players");
-			numPlayers = num.ToUInt();
-		}
-
-		// Set up player data
-		for (size_t i = 0; i < numPlayers; ++i)
-		{
-			JS::RootedValue player(cx);
-			scriptInterface.Eval("({})", &player);
-
-			// We could load player_defaults.json here, but that would complicate the logic
-			// even more and autostart is only intended for developers anyway
-			scriptInterface.SetProperty(player, "Civ", std::string("athen"));
-			scriptInterface.SetPropertyInt(playerData, i, player);
-		}
-		mapType = "random";
-	}
-	else if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
-	{
-		// Initialize general settings from the map data so some values
-		// (e.g. name of map) are always present, even when autostart is
-		// partially configured
-		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
-		scriptInterface.ParseJSON(mapSettingsJSON, &settings);
-
-		// Initialize the playerData array being modified by autostart
-		// with the real map data, so sensible values are present:
-		scriptInterface.GetProperty(settings, "PlayerData", &playerData);
-
-		if (mapDirectory == L"scenarios")
-			mapType = "scenario";
-		else
-			mapType = "skirmish";
-	}
-	else
-	{
-		LOGERROR("Autostart: Unrecognized map type '%s'", utf8_from_wstring(mapDirectory));
-		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
-	}
-
-	scriptInterface.SetProperty(attrs, "mapType", mapType);
-	scriptInterface.SetProperty(attrs, "map", std::string("maps/" + autoStartName));
-	scriptInterface.SetProperty(settings, "mapType", mapType);
-	scriptInterface.SetProperty(settings, "CheatsEnabled", true);
-
-	// The seed is used for both random map generation and simulation
-	u32 seed = 0;
-	if (args.Has("autostart-seed"))
-	{
-		CStr seedArg = args.Get("autostart-seed");
-		if (seedArg == "-1")
-			seed = rand();
-		else
-			seed = seedArg.ToULong();
-	}
-	scriptInterface.SetProperty(settings, "Seed", seed);
-
-	// Set seed for AIs
-	u32 aiseed = 0;
-	if (args.Has("autostart-aiseed"))
-	{
-		CStr seedArg = args.Get("autostart-aiseed");
-		if (seedArg == "-1")
-			aiseed = rand();
-		else
-			aiseed = seedArg.ToULong();
-	}
-	scriptInterface.SetProperty(settings, "AISeed", aiseed);
-
-	// Set player data for AIs
-	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }
-	//		            or = { PlayerData: [ null, { AI: ... }, ... ] } when gaia set
-	int offset = 1;
-	JS::RootedValue player(cx);
-	if (scriptInterface.GetPropertyInt(playerData, 0, &player) && player.isNull())
-		offset = 0;
-
-	// Set teams
-	if (args.Has("autostart-team"))
-	{
-		std::vector<CStr> civArgs = args.GetMultiple("autostart-team");
-		for (size_t i = 0; i < civArgs.size(); ++i)
-		{
-			int playerID = civArgs[i].BeforeFirst(":").ToInt();
-
-			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-			{
-				if (mapDirectory == L"skirmishes")
-				{
-					// playerID is certainly bigger than this map player number
-					LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
-					continue;
-				}
-				scriptInterface.Eval("({})", &player);
-			}
-
-			int teamID = civArgs[i].AfterFirst(":").ToInt() - 1;
-			scriptInterface.SetProperty(player, "Team", teamID);
-			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-		}
-	}
-
-	int ceasefire = 0;
-	if (args.Has("autostart-ceasefire"))
-		ceasefire = args.Get("autostart-ceasefire").ToInt();
-	scriptInterface.SetProperty(settings, "Ceasefire", ceasefire);
-
-	if (args.Has("autostart-ai"))
-	{
-		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
-		for (size_t i = 0; i < aiArgs.size(); ++i)
-		{
-			int playerID = aiArgs[i].BeforeFirst(":").ToInt();
-
-			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-			{
-				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
-				{
-					// playerID is certainly bigger than this map player number
-					LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
-					continue;
-				}
-				scriptInterface.Eval("({})", &player);
-			}
-
-			CStr name = aiArgs[i].AfterFirst(":");
-			scriptInterface.SetProperty(player, "AI", std::string(name));
-			scriptInterface.SetProperty(player, "AIDiff", 3);
-			scriptInterface.SetProperty(player, "AIBehavior", std::string("balanced"));
-			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-		}
-	}
-	// Set AI difficulty
-	if (args.Has("autostart-aidiff"))
-	{
-		std::vector<CStr> civArgs = args.GetMultiple("autostart-aidiff");
-		for (size_t i = 0; i < civArgs.size(); ++i)
-		{
-			int playerID = civArgs[i].BeforeFirst(":").ToInt();
-
-			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-			{
-				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
-				{
-					// playerID is certainly bigger than this map player number
-					LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
-					continue;
-				}
-				scriptInterface.Eval("({})", &player);
-			}
-
-			int difficulty = civArgs[i].AfterFirst(":").ToInt();
-			scriptInterface.SetProperty(player, "AIDiff", difficulty);
-			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-		}
-	}
-	// Set player data for Civs
-	if (args.Has("autostart-civ"))
-	{
-		if (mapDirectory != L"scenarios")
-		{
-			std::vector<CStr> civArgs = args.GetMultiple("autostart-civ");
-			for (size_t i = 0; i < civArgs.size(); ++i)
-			{
-				int playerID = civArgs[i].BeforeFirst(":").ToInt();
-
-				// Instead of overwriting existing player data, modify the array
-				JS::RootedValue player(cx);
-				if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-				{
-					if (mapDirectory == L"skirmishes")
-					{
-						// playerID is certainly bigger than this map player number
-						LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
-						continue;
-					}
-					scriptInterface.Eval("({})", &player);
-				}
-
-				CStr name = civArgs[i].AfterFirst(":");
-				scriptInterface.SetProperty(player, "Civ", std::string(name));
-				scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-			}
-		}
-		else
-			LOGWARNING("Autostart: Option 'autostart-civ' is invalid for scenarios");
-	}
-
-	// Add player data to map settings
-	scriptInterface.SetProperty(settings, "PlayerData", playerData);
-
-	// Add map settings to game attributes
-	scriptInterface.SetProperty(attrs, "settings", settings);
-
-	// Get optional playername
-	CStrW userName = L"anonymous";
-	if (args.Has("autostart-playername"))
-		userName = args.Get("autostart-playername").FromUTF8();
-
-	// Add additional scripts to the TriggerScripts property
-	std::vector<CStrW> triggerScriptsVector;
-	JS::RootedValue triggerScripts(cx);
-
-	if (scriptInterface.HasProperty(settings, "TriggerScripts"))
-	{
-		scriptInterface.GetProperty(settings, "TriggerScripts", &triggerScripts);
-		FromJSVal_vector(cx, triggerScripts, triggerScriptsVector);
-	}
-
-	if (nonVisual)
-	{
-		CStr nonVisualScript = "scripts/NonVisualTrigger.js";
-		triggerScriptsVector.push_back(nonVisualScript.FromUTF8());
-	}
-
-	std::vector<CStr> victoryConditions(1, "conquest");
-	if (args.Has("autostart-victory"))
-		victoryConditions = args.GetMultiple("autostart-victory");
-
-	if (victoryConditions.size() == 1 && victoryConditions[0] == "endless")
-		victoryConditions.clear();
-
-	scriptInterface.SetProperty(settings, "VictoryConditions", victoryConditions);
-
-	for (const CStr& victory : victoryConditions)
-	{
-		JS::RootedValue scriptData(cx);
-		JS::RootedValue data(cx);
-		JS::RootedValue victoryScripts(cx);
-
-		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
-		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
-		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
-			&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
-		{
-			std::vector<CStrW> victoryScriptsVector;
-			FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
-			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
-		}
-		else
-		{
-			LOGERROR("Autostart: Error reading victory script '%s'", utf8_from_wstring(scriptPath));
-			throw PSERROR_Game_World_MapLoadFailed("Error reading victory script.\nCheck application log for details.");
-		}
-	}
-
-	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
-	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
-
-	int wonderDuration = 10;
-	if (args.Has("autostart-wonderduration"))
-		wonderDuration = args.Get("autostart-wonderduration").ToInt();
-	scriptInterface.SetProperty(settings, "WonderDuration", wonderDuration);
-
-	int relicDuration = 10;
-	if (args.Has("autostart-relicduration"))
-		relicDuration = args.Get("autostart-relicduration").ToInt();
-	scriptInterface.SetProperty(settings, "RelicDuration", relicDuration);
-
-	int relicCount = 2;
-	if (args.Has("autostart-reliccount"))
-		relicCount = args.Get("autostart-reliccount").ToInt();
-	scriptInterface.SetProperty(settings, "RelicCount", relicCount);
-
-	if (args.Has("autostart-host"))
-	{
-		InitPsAutostart(true, attrs);
-
-		size_t maxPlayers = 2;
-		if (args.Has("autostart-host-players"))
-			maxPlayers = args.Get("autostart-host-players").ToUInt();
-
-		g_NetServer = new CNetServer(false, maxPlayers);
-
-		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
-
-		bool ok = g_NetServer->SetupConnection(PS_DEFAULT_PORT);
-		ENSURE(ok);
-
-		g_NetClient = new CNetClient(g_Game, true);
-		g_NetClient->SetUserName(userName);
-		g_NetClient->SetupConnection("127.0.0.1", PS_DEFAULT_PORT);
-	}
-	else if (args.Has("autostart-client"))
-	{
-		InitPsAutostart(true, attrs);
-
-		g_NetClient = new CNetClient(g_Game, false);
-		g_NetClient->SetUserName(userName);
-
-		CStr ip = args.Get("autostart-client");
-		if (ip.empty())
-			ip = "127.0.0.1";
-
-		bool ok = g_NetClient->SetupConnection(ip, PS_DEFAULT_PORT);
-		ENSURE(ok);
-	}
-	else
-	{
-		g_Game->SetPlayerID(args.Has("autostart-player") ? args.Get("autostart-player").ToInt() : 1);
-
-		g_Game->StartGame(&attrs, "");
-
-		if (nonVisual)
-		{
-			// TODO: Non progressive load can fail - need a decent way to handle this
-			LDR_NonprogressiveLoad();
-			ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
-		}
-		else
-			InitPsAutostart(false, attrs);
-	}
-
-	return true;
+    GameConfig config = GameConfig::from(args);
+    return Autostart(config);
 }
 
 bool AutostartVisualReplay(const std::string& replayFile)
