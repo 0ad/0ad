@@ -26,6 +26,7 @@ struct GameMessage {
     GameMessageType type;
     std::string data;
 };
+extern void EndGame();
 
 class RLInterface final : public RLAPI::Service
 {
@@ -101,31 +102,36 @@ class RLInterface final : public RLAPI::Service
         void ApplyEvents()
         {
             // Apply and edits from the RPC messages to the game engine
-            const bool hasMessages(m_GameMessages.size() > 0);
-            if (hasMessages)
+            bool shouldStepGame = false;
+            while (m_GameMessages.size() > 0)
             {
-                while (m_GameMessages.size() > 0)
+                GameMessage msg = m_GameMessages.back();
+                m_GameMessages.pop_back();
+
+                std::cout << "Applying game message!" << std::endl;
+                switch (msg.type)
                 {
-                    GameMessage msg = m_GameMessages.back();
-                    m_GameMessages.pop_back();
-
-                    std::cout << "Applying game message!" << std::endl;
-                    switch (msg.type)
-                    {
-                        case GameMessageType::Reset:
-                            std::cout << "Received reset command!!" << std::endl;
-                            break;
-                        case GameMessageType::Command:
-                            const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-                            JSContext* cx = scriptInterface.GetContext();
-                            JS::RootedValue command(cx);
-                            scriptInterface.ParseJSON(msg.data, &command);
-                            std::cout << "Posting command: " << msg.data << std::endl;
-                            g_Game->GetTurnManager()->PostCommand(command);
-                            break;
-                    }
+                    case GameMessageType::Reset:
+                        std::cout << "Received reset command!!" << std::endl;
+                        std::cout << "Ending Game" << std::endl;
+                        EndGame();
+                        // TODO: Save the metadata files
+                        // TODO: Get the game info??
+                        break;
+                    case GameMessageType::Command:
+                        const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                        JSContext* cx = scriptInterface.GetContext();
+                        JS::RootedValue command(cx);
+                        scriptInterface.ParseJSON(msg.data, &command);
+                        std::cout << "Posting command: " << msg.data << std::endl;
+                        g_Game->GetTurnManager()->PostCommand(command);
+                        shouldStepGame = true;
+                        break;
                 }
+            }
 
+            if (shouldStepGame)
+            {
                 g_Game->Update(200);
                 m_GameStates.push(GetGameState());  // Send the game state back to the request
             }
