@@ -19,7 +19,6 @@
 
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
-#include "simulation2/components/CCmpPathfinder_Common.h"
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
@@ -214,10 +213,8 @@ public:
 			cmpObstructionMan->AddUnitShape(INVALID_ENTITY, x, z, fixed::FromInt(2), 0, INVALID_ENTITY);
 		}
 
-		NullObstructionFilter filter;
 		PathGoal goal = { PathGoal::POINT, range, range };
-		WaypointPath path;
-		cmpPathfinder->ComputeShortPath(filter, range/3, range/3, fixed::FromInt(2), range, goal, 0, path);
+		WaypointPath path = cmpPathfinder->ComputeShortPath(AsyncShortPathRequest{ 0, range/3, range/3, fixed::FromInt(2), range, goal, 0, false, 0, 0 });
 		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
 			printf("# %d: %f %f\n", (int)i, path.m_Waypoints[i].x.ToFloat(), path.m_Waypoints[i].z.ToFloat());
 	}

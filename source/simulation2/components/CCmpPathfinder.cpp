@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Rasterize.h"
+#include "simulation2/helpers/VertexPathfinder.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
@@ -49,10 +50,11 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
 	m_NextAsyncTicket = 1;
 
-	m_DebugOverlay = false;
 	m_AtlasOverlay = NULL;
 
 	m_SameTurnMovesCount = 0;
+
+	m_VertexPathfinder = std::unique_ptr<VertexPathfinder>(new VertexPathfinder(m_MapSize, m_TerrainOnlyGrid));
 
 	// Register Relax NG validator
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
@@ -92,6 +94,8 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 		m_PassClassMasks[name] = mask;
 	}
 }
+
+CCmpPathfinder::~CCmpPathfinder() {};
 
 void CCmpPathfinder::Deinit()
 {
@@ -183,10 +187,29 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 
 void CCmpPathfinder::RenderSubmit(SceneCollector& collector)
 {
-	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
-		collector.Submit(&m_DebugOverlayShortPathLines[i]);
-
+	m_VertexPathfinder->RenderSubmit(collector);
 	m_LongPathfinder.HierarchicalRenderSubmit(collector);
+}
+
+void CCmpPathfinder::SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass)
+{
+	m_LongPathfinder.SetDebugPath(x0, z0, goal, passClass);
+}
+
+void CCmpPathfinder::SetDebugOverlay(bool enabled)
+{
+	m_VertexPathfinder->SetDebugOverlay(enabled);
+	m_LongPathfinder.SetDebugOverlay(enabled);
+}
+
+void CCmpPathfinder::SetHierDebugOverlay(bool enabled)
+{
+	m_LongPathfinder.SetHierDebugOverlay(enabled, &GetSimContext());
+}
+
+void CCmpPathfinder::GetDebugData(u32& steps, double& time, Grid<u8>& grid) const
+{
+	m_LongPathfinder.GetDebugData(steps, time, grid);
 }
 
 void CCmpPathfinder::SetAtlasOverlay(bool enable, pass_class_t passClass)
@@ -672,8 +695,6 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 
 //////////////////////////////////////////////////////////
 
-// Async path requests:
-
 u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify)
 {
 	AsyncLongPathRequest req = { m_NextAsyncTicket++, x0, z0, goal, passClass, notify };
@@ -687,6 +708,13 @@ u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, enti
 	m_AsyncShortPathRequests.push_back(req);
 	return req.ticket;
 }
+
+WaypointPath CCmpPathfinder::ComputeShortPath(const AsyncShortPathRequest& request) const
+{
+	return m_VertexPathfinder->ComputeShortPath(request, CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
+}
+
+// Async processing:
 
 void CCmpPathfinder::FinishAsyncRequests()
 {
@@ -726,9 +754,7 @@ void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathReques
 	for (size_t i = 0; i < shortRequests.size(); ++i)
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
-		WaypointPath path;
-		ControlGroupMovementObstructionFilter filter(req.avoidMovingUnits, req.group);
-		ComputeShortPath(filter, req.x0, req.z0, req.clearance, req.range, req.goal, req.passClass, path);
+		WaypointPath path = m_VertexPathfinder->ComputeShortPath(req, CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
 	}

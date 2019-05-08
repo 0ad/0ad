@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,13 +32,15 @@
 
 #include "precompiled.h"
 
-#include "CCmpPathfinder_Common.h"
+#include "VertexPathfinder.h"
 
 #include "lib/timer.h"
 #include "ps/Profile.h"
+#include "renderer/Scene.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/helpers/PriorityQueue.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/system/SimContext.h"
 
 /* Quadrant optimisation:
  * (loosely based on GPG2 "Optimizing Points-of-Visibility Pathfinding")
@@ -257,7 +259,6 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 	int i0, int j0, int i1, int j1,
 	pass_class_t passClass, const Grid<NavcellData>& grid)
 {
-	PROFILE("AddTerrainEdges");
 
 	// Clamp the coordinates so we won't attempt to sample outside of the grid.
 	// (This assumes the outermost ring of navcells (which are always impassable)
@@ -509,87 +510,50 @@ struct SquareSort
 	}
 };
 
-void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
-	entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance,
-	entity_pos_t range, const PathGoal& goal, pass_class_t passClass, WaypointPath& path)
+WaypointPath VertexPathfinder::ComputeShortPath(const AsyncShortPathRequest& request, CmpPtr<ICmpObstructionManager> cmpObstructionManager) const
 {
-	PROFILE("ComputeShortPath");
-	m_DebugOverlayShortPathLines.clear();
+	PROFILE2("ComputeShortPath");
 
-	if (m_DebugOverlay)
-	{
-		// Render the goal shape
-		m_DebugOverlayShortPathLines.push_back(SOverlayLine());
-		m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 0, 0, 1);
-		switch (goal.type)
-		{
-		case PathGoal::POINT:
-		{
-			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back(), true);
-			break;
-		}
-		case PathGoal::CIRCLE:
-		case PathGoal::INVERTED_CIRCLE:
-		{
-			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back(), true);
-			break;
-		}
-		case PathGoal::SQUARE:
-		case PathGoal::INVERTED_SQUARE:
-		{
-			float a = atan2f(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
-			SimRender::ConstructSquareOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back(), true);
-			break;
-		}
-		}
-	}
-
-	// List of collision edges - paths must never cross these.
-	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
-	edges.clear();
-	edgeSquares.clear(); // axis-aligned squares; equivalent to 4 edges
+	DebugRenderGoal(cmpObstructionManager->GetSimContext(), request.goal);
 
 	// Create impassable edges at the max-range boundary, so we can't escape the region
 	// where we're meant to be searching
-	fixed rangeXMin = x0 - range;
-	fixed rangeXMax = x0 + range;
-	fixed rangeZMin = z0 - range;
-	fixed rangeZMax = z0 + range;
+	fixed rangeXMin = request.x0 - request.range;
+	fixed rangeXMax = request.x0 + request.range;
+	fixed rangeZMin = request.z0 - request.range;
+	fixed rangeZMax = request.z0 + request.range;
 
 	// we don't actually add the "search space" edges as edges, since we may want to cross them
 	// in some cases (such as if we need to go around an obstruction that's partly out of the search range)
 
-	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
-	// the graph defined by these vertexes
-	vertexes.clear();
 
 	// Add the start point to the graph
-	CFixedVector2D posStart(x0, z0);
-	fixed hStart = (posStart - goal.NearestPointOnGoal(posStart)).Length();
+	CFixedVector2D posStart(request.x0, request.z0);
+	fixed hStart = (posStart - request.goal.NearestPointOnGoal(posStart)).Length();
 	Vertex start = { posStart, fixed::Zero(), hStart, 0, Vertex::OPEN, QUADRANT_NONE, QUADRANT_ALL };
-	vertexes.push_back(start);
+	m_Vertexes.push_back(start);
 	const size_t START_VERTEX_ID = 0;
 
 	// Add the goal vertex to the graph.
 	// Since the goal isn't always a point, this a special magic virtual vertex which moves around - whenever
 	// we look at it from another vertex, it is moved to be the closest point on the goal shape to that vertex.
-	Vertex end = { CFixedVector2D(goal.x, goal.z), fixed::Zero(), fixed::Zero(), 0, Vertex::UNEXPLORED, QUADRANT_NONE, QUADRANT_ALL };
-	vertexes.push_back(end);
+	Vertex end = { CFixedVector2D(request.goal.x, request.goal.z), fixed::Zero(), fixed::Zero(), 0, Vertex::UNEXPLORED, QUADRANT_NONE, QUADRANT_ALL };
+	m_Vertexes.push_back(end);
 	const size_t GOAL_VERTEX_ID = 1;
 
 	// Find all the obstruction squares that might affect us
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	std::vector<ICmpObstructionManager::ObstructionSquare> squares;
 	size_t staticShapesNb = 0;
-	cmpObstructionManager->GetStaticObstructionsInRange(filter, rangeXMin - clearance, rangeZMin - clearance, rangeXMax + clearance, rangeZMax + clearance, squares);
+	ControlGroupMovementObstructionFilter filter(request.avoidMovingUnits, request.group);
+	cmpObstructionManager->GetStaticObstructionsInRange(filter, rangeXMin - request.clearance, rangeZMin - request.clearance, rangeXMax + request.clearance, rangeZMax + request.clearance, squares);
 	staticShapesNb = squares.size();
-	cmpObstructionManager->GetUnitObstructionsInRange(filter, rangeXMin - clearance, rangeZMin - clearance, rangeXMax + clearance, rangeZMax + clearance, squares);
+	cmpObstructionManager->GetUnitObstructionsInRange(filter, rangeXMin - request.clearance, rangeZMin - request.clearance, rangeXMax + request.clearance, rangeZMax + request.clearance, squares);
 
 	// Change array capacities to reduce reallocations
-	vertexes.reserve(vertexes.size() + squares.size()*4);
-	edgeSquares.reserve(edgeSquares.size() + squares.size()); // (assume most squares are AA)
+	m_Vertexes.reserve(m_Vertexes.size() + squares.size()*4);
+	m_EdgeSquares.reserve(m_EdgeSquares.size() + squares.size()); // (assume most squares are AA)
 
-	entity_pos_t pathfindClearance = clearance;
+	entity_pos_t pathfindClearance = request.clearance;
 
 	// Convert each obstruction square into collision edges and search graph vertexes
 	for (size_t i = 0; i < squares.size(); ++i)
@@ -599,7 +563,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		CFixedVector2D v = squares[i].v;
 
 		if (i >= staticShapesNb)
-			pathfindClearance = clearance - entity_pos_t::FromInt(1)/2;
+			pathfindClearance = request.clearance - entity_pos_t::FromInt(1)/2;
 
 		// Expand the vertexes by the moving unit's collision radius, to find the
 		// closest we can get to it
@@ -614,22 +578,22 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		vert.status = Vertex::UNEXPLORED;
 		vert.quadInward = QUADRANT_NONE;
 		vert.quadOutward = QUADRANT_ALL;
-		vert.p.X = center.X - hd0.Dot(u); vert.p.Y = center.Y + hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
+		vert.p.X = center.X - hd0.Dot(u); vert.p.Y = center.Y + hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_BR; m_Vertexes.push_back(vert);
 		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
 		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
 		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
 		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
-		vert.p.X = center.X - hd1.Dot(u); vert.p.Y = center.Y + hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
+		vert.p.X = center.X - hd1.Dot(u); vert.p.Y = center.Y + hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_TR; m_Vertexes.push_back(vert);
 		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
 		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
 		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
 		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
-		vert.p.X = center.X + hd0.Dot(u); vert.p.Y = center.Y - hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
+		vert.p.X = center.X + hd0.Dot(u); vert.p.Y = center.Y - hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_TL; m_Vertexes.push_back(vert);
 		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
 		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
 		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
 		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
-		vert.p.X = center.X + hd1.Dot(u); vert.p.Y = center.Y - hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
+		vert.p.X = center.X + hd1.Dot(u); vert.p.Y = center.Y - hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_BL; m_Vertexes.push_back(vert);
 		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
 		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
 		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
@@ -645,13 +609,13 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		CFixedVector2D ev2(center.X + h0.Dot(u), center.Y - h0.Dot(v));
 		CFixedVector2D ev3(center.X + h1.Dot(u), center.Y - h1.Dot(v));
 		if (aa)
-			edgeSquares.emplace_back(Square{ ev1, ev3 });
+			m_EdgeSquares.emplace_back(Square{ ev1, ev3 });
 		else
 		{
-			edges.emplace_back(Edge{ ev0, ev1 });
-			edges.emplace_back(Edge{ ev1, ev2 });
-			edges.emplace_back(Edge{ ev2, ev3 });
-			edges.emplace_back(Edge{ ev3, ev0 });
+			m_Edges.emplace_back(Edge{ ev0, ev1 });
+			m_Edges.emplace_back(Edge{ ev1, ev2 });
+			m_Edges.emplace_back(Edge{ ev2, ev3 });
+			m_Edges.emplace_back(Edge{ ev3, ev0 });
 		}
 
 		// TODO: should clip out vertexes and edges that are outside the range,
@@ -663,103 +627,32 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		u16 i0, j0, i1, j1;
 		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
 		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
-		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, passClass, *m_TerrainOnlyGrid);
+		AddTerrainEdges(m_Edges, m_Vertexes, i0, j0, i1, j1, request.passClass, *m_TerrainOnlyGrid);
 	}
 
 	// Clip out vertices that are inside an edgeSquare (i.e. trivially unreachable)
-	for (size_t i = 0; i < edgeSquares.size(); ++i)
+	for (size_t i = 0; i < m_EdgeSquares.size(); ++i)
 	{
 		// If the start point is inside the square, ignore it
-		if (start.p.X >= edgeSquares[i].p0.X &&
-		    start.p.Y >= edgeSquares[i].p0.Y &&
-		    start.p.X <= edgeSquares[i].p1.X &&
-		    start.p.Y <= edgeSquares[i].p1.Y)
+		if (start.p.X >= m_EdgeSquares[i].p0.X &&
+		    start.p.Y >= m_EdgeSquares[i].p0.Y &&
+		    start.p.X <= m_EdgeSquares[i].p1.X &&
+		    start.p.Y <= m_EdgeSquares[i].p1.Y)
 			continue;
 
 		// Remove every non-start/goal vertex that is inside an edgeSquare;
 		// since remove() would be inefficient, just mark it as closed instead.
-		for (size_t j = 2; j < vertexes.size(); ++j)
-			if (vertexes[j].p.X >= edgeSquares[i].p0.X &&
-			    vertexes[j].p.Y >= edgeSquares[i].p0.Y &&
-			    vertexes[j].p.X <= edgeSquares[i].p1.X &&
-			    vertexes[j].p.Y <= edgeSquares[i].p1.Y)
-				vertexes[j].status = Vertex::CLOSED;
+		for (size_t j = 2; j < m_Vertexes.size(); ++j)
+			if (m_Vertexes[j].p.X >= m_EdgeSquares[i].p0.X &&
+			    m_Vertexes[j].p.Y >= m_EdgeSquares[i].p0.Y &&
+			    m_Vertexes[j].p.X <= m_EdgeSquares[i].p1.X &&
+			    m_Vertexes[j].p.Y <= m_EdgeSquares[i].p1.Y)
+				m_Vertexes[j].status = Vertex::CLOSED;
 	}
 
-	ENSURE(vertexes.size() < 65536); // we store array indexes as u16
+	ENSURE(m_Vertexes.size() < 65536); // We store array indexes as u16.
 
-	// Render the debug overlay
-	if (m_DebugOverlay)
-	{
-#define PUSH_POINT(p) STMT(xz.push_back(p.X.ToFloat()); xz.push_back(p.Y.ToFloat()))
-		// Render the vertexes as little Pac-Man shapes to indicate quadrant direction
-		for (size_t i = 0; i < vertexes.size(); ++i)
-		{
-			m_DebugOverlayShortPathLines.emplace_back();
-			m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 1, 0, 1);
-
-			float x = vertexes[i].p.X.ToFloat();
-			float z = vertexes[i].p.Y.ToFloat();
-
-			float a0 = 0, a1 = 0;
-			// Get arc start/end angles depending on quadrant (if any)
-			if      (vertexes[i].quadInward == QUADRANT_BL) { a0 = -0.25f; a1 = 0.50f; }
-			else if (vertexes[i].quadInward == QUADRANT_TR) { a0 =  0.25f; a1 = 1.00f; }
-			else if (vertexes[i].quadInward == QUADRANT_TL) { a0 = -0.50f; a1 = 0.25f; }
-			else if (vertexes[i].quadInward == QUADRANT_BR) { a0 =  0.00f; a1 = 0.75f; }
-
-			if (a0 == a1)
-				SimRender::ConstructCircleOnGround(GetSimContext(), x, z, 0.5f,
-					m_DebugOverlayShortPathLines.back(), true);
-			else
-				SimRender::ConstructClosedArcOnGround(GetSimContext(), x, z, 0.5f,
-					a0 * ((float)M_PI*2.0f), a1 * ((float)M_PI*2.0f),
-					m_DebugOverlayShortPathLines.back(), true);
-		}
-
-		// Render the edges
-		for (size_t i = 0; i < edges.size(); ++i)
-		{
-			m_DebugOverlayShortPathLines.emplace_back();
-			m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
-			std::vector<float> xz;
-			PUSH_POINT(edges[i].p0);
-			PUSH_POINT(edges[i].p1);
-
-			// Add an arrowhead to indicate the direction
-			CFixedVector2D d = edges[i].p1 - edges[i].p0;
-			d.Normalize(fixed::FromInt(1)/8);
-			CFixedVector2D p2 = edges[i].p1 - d*2;
-			CFixedVector2D p3 = p2 + d.Perpendicular();
-			CFixedVector2D p4 = p2 - d.Perpendicular();
-			PUSH_POINT(p3);
-			PUSH_POINT(p4);
-			PUSH_POINT(edges[i].p1);
-
-			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), true);
-		}
-#undef PUSH_POINT
-
-		// Render the axis-aligned squares
-		for (size_t i = 0; i < edgeSquares.size(); ++i)
-		{
-			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
-			m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
-			std::vector<float> xz;
-			Square s = edgeSquares[i];
-			xz.push_back(s.p0.X.ToFloat());
-			xz.push_back(s.p0.Y.ToFloat());
-			xz.push_back(s.p0.X.ToFloat());
-			xz.push_back(s.p1.Y.ToFloat());
-			xz.push_back(s.p1.X.ToFloat());
-			xz.push_back(s.p1.Y.ToFloat());
-			xz.push_back(s.p1.X.ToFloat());
-			xz.push_back(s.p0.Y.ToFloat());
-			xz.push_back(s.p0.X.ToFloat());
-			xz.push_back(s.p0.Y.ToFloat());
-			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), true);
-		}
-	}
+	DebugRenderGraph(cmpObstructionManager->GetSimContext(), m_Vertexes, m_Edges, m_EdgeSquares);
 
 	// Do an A* search over the vertex/visibility graph:
 
@@ -772,8 +665,6 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	// we can't reach. Since the algorithm can only reach a vertex once (and then it'll be marked
 	// as closed), we won't be doing any redundant visibility computations.
 
-	PROFILE_START("Short pathfinding - A*");
-
 	VertexPriorityQueue open;
 	VertexPriorityQueue::Item qiStart = { START_VERTEX_ID, start.h, start.h };
 	open.push(qiStart);
@@ -785,7 +676,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	{
 		// Move best tile from open to closed
 		VertexPriorityQueue::Item curr = open.pop();
-		vertexes[curr.id].status = Vertex::CLOSED;
+		m_Vertexes[curr.id].status = Vertex::CLOSED;
 
 		// If we've reached the destination, stop
 		if (curr.id == GOAL_VERTEX_ID)
@@ -798,27 +689,27 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		// The heuristic based on distance is very rough, especially for squares that are further away;
 		// we're also only really interested in the closest squares since they are the only ones that block a lot of rays.
 		// Thus we only do a partial sort; the threshold is just a somewhat reasonable value.
-		if (edgeSquares.size() > 8)
-			std::partial_sort(edgeSquares.begin(), edgeSquares.begin() + 8, edgeSquares.end(), SquareSort(vertexes[curr.id].p));
+		if (m_EdgeSquares.size() > 8)
+			std::partial_sort(m_EdgeSquares.begin(), m_EdgeSquares.begin() + 8, m_EdgeSquares.end(), SquareSort(m_Vertexes[curr.id].p));
 
-		edgesUnaligned.clear();
-		edgesLeft.clear();
-		edgesRight.clear();
-		edgesBottom.clear();
-		edgesTop.clear();
-		SplitAAEdges(vertexes[curr.id].p, edges, edgeSquares, edgesUnaligned, edgesLeft, edgesRight, edgesBottom, edgesTop);
+		m_EdgesUnaligned.clear();
+		m_EdgesLeft.clear();
+		m_EdgesRight.clear();
+		m_EdgesBottom.clear();
+		m_EdgesTop.clear();
+		SplitAAEdges(m_Vertexes[curr.id].p, m_Edges, m_EdgeSquares, m_EdgesUnaligned, m_EdgesLeft, m_EdgesRight, m_EdgesBottom, m_EdgesTop);
 
 		// Check the lines to every other vertex
-		for (size_t n = 0; n < vertexes.size(); ++n)
+		for (size_t n = 0; n < m_Vertexes.size(); ++n)
 		{
-			if (vertexes[n].status == Vertex::CLOSED)
+			if (m_Vertexes[n].status == Vertex::CLOSED)
 				continue;
 
 			// If this is the magical goal vertex, move it to near the current vertex
 			CFixedVector2D npos;
 			if (n == GOAL_VERTEX_ID)
 			{
-				npos = goal.NearestPointOnGoal(vertexes[curr.id].p);
+				npos = request.goal.NearestPointOnGoal(m_Vertexes[curr.id].p);
 
 				// To prevent integer overflows later on, we need to ensure all vertexes are
 				// 'close' to the source. The goal might be far away (not a good idea but
@@ -827,17 +718,17 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 				npos.Y = clamp(npos.Y, rangeZMin, rangeZMax);
 			}
 			else
-				npos = vertexes[n].p;
+				npos = m_Vertexes[n].p;
 
 			// Work out which quadrant(s) we're approaching the new vertex from
 			u8 quad = 0;
-			if (vertexes[curr.id].p.X <= npos.X && vertexes[curr.id].p.Y <= npos.Y) quad |= QUADRANT_BL;
-			if (vertexes[curr.id].p.X >= npos.X && vertexes[curr.id].p.Y >= npos.Y) quad |= QUADRANT_TR;
-			if (vertexes[curr.id].p.X <= npos.X && vertexes[curr.id].p.Y >= npos.Y) quad |= QUADRANT_TL;
-			if (vertexes[curr.id].p.X >= npos.X && vertexes[curr.id].p.Y <= npos.Y) quad |= QUADRANT_BR;
+			if (m_Vertexes[curr.id].p.X <= npos.X && m_Vertexes[curr.id].p.Y <= npos.Y) quad |= QUADRANT_BL;
+			if (m_Vertexes[curr.id].p.X >= npos.X && m_Vertexes[curr.id].p.Y >= npos.Y) quad |= QUADRANT_TR;
+			if (m_Vertexes[curr.id].p.X <= npos.X && m_Vertexes[curr.id].p.Y >= npos.Y) quad |= QUADRANT_TL;
+			if (m_Vertexes[curr.id].p.X >= npos.X && m_Vertexes[curr.id].p.Y <= npos.Y) quad |= QUADRANT_BR;
 
 			// Check that the new vertex is in the right quadrant for the old vertex
-			if (!(vertexes[curr.id].quadOutward & quad))
+			if (!(m_Vertexes[curr.id].quadOutward & quad))
 			{
 				// Hack: Always head towards the goal if possible, to avoid missing it if it's
 				// inside another unit
@@ -846,86 +737,227 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 			}
 
 			bool visible =
-				CheckVisibilityLeft(vertexes[curr.id].p, npos, edgesLeft) &&
-				CheckVisibilityRight(vertexes[curr.id].p, npos, edgesRight) &&
-				CheckVisibilityBottom(vertexes[curr.id].p, npos, edgesBottom) &&
-				CheckVisibilityTop(vertexes[curr.id].p, npos, edgesTop) &&
-				CheckVisibility(vertexes[curr.id].p, npos, edgesUnaligned);
+				CheckVisibilityLeft(m_Vertexes[curr.id].p, npos, m_EdgesLeft) &&
+				CheckVisibilityRight(m_Vertexes[curr.id].p, npos, m_EdgesRight) &&
+				CheckVisibilityBottom(m_Vertexes[curr.id].p, npos, m_EdgesBottom) &&
+				CheckVisibilityTop(m_Vertexes[curr.id].p, npos, m_EdgesTop) &&
+				CheckVisibility(m_Vertexes[curr.id].p, npos, m_EdgesUnaligned);
 
-			/*
-			// Render the edges that we examine
-			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
-			m_DebugOverlayShortPathLines.back().m_Color = visible ? CColor(0, 1, 0, 0.5) : CColor(1, 0, 0, 0.5);
-			std::vector<float> xz;
-			xz.push_back(vertexes[curr.id].p.X.ToFloat());
-			xz.push_back(vertexes[curr.id].p.Y.ToFloat());
-			xz.push_back(npos.X.ToFloat());
-			xz.push_back(npos.Y.ToFloat());
-			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), false);
-			*/
+			// Render the edges that we examine.
+			DebugRenderEdges(cmpObstructionManager->GetSimContext(), visible, m_Vertexes[curr.id].p, npos);
 
 			if (visible)
 			{
-				fixed g = vertexes[curr.id].g + (vertexes[curr.id].p - npos).Length();
+				fixed g = m_Vertexes[curr.id].g + (m_Vertexes[curr.id].p - npos).Length();
 
 				// If this is a new tile, compute the heuristic distance
-				if (vertexes[n].status == Vertex::UNEXPLORED)
+				if (m_Vertexes[n].status == Vertex::UNEXPLORED)
 				{
 					// Add it to the open list:
-					vertexes[n].status = Vertex::OPEN;
-					vertexes[n].g = g;
-					vertexes[n].h = goal.DistanceToPoint(npos);
-					vertexes[n].pred = curr.id;
+					m_Vertexes[n].status = Vertex::OPEN;
+					m_Vertexes[n].g = g;
+					m_Vertexes[n].h = request.goal.DistanceToPoint(npos);
+					m_Vertexes[n].pred = curr.id;
 
 					// If this is an axis-aligned shape, the path must continue in the same quadrant
 					// direction (but not go into the inside of the shape).
 					// Hack: If we started *inside* a shape then perhaps headed to its corner (e.g. the unit
 					// was very near another unit), don't restrict further pathing.
-					if (vertexes[n].quadInward && !(curr.id == START_VERTEX_ID && g < fixed::FromInt(8)))
-						vertexes[n].quadOutward = ((~vertexes[n].quadInward) & quad) & 0xF;
+					if (m_Vertexes[n].quadInward && !(curr.id == START_VERTEX_ID && g < fixed::FromInt(8)))
+						m_Vertexes[n].quadOutward = ((m_Vertexes[n].quadInward) & quad) & 0xF;
 
 					if (n == GOAL_VERTEX_ID)
-						vertexes[n].p = npos; // remember the new best goal position
+						m_Vertexes[n].p = npos; // remember the new best goal position
 
-					VertexPriorityQueue::Item t = { (u16)n, g + vertexes[n].h, vertexes[n].h };
+					VertexPriorityQueue::Item t = { (u16)n, g + m_Vertexes[n].h, m_Vertexes[n].h };
 					open.push(t);
 
 					// Remember the heuristically best vertex we've seen so far, in case we never actually reach the target
-					if (vertexes[n].h < hBest)
+					if (m_Vertexes[n].h < hBest)
 					{
 						idBest = (u16)n;
-						hBest = vertexes[n].h;
+						hBest = m_Vertexes[n].h;
 					}
 				}
 				else // must be OPEN
 				{
 					// If we've already seen this tile, and the new path to this tile does not have a
 					// better cost, then stop now
-					if (g >= vertexes[n].g)
+					if (g >= m_Vertexes[n].g)
 						continue;
 
 					// Otherwise, we have a better path, so replace the old one with the new cost/parent
-					fixed gprev = vertexes[n].g;
-					vertexes[n].g = g;
-					vertexes[n].pred = curr.id;
+					fixed gprev = m_Vertexes[n].g;
+					m_Vertexes[n].g = g;
+					m_Vertexes[n].pred = curr.id;
 
 					// If this is an axis-aligned shape, the path must continue in the same quadrant
 					// direction (but not go into the inside of the shape).
-					if (vertexes[n].quadInward)
-						vertexes[n].quadOutward = ((~vertexes[n].quadInward) & quad) & 0xF;
+					if (m_Vertexes[n].quadInward)
+						m_Vertexes[n].quadOutward = ((m_Vertexes[n].quadInward) & quad) & 0xF;
 
 					if (n == GOAL_VERTEX_ID)
-						vertexes[n].p = npos; // remember the new best goal position
+						m_Vertexes[n].p = npos; // remember the new best goal position
 
-					open.promote((u16)n, gprev + vertexes[n].h, g + vertexes[n].h, vertexes[n].h);
+					open.promote((u16)n, gprev + m_Vertexes[n].h, g + m_Vertexes[n].h, m_Vertexes[n].h);
 				}
 			}
 		}
 	}
 
 	// Reconstruct the path (in reverse)
-	for (u16 id = idBest; id != START_VERTEX_ID; id = vertexes[id].pred)
-		path.m_Waypoints.emplace_back(Waypoint{ vertexes[id].p.X, vertexes[id].p.Y });
+	WaypointPath path;
+	for (u16 id = idBest; id != START_VERTEX_ID; id = m_Vertexes[id].pred)
+		path.m_Waypoints.emplace_back(Waypoint{ m_Vertexes[id].p.X, m_Vertexes[id].p.Y });
 
-	PROFILE_END("Short pathfinding - A*");
+
+	m_Edges.clear();
+	m_EdgeSquares.clear();
+	m_Vertexes.clear();
+
+	m_EdgesUnaligned.clear();
+	m_EdgesLeft.clear();
+	m_EdgesRight.clear();
+	m_EdgesBottom.clear();
+	m_EdgesTop.clear();
+
+	return path;
+}
+
+void VertexPathfinder::DebugRenderGoal(const CSimContext& simContext, const PathGoal& goal) const
+{
+	if (!m_DebugOverlay)
+		return;
+
+	m_DebugOverlayShortPathLines.clear();
+
+	// Render the goal shape
+	m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+	m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 0, 0, 1);
+	switch (goal.type)
+	{
+		case PathGoal::POINT:
+		{
+			SimRender::ConstructCircleOnGround(simContext, goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back(), true);
+			break;
+		}
+		case PathGoal::CIRCLE:
+		case PathGoal::INVERTED_CIRCLE:
+		{
+			SimRender::ConstructCircleOnGround(simContext, goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back(), true);
+			break;
+		}
+		case PathGoal::SQUARE:
+		case PathGoal::INVERTED_SQUARE:
+		{
+			float a = atan2f(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
+			SimRender::ConstructSquareOnGround(simContext, goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back(), true);
+			break;
+		}
+	}
+}
+
+void VertexPathfinder::DebugRenderGraph(const CSimContext& simContext, const std::vector<Vertex>& vertexes, const std::vector<Edge>& edges, const std::vector<Square>& edgeSquares) const
+{
+	if (!m_DebugOverlay)
+		return;
+
+#define PUSH_POINT(p) STMT(xz.push_back(p.X.ToFloat()); xz.push_back(p.Y.ToFloat()))
+	// Render the vertexes as little Pac-Man shapes to indicate quadrant direction
+	for (size_t i = 0; i < vertexes.size(); ++i)
+	{
+		m_DebugOverlayShortPathLines.emplace_back();
+		m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 1, 0, 1);
+
+		float x = vertexes[i].p.X.ToFloat();
+		float z = vertexes[i].p.Y.ToFloat();
+
+		float a0 = 0, a1 = 0;
+		// Get arc start/end angles depending on quadrant (if any)
+		if      (vertexes[i].quadInward == QUADRANT_BL) { a0 = -0.25f; a1 = 0.50f; }
+		else if (vertexes[i].quadInward == QUADRANT_TR) { a0 =  0.25f; a1 = 1.00f; }
+		else if (vertexes[i].quadInward == QUADRANT_TL) { a0 = -0.50f; a1 = 0.25f; }
+		else if (vertexes[i].quadInward == QUADRANT_BR) { a0 =  0.00f; a1 = 0.75f; }
+
+		if (a0 == a1)
+			SimRender::ConstructCircleOnGround(simContext, x, z, 0.5f,
+											   m_DebugOverlayShortPathLines.back(), true);
+		else
+			SimRender::ConstructClosedArcOnGround(simContext, x, z, 0.5f,
+												  a0 * ((float)M_PI*2.0f), a1 * ((float)M_PI*2.0f),
+												  m_DebugOverlayShortPathLines.back(), true);
+	}
+
+	// Render the edges
+	for (size_t i = 0; i < edges.size(); ++i)
+	{
+		m_DebugOverlayShortPathLines.emplace_back();
+		m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
+		std::vector<float> xz;
+		PUSH_POINT(edges[i].p0);
+		PUSH_POINT(edges[i].p1);
+
+		// Add an arrowhead to indicate the direction
+		CFixedVector2D d = edges[i].p1 - edges[i].p0;
+		d.Normalize(fixed::FromInt(1)/8);
+		CFixedVector2D p2 = edges[i].p1 - d*2;
+		CFixedVector2D p3 = p2 + d.Perpendicular();
+		CFixedVector2D p4 = p2 - d.Perpendicular();
+		PUSH_POINT(p3);
+		PUSH_POINT(p4);
+		PUSH_POINT(edges[i].p1);
+
+		SimRender::ConstructLineOnGround(simContext, xz, m_DebugOverlayShortPathLines.back(), true);
+	}
+#undef PUSH_POINT
+
+	// Render the axis-aligned squares
+	for (size_t i = 0; i < edgeSquares.size(); ++i)
+	{
+		m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+		m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
+		std::vector<float> xz;
+		Square s = edgeSquares[i];
+		xz.push_back(s.p0.X.ToFloat());
+		xz.push_back(s.p0.Y.ToFloat());
+		xz.push_back(s.p0.X.ToFloat());
+		xz.push_back(s.p1.Y.ToFloat());
+		xz.push_back(s.p1.X.ToFloat());
+		xz.push_back(s.p1.Y.ToFloat());
+		xz.push_back(s.p1.X.ToFloat());
+		xz.push_back(s.p0.Y.ToFloat());
+		xz.push_back(s.p0.X.ToFloat());
+		xz.push_back(s.p0.Y.ToFloat());
+		SimRender::ConstructLineOnGround(simContext, xz, m_DebugOverlayShortPathLines.back(), true);
+	}
+}
+
+void VertexPathfinder::DebugRenderEdges(const CSimContext& UNUSED(simContext), bool UNUSED(visible), CFixedVector2D UNUSED(curr), CFixedVector2D UNUSED(npos)) const
+{
+	if (!m_DebugOverlay)
+		return;
+
+	// Disabled by default.
+	/*
+	m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+	m_DebugOverlayShortPathLines.back().m_Color = visible ? CColor(0, 1, 0, 0.5) : CColor(1, 0, 0, 0.5);
+	m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+	m_DebugOverlayShortPathLines.back().m_Color = visible ? CColor(0, 1, 0, 0.5) : CColor(1, 0, 0, 0.5);
+	std::vector<float> xz;
+	xz.push_back(curr.X.ToFloat());
+	xz.push_back(curr.Y.ToFloat());
+	xz.push_back(npos.X.ToFloat());
+	xz.push_back(npos.Y.ToFloat());
+	SimRender::ConstructLineOnGround(simContext, xz, m_DebugOverlayShortPathLines.back(), false);
+	SimRender::ConstructLineOnGround(simContext, xz, m_DebugOverlayShortPathLines.back(), false);
+	*/
+}
+
+void VertexPathfinder::RenderSubmit(SceneCollector& collector)
+{
+	if (!m_DebugOverlay)
+		return;
+
+	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
+		collector.Submit(&m_DebugOverlayShortPathLines[i]);
 }
