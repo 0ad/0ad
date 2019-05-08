@@ -541,13 +541,9 @@ static void* RunRenderLoop(std::unique_ptr<RLInterface>& service)
 	if (g_Game && g_Game->IsGameStarted() && need_update)
 	{
         service.get()->ApplyEvents();
-        if (g_Game->GetView())
+        if (g_Game && g_Game->GetView())
         {
             g_Game->GetView()->Update(float(0.03));
-        }
-        else
-        {
-            std::cout << "Game View is null." << std::endl;
         }
         // FIXME: realTimeSinceLastFrame is 0??
 		//g_Game->GetView()->Update(float(realTimeSinceLastFrame));
