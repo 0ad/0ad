@@ -87,6 +87,8 @@
             </bone>
           </bone>
         </bone>
+        <bone name="hair">
+        </bone>
       </bone>
     </bone>
   </standard_skeleton>
@@ -233,6 +235,9 @@
               </bone>
             </bone>
         </bone>
+      </bone>
+      <bone name="Horse_Hair">
+      <target>hair</target>
       </bone>
       </bone>
     </bone>

@@ -24,18 +24,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml">
-      <props>
-        <prop actor="props/horse/cav_blanket_pers.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_winged_armor_02.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml">
-      <props>
-        <prop actor="props/horse/cav_blanket_pers.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_winged_armor_02.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
   </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>
