@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_bovidae_wild.xml" name="Base"/>
+  </group>
+  <group>
+    <variant frequency="1" name="cattle_horned">
+      <mesh>skeletal/cattle_female_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="cattle_unhorned">
+      <mesh>skeletal/cattle_female_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Black and White">
+      <textures>
+        <texture file="skeletal/animal_cattle_black_and_white.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="beige">
+      <textures>
+        <texture file="skeletal/animal_cattle_beige.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="White and Brown">
+      <textures>
+        <texture file="skeletal/animal_zebu_white_and_brown.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_bovidae_death.xml" name="death"/>
+  </group>
+  <material>default.xml</material>
+</actor>

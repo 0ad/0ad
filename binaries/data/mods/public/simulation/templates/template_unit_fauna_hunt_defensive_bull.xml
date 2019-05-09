@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_hunt_defensive">
+  <Footprint>
+    <Square width="1.9" depth="3.8"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Attack>
+    <Melee>
+      <Hack>1</Hack>
+      <Pierce>5</Pierce>
+      <Crush>2</Crush>
+      <MaxRange>4</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
+    </Melee>
+  </Attack>
+  <Identity>
+    <VisibleClasses datatype="tokens">Cattle</VisibleClasses>
+  </Identity>
+  <Loot>
+    <xp>50</xp>
+  </Loot>
+  <Position>
+    <Anchor>pitch</Anchor>
+  </Position>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <UnitMotion>
+    <PassabilityClass>large</PassabilityClass>
+    <WalkSpeed op="mul">0.4</WalkSpeed>
+    <RunMultiplier>2.0</RunMultiplier>
+  </UnitMotion>
+</Entity>

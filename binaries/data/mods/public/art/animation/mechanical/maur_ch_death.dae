@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.80.54 commit date:2019-04-06, commit time:12:26, hash:cc73d59ad580</authoring_tool>
     </contributor>
-    <created>2019-04-28T12:24:13</created>
-    <modified>2019-04-28T12:24:13</modified>
+    <created>2019-04-28T12:16:18</created>
+    <modified>2019-04-28T12:16:18</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -97,6 +97,394 @@
       </skin>
     </controller>
   </library_controllers>
+  <library_animations>
+    <animation id="action_container-Maur_Ch" name="Maur_Ch">
+      <animation id="Maur_Ch_chariot_death_transform" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_transform-input">
+          <float_array id="Maur_Ch_chariot_death_transform-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_transform-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_transform-output">
+          <float_array id="Maur_Ch_chariot_death_transform-output-array" count="592">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_transform-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_transform-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_transform-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_transform-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_transform-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_transform-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_transform-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_transform-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_transform-sampler" target="Maur_Ch/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-output-array" count="592">1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_Maur_Ch_Root_pose_matrix-sampler" target="Maur_Ch_Maur_Ch_Root/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-output-array" count="592">1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_horseleft_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_horseleft_pose_matrix-sampler" target="Maur_Ch_prop_horseleft/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_horseright_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-output-array" count="592">1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_horseright_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_horseright_pose_matrix-sampler" target="Maur_Ch_prop_horseright/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-output-array" count="592">1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9999677 -0.008035374 0.4662066 0 0.008035374 0.9999677 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9998708 -0.01607255 0.4662066 0 0.01607255 0.9998708 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9997093 -0.02411078 0.4662066 0 0.02411078 0.9997093 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.999483 -0.03214927 0.4662066 0 0.03214927 0.999483 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9991922 -0.04018724 0.4662066 0 0.04018724 0.9991922 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9988366 -0.04822391 0.4662066 0 0.04822391 0.9988366 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9984162 -0.05625849 0.4662066 0 0.05625849 0.9984162 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9979312 -0.06429023 0.4662066 0 0.06429023 0.9979312 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9973816 -0.07231829 0.4662066 0 0.07231829 0.9973816 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9967673 -0.08034194 0.4662066 0 0.08034194 0.9967673 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9960885 -0.08836041 0.4662066 0 0.08836041 0.9960885 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9953452 -0.0963729 0.4662066 0 0.0963729 0.9953452 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9945376 -0.1043786 0.4662066 0 0.1043786 0.9945376 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9936656 -0.1123768 0.4662066 0 0.1123768 0.9936656 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9927294 -0.1203667 0.4662066 0 0.1203667 0.9927294 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9917292 -0.1283474 0.4662066 0 0.1283474 0.9917292 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.990665 -0.1363184 0.4662066 0 0.1363184 0.990665 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.989537 -0.1442787 0.4662066 0 0.1442787 0.989537 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9883454 -0.1522277 0.4662066 0 0.1522277 0.9883454 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9870903 -0.1601645 0.4662066 0 0.1601645 0.9870903 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9817192 -0.1903348 0.4662066 0 0.1903348 0.9817192 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9754214 -0.2203476 0.4662066 0 0.2203476 0.9754214 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9682045 -0.2501602 0.4662067 0 0.2501602 0.9682045 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9600786 -0.2797305 0.4662067 0 0.2797305 0.9600786 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662068 0 0.3090171 0.9510565 -2.256784 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_Maur_Ch_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_Maur_Ch_pose_matrix-sampler" target="Maur_Ch_Maur_Ch/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_driver_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_driver_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_driver_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_driver_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_driver_pose_matrix-output-array" count="592">1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.86265e-8 0.9999999 1.393452 5.02755e-13 -0.9999999 1.86265e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 2.23517e-8 1 1.393452 5.02755e-13 -1 2.23517e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 2.23517e-8 1 1.393452 5.02755e-13 -1 2.23517e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 7.45058e-9 0.9999999 1.393452 5.02755e-13 -0.9999999 7.45058e-9 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 7.45058e-9 1 1.393452 5.02755e-13 -1 7.45058e-9 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 2.98023e-8 1 1.393452 5.02755e-13 -1 2.98023e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 2.98023e-8 1 1.393452 5.02755e-13 -1 2.98023e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1 1 5.02755e-13 7.57205e-14 0.01785356 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 1.547728 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_driver_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_driver_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_driver_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_driver_pose_matrix-sampler" target="Maur_Ch_prop_driver/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-output-array" count="592">1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314107 0 0 0 1 1 -3.53906e-8 -5.02403e-13 -1.631806 3.53906e-8 1 -1.49012e-8 1.001959 5.02931e-13 1.49012e-8 1 -0.231411 0 0 0 1 1 -4.0979e-8 -5.02272e-13 -1.631806 4.0979e-8 1 -1.49012e-8 1.001959 5.02876e-13 1.49012e-8 1 -0.2314112 0 0 0 1 1 -4.65673e-8 -5.02142e-13 -1.631806 4.65673e-8 1 -1.49012e-8 1.001959 5.0282e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -5.21557e-8 -5.02011e-13 -1.631806 5.21557e-8 1 -1.49012e-8 1.001959 5.0282e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -5.7744e-8 -5.01881e-13 -1.631806 5.7744e-8 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -6.33324e-8 -5.0175e-13 -1.631806 6.33324e-8 0.9999999 -1.86265e-8 1.001959 5.02709e-13 1.86265e-8 0.9999999 -0.2314107 0 0 0 1 1 -6.89207e-8 -5.0162e-13 -1.631806 6.89207e-8 1 -1.49012e-8 1.001959 5.02265e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -7.45091e-8 -5.01489e-13 -1.631806 7.45091e-8 1 -1.49012e-8 1.001959 5.02265e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -8.00974e-8 -5.01359e-13 -1.631806 8.00974e-8 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.231411 0 0 0 1 1 -8.56858e-8 -5.01228e-13 -1.631806 8.56858e-8 1 -2.23517e-8 1.001959 5.02709e-13 2.23517e-8 1 -0.2314105 0 0 0 1 1 -9.12741e-8 -5.01098e-13 -1.631806 9.12741e-8 1 -2.23517e-8 1.001959 5.03597e-13 2.23517e-8 1 -0.2314105 0 0 0 1 1 -9.68625e-8 -5.00967e-13 -1.631806 9.68625e-8 0.9999999 -7.45058e-9 1.001959 5.02709e-13 7.45058e-9 0.9999999 -0.2314105 0 0 0 1 1 -1.02451e-7 -5.00837e-13 -1.631806 1.02451e-7 1 -7.45058e-9 1.001959 5.01821e-13 7.45058e-9 1 -0.2314107 0 0 0 1 1 -1.08039e-7 -5.00707e-13 -1.631806 1.08039e-7 1 -1.49012e-8 1.001959 5.01821e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -1.13628e-7 -5.00576e-13 -1.631806 1.13628e-7 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.231411 0 0 0 1 1 -1.19216e-7 -5.00446e-13 -1.631806 1.19216e-7 1 -1.49012e-8 1.001959 5.00933e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -1.24804e-7 -5.00315e-13 -1.631806 1.24804e-7 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314103 0 0 0 1 1 -1.30393e-7 -5.00185e-13 -1.631806 1.30393e-7 1 -2.98023e-8 1.001959 5.04485e-13 2.98023e-8 1 -0.2314105 0 0 0 1 1 -1.35981e-7 -5.00054e-13 -1.631806 1.35981e-7 1 -2.98023e-8 1.001959 5.02709e-13 2.98023e-8 1 -0.2314107 0 0 0 1 1 -1.41569e-7 -4.99924e-13 -1.631806 1.41569e-7 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -1.19216e-7 -5.00446e-13 -1.631806 1.19216e-7 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -9.68626e-8 -5.00967e-13 -1.631806 9.68626e-8 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -7.45091e-8 -5.01489e-13 -1.631806 7.45091e-8 1 0 1.001959 5.04485e-13 0 1 -0.231411 0 0 0 1 1 -5.21557e-8 -5.02011e-13 -1.631806 5.21557e-8 1 0 1.001959 5.01821e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 -1.631806 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314107 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_Maur_Ch_right_wheel_pose_matrix-sampler" target="Maur_Ch_Maur_Ch_right_wheel/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_rider_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_rider_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_rider_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_rider_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_rider_pose_matrix-output-array" count="592">1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49011e-8 1 1.393452 5.02755e-13 -1 1.49011e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140708 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.86265e-8 0.9999999 1.393452 5.02755e-13 -0.9999999 1.86265e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140701 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140701 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140708 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 2.23517e-8 1 1.393452 5.02755e-13 -1 2.23517e-8 -0.9140699 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 2.23517e-8 1 1.393452 5.02755e-13 -1 2.23517e-8 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 7.45058e-9 0.9999999 1.393452 5.02755e-13 -0.9999999 7.45058e-9 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 7.45058e-9 1 1.393452 5.02755e-13 -1 7.45058e-9 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140701 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140701 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 2.98023e-8 1 1.393452 5.02755e-13 -1 2.98023e-8 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 2.98023e-8 1 1.393452 5.02755e-13 -1 2.98023e-8 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 1.49012e-8 1 1.393452 5.02755e-13 -1 1.49012e-8 -0.9140706 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140701 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1 1 5.02755e-13 7.57205e-14 0.0178535 -7.57205e-14 0 1 1.393452 5.02755e-13 -1 0 -0.9140704 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_rider_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_rider_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_rider_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_rider_pose_matrix-sampler" target="Maur_Ch_prop_rider/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-output-array" count="592">1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49011e-8 1.001959 5.02977e-13 1.49011e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02987e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02987e-13 1.49012e-8 1 -0.231411 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02987e-13 1.49012e-8 1 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02931e-13 1.49012e-8 1 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02931e-13 1.49012e-8 1 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 0.9999999 -1.86265e-8 1.001959 5.03042e-13 1.86265e-8 0.9999999 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02931e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02931e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314107 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -2.23517e-8 1.001959 5.02931e-13 2.23517e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -2.23517e-8 1.001959 5.03153e-13 2.23517e-8 1 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 0.9999999 -7.45058e-9 1.001959 5.02931e-13 7.45058e-9 0.9999999 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -7.45058e-9 1.001959 5.02931e-13 7.45058e-9 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02931e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.03153e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.03597e-13 1.49012e-8 1 -0.23141 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -2.98023e-8 1.001959 5.03153e-13 2.98023e-8 1 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -2.98023e-8 1.001959 5.02709e-13 2.98023e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.02709e-13 1.49012e-8 1 -0.2314103 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 -1.49012e-8 1.001959 5.03153e-13 1.49012e-8 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1 1 -2.98022e-8 -5.02533e-13 1.631816 2.98022e-8 1 0 1.001959 5.02709e-13 0 1 -0.2314105 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_Maur_Ch_left_wheel_pose_matrix-sampler" target="Maur_Ch_Maur_Ch_left_wheel/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-output-array" count="592">1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 1.285808 0 3.72529e-9 0.9999999 2.397871 0 -0.9999999 3.72529e-9 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747427 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 7.45058e-9 1 2.397871 0 -1 7.45058e-9 7.747429 0 0 0 1 1 0 0 1.285808 0 7.45058e-9 1 2.397871 0 -1 7.45058e-9 7.747427 0 0 0 1 1 0 0 1.285808 0 -7.45058e-9 0.9999999 2.397871 0 -0.9999999 -7.45058e-9 7.747428 0 0 0 1 1 0 0 1.285808 0 -7.45058e-9 1 2.397871 0 -1 -7.45058e-9 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 1.49012e-8 1 2.397871 0 -1 1.49012e-8 7.747428 0 0 0 1 1 0 0 1.285808 0 1.49012e-8 1 2.397871 0 -1 1.49012e-8 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 1.285808 0 -1.49012e-8 1 2.397871 0 -1 -1.49012e-8 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 1.285808 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_horseleft_rein_pose_matrix-sampler" target="Maur_Ch_prop_horseleft_rein/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-output-array" count="592">1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 -1.111999 0 3.72529e-9 0.9999999 2.397871 0 -0.9999999 3.72529e-9 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747427 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 7.45058e-9 1 2.397871 0 -1 7.45058e-9 7.747429 0 0 0 1 1 0 0 -1.111999 0 7.45058e-9 1 2.397871 0 -1 7.45058e-9 7.747427 0 0 0 1 1 0 0 -1.111999 0 -7.45058e-9 0.9999999 2.397871 0 -0.9999999 -7.45058e-9 7.747428 0 0 0 1 1 0 0 -1.111999 0 -7.45058e-9 1 2.397871 0 -1 -7.45058e-9 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 1.49012e-8 1 2.397871 0 -1 1.49012e-8 7.747428 0 0 0 1 1 0 0 -1.111999 0 1.49012e-8 1 2.397871 0 -1 1.49012e-8 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 -1.111999 0 -1.49012e-8 1 2.397871 0 -1 -1.49012e-8 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747429 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1 1 0 0 -1.111999 0 0 1 2.397871 0 -1 0 7.747428 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_horseright_rein_pose_matrix-sampler" target="Maur_Ch_prop_horseright_rein/transform"/>
+      </animation>
+      <animation id="Maur_Ch_chariot_death_prop_trader_pose_matrix" name="Maur_Ch">
+        <source id="Maur_Ch_chariot_death_prop_trader_pose_matrix-input">
+          <float_array id="Maur_Ch_chariot_death_prop_trader_pose_matrix-input-array" count="37">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25 1.291667 1.333333 1.375 1.416667 1.458333 1.5</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-input-array" count="37" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_trader_pose_matrix-output">
+          <float_array id="Maur_Ch_chariot_death_prop_trader_pose_matrix-output-array" count="592">1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 3.55271e-15 2.231822 -3.55271e-15 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-output-array" count="37" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Maur_Ch_chariot_death_prop_trader_pose_matrix-interpolation">
+          <Name_array id="Maur_Ch_chariot_death_prop_trader_pose_matrix-interpolation-array" count="37">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-interpolation-array" count="37" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Maur_Ch_chariot_death_prop_trader_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Maur_Ch_chariot_death_prop_trader_pose_matrix-sampler" target="Maur_Ch_prop_trader/transform"/>
+      </animation>
+    </animation>
+  </library_animations>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="Maur_Ch" name="Maur_Ch" type="NODE">

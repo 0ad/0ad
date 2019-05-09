@@ -2,10 +2,10 @@
 <Entity parent="template_unit_fauna_hunt_passive_cattle">
   <Identity>
     <Civ>gaia</Civ>
-    <SpecificName>Bos Taurus Indicus</SpecificName>
-    <Icon>gaia/fauna_zebu.png</Icon>
+    <SpecificName>Bos Taurus Africanus</SpecificName>
+    <Icon>gaia/fauna_sanga.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>fauna/zebu_wild.xml</Actor>
+    <Actor>fauna/sanga_cattle.xml</Actor>
   </VisualActor>
 </Entity>

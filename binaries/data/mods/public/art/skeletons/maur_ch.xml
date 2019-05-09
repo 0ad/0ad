@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Maur_Ch" title="Maur Ch">
+    <bone name="Maur_Ch_Root">
+      <bone name="Maur_Ch">
+        <bone name="Maur_Ch_right_wheel" />
+        <bone name="Maur_Ch_left_wheel" />
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Maur_Ch" title="Maur Ch">
+    <identifier>
+      <root>Maur_Ch_Root</root>
+    </identifier>
+    <bone name="Maur_Ch_Root">
+      <target>Maur_Ch_Root</target>
+      <bone name="Maur_Ch">
+        <target>Maur_Ch</target>
+        <bone name="Maur_Ch_right_wheel">
+          <target>Maur_Ch_right_wheel</target>
+        </bone>
+        <bone name="Maur_Ch_left_wheel">
+          <target>Maur_Ch_left_wheel</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>
