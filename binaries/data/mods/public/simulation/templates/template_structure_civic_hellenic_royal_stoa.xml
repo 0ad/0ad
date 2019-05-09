@@ -30,8 +30,7 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Stoa</GenericName>
-    <SpecificName>Hellenic Royal Stoa</SpecificName>
+    <GenericName>Hellenic Royal Stoa</GenericName>
     <Tooltip>Recruit special units.</Tooltip>
     <Icon>gaia/special_stoa.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
@@ -61,7 +60,6 @@
     <Range>40</Range>
   </Vision>
   <VisualActor>
-    <Actor>special/greek_stoa_great.xml</Actor>
     <FoundationActor>structures/fndn_8x4.xml</FoundationActor>
   </VisualActor>
 </Entity>
