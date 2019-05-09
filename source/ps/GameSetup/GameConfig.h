@@ -1,9 +1,11 @@
-#include "precompiled.h"
-#include<string>
-#include<vector>
+#ifndef INCLUDED_GAMECONFIG
+#define INCLUDED_GAMECONFIG
+#include <string>
+#include <vector>
 #include "ps/GameSetup/CmdLineArgs.h"
+#include "ps/Game.h"
 
-enum NetworkGameType { Host, Client, None };
+enum NetworkGameType { Host, Client, Local };
 struct GameConfig {
     GameConfig(std::wstring t, std::wstring n) :
         type(t), name(n), size(192), numPlayers(2), seed(0), aiseed(0), nonVisual(false),
@@ -13,7 +15,7 @@ struct GameConfig {
         difficulties(std::vector<std::tuple<int, int>>()),
         victoryConditions(std::vector<std::string>(1, "conquest")),
         username(L"anonymous"), wonderDuration(10), relicDuration(10), relicCount(2),
-        playerID(1), netGameType(NetworkGameType::None), maxPlayersToHost(2),
+        playerID(1), netGameType(NetworkGameType::Local), maxPlayersToHost(2),
         hostAddress("127.0.0.1")
     {}
 
@@ -76,3 +78,4 @@ struct GameConfig {
     std::string hostAddress;
     bool nonVisual;
 };
+#endif // INCLUDED_GAMECONFIG
