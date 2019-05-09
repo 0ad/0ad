@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.54 commit date:2019-04-06, commit time:12:26, hash:cc73d59ad580</authoring_tool>
+    </contributor>
+    <created>2019-04-09T14:48:12</created>
+    <modified>2019-04-09T14:48:12</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Shield_Boss_Render_S-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Shield_Boss_Render_S-material" name="Shield_Boss_Render_S">
+      <instance_effect url="#Shield_Boss_Render_S-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cubo-mesh" name="Cubo">
+      <mesh>
+        <source id="Cubo-mesh-positions">
+          <float_array id="Cubo-mesh-positions-array" count="90">0 -0.03005552 -0.413012 -0.1068645 -0.03005546 0.4015879 0.1068645 -0.03005546 0.4015879 0 -0.03005546 0.413012 -0.1068644 -0.03005552 -0.4015879 -0.413012 -0.03005552 0 -0.4015879 -0.03005546 0.1068645 -0.4015879 -0.03005552 -0.1068645 0.413012 -0.03005552 0 0.4015879 -0.03005552 -0.1068644 0.4015879 -0.03005546 0.1068645 0.1068645 -0.03005552 -0.4015878 -0.09079545 -0.03005552 -0.09079545 0 -0.03005552 -0.1365371 0.09079545 -0.03005552 -0.09079539 -0.1365371 -0.03005552 0 0.09079545 -0.03005546 0.09079545 0.1365371 -0.03005552 0 0 -0.03005546 0.1365371 -0.09079545 -0.03005546 0.09079545 -0.07696211 -0.06092882 -0.07696217 0 -0.06092882 -0.1157347 0.07696217 -0.06092882 -0.07696211 -0.1157347 -0.06092882 0 0.07696211 -0.06092882 0.07696217 0.1157347 -0.06092882 0 0 -0.06092882 0 0 -0.06092882 0.1157347 -0.07696217 -0.06092882 0.07696217 0 -0.03005546 0</float_array>
+          <technique_common>
+            <accessor source="#Cubo-mesh-positions-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cubo-mesh-normals">
+          <float_array id="Cubo-mesh-normals-array" count="90">-0.5972887 -0.5352498 0.5972887 -0.5639166 -0.8258318 0 -0.3889294 -0.8351454 0.3889296 0 -0.8258317 0.5639168 0 -0.5587871 0.8293113 0.5972887 -0.5352501 -0.5972886 0.5639168 -0.8258317 0 0.3889295 -0.8351455 -0.3889293 -0.5972886 -0.5352501 -0.5972887 -0.8293112 -0.5587872 0 0 -0.8258318 -0.5639166 -0.3889293 -0.8351454 -0.3889294 0.5972887 -0.5352498 0.5972888 0.3889295 -0.8351454 0.3889296 0.8293113 -0.5587869 0 1.22654e-7 -0.5587873 -0.8293111 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#Cubo-mesh-normals-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cubo-mesh-map-0">
+          <float_array id="Cubo-mesh-map-0-array" count="216">0.5 0.6800907 0.4020621 0.597938 0.5 0.6285881 0.5 0.6800907 0.5979379 0.597938 0.6323561 0.6323562 0.5 0.3199095 0.5979379 0.4020622 0.5 0.3714121 0.3199094 0.5000001 0.4020621 0.597938 0.367644 0.6323562 0.3199094 0.5000001 0.4020621 0.4020622 0.371412 0.5000001 0.6800906 0.5000001 0.5979379 0.597938 0.628588 0.5000001 0.6800906 0.5000001 0.5979379 0.4020622 0.6323561 0.367644 0.5 0.3199095 0.4020621 0.4020622 0.3676439 0.367644 0.371412 0.5000001 0.4020621 0.4020622 0.5 0.5000001 0.4020621 0.4020622 0.5 0.3714121 0.5 0.5000001 0.628588 0.5000001 0.5979379 0.597938 0.5 0.5000001 0.5 0.6285881 0.4020621 0.597938 0.5 0.5000001 0.5979379 0.4020622 0.628588 0.5000001 0.5 0.5000001 0.4020621 0.597938 0.371412 0.5000001 0.5 0.5000001 0.5 0.3714121 0.5979379 0.4020622 0.5 0.5000001 0.5979379 0.597938 0.5 0.6285881 0.5 0.5000001 1.00076e-4 0.7890642 9.998e-5 0.210936 0.5 0.5 9.998e-5 0.210936 0.09426367 0.09426367 0.5 0.5 0.09426367 0.09426367 0.210936 1.00044e-4 0.5 0.5 0.210936 1.00044e-4 0.789064 9.998e-5 0.5 0.5 0.789064 9.998e-5 0.9057363 0.09426367 0.5 0.5 0.9057363 0.09426367 0.9999001 0.210936 0.5 0.5 0.9999001 0.210936 0.9999001 0.7890642 0.5 0.5 0.9999001 0.7890642 0.9057365 0.9057365 0.5 0.5 0.9057365 0.9057365 0.7890641 0.9999001 0.5 0.5 0.7890641 0.9999001 0.210936 0.9999001 0.5 0.5 0.210936 0.9999001 0.09426373 0.9057365 0.5 0.5 0.09426373 0.9057365 1.00076e-4 0.7890642 0.5 0.5 0.5 0.6800907 0.367644 0.6323562 0.4020621 0.597938 0.5 0.6800907 0.5 0.6285881 0.5979379 0.597938 0.5 0.3199095 0.6323561 0.367644 0.5979379 0.4020622 0.3199094 0.5000001 0.371412 0.5000001 0.4020621 0.597938 0.3199094 0.5000001 0.3676439 0.367644 0.4020621 0.4020622 0.6800906 0.5000001 0.6323561 0.6323562 0.5979379 0.597938 0.6800906 0.5000001 0.628588 0.5000001 0.5979379 0.4020622 0.5 0.3199095 0.5 0.3714121 0.4020621 0.4020622</float_array>
+          <technique_common>
+            <accessor source="#Cubo-mesh-map-0-array" count="108" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cubo-mesh-map-1">
+          <float_array id="Cubo-mesh-map-1-array" count="216">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</float_array>
+          <technique_common>
+            <accessor source="#Cubo-mesh-map-1-array" count="108" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cubo-mesh-vertices">
+          <input semantic="POSITION" source="#Cubo-mesh-positions"/>
+        </vertices>
+        <triangles material="Shield_Boss_Render_S-material" count="36">
+          <input semantic="VERTEX" source="#Cubo-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cubo-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cubo-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Cubo-mesh-map-1" offset="2" set="1"/>
+          <p>19 0 0 23 1 1 28 2 2 19 0 3 27 3 4 18 4 5 14 5 6 25 6 7 22 7 8 12 8 9 23 1 10 15 9 11 12 8 12 21 10 13 20 11 14 16 12 15 27 3 16 24 13 17 16 12 18 25 6 19 17 14 20 14 5 21 21 10 22 13 15 23 20 11 24 21 10 25 26 16 26 21 10 27 22 7 28 26 16 29 24 13 30 27 3 31 26 16 32 28 2 33 23 1 34 26 16 35 25 6 36 24 13 37 26 16 38 23 1 39 20 11 40 26 16 41 22 7 42 25 6 43 26 16 44 27 3 45 28 2 46 26 16 47 7 17 48 4 18 49 29 19 50 4 18 51 0 20 52 29 19 53 0 20 54 11 21 55 29 19 56 11 21 57 9 22 58 29 19 59 9 22 60 8 23 61 29 19 62 8 23 63 10 24 64 29 19 65 10 24 66 2 25 67 29 19 68 2 25 69 3 26 70 29 19 71 3 26 72 1 27 73 29 19 74 1 27 75 6 28 76 29 19 77 6 28 78 5 29 79 29 19 80 5 29 81 7 17 82 29 19 83 19 0 84 15 9 85 23 1 86 19 0 87 28 2 88 27 3 89 14 5 90 17 14 91 25 6 92 12 8 93 20 11 94 23 1 95 12 8 96 13 15 97 21 10 98 16 12 99 18 4 100 27 3 101 16 12 102 24 13 103 25 6 104 14 5 105 22 7 106 21 10 107</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Shields_Spinas" name="Shields_Spinas">
+      <node id="Boss_J_5" name="Boss_J_5" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cubo-mesh" name="Boss_J_5">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Shield_Boss_Render_S-material" target="#Shield_Boss_Render_S-material">
+                <bind_vertex_input semantic="MapaUV" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="longboat_000-mesh-map-0" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Shields_Spinas"/>
+  </scene>
+</COLLADA>

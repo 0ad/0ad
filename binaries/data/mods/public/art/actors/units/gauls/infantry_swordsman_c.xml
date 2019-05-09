@@ -6,27 +6,47 @@
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
         <prop actor="props/units/capes/swordsman_shield_ready_celt.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Foret Helmet">
+    <variant frequency="1" name="Celt-Shield-A-Boss">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_foret.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Classic Mihovo">
+    <variant frequency="1" name="Celt-Shield-B-Boss">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_cav_sw_oval_a_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-C-Boss">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Alesia-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Alesia-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Alesia-03">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Mihovo">
       <props>
         <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Celtic Port">
-      <props>
-        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

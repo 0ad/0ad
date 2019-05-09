@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Celt-Boss-1">
+      <mesh>props/shield/props/celt_boss_03_b.dae</mesh>
+      <textures>
+        <texture file="props/shield/celt_shield_boss_04.png" name="baseTex"/>
+        <texture file="props/shield/celt_shield_boss_04_norm.png" name="normTex"/>
+        <texture file="props/shield/celt_shield_boss_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

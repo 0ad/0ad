@@ -2,35 +2,46 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="1" name="Base">
+    <variant file="biped/base_cavalry_spearman_relax_shield_a.xml" frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/celt_oval.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/cavalry_spearman_relax_shield_celt.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Boe Helmet">
+    <variant frequency="1" name="Celt-Shield-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_boe.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Foret Helmet">
+    <variant frequency="1" name="Celt-Shield-02">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_foret.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Ciumesti-01">
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Port">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_ciumesti_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Ciumesti-02">
+    <variant frequency="1" name="Celtic Alesia-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_ciumesti_02.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_alesia_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Alesia-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Alesia-03">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
@@ -68,7 +79,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/death_shield_a.xml"/>
+    <variant file="biped/rider/death_shield.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="shields/spina_01.xml" name="Spina-B">
+      <mesh>props/shield/props/spina_b.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/shield_boss_a_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
