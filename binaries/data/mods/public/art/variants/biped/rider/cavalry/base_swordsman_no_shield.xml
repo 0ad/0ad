@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant file="biped/rider/cavalry/base_swordsman.xml">
   <animations>
-    <animation file="biped/rider/cavalry/gallop.dae" name="Run" speed="7"/>
+    <animation file="biped/rider/cavalry/generic/gallop.dae" name="Run" speed="7"/>
     <animation file="biped/rider/cavalry/attack_capture.dae" name="attack_capture" speed="120"/>
-    <animation file="biped/rider/cavalry/attack_cut_long.dae" name="attack_melee" event="0.5" id="attack1" speed="60"/>
-    <animation file="biped/rider/cavalry/attack_cut.dae" name="attack_melee" event="0.5" id="attack2" speed="60"/>
-    <animation file="biped/rider/cavalry/attack_cut.dae" name="attack_melee" event="0.5" id="attack3" speed="60"/>
-    <animation file="biped/rider/cavalry/attack_cut_c.dae" name="attack_melee" event="0.5" id="attack4" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_cut_c.dae" name="attack_melee" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_cut_a.dae" name="attack_melee" event="0.5" id="attack2" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_cut_a.dae" name="attack_melee" event="0.5" id="attack3" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_cut_b.dae" name="attack_melee" event="0.5" id="attack4" speed="60"/>
   </animations>
 </variant>
-

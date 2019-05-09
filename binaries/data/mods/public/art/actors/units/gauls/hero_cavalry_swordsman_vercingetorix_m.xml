@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_celtic.dae</mesh>
       <props>
         <prop actor="units/gauls/hero_cavalry_swordsman_vercingetorix_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_rein_swordsman_shield.xml" attachpoint="head"/>
@@ -11,14 +11,15 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse-texture">
-      <textures><texture file="skeletal/horse_celt_verc.dds" name="baseTex"/></textures>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

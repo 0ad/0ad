@@ -73,6 +73,12 @@
                   <bone name="tail5">
                     <bone name="tail6">
                       <bone name="tail7">
+                        <bone name="tail8">
+                          <bone name="tail9">
+                            <bone name="tail10">
+                           </bone>
+                          </bone>
+                        </bone>
                       </bone>
                     </bone>
                   </bone>
@@ -212,6 +218,15 @@
                     <target>tail6</target>
                     <bone name="Horse_Tail_7">
                       <target>tail7</target>
+                      <bone name="Horse_Tail_8">
+                        <target>tail7</target>
+                        <bone name="Horse_Tail_9">
+                          <target>tail7</target>
+                          <bone name="Horse_Tail_10">
+                            <target>tail7</target>
+                          </bone>
+                        </bone>
+                      </bone>
                     </bone>
                   </bone>
                 </bone>

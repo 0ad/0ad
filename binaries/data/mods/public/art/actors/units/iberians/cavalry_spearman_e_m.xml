@@ -3,37 +3,27 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="units/iberians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-        <prop actor="props/horse/cav_blanket_iber.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
+        <prop actor="props/horse/chest_colorband_02.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_armor_iber.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_blanket_iber.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Horse 1">
-      <textures><texture file="skeletal/horse_iber_csp_e_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Horse 2">
-      <textures><texture file="skeletal/horse_iber_csp_e_2.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-color-black">
-      <color>41 41 41</color>
-    </variant>
-    <variant frequency="1" name="horse-color-biege">
-      <color>247 213 111</color>
-    </variant>
-    <variant frequency="1" name="horse-color-gray">
-      <color>253 253 253</color>
-    </variant>
-    <variant frequency="1" name="horse-color-brown">
-      <color>211 123 44</color>
-    </variant>
+    <variant file="quadraped/horse/maneless_brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/maneless_beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/maneless_tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/maneless_cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/maneless_white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/maneless_gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/maneless_halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/maneless_lusitano_01.xml" frequency="1" name="lusitano-01"/>
+    <variant file="quadraped/horse/maneless_lusitano_02.xml" frequency="1" name="lusitano-02"/>
+    <variant file="quadraped/horse/maneless_brown_spotted_01.xml" frequency="1" name="Brown-Spotted-01"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -46,5 +36,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

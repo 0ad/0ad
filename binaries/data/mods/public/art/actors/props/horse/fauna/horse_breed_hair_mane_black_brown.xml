@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/horse/hair_mane_01_breed.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/props/hair_brown.xml" frequency="1" name="brown-01"/>
+    <variant file="quadraped/horse/props/hair_black.xml" frequency="1" name="black-01"/>
+    <variant file="quadraped/horse/props/hair_beige.xml" frequency="1" name="beige-01"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_breed_fauna.xml" name="fauna horse"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

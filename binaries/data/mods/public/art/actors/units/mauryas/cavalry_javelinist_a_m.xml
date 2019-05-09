@@ -3,50 +3,21 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_marwari.dae</mesh>
       <props>
         <prop actor="units/mauryas/cavalry_javelinist_a_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_leather_basic.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_javelin.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="7" name="feet">
-      <textures><texture file="skeletal/horse_celt_feet_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="5" name="blaze">
-      <textures><texture file="skeletal/horse_celt_blaze_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="5" name="face">
-      <textures><texture file="skeletal/horse_celt_face_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="7" name="star">
-      <textures><texture file="skeletal/horse_celt_star_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="3" name="dapple">
-      <textures><texture file="skeletal/horse_celt_dapple_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="2" name="snip">
-      <textures><texture file="skeletal/horse_celt_snip_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="5" name="stripe">
-      <textures><texture file="skeletal/horse_celt_stripe_a.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-color-black">
-      <color>41 41 41</color>
-    </variant>
-    <variant frequency="1" name="horse-color-biege">
-      <color>247 213 111</color>
-    </variant>
-    <variant frequency="1" name="horse-color-gray">
-      <color>253 253 253</color>
-    </variant>
-    <variant frequency="1" name="horse-color-brown">
-      <color>211 123 44</color>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -59,5 +30,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

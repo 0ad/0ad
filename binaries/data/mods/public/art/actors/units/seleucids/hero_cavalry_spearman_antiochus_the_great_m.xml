@@ -3,31 +3,28 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="units/seleucids/hero_cavalry_spearman_antiochus_the_great_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/sele_crest.xml" attachpoint="head"/>
         <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_sele.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_spearman_2h.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse_rome_maximus.png" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="Run">
-      <props>
-        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/dark_chestnut.xml" frequency="1" name="dark_chestnut"/>
+    <variant file="quadraped/horse/pure_black.xml" frequency="1" name="pure_black"/>
+    <variant file="quadraped/horse/fading_black.xml" frequency="1" name="fading_black"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/chestnut_02.xml" frequency="1" name="chestnut-02"/>
+    <variant file="quadraped/horse/chestnut_01.xml" frequency="1" name="chestnut-01"/>
+    <variant file="quadraped/horse/bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>

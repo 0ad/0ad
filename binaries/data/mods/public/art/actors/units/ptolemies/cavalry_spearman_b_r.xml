@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax.xml" frequency="100" name="Base">
+    <variant file="biped/base_cavalry_spearman_relax_b.xml" frequency="100" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
@@ -26,7 +26,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax.xml"/>
+    <variant file="biped/base_cavalry_spearman_relax_b.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

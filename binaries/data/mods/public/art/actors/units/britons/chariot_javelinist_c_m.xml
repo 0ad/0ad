@@ -2,18 +2,23 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant>
       <animations>
-        <animation file="mechanical/chariot_walk.dae" name="walk" speed="10"/>
-        <animation file="mechanical/chariot_run.dae" name="run" speed="10"/>
-        <animation file="mechanical/chariot_idle.dae" name="idle" speed="10"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle3" speed="80"/>
+        <animation file="mechanical/chariot_move.dae" name="Walk" speed="7"/>
+        <animation file="mechanical/chariot_move.dae" name="Run" speed="7"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death1" speed="100"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death2" speed="100"/>
+    		<animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
       </animations>
       <mesh>structural/celt_char_a.dae</mesh>
       <props>
-        <prop actor="units/britons/chariot_javelinist_c_h1.xml" attachpoint="horseright"/>
-        <prop actor="units/britons/chariot_javelinist_c_h2.xml" attachpoint="horseleft"/>
-        <prop actor="units/britons/chariot_javelinist_c_d.xml" attachpoint="driver"/>
-        <prop actor="units/britons/chariot_javelinist_c_r.xml" attachpoint="rider"/>
+        <prop actor="units/britons/chariot_javelinist_c_h1.xml" attachpoint="horse2"/>
+        <prop actor="units/britons/chariot_javelinist_c_h2.xml" attachpoint="horse3"/>
+        <prop actor="units/britons/chariot_javelinist_c_d.xml" attachpoint="driver2_mid"/>
+        <prop actor="units/britons/chariot_javelinist_c_r.xml" attachpoint="rider3"/>
       </props>
       <textures>
         <texture file="structural/celt_chariot_a.dds" name="baseTex"/>

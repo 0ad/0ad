@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Esqueleto.002" title="Esqueleto.002">
+    <bone name="Rein_Root">
+      <bone name="Rein_Root_R">
+        <bone name="Rein_01_R">
+          <bone name="Rein_02_R">
+            <bone name="Rein_03_R">
+              <bone name="Rein_04_R">
+                <bone name="Rein_05_R">
+                  <bone name="Rein_06_R">
+                    <bone name="Rein_07_R">
+                      <bone name="Rein_08_R">
+                        <bone name="Rein_09_R">
+                          <bone name="Rein_10_R" />
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Rein_Root_L">
+        <bone name="Rein_01_L">
+          <bone name="Rein_02_L">
+            <bone name="Rein_03_L">
+              <bone name="Rein_04_L">
+                <bone name="Rein_05_L">
+                  <bone name="Rein_06_L">
+                    <bone name="Rein_07_L">
+                      <bone name="Rein_08_L">
+                        <bone name="Rein_09_L">
+                          <bone name="Rein_10_L" />
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Reins_mesh.001" />
+  </standard_skeleton>
+  <skeleton target="Esqueleto.002" title="Esqueleto.002">
+    <identifier>
+      <root>Rein_Root</root>
+    </identifier>
+    <bone name="Rein_Root">
+      <target>Rein_Root</target>
+      <bone name="Rein_Root_R">
+        <target>Rein_Root_R</target>
+        <bone name="Rein_01_R">
+          <target>Rein_01_R</target>
+          <bone name="Rein_02_R">
+            <target>Rein_02_R</target>
+            <bone name="Rein_03_R">
+              <target>Rein_03_R</target>
+              <bone name="Rein_04_R">
+                <target>Rein_04_R</target>
+                <bone name="Rein_05_R">
+                  <target>Rein_05_R</target>
+                  <bone name="Rein_06_R">
+                    <target>Rein_06_R</target>
+                    <bone name="Rein_07_R">
+                      <target>Rein_07_R</target>
+                      <bone name="Rein_08_R">
+                        <target>Rein_08_R</target>
+                        <bone name="Rein_09_R">
+                          <target>Rein_09_R</target>
+                          <bone name="Rein_10_R">
+                            <target>Rein_10_R</target>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Rein_Root_L">
+        <target>Rein_Root_L</target>
+        <bone name="Rein_01_L">
+          <target>Rein_01_L</target>
+          <bone name="Rein_02_L">
+            <target>Rein_02_L</target>
+            <bone name="Rein_03_L">
+              <target>Rein_03_L</target>
+              <bone name="Rein_04_L">
+                <target>Rein_04_L</target>
+                <bone name="Rein_05_L">
+                  <target>Rein_05_L</target>
+                  <bone name="Rein_06_L">
+                    <target>Rein_06_L</target>
+                    <bone name="Rein_07_L">
+                      <target>Rein_07_L</target>
+                      <bone name="Rein_08_L">
+                        <target>Rein_08_L</target>
+                        <bone name="Rein_09_L">
+                          <target>Rein_09_L</target>
+                          <bone name="Rein_10_L">
+                            <target>Rein_10_L</target>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Reins_mesh.001">
+      <target>Reins_mesh.001</target>
+    </bone>
+  </skeleton>
+</skeletons>

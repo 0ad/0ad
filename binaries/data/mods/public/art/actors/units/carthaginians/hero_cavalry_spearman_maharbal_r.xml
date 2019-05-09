@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="1" name="Base">
+    <variant file="biped/base_cavalry_spearman_relax_shield_a.xml" frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_elite.xml" attachpoint="head"/>
@@ -19,7 +19,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/death_shield.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

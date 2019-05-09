@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Swordsman Horse">
+      <mesh>skeletal/horse_celtic.dae</mesh>
+      <props>
+        <prop actor="units/britons/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_blanket_leather_basic.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="" attachpoint="rider"/>
+        <prop actor="units/britons/cavalry_swordsman_b_r.xml" attachpoint="rider_R"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

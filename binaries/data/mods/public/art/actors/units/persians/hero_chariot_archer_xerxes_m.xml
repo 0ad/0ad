@@ -4,11 +4,14 @@
   <group>
     <variant>
       <animations>
-        <animation file="mechanical/pers_chariot_e_idle.dae" name="Idle" speed="100"/>
-        <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="10"/>
-        <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="10"/>
-        <animation file="mechanical/pers_chariot_e_idle.dae" name="Death" id="death1" speed="100"/>
-        <animation file="mechanical/pers_chariot_e_idle.dae" name="Death" id="death2" speed="100"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle3" speed="80"/>
+        <animation file="mechanical/chariot_move.dae" name="Walk" speed="7"/>
+        <animation file="mechanical/chariot_move.dae" name="Run" speed="7"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death1" speed="100"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death2" speed="100"/>
+    		<animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
       </animations>
       <mesh>structural/pers_chariot_e.dae</mesh>
       <props>
@@ -18,7 +21,7 @@
         <prop actor="units/persians/chariot_archer_e_h4.xml" attachpoint="horse4"/>
         <prop actor="units/persians/chariot_archer_e_h1.xml" attachpoint="horse1"/>
         <prop actor="units/persians/hero_chariot_archer_xerxes_r.xml" attachpoint="rider1"/>
-        <prop actor="units/persians/hero_chariot_archer_xerxes_d.xml" attachpoint="rider2"/>
+        <prop actor="units/persians/hero_chariot_archer_xerxes_d.xml" attachpoint="driver1"/>
       </props>
       <textures>
         <texture file="structural/pers_chariot_xerxes.png" name="baseTex"/>

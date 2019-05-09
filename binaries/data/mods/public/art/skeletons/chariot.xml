@@ -1,22 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
 <skeletons>
-	<standard_skeleton title="Chariot Skeleton" id="chariot">
-		<bone name="base">
-			<bone name="chariot">
-				<bone name="left_wheel"></bone>
-				<bone name="right_wheel"></bone>
-			</bone>
-		</bone>
-	</standard_skeleton>
-
-	<skeleton title="Chariot Skeleton" target="chariot">
-		 <identifier>
-			<root>base</root>
-		 </identifier>
-		<bone name="base"><target>base</target>
-			<bone name="chariot"><target>chariot</target>
-				<bone name="left_wheel"><target>left_wheel</target></bone>
-				<bone name="right_wheel"><target>right_wheel</target></bone>
-			</bone>
-		</bone>
-	</skeleton>
+  <standard_skeleton id="Chariot" title="Chariot">
+    <bone name="Ch_base">
+      <bone name="Ch_carriage" />
+      <bone name="Ch_Wheel_R" />
+      <bone name="Ch_Wheel_L" />
+      <bone name="Ch_holder" />
+      <bone name="Ch_Wheel_small_R" />
+      <bone name="Ch_Wheel_small_L" />
+      <bone name="Ch_wood_L" />
+      <bone name="Ch_wood_R" />
+      <bone name="Ch_Wheel_med_R" />
+      <bone name="Ch_Wheel_med_L" />
+      <bone name="Ch_wood_mid" />
+      <bone name="Ch_carriage_lower" />
+      <bone name="Ch_Wheel_small_brit_R" />
+      <bone name="Ch_Wheel_small_brit_L" />
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Chariot" title="Chariot">
+    <identifier>
+      <root>Ch_base</root>
+    </identifier>
+    <bone name="Ch_base">
+      <target>Ch_base</target>
+      <bone name="Ch_carriage">
+        <target>Ch_carriage</target>
+      </bone>
+      <bone name="Ch_Wheel_R">
+        <target>Ch_Wheel_R</target>
+      </bone>
+      <bone name="Ch_Wheel_L">
+        <target>Ch_Wheel_L</target>
+      </bone>
+      <bone name="Ch_holder">
+        <target>Ch_holder</target>
+      </bone>
+      <bone name="Ch_Wheel_small_R">
+        <target>Ch_Wheel_small_R</target>
+      </bone>
+      <bone name="Ch_Wheel_small_L">
+        <target>Ch_Wheel_small_L</target>
+      </bone>
+      <bone name="Ch_wood_L">
+        <target>Ch_wood_L</target>
+      </bone>
+      <bone name="Ch_wood_R">
+        <target>Ch_wood_R</target>
+      </bone>
+      <bone name="Ch_Wheel_med_R">
+        <target>Ch_Wheel_med_R</target>
+      </bone>
+      <bone name="Ch_Wheel_med_L">
+        <target>Ch_Wheel_med_L</target>
+      </bone>
+      <bone name="Ch_wood_mid">
+        <target>Ch_wood_mid</target>
+      </bone>
+      <bone name="Ch_carriage_lower">
+        <target>Ch_carriage_lower</target>
+      </bone>
+      <bone name="Ch_Wheel_small_brit_R">
+        <target>Ch_Wheel_small_brit_R</target>
+      </bone>
+      <bone name="Ch_Wheel_small_brit_L">
+        <target>Ch_Wheel_small_brit_L</target>
+      </bone>
+    </bone>
+  </skeleton>
 </skeletons>

@@ -4,38 +4,16 @@
   <group>
     <variant frequency="1" file="quadraped/base_pony_chariot.xml" name="Pony">
       <mesh>skeletal/pony.dae</mesh>
+      <props>
+        <prop actor="props/horse/cav_blanket_celt_pony.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>
-    <variant frequency="5" name="horse2-plain">
-      <textures><texture file="skeletal/horse_celt_chariot_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="5" name="horse2-face">
-      <textures><texture file="skeletal/horse_celt_chariot_2.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="3" name="horse2-feet">
-      <textures><texture file="skeletal/horse_celt_chariot_3.dds" name="baseTex"/></textures>
-    </variant>
+    <variant file="quadraped/horse/pony_brown.xml" frequency="1" name="horse-04"/>
+    <variant file="quadraped/horse/pony_beige.xml" frequency="1" name="horse-01"/>
+    <variant file="quadraped/horse/pony_bay_01.xml" frequency="1" name="horse-02"/>
+    <variant file="quadraped/horse/pony_bay_02.xml" frequency="1" name="horse-03"/>
   </group>
-  <group>
-    <variant frequency="2" name="horse2-black">
-      <color>81 81 85</color>
-    </variant>
-    <variant frequency="2" name="horse2-chocolate">
-      <color>98 68 58</color>
-    </variant>
-    <variant frequency="2" name="horse2-chestnut">
-      <color>248 132 86</color>
-    </variant>
-    <variant frequency="2" name="horse2-roan">
-      <color>242 219 164</color>
-    </variant>
-    <variant frequency="2" name="horse2-liver">
-      <color>172 95 68</color>
-    </variant>
-    <variant frequency="2" name="horse2-brown">
-      <color>255 148 89</color>
-    </variant>
-  </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

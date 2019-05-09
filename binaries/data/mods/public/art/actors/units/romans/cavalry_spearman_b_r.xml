@@ -6,9 +6,9 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/rome_parma_b.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/rome_parma_b.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/rider/spearman_relax_shield.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -17,7 +17,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml"/>
+    <variant file="biped/base_cavalry_spearman_relax_shield_a.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
@@ -25,7 +25,7 @@
     <variant file="biped/rider/attack_slaughter_shield_rome.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
     <variant file="biped/gather_meat.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/death_shield.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

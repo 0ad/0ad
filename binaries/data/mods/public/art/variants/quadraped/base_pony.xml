@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<variant name="Base" frequency="1">
-  <animations>
-    <animation file="quadraped/pony_idle.dae" name="Idle" id="idle1" speed="60"/>
-    <animation file="quadraped/pony_idle_b.dae" name="Idle" id="idle2" speed="60"/>
-    <animation file="quadraped/pony_idle_c.dae" name="Idle" id="idle3" speed="60"/>
-    <animation file="quadraped/pony_idle.dae" name="attack_melee" speed="60"/>
-    <animation file="quadraped/pony_idle.dae" name="attack_ranged" speed="60"/>
-    <animation file="quadraped/pony_death.dae" id="death1" name="Death" speed="120"/>
-    <animation file="quadraped/pony_death.dae" id="death2" name="Death" speed="120"/>
-  </animations>
+<variant name="Base">
+    <animations>
+        <animation file="quadraped/pony_idle_a.dae" name="attack_capture" speed="80"/>
+        <animation file="quadraped/pony_idle_a.dae" event="0.5" name="attack_slaughter" id="attack1" speed="80"/>
+        <animation file="quadraped/pony_idle_a.dae" event="0.5" name="attack_slaughter" id="attack2" speed="80"/>
+        <animation file="quadraped/pony_idle_a.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="quadraped/pony_idle_c.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="quadraped/pony_idle_d.dae" name="Idle" id="idle3" speed="80"/>
+        <animation file="quadraped/pony_idle_a.dae" name="gather_meat" speed="80"/>
+        <animation file="quadraped/pony_death_a.dae" name="death" speed="120"/>
+    </animations>
 </variant>

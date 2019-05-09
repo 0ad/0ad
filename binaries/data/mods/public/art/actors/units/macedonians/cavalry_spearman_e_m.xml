@@ -3,59 +3,26 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="units/macedonians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="head"/>
+        <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="hyppikon-horse-texture-plain">
-      <textures><texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="hyppikon-horse-texture-plain2">
-      <textures><texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="hyppikon-horse-texture-blaze">
-      <textures><texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-color-bay">
-      <color>228 107 27</color>
-    </variant>
-    <variant frequency="1" name="horse-color-red-chestnut">
-      <color>207 132 109</color>
-    </variant>
-    <variant frequency="1" name="horse-color-black-chestnut">
-      <color>164 87 68</color>
-    </variant>
-    <variant frequency="5" name="horse-color-gray">
-      <color>255 255 255</color>
-    </variant>
-    <variant frequency="2" name="horse-color-beige">
-      <color>251 254 146</color>
-    </variant>
-    <variant frequency="1" name="horse-color-black">
-      <color>81 81 85</color>
-    </variant>
-    <variant frequency="1" name="horse-color-chocolate">
-      <color>98 68 58</color>
-    </variant>
-    <variant frequency="1" name="horse-color-chestnut">
-      <color>248 132 86</color>
-    </variant>
-    <variant frequency="1" name="horse-color-roan">
-      <color>242 219 164</color>
-    </variant>
-    <variant frequency="1" name="horse-color-liver">
-      <color>172 95 68</color>
-    </variant>
-    <variant frequency="1" name="horse-color-brown">
-      <color>255 148 89</color>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/dark_chestnut.xml" frequency="1" name="dark_chestnut"/>
+    <variant file="quadraped/horse/pure_black.xml" frequency="1" name="pure_black"/>
+    <variant file="quadraped/horse/fading_black.xml" frequency="1" name="fading_black"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/chestnut_02.xml" frequency="1" name="chestnut-02"/>
+    <variant file="quadraped/horse/chestnut_01.xml" frequency="1" name="chestnut-01"/>
+    <variant file="quadraped/horse/bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -68,5 +35,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

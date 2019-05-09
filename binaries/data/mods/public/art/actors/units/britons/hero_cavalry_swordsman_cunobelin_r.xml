@@ -2,11 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_swordsman_shield_ready.xml" frequency="1" name="Base">
+    <variant file="biped/base_cavalry_swordsman_ready_shield.xml" frequency="1" name="Base">
       <mesh>skeletal/new/m_hero_pants_tunic.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_cunobelin.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/celt_cunobelin.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/celt_cunobelin.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
         <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
@@ -18,7 +18,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/death_shield.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

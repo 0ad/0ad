@@ -3,35 +3,25 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="units/carthaginians/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-        <prop actor="props/horse/cav_rein_javelin.xml" attachpoint="head"/>
+        <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Horse-Texture-Plain">
-      <textures><texture file="skeletal/horse_kart_cjv_b_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Horse-Texture-Snipe">
-      <textures><texture file="skeletal/horse_kart_cjv_b_2.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Horse-Texture-Boots">
-      <textures><texture file="skeletal/horse_kart_cjv_b_3.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-color-gray">
-      <color>238 232 204</color>
-    </variant>
-    <variant frequency="1" name="horse-color-ruddish">
-      <color>254 200 160</color>
-    </variant>
-    <variant frequency="1" name="horse-color-sandy">
-      <color>254 214 129</color>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/dark_chestnut.xml" frequency="1" name="dark_chestnut"/>
+    <variant file="quadraped/horse/fading_black.xml" frequency="1" name="fading_black"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/chestnut_02.xml" frequency="1" name="chestnut-02"/>
+    <variant file="quadraped/horse/chestnut_01.xml" frequency="1" name="chestnut-01"/>
+    <variant file="quadraped/horse/bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -44,5 +34,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

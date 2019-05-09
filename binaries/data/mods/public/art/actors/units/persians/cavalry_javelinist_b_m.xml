@@ -3,36 +3,22 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_persian.dae</mesh>
       <props>
         <prop actor="units/persians/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-        <prop actor="props/horse/cav_rein_javelin.xml" attachpoint="head"/>
-      </props>
-      <textures><texture file="skeletal/horse_pers_csw_b.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="attack_ranged">
-      <props>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+        <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse-color-black">
-      <color>46 46 46</color>
-    </variant>
-    <variant frequency="1" name="horse-color-biege">
-      <color>247 213 111</color>
-    </variant>
-    <variant frequency="1" name="horse-color-gray">
-      <color>253 253 253</color>
-    </variant>
-    <variant frequency="1" name="horse-color-brown">
-      <color>211 123 44</color>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -45,5 +31,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

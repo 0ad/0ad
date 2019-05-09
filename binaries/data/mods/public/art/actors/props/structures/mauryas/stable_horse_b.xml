@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_stable.xml" name="Stable Horse">
+      <mesh>skeletal/horse_marwari.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/stable/brown.xml" frequency="1" name="03"/>
+    <variant file="quadraped/horse/stable/beige.xml" frequency="1" name="04"/>
+    <variant file="quadraped/horse/stable/tan.xml" frequency="1" name="01"/>
+    <variant file="quadraped/horse/stable/cherrybay.xml" frequency="1" name="07"/>
+    <variant file="quadraped/horse/stable/white.xml" frequency="1" name="08"/>
+    <variant file="quadraped/horse/stable/gray.xml" frequency="1" name="02"/>
+    <variant file="quadraped/horse/stable/halflinger.xml" frequency="1" name="05"/>
+    <variant file="quadraped/horse/stable/brown_spotted_01.xml" frequency="1" name="06"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
