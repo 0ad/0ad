@@ -192,7 +192,7 @@ Fogging.prototype.OnOwnershipChanged = function(msg)
 		return;
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	for (let player in this.mirages)
+	for (let player = 0; player < this.mirages.length; ++player)
 	{
 		if (this.mirages[player] == INVALID_ENTITY)
 			continue;

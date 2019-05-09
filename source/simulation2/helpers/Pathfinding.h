@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,12 +21,37 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 
+#include "simulation2/system/Entity.h"
 #include "simulation2/system/ParamNode.h"
 #include "graphics/Terrain.h"
 #include "Grid.h"
 #include "PathGoal.h"
 
 typedef u16 pass_class_t;
+
+struct AsyncLongPathRequest
+{
+	u32 ticket;
+	entity_pos_t x0;
+	entity_pos_t z0;
+	PathGoal goal;
+	pass_class_t passClass;
+	entity_id_t notify;
+};
+
+struct AsyncShortPathRequest
+{
+	u32 ticket;
+	entity_pos_t x0;
+	entity_pos_t z0;
+	entity_pos_t clearance;
+	entity_pos_t range;
+	PathGoal goal;
+	pass_class_t passClass;
+	bool avoidMovingUnits;
+	entity_id_t group;
+	entity_id_t notify;
+};
 
 struct Waypoint
 {
