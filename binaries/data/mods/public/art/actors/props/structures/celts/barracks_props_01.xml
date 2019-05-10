@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/gaul_barracks_props_01.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_02" />
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a_celt_sword_heap.xml" attachpoint="barrel_empty_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a_celt_sword_heap.xml" attachpoint="barrel_empty_02"/>
+        <prop actor="props/special/eyecandy/dummy_a.xml" attachpoint="dummy_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/dummy_a.xml" attachpoint="dummy_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_anvil.xml" attachpoint="anvil_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_01.xml" attachpoint="shield_hex_01"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_02.xml" attachpoint="shield_hex_02"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_hex_03"/>
+        <prop actor="props/units/shields/gaul_shield_cav_sw_hex_a_01.xml" attachpoint="shield_hex_04"/>
+        <prop actor="props/units/shields/gaul_shield_cav_sw_hex_a_02.xml" attachpoint="shield_hex_05"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_02.xml" attachpoint="shield_hex_07"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_hex_06" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_cav_sw_hex_a_02.xml" attachpoint="shield_hex_08" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_hex_09" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_cav_sw_hex_a_01.xml" attachpoint="shield_hex_10"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_02.xml" attachpoint="shield_hex_11"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_01"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_02"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_03"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_04"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_04"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_05"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_06"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_01.xml" attachpoint="shield_oval_small_01"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_01.xml" attachpoint="shield_oval_small_02"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_02.xml" attachpoint="shield_oval_small_03"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_oval_small_04"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_02.xml" attachpoint="shield_oval_small_06"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_03.xml" attachpoint="shield_oval_small_07"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_01.xml" attachpoint="shield_oval_small_08"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_02.xml" attachpoint="shield_oval_small_09"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_oval_small_10"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_01.xml" attachpoint="shield_oval_small_11"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_01.xml" attachpoint="shield_oval_small_12"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_02.xml" attachpoint="shield_oval_small_13"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_oval_small_14"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_oval_small_15"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_02.xml" attachpoint="shield_oval_small_16"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_03.xml" attachpoint="shield_oval_small_17"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_01.xml" attachpoint="shield_oval_small_18"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_02.xml" attachpoint="shield_oval_small_19"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_02.xml" attachpoint="shield_square_01"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_01.xml" attachpoint="shield_square_02"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_03.xml" attachpoint="shield_square_03"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_02.xml" attachpoint="shield_square_04"/>
+      </props>
+      <textures>
+        <texture file="props/celt_prop_1.png" name="baseTex"/>
+        <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+        <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+        <texture file="structural/ao/celt_barracks.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
