@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.45 commit date:2019-03-04, commit time:16:10, hash:e5ab2b9c629e</authoring_tool>
+    </contributor>
+    <created>2019-03-13T09:12:15</created>
+    <modified>2019-03-13T09:12:15</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Shield_Render-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0 0.8000001 0.001424498 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0 0 0 1</color>
+            </specular>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Shield_Render-material" name="Shield_Render">
+      <instance_effect url="#Shield_Render-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="longboat_115-mesh" name="longboat.115">
+      <mesh>
+        <source id="longboat_115-mesh-positions">
+          <float_array id="longboat_115-mesh-positions-array" count="63">0.3058472 -0.02405548 1.011136 -0.1410245 -0.02405548 0.9206653 -0.6002674 -0.02405548 0 -0.4869127 -0.02405548 0.6652492 0.4870625 -0.02405548 0.6652492 0.1411736 -0.02405548 0.9206665 -0.5885341 -0.02405548 0.3038706 -0.3056986 -0.02405548 1.011136 0.5885925 -0.02405548 0.3038707 7.4625e-5 -0.02405548 0.8982552 7.4625e-5 -0.02405548 0 7.4625e-5 -0.02405548 -0.898255 0.5885925 -0.02405548 -0.3038704 -0.3056986 -0.02405548 -1.011136 -0.5885341 -0.02405548 -0.3038704 0.1411736 -0.02405548 -0.9206663 0.4870625 -0.02405548 -0.6652489 -0.4869127 -0.02405548 -0.6652489 0.6003261 -0.02405548 0 -0.1410245 -0.02405548 -0.9206651 0.3058472 -0.02405548 -1.011135</float_array>
+          <technique_common>
+            <accessor source="#longboat_115-mesh-positions-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="longboat_115-mesh-normals">
+          <float_array id="longboat_115-mesh-normals-array" count="3">0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#longboat_115-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="longboat_115-mesh-map-0">
+          <float_array id="longboat_115-mesh-map-0-array" count="120">0.3817893 0.1330704 0.4990913 0.1420019 0.4990908 0.5000002 0.9883518 0.3788931 0.4990908 0.5000002 0.9039454 0.2348662 0.009754538 0.3788929 0.4990908 0.5000002 0 0.5000001 0.6163923 0.8669305 0.9039447 0.7651343 0.7532926 0.902987 0.09423708 0.234866 0.3817893 0.1330704 0.4990908 0.5000002 0.9039454 0.2348662 0.6163931 0.1330699 0.7532935 0.09701359 0.4990904 0.8579985 0.4990908 0.5000002 0.6163923 0.8669305 0.3817884 0.86693 0.4990908 0.5000002 0.4990904 0.8579985 0.6163931 0.1330699 0.4990908 0.5000002 0.4990913 0.1420019 0.4990908 0.5000002 0.09423637 0.7651342 0.00975424 0.6211072 0.09423708 0.234866 0.4990908 0.5000002 0.009754538 0.3788929 0.998106 0.5000003 0.4990908 0.5000002 0.9883518 0.3788931 0.9039447 0.7651343 0.4990908 0.5000002 0.9883516 0.6211075 0.00975424 0.6211072 0 0.5000001 0.4990908 0.5000002 0.9883516 0.6211075 0.4990908 0.5000002 0.998106 0.5000003 0.09423637 0.7651342 0.3817884 0.86693 0.2448874 0.9029871 0.6163923 0.8669305 0.4990908 0.5000002 0.9039447 0.7651343 0.09423708 0.234866 0.2448884 0.09701323 0.3817893 0.1330704 0.9039454 0.2348662 0.4990908 0.5000002 0.6163931 0.1330699 0.09423637 0.7651342 0.4990908 0.5000002 0.3817884 0.86693</float_array>
+          <technique_common>
+            <accessor source="#longboat_115-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="longboat_115-mesh-vertices">
+          <input semantic="POSITION" source="#longboat_115-mesh-positions"/>
+        </vertices>
+        <triangles material="Shield_Render-material" count="20">
+          <input semantic="VERTEX" source="#longboat_115-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#longboat_115-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#longboat_115-mesh-map-0" offset="2" set="0"/>
+          <p>19 0 0 11 0 1 10 0 2 12 0 3 10 0 4 16 0 5 14 0 6 10 0 7 2 0 8 5 0 9 4 0 10 0 0 11 17 0 12 19 0 13 10 0 14 16 0 15 15 0 16 20 0 17 9 0 18 10 0 19 5 0 20 1 0 21 10 0 22 9 0 23 15 0 24 10 0 25 11 0 26 10 0 27 3 0 28 6 0 29 17 0 30 10 0 31 14 0 32 18 0 33 10 0 34 12 0 35 4 0 36 10 0 37 8 0 38 6 0 39 2 0 40 10 0 41 8 0 42 10 0 43 18 0 44 3 0 45 1 0 46 7 0 47 5 0 48 10 0 49 4 0 50 17 0 51 13 0 52 19 0 53 16 0 54 10 0 55 15 0 56 3 0 57 10 0 58 1 0 59</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Shields_Spinas" name="Shields_Spinas">
+      <node id="Oval_05" name="Oval_05" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#longboat_115-mesh" name="Oval_05">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Shield_Render-material" target="#Shield_Render-material">
+                <bind_vertex_input semantic="longboat_000-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_orle" name="prop_orle" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 -0.006375909 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_handle" name="prop_handle" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_spina" name="prop_spina" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Shields_Spinas"/>
+  </scene>
+</COLLADA>

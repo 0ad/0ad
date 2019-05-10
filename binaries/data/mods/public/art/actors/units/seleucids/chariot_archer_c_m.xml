@@ -4,20 +4,23 @@
   <group>
     <variant>
       <animations>
-        <animation file="mechanical/pers_chariot_e_idle.dae" name="Idle" speed="100"/>
-        <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="12"/>
-        <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="20"/>
-        <animation file="mechanical/pers_chariot_e_idle.dae" name="Death" id="death1" speed="100"/>
-        <animation file="mechanical/pers_chariot_e_idle.dae" name="Death" id="death2" speed="100"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle3" speed="80"/>
+        <animation file="mechanical/chariot_move.dae" name="Walk" speed="12"/>
+        <animation file="mechanical/chariot_move.dae" name="Run" speed="20"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death1" speed="100"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death2" speed="100"/>
+    		<animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
       </animations>
-      <mesh>structural/sele_champion_chariot.dae</mesh>
+      <mesh>structural/sele_chariot.dae</mesh>
       <props>
         <prop actor="units/seleucids/chariot_archer_c_h1.xml" attachpoint="horse1"/>
         <prop actor="units/seleucids/chariot_archer_c_h2.xml" attachpoint="horse2"/>
         <prop actor="units/seleucids/chariot_archer_c_h3.xml" attachpoint="horse3"/>
         <prop actor="units/seleucids/chariot_archer_c_h4.xml" attachpoint="horse4"/>
         <prop actor="units/seleucids/chariot_archer_c_r.xml" attachpoint="rider1"/>
-        <prop actor="units/seleucids/chariot_archer_c_d.xml" attachpoint="rider2"/>
+        <prop actor="units/seleucids/chariot_archer_c_d.xml" attachpoint="driver1"/>
       </props>
       <textures>
         <texture file="props/sele_chariot_playercolor.png" name="baseTex"/>
@@ -28,11 +31,6 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
     <variant name="Run">
       <props>
         <prop actor="particle/dust_cav.xml" attachpoint="root"/>

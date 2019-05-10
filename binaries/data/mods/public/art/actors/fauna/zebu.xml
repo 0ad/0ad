@@ -2,17 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Zebu">
-      <animations>
-        <animation file="quadraped/zebu_idle01.dae" name="Idle" speed="90"/>
-        <animation file="quadraped/zebu_idle02.dae" name="Idle" speed="40"/>
-        <animation file="quadraped/zebu_walk.dae" name="Walk" speed="30"/>
-        <animation file="quadraped/zebu_walk.dae" name="Run" speed="45"/>
-        <animation file="quadraped/zebu_death_right_01.dae" name="Death" speed="100"/>
-        <animation file="quadraped/zebu_death_right_02.dae" name="Death" speed="100"/>
-        <animation file="quadraped/zebu_death_left_01.dae" name="Death" speed="100"/>
-        <animation file="quadraped/zebu_death_left_02.dae" name="Death" speed="100"/>
-      </animations>
+    <variant file="quadraped/base_bovidae_chariot.xml" name="Base">
       <mesh>skeletal/zebu.dae</mesh>
     </variant>
   </group>
@@ -32,14 +22,20 @@
         <texture file="skeletal/animal_zebu_brown.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="100" name="Black and White Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_black_and_white.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Black and Brown Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_black_and_brown.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_bovidae_death.xml" name="death"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>

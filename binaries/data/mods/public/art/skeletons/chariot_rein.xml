@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Chariot_rein_Armature_002" title="Chariot rein Armature 002">
+    <bone name="Ch_rein_root">
+      <bone name="Ch_rein_base" />
+      <bone name="Ch_rein_1">
+        <bone name="Ch_rein_2">
+          <bone name="Ch_rein_3">
+            <bone name="Ch_rein_4">
+              <bone name="Ch_rein_5">
+                <bone name="Ch_rein_6">
+                  <bone name="Ch_rein_7">
+                    <bone name="Ch_rein_8">
+                      <bone name="Ch_rein_9">
+                        <bone name="Ch_rein_10">
+                          <bone name="Ch_rein_11">
+                            <bone name="Ch_rein_12" />
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Chariot_rein_Armature_002" title="Chariot rein Armature 002">
+    <identifier>
+      <root>Ch_rein_root</root>
+    </identifier>
+    <bone name="Ch_rein_root">
+      <target>Ch_rein_root</target>
+      <bone name="Ch_rein_base">
+        <target>Ch_rein_base</target>
+      </bone>
+      <bone name="Ch_rein_1">
+        <target>Ch_rein_1</target>
+        <bone name="Ch_rein_2">
+          <target>Ch_rein_2</target>
+          <bone name="Ch_rein_3">
+            <target>Ch_rein_3</target>
+            <bone name="Ch_rein_4">
+              <target>Ch_rein_4</target>
+              <bone name="Ch_rein_5">
+                <target>Ch_rein_5</target>
+                <bone name="Ch_rein_6">
+                  <target>Ch_rein_6</target>
+                  <bone name="Ch_rein_7">
+                    <target>Ch_rein_7</target>
+                    <bone name="Ch_rein_8">
+                      <target>Ch_rein_8</target>
+                      <bone name="Ch_rein_9">
+                        <target>Ch_rein_9</target>
+                        <bone name="Ch_rein_10">
+                          <target>Ch_rein_10</target>
+                          <bone name="Ch_rein_11">
+                            <target>Ch_rein_11</target>
+                            <bone name="Ch_rein_12">
+                              <target>Ch_rein_12</target>
+                            </bone>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spatha.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/capes/swordsman_shield_relax_celt.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celt-Shield-A-Boss">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_cav_sw_oval_a_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-B-Boss">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-C-Boss">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_c_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Pants-1">
+      <textures>
+        <texture file="skeletal/celt_ijv_a_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Pants-2">
+      <textures>
+        <texture file="skeletal/celt_ijv_a_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Pants-3">
+      <textures>
+        <texture file="skeletal/celt_ijv_a_03.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Pants-4">
+      <textures>
+        <texture file="skeletal/celt_ijv_a_04.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/swordsman_shield_relax_celt.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

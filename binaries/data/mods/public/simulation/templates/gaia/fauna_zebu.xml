@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_herd_domestic">
-  <Footprint>
-    <Square width="1.9" depth="3.8"/>
-    <Height>2.0</Height>
-  </Footprint>
+<Entity parent="template_unit_fauna_hunt_passive_cattle">
   <Identity>
-    <GenericName>Zebu</GenericName>
-    <SpecificName>Bos taurus indicus</SpecificName>
+    <Civ>gaia</Civ>
+    <SpecificName>Bos Taurus Indicus</SpecificName>
     <Icon>gaia/fauna_zebu.png</Icon>
   </Identity>
-  <Position>
-    <Anchor>pitch</Anchor>
-  </Position>
-  <ResourceSupply>
-    <Amount>150</Amount>
-    <Type>food.meat</Type>
-  </ResourceSupply>
-  <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
-    <RunMultiplier>2.5</RunMultiplier>
-  </UnitMotion>
   <VisualActor>
-    <Actor>fauna/zebu.xml</Actor>
+    <Actor>fauna/zebu_wild.xml</Actor>
   </VisualActor>
 </Entity>

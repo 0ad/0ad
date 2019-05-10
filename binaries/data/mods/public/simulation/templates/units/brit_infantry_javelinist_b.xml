@@ -14,10 +14,17 @@
     <Icon>units/celt_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Health>
+    <DamageVariants>
+      <lightdamage>0.80</lightdamage>
+      <mediumdamage>0.50</mediumdamage>
+      <heavydamage>0.20</heavydamage>
+    </DamageVariants>
+  </Health>
   <Promotion>
     <Entity>units/brit_infantry_javelinist_a</Entity>
   </Promotion>
   <VisualActor>
-    <Actor>units/celts/infantry_javelinist_b.xml</Actor>
+    <Actor>units/britons/infantry_javelinist_b.xml</Actor>
   </VisualActor>
 </Entity>

@@ -2,19 +2,27 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="others/base_cavalry_spearman.xml" name="Base">
-      <mesh>props/horse_rein.dae</mesh>
+    <variant>
+      <mesh>props/horse/rein_01.dae</mesh>
       <textures>
-        <texture file="structural/hele_siege.dds" name="baseTex"/>
+        <texture file="props/horse/peytral_iron.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="others/horse_rein/promotion.xml"/>
-    <variant file="others/horse_rein/death.xml"/>
-    <variant file="others/horse_rein/attack_slaughter.xml" name="attack_slaughter"/>
-    <variant file="others/horse_rein/base_carry_meat.xml"/>
+    <variant file="quadraped/base_horse_spearman.xml" name="Spearman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_swordsman.xml"  name="Swordsman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_archer.xml" name="Archer Horse"/>
   </group>
   <material>basic_trans.xml</material>
 </actor>

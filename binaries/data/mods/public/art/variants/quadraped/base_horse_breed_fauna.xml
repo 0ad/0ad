@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant>
+    <animations>
+		<animation file="quadraped/horse_breed_death.dae" name="death" speed="120"/>
+		<animation file="quadraped/horse_breed_gallop.dae" name="Run" speed="11"/>
+		<animation file="quadraped/horse_breed_walk.dae" name="Walk" id="walk1" speed="95"/>
+		<animation file="quadraped/horse_breed_walk.dae" name="Walk" id="walk2" speed="96"/>
+		<animation file="quadraped/horse_breed_walk.dae" name="Walk" id="walk3" speed="97"/>
+		<animation file="quadraped/horse_breed_idle_a.dae" name="Idle" id="idle1" speed="80"/>
+		<animation file="quadraped/horse_breed_idle_d.dae" name="Idle" id="idle2" speed="80"/>
+		<animation file="quadraped/horse_breed_idle_c.dae" name="Idle" id="idle3" speed="80"/>
+		<animation file="quadraped/horse_breed_idle_a.dae" name="feeding" speed="80"/>
+    </animations>
+</variant>

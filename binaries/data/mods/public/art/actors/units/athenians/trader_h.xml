@@ -1,48 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_trader.xml" name="Trader Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="props/horse/trader_blanket.xml" attachpoint="root"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+        <prop actor="props/horse/chest_colorband_trader.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse 1">
-      <textures><texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="horse 2">
-      <textures><texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="horse 3">
-      <textures><texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="15" name="white">
-      <color>255 255 255</color>
-    </variant>
-    <variant frequency="16" name="black">
-      <color>44 39 37</color>
-    </variant>
-    <variant frequency="17" name="brown">
-      <color>115 89 55</color>
-    </variant>
-    <variant frequency="16" name="chestnut">
-      <color>204 138 94</color>
-    </variant>
-    <variant frequency="17" name="dun">
-      <color>210 185 138</color>
-    </variant>
-    <variant frequency="17" name="gray">
-      <color>138 138 138</color>
-    </variant>
-    <variant frequency="17" name="tan">
-      <color>171 157 107</color>
-    </variant>
+    <variant file="quadraped/horse/trader/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/trader/dark_chestnut.xml" frequency="1" name="dark_chestnut"/>
+    <variant file="quadraped/horse/trader/pure_black.xml" frequency="1" name="pure_black"/>
+    <variant file="quadraped/horse/trader/fading_black.xml" frequency="1" name="fading_black"/>
+    <variant file="quadraped/horse/trader/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/trader/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/trader/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/trader/chestnut_02.xml" frequency="1" name="chestnut-02"/>
+    <variant file="quadraped/horse/trader/chestnut_01.xml" frequency="1" name="chestnut-01"/>
+    <variant file="quadraped/horse/trader/bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/trader/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>

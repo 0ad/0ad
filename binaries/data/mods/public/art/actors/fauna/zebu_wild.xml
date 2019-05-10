@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_bovidae_wild.xml" name="Base">
+      <mesh>skeletal/zebu.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Black Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Brown Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_brown.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Black and White Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_black_and_white.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Black and Brown Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_black_and_brown.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_bovidae_death.xml" name="death"/>
+  </group>
+  <material>default.xml</material>
+</actor>

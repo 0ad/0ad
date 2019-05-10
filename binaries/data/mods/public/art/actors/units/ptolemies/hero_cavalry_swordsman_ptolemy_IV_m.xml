@@ -3,22 +3,29 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_persian.dae</mesh>
       <props>
         <prop actor="units/ptolemies/hero_cavalry_swordsman_ptolemy_IV_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
         <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_ptol.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse_rome_maximus.png" name="baseTex"/>
-      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/pure_white.xml" frequency="1" name="pure_white"/>
+    <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

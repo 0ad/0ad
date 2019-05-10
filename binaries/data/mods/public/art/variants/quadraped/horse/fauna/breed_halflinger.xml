@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="quadraped/horse/horse_base.xml" frequency="1" name="halflinfger">
+  <textures>
+    <texture file="skeletal/horse_halflinger.png" name="baseTex"/>
+  </textures>
+  <props>
+    <prop actor="props/horse/fauna/horse_breed_hair_mane_beige.xml" attachpoint="hair"/>
+    <prop actor="props/horse/fauna/horse_breed_hair_tail_beige.xml" attachpoint="hair"/>
+  </props>
+</variant>
+

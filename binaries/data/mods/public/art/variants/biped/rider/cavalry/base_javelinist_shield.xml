@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant file="biped/rider/cavalry/base.xml">
   <animations>
-    <animation file="biped/rider/cavalry/gallop_archer.dae" name="Run" speed="7"/>
-    <animation file="biped/rider/cavalry/attack_capture_shield.dae" name="attack_capture" speed="120"/>
+    <animation file="biped/rider/cavalry/archer/gallop.dae" name="Run" speed="7"/>
+    <animation file="biped/rider/cavalry/attack_capture.dae" name="attack_capture" speed="100"/>
   </animations>
 </variant>
-  

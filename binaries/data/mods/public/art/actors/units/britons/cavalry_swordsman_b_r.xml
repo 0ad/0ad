@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celt-Shield-01">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_oval_a_02.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-02">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_hex_b_02.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-03">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_sq_c_02.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-04">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_sq_d_02.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="clothing-01">
+      <textures>
+        <texture file="skeletal/celt_isw_b_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="clothing-02">
+      <textures>
+        <texture file="skeletal/celt_isw_b_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="clothing-03">
+      <textures>
+        <texture file="skeletal/celt_isw_b_03.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="clothing-04">
+      <textures>
+        <texture file="skeletal/celt_isw_b_04.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_cavalry_swordsman_relax_shield.xml"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/promotion_shield.xml"/>
+    <variant file="biped/rider/attack_slaughter_shield_celt.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

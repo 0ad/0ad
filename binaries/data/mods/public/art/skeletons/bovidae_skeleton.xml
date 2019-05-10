@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Bovidae_Skeleton" title="Bovidae Skeleton">
+    <bone name="Bovidae_Root">
+      <bone name="Bovidae_pelvis">
+        <bone name="Bovidae_spine">
+          <bone name="Bovidae_spine1">
+            <bone name="Bovidae_FrontLegTop_L">
+              <bone name="Bovidae_FrontThigh_L">
+                <bone name="Bovidae_FrontCalf_left">
+                  <bone name="Bovidae_FrontFoot_left" />
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Bovidae_Neck">
+              <bone name="Bovidae_Head">
+                <bone name="Bovidae_ear_L">
+                  <bone name="Bovidae_eartip_L" />
+                </bone>
+                <bone name="Bovidae_ear_R">
+                  <bone name="Bovidae_eartip_R" />
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Bovidae_FrontLegTop_R">
+              <bone name="Bovidae_FrontThigh_R">
+                <bone name="Bovidae_FrontCalf_right">
+                  <bone name="Bovidae_FrontFoot_right" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Bovidae_belly" />
+        </bone>
+        <bone name="Bovidae_ReartLegTop_L">
+          <bone name="Bovidae_RearThigh_L">
+            <bone name="Bovidae_RearCalf_left">
+              <bone name="Bovidae_RearFoot_left" />
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Bovidae_SpineBottom">
+          <bone name="Bovidae_Tail">
+            <bone name="Bovidae_TailMid">
+              <bone name="Bovidae_TailTip" />
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Bovidae_ReartLegTop_R">
+          <bone name="Bovidae_RearThigh_R">
+            <bone name="Bovidae_RearCalf_right">
+              <bone name="Bovidae_RearFoot_right" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Bovidae_front_knee_L" />
+    <bone name="Bovidae_rear_knee_L" />
+    <bone name="Bovidae_front_knee_R" />
+    <bone name="Bovidae_rear_knee_R" />
+  </standard_skeleton>
+  <skeleton target="Bovidae_Skeleton" title="Bovidae Skeleton">
+    <identifier>
+      <root>Bovidae_Root</root>
+    </identifier>
+    <bone name="Bovidae_Root">
+      <target>Bovidae_Root</target>
+      <bone name="Bovidae_pelvis">
+        <target>Bovidae_pelvis</target>
+        <bone name="Bovidae_spine">
+          <target>Bovidae_spine</target>
+          <bone name="Bovidae_spine1">
+            <target>Bovidae_spine1</target>
+            <bone name="Bovidae_FrontLegTop_L">
+              <target>Bovidae_FrontLegTop_L</target>
+              <bone name="Bovidae_FrontThigh_L">
+                <target>Bovidae_FrontThigh_L</target>
+                <bone name="Bovidae_FrontCalf_left">
+                  <target>Bovidae_FrontCalf_left</target>
+                  <bone name="Bovidae_FrontFoot_left">
+                    <target>Bovidae_FrontFoot_left</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Bovidae_Neck">
+              <target>Bovidae_Neck</target>
+              <bone name="Bovidae_Head">
+                <target>Bovidae_Head</target>
+                <bone name="Bovidae_ear_L">
+                  <target>Bovidae_ear_L</target>
+                  <bone name="Bovidae_eartip_L">
+                    <target>Bovidae_eartip_L</target>
+                  </bone>
+                </bone>
+                <bone name="Bovidae_ear_R">
+                  <target>Bovidae_ear_R</target>
+                  <bone name="Bovidae_eartip_R">
+                    <target>Bovidae_eartip_R</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Bovidae_FrontLegTop_R">
+              <target>Bovidae_FrontLegTop_R</target>
+              <bone name="Bovidae_FrontThigh_R">
+                <target>Bovidae_FrontThigh_R</target>
+                <bone name="Bovidae_FrontCalf_right">
+                  <target>Bovidae_FrontCalf_right</target>
+                  <bone name="Bovidae_FrontFoot_right">
+                    <target>Bovidae_FrontFoot_right</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Bovidae_belly">
+            <target>Bovidae_belly</target>
+          </bone>
+        </bone>
+        <bone name="Bovidae_ReartLegTop_L">
+          <target>Bovidae_ReartLegTop_L</target>
+          <bone name="Bovidae_RearThigh_L">
+            <target>Bovidae_RearThigh_L</target>
+            <bone name="Bovidae_RearCalf_left">
+              <target>Bovidae_RearCalf_left</target>
+              <bone name="Bovidae_RearFoot_left">
+                <target>Bovidae_RearFoot_left</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Bovidae_SpineBottom">
+          <target>Bovidae_SpineBottom</target>
+          <bone name="Bovidae_Tail">
+            <target>Bovidae_Tail</target>
+            <bone name="Bovidae_TailMid">
+              <target>Bovidae_TailMid</target>
+              <bone name="Bovidae_TailTip">
+                <target>Bovidae_TailTip</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Bovidae_ReartLegTop_R">
+          <target>Bovidae_ReartLegTop_R</target>
+          <bone name="Bovidae_RearThigh_R">
+            <target>Bovidae_RearThigh_R</target>
+            <bone name="Bovidae_RearCalf_right">
+              <target>Bovidae_RearCalf_right</target>
+              <bone name="Bovidae_RearFoot_right">
+                <target>Bovidae_RearFoot_right</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Bovidae_front_knee_L">
+      <target>Bovidae_front_knee_L</target>
+    </bone>
+    <bone name="Bovidae_rear_knee_L">
+      <target>Bovidae_rear_knee_L</target>
+    </bone>
+    <bone name="Bovidae_front_knee_R">
+      <target>Bovidae_front_knee_R</target>
+    </bone>
+    <bone name="Bovidae_rear_knee_R">
+      <target>Bovidae_rear_knee_R</target>
+    </bone>
+  </skeleton>
+</skeletons>

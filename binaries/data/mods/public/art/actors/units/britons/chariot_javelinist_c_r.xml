@@ -15,14 +15,36 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Ciumesti Helmet-01">
+    <variant frequency="1" name="Celt-Shield-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_ciumesti_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/brit_shield_spear_oval_a_03.xml" attachpoint="shield"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Ciumesti Helmet-02">
+    <variant frequency="1" name="Celt-Shield-02">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_ciumesti_02.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/brit_shield_spear_hex_b_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-03">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_sq_c_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-04">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_sq_d_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Mihovo">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Meyrick">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_meyrick.xml" attachpoint="helmet"/>
       </props>
     </variant>
     <variant frequency="1" name="Celtic Berru Helmet-01">

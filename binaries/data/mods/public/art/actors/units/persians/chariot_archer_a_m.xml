@@ -4,13 +4,14 @@
   <group>
     <variant>
       <animations>
-        <animation file="mechanical/pers_chariot_a_idle.dae" name="attack_slaughter" id="attack1" speed="100"/>
-        <animation file="mechanical/pers_chariot_a_idle.dae" name="attack_slaughter" id="attack2" speed="100"/>
-        <animation file="mechanical/pers_chariot_a_idle.dae" name="Idle" speed="100"/>
-        <animation file="mechanical/pers_chariot_a_move.dae" name="Walk" speed="12"/>
-        <animation file="mechanical/pers_chariot_a_move.dae" name="Run" speed="20"/>
-        <animation file="mechanical/pers_chariot_a_idle.dae" name="death" id="death1" speed="100"/>
-        <animation file="mechanical/pers_chariot_a_idle.dae" name="Death" id="death2" speed="100"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle3" speed="80"/>
+        <animation file="mechanical/chariot_move.dae" name="Walk" speed="7"/>
+        <animation file="mechanical/chariot_move.dae" name="Run" speed="7"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death1" speed="100"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death2" speed="100"/>
+    		<animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
       </animations>
       <mesh>structural/pers_chariot_a.dae</mesh>
       <props>
@@ -19,7 +20,7 @@
         <prop actor="units/persians/chariot_archer_a_h3.xml" attachpoint="horse3"/>
         <prop actor="units/persians/chariot_archer_a_h4.xml" attachpoint="horse4"/>
         <prop actor="units/persians/chariot_archer_a_r.xml" attachpoint="rider1"/>
-        <prop actor="units/persians/chariot_archer_a_d.xml" attachpoint="rider2"/>
+        <prop actor="units/persians/chariot_archer_a_d.xml" attachpoint="driver1"/>
       </props>
       <textures><texture file="structural/pers_chariot_a.png" name="baseTex"/></textures>
     </variant>

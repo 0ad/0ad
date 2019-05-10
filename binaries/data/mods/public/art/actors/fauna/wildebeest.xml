@@ -2,24 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="4" name="wildebeest-adult">
+    <variant file="quadraped/base_bovidae_wild.xml" name="Base">
       <mesh>skeletal/wildebeest_adult.dae</mesh>
-    </variant>
-    <variant frequency="1" name="wildebeest-juvenile">
-      <mesh>skeletal/wildebeest_juvenile.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="pelt">
-      <textures><texture file="skeletal/animal_wildebeest.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_wildebeest.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_bovidae_death.xml" name="death"/>
   </group>
+  <material>default.xml</material>
 </actor>

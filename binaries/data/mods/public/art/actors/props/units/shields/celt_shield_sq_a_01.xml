@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/sq_01.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/shield_sq_a_b.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/celt_manipula.xml" attachpoint="handle"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/celt_shield_06.xml" name="Player-Color-06"/>
+    <variant frequency="1" file="shields/celt_shield_07.xml" name="Player-Color-07"/>
+    <variant frequency="1" file="shields/celt_shield_08.xml" name="Player-Color-08"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Spina-i">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_i_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-g">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_g_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

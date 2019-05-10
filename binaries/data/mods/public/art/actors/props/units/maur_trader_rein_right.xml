@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Trader Cart">
+      <animations>
+        <animation file="others/maur_trader_rein_right_idle.dae" name="Idle" speed="80"/>
+        <animation file="others/maur_trader_rein_right_move.dae" name="Walk" speed="30"/>
+        <animation file="others/maur_trader_rein_right_move.dae" name="Run" speed="45"/>
+        <animation file="others/maur_trader_rein_right_death.dae" name="Death" speed="90"/>
+      </animations>
+      <mesh>props/maur_trader_rein.dae</mesh>
+      <textures><texture file="props/maur_trader.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

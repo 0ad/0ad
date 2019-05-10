@@ -6,11 +6,13 @@
       <mesh>skeletal/new/m_hero_tunic.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_caradoc.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/celt_caradoc.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/brit_shield_spear_sq_d_03.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/celt_helmet_caradoc.xml" attachpoint="helmet"/>
       </props>
-      <textures><texture file="skeletal/celt_caradoc.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_caradoc.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

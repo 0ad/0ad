@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="fauna horse">
+      <mesh>props/horse/blanket.dae</mesh>
+      <textures>
+        <texture file="props/horse/blanket_trader.png" name="baseTex"/>
+      </textures>
+      <animations>
+        <animation file="quadraped/horse_death.dae" name="death" speed="120"/>
+        <animation file="quadraped/horse_gallop.dae" name="Run" speed="11"/>
+        <animation file="quadraped/horse_walk.dae" name="Walk" id="walk1" speed="25"/>
+        <animation file="quadraped/horse_walk.dae" name="Walk" id="walk2" speed="26"/>
+        <animation file="quadraped/horse_walk.dae" name="Walk" id="walk3" speed="27"/>
+        <animation file="quadraped/horse_idle_a.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="quadraped/horse_idle_c.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="quadraped/horse_idle_d.dae" name="Idle" id="idle3" speed="80"/>
+      </animations>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

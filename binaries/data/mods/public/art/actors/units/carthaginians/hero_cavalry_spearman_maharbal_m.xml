@@ -3,21 +3,30 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_cavalry_spearman_maharbal_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_armor_kart.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse_kart_maharbal.dds" name="baseTex"/>
-      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/lusitano_01.xml" frequency="1" name="lusitano-01"/>
+    <variant file="quadraped/horse/lusitano_02.xml" frequency="1" name="lusitano-02"/>
+    <variant file="quadraped/horse/brown_spotted_01.xml" frequency="1" name="Brown-Spotted-01"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

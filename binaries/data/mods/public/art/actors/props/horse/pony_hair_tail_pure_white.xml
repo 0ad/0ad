@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/horse/pony_hair_tail_01.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/props/hair_pure_white.xml" frequency="1" name="pure_white-01"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_pony_chariot.xml"  name="Chariot Horse"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celt-Shield-01">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-02">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-03">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Ciumesti Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Ciumesti Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_03.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chainmail-1a">
+      <textures>
+        <texture file="skeletal/celt_chainmail_1_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-1b">
+      <textures>
+        <texture file="skeletal/celt_chainmail_1_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-1c">
+      <textures>
+        <texture file="skeletal/celt_chainmail_1_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-4a">
+      <textures>
+        <texture file="skeletal/celt_chainmail_4_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-4b">
+      <textures>
+        <texture file="skeletal/celt_chainmail_4_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-4c">
+      <textures>
+        <texture file="skeletal/celt_chainmail_4_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_cavalry_javelin_relax.xml"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
+    <variant file="biped/rider/promotion_shield.xml"/>
+    <variant file="biped/rider/attack_slaughter_shield_celt.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_javelin.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

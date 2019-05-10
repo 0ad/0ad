@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_pony_chariot.xml"  name="Chariot Pony"/>
+  </group>
+  <group>
+    <variant file="quadraped/horse/props/blanket_celt_pony_01.xml" name="pony-blanket-celtic-01"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

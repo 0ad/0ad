@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="shields/spina_01.xml" name="Spina-F">
+      <mesh>props/shield/props/spina_f.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

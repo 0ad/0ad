@@ -5,10 +5,38 @@
     <variant file="biped/base_spearman_ready_fast.xml">
       <mesh>skeletal/new/m_naked.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_celt_fanatic.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celt-Shield-01">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-02">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Port">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Mihovo">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Foret">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_foret.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
