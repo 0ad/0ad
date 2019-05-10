@@ -40,8 +40,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-09 21:08+0000\n"
+"Last-Translator: Alessandro Nunes <alessandronunes@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -574,43 +574,43 @@ msgstr "Má conexão com %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Isso geralmente é causado pela porta UDP 20595 não ser encaminhada no lado do host, por um firewall ou software antivírus."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "O host finalizou o jogo."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Versão de protocolo de rede incorreta."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "O jogo está carregando, por favor tente novamente mais tarde."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "O jogo já começou, nenhum observador é permitido."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Você foi expulso."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Você foi banido."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nome de jogador em uso. Se você foi desconectado, tente novamente em alguns segundos."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Servidor cheio."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "A autenticação segura do lobby falhou. Junte-se através do lobby."
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -3258,11 +3258,11 @@ msgstr "Ícone de classificação acima da barra de status"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Mostrar uma barra de status de experiência acima de cada unidade selecionada."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Barra de status da experiência"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3584,21 +3584,21 @@ msgstr "QUARTEL"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Treine todos os cidadãos-soldados. Algumas facções podem desbloquear o treinamento de campeões também."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "Pesquise tecnologias militares exclusivas de cada facção."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Construa um cedo para treinar cidadãos-soldados enquanto você constrói o seu assentamento."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Construa uma base avançada para reabastecer seu ataque com novas tropas."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3610,7 +3610,7 @@ msgstr "Pesquisar estrutura para todas as facções."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Pesquise atualizações de armas e armaduras para suas unidades."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3618,19 +3618,19 @@ msgstr "BANDA SAGRADA CARTAGINESA"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Campeão Lanceiro e Campeão Cavaleiro Lanceiro por Cartago."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Ambos podem ser treinados no Templo, em vez da Fortaleza como a maioria dos outros campeões."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Use os Lanceiros como infantaria pesada contra a cavalaria. Use a Cavalaria como um choque pesado contra armas de cerco e atiradores."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3642,13 +3642,13 @@ msgstr "Armas de cerco de longo alcance são bons contra edifícios."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Caro e lento."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Transforme em em carrinho para movimentar e estacione para o ataque!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3656,15 +3656,15 @@ msgstr "BARCAÇA CELTA DE GUERRA"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Um navio de guerra médio da classe trirreme."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Disponível para Britânicos, Gauleses e Ibéricos."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "Pode transportar até 40 unidades."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
@@ -3676,7 +3676,7 @@ msgstr "CENTROS CÍVICOS"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "A fundação da sua nova colônia."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
@@ -3684,13 +3684,13 @@ msgstr "Reivindique grandes extensões de terra."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "Pode ser construído em território amigável e neutro."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Treinar cidadãos: cidadãos do sexo feminino, cidadãos-soldados de infantaria e soldados-cidadãos de cavalaria."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3698,7 +3698,7 @@ msgstr "EMBAIXADAS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Quartéis Especiais disponíveis para os Cartagineses."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
@@ -3728,7 +3728,7 @@ msgstr "Pescar é mais rápido do que coletar comida nos campos agrícolas."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Cuidado! Os peixes não são um recurso infinito!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3740,11 +3740,11 @@ msgstr "A fortaleza é geralmente a construção mais forte de uma facção."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Treina Campeões, Heróis e Armas de Cerco."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Dá um aumento populacional."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -3767,7 +3767,7 @@ msgstr "Por isso, selecione algumas unidades, pressione e segure o botão direit
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Suas unidades agora se espalharão nesta linha."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3775,25 +3775,25 @@ msgstr "COLETA DE RECURSOS"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Use cidadãos-soldados e cidadãos do sexo feminino para reunir recursos."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Cidadãs femininas reúnem recursos vegetais mais rapidamente."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Soldados-cidadãos de infantaria coletam minerais mais rápido."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Soldados-cidadãos da cavalaria são mais rápidos reunindo carne."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Quanto mais alto o nível de um soldado-cidadão (avançado, elite), melhor ele luta, mas menos eficiente ele é em reunir recursos."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3807,11 +3807,11 @@ msgstr "O general ateniense que reformou o exército ateniense para ser mais rá
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Unidades em sua formação são mais rápidas e mais fortes."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Atiradores se movem mais rápido enquanto ele vive."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3819,7 +3819,7 @@ msgstr "POSTOS AVANÇADOS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "Construa em território neutro para um grande alcance de reconhecimento."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
@@ -3827,7 +3827,7 @@ msgstr "Barato, apenas 80 de madeira."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Eles constroem rapidamente, mas são fracos."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
@@ -3839,7 +3839,7 @@ msgstr "PALIÇADAS"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Uma parede de madeira rápida e barata disponível para todas as facções."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
@@ -3851,7 +3851,7 @@ msgstr "PÉRICLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "O principal político ateniense do século 5 AC."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
@@ -3859,7 +3859,7 @@ msgstr "Edifícios são construídos mais rápido dentro de seu alcance."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Templos são mais baratos enquanto ele vive."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3867,11 +3867,11 @@ msgstr "ARQUITETURA PERSA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Tecnologia especial para os Persas."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Todos os edifícios Persas + 25% mais fortes."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -3881,7 +3881,7 @@ msgstr "Tempo de construção aumentado em 20% como consequência."
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Os Persas também têm acesso a um grande número de tecnologias estruturais e defensivas."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3889,7 +3889,7 @@ msgstr "PIQUEIRO"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Fortemente blindado e lento. Ataque fraco."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""

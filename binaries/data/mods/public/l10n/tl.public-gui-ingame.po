@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-07 11:58+0000\n"
+"Last-Translator: Miguel Quiambao <miguel_quiambao@dlsu.edu.ph>\n"
 "Language-Team: Tagalog (http://www.transifex.com/wildfire-games/0ad/language/tl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,12 +46,12 @@ msgstr ""
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
 #: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
-msgstr ""
+msgstr "Hindi"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
 #: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
-msgstr ""
+msgstr "Oo"
 
 #: gui/session/menu.js:175
 msgid ""
@@ -85,7 +85,7 @@ msgstr ""
 #: gui/session/menu.js:356
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:433
 #, javascript-format
@@ -315,12 +315,12 @@ msgstr ""
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s ay pinagbawal bumalik"
 
 #: gui/session/messages.js:128
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s ay tinanggal"
 
 #: gui/session/messages.js:150
 msgid "Connection to the server has been authenticated."
@@ -364,7 +364,7 @@ msgstr ""
 
 #: gui/session/messages.js:174 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
-msgstr ""
+msgstr "Pangkat"
 
 #: gui/session/messages.js:177 gui/session/session.js:518
 msgid "Observer"
@@ -573,15 +573,15 @@ msgstr ""
 #: gui/session/messages.js:927
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:928
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:972
 msgid "Unknown Player"
-msgstr ""
+msgstr "Di' Kilalang Manlalaro"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -1008,7 +1008,7 @@ msgstr ""
 
 #: gui/session/session.js:907
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:981
 msgctxt "replayFinished"
@@ -1023,12 +1023,12 @@ msgstr ""
 #: gui/session/session.js:983
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Hindi"
 
 #: gui/session/session.js:983
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Oo"
 
 #: gui/session/session.js:1211
 #, javascript-format
@@ -1227,7 +1227,7 @@ msgstr ""
 
 #: gui/session/chat_window.xml:(caption):80
 msgid "Cancel"
-msgstr ""
+msgstr "Ikansela"
 
 #: gui/session/chat_window.xml:(caption):97
 msgctxt "chat"
@@ -1236,7 +1236,7 @@ msgstr ""
 
 #: gui/session/chat_window.xml:(caption):102
 msgid "Send"
-msgstr ""
+msgstr "Idala"
 
 #: gui/session/chat_window.xml:(tooltip):29
 msgctxt "chat input"
@@ -1311,7 +1311,7 @@ msgstr ""
 
 #: gui/session/diplomacy_window.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "Sibilisasyon"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
@@ -1369,7 +1369,7 @@ msgstr ""
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Ipakita ang multiplayer lobi sa dialog window."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
@@ -1474,7 +1474,7 @@ msgstr ""
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "Bilis ng Laro"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

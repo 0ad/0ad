@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# ianto <transifex@cgriff.co.uk>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-03 19:08+0000\n"
+"Last-Translator: ianto <transifex@cgriff.co.uk>\n"
 "Language-Team: Welsh (http://www.transifex.com/wildfire-games/0ad/language/cy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,10 +21,10 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pellder sylfaenol: %(range)s medr"
+msgstr[1] "Pellder sylfaenol: %(range)s fedr"
+msgstr[2] "Pellder sylfaenol: %(range)s medr"
+msgstr[3] "Pellder sylfaenol: %(range)s medr"
 
 #: gui/session/input.js:178
 #, javascript-format
@@ -36,70 +37,70 @@ msgstr[3] ""
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Ni allwch adeiladu wal yma!"
 
 #: gui/session/menu.js:161
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Ydych chi'n sicr eich bod chi am ildio?"
 
 #: gui/session/menu.js:162 gui/session/menu.js:194 gui/session/menu.js:205
 msgid "Confirmation"
-msgstr ""
+msgstr "Cadarnhad"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
 #: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
-msgstr ""
+msgstr "Nac ydw"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
 #: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
-msgstr ""
+msgstr "Ydw"
 
 #: gui/session/menu.js:175
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ydych chi'n sicr eich bod chi am adael? Bydd gadael yn datgysylltu pob chwaraewr arall."
 
 #: gui/session/menu.js:179 gui/session/menu.js:183
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Ydych chi'n sicr eich bod chi am adael?"
 
 #: gui/session/menu.js:204
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Ydych chi am ildio neu a fyddwch chi'n dod yn ôl yn fuan?"
 
 #: gui/session/menu.js:206
 msgid "I will return"
-msgstr ""
+msgstr "Bydda i'n dod yn ôl"
 
 #: gui/session/menu.js:206
 msgid "I resign"
-msgstr ""
+msgstr "Dw i'n ildio"
 
 #: gui/session/menu.js:226
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Dinistrio popeth wedi'u dewis ar hyn o bryd?"
 
 #: gui/session/menu.js:227
 msgid "Delete"
-msgstr ""
+msgstr "Dileu"
 
 #: gui/session/menu.js:356
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:433
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Amser cadoediad sy'n weddill: %(time)s."
 
 #: gui/session/menu.js:460
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Dim"
 
 #: gui/session/menu.js:465 gui/session/messages.js:175
 #: gui/session/diplomacy_window.xml:(tooltip):28
@@ -108,16 +109,16 @@ msgstr ""
 
 #: gui/session/menu.js:466 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
-msgstr ""
+msgstr "Niwtral"
 
 #: gui/session/menu.js:466 gui/session/messages.js:176
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr ""
+msgstr "Gelyn"
 
 #: gui/session/menu.js:479
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:556
 msgid "Request your allies to attack this enemy"
@@ -127,92 +128,92 @@ msgstr ""
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Llwgrwobrwyo hapuned sy'n perthyn i'r chwaraewr hwn a rhannu'i olwg yn ystod cyfnod cyfyngedig."
 
 #: gui/session/menu.js:605
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Bydd methu llwgrwobrwyo yn eich costio chi:"
 
 #: gui/session/menu.js:786
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Prynu %(resource)s"
 
 #: gui/session/menu.js:787
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Gwerthu %(resource)s"
 
 #: gui/session/menu.js:888
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, a %(garrisonedString)s."
 
 #: gui/session/menu.js:889
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s a %(inactiveString)s."
 
 #: gui/session/menu.js:892 gui/session/menu.js:965
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:893 gui/session/menu.js:964
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, a %(inactiveString)s."
 
 #: gui/session/menu.js:898
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:899
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, a %(inactiveString)s."
 
 #: gui/session/menu.js:902 gui/session/menu.js:968
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(inactiveString)s."
+msgstr[1] "Mae %(inactiveString)s."
+msgstr[2] "Mae %(inactiveString)s."
+msgstr[3] "Mae %(inactiveString)s."
 
 #: gui/session/menu.js:903
 msgid "There are no land traders."
-msgstr ""
+msgstr "Does dim masnachwyr tir."
 
 #: gui/session/menu.js:911
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(numberTrading)s masnachwr tir yn masnachu"
+msgstr[1] "Mae %(numberTrading)s masnachwr tir yn masnachu"
+msgstr[2] "Mae %(numberTrading)s masnachwr tir yn masnachu"
+msgstr[3] "Mae %(numberTrading)s masnachwr tir yn masnachu"
 
 #: gui/session/menu.js:921
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(numberOfLandTraders)s yn segur"
+msgstr[1] "Mae %(numberOfLandTraders)s yn segur"
+msgstr[2] "Mae %(numberOfLandTraders)s yn segur"
+msgstr[3] "%(numberOfLandTraders)s yn segur"
 
 #: gui/session/menu.js:926
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(numberOfLandTraders)s masnachwr tir yn segur"
+msgstr[1] "Mae %(numberOfLandTraders)s fasnachwr tir yn segur"
+msgstr[2] "Mae %(numberOfLandTraders)s masnachwr tir yn segur"
+msgstr[3] "Mae %(numberOfLandTraders)s masnachwr tir yn segur"
 
 #: gui/session/menu.js:936
 #, javascript-format
@@ -238,64 +239,64 @@ msgstr[3] ""
 
 #: gui/session/menu.js:969
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Does dim masnachlongau."
 
 #: gui/session/menu.js:976
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(numberTrading)s masnachlong yn masnachu"
+msgstr[1] "Mae %(numberTrading)s masnachlong yn masnachu"
+msgstr[2] "Mae %(numberTrading)s masnachlong yn masnachu"
+msgstr[3] "Mae %(numberTrading)s masnachlong yn masnachu"
 
 #: gui/session/menu.js:986
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(numberOfShipTraders)s yn segur"
+msgstr[1] "Mae %(numberOfShipTraders)s yn segur"
+msgstr[2] "Mae %(numberOfShipTraders)s yn segur"
+msgstr[3] "Mae %(numberOfShipTraders)s yn segur"
 
 #: gui/session/menu.js:991
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mae %(numberOfShipTraders)s fasnachlong yn segur"
+msgstr[1] "Mae %(numberOfShipTraders)s fasnachlong yn segur"
+msgstr[2] "Mae %(numberOfShipTraders)s masnachlong yn segur"
+msgstr[3] "Mae %(numberOfShipTraders)s masnachlong yn segur"
 
 #: gui/session/menu.js:1214
 msgid "Resume"
-msgstr ""
+msgstr "Parhau"
 
 #: gui/session/menu.js:1214 gui/session/menu.xml:(caption):87
 msgid "Pause"
-msgstr ""
+msgstr "Oedi"
 
 #: gui/session/menu.js:1218
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Wedi'i oedi gan %(players)s"
 
 #: gui/session/menu.js:1219 gui/session/messages.js:698
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1232 gui/session/menu.xml:(caption):17
 msgid "Manual"
-msgstr ""
+msgstr "Llawlyfr"
 
 #: gui/session/menu.js:1247
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "Caewyd y Troshaen Datblygwr."
 
 #: gui/session/menu.js:1248
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "Agorwyd y Troshaen Datblygwr."
 
 #: gui/session/menu.js:1274
 #, javascript-format
@@ -308,107 +309,107 @@ msgstr ""
 #: gui/session/messages.js:106
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "Mae %(player)s yn dechrau ailymuno â'r gêm."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:108
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "Mae %(player)s yn dechrau ymuno â'r gêm."
 
 #: gui/session/messages.js:112
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "Mae %(player)s wedi gadael y gêm."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:119
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "Mae %(player)s wedi ailymuno â'r gêm."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "Mae %(player)s wedi ymuno â'r gêm."
 
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "Gwaharddwyd %(username)s"
 
 #: gui/session/messages.js:128
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "Tynnwyd %(username)s"
 
 #: gui/session/messages.js:150
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Mae cysylltiad â'r gweinydd wedi cael ei ddilysu."
 
 #: gui/session/messages.js:151
 msgid "Connected to the server."
-msgstr ""
+msgstr "Wedi cysylltu â'r gweinydd."
 
 #: gui/session/messages.js:152
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "Collwyd cysylltiad â'r gweinydd."
 
 #: gui/session/messages.js:154
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Yn aros i chwaraewyr gyslltu:"
 
 #: gui/session/messages.js:155
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Yn cydamseru'r gêm gyda chwaraewyr eraill..."
 
 #: gui/session/messages.js:164
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr ""
+msgstr "(%(context)s) %(userTag)s %(message)s"
 
 #: gui/session/messages.js:165
 #, javascript-format
 msgid "%(userTag)s %(message)s"
-msgstr ""
+msgstr "%(userTag)s %(message)s"
 
 #: gui/session/messages.js:168
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
-msgstr ""
+msgstr "(%(context)s) * %(user)s %(message)s"
 
 #: gui/session/messages.js:169
 #, javascript-format
 msgid "* %(user)s %(message)s"
-msgstr ""
+msgstr "* %(user)s %(message)s"
 
 #: gui/session/messages.js:174 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
-msgstr ""
+msgstr "Tîm"
 
 #: gui/session/messages.js:177 gui/session/session.js:518
 msgid "Observer"
-msgstr ""
+msgstr "Gwyliwr"
 
 #: gui/session/messages.js:178
 msgid "Private"
-msgstr ""
+msgstr "Preifat"
 
 #: gui/session/messages.js:214
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Sgyrsiau a hysbysiadau"
 
 #: gui/session/messages.js:219
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Negeseuon sgyrsiau"
 
 #: gui/session/messages.js:224
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Sgwrs chwaraewyr"
 
 #: gui/session/messages.js:231
 msgctxt "chat history filter"
@@ -418,21 +419,21 @@ msgstr ""
 #: gui/session/messages.js:238
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Sgwrs gelynion"
 
 #: gui/session/messages.js:245
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Sgwrs gwylwyr"
 
 #: gui/session/messages.js:252
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Sgwrs preifat"
 
 #: gui/session/messages.js:258
 msgid "You have won!"
-msgstr ""
+msgstr "Rydych chi wedi ennill!"
 
 #: gui/session/messages.js:259
 msgid "You have been defeated!"
@@ -485,11 +486,11 @@ msgstr ""
 
 #: gui/session/messages.js:587
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Cliciwch i gau'r tiwtorial hwn."
 
 #: gui/session/messages.js:588
 msgid "Quit"
-msgstr ""
+msgstr "Cau"
 
 #: gui/session/messages.js:592
 msgid "Click when ready."
@@ -502,7 +503,7 @@ msgstr ""
 #: gui/session/messages.js:687
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:693
 #, javascript-format
@@ -608,7 +609,7 @@ msgstr ""
 #. elements in an enumeration.
 #: gui/session/messages.js:997
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:1029
 #, javascript-format
@@ -773,7 +774,7 @@ msgstr ""
 #: gui/session/selection_details.js:512
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:63
 msgid "Raise an alert!"
@@ -847,7 +848,7 @@ msgstr ""
 #: gui/session/selection_panels.js:754
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1064
 #, javascript-format
@@ -1041,17 +1042,17 @@ msgstr ""
 #: gui/session/session.js:982
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Cadarnhad"
 
 #: gui/session/session.js:983
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Nac ydw"
 
 #: gui/session/session.js:983
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Ydw"
 
 #: gui/session/session.js:1211
 #, javascript-format
