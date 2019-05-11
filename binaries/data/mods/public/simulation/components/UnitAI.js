@@ -2037,6 +2037,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"leave": function() {
+					this.ResetMoveSpeed();
+
 					// Show carried resources when walking.
 					this.SetDefaultAnimationVariant();
 
