@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-03 19:03+0000\n"
+"Last-Translator: ianto <transifex@cgriff.co.uk>\n"
 "Language-Team: Welsh (http://www.transifex.com/wildfire-games/0ad/language/cy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Dim"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
@@ -28,7 +28,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Dim"
 
 #: gui/gamesetup/gamesetup.js:81
 msgctxt "civilization"
@@ -90,12 +90,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "Tynnwyd %(username)s"
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "Gwaharddwyd %(username)s"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -497,11 +497,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
-msgstr ""
+msgstr "Ydw"
 
 #: gui/gamesetup/gamesetup.js:2162
 msgid "No"
-msgstr ""
+msgstr "Nac ydw"
 
 #: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
@@ -534,7 +534,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
@@ -675,7 +675,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
-msgstr ""
+msgstr "Tîm"
 
 #: gui/gamesetup/gamesetup.xml:(caption):125
 msgid "Show this message in the future."

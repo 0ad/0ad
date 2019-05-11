@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-05 17:47+0000\n"
+"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -566,43 +566,43 @@ msgstr "Droch ceangal le %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Tá cúis uaireanta den earráid seo nuair níl an port UDP 20595\na sheol ar aghaidh sa leith óstach, agus tá bac curtha le balla dóiteán nó bogearraí frithvíreas"
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Chríoch an ósta leis an gcluiche."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Leagan prótacail líonra mícheart"
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Tá an cluiche ag lódáil, iarr arís níos déanaí le do thoil"
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Tá an cluiche ag imirt cheana féin, níl breathnóirí ceadaithe"
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Tá tú ciceáilte"
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Tá tú coiscthe"
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Ainm imreora atá in úsáid cheana. Má tá tú dícheangailte, athcheangail arís i gcúpla soicind"
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Is lán é an Freastalaí."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Theip deimhniú sábháilte an fhorhalla. Téigh isteach leis an bhforhalla"
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -3295,11 +3295,11 @@ msgstr "Suaitheantas ranga os cionn barraí stádais"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Taispeán barra stádais de thaithí os cionn gach aonad atá roghnaithe."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Barra taithí"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""

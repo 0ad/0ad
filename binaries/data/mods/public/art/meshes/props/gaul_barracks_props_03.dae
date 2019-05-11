@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.60 commit date:2019-04-30, commit time:22:49, hash:480a09a92f7f</authoring_tool>
+    </contributor>
+    <created>2019-05-10T16:39:33</created>
+    <modified>2019-05-10T16:39:33</modified>
+    <unit name="meter" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material_003-effect">
+      <profile_COMMON>
+        <newparam sid="prop_weap_dds-surface">
+          <surface type="2D">
+            <init_from>prop_weap_dds</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="prop_weap_dds-sampler">
+          <sampler2D>
+            <source>prop_weap_dds-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <texture texture="prop_weap_dds-sampler" texcoord="Object025Mesh_007-mesh-map-0"/>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Material_003-material" name="Material.003">
+      <instance_effect url="#Material_003-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="gaul_barracks_props_03-mesh" name="gaul_barracks_props_03">
+      <mesh>
+        <source id="gaul_barracks_props_03-mesh-positions">
+          <float_array id="gaul_barracks_props_03-mesh-positions-array" count="12">-1.57028e-4 -1.57028e-4 -3.492698 1.57028e-4 -1.57028e-4 -3.492698 -1.57028e-4 1.57028e-4 -3.492698 1.57028e-4 1.57028e-4 -3.492698</float_array>
+          <technique_common>
+            <accessor source="#gaul_barracks_props_03-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gaul_barracks_props_03-mesh-normals">
+          <float_array id="gaul_barracks_props_03-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#gaul_barracks_props_03-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gaul_barracks_props_03-mesh-map-0">
+          <float_array id="gaul_barracks_props_03-mesh-map-0-array" count="12">1 0 0 1 0 0 1 0 1 1 0 1</float_array>
+          <technique_common>
+            <accessor source="#gaul_barracks_props_03-mesh-map-0-array" count="6" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gaul_barracks_props_03-mesh-map-1">
+          <float_array id="gaul_barracks_props_03-mesh-map-1-array" count="12">0 0 0 0 0 0 0 0 0 0 0 0</float_array>
+          <technique_common>
+            <accessor source="#gaul_barracks_props_03-mesh-map-1-array" count="6" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="gaul_barracks_props_03-mesh-vertices">
+          <input semantic="POSITION" source="#gaul_barracks_props_03-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_003-material" count="2">
+          <input semantic="VERTEX" source="#gaul_barracks_props_03-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#gaul_barracks_props_03-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#gaul_barracks_props_03-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#gaul_barracks_props_03-mesh-map-1" offset="2" set="1"/>
+          <p>1 0 0 2 0 1 0 0 2 1 0 3 3 0 4 2 0 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="gaul_barracks_props_03" name="gaul_barracks_props_03" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#gaul_barracks_props_03-mesh" name="gaul_barracks_props_03">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_003-material" target="#Material_003-material">
+                <bind_vertex_input semantic="Object025Mesh_007-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Object025Mesh_007-mesh-map-1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop-spear_01" name="prop-spear_01" type="NODE">
+          <matrix sid="transform">-4.25141e-8 -1 5.16043e-9 1.247194 0.9726103 -4.01502e-8 0.2324419 -2.491124 -0.2324419 1.49012e-8 0.9726103 -0.1503261 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_02" name="prop-spear_02" type="NODE">
+          <matrix sid="transform">-4.25141e-8 -1 5.16043e-9 0.9737903 0.9726103 -4.01502e-8 0.2324419 -2.490272 -0.2324419 1.49012e-8 0.9726103 -0.1505282 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_03" name="prop-spear_03" type="NODE">
+          <matrix sid="transform">-4.25141e-8 -1 5.16043e-9 0.5621667 0.9726103 -4.01502e-8 0.2324419 -2.488989 -0.2324419 1.49012e-8 0.9726103 -0.1508354 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_04" name="prop-spear_04" type="NODE">
+          <matrix sid="transform">-4.25141e-8 -1 5.16043e-9 0.2302268 0.9726103 -4.01502e-8 0.2324419 -2.487957 -0.2324419 1.49012e-8 0.9726103 -0.1510834 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_05" name="prop-spear_05" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -1.617366 0.9723471 -4.01324e-8 0.2335405 0.8192606 -0.2335405 1.49012e-8 0.9723471 -0.1498761 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_06" name="prop-spear_06" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -1.949186 0.9723471 -4.01324e-8 0.2335405 0.8202932 -0.2335405 1.49012e-8 0.9723471 -0.150126 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_07" name="prop-spear_07" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -2.281208 0.9723471 -4.01324e-8 0.2335405 0.8213283 -0.2335405 1.49012e-8 0.9723471 -0.1503728 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_08" name="prop-spear_08" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -2.4329 0.9723471 -4.01324e-8 0.2335405 0.8218006 -0.2335405 1.49012e-8 0.9723471 -0.1504856 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_09" name="prop-spear_09" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -2.634216 0.9723471 -4.01324e-8 0.2335405 0.8224276 -0.2335405 1.49012e-8 0.9723471 -0.1506376 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_10" name="prop-spear_10" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -2.764721 0.9723471 -4.01324e-8 0.2335405 0.8228329 -0.2335405 1.49012e-8 0.9723471 -0.1507357 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_11" name="prop-spear_11" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -2.966156 0.9723471 -4.01324e-8 0.2335405 0.8234608 -0.2335405 1.49012e-8 0.9723471 -0.150886 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_12" name="prop-spear_12" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -3.096742 0.9723471 -4.01324e-8 0.2335405 0.8238689 -0.2335405 1.49012e-8 0.9723471 -0.150983 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_13" name="prop-spear_13" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -3.449752 0.9723471 -4.01324e-8 0.2335405 0.8249679 -0.2335405 1.49012e-8 0.9723471 -0.1512473 0 0 0 1</matrix>
+        </node>
+        <node id="prop-spear_14" name="prop-spear_14" type="NODE">
+          <matrix sid="transform">-4.25026e-8 -1 5.11656e-9 -3.615721 0.9723471 -4.01324e-8 0.2335405 0.8254843 -0.2335405 1.49012e-8 0.9723471 -0.151372 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

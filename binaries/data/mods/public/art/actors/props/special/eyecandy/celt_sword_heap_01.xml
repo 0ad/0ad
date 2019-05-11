@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Heap-01">
+      <mesh>props/celt_sword_heap_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Heap-02">
+      <mesh>props/celt_sword_heap_02.dae</mesh>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

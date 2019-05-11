@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/gaul_barracks_props_03.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_04" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_05" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_06" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_07" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_08" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_09" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_10" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_11" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_12" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_13" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+        <texture file="structural/ao/celt_barracks.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

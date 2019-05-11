@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-07 10:00+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "Grad-iuchair nach deach a shònrachadh: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Brùth air %(hotkey)s gus ainmean nan cluicheadairean fhèin-choileanadh."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -558,43 +558,43 @@ msgstr "Droch-cheangal ri %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Mar as trice, is as adhbhar nach eil am port UDP 20595 ’ga shìneadh air adhart leis an òstair ri linn cachaileith-teine no bhathar-bog an aghaidh bhìorasan."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Chuir an t-òstair crìoch air a’ gheama."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Chan eil tionndadh a’ phròtacail lìonraidh mar bu chòir."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Tha an geama ’ga luchdadh, feuch ris a-rithist an ceann greis."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Tha an geama air a thòiseachadh mar-thà is chan eil amhairc ceadaichte."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Fhuair thu a’ bhròg."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Chaidh do thoirmeasg."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Tha an t-ainm-cluicheadair ’ga chleachdadh. Ma chaidh do cheangal a bhriseadh, feuch ris a-rithist an ceann diog no dhà."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Tha am frithealaiche làn."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Dh’fhàillig le dearbhadh tèarainte an lobaidh. Gabh pàirt ann slighe an lobaidh."
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -1644,7 +1644,7 @@ msgstr "Gun rangachadh"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Sgrìobh pàirt dhe dh’ainm cluicheadair no cluicheadairean gus na h-ath-chluichean a chriathradh."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -3024,11 +3024,11 @@ msgstr "Brath far-ainm"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Faigh brath fuaime nuair a thig cliant ùr a-steach gu rèiteachadh a’ gheama."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr ""
+msgstr "Rèiteachadh geama – Brath cluicheadair ùir"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3272,11 +3272,11 @@ msgstr "Ìomhaigheag rang os cionn a’ bhàir-staide"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Seall bàr-staide an eòlais os cionn gach aonad air a thaghadh."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Bàr-staide an eòlais"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3578,17 +3578,17 @@ msgstr "CAMPA AIRM RÒMANACH"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Gabhaidh a thogail àite sam bith air ranntair an nàmhad no neo-phàirteach. Tha e math gus bunait dhìomhair a thogail air cùlaibh an nàmhad no buannachdan air ranntair an nàmhad a dhaingneachadh."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "Tog innealan-sèiste is trèanaich saighdearan-dùthcha."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Cuir aonadan ’nan gearastan ann gus an slànachadh gu mall is campa an airm a dhìon o ionnsaighean is on a’ chrìonadh."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3598,21 +3598,21 @@ msgstr "TAIGHEAN-FEACHD"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Trèanaich a h‑uile seòrsa de shaighdearan-dùthcha. ’S urrainn dha cuid a bhuidhnean a’ ghlas a thoirt far trèanadh nan laoch cuideachd."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "Rannsaich teicneolasan an airm a bhios diofraichte do gach sìobhaltas."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Tog fear tràth gus saighdearan-dùthcha a thrèanadh fhad ’s a bhios tu ag àrdachadh do thuineachadh gu linn ùr."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Tog iad ann am bunait adhartach ach am faigh an ionnsaigh agad foirlionadh."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3620,11 +3620,11 @@ msgstr "GOBHA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Faodaidh na h‑uile sìobhaltas an structar seo a rannsachadh."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Rannsaich leasachaidhean air airm ’s armachd airson nan aonadan agad."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3632,19 +3632,19 @@ msgstr "CÒMHLAN NAOMH CHARTAGACH"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Laoich sleaghair ’s laoich sleaghair eachraidh airson nan Cartagach."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Gabhaidh an dà chuid trèanadh san teampall seach san dùn mar a théid a’ mhòrchuid de laoich."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Cleachd na sleaghairean mar choisridh throm an aghaidh eachraidh. Cleachd an eachraidh mar chlisgeadh trom an aghaidh innealan-sèiste agus streupairean."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3652,17 +3652,17 @@ msgstr "CRAINN-TABHAILL"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "Innealan-sèiste astair a tha math an aghaidh thogalachan."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Cosgail is slaodach."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Paisg ’nan cairtean iad airson an gluasad agus neo-phaisg iad ’nan uidheaman suidhichte gus ionnsaigh a thoirt!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3670,19 +3670,19 @@ msgstr "BÀTA-COGAIDH CEILTEACH"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Long-chogaidh trì-ràmhach meadhanach."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Ri fhaighinn do Bhreatannaich, Muinntir na Gaille ’s Ibèirich."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "’S urrainn dha gu ruige 40 aonad a ghiùlan."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Cuiridh seo ri buannachd an losgaidh nuair a bhios coisridh ’na ghearastan ann."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3690,21 +3690,21 @@ msgstr "IONADAN SÌOBHALTA"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "Seo bunait an tuineachaidh ùir agad."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Gabh cnap mòr de ranntair."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "’S urrainn dhut fear a thogail air ranntair càirdeil no neo-phàirteach."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Trèanaich saoranaich: saoranaich bhoireann, coisridh-dhùthcha is eachraidh-dùthcha."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3712,17 +3712,17 @@ msgstr "AMBASAIDEAN"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Seo taigh-feachd sònraichte aig na Cartagaich."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Trèanaich saighdearan-duaise a bhuineas ri sluagh na h‑ambasaid."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Cosgaidh saighdearan-dùthcha-duaise meatailt an àite bìdh."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3730,19 +3730,19 @@ msgstr "IASGACH"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Iasgaich na cuantan airson buana mòire."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Giùlainidh bàtaichean-iasgach uiread dhe biadh gach turas."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Tha an t-iasgach nas luaithe na cruinneachadh bìdh air an achadh."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Thoir an aire! Chan e stòras gun chrìch a tha sna h‑èisg!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3750,19 +3750,19 @@ msgstr "DÙN"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "’S e an togalach as treasa aig cha mhòr gach sìobhaltas a tha san dùn."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Trèanaichidh seo laoich, curaidhean is innealan sèiste."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Bheir seo barrachd sluaigh dhut."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Cuir saighdearan ’nan gearastan a-steach ach am bi dìon nas treasa aige."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3771,17 +3771,17 @@ msgstr "IONAD A LÀIMH"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Cuir na h-aonadan agad air a’ bhlàr le deagh ro-innleachd ach am faigh thu buannachd"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Tagh cuid a dh’aonadan, brùth is cum sìos putan deas na luchaige, tarraing loidhne agus leig às am putan."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Sgaoilidh na h-aonadan agad air an loidhne sin a-nis"
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3789,25 +3789,25 @@ msgstr "CRUINNEACHADH STÒRASAN"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Cleachd saighdearan-dùthcha is saoranaich bhoireann gus stòrasan a chruinneachadh."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Cruinnichidh saoranaich bhoireann glasraich as luaithe."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Cruinnichidh coisridh-dhùthcha clach-mhèinneir as luaithe."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Cruinnichidh eachraidh-dùthcha feòil as luaithe."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Mar as àirde an rang aig saighdear-dùthcha (adhartach, seann-ghaisgeach) ’s ann nas fheàrr an t-sabaid a nì e ach cha bhi e cho math air stòrasan a chruinneachadh."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3817,15 +3817,15 @@ msgstr "IPHICRATES"
 msgid ""
 "The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "Ceann-armailt na h-Àithne a rinn ath-leasachadh air feachd na h-Àithne ach am biodh e na bu luaithe sùbailte."
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Bidh aonadan sa chumadh aige nas luaithe ’s nas treasa."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Gluaisidh streupairean nas luaidhe fhad ’s a bhios e beò."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3833,19 +3833,19 @@ msgstr "GEARASTANAN"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "Tog fear air ranntair neo-phàirteach airson astair bheachdachaidh mhòir."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
-msgstr ""
+msgstr "Saor ’s cha chosg thu ach 80 fiodh."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Togaidh tu gu luath iad, ach tha iad lag."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "Cuir aonad ’na ghearastan annta ach nach dig crìonadh ranntair orra."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3853,11 +3853,11 @@ msgstr "BALLACHAN SONNAICH"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Balla fiodha saor luath a tha dh’fhaodas na h‑uile sìobhaltas a thogail."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "Tha iad aig a’ mhòrchuid de shìobhaltasan ri linn nan clachan."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3865,37 +3865,37 @@ msgstr "PERICLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Am prìomh neach-polataigs aig Baile na h-Àithne ron 5mh linn RC."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
-msgstr ""
+msgstr "Togar togalaichean nas luaithe taobh a-staigh astair."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Bidh teampaill nas saoire fhad ’s a bhios e beò."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr "- AILTIREACHD PHEARSACH"
+msgstr "AILTIREACHD PHEARSACH"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Teicneolas sònraichte airson nam Pearsach."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Bidh gach togalach nam Pearsach +25% nas treasa."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Mairidh an togail +20% nas fhaide mar thoradh air seo."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Bidh uiread de theicneolasan togail is dìona ri fhaighinn dha na Pearsaich."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3903,16 +3903,16 @@ msgstr "PÌCEARAN"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Armachd throm orra ’s slaodach. Ionnsaigh lag."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Cleachd iad an aghaidh eachraidh no an aghaidh coisridh dhlùithe eile gus an cumail far a bheil iad."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Ri fhaighinn dha Kuluš, na Masadonaich, na Ptolamaich ’s na Seleucaich."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -3922,15 +3922,15 @@ msgstr "CÒIG-RÀMHACH"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "An long-chogaidh àbhaisteach as truime. Ri fhaighinn dha na Cartagaich, Ptolamaich, Ròmanaich ’s Seleucaich."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "’S urrainn dhi gu ruige 50 aonad a ghiùlan."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Gheibh i buannachd losgaidh nuair a bhios crainn-thabhaill ’nan gearastan ann."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -3938,19 +3938,19 @@ msgstr "SABHANNA"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Tha sabhannathan rèidh le beagan lochanan is creagan ann mar as trice."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Làn de dh’ainmhidhean trèid airson seilge pailte."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Beartach a thaobh mèinnearachd dhe na h‑uile seòrsa."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Cha bhi cus chraobhan ann ach ’s e bathobaban torrach a th’ annta."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -3958,17 +3958,17 @@ msgstr "TÙIR DHÌONA"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "Tùir a sheasas ’nan aonar gus cnapan mòra de thìr a dhìon."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Cosgaidh iad 100 fiodh agus 100 clach mar as àbhaist. Cosgaidh tùir dìona Ibèireach 50 fiodh ’s 250 clach (on a tha iad nas treasa)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Tha ionnsaigh astair aca a mheudaicheas le gach aonad a bhios ’na ghearastan ann."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3976,17 +3976,17 @@ msgstr "HOMOIOI"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "An t‑aonad coisridh as treasa sa gheama."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Laoch coisridh a tha ri fhaighinn airson nam Spartach."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Cleachd iad gus eachraidh an nàmhad a chur gu bàs no mar fheachd làidir gus taic a chur ris a’ choisridh àbhaisteach agad."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -3994,21 +3994,21 @@ msgstr "SLEAGHAIREAN"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Seo a’ choisridh dhlùth bhunasach aig gach sluagh sa gheama."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Cleachd iad an aghaidh eachraidh gus buannachd fhaighinn air an ionnsaigh."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Tha iad math air toiseach an fheachd on a tha ionnsaigh spealgaidh nach eil dona aca."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Thèid aonadan astair ’s claidheamhairean ’nan aghaidh, mar sin cuir taic ris na sleaghairean agad le longadairean no eachraidh."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -4016,15 +4016,15 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Togalach sònraichte do mhuinntir na h‑Àithne, na Masadonaich ’s na Greugaich."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Trèanaidh e streupairean troma e laoich coisridh claidheimh."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "Bheir seo +10 de shluagh dhut."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4032,13 +4032,13 @@ msgstr "TAIGHEAN-STÒRAIS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Ionad-stòrais saor airson a h‑uile stòras ach biadh (fiodh, clach, meatailt)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Rannsaich teicneolasan gus na comasan cruinneachaidh aig na saoranaich agad a leasachadh."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4046,23 +4046,23 @@ msgstr "TEAMPAILL"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Togalach aig linn nam bailtean."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Trus lighichean ach an slànaich iad na saighdearan agad air a’ bhlàr."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Rannsaich teicneolasan slànachadh."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Slànaichidh an aura na h‑aonadan ’nam fagas."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Cuir aonadan leòinte ’nan gearastan a-steach ach an slànaich iad nas luaithe."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4071,19 +4071,19 @@ msgstr "CRÌONADH RANNTAIR"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Thig an crìonadh air togalach nuair nach eil e ceangailte ri ionad sìobhalta caidreabhaich."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "’S urrainn dhut maille a chur air a’ chrìonadh no an togalach a chàradh nuair a chuireas tu aonadan ’nan gearastan ann."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Nuair a bhios an crìonadh coileanta, thèid an togalach a thoirt dhan nàbaidh as cumhachdaiche."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4093,15 +4093,15 @@ msgstr "THEMISTOCLES"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Curaidh na h-Àithne a stiùirich na Greugaich aig na batail-mara mòra aig Artemisium agus Salamis."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Thèid na h-uile long a thogail nas luaithe fhad ’s a bhios e beò."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Seòlaidh long far a bheil e ’na gearastan ann mòran nas luaithe."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4109,15 +4109,15 @@ msgstr "TRÌ-RÀMHACH"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "An long-chogaidh mheadhanach."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Tha i math airson giùlain no sabaid."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Cuir aonadan ’nan gearastan ann airson buannachd ionnsaighe."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4125,19 +4125,19 @@ msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "Curaidh Ibèireach o threubh nan Lusatanach."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Seachd iomairtean an aghaidh nan Ròmanach air a char as lugha rè “Cogaidhean nan Lusitani” o 147 gu 139 RC."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Tha aura “Tactica Guerilla” aige a leigeas le aonadan Ibèireach faisg air fàth a dhèanamh air an nàmhaid."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4145,17 +4145,17 @@ msgstr "AILBHEANAN-COGAIDH"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Beathaichean mòra à Afraga ’s às na h-Innseachan a chaidh a thrèanadh airson a’ chogaidh."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Tha cosgaisean bìdh is meatailt mòra ’nan lùib ach tha iad glè chumhachdach."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Ri fhaighinn dha na Cartagaich, Kuluš, na Mauraidhich, na Pearsaich, na Ptolamaich ’s na Seleucaich."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4163,16 +4163,16 @@ msgstr "MUCAN-MARA"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Stòras-mara."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 biadh."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Gabhaidh a chruinneachadh le bàta-iasgaich nuair a bhios a’ mhuc-mhara air a mharbhadh."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Thèid iad air fàrsan air cuantan a’ gheama is teichidh iad nuair a thèid ionnsaigh a thoirt orra."
