@@ -93,7 +93,7 @@ public:
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) = 0;
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const = 0;
 
 	/**
 	 * Asynchronous version of ComputePath.

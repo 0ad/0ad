@@ -21,6 +21,7 @@
 
 #include "graphics/Overlay.h"
 #include "ps/Profile.h"
+#include "renderer/Scene.h"
 
 // Find the root ID of a region, used by InitRegions
 inline u16 RootID(u16 x, const std::vector<u16>& v)
@@ -345,6 +346,15 @@ void HierarchicalPathfinder::SetDebugOverlay(bool enabled, const CSimContext* si
 		m_DebugOverlayLines.clear();
 		m_SimContext = NULL;
 	}
+}
+
+void HierarchicalPathfinder::RenderSubmit(SceneCollector& collector)
+{
+	if (!m_DebugOverlay)
+		return;
+
+	for (size_t i = 0; i < m_DebugOverlayLines.size(); ++i)
+		collector.Submit(&m_DebugOverlayLines[i]);
 }
 
 void HierarchicalPathfinder::Recompute(Grid<NavcellData>* grid,

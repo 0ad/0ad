@@ -48,6 +48,7 @@ class TestHierarchicalPathfinder;
 #endif
 
 class HierarchicalOverlay;
+class SceneCollector;
 
 class HierarchicalPathfinder
 {
@@ -129,6 +130,8 @@ public:
 		LOGERROR("Invalid passability class name '%s'", name.c_str());
 		return 0;
 	}
+
+	void RenderSubmit(SceneCollector& collector);
 
 private:
 	static const u8 CHUNK_SIZE = 96; // number of navcells per side

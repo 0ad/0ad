@@ -37,8 +37,10 @@
 #include "ps/CLogger.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/components/ICmpObstructionManager.h"
-#include "simulation2/helpers/LongPathfinder.h"
 
+
+class HierarchicalPathfinder;
+class LongPathfinder;
 class VertexPathfinder;
 
 class SceneCollector;
@@ -96,8 +98,8 @@ public:
 	bool m_TerrainDirty;
 
 	std::unique_ptr<VertexPathfinder> m_VertexPathfinder;
-	// Interface to the long-range pathfinder.
-	LongPathfinder m_LongPathfinder;
+	std::unique_ptr<HierarchicalPathfinder> m_PathfinderHier;
+	std::unique_ptr<LongPathfinder> m_LongPathfinder;
 
 	// For responsiveness we will process some moves in the same turn they were generated in
 
@@ -166,10 +168,7 @@ public:
 
 	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false);
 
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret)
-	{
-		m_LongPathfinder.ComputePath(x0, z0, goal, passClass, ret);
-	}
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const;
 
 	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify);
 

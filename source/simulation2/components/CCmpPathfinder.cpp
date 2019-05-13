@@ -34,6 +34,8 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/helpers/HierarchicalPathfinder.h"
+#include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/helpers/Rasterize.h"
 #include "simulation2/helpers/VertexPathfinder.h"
 #include "simulation2/serialization/SerializeTemplates.h"
@@ -55,6 +57,8 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	m_SameTurnMovesCount = 0;
 
 	m_VertexPathfinder = std::unique_ptr<VertexPathfinder>(new VertexPathfinder(m_MapSize, m_TerrainOnlyGrid));
+	m_LongPathfinder = std::unique_ptr<LongPathfinder>(new LongPathfinder());
+	m_PathfinderHier = std::unique_ptr<HierarchicalPathfinder>(new HierarchicalPathfinder());
 
 	// Register Relax NG validator
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
@@ -188,28 +192,28 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 void CCmpPathfinder::RenderSubmit(SceneCollector& collector)
 {
 	m_VertexPathfinder->RenderSubmit(collector);
-	m_LongPathfinder.HierarchicalRenderSubmit(collector);
+	m_PathfinderHier->RenderSubmit(collector);
 }
 
 void CCmpPathfinder::SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass)
 {
-	m_LongPathfinder.SetDebugPath(x0, z0, goal, passClass);
+	m_LongPathfinder->SetDebugPath(*m_PathfinderHier, x0, z0, goal, passClass);
 }
 
 void CCmpPathfinder::SetDebugOverlay(bool enabled)
 {
 	m_VertexPathfinder->SetDebugOverlay(enabled);
-	m_LongPathfinder.SetDebugOverlay(enabled);
+	m_LongPathfinder->SetDebugOverlay(enabled);
 }
 
 void CCmpPathfinder::SetHierDebugOverlay(bool enabled)
 {
-	m_LongPathfinder.SetHierDebugOverlay(enabled, &GetSimContext());
+	m_PathfinderHier->SetDebugOverlay(enabled, &GetSimContext());
 }
 
 void CCmpPathfinder::GetDebugData(u32& steps, double& time, Grid<u8>& grid) const
 {
-	m_LongPathfinder.GetDebugData(steps, time, grid);
+	m_LongPathfinder->GetDebugData(steps, time, grid);
 }
 
 void CCmpPathfinder::SetAtlasOverlay(bool enable, pass_class_t passClass)
@@ -534,15 +538,19 @@ void CCmpPathfinder::UpdateGrid()
 	// Add obstructions onto the grid
 	cmpObstructionManager->Rasterize(*m_Grid, m_PassClasses, m_DirtinessInformation.globallyDirty);
 
-	// Update the long-range pathfinder
+	// Update the long-range and hierarchical pathfinders.
 	if (m_DirtinessInformation.globallyDirty)
 	{
 		std::map<std::string, pass_class_t> nonPathfindingPassClasses, pathfindingPassClasses;
 		GetPassabilityClasses(nonPathfindingPassClasses, pathfindingPassClasses);
-		m_LongPathfinder.Reload(m_Grid, nonPathfindingPassClasses, pathfindingPassClasses);
+		m_LongPathfinder->Reload(m_Grid);
+		m_PathfinderHier->Recompute(m_Grid, nonPathfindingPassClasses, pathfindingPassClasses);
 	}
 	else
-		m_LongPathfinder.Update(m_Grid, m_DirtinessInformation.dirtinessGrid);
+	{
+		m_LongPathfinder->Update(m_Grid);
+		m_PathfinderHier->Update(m_Grid, m_DirtinessInformation.dirtinessGrid);
+	}
 
 	// Remember the necessary updates that the AI pathfinder will have to perform as well
 	m_AIPathfinderDirtinessInformation.MergeAndClear(m_DirtinessInformation);
@@ -694,6 +702,12 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 }
 
 //////////////////////////////////////////////////////////
+
+
+void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const
+{
+	m_LongPathfinder->ComputePath(*m_PathfinderHier, x0, z0, goal, passClass, ret);
+}
 
 u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify)
 {
