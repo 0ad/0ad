@@ -151,7 +151,7 @@ var getScorePanelsData = () => ({
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "tradeIncome", "caption": translate("Trade income"), "yStart": 16, "width": 100 },
-			{ "identifier": "barterEfficency", "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
+			{ "identifier": "barterEfficency", "caption": translate("Barter efficiency"), "yStart": 16, "width": 100, "format": "PERCENTAGE" },
 			...g_ResourceData.GetResources().map(res => {
 				return {
 					"identifier": res.code,
@@ -183,11 +183,11 @@ var getScorePanelsData = () => ({
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100, "format": "DECIMAL2" },
-			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100 },
-			{ "identifier": "mapControl", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 },
-			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100 },
-			{ "identifier": "vegetarianRatio", "caption": translate("Vegetarian ratio"), "yStart": 16, "width": 100 },
-			{ "identifier": "feminization", "caption": translate("Feminization"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100, "format": "PERCENTAGE" },
+			{ "identifier": "mapControl", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100, "format": "PERCENTAGE" },
+			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100, "format": "PERCENTAGE" },
+			{ "identifier": "vegetarianRatio", "caption": translate("Vegetarian ratio"), "yStart": 16, "width": 100, "format": "PERCENTAGE" },
+			{ "identifier": "feminization", "caption": translate("Feminization"), "yStart": 16, "width": 100, "format": "PERCENTAGE" },
 			{
 				"identifier": "bribes",
 				"caption": translate("Bribes"),
