@@ -165,7 +165,9 @@ private:
 
 	typedef std::map<RegionID, std::set<RegionID> > EdgesMap;
 
-	void FindEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
+	void ComputeNeighbors(EdgesMap& edges, Chunk& a, Chunk& b, bool transpose, bool opposite) const;
+	void RecomputeAllEdges(pass_class_t passClass, EdgesMap& edges);
+	void UpdateEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
 
 	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass) const;
 

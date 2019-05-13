@@ -395,16 +395,9 @@ void HierarchicalPathfinder::Recompute(Grid<NavcellData>* grid,
 		}
 
 		// Construct the search graph over the regions
-
 		EdgesMap& edges = m_Edges[passClass];
+		RecomputeAllEdges(passClass, edges);
 
-		for (int cj = 0; cj < m_ChunksH; ++cj)
-		{
-			for (int ci = 0; ci < m_ChunksW; ++ci)
-			{
-				FindEdges(ci, cj, passClass, edges);
-			}
-		}
 	}
 
 	if (m_DebugOverlay)
@@ -418,11 +411,17 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 {
 	PROFILE3("Hierarchical Update");
 
-	for (int cj = 0; cj <  m_ChunksH; ++cj)
+	// Algorithm for the partial update:
+	// 1. Loop over chunks.
+	// 2. For any dirty chunk:
+	//		- remove all edges, by removing the neighbor connection with them and then deleting us
+	//		- recreate regions inside the chunk
+	//		- reconnect the regions. We may do too much work if we reconnect with a dirty chunk, but that's fine.
+	for (u8 cj = 0; cj <  m_ChunksH; ++cj)
 	{
 		int j0 = cj * CHUNK_SIZE;
 		int j1 = std::min(j0 + CHUNK_SIZE, (int)dirtinessGrid.m_H);
-		for (int ci = 0; ci < m_ChunksW; ++ci)
+		for (u8 ci = 0; ci < m_ChunksW; ++ci)
 		{
 			// Skip chunks where no navcells are dirty.
 			int i0 = ci * CHUNK_SIZE;
@@ -434,23 +433,26 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 			{
 				pass_class_t passClass = passClassMask.second;
 				Chunk& a = m_Chunks[passClass].at(ci + cj*m_ChunksW);
+
+				// Clean up edges ID
+				EdgesMap& edgeMap = m_Edges[passClass];
+				for (u16 i : a.m_RegionsID)
+				{
+					RegionID reg{ci, cj, i};
+					for (const RegionID& neighbor : edgeMap[reg])
+					{
+						edgeMap[neighbor].erase(reg);
+						if (edgeMap[neighbor].empty())
+							edgeMap.erase(neighbor);
+					}
+					edgeMap.erase(reg);
+				}
+
+				// Recompute regions inside this chunk.
 				a.InitRegions(ci, cj, grid, passClass);
-			}
-		}
-	}
 
-	// TODO: Also be clever with edges
-	m_Edges.clear();
-	for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
-	{
-		pass_class_t passClass = passClassMask.second;
-		EdgesMap& edges = m_Edges[passClass];
 
-		for (int cj = 0; cj < m_ChunksH; ++cj)
-		{
-			for (int ci = 0; ci < m_ChunksW; ++ci)
-			{
-				FindEdges(ci, cj, passClass, edges);
+				UpdateEdges(ci, cj, passClass, edgeMap);
 			}
 		}
 	}
@@ -462,15 +464,8 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 	}
 }
 
-/**
- * Find edges between regions in this chunk and the adjacent below/left chunks.
- */
-void HierarchicalPathfinder::FindEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges)
+void HierarchicalPathfinder::ComputeNeighbors(EdgesMap& edges, Chunk& a, Chunk& b, bool transpose, bool opposite) const
 {
-	std::vector<Chunk>& chunks = m_Chunks[passClass];
-
-	Chunk& a = chunks.at(cj*m_ChunksW + ci);
-
 	// For each edge between chunks, we loop over every adjacent pair of
 	// navcells in the two chunks. If they are both in valid regions
 	// (i.e. are passable navcells) then add a graph edge between those regions.
@@ -478,49 +473,70 @@ void HierarchicalPathfinder::FindEdges(u8 ci, u8 cj, pass_class_t passClass, Edg
 	// std::set which will drop duplicate entries.)
 	// But as set.insert can be quite slow on large collection, and that we usually
 	// try to insert the same values, we cache the previous one for a fast test.
+	RegionID raPrev(0,0,0);
+	RegionID rbPrev(0,0,0);
+	for (int k = 0; k < CHUNK_SIZE; ++k)
+	{
+		u8 aSide = opposite ? CHUNK_SIZE - 1 : 0;
+		u8 bSide = CHUNK_SIZE - 1 - aSide;
+		RegionID ra = transpose ? a.Get(k, aSide) : a.Get(aSide, k);
+		RegionID rb = transpose ? b.Get(k, bSide) : b.Get(bSide, k);
+		if (ra.r && rb.r)
+		{
+			if (ra == raPrev && rb == rbPrev)
+				continue;
+			edges[ra].insert(rb);
+			edges[rb].insert(ra);
+			raPrev = ra;
+			rbPrev = rb;
+		}
+	}
+}
+
+/**
+ * Connect a chunk's regions to their neighbors. Not optimised for global recomputing.
+ */
+void HierarchicalPathfinder::UpdateEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges)
+{
+	std::vector<Chunk>& chunks = m_Chunks[passClass];
+
+	Chunk& a = chunks.at(cj*m_ChunksW + ci);
 
 	if (ci > 0)
-	{
-		Chunk& b = chunks.at(cj*m_ChunksW + (ci-1));
-		RegionID raPrev(0,0,0);
-		RegionID rbPrev(0,0,0);
-		for (int j = 0; j < CHUNK_SIZE; ++j)
-		{
-			RegionID ra = a.Get(0, j);
-			RegionID rb = b.Get(CHUNK_SIZE-1, j);
-			if (ra.r && rb.r)
-			{
-				if (ra == raPrev && rb == rbPrev)
-					continue;
-				edges[ra].insert(rb);
-				edges[rb].insert(ra);
-				raPrev = ra;
-				rbPrev = rb;
-			}
-		}
-	}
+		ComputeNeighbors(edges, a, chunks.at(cj*m_ChunksW + (ci-1)), false, false);
+
+	if (ci < m_ChunksW-1)
+		ComputeNeighbors(edges, a, chunks.at(cj*m_ChunksW + (ci+1)), false, true);
 
 	if (cj > 0)
+		ComputeNeighbors(edges, a, chunks.at((cj-1)*m_ChunksW + ci), true, false);
+
+	if (cj < m_ChunksH - 1)
+		ComputeNeighbors(edges, a, chunks.at((cj+1)*m_ChunksW + ci), true, true);
+}
+
+/**
+ * Find edges between regions in all chunks, in an optimised manner (only look at top/left)
+ */
+void HierarchicalPathfinder::RecomputeAllEdges(pass_class_t passClass, EdgesMap& edges)
+{
+	std::vector<Chunk>& chunks = m_Chunks[passClass];
+
+	edges.clear();
+
+	for (int cj = 0; cj < m_ChunksH; ++cj)
 	{
-		Chunk& b = chunks.at((cj-1)*m_ChunksW + ci);
-		RegionID raPrev(0,0,0);
-		RegionID rbPrev(0,0,0);
-		for (int i = 0; i < CHUNK_SIZE; ++i)
+		for (int ci = 0; ci < m_ChunksW; ++ci)
 		{
-			RegionID ra = a.Get(i, 0);
-			RegionID rb = b.Get(i, CHUNK_SIZE-1);
-			if (ra.r && rb.r)
-			{
-				if (ra == raPrev && rb == rbPrev)
-					continue;
-				edges[ra].insert(rb);
-				edges[rb].insert(ra);
-				raPrev = ra;
-				rbPrev = rb;
-			}
+			Chunk& a = chunks.at(cj*m_ChunksW + ci);
+
+			if (ci > 0)
+				ComputeNeighbors(edges, a, chunks.at(cj*m_ChunksW + (ci-1)), false, false);
+
+			if (cj > 0)
+				ComputeNeighbors(edges, a, chunks.at((cj-1)*m_ChunksW + ci), true, false);
 		}
 	}
-
 }
 
 /**
