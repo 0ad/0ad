@@ -1660,7 +1660,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"leave": function(msg) {
-					this.ResetMoveSpeed();
+					this.ResetSpeedMultiplier();
 					this.StopTimer();
 					this.SetDefaultAnimationVariant();
 				},
@@ -1675,13 +1675,13 @@ UnitAI.prototype.UnitFsmSpec = {
 						{
 							var speed = cmpUnitAI.GetWalkSpeed();
 							if (speed < this.GetWalkSpeed())
-								this.SetMoveSpeedRatio(speed / this.GetWalkSpeed());
+								this.SetSpeedMultiplier(speed / this.GetWalkSpeed());
 						}
 					}
 				},
 
 				"MoveCompleted": function() {
-					this.ResetMoveSpeed();
+					this.ResetSpeedMultiplier();
 					if (!this.MoveToTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
 						this.SetNextState("GUARDING");
 				},
@@ -1739,15 +1739,15 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				// Run quickly
 				this.SelectAnimation("move");
-				this.SetMoveSpeedRatio(this.GetRunMultiplier());
+				this.SetSpeedMultiplier(this.GetRunMultiplier());
 			},
 
 			"HealthChanged": function() {
-				this.SetMoveSpeedRatio(this.GetRunMultiplier());
+				this.SetSpeedMultiplier(this.GetRunMultiplier());
 			},
 
 			"leave": function() {
-				this.ResetMoveSpeed();
+				this.ResetSpeedMultiplier();
 			},
 
 			"MoveCompleted": function() {
@@ -2031,7 +2031,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpUnitAI && cmpUnitAI.IsFleeing())
 					{
 						// Run after a fleeing target
-						this.SetMoveSpeedRatio(this.GetRunMultiplier());
+						this.SetSpeedMultiplier(this.GetRunMultiplier());
 					}
 					this.StartTimer(1000, 1000);
 				},
@@ -3975,7 +3975,7 @@ UnitAI.prototype.GetRunMultiplier = function()
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (!cmpUnitMotion)
 		return 0;
-	return cmpUnitMotion.GetRunSpeedMultiplier();
+	return cmpUnitMotion.GetRunMultiplier();
 };
 
 /**
@@ -5582,18 +5582,18 @@ UnitAI.prototype.GetStanceName = function()
 /*
  * Make the unit walk at its normal pace.
  */
-UnitAI.prototype.ResetMoveSpeed = function()
+UnitAI.prototype.ResetSpeedMultiplier = function()
 {
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (cmpUnitMotion)
-		cmpUnitMotion.SetSpeedRatio(1);
+		cmpUnitMotion.SetSpeedMultiplier(1);
 };
 
-UnitAI.prototype.SetMoveSpeedRatio = function(speed)
+UnitAI.prototype.SetSpeedMultiplier = function(speed)
 {
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (cmpUnitMotion)
-		cmpUnitMotion.SetSpeedRatio(speed);
+		cmpUnitMotion.SetSpeedMultiplier(speed);
 };
 
 UnitAI.prototype.SetHeldPosition = function(x, z)

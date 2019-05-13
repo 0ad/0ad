@@ -138,7 +138,7 @@ function TestFormationExiting(mode)
 
 	AddMock(controller, IID_UnitMotion, {
 		GetWalkSpeed: function() { return 1; },
-		SetSpeedRatio: function(speed) { },
+		SetSpeedMultiplier: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
 		GetPassabilityClassName: function() { return "default"; },
 	});
@@ -282,7 +282,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 	AddMock(controller, IID_UnitMotion, {
 		GetWalkSpeed: function() { return 1; },
-		SetSpeedRatio: function(speed) { },
+		SetSpeedMultiplier: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
 		IsInTargetRange: function(target, min, max) { return true; },
 		StopMoving: function() { },

@@ -132,7 +132,7 @@ public:
 
 	bool m_FormationController;
 
-	fixed m_TemplateWalkSpeed, m_TemplateRunSpeedMultiplier;
+	fixed m_TemplateWalkSpeed, m_TemplateRunMultiplier;
 	pass_class_t m_PassClass;
 	std::string m_PassClassName;
 
@@ -141,7 +141,7 @@ public:
 	entity_pos_t m_Clearance;
 
 	// cached for efficiency
-	fixed m_WalkSpeed, m_RunSpeedMultiplier;
+	fixed m_WalkSpeed, m_RunMultiplier;
 
 	bool m_Moving;
 	bool m_FacePointAfterMove;
@@ -233,10 +233,10 @@ public:
 	entity_pos_t m_TargetMinRange;
 	entity_pos_t m_TargetMaxRange;
 
-	// Actual unit speed, after technology and ratio
+	// If the entity moves, it will do so at m_WalkSpeed * m_SpeedMultiplier.
+	fixed m_SpeedMultiplier;
+	// This caches the resulting speed from m_WalkSpeed * m_SpeedMultiplier for convenience.
 	fixed m_Speed;
-	// Convenience variable to avoid recomputing the ratio every time. Synchronised.
-	fixed m_SpeedRatio;
 
 	// Current mean speed (over the last turn).
 	fixed m_CurSpeed;
@@ -283,12 +283,12 @@ public:
 		m_FacePointAfterMove = true;
 
 		m_WalkSpeed = m_TemplateWalkSpeed = m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
-		m_SpeedRatio = fixed::FromInt(1);
+		m_SpeedMultiplier = fixed::FromInt(1);
 		m_CurSpeed = fixed::Zero();
 
-		m_RunSpeedMultiplier = m_TemplateRunSpeedMultiplier = fixed::FromInt(1);
+		m_RunMultiplier = m_TemplateRunMultiplier = fixed::FromInt(1);
 		if (paramNode.GetChild("RunMultiplier").IsOk())
-			m_RunSpeedMultiplier = m_TemplateRunSpeedMultiplier = paramNode.GetChild("RunMultiplier").ToFixed();
+			m_RunMultiplier = m_TemplateRunMultiplier = paramNode.GetChild("RunMultiplier").ToFixed();
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -338,7 +338,7 @@ public:
 		serialize.NumberFixed_Unbounded("target min range", m_TargetMinRange);
 		serialize.NumberFixed_Unbounded("target max range", m_TargetMaxRange);
 
-		serialize.NumberFixed_Unbounded("speed ratio", m_SpeedRatio);
+		serialize.NumberFixed_Unbounded("speed multiplier", m_SpeedMultiplier);
 
 		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
 
@@ -419,11 +419,12 @@ public:
 				break;
 
 			m_WalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_TemplateWalkSpeed, GetEntityId());
-			m_RunSpeedMultiplier = cmpValueModificationManager->ApplyModifications(L"UnitMotion/RunMultiplier", m_TemplateRunSpeedMultiplier, GetEntityId());
+			m_RunMultiplier = cmpValueModificationManager->ApplyModifications(L"UnitMotion/RunMultiplier", m_TemplateRunMultiplier, GetEntityId());
 
-			// Adjust our speed. UnitMotion cannot know if this speed is on purpose or not so always adjust and let unitAI and such adapt.
-			m_SpeedRatio = std::min(m_SpeedRatio, m_RunSpeedMultiplier);
-			m_Speed = m_SpeedRatio.Multiply(GetWalkSpeed());
+			// For MT_Deserialize compute m_Speed from the serialized m_SpeedMultiplier.
+			// For MT_ValueModification and MT_OwnershipChanged, adjust m_SpeedMultiplier if needed
+			// (in case then new m_RunMultiplier value is lower than the old).
+			SetSpeedMultiplier(m_SpeedMultiplier);
 
 			break;
 		}
@@ -441,20 +442,15 @@ public:
 		return m_Moving;
 	}
 
-	virtual fixed GetSpeedRatio() const
+	virtual fixed GetSpeedMultiplier() const
 	{
-		return m_SpeedRatio;
+		return m_SpeedMultiplier;
 	}
 
-	virtual fixed GetRunSpeedMultiplier() const
+	virtual void SetSpeedMultiplier(fixed multiplier)
 	{
-		return m_RunSpeedMultiplier;
-	}
-
-	virtual void SetSpeedRatio(fixed ratio)
-	{
-		m_SpeedRatio = std::min(ratio, m_RunSpeedMultiplier);
-		m_Speed = m_SpeedRatio.Multiply(GetWalkSpeed());
+		m_SpeedMultiplier = std::min(multiplier, m_RunMultiplier);
+		m_Speed = m_SpeedMultiplier.Multiply(GetWalkSpeed());
 	}
 
 	virtual fixed GetSpeed() const
@@ -465,6 +461,11 @@ public:
 	virtual fixed GetWalkSpeed() const
 	{
 		return m_WalkSpeed;
+	}
+
+	virtual fixed GetRunMultiplier() const
+	{
+		return m_RunMultiplier;
 	}
 
 	virtual pass_class_t GetPassabilityClass() const
@@ -866,7 +867,7 @@ void CCmpUnitMotion::Move(fixed dt)
 		fixed basicSpeed = m_Speed;
 		// If in formation, run to keep up; otherwise just walk
 		if (IsFormationMember())
-			basicSpeed = m_Speed.Multiply(m_RunSpeedMultiplier);
+			basicSpeed = m_Speed.Multiply(m_RunMultiplier);
 
 		// Find the speed factor of the underlying terrain
 		// (We only care about the tile we start on - it doesn't matter if we're moving
