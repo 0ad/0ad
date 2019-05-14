@@ -40,13 +40,19 @@
  */
 const u8 minimumReplayDuration = 3;
 
-static const OsPath tempCacheFileName = VisualReplay::GetDirectoryName() / L"replayCache_temp.json";
-static const OsPath cacheFileName = VisualReplay::GetDirectoryName() / L"replayCache.json";
-
-OsPath VisualReplay::GetDirectoryName()
+OsPath VisualReplay::GetDirectoryPath()
 {
-	const Paths paths(g_args);
-	return OsPath(paths.UserData() / "replays" / engine_version);
+	return Paths(g_args).UserData() / "replays" / engine_version;
+}
+
+OsPath VisualReplay::GetCacheFilePath()
+{
+	return GetDirectoryPath() / L"replayCache.json";
+}
+
+OsPath VisualReplay::GetTempCacheFilePath()
+{
+	return GetDirectoryPath() / L"replayCache_temp.json";
 }
 
 bool VisualReplay::StartVisualReplay(const OsPath& directory)
@@ -55,7 +61,7 @@ bool VisualReplay::StartVisualReplay(const OsPath& directory)
 	ENSURE(!g_NetClient);
 	ENSURE(!g_Game);
 
-	const OsPath replayFile = VisualReplay::GetDirectoryName() / directory / L"commands.txt";
+	const OsPath replayFile = VisualReplay::GetDirectoryPath() / directory / L"commands.txt";
 
 	if (!FileExists(replayFile))
 		return false;
@@ -69,10 +75,10 @@ bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::Mut
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	if (!FileExists(cacheFileName))
+	if (!FileExists(GetCacheFilePath()))
 		return false;
 
-	std::ifstream cacheStream(OsString(cacheFileName).c_str());
+	std::ifstream cacheStream(OsString(GetCacheFilePath()).c_str());
 	CStr cacheStr((std::istreambuf_iterator<char>(cacheStream)), std::istreambuf_iterator<char>());
 	cacheStream.close();
 
@@ -85,7 +91,7 @@ bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::Mut
 	}
 
 	LOGWARNING("The replay cache file is corrupted, it will be deleted");
-	wunlink(cacheFileName);
+	wunlink(GetCacheFilePath());
 	return false;
 }
 
@@ -95,12 +101,12 @@ void VisualReplay::StoreCacheFile(const ScriptInterface& scriptInterface, JS::Ha
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue replaysRooted(cx, JS::ObjectValue(*replays));
-	std::ofstream cacheStream(OsString(tempCacheFileName).c_str(), std::ofstream::out | std::ofstream::trunc);
+	std::ofstream cacheStream(OsString(GetTempCacheFilePath()).c_str(), std::ofstream::out | std::ofstream::trunc);
 	cacheStream << scriptInterface.StringifyJSON(&replaysRooted);
 	cacheStream.close();
 
-	wunlink(cacheFileName);
-	if (wrename(tempCacheFileName, cacheFileName))
+	wunlink(GetCacheFilePath());
+	if (wrename(GetTempCacheFilePath(), GetCacheFilePath()))
 		LOGERROR("Could not store the replay cache");
 }
 
@@ -139,7 +145,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 	JS::RootedObject replays(cx, JS_NewArrayObject(cx, 0));
 	DirectoryNames directories;
 
-	if (GetDirectoryEntries(GetDirectoryName(), nullptr, &directories) != INFO::OK)
+	if (GetDirectoryEntries(GetDirectoryPath(), nullptr, &directories) != INFO::OK)
 		return replays;
 
 	bool newReplays = false;
@@ -155,7 +161,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 			// Don't return, because we want to save our progress
 			break;
 
-		const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
+		const OsPath replayFile = GetDirectoryPath() / directory / L"commands.txt";
 
 		bool isNew = true;
 		replayCacheMap::iterator it = fileList.find(directory);
@@ -325,7 +331,7 @@ inline int getReplayDuration(std::istream* replayStream, const OsPath& fileName,
 JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, const OsPath& directory)
 {
 	// The directory argument must not be constant, otherwise concatenating will fail
-	const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
+	const OsPath replayFile = GetDirectoryPath() / directory / L"commands.txt";
 
 	if (!FileExists(replayFile))
 		return JS::NullValue();
@@ -407,7 +413,7 @@ bool VisualReplay::DeleteReplay(const OsPath& replayDirectory)
 	if (replayDirectory.empty())
 		return false;
 
-	const OsPath directory = GetDirectoryName() / replayDirectory;
+	const OsPath directory = GetDirectoryPath() / replayDirectory;
 	return DirectoryExists(directory) && DeleteDirectory(directory) == INFO::OK;
 }
 
@@ -420,7 +426,7 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPriva
 	pCxPrivate->pScriptInterface->Eval("({})", &attribs);
 
 	// Return empty object if file doesn't exist
-	const OsPath replayFile = GetDirectoryName() / directoryName / L"commands.txt";
+	const OsPath replayFile = GetDirectoryPath() / directoryName / L"commands.txt";
 	if (!FileExists(replayFile))
 		return attribs;
 
@@ -483,7 +489,7 @@ void VisualReplay::SaveReplayMetadata(ScriptInterface* scriptInterface)
 
 bool VisualReplay::HasReplayMetadata(const OsPath& directoryName)
 {
-	const OsPath filePath(GetDirectoryName() / directoryName / L"metadata.json");
+	const OsPath filePath(GetDirectoryPath() / directoryName / L"metadata.json");
 
 	if (!FileExists(filePath))
 		return false;
@@ -503,7 +509,7 @@ JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate
 	JSAutoRequest rq(cx);
 	JS::RootedValue metadata(cx);
 
-	std::ifstream* stream = new std::ifstream(OsString(GetDirectoryName() / directoryName / L"metadata.json").c_str());
+	std::ifstream* stream = new std::ifstream(OsString(GetDirectoryPath() / directoryName / L"metadata.json").c_str());
 	ENSURE(stream->good());
 	CStr line;
 	std::getline(*stream, line);

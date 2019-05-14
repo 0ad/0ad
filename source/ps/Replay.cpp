@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
 	m_ScriptInterface.SetProperty(attribs, "mods", mods);
 
-	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryName());
+	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryPath());
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);
