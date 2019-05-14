@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-26 09:43+0200\n"
-"PO-Revision-Date: 2019-04-27 08:09+0000\n"
+"POT-Creation-Date: 2019-05-10 09:57+0200\n"
+"PO-Revision-Date: 2019-05-11 14:04+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -55,27 +55,18 @@ msgid "CivilCentre"
 msgstr "시빌센트레"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
-#: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "군사 식민지"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:32
-msgid "Klēroukhía"
-msgstr "클레로우키아"
-
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
-msgid "Stoa"
-msgstr "열주랑"
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
 msgstr "그리스 왕실 열주랑"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Recruit special units."
 msgstr "특수 유닛을 고용하십시오."
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:38
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:32
@@ -433,10 +424,6 @@ msgstr "회전공장??"
 msgid "Greek Theater"
 msgstr "그리스 극장"
 
-#: simulation/templates/template_structure_special_theatron.xml:26
-msgid "Théātron"
-msgstr "테아트론"
-
 #: simulation/templates/template_structure_wonder.xml:52
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
@@ -560,6 +547,12 @@ msgstr "프리타네이온"
 msgid "Train heroes. Research special technologies."
 msgstr "영웅을 훈련시킵니다. 특수 기술을 연구 합니다."
 
+#: simulation/templates/structures/athen_royal_stoa.xml:5
+#: simulation/templates/structures/mace_royal_stoa.xml:5
+#: simulation/templates/structures/spart_royal_stoa.xml:12
+msgid "Stoá"
+msgstr ""
+
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
 #: simulation/templates/structures/sele_storehouse.xml:8
@@ -570,6 +563,12 @@ msgstr "아포테케"
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
 msgstr "나오스"
+
+#: simulation/templates/structures/athen_theatron.xml:5
+#: simulation/templates/structures/mace_theatron.xml:5
+#: simulation/templates/structures/spart_theatron.xml:5
+msgid "Théātron"
+msgstr "테아트론"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -938,7 +937,7 @@ msgstr "코리오세드론"
 
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Lissos"
-msgstr "리쏘스"
+msgstr "리스소스"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
@@ -961,8 +960,8 @@ msgid "Recruit Naked Fanatics."
 msgstr "알몸 광전사를 고용합니다."
 
 #: simulation/templates/structures/gaul_theatron.xml:6
-msgid "Assembly of princes"
-msgstr "왕세자 의회"
+msgid "Assembly of Princes"
+msgstr ""
 
 #: simulation/templates/structures/gaul_theatron.xml:7
 msgid "Remogantion"
@@ -1612,11 +1611,12 @@ msgid ""
 "casts no territory influence. Train Mercenaries."
 msgstr "하찮은 병영 같은 건물로 중립지역에 건설할 수있지만 영토 확장은 되지 않습니다. 용병을 영성합니다."
 
-#: simulation/templates/structures/ptol_military_colony.xml:10
-msgid "Klēroukhia"
-msgstr "크레로우크히아"
+#: simulation/templates/structures/ptol_military_colony.xml:9
+#: simulation/templates/structures/sele_military_colony.xml:9
+msgid "Klēroukhía"
+msgstr "클레로우키아"
 
-#: simulation/templates/structures/ptol_military_colony.xml:11
+#: simulation/templates/structures/ptol_military_colony.xml:10
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
@@ -1861,7 +1861,7 @@ msgstr "비브리오티콘"
 msgid "Empórion"
 msgstr "엠포리온"
 
-#: simulation/templates/structures/sele_military_colony.xml:9
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "

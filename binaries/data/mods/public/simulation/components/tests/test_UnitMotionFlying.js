@@ -26,12 +26,12 @@ let cmpUnitMotionFlying = ConstructComponent(entity, "UnitMotionFlying", {
 	"PassabilityClass": "unrestricted"
 });
 
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedRatio(), 0);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunSpeedMultiplier(), 1);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunMultiplier(), 1);
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
-cmpUnitMotionFlying.SetSpeedRatio(2);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedRatio(), 0);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunSpeedMultiplier(), 1);
+cmpUnitMotionFlying.SetSpeedMultiplier(2);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunMultiplier(), 1);
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
 
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetPassabilityClassName(), "unrestricted");
@@ -80,7 +80,7 @@ AddMock(entity, IID_WaterManager, {
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
 cmpUnitMotionFlying.OnUpdate({ "turnLength": 500 });
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedRatio(), 0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 0);
 
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.MoveToTargetRange(target, 0, 10), true);
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.MoveToPointRange(100, 200, 0, 20), true);
@@ -100,7 +100,7 @@ TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0.75);
 TS_ASSERT_EQUALS(height, 55);
 cmpUnitMotionFlying.OnUpdate({ "turnLength": 500 });
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 1);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedRatio(), 1);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 1);
 TS_ASSERT_EQUALS(height, 105);
 
 // Fly

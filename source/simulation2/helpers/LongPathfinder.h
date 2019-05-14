@@ -19,11 +19,11 @@
 #define INCLUDED_LONGPATHFINDER
 
 #include "Pathfinding.h"
-#include "HierarchicalPathfinder.h"
 
-#include "PriorityQueue.h"
 #include "graphics/Overlay.h"
 #include "renderer/Scene.h"
+#include "renderer/TerrainOverlay.h"
+#include "simulation2/helpers/PriorityQueue.h"
 
 /**
  * Represents the 2D coordinates of a tile.
@@ -156,6 +156,8 @@ struct PathfinderState
 
 class LongOverlay;
 
+class HierarchicalPathfinder;
+
 class LongPathfinder
 {
 public:
@@ -164,12 +166,7 @@ public:
 
 	void SetDebugOverlay(bool enabled);
 
-	void SetHierDebugOverlay(bool enabled, const CSimContext *simContext)
-	{
-		m_PathfinderHier.SetDebugOverlay(enabled, simContext);
-	}
-
-	void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass)
+	void SetDebugPath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass)
 	{
 		if (!m_DebugOverlay)
 			return;
@@ -177,38 +174,26 @@ public:
 		SAFE_DELETE(m_DebugGrid);
 		delete m_DebugPath;
 		m_DebugPath = new WaypointPath();
-		ComputePath(x0, z0, goal, passClass, *m_DebugPath);
+		ComputePath(hierPath, x0, z0, goal, passClass, *m_DebugPath);
 		m_DebugPassClass = passClass;
 	}
 
-	void Reload(Grid<NavcellData>* passabilityGrid,
-		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks,
-		const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
+	void Reload(Grid<NavcellData>* passabilityGrid)
 	{
 		m_Grid = passabilityGrid;
 		ASSERT(passabilityGrid->m_H == passabilityGrid->m_W);
 		m_GridSize = passabilityGrid->m_W;
 
 		m_JumpPointCache.clear();
-
-		m_PathfinderHier.Recompute(passabilityGrid, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
-	void Update(Grid<NavcellData>* passabilityGrid, const Grid<u8>& dirtinessGrid)
+	void Update(Grid<NavcellData>* passabilityGrid)
 	{
 		m_Grid = passabilityGrid;
 		ASSERT(passabilityGrid->m_H == passabilityGrid->m_W);
 		ASSERT(m_GridSize == passabilityGrid->m_H);
 
 		m_JumpPointCache.clear();
-
-		m_PathfinderHier.Update(passabilityGrid, dirtinessGrid);
-	}
-
-	void HierarchicalRenderSubmit(SceneCollector& collector)
-	{
-		for (size_t i = 0; i < m_PathfinderHier.m_DebugOverlayLines.size(); ++i)
-			collector.Submit(&m_PathfinderHier.m_DebugOverlayLines[i]);
 	}
 
 	/**
@@ -216,17 +201,8 @@ public:
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
-		pass_class_t passClass, WaypointPath& path) const
-	{
-		if (!m_Grid)
-		{
-			LOGERROR("The pathfinder grid hasn't been setup yet, aborting ComputePath");
-			return;
-		}
-
-		ComputeJPSPath(x0, z0, origGoal, passClass, path);
-	}
+	void ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
+	    pass_class_t passClass, WaypointPath& path) const;
 
 	/**
 	 * Compute a tile-based path from the given point to the goal, excluding the regions
@@ -234,13 +210,8 @@ public:
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
+	void ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
 		pass_class_t passClass, std::vector<CircularRegion> excludedRegions, WaypointPath& path);
-
-	Grid<u16> GetConnectivityGrid(pass_class_t passClass)
-	{
-		return m_PathfinderHier.GetConnectivityGrid(passClass);
-	}
 
 	void GetDebugData(u32& steps, double& time, Grid<u8>& grid) const
 	{
@@ -279,7 +250,7 @@ private:
 	 * See LongPathfinder.cpp for implementation details
 	 * TODO: cleanup documentation
 	 */
-	void ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const;
+	void ComputeJPSPath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const;
 	void GetDebugDataJPS(u32& steps, double& time, Grid<u8>& grid) const;
 
 	// Helper functions for ComputePath
@@ -306,8 +277,6 @@ private:
 	// Obviously, this means that the cache should actually be a cache and not return different results
 	// from what would happen if things hadn't been cached.
 	mutable std::map<pass_class_t, shared_ptr<JumpPointCache> > m_JumpPointCache;
-
-	HierarchicalPathfinder m_PathfinderHier;
 };
 
 /**

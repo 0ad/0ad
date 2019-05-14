@@ -304,12 +304,12 @@ UnitMotionFlying.prototype.GetWalkSpeed = function()
 	return +this.template.MaxSpeed;
 };
 
-UnitMotionFlying.prototype.SetSpeedRatio = function()
+UnitMotionFlying.prototype.SetSpeedMultiplier = function()
 {
 	// ignore this, the speed is always the walk speed
 };
 
-UnitMotionFlying.prototype.GetRunSpeedMultiplier = function()
+UnitMotionFlying.prototype.GetRunMultiplier = function()
 {
 	return 1;
 };
@@ -319,7 +319,7 @@ UnitMotionFlying.prototype.GetCurrentSpeed = function()
 	return this.speed;
 };
 
-UnitMotionFlying.prototype.GetSpeedRatio = function()
+UnitMotionFlying.prototype.GetSpeedMultiplier = function()
 {
 	return this.GetCurrentSpeed() / this.GetWalkSpeed();
 }

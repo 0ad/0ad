@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-05-01 19:03+0000\n"
+"PO-Revision-Date: 2019-05-11 14:03+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -45,13 +45,13 @@ msgstr "말의 얼굴을 위한 금속 투구."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "기마에 투구를 장착합니다. 모든 기병의 타격과 관통 방어력 수준이 +1 증가합니다."
+msgstr "군마에 투구를 장착합니다. 모든 기병의 타격과 관통 방어력 수준이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
 #: simulation/data/technologies/armor_cav_chamfron.jsongenericName
 msgid "Chamfron"
-msgstr "참프론"
+msgstr "군마용 안면 투구"
 
 #: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_cav_chamfron.jsonrequirementsTooltip
@@ -425,15 +425,15 @@ msgstr "아르기라스피스"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr "납으로 싸는 것은 선체를 보호합니다."
+msgstr "납으로 감싸 선체를 보호합니다."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "납으로 싸는 것은 선체를 보호합니다. 모든 선박 아머 종류에 대해 레벨이 +2 증가합니다."
+msgstr "납으로 감싸 선체를 보호합니다. 모든 선박 아머 종류에 대해 레벨이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr "선체의 납 피복"
+msgstr "선체를 납으로 감쌈"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -456,7 +456,7 @@ msgstr "선박 선체용 목재 보강재."
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "선체용 목재 보강재. 모든 함선 유형의 방어력 수준이 +2 증가합니다."
+msgstr "선박 선체용 목재 보강재. 모든 함선 유형의 방어력 수준이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -573,12 +573,12 @@ msgstr "당신의 원거리 기병에게 더 좋은 무기를 장착합니다. �
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr ""
+msgstr "경비대 유닛은 전투 중에 흔치 않은 용기와 용맹을 가지고 있다."
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "경비대 유닛은 전투에서 비범한 용기와 무용을 가지고 있습니다. 대표 전사의 공격력이 +2 증가합니다."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -602,7 +602,7 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "종종, 보병은 주로 주무기가 고장나거나 부러졌을때 이끌어야 할 주무기 외에도 보조무기도 가지고 있습니다."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
@@ -640,18 +640,18 @@ msgstr "청동 대신 철을 사용하는 것은 무기에 추가적인 힘을 �
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "원거리 보병의 공격력을 강화하는 훈련입니다."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr "원거리 보병의 공격력을 +20% 증가시킵니다."
+msgstr "원거리 보병의 공격력이 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr "원거리 보병 비정규군"
+msgstr "비정규 원거리 보병"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -673,7 +673,7 @@ msgstr "아타크토이"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "원거리 보병 상급 훈련"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -682,7 +682,7 @@ msgstr "전투의지는 승리에 결정적입니다."
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "당신의 군대에게 더 높은 임금으로 복돋우세요. 모든 육해군 공격력 +25%."
+msgstr "병사들에게 더 높은 보수를 주고 전투의지를 복돋아줍니다. 모든 육군과 해군의 공격력이 +25% 증가합니다."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -700,11 +700,11 @@ msgstr "디나미스"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "비밀 강철 작업 기법은 칼날에 독특하고 아름다운 자국이 나타납니다. 그뿐만 아니라 강철의 경도도 비교할 데가 없습니다."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr "모든 검병과 철퇴병의 타격 공격력을 +20% 증가시킵니다."
+msgstr "모든 검병과 철퇴병의 타격 공격력이 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -724,7 +724,7 @@ msgstr "돌무더기 자재를 사용하는 것은 비용을 절감하고 벽을
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "성벽 건설 시간 -20%로 줄어들지만 충돌 아머 레벨 -1 이 됩니다."
+msgstr "성벽 건설 시간 -20% 줄어들지만, 충돌 방어력 수준이 -1 감소합니다."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -754,11 +754,11 @@ msgstr "목축"
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid "Increases shuttling capacity for all resources."
-msgstr "실어 나르는 자원 용량을 증가시킵니다."
+msgstr "실어 나르는 자원 용량이 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "일꾼들이 바구니를 사용합니다. 실어 나르는 자원 용량을 +5 증가시킵니다.."
+msgstr "일꾼들이 바구니를 사용합니다. 실어 나르는 자원 용량이 +5 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -766,7 +766,7 @@ msgstr "바구니"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "일꾼들이 말이 끄는 수레를 사용합니다. 실어 나르는 자원 용량이 +10."
+msgstr "일꾼들이 말이 끄는 수레를 사용합니다. 실어 나르는 자원 용량이 +10 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -798,11 +798,11 @@ msgstr "외바퀴 손수레"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr ""
+msgstr "농장을 위한 추가 영양소입니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr "일꾼의 수확량을 +25% 증가시킵니다."
+msgstr "일꾼의 수확량이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -814,7 +814,7 @@ msgstr "말이 잔디를 놓기 위해 기구를 끕니다."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "일꾼들이 철 쟁기를 장착합니다. 농업율 +15%."
+msgstr "일꾼들이 철 쟁기를 장착합니다. 수확량이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -822,15 +822,15 @@ msgstr "철 쟁기"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr "일꾼들의 농업 채집속도를 증가시키기 위한 훈련."
+msgstr "일꾼들의 수확 속도를 증가시키기 위한 훈련입니다."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr "일꾼 농업율을 +15% 증가시킵니다."
+msgstr "일꾼 수확량이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr "채집 훈련"
+msgstr "수확 훈련"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
@@ -839,22 +839,22 @@ msgstr "그물은 물고기잡이 배의 생산성을 개선시킵니다."
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr "물고기잡이 배에서 그물을 사용합니다. 어업 비율 EHSMS 어획량 EHSMS 물고기잡는양 을 +30% 증가시킵니다. 물고기 소금에 절이기 잠금 해제를 합니다."
+msgstr "물고기잡이 배에서 그물을 사용합니다. 어획량(물고기 잡는 양)이 +30% 증가합니다. 물고기 소금에 절이기를 잠금 해제합니다."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr "고기잡이 그물"
+msgstr "물고기잡이 그물"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr "나무 목재 채집율을 증가시킵니다."
+msgstr "나무용 목재 벌목량이 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr "일꾼 나무 벌목률을 +15% 증가시킵니다."
+msgstr "일꾼의 나무 벌목량이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -876,12 +876,12 @@ msgstr "더 강력한 도끼"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr "석재 채집율을 증가시킵니다."
+msgstr "석재 채집량이 증가합니다."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "농노들에게 석재를 채굴하는 일꾼들을 돕게 합니다. 석재 채집율을 +15% 증가시킵니다."
+msgstr "농노들에게 석재를 채굴하는 일꾼들을 돕게 합니다. 석재 채집량이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -911,19 +911,19 @@ msgstr "도우로이"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "금속 채집율을 증가시킵니다."
+msgstr "금속 채집량이 증가합니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "수갱을 이용한 채굴을 개발합니다. 금속 채집율을 +15% 증가시킵니다."
+msgstr "수직 갱도 광산을 만듭니다. 금속 채집량이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
-msgstr "수갱을 이용한 채굴"
+msgstr "수직 갱도 광산"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "희귀한 은광맥을 찾아냅니다. 금속 채집율을 +50% 증가시킵니다."
+msgstr "희귀한 은광맥을 찾아냅니다. 금속 채집량이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -940,7 +940,7 @@ msgstr "라우레이온 광산"
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "석재를 채굴하는 걸 돕기 위해 노예를 삽니다. 석재 채집율을 +50% 증가시킵니다."
+msgstr "석재를 채굴하는 것을 돕기 위해 노예들을 삽니다. 석재 채집량이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -954,7 +954,7 @@ msgstr "안드라포다"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "일꾼들이 유용한 도구를 장착합니다. 금속 채집율을 +15% 증가시킵니다."
+msgstr "일꾼들이 도움이되는 도구를 장착합니다. 금속 채집량이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -970,7 +970,7 @@ msgstr "채집꾼이 고리버들 바구니를 장착합니다. 과일 채집율
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr "고리버들 바구니 EHSMS 광주리"
+msgstr "고리버들 바구니"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
@@ -978,7 +978,7 @@ msgstr "병영에 주둔한 유닛은 시간이 흐르면 체력이 회복됩니
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in Barracks."
-msgstr "병영에 주둔하고 있는 유닛은 시간이 흐르면서 건강해집니다."
+msgstr "병영에 주둔하고 있는 유닛은 시간이 흐르면 체력이 회복됩니다."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -987,12 +987,12 @@ msgstr "생존 조건"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr "모든 치료자들의 회복과 시야 범위를 증가시킵니다."
+msgstr "모든 치료자들의 치유속도와 시야 범위가 증가합니다."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
-msgstr "치료자의 회복과 시야 범위를 +5 증가시킵니다."
+msgstr "치료자의 치유속도와 시야 범위가 +5 증가합니다."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1017,16 +1017,16 @@ msgstr "아카데메이아"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "모든 치료자의 회복률이 증가합니다."
+msgstr "모든 치료자의 치유속도가 증가합니다."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "치료자의 치유속도를 +25% 증가시킵니다."
+msgstr "치료자의 치유속도가 +25% 증가합니다."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "회복률"
+msgstr "치유속도"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
@@ -1036,7 +1036,7 @@ msgstr "스프하기아"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "회복률 2"
+msgstr "치유속도 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
@@ -1046,11 +1046,11 @@ msgstr "히포크라테스 선서"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "사원에 주둔하고 있는 유닛들은 더 빠르게 회복됩니다."
+msgstr "사원에 주둔하고 있는 유닛들은 더 빠르게 치유됩니다."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr "사원에 주둔하는 유닛 회복률을 +50% 증가시킵니다."
+msgstr "사원에 주둔하는 유닛 치유속도가 +50% 증가합니다."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
@@ -1063,7 +1063,7 @@ msgstr "올림픽 경기들"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.athen
 msgid "Eleusian Mysteries"
-msgstr "엘리우시스 미스터리"
+msgstr "엘리우시스 신비"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
@@ -1074,7 +1074,7 @@ msgstr "베틀은 정착민들을 위한 질 높은 옷을 생산 가능하게 �
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr "여성 시민 체력을 +50% 증가시킵니다."
+msgstr "여성 시민의 체력이 +50% 증가합니다."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1130,11 +1130,11 @@ msgstr "시데레아이 아이크흐마이"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
-msgstr "마창 vs. 군마용 안면투구"
+msgstr "마창 vs. 군마용 안면 투구"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr ""
+msgstr "대표유닛 vs. 비상근무자"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -1154,11 +1154,11 @@ msgstr "쇠 도끼 vs. 외바퀴 손수레"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
-msgstr "회복 범위와 비율"
+msgstr "회복 범위와 속도"
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr "회복 범위와 비율 #2"
+msgstr "회복 범위와 속도 #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
@@ -1205,11 +1205,11 @@ msgstr "비용 vs. 갑옷"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
-msgstr ""
+msgstr "밤의 경비원 vs. 성루"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
-msgstr ""
+msgstr "벽 쌓는 시간 vs. 건강"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1221,14 +1221,14 @@ msgstr "큰 도시 단계"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "phase_city_generic 또는 phase_city_{civ}로 대체된 서식 요구 사항에 사용하기위한 더미 기술입니다."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "번화한 도시에서 현대 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다. 아테네 도시 단계에서는 '은 올빼미' 보너스로 인해 금속 수집량이 상승합니다."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1241,7 +1241,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
+msgstr "4개의 새로운 작은 도시 단계 구조물이 필요합니다(벽과 시민 회관은 제외)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1253,7 +1253,7 @@ msgstr "메가로포리스"
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr ""
+msgstr "번화한 도시에서 현대 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다."
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
@@ -1386,7 +1386,7 @@ msgstr "집 정원"
 #: simulation/data/technologies/pop_wonder.jsonspecificName.mace
 #: simulation/data/technologies/pop_wonder.jsonspecificName.rome
 msgid "Peristyle"
-msgstr ""
+msgstr "페리스티레ehsms열주랑"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 #: simulation/data/technologies/pop_wonder.jsonspecificName.pers
@@ -1433,7 +1433,7 @@ msgstr "모든 투창 유닛의 관통 공격력 +2와 범위 +4."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
-msgstr ""
+msgstr "창 던지기 가죽 끈??"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
@@ -1445,19 +1445,19 @@ msgstr "히마스"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
-msgstr ""
+msgstr "어멘텀ehsms꼬리 모양 꽃차례"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr ""
+msgstr "공성 무기의 증가된 갑옷"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr ""
+msgstr "모든 공성 무기의 타격 갑옷 수준을 +2 증가합니다."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
-msgstr ""
+msgstr "갑옷 도금ehsms 판금갑옷"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
@@ -1465,11 +1465,11 @@ msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr ""
+msgstr "모든 공성 무기의 충격 데미지가 +25% 증가합니다."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
-msgstr ""
+msgstr "고급 공성"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"

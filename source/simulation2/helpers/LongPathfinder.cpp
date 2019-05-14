@@ -23,6 +23,7 @@
 #include "ps/Profile.h"
 
 #include "Geometry.h"
+#include "HierarchicalPathfinder.h"
 
 /**
  * Jump point cache.
@@ -712,7 +713,7 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 	}
 }
 
-void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const
+void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const
 {
 	PROFILE("ComputePathJPS");
 	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
@@ -735,14 +736,14 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 		// The JPS pathfinder requires units to be on passable tiles
 		// (otherwise it might crash), so handle the supposedly-invalid
 		// state specially
-		m_PathfinderHier.FindNearestPassableNavcell(i0, j0, passClass);
+		hierPath.FindNearestPassableNavcell(i0, j0, passClass);
 	}
 
 	state.goal = origGoal;
 
 	// Make the goal reachable. This includes shortening the path if the goal is in a non-passable
 	// region, transforming non-point goals to reachable point goals, etc.
-	m_PathfinderHier.MakeGoalReachable(i0, j0, state.goal, passClass);
+	hierPath.MakeGoalReachable(i0, j0, state.goal, passClass);
 
 	ENSURE(state.goal.type == PathGoal::POINT);
 
@@ -988,11 +989,22 @@ void LongPathfinder::SetDebugOverlay(bool enabled)
 		SAFE_DELETE(m_DebugOverlay);
 }
 
-void LongPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
+void LongPathfinder::ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
+    pass_class_t passClass, WaypointPath& path) const
+{
+	if (!m_Grid)
+	{
+		LOGERROR("The pathfinder grid hasn't been setup yet, aborting ComputeJPSPath");
+		return;
+	}
+
+	ComputeJPSPath(hierPath, x0, z0, origGoal, passClass, path);
+}
+void LongPathfinder::ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
 	pass_class_t passClass, std::vector<CircularRegion> excludedRegions, WaypointPath& path)
 {
 	GenerateSpecialMap(passClass, excludedRegions);
-	ComputePath(x0, z0, origGoal, SPECIAL_PASS_CLASS, path);
+	ComputeJPSPath(hierPath, x0, z0, origGoal, SPECIAL_PASS_CLASS, path);
 }
 
 inline bool InRegion(u16 i, u16 j, CircularRegion region)

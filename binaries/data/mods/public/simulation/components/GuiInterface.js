@@ -502,7 +502,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpUnitMotion)
 		ret.speed = {
 			"walk": cmpUnitMotion.GetWalkSpeed(),
-			"run": cmpUnitMotion.GetWalkSpeed() * cmpUnitMotion.GetRunSpeedMultiplier()
+			"run": cmpUnitMotion.GetWalkSpeed() * cmpUnitMotion.GetRunMultiplier()
 		};
 
 	return ret;

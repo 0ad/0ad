@@ -48,6 +48,7 @@ class TestHierarchicalPathfinder;
 #endif
 
 class HierarchicalOverlay;
+class SceneCollector;
 
 class HierarchicalPathfinder
 {
@@ -130,6 +131,8 @@ public:
 		return 0;
 	}
 
+	void RenderSubmit(SceneCollector& collector);
+
 private:
 	static const u8 CHUNK_SIZE = 96; // number of navcells per side
 									 // TODO: figure out best number. Probably 64 < n < 128
@@ -162,7 +165,9 @@ private:
 
 	typedef std::map<RegionID, std::set<RegionID> > EdgesMap;
 
-	void FindEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
+	void ComputeNeighbors(EdgesMap& edges, Chunk& a, Chunk& b, bool transpose, bool opposite) const;
+	void RecomputeAllEdges(pass_class_t passClass, EdgesMap& edges);
+	void UpdateEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
 
 	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass) const;
 

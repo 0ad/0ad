@@ -87,7 +87,7 @@ public:
 	virtual void StopMoving() = 0;
 
 	/**
-	 * Get the current movement speed.
+	 * Get the distance travelled over the last turn.
 	 */
 	virtual fixed GetCurrentSpeed() const = 0;
 
@@ -97,32 +97,32 @@ public:
 	virtual bool IsMoving() const = 0;
 
 	/**
-	 * Get how much faster/slower we are than normal.
+	 * Get the unit template walk speed after modifications.
 	 */
-	virtual fixed GetSpeedRatio() const = 0;
+	virtual fixed GetWalkSpeed() const = 0;
 
 	/**
-	 * Get how much faster than our regular speed we can go.
+	 * Get the unit template running (i.e. max) speed after modifications.
 	 */
-	virtual fixed GetRunSpeedMultiplier() const = 0;
+	virtual fixed GetRunMultiplier() const = 0;
+
+	/**
+	 * Returns the ratio of GetSpeed() / GetWalkSpeed().
+	 */
+	virtual fixed GetSpeedMultiplier() const = 0;
 
 	/**
 	 * Set the current movement speed.
-	 * @param speed A ratio of GetWalkSpeed().
+	 * @param speed A multiplier of GetWalkSpeed().
 	 */
-	virtual void SetSpeedRatio(fixed ratio) = 0;
+	virtual void SetSpeedMultiplier(fixed multiplier) = 0;
 
 	/**
-	 * Get the unit theoretical speed in metres per second.
-	 * This is affected by SetSpeedRatio.
+	 * Get the speed at which the unit intends to move.
+	 * (regardless of whether the unit is moving or not right now).
 	 */
 	virtual fixed GetSpeed() const = 0;
 
-	/**
-	 * Get the unit "raw"/template walk speed after technologies.
-	 * Calls to SetSpeedRatio have no effect on this (as that affects actual speed, not template).
-	 */
-	virtual fixed GetWalkSpeed() const = 0;
 	/**
 	 * Set whether the unit will turn to face the target point after finishing moving.
 	 */

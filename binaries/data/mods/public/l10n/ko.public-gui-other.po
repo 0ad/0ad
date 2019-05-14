@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-05-01 15:30+0000\n"
+"PO-Revision-Date: 2019-05-11 14:02+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -396,7 +396,7 @@ msgstr "비활성화"
 #: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "처음 %(min)s 분 동안은 다른 선수들이 중립을 지킬것입니다."
+msgstr[0] "처음 1분 동안은 다른 선수들이 중립을 지킬것입니다. "
 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
@@ -1249,7 +1249,7 @@ msgstr "바뀐 내용을 저장하지 않으셨습니다. 이 창을 닫으시�
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: 서기 0년에 나타난 문명의 건축물 도감을 보십시오."
+msgstr "%(hotkey)s: 서기 0년에 등장하는 문명의 건축물 도감(조견표)을 봅니다."
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
@@ -1451,7 +1451,7 @@ msgstr "이 유닛을 생산할 수 있는 건축물:"
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
-msgstr "연구 분야:"
+msgstr "연구 건축물:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -270,7 +270,7 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 	else if (format == L"INTEGER")
 	{
 		wchar_t buffer[64];
-		swprintf(buffer, 64, L"%d", static_cast<int>(value));
+		swprintf(buffer, 64, L"%d", std::lround(value));
 		gui_str.SetValue(buffer);
 	}
 	else if (format == L"DURATION_SHORT")
@@ -278,6 +278,12 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 		const int seconds = value;
 		wchar_t buffer[64];
 		swprintf(buffer, 64, L"%d:%02d", seconds / 60, seconds % 60);
+		gui_str.SetValue(buffer);
+	}
+	else if (format == L"PERCENTAGE")
+	{
+		wchar_t buffer[64];
+		swprintf(buffer, 64, L"%d%%", std::lround(value));
 		gui_str.SetValue(buffer);
 	}
 	else
