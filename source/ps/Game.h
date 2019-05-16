@@ -22,6 +22,7 @@
 
 #include "ps/Errors.h"
 #include "ps/Filesystem.h"
+#include "ps/GameSetup/GameConfig.h"
 #include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/Player.h"
 
@@ -84,6 +85,7 @@ public:
 	CGame(bool disableGraphics = false, bool replayLog = true);
 	~CGame();
 
+    static CGame* fromConfig(GameConfig config, bool disableGraphics = false, bool replayLog = true);
 	/**
 	 * the game is paused and no updates will be performed if true.
 	 **/

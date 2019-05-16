@@ -13,8 +13,10 @@
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/system/TurnManager.h"
 #include "ps/Game.h"
+#include "gui/GUIManager.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "ps/GameSetup/GameConfig.h"
 #include "ps/ThreadUtil.h"
 #include <boost/fiber/unbuffered_channel.hpp>
 
@@ -103,6 +105,7 @@ class RLInterface final : public RLAPI::Service
         {
             // Apply and edits from the RPC messages to the game engine
             bool shouldStepGame = false;
+            bool hasMessages = m_GameMessages.size() > 0;
             while (m_GameMessages.size() > 0)
             {
                 GameMessage msg = m_GameMessages.back();
@@ -112,11 +115,43 @@ class RLInterface final : public RLAPI::Service
                 switch (msg.type)
                 {
                     case GameMessageType::Reset:
-                        std::cout << "Received reset command!!" << std::endl;
-                        std::cout << "Ending Game" << std::endl;
-                        EndGame();
-                        // TODO: Save the metadata files
-                        // TODO: Get the game info??
+                        {
+                            const bool nonVisual = !g_GUI;
+                            std::cout << "Received reset command!!" << std::endl;
+                            std::cout << "Ending Game" << std::endl;
+                            EndGame();
+                            GameConfig config(L"scenario", L"Arcadia");
+                            std::cout << "Created config" << std::endl;
+                            std::cout << "config.victoryConditions.size():" << config.victoryConditions.size() << std::endl;
+                            g_Game = CGame::fromConfig(config, nonVisual);
+                            std::cout << "Created g_Game" << std::endl;
+
+                            // TODO: Save the metadata files
+                            // TODO: Update the gui??
+                            // TODO: If it is
+                            if (!nonVisual)
+                            {
+                                // TODO get the script interface...
+                                // TODO: create initData
+                                ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                                // TODO: Convert the GameConfig to a JSON
+                                JSContext* cx = scriptInterface.GetContext();
+                                JS::RootedValue initData(cx);
+                                scriptInterface.Eval("({})", &initData);
+
+                                //JS::RootedValue attrs(cx);
+                                //config.toJSValue(scriptInterface, attrs);
+
+                                //scriptInterface.SetProperty(initData, "attribs", attrs);
+                                // TODO: where can I get g_PlayerAssignments?
+                                g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
+                                //Engine.SwitchGuiPage("page_loading.xml", {
+                                    //"attribs": g_GameAttributes,
+                                    //"playerAssignments": g_PlayerAssignments
+                                //});
+                            }
+                            // TODO: Get the game info??
+                        }
                         break;
                     case GameMessageType::Command:
                         const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
@@ -133,6 +168,9 @@ class RLInterface final : public RLAPI::Service
             if (shouldStepGame)
             {
                 g_Game->Update(200);
+            }
+            if (hasMessages)
+            {
                 m_GameStates.push(GetGameState());  // Send the game state back to the request
             }
         }

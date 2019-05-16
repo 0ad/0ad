@@ -97,5 +97,6 @@ extern void Shutdown(int flags);
 extern void CancelLoad(const CStrW& message);
 
 extern bool InDevelopmentCopy();
+CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath);
 
 #endif // INCLUDED_GAMESETUP

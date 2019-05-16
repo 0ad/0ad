@@ -3,7 +3,8 @@
 #include <string>
 #include <vector>
 #include "ps/GameSetup/CmdLineArgs.h"
-#include "ps/Game.h"
+#include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptInterface.h"
 
 enum NetworkGameType { Host, Client, Local };
 struct GameConfig {
@@ -20,6 +21,8 @@ struct GameConfig {
     {}
 
     static GameConfig from (const CmdLineArgs& args);
+    JS::MutableHandleValue toJSValue (const ScriptInterface& scriptInterface) const;
+    //bool toJSValue (const ScriptInterface& scriptInterface, JS::RootedValue attrs) const;
 
     void setNetworkHost()
     {
