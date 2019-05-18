@@ -101,7 +101,6 @@ class RLInterface final : public RLAPI::Service
 
         void Listen(std::string server_address)
         {
-            g_Game->SetSimRate(m_StepsBtwnActions);
             grpc::ServerBuilder builder;
             builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
             builder.RegisterService(this);
@@ -169,7 +168,6 @@ class RLInterface final : public RLAPI::Service
                         JSContext* cx = scriptInterface.GetContext();
                         JS::RootedValue command(cx);
                         scriptInterface.ParseJSON(msg.data, &command);
-                        std::cout << "Posting command: " << msg.data << std::endl;
                         g_Game->GetTurnManager()->PostCommand(command);
                         shouldStepGame = true;
                         break;
@@ -200,7 +198,6 @@ class RLInterface final : public RLAPI::Service
 
     private:
         std::unique_ptr<grpc::Server> m_Server;
-        float m_StepsBtwnActions = 10.0f;
         unsigned int m_Turn = 0;
         std::mutex m_lock;
         std::vector<GameMessage> m_GameMessages;
