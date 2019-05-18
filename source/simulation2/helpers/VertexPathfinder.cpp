@@ -523,8 +523,12 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	fixed rangeZMin = request.z0 - request.range;
 	fixed rangeZMax = request.z0 + request.range;
 
-	// we don't actually add the "search space" edges as edges, since we may want to cross them
-	// in some cases (such as if we need to go around an obstruction that's partly out of the search range)
+	// Add domain edges
+	// (Inside-out square, so edges are in reverse from the usual direction.)
+	m_Edges.emplace_back(Edge{ CFixedVector2D(rangeXMin, rangeZMin), CFixedVector2D(rangeXMin, rangeZMax) });
+	m_Edges.emplace_back(Edge{ CFixedVector2D(rangeXMin, rangeZMax), CFixedVector2D(rangeXMax, rangeZMax) });
+	m_Edges.emplace_back(Edge{ CFixedVector2D(rangeXMax, rangeZMax), CFixedVector2D(rangeXMax, rangeZMin) });
+	m_Edges.emplace_back(Edge{ CFixedVector2D(rangeXMax, rangeZMin), CFixedVector2D(rangeXMin, rangeZMin) });
 
 
 	// Add the start point to the graph
@@ -578,26 +582,30 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 		vert.status = Vertex::UNEXPLORED;
 		vert.quadInward = QUADRANT_NONE;
 		vert.quadOutward = QUADRANT_ALL;
-		vert.p.X = center.X - hd0.Dot(u); vert.p.Y = center.Y + hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_BR; m_Vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
-		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
-		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
-		vert.p.X = center.X - hd1.Dot(u); vert.p.Y = center.Y + hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_TR; m_Vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
-		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
-		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
-		vert.p.X = center.X + hd0.Dot(u); vert.p.Y = center.Y - hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_TL; m_Vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
-		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
-		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
-		vert.p.X = center.X + hd1.Dot(u); vert.p.Y = center.Y - hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_BL; m_Vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
-		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
-		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
+
+		vert.p.X = center.X - hd0.Dot(u);
+		vert.p.Y = center.Y + hd0.Dot(v);
+		if (aa) vert.quadInward = QUADRANT_BR;
+		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
+			m_Vertexes.push_back(vert);
+
+		vert.p.X = center.X - hd1.Dot(u);
+		vert.p.Y = center.Y + hd1.Dot(v);
+		if (aa) vert.quadInward = QUADRANT_TR;
+		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
+			m_Vertexes.push_back(vert);
+
+		vert.p.X = center.X + hd0.Dot(u);
+		vert.p.Y = center.Y - hd0.Dot(v);
+		if (aa) vert.quadInward = QUADRANT_TL;
+		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
+			m_Vertexes.push_back(vert);
+
+		vert.p.X = center.X + hd1.Dot(u);
+		vert.p.Y = center.Y - hd1.Dot(v);
+		if (aa) vert.quadInward = QUADRANT_BL;
+		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
+			m_Vertexes.push_back(vert);
 
 		// Add the edges:
 
@@ -618,8 +626,6 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 			m_Edges.emplace_back(Edge{ ev3, ev0 });
 		}
 
-		// TODO: should clip out vertexes and edges that are outside the range,
-		// to reduce the search space
 	}
 
 	// Add terrain obstructions
