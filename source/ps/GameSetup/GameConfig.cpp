@@ -156,6 +156,9 @@ GameConfig GameConfig::from (const ScenarioConfig& msg)
     const std::wstring mapName = wstring_from_utf8(msg.name());
     GameConfig config(mapType, mapName);
 
+    config.seed = msg.seed() || rand();
+    config.aiseed = msg.aiseed() || rand();
+
     return config;
 }
 

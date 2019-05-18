@@ -27,14 +27,14 @@ message ConnectRequest {
 }
 
 message ScenarioConfig {
-    string type = 1;
-    string name = 2;
-    //string username;
-    //int32 playerID;
-    //uint32 size;
-    //uint32 numPlayers;
-	//uint32 seed;
-	//uint32 aiseed;
+    string type = 1;  // REQUIRED (but `required` is no longer allowed...)
+    string name = 2;  // REQUIRED (but `required` is no longer allowed...)
+    string username = 3;
+    int32 playerID = 4;
+    uint32 size = 5;
+    uint32 numPlayers = 6;
+	uint32 seed = 7;
+	uint32 aiseed = 8;
     //std::vector<std::tuple<int, int>> teams;
     //int32 ceasefire;
     //std::vector<std::tuple<int, std::string>> ai;

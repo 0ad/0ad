@@ -41,8 +41,12 @@ class RLInterface final : public RLAPI::Service
             std::cout << ">>> Aquiring lock for Connect" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
 
-            m_GameConfig = GameConfig::from(req->scenario());
-            struct GameMessage msg = { GameMessageType::Reset };
+            if (req->has_scenario())
+            {
+                m_GameConfig = GameConfig::from(req->scenario());
+            }
+
+            GameMessage msg = { GameMessageType::Reset };
             m_GameMessages.push_back(msg);
 
             std::string state;
@@ -57,8 +61,6 @@ class RLInterface final : public RLAPI::Service
         {
             std::cout << ">>> Acquiring lock for Step" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
-            // TODO: Update this...
-            //debug_printf("Turn %u (%u)...\n", m_Turn++, DEFAULT_TURN_LENGTH_SP);
 
             // Interactions with the game engine (g_Game) must be done in the main
             // thread as there are specific checks for this. We will pass our commands
@@ -78,12 +80,21 @@ class RLInterface final : public RLAPI::Service
             return grpc::Status::OK;
         }
 
-        grpc::Status Reset(ServerContext* context, const ResetRequest* _, Observation* obs) override
+        grpc::Status Reset(ServerContext* context, const ResetRequest* req, Observation* obs) override
         {
             std::cout << ">>> Acquiring lock for Reset" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
-            //m_GameMessages.push(3);
-            // TODO: Initialize the scenario and return the game state
+            if (req->has_scenario())
+            {
+                m_GameConfig = GameConfig::from(req->scenario());
+            }
+            struct GameMessage msg = { GameMessageType::Reset };
+            m_GameMessages.push_back(msg);
+
+            std::string state;
+            m_GameStates.pop(state);
+            obs->set_content(state);
+
             std::cout << ">>> Reset Complete" << std::endl;
             return grpc::Status::OK;
         }

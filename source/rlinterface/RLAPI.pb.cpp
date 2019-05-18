@@ -180,6 +180,12 @@ const ::google::protobuf::uint32 TableStruct_RLAPI_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::ScenarioConfig, type_),
   PROTOBUF_FIELD_OFFSET(::ScenarioConfig, name_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, username_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, playerid_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, size_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, numplayers_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, seed_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, aiseed_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Actions)},
@@ -211,16 +217,19 @@ const char descriptor_table_protodef_RLAPI_2eproto[] =
   "\013Observation\022\017\n\007content\030\001 \001(\t\"1\n\014ResetRe"
   "quest\022!\n\010scenario\030\001 \001(\0132\017.ScenarioConfig"
   "\"3\n\016ConnectRequest\022!\n\010scenario\030\001 \001(\0132\017.S"
-  "cenarioConfig\",\n\016ScenarioConfig\022\014\n\004type\030"
-  "\001 \001(\t\022\014\n\004name\030\002 \001(\t2}\n\005RLAPI\022 \n\004Step\022\010.A"
-  "ctions\032\014.Observation\"\000\022&\n\005Reset\022\r.ResetR"
-  "equest\032\014.Observation\"\000\022*\n\007Connect\022\017.Conn"
-  "ectRequest\032\014.Observation\"\000b\006proto3"
+  "cenarioConfig\"\220\001\n\016ScenarioConfig\022\014\n\004type"
+  "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\020"
+  "\n\010playerID\030\004 \001(\005\022\014\n\004size\030\005 \001(\r\022\022\n\nnumPla"
+  "yers\030\006 \001(\r\022\014\n\004seed\030\007 \001(\r\022\016\n\006aiseed\030\010 \001(\r"
+  "2}\n\005RLAPI\022 \n\004Step\022\010.Actions\032\014.Observatio"
+  "n\"\000\022&\n\005Reset\022\r.ResetRequest\032\014.Observatio"
+  "n\"\000\022*\n\007Connect\022\017.ConnectRequest\032\014.Observ"
+  "ation\"\000b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_RLAPI_2eproto = {
   false, InitDefaults_RLAPI_2eproto, 
   descriptor_table_protodef_RLAPI_2eproto,
-  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 394,
+  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 495,
 };
 
 void AddDescriptors_RLAPI_2eproto() {
@@ -1692,6 +1701,12 @@ class ScenarioConfig::HasBitSetters {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ScenarioConfig::kTypeFieldNumber;
 const int ScenarioConfig::kNameFieldNumber;
+const int ScenarioConfig::kUsernameFieldNumber;
+const int ScenarioConfig::kPlayerIDFieldNumber;
+const int ScenarioConfig::kSizeFieldNumber;
+const int ScenarioConfig::kNumPlayersFieldNumber;
+const int ScenarioConfig::kSeedFieldNumber;
+const int ScenarioConfig::kAiseedFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ScenarioConfig::ScenarioConfig()
@@ -1711,6 +1726,13 @@ ScenarioConfig::ScenarioConfig(const ScenarioConfig& from)
   if (from.name().size() > 0) {
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  username_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.username().size() > 0) {
+    username_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.username_);
+  }
+  ::memcpy(&playerid_, &from.playerid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&aiseed_) -
+    reinterpret_cast<char*>(&playerid_)) + sizeof(aiseed_));
   // @@protoc_insertion_point(copy_constructor:ScenarioConfig)
 }
 
@@ -1719,6 +1741,10 @@ void ScenarioConfig::SharedCtor() {
       &scc_info_ScenarioConfig_RLAPI_2eproto.base);
   type_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  username_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&playerid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&aiseed_) -
+      reinterpret_cast<char*>(&playerid_)) + sizeof(aiseed_));
 }
 
 ScenarioConfig::~ScenarioConfig() {
@@ -1729,6 +1755,7 @@ ScenarioConfig::~ScenarioConfig() {
 void ScenarioConfig::SharedDtor() {
   type_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  username_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void ScenarioConfig::SetCachedSize(int size) const {
@@ -1748,6 +1775,10 @@ void ScenarioConfig::Clear() {
 
   type_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  username_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&playerid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&aiseed_) -
+      reinterpret_cast<char*>(&playerid_)) + sizeof(aiseed_));
   _internal_metadata_.Clear();
 }
 
@@ -1794,6 +1825,57 @@ const char* ScenarioConfig::_InternalParse(const char* begin, const char* end, v
         GOOGLE_PROTOBUF_PARSER_ASSERT(::google::protobuf::internal::StringCheckUTF8(ptr, size, ctx));
         ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
         ptr += size;
+        break;
+      }
+      // string username = 3;
+      case 3: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 26) goto handle_unusual;
+        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        ctx->extra_parse_data().SetFieldName("ScenarioConfig.username");
+        object = msg->mutable_username();
+        if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
+          parser_till_end = ::google::protobuf::internal::GreedyStringParserUTF8;
+          goto string_till_end;
+        }
+        GOOGLE_PROTOBUF_PARSER_ASSERT(::google::protobuf::internal::StringCheckUTF8(ptr, size, ctx));
+        ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
+        ptr += size;
+        break;
+      }
+      // int32 playerID = 4;
+      case 4: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 32) goto handle_unusual;
+        msg->set_playerid(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // uint32 size = 5;
+      case 5: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 40) goto handle_unusual;
+        msg->set_size(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // uint32 numPlayers = 6;
+      case 6: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 48) goto handle_unusual;
+        msg->set_numplayers(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // uint32 seed = 7;
+      case 7: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 56) goto handle_unusual;
+        msg->set_seed(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // uint32 aiseed = 8;
+      case 8: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 64) goto handle_unusual;
+        msg->set_aiseed(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -1860,6 +1942,86 @@ bool ScenarioConfig::MergePartialFromCodedStream(
         break;
       }
 
+      // string username = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (26 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_username()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->username().data(), static_cast<int>(this->username().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "ScenarioConfig.username"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 playerID = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (32 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &playerid_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 size = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (40 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &size_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 numPlayers = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (48 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &numplayers_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 seed = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (56 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &seed_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 aiseed = 8;
+      case 8: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (64 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &aiseed_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1907,6 +2069,41 @@ void ScenarioConfig::SerializeWithCachedSizes(
       2, this->name(), output);
   }
 
+  // string username = 3;
+  if (this->username().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->username().data(), static_cast<int>(this->username().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "ScenarioConfig.username");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->username(), output);
+  }
+
+  // int32 playerID = 4;
+  if (this->playerid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->playerid(), output);
+  }
+
+  // uint32 size = 5;
+  if (this->size() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->size(), output);
+  }
+
+  // uint32 numPlayers = 6;
+  if (this->numplayers() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->numplayers(), output);
+  }
+
+  // uint32 seed = 7;
+  if (this->seed() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->seed(), output);
+  }
+
+  // uint32 aiseed = 8;
+  if (this->aiseed() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(8, this->aiseed(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         _internal_metadata_.unknown_fields(), output);
@@ -1940,6 +2137,42 @@ void ScenarioConfig::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->name(), target);
+  }
+
+  // string username = 3;
+  if (this->username().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->username().data(), static_cast<int>(this->username().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "ScenarioConfig.username");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->username(), target);
+  }
+
+  // int32 playerID = 4;
+  if (this->playerid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->playerid(), target);
+  }
+
+  // uint32 size = 5;
+  if (this->size() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(5, this->size(), target);
+  }
+
+  // uint32 numPlayers = 6;
+  if (this->numplayers() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->numplayers(), target);
+  }
+
+  // uint32 seed = 7;
+  if (this->seed() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->seed(), target);
+  }
+
+  // uint32 aiseed = 8;
+  if (this->aiseed() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(8, this->aiseed(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1977,6 +2210,48 @@ size_t ScenarioConfig::ByteSizeLong() const {
         this->name());
   }
 
+  // string username = 3;
+  if (this->username().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->username());
+  }
+
+  // int32 playerID = 4;
+  if (this->playerid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->playerid());
+  }
+
+  // uint32 size = 5;
+  if (this->size() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->size());
+  }
+
+  // uint32 numPlayers = 6;
+  if (this->numplayers() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->numplayers());
+  }
+
+  // uint32 seed = 7;
+  if (this->seed() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->seed());
+  }
+
+  // uint32 aiseed = 8;
+  if (this->aiseed() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->aiseed());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -2012,6 +2287,25 @@ void ScenarioConfig::MergeFrom(const ScenarioConfig& from) {
 
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  if (from.username().size() > 0) {
+
+    username_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.username_);
+  }
+  if (from.playerid() != 0) {
+    set_playerid(from.playerid());
+  }
+  if (from.size() != 0) {
+    set_size(from.size());
+  }
+  if (from.numplayers() != 0) {
+    set_numplayers(from.numplayers());
+  }
+  if (from.seed() != 0) {
+    set_seed(from.seed());
+  }
+  if (from.aiseed() != 0) {
+    set_aiseed(from.aiseed());
+  }
 }
 
 void ScenarioConfig::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2043,6 +2337,13 @@ void ScenarioConfig::InternalSwap(ScenarioConfig* other) {
     GetArenaNoVirtual());
   name_.Swap(&other->name_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  username_.Swap(&other->username_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(playerid_, other->playerid_);
+  swap(size_, other->size_);
+  swap(numplayers_, other->numplayers_);
+  swap(seed_, other->seed_);
+  swap(aiseed_, other->aiseed_);
 }
 
 ::google::protobuf::Metadata ScenarioConfig::GetMetadata() const {

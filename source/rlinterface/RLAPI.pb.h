@@ -790,6 +790,50 @@ class ScenarioConfig final :
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
+  // string username = 3;
+  void clear_username();
+  static const int kUsernameFieldNumber = 3;
+  const ::std::string& username() const;
+  void set_username(const ::std::string& value);
+  #if LANG_CXX11
+  void set_username(::std::string&& value);
+  #endif
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
+  ::std::string* mutable_username();
+  ::std::string* release_username();
+  void set_allocated_username(::std::string* username);
+
+  // int32 playerID = 4;
+  void clear_playerid();
+  static const int kPlayerIDFieldNumber = 4;
+  ::google::protobuf::int32 playerid() const;
+  void set_playerid(::google::protobuf::int32 value);
+
+  // uint32 size = 5;
+  void clear_size();
+  static const int kSizeFieldNumber = 5;
+  ::google::protobuf::uint32 size() const;
+  void set_size(::google::protobuf::uint32 value);
+
+  // uint32 numPlayers = 6;
+  void clear_numplayers();
+  static const int kNumPlayersFieldNumber = 6;
+  ::google::protobuf::uint32 numplayers() const;
+  void set_numplayers(::google::protobuf::uint32 value);
+
+  // uint32 seed = 7;
+  void clear_seed();
+  static const int kSeedFieldNumber = 7;
+  ::google::protobuf::uint32 seed() const;
+  void set_seed(::google::protobuf::uint32 value);
+
+  // uint32 aiseed = 8;
+  void clear_aiseed();
+  static const int kAiseedFieldNumber = 8;
+  ::google::protobuf::uint32 aiseed() const;
+  void set_aiseed(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:ScenarioConfig)
  private:
   class HasBitSetters;
@@ -797,6 +841,12 @@ class ScenarioConfig final :
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr type_;
   ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::internal::ArenaStringPtr username_;
+  ::google::protobuf::int32 playerid_;
+  ::google::protobuf::uint32 size_;
+  ::google::protobuf::uint32 numplayers_;
+  ::google::protobuf::uint32 seed_;
+  ::google::protobuf::uint32 aiseed_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -1173,6 +1223,129 @@ inline void ScenarioConfig::set_allocated_name(::std::string* name) {
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:ScenarioConfig.name)
+}
+
+// string username = 3;
+inline void ScenarioConfig::clear_username() {
+  username_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ScenarioConfig::username() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.username)
+  return username_.GetNoArena();
+}
+inline void ScenarioConfig::set_username(const ::std::string& value) {
+  
+  username_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ScenarioConfig.username)
+}
+#if LANG_CXX11
+inline void ScenarioConfig::set_username(::std::string&& value) {
+  
+  username_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ScenarioConfig.username)
+}
+#endif
+inline void ScenarioConfig::set_username(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  username_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ScenarioConfig.username)
+}
+inline void ScenarioConfig::set_username(const char* value, size_t size) {
+  
+  username_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ScenarioConfig.username)
+}
+inline ::std::string* ScenarioConfig::mutable_username() {
+  
+  // @@protoc_insertion_point(field_mutable:ScenarioConfig.username)
+  return username_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ScenarioConfig::release_username() {
+  // @@protoc_insertion_point(field_release:ScenarioConfig.username)
+  
+  return username_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ScenarioConfig::set_allocated_username(::std::string* username) {
+  if (username != nullptr) {
+    
+  } else {
+    
+  }
+  username_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), username);
+  // @@protoc_insertion_point(field_set_allocated:ScenarioConfig.username)
+}
+
+// int32 playerID = 4;
+inline void ScenarioConfig::clear_playerid() {
+  playerid_ = 0;
+}
+inline ::google::protobuf::int32 ScenarioConfig::playerid() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.playerID)
+  return playerid_;
+}
+inline void ScenarioConfig::set_playerid(::google::protobuf::int32 value) {
+  
+  playerid_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.playerID)
+}
+
+// uint32 size = 5;
+inline void ScenarioConfig::clear_size() {
+  size_ = 0u;
+}
+inline ::google::protobuf::uint32 ScenarioConfig::size() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.size)
+  return size_;
+}
+inline void ScenarioConfig::set_size(::google::protobuf::uint32 value) {
+  
+  size_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.size)
+}
+
+// uint32 numPlayers = 6;
+inline void ScenarioConfig::clear_numplayers() {
+  numplayers_ = 0u;
+}
+inline ::google::protobuf::uint32 ScenarioConfig::numplayers() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.numPlayers)
+  return numplayers_;
+}
+inline void ScenarioConfig::set_numplayers(::google::protobuf::uint32 value) {
+  
+  numplayers_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.numPlayers)
+}
+
+// uint32 seed = 7;
+inline void ScenarioConfig::clear_seed() {
+  seed_ = 0u;
+}
+inline ::google::protobuf::uint32 ScenarioConfig::seed() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.seed)
+  return seed_;
+}
+inline void ScenarioConfig::set_seed(::google::protobuf::uint32 value) {
+  
+  seed_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.seed)
+}
+
+// uint32 aiseed = 8;
+inline void ScenarioConfig::clear_aiseed() {
+  aiseed_ = 0u;
+}
+inline ::google::protobuf::uint32 ScenarioConfig::aiseed() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.aiseed)
+  return aiseed_;
+}
+inline void ScenarioConfig::set_aiseed(::google::protobuf::uint32 value) {
+  
+  aiseed_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.aiseed)
 }
 
 #ifdef __GNUC__
