@@ -13,6 +13,7 @@
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/system/TurnManager.h"
 #include "ps/Game.h"
+#include "ps/Loader.h"
 #include "gui/GUIManager.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -118,39 +119,43 @@ class RLInterface final : public RLAPI::Service
                         {
                             const bool nonVisual = !g_GUI;
                             std::cout << "Received reset command!!" << std::endl;
-                            std::cout << "Ending Game" << std::endl;
                             EndGame();
-                            GameConfig config(L"scenario", L"Arcadia");
-                            std::cout << "Created config" << std::endl;
-                            std::cout << "config.victoryConditions.size():" << config.victoryConditions.size() << std::endl;
-                            g_Game = CGame::fromConfig(config, nonVisual);
-                            std::cout << "Created g_Game" << std::endl;
 
-                            // TODO: Save the metadata files
-                            // TODO: Update the gui??
-                            // TODO: If it is
-                            if (!nonVisual)
+                            // TODO: Use the config
+
+                            GameConfig config(L"scenario", L"CavSpearArch");
+                            std::cout << "Created config" << std::endl;
+                            config.nonVisual = nonVisual;
+                            const bool saveReplay = !config.nonVisual;
+                            g_Game = new CGame(config.nonVisual, saveReplay);
+
+                            ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                            JSContext* cx = scriptInterface.GetContext();
+                            JS::RootedValue attrs(cx, config.toJSValue(scriptInterface));
+
+                            g_Game->SetPlayerID(config.playerID);
+                            g_Game->StartGame(&attrs, "");
+
+                            if (nonVisual)
                             {
-                                // TODO get the script interface...
-                                // TODO: create initData
-                                ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-                                // TODO: Convert the GameConfig to a JSON
-                                JSContext* cx = scriptInterface.GetContext();
+                                LDR_NonprogressiveLoad();  // TODO: Can this be used for visual mode, too?
+                                ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
+                                m_GameStates.push(GetGameState());  // Send the game state back to the request
+                            }
+                            else
+                            {
                                 JS::RootedValue initData(cx);
                                 scriptInterface.Eval("({})", &initData);
+                                scriptInterface.SetProperty(initData, "attribs", attrs);
 
-                                //JS::RootedValue attrs(cx);
-                                //config.toJSValue(scriptInterface, attrs);
+                                JS::RootedValue playerAssignments(cx);
+                                scriptInterface.Eval("({})", &playerAssignments);
+                                scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
 
-                                //scriptInterface.SetProperty(initData, "attribs", attrs);
-                                // TODO: where can I get g_PlayerAssignments?
                                 g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
-                                //Engine.SwitchGuiPage("page_loading.xml", {
-                                    //"attribs": g_GameAttributes,
-                                    //"playerAssignments": g_PlayerAssignments
-                                //});
                             }
-                            // TODO: Get the game info??
+                            // TODO: Record that we need a game state once it's loaded!
+                            m_NeedsGameState = true;
                         }
                         break;
                     case GameMessageType::Command:
@@ -197,5 +202,6 @@ class RLInterface final : public RLAPI::Service
         std::mutex m_lock;
         std::vector<GameMessage> m_GameMessages;
         unbuffered_channel<std::string> m_GameStates;
+        bool m_NeedsGameState = false;
         //unbuffered_channel<std::string> m_GameConfigs;
 };
