@@ -1497,8 +1497,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.StopMoving();
 			},
 
-			"MovementUpdate": function() {
-				if (this.CheckRange(this.order.data))
+			"MovementUpdate": function(msg) {
+				if (msg.error || this.CheckRange(this.order.data))
 					this.FinishOrder();
 			},
 		},
@@ -1526,8 +1526,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.SetDefaultAnimationVariant();
 			},
 
-			"MovementUpdate": function() {
-				if (this.CheckRange(this.order.data))
+			"MovementUpdate": function(msg) {
+				if (msg.error || this.CheckRange(this.order.data))
 					this.FinishOrder();
 			},
 		},
