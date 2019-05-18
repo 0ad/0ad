@@ -109,13 +109,12 @@ class RLInterface final : public RLAPI::Service
             std::cout << "Server listening on " << server_address << std::endl;
         }
 
-        void ApplyEvents()
+        void ApplyEvents()  // Apply RPC messages to the game engine
         {
-            // Apply and edits from the RPC messages to the game engine
-            if (m_NeedsGameState && g_Game->IsGameStarted())
+            const bool nonVisual = !g_GUI;
+            if (m_NeedsGameState)
             {
-                //m_GameStates.push(GetGameState());  // Send the game state back to the request
-                std::cout << "Skipping sending the game state. Game should be ready." << std::endl;
+                m_GameStates.push(GetGameState());  // Send the game state back to the request
                 m_NeedsGameState = false;
             }
 
@@ -130,7 +129,6 @@ class RLInterface final : public RLAPI::Service
                 {
                     case GameMessageType::Reset:
                         {
-                            const bool nonVisual = !g_GUI;
                             std::cout << "Received reset command!!" << std::endl;
                             EndGame();
 
@@ -147,7 +145,7 @@ class RLInterface final : public RLAPI::Service
 
                             if (nonVisual)
                             {
-                                LDR_NonprogressiveLoad();  // TODO: Can this be used for visual mode, too?
+                                LDR_NonprogressiveLoad();
                                 ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
                                 m_GameStates.push(GetGameState());  // Send the game state back to the request
                             }
@@ -162,7 +160,7 @@ class RLInterface final : public RLAPI::Service
                                 scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
 
                                 g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
-                                m_NeedsGameState = true;  // FIXME: Can we load immediately? Or should we stick with progressive loading?
+                                m_NeedsGameState = true;
                             }
                         }
                         break;

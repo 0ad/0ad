@@ -541,7 +541,7 @@ static void* RunRenderLoop(std::unique_ptr<RLInterface>& service)
 	if (g_Game && g_Game->IsGameStarted() && need_update)
 	{
         service.get()->ApplyEvents();
-        if (g_Game && g_Game->GetView())
+        if (g_Game && g_Game->IsGameStarted())  // The game could be reset by ApplyEvents
         {
             g_Game->GetView()->Update(float(0.03));
         }
