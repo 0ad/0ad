@@ -180,7 +180,7 @@ class RLInterface final : public RLAPI::Service
 
             if (shouldStepGame)
             {
-                g_Game->Update(200);
+                g_Game->Update(DEFAULT_TURN_LENGTH_SP);
                 m_GameStates.push(GetGameState());  // Send the game state back to the request
             }
         }
