@@ -36,19 +36,15 @@ class RLInterface final : public RLAPI::Service
 
     public:
 
-        grpc::Status Connect(ServerContext* context, const ConnectRequest* _, Observation* obs) override
+        grpc::Status Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) override
         {
             std::cout << ">>> Aquiring lock for Connect" << std::endl;
             std::lock_guard<std::mutex> lock(m_lock);
 
-            std::cout << ">>> Acquired!" << std::endl;
-            std::string config("scenarios/Arcadia");
-            std::cout << "1" << std::endl;
-            struct GameMessage msg = { GameMessageType::Reset, config };
-            std::cout << "2" << std::endl;
+            m_GameConfig = GameConfig::from(req->scenario());
+            struct GameMessage msg = { GameMessageType::Reset };
             m_GameMessages.push_back(msg);
 
-            std::cout << ">>> waiting for game state..." << std::endl;
             std::string state;
             m_GameStates.pop(state);
             obs->set_content(state);
@@ -105,8 +101,14 @@ class RLInterface final : public RLAPI::Service
         void ApplyEvents()
         {
             // Apply and edits from the RPC messages to the game engine
+            if (m_NeedsGameState && g_Game->IsGameStarted())
+            {
+                //m_GameStates.push(GetGameState());  // Send the game state back to the request
+                std::cout << "Skipping sending the game state. Game should be ready." << std::endl;
+                m_NeedsGameState = false;
+            }
+
             bool shouldStepGame = false;
-            bool hasMessages = m_GameMessages.size() > 0;
             while (m_GameMessages.size() > 0)
             {
                 GameMessage msg = m_GameMessages.back();
@@ -121,19 +123,15 @@ class RLInterface final : public RLAPI::Service
                             std::cout << "Received reset command!!" << std::endl;
                             EndGame();
 
-                            // TODO: Use the config
-
-                            GameConfig config(L"scenario", L"CavSpearArch");
-                            std::cout << "Created config" << std::endl;
-                            config.nonVisual = nonVisual;
-                            const bool saveReplay = !config.nonVisual;
-                            g_Game = new CGame(config.nonVisual, saveReplay);
+                            m_GameConfig.nonVisual = nonVisual;
+                            const bool saveReplay = !m_GameConfig.nonVisual;
+                            g_Game = new CGame(m_GameConfig.nonVisual, saveReplay);
 
                             ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
                             JSContext* cx = scriptInterface.GetContext();
-                            JS::RootedValue attrs(cx, config.toJSValue(scriptInterface));
+                            JS::RootedValue attrs(cx, m_GameConfig.toJSValue(scriptInterface));
 
-                            g_Game->SetPlayerID(config.playerID);
+                            g_Game->SetPlayerID(m_GameConfig.playerID);
                             g_Game->StartGame(&attrs, "");
 
                             if (nonVisual)
@@ -153,9 +151,8 @@ class RLInterface final : public RLAPI::Service
                                 scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
 
                                 g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
+                                m_NeedsGameState = true;  // FIXME: Can we load immediately? Or should we stick with progressive loading?
                             }
-                            // TODO: Record that we need a game state once it's loaded!
-                            m_NeedsGameState = true;
                         }
                         break;
                     case GameMessageType::Command:
@@ -173,9 +170,6 @@ class RLInterface final : public RLAPI::Service
             if (shouldStepGame)
             {
                 g_Game->Update(200);
-            }
-            if (hasMessages)
-            {
                 m_GameStates.push(GetGameState());  // Send the game state back to the request
             }
         }
@@ -203,5 +197,6 @@ class RLInterface final : public RLAPI::Service
         std::vector<GameMessage> m_GameMessages;
         unbuffered_channel<std::string> m_GameStates;
         bool m_NeedsGameState = false;
+        GameConfig m_GameConfig = GameConfig(L"scenario", L"Arcadia");
         //unbuffered_channel<std::string> m_GameConfigs;
 };

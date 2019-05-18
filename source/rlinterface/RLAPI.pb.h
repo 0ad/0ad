@@ -41,7 +41,7 @@ struct TableStruct_RLAPI_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[5]
+  static const ::google::protobuf::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -63,6 +63,9 @@ extern ObservationDefaultTypeInternal _Observation_default_instance_;
 class ResetRequest;
 class ResetRequestDefaultTypeInternal;
 extern ResetRequestDefaultTypeInternal _ResetRequest_default_instance_;
+class ScenarioConfig;
+class ScenarioConfigDefaultTypeInternal;
+extern ScenarioConfigDefaultTypeInternal _ScenarioConfig_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::Action* Arena::CreateMaybeMessage<::Action>(Arena*);
@@ -70,6 +73,7 @@ template<> ::Actions* Arena::CreateMaybeMessage<::Actions>(Arena*);
 template<> ::ConnectRequest* Arena::CreateMaybeMessage<::ConnectRequest>(Arena*);
 template<> ::Observation* Arena::CreateMaybeMessage<::Observation>(Arena*);
 template<> ::ResetRequest* Arena::CreateMaybeMessage<::ResetRequest>(Arena*);
+template<> ::ScenarioConfig* Arena::CreateMaybeMessage<::ScenarioConfig>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 
@@ -528,26 +532,21 @@ class ResetRequest final :
 
   // accessors -------------------------------------------------------
 
-  // string map = 1;
-  void clear_map();
-  static const int kMapFieldNumber = 1;
-  const ::std::string& map() const;
-  void set_map(const ::std::string& value);
-  #if LANG_CXX11
-  void set_map(::std::string&& value);
-  #endif
-  void set_map(const char* value);
-  void set_map(const char* value, size_t size);
-  ::std::string* mutable_map();
-  ::std::string* release_map();
-  void set_allocated_map(::std::string* map);
+  // .ScenarioConfig scenario = 1;
+  bool has_scenario() const;
+  void clear_scenario();
+  static const int kScenarioFieldNumber = 1;
+  const ::ScenarioConfig& scenario() const;
+  ::ScenarioConfig* release_scenario();
+  ::ScenarioConfig* mutable_scenario();
+  void set_allocated_scenario(::ScenarioConfig* scenario);
 
   // @@protoc_insertion_point(class_scope:ResetRequest)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::ArenaStringPtr map_;
+  ::ScenarioConfig* scenario_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -648,26 +647,156 @@ class ConnectRequest final :
 
   // accessors -------------------------------------------------------
 
-  // string map = 1;
-  void clear_map();
-  static const int kMapFieldNumber = 1;
-  const ::std::string& map() const;
-  void set_map(const ::std::string& value);
-  #if LANG_CXX11
-  void set_map(::std::string&& value);
-  #endif
-  void set_map(const char* value);
-  void set_map(const char* value, size_t size);
-  ::std::string* mutable_map();
-  ::std::string* release_map();
-  void set_allocated_map(::std::string* map);
+  // .ScenarioConfig scenario = 1;
+  bool has_scenario() const;
+  void clear_scenario();
+  static const int kScenarioFieldNumber = 1;
+  const ::ScenarioConfig& scenario() const;
+  ::ScenarioConfig* release_scenario();
+  ::ScenarioConfig* mutable_scenario();
+  void set_allocated_scenario(::ScenarioConfig* scenario);
 
   // @@protoc_insertion_point(class_scope:ConnectRequest)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::ArenaStringPtr map_;
+  ::ScenarioConfig* scenario_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_RLAPI_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ScenarioConfig final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ScenarioConfig) */ {
+ public:
+  ScenarioConfig();
+  virtual ~ScenarioConfig();
+
+  ScenarioConfig(const ScenarioConfig& from);
+
+  inline ScenarioConfig& operator=(const ScenarioConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ScenarioConfig(ScenarioConfig&& from) noexcept
+    : ScenarioConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline ScenarioConfig& operator=(ScenarioConfig&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const ScenarioConfig& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ScenarioConfig* internal_default_instance() {
+    return reinterpret_cast<const ScenarioConfig*>(
+               &_ScenarioConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  void Swap(ScenarioConfig* other);
+  friend void swap(ScenarioConfig& a, ScenarioConfig& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ScenarioConfig* New() const final {
+    return CreateMaybeMessage<ScenarioConfig>(nullptr);
+  }
+
+  ScenarioConfig* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<ScenarioConfig>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const ScenarioConfig& from);
+  void MergeFrom(const ScenarioConfig& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ScenarioConfig* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  const ::std::string& type() const;
+  void set_type(const ::std::string& value);
+  #if LANG_CXX11
+  void set_type(::std::string&& value);
+  #endif
+  void set_type(const char* value);
+  void set_type(const char* value, size_t size);
+  ::std::string* mutable_type();
+  ::std::string* release_type();
+  void set_allocated_type(::std::string* type);
+
+  // string name = 2;
+  void clear_name();
+  static const int kNameFieldNumber = 2;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  #if LANG_CXX11
+  void set_name(::std::string&& value);
+  #endif
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // @@protoc_insertion_point(class_scope:ScenarioConfig)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr type_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -830,119 +959,227 @@ inline void Observation::set_allocated_content(::std::string* content) {
 
 // ResetRequest
 
-// string map = 1;
-inline void ResetRequest::clear_map() {
-  map_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// .ScenarioConfig scenario = 1;
+inline bool ResetRequest::has_scenario() const {
+  return this != internal_default_instance() && scenario_ != nullptr;
 }
-inline const ::std::string& ResetRequest::map() const {
-  // @@protoc_insertion_point(field_get:ResetRequest.map)
-  return map_.GetNoArena();
+inline void ResetRequest::clear_scenario() {
+  if (GetArenaNoVirtual() == nullptr && scenario_ != nullptr) {
+    delete scenario_;
+  }
+  scenario_ = nullptr;
 }
-inline void ResetRequest::set_map(const ::std::string& value) {
+inline const ::ScenarioConfig& ResetRequest::scenario() const {
+  const ::ScenarioConfig* p = scenario_;
+  // @@protoc_insertion_point(field_get:ResetRequest.scenario)
+  return p != nullptr ? *p : *reinterpret_cast<const ::ScenarioConfig*>(
+      &::_ScenarioConfig_default_instance_);
+}
+inline ::ScenarioConfig* ResetRequest::release_scenario() {
+  // @@protoc_insertion_point(field_release:ResetRequest.scenario)
   
-  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:ResetRequest.map)
+  ::ScenarioConfig* temp = scenario_;
+  scenario_ = nullptr;
+  return temp;
 }
-#if LANG_CXX11
-inline void ResetRequest::set_map(::std::string&& value) {
+inline ::ScenarioConfig* ResetRequest::mutable_scenario() {
   
-  map_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ResetRequest.map)
+  if (scenario_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ScenarioConfig>(GetArenaNoVirtual());
+    scenario_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:ResetRequest.scenario)
+  return scenario_;
 }
-#endif
-inline void ResetRequest::set_map(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ResetRequest.map)
-}
-inline void ResetRequest::set_map(const char* value, size_t size) {
-  
-  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ResetRequest.map)
-}
-inline ::std::string* ResetRequest::mutable_map() {
-  
-  // @@protoc_insertion_point(field_mutable:ResetRequest.map)
-  return map_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* ResetRequest::release_map() {
-  // @@protoc_insertion_point(field_release:ResetRequest.map)
-  
-  return map_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ResetRequest::set_allocated_map(::std::string* map) {
-  if (map != nullptr) {
+inline void ResetRequest::set_allocated_scenario(::ScenarioConfig* scenario) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete scenario_;
+  }
+  if (scenario) {
+    ::google::protobuf::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      scenario = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, scenario, submessage_arena);
+    }
     
   } else {
     
   }
-  map_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), map);
-  // @@protoc_insertion_point(field_set_allocated:ResetRequest.map)
+  scenario_ = scenario;
+  // @@protoc_insertion_point(field_set_allocated:ResetRequest.scenario)
 }
 
 // -------------------------------------------------------------------
 
 // ConnectRequest
 
-// string map = 1;
-inline void ConnectRequest::clear_map() {
-  map_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// .ScenarioConfig scenario = 1;
+inline bool ConnectRequest::has_scenario() const {
+  return this != internal_default_instance() && scenario_ != nullptr;
 }
-inline const ::std::string& ConnectRequest::map() const {
-  // @@protoc_insertion_point(field_get:ConnectRequest.map)
-  return map_.GetNoArena();
+inline void ConnectRequest::clear_scenario() {
+  if (GetArenaNoVirtual() == nullptr && scenario_ != nullptr) {
+    delete scenario_;
+  }
+  scenario_ = nullptr;
 }
-inline void ConnectRequest::set_map(const ::std::string& value) {
+inline const ::ScenarioConfig& ConnectRequest::scenario() const {
+  const ::ScenarioConfig* p = scenario_;
+  // @@protoc_insertion_point(field_get:ConnectRequest.scenario)
+  return p != nullptr ? *p : *reinterpret_cast<const ::ScenarioConfig*>(
+      &::_ScenarioConfig_default_instance_);
+}
+inline ::ScenarioConfig* ConnectRequest::release_scenario() {
+  // @@protoc_insertion_point(field_release:ConnectRequest.scenario)
   
-  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:ConnectRequest.map)
+  ::ScenarioConfig* temp = scenario_;
+  scenario_ = nullptr;
+  return temp;
 }
-#if LANG_CXX11
-inline void ConnectRequest::set_map(::std::string&& value) {
+inline ::ScenarioConfig* ConnectRequest::mutable_scenario() {
   
-  map_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ConnectRequest.map)
+  if (scenario_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ScenarioConfig>(GetArenaNoVirtual());
+    scenario_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:ConnectRequest.scenario)
+  return scenario_;
 }
-#endif
-inline void ConnectRequest::set_map(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ConnectRequest.map)
-}
-inline void ConnectRequest::set_map(const char* value, size_t size) {
-  
-  map_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ConnectRequest.map)
-}
-inline ::std::string* ConnectRequest::mutable_map() {
-  
-  // @@protoc_insertion_point(field_mutable:ConnectRequest.map)
-  return map_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* ConnectRequest::release_map() {
-  // @@protoc_insertion_point(field_release:ConnectRequest.map)
-  
-  return map_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ConnectRequest::set_allocated_map(::std::string* map) {
-  if (map != nullptr) {
+inline void ConnectRequest::set_allocated_scenario(::ScenarioConfig* scenario) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete scenario_;
+  }
+  if (scenario) {
+    ::google::protobuf::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      scenario = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, scenario, submessage_arena);
+    }
     
   } else {
     
   }
-  map_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), map);
-  // @@protoc_insertion_point(field_set_allocated:ConnectRequest.map)
+  scenario_ = scenario;
+  // @@protoc_insertion_point(field_set_allocated:ConnectRequest.scenario)
+}
+
+// -------------------------------------------------------------------
+
+// ScenarioConfig
+
+// string type = 1;
+inline void ScenarioConfig::clear_type() {
+  type_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ScenarioConfig::type() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.type)
+  return type_.GetNoArena();
+}
+inline void ScenarioConfig::set_type(const ::std::string& value) {
+  
+  type_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ScenarioConfig.type)
+}
+#if LANG_CXX11
+inline void ScenarioConfig::set_type(::std::string&& value) {
+  
+  type_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ScenarioConfig.type)
+}
+#endif
+inline void ScenarioConfig::set_type(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  type_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ScenarioConfig.type)
+}
+inline void ScenarioConfig::set_type(const char* value, size_t size) {
+  
+  type_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ScenarioConfig.type)
+}
+inline ::std::string* ScenarioConfig::mutable_type() {
+  
+  // @@protoc_insertion_point(field_mutable:ScenarioConfig.type)
+  return type_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ScenarioConfig::release_type() {
+  // @@protoc_insertion_point(field_release:ScenarioConfig.type)
+  
+  return type_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ScenarioConfig::set_allocated_type(::std::string* type) {
+  if (type != nullptr) {
+    
+  } else {
+    
+  }
+  type_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), type);
+  // @@protoc_insertion_point(field_set_allocated:ScenarioConfig.type)
+}
+
+// string name = 2;
+inline void ScenarioConfig::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ScenarioConfig::name() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.name)
+  return name_.GetNoArena();
+}
+inline void ScenarioConfig::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ScenarioConfig.name)
+}
+#if LANG_CXX11
+inline void ScenarioConfig::set_name(::std::string&& value) {
+  
+  name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ScenarioConfig.name)
+}
+#endif
+inline void ScenarioConfig::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ScenarioConfig.name)
+}
+inline void ScenarioConfig::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ScenarioConfig.name)
+}
+inline ::std::string* ScenarioConfig::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:ScenarioConfig.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ScenarioConfig::release_name() {
+  // @@protoc_insertion_point(field_release:ScenarioConfig.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ScenarioConfig::set_allocated_name(::std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:ScenarioConfig.name)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

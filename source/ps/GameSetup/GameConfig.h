@@ -5,6 +5,7 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "rlinterface/RLAPI.grpc.pb.h"
 
 enum NetworkGameType { Host, Client, Local };
 struct GameConfig {
@@ -21,8 +22,8 @@ struct GameConfig {
     {}
 
     static GameConfig from (const CmdLineArgs& args);
+    static GameConfig from (const ScenarioConfig& msg);
     JS::MutableHandleValue toJSValue (const ScriptInterface& scriptInterface) const;
-    //bool toJSValue (const ScriptInterface& scriptInterface, JS::RootedValue attrs) const;
 
     void setNetworkHost()
     {

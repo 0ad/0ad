@@ -150,6 +150,15 @@ GameConfig GameConfig::from (const CmdLineArgs& args)
     return config;
 }
 
+GameConfig GameConfig::from (const ScenarioConfig& msg)
+{
+    const std::wstring mapType = wstring_from_utf8(msg.type());
+    const std::wstring mapName = wstring_from_utf8(msg.name());
+    GameConfig config(mapType, mapName);
+
+    return config;
+}
+
 /**
  * Temporarily loads a scenario map and retrieves the "ScriptSettings" JSON
  * data from it.
