@@ -834,6 +834,12 @@ class ScenarioConfig final :
   ::google::protobuf::uint32 aiseed() const;
   void set_aiseed(::google::protobuf::uint32 value);
 
+  // float gameSpeed = 9;
+  void clear_gamespeed();
+  static const int kGameSpeedFieldNumber = 9;
+  float gamespeed() const;
+  void set_gamespeed(float value);
+
   // @@protoc_insertion_point(class_scope:ScenarioConfig)
  private:
   class HasBitSetters;
@@ -847,6 +853,7 @@ class ScenarioConfig final :
   ::google::protobuf::uint32 numplayers_;
   ::google::protobuf::uint32 seed_;
   ::google::protobuf::uint32 aiseed_;
+  float gamespeed_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -1346,6 +1353,20 @@ inline void ScenarioConfig::set_aiseed(::google::protobuf::uint32 value) {
   
   aiseed_ = value;
   // @@protoc_insertion_point(field_set:ScenarioConfig.aiseed)
+}
+
+// float gameSpeed = 9;
+inline void ScenarioConfig::clear_gamespeed() {
+  gamespeed_ = 0;
+}
+inline float ScenarioConfig::gamespeed() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.gameSpeed)
+  return gamespeed_;
+}
+inline void ScenarioConfig::set_gamespeed(float value) {
+  
+  gamespeed_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.gameSpeed)
 }
 
 #ifdef __GNUC__

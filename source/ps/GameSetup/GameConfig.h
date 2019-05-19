@@ -10,8 +10,8 @@
 enum NetworkGameType { Host, Client, Local };
 struct GameConfig {
     GameConfig(std::wstring t, std::wstring n) :
-        type(t), name(n), size(192), numPlayers(2), seed(0), aiseed(0), nonVisual(false),
-        teams(std::vector<std::tuple<int, int>>()), ceasefire(0),
+        type(t), name(n), size(192), numPlayers(2), gameSpeed(1.0), seed(0), aiseed(0),
+        nonVisual(false), teams(std::vector<std::tuple<int, int>>()), ceasefire(0),
         ai(std::vector<std::tuple<int, std::string>>()),
         civs(std::vector<std::tuple<int, std::string>>()),
         difficulties(std::vector<std::tuple<int, int>>()),
@@ -66,6 +66,7 @@ struct GameConfig {
     int playerID;
     uint size;
     uint numPlayers;
+    float gameSpeed;
 	u32 seed;
 	u32 aiseed;
     std::vector<std::tuple<int, int>> teams;

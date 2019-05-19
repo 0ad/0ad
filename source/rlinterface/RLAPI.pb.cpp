@@ -186,6 +186,7 @@ const ::google::protobuf::uint32 TableStruct_RLAPI_2eproto::offsets[] PROTOBUF_S
   PROTOBUF_FIELD_OFFSET(::ScenarioConfig, numplayers_),
   PROTOBUF_FIELD_OFFSET(::ScenarioConfig, seed_),
   PROTOBUF_FIELD_OFFSET(::ScenarioConfig, aiseed_),
+  PROTOBUF_FIELD_OFFSET(::ScenarioConfig, gamespeed_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Actions)},
@@ -217,19 +218,19 @@ const char descriptor_table_protodef_RLAPI_2eproto[] =
   "\013Observation\022\017\n\007content\030\001 \001(\t\"1\n\014ResetRe"
   "quest\022!\n\010scenario\030\001 \001(\0132\017.ScenarioConfig"
   "\"3\n\016ConnectRequest\022!\n\010scenario\030\001 \001(\0132\017.S"
-  "cenarioConfig\"\220\001\n\016ScenarioConfig\022\014\n\004type"
+  "cenarioConfig\"\243\001\n\016ScenarioConfig\022\014\n\004type"
   "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\020"
   "\n\010playerID\030\004 \001(\005\022\014\n\004size\030\005 \001(\r\022\022\n\nnumPla"
   "yers\030\006 \001(\r\022\014\n\004seed\030\007 \001(\r\022\016\n\006aiseed\030\010 \001(\r"
-  "2}\n\005RLAPI\022 \n\004Step\022\010.Actions\032\014.Observatio"
-  "n\"\000\022&\n\005Reset\022\r.ResetRequest\032\014.Observatio"
-  "n\"\000\022*\n\007Connect\022\017.ConnectRequest\032\014.Observ"
-  "ation\"\000b\006proto3"
+  "\022\021\n\tgameSpeed\030\t \001(\0022}\n\005RLAPI\022 \n\004Step\022\010.A"
+  "ctions\032\014.Observation\"\000\022&\n\005Reset\022\r.ResetR"
+  "equest\032\014.Observation\"\000\022*\n\007Connect\022\017.Conn"
+  "ectRequest\032\014.Observation\"\000b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_RLAPI_2eproto = {
   false, InitDefaults_RLAPI_2eproto, 
   descriptor_table_protodef_RLAPI_2eproto,
-  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 495,
+  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 514,
 };
 
 void AddDescriptors_RLAPI_2eproto() {
@@ -1707,6 +1708,7 @@ const int ScenarioConfig::kSizeFieldNumber;
 const int ScenarioConfig::kNumPlayersFieldNumber;
 const int ScenarioConfig::kSeedFieldNumber;
 const int ScenarioConfig::kAiseedFieldNumber;
+const int ScenarioConfig::kGameSpeedFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ScenarioConfig::ScenarioConfig()
@@ -1731,8 +1733,8 @@ ScenarioConfig::ScenarioConfig(const ScenarioConfig& from)
     username_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.username_);
   }
   ::memcpy(&playerid_, &from.playerid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&aiseed_) -
-    reinterpret_cast<char*>(&playerid_)) + sizeof(aiseed_));
+    static_cast<size_t>(reinterpret_cast<char*>(&gamespeed_) -
+    reinterpret_cast<char*>(&playerid_)) + sizeof(gamespeed_));
   // @@protoc_insertion_point(copy_constructor:ScenarioConfig)
 }
 
@@ -1743,8 +1745,8 @@ void ScenarioConfig::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   username_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&playerid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&aiseed_) -
-      reinterpret_cast<char*>(&playerid_)) + sizeof(aiseed_));
+      reinterpret_cast<char*>(&gamespeed_) -
+      reinterpret_cast<char*>(&playerid_)) + sizeof(gamespeed_));
 }
 
 ScenarioConfig::~ScenarioConfig() {
@@ -1777,8 +1779,8 @@ void ScenarioConfig::Clear() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   username_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&playerid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&aiseed_) -
-      reinterpret_cast<char*>(&playerid_)) + sizeof(aiseed_));
+      reinterpret_cast<char*>(&gamespeed_) -
+      reinterpret_cast<char*>(&playerid_)) + sizeof(gamespeed_));
   _internal_metadata_.Clear();
 }
 
@@ -1876,6 +1878,13 @@ const char* ScenarioConfig::_InternalParse(const char* begin, const char* end, v
         if (static_cast<::google::protobuf::uint8>(tag) != 64) goto handle_unusual;
         msg->set_aiseed(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // float gameSpeed = 9;
+      case 9: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 77) goto handle_unusual;
+        msg->set_gamespeed(::google::protobuf::io::UnalignedLoad<float>(ptr));
+        ptr += sizeof(float);
         break;
       }
       default: {
@@ -2022,6 +2031,19 @@ bool ScenarioConfig::MergePartialFromCodedStream(
         break;
       }
 
+      // float gameSpeed = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (77 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &gamespeed_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -2104,6 +2126,11 @@ void ScenarioConfig::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(8, this->aiseed(), output);
   }
 
+  // float gameSpeed = 9;
+  if (this->gamespeed() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(9, this->gamespeed(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         _internal_metadata_.unknown_fields(), output);
@@ -2173,6 +2200,11 @@ void ScenarioConfig::SerializeWithCachedSizes(
   // uint32 aiseed = 8;
   if (this->aiseed() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(8, this->aiseed(), target);
+  }
+
+  // float gameSpeed = 9;
+  if (this->gamespeed() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(9, this->gamespeed(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2252,6 +2284,11 @@ size_t ScenarioConfig::ByteSizeLong() const {
         this->aiseed());
   }
 
+  // float gameSpeed = 9;
+  if (this->gamespeed() != 0) {
+    total_size += 1 + 4;
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -2306,6 +2343,9 @@ void ScenarioConfig::MergeFrom(const ScenarioConfig& from) {
   if (from.aiseed() != 0) {
     set_aiseed(from.aiseed());
   }
+  if (from.gamespeed() != 0) {
+    set_gamespeed(from.gamespeed());
+  }
 }
 
 void ScenarioConfig::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2344,6 +2384,7 @@ void ScenarioConfig::InternalSwap(ScenarioConfig* other) {
   swap(numplayers_, other->numplayers_);
   swap(seed_, other->seed_);
   swap(aiseed_, other->aiseed_);
+  swap(gamespeed_, other->gamespeed_);
 }
 
 ::google::protobuf::Metadata ScenarioConfig::GetMetadata() const {

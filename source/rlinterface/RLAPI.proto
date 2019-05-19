@@ -35,6 +35,7 @@ message ScenarioConfig {
     uint32 numPlayers = 6;
 	uint32 seed = 7;
 	uint32 aiseed = 8;
+    float gameSpeed = 9;
     //std::vector<std::tuple<int, int>> teams;
     //int32 ceasefire;
     //std::vector<std::tuple<int, std::string>> ai;

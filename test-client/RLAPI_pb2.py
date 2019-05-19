@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0bRLAPI.proto\"#\n\x07\x41\x63tions\x12\x18\n\x07\x61\x63tions\x18\x01 \x03(\x0b\x32\x07.Action\"\x19\n\x06\x41\x63tion\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1e\n\x0bObservation\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"1\n\x0cResetRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"3\n\x0e\x43onnectRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"\x90\x01\n\x0eScenarioConfig\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08playerID\x18\x04 \x01(\x05\x12\x0c\n\x04size\x18\x05 \x01(\r\x12\x12\n\nnumPlayers\x18\x06 \x01(\r\x12\x0c\n\x04seed\x18\x07 \x01(\r\x12\x0e\n\x06\x61iseed\x18\x08 \x01(\r2}\n\x05RLAPI\x12 \n\x04Step\x12\x08.Actions\x1a\x0c.Observation\"\x00\x12&\n\x05Reset\x12\r.ResetRequest\x1a\x0c.Observation\"\x00\x12*\n\x07\x43onnect\x12\x0f.ConnectRequest\x1a\x0c.Observation\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0bRLAPI.proto\"#\n\x07\x41\x63tions\x12\x18\n\x07\x61\x63tions\x18\x01 \x03(\x0b\x32\x07.Action\"\x19\n\x06\x41\x63tion\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1e\n\x0bObservation\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"1\n\x0cResetRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"3\n\x0e\x43onnectRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"\xa3\x01\n\x0eScenarioConfig\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08playerID\x18\x04 \x01(\x05\x12\x0c\n\x04size\x18\x05 \x01(\r\x12\x12\n\nnumPlayers\x18\x06 \x01(\r\x12\x0c\n\x04seed\x18\x07 \x01(\r\x12\x0e\n\x06\x61iseed\x18\x08 \x01(\r\x12\x11\n\tgameSpeed\x18\t \x01(\x02\x32}\n\x05RLAPI\x12 \n\x04Step\x12\x08.Actions\x1a\x0c.Observation\"\x00\x12&\n\x05Reset\x12\r.ResetRequest\x1a\x0c.Observation\"\x00\x12*\n\x07\x43onnect\x12\x0f.ConnectRequest\x1a\x0c.Observation\"\x00\x62\x06proto3')
 )
 
 
@@ -243,6 +243,13 @@ _SCENARIOCONFIG = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='gameSpeed', full_name='ScenarioConfig.gameSpeed', index=8,
+      number=9, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -256,7 +263,7 @@ _SCENARIOCONFIG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=216,
-  serialized_end=360,
+  serialized_end=379,
 )
 
 _ACTIONS.fields_by_name['actions'].message_type = _ACTION
@@ -320,8 +327,8 @@ _RLAPI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=362,
-  serialized_end=487,
+  serialized_start=381,
+  serialized_end=506,
   methods=[
   _descriptor.MethodDescriptor(
     name='Step',
