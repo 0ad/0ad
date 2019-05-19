@@ -111,7 +111,8 @@ class RLInterface final : public RLAPI::Service
         void ApplyEvents()  // Apply RPC messages to the game engine
         {
             const bool nonVisual = !g_GUI;
-            if (m_NeedsGameState)
+            const bool isGameStarted = g_Game && g_Game->IsGameStarted();
+            if (m_NeedsGameState && isGameStarted)
             {
                 m_GameStates.push(GetGameState());  // Send the game state back to the request
                 m_NeedsGameState = false;
@@ -128,8 +129,10 @@ class RLInterface final : public RLAPI::Service
                 {
                     case GameMessageType::Reset:
                         {
-                            std::cout << "Received reset command!!" << std::endl;
-                            EndGame();
+                            if (isGameStarted)
+                            {
+                                EndGame();
+                            }
 
                             m_GameConfig.nonVisual = nonVisual;
                             const bool saveReplay = !m_GameConfig.nonVisual;
@@ -163,7 +166,14 @@ class RLInterface final : public RLAPI::Service
                             }
                         }
                         break;
+
                     case GameMessageType::Command:
+                        if (!isGameStarted)
+                        {
+                            LOGERROR("Cannot apply game commands w/o running game. Ignoring...");
+                            continue;
+                        }
+
                         const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
                         JSContext* cx = scriptInterface.GetContext();
                         JS::RootedValue command(cx);
