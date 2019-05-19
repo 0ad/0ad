@@ -5,10 +5,9 @@
     <variant frequency="1" name="barrels">
       <mesh>props/celt_blacksmith_armorstand_rome_csp_a.dae</mesh>
       <textures>
-<texture file="skeletal/rome_csp_a.dds" name="baseTex"/>
-<texture file="structural/ao/celt_blacksmith.png" name="aoTex"/>
-</textures>
+        <texture file="skeletal/rome_csp_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>default.xml</material>
 </actor>

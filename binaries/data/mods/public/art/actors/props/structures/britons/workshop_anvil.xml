@@ -4,6 +4,9 @@
   <group>
     <variant frequency="100" name="Brittonic anvil">
       <mesh>props/brit_workshop_anvil.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/anvil.xml" attachpoint="anvil_01"/>
+      </props>
       <textures>
         <texture file="props/celt_prop_1.dds" name="baseTex"/>
         <texture file="props/celt_prop_1_norm.png" name="normTex"/>

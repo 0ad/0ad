@@ -5,12 +5,11 @@
     <variant frequency="1" name="bucket">
       <mesh>props/celt_blacksmith_bucket.dae</mesh>
       <textures>
-<texture file="props/celt_prop_1.dds" name="baseTex"/>
-<texture file="props/celt_prop_1_norm.png" name="normTex"/>
-<texture file="props/celt_prop_1_spec.png" name="specTex"/>
-<texture file="structural/ao/celt_blacksmith.png" name="aoTex"/>
-</textures>
+        <texture file="props/celt_prop_1.dds" name="baseTex"/>
+        <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+        <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.58 commit date:2019-04-24, commit time:02:30, hash:1b839e85e142</authoring_tool>
+    </contributor>
+    <created>2019-05-12T19:33:28</created>
+    <modified>2019-05-12T19:33:28</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="box_pile_001-mesh" name="box_pile.001">
+      <mesh>
+        <source id="box_pile_001-mesh-positions">
+          <float_array id="box_pile_001-mesh-positions-array" count="9">0.0463072 -0.1803882 -1.951926 0.0419889 -0.1803883 -1.951926 0.0419889 -0.1760702 -1.951926</float_array>
+          <technique_common>
+            <accessor source="#box_pile_001-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="box_pile_001-mesh-normals">
+          <float_array id="box_pile_001-mesh-normals-array" count="3">-3.83875e-5 0 1</float_array>
+          <technique_common>
+            <accessor source="#box_pile_001-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="box_pile_001-mesh-map-0">
+          <float_array id="box_pile_001-mesh-map-0-array" count="6">0.753448 0.295875 0.712383 0.295875 0.712383 0.381111</float_array>
+          <technique_common>
+            <accessor source="#box_pile_001-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="box_pile_001-mesh-vertices">
+          <input semantic="POSITION" source="#box_pile_001-mesh-positions"/>
+        </vertices>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#box_pile_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#box_pile_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#box_pile_001-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 1 0 1 0 0 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="box_pile" name="box_pile" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#box_pile_001-mesh" name="box_pile"/>
+        <node id="prop-box_01" name="prop-box_01" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 1.86706e-8 1 -1.62921e-7 0 0 0 0 1 1.250379 0 0 0 1</matrix>
+        </node>
+        <node id="prop-box_02" name="prop-box_02" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 0 1 -1.62921e-7 0 0 0 0 1 0 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
