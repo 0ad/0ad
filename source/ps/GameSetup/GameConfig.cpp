@@ -162,6 +162,15 @@ GameConfig GameConfig::from (const ScenarioConfig& msg)
     if (msg.gamespeed())
         config.gameSpeed = msg.gamespeed();
     
+    for (int i = 0; i < msg.players_size(); i++)
+    {
+        int playerID = msg.players(i).id();
+        CStr name = msg.players(i).type();
+        int difficulty = msg.players(i).difficulty() || 3;
+
+        config.ai.push_back(std::make_tuple(playerID, name));
+        config.difficulties.push_back(std::make_tuple(playerID, difficulty));
+    }
 
     return config;
 }
