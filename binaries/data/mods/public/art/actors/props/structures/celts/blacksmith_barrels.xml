@@ -4,13 +4,14 @@
   <group>
     <variant frequency="1" name="barrels">
       <mesh>props/celt_blacksmith_barrels.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a_celt_sword_heap.xml" attachpoint="barrel_empty_01" maxheight="20" minheight="-20"/>
+      </props>
       <textures>
-<texture file="props/celt_prop_1.dds" name="baseTex"/>
-<texture file="props/celt_prop_1_norm.png" name="normTex"/>
-<texture file="props/celt_prop_1_spec.png" name="specTex"/>
-<texture file="structural/ao/celt_blacksmith.png" name="aoTex"/>
-</textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>default.xml</material>
 </actor>

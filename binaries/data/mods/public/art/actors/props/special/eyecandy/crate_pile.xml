@@ -12,16 +12,16 @@
     <variant frequency="100" name="Three boxes pile">
       <mesh>props/box_pile_01.dae</mesh>
       <props>
-        <prop actor="props/special/eyecandy/box.xml" attachpoint="box_01" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/box.xml" attachpoint="box_02" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/box.xml" attachpoint="box_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="box_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="box_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="box_03" maxheight="20" minheight="-20"/>
       </props>
     </variant>
     <variant frequency="100" name="Two boxes stacked">
       <mesh>props/box_pile_02.dae</mesh>
       <props>
-        <prop actor="props/special/eyecandy/box.xml" attachpoint="box_01" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/box.xml" attachpoint="box_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="box_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="box_02" maxheight="20" minheight="-20"/>
       </props>
     </variant>
   </group>

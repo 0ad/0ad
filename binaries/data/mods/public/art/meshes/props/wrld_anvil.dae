@@ -1,63 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author>PMD to COLLADA Converter</author>
-      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.58 commit date:2019-04-24, commit time:02:30, hash:1b839e85e142</authoring_tool>
     </contributor>
-    <created>2012-01-26T22:20:52</created>
-    <modified>2012-01-26T22:20:52</modified>
-    <unit meter="0.01" name="centimeter"/>
+    <created>2019-05-12T19:39:35</created>
+    <modified>2019-05-12T19:39:35</modified>
+    <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
+  <library_effects>
+    <effect id="BRIT_PROPS_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="CHARIOT_GOLD_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BRIT_SHIELDS_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BRIT_RAM_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="CHARIOT_STANDARD_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="BRIT_PROPS_002-material" name="BRIT_PROPS.002">
+      <instance_effect url="#BRIT_PROPS_002-effect"/>
+    </material>
+    <material id="CHARIOT_GOLD_002-material" name="CHARIOT_GOLD.002">
+      <instance_effect url="#CHARIOT_GOLD_002-effect"/>
+    </material>
+    <material id="BRIT_SHIELDS_002-material" name="BRIT_SHIELDS.002">
+      <instance_effect url="#BRIT_SHIELDS_002-effect"/>
+    </material>
+    <material id="BRIT_RAM_002-material" name="BRIT_RAM.002">
+      <instance_effect url="#BRIT_RAM_002-effect"/>
+    </material>
+    <material id="CHARIOT_STANDARD_002-material" name="CHARIOT_STANDARD.002">
+      <instance_effect url="#CHARIOT_STANDARD_002-effect"/>
+    </material>
+  </library_materials>
   <library_geometries>
-    <geometry id="wrld_anvil-Geometry" name="wrld_anvil-Geometry">
+    <geometry id="Cube_003-mesh" name="Cube.003">
       <mesh>
-        <source id="wrld_anvil-Geometry-Position">
-          <float_array count="99" id="wrld_anvil-Geometry-Position-array">0.4139720 0.6022170 0.0013790 0.3465000 0.5112600 0.4573700 0.3465000 -0.5112600 0.4573700 0.4575350 -0.6794400 0.0013790 0.3465000 0.5112600 0.4573700 0.4139720 0.6022170 1.2164800 0.4575350 -0.6794400 1.2164800 0.3465000 -0.5112600 0.4573700 -0.4033690 0.5902660 0.0013790 -0.4396260 -0.6794400 0.0013790 -0.3285900 -0.5112600 0.4573700 -0.3285900 0.5112600 0.4573700 -0.3285900 0.5112600 0.4573700 -0.3285900 -0.5112600 0.4573700 -0.4396260 -0.6794400 1.2164800 -0.4033690 0.5902660 1.2164800 -0.4033690 0.5902660 1.2164800 -0.4396260 -0.6794400 1.2164800 -0.0024780 -0.6794400 1.2164800 0.0015120 0.7601450 1.2164800 0.4139720 0.6022170 1.2164800 0.3465000 0.5112600 0.4573700 -0.3285900 0.5112600 0.4573700 -0.4033690 0.5902660 1.2164800 0.0015120 0.7601450 1.2164800 0.3465000 -0.5112600 0.4573700 0.4575350 -0.6794400 1.2164800 0.0089550 -1.5256620 1.2154180 -0.0024780 -0.6794400 1.2164800 -0.4396260 -0.6794400 1.2164800 -0.3285900 -0.5112600 0.4573700 0.4575350 -0.6794400 1.2164800 0.4139720 0.6022170 1.2164800</float_array>
+        <source id="Cube_003-mesh-positions">
+          <float_array id="Cube_003-mesh-positions-array" count="72">0.2195307 -0.3321077 0.4062278 0.3421501 -0.4850394 1.114085 -1.222652 0.3631762 1.114086 0.5411995 0.1245633 1.114086 0.7036271 -0.1840154 0.7944158 0.3519538 0.07344752 0.4062271 -0.9173524 -0.07383829 1.114086 -0.4459811 0.3339561 0.4062271 -0.5784026 -0.07159787 0.4062271 0.5024664 0.09691268 -0.06561714 -0.5536453 0.4417113 -0.06561714 0.3271989 -0.4398612 -0.06561762 -0.728916 -0.09506237 -0.06561714 -0.7183032 0.5357646 1.114086 0.7749788 -0.06657797 1.114086 0.6551535 -0.3324548 0.7944154 0.64346 -0.4693679 1.114086 0.3421501 -0.4850394 1.114085 -1.222652 0.3631762 1.114086 0.5411995 0.1245633 1.114086 -0.9173524 -0.07383829 1.114086 -0.7183032 0.5357646 1.114086 0.7749788 -0.06657797 1.114086 0.64346 -0.4693679 1.114086</float_array>
           <technique_common>
-            <accessor count="33" source="wrld_anvil-Geometry-Position-array" stride="3">
+            <accessor source="#Cube_003-mesh-positions-array" count="24" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="wrld_anvil-Geometry-Normals">
-          <float_array count="99" id="wrld_anvil-Geometry-Normal-array">0.8591290 0.4470830 0.2490260 0.4326410 0.8726200 0.2266170 0.8619010 -0.3974060 0.3149530 0.4275770 -0.8093640 0.4026270 0.9927890 0.0169210 -0.1186750 0.9951380 0.0338250 -0.0925040 0.9927890 0.0169210 -0.1186750 0.9894710 -0.0000000 -0.1447310 -0.6796090 0.6862860 0.2591190 -0.6710410 -0.6275330 0.3948480 -0.6752470 -0.6367660 0.3722510 -0.6883430 0.6872970 0.2319630 -0.9923210 0.0142040 -0.1228680 -0.9894710 0.0000000 -0.1447310 -0.9923210 0.0142040 -0.1228680 -0.9944890 0.0283980 -0.1009210 -0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 0.1669050 0.9463630 -0.2766600 0.0000000 0.9928980 -0.1189690 -0.0207420 0.9713810 -0.2366210 -0.3834710 0.9139420 -0.1328950 -0.0318430 0.9537660 -0.2988580 0.5045570 -0.6182480 -0.6026540 0.6918500 -0.3675280 0.6215040 0.0000000 -0.8970930 0.4418410 -0.0000000 -0.0012540 0.9999990 -0.6918500 -0.3675280 0.6215040 -0.5045570 -0.6182480 -0.6026540 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000</float_array>
+        <source id="Cube_003-mesh-normals">
+          <float_array id="Cube_003-mesh-normals-array" count="84">0.2846256 -0.9496473 -0.13099 -0.7856736 -0.6016153 -0.1441398 0.4627305 -0.8354908 0.2963709 -0.2792808 0.9493289 -0.1441419 0.7902359 0.5986663 -0.1308667 -0.4627305 0.8354908 0.2963709 0.9135276 -0.2982872 0.2765722 -0.9135298 0.2982858 0.2765665 -0.6177984 -0.7276368 -0.2981107 -0.760352 0.2482725 -0.600188 -0.06933981 0.9520186 -0.2980818 0.6500332 -0.2122519 -0.7296616 0.5234985 0.8146226 -0.2496788 -0.05908453 -0.9665333 -0.2496445 0.9460626 -0.3089079 -0.09768134 0.9004001 0.09341841 -0.4249151 0.6712318 -0.6073253 -0.4249751 -0.8665931 -0.4014497 0.2964026 0.8665931 0.4014497 0.2964026 0.9135286 -0.2982857 0.2765706 -0.9135268 0.2982903 0.2765717 0.650034 -0.2122699 -0.7296558 0.9460501 -0.3089373 -0.09770953 0.8831669 0.3407783 -0.3223141 0.5109529 -0.796796 -0.3225577 0 0 1 -2.31078e-6 -1.38912e-6 1 -3.99684e-6 1.18273e-6 1</float_array>
           <technique_common>
-            <accessor count="33" source="wrld_anvil-Geometry-Normal-array" stride="3">
+            <accessor source="#Cube_003-mesh-normals-array" count="28" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="wrld_anvil-Geometry-UV">
-          <float_array count="66" id="wrld_anvil-Geometry-UV-array">0.098988 0.113952 0.203833 0.307517 0.522616 0.307517 0.630661 0.113952 0.203833 0.307517 0.071154 0.707987 0.645421 0.707987 0.522616 0.307517 0.098988 0.113952 0.630661 0.113952 0.522616 0.307517 0.203833 0.307517 0.203833 0.307517 0.522616 0.307517 0.645421 0.707987 0.071154 0.707987 0.071154 0.707987 0.645421 0.707987 0.646528 0.789629 0.072261 0.789629 0.071154 0.707987 0.203833 0.307517 0.203833 0.307517 0.071154 0.707987 0.071154 0.707987 0.522616 0.307517 0.645421 0.707987 0.967994 0.864744 0.646528 0.789629 0.645421 0.707987 0.522616 0.307517 0.645421 0.707987 0.071154 0.707987</float_array>
+        <source id="Cube_003-mesh-map-0">
+          <float_array id="Cube_003-mesh-map-0-array" count="168">0.2870579 0.5834593 0.4866417 0.5996408 0.2610549 0.2870733 0.4866417 0.5996408 0.2870579 0.5834593 0.4999554 0.3122552 0.2870579 0.5834593 0.2870579 0.5834593 0.2610549 0.2870733 0.4866417 0.5996408 0.4866417 0.5996408 0.4999554 0.3122552 0.4866417 0.5996408 0.5427644 0.8253868 0.7880733 0.8209711 0.5427644 0.8253868 0.4866417 0.5996408 0.7880733 0.8209711 0.2870579 0.5834593 0.2870579 0.5834593 0.1907549 0.6390495 0.4866417 0.5996408 0.4866417 0.5996408 0.7880733 0.8209711 0.5427644 0.8253868 0.2500197 0.8257355 0.4866417 0.5996408 0.2500197 0.8257355 0.5427644 0.8253868 0.4866417 0.5996408 0.174388 0.7936577 0.174388 0.7936577 0.1907549 0.6390495 0.2870579 0.5834593 0.2500197 0.8257355 0.1907549 0.6390495 0.2500197 0.8257355 0.2870579 0.5834593 0.1907549 0.6390495 0.4866417 0.5996408 0.4999554 0.3122552 0.2610549 0.2870733 0.2870579 0.5834593 0.2610549 0.2870733 0.4999554 0.3122552 0.2610549 0.2870733 0.2870579 0.5834593 0.2610549 0.2870733 0.4999554 0.3122552 0.4866417 0.5996408 0.4999554 0.3122552 0.1907549 0.6390495 0.2870579 0.5834593 0.1907549 0.6390495 0.2500197 0.8257355 0.2870579 0.5834593 0.4866417 0.5996408 0.2870579 0.5834593 0.2500197 0.8257355 0.4866417 0.5996408 0.174388 0.7936577 0.1907549 0.6390495 0.1907549 0.6390495 0.2500197 0.8257355 0.174388 0.7936577 0.1907549 0.6390495 0.174388 0.7936577 0.2500197 0.8257355 0.1907549 0.6390495 0.2920426 0.6812583 0.2913593 0.8360716 0.238061 0.7356606 0.2920426 0.6812583 0.4428522 0.6839208 0.2913593 0.8360716 0.4421689 0.838734 0.4428522 0.6839208 0.4743337 0.8129498 0.4428522 0.6839208 0.4421689 0.838734 0.2913593 0.8360716 0.4428522 0.6839208 0.4747852 0.7106595 0.4743337 0.8129498</float_array>
           <technique_common>
-            <accessor count="33" source="wrld_anvil-Geometry-UV-array" stride="2">
-              <param name="U" type="float"/>
-              <param name="V" type="float"/>
+            <accessor source="#Cube_003-mesh-map-0-array" count="84" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="wrld_anvil-Geometry-Vertex">
-          <input semantic="POSITION" source="#wrld_anvil-Geometry-Position"/>
+        <source id="Cube_003-mesh-map-1">
+          <float_array id="Cube_003-mesh-map-1-array" count="168">0.1113547 0.9495185 0.1033553 0.9495222 0.1126472 0.9460476 0.9331463 0.3403284 0.9411457 0.3403285 0.9318523 0.3437988 0.835357 0.9350962 0.8312912 0.9350962 0.8306335 0.9314513 0.527134 0.9891383 0.5311998 0.9891383 0.5318575 0.9927832 0.1541351 0.8754742 0.1541351 0.8829537 0.1493043 0.8829019 0.9300824 0.3335054 0.9331463 0.3403284 0.9256969 0.3355314 0.7167854 0.7335842 0.7208513 0.7335842 0.719559 0.7389943 0.7836258 0.8213597 0.7836258 0.8254255 0.7749297 0.8237268 0.9300824 0.3335054 0.942709 0.3335054 0.9331463 0.3403284 0.1129209 0.9563407 0.1002944 0.9563466 0.1033553 0.9495222 0.2095434 0.9971334 0.2055053 0.9971334 0.2082684 0.9940723 0.7291781 0.2112625 0.7291781 0.2182623 0.7255994 0.2155205 0.1129209 0.9563407 0.1113547 0.9495185 0.1157922 0.9528695 0.1033553 0.9495222 0.1020596 0.9460524 0.1126472 0.9460476 0.9411457 0.3403285 0.9424399 0.3437988 0.9318523 0.3437988 0.8360148 0.9314513 0.835357 0.9350962 0.8306335 0.9314513 0.5264762 0.9927832 0.527134 0.9891383 0.5318575 0.9927832 0.7180709 0.7389943 0.7167854 0.7335842 0.719559 0.7389943 0.942709 0.3335054 0.9411457 0.3403285 0.9331463 0.3403284 0.1113547 0.9495185 0.1129209 0.9563407 0.1033553 0.9495222 0.2055053 0.9971334 0.2067803 0.9940723 0.2082684 0.9940723 0.6721649 0.9943585 0.6702117 0.9964721 0.6676566 0.9943585 0.1157922 0.9561855 0.1129209 0.9563407 0.1157922 0.9528695 0.8975513 0.6823364 0.8975515 0.6884478 0.8932844 0.6848898 0.8975513 0.6823364 0.910178 0.6823364 0.8975515 0.6884478 0.9101783 0.6884478 0.910178 0.6823364 0.9128615 0.6874076 0.910178 0.6823364 0.9101783 0.6884478 0.8975515 0.6884478 0.910178 0.6823364 0.9128613 0.6833695 0.9128615 0.6874076</float_array>
+          <technique_common>
+            <accessor source="#Cube_003-mesh-map-1-array" count="84" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_003-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_003-mesh-positions"/>
         </vertices>
-        <triangles count="24" material="material0">
-          <input offset="0" semantic="VERTEX" source="#wrld_anvil-Geometry-Vertex"/>
-          <input offset="0" semantic="NORMAL" source="#wrld_anvil-Geometry-Normals"/>
-          <input offset="0" semantic="TEXCOORD" source="#wrld_anvil-Geometry-UV"/>
-          <p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 3 2 10 10 9 3 16 17 18 18 19 16 20 21 22 22 23 24 20 22 24 1 0 8 8 11 1 25 26 27 28 29 27 29 30 27 30 25 27 27 26 28 31 32 19 19 18 31</p>
+        <triangles material="BRIT_PROPS_002-material" count="28">
+          <input semantic="VERTEX" source="#Cube_003-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_003-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_003-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Cube_003-mesh-map-1" offset="2" set="1"/>
+          <p>0 0 0 8 1 1 11 2 2 7 3 3 5 4 4 10 5 5 5 6 6 0 6 7 11 6 8 8 7 9 7 7 10 10 7 11 8 1 12 6 8 13 2 9 14 13 10 15 7 3 16 2 9 17 0 11 18 5 11 19 4 11 20 7 3 21 8 1 22 2 9 23 13 10 24 3 12 25 7 3 26 1 13 27 6 8 28 8 1 29 14 14 30 16 14 31 4 14 32 5 4 33 3 12 34 4 15 35 1 13 36 0 0 37 15 16 38 8 1 39 12 17 40 11 2 41 5 4 42 9 18 43 10 5 44 9 19 45 5 19 46 11 19 47 12 20 48 8 20 49 10 20 50 15 21 51 0 21 52 4 21 53 3 12 54 5 4 55 7 3 56 0 0 57 1 13 58 8 1 59 16 22 60 15 22 61 4 22 62 3 12 63 14 23 64 4 15 65 16 24 66 1 13 67 15 16 68 20 25 69 21 25 70 18 25 71 20 25 72 17 25 73 21 25 74 19 26 75 17 26 76 22 26 77 17 25 78 19 25 79 21 25 80 17 27 81 23 27 82 22 27 83</p>
         </triangles>
       </mesh>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="wrld_anvil" layer="L1" name="wrld_anvil">
-        <instance_geometry url="#wrld_anvil-Geometry"/>
+      <node id="brit_range_struct_003_001" name="brit_range_struct_003.001" type="NODE">
+        <matrix sid="transform">-0.3231078 -1.049246 0 0 1.049246 -0.3231078 0 0 0 0 1.097869 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_003-mesh" name="brit_range_struct_003.001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="BRIT_PROPS_002-material" target="#BRIT_PROPS_002-material">
+                <bind_vertex_input semantic="Cube_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Cube_001-mesh-map-1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="CHARIOT_GOLD_002-material" target="#CHARIOT_GOLD_002-material">
+                <bind_vertex_input semantic="Cube_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Cube_001-mesh-map-1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="BRIT_SHIELDS_002-material" target="#BRIT_SHIELDS_002-material">
+                <bind_vertex_input semantic="Cube_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Cube_001-mesh-map-1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="BRIT_RAM_002-material" target="#BRIT_RAM_002-material">
+                <bind_vertex_input semantic="Cube_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Cube_001-mesh-map-1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="CHARIOT_STANDARD_002-material" target="#CHARIOT_STANDARD_002-material">
+                <bind_vertex_input semantic="Cube_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Cube_001-mesh-map-1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_hammer_01" name="prop_hammer_01" type="NODE">
+          <matrix sid="transform">9.37427e-7 -0.906818 0.0856643 0.3053308 -2.84217e-14 -0.0856643 -0.906818 -0.1257697 0.9108552 9.33272e-7 -8.81633e-8 1.124633 0 0 0 1</matrix>
+        </node>
+        <node id="prop-tongs_01" name="prop-tongs_01" type="NODE">
+          <matrix sid="transform">8.28844e-7 -0.8000669 -0.4353737 -0.602247 -1.42109e-14 0.4353737 -0.8000669 0.1400758 0.9108552 7.28031e-7 3.96174e-7 1.124633 0 0 0 1</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

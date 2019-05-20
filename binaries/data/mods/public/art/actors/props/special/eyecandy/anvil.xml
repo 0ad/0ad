@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations/>
       <mesh>props/wrld_anvil.dae</mesh>
       <props/>
-      <textures><texture file="props/wrld_anvil.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/wrld_anvil.dds" name="baseTex"/>
+        <texture file="null_white.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>player_trans_spec.xml</material>
 </actor>

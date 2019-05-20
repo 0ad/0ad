@@ -5,12 +5,11 @@
     <variant frequency="1" name="barrels">
       <mesh>props/celt_blacksmith_armorstand_struct.dae</mesh>
       <textures>
-<texture file="structural/celt_struct_1.dds" name="baseTex"/>
-<texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-<texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-<texture file="structural/ao/celt_blacksmith.png" name="aoTex"/>
-</textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
