@@ -222,10 +222,8 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 }
 
 JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInterface) const
-//bool GameConfig::toJSValue (const ScriptInterface& scriptInterface, JS::RootedValue attrs) const
 {
 	JSContext* cx = scriptInterface.GetContext();
-	//JSAutoRequest rq(cx);
 
     JS::RootedValue attrs(cx);
 	scriptInterface.Eval("({})", &attrs);

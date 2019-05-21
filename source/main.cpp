@@ -742,7 +742,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			installedMods = installer.GetInstalledMods();
 		}
 
-        //g_PauseOnFocusLoss = false;
 		if (isNonVisual)
 		{
 			InitNonVisual(args);
