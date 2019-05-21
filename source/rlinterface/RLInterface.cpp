@@ -1,218 +1,171 @@
-#include <mutex>
-#include <vector>
-#include <grpc/grpc.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/security/server_credentials.h>
-#include "rlinterface/RLAPI.grpc.pb.h"
-
-#include "lib/precompiled.h"
-#include "lib/external_libraries/libsdl.h"
-#include "simulation2/Simulation2.h"
-#include "simulation2/components/ICmpAIInterface.h"
-#include "simulation2/system/TurnManager.h"
-#include "ps/Game.h"
-#include "ps/Loader.h"
-#include "gui/GUIManager.h"
-#include "ps/VideoMode.h"
-#include "ps/GameSetup/GameSetup.h"
-#include "ps/GameSetup/GameConfig.h"
-#include "ps/ThreadUtil.h"
-#include <boost/fiber/unbuffered_channel.hpp>
+#include "rlinterface/RLInterface.h"
 
 using grpc::ServerContext;
 using boost::fibers::unbuffered_channel;
 
-enum GameMessageType { Reset, Command };
-struct GameMessage {
-    GameMessageType type;
-    std::string data;
-};
-extern void EndGame();
-
-class RLInterface final : public RLAPI::Service
+grpc::Status RLInterface::Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) 
 {
+    std::cout << ">>> Aquiring lock for Connect" << std::endl;
+    std::lock_guard<std::mutex> lock(m_lock);
 
-    public:
+    if (req->has_scenario())
+    {
+        m_GameConfig = GameConfig::from(req->scenario());
+    }
 
-        grpc::Status Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) override
+    GameMessage msg = { GameMessageType::Reset };
+    m_GameMessages.push_back(msg);
+
+    std::string state;
+    std::cout << "Waiting for game state" << std::endl;
+    m_GameStates.pop(state);
+    obs->set_content(state);
+
+    std::cout << ">>> Connect Complete" << std::endl;
+    return grpc::Status::OK;
+}
+
+grpc::Status RLInterface::Step(ServerContext* context, const Actions* commands, Observation* obs) 
+{
+    std::cout << ">>> Acquiring lock for Step" << std::endl;
+    std::lock_guard<std::mutex> lock(m_lock);
+
+    // Interactions with the game engine (g_Game) must be done in the main
+    // thread as there are specific checks for this. We will pass our commands
+    // to the main thread to be applied
+    const int size = commands->actions_size();
+    for (int i = 0; i < size; i++) 
+    {
+        std::string json_cmd = commands->actions(i).content();
+        struct GameMessage msg = { GameMessageType::Command, json_cmd };
+        m_GameMessages.push_back(msg);
+    }
+    std::string state;
+    m_GameStates.pop(state);
+    obs->set_content(state);
+
+    std::cout << ">>> Step Complete" << std::endl;
+    return grpc::Status::OK;
+}
+
+grpc::Status RLInterface::Reset(ServerContext* context, const ResetRequest* req, Observation* obs) 
+{
+    std::cout << ">>> Acquiring lock for Reset" << std::endl;
+    std::lock_guard<std::mutex> lock(m_lock);
+    if (req->has_scenario())
+    {
+        m_GameConfig = GameConfig::from(req->scenario());
+    }
+    struct GameMessage msg = { GameMessageType::Reset };
+    m_GameMessages.push_back(msg);
+
+    std::string state;
+    m_GameStates.pop(state);
+    obs->set_content(state);
+
+    std::cout << ">>> Reset Complete" << std::endl;
+    return grpc::Status::OK;
+}
+
+void RLInterface::Listen(std::string server_address)
+{
+    grpc::ServerBuilder builder;
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+    builder.RegisterService(this);
+    m_Server = builder.BuildAndStart();
+    std::cout << "Server listening on " << server_address << std::endl;
+}
+
+void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
+{
+    const bool nonVisual = !g_GUI;
+    const bool isGameStarted = g_Game && g_Game->IsGameStarted();
+    if (m_NeedsGameState && isGameStarted)
+    {
+        m_GameStates.push(GetGameState());  // Send the game state back to the request
+        m_NeedsGameState = false;
+    }
+
+    bool shouldStepGame = false;
+    while (m_GameMessages.size() > 0)
+    {
+        GameMessage msg = m_GameMessages.back();
+        m_GameMessages.pop_back();
+
+        std::cout << "Applying game message!" << std::endl;
+        switch (msg.type)
         {
-            std::cout << ">>> Aquiring lock for Connect" << std::endl;
-            std::lock_guard<std::mutex> lock(m_lock);
-
-            if (req->has_scenario())
-            {
-                m_GameConfig = GameConfig::from(req->scenario());
-            }
-
-            GameMessage msg = { GameMessageType::Reset };
-            m_GameMessages.push_back(msg);
-
-            std::string state;
-            m_GameStates.pop(state);
-            obs->set_content(state);
-
-            std::cout << ">>> Connect Complete" << std::endl;
-            return grpc::Status::OK;
-        }
-
-        grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override
-        {
-            std::cout << ">>> Acquiring lock for Step" << std::endl;
-            std::lock_guard<std::mutex> lock(m_lock);
-
-            // Interactions with the game engine (g_Game) must be done in the main
-            // thread as there are specific checks for this. We will pass our commands
-            // to the main thread to be applied
-            const int size = commands->actions_size();
-            for (int i = 0; i < size; i++) 
-            {
-                std::string json_cmd = commands->actions(i).content();
-                struct GameMessage msg = { GameMessageType::Command, json_cmd };
-                m_GameMessages.push_back(msg);
-            }
-            std::string state;
-            m_GameStates.pop(state);
-            obs->set_content(state);
-
-            std::cout << ">>> Step Complete" << std::endl;
-            return grpc::Status::OK;
-        }
-
-        grpc::Status Reset(ServerContext* context, const ResetRequest* req, Observation* obs) override
-        {
-            std::cout << ">>> Acquiring lock for Reset" << std::endl;
-            std::lock_guard<std::mutex> lock(m_lock);
-            if (req->has_scenario())
-            {
-                m_GameConfig = GameConfig::from(req->scenario());
-            }
-            struct GameMessage msg = { GameMessageType::Reset };
-            m_GameMessages.push_back(msg);
-
-            std::string state;
-            m_GameStates.pop(state);
-            obs->set_content(state);
-
-            std::cout << ">>> Reset Complete" << std::endl;
-            return grpc::Status::OK;
-        }
-
-        void Listen(std::string server_address)
-        {
-            grpc::ServerBuilder builder;
-            builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-            builder.RegisterService(this);
-            m_Server = builder.BuildAndStart();
-            std::cout << "Server listening on " << server_address << std::endl;
-        }
-
-        void ApplyEvents()  // Apply RPC messages to the game engine
-        {
-            const bool nonVisual = !g_GUI;
-            const bool isGameStarted = g_Game && g_Game->IsGameStarted();
-            if (m_NeedsGameState && isGameStarted)
-            {
-                m_GameStates.push(GetGameState());  // Send the game state back to the request
-                m_NeedsGameState = false;
-            }
-
-            bool shouldStepGame = false;
-            while (m_GameMessages.size() > 0)
-            {
-                GameMessage msg = m_GameMessages.back();
-                m_GameMessages.pop_back();
-
-                std::cout << "Applying game message!" << std::endl;
-                switch (msg.type)
+            case GameMessageType::Reset:
                 {
-                    case GameMessageType::Reset:
-                        {
-                            if (isGameStarted)
-                            {
-                                EndGame();
-                            }
+                    if (isGameStarted)
+                    {
+                        EndGame();
+                    }
 
-                            m_GameConfig.nonVisual = nonVisual;
-                            const bool saveReplay = !m_GameConfig.nonVisual;
-                            g_Game = new CGame(m_GameConfig.nonVisual, saveReplay);
+                    m_GameConfig.nonVisual = nonVisual;
+                    const bool saveReplay = !m_GameConfig.nonVisual;
+                    g_Game = new CGame(m_GameConfig.nonVisual, saveReplay);
 
-                            ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-                            JSContext* cx = scriptInterface.GetContext();
-                            JS::RootedValue attrs(cx, m_GameConfig.toJSValue(scriptInterface));
+                    ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                    JSContext* cx = scriptInterface.GetContext();
+                    JS::RootedValue attrs(cx, m_GameConfig.toJSValue(scriptInterface));
 
-                            g_Game->SetPlayerID(m_GameConfig.playerID);
-                            g_Game->StartGame(&attrs, "");
+                    g_Game->SetPlayerID(m_GameConfig.playerID);
+                    g_Game->StartGame(&attrs, "");
 
-                            if (nonVisual)
-                            {
-                                LDR_NonprogressiveLoad();
-                                ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
-                                m_GameStates.push(GetGameState());  // Send the game state back to the request
-                            }
-                            else
-                            {
-                                JS::RootedValue initData(cx);
-                                scriptInterface.Eval("({})", &initData);
-                                scriptInterface.SetProperty(initData, "attribs", attrs);
+                    if (nonVisual)
+                    {
+                        LDR_NonprogressiveLoad();
+                        ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
+                        m_GameStates.push(GetGameState());  // Send the game state back to the request
+                    }
+                    else
+                    {
+                        JS::RootedValue initData(cx);
+                        scriptInterface.Eval("({})", &initData);
+                        scriptInterface.SetProperty(initData, "attribs", attrs);
 
-                                JS::RootedValue playerAssignments(cx);
-                                scriptInterface.Eval("({})", &playerAssignments);
-                                scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
+                        JS::RootedValue playerAssignments(cx);
+                        scriptInterface.Eval("({})", &playerAssignments);
+                        scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
 
-                                g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
-                                m_NeedsGameState = true;
-                            }
-                        }
-                        break;
-
-                    case GameMessageType::Command:
-                        if (!isGameStarted)
-                        {
-                            LOGERROR("Cannot apply game commands w/o running game. Ignoring...");
-                            continue;
-                        }
-
-                        const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-                        JSContext* cx = scriptInterface.GetContext();
-                        JS::RootedValue command(cx);
-                        scriptInterface.ParseJSON(msg.data, &command);
-                        g_Game->GetTurnManager()->PostCommand(command);
-                        shouldStepGame = true;
-                        break;
+                        g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
+                        m_NeedsGameState = true;
+                    }
                 }
-            }
+                break;
 
-            if (shouldStepGame)
-            {
-                g_Game->Update(DEFAULT_TURN_LENGTH_SP);
-                m_GameStates.push(GetGameState());  // Send the game state back to the request
-            }
+            case GameMessageType::Command:
+                if (!isGameStarted)
+                {
+                    LOGERROR("Cannot apply game commands w/o running game. Ignoring...");
+                    continue;
+                }
+
+                const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                JSContext* cx = scriptInterface.GetContext();
+                JS::RootedValue command(cx);
+                scriptInterface.ParseJSON(msg.data, &command);
+                g_Game->GetTurnManager()->PostCommand(command);
+                shouldStepGame = true;
+                break;
         }
+    }
 
-        std::string GetGameState()
-        {
-            const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-            const auto simContext = g_Game->GetSimulation2()->GetSimContext();
-            CmpPtr<ICmpAIInterface> cmpAIInterface(simContext.GetSystemEntity());
-            JSContext* cx = scriptInterface.GetContext();
-            JS::RootedValue state(cx);
-            cmpAIInterface->GetFullRepresentation(&state, true);
-            return scriptInterface.StringifyJSON(&state, false);
-        }
+    if (shouldStepGame)
+    {
+        g_Game->Update(DEFAULT_TURN_LENGTH_SP);
+        m_GameStates.push(GetGameState());  // Send the game state back to the request
+    }
+}
 
-        // TODO: Add a render method??
-        // TODO: Add a disconnect method??
-        // TODO: Add a setSpeed method??
-
-    private:
-        std::unique_ptr<grpc::Server> m_Server;
-        unsigned int m_Turn = 0;
-        std::mutex m_lock;
-        std::vector<GameMessage> m_GameMessages;
-        unbuffered_channel<std::string> m_GameStates;
-        bool m_NeedsGameState = false;
-        GameConfig m_GameConfig = GameConfig(L"scenario", L"Arcadia");
-        //unbuffered_channel<std::string> m_GameConfigs;
-};
+std::string RLInterface::GetGameState()
+{
+    const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+    const auto simContext = g_Game->GetSimulation2()->GetSimContext();
+    CmpPtr<ICmpAIInterface> cmpAIInterface(simContext.GetSystemEntity());
+    JSContext* cx = scriptInterface.GetContext();
+    JS::RootedValue state(cx);
+    cmpAIInterface->GetFullRepresentation(&state, true);
+    return scriptInterface.StringifyJSON(&state, false);
+}

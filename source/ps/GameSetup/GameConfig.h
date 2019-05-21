@@ -5,7 +5,7 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "rlinterface/RLAPI.grpc.pb.h"
+#include "rlinterface/proto/RLAPI.grpc.pb.h"
 
 enum NetworkGameType { Host, Client, Local };
 struct GameConfig {
