@@ -592,7 +592,8 @@ function setup_all_libs ()
     -- Add RLInterface
     -- TODO: Make this into an optional build flag?
     source_dirs = {
-        "rlinterface"
+        "rlinterface",
+        "rlinterface/proto"
     }
 	extern_libs = {
 		"boost",
