@@ -154,7 +154,14 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
 
     if (shouldStepGame)
     {
-        g_Game->Update(DEFAULT_TURN_LENGTH_SP);
+        if (nonVisual)
+        {
+            g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH_SP);
+        }
+        else
+        {
+            g_Game->Update(DEFAULT_TURN_LENGTH_SP);
+        }
         m_GameStates.push(GetGameState());  // Send the game state back to the request
     }
 }
