@@ -1,7 +1,7 @@
 #include "rlinterface/RLInterface.h"
 
 using grpc::ServerContext;
-using boost::fibers::unbuffered_channel;
+using boost::fibers::channel_op_status;
 
 grpc::Status RLInterface::Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) 
 {
@@ -14,7 +14,7 @@ grpc::Status RLInterface::Connect(ServerContext* context, const ConnectRequest* 
     }
 
     GameMessage msg = { GameMessageType::Reset };
-    m_GameMessages.push_back(msg);
+    m_GameMessages.push(msg);
 
     std::string state;
     std::cout << "Waiting for game state" << std::endl;
@@ -33,13 +33,15 @@ grpc::Status RLInterface::Step(ServerContext* context, const Actions* commands, 
     // Interactions with the game engine (g_Game) must be done in the main
     // thread as there are specific checks for this. We will pass our commands
     // to the main thread to be applied
+
+    GameMessage msg = { GameMessageType::Commands };
     const int size = commands->actions_size();
     for (int i = 0; i < size; i++) 
     {
         std::string json_cmd = commands->actions(i).content();
-        struct GameMessage msg = { GameMessageType::Command, json_cmd };
-        m_GameMessages.push_back(msg);
+        msg.data.push(json_cmd);
     }
+    m_GameMessages.push(msg);
     std::string state;
     m_GameStates.pop(state);
     obs->set_content(state);
@@ -57,7 +59,7 @@ grpc::Status RLInterface::Reset(ServerContext* context, const ResetRequest* req,
         m_GameConfig = GameConfig::from(req->scenario());
     }
     struct GameMessage msg = { GameMessageType::Reset };
-    m_GameMessages.push_back(msg);
+    m_GameMessages.push(msg);
 
     std::string state;
     m_GameStates.pop(state);
@@ -86,12 +88,9 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
         m_NeedsGameState = false;
     }
 
-    bool shouldStepGame = false;
-    while (m_GameMessages.size() > 0)
+    GameMessage msg;
+    while (m_GameMessages.try_pop(msg) == channel_op_status::success)
     {
-        GameMessage msg = m_GameMessages.back();
-        m_GameMessages.pop_back();
-
         std::cout << "Applying game message!" << std::endl;
         switch (msg.type)
         {
@@ -134,7 +133,7 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
                 }
                 break;
 
-            case GameMessageType::Command:
+            case GameMessageType::Commands:
                 if (!isGameStarted)
                 {
                     LOGERROR("Cannot apply game commands w/o running game. Ignoring...");
@@ -142,26 +141,34 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
                 }
 
                 const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-                JSContext* cx = scriptInterface.GetContext();
-                JS::RootedValue command(cx);
-                scriptInterface.ParseJSON(msg.data, &command);
-                g_Game->GetTurnManager()->PostCommand(command);
-                shouldStepGame = true;
+                // Apply the commands
+                while (msg.data.size() > 0) 
+                {
+                    std::string json_cmd = msg.data.front();
+                    msg.data.pop();
+
+                    JSContext* cx = scriptInterface.GetContext();
+                    JS::RootedValue command(cx);
+                    std::cout << json_cmd << std::endl;
+                    scriptInterface.ParseJSON(json_cmd, &command);
+                    g_Game->GetTurnManager()->PostCommand(command);
+                }
+
+                // Step the game engine
+                const double deltaRealTime = DEFAULT_TURN_LENGTH_SP;
+                if (nonVisual)
+                {
+                    const double deltaSimTime = deltaRealTime * g_Game->GetSimRate();
+                    size_t maxTurns = (size_t)g_Game->GetSimRate();
+                    g_Game->GetTurnManager()->Update(deltaSimTime, maxTurns);
+                }
+                else
+                {
+                    g_Game->Update(deltaRealTime);
+                }
+                m_GameStates.push(GetGameState());  // Send the game state back to the request
                 break;
         }
-    }
-
-    if (shouldStepGame)
-    {
-        if (nonVisual)
-        {
-            g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH_SP);
-        }
-        else
-        {
-            g_Game->Update(DEFAULT_TURN_LENGTH_SP);
-        }
-        m_GameStates.push(GetGameState());  // Send the game state back to the request
     }
 }
 

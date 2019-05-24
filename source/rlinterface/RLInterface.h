@@ -1,7 +1,7 @@
 #ifndef INCLUDED_RLINTERFACE
 #define INCLUDED_RLINTERFACE
 #include <mutex>
-#include <vector>
+#include <queue>
 #include <grpc/grpc.h>
 #include <grpcpp/server.h>
 #include <grpcpp/server_builder.h>
@@ -22,14 +22,16 @@
 #include "ps/GameSetup/GameConfig.h"
 #include "ps/ThreadUtil.h"
 #include <boost/fiber/unbuffered_channel.hpp>
+#include <boost/fiber/buffered_channel.hpp>
 
 using grpc::ServerContext;
 using boost::fibers::unbuffered_channel;
+using boost::fibers::buffered_channel;
 
-enum GameMessageType { Reset, Command };
+enum GameMessageType { Reset, Commands };
 struct GameMessage {
     GameMessageType type;
-    std::string data;
+    std::queue<std::string> data;
 };
 extern void EndGame();
 
@@ -50,7 +52,7 @@ class RLInterface final : public RLAPI::Service
         std::unique_ptr<grpc::Server> m_Server;
         unsigned int m_Turn = 0;
         std::mutex m_lock;
-        std::vector<GameMessage> m_GameMessages;
+        buffered_channel<GameMessage> m_GameMessages{2};
         unbuffered_channel<std::string> m_GameStates;
         bool m_NeedsGameState = false;
         GameConfig m_GameConfig = GameConfig(L"scenario", L"Arcadia");
