@@ -731,7 +731,7 @@ function leaveGame(willRejoin)
 
 	// Before ending the game
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
-	let simData = getReplayMetadata();
+	let simData = Engine.getReplayMetadata();
 	let playerID = Engine.GetPlayerID();
 
 	Engine.EndGame();

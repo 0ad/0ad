@@ -31,6 +31,7 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "simulation2/scripting/JSInterface_Simulation.h"
 
 /**
  * Used for script-only message types.
@@ -69,6 +70,7 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 	if (!skipScriptFunctions)
 	{
 		JSI_VFS::RegisterScriptFunctions_Simulation(m_ScriptInterface);
+        m_ScriptInterface.RegisterFunction<JS::Value, JSI_Simulation::GetInitAttributes>("GetInitAttributes");
 		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_RegisterComponentType> ("RegisterComponentType");
 		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_RegisterSystemComponentType> ("RegisterSystemComponentType");
 		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_ReRegisterComponentType> ("ReRegisterComponentType");

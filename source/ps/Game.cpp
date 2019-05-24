@@ -75,7 +75,8 @@ CGame::CGame(bool disableGraphics, bool replayLog):
 	m_ViewedPlayerID(-1),
 	m_IsSavedGame(false),
 	m_IsVisualReplay(false),
-	m_ReplayStream(NULL)
+	m_ReplayStream(NULL),
+    m_IsSavingReplay(replayLog)
 {
 	// TODO: should use CDummyReplayLogger unless activated by cmd-line arg, perhaps?
 	if (replayLog)
