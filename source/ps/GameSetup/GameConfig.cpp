@@ -172,6 +172,7 @@ GameConfig GameConfig::from (const ScenarioConfig& msg)
         config.difficulties.push_back(std::make_tuple(playerID, difficulty));
     }
 
+    config.saveReplay = msg.savereplay();
     return config;
 }
 

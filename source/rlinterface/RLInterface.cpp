@@ -103,8 +103,7 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
                     }
 
                     m_GameConfig.nonVisual = nonVisual;
-                    const bool saveReplay = !m_GameConfig.nonVisual;
-                    g_Game = new CGame(m_GameConfig.nonVisual, saveReplay);
+                    g_Game = new CGame(m_GameConfig.nonVisual, m_GameConfig.saveReplay);
 
                     ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
                     JSContext* cx = scriptInterface.GetContext();

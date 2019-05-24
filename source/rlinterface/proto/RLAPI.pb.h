@@ -990,6 +990,12 @@ class ScenarioConfig final :
   float gamespeed() const;
   void set_gamespeed(float value);
 
+  // bool saveReplay = 11;
+  void clear_savereplay();
+  static const int kSaveReplayFieldNumber = 11;
+  bool savereplay() const;
+  void set_savereplay(bool value);
+
   // @@protoc_insertion_point(class_scope:ScenarioConfig)
  private:
   class HasBitSetters;
@@ -1005,6 +1011,7 @@ class ScenarioConfig final :
   ::google::protobuf::uint32 seed_;
   ::google::protobuf::uint32 aiseed_;
   float gamespeed_;
+  bool savereplay_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -1633,6 +1640,20 @@ inline const ::google::protobuf::RepeatedPtrField< ::AIPlayer >&
 ScenarioConfig::players() const {
   // @@protoc_insertion_point(field_list:ScenarioConfig.players)
   return players_;
+}
+
+// bool saveReplay = 11;
+inline void ScenarioConfig::clear_savereplay() {
+  savereplay_ = false;
+}
+inline bool ScenarioConfig::savereplay() const {
+  // @@protoc_insertion_point(field_get:ScenarioConfig.saveReplay)
+  return savereplay_;
+}
+inline void ScenarioConfig::set_savereplay(bool value) {
+  
+  savereplay_ = value;
+  // @@protoc_insertion_point(field_set:ScenarioConfig.saveReplay)
 }
 
 #ifdef __GNUC__

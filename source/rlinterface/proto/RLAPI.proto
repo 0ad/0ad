@@ -43,6 +43,7 @@ message ScenarioConfig {
 	uint32 aiseed = 8;
     float gameSpeed = 9;
     repeated AIPlayer players = 10;
+    bool saveReplay = 11;
     //std::vector<std::tuple<int, int>> teams;
     //int32 ceasefire;
     //std::vector<std::tuple<int, int>> difficulties;
