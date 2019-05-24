@@ -13,6 +13,7 @@
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
+# mljungberg10 <mikael.ljungberg@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2019
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # Simon Österberg <simon.osterberg@gmail.com>, 2015
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-10 15:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-23 17:59+0000\n"
+"Last-Translator: mljungberg10 <mikael.ljungberg@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,7 +350,7 @@ msgstr "Övningsspis"
 
 #: simulation/templates/template_structure_military_range.xml:23
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Träna medborgarsoldat distans infanteri. Forska fram träningsförbättringar."
+msgstr "Träna medborgarsoldat distansinfanteri. Forska fram träningsförbättringar."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
@@ -363,7 +364,7 @@ msgstr "Belägrings Verkstad"
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
-msgstr "Bygg belägringsmotorer för att förstöra dina motståndares byggnader. Forskning belägringsteknik för att förbättra effektiviteten av dessa vapen."
+msgstr "Bygg belägringsvapen för att förstöra dina motståndares byggnader. Forska kring belägringsteknik för att förbättra effektiviteten av dessa vapen."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -396,7 +397,7 @@ msgstr "Åker"
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr ""
+msgstr "Skörda grödor för mat. Varje ny samlare arbetar mindre effektivt än föregående."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
@@ -549,7 +550,7 @@ msgstr "Träna hjältar. Forska fram unika teknologier."
 #: simulation/templates/structures/mace_royal_stoa.xml:5
 #: simulation/templates/structures/spart_royal_stoa.xml:12
 msgid "Stoá"
-msgstr ""
+msgstr "Stoá"
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
@@ -959,7 +960,7 @@ msgstr "Rekrytera nakna fanatiker."
 
 #: simulation/templates/structures/gaul_theatron.xml:6
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "Prinsförsamling"
 
 #: simulation/templates/structures/gaul_theatron.xml:7
 msgid "Remogantion"
@@ -1070,7 +1071,7 @@ msgstr "Blemmye Läger"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Train Blemmye Desert Raiders."
-msgstr "Träna Blemmye Ökenanfallare."
+msgstr "Träna Blemmye-plundrare."
 
 #: simulation/templates/structures/kush_civil_centre.xml:9
 msgid "Pr-nsw"
@@ -1142,11 +1143,11 @@ msgstr "Pyramid"
 
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 msgid "Large Pyramid"
-msgstr "StorPyramid"
+msgstr "Stor pyramid"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:27
 msgid "Small Pyramid"
-msgstr "LitenPyramid"
+msgstr "Liten pyramid"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:28
 msgid "mr"
@@ -1178,7 +1179,7 @@ msgstr "wd3t"
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
-msgstr "Tempel av Apedemak"
+msgstr "Apedemaks tempel"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-‘Iprmk"
@@ -1192,7 +1193,7 @@ msgstr "Träna präster för att läka dina trupper. Träna Meroitiska Tempelvak
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
-msgstr "Stora Templet av Amun"
+msgstr "Amuns stora tempel"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-‘Imn"
@@ -1425,7 +1426,7 @@ msgstr "Nāvašta"
 
 #: simulation/templates/structures/pers_elephant_stables.xml:5
 msgid "Persian Elephant Stables"
-msgstr "Persiska elefantstall"
+msgstr "Persiskt elefantstall"
 
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
@@ -1607,7 +1608,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Billig baracker-liknande struktur som är byggbar i neutralt territorium, men som inte har något territorieinflytande. Utbilda legosoldater."
+msgstr "Billig barackliknande struktur som kan byggas i neutralt territorium, men som inte har något territorieinflytande. Utbilda legosoldater."
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
@@ -1835,7 +1836,7 @@ msgstr "Liménas"
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr "Seleukidiska elefantstall"
+msgstr "Seleukidiskt elefantstall"
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
