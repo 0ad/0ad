@@ -1,16 +1,20 @@
 local m = {}
-m._VERSION = "1.0.0-dev"
+m._VERSION = "1.1.0-dev"
 
 local function os_capture(cmd)
 	return io.popen(cmd, 'r'):read('*a'):gsub("\n", " ")
 end
 
-function m.add_includes(lib, alternative_cmd)
+function m.add_includes(lib, alternative_cmd, alternative_flags)
 	local result
 	if not alternative_cmd then
 		result = os_capture("pkg-config --cflags "..lib)
 	else
-		result = os_capture(alternative_cmd)
+		if not alternative_flags then
+			result = os_capture(alternative_cmd.." --cflags")
+		else
+			result = os_capture(alternative_cmd.." "..alternative_flags)
+		end
 	end
 
 	-- Small trick: delete the space after -include so that we can detect
@@ -35,12 +39,16 @@ function m.add_includes(lib, alternative_cmd)
 	buildoptions(options)
 end
 
-function m.add_links(lib, alternative_cmd)
+function m.add_links(lib, alternative_cmd, alternative_flags)
 	local result
 	if not alternative_cmd then
 		result = os_capture("pkg-config --libs "..lib)
 	else
-		result = os_capture(alternative_cmd)
+	if not alternative_flags then
+			result = os_capture(alternative_cmd.." --libs")
+		else
+			result = os_capture(alternative_cmd.." "..alternative_flags)
+		end
 	end
 
 	-- On OSX, wx-config outputs "-framework foo" instead of "-Wl,-framework,foo"

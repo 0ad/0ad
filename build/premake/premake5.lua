@@ -367,23 +367,6 @@ function project_set_build_flags()
 	end
 end
 
--- add X11 includes paths after all the others so they don't conflict with
--- bundled libs
-function project_add_x11_dirs()
-	if not os.istarget("windows") and not os.istarget("macosx") then
-		-- X11 includes may be installed in one of a gadzillion of five places
-		-- Famous last words: "You can't include too much! ;-)"
-		sysincludedirs {
-			"/usr/X11R6/include/X11",
-			"/usr/X11R6/include",
-			"/usr/local/include/X11",
-			"/usr/local/include",
-			"/usr/include/X11"
-		}
-		libdirs { "/usr/X11R6/lib" }
-	end
-end
-
 -- create a project and set the attributes that are common to all projects.
 function project_create(project_name, target_type)
 
@@ -528,7 +511,6 @@ function setup_static_lib_project (project_name, rel_source_dirs, extern_libs, e
 	project_create(project_name, target_type)
 	project_add_contents(source_root, rel_source_dirs, {}, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
-	project_add_x11_dirs()
 
 	if not extra_params["no_default_link"] then
 		table.insert(static_lib_names, project_name)
@@ -553,7 +535,6 @@ function setup_shared_lib_project (project_name, rel_source_dirs, extern_libs, e
 	project_create(project_name, target_type)
 	project_add_contents(source_root, rel_source_dirs, {}, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
-	project_add_x11_dirs()
 
 	if not extra_params["no_default_link"] then
 		table.insert(static_lib_names, project_name)
@@ -965,7 +946,6 @@ function setup_main_exe ()
 	}
 	project_add_contents(source_root, {}, {}, extra_params)
 	project_add_extern_libs(used_extern_libs, target_type)
-	project_add_x11_dirs()
 
 	dependson { "Collada" }
 
@@ -1063,7 +1043,6 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
-	project_add_x11_dirs()
 
 	-- Platform Specifics
 	if os.istarget("windows") then
@@ -1186,7 +1165,6 @@ function setup_atlas_frontend_project (project_name)
 
 	local target_type = get_main_project_target_type()
 	project_create(project_name, target_type)
-	project_add_x11_dirs()
 
 	local source_root = rootdir.."/source/tools/atlas/AtlasFrontends/"
 	files { source_root..project_name..".cpp" }
@@ -1226,7 +1204,6 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 	extra_params["pch_dir"] = source_root
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
-	project_add_x11_dirs()
 
 	-- Platform Specifics
 	if os.istarget("windows") then
@@ -1370,7 +1347,6 @@ function setup_tests()
 
 	project_add_contents(source_root, {}, {}, extra_params)
 	project_add_extern_libs(used_extern_libs, target_type)
-	project_add_x11_dirs()
 
 	dependson { "Collada" }
 

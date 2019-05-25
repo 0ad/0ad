@@ -41,10 +41,10 @@
 
 #define Cursor X__Cursor
 
-#include <Xlib.h>
+#include <X11/Xlib.h>
 #include <stdlib.h>
-#include <Xatom.h>
-#include <Xcursor/Xcursor.h>
+#include <X11/Xatom.h>
+#include <X11/Xcursor/Xcursor.h>
 
 #include "SDL.h"
 #include "SDL_syswm.h"
