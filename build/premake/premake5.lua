@@ -536,6 +536,8 @@ function setup_static_lib_project (project_name, rel_source_dirs, extern_libs, e
 
 	if os.istarget("windows") then
 		rtti "off"
+	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
+		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
 	end
 end
 
@@ -560,6 +562,8 @@ function setup_shared_lib_project (project_name, rel_source_dirs, extern_libs, e
 	if os.istarget("windows") then
 		rtti "off"
 		links { "delayimp" }
+	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
+		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
 	end
 end
 
@@ -1034,7 +1038,9 @@ function setup_main_exe ()
 
 		links { "pthread" }
 		links { "ApplicationServices.framework", "Cocoa.framework", "CoreFoundation.framework" }
-
+		if _OPTIONS["macosx-version-min"] then
+			xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
+		end
 	end
 end
 
@@ -1419,6 +1425,9 @@ function setup_tests()
 		filter { }
 
 		includedirs { source_root .. "pch/test/" }
+
+	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
+		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
 	end
 end
 
