@@ -78,6 +78,14 @@ Health.prototype.GetMaxHitpoints = function()
 	return this.maxHitpoints;
 };
 
+/**
+ * @return {boolean} Whether the units are injured. Dead units are not considered injured.
+ */
+Health.prototype.IsInjured = function()
+{
+	return this.hitpoints > 0 && this.hitpoints < this.GetMaxHitpoints();
+};
+
 Health.prototype.SetHitpoints = function(value)
 {
 	// If we're already dead, don't allow resurrection
@@ -94,7 +102,7 @@ Health.prototype.SetHitpoints = function(value)
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
-		cmpRangeManager.SetEntityFlag(this.entity, "injured", this.hitpoints < this.GetMaxHitpoints());
+		cmpRangeManager.SetEntityFlag(this.entity, "injured", this.IsInjured());
 
 	this.RegisterHealthChanged(old);
 };
@@ -107,8 +115,7 @@ Health.prototype.IsRepairable = function()
 Health.prototype.IsUnhealable = function()
 {
 	return this.template.Unhealable == "true" ||
-		this.GetHitpoints() <= 0 ||
-		this.GetHitpoints() >= this.GetMaxHitpoints();
+		this.hitpoints <= 0 || !this.IsInjured();
 };
 
 Health.prototype.GetIdleRegenRate = function()
@@ -144,8 +151,8 @@ Health.prototype.CheckRegenTimer = function()
 {
 	// check if we need a timer
 	if (this.GetRegenRate() == 0 && this.GetIdleRegenRate() == 0 ||
-	    this.GetHitpoints() == this.GetMaxHitpoints() && this.GetRegenRate() >= 0 && this.GetIdleRegenRate() >= 0 ||
-	    this.GetHitpoints() == 0)
+	    !this.IsInjured() && this.GetRegenRate() >= 0 && this.GetIdleRegenRate() >= 0 ||
+	    this.hitpoints == 0)
 	{
 		// we don't need a timer, disable if one exists
 		if (this.regenTimer)
@@ -199,7 +206,7 @@ Health.prototype.Reduce = function(amount)
 	}
 
 	// If we are not marked as injured, do it now
-	if (this.hitpoints == this.GetMaxHitpoints())
+	if (!this.IsInjured())
 	{
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager)
@@ -256,7 +263,7 @@ Health.prototype.Increase = function(amount)
 	if (cmpFogging)
 		cmpFogging.Activate();
 
-	if (this.hitpoints == this.GetMaxHitpoints())
+	if (!this.IsInjured())
 		return { "old": this.hitpoints, "new": this.hitpoints };
 
 	// If we're already dead, don't allow resurrection
@@ -266,7 +273,7 @@ Health.prototype.Increase = function(amount)
 	let old = this.hitpoints;
 	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
 
-	if (this.hitpoints == this.GetMaxHitpoints())
+	if (!this.IsInjured())
 	{
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager)
@@ -350,7 +357,7 @@ Health.prototype.UpdateActor = function()
 {
 	if (!this.template.DamageVariants)
 		return;
-	let ratio = this.GetHitpoints() / this.GetMaxHitpoints();
+	let ratio = this.hitpoints / this.GetMaxHitpoints();
 	let newDamageVariant = "alive";
 	if (ratio > 0)
 	{
@@ -386,7 +393,7 @@ Health.prototype.OnValueModification = function(msg)
 	let newMaxHitpoints = ApplyValueModificationsToEntity("Health/Max", +this.template.Max, this.entity);
 	if (oldMaxHitpoints != newMaxHitpoints)
 	{
-		let newHitpoints = this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints;
+		let newHitpoints = this.hitpoints * newMaxHitpoints/oldMaxHitpoints;
 		this.maxHitpoints = newMaxHitpoints;
 		this.SetHitpoints(newHitpoints);
 	}
