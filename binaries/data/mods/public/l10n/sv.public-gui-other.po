@@ -11,6 +11,7 @@
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
+# mljungberg10 <mikael.ljungberg@gmail.com>, 2019
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # pilino1234 <pilino1234@zoho.eu>, 2017-2018
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-05-23 18:16+0000\n"
+"Last-Translator: mljungberg10 <mikael.ljungberg@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -553,43 +554,43 @@ msgstr "Dålig anslutning till %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Det här orsakas ofta av att UDP-porten 20595 är blockerad från värdsidan, av en brandvägg, eller ett antivirusprogram."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Värden har avslutat spelet."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Felaktigt version för nätverksprotokollet."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Spelet laddar, var snäll försök igen senare."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Spelet har redan inletts, inga observatörer är tillåtna."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Du är utsparkad."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Du är förbjuden."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Användarnamnet används. Om du blivit bortkopplad, försök igen om ett par sekunder."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Servern är full."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Säker lobbyautentisering misslyckades. Anslut via lobby."
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -3237,11 +3238,11 @@ msgstr "Rankikon ovanför statusfältet"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Visa erfarenhetsstatus ovanför varje vald enhet."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Erfarenhetsstatus"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
