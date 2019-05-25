@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -816,6 +816,8 @@ void CComponentManager::AddMockComponent(CEntityHandle ent, InterfaceId iid, ICo
 
 CEntityHandle CComponentManager::AllocateEntityHandle(entity_id_t ent)
 {
+	ENSURE(!EntityExists(ent));
+
 	// Interface IDs start at 1, and SEntityComponentCache is defined with a 1-sized array,
 	// so we need space for an extra m_InterfaceIdsByName.size() items
 	SEntityComponentCache* cache = (SEntityComponentCache*)calloc(1,
@@ -823,7 +825,6 @@ CEntityHandle CComponentManager::AllocateEntityHandle(entity_id_t ent)
 	ENSURE(cache != NULL);
 	cache->numInterfaces = m_InterfaceIdsByName.size() + 1;
 
-	ENSURE(m_ComponentCaches.find(ent) == m_ComponentCaches.end());
 	m_ComponentCaches[ent] = cache;
 
 	return CEntityHandle(ent, cache);
@@ -896,6 +897,12 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 	return ent;
 }
 
+bool CComponentManager::EntityExists(entity_id_t ent) const
+{
+	return m_ComponentCaches.find(ent) != m_ComponentCaches.end();
+}
+
+
 void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
 {
 	m_DestructionQueue.push_back(ent);
@@ -914,6 +921,11 @@ void CComponentManager::FlushDestroyedComponents()
 		for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
 		{
 			entity_id_t ent = *it;
+
+			// Do nothing if invalid, destroyed, etc.
+			if (!EntityExists(ent))
+				continue;
+
 			CEntityHandle handle = LookupEntityHandle(ent);
 
 			CMessageDestroy msg(ent);
