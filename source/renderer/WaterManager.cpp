@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -256,7 +256,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
 	// Create depth textures
 	glGenTextures(1, &m_ReflFboDepthTexture);

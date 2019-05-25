@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1135,7 +1135,9 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	camera.m_Orientation.Scale(1, -1, 1);
 	camera.m_Orientation.Translate(0, 2*wm.m_WaterHeight, 0);
 	camera.UpdateFrustum(scissor);
-	camera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight));
+	// Clip slightly above the water to improve reflections of objects on the water
+	// when the reflections are distorted.
+	camera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight + 2.0f));
 
 	SViewPort vp;
 	vp.m_Height = wm.m_RefTextureSize;
