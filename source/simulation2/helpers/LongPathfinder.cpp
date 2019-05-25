@@ -719,7 +719,10 @@ void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, enti
 	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
 	PathfinderState state = { 0 };
 
-	if (m_UseJPSCache && m_JumpPointCache.find(passClass) == m_JumpPointCache.end())
+	std::map<pass_class_t, shared_ptr<JumpPointCache> >::const_iterator it = m_JumpPointCache.find(passClass);
+	state.jpc = it->second.get();
+
+	if (m_UseJPSCache && !state.jpc)
 	{
 		state.jpc = new JumpPointCache;
 		state.jpc->reset(m_Grid, passClass);
