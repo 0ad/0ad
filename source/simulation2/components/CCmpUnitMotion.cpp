@@ -651,7 +651,7 @@ private:
 	 * Returns whether we are close enough to the target to assume it's a good enough
 	 * position to stop.
 	 */
-	bool ShouldConsiderOurselvesAtDestination(const CFixedVector2D& from);
+	bool CloseEnoughFromDestinationToStop(const CFixedVector2D& from) const;
 
 	/**
 	 * Returns whether the length of the given path, plus the distance from
@@ -780,8 +780,15 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-			if (ShouldConsiderOurselvesAtDestination(pos))
+			if (CloseEnoughFromDestinationToStop(pos))
+			{
+				StopMoving();
+				MoveSucceeded();
+
+				if (m_FacePointAfterMove)
+					FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
 				return;
+			}
 
 			UpdateFinalGoal();
 			RequestLongPath(pos, m_FinalGoal);
@@ -960,8 +967,16 @@ void CCmpUnitMotion::Move(fixed dt)
 			// This is when we might easily get stuck wrongly.
 
 			// check if we've arrived.
-			if (ShouldConsiderOurselvesAtDestination(pos))
+			if (CloseEnoughFromDestinationToStop(pos))
+			{
+				StopMoving();
+				MoveSucceeded();
+
+				if (m_FacePointAfterMove)
+					FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
+
 				return;
+			}
 
 			// If we still have long waypoints, try and compute a short path
 			// This will get us around units, amongst others.
@@ -1220,16 +1235,10 @@ void CCmpUnitMotion::UpdateFinalGoal()
 	m_FinalGoal.z = targetPos.Y;
 }
 
-bool CCmpUnitMotion::ShouldConsiderOurselvesAtDestination(const CFixedVector2D& from)
+bool CCmpUnitMotion::CloseEnoughFromDestinationToStop(const CFixedVector2D& from) const
 {
 	if (m_TargetEntity != INVALID_ENTITY || m_FinalGoal.DistanceToPoint(from) > SHORT_PATH_GOAL_RADIUS)
 		return false;
-
-	StopMoving();
-	MoveSucceeded();
-
-	if (m_FacePointAfterMove)
-		FaceTowardsPointFromPos(from, m_FinalGoal.x, m_FinalGoal.z);
 	return true;
 }
 
