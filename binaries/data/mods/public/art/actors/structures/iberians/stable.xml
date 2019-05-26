@@ -2,20 +2,20 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/iber_stables.dae</mesh>
+    <variant frequency="1" name="Base">
+      <mesh>structural/iber_stable.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="geology/decal_stone_desert_b.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
-        <prop actor="props/structures/iberians/stables_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/stable_nature.xml" attachpoint="root"/>
         <prop actor="props/structures/iberians/stable_horse_a.xml" attachpoint="horse"/>
         <prop actor="props/structures/iberians/stable_horse_b.xml" attachpoint="horse_1"/>
         <prop actor="props/structures/iberians/stable_horse_c.xml" attachpoint="horse_2"/>
       </props>
       <textures>
         <texture file="structural/iber_struct.dds" name="baseTex"/>
-        <texture file="structural/ao/iber_stables_ao.png" name="aoTex"/>
+        <texture file="structural/ao/iber_stable.png" name="aoTex"/>
         <texture file="structural/iber_struct_norm.png" name="normTex"/>
         <texture file="structural/iber_struct_spec.png" name="specTex"/>
       </textures>
@@ -33,10 +33,10 @@
     <variant frequency="1" name="alive"/>
     <variant name="death">
       <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+        <prop actor="geology/decal_stone_desert_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/stable_nature.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
