@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,10 +17,9 @@
 
 #include "lib/precompiled.h"	// common precompiled header
 
-// "test"-specific PCH:
-
 #if HAVE_PCH
 
+#include "simulation2/system/ComponentTest.h"
 #include "lib/self_test.h"
 #include <cxxtest/TestListener.h>
 #include <cxxtest/TestTracker.h>

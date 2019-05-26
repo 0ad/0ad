@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,5 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define MINIMAL_PCH 0
+#define MINIMAL_PCH 2
 #include "lib/precompiled.h"	// common precompiled header
+
+#if HAVE_PCH
+
+// These headers are included by almost all compilation units.
+#include "ps/CStr.h"
+#include "ps/ThreadUtil.h"
+
+#endif // HAVE_PCH
