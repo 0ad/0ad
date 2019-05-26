@@ -510,7 +510,7 @@ struct SquareSort
 	}
 };
 
-WaypointPath VertexPathfinder::ComputeShortPath(const AsyncShortPathRequest& request, CmpPtr<ICmpObstructionManager> cmpObstructionManager) const
+WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request, CmpPtr<ICmpObstructionManager> cmpObstructionManager) const
 {
 	PROFILE2("ComputeShortPath");
 

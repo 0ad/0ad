@@ -29,7 +29,7 @@
 
 typedef u16 pass_class_t;
 
-struct AsyncLongPathRequest
+struct LongPathRequest
 {
 	u32 ticket;
 	entity_pos_t x0;
@@ -39,7 +39,7 @@ struct AsyncLongPathRequest
 	entity_id_t notify;
 };
 
-struct AsyncShortPathRequest
+struct ShortPathRequest
 {
 	u32 ticket;
 	entity_pos_t x0;

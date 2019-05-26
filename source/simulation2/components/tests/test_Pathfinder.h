@@ -214,7 +214,7 @@ public:
 		}
 
 		PathGoal goal = { PathGoal::POINT, range, range };
-		WaypointPath path = cmpPathfinder->ComputeShortPath(AsyncShortPathRequest{ 0, range/3, range/3, fixed::FromInt(2), range, goal, 0, false, 0, 0 });
+		WaypointPath path = cmpPathfinder->ComputeShortPath(ShortPathRequest{ 0, range/3, range/3, fixed::FromInt(2), range, goal, 0, false, 0, 0 });
 		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
 			printf("# %d: %f %f\n", (int)i, path.m_Waypoints[i].x.ToFloat(), path.m_Waypoints[i].z.ToFloat());
 	}
