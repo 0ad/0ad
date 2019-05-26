@@ -2,6 +2,22 @@ function Attack() {}
 
 var g_AttackTypes = ["Melee", "Ranged", "Capture"];
 
+Attack.prototype.statusEffectsSchema =
+	"<optional>" +
+		"<element name='StatusEffects' a:help='Effects like poisioning or burning a unit.'>" +
+			"<oneOrMore>" +
+				"<element>" +
+					"<anyName/>" +
+					"<interleave>" +
+							"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Interval' a:help='Interval between the occurances of the effect.'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Damage' a:help='Damage caused by the effect.'><ref name='nonNegativeDecimal'/></element>" +
+					"</interleave>" +
+				"</element>" +
+			"</oneOrMore>" +
+		"</element>" +
+	"</optional>";
+
 Attack.prototype.bonusesSchema =
 	"<optional>" +
 		"<element name='Bonuses'>" +
@@ -187,6 +203,7 @@ Attack.prototype.Schema =
 						"</optional>" +
 					"</interleave>" +
 				"</element>" +
+				Attack.prototype.statusEffectsSchema +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
@@ -577,7 +594,8 @@ Attack.prototype.PerformAttack = function(type, target)
 			"bonus": this.GetBonusTemplate(type),
 			"isSplash": false,
 			"attackerOwner": attackerOwner,
-			"attackImpactSound": attackImpactSound
+			"attackImpactSound": attackImpactSound,
+			"statusEffects": this.template[type].StatusEffects
 		};
 		if (this.template[type].Splash)
 		{
