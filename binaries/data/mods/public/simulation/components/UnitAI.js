@@ -1426,7 +1426,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 			var cmpHealth = Engine.QueryInterface(this.isGuardOf, IID_Health);
 			if (cmpIdentity && cmpIdentity.HasClass("Support") &&
-			    cmpHealth && cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints())
+			    cmpHealth && cmpHealth.IsInjured())
 			{
 				if (this.CanHeal(this.isGuardOf))
 					this.PushOrderFront("Heal", { "target": this.isGuardOf, "force": false });
@@ -1716,7 +1716,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						// if nothing better to do, check if the guarded needs to be healed or repaired
 						var cmpHealth = Engine.QueryInterface(this.isGuardOf, IID_Health);
-						if (cmpHealth && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints()))
+						if (cmpHealth && cmpHealth.IsInjured())
 						{
 							if (this.CanHeal(this.isGuardOf))
 								this.PushOrderFront("Heal", { "target": this.isGuardOf, "force": false });

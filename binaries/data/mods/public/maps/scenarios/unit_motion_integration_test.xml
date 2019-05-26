@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="6">
+	<Terrain patches="10" texture="grass1_spring" priority="0" height="800"/>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColor r="0.749020" g="0.749020" b="0.749020"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>ocean</Type>
+				<Color r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Waviness>4.0</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="300" y="300" z="-100"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+	{
+		"Name": "Unit Motion Integration Test",
+		"Description": "This map is designed to test some basic unit movement cases. It will involve unitAI, unitMotion and the relevant pathfinders and thus acts as an integrated test map. Look for things such as stuck units, wrong animations, and weird pathing.",
+  		"CircularMap": true,
+  		"Keywords": [
+  			"trigger",
+  			"demo"
+  		],
+		"PlayerData":
+		[
+			{
+				"Civ": "athen"
+			},
+			{
+				"Civ": "athen"
+			}
+		],
+		"RevealMap": true,
+		"VictoryConditions": [
+			"conquest"
+		],
+		"TriggerScripts": [
+			"scripts/TriggerHelper.js",
+			"scenarios/unit_motion_integration_test.js"
+		]
+	}
+	]]></ScriptSettings>
+	<Entities>
+		<Entity uid="5">
+			<Template>structures/athen_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="500" z="500"/>
+		</Entity>
+	</Entities>
+</Scenario>

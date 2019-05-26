@@ -254,7 +254,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.hitpoints = cmpHealth.GetHitpoints();
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
-		ret.needsRepair = cmpHealth.IsRepairable() && cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints();
+		ret.needsRepair = cmpHealth.IsRepairable() && cmpHealth.IsInjured();
 		ret.needsHeal = !cmpHealth.IsUnhealable();
 	}
 
