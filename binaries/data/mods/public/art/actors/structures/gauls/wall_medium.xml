@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="celt wall short">
-      <mesh>structural/celt_wall_short.dae</mesh>
+    <variant frequency="1" name="Base">
+      <mesh>structural/gaul_wall_medium.dae</mesh>
       <textures>
-	    <texture file="structural/celt_murus.png" name="baseTex"/>
-	    <texture file="structural/celt_murus_norm.png" name="normTex"/>
-	    <texture file="structural/celt_murus_spec.png" name="specTex"/>
-		<texture file="structural/ao/celt_wall_short.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/celt_murus.png" name="baseTex"/>
+        <texture file="structural/celt_murus_norm.png" name="normTex"/>
+        <texture file="structural/celt_murus_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_wall_medium.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
