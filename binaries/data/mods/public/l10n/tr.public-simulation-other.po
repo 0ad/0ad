@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-03-27 12:09+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-25 05:17+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -248,8 +248,8 @@ msgstr "%(_player_)s, bana bir ittifak kabul etmeden önce  %(_amount_)s %(_reso
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "%(_amount_)s %(_resource_)s,  göndermediğiniz sürece, bir ittifak oluşturulmayacak, %(_player_)s,"
+" %(_player_)s."
+msgstr "Bana %(_amount_)s %(_resource_)s göndermediğin sürece, seninle bir ittifakımız olmayacak %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -613,7 +613,7 @@ msgstr "Birim(ler) garnizondan çıkarılamıyor."
 msgid "Some unit(s) can't go back to work"
 msgstr "Bazı birim(ler) çalışmaya geri dönemiyor"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Bu yapının teknoloji gereksinimleri karşılanamamaktadır."
 

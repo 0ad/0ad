@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-21 20:35+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2019-05-27 02:05+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +175,7 @@ msgstr "원거리"
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:30
 msgid "Archer"
-msgstr "궁병"
+msgstr "궁수"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:25
 msgid "Cavalry Archer"
@@ -248,7 +248,7 @@ msgstr "대표전사 보병"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:32
 msgid "Champion Archer"
-msgstr "대표전사 궁병"
+msgstr "대표전사 궁수"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:32
 msgid "Champion Skirmisher"
@@ -349,7 +349,7 @@ msgstr "지원"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 msgid "Hero Archer"
-msgstr "영웅 궁병"
+msgstr "영웅 궁수"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 msgid "Hero Skirmisher"
@@ -427,7 +427,7 @@ msgstr "군함"
 #: simulation/templates/template_unit_ship_trireme.xml:56
 #: simulation/templates/template_unit_siege_tower.xml:59
 msgid "Garrison units for transport and to increase firepower."
-msgstr "수비대가 수송과 화력을 증가시킵니다."
+msgstr "수비대가 수송과 화력을 증가합니다."
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Fire Ship"
@@ -441,7 +441,7 @@ msgstr "화공선"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr "적함의 내구력을 빠르게 하락시킵니다. 불타고 있으므로 서서히 내구력을 잃어가갑니다. 그러므로 화공선을 서둘러 사용해야합니다."
+msgstr "적함의 내구력을 빠르게 하락합니다. 불타고 있으므로 서서히 내구력을 잃어가갑니다. 그러므로 화공선을 서둘러 사용해야합니다."
 
 #: simulation/templates/template_unit_ship_fishing.xml:35
 #: simulation/templates/units/kush_ship_fishing.xml:5
@@ -782,7 +782,7 @@ msgstr "에피바테스 아데나이오스"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
-msgstr "스키타이 궁병"
+msgstr "스키타이 궁수"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 #: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:22
@@ -1200,7 +1200,7 @@ msgstr "마하르바알"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:14
 msgid "Mauritanian Archer"
-msgstr "모리타니아 궁병"
+msgstr "모리타니아 궁수"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Qešet"
@@ -1321,7 +1321,7 @@ msgstr "갈리아 귀족 기병"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
-msgstr "갈리크 브리헨트??"
+msgstr "갈리아 브리헨트"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:16
 msgid "Naked Fanatic"
@@ -1864,11 +1864,11 @@ msgstr "비샤 카냐"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:6
 msgid "Maiden Guard Archer"
-msgstr "처녀 수비 궁병"
+msgstr "처녀 수비 궁수"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:32
 msgid "Elephant Archer"
-msgstr "코끼리 궁병"
+msgstr "코끼리 궁수"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:36
 msgid "Vachii Gaja"
@@ -1906,7 +1906,7 @@ msgstr "찬드라굽타 마우리아"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:12
 msgid "Longbowman"
-msgstr "장궁병"
+msgstr "장궁수"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Dhanurdhar"
@@ -2106,7 +2106,7 @@ msgstr "끄샤야르샤 1세"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:15
 msgid "Sogdian Archer"
-msgstr "소그드 궁병"
+msgstr "소그드 궁수"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:16
 msgid "Sugda Vaçabara"
@@ -2641,7 +2641,7 @@ msgstr "셀레우코스 1세 니카토르"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:19
 msgid "Syrian Archer"
-msgstr "시리아 궁병"
+msgstr "시리아 궁수"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:20
 msgid "Toxótēs Syrías"

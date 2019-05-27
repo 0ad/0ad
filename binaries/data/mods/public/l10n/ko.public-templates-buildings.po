@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-21 19:53+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2019-05-27 02:02+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +83,7 @@ msgstr "작은 도시"
 
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
-msgstr "인구 한계를 늘리십시오."
+msgstr "인구 한계를 늘립니다."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
@@ -107,7 +107,7 @@ msgstr "집"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr "치료사를 훈련합니다. 유닛이 안에 들어갈 시 치료합니다. (1초당 3 체력). 치료 기술과 종교적 향상을 연구합니다."
+msgstr "치료사를 양성합니다. 유닛이 주둔하면 치료합니다. (1초당 3체력). 치료 기술과 종교적 향상을 연구합니다."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -125,7 +125,7 @@ msgstr "목조 방벽"
 #: simulation/templates/template_structure_defensive_palisade.xml:22
 #: simulation/templates/template_structure_defensive_wall.xml:27
 msgid "Wall off your town for a stout defense."
-msgstr "강력한 방어를 위해 마을을 보호하십시오.(번역확인??)"
+msgstr "튼튼한 방어를 위해 마을에 벽을 쌓습니다."
 
 #: simulation/templates/template_structure_defensive_tower.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:36
@@ -137,7 +137,7 @@ msgstr "방어탑"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "지도의 지역을 정찰하기 위해 중립지역과 자신의 영내에 지으십시오. 중립지역에서는 점차 가이아로 바뀝니다."
+msgstr "지도의 지역을 정찰하기 위해 중립 지역과 자신의 영토에 짓습니다. 중립 지역에서는 점차 가이아로 바뀝니다."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:27
@@ -157,7 +157,7 @@ msgstr "센트리타워"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "화살을 쏩니다. 주둔지에 추가 방어를 제공합니다. 발을 보호하기 위해 살인 구멍 or 근총안 기술이 필요합니다. 돌 탑으로 향상 할 수 있습니다.(번역확인??)"
+msgstr "화살을 쏩니다. 주둔지에 추가 방어를 제공합니다. 발을 보호하기 위해 근총안 기술이 필요합니다. 돌 탑으로 향상 할 수 있습니다."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -171,7 +171,7 @@ msgstr "방어 탑"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "화살을 발사 합니다. 주둔지에 추가 방어를 제공합니다. 발을 보호하기 위해 살인 구멍or 근총안 기술이 필요합니다. "
+msgstr "화살을 쏩니다. 주둔지에 추가 방어를 제공합니다. 발을 보호하기 위해 근총안 기술이 필요합니다. "
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "StoneTower"
@@ -209,7 +209,7 @@ msgstr "성벽 망루"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:63
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "화살을 쏩니다. 적으로부터 성벽을 보호하기 위해 군인들을 주둔시킵니다."
+msgstr "화살을 쏩니다. 적으로부터 성벽을 보호하기 위해 군인들을 주둔합니다."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -222,7 +222,7 @@ msgstr "경제 시설"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:32
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "식량을 놓는 곳입니다. 식량 증산을 위한 연구를 합니다."
+msgstr "식량을 수집하는 곳입니다. 식량 수집을 개선하기 위한 연구를 합니다."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:30
@@ -262,7 +262,7 @@ msgstr "군사 시설??"
 
 #: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "시민병을 훈련하며 훈련개선 연구를 진행합니다"
+msgstr "시민 군인을 양성하며 양성 개선 연구를 합니다."
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -276,11 +276,11 @@ msgstr "마구간"
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:8
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "시민 기병을 훈련하며 훈련개선 연구를 진행합니다."
+msgstr "시민 기병을 훈련하며 훈련 개선을 연구합니다."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 msgid "Research weapons and armor improvements."
-msgstr "무기와 방어구 향상 연구를 진행합니다."
+msgstr "무기와 방어구 향상을 연구합니다."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:27
 #: simulation/templates/template_structure_military_blacksmith.xml:23
@@ -343,7 +343,7 @@ msgstr "군견 훈련소"
 
 #: simulation/templates/template_structure_military_kennel.xml:41
 msgid "Train war dogs."
-msgstr "군견을 훈련합니다."
+msgstr "군견을 양성합니다."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -351,7 +351,7 @@ msgstr "연습 범위"
 
 #: simulation/templates/template_structure_military_range.xml:23
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "시민 군인을 훈련하며 훈련개선 연구를 진행합니다."
+msgstr "시민 군인을 양성하며 훈련 개선을 연구합니다."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
@@ -428,7 +428,7 @@ msgstr "그리스 극장"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "당신의 문명에 영광을 가져오고 제국의 영토를 넓히십시오."
+msgstr "당신의 문명에 영광을 가져오고 제국의 영토를 넓힙니다."
 
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/template_structure_wonder.xml:51
@@ -496,7 +496,7 @@ msgstr "에피테이키스마"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "공성무기를 만드십시오. 군인을 주둔시켜 방어를 견고하게 할 수 있습니다."
+msgstr "공성무기를 만듭니다. 군인을 주둔시켜 방어를 견고하게 할 수 있습니다."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -508,7 +508,7 @@ msgstr "김나지움"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
 msgid "Train champion units."
-msgstr "대표전사 유닛 훈련합니다."
+msgstr "대표전사 유닛 양성합니다."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -545,7 +545,7 @@ msgstr "프리타네이온"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
 msgid "Train heroes. Research special technologies."
-msgstr "영웅을 훈련시킵니다. 특수 기술을 연구 합니다."
+msgstr "영웅을 양성합니다. 특수 기술을 연구 합니다."
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -617,7 +617,7 @@ msgstr "나오스 파르테논"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "당신의 문명에 영광을 가져오고 제국의 영토를 넓히십시오. 수비대를 주둔시켜 신속하게 회복할수 있습니다."
+msgstr "당신의 문명에 영광을 가져오고 제국의 영토를 넓힙니다. 수비대를 주둔시켜 신속하게 회복할수 있습니다."
 
 #: simulation/templates/structures/baby_defense_tower.xml:5
 #: simulation/templates/structures/pers_defense_tower.xml:5
@@ -686,7 +686,7 @@ msgstr "두논"
 
 #: simulation/templates/structures/brit_fortress.xml:16
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "브리튼계 영웅들과 투사, 공성망치를 훈련합니다."
+msgstr "브리튼계 영웅들과 투사, 공성망치를 양산합니다."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:5
@@ -745,7 +745,7 @@ msgstr "두오리코스"
 #: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Rate"
-msgstr "비율"
+msgstr "라테"
 
 #: simulation/templates/structures/brit_wall_tower.xml:12
 #: simulation/templates/structures/gaul_wall_tower.xml:12
@@ -941,7 +941,7 @@ msgstr "리스소스"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "갈리아 영웅과 대표전사를 훈련시킵니다. 공성망치를 만드십시오."
+msgstr "갈리아 영웅과 대표전사를 양성합니다. 공성망치를 만듭니다."
 
 #: simulation/templates/structures/gaul_rotarymill.xml:5
 msgid "Brauon"
@@ -1028,7 +1028,7 @@ msgstr "구르 오로이가르리"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr "이 기념물ehsms기념비의 시야 안에 있는 모든 부대는 더 열심히 싸울 것입니다. 기념물의 영토에 있는 건물은 부패하지 않습니다."
+msgstr "이 기념물의 시야 안에 있는 모든 부대는 더 열심히 싸울 것입니다. 기념물의 영토에 있는 건물은 부패하지 않습니다."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1072,7 +1072,7 @@ msgstr "브렘몌 진영"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Train Blemmye Desert Raiders."
-msgstr "브렘몌 사막 도적을 훈련합니다."
+msgstr "브렘몌 사막 도적을 양성합니다."
 
 #: simulation/templates/structures/kush_civil_centre.xml:9
 msgid "Pr-nsw"
@@ -1121,7 +1121,7 @@ msgstr "누바인 마을"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr "누바인 몽둥이병과 누바인 사냥꾼을 훈련합니다."
+msgstr "누바인 몽둥이병과 누바인 사냥꾼을 양성합니다."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1443,7 +1443,7 @@ msgstr "디다"
 
 #: simulation/templates/structures/pers_fortress.xml:6
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "대표전사 기병을 양성하고 공성 망치를 만드십시오."
+msgstr "대표전사 기병을 양성하고 공성 망치를 만듭니다."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Persian Hall"
@@ -1674,7 +1674,7 @@ msgstr "카스트룸 발룸"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr "자연지역 혹은 적 영역에 건설할 수 있으며, 공성무기를 제작하고 시민군을 훈련할 수 있습니다.\n유닛이 안에 들어갈 경우 천천이 치료시킵니다."
+msgstr "자연지역 혹은 적 영역에 건설할 수 있으며, 공성무기를 제작하고 시민군을 훈련할 수 있습니다.\n유닛이 안에 들어갈 경우 천천이 치료합니다."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1851,7 +1851,7 @@ msgstr "프흐로우리온"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr "공성무기를 제작하고 투사를 훈련합니다.\n건물안에 병사를 배치하여 방어를 할 수 있습니다."
+msgstr "공성무기를 제작하고 투사를 양성합니다.\n건물안에 병사를 배치하여 방어를 할 수 있습니다."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1899,7 +1899,7 @@ msgstr "게론티아"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train heroes."
-msgstr "영웅을 훈련합니다."
+msgstr "영웅을 양성합니다."
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
