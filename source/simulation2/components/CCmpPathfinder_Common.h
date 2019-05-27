@@ -79,8 +79,8 @@ public:
 
 	// Dynamic state:
 
-	std::vector<AsyncLongPathRequest> m_AsyncLongPathRequests;
-	std::vector<AsyncShortPathRequest> m_AsyncShortPathRequests;
+	std::vector<LongPathRequest> m_LongPathRequests;
+	std::vector<ShortPathRequest> m_ShortPathRequests;
 	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
 	u16 m_SameTurnMovesCount; // current number of same turn moves we have processed this turn
 
@@ -172,7 +172,7 @@ public:
 
 	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify);
 
-	virtual WaypointPath ComputeShortPath(const AsyncShortPathRequest& request) const;
+	virtual WaypointPath ComputeShortPath(const ShortPathRequest& request) const;
 
 	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify);
 
@@ -196,9 +196,9 @@ public:
 
 	virtual void FinishAsyncRequests();
 
-	void ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests);
+	void ProcessLongRequests(const std::vector<LongPathRequest>& longRequests);
 
-	void ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests);
+	void ProcessShortRequests(const std::vector<ShortPathRequest>& shortRequests);
 
 	virtual void ProcessSameTurnMoves();
 

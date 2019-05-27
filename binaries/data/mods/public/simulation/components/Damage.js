@@ -93,6 +93,7 @@ Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
  * @param {Vector3D} data.direction - the unit vector defining the direction.
  * @param {Object}   data.bonus - the attack bonus template from the attacker.
  * @param {string}   data.attackImpactSound - the name of the sound emited on impact.
+ * @param {Object}   data.statusEffects - status effects eg. poisoning, burning etc.
  * ***When splash damage***
  * @param {boolean}  data.friendlyFire - a flag indicating if allied entities are also damaged.
  * @param {number}   data.radius - the radius of the splash damage.
@@ -136,6 +137,11 @@ Damage.prototype.MissileHit = function(data, lateness)
 		data.multiplier = GetDamageBonus(data.target, data.bonus);
 		this.CauseDamage(data);
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
+
+		let cmpStatusReceiver = Engine.QueryInterface(data.target, IID_StatusEffectsReceiver);
+		if (cmpStatusReceiver && data.statusEffects)
+			cmpStatusReceiver.InflictEffects(data.statusEffects);
+
 		return;
 	}
 
@@ -236,7 +242,7 @@ Damage.prototype.CauseSplashDamage = function(data)
  * @param {Object} data - the data passed by the caller.
  * @param {Object} data.strengths - data in the form of { 'hack': number, 'pierce': number, 'crush': number }.
  * @param {number} data.target - the entity id of the target.
- * @param {number} data.attacker - the entity id og the attacker.
+ * @param {number} data.attacker - the entity id of the attacker.
  * @param {number} data.multiplier - the damage multiplier.
  * @param {string} data.type - the type of damage.
  * @param {number} data.attackerOwner - the player id of the attacker.

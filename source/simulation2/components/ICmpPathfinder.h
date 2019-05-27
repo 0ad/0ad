@@ -114,7 +114,7 @@ public:
 	 * a unit of clearance 'clearance' will be able to follow the path with no collisions.
 	 * The path is restricted to a box of radius 'range' from the starting point.
 	 */
-	virtual WaypointPath ComputeShortPath(const AsyncShortPathRequest& request) const = 0;
+	virtual WaypointPath ComputeShortPath(const ShortPathRequest& request) const = 0;
 
 	/**
 	 * Asynchronous version of ComputeShortPath (using ControlGroupObstructionFilter).

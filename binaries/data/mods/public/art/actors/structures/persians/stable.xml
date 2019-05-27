@@ -2,20 +2,20 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Stables">
-      <mesh>structural/pers_stables.dae</mesh>
+    <variant frequency="1" name="Base">
+      <mesh>structural/pers_stable.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horsea" minheight="-20" maxheight="1.7"/>
         <prop actor="props/structures/persians/stable_horse_b.xml" attachpoint="horseb" minheight="-20" maxheight="1.7"/>
         <prop actor="props/structures/persians/stable_horse_c.xml" attachpoint="horsec" minheight="-20" maxheight="1.7"/>
       </props>
       <textures>
-         <texture file="structural/pers_struct.png" name="baseTex"/>
-         <texture file="structural/pers_struct_norm.png" name="normTex"/>
-         <texture file="structural/pers_struct_spec.png" name="specTex"/>
-         <texture file="structural/ao/pers_stables.png" name="aoTex"/>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/pers_stable.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
@@ -35,7 +35,7 @@
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
       </props>
     </variant>

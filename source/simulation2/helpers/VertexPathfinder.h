@@ -81,7 +81,7 @@ public:
 	 * The path is restricted to a box of radius 'range' from the starting point.
 	 * Defined in CCmpPathfinder_Vertex.cpp
 	 */
-	WaypointPath ComputeShortPath(const AsyncShortPathRequest& request, CmpPtr<ICmpObstructionManager> cmpObstructionManager) const;
+	WaypointPath ComputeShortPath(const ShortPathRequest& request, CmpPtr<ICmpObstructionManager> cmpObstructionManager) const;
 
 	void SetDebugOverlay(bool enabled) { m_DebugOverlay = enabled; }
 	void RenderSubmit(SceneCollector& collector);

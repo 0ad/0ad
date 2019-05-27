@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/structures/mauryas/workshop_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/workshop_roof.xml" attachpoint="root"/>
         <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shield"/>
         <prop actor="props/units/shields/maur_straight_b.xml" attachpoint="shield_1"/>
       </props>
@@ -15,7 +15,7 @@
         <texture file="structural/maur_struct.png" name="baseTex"/>
         <texture file="structural/maur_struct_spec.png" name="specTex"/>
         <texture file="structural/maur_struct_norm.png" name="normTex"/>
-        <texture file="structural/ao/maur_workshop_AO.png" name="aoTex"/>
+        <texture file="structural/ao/maur_workshop.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
@@ -32,7 +32,9 @@
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
-        <prop actor="props/structures/mauryas/stable_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/workshop_roof.xml" attachpoint="root"/>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>

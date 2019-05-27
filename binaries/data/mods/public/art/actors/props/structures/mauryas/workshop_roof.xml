@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="barracks a struct b">
-      <mesh>structural/maur_range_struct_b.dae</mesh>
+    <variant frequency="1" name="Base">
+      <mesh>props/maur_workshop_roof.dae</mesh>
       <textures>
         <texture file="structural/maur_struct_b.png" name="baseTex"/>
         <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
         <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
-        <texture file="structural/ao/maur_range_AO.png" name="aoTex"/>
+        <texture file="structural/ao/maur_workshop.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
