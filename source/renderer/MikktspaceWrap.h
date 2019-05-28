@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,9 +18,13 @@
 #ifndef INCLUDED_MIKKWRAP
 #define INCLUDED_MIKKWRAP
 
-
+#include "graphics/Model.h"
+#include "graphics/ModelDef.h"
 #include "third_party/mikktspace/mikktspace.h"
 
+#include <vector>
+
+class CVector3D;
 class MikkTSpace
 {
 
@@ -28,52 +32,91 @@ public:
 
 	MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning);
 
-	void generate();
+	void Generate();
 
 private:
 
 	SMikkTSpaceInterface m_Interface;
+
 	SMikkTSpaceContext m_Context;
 
 	const CModelDefPtr& m_Model;
 
 	std::vector<float>& m_NewVertices;
+
 	bool m_GpuSkinning;
 
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @returns - the number of faces (triangles/quads) on the mesh to be processed.
+	 */
+	static int GetNumFaces(const SMikkTSpaceContext *pContext);
 
-	// Returns the number of faces (triangles/quads) on the mesh to be processed.
-	static int getNumFaces(const SMikkTSpaceContext *pContext);
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
+	 * @returns - the number of faces (triangles/quads) on the mesh to be processed.
+	 */
+	static int GetNumVerticesOfFace(const SMikkTSpaceContext *pContext, const int iFace);
 
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @returns - The MikkTSpace.
+	 */
+	static MikkTSpace* GetUserDataFromContext(const SMikkTSpaceContext *pContext);
 
-	// Returns the number of vertices on face number iFace
-	// iFace is a number in the range {0, 1, ..., getNumFaces()-1}
-	static int getNumVerticesOfFace(const SMikkTSpaceContext *pContext, const int iFace);
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
+	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
+	 * @returns - The MikkTSpace.
+	 */
+	static SModelVertex GetVertex(const SMikkTSpaceContext *pContext, const int iFace, const int iVert);
 
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @param[out] fvPosOut - The array containing the face.
+	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
+	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
+	 */
+	static void GetPosition(const SMikkTSpaceContext *pContext,
+			float fvPosOut[3], const int iFace, const int iVert);
 
-	// returns the position/normal/texcoord of the referenced face of vertex number iVert.
-	// iVert is in the range {0,1,2} for triangles and {0,1,2,3} for quads.
-	static void getPosition(const SMikkTSpaceContext *pContext,
-			float fvPosOut[], const int iFace, const int iVert);
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @param[out] fvNormOut iVert - The array containing the normal.
+	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
+	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
+	 */
+	static void GetNormal(const SMikkTSpaceContext *pContext,
+			float fvNormOut[3], const int iFace, const int iVert);
 
-	static void getNormal(const SMikkTSpaceContext *pContext,
-			float fvNormOut[], const int iFace, const int iVert);
+	/**
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @param[out] fvTexcOut iVert - Array containing the UV.
+	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
+	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
+	 */
+	static void GetTexCoord(const SMikkTSpaceContext *pContext,
+			float fvTexcOut[2], const int iFace, const int iVert);
 
-	static void getTexCoord(const SMikkTSpaceContext *pContext,
-			float fvTexcOut[], const int iFace, const int iVert);
-
-
-	// This function is used to return tangent space results to the application.
-	// fvTangent and fvBiTangent are unit length vectors and fMagS and fMagT are their
-	// true magnitudes which can be used for relief mapping effects.
-	// fvBiTangent is the "real" bitangent and thus may not be perpendicular to fvTangent.
-	// However, both are perpendicular to the vertex normal.
-	// For normal maps it is sufficient to use the following simplified version of the bitangent which is generated at pixel/vertex level.
-	// fSign = bIsOrientationPreserving ? 1.0f : (-1.0f);
-	// bitangent = fSign * cross(vN, tangent);
-	static void setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
-			const float fvBiTangent[], const float fMagS, const float fMagT,
+	/**
+	 * @brief This function is used to return tangent space results to the application.
+	 * For normal maps it is sufficient to use the following simplified version of the bitangent which is generated at pixel/vertex level.
+	 * fSign = bIsOrientationPreserving ? 1.0f : (-1.0f);
+	 * bitangent = fSign * cross(vN, tangent);
+	 * @param[in] pContext - Pointer to the MikkTSpace context.
+	 * @param[in] fvTangent - fvTangent - The tangent vector.
+	 * @param[in] fvBiTangent - The "real" bitangent vector. Not be perpendicular to fvTangent. However, both are perpendicular to the vertex normal.
+	 * @param[in] fMagS - magniture of the fvTangent vector.
+	 * @param[in] fMagT - magniture of the fvBiTangent vector.
+	 * @param[in] bIsOrientationPreserving - Whether the orientation should be preserved.
+	 * @param[in] iFace - Number in the range {0,1,2} for triangles and {0,1,2,3} for quads.
+	 * @param[in] iVert - Array containing the position vector of the face.
+	 */
+	static void SetTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
+			const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
 			const tbool bIsOrientationPreserving, const int iFace, const int iVert);
-
 
 };
 

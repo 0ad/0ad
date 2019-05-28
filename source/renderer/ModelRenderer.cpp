@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,7 +117,7 @@ void ModelRenderer::BuildPositionAndNormals(
 		// just copy regular positions, transform normals to world space
 		const CMatrix3D& transform = model->GetTransform();
 		const CMatrix3D& invtransform = model->GetInvTransform();
-		for (size_t j=0; j<numVertices; j++)
+		for (size_t j=0; j<numVertices; ++j)
 		{
 			transform.Transform(vertices[j].m_Coords,Position[j]);
 			invtransform.RotateTransposed(vertices[j].m_Norm,Normal[j]);
@@ -139,7 +139,7 @@ void ModelRenderer::BuildColor4ub(
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 	CColor shadingColor = model->GetShadingColor();
 
-	for (size_t j=0; j<numVertices; j++)
+	for (size_t j = 0; j < numVertices; ++j)
 	{
 		RGBColor tempcolor = lightEnv.EvaluateUnitScaled(Normal[j]);
 		tempcolor.X *= shadingColor.r;
@@ -153,8 +153,7 @@ void ModelRenderer::BuildColor4ub(
 void ModelRenderer::GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices, bool gpuSkinning)
 {
 	MikkTSpace ms(mdef, newVertices, gpuSkinning);
-
-	ms.generate();
+	ms.Generate();
 }
 
 
@@ -727,7 +726,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 						const CShaderRenderQueries& renderQueries = model->GetMaterial().GetRenderQueries();
 
-						for (size_t q = 0; q < renderQueries.GetSize(); q++)
+						for (size_t q = 0; q < renderQueries.GetSize(); ++q)
 						{
 							CShaderRenderQueries::RenderQuery rq = renderQueries.GetItem(q);
 							if (rq.first == RQUERY_TIME)

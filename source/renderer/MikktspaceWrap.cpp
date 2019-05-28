@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,20 +17,7 @@
 
 #include "precompiled.h"
 
-#include <boost/bind.hpp>
-
-#include "graphics/Color.h"
-#include "graphics/LightEnv.h"
-#include "graphics/Model.h"
-#include "graphics/ModelDef.h"
-#include "graphics/ShaderManager.h"
-#include "graphics/TextureManager.h"
-
 #include "renderer/MikktspaceWrap.h"
-
-#include "third_party/mikktspace/mikktspace.h"
-
-
 
 MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning) : m_Model(m),
 			m_NewVertices(v), m_GpuSkinning(gpuSkinning)
@@ -39,118 +26,117 @@ MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSki
 	m_NewVertices.clear();
 
 	// set up SMikkTSpaceInterface struct
-	m_Interface.m_getNumFaces = getNumFaces;
-	m_Interface.m_getNumVerticesOfFace = getNumVerticesOfFace;
-	m_Interface.m_getPosition = getPosition;
-	m_Interface.m_getNormal = getNormal;
-	m_Interface.m_getTexCoord = getTexCoord;
-	m_Interface.m_setTSpaceBasic = NULL;
-	m_Interface.m_setTSpace = setTSpace;
+	m_Interface.m_getNumFaces = GetNumFaces;
+	m_Interface.m_getNumVerticesOfFace = GetNumVerticesOfFace;
+	m_Interface.m_getPosition = GetPosition;
+	m_Interface.m_getNormal = GetNormal;
+	m_Interface.m_getTexCoord = GetTexCoord;
+	m_Interface.m_setTSpaceBasic = nullptr;
+	m_Interface.m_setTSpace = SetTSpace;
 
 	// set up SMikkTSpaceContext struct
 	m_Context.m_pInterface = &m_Interface;
-	m_Context.m_pUserData = (void*)this;
+	m_Context.m_pUserData = static_cast<void*>(this);
 }
 
-void MikkTSpace::generate()
+void MikkTSpace::Generate()
 {
 	genTangSpaceDefault(&m_Context);
 }
 
-
-int MikkTSpace::getNumFaces(const SMikkTSpaceContext *pContext)
+int MikkTSpace::GetNumFaces(const SMikkTSpaceContext *pContext)
 {
-	return ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetNumFaces();
+	return GetUserDataFromContext(pContext)->m_Model->GetNumFaces();
 }
 
-
-int MikkTSpace::getNumVerticesOfFace(const SMikkTSpaceContext* UNUSED(pContext), const int UNUSED(iFace))
+int MikkTSpace::GetNumVerticesOfFace(const SMikkTSpaceContext* UNUSED(pContext), const int UNUSED(iFace))
 {
 	return 3;
 }
 
-
-void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext,
-		float fvPosOut[], const int iFace, const int iVert)
+void MikkTSpace::GetPosition(const SMikkTSpaceContext *pContext,
+		float fvPosOut[3], const int iFace, const int iVert)
 {
-	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
-	long i = face.m_Verts[iVert];
-	const CVector3D &p = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetVertices()[i].m_Coords;
+	const CVector3D& position = GetVertex(pContext, iFace, iVert).m_Coords;
 
-	fvPosOut[0] = p.X;
-	fvPosOut[1] = p.Y;
-	fvPosOut[2] = p.Z;
+	fvPosOut[0] = position.X;
+	fvPosOut[1] = position.Y;
+	fvPosOut[2] = position.Z;
 }
 
 
-void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext,
-		float fvNormOut[], const int iFace, const int iVert)
+void MikkTSpace::GetNormal(const SMikkTSpaceContext *pContext,
+		float fvNormOut[3], const int iFace, const int iVert)
 {
-	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
-	long i = face.m_Verts[iVert];
-	const CVector3D &n = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetVertices()[i].m_Norm;
+	const CVector3D& normal = GetVertex(pContext, iFace, iVert).m_Norm;
 
-	fvNormOut[0] = n.X;
-	fvNormOut[1] = n.Y;
-	fvNormOut[2] = n.Z;
+	fvNormOut[0] = normal.X;
+	fvNormOut[1] = normal.Y;
+	fvNormOut[2] = normal.Z;
 }
 
 
-void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext,
-		float fvTexcOut[], const int iFace, const int iVert)
+void MikkTSpace::GetTexCoord(const SMikkTSpaceContext *pContext,
+		float fvTexcOut[2], const int iFace, const int iVert)
 {
-	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
-	long i = face.m_Verts[iVert];
-	SModelVertex &v = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetVertices()[i];
+	const MikkTSpace* userData = GetUserDataFromContext(pContext);
+	const SModelFace& face = userData->m_Model->GetFaces()[iFace];
+	const SModelVertex& v = userData->m_Model->GetVertices()[face.m_Verts[iVert]];
 
-	// the tangents are calculated according to the 'default' UV set
+	// The tangents are calculated according to the 'default' UV set
 	fvTexcOut[0] = v.m_UVs[0];
-	fvTexcOut[1] = 1.0-v.m_UVs[1];
+	fvTexcOut[1] = 1.0 - v.m_UVs[1];
 }
 
 
-void MikkTSpace::setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
-		const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
-		const tbool bIsOrientationPreserving, const int iFace, const int iVert)
+void MikkTSpace::SetTSpace(const SMikkTSpaceContext* pContext, const float fvTangent[],
+	const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
+	const tbool bIsOrientationPreserving, const int iFace, const int iVert)
 {
-	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
-	long i = face.m_Verts[iVert];
+	const MikkTSpace* userData = GetUserDataFromContext(pContext);
+	const SModelFace& face = userData->m_Model->GetFaces()[iFace];
+	const SModelVertex& vertex = userData->m_Model->GetVertices()[face.m_Verts[iVert]];
 
-	SModelVertex* vertices = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetVertices();
-	size_t numUVsPerVertex = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetNumUVsPerVertex();
-	std::vector<float>& m_NewVertices = ((MikkTSpace*)pContext->m_pUserData)->m_NewVertices;
+	const CVector3D &p = vertex.m_Coords;
+	userData->m_NewVertices.push_back(p.X);
+	userData->m_NewVertices.push_back(p.Y);
+	userData->m_NewVertices.push_back(p.Z);
 
-	const CVector3D &p = vertices[i].m_Coords;
-	const CVector3D &n = vertices[i].m_Norm;
+	const CVector3D& n = vertex.m_Norm;
+	userData->m_NewVertices.push_back(n.X);
+	userData->m_NewVertices.push_back(n.Y);
+	userData->m_NewVertices.push_back(n.Z);
 
-	m_NewVertices.push_back(p.X);
-	m_NewVertices.push_back(p.Y);
-	m_NewVertices.push_back(p.Z);
+	userData->m_NewVertices.push_back(fvTangent[0]);
+	userData->m_NewVertices.push_back(fvTangent[1]);
+	userData->m_NewVertices.push_back(fvTangent[2]);
+	userData->m_NewVertices.push_back(bIsOrientationPreserving != 0 ? 1.f : -1.f);
 
-	m_NewVertices.push_back(n.X);
-	m_NewVertices.push_back(n.Y);
-	m_NewVertices.push_back(n.Z);
-
-	m_NewVertices.push_back(fvTangent[0]);
-	m_NewVertices.push_back(fvTangent[1]);
-	m_NewVertices.push_back(fvTangent[2]);
-	m_NewVertices.push_back(bIsOrientationPreserving > 0.5 ? 1.0f : (-1.0f));
-
-	if (((MikkTSpace*)pContext->m_pUserData)->m_GpuSkinning)
+	if (userData->m_GpuSkinning)
 	{
-		for (size_t j = 0; j < 4; ++j)
+		for (u8 j = 0; j < 4; ++j)
 		{
-			m_NewVertices.push_back(vertices[i].m_Blend.m_Bone[j]);
-			m_NewVertices.push_back(255.f * vertices[i].m_Blend.m_Weight[j]);
+			userData->m_NewVertices.push_back(vertex.m_Blend.m_Bone[j]);
+			userData->m_NewVertices.push_back(255.f * vertex.m_Blend.m_Weight[j]);
 		}
 	}
 
+	size_t numUVsPerVertex = userData->m_Model->GetNumUVsPerVertex();
 	for (size_t UVset = 0; UVset < numUVsPerVertex; ++UVset)
 	{
-		m_NewVertices.push_back(vertices[i].m_UVs[UVset * 2]);
-		m_NewVertices.push_back(1.0 - vertices[i].m_UVs[UVset * 2 + 1]);
+		userData->m_NewVertices.push_back(vertex.m_UVs[UVset * 2]);
+		userData->m_NewVertices.push_back(1.f - vertex.m_UVs[UVset * 2 + 1]);
 	}
 }
 
+MikkTSpace* MikkTSpace::GetUserDataFromContext(const SMikkTSpaceContext *pContext)
+{
+	return static_cast<MikkTSpace*>(pContext->m_pUserData);
+}
 
-
+SModelVertex MikkTSpace::GetVertex(const SMikkTSpaceContext *pContext, const int iFace, const int iVert)
+{
+	const MikkTSpace* userData = GetUserDataFromContext(pContext);
+	const SModelFace& f = userData->m_Model->GetFaces()[iFace];
+	return userData->m_Model->GetVertices()[f.m_Verts[iVert]];
+}
