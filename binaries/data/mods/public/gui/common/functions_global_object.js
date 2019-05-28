@@ -82,3 +82,17 @@ function cancelOnLoadGameError(msg)
 
 	Engine.ResetCursor();
 }
+
+/**
+ * Also called from the C++ side when ending the game.
+ * The current page can be the summary screen or a message box, so it can't be moved to session/.
+ */
+function getReplayMetadata()
+{
+    let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
+	return {
+		"timeElapsed": extendedSimState.timeElapsed,
+		"playerStates": extendedSimState.players,
+		"mapSettings": Engine.GetInitAttributes().settings
+	};
+}

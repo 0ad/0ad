@@ -683,7 +683,9 @@ void EndGame()
 
 	if (g_Game && g_Game->IsGameStarted() && !g_Game->IsVisualReplay() &&
 	    g_AtlasGameLoop && !g_AtlasGameLoop->running && g_Game->IsSavingReplay())
-		VisualReplay::SaveReplayMetadata(&g_Game->GetSimulation2()->GetScriptInterface());
+    {
+        VisualReplay::SaveReplayMetadata(&g_Game->GetSimulation2()->GetScriptInterface());
+    }
 
 	SAFE_DELETE(g_NetClient);
 	SAFE_DELETE(g_NetServer);
