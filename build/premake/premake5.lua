@@ -15,6 +15,9 @@ newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 
+-- Linux/BSD specific options
+newoption { trigger = "prefer-local-libs", description = "Prefer locally built libs. Any local libraries used must also be listed within a file within /etc/ld.so.conf.d so the dynamic linker can find them at runtime." }
+
 -- OS X specific options
 newoption { trigger = "macosx-bundle", description = "Enable OSX bundle, the argument is the bundle identifier string (e.g. com.wildfiregames.0ad)" }
 newoption { trigger = "macosx-version-min", description = "Set minimum required version of the OS X API, the build will possibly fail if an older SDK is used, while newer API functions will be weakly linked (i.e. resolved at runtime)" }
@@ -345,6 +348,10 @@ function project_set_build_flags()
 		end
 
 		if os.istarget("linux") or os.istarget("bsd") then
+			if _OPTIONS["prefer-local-libs"] then
+				libdirs { "/usr/local/lib" }
+			end
+
 			-- To use our local shared libraries, they need to be found in the
 			-- runtime dynamic linker path. Add their path to -rpath.
 			if _OPTIONS["libdir"] then

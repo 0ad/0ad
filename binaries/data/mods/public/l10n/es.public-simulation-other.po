@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-04-21 20:07+0000\n"
-"Last-Translator: juanda097 <juanda097@protonmail.ch>\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-24 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,8 +252,8 @@ msgstr "Envíame un tributo de %(_amount_)s %(_resource_)s para que acepte tu al
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "No aceptaré tu petición de alianza hasta que me envíes %(_amount_)s %(_resource_)s, %(_player_)s."
+" %(_player_)s."
+msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -617,7 +617,7 @@ msgstr "No se han podido desguarnecer las unidades"
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Todavía no se han cumplido los requisitos tecnológicos del edificio."
 

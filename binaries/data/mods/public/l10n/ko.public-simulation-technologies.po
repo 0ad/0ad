@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-05-19 02:29+0000\n"
+"PO-Revision-Date: 2019-05-27 02:02+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -481,7 +481,7 @@ msgstr "기병들을 위해 특별히 만들어진 긴 창."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "당신의 근접 기병에게 더 좋은 무기를 장착합니다. 근접 기병의 타격 공격력을 +2 증가시킵니다."
+msgstr "당신의 근접 기병에게 더 좋은 무기를 장착합니다. 근접 기병의 타격 공격력이 +2 증가합니다."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -505,11 +505,11 @@ msgstr "하스타ehsms창"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr "이 훈련은 근접 공격력을 증가시킵니다."
+msgstr "이 훈련은 근접 공격력이 증가합니다."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "근접 기병 공격력을 +20% 증가시킵니다."
+msgstr "근접 기병 공격력이 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -546,7 +546,7 @@ msgstr "청동무기를 철로 바꿉니다."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "당신의 근접 기병에게 더 좋은 무기를 장착합니다. 근접 기병의 타격 공격력을 +2 증가시킵니다."
+msgstr "당신의 근접 기병에게 더 좋은 무기를 장착합니다. 근접 기병의 타격 공격력이 +2 증가합니다."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -556,11 +556,11 @@ msgstr "철제 무기"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr "이 훈련은 원거리 공격력을 증가시킵니다."
+msgstr "이 훈련은 원거리 공격력이 증가합니다."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr "원거리 기병 공격력을 +20% 증가시킵니다."
+msgstr "원거리 기병 공격력이 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
@@ -569,7 +569,7 @@ msgstr "원거리 전투 기병 훈련"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "당신의 원거리 기병에게 더 좋은 무기를 장착합니다. 원거리 기병 공격력을 +20% 증가시킵니다."
+msgstr "당신의 원거리 기병에게 더 좋은 무기를 장착합니다. 원거리 기병 공격력이 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -607,7 +607,7 @@ msgstr "종종, 보병은 주로 주무기가 고장나거나 부러졌을때 �
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr "근접 보병 공격력을 +20% 증가시킵니다."
+msgstr "근접 보병 공격력이 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -744,7 +744,7 @@ msgstr "식량으로 쓰일 가축 기르기."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "가축(양, 염소, 소, 그 외) 기르는 시간을 -25% 단축시킵니다."
+msgstr "가축(양, 염소, 소, 그 외) 기르는 시간이 -25% 단축합니다."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -778,7 +778,7 @@ msgstr "소금에 절이면 물고기를 오래 보존할 수 있습니다."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "고기잡이 배가 잡아들이는 물고기양을 +20 증가시킵니다."
+msgstr "고기잡이 배가 잡아들이는 물고기양이 +20 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
@@ -790,7 +790,7 @@ msgstr "＂작은 도시 단계＂를 잠금해제합니다. 그럴려면 낚시
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr "일꾼들이 외바퀴 손수레를 사용합니다. 실어 나르는 자원 용량 +5."
+msgstr "일꾼들이 외바퀴 손수레를 사용합니다. 실어 나르는 자원 용량이 +5 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -834,7 +834,7 @@ msgstr "수확 훈련"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
-msgstr "그물은 물고기잡이 배의 생산성을 개선시킵니다."
+msgstr "그물은 물고기잡이 배의 생산성이 개선됩니다."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -862,7 +862,7 @@ msgstr "쇠 도끼날"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
-msgstr "일꾼 나무 벌목률을 +50% 증가시킵니다."
+msgstr "일꾼 나무 벌목률이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -895,7 +895,7 @@ msgstr "헤이로테스"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr "석재를 채굴하는 걸 돕기 위해 하인을 고용합니다. 석재 채집율을 +15% 증가시킵니다."
+msgstr "석재를 채굴하는 걸 돕기 위해 하인을 고용합니다. 석재 채집율이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -966,7 +966,7 @@ msgstr "채집용 바구니."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "채집꾼이 고리버들 바구니를 장착합니다. 과일 채집율을 +50% 증가시킵니다."
+msgstr "채집꾼이 고리버들 바구니를 장착합니다. 과일 채집율이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1391,7 +1391,7 @@ msgstr "페리스티레ehsms열주랑"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 #: simulation/data/technologies/pop_wonder.jsonspecificName.pers
 msgid "Paradise"
-msgstr ""
+msgstr "천국"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1517,7 +1517,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
-msgstr ""
+msgstr "공병"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
@@ -1546,11 +1546,11 @@ msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr ""
+msgstr "뇌물로 유닛이 50% 더 비싸게 만듭니다."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
-msgstr ""
+msgstr "방첩 활동"
 
 #: simulation/data/technologies/tower_armour.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1558,7 +1558,7 @@ msgstr "공격에 대비하여 기초를 강화합니다."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "방어탑의 방어력 수준이 +2 증가합니다."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1568,25 +1568,25 @@ msgstr "튼튼한 토대"
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "총안을 낸 흉벽에서 총안은 수비하는것을 유지하는중에 군인이 더 넓은 공격범위를 허용합니다."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr ""
+msgstr "주둔 병사당 40% 더 많은 화살을 쏘는기위해 총안과 근총안을 설치합니다."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "총안"
 
 #: simulation/data/technologies/tower_decay.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr ""
+msgstr "중립 지대에서는 전초 기지가 2 배나 오래 생존합니다."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "전초기지의 영토 붕괴 비율이 -50% 됩니다."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1594,23 +1594,23 @@ msgstr "석조 토대"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "근총안은 탑의 발밑의 적을 활등으로 공격할 수 있습니다."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "방어탑의 최소사거리를 없앱니다."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "근총안"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
+msgstr "궁수의 화살 최대 사거리를 늘립니다."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "방어탑의 최대 사거리를 8미터 늘립니다."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1618,11 +1618,11 @@ msgstr "성가퀴"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr ""
+msgstr "전초기지는 정찰에 대한 더 넓은 시야를 얻습니다."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "전초기지의 시야가 +50% 증가합니다."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -2244,7 +2244,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "모든 이탈리아 용병을 정예 계급으로 승급합니다. 용병의 군사 기량을 향상시키지만 자원 채집율을 -25% 감소시킵니다."
+msgstr "모든 이탈리아 용병을 정예 계급으로 승급합니다. 용병의 군사 기량을 향상시키지만 자원 채집율을 -25% 감소합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2371,7 +2371,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr "창병의 타격 공격력을 +2 상승시킵니다."
+msgstr "창병의 타격 공격력을 +2 상승합니다."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
@@ -2630,7 +2630,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr "모든 기병 체력을 +20% 증가시킵니다."
+msgstr "모든 기병 체력을 +20% 증가합니다."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"

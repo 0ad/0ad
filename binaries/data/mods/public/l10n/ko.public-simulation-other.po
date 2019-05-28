@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-05-01 15:22+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-27 02:01+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -247,8 +247,8 @@ msgstr "%(_player_)s 님, 당신과 동맹을 맺기 전에 나에게 %(_resourc
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "%(_player_)s 님, 나에게 %(_resource_)s %(_amount_)s 를 보내지 않는다면, 동맹은 맺어지지 않을 것입니다,"
+" %(_player_)s."
+msgstr "%(_player_)s 님, 나에게 %(_resource_)s %(_amount_)s 를 보내지 않는다면, 동맹은 맺어지지 않을 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -609,7 +609,7 @@ msgstr "유닛을 배치할 수 없습니다."
 msgid "Some unit(s) can't go back to work"
 msgstr "일부 유닛은 다시 작업할 수 없습니다"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "이 건물에 필요한 기술이 충족되지 않았습니다."
 
