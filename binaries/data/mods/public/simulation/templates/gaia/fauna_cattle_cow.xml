@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_hunt_passive_cattle">
+<Entity parent="template_unit_fauna_herd_domestic_cattle">
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Bos Taurus Taurus</SpecificName>
+    <GenericName>Cow</GenericName>
+    <SpecificName>Bos taurus taurus</SpecificName>
     <Icon>gaia/fauna_cow.png</Icon>
   </Identity>
   <VisualActor>

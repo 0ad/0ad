@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_hunt_skittish">
-  <Footprint>
-    <Square width="2.1" depth="4.2"/>
-    <Height>3.0</Height>
-  </Footprint>
-  <Identity>
-    <GenericName>Horse</GenericName>
-    <SpecificName>Equus ferus caballus</SpecificName>
-    <Icon>gaia/fauna_horse.png</Icon>
-  </Identity>
-  <Position>
-    <Anchor>pitch</Anchor>
-  </Position>
-  <ResourceSupply>
-    <Amount>200</Amount>
-  </ResourceSupply>
-  <Sound>
-    <SoundGroups>
-      <select>actor/fauna/animal/horse_select.xml</select>
-      <order_attack>actor/fauna/animal/horse_attack_order.xml</order_attack>
-      <order_walk>actor/fauna/animal/horse_order.xml</order_walk>
-      <attack_melee>actor/fauna/animal/horse_attack.xml</attack_melee>
-      <death>actor/fauna/animal/horse_death.xml</death>
-      <trained>actor/fauna/animal/horse_trained.xml</trained>
-    </SoundGroups>
-  </Sound>
-  <UnitMotion>
-    <WalkSpeed op="mul">0.8</WalkSpeed>
-  </UnitMotion>
+<Entity parent="gaia/fauna_horse">
   <VisualActor>
     <Actor>fauna/horse_breed.xml</Actor>
   </VisualActor>
