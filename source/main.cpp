@@ -594,7 +594,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
-	if (args.Has("autostart-nonvisual") && args.Get("autostart").empty())
+	if (args.Has("autostart-nonvisual") && args.Get("autostart").empty() && !args.Has("rpc-server"))
 	{
 		LOGERROR("-autostart-nonvisual cant be used alone. A map with -autostart=\"TYPEDIR/MAPNAME\" is needed.");
 		return;
@@ -746,7 +746,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		{
 			InitNonVisual(args);
             std::unique_ptr<RLInterface> service = StartRLInterface();
-			while (!g_Game->IsGameFinished())
+			while (!g_Game || !g_Game->IsGameFinished())
             {
                 service.get()->ApplyEvents();
             }
