@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,6 +79,7 @@ that of Atlas depending on commandline parameters.
 #include "scriptinterface/ScriptEngine.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
+#include "soundmanager/ISoundManager.h"
 
 #if OS_UNIX
 #include <unistd.h> // geteuid
@@ -407,16 +408,10 @@ static void Frame()
 	g_Console->Update(realTimeSinceLastFrame);
 	ogl_WarnIfError();
 
-	// We do not have to render an inactive fullscreen frame, because it can
-	// lead to errors for some graphic card families.
-	if (!g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen()))
-	{
-		Render();
+	if (g_SoundManager)
+		g_SoundManager->IdleTask();
 
-		PROFILE3("swap buffers");
-		SDL_GL_SwapWindow(g_VideoMode.GetWindow());
-	}
-	ogl_WarnIfError();
+	Render();
 
 	g_Profiler.Frame();
 

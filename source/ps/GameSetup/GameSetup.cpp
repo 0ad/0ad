@@ -188,14 +188,21 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	g_GUI->GetActiveGUI()->SendEventToAll("progress");
 }
 
-
+void SwapBuffers()
+{
+	PROFILE3("swap buffers");
+	SDL_GL_SwapWindow(g_VideoMode.GetWindow());
+	ogl_WarnIfError();
+}
 
 void Render()
 {
-	PROFILE3("render");
+	// Do not render if not focused while in fullscreen or minimised,
+	// as that triggers a difficult-to-reproduce crash on some graphic cards.
+	if (g_app_minimized || (!g_app_has_focus && g_VideoMode.IsInFullscreen()))
+		return;
 
-	if (g_SoundManager)
-		g_SoundManager->IdleTask();
+	PROFILE3("render");
 
 	ogl_WarnIfError();
 
@@ -330,6 +337,8 @@ void Render()
 	g_Profiler2.RecordGPUFrameEnd();
 
 	ogl_WarnIfError();
+
+	SwapBuffers();
 }
 
 ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
