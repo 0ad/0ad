@@ -11,6 +11,7 @@ Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
+Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Formation.js");
@@ -86,7 +87,7 @@ function TestFormationExiting(mode)
 		GetWalkSpeed: function() { return 1; },
 		MoveToFormationOffset: function(target, x, z) { },
 		IsInTargetRange: function(target, min, max) { return true; },
-		MoveToTargetRange: function(target, min, max) { },
+		MoveToTargetRange: function(target, min, max) { return true; },
 		StopMoving: function() { },
 		GetPassabilityClassName: function() { return "default"; },
 	});
@@ -137,10 +138,11 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(controller, IID_UnitMotion, {
-		GetWalkSpeed: function() { return 1; },
-		SetSpeedMultiplier: function(speed) { },
-		MoveToPointRange: function(x, z, minRange, maxRange) { },
-		GetPassabilityClassName: function() { return "default"; },
+		"GetWalkSpeed": () => 1,
+		"StopMoving": () => {},
+		"SetSpeedMultiplier": () => {},
+		"MoveToPointRange": () => true,
+		"GetPassabilityClassName": () => "default"
 	});
 
 	controllerAI.OnCreate();
@@ -238,7 +240,7 @@ function TestMoveIntoFormationWhileAttacking()
 			GetWalkSpeed: function() { return 1; },
 			MoveToFormationOffset: function(target, x, z) { },
 			IsInTargetRange: function(target, min, max) { return true; },
-			MoveToTargetRange: function(target, min, max) { },
+			MoveToTargetRange: function(target, min, max) { return true; },
 			StopMoving: function() { },
 			GetPassabilityClassName: function() { return "default"; },
 		});

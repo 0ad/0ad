@@ -1051,25 +1051,25 @@ void CCmpUnitMotion::Move(fixed dt)
 						m_Moving = false;
 						CMessageMotionChanged msg(false, false);
 						GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+						return;
 					}
 				}
 				else
 				{
 					// check if target was reached in case of a moving target
 					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
-					if (cmpUnitMotion && cmpUnitMotion->IsMoving() &&
-						MoveToTargetRange(m_TargetEntity, m_TargetMinRange, m_TargetMaxRange))
-						return;
+					if (!cmpUnitMotion || cmpUnitMotion->IsInTargetRange(GetEntityId(), m_TargetMinRange, m_TargetMaxRange))
+					{
+						// Not in formation, so just finish moving
+						StopMoving();
+						m_State = STATE_IDLE;
+						MoveSucceeded();
 
-					// Not in formation, so just finish moving
-					StopMoving();
-					m_State = STATE_IDLE;
-					MoveSucceeded();
-
-					if (m_FacePointAfterMove)
-						FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
-					// TODO: if the goal was a square building, we ought to point towards the
-					// nearest point on the square, not towards its center
+						if (m_FacePointAfterMove)
+							FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
+						// TODO: if the goal was a square building, we ought to point towards the
+						// nearest point on the square, not towards its center
+					}
 				}
 			}
 
@@ -1454,7 +1454,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 			// We're already in range - no need to move anywhere
 			if (m_FacePointAfterMove)
 				FaceTowardsPointFromPos(pos, x, z);
-			return false;
+			return true;
 		}
 	}
 
@@ -1623,7 +1623,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	{
 		// We're already in range - no need to move anywhere
 		FaceTowardsPointFromPos(pos, goal.x, goal.z);
-		return false;
+		return true;
 	}
 	else
 	{
