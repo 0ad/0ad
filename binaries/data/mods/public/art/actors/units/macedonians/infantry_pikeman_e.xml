@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -11,7 +11,58 @@
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hele-cuirass-2a">
+      <textures>
+        <texture file="skeletal/hele_cuirass_2_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-cuirass-1a">
+      <textures>
+        <texture file="skeletal/mace_cuirass_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-cuirass-1b">
+      <textures>
+        <texture file="skeletal/mace_cuirass_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-cuirass-1c">
+      <textures>
+        <texture file="skeletal/mace_cuirass_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="mace-cuirass-1d">
+      <textures>
+        <texture file="skeletal/mace_cuirass_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-scale-2a">
+      <textures>
+        <texture file="skeletal/mace_scale_2_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-scale-3a">
+      <textures>
+        <texture file="skeletal/mace_scale_3_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-scale-4a">
+      <textures>
+        <texture file="skeletal/mace_scale_4_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-lamellar-1a">
+      <textures>
+        <texture file="skeletal/mace_lamellar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -39,5 +90,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

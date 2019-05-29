@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -10,6 +10,9 @@
         <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
       </props>
+      <textures>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,6 +24,41 @@
     <variant frequency="1" name="Armour-Reinforced Linothorax">
       <textures>
         <texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1a">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1b">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1c">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1d">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1e">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1f">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-linothorax-1g">
+      <textures>
+        <texture file="skeletal/mace_linothorax_1_g.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -48,5 +86,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

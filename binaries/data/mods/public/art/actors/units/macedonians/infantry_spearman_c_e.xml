@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -14,54 +14,70 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Armor-1">
+    <variant frequency="1" name="mace-cuirass-1e">
       <textures>
-        <texture file="skeletal/mace_su1_hypaspist_2.dds" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_1_e.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-2">
+    <variant frequency="1" name="mace-cuirass-1f">
       <textures>
-        <texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_1_f.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-3">
+    <variant frequency="1" name="mace-cuirass-vergina-1a">
       <textures>
-        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_1_a.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-4">
+    <variant frequency="1" name="mace-cuirass-vergina-1b">
       <textures>
-        <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_1_b.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-5">
+    <variant frequency="1" name="mace-cuirass-vergina-1c">
       <textures>
-        <texture file="skeletal/mace_hypaspist_1.dds" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_1_c.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-6">
+    <variant frequency="1" name="mace-cuirass-vergina-1d">
       <textures>
-        <texture file="skeletal/mace_hypaspist_2.dds" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_1_d.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-7">
+    <variant frequency="1" name="mace-linothorax-1h">
       <textures>
-        <texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_h.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-8">
+    <variant frequency="1" name="mace-linothorax-1i">
       <textures>
-        <texture file="skeletal/hele_xenophon.dds" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_i.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Antiochus">
+    <variant frequency="1" name="mace-cuirass-gorgon-1a">
       <textures>
-        <texture file="skeletal/sele_hero_antiochus.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_gorgon_1_a.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_gorgon_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armor-10">
+    <variant frequency="1" name="mace-scale-2b">
       <textures>
-        <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>
+        <texture file="skeletal/mace_scale_2_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="mace-scale-3b">
+      <textures>
+        <texture file="skeletal/mace_scale_3_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -70,5 +86,5 @@
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_hoplite.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
