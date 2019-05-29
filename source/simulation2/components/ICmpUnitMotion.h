@@ -38,10 +38,8 @@ public:
 	/**
 	 * Attempt to walk into range of a to a given point, or as close as possible.
 	 * The range is measured from the center of the unit.
-	 * If the unit is already in range, or cannot move anywhere at all, or if there is
-	 * some other error, then returns false.
-	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
-	 * and sends another MotionChanged after finishing moving.
+	 * If cannot move anywhere at all, or if there is some other error, then returns false.
+	 * Otherwise, returns true.
 	 * If maxRange is negative, then the maximum range is treated as infinity.
 	 */
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
@@ -62,10 +60,8 @@ public:
 	 * Attempt to walk into range of a given target entity, or as close as possible.
 	 * The range is measured between approximately the edges of the unit and the target, so that
 	 * maxRange=0 is not unreachably close to the target.
-	 * If the unit is already in range, or cannot move anywhere at all, or if there is
-	 * some other error, then returns false.
-	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
-	 * and sends another MotionChanged after finishing moving.
+	 * If the unit cannot move anywhere at all, or if there is some other error, then returns false.
+	 * Otherwise, returns true.
 	 * If maxRange is negative, then the maximum range is treated as infinity.
 	 */
 	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;

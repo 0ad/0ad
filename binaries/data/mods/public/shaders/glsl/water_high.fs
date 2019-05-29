@@ -238,6 +238,8 @@ void main()
 
 #if USE_FANCY_EFFECTS
 	depth = max(depth, fancyeffects.a);
+	if (waterDepth < 0.0)
+		depth = 0.0;
 #endif
 
 	// Distort the texture coords under where the water is to simulate refraction.

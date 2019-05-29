@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_hunt">
+<Entity parent="template_unit_fauna_herd_domestic">
   <Footprint>
     <Square width="1.9" depth="3.8"/>
     <Height>2.0</Height>
@@ -8,7 +8,4 @@
     <WalkSpeed op="mul">0.4</WalkSpeed>
     <RunMultiplier>1.4</RunMultiplier>
   </UnitMotion>
-  <UnitAI>
-    <NaturalBehaviour>passive</NaturalBehaviour>
-  </UnitAI>
 </Entity>
