@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_military_barracks">
+<Entity parent="template_structure_military_stable">
   <Cost>
     <Resources>
       <wood>0</wood>
@@ -10,42 +10,13 @@
     <Square width="22.0" depth="20.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
-    <GenericName>Cavalry Stables</GenericName>
     <SpecificName>Paraspa</SpecificName>
-    <VisibleClasses datatype="tokens">-Barracks Stables</VisibleClasses>
-    <Tooltip>Train citizen-cavalry units.</Tooltip>
-    <Icon>structures/pers_stable.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="18.0" depth="16.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      -units/{civ}_infantry_spearman_b
-      -units/{civ}_infantry_pikeman_b
-      -units/{civ}_infantry_swordsman_b
-      -units/{civ}_infantry_javelinist_b
-      -units/{civ}_infantry_slinger_b
-      -units/{civ}_infantry_archer_b
-    </Entities>
-    <Technologies datatype="tokens">
-      -training_conscription
-      persians/training_levy_cavalry
-      persians/training_conscription_cavalry
-      successors/special_war_horses
-    </Technologies>
-  </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_cavalry_stables.xml</select>
-      <constructed>interface/complete/building/complete_cavalry_stables.xml</constructed>
-    </SoundGroups>
-  </Sound>
   <VisualActor>
     <Actor>structures/persians/stable.xml</Actor>
     <FoundationActor>structures/fndn_6x5.xml</FoundationActor>

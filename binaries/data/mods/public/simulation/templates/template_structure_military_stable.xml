@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military">
+  <Cost>
+    <BuildTime>150</BuildTime>
+    <Resources>
+      <wood>300</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+    <List datatype="tokens">Cavalry</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Stable</GenericName>
+    <Icon>structures/pers_stable.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Tooltip>Train citizen-soldier cavalry. Research training improvements.</Tooltip>
+    <VisibleClasses datatype="tokens">Village Stables</VisibleClasses>
+  </Identity>
+  <Loot>
+    <wood>30</wood>
+    <stone>0</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_cavalry_swordsman_b
+      units/{civ}_cavalry_spearman_b
+      units/{civ}_cavalry_javelinist_b
+      units/{civ}_cavalry_archer_b
+    </Entities>
+    <Technologies datatype="tokens">
+      heal_barracks
+      persians/training_levy_cavalry
+      persians/training_conscription_cavalry
+      successors/special_war_horses
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_cavalry_stables.xml</select>
+      <constructed>interface/complete/building/complete_cavalry_stables.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <Vision>
+    <Range>32</Range>
+  </Vision>
+</Entity>
