@@ -530,20 +530,20 @@ var g_Commands = {
 
 	"unload-template": function(player, cmd, data)
 	{
-		let entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
+		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
 		for (let garrisonHolder of entities)
 		{
-			let cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder)
-				continue;
+			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
+			if (cmpGarrisonHolder)
+			{
+				// Only the owner of the garrisonHolder may unload entities from any owners
+				if (!IsOwnedByPlayer(player, garrisonHolder) && !data.controlAllUnits
+				    && player != +cmd.owner)
+						continue;
 
-			// The owner of the garrison holder can unload entities from any players,
-			// other players can only ungarrison theirs.
-			if (!IsOwnedByPlayer(player, garrisonHolder) && !data.controlAllUnits && player != +cmd.owner)
-				continue;
-
-			if (!cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.owner, cmd.all))
-				notifyUnloadFailure(player, garrisonHolder);
+				if (!cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.owner, cmd.all))
+					notifyUnloadFailure(player, garrisonHolder);
+			}
 		}
 	},
 
@@ -1479,7 +1479,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 		var fid = formationIds[0];
 		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
 		if (cmpFormation && cmpFormation.GetMemberCount() == formation.members[fid].length
-		    && cmpFormation.GetMemberCount() == formation.entities.length)
+			&& cmpFormation.GetMemberCount() == formation.entities.length)
 		{
 			cmpFormation.DeleteTwinFormations();
 			// The whole formation was selected, so reuse its controller for this command
