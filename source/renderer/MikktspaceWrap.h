@@ -18,13 +18,14 @@
 #ifndef INCLUDED_MIKKWRAP
 #define INCLUDED_MIKKWRAP
 
-#include "graphics/Model.h"
+#include "graphics/MeshManager.h"
 #include "graphics/ModelDef.h"
 #include "third_party/mikktspace/mikktspace.h"
 
 #include <vector>
 
 class CVector3D;
+
 class MikkTSpace
 {
 
@@ -37,7 +38,6 @@ public:
 private:
 
 	SMikkTSpaceInterface m_Interface;
-
 	SMikkTSpaceContext m_Context;
 
 	const CModelDefPtr& m_Model;
@@ -50,20 +50,20 @@ private:
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
 	 * @returns - the number of faces (triangles/quads) on the mesh to be processed.
 	 */
-	static int GetNumFaces(const SMikkTSpaceContext *pContext);
+	static int GetNumFaces(const SMikkTSpaceContext* pContext);
 
 	/**
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
 	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
 	 * @returns - the number of faces (triangles/quads) on the mesh to be processed.
 	 */
-	static int GetNumVerticesOfFace(const SMikkTSpaceContext *pContext, const int iFace);
+	static int GetNumVerticesOfFace(const SMikkTSpaceContext* pContext, const int iFace);
 
 	/**
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
 	 * @returns - The MikkTSpace.
 	 */
-	static MikkTSpace* GetUserDataFromContext(const SMikkTSpaceContext *pContext);
+	static MikkTSpace* GetUserDataFromContext(const SMikkTSpaceContext* pContext);
 
 	/**
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
@@ -71,7 +71,7 @@ private:
 	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
 	 * @returns - The MikkTSpace.
 	 */
-	static SModelVertex GetVertex(const SMikkTSpaceContext *pContext, const int iFace, const int iVert);
+	static SModelVertex GetVertex(const SMikkTSpaceContext* pContext, const int iFace, const int iVert);
 
 	/**
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
@@ -79,8 +79,8 @@ private:
 	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
 	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
 	 */
-	static void GetPosition(const SMikkTSpaceContext *pContext,
-			float fvPosOut[3], const int iFace, const int iVert);
+	static void GetPosition(const SMikkTSpaceContext* pContext,
+			float* fvPosOut, const int iFace, const int iVert);
 
 	/**
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
@@ -88,8 +88,8 @@ private:
 	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
 	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
 	 */
-	static void GetNormal(const SMikkTSpaceContext *pContext,
-			float fvNormOut[3], const int iFace, const int iVert);
+	static void GetNormal(const SMikkTSpaceContext* pContext,
+			float* fvNormOut, const int iFace, const int iVert);
 
 	/**
 	 * @param[in] pContext - Pointer to the MikkTSpace context.
@@ -97,8 +97,8 @@ private:
 	 * @param[in] iFace - Number in the range { 0, 1, ..., getNumFaces() - 1 }.
 	 * @param[in] iVert - Number in the range { 0, 1, 2 } for triangles and { 0, 1, 2, 3 } for quads.
 	 */
-	static void GetTexCoord(const SMikkTSpaceContext *pContext,
-			float fvTexcOut[2], const int iFace, const int iVert);
+	static void GetTexCoord(const SMikkTSpaceContext* pContext,
+			float* fvTexcOut, const int iFace, const int iVert);
 
 	/**
 	 * @brief This function is used to return tangent space results to the application.
@@ -114,8 +114,8 @@ private:
 	 * @param[in] iFace - Number in the range {0,1,2} for triangles and {0,1,2,3} for quads.
 	 * @param[in] iVert - Array containing the position vector of the face.
 	 */
-	static void SetTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
-			const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
+	static void SetTSpace(const SMikkTSpaceContext* pContext, const float* fvTangent,
+			const float* UNUSED(fvBiTangent), const float UNUSED(fMagS), const float UNUSED(fMagT),
 			const tbool bIsOrientationPreserving, const int iFace, const int iVert);
 
 };

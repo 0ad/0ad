@@ -44,7 +44,7 @@ void MikkTSpace::Generate()
 	genTangSpaceDefault(&m_Context);
 }
 
-int MikkTSpace::GetNumFaces(const SMikkTSpaceContext *pContext)
+int MikkTSpace::GetNumFaces(const SMikkTSpaceContext* pContext)
 {
 	return GetUserDataFromContext(pContext)->m_Model->GetNumFaces();
 }
@@ -54,8 +54,8 @@ int MikkTSpace::GetNumVerticesOfFace(const SMikkTSpaceContext* UNUSED(pContext),
 	return 3;
 }
 
-void MikkTSpace::GetPosition(const SMikkTSpaceContext *pContext,
-		float fvPosOut[3], const int iFace, const int iVert)
+void MikkTSpace::GetPosition(const SMikkTSpaceContext* pContext,
+		float* fvPosOut, const int iFace, const int iVert)
 {
 	const CVector3D& position = GetVertex(pContext, iFace, iVert).m_Coords;
 
@@ -65,8 +65,8 @@ void MikkTSpace::GetPosition(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::GetNormal(const SMikkTSpaceContext *pContext,
-		float fvNormOut[3], const int iFace, const int iVert)
+void MikkTSpace::GetNormal(const SMikkTSpaceContext* pContext,
+		float* fvNormOut, const int iFace, const int iVert)
 {
 	const CVector3D& normal = GetVertex(pContext, iFace, iVert).m_Norm;
 
@@ -76,8 +76,8 @@ void MikkTSpace::GetNormal(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::GetTexCoord(const SMikkTSpaceContext *pContext,
-		float fvTexcOut[2], const int iFace, const int iVert)
+void MikkTSpace::GetTexCoord(const SMikkTSpaceContext* pContext,
+		float* fvTexcOut, const int iFace, const int iVert)
 {
 	const MikkTSpace* userData = GetUserDataFromContext(pContext);
 	const SModelFace& face = userData->m_Model->GetFaces()[iFace];
@@ -89,15 +89,15 @@ void MikkTSpace::GetTexCoord(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::SetTSpace(const SMikkTSpaceContext* pContext, const float fvTangent[],
-	const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
+void MikkTSpace::SetTSpace(const SMikkTSpaceContext* pContext, const float* fvTangent,
+	const float* UNUSED(fvBiTangent), const float UNUSED(fMagS), const float UNUSED(fMagT),
 	const tbool bIsOrientationPreserving, const int iFace, const int iVert)
 {
 	const MikkTSpace* userData = GetUserDataFromContext(pContext);
 	const SModelFace& face = userData->m_Model->GetFaces()[iFace];
 	const SModelVertex& vertex = userData->m_Model->GetVertices()[face.m_Verts[iVert]];
 
-	const CVector3D &p = vertex.m_Coords;
+	const CVector3D& p = vertex.m_Coords;
 	userData->m_NewVertices.push_back(p.X);
 	userData->m_NewVertices.push_back(p.Y);
 	userData->m_NewVertices.push_back(p.Z);
@@ -129,12 +129,12 @@ void MikkTSpace::SetTSpace(const SMikkTSpaceContext* pContext, const float fvTan
 	}
 }
 
-MikkTSpace* MikkTSpace::GetUserDataFromContext(const SMikkTSpaceContext *pContext)
+MikkTSpace* MikkTSpace::GetUserDataFromContext(const SMikkTSpaceContext* pContext)
 {
 	return static_cast<MikkTSpace*>(pContext->m_pUserData);
 }
 
-SModelVertex MikkTSpace::GetVertex(const SMikkTSpaceContext *pContext, const int iFace, const int iVert)
+SModelVertex MikkTSpace::GetVertex(const SMikkTSpaceContext* pContext, const int iFace, const int iVert)
 {
 	const MikkTSpace* userData = GetUserDataFromContext(pContext);
 	const SModelFace& f = userData->m_Model->GetFaces()[iFace];

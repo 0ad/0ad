@@ -1924,8 +1924,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	let rangeTemplate = this.canBuild(gameState, "structures/{civ}_range") ? "structures/{civ}_range" : undefined;
 	let numRanges = gameState.getOwnEntitiesByClass("Range", true).length;
 
-	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stables") ? "structures/{civ}_stables" :
-	                     this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
+	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
 	let numStables = gameState.getOwnEntitiesByClass("Stables", true).length;
 
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||

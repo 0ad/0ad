@@ -71,7 +71,7 @@ void ModelRenderer::CopyPositionAndNormals(
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
 
-	for(size_t j = 0; j < numVertices; ++j)
+	for (size_t j = 0; j < numVertices; ++j)
 	{
 		Position[j] = vertices[j].m_Coords;
 		Normal[j] = vertices[j].m_Norm;
@@ -86,7 +86,7 @@ void ModelRenderer::BuildPositionAndNormals(
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
-	SModelVertex* vertices=mdef->GetVertices();
+	SModelVertex* vertices = mdef->GetVertices();
 
 	if (model->IsSkinned())
 	{
@@ -113,14 +113,14 @@ void ModelRenderer::BuildPositionAndNormals(
 	}
 	else
 	{
-		PROFILE( "software transform" );
+		PROFILE("software transform");
 		// just copy regular positions, transform normals to world space
 		const CMatrix3D& transform = model->GetTransform();
 		const CMatrix3D& invtransform = model->GetInvTransform();
-		for (size_t j=0; j<numVertices; ++j)
+		for (size_t j = 0; j < numVertices; ++j)
 		{
-			transform.Transform(vertices[j].m_Coords,Position[j]);
-			invtransform.RotateTransposed(vertices[j].m_Norm,Normal[j]);
+			transform.Transform(vertices[j].m_Coords, Position[j]);
+			invtransform.RotateTransposed(vertices[j].m_Norm, Normal[j]);
 		}
 	}
 }
@@ -132,7 +132,7 @@ void ModelRenderer::BuildColor4ub(
 		const VertexArrayIterator<CVector3D>& Normal,
 		const VertexArrayIterator<SColor4ub>& Color)
 {
-	PROFILE( "lighting vertices" );
+	PROFILE("lighting vertices");
 
 	CModelDefPtr mdef = model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
@@ -166,10 +166,10 @@ void ModelRenderer::BuildUV(
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
 
-	for (size_t j=0; j < numVertices; ++j)
+	for (size_t j = 0; j < numVertices; ++j)
 	{
 		UV[j][0] = vertices[j].m_UVs[UVset * 2];
-		UV[j][1] = 1.0-vertices[j].m_UVs[UVset * 2 + 1];
+		UV[j][1] = 1.0 - vertices[j].m_UVs[UVset * 2 + 1];
 	}
 }
 
@@ -182,11 +182,12 @@ void ModelRenderer::BuildIndices(
 	size_t idxidx = 0;
 	SModelFace* faces = mdef->GetFaces();
 
-	for (size_t j = 0; j < mdef->GetNumFaces(); ++j) {
-		SModelFace& face=faces[j];
-		Indices[idxidx++]=face.m_Verts[0];
-		Indices[idxidx++]=face.m_Verts[1];
-		Indices[idxidx++]=face.m_Verts[2];
+	for (size_t j = 0; j < mdef->GetNumFaces(); ++j)
+	{
+		SModelFace& face = faces[j];
+		Indices[idxidx++] = face.m_Verts[0];
+		Indices[idxidx++] = face.m_Verts[1];
+		Indices[idxidx++] = face.m_Verts[2];
 	}
 }
 
@@ -512,7 +513,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				// (There might be duplicates in this list, but that doesn't really matter)
 				if (sortByDistTechs.empty() || sortByDistTechs.back() != tech)
 					sortByDistTechs.push_back(tech);
-				size_t techIdx = sortByDistTechs.size()-1;
+				size_t techIdx = sortByDistTechs.size() - 1;
 
 				// Add each model into sortByDistItems
 				for (size_t i = 0; i < it->second.size(); ++i)
@@ -582,7 +583,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				if (techIdx != currentTechIdx)
 				{
 					// Start of a new run - push the old run into a new tech bucket
-					SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], end-start };
+					SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], end - start };
 					techBuckets.push_back(techBucket);
 					start = end;
 					currentTechIdx = techIdx;
@@ -590,7 +591,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			}
 
 			// Add the tech bucket for the final run
-			SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], sortByDistItems.size()-start };
+			SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], sortByDistItems.size() - start };
 			techBuckets.push_back(techBucket);
 		}
 	}
@@ -735,7 +736,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								if (binding.Active())
 								{
 									double time = g_Renderer.GetTimeManager().GetGlobalTime();
-									shader->Uniform(binding, time, 0,0,0);
+									shader->Uniform(binding, time, 0.0f, 0.0f, 0.0f);
 								}
 							}
 							else if (rq.first == RQUERY_WATER_TEX)
@@ -743,7 +744,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 								double time = WaterMgr->m_WaterTexTimer;
 								double period = 1.6;
-								int curTex = (int)(time*60/period) % 60;
+								int curTex = static_cast<int>(time * 60.0 / period) % 60;
 
 								if (WaterMgr->m_RenderWater && WaterMgr->WillRenderFancyWater())
 									shader->BindTexture(str_waterTex, WaterMgr->m_NormalMap[curTex]);

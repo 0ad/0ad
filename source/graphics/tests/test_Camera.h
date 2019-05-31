@@ -21,6 +21,7 @@
 #include "maths/MathUtil.h"
 #include "maths/Vector3D.h"
 
+#include <cmath>
 #include <vector>
 
 class TestCamera : public CxxTest::TestSuite
@@ -83,11 +84,11 @@ public:
 	bool EqualPlanes(const CPlane& p1, const CPlane& p2) const
 	{
 		const float EPS = 1e-3f;
-		if (std::fabsf(p1.m_Dist - p2.m_Dist) >= EPS)
+		if (std::fabs(p1.m_Dist - p2.m_Dist) >= EPS)
 			return false;
 		return
-			std::fabsf(p1.m_Norm.X - p2.m_Norm.X) < EPS &&
-			std::fabsf(p1.m_Norm.Y - p2.m_Norm.Y) < EPS &&
-			std::fabsf(p1.m_Norm.Z - p2.m_Norm.Z) < EPS;
+			std::fabs(p1.m_Norm.X - p2.m_Norm.X) < EPS &&
+			std::fabs(p1.m_Norm.Y - p2.m_Norm.Y) < EPS &&
+			std::fabs(p1.m_Norm.Z - p2.m_Norm.Z) < EPS;
 	}
 };
