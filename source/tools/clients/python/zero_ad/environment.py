@@ -1,5 +1,5 @@
-from . import RLAPI_pb2
-from . import RLAPI_pb2_grpc
+from .RLAPI_pb2 import Actions, Action, ResetRequest
+from .RLAPI_pb2_grpc import RLAPIStub
 import grpc
 import json
 import math
@@ -9,21 +9,21 @@ class ZeroAD():
     def __init__(self, uri='localhost:50051'):
         # TODO: If uri is none, spin up an instance ourselves!
         channel = grpc.insecure_channel(uri)
-        self.stub = RLAPI_pb2_grpc.RLAPIStub(channel)
+        self.stub = RLAPIStub(channel)
         self.current_state = None
 
     def step(self, actions):
         # TODO: Add player ids?
-        cmds = RLAPI_pb2.Actions()
+        cmds = Actions()
         cmds.actions.extend([
-            RLAPI_pb2.Action(content=json.dumps(a)) for a in actions
+            Action(content=json.dumps(a)) for a in actions
         ])
         res = self.stub.Step(cmds)
         self.current_state = GameState(res.content)
         return self.current_state
 
     def reset(self, config=None):
-        req = RLAPI_pb2.ResetRequest(scenario=config)
+        req = ResetRequest(scenario=config)
         res = self.stub.Reset(req)
         self.current_state = GameState(res.content)
         return self.current_state
