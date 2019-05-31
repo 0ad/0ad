@@ -10,6 +10,8 @@
     <Max>1000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_short</SpawnEntityOnDeath>
   </Health>
+  <ProductionQueue disable=""/>
+  <RallyPoint disable=""/>
   <VisualActor>
     <FoundationActor>structures/fndn_3x3_wall.xml</FoundationActor>
   </VisualActor>

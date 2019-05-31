@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive">
+<Entity parent="template_structure_defensive_wall">
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -29,23 +29,12 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
   </BuildingAI>
-  <BuildRestrictions>
-    <PlacementType>land-shore</PlacementType>
-    <Category>Wall</Category>
-  </BuildRestrictions>
-  <Capturable>
-    <CapturePoints>1200</CapturePoints>
-  </Capturable>
   <Cost>
     <BuildTime>80</BuildTime>
     <Resources>
       <stone>90</stone>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="6.0" depth="6.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <GarrisonHolder>
     <Max>2</Max>
     <EjectHealth>0.1</EjectHealth>
@@ -61,16 +50,10 @@
   <Identity>
     <GenericName>Wall Turret</GenericName>
     <Tooltip>Shoots arrows. Garrison to defend a city wall against attackers.</Tooltip>
-    <Classes datatype="tokens">StoneWall Tower</Classes>
+    <Classes datatype="tokens">Tower</Classes>
     <Icon>structures/tower.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Loot>
-    <wood>0</wood>
-    <stone>15</stone>
-  </Loot>
   <Obstruction>
-    <Static width="6.0" depth="6.0"/>
     <ControlPersist/>
   </Obstruction>
   <ProductionQueue>
@@ -79,9 +62,6 @@
       pair_walls_01
     </Technologies>
   </ProductionQueue>
-  <Repairable>
-    <RepairTimeRatio>4.5</RepairTimeRatio>
-  </Repairable>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>
@@ -91,14 +71,6 @@
   <StatusBars>
     <HeightOffset>20.0</HeightOffset>
   </StatusBars>
-  <TerritoryDecay>
-    <DecayRate>5.0</DecayRate>
-  </TerritoryDecay>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>20</Radius>
-    <Weight>65535</Weight>
-  </TerritoryInfluence>
   <Vision>
     <Range>60</Range>
   </Vision>

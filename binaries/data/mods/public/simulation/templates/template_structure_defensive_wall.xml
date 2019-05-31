@@ -7,22 +7,12 @@
   <Capturable>
     <CapturePoints>1200</CapturePoints>
   </Capturable>
-  <Cost>
-    <BuildTime>25</BuildTime>
-    <Resources>
-      <stone>20</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="6.0" depth="6.0"/>
     <Height>8.0</Height>
   </Footprint>
-  <Health>
-    <Max>3000</Max>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
-  </Health>
   <Identity>
-    <Classes datatype="tokens">Defensive StoneWall</Classes>
+    <Classes datatype="tokens">StoneWall</Classes>
     <GenericName>Stone Wall</GenericName>
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
     <Icon>structures/wall.png</Icon>
@@ -35,8 +25,6 @@
   <Obstruction>
     <Static width="6.0" depth="6.0"/>
   </Obstruction>
-  <ProductionQueue disable=""/>
-  <RallyPoint disable=""/>
   <Repairable>
     <RepairTimeRatio>4.5</RepairTimeRatio>
   </Repairable>
