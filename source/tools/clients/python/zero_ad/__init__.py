@@ -1,6 +1,4 @@
 from . import actions
 from . import environment
-from . import RLAPI_pb2 
-ScenarioConfig = RLAPI_pb2.ScenarioConfig
-AIPlayer = RLAPI_pb2.AIPlayer
+from .RLAPI_pb2 import ScenarioConfig, AIPlayer
 ZeroAD = environment.ZeroAD
