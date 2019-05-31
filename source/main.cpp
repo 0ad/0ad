@@ -457,10 +457,15 @@ static void MainControllerShutdown()
 	in_reset_handlers();
 }
 
-static std::unique_ptr<RLInterface> StartRLInterface()
+static std::unique_ptr<RLInterface> StartRLInterface(CmdLineArgs args)
 {
     std::cout << "Starting RL Interface..." << std::endl;
-    std::string server_address("0.0.0.0:50051");  // TODO: Make this configurable
+    std::string server_address("0.0.0.0:50051");
+    if (!args.Get("rpc-server").empty())
+    {
+        server_address = args.Get("rpc-server");
+    }
+
     std::unique_ptr<RLInterface> service(new RLInterface);
     service.get()->Listen(server_address);
     return service;
@@ -745,7 +750,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		if (isNonVisual)
 		{
 			InitNonVisual(args);
-            std::unique_ptr<RLInterface> service = StartRLInterface();
+            std::unique_ptr<RLInterface> service = StartRLInterface(args);
 			while (!g_Game || !g_Game->IsGameFinished())
             {
                 service.get()->ApplyEvents();
@@ -756,7 +761,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		{
 			InitGraphics(args, 0, installedMods);
 			MainControllerInit();
-            std::unique_ptr<RLInterface> service = StartRLInterface();
+            std::unique_ptr<RLInterface> service = StartRLInterface(args);
 			while (g_Shutdown == ShutdownType::None)
             {
                 RunRenderLoop(service);
