@@ -1,5 +1,5 @@
-from RLAPI_pb2 import ScenarioConfig, ConnectRequest, Actions, Action, ResetRequest
-import RLAPI_pb2_grpc
+from . import RLAPI_pb2
+from . import RLAPI_pb2_grpc
 import grpc
 import json
 import math
@@ -14,16 +14,16 @@ class ZeroAD():
 
     def step(self, actions):
         # TODO: Add player ids?
-        cmds = Actions()
+        cmds = RLAPI_pb2.Actions()
         cmds.actions.extend([
-            Action(content=json.dumps(a)) for a in actions
+            RLAPI_pb2.Action(content=json.dumps(a)) for a in actions
         ])
         res = self.stub.Step(cmds)
         self.current_state = GameState(res.content)
         return self.current_state
 
     def reset(self, config=None):
-        req = ResetRequest(scenario=config)
+        req = RLAPI_pb2.ResetRequest(scenario=config)
         res = self.stub.Reset(req)
         self.current_state = GameState(res.content)
         return self.current_state
