@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-04-01 06:14+0000\n"
+"POT-Creation-Date: 2019-05-27 10:00+0200\n"
+"PO-Revision-Date: 2019-05-28 05:10+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -2058,7 +2058,7 @@ msgstr "Oyundaki tüm birlikler."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27
+#: map.xml:Description:27 maps/scenarios/test-foundation.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "Haritan ilgiç bir açıklama verecek."
 
@@ -2083,6 +2083,7 @@ msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Romalı lejyonerleri kullanarak hızlı bir mücadele deneme haritası."
 
 #: maps/scenarios/_default.xml:Name:28
+#: maps/scenarios/test-foundation.xml:Name:40
 msgid "Unnamed map"
 msgstr "İsimsiz harita"
 
@@ -2113,6 +2114,18 @@ msgstr "Gemi Denemesi"
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
 msgstr "Ilıman Tabanlı Harita"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Name:28
+msgid "Unit Motion Integration Test"
+msgstr "Birim Hareketi Uyum Testi"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+msgid ""
+"This map is designed to test some basic unit movement cases. It will involve"
+" unitAI, unitMotion and the relevant pathfinders and thus acts as an "
+"integrated test map. Look for things such as stuck units, wrong animations, "
+"and weird pathing."
+msgstr "Bu harita, bazı temel birim hareketi durumlarını test etmek için tasarlanmıştır. UnitAI, unitMotion ve ilgili yol göstericileri içerecek ve böylece entegre bir test haritası gibi davranacaktır. Sıkışmış birimler, yanlış animasyonlar ve garip yamalar gibi şeyleri arayın."
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""

@@ -35,13 +35,14 @@
     </VisibleGarrisonPoints>
   </GarrisonHolder>
   <Health>
+    <Max>3000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Classes datatype="tokens">LongWall</Classes>
     <Tooltip>Long wall segments can be converted to gates.</Tooltip>
   </Identity>
-  <RallyPoint/>
+  <ProductionQueue disable=""/>
   <Upgrade>
     <Gate>
       <Entity>structures/{civ}_wall_gate</Entity>

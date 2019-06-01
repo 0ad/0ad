@@ -78,6 +78,11 @@
       <death>actor/ship/warship_death.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.5</BarHeight>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <PassabilityClass>ship</PassabilityClass>
   </UnitMotion>

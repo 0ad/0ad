@@ -1925,7 +1925,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	let numRanges = gameState.getOwnEntitiesByClass("Range", true).length;
 
 	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
-	let numStables = gameState.getOwnEntitiesByClass("Stables", true).length;
+	let numStables = gameState.getOwnEntitiesByClass("Stable", true).length;
 
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
 	    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)
@@ -1983,7 +1983,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.currentPhase < 3)
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}_elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStables", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}_elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStable", true).hasEntities())
 	{
 		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_elephant_stables", { "militaryBase": true }));
 		return;

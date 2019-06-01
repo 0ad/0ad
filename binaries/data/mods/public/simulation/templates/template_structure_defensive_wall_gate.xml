@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defensive_wall_long">
-  <Auras disable=""/>
-  <!-- We don't disable the Cost component, although gates cannot be built directly, as Cost/BuildTime is required to prevent instantaneous repair -->
+<Entity parent="template_structure_defensive_wall">
+  <!-- We need a Cost component, although gates cannot be built directly, as Cost/BuildTime is required to prevent instantaneous repair -->
+  <Cost>
+    <BuildTime>38</BuildTime>
+    <Resources>
+      <stone>60</stone>
+    </Resources>
+  </Cost>
   <GarrisonHolder disable=""/>
   <Gate>
     <PassRange>20</PassRange>
   </Gate>
   <Health>
-    <Max op="mul">0.85</Max>
+    <Max>2500</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Classes datatype="tokens">Gates</Classes>
@@ -23,10 +29,8 @@
       <Door width="20.0" depth="6.5" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <ProductionQueue disable=""/>
   <RallyPoint disable=""/>
-  <Repairable>
-    <RepairTimeRatio op="mul">0.85</RepairTimeRatio>
-  </Repairable>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gate.xml</select>
@@ -37,5 +41,7 @@
       <gate_unlocked>interface/select/building/sel_gate.xml</gate_unlocked>
     </SoundGroups>
   </Sound>
-  <Upgrade disable=""/>
+  <VisualActor>
+    <FoundationActor>structures/fndn_9x3_wall.xml</FoundationActor>
+  </VisualActor>
 </Entity>

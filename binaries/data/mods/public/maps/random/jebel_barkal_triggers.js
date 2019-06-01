@@ -79,7 +79,7 @@ var scaleByMapSize = (min, max) => min + (max - min) * (TriggerHelper.GetMapSize
 var jebelBarkal_cityPatrolGroup_count = time => TriggerHelper.GetMapSizeTiles() > 192 ? scaleByTime(time, 3, scaleByMapSize(3, 10)) : 0;
 var jebelBarkal_cityPatrolGroup_interval = time => scaleByTime(time, 5, 3);
 var jebelBarkal_cityPatrolGroup_balancing = {
-	"buildingClasses": ["Wonder", "Temple", "CivCentre", "Fortress", "Barracks+!Stables", "Embassy"],
+	"buildingClasses": ["Wonder", "Temple", "CivCentre", "Fortress", "Barracks", "Embassy"],
 	"unitCount": time => Math.min(20, scaleByTime(time, 10, 45)),
 	"unitComposition": (time, heroes) => [
 		{
@@ -163,7 +163,7 @@ var jebelBarkal_buildingGarrison = difficulty => [
 		"capacityRatio": 1
 	},
 	{
-		"buildingClasses": ["Barracks+!Stables", "Embassy"],
+		"buildingClasses": ["Barracks", "Embassy"],
 		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.champions],
 		"capacityRatio": 1
 	},
@@ -173,13 +173,13 @@ var jebelBarkal_buildingGarrison = difficulty => [
 		"capacityRatio": 1
 	},
 	{
-		"buildingClasses": ["ElephantStables"],
+		"buildingClasses": ["ElephantStable"],
 		"unitTemplates": jebelBarkal_templates.elephants,
 		"capacityRatio": 1
 
 	},
 	{
-		"buildingClasses": ["Stables"],
+		"buildingClasses": ["Stable"],
 		"unitTemplates": jebelBarkal_templates.champion_cavalry,
 		"capacityRatio": 1
 
@@ -312,7 +312,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
-		"buildingClasses": ["Stables"],
+		"buildingClasses": ["Stable"],
 		"unitCount": time => Math.min(30, scaleByTime(time, 0, 80)),
 		"unitComposition": (time, heroes) => [
 			{
@@ -328,7 +328,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
-		"buildingClasses": ["Barracks+!Stables", "Embassy"],
+		"buildingClasses": ["Barracks", "Embassy"],
 		"unitCount": time => Math.min(35, scaleByTime(time, 0, 70)),
 		"unitComposition": (time, heroes) => [
 			{
@@ -340,7 +340,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
-		"buildingClasses": ["ElephantStables", "Wonder"],
+		"buildingClasses": ["ElephantStable", "Wonder"],
 		"unitCount": time => scaleByTime(time, 1, 14),
 		"unitComposition": (time, heroes) => [
 			{

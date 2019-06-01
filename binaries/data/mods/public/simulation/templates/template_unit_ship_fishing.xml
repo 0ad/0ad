@@ -54,6 +54,11 @@
       <order_attack>actor/ship/boat_move.xml</order_attack>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <BarWidth>2.0</BarWidth>
+    <BarHeight>0.333</BarHeight>
+    <HeightOffset>5.0</HeightOffset>
+  </StatusBars>
   <UnitAI>
     <DefaultStance>passive</DefaultStance>
     <CanGuard>false</CanGuard>

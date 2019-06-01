@@ -9,6 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "Faster batch training speed for the Stables.",
 	"modifications": [{"value": "ProductionQueue/BatchTimeModifier", "add": -0.1}],
-	"affects": ["Stables"],
+	"affects": ["Stable"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

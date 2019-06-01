@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
-"PO-Revision-Date: 2019-05-18 22:59+0000\n"
+"POT-Creation-Date: 2019-05-27 10:00+0200\n"
+"PO-Revision-Date: 2019-05-28 01:29+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -680,7 +680,7 @@ msgid ""
 "Pompeii, along with much of the surrounding area, was mostly destroyed and "
 "buried under 4 to 6 meters of volcanic ash and pumice in the eruption of "
 "Mount Vesuvius in AD 79."
-msgstr "Pompeya foi una antigua ciudá costera romana na rexón italiana de Campania. Pompeya, xunto con muncha de la redolada, quedó na mayor parte destruyida y soterrada so 4 a 6 metros de ceniza y piedra pómez volcániques na erupción del monte Vesubiu en 79 a.C."
+msgstr "Pompeya foi una antigua ciudá costera romana na rexón italiana de Campania. Pompeya, xunto con muncha de la redolada, quedó na mayor parte desfecha y soterrada so 4 a 6 metros de ceniza y piedra pómez volcániques na erupción del monte Vesubiu en 79 a.C."
 
 #: maps/random/pompeii.jsonsettings.Name
 msgid "Pompeii"
@@ -2040,7 +2040,7 @@ msgstr "Toles unidaes nel xuegu."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27
+#: map.xml:Description:27 maps/scenarios/test-foundation.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "Fai una descripción interesante del to mapa. "
 
@@ -2065,6 +2065,7 @@ msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Un mapa que demuestra una engarradiella curtia emplegando llexonarios romanos."
 
 #: maps/scenarios/_default.xml:Name:28
+#: maps/scenarios/test-foundation.xml:Name:40
 msgid "Unnamed map"
 msgstr "Mapa ensin nome"
 
@@ -2095,6 +2096,18 @@ msgstr "Demostranza d'embarcaciones"
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
 msgstr "Mapa base templáu"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Name:28
+msgid "Unit Motion Integration Test"
+msgstr "Prueba d'intregración del movimientu de les unidaes"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+msgid ""
+"This map is designed to test some basic unit movement cases. It will involve"
+" unitAI, unitMotion and the relevant pathfinders and thus acts as an "
+"integrated test map. Look for things such as stuck units, wrong animations, "
+"and weird pathing."
+msgstr "Esti mapa ta diseñáu pa probar dalgunos casos básicos de movimientu d'unidaes. Lleva arreyaos «unitAI», «unitMotion» y los «pathfinders» venceyaos, asina que val como un mapa integráu de prueba. Ta sollerte a coses como unidaes allancaes, animaciones incorreutes y esviaciones rares."
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
