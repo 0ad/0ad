@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -393,7 +393,7 @@ COMMAND(CreateObject, NOMERGE,
 // (Use RenderEnable to make it visible.)
 MESSAGE(SetActorViewer,
 		((std::wstring, id))
-		((std::wstring, animation))
+		((std::string, animation))
 		((int, playerID))
 		((float, speed))
 		((bool, flushcache)) // true => unload all actor files before starting the preview (because we don't have proper hotloading yet)

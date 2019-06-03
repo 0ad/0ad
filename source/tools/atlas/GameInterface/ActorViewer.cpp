@@ -77,7 +77,7 @@ public:
 
 	entity_id_t Entity;
 	CStrW CurrentUnitID;
-	CStrW CurrentUnitAnim;
+	CStr CurrentUnitAnim;
 	float CurrentSpeed;
 	bool WalkEnabled;
 	bool GroundEnabled;
@@ -328,7 +328,7 @@ void ActorViewer::UnloadObjects()
 	m.ObjectManager.UnloadObjects();
 }
 
-void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_t playerID)
+void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t playerID)
 {
 	bool needsAnimReload = false;
 
@@ -376,7 +376,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_
 
 	if (needsAnimReload)
 	{
-		CStr anim = animation.ToUTF8().LowerCase();
+		CStr anim = animation.LowerCase();
 
 		// Emulate the typical simulation animation behaviour
 		float speed;

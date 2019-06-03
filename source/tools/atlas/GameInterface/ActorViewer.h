@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ public:
 
 	CSimulation2* GetSimulation2();
 	entity_id_t GetEntity();
-	void SetActor(const CStrW& id, const CStrW& animation, player_id_t playerID);
+	void SetActor(const CStrW& id, const CStr& animation, player_id_t playerID);
 	void SetEnabled(bool enabled);
 	void UnloadObjects();
 	void SetBackgroundColor(const SColor4ub& color);

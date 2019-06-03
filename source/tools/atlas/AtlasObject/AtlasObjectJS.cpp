@@ -24,8 +24,6 @@
 # pragma warning(disable:4996)	// deprecated CRT
 #endif
 
-#include "wx/log.h"
-
 #include <sstream>
 
 static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node);
@@ -47,11 +45,11 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 
 	if (node.type() == json_spirit::str_type)
 	{
-		obj->m_Value = std::wstring(node.get_str().begin(),node.get_str().end());
+		obj->m_Value = node.get_str();
 	}
 	else if (node.type() == json_spirit::int_type || node.type() == json_spirit::real_type)
 	{
-		std::wstringstream stream;
+		std::stringstream stream;
 		if (node.type() == json_spirit::int_type)
 			stream << node.get_int();
 		if (node.type() == json_spirit::real_type)
@@ -64,10 +62,7 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 	}
 	else if (node.type() == json_spirit::bool_type)
 	{
-		if (node.get_bool())
-			obj->m_Value = L"true";
-		else
-			obj->m_Value = L"false";
+		obj->m_Value = node.get_bool() ? "true" : "false";
 
 		obj->m_Children.insert(AtNode::child_pairtype(
 			"@boolean", AtSmartPtr<AtNode>(new AtNode())
@@ -125,10 +120,8 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 	if (p->m_Children.count("@number"))
 	{
 		// Convert to double
-		std::wstringstream str;
-		str << p->m_Value;
 		double val = 0;
-		str >> val;
+		static_cast<std::stringstream>(p->m_Value) >> val;
 
 		json_spirit::Value rval(val);
 		return rval;
@@ -136,7 +129,7 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 	else if (p->m_Children.count("@boolean"))
 	{
 		bool val = false;
-		if (p->m_Value == L"true")
+		if (p->m_Value == "true")
 			val = true;
 
 		json_spirit::Value rval(val);
@@ -146,7 +139,7 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 	// If no children, then use the value string instead
 	if (p->m_Children.empty())
 	{
-		json_spirit::Value rval(std::string(p->m_Value.begin(), p->m_Value.end()));
+		json_spirit::Value rval(p->m_Value);
 		return rval;
 	}
 
@@ -190,5 +183,5 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 std::string AtlasObject::SaveToJSON(AtObj& obj)
 {
 	json_spirit::Value root = BuildJSONNode(obj.m_Node);
-	return json_spirit::write_string(root, 0);
+	return json_spirit::write_string(root, json_spirit::raw_utf8);
 }

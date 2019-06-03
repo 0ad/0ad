@@ -41,11 +41,11 @@ public:
 
 	AtNode() : m_Refcount(0) {}
 	explicit AtNode(const AtNode* n) { *this = *n; m_Refcount = 0; }
-	explicit AtNode(const wchar_t* text) : m_Refcount(0), m_Value(text) {}
+	explicit AtNode(const char* text) : m_Refcount(0), m_Value(text) {}
 
 	// Create a new AtNode (since AtNodes are immutable, so it's not possible
 	// to just change this one), with the relevant alterations to its content.
-	const AtNode::Ptr setValue(const wchar_t* value) const;
+	const AtNode::Ptr setValue(const char* value) const;
 	const AtNode::Ptr addChild(const char* key, const AtNode::Ptr &data) const;
 	const AtNode::Ptr setChild(const char* key, const AtNode::Ptr &data) const;
 	const AtNode::Ptr addOverlay(const AtNode::Ptr &data) const;
@@ -57,7 +57,7 @@ public:
 //private:	// (but not actually private, since I'm still too lazy to waste
 			// time with dozens of friends)
 
-	std::wstring m_Value;
+	std::string m_Value;
 
 	typedef std::multimap<std::string, AtNode::Ptr> child_maptype;
 	typedef std::pair<std::string, AtNode::Ptr> child_pairtype;

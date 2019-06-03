@@ -1100,8 +1100,7 @@ function setup_atlas_projects()
 	},{	-- extern_libs
 		"boost",
 		"iconv",
-		"libxml2",
-		"wxwidgets"
+		"libxml2"
 	},{	-- extra_params
 		no_pch = 1
 	})
@@ -1346,7 +1345,6 @@ function setup_tests()
 	links { "mocks_test" }
 	if _OPTIONS["atlas"] then
 		links { "AtlasObject" }
-		project_add_extern_libs({"wxwidgets"}, target_type)
 	end
 	extra_params = {
 		extra_files = { "test_setup.cpp" },
