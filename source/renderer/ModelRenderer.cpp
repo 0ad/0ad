@@ -233,7 +233,6 @@ ShaderModelRenderer::~ShaderModelRenderer()
 // Submit one model.
 void ShaderModelRenderer::Submit(int cullGroup, CModel* model)
 {
-	CModelDefPtr mdef = model->GetModelDef();
 	CModelRData* rdata = (CModelRData*)model->GetRenderData();
 
 	// Ensure model data is valid
