@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-10 16:24+0000\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-06-01 15:04+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -200,14 +200,34 @@ msgstr "Deve"
 msgid "Camelus dromedarius"
 msgstr "Deve"
 
+#: simulation/templates/gaia/fauna_cattle_bull.xml:4
+msgid "Bull"
+msgstr "Boğa"
+
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
-msgid "Bos Taurus Taurus"
+msgid "Bos taurus taurus"
 msgstr "Avrupa Sığırı"
 
+#: simulation/templates/gaia/fauna_cattle_cow.xml:4
+msgid "Cow"
+msgstr "İnek"
+
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:4
+msgid "Sanga Cattle"
+msgstr "Sanga Sığırı"
+
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
-msgid "Bos Taurus Africanus"
-msgstr "Afrika Sığırı"
+msgid "Bos taurus africanus"
+msgstr "Sanga Sığırı"
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:4
+msgid "Zebu"
+msgstr "Hint Sığırı"
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:5
+msgid "Bos taurus indicus"
+msgstr "Hint Sığırı"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -329,18 +349,10 @@ msgid "Capra aegagrus hircus"
 msgstr "Keçi"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
-#: simulation/templates/gaia/fauna_horse_breed.xml:8
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:8
-#: simulation/templates/gaia/fauna_horse_marwari.xml:8
-#: simulation/templates/gaia/fauna_horse_persian.xml:8
 msgid "Horse"
 msgstr "At"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
-#: simulation/templates/gaia/fauna_horse_breed.xml:9
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:9
-#: simulation/templates/gaia/fauna_horse_marwari.xml:9
-#: simulation/templates/gaia/fauna_horse_persian.xml:9
 msgid "Equus ferus caballus"
 msgstr "At"
 
@@ -358,7 +370,7 @@ msgstr "Dişi Aslan"
 
 #: simulation/templates/gaia/fauna_mastiff.xml:4
 msgid "Mastiff"
-msgstr "Çoban köpeği"
+msgstr "İngiliz Çoban köpeği"
 
 #: simulation/templates/gaia/fauna_mastiff.xml:5
 #: simulation/templates/gaia/fauna_wolfhound.xml:5
@@ -489,10 +501,6 @@ msgstr "Zebra"
 msgid "Equus quagga"
 msgstr "Zeba"
 
-#: simulation/templates/gaia/fauna_zebu.xml:5
-msgid "Bos Taurus Indicus"
-msgstr "Hindistan Sığırı"
-
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Dayanıklı Çalı"
@@ -515,7 +523,7 @@ msgstr "Yiyecek için asmalardan üzüm toplayın."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
-msgstr "Geçici Çalı"
+msgstr "Mevsimlik Çalı"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -609,7 +617,7 @@ msgstr "İncir"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
-msgstr "Besing için incileri topla."
+msgstr "Besin için incirleri topla."
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -739,7 +747,7 @@ msgstr "Pers Gıda Dükkanları"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr "Fars Gıda Hazinesi"
+msgstr "Pers Gıda Hazinesi"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
@@ -800,11 +808,11 @@ msgstr "Ahşap Hazine"
 
 #: simulation/templates/other/bench.xml:19
 msgid "Bench"
-msgstr "tezgah"
+msgstr "Tezgah"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Wooden Bench"
-msgstr "ahşap tezgah"
+msgstr "Ahşap Tezgah"
 
 #: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
@@ -818,7 +826,7 @@ msgstr "Ahşap Köprü"
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
-msgstr "kulübe"
+msgstr "Kulübe"
 
 #: simulation/templates/other/celt_longhouse.xml:21
 msgid "Longhouse"
@@ -891,11 +899,11 @@ msgstr "Propylaea"
 
 #: simulation/templates/other/hellenic_stoa.xml:24
 msgid "Stoa"
-msgstr "Saçak altı"
+msgstr "Stoa"
 
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Hellenic Stoa"
-msgstr "Helen Saçak altı"
+msgstr "Helen Stoası"
 
 #: simulation/templates/other/obelisk.xml:19
 msgid "Obelisk"
@@ -1097,7 +1105,7 @@ msgstr "Sintagma"
 
 #: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
-msgstr "Kaplumbağa tipi"
+msgstr "Kaplumbağa Düzeni"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "At least 6 cavalry units required."

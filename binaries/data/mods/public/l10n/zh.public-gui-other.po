@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-03 07:12+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -553,43 +553,43 @@ msgstr "与 %(player)s 的连接不稳定(%(milliseconds)s 毫秒)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "这通常是由 UDP 端口20595未在主机端、防火墙或防病毒软件上转发引起的。"
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "主机已结束游戏"
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "网络协议版本有误。"
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "游戏正加载，请稍后重试。"
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "游戏一开始，无观察者。"
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "你已被踢出游戏。"
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "你被禁了。"
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "用户名正在使用。 如果断开连接，请在几秒后重试。"
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "服务器满"
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "安全的大厅验证失败。 通过大厅加入。"
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -3222,11 +3222,11 @@ msgstr "状态栏上方的排名图标"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "在每个选定的单位上方显示经验状态栏。"
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "经验状态栏"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""

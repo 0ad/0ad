@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Krisli Pulaj <pkisi00@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-10 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-06-02 21:53+0000\n"
+"Last-Translator: Krisli Pulaj <pkisi00@gmail.com>\n"
 "Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,15 +28,15 @@ msgstr "Peshk"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Gather food from this bountiful oceanic resource."
-msgstr ""
+msgstr "Grumbullo ushqim nga ky burim i bollshëm oqeanik."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 msgid "Bush"
-msgstr ""
+msgstr "Shkurre"
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
-msgstr ""
+msgstr "Pemë"
 
 #: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
@@ -47,7 +48,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Metal Mine"
-msgstr ""
+msgstr "Minierë Metali"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
@@ -55,7 +56,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
-msgstr ""
+msgstr "Gurore"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Mine these to provide Stone building material."
@@ -63,31 +64,31 @@ msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
-msgstr ""
+msgstr "Rrënoja"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "These ruins that can be mined for resources."
-msgstr ""
+msgstr "Këto rrënoja mund të shfrytëzohen për burime."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
-msgstr ""
+msgstr "Thesar"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "A treasure that can be quickly gathered."
-msgstr ""
+msgstr "Një thesar që mund të grumbullohet shpejt."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
-msgstr ""
+msgstr "Strukturë"
 
 #: simulation/templates/template_unit.xml:42
 msgid "Unit"
-msgstr ""
+msgstr "Njësi"
 
 #: simulation/templates/template_wallset.xml:11
 msgid "City Wall"
-msgstr ""
+msgstr "Mur Qyteti"
 
 #: simulation/templates/template_wallset.xml:12
 msgid "Wall off your town for a stout defense."
@@ -95,11 +96,11 @@ msgstr "Murose qytezën tënde për mbrotje të qëndrueshme."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr ""
+msgstr "Ushtria e Aleksandrit të Madh."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
-msgstr ""
+msgstr "Ushtria e Aleksandrit të Madh"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 #: simulation/templates/campaigns/army_mace_standard.xml:21
@@ -109,7 +110,7 @@ msgstr ""
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr ""
+msgstr "Ushtria e Maqedonisë"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
@@ -126,7 +127,7 @@ msgstr ""
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Market"
-msgstr ""
+msgstr "Treg"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 #: simulation/templates/campaigns/campaign_city_test.xml:28
@@ -147,7 +148,7 @@ msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:30
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Ky është një qytet i madh grek."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -159,7 +160,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:4
 msgid "Arctic Wolf"
-msgstr ""
+msgstr "Ujk Arktik"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
@@ -168,7 +169,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_bear.xml:17
 msgid "Brown Bear"
-msgstr ""
+msgstr "Ari i murrmë"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Ursus arctos"
@@ -176,7 +177,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_boar.xml:17
 msgid "Wild Boar"
-msgstr ""
+msgstr "Derr i egër"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Sus scrofa"
@@ -190,18 +191,38 @@ msgstr ""
 msgid "Camelus dromedarius"
 msgstr ""
 
+#: simulation/templates/gaia/fauna_cattle_bull.xml:4
+msgid "Bull"
+msgstr "Dem"
+
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
-msgid "Bos Taurus Taurus"
+msgid "Bos taurus taurus"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_cattle_cow.xml:4
+msgid "Cow"
+msgstr "Lopë"
+
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:4
+msgid "Sanga Cattle"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
-msgid "Bos Taurus Africanus"
+msgid "Bos taurus africanus"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:4
+msgid "Zebu"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:5
+msgid "Bos taurus indicus"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
-msgstr ""
+msgstr "Pulë"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
@@ -209,7 +230,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_crocodile.xml:17
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Krokodil Nili"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
@@ -217,7 +238,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Drer i kuq"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
@@ -225,7 +246,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Gomar"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
@@ -233,7 +254,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "Elefant Shkurresh Afrikan"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
@@ -246,7 +267,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
-msgstr ""
+msgstr "Elefant Aziatik"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:5
@@ -255,11 +276,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant Calf"
-msgstr ""
+msgstr "Këlysh Elefanti  Aziatik"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
-msgstr ""
+msgstr "Elefant Pylli Afrikan"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
@@ -271,11 +292,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fish_tuna.xml:4
 msgid "Tuna"
-msgstr ""
+msgstr "Ton"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
-msgstr ""
+msgstr "Dhelpër Arktike"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
@@ -283,7 +304,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
-msgstr ""
+msgstr "Dhelpër e kuqe"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
@@ -299,7 +320,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr ""
+msgstr "Xhirafë"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
@@ -308,35 +329,27 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:8
 msgid "Juvenile Giraffe"
-msgstr ""
+msgstr "Xhirafë e vogël"
 
 #: simulation/templates/gaia/fauna_goat.xml:8
 msgid "Goat"
-msgstr ""
+msgstr "Dhi"
 
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_horse.xml:8
-#: simulation/templates/gaia/fauna_horse_breed.xml:8
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:8
-#: simulation/templates/gaia/fauna_horse_marwari.xml:8
-#: simulation/templates/gaia/fauna_horse_persian.xml:8
 msgid "Horse"
-msgstr ""
+msgstr "Kal"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
-#: simulation/templates/gaia/fauna_horse_breed.xml:9
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:9
-#: simulation/templates/gaia/fauna_horse_marwari.xml:9
-#: simulation/templates/gaia/fauna_horse_persian.xml:9
 msgid "Equus ferus caballus"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_lion.xml:17
 msgid "Lion"
-msgstr ""
+msgstr "Luan"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Panthera leo"
@@ -344,7 +357,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
-msgstr ""
+msgstr "Luaneshë"
 
 #: simulation/templates/gaia/fauna_mastiff.xml:4
 msgid "Mastiff"
@@ -365,7 +378,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_peacock.xml:7
 msgid "Peacock"
-msgstr ""
+msgstr "Pallua"
 
 #: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Pavo cristatus"
@@ -373,7 +386,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pig.xml:8
 msgid "Pig"
-msgstr ""
+msgstr "Derr"
 
 #: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Sus scrofa domesticus"
@@ -385,7 +398,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Derrkuc"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -393,7 +406,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
-msgstr ""
+msgstr "Lepur"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
@@ -401,7 +414,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_rhino.xml:17
 msgid "White Rhinoceros"
-msgstr ""
+msgstr "Rinoceront  i bardhë"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Ceratotherium simum"
@@ -409,7 +422,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Peshkaqeni i madh i bardhë"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -417,7 +430,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_sheep.xml:8
 msgid "Sheep"
-msgstr ""
+msgstr "Dele"
 
 #: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Ovis aries"
@@ -425,7 +438,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_tiger.xml:17
 msgid "Tiger"
-msgstr ""
+msgstr "Tigër"
 
 #: simulation/templates/gaia/fauna_tiger.xml:18
 msgid "Panthera tigris"
@@ -433,7 +446,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
-msgstr ""
+msgstr "Lopë Deti"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
@@ -465,7 +478,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
-msgstr ""
+msgstr "Ujk"
 
 #: simulation/templates/gaia/fauna_wolfhound.xml:4
 msgid "Wolfhound"
@@ -473,14 +486,10 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
-msgstr ""
+msgstr "Zebra e zakonshme"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
-msgstr ""
-
-#: simulation/templates/gaia/fauna_zebu.xml:5
-msgid "Bos Taurus Indicus"
 msgstr ""
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
@@ -489,19 +498,19 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_bush_berry.xml:4
 msgid "Berries"
-msgstr ""
+msgstr "Manaferra"
 
 #: simulation/templates/gaia/flora_bush_berry.xml:5
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr ""
+msgstr "Mblidhni frutat nga këto shkurre qe te grumbulloni Ushqim."
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
-msgstr ""
+msgstr "Rrush"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
-msgstr ""
+msgstr "Mblidhni rrush nga këto vreshta për Ushqim."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
@@ -517,12 +526,12 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
-msgstr ""
+msgstr "Pemë Molle"
 
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bambu"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -531,19 +540,19 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
 msgid "Baobab"
-msgstr ""
+msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "Filiz baobabi"
 
 #: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr ""
+msgstr "Baobab i ri"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Baobab i tharë"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -586,7 +595,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
-msgstr ""
+msgstr "Pemë e Tharë"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -595,11 +604,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
-msgstr ""
+msgstr "Fik"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
-msgstr ""
+msgstr "Mblidhni fiq për Ushqim."
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -619,15 +628,15 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_oak_dead.xml:4
 #: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
-msgstr ""
+msgstr "Pemë Lisi"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "Pemë Lisi e madhe"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
-msgstr ""
+msgstr "Pemë Ulliri"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -639,29 +648,29 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
-msgstr ""
+msgstr "Palmë"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "Palmë tropikale"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine Tree"
-msgstr ""
+msgstr "Pemë Pishe"
 
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "Pishë  e zezë"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr ""
+msgstr "Pemë Plepi"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
-msgstr ""
+msgstr "Pemë plepi e zezë"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -677,15 +686,15 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "Rrënoja antike"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
-msgstr ""
+msgstr "Piramidë e Madhe"
 
 #: simulation/templates/gaia/ruins/pyramid_minor.xml:8
 msgid "Minor Pyramid"
-msgstr ""
+msgstr "Piramidë e Vogël"
 
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
@@ -698,30 +707,30 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
-msgstr ""
+msgstr "Statujë Kushite"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
-msgstr ""
+msgstr "Statuja Romake"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
-msgstr ""
+msgstr "Tempull Grek i Pambaruar"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
+msgstr "Ky tempull është i pambaruar dhe është rrënuar."
 
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
 #: simulation/templates/gaia/treasure/food_jars.xml:8
 msgid "Food Treasure"
-msgstr ""
+msgstr "Thesar me Ushqim"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr ""
+msgstr "Fuçi gjysmë të groposura"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
@@ -729,7 +738,7 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr ""
+msgstr "Thesare perse me ushqim"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
@@ -737,7 +746,7 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/metal.xml:8
 msgid "Secret Box"
-msgstr ""
+msgstr "Kuti Sekrete"
 
 #: simulation/templates/gaia/treasure/metal_persian_big.xml:8
 msgid "Persian Wares"
@@ -745,11 +754,11 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
 msgid "Persian Rugs"
-msgstr ""
+msgstr "Qilime Perse"
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
-msgstr ""
+msgstr "Pegazus"
 
 #: simulation/templates/gaia/treasure/shipwreck.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:8
@@ -782,33 +791,33 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
-msgstr ""
+msgstr "Thesar me Gur"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
-msgstr ""
+msgstr "Thesar me Dru"
 
 #: simulation/templates/other/bench.xml:19
 msgid "Bench"
-msgstr ""
+msgstr "Stol"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Wooden Bench"
-msgstr ""
+msgstr "Stol druri"
 
 #: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
 msgid "Bridge"
-msgstr ""
+msgstr "Urë"
 
 #: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
 msgid "Wooden Bridge"
-msgstr ""
+msgstr "Urë druri"
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
-msgstr ""
+msgstr "Kasolle"
 
 #: simulation/templates/other/celt_longhouse.xml:21
 msgid "Longhouse"
@@ -818,7 +827,7 @@ msgstr ""
 #: simulation/templates/other/column_doric_fallen.xml:19
 #: simulation/templates/other/column_doric_fallen_b.xml:19
 msgid "Column"
-msgstr ""
+msgstr "Kolonë"
 
 #: simulation/templates/other/column_doric.xml:20
 msgid "Doric Column"
@@ -840,28 +849,28 @@ msgstr ""
 #: simulation/templates/other/fence_long.xml:20
 #: simulation/templates/other/fence_short.xml:20
 msgid "Fence"
-msgstr ""
+msgstr "Gardh"
 
 #: simulation/templates/other/fence_long.xml:21
 msgid "Long Wooden Fence"
-msgstr ""
+msgstr "Gardh i gjatë druri"
 
 #: simulation/templates/other/fence_short.xml:21
 msgid "Short Wooden Fence"
-msgstr ""
+msgstr "Gardh i shkurtër druri"
 
 #: simulation/templates/other/fence_stone.xml:20
 #: simulation/templates/other/fence_stone.xml:21
 msgid "Stone Fence"
-msgstr ""
+msgstr "Gardh Guri"
 
 #: simulation/templates/other/generic_field.xml:8
 msgid "Wheat Field"
-msgstr ""
+msgstr "Fushë me Grur"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:23
 msgid "Epic Temple"
-msgstr ""
+msgstr "Tempull Madhështor"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:24
 msgid "Naos Parthenos"
@@ -889,11 +898,11 @@ msgstr ""
 
 #: simulation/templates/other/obelisk.xml:19
 msgid "Obelisk"
-msgstr ""
+msgstr "Obelisk"
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Egyptian Obelisk"
-msgstr ""
+msgstr "Obelisk Egjiptian"
 
 #: simulation/templates/other/palisades_angle_spike.xml:17
 msgid "Angle Spike"
@@ -913,7 +922,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:10
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Kullë Druri"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:21
 msgid "Palisade Gate"
@@ -944,7 +953,7 @@ msgstr "Avanpost"
 
 #: simulation/templates/other/palisades_rocks_watchtower.xml:14
 msgid "Watchtower"
-msgstr ""
+msgstr "Kullë Vrojtimi"
 
 #: simulation/templates/other/palisades_small_spikes.xml:17
 msgid "Small Spikes"
@@ -978,19 +987,19 @@ msgstr ""
 #: simulation/templates/other/table_rectangle.xml:19
 #: simulation/templates/other/table_square.xml:19
 msgid "Table"
-msgstr ""
+msgstr "Tavolinë"
 
 #: simulation/templates/other/table_rectangle.xml:20
 msgid "Rectangle Table"
-msgstr ""
+msgstr "Tavolinë Drejtkëndëshe"
 
 #: simulation/templates/other/table_square.xml:20
 msgid "Square Table"
-msgstr ""
+msgstr "Tavolinë Katrore"
 
 #: simulation/templates/other/wallset_palisade.xml:4
 msgid "Wooden Wall"
-msgstr ""
+msgstr "Mur Druri"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1006,7 +1015,7 @@ msgstr ""
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
-msgstr ""
+msgstr "Spiun"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1015,19 +1024,19 @@ msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "Anti Kalorësi"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr ""
+msgstr "Vija e Betejës"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "At least 4 units required."
-msgstr ""
+msgstr "Duhen të paktën 4 njësi."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr ""
+msgstr "Kuti"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
@@ -1067,7 +1076,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
-msgstr ""
+msgstr "Shpërnda"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Only ranged units allowed."
@@ -1091,7 +1100,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "At least 6 cavalry units required."
-msgstr ""
+msgstr "Duhen të paktën 6 njësi kalorësie."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -1099,4 +1108,4 @@ msgstr ""
 
 #: simulation/templates/special/player/player.xml:60
 msgid "Player"
-msgstr ""
+msgstr "Lojtar"

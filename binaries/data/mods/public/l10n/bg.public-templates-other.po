@@ -8,14 +8,14 @@
 # Любомир Василев, 2016
 # AccountKiller, 2015
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
-# Красимир Миков <krasimir_mikov@icloud.com>, 2019
-# Красимир Миков <krasimir_mikov@icloud.com>, 2019
+# 12192b354109d39d9c701ab47471cc99, 2019
+# 12192b354109d39d9c701ab47471cc99, 2019
 # Любомир Василев, 2016-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-10 19:34+0000\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-06-01 10:24+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -198,14 +198,34 @@ msgstr "Едногърба камила"
 msgid "Camelus dromedarius"
 msgstr "Камелус дромедариус"
 
+#: simulation/templates/gaia/fauna_cattle_bull.xml:4
+msgid "Bull"
+msgstr "Бик"
+
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
-msgid "Bos Taurus Taurus"
-msgstr "Бос Таурус Таурус"
+msgid "Bos taurus taurus"
+msgstr "Бос таурус таурус"
+
+#: simulation/templates/gaia/fauna_cattle_cow.xml:4
+msgid "Cow"
+msgstr "Крава"
+
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:4
+msgid "Sanga Cattle"
+msgstr "Говедо санга"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
-msgid "Bos Taurus Africanus"
-msgstr "Бос Таурус Африканус"
+msgid "Bos taurus africanus"
+msgstr "Бос таурус африканус"
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:4
+msgid "Zebu"
+msgstr "Зебу"
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:5
+msgid "Bos taurus indicus"
+msgstr "Бос таурус индикус"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -327,18 +347,10 @@ msgid "Capra aegagrus hircus"
 msgstr "Капра егагрус хиркус"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
-#: simulation/templates/gaia/fauna_horse_breed.xml:8
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:8
-#: simulation/templates/gaia/fauna_horse_marwari.xml:8
-#: simulation/templates/gaia/fauna_horse_persian.xml:8
 msgid "Horse"
 msgstr "Кон"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
-#: simulation/templates/gaia/fauna_horse_breed.xml:9
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:9
-#: simulation/templates/gaia/fauna_horse_marwari.xml:9
-#: simulation/templates/gaia/fauna_horse_persian.xml:9
 msgid "Equus ferus caballus"
 msgstr "Екуус ферус кабалус"
 
@@ -486,10 +498,6 @@ msgstr "Равнинна зебра"
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
 msgstr "Екуус куага"
-
-#: simulation/templates/gaia/fauna_zebu.xml:5
-msgid "Bos Taurus Indicus"
-msgstr "Бос Таурус Индикус"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
