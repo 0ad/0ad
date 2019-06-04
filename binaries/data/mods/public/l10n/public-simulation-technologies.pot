@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-01 10:10+0200\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 09:57+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,6 +18,33 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.json:description
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.json:tooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and -20"
+"% train time, but also -20% health."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.json:genericName
+msgid "Archery Tradition"
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.json:requirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.json:requirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.json:requirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.json:requirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.json:requirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.json:requirementsTooltip
+#: simulation/data/technologies/health_females_01.json:requirementsTooltip
+#: simulation/data/technologies/tower_watch.json:requirementsTooltip
+msgid "Unlocked in Village Phase."
 msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.json:description
@@ -445,18 +472,6 @@ msgstr ""
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.json:genericName
 msgid "Reinforced hull"
-msgstr ""
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.json:requirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.json:requirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.json:requirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.json:requirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.json:requirementsTooltip
-#: simulation/data/technologies/health_females_01.json:requirementsTooltip
-#: simulation/data/technologies/tower_watch.json:requirementsTooltip
-#: simulation/data/technologies/mauryas/special_archery_tradition.json:requirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.json:requirementsTooltip
-msgid "Unlocked in Village Phase."
 msgstr ""
 
 #: simulation/data/technologies/attack_cav_lance.json:description
@@ -2426,24 +2441,6 @@ msgstr ""
 msgid "Divine Instruction"
 msgstr ""
 
-#: simulation/data/technologies/mauryas/special_archery_tradition.json:description
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/special_archery_tradition.json:tooltip
-#: simulation/data/technologies/persians/special_archery_tradition.json:tooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and -20"
-"% train time, but also -20% health."
-msgstr ""
-
-#: simulation/data/technologies/mauryas/special_archery_tradition.json:genericName
-#: simulation/data/technologies/persians/special_archery_tradition.json:genericName
-msgid "Archery Tradition"
-msgstr ""
-
 #: simulation/data/technologies/persians/immortals.json:description
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
@@ -2474,12 +2471,6 @@ msgstr ""
 
 #: simulation/data/technologies/persians/persian_architecture.json:genericName
 msgid "Persian Architecture"
-msgstr ""
-
-#: simulation/data/technologies/persians/special_archery_tradition.json:description
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
 msgstr ""
 
 #: simulation/data/technologies/persians/special_equine_transports.json:description

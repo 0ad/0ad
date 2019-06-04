@@ -21,8 +21,6 @@
 #include <assert.h>
 #include <sstream>
 
-#include <wx/string.h>
-
 #define ATSMARTPTR_IMPL(T) \
 	template<> void AtSmartPtr<T>::inc_ref()	\
 	{											\
@@ -53,12 +51,9 @@ const AtIter AtIter::operator [] (const char* key) const
 		return AtIter();
 }
 
-AtIter::operator const wchar_t* () const
+AtIter::operator const char* () const
 {
-	if (m_Impl)
-		return m_Impl->iter->second->m_Value.c_str();
-	else
-		return L"";
+	return m_Impl ? m_Impl->iter->second->m_Value.c_str() : "";
 }
 
 //AtIter::operator const AtObj () const
@@ -122,23 +117,16 @@ const AtIter AtObj::operator [] (const char* key) const
 		return AtIter();
 }
 
-AtObj::operator const wchar_t* () const
+AtObj::operator const char* () const
 {
-	if (m_Node)
-		return m_Node->m_Value.c_str();
-	else
-		return L"";
+	return m_Node ? m_Node->m_Value.c_str() : "";
 }
 
 double AtObj::getDouble() const
 {
 	double val = 0;
 	if (m_Node)
-	{
-		std::wstringstream s;
-		s << m_Node->m_Value;
-		s >> val;
-	}
+		static_cast<std::stringstream>(m_Node->m_Value) >> val;
 	return val;
 }
 
@@ -146,11 +134,15 @@ int AtObj::getInt() const
 {
 	int val = 0;
 	if (m_Node)
-	{
-		std::wstringstream s;
-		s << m_Node->m_Value;
-		s >> val;
-	}
+		static_cast<std::stringstream>(m_Node->m_Value) >> val;
+	return val;
+}
+
+long AtObj::getLong() const
+{
+	long val = 0;
+	if (m_Node)
+		static_cast<std::stringstream>(m_Node->m_Value) >> val;
 	return val;
 }
 
@@ -162,12 +154,7 @@ void AtObj::add(const char* key, AtObj& data)
 	m_Node = m_Node->addChild(key, data.m_Node);
 }
 
-void AtObj::add(const char* key, const wxString& value)
-{
-	add(key, value.wc_str());
-}
-
-void AtObj::add(const char* key, const wchar_t* value)
+void AtObj::add(const char* key, const char* value)
 {
 	const AtNode* o = new AtNode(value);
 
@@ -185,12 +172,7 @@ void AtObj::set(const char* key, AtObj& data)
 	m_Node = m_Node->setChild(key, data.m_Node);
 }
 
-void AtObj::set(const char* key, const wxString& value)
-{
-	set(key, value.wc_str());
-}
-
-void AtObj::set(const char* key, const wchar_t* value)
+void AtObj::set(const char* key, const char* value)
 {
 	const AtNode* o = new AtNode(value);
 
@@ -202,7 +184,7 @@ void AtObj::set(const char* key, const wchar_t* value)
 
 void AtObj::setBool(const char* key, bool value)
 {
-	AtNode* o = new AtNode(value ? L"true" : L"false");
+	AtNode* o = new AtNode(value ? "true" : "false");
 	o->m_Children.insert(AtNode::child_pairtype("@boolean", AtNode::Ptr(new AtNode())));
 
 	if (!m_Node)
@@ -213,7 +195,7 @@ void AtObj::setBool(const char* key, bool value)
 
 void AtObj::setDouble(const char* key, double value)
 {
-	std::wstringstream str;
+	std::stringstream str;
 	str << value;
 	AtNode* o = new AtNode(str.str().c_str());
 	o->m_Children.insert(AtNode::child_pairtype("@number", AtNode::Ptr(new AtNode())));
@@ -226,7 +208,7 @@ void AtObj::setDouble(const char* key, double value)
 
 void AtObj::setInt(const char* key, int value)
 {
-	std::wstringstream str;
+	std::stringstream str;
 	str << value;
 	AtNode* o = new AtNode(str.str().c_str());
 	o->m_Children.insert(AtNode::child_pairtype("@number", AtNode::Ptr(new AtNode())));
@@ -237,7 +219,7 @@ void AtObj::setInt(const char* key, int value)
 	m_Node = m_Node->setChild(key, AtNode::Ptr(o));
 }
 
-void AtObj::setString(const wchar_t* value)
+void AtObj::setString(const char* value)
 {
 	if (!m_Node)
 		m_Node = new AtNode();
@@ -289,7 +271,7 @@ bool AtNode::hasContent() const
 	return false;
 }
 
-const AtNode::Ptr AtNode::setValue(const wchar_t* value) const
+const AtNode::Ptr AtNode::setValue(const char* value) const
 {
 	AtNode* newNode = new AtNode();
 	newNode->m_Children = m_Children;

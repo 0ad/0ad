@@ -99,8 +99,8 @@ struct ObjectSidebarImpl
 {
 	ObjectSidebarImpl(ScenarioEditor& scenarioEditor) :
 		m_ObjectListBox(NULL), m_ActorViewerActive(false),
-		m_ActorViewerEntity(_T("actor|structures/fndn_1x1.xml")),
-		m_ActorViewerAnimation(_T("idle")), m_ActorViewerSpeed(0.f),
+		m_ActorViewerEntity(L"actor|structures/fndn_1x1.xml"),
+		m_ActorViewerAnimation("idle"), m_ActorViewerSpeed(0.f),
 		m_ObjectSettings(scenarioEditor.GetObjectSettings())
 	{
 	}
@@ -110,14 +110,14 @@ struct ObjectSidebarImpl
 	ObservableScopedConnection m_ToolConn;
 
 	bool m_ActorViewerActive;
-	wxString m_ActorViewerEntity;
-	wxString m_ActorViewerAnimation;
+	std::wstring m_ActorViewerEntity;
+	std::string m_ActorViewerAnimation;
 	float m_ActorViewerSpeed;
 	Observable<ObjectSettings>& m_ObjectSettings;
 
 	void ActorViewerPostToGame()
 	{
-		POST_MESSAGE(SetActorViewer, ((std::wstring)m_ActorViewerEntity.wc_str(), (std::wstring)m_ActorViewerAnimation.wc_str(), m_ObjectSettings.GetPlayerID(), m_ActorViewerSpeed, false));
+		POST_MESSAGE(SetActorViewer, (m_ActorViewerEntity.c_str(), m_ActorViewerAnimation.c_str(), m_ObjectSettings.GetPlayerID(), m_ActorViewerSpeed, false));
 	}
 };
 
@@ -545,7 +545,7 @@ void ObjectBottomBar::OnFirstDisplay()
 	AtObj playerData = AtlasObject::LoadFromJSON(*qryPlayers.defaults);
 	AtObj playerDefs = *playerData["PlayerData"];
 	for (AtIter iterator = playerDefs["item"]; iterator.defined(); ++iterator)
-		players.Add(wxString(iterator["Name"]));
+		players.Add(wxString::FromUTF8(iterator["Name"]));
 
 	wxDynamicCast(FindWindow(ID_PlayerSelect), PlayerComboBox)->SetPlayers(players);
 

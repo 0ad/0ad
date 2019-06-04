@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-10 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-06-03 07:21+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +64,7 @@ msgstr "矿藏，提供罕见种类的贵重金属。"
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
-msgstr ""
+msgstr "采石场"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Mine these to provide Stone building material."
@@ -199,14 +199,34 @@ msgstr "单峰骆驼"
 msgid "Camelus dromedarius"
 msgstr "单峰骆驼"
 
+#: simulation/templates/gaia/fauna_cattle_bull.xml:4
+msgid "Bull"
+msgstr "公牛"
+
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
-msgid "Bos Taurus Taurus"
+msgid "Bos taurus taurus"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_cattle_cow.xml:4
+msgid "Cow"
+msgstr "母牛"
+
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:4
+msgid "Sanga Cattle"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
-msgid "Bos Taurus Africanus"
+msgid "Bos taurus africanus"
 msgstr ""
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:4
+msgid "Zebu"
+msgstr "瘤牛"
+
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:5
+msgid "Bos taurus indicus"
+msgstr "瘤牛"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -328,18 +348,10 @@ msgid "Capra aegagrus hircus"
 msgstr "山羊"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
-#: simulation/templates/gaia/fauna_horse_breed.xml:8
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:8
-#: simulation/templates/gaia/fauna_horse_marwari.xml:8
-#: simulation/templates/gaia/fauna_horse_persian.xml:8
 msgid "Horse"
 msgstr "马"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
-#: simulation/templates/gaia/fauna_horse_breed.xml:9
-#: simulation/templates/gaia/fauna_horse_lusitano.xml:9
-#: simulation/templates/gaia/fauna_horse_marwari.xml:9
-#: simulation/templates/gaia/fauna_horse_persian.xml:9
 msgid "Equus ferus caballus"
 msgstr "马"
 
@@ -487,10 +499,6 @@ msgstr "平原斑马"
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
 msgstr "平原斑马"
-
-#: simulation/templates/gaia/fauna_zebu.xml:5
-msgid "Bos Taurus Indicus"
-msgstr ""
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -931,7 +939,7 @@ msgstr "栅栏门"
 #: simulation/templates/other/palisades_rocks_gate.xml:23
 msgid ""
 "Allow units access through a palisade wall. Can be locked to prevent access."
-msgstr ""
+msgstr "允许单位通过栅栏墙进入。 可以锁定禁止通过。"
 
 #: simulation/templates/other/palisades_rocks_long.xml:18
 #: simulation/templates/other/palisades_rocks_medium.xml:18

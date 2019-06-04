@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-29 17:14+0000\n"
-"Last-Translator: Ales Novak <anovak055@gmail.com>\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-05-31 15:42+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,6 +86,7 @@ msgstr "Zvyšte populační limit."
 #: simulation/templates/template_structure_military_barracks.xml:24
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_range.xml:24
+#: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
 msgstr "Vesnice"
@@ -262,15 +263,6 @@ msgstr "Cvičte občanské vojáky. Zkoumejte vylepšení výcviku."
 msgid "Barracks"
 msgstr "Kasárna"
 
-#: simulation/templates/template_structure_military_barracks_stables.xml:7
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "Stables"
-msgstr "Stáje"
-
-#: simulation/templates/template_structure_military_barracks_stables.xml:8
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Cvičte občanské vojáky jízdy.  Zkoumejte vylepšení výcviku."
-
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 msgid "Research weapons and armor improvements."
 msgstr "Zkoumejte vylepšení zbraní a brnění."
@@ -349,6 +341,18 @@ msgstr "Cvičte občanské vojáky střelecké pěchoty. Zkoumejte vylepšení v
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
 msgstr "Dostřel:"
+
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr ""
+
+#: simulation/templates/template_structure_military_stable.xml:25
+msgid "Train citizen-soldier cavalry. Research training improvements."
+msgstr "Cvičte občanské vojáky jízdy.  Zkoumejte vylepšení výcviku."
+
+#: simulation/templates/template_structure_military_stable.xml:26
+msgid "Stables"
+msgstr "Stáje"
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"
@@ -429,12 +433,9 @@ msgid "Wonder"
 msgstr "Div světa"
 
 #: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/athen_stable.xml:12
 #: simulation/templates/structures/mace_barracks.xml:18
-#: simulation/templates/structures/mace_stable.xml:12
 #: simulation/templates/structures/spart_barracks.xml:18
 #: simulation/templates/structures/spart_range.xml:5
-#: simulation/templates/structures/spart_stable.xml:12
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Stratēgeîon"
 msgstr "Stratēgeîon"
@@ -544,6 +545,14 @@ msgstr "Cvičte hrdiny. Zkoumejte zvláštní technologie."
 #: simulation/templates/structures/mace_royal_stoa.xml:5
 #: simulation/templates/structures/spart_royal_stoa.xml:12
 msgid "Stoá"
+msgstr ""
+
+#: simulation/templates/structures/athen_stable.xml:9
+#: simulation/templates/structures/mace_stable.xml:9
+#: simulation/templates/structures/ptol_stable.xml:9
+#: simulation/templates/structures/sele_stable.xml:9
+#: simulation/templates/structures/spart_stable.xml:9
+msgid "Hippṓn"
 msgstr ""
 
 #: simulation/templates/structures/athen_storehouse.xml:8
@@ -709,8 +718,8 @@ msgstr ""
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_stable.xml:12
-#: simulation/templates/structures/gaul_stable.xml:12
+#: simulation/templates/structures/brit_stable.xml:9
+#: simulation/templates/structures/gaul_stable.xml:9
 msgid "Eposton"
 msgstr ""
 
@@ -1481,17 +1490,9 @@ msgstr "Ardatašta"
 msgid "Didebani"
 msgstr "Didebani"
 
-#: simulation/templates/structures/pers_stables.xml:18
-msgid "Cavalry Stables"
-msgstr "Stáje jezdectva"
-
-#: simulation/templates/structures/pers_stables.xml:19
+#: simulation/templates/structures/pers_stable.xml:15
 msgid "Paraspa"
 msgstr "Paraspa"
-
-#: simulation/templates/structures/pers_stables.xml:21
-msgid "Train citizen-cavalry units."
-msgstr "Cvičte občanské jednotky jízdy."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"

@@ -14,12 +14,13 @@
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 # 又齊 劉 <bill19981002@gmail.com>, 2018
+# 可邦 陳 <bensoncat99@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-01 07:25+0000\n"
+"Last-Translator: 可邦 陳 <bensoncat99@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "穿刺"
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr "壓碎"
+msgstr "粉碎"
 
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
@@ -93,7 +94,7 @@ msgstr "%(hotkeyName)s的快捷鍵未指定"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "按 %(hotkey)s 以自動完成玩家名稱。"
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -545,43 +546,43 @@ msgstr "連線至 %(player)s 不佳（%(milliseconds)s 毫秒）"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "這通常是因為主持端未轉發 UDP 20595 埠所造成的，可能是由防火牆或防毒軟體阻擋。"
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "主持端已結束遊戲。"
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "網路協定版本不正確。"
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "遊戲載入中，請稍後再試。"
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "遊戲已經開始，不允許觀察者。"
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "您已被踢出。"
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "您已被封禁。"
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "玩家名使用中。若您曾經斷線，請等待數秒再重試。"
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "伺服器已滿。"
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "安全大廳認證失敗。請從大廳加入。"
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -1179,15 +1180,15 @@ msgstr "Mods：%(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "這個存檔需要0 A.D. 版本 %(requiredVersion)s ，然而您執行的是 %(currentVersion)s 。"
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "這個存檔需要較舊版本的 0 A.D。"
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "這個存檔需要使用不同的外掛模組"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1586,7 +1587,7 @@ msgstr "無排名的遊戲"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "輸入一個或多個，部份或完整的玩家名稱來過濾重播。"
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -2079,7 +2080,7 @@ msgstr "未儲存的變更只影響本遊戲階段"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alpha XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2389,7 +2390,7 @@ msgstr "類型："
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "觀看重播"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2501,7 +2502,7 @@ msgstr "拉丁"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "波斯人"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -3218,7 +3219,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "經驗狀態條"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3598,7 +3599,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "昂貴且緩慢。"
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -3612,7 +3613,7 @@ msgstr "塞爾特戰船"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "一個中型的三列槳式戰船。"
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."

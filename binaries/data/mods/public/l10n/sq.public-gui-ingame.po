@@ -6,12 +6,13 @@
 # Alket Rexhepi <alketii@gmail.com>, 2016-2017
 # Fitim Miftari <miftarifitim@gmail.com>, 2016
 # Jonathan Wagstaff <jonathanmwagstaff@gmail.com>, 2017
+# Krisli Pulaj <pkisi00@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-02 12:32+0000\n"
+"Last-Translator: Krisli Pulaj <pkisi00@gmail.com>\n"
 "Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +94,7 @@ msgstr "%(time)s%(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Koha e ngelur nga armëpushimi: %(time)s."
 
 #: gui/session/menu.js:460
 msgctxt "team"
@@ -342,7 +343,7 @@ msgstr "Duke pritur për lojtarët që të bashkangjiten."
 
 #: gui/session/messages.js:155
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Duke sinkronizuar lojën me lojtarët e tjerë..."
 
 #: gui/session/messages.js:164
 #, javascript-format
@@ -1049,15 +1050,15 @@ msgstr ""
 
 #: gui/session/session.js:1243
 msgid "Unordered"
-msgstr ""
+msgstr "I parenditur"
 
 #: gui/session/session.js:1243
 msgid "Descending"
-msgstr ""
+msgstr "Zbritës"
 
 #: gui/session/session.js:1243
 msgid "Ascending"
-msgstr ""
+msgstr "Rritës"
 
 #: gui/session/session.js:1269
 #, javascript-format
@@ -1152,7 +1153,7 @@ msgstr "Shkarko"
 
 #: gui/session/unit_actions.js:1147
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "Urdhëro njësitë e zgjedhura që të riparojnë një ndërtesë ose njësi mekanike."
 
 #: gui/session/unit_actions.js:1166
 msgid "Focus on Rally Point."
@@ -1164,7 +1165,7 @@ msgstr "Ktheju punës"
 
 #: gui/session/unit_actions.js:1220
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Urdhëro njësitë e zgjedhura që të mbrojnë një ndërtesë ose njësi."
 
 #: gui/session/unit_actions.js:1238
 msgid "Remove guard"
@@ -1173,15 +1174,15 @@ msgstr "Hiq rojen"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Pazar & Tregti"
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
-msgstr ""
+msgstr "Patrullë"
 
 #: gui/session/unit_actions.js:1274
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Sulmo gjithë njësitë e hasura kundërshtare duke mënjanuar ndërtesat."
 
 #: gui/session/unit_actions.js:1300
 msgid "Press to allow allies to use this dropsite"
@@ -1201,7 +1202,7 @@ msgstr "Përdorimi i këtij vendi-shkarkimi është i ndaluar"
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "Ky entitet duhet vrarë para se të mund të grumbullohet"
 
 #: gui/session/unit_actions.js:1450
 msgid ""
@@ -1210,12 +1211,12 @@ msgstr "Ju nuk mund të shkatërroni këtë qenie meqë ju zotëroni më pak se 
 
 #: gui/session/unit_actions.js:1453
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Ky entitet nuk mund të fshihet"
 
 #: gui/session/chat_window.xml:(caption):19
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filtro:"
 
 #: gui/session/chat_window.xml:(caption):47
 msgctxt "chat input"
@@ -1234,7 +1235,7 @@ msgstr "Anulo"
 #: gui/session/chat_window.xml:(caption):97
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Histori"
 
 #: gui/session/chat_window.xml:(caption):102
 msgid "Send"
@@ -1243,7 +1244,7 @@ msgstr "Dërgo"
 #: gui/session/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Filtro historinë e chatit."
 
 #: gui/session/chat_window.xml:(tooltip):56
 msgctxt "chat input"
@@ -1355,7 +1356,7 @@ msgstr "Përmbledhje"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Holl"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1376,7 +1377,7 @@ msgstr ""
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Objektivat"
 
 #: gui/session/session.xml:(caption):66
 msgid "Game Paused"
@@ -1410,15 +1411,15 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):23
 msgid "Sell:"
-msgstr ""
+msgstr "Shit:"
 
 #: gui/session/trade_window.xml:(caption):27
 msgid "Buy:"
-msgstr ""
+msgstr "Bli:"
 
 #: gui/session/trade_window.xml:(caption):31
 msgid "No Markets Available"
-msgstr ""
+msgstr "Nuk ka tregje të disponueshme"
 
 #: gui/session/trade_window.xml:(caption):66
 msgid "Trade"
@@ -1426,11 +1427,11 @@ msgstr "Tregti"
 
 #: gui/session/trade_window.xml:(caption):74
 msgid "Goods:"
-msgstr ""
+msgstr "Mallra:"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "Gati"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1476,7 +1477,7 @@ msgstr "Kliko një herë për të zgjedhur njësitë e grupuara, dy herë për t
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "Shpejtësia e Lojës"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"
@@ -1488,4 +1489,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIV"
-msgstr ""
+msgstr "ALPHA XXIV"

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-10 09:57+0200\n"
-"PO-Revision-Date: 2019-05-27 02:02+0000\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-06-02 06:11+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,7 @@ msgstr "인구 한계를 늘립니다."
 #: simulation/templates/template_structure_military_barracks.xml:24
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_range.xml:24
+#: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
 msgstr "마을"
@@ -269,15 +270,6 @@ msgstr "시민 군인을 양성하며 양성 개선 연구를 합니다."
 msgid "Barracks"
 msgstr "병영"
 
-#: simulation/templates/template_structure_military_barracks_stables.xml:7
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "Stables"
-msgstr "마구간"
-
-#: simulation/templates/template_structure_military_barracks_stables.xml:8
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "시민 기병을 훈련하며 훈련 개선을 연구합니다."
-
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 msgid "Research weapons and armor improvements."
 msgstr "무기와 방어구 향상을 연구합니다."
@@ -356,6 +348,18 @@ msgstr "시민 군인을 양성하며 훈련 개선을 연구합니다."
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
 msgstr "범위"
+
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr "마구간"
+
+#: simulation/templates/template_structure_military_stable.xml:25
+msgid "Train citizen-soldier cavalry. Research training improvements."
+msgstr "시민 기병을 훈련하며 훈련 개선을 연구합니다."
+
+#: simulation/templates/template_structure_military_stable.xml:26
+msgid "Stables"
+msgstr "마구간"
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"
@@ -436,12 +440,9 @@ msgid "Wonder"
 msgstr "불가사의"
 
 #: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/athen_stable.xml:12
 #: simulation/templates/structures/mace_barracks.xml:18
-#: simulation/templates/structures/mace_stable.xml:12
 #: simulation/templates/structures/spart_barracks.xml:18
 #: simulation/templates/structures/spart_range.xml:5
-#: simulation/templates/structures/spart_stable.xml:12
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Stratēgeîon"
 msgstr "스트라테게이온"
@@ -552,6 +553,14 @@ msgstr "영웅을 양성합니다. 특수 기술을 연구 합니다."
 #: simulation/templates/structures/spart_royal_stoa.xml:12
 msgid "Stoá"
 msgstr "열주랑"
+
+#: simulation/templates/structures/athen_stable.xml:9
+#: simulation/templates/structures/mace_stable.xml:9
+#: simulation/templates/structures/ptol_stable.xml:9
+#: simulation/templates/structures/sele_stable.xml:9
+#: simulation/templates/structures/spart_stable.xml:9
+msgid "Hippṓn"
+msgstr "히폰"
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
@@ -716,8 +725,8 @@ msgstr "부디나돈"
 msgid "Melonas"
 msgstr "메로나스"
 
-#: simulation/templates/structures/brit_stable.xml:12
-#: simulation/templates/structures/gaul_stable.xml:12
+#: simulation/templates/structures/brit_stable.xml:9
+#: simulation/templates/structures/gaul_stable.xml:9
 msgid "Eposton"
 msgstr "에포스톤"
 
@@ -1059,11 +1068,11 @@ msgstr "칸초 로아노"
 
 #: simulation/templates/structures/kush_barracks.xml:15
 msgid "pr-ms’yw"
-msgstr "막사"
+msgstr "막사qjsdur"
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
 msgid "hmw h’y n r3-‘"
-msgstr "대장장이"
+msgstr "대장장이qjsdur"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
@@ -1076,15 +1085,15 @@ msgstr "브렘몌 사막 도적을 양성합니다."
 
 #: simulation/templates/structures/kush_civil_centre.xml:9
 msgid "Pr-nsw"
-msgstr "시민 회관"
+msgstr "시민 회관qjsdur"
 
 #: simulation/templates/structures/kush_corral.xml:9
 msgid "ihy"
-msgstr "가축 울타리"
+msgstr "가축 울타리qjsdur"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
 msgid "tsmt ‘3"
-msgstr "방어탑"
+msgstr "방어탑qjsdur"
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
@@ -1092,27 +1101,27 @@ msgstr "메리트"
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
 msgid "Ỉ﻿ḥ Abu"
-msgstr "코끼리 마구간"
+msgstr "코끼리 마구간qjsdur"
 
 #: simulation/templates/structures/kush_farmstead.xml:9
 msgid "snwt"
-msgstr "농장"
+msgstr "농장qjsdur"
 
 #: simulation/templates/structures/kush_field.xml:5
 msgid "sht"
-msgstr "밭"
+msgstr "밭qjsdur"
 
 #: simulation/templates/structures/kush_fortress.xml:9
 msgid "Htm"
-msgstr "요새"
+msgstr "요새qjsdur"
 
 #: simulation/templates/structures/kush_house.xml:5
 msgid "Pr"
-msgstr "주택(집)"
+msgstr "주택(집)qjsdur"
 
 #: simulation/templates/structures/kush_market.xml:9
 msgid "Pr-sbt"
-msgstr "시장"
+msgstr "시장qjsdur"
 
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
@@ -1125,7 +1134,7 @@ msgstr "누바인 몽둥이병과 누바인 사냥꾼을 양성합니다."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
-msgstr "전초기지"
+msgstr "전초기지qjsdur"
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
@@ -1134,7 +1143,7 @@ msgstr "쿠시 피라미드"
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
 msgid "mr ‘3"
-msgstr "쿠시테(거대한) 피라미드"
+msgstr "쿠시테(거대한) 피라미드qjsdur"
 
 #: simulation/templates/structures/kush_pyramid.xml:28
 #: simulation/templates/structures/kush_pyramid_large.xml:31
@@ -1152,15 +1161,15 @@ msgstr "소형 피라미드"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:28
 msgid "mr"
-msgstr "작은 피라미드"
+msgstr "작은 피라미드qjsdur"
 
 #: simulation/templates/structures/kush_range.xml:8
 msgid "Pr-Pdt"
-msgstr "궁병 훈련소"
+msgstr "궁병 훈련소qjsdur"
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
 msgid "tsmt"
-msgstr "보초 탑"
+msgstr "보초 탑qjsdur"
 
 #: simulation/templates/structures/kush_shrine.xml:12
 msgid "Shrine"
@@ -1168,15 +1177,15 @@ msgstr "성지"
 
 #: simulation/templates/structures/kush_shrine.xml:13
 msgid "ḥwt-nṯr"
-msgstr "신전"
+msgstr "신전qjsdur"
 
 #: simulation/templates/structures/kush_stable.xml:9
 msgid "Ỉḥ Ssmt"
-msgstr "기병대 마구간"
+msgstr "기병대 마구간qjsdur"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wd3t"
-msgstr "창고"
+msgstr "창고qjsdur"
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
@@ -1184,7 +1193,7 @@ msgstr "아페데마크 사원"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-‘Iprmk"
-msgstr "아페데막 신전"
+msgstr "아페데막 신전qjsdur"
 
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
@@ -1198,7 +1207,7 @@ msgstr "아문의 대 사원"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-‘Imn"
-msgstr "아문(Amun)의 거대사원"
+msgstr "아문(Amun)의 거대사원qjsdur"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid ""
@@ -1208,26 +1217,26 @@ msgstr "병사들을 치료하기 위해 사제들을 양성합니다. 나파탄
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "’ryt"
-msgstr "성문"
+msgstr "성문qjsdur"
 
 #: simulation/templates/structures/kush_wall_long.xml:39
 #: simulation/templates/structures/kush_wall_medium.xml:29
 #: simulation/templates/structures/kush_wall_short.xml:10
 #: simulation/templates/structures/kush_wallset_stone.xml:5
 msgid "sbty"
-msgstr "장벽"
+msgstr "장벽qjsdur"
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
 msgid "s3wt"
-msgstr "성벽 탑"
+msgstr "성벽 탑qjsdur"
 
 #: simulation/templates/structures/kush_wonder.xml:15
 msgid "Mnw nht"
-msgstr "불가사의"
+msgstr "불가사의qjsdur"
 
 #: simulation/templates/structures/kush_workshop.xml:5
 msgid "Pr-ỉwn n ms﻿"
-msgstr "공성전 작업장"
+msgstr "공성전 작업장qjsdur"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
@@ -1376,7 +1385,7 @@ msgstr "스트라토페도 미스토포론 아이깁티아코스"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "이 건물을 빼앗아ehsms점령해 그리스계(헬레니즘) 이집트에서 용병을 양성합니다."
+msgstr "이 건물을 빼앗아 헬레니즘 이집트에서 용병을 양성합니다."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
@@ -1488,17 +1497,9 @@ msgstr "아르다타스타"
 msgid "Didebani"
 msgstr "디데바니"
 
-#: simulation/templates/structures/pers_stables.xml:18
-msgid "Cavalry Stables"
-msgstr "기병대의 마구간"
-
-#: simulation/templates/structures/pers_stables.xml:19
+#: simulation/templates/structures/pers_stable.xml:15
 msgid "Paraspa"
 msgstr "파라스파"
-
-#: simulation/templates/structures/pers_stables.xml:21
-msgid "Train citizen-cavalry units."
-msgstr "시민 기병 유닛을 양성합니다."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"

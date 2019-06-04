@@ -28,7 +28,6 @@
 # define _CRT_SECURE_NO_WARNINGS // Disable deprecation warning in VS2008
 #endif
 
-#include <wchar.h> // for wchar_t
 #include <string>
 
 class wxString;
@@ -119,7 +118,7 @@ public:
 	const AtObj operator* () const;
 
 	// Return the string value of the AtObj currently pointed to by this iterator
-	operator const wchar_t* () const;
+	operator const char* () const;
 
 	// Private implementation. (But not 'private:', because it's a waste of time
 	// adding loads of friend functions)
@@ -137,13 +136,14 @@ public:
 	const AtIter operator[] (const char* key) const;
 
 	// Return the string value of this object
-	operator const wchar_t* () const;
+	operator const char* () const;
 
 	// Return the floating point value of this object
 	double getDouble() const;
 
 	// Return the integer value of this object
 	int getInt() const;
+	long getLong() const;
 
 	// Check whether the object contains anything (even if those things are empty)
 	bool defined() const { return static_cast<bool>(m_Node); }
@@ -151,22 +151,20 @@ public:
 	// Check recursively whether there's actually any non-empty data in the object
 	bool hasContent() const;
 
-	// Add or set a child. The wchar_t* and wxString& versions create a new
-	// AtObj with the appropriate string value, then use that as the child.
+	// Add or set a child. The char* version creates a new AtObj with
+	// the appropriate string value, then uses that as the child.
 	//
 	// These alter the AtObj's internal pointer, and the pointed-to data is
 	// never actually altered. Copies of this AtObj (including copies stored
 	// inside other AtObjs) will not be affected.
-	void add(const char* key, const wchar_t* value);
-	void add(const char* key, const wxString& value);
+	void add(const char* key, const char* value);
 	void add(const char* key, AtObj& data);
-	void set(const char* key, const wchar_t* value);
-	void set(const char* key, const wxString& value);
+	void set(const char* key, const char* value);
 	void set(const char* key, AtObj& data);
 	void setBool(const char* key, bool value);
 	void setDouble(const char* key, double value);
 	void setInt(const char* key, int value);
-	void setString(const wchar_t* value);
+	void setString(const char* value);
 	void addOverlay(AtObj& data);
 
 	AtSmartPtr<const AtNode> m_Node;

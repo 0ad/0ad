@@ -19,7 +19,7 @@
 #include "AtlasObjectImpl.h"
 #include "AtlasObject.h"
 
-static std::wstring ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = true)
+static std::string ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = true)
 {
 	// Convert (1, ()) into "1"
 	// Convert (3, (d: (...), e: (...))) into "3 (conv(...), conv(...))"
@@ -27,31 +27,31 @@ static std::wstring ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = 
 	// resulting in data-loss [because of the key names], and a rather arbitrary
 	// [alphabetical by key] ordering of children, but at least it's fairly readable
 
-	if (! obj)
-		return L"";
+	if (!obj)
+		return "";
 
-	std::wstring result;
+	std::string result;
 
 	bool has_value = !obj->m_Value.empty();
 	bool has_children = !obj->m_Children.empty();
 
 	if (has_value && has_children)
-		result = obj->m_Value + L" ";
+		result = obj->m_Value + " ";
 	else if (has_value)
 		result = obj->m_Value;
-	// else no value; result = L""
+	// else no value; result = ""
 
 	if (has_children)
 	{
 		if (use_brackets)
-			result += L"(";
+			result += "(";
 
 		bool first_child = true; // so we can add ", " in appropriate places
 
 		for (const AtNode::child_maptype::value_type& child : obj->m_Children)
 		{
 			if (!first_child)
-				result += L", ";
+				result += ", ";
 			else
 				first_child = false;
 
@@ -59,13 +59,13 @@ static std::wstring ConvertRecursive(const AtNode::Ptr obj, bool use_brackets = 
 		}
 
 		if (use_brackets)
-			result += L")";
+			result += ")";
 	}
 
 	return result;
 }
 
-std::wstring AtlasObject::ConvertToString(const AtObj& obj)
+std::string AtlasObject::ConvertToString(const AtObj& obj)
 {
 	return ConvertRecursive(obj.m_Node, false);
 }
