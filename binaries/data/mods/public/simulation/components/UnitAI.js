@@ -1506,7 +1506,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
-					return;
+					return true;
 				}
 				this.SelectAnimation("move");
 			},
@@ -1526,7 +1526,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
-					return;
+					return true;
 				}
 				// Show weapons rather than carried resources.
 				this.SetAnimationVariant("combat");
@@ -1558,7 +1558,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				    !this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
-					return;
+					return true;
 				}
 
 				if (!this.patrolStartPosOrder)
@@ -1604,7 +1604,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!this.MoveToTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
 					{
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
 					// Show weapons rather than carried resources.
@@ -1714,7 +1714,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				    !cmpUnitMotion || !cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
 				{
 					this.FinishOrder();
-					return;
+					return true;
 				}
 
 				this.PlaySound("panic");
@@ -1759,7 +1759,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 					{
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
 					// Show weapons rather than carried resources.
@@ -1841,7 +1841,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							if (this.MoveToTargetAttackRange(target, this.order.data.attackType))
 							{
 								this.SetNextState("COMBAT.CHASING");
-								return;
+								return true;
 							}
 						}
 					}
@@ -2017,7 +2017,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!this.MoveTo(this.order.data))
 					{
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
 					// Show weapons rather than carried resources.
@@ -2203,7 +2203,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!this.MoveTo(this.order.data))
 					{
 						this.FinishOrder();
-						return;
+						return true;
 					}
 					this.SelectAnimation("move");
 				},
@@ -2658,7 +2658,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!this.MoveToMarket(this.order.data.target))
 					{
 						this.FinishOrder();
-						return;
+						return true;
 					}
 					this.SelectAnimation("move");
 				},

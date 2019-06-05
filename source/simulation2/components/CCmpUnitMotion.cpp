@@ -1647,7 +1647,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 				// We're already in range - no need to move anywhere
 				if (m_FacePointAfterMove)
 					FaceTowardsPointFromPos(pos, goal.x, goal.z);
-				return false;
+				return true;
 			}
 
 			entity_pos_t goalDistance = maxRange - Pathfinding::GOAL_DELTA;
