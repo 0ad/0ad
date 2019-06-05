@@ -57,6 +57,37 @@ public:
 		CheckFrustumPlanes(camera.GetFrustum(), expectedPlanes);
 	}
 
+	void test_frustum_ortho()
+	{
+		SViewPort viewPort;
+		viewPort.m_X = 0;
+		viewPort.m_Y = 0;
+		viewPort.m_Width = 512;
+		viewPort.m_Height = 512;
+
+		CCamera camera;
+		camera.SetViewPort(viewPort);
+		camera.LookAlong(
+			CVector3D(0.0f, 0.0f, 0.0f),
+			CVector3D(0.0f, 0.0f, 1.0f),
+			CVector3D(0.0f, 1.0f, 0.0f)
+			);
+		CMatrix3D projection;
+		projection.SetOrtho(-10.0f, 10.0f, -10.0f, 10.0f, -10.0f, 10.0f);
+		camera.SetProjection(projection);
+		camera.UpdateFrustum();
+
+		const std::vector<CPlane> expectedPlanes = {
+			CVector4D(1.0f, 0.0f, 0.0f, 10.0f),
+			CVector4D(-1.0f, 0.0f, 0.0f, 10.0f),
+			CVector4D(0.0f, 1.0f, 0.0f, 10.0f),
+			CVector4D(0.0f, -1.0f, 0.0f, 10.0f),
+			CVector4D(0.0f, 0.0f, 1.0f, 10.0f),
+			CVector4D(0.0f, 0.0f, -1.0f, 10.0f)
+		};
+		CheckFrustumPlanes(camera.GetFrustum(), expectedPlanes);
+	}
+
 	// Order of planes is unknown. So use interactive checker.
 	void CheckFrustumPlanes(const CFrustum& frustum, const std::vector<CPlane>& expectedPlanes)
 	{
@@ -77,7 +108,8 @@ public:
 					break;
 				}
 			}
-			TS_ASSERT(found);
+			if (!found)
+				TS_FAIL(frustum[i]);
 		}
 	}
 
