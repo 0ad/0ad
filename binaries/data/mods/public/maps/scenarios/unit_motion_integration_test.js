@@ -280,6 +280,18 @@ experiments.formation_attack = {
 	}
 };
 
+experiments.multiple_resources = {
+	"spawn": () => {
+		QuickSpawn(gx, gy + 80, "structures/athen_civil_centre");
+
+		let chicken = QuickSpawn(gx, gy + 50, "gaia/fauna_chicken");
+		QuickSpawn(gx + 3, gy + 50, "gaia/fauna_chicken");
+		QuickSpawn(gx - 3, gy + 50, "gaia/fauna_chicken");
+
+		Do("gather", { "target": chicken }, QuickSpawn(gx, gy, UNIT_TEMPLATE));
+	}
+};
+
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
 Trigger.prototype.SetupUnits = function()

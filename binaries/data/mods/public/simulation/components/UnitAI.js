@@ -2070,115 +2070,20 @@ UnitAI.prototype.UnitFsmSpec = {
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					var cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
 					if ((!cmpMirage || !cmpMirage.Mirages(IID_ResourceSupply)) &&
-					    (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity)))
+					    (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity)) ||
+					    !this.MoveTo(this.order.data, IID_ResourceGatherer))
 					{
-						// Save the current order's data in case we need it later
-						var oldType = this.order.data.type;
-						var oldTarget = this.order.data.target;
-						var oldTemplate = this.order.data.template;
-
-						// Try the next queued order if there is any
-						if (this.FinishOrder())
-							return true;
-
-						// Try to find another nearby target of the same specific type
-						// Also don't switch to a different type of huntable animal
-						var nearby = this.FindNearbyResource(function(ent, type, template) {
-							return (
-								ent != oldTarget
-								 && ((type.generic == "treasure" && oldType.generic == "treasure")
-								 || (type.specific == oldType.specific
-								 && (type.specific != "meat" || oldTemplate == template)))
-							);
-						}, oldTarget);
-						if (nearby)
-						{
-							this.PerformGather(nearby, false, false);
-							return true;
-						}
-						else
-						{
-							// It's probably better in this case, to avoid units getting stuck around a dropsite
-							// in a "Target is far away, full, nearby are no good resources, return to dropsite" loop
-							// to order it to GatherNear the resource position.
-							var cmpPosition = Engine.QueryInterface(oldTarget, IID_Position);
-							if (cmpPosition)
-							{
-								var pos = cmpPosition.GetPosition();
-								this.GatherNearPosition(pos.x, pos.z, oldType, oldTemplate);
-								return true;
-							}
-							else
-							{
-								// we're kind of stuck here. Return resource.
-								var nearby = this.FindNearestDropsite(oldType.generic);
-								if (nearby)
-								{
-									this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-									return true;
-								}
-							}
-						}
+						// The GATHERING timer will handle finding a valid resource.
+						this.SetNextState("GATHERING");
 						return true;
 					}
-
-					// We can gather from out target, so try to move there.
-					if (!this.MoveTo(this.order.data, IID_ResourceGatherer))
-					{
-						this.FinishOrder();
-						return true;
-					}
-
 					this.SelectAnimation("move");
-
 					return false;
 				},
 
 				"MoveCompleted": function(msg) {
-					if (msg.data.error)
-					{
-						// We failed to reach the target
-
-						// remove us from the list of entities gathering from Resource.
-						var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-						if (cmpSupply && cmpOwnership)
-							cmpSupply.RemoveGatherer(this.entity, cmpOwnership.GetOwner());
-						else if (cmpSupply)
-							cmpSupply.RemoveGatherer(this.entity);
-
-						// Save the current order's data in case we need it later
-						var oldType = this.order.data.type;
-						var oldTarget = this.order.data.target;
-						var oldTemplate = this.order.data.template;
-
-						// Try the next queued order if there is any
-						if (this.FinishOrder())
-							return;
-
-						// Try to find another nearby target of the same specific type
-						// Also don't switch to a different type of huntable animal
-						var nearby = this.FindNearbyResource(function(ent, type, template) {
-							return (
-								ent != oldTarget
-								&& ((type.generic == "treasure" && oldType.generic == "treasure")
-								|| (type.specific == oldType.specific
-								&& (type.specific != "meat" || oldTemplate == template)))
-							);
-						});
-						if (nearby)
-						{
-							this.PerformGather(nearby, false, false);
-							return;
-						}
-
-						// Couldn't find anything else. Just try this one again,
-						// maybe we'll succeed next time
-						this.PerformGather(oldTarget, false, false);
-						return;
-					}
-
-					// We reached the target - start gathering from it now
+					// We either reached the target, or we will let the timer logic in GATHERING
+					// handle finding a new resource.
 					this.SetNextState("GATHERING");
 				},
 
@@ -2213,59 +2118,25 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function(msg) {
-					var resourceType = this.order.data.type;
-					var resourceTemplate = this.order.data.template;
-
-					// Try to find another nearby target of the same specific type
-					// Also don't switch to a different type of huntable animal
-					var nearby = this.FindNearbyResource(function(ent, type, template) {
-						return (
-							(type.generic == "treasure" && resourceType.generic == "treasure")
-							|| (type.specific == resourceType.specific
-							&& (type.specific != "meat" || resourceTemplate == template))
-						);
-					});
-
-					// If there is a nearby resource start gathering
-					if (nearby)
-					{
-						this.PerformGather(nearby, false, false);
-						return;
-					}
-
-					// Couldn't find nearby resources, so give up
-					if (this.FinishOrder())
-						return;
-
-					// Nothing better to do: go back to dropsite
-					var nearby = this.FindNearestDropsite(resourceType.generic);
-					if (nearby)
-					{
-						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-						return;
-					}
-
-					// No dropsites, just give up
+					// The GATHERING timer will handle finding a valid resource.
+					this.SetNextState("GATHERING");
 				},
 			},
 
 			"GATHERING": {
 				"enter": function() {
-					this.gatheringTarget = this.order.data.target;	// deleted in "leave".
+					this.gatheringTarget = this.order.data.target || INVALID_ENTITY; // deleted in "leave".
 
 					// Check if the resource is full.
-					if (this.gatheringTarget)
+					// Will only be added if we're not already in.
+					let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+					let cmpSupply;
+					if (cmpOwnership)
+						cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
 					{
-						// Check that we can gather from the resource we're supposed to gather from.
-						// Will only be added if we're not already in.
-						var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-						if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
-						{
-							this.gatheringTarget = INVALID_ENTITY;
-							this.StartTimer(0);
-							return false;
-						}
+						this.StartTimer(0);
+						return false;
 					}
 
 					// If this order was forced, the player probably gave it, but now we've reached the target
