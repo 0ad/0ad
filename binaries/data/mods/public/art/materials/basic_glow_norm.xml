@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material>
+  <alpha_blending/>
+  <alternative material="basic_trans.xml" quality="2"/>
+  <alternative material="alphatest_ao_parallax_spec.xml" if="CFG_FORCE_ALPHATEST"/>
+  <define name="USE_TRANSPARENT" value="1"/>
+  <define name="USE_SELF_LIGHT" value="1"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <shader effect="model_transparent"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
+</material>
