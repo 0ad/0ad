@@ -720,8 +720,9 @@ void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, enti
 	PathfinderState state = { 0 };
 
 	std::map<pass_class_t, shared_ptr<JumpPointCache> >::const_iterator it = m_JumpPointCache.find(passClass);
-	state.jpc = it->second.get();
-
+	if (it != m_JumpPointCache.end())
+		state.jpc = it->second.get();
+	
 	if (m_UseJPSCache && !state.jpc)
 	{
 		state.jpc = new JumpPointCache;
