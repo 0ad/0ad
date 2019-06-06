@@ -276,29 +276,6 @@ UnitMotionFlying.prototype.MoveToTargetRange = function(target, minRange, maxRan
 	return true;
 };
 
-UnitMotionFlying.prototype.IsInPointRange = function(x, y, minRange, maxRange)
-{
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var pos = cmpPosition.GetPosition2D();
-
-	var distFromTarget = Math.euclidDistance2D(x, y, pos.x, pos.y);
-	if (minRange <= distFromTarget && distFromTarget <= maxRange)
-		return true;
-
-	return false;
-};
-
-UnitMotionFlying.prototype.IsInTargetRange = function(target, minRange, maxRange)
-{
-	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
-	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
-		return false;
-
-	var targetPos = cmpTargetPosition.GetPosition2D();
-
-	return this.IsInPointRange(targetPos.x, targetPos.y, minRange, maxRange);
-};
-
 UnitMotionFlying.prototype.GetWalkSpeed = function()
 {
 	return +this.template.MaxSpeed;

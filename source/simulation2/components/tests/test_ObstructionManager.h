@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,39 @@
 #include "simulation2/system/ComponentTest.h"
 
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpObstruction.h"
+
+class MockObstruction : public ICmpObstruction
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+	ICmpObstructionManager::ObstructionSquare obstruction;
+
+	virtual ICmpObstructionManager::tag_t GetObstruction() const { return ICmpObstructionManager::tag_t(); }
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const { out = obstruction; return true; }
+	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& UNUSED(out)) const { return true; }
+	virtual entity_pos_t GetSize() const { return entity_pos_t::Zero(); }
+	virtual entity_pos_t GetUnitRadius() const { return entity_pos_t::Zero(); }
+	virtual void SetUnitClearance(const entity_pos_t& UNUSED(clearance)) { }
+	virtual bool IsControlPersistent() const { return true; }
+	virtual bool CheckShorePlacement() const { return true; }
+	virtual EFoundationCheck CheckFoundation(const std::string& UNUSED(className)) const { return EFoundationCheck(); }
+	virtual EFoundationCheck CheckFoundation(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const { return EFoundationCheck(); }
+	virtual std::string CheckFoundation_wrapper(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const { return std::string(); }
+	virtual bool CheckDuplicateFoundation() const { return true; }
+	virtual std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t UNUSED(flags)) const { return std::vector<entity_id_t>(); }
+	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const { return std::vector<entity_id_t>(); }
+	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const { return std::vector<entity_id_t>(); }
+	virtual void ResolveFoundationCollisions() const { }
+	virtual void SetActive(bool UNUSED(active)) { }
+	virtual void SetMovingFlag(bool UNUSED(enabled)) { }
+	virtual void SetDisableBlockMovementPathfinding(bool UNUSED(movementDisabled), bool UNUSED(pathfindingDisabled), int32_t UNUSED(shape)) { }
+	virtual bool GetBlockMovementFlag() const { return true; }
+	virtual void SetControlGroup(entity_id_t UNUSED(group)) { }
+	virtual entity_id_t GetControlGroup() const { return INVALID_ENTITY; }
+	virtual void SetControlGroup2(entity_id_t UNUSED(group2)) { }
+	virtual entity_id_t GetControlGroup2() const { return INVALID_ENTITY; }
+};
 
 class TestCmpObstructionManager : public CxxTest::TestSuite
 {
@@ -473,5 +506,86 @@ public:
 		TS_ASSERT_EQUALS(obSquare3.z, ent3z);
 		TS_ASSERT_EQUALS(obSquare3.u, CFixedVector2D(fixed::FromInt(1), fixed::FromInt(0)));
 		TS_ASSERT_EQUALS(obSquare3.v, CFixedVector2D(fixed::FromInt(0), fixed::FromInt(1)));
+	}
+
+	/**
+	 * Verifies the calculations of distances between shapes.
+	 */
+	void test_distance_to()
+	{
+		// Create two more entities to have non-zero distances
+		entity_id_t ent4 = 4,
+		            ent4g1 = ent4,
+		            ent4g2 = INVALID_ENTITY,
+		            ent5 = 5,
+		            ent5g1 = ent5,
+		            ent5g2 = INVALID_ENTITY;
+
+		entity_pos_t ent4a = fixed::Zero(),
+		             ent4w = fixed::FromInt(6),
+		             ent4h = fixed::Zero(),
+		             ent4x = ent1x,
+		             ent4z = fixed::FromInt(20),
+		             ent5a = fixed::Zero(),
+		             ent5w = fixed::FromInt(2),
+		             ent5h = fixed::FromInt(4),
+		             ent5x = fixed::FromInt(20),
+		             ent5z = ent1z;
+
+		tag_t shape4 = cmp->AddStaticShape(ent4, ent4x, ent4z, ent4a, ent4w, ent4h,
+			ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION |
+			ICmpObstructionManager::FLAG_BLOCK_MOVEMENT |
+			ICmpObstructionManager::FLAG_MOVING, ent4g1, ent4g2);
+
+		tag_t shape5 = cmp->AddStaticShape(ent5, ent5x, ent5z, ent5a, ent5w, ent5h,
+			ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION |
+			ICmpObstructionManager::FLAG_BLOCK_MOVEMENT |
+			ICmpObstructionManager::FLAG_MOVING, ent5g1, ent5g2);
+
+		MockObstruction obstruction1, obstruction2, obstruction3, obstruction4, obstruction5;
+		testHelper->AddMock(ent1, IID_Obstruction, obstruction1);
+		testHelper->AddMock(ent2, IID_Obstruction, obstruction2);
+		testHelper->AddMock(ent3, IID_Obstruction, obstruction3);
+		testHelper->AddMock(ent4, IID_Obstruction, obstruction4);
+		testHelper->AddMock(ent5, IID_Obstruction, obstruction5);
+		obstruction1.obstruction = cmp->GetObstruction(shape1);
+		obstruction2.obstruction = cmp->GetObstruction(shape2);
+		obstruction3.obstruction = cmp->GetObstruction(shape3);
+		obstruction4.obstruction = cmp->GetObstruction(shape4);
+		obstruction5.obstruction = cmp->GetObstruction(shape5);
+
+		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent1, ent2));
+		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent2, ent1));
+		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent2, ent3));
+		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent3, ent2));
+
+		// Due to rounding errors we need to use some leeway
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(80)), cmp->MaxDistanceToTarget(ent2, ent3), fixed::FromFloat(0.0001));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(80)), cmp->MaxDistanceToTarget(ent3, ent2), fixed::FromFloat(0.0001));
+
+		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent1, ent3));
+		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent3, ent1));
+
+		TS_ASSERT_EQUALS(fixed::FromInt(6), cmp->DistanceToTarget(ent1, ent4));
+		TS_ASSERT_EQUALS(fixed::FromInt(6), cmp->DistanceToTarget(ent4, ent1));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(125) + 3), cmp->MaxDistanceToTarget(ent1, ent4), fixed::FromFloat(0.0001));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(125) + 3), cmp->MaxDistanceToTarget(ent4, ent1), fixed::FromFloat(0.0001));
+
+		TS_ASSERT_EQUALS(fixed::FromInt(7), cmp->DistanceToTarget(ent1, ent5));
+		TS_ASSERT_EQUALS(fixed::FromInt(7), cmp->DistanceToTarget(ent5, ent1));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(178)), cmp->MaxDistanceToTarget(ent1, ent5), fixed::FromFloat(0.0001));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(178)), cmp->MaxDistanceToTarget(ent5, ent1), fixed::FromFloat(0.0001));
+
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent2, fixed::Zero(), fixed::FromInt(1), true));
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent2, fixed::Zero(), fixed::FromInt(1), false));
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent2, fixed::FromInt(1), fixed::FromInt(1), true));
+		TS_ASSERT(!cmp->IsInTargetRange(ent1, ent2, fixed::FromInt(1), fixed::FromInt(1), false));
+
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent5, fixed::Zero(), fixed::FromInt(10), true));
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent5, fixed::Zero(), fixed::FromInt(10), false));
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent5, fixed::FromInt(1), fixed::FromInt(10), true));
+		TS_ASSERT(!cmp->IsInTargetRange(ent1, ent5, fixed::FromInt(1), fixed::FromInt(5), false));
+		TS_ASSERT(!cmp->IsInTargetRange(ent1, ent5, fixed::FromInt(10), fixed::FromInt(10), false));
+		TS_ASSERT(cmp->IsInTargetRange(ent1, ent5, fixed::FromInt(10), fixed::FromInt(10), true));
 	}
 };

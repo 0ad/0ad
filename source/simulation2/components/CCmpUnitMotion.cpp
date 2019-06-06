@@ -503,9 +503,7 @@ public:
 	}
 
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
-	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const;
 	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
-	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const;
 	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z);
 
 	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z);
@@ -1057,8 +1055,9 @@ void CCmpUnitMotion::Move(fixed dt)
 				else
 				{
 					// check if target was reached in case of a moving target
+					CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
-					if (!cmpUnitMotion || cmpUnitMotion->IsInTargetRange(GetEntityId(), m_TargetMinRange, m_TargetMaxRange))
+					if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_TargetEntity, m_TargetMinRange, m_TargetMaxRange, false))
 					{
 						// Not in formation, so just finish moving
 						StopMoving();
@@ -1471,49 +1470,6 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	return true;
 }
 
-bool CCmpUnitMotion::IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const
-{
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return false;
-
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-	bool hasObstruction = false;
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	ICmpObstructionManager::ObstructionSquare obstruction;
-//TODO	if (cmpObstructionManager)
-//		hasObstruction = cmpObstructionManager->FindMostImportantObstruction(GetObstructionFilter(), x, z, m_Radius, obstruction);
-
-	if (minRange.IsZero() && maxRange.IsZero() && hasObstruction)
-	{
-		// Handle the non-ranged mode:
-		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
-		entity_pos_t distance = Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize);
-
-		// See if we're too close to the target square
-		if (distance < minRange)
-			return false;
-
-		// See if we're close enough to the target square
-		if (maxRange < entity_pos_t::Zero() || distance <= maxRange)
-			return true;
-
-		return false;
-	}
-	else
-	{
-		entity_pos_t distance = (pos - CFixedVector2D(x, z)).Length();
-
-		if (distance < minRange)
-			return false;
-		else if (maxRange >= entity_pos_t::Zero() && distance > maxRange)
-			return false;
-		else
-			return true;
-	}
-}
-
 bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const
 {
 	// Given a square, plus a target range we should reach, the shape at that distance
@@ -1682,76 +1638,6 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	BeginPathing(pos, goal);
 
 	return true;
-}
-
-bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const
-{
-	// This function closely mirrors MoveToTargetRange - it needs to return true
-	// after that Move has completed
-
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return false;
-
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	if (!cmpObstructionManager)
-		return false;
-
-	bool hasObstruction = false;
-	ICmpObstructionManager::ObstructionSquare obstruction;
-	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
-	if (cmpObstruction)
-		hasObstruction = cmpObstruction->GetObstructionSquare(obstruction);
-
-	if (hasObstruction)
-	{
-		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
-		entity_pos_t distance = Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize, true);
-
-		// Compare with previous obstruction
-		ICmpObstructionManager::ObstructionSquare previousObstruction;
-		cmpObstruction->GetPreviousObstructionSquare(previousObstruction);
-		entity_pos_t previousDistance = Geometry::DistanceToSquare(pos - CFixedVector2D(previousObstruction.x, previousObstruction.z), obstruction.u, obstruction.v, halfSize, true);
-
-		// See if we're too close to the target square
-		bool inside = distance.IsZero() && !Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize).IsZero();
-		if ((distance < minRange && previousDistance < minRange) || inside)
-			return false;
-
-		// See if we're close enough to the target square
-		if (maxRange < entity_pos_t::Zero() || distance <= maxRange || previousDistance <= maxRange)
-			return true;
-
-		entity_pos_t circleRadius = halfSize.Length();
-
-		if (ShouldTreatTargetAsCircle(maxRange, circleRadius))
-		{
-			// The target is small relative to our range, so pretend it's a circle
-			// and see if we're close enough to that.
-			// Also check circle around previous position.
-			entity_pos_t circleDistance = (pos - CFixedVector2D(obstruction.x, obstruction.z)).Length() - circleRadius;
-			entity_pos_t previousCircleDistance = (pos - CFixedVector2D(previousObstruction.x, previousObstruction.z)).Length() - circleRadius;
-
-			return circleDistance <= maxRange || previousCircleDistance <= maxRange;
-		}
-
-		// take minimal clearance required in MoveToTargetRange into account, multiplying by 3/2 for diagonals
-		entity_pos_t maxDist = std::max(maxRange, (m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16)*3/2);
-		return distance <= maxDist || previousDistance <= maxDist;
-	}
-	else
-	{
-		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), target);
-		if (!cmpTargetPosition || !cmpTargetPosition->IsInWorld())
-			return false;
-
-		CFixedVector2D targetPos = cmpTargetPosition->GetPreviousPosition2D();
-		entity_pos_t distance = (pos - targetPos).Length();
-
-		return minRange <= distance && (maxRange < entity_pos_t::Zero() || distance <= maxRange);
-	}
 }
 
 void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)

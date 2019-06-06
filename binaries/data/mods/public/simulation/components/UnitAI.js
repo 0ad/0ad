@@ -1635,8 +1635,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"MoveStarted": function(msg) {
 					// Adapt the speed to the one of the target if needed
-					var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-					if (cmpUnitMotion.IsInTargetRange(this.isGuardOf, 0, 3*this.guardRange))
+					let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+					if (cmpObstructionManager.IsInTargetRange(this.entity, this.isGuardOf, 0, 3 * this.guardRange, true))
 					{
 						var cmpUnitAI = Engine.QueryInterface(this.isGuardOf, IID_UnitAI);
 						if (cmpUnitAI)
@@ -4308,8 +4308,8 @@ UnitAI.prototype.MoveToGarrisonRange = function(target)
 
 UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 {
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.IsInPointRange(x, z, min, max);
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInPointRange(this.entity, x, z, min, max, true);
 };
 
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
@@ -4319,8 +4319,8 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 		return false;
 	var range = cmpRanged.GetRange(type);
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, true);
 };
 
 /**
@@ -4368,14 +4368,14 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	if (maxRangeSq < 0)
 		return false;
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.IsInTargetRange(target, range.min, Math.sqrt(maxRangeSq));
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, Math.sqrt(maxRangeSq), true);
 };
 
 UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
 {
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.IsInTargetRange(target, min, max);
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, min, max, true);
 };
 
 UnitAI.prototype.CheckGarrisonRange = function(target)
@@ -4389,8 +4389,8 @@ UnitAI.prototype.CheckGarrisonRange = function(target)
 	if (cmpObstruction)
 		range.max += cmpObstruction.GetUnitRadius()*1.5; // multiply by something larger than sqrt(2)
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, true);
 };
 
 /**

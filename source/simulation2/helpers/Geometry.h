@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,6 +90,32 @@ fixed DistanceToSquareSquared(const CFixedVector2D& point,
  */
 CFixedVector2D NearestPointOnSquare(const CFixedVector2D& point,
 	const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
+
+/**
+ * Returns the shortest distance between two squares.
+ */
+fixed DistanceSquareToSquare(const CFixedVector2D& relativePos,
+	const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1,
+	const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2);
+
+/**
+ * Returns the greatest straight line distance from a point to a square.
+ *
+ * If @p countInsideAsZero is true, and the point is inside the rectangle,
+ * it will return 0.
+ * If @p countInsideAsZero is false, the greatest (positive) distance to the boundary
+ * will be returned regardless of where the point is.
+ */
+fixed MaxDistanceToSquare(const CFixedVector2D& point,
+	const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize,
+	bool countInsideAsZero = false);
+
+/**
+ * Return the greatest straight line distance between two squares.
+ */
+fixed MaxDistanceSquareToSquare(const CFixedVector2D& relativePos,
+	const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1,
+	const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2);
 
 bool TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
 

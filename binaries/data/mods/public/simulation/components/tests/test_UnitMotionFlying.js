@@ -53,10 +53,6 @@ AddMock(target, IID_Position, {
 	"GetPosition2D": () => { return { "x": 100, "y": 200 }; }
 });
 
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.IsInTargetRange(target, 10, 112), true);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.IsInTargetRange(target, 50, 111), false);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.IsInTargetRange(target, 112, 200), false);
-
 AddMock(entity, IID_GarrisonHolder, {
 	"AllowGarrisoning": () => {}
 });
