@@ -53,8 +53,6 @@ typedef std::vector<CStr> CConfigValueSet;
 class CConfigDB : public Singleton<CConfigDB>
 {
 public:
-	CConfigDB();
-
 	/**
 	 * Attempt to retrieve the value of a config variable with the given name;
 	 * will search CFG_COMMAND first, and then all namespaces from the specified

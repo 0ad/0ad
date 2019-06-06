@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ CMapGeneratorWorker::~CMapGeneratorWorker()
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
 {
-	CScopeLock lock(m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 
 	// Set progress to positive value
 	m_Progress = 1;
@@ -100,7 +100,7 @@ void* CMapGeneratorWorker::RunThread(void *data)
 	if (!self->Run() || self->m_Progress > 0)
 	{
 		// Don't leave progress in an unknown state, if generator failed, set it to -1
-		CScopeLock lock(self->m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
 		self->m_Progress = -1;
 	}
 
@@ -190,13 +190,13 @@ bool CMapGeneratorWorker::Run()
 
 int CMapGeneratorWorker::GetProgress()
 {
-	CScopeLock lock(m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_Progress;
 }
 
 shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
 {
-	CScopeLock lock(m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_MapData;
 }
 
@@ -211,7 +211,7 @@ void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 
 	// Copy results
-	CScopeLock lock(self->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
 	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data);
 	self->m_Progress = 0;
 }
@@ -221,7 +221,7 @@ void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, in
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 
 	// Copy data
-	CScopeLock lock(self->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
 
 	if (progress >= self->m_Progress)
 		self->m_Progress = progress;

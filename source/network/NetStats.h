@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,8 @@
 #define INCLUDED_NETSTATS
 
 #include "ps/ProfileViewer.h"
-#include "ps/ThreadUtil.h"
+
+#include <mutex>
 
 typedef struct _ENetPeer ENetPeer;
 typedef struct _ENetHost ENetHost;
@@ -53,7 +54,7 @@ private:
 	const ENetPeer* m_Peer;
 	std::vector<ProfileColumn> m_ColumnDescriptions;
 
-	CMutex m_Mutex;
+	std::mutex m_Mutex;
 	std::vector<std::vector<CStr>> m_LatchedData; // protected by m_Mutex
 };
 

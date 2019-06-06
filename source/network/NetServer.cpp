@@ -32,7 +32,6 @@
 #include "ps/ConfigDB.h"
 #include "ps/GUID.h"
 #include "ps/Profile.h"
-#include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
@@ -152,7 +151,7 @@ CNetServerWorker::~CNetServerWorker()
 	{
 		// Tell the thread to shut down
 		{
-			CScopeLock lock(m_WorkerMutex);
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
 			m_Shutdown = true;
 		}
 
@@ -416,7 +415,7 @@ bool CNetServerWorker::RunStep()
 	std::vector<u32> newTurnLength;
 
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 
 		if (m_Shutdown)
 			return false;
@@ -1594,7 +1593,7 @@ bool CNetServer::SetupConnection(const u16 port)
 
 void CNetServer::StartGame()
 {
-	CScopeLock lock(m_Worker->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_StartGameQueue.push_back(true);
 }
 
@@ -1604,19 +1603,19 @@ void CNetServer::UpdateGameAttributes(JS::MutableHandleValue attrs, const Script
 	// cross-thread way of passing script data
 	std::string attrsJSON = scriptInterface.StringifyJSON(attrs, false);
 
-	CScopeLock lock(m_Worker->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_GameAttributesQueue.push_back(attrsJSON);
 }
 
 void CNetServer::OnLobbyAuth(const CStr& name, const CStr& token)
 {
-	CScopeLock lock(m_Worker->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_LobbyAuthQueue.push_back(std::make_pair(name, token));
 }
 
 void CNetServer::SetTurnLength(u32 msecs)
 {
-	CScopeLock lock(m_Worker->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_TurnLengthQueue.push_back(msecs);
 }
 

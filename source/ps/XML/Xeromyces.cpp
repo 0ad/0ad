@@ -20,6 +20,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <mutex>
 #include <stack>
 #include <algorithm>
 
@@ -32,7 +33,7 @@
 
 #include <libxml/parser.h>
 
-static CMutex g_ValidatorCacheLock;
+static std::mutex g_ValidatorCacheLock;
 static std::map<const std::string, RelaxNGValidator> g_ValidatorCache;
 static bool g_XeromycesStarted = false;
 
@@ -55,7 +56,7 @@ void CXeromyces::Startup()
 	ENSURE(!g_XeromycesStarted);
 	xmlInitParser();
 	xmlSetStructuredErrorFunc(NULL, &errorHandler);
-	CScopeLock lock(g_ValidatorCacheLock);
+	std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 	g_ValidatorCache.insert(std::make_pair(std::string(), RelaxNGValidator()));
 	g_XeromycesStarted = true;
 }
@@ -65,7 +66,7 @@ void CXeromyces::Terminate()
 	ENSURE(g_XeromycesStarted);
 	g_XeromycesStarted = false;
 	ClearSchemaCache();
-	CScopeLock lock(g_ValidatorCacheLock);
+	std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 	g_ValidatorCache.clear();
 	xmlSetStructuredErrorFunc(NULL, NULL);
 	xmlCleanupParser();
@@ -82,7 +83,7 @@ bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const V
 		return false;
 	}
 	{
-		CScopeLock lock(g_ValidatorCacheLock);
+		std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 		std::map<const std::string, RelaxNGValidator>::iterator it = g_ValidatorCache.find(name);
 		if (it != g_ValidatorCache.end())
 			g_ValidatorCache.erase(it);
@@ -93,7 +94,7 @@ bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const V
 
 bool CXeromyces::ValidateEncoded(const std::string& name, const std::wstring& filename, const std::string& document)
 {
-	CScopeLock lock(g_ValidatorCacheLock);
+	std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 	return GetValidator(name).ValidateEncoded(filename, document);
 }
 
@@ -115,7 +116,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename, const std::
 
 	MD5 validatorGrammarHash;
 	{
-		CScopeLock lock(g_ValidatorCacheLock);
+		std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 		validatorGrammarHash = GetValidator(validatorName).GetGrammarHash();
 	}
 	VfsPath xmbPath;
@@ -174,7 +175,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 	}
 
 	{
-		CScopeLock lock(g_ValidatorCacheLock);
+		std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 		RelaxNGValidator& validator = GetValidator(validatorName);
 		if (validator.CanValidate() && !validator.ValidateEncoded(doc))
 			// For now, log the error and continue, in the future we might fail
@@ -229,7 +230,7 @@ PSRETURN CXeromyces::LoadString(const char* xml, const std::string& validatorNam
 	}
 
 	{
-		CScopeLock lock(g_ValidatorCacheLock);
+		std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 		RelaxNGValidator& validator = GetValidator(validatorName);
 		if (validator.CanValidate() && !validator.ValidateEncoded(doc))
 			// For now, log the error and continue, in the future we might fail

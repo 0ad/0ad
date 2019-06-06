@@ -25,9 +25,9 @@
 #include <vector>
 
 #include "lib/adts/ring_buf.h"
+#include "lib/posix/posix_pthread.h"
 #include "ps/Profiler2.h"
 #include "ps/Singleton.h"
-#include "ps/ThreadUtil.h"
 
 #include <boost/flyweight.hpp>
 #include <boost/flyweight/key_value.hpp>
@@ -174,46 +174,8 @@ private:
 class CProfileSample
 {
 public:
-	CProfileSample(const char* name)
-	{
-		if (CProfileManager::IsInitialised())
-		{
-			// The profiler is only safe to use on the main thread
-
-			if(ThreadUtil::IsMainThread())
-				g_Profiler.Start(name);
-		}
-	}
-	~CProfileSample()
-	{
-		if (CProfileManager::IsInitialised())
-			if(ThreadUtil::IsMainThread())
-				g_Profiler.Stop();
-	}
-};
-
-class CProfileSampleScript
-{
-public:
-	CProfileSampleScript( const char* name )
-	{
-		if (CProfileManager::IsInitialised())
-		{
-			// The profiler is only safe to use on the main thread,
-			// but scripts get run on other threads too so we need to
-			// conditionally enable the profiler.
-			// (This usually only gets used in debug mode so performance
-			// doesn't matter much.)
-			if (ThreadUtil::IsMainThread())
-				g_Profiler.StartScript( name );
-		}
-	}
-	~CProfileSampleScript()
-	{
-		if (CProfileManager::IsInitialised())
-			if (ThreadUtil::IsMainThread())
-				g_Profiler.Stop();
-	}
+	CProfileSample(const char* name);
+	~CProfileSample();
 };
 
 // Put a PROFILE("xyz") block at the start of all code to be profiled.

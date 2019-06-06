@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,7 +74,7 @@ const std::vector<ProfileColumn>& CNetStatsTable::GetColumns()
 		m_ColumnDescriptions.push_back(ProfileColumn("Value", 80));
 	else
 	{
-		CScopeLock lock(m_Mutex);
+		std::lock_guard<std::mutex> lock(m_Mutex);
 
 		for (size_t i = 0; i < m_LatchedData.size(); ++i)
 			m_ColumnDescriptions.push_back(ProfileColumn("Peer "+CStr::FromUInt(i), 80));
@@ -87,7 +87,7 @@ CStr CNetStatsTable::GetCellText(size_t row, size_t col)
 {
 	// Return latched data, if we have any
 	{
-		CScopeLock lock(m_Mutex);
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		if (col > 0 && m_LatchedData.size() > col-1 && m_LatchedData[col-1].size() > row)
 			return m_LatchedData[col-1][row];
 	}
@@ -126,7 +126,7 @@ AbstractProfileTable* CNetStatsTable::GetChild(size_t UNUSED(row))
 
 void CNetStatsTable::LatchHostState(const ENetHost* host)
 {
-	CScopeLock lock(m_Mutex);
+	std::lock_guard<std::mutex> lock(m_Mutex);
 
 #define ROW(id, title, member) \
 	m_LatchedData[i].push_back(CStr::FromUInt(host->peers[i].member));

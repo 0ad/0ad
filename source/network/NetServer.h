@@ -21,10 +21,11 @@
 #include "NetFileTransfer.h"
 #include "NetHost.h"
 #include "lib/config2.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/types.h"
-#include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptTypes.h"
 
+#include <mutex>
 #include <string>
 #include <utility>
 #include <vector>
@@ -368,7 +369,7 @@ private:
 	bool RunStep();
 
 	pthread_t m_WorkerThread;
-	CMutex m_WorkerMutex;
+	std::mutex m_WorkerMutex;
 
 	// protected by m_WorkerMutex
 	bool m_Shutdown;
