@@ -613,7 +613,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		if (attackerOwner == INVALID_PLAYER)
 			return;
 
-		let multiplier = GetDamageBonus(target, this.GetBonusTemplate(type));
+		let multiplier = GetDamageBonus(this.entity, target, type, this.GetBonusTemplate(type));
 		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)
 			return;
@@ -640,7 +640,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			"strengths": this.GetAttackStrengths(type),
 			"target": target,
 			"attacker": this.entity,
-			"multiplier": GetDamageBonus(target, this.GetBonusTemplate(type)),
+			"multiplier": GetDamageBonus(this.entity, target, type, this.GetBonusTemplate(type)),
 			"type": type,
 			"attackerOwner": attackerOwner
 		});

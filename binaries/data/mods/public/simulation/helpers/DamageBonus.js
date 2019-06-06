@@ -1,7 +1,12 @@
 /**
- *  Calculate the attack damage multiplier against a target.
+ * Calculates the attack damage multiplier against a target.
+ * @param {entity_id_t} source - The source entity's id.
+ * @param {entity_id_t} target - The target entity's id.
+ * @param {string} type - The type of attack.
+ * @param {Object} template - The bonus' template.
+ * @return {number} - The source entity's attack bonus against the specified target.
  */
-function GetDamageBonus(target, template)
+function GetDamageBonus(source, target, type, template)
 {
 	let attackBonus = 1;
 
@@ -17,7 +22,7 @@ function GetDamageBonus(target, template)
 			continue;
 		if (bonus.Classes && bonus.Classes.split(/\s+/).some(cls => !cmpIdentity.HasClass(cls)))
 			continue;
-		attackBonus *= bonus.Multiplier;
+		attackBonus *= ApplyValueModificationsToEntity("Attack/" + type + "/Bonuses/" + key + "/Multiplier", +bonus.Multiplier, source);
 	}
 
 	return attackBonus;
