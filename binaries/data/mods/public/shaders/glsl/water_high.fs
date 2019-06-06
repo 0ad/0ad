@@ -362,9 +362,9 @@ void main()
 	vec3 foaminterp = mix(foam1, foam2, moddedTime);
 	foaminterp *= mix(foam3, foam4, moddedTime);
 
-	foam1.x = foaminterp.x * WindCosSin.x - foaminterp.z * WindCosSin.y;
+	foam1.x = abs(foaminterp.x * WindCosSin.x) + abs(foaminterp.z * WindCosSin.y);
 
-	color += FoamEffects.r * FoamEffects.a * 0.4 + pow(foam1.x * (5.0 + waviness), (2.6 - waviness / 5.5));
+	color += FoamEffects.r * FoamEffects.a * 0.4 + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5);
 #endif
 
 	float alpha = clamp(depth, 0.0, 1.0);

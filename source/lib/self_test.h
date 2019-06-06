@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -63,43 +63,63 @@ namespace CxxTest
 
 // Perform nice printing of vectors
 #include "maths/FixedVector3D.h"
+#include "maths/Plane.h"
 #include "maths/Vector3D.h"
+
 namespace CxxTest
 {
-	template<>
+	CXXTEST_TEMPLATE_INSTANTIATION
 	class ValueTraits<CFixedVector3D>
 	{
-		CFixedVector3D v;
-		std::string str;
 	public:
-		ValueTraits(const CFixedVector3D& v) : v(v)
+		ValueTraits(const CFixedVector3D& v)
 		{
 			std::stringstream s;
 			s << "[" << v.X.ToDouble() << ", " << v.Y.ToDouble() << ", " << v.Z.ToDouble() << "]";
-			str = s.str();
+			m_StringRepr = s.str();
 		}
 		const char* asString() const
 		{
-			return str.c_str();
+			return m_StringRepr.c_str();
 		}
+	private:
+		std::string m_StringRepr;
 	};
 
-	template<>
+	CXXTEST_TEMPLATE_INSTANTIATION
 	class ValueTraits<CVector3D>
 	{
-		CVector3D v;
-		std::string str;
 	public:
-		ValueTraits(const CVector3D& v) : v(v)
+		ValueTraits(const CVector3D& v)
 		{
 			std::stringstream s;
 			s << "[" << v.X << ", " << v.Y << ", " << v.Z << "]";
-			str = s.str();
+			m_StringRepr = s.str();
 		}
 		const char* asString() const
 		{
-			return str.c_str();
+			return m_StringRepr.c_str();
 		}
+	private:
+		std::string m_StringRepr;
+	};
+
+	CXXTEST_TEMPLATE_INSTANTIATION
+	class ValueTraits<CPlane>
+	{
+	public:
+		ValueTraits(const CPlane& p)
+		{
+			std::stringstream ss;
+			ss << "CPlane[";
+			ss << "Norm=" << TS_AS_STRING(p.m_Norm);
+			ss << ", Dist=" << TS_AS_STRING(p.m_Dist);
+			ss << "]";
+			m_StringRepr = ss.str();
+		}
+		const char* asString() const { return m_StringRepr.c_str(); }
+	private:
+		std::string m_StringRepr;
 	};
 }
 
