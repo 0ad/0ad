@@ -150,5 +150,5 @@ class EntityTemplate():
         return node is not None
 
     def __str__(self):
-        return str(ElementTree.tostring(self.data))
+        return ElementTree.tostring(self.data).decode('utf-8')
 
