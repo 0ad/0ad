@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 15:42+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 16:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgid "Wooden Wall"
 msgstr "Moger Goad"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
-#: simulation/templates/template_structure_defensive_wall.xml:27
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "Tro-droit gant ur Voger ho kêr evit a-benn kaout un difenn kreñv."
 
@@ -171,7 +171,7 @@ msgstr "Tenn biroù. Lakaat unanennoù en gwarnizon evit kaout un difenn ouzhpen
 msgid "StoneTower"
 msgstr "Tour-Mein"
 
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -179,29 +179,29 @@ msgstr "Tour-Mein"
 msgid "Stone Wall"
 msgstr "Moger Vein"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "Dorioù Kêr"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Lezel a raio hoc'h unanennoù d'ober monedone gant ur voger eus ar gêr. Prennet e c'hall bezañ a-benn mirout ouzh ar monedone."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
 msgstr "Amdroet e c'hall bezañ tammoù hir eus ar mogerioù e dorioù."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Ar pezh-mañ a lezo hoc'h unanennoù da dremen dre ho kreñvadurioù."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:62
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "Touribell Voger"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:63
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Biroù a denn. Lakait tud e gwarnizon a-benn difenn ur voger-gêr a-enep d'an argaderien."
 
@@ -301,8 +301,8 @@ msgid "City"
 msgstr "Kêr"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-msgid "ElephantStables"
-msgstr "Krevier Olifanted"
+msgid "ElephantStable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
@@ -342,17 +342,14 @@ msgstr "Stummit soudarded-keodedour war droad a-bell. Kasit da benn enklaskoù d
 msgid "Range"
 msgstr "Astenn"
 
-#: simulation/templates/template_structure_military_stable.xml:22
-msgid "Stable"
-msgstr ""
-
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
 msgstr "Stummit soudard-keodedour war-varc'h. Kasit da benn enklaskoù diwar-benn ar gwellaennoù stummañ."
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Stables"
-msgstr "Krevier"
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"

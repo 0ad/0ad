@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 15:42+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 16:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgid "Wooden Wall"
 msgstr "Koka siena"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
-#: simulation/templates/template_structure_defensive_wall.xml:27
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "Jūsu pilsētas mūri ciešākai aizsardzībai."
 
@@ -168,7 +168,7 @@ msgstr ""
 msgid "StoneTower"
 msgstr "Akmens tornis"
 
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -176,29 +176,29 @@ msgstr "Akmens tornis"
 msgid "Stone Wall"
 msgstr "Akmens siena"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "Pilsētas vārti"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Ļauj vienībām iekļūt cauri pilsētas mūriem. Var tikt slēgti, liedzot pieeju. "
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
 msgstr "Gari mūra segmenti var tikt pārbūvēti par vārtiem."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Tas dos jums iespēju ļaut vienībām cirkulēt cauri nocietinājumiem."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:62
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "Mūra tornis"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:63
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Šauj bultas. Novieto garnizonu pilsētas mūru aizsardzībai pret uzbrukumiem."
 
@@ -298,8 +298,8 @@ msgid "City"
 msgstr "Lielpilsēta"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-msgid "ElephantStables"
-msgstr "Ziloņu staļļi"
+msgid "ElephantStable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
@@ -339,17 +339,14 @@ msgstr ""
 msgid "Range"
 msgstr ""
 
-#: simulation/templates/template_structure_military_stable.xml:22
-msgid "Stable"
-msgstr ""
-
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
 msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Stables"
-msgstr "Staļļi"
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-01 14:26+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "Οι μονάδες που προάγονται σε ανώτερη θέση κερδίζουν πολλά σε ποιότητα: 20% επιπλέον στην υγεία, 1 επιπλέον επίπεδο σε κάθε τύπο πανοπλίας, 20% επιπλέων λάφυρα, 20% επιπλέον επίθεση για τις μονάδες εκ του συστάδην, 4μ επιπλέον βεληνεκές και μεγαλύτερη ακρίβεια για τις μονάδες βολής, γρηγορότερες ταχύτητες κίνησης και επιπλέον ταχύτητα θεραπείας και βεληνεκές για τους θεραπευτές."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "+10 μέτρα βεληνεκές για τις μονάδες που χειρίζονται τόξο. Οι τοξότες έχουν καλύτερη ευστοχία και -20% στο χρόνο εκπαιδεύσεις, αλλά και -20% στην υγεία τους."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Παράδοση στην τοξοβολία"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Ξεκλειδωνεί στη Φάση Χωριό."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -461,18 +488,6 @@ msgstr "Ξύλινα δοκάρια ενίσχυσης για το κύτος. +
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
 msgstr "Ενισχυμένο κύτος"
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Ξεκλειδωνεί στη Φάση Χωριό."
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -2451,24 +2466,6 @@ msgstr "Εκπαίδευση θεραπευτών της τάξης των εκ�
 msgid "Divine Instruction"
 msgstr "Θεϊκή Καθοδήγηση"
 
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "Οι Ινδοί είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
-
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 μέτρα βεληνεκές για τις μονάδες που χειρίζονται τόξο. Οι τοξότες έχουν καλύτερη ευστοχία και -20% στο χρόνο εκπαιδεύσεις, αλλά και -20% στην υγεία τους."
-
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Παράδοση στην τοξοβολία"
-
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
@@ -2500,12 +2497,6 @@ msgstr "Όλα τα περσικά κτίσματα +25% αντοχή και π�
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Περσική Αρχιτεκτονική"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "Οι Πέρσες είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""

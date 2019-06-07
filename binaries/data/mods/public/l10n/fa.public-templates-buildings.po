@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 15:42+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 16:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgid "Wooden Wall"
 msgstr "دیوار چوبی"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
-#: simulation/templates/template_structure_defensive_wall.xml:27
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "برای دفاع قویتر دور شهر خود دیوار بکشید"
 
@@ -170,7 +170,7 @@ msgstr "پرتاب تیرها. نیروهای مستقر توان دفاعی ب�
 msgid "StoneTower"
 msgstr "برج سنگی"
 
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -178,29 +178,29 @@ msgstr "برج سنگی"
 msgid "Stone Wall"
 msgstr "دیوار سنگی"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "دروازه شهر"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "به واحد ها اجازه ی عبور از دیوار شهر را می دهد. می توان آنرا قفل کرد تا اجازه عبور به کسی داده نشود"
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
 msgstr "قسمت های بلند دیوار میتوانند به دروازه تبدیل شوند."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "این اجازه خواهد داد که به نیروهای خود اجازه دهید از استحکامات شما عبور کنند"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:62
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "برجک دیوار"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:63
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "تیر شلیک می کند. سربازان را در آن مستقر کنید تا از دیوار شهر علیه مهاجمان دفاع کنید."
 
@@ -300,8 +300,8 @@ msgid "City"
 msgstr "شهر"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-msgid "ElephantStables"
-msgstr "اصطبل فیل ها"
+msgid "ElephantStable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
@@ -341,17 +341,14 @@ msgstr "پرورش سرباز شهروند پیاده دورزن. تحقیق ب�
 msgid "Range"
 msgstr ""
 
-#: simulation/templates/template_structure_military_stable.xml:22
-msgid "Stable"
-msgstr ""
-
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
 msgstr "پرورش سرباز شهروند سواره نظام. تحقیق برای بهبود آموزش"
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Stables"
-msgstr "اصطبل ها"
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Albert, 2016
+# Alejandro Avellaneda <aleavellaneda1@gmail.com>, 2019
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # The_Gipsy <xelectronhd@gmail.com>, 2018
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-04 13:32+0000\n"
+"Last-Translator: Alejandro Avellaneda <aleavellaneda1@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "Atajo sin asignar: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Presiona %(hotkey)s para autocompletar los nombres de jugador."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -563,43 +564,43 @@ msgstr "Estás teniendo cortes de red con %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "La causa principal es que el anfitrión no haya abierto/redireccionado («forwarded» en inglés) el puerto UDP 20595, algo que debe de configurarse en el cortafuegos o antivirus."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "El anfitrión ha terminado el juego."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Versión incorrecta del protocolo de red."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "El juego se está cargando, inténtalo de nuevo más tarde."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "El juego ya ha comenzado, no se permiten observadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Has sido expulsado."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Has sido banneado."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nombre del jugador en uso. Si te has desconectado, vuelva a intentarlo en unos segundos."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "El servidor está lleno."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "La autenticación segura de la sala falló. Únete a través de la sala."
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -1210,15 +1211,15 @@ msgstr "Mods: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Esta partida guardada necesita una versión %(requiredVersion)s de 0 A.D., mientras está ejecutando la versión %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Esta partida guardada necesita una versión anterior de 0 A.D."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Este partida guardada necesita una secuencia diferente de mods:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1619,7 +1620,7 @@ msgstr "Partidas sin clasificación"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Filtre las repeticiones escribiendo uno o más nombres de jugadores parciales o completos."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -2112,7 +2113,7 @@ msgstr "Los cambios no guardados sólo afectaran a la sesión actual"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alfa XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""

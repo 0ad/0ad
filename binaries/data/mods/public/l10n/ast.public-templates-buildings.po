@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 18:05+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-04 21:39+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgid "Wooden Wall"
 msgstr "Muria de madera"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
-#: simulation/templates/template_structure_defensive_wall.xml:27
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "Cerca la ciudá pa una defensa fuerte."
 
@@ -164,7 +164,7 @@ msgstr "Tira fleches. Guarez p'apurrir más defensa. Precisa la teunoloxía de l
 msgid "StoneTower"
 msgstr "TorrePiedra"
 
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -172,29 +172,29 @@ msgstr "TorrePiedra"
 msgid "Stone Wall"
 msgstr "Muralla de piedra"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "Puerta de la ciudá"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Permite a les unidaes pasar pela muralla. Pue pesllase pa torgar la entrada."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
 msgstr "Les seiciones de muralla llargues puen tornase en puertes."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Esto va permitir a les unidaes pasar peles fortificaciones."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:62
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "Torreta"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:63
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Tira fleches. Guarez pa defender la muralla d'atacadores."
 
@@ -209,7 +209,7 @@ msgstr "Económico"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:32
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Depósitu pa comida. Investiga meyores na recoyedura de comida."
+msgstr "Depósitu pa comida. Investiga meyores na recoyida de comida."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:30
@@ -232,7 +232,7 @@ msgstr "Mercáu"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Depósitu pa madera, piedra y metal. Investiga meyores na recoyedura d'estos recursos."
+msgstr "Depósitu pa madera, piedra y metal. Investiga meyores na recoyida d'estos recursos."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:31
@@ -294,7 +294,7 @@ msgid "City"
 msgstr "Ciudá"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-msgid "ElephantStables"
+msgid "ElephantStable"
 msgstr "CorteElefantes"
 
 #: simulation/templates/template_structure_military_embassy.xml:38
@@ -335,16 +335,13 @@ msgstr "Allista infantería a distancia miliciano-popular. Investiga meyores d'a
 msgid "Range"
 msgstr "Campu"
 
-#: simulation/templates/template_structure_military_stable.xml:22
-msgid "Stable"
-msgstr "Corte"
-
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
 msgstr "Allista caballería miliciano-popular. Investiga meyores d'allistamientu."
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Stables"
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
 msgstr "Corte"
 
 #: simulation/templates/template_structure_military_workshop.xml:25
@@ -388,7 +385,7 @@ msgstr "Eru"
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr "Acollecha grana pa pescanciar comida. Cada recoyedor amestáu rinde menos que l'anterior."
+msgstr "Acollecha grana pa pescanciar comida. Cada coyedor amestáu rinde menos que l'anterior."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
