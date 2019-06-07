@@ -69,6 +69,36 @@ grpc::Status RLInterface::Reset(ServerContext* context, const ResetRequest* req,
     return grpc::Status::OK;
 }
 
+grpc::Status RLInterface::GetTemplates(ServerContext* context, const GetTemplateRequest* req, Templates* res) 
+{
+    std::lock_guard<std::mutex> lock(m_lock);
+    if (!g_Game)
+    {
+        debug_warn(L"Game not running. Have you started a scenario with a Reset message?");
+        return grpc::Status(grpc::StatusCode::FAILED_PRECONDITION, "Game not running.");
+    }
+
+    const auto simContext = g_Game->GetSimulation2()->GetSimContext();
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(simContext.GetSystemEntity());
+
+    const int size = req->names_size();
+    for (int i = 0; i < size; i++)
+    {
+        const std::string templateName = req->names(i);
+        const CParamNode* node = cmpTemplateManager->GetTemplate(templateName);
+
+        Template* tpl = res->add_templates();
+        tpl->set_name(templateName);
+        if (node != NULL)
+        {
+            std::string content = utf8_from_wstring(node->ToXML());
+            tpl->set_content(content);
+        }
+    }
+
+    return grpc::Status::OK;
+}
+
 void RLInterface::Listen(std::string server_address)
 {
     grpc::ServerBuilder builder;

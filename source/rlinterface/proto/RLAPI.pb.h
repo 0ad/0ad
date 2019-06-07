@@ -41,7 +41,7 @@ struct TableStruct_RLAPI_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[7]
+  static const ::google::protobuf::internal::ParseTable schema[10]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -60,6 +60,9 @@ extern ActionsDefaultTypeInternal _Actions_default_instance_;
 class ConnectRequest;
 class ConnectRequestDefaultTypeInternal;
 extern ConnectRequestDefaultTypeInternal _ConnectRequest_default_instance_;
+class GetTemplateRequest;
+class GetTemplateRequestDefaultTypeInternal;
+extern GetTemplateRequestDefaultTypeInternal _GetTemplateRequest_default_instance_;
 class Observation;
 class ObservationDefaultTypeInternal;
 extern ObservationDefaultTypeInternal _Observation_default_instance_;
@@ -69,19 +72,409 @@ extern ResetRequestDefaultTypeInternal _ResetRequest_default_instance_;
 class ScenarioConfig;
 class ScenarioConfigDefaultTypeInternal;
 extern ScenarioConfigDefaultTypeInternal _ScenarioConfig_default_instance_;
+class Template;
+class TemplateDefaultTypeInternal;
+extern TemplateDefaultTypeInternal _Template_default_instance_;
+class Templates;
+class TemplatesDefaultTypeInternal;
+extern TemplatesDefaultTypeInternal _Templates_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::AIPlayer* Arena::CreateMaybeMessage<::AIPlayer>(Arena*);
 template<> ::Action* Arena::CreateMaybeMessage<::Action>(Arena*);
 template<> ::Actions* Arena::CreateMaybeMessage<::Actions>(Arena*);
 template<> ::ConnectRequest* Arena::CreateMaybeMessage<::ConnectRequest>(Arena*);
+template<> ::GetTemplateRequest* Arena::CreateMaybeMessage<::GetTemplateRequest>(Arena*);
 template<> ::Observation* Arena::CreateMaybeMessage<::Observation>(Arena*);
 template<> ::ResetRequest* Arena::CreateMaybeMessage<::ResetRequest>(Arena*);
 template<> ::ScenarioConfig* Arena::CreateMaybeMessage<::ScenarioConfig>(Arena*);
+template<> ::Template* Arena::CreateMaybeMessage<::Template>(Arena*);
+template<> ::Templates* Arena::CreateMaybeMessage<::Templates>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 
 // ===================================================================
+
+class GetTemplateRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:GetTemplateRequest) */ {
+ public:
+  GetTemplateRequest();
+  virtual ~GetTemplateRequest();
+
+  GetTemplateRequest(const GetTemplateRequest& from);
+
+  inline GetTemplateRequest& operator=(const GetTemplateRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  GetTemplateRequest(GetTemplateRequest&& from) noexcept
+    : GetTemplateRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetTemplateRequest& operator=(GetTemplateRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const GetTemplateRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetTemplateRequest* internal_default_instance() {
+    return reinterpret_cast<const GetTemplateRequest*>(
+               &_GetTemplateRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  void Swap(GetTemplateRequest* other);
+  friend void swap(GetTemplateRequest& a, GetTemplateRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetTemplateRequest* New() const final {
+    return CreateMaybeMessage<GetTemplateRequest>(nullptr);
+  }
+
+  GetTemplateRequest* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<GetTemplateRequest>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const GetTemplateRequest& from);
+  void MergeFrom(const GetTemplateRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetTemplateRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated string names = 1;
+  int names_size() const;
+  void clear_names();
+  static const int kNamesFieldNumber = 1;
+  const ::std::string& names(int index) const;
+  ::std::string* mutable_names(int index);
+  void set_names(int index, const ::std::string& value);
+  #if LANG_CXX11
+  void set_names(int index, ::std::string&& value);
+  #endif
+  void set_names(int index, const char* value);
+  void set_names(int index, const char* value, size_t size);
+  ::std::string* add_names();
+  void add_names(const ::std::string& value);
+  #if LANG_CXX11
+  void add_names(::std::string&& value);
+  #endif
+  void add_names(const char* value);
+  void add_names(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField<::std::string>& names() const;
+  ::google::protobuf::RepeatedPtrField<::std::string>* mutable_names();
+
+  // @@protoc_insertion_point(class_scope:GetTemplateRequest)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField<::std::string> names_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_RLAPI_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Templates final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Templates) */ {
+ public:
+  Templates();
+  virtual ~Templates();
+
+  Templates(const Templates& from);
+
+  inline Templates& operator=(const Templates& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Templates(Templates&& from) noexcept
+    : Templates() {
+    *this = ::std::move(from);
+  }
+
+  inline Templates& operator=(Templates&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const Templates& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Templates* internal_default_instance() {
+    return reinterpret_cast<const Templates*>(
+               &_Templates_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(Templates* other);
+  friend void swap(Templates& a, Templates& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Templates* New() const final {
+    return CreateMaybeMessage<Templates>(nullptr);
+  }
+
+  Templates* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Templates>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Templates& from);
+  void MergeFrom(const Templates& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Templates* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .Template templates = 1;
+  int templates_size() const;
+  void clear_templates();
+  static const int kTemplatesFieldNumber = 1;
+  ::Template* mutable_templates(int index);
+  ::google::protobuf::RepeatedPtrField< ::Template >*
+      mutable_templates();
+  const ::Template& templates(int index) const;
+  ::Template* add_templates();
+  const ::google::protobuf::RepeatedPtrField< ::Template >&
+      templates() const;
+
+  // @@protoc_insertion_point(class_scope:Templates)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::Template > templates_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_RLAPI_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Template final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Template) */ {
+ public:
+  Template();
+  virtual ~Template();
+
+  Template(const Template& from);
+
+  inline Template& operator=(const Template& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Template(Template&& from) noexcept
+    : Template() {
+    *this = ::std::move(from);
+  }
+
+  inline Template& operator=(Template&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const Template& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Template* internal_default_instance() {
+    return reinterpret_cast<const Template*>(
+               &_Template_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(Template* other);
+  friend void swap(Template& a, Template& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Template* New() const final {
+    return CreateMaybeMessage<Template>(nullptr);
+  }
+
+  Template* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Template>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Template& from);
+  void MergeFrom(const Template& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Template* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string name = 1;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  #if LANG_CXX11
+  void set_name(::std::string&& value);
+  #endif
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // string content = 2;
+  void clear_content();
+  static const int kContentFieldNumber = 2;
+  const ::std::string& content() const;
+  void set_content(const ::std::string& value);
+  #if LANG_CXX11
+  void set_content(::std::string&& value);
+  #endif
+  void set_content(const char* value);
+  void set_content(const char* value, size_t size);
+  ::std::string* mutable_content();
+  ::std::string* release_content();
+  void set_allocated_content(::std::string* content);
+
+  // @@protoc_insertion_point(class_scope:Template)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::internal::ArenaStringPtr content_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_RLAPI_2eproto;
+};
+// -------------------------------------------------------------------
 
 class Actions final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Actions) */ {
@@ -121,7 +514,7 @@ class Actions final :
                &_Actions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    3;
 
   void Swap(Actions* other);
   friend void swap(Actions& a, Actions& b) {
@@ -239,7 +632,7 @@ class Action final :
                &_Action_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    4;
 
   void Swap(Action* other);
   friend void swap(Action& a, Action& b) {
@@ -359,7 +752,7 @@ class Observation final :
                &_Observation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    5;
 
   void Swap(Observation* other);
   friend void swap(Observation& a, Observation& b) {
@@ -479,7 +872,7 @@ class ResetRequest final :
                &_ResetRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    6;
 
   void Swap(ResetRequest* other);
   friend void swap(ResetRequest& a, ResetRequest& b) {
@@ -594,7 +987,7 @@ class ConnectRequest final :
                &_ConnectRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    7;
 
   void Swap(ConnectRequest* other);
   friend void swap(ConnectRequest& a, ConnectRequest& b) {
@@ -709,7 +1102,7 @@ class AIPlayer final :
                &_AIPlayer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    8;
 
   void Swap(AIPlayer* other);
   friend void swap(AIPlayer& a, AIPlayer& b) {
@@ -843,7 +1236,7 @@ class ScenarioConfig final :
                &_ScenarioConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    9;
 
   void Swap(ScenarioConfig* other);
   friend void swap(ScenarioConfig& a, ScenarioConfig& b) {
@@ -1024,6 +1417,223 @@ class ScenarioConfig final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// GetTemplateRequest
+
+// repeated string names = 1;
+inline int GetTemplateRequest::names_size() const {
+  return names_.size();
+}
+inline void GetTemplateRequest::clear_names() {
+  names_.Clear();
+}
+inline const ::std::string& GetTemplateRequest::names(int index) const {
+  // @@protoc_insertion_point(field_get:GetTemplateRequest.names)
+  return names_.Get(index);
+}
+inline ::std::string* GetTemplateRequest::mutable_names(int index) {
+  // @@protoc_insertion_point(field_mutable:GetTemplateRequest.names)
+  return names_.Mutable(index);
+}
+inline void GetTemplateRequest::set_names(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:GetTemplateRequest.names)
+  names_.Mutable(index)->assign(value);
+}
+#if LANG_CXX11
+inline void GetTemplateRequest::set_names(int index, ::std::string&& value) {
+  // @@protoc_insertion_point(field_set:GetTemplateRequest.names)
+  names_.Mutable(index)->assign(std::move(value));
+}
+#endif
+inline void GetTemplateRequest::set_names(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  names_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:GetTemplateRequest.names)
+}
+inline void GetTemplateRequest::set_names(int index, const char* value, size_t size) {
+  names_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:GetTemplateRequest.names)
+}
+inline ::std::string* GetTemplateRequest::add_names() {
+  // @@protoc_insertion_point(field_add_mutable:GetTemplateRequest.names)
+  return names_.Add();
+}
+inline void GetTemplateRequest::add_names(const ::std::string& value) {
+  names_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:GetTemplateRequest.names)
+}
+#if LANG_CXX11
+inline void GetTemplateRequest::add_names(::std::string&& value) {
+  names_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:GetTemplateRequest.names)
+}
+#endif
+inline void GetTemplateRequest::add_names(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  names_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:GetTemplateRequest.names)
+}
+inline void GetTemplateRequest::add_names(const char* value, size_t size) {
+  names_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:GetTemplateRequest.names)
+}
+inline const ::google::protobuf::RepeatedPtrField<::std::string>&
+GetTemplateRequest::names() const {
+  // @@protoc_insertion_point(field_list:GetTemplateRequest.names)
+  return names_;
+}
+inline ::google::protobuf::RepeatedPtrField<::std::string>*
+GetTemplateRequest::mutable_names() {
+  // @@protoc_insertion_point(field_mutable_list:GetTemplateRequest.names)
+  return &names_;
+}
+
+// -------------------------------------------------------------------
+
+// Templates
+
+// repeated .Template templates = 1;
+inline int Templates::templates_size() const {
+  return templates_.size();
+}
+inline void Templates::clear_templates() {
+  templates_.Clear();
+}
+inline ::Template* Templates::mutable_templates(int index) {
+  // @@protoc_insertion_point(field_mutable:Templates.templates)
+  return templates_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Template >*
+Templates::mutable_templates() {
+  // @@protoc_insertion_point(field_mutable_list:Templates.templates)
+  return &templates_;
+}
+inline const ::Template& Templates::templates(int index) const {
+  // @@protoc_insertion_point(field_get:Templates.templates)
+  return templates_.Get(index);
+}
+inline ::Template* Templates::add_templates() {
+  // @@protoc_insertion_point(field_add:Templates.templates)
+  return templates_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Template >&
+Templates::templates() const {
+  // @@protoc_insertion_point(field_list:Templates.templates)
+  return templates_;
+}
+
+// -------------------------------------------------------------------
+
+// Template
+
+// string name = 1;
+inline void Template::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Template::name() const {
+  // @@protoc_insertion_point(field_get:Template.name)
+  return name_.GetNoArena();
+}
+inline void Template::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Template.name)
+}
+#if LANG_CXX11
+inline void Template::set_name(::std::string&& value) {
+  
+  name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Template.name)
+}
+#endif
+inline void Template::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Template.name)
+}
+inline void Template::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Template.name)
+}
+inline ::std::string* Template::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:Template.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Template::release_name() {
+  // @@protoc_insertion_point(field_release:Template.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Template::set_allocated_name(::std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:Template.name)
+}
+
+// string content = 2;
+inline void Template::clear_content() {
+  content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Template::content() const {
+  // @@protoc_insertion_point(field_get:Template.content)
+  return content_.GetNoArena();
+}
+inline void Template::set_content(const ::std::string& value) {
+  
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Template.content)
+}
+#if LANG_CXX11
+inline void Template::set_content(::std::string&& value) {
+  
+  content_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Template.content)
+}
+#endif
+inline void Template::set_content(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Template.content)
+}
+inline void Template::set_content(const char* value, size_t size) {
+  
+  content_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Template.content)
+}
+inline ::std::string* Template::mutable_content() {
+  
+  // @@protoc_insertion_point(field_mutable:Template.content)
+  return content_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Template::release_content() {
+  // @@protoc_insertion_point(field_release:Template.content)
+  
+  return content_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Template::set_allocated_content(::std::string* content) {
+  if (content != nullptr) {
+    
+  } else {
+    
+  }
+  content_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), content);
+  // @@protoc_insertion_point(field_set_allocated:Template.content)
+}
+
+// -------------------------------------------------------------------
+
 // Actions
 
 // repeated .Action actions = 1;
@@ -1659,6 +2269,12 @@ inline void ScenarioConfig::set_savereplay(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

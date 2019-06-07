@@ -21,6 +21,7 @@ static const char* RLAPI_method_names[] = {
   "/RLAPI/Step",
   "/RLAPI/Reset",
   "/RLAPI/Connect",
+  "/RLAPI/GetTemplates",
 };
 
 std::unique_ptr< RLAPI::Stub> RLAPI::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -33,6 +34,7 @@ RLAPI::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_Step_(RLAPI_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Reset_(RLAPI_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Connect_(RLAPI_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTemplates_(RLAPI_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RLAPI::Stub::Step(::grpc::ClientContext* context, const ::Actions& request, ::Observation* response) {
@@ -83,6 +85,22 @@ void RLAPI::Stub::experimental_async::Connect(::grpc::ClientContext* context, co
   return ::grpc::internal::ClientAsyncResponseReaderFactory< ::Observation>::Create(channel_.get(), cq, rpcmethod_Connect_, context, request, false);
 }
 
+::grpc::Status RLAPI::Stub::GetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::Templates* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTemplates_, context, request, response);
+}
+
+void RLAPI::Stub::experimental_async::GetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest* request, ::Templates* response, std::function<void(::grpc::Status)> f) {
+  return ::grpc::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTemplates_, context, request, response, std::move(f));
+}
+
+::grpc::ClientAsyncResponseReader< ::Templates>* RLAPI::Stub::AsyncGetTemplatesRaw(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::Templates>::Create(channel_.get(), cq, rpcmethod_GetTemplates_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Templates>* RLAPI::Stub::PrepareAsyncGetTemplatesRaw(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::Templates>::Create(channel_.get(), cq, rpcmethod_GetTemplates_, context, request, false);
+}
+
 RLAPI::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RLAPI_method_names[0],
@@ -99,6 +117,11 @@ RLAPI::Service::Service() {
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RLAPI::Service, ::ConnectRequest, ::Observation>(
           std::mem_fn(&RLAPI::Service::Connect), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RLAPI_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RLAPI::Service, ::GetTemplateRequest, ::Templates>(
+          std::mem_fn(&RLAPI::Service::GetTemplates), this)));
 }
 
 RLAPI::Service::~Service() {
@@ -119,6 +142,13 @@ RLAPI::Service::~Service() {
 }
 
 ::grpc::Status RLAPI::Service::Connect(::grpc::ServerContext* context, const ::ConnectRequest* request, ::Observation* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RLAPI::Service::GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) {
   (void) context;
   (void) request;
   (void) response;

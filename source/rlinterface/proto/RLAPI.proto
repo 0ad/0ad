@@ -4,6 +4,20 @@ service RLAPI {
     rpc Step(Actions) returns (Observation) {}
     rpc Reset(ResetRequest) returns (Observation) {}
     rpc Connect(ConnectRequest) returns (Observation) {}
+    rpc GetTemplates(GetTemplateRequest) returns (Templates) {}
+}
+
+message GetTemplateRequest {
+    repeated string names = 1;
+}
+
+message Templates {
+    repeated Template templates = 1;
+}
+
+message Template {
+    string name = 1;
+    string content = 2;
 }
 
 message Actions {

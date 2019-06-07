@@ -29,6 +29,11 @@ class RLAPIStub(object):
         request_serializer=zero__ad_dot_RLAPI__pb2.ConnectRequest.SerializeToString,
         response_deserializer=zero__ad_dot_RLAPI__pb2.Observation.FromString,
         )
+    self.GetTemplates = channel.unary_unary(
+        '/RLAPI/GetTemplates',
+        request_serializer=zero__ad_dot_RLAPI__pb2.GetTemplateRequest.SerializeToString,
+        response_deserializer=zero__ad_dot_RLAPI__pb2.Templates.FromString,
+        )
 
 
 class RLAPIServicer(object):
@@ -56,6 +61,13 @@ class RLAPIServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetTemplates(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_RLAPIServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -73,6 +85,11 @@ def add_RLAPIServicer_to_server(servicer, server):
           servicer.Connect,
           request_deserializer=zero__ad_dot_RLAPI__pb2.ConnectRequest.FromString,
           response_serializer=zero__ad_dot_RLAPI__pb2.Observation.SerializeToString,
+      ),
+      'GetTemplates': grpc.unary_unary_rpc_method_handler(
+          servicer.GetTemplates,
+          request_deserializer=zero__ad_dot_RLAPI__pb2.GetTemplateRequest.FromString,
+          response_serializer=zero__ad_dot_RLAPI__pb2.Templates.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

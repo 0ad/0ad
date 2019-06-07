@@ -56,12 +56,20 @@ class RLAPI final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Observation>> PrepareAsyncConnect(::grpc::ClientContext* context, const ::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Observation>>(PrepareAsyncConnectRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::Templates* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Templates>> AsyncGetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Templates>>(AsyncGetTemplatesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Templates>> PrepareAsyncGetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Templates>>(PrepareAsyncGetTemplatesRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
       virtual void Step(::grpc::ClientContext* context, const ::Actions* request, ::Observation* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Reset(::grpc::ClientContext* context, const ::ResetRequest* request, ::Observation* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Connect(::grpc::ClientContext* context, const ::ConnectRequest* request, ::Observation* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest* request, ::Templates* response, std::function<void(::grpc::Status)>) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
@@ -71,6 +79,8 @@ class RLAPI final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Observation>* PrepareAsyncResetRaw(::grpc::ClientContext* context, const ::ResetRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Observation>* AsyncConnectRaw(::grpc::ClientContext* context, const ::ConnectRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Observation>* PrepareAsyncConnectRaw(::grpc::ClientContext* context, const ::ConnectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Templates>* AsyncGetTemplatesRaw(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Templates>* PrepareAsyncGetTemplatesRaw(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -96,12 +106,20 @@ class RLAPI final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Observation>> PrepareAsyncConnect(::grpc::ClientContext* context, const ::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Observation>>(PrepareAsyncConnectRaw(context, request, cq));
     }
+    ::grpc::Status GetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::Templates* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Templates>> AsyncGetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Templates>>(AsyncGetTemplatesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Templates>> PrepareAsyncGetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Templates>>(PrepareAsyncGetTemplatesRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
       void Step(::grpc::ClientContext* context, const ::Actions* request, ::Observation* response, std::function<void(::grpc::Status)>) override;
       void Reset(::grpc::ClientContext* context, const ::ResetRequest* request, ::Observation* response, std::function<void(::grpc::Status)>) override;
       void Connect(::grpc::ClientContext* context, const ::ConnectRequest* request, ::Observation* response, std::function<void(::grpc::Status)>) override;
+      void GetTemplates(::grpc::ClientContext* context, const ::GetTemplateRequest* request, ::Templates* response, std::function<void(::grpc::Status)>) override;
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -119,9 +137,12 @@ class RLAPI final {
     ::grpc::ClientAsyncResponseReader< ::Observation>* PrepareAsyncResetRaw(::grpc::ClientContext* context, const ::ResetRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Observation>* AsyncConnectRaw(::grpc::ClientContext* context, const ::ConnectRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Observation>* PrepareAsyncConnectRaw(::grpc::ClientContext* context, const ::ConnectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Templates>* AsyncGetTemplatesRaw(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Templates>* PrepareAsyncGetTemplatesRaw(::grpc::ClientContext* context, const ::GetTemplateRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Step_;
     const ::grpc::internal::RpcMethod rpcmethod_Reset_;
     const ::grpc::internal::RpcMethod rpcmethod_Connect_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTemplates_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -132,6 +153,7 @@ class RLAPI final {
     virtual ::grpc::Status Step(::grpc::ServerContext* context, const ::Actions* request, ::Observation* response);
     virtual ::grpc::Status Reset(::grpc::ServerContext* context, const ::ResetRequest* request, ::Observation* response);
     virtual ::grpc::Status Connect(::grpc::ServerContext* context, const ::ConnectRequest* request, ::Observation* response);
+    virtual ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Step : public BaseClass {
@@ -193,7 +215,27 @@ class RLAPI final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Step<WithAsyncMethod_Reset<WithAsyncMethod_Connect<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetTemplates : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_GetTemplates() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_GetTemplates() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTemplates(::grpc::ServerContext* context, ::GetTemplateRequest* request, ::grpc::ServerAsyncResponseWriter< ::Templates>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Step<WithAsyncMethod_Reset<WithAsyncMethod_Connect<WithAsyncMethod_GetTemplates<Service > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_Step : public BaseClass {
    private:
@@ -269,7 +311,32 @@ class RLAPI final {
     }
     virtual void Connect(::grpc::ServerContext* context, const ::ConnectRequest* request, ::Observation* response, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
-  typedef ExperimentalWithCallbackMethod_Step<ExperimentalWithCallbackMethod_Reset<ExperimentalWithCallbackMethod_Connect<Service > > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetTemplates : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    ExperimentalWithCallbackMethod_GetTemplates() {
+      ::grpc::Service::experimental().MarkMethodCallback(3,
+        new ::grpc::internal::CallbackUnaryHandler< ::GetTemplateRequest, ::Templates>(
+          [this](::grpc::ServerContext* context,
+                 const ::GetTemplateRequest* request,
+                 ::Templates* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetTemplates(context, request, response, controller);
+                 }));
+    }
+    ~ExperimentalWithCallbackMethod_GetTemplates() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  typedef ExperimentalWithCallbackMethod_Step<ExperimentalWithCallbackMethod_Reset<ExperimentalWithCallbackMethod_Connect<ExperimentalWithCallbackMethod_GetTemplates<Service > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Step : public BaseClass {
    private:
@@ -317,6 +384,23 @@ class RLAPI final {
     }
     // disable synchronous version of this method
     ::grpc::Status Connect(::grpc::ServerContext* context, const ::ConnectRequest* request, ::Observation* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetTemplates : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_GetTemplates() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_GetTemplates() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -379,6 +463,26 @@ class RLAPI final {
     }
     void RequestConnect(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTemplates : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_GetTemplates() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_GetTemplates() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTemplates(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -457,6 +561,31 @@ class RLAPI final {
     virtual void Connect(::grpc::ServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetTemplates : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetTemplates() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(3,
+        new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetTemplates(context, request, response, controller);
+                 }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetTemplates() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void GetTemplates(::grpc::ServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Step : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
@@ -516,9 +645,29 @@ class RLAPI final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedConnect(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::ConnectRequest,::Observation>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Step<WithStreamedUnaryMethod_Reset<WithStreamedUnaryMethod_Connect<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetTemplates : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_GetTemplates() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler< ::GetTemplateRequest, ::Templates>(std::bind(&WithStreamedUnaryMethod_GetTemplates<BaseClass>::StreamedGetTemplates, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetTemplates() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetTemplates(::grpc::ServerContext* context, const ::GetTemplateRequest* request, ::Templates* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetTemplates(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GetTemplateRequest,::Templates>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Step<WithStreamedUnaryMethod_Reset<WithStreamedUnaryMethod_Connect<WithStreamedUnaryMethod_GetTemplates<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Step<WithStreamedUnaryMethod_Reset<WithStreamedUnaryMethod_Connect<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Step<WithStreamedUnaryMethod_Reset<WithStreamedUnaryMethod_Connect<WithStreamedUnaryMethod_GetTemplates<Service > > > > StreamedService;
 };
 
 

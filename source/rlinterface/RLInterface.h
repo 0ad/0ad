@@ -13,6 +13,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIInterface.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/system/TurnManager.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
@@ -43,6 +44,8 @@ class RLInterface final : public RLAPI::Service
         grpc::Status Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) override;
         grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override;
         grpc::Status Reset(ServerContext* context, const ResetRequest* req, Observation* obs) override;
+        grpc::Status GetTemplates(ServerContext* context, const GetTemplateRequest* req, Templates* res) override;
+
         void Listen(std::string server_address);
         void ApplyEvents();  // Apply RPC messages to the game engine
         std::string GetGameState();

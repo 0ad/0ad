@@ -20,10 +20,110 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x13zero_ad/RLAPI.proto\"#\n\x07\x41\x63tions\x12\x18\n\x07\x61\x63tions\x18\x01 \x03(\x0b\x32\x07.Action\"\x19\n\x06\x41\x63tion\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1e\n\x0bObservation\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"1\n\x0cResetRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"3\n\x0e\x43onnectRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"8\n\x08\x41IPlayer\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x12\n\ndifficulty\x18\x03 \x01(\r\"\xd3\x01\n\x0eScenarioConfig\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08playerID\x18\x04 \x01(\x05\x12\x0c\n\x04size\x18\x05 \x01(\r\x12\x12\n\nnumPlayers\x18\x06 \x01(\r\x12\x0c\n\x04seed\x18\x07 \x01(\r\x12\x0e\n\x06\x61iseed\x18\x08 \x01(\r\x12\x11\n\tgameSpeed\x18\t \x01(\x02\x12\x1a\n\x07players\x18\n \x03(\x0b\x32\t.AIPlayer\x12\x12\n\nsaveReplay\x18\x0b \x01(\x08\x32}\n\x05RLAPI\x12 \n\x04Step\x12\x08.Actions\x1a\x0c.Observation\"\x00\x12&\n\x05Reset\x12\r.ResetRequest\x1a\x0c.Observation\"\x00\x12*\n\x07\x43onnect\x12\x0f.ConnectRequest\x1a\x0c.Observation\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x13zero_ad/RLAPI.proto\"#\n\x12GetTemplateRequest\x12\r\n\x05names\x18\x01 \x03(\t\")\n\tTemplates\x12\x1c\n\ttemplates\x18\x01 \x03(\x0b\x32\t.Template\")\n\x08Template\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\"#\n\x07\x41\x63tions\x12\x18\n\x07\x61\x63tions\x18\x01 \x03(\x0b\x32\x07.Action\"\x19\n\x06\x41\x63tion\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x1e\n\x0bObservation\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"1\n\x0cResetRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"3\n\x0e\x43onnectRequest\x12!\n\x08scenario\x18\x01 \x01(\x0b\x32\x0f.ScenarioConfig\"8\n\x08\x41IPlayer\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x12\n\ndifficulty\x18\x03 \x01(\r\"\xd3\x01\n\x0eScenarioConfig\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08playerID\x18\x04 \x01(\x05\x12\x0c\n\x04size\x18\x05 \x01(\r\x12\x12\n\nnumPlayers\x18\x06 \x01(\r\x12\x0c\n\x04seed\x18\x07 \x01(\r\x12\x0e\n\x06\x61iseed\x18\x08 \x01(\r\x12\x11\n\tgameSpeed\x18\t \x01(\x02\x12\x1a\n\x07players\x18\n \x03(\x0b\x32\t.AIPlayer\x12\x12\n\nsaveReplay\x18\x0b \x01(\x08\x32\xb0\x01\n\x05RLAPI\x12 \n\x04Step\x12\x08.Actions\x1a\x0c.Observation\"\x00\x12&\n\x05Reset\x12\r.ResetRequest\x1a\x0c.Observation\"\x00\x12*\n\x07\x43onnect\x12\x0f.ConnectRequest\x1a\x0c.Observation\"\x00\x12\x31\n\x0cGetTemplates\x12\x13.GetTemplateRequest\x1a\n.Templates\"\x00\x62\x06proto3')
 )
 
 
+
+
+_GETTEMPLATEREQUEST = _descriptor.Descriptor(
+  name='GetTemplateRequest',
+  full_name='GetTemplateRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='names', full_name='GetTemplateRequest.names', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=23,
+  serialized_end=58,
+)
+
+
+_TEMPLATES = _descriptor.Descriptor(
+  name='Templates',
+  full_name='Templates',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='templates', full_name='Templates.templates', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=60,
+  serialized_end=101,
+)
+
+
+_TEMPLATE = _descriptor.Descriptor(
+  name='Template',
+  full_name='Template',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Template.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='Template.content', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=103,
+  serialized_end=144,
+)
 
 
 _ACTIONS = _descriptor.Descriptor(
@@ -52,8 +152,8 @@ _ACTIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23,
-  serialized_end=58,
+  serialized_start=146,
+  serialized_end=181,
 )
 
 
@@ -83,8 +183,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=60,
-  serialized_end=85,
+  serialized_start=183,
+  serialized_end=208,
 )
 
 
@@ -114,8 +214,8 @@ _OBSERVATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=87,
-  serialized_end=117,
+  serialized_start=210,
+  serialized_end=240,
 )
 
 
@@ -145,8 +245,8 @@ _RESETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=119,
-  serialized_end=168,
+  serialized_start=242,
+  serialized_end=291,
 )
 
 
@@ -176,8 +276,8 @@ _CONNECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=170,
-  serialized_end=221,
+  serialized_start=293,
+  serialized_end=344,
 )
 
 
@@ -221,8 +321,8 @@ _AIPLAYER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=223,
-  serialized_end=279,
+  serialized_start=346,
+  serialized_end=402,
 )
 
 
@@ -322,14 +422,18 @@ _SCENARIOCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=282,
-  serialized_end=493,
+  serialized_start=405,
+  serialized_end=616,
 )
 
+_TEMPLATES.fields_by_name['templates'].message_type = _TEMPLATE
 _ACTIONS.fields_by_name['actions'].message_type = _ACTION
 _RESETREQUEST.fields_by_name['scenario'].message_type = _SCENARIOCONFIG
 _CONNECTREQUEST.fields_by_name['scenario'].message_type = _SCENARIOCONFIG
 _SCENARIOCONFIG.fields_by_name['players'].message_type = _AIPLAYER
+DESCRIPTOR.message_types_by_name['GetTemplateRequest'] = _GETTEMPLATEREQUEST
+DESCRIPTOR.message_types_by_name['Templates'] = _TEMPLATES
+DESCRIPTOR.message_types_by_name['Template'] = _TEMPLATE
 DESCRIPTOR.message_types_by_name['Actions'] = _ACTIONS
 DESCRIPTOR.message_types_by_name['Action'] = _ACTION
 DESCRIPTOR.message_types_by_name['Observation'] = _OBSERVATION
@@ -338,6 +442,27 @@ DESCRIPTOR.message_types_by_name['ConnectRequest'] = _CONNECTREQUEST
 DESCRIPTOR.message_types_by_name['AIPlayer'] = _AIPLAYER
 DESCRIPTOR.message_types_by_name['ScenarioConfig'] = _SCENARIOCONFIG
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+GetTemplateRequest = _reflection.GeneratedProtocolMessageType('GetTemplateRequest', (_message.Message,), dict(
+  DESCRIPTOR = _GETTEMPLATEREQUEST,
+  __module__ = 'zero_ad.RLAPI_pb2'
+  # @@protoc_insertion_point(class_scope:GetTemplateRequest)
+  ))
+_sym_db.RegisterMessage(GetTemplateRequest)
+
+Templates = _reflection.GeneratedProtocolMessageType('Templates', (_message.Message,), dict(
+  DESCRIPTOR = _TEMPLATES,
+  __module__ = 'zero_ad.RLAPI_pb2'
+  # @@protoc_insertion_point(class_scope:Templates)
+  ))
+_sym_db.RegisterMessage(Templates)
+
+Template = _reflection.GeneratedProtocolMessageType('Template', (_message.Message,), dict(
+  DESCRIPTOR = _TEMPLATE,
+  __module__ = 'zero_ad.RLAPI_pb2'
+  # @@protoc_insertion_point(class_scope:Template)
+  ))
+_sym_db.RegisterMessage(Template)
 
 Actions = _reflection.GeneratedProtocolMessageType('Actions', (_message.Message,), dict(
   DESCRIPTOR = _ACTIONS,
@@ -396,8 +521,8 @@ _RLAPI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=495,
-  serialized_end=620,
+  serialized_start=619,
+  serialized_end=795,
   methods=[
   _descriptor.MethodDescriptor(
     name='Step',
@@ -424,6 +549,15 @@ _RLAPI = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_CONNECTREQUEST,
     output_type=_OBSERVATION,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetTemplates',
+    full_name='RLAPI.GetTemplates',
+    index=3,
+    containing_service=None,
+    input_type=_GETTEMPLATEREQUEST,
+    output_type=_TEMPLATES,
     serialized_options=None,
   ),
 ])
