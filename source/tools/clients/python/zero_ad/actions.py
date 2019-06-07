@@ -25,7 +25,7 @@ def tribute(player, amounts):
     }
 
 def walk(units, x, z, queued=False):
-    ids = [ unit['id'] for unit in units ]
+    ids = [ unit.id() for unit in units ]
     return {
         'type': 'walk',
         'entities': ids,
@@ -35,11 +35,11 @@ def walk(units, x, z, queued=False):
     }
 
 def attack(units, target, queued=False, allow_capture=True):
-    unit_ids = [ unit['id'] for unit in units ]
+    unit_ids = [ unit.id() for unit in units ]
     return {
         'type': 'attack',
         'entities': unit_ids,
-        'target': target['id'],
+        'target': target.id(),
         'allowCapture': allow_capture,
         'queued': queued
     }

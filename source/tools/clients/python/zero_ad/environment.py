@@ -62,7 +62,7 @@ class GameState():
         if units is None:
             units = self.units(owner=1)
 
-        positions = [ unit['position'] for unit in units ]
+        positions = [ unit.position() for unit in units ]
         squad_center = [
             sum([ x for [x, z] in positions ])/len(positions),
             sum([ z for [x, z] in positions ])/len(positions)
@@ -76,7 +76,7 @@ class GameState():
         min_dist = math.inf
         closest = None
         for unit in units:
-            dist = self.dist(unit['position'], position)
+            dist = self.dist(unit.position(), position)
             if dist < min_dist:
                 min_dist = dist
                 closest = unit
@@ -107,8 +107,21 @@ class Entity():
     def type(self):
         return self.data['template']
 
+    def id(self):
+        return self.data['id']
+
     def owner(self):
         return self.data['owner']
+
+    def max_health(self):
+        template = self.get_template()
+        return float(template.get('Health/Max'))
+
+    def health(self, ratio=False):
+        if ratio:
+            return self.data['hitpoints']/self.max_health()
+
+        return self.data['hitpoints']
 
     def position(self):
         return self.data['position']
