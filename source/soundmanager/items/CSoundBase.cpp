@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -121,7 +121,7 @@ void CSoundBase::SetGain(ALfloat gain)
 
 	if ( m_ALSource )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_GAIN, gain);
 		AL_CHECK;
 	}
@@ -131,7 +131,7 @@ void CSoundBase::SetRollOff(ALfloat rolls)
 {
 	if ( m_ALSource )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
 		AL_CHECK;
 		alSourcef(m_ALSource, AL_MAX_DISTANCE, 200.0);
@@ -151,7 +151,7 @@ void CSoundBase::SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain)
 {
 	if ( m_ALSource )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		AL_CHECK;
 		alSourcef(m_ALSource, AL_CONE_INNER_ANGLE, innerCone);
 		AL_CHECK;
@@ -166,7 +166,7 @@ void CSoundBase::SetPitch(ALfloat pitch)
 {
 	if ( m_ALSource )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_PITCH, pitch);
 		AL_CHECK;
 	}
@@ -176,7 +176,7 @@ void CSoundBase::SetDirection(const CVector3D& direction)
 {
 	if ( m_ALSource )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		alSourcefv(m_ALSource, AL_DIRECTION, direction.GetFloatArray());
 		AL_CHECK;
 	}
@@ -187,7 +187,7 @@ bool CSoundBase::IsPlaying()
 {
 	if ( m_ALSource )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK;
@@ -211,7 +211,7 @@ void CSoundBase::SetLocation (const CVector3D& position)
 {
 	if ( m_ALSource != 0 )
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
 		AL_CHECK;
 	}
@@ -274,7 +274,7 @@ void CSoundBase::SetLooping(bool loops)
 
 void CSoundBase::Play()
 {
-	CScopeLock lock(m_ItemMutex);
+	std::lock_guard<std::mutex> lock(m_ItemMutex);
 
 	m_ShouldBePlaying = true;
 	m_IsPaused = false;
@@ -349,7 +349,7 @@ void CSoundBase::Stop()
 	m_ShouldBePlaying = false;
 	if (m_ALSource != 0)
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 
 		AL_CHECK;
 		alSourcei(m_ALSource, AL_LOOPING, AL_FALSE);

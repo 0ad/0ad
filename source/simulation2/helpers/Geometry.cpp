@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -184,6 +184,73 @@ CFixedVector2D Geometry::NearestPointOnSquare(const CFixedVector2D& point, const
 
 		return corner;
 	}
+}
+
+fixed Geometry::DistanceSquareToSquare(const CFixedVector2D& relativePos, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1, const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2)
+{
+	/*
+	 * The shortest distance between two non colliding squares equals the distance between a corner
+	 * and other square. Thus calculating all 8 those distances and taking the smallest.
+	 * For colliding squares we simply return 0. When one of the points is inside the other square
+	 * we depend on DistanceToSquare's countInsideAsZero. When no point is inside the other square,
+	 * it is enough to check that two adjacent edges of one square does not collide with the other square.
+	 */
+	fixed hw1 = halfSize1.X;
+	fixed hh1 = halfSize1.Y;
+	fixed hw2 = halfSize2.X;
+	fixed hh2 = halfSize2.Y;
+	if (TestRaySquare(relativePos + u1.Multiply(hw1) + v1.Multiply(hh1), relativePos - u1.Multiply(hw1) + v1.Multiply(hh1), u2, v2, halfSize2) ||
+	    TestRaySquare(relativePos + u1.Multiply(hw1) + v1.Multiply(hh1), relativePos + u1.Multiply(hw1) - v1.Multiply(hh1), u2, v2, halfSize2))
+		return fixed::Zero();
+
+	return std::min(std::min(std::min(
+			DistanceToSquare(relativePos + u1.Multiply(hw1) + v1.Multiply(hh1), u2, v2, halfSize2, true),
+			DistanceToSquare(relativePos + u1.Multiply(hw1) - v1.Multiply(hh1), u2, v2, halfSize2, true)),
+		std::min(
+			DistanceToSquare(relativePos - u1.Multiply(hw1) + v1.Multiply(hh1), u2, v2, halfSize2, true),
+			DistanceToSquare(relativePos - u1.Multiply(hw1) - v1.Multiply(hh1), u2, v2, halfSize2, true))),
+		std::min(std::min(
+			DistanceToSquare(relativePos + u2.Multiply(hw2) + v2.Multiply(hh2), u1, v1, halfSize1, true),
+			DistanceToSquare(relativePos + u2.Multiply(hw2) - v2.Multiply(hh2), u1, v1, halfSize1, true)),
+		std::min(
+			DistanceToSquare(relativePos - u2.Multiply(hw2) + v2.Multiply(hh2), u1, v1, halfSize1, true),
+			DistanceToSquare(relativePos - u2.Multiply(hw2) - v2.Multiply(hh2), u1, v1, halfSize1, true))));
+}
+
+fixed Geometry::MaxDistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
+{
+	fixed hw = halfSize.X;
+	fixed hh = halfSize.Y;
+
+	if (point.Dot(u).Absolute() < hw && point.Dot(v).Absolute() < hh && countInsideAsZero)
+		return fixed::Zero();
+
+	/*
+	 * The maximum distance from a point to an edge of a square equals the greatest distance
+	 * from the point to the a corner. Thus calculating all and taking the greatest.
+	 */
+	return std::max(std::max(
+			(point + u.Multiply(hw) + v.Multiply(hh)).Length(),
+			(point + u.Multiply(hw) - v.Multiply(hh)).Length()),
+		std::max(
+			(point - u.Multiply(hw) + v.Multiply(hh)).Length(),
+			(point - u.Multiply(hw) - v.Multiply(hh)).Length()));
+}
+
+fixed Geometry::MaxDistanceSquareToSquare(const CFixedVector2D& relativePos, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1, const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2)
+{
+	/*
+	 * The maximum distance from an edge of a square to the edge of another square
+	 * equals the greatest distance from the any of the 16 corner corner distances.
+	*/
+	fixed hw1 = halfSize1.X;
+	fixed hh1 = halfSize1.Y;
+
+	return std::max(std::max(
+			MaxDistanceToSquare(relativePos + u1.Multiply(hw1) + v1.Multiply(hh1), u2, v2, halfSize2, true),
+			MaxDistanceToSquare(relativePos + u1.Multiply(hw1) - v1.Multiply(hh1), u2, v2, halfSize2, true)),
+		std::max(MaxDistanceToSquare(relativePos - u1.Multiply(hw1) + v1.Multiply(hh1), u2, v2, halfSize2, true),
+			MaxDistanceToSquare(relativePos - u1.Multiply(hw1) - v1.Multiply(hh1), u2, v2, halfSize2, true)));
 }
 
 bool Geometry::TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)

@@ -64,6 +64,9 @@ function TestFormationExiting(mode)
 		GetEnemies: function() { return []; },
 	});
 
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"IsInTargetRange": (ent, target, min, max, opposite) => true
+	});
 
 	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
 
@@ -84,12 +87,11 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(unit, IID_UnitMotion, {
-		GetWalkSpeed: function() { return 1; },
-		MoveToFormationOffset: function(target, x, z) { },
-		IsInTargetRange: function(target, min, max) { return true; },
-		MoveToTargetRange: function(target, min, max) { return true; },
-		StopMoving: function() { },
-		GetPassabilityClassName: function() { return "default"; },
+		"GetWalkSpeed": () => 1,
+		"MoveToFormationOffset": (target, x, z) => {},
+		"MoveToTargetRange": (target, min, max) => true,
+		"StopMoving": () => {},
+		"GetPassabilityClassName": () => "default"
 	});
 
 	AddMock(unit, IID_Vision, {
@@ -207,6 +209,10 @@ function TestMoveIntoFormationWhileAttacking()
 		GetNumPlayers: function() { return 2; },
 	});
 
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"IsInTargetRange": (ent, target, min, max) => true
+	});
+
 	AddMock(playerEntity, IID_Player, {
 		IsAlly: function() { return false; },
 		IsEnemy: function() { return true; },
@@ -237,12 +243,11 @@ function TestMoveIntoFormationWhileAttacking()
 		});
 
 		AddMock(unit + i, IID_UnitMotion, {
-			GetWalkSpeed: function() { return 1; },
-			MoveToFormationOffset: function(target, x, z) { },
-			IsInTargetRange: function(target, min, max) { return true; },
-			MoveToTargetRange: function(target, min, max) { return true; },
-			StopMoving: function() { },
-			GetPassabilityClassName: function() { return "default"; },
+			"GetWalkSpeed": () => 1,
+			"MoveToFormationOffset": (target, x, z) => {},
+			"MoveToTargetRange": (target, min, max) => true,
+			"StopMoving": () => {},
+			"GetPassabilityClassName": () => "default"
 		});
 
 		AddMock(unit + i, IID_Vision, {
@@ -283,12 +288,11 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	AddMock(controller, IID_UnitMotion, {
-		GetWalkSpeed: function() { return 1; },
-		SetSpeedMultiplier: function(speed) { },
-		MoveToPointRange: function(x, z, minRange, maxRange) { },
-		IsInTargetRange: function(target, min, max) { return true; },
-		StopMoving: function() { },
-		GetPassabilityClassName: function() { return "default"; },
+		"GetWalkSpeed": () => 1,
+		"SetSpeedMultiplier": (speed) => {},
+		"MoveToPointRange": (x, z, minRange, maxRange) => {},
+		"StopMoving": () => {},
+		"GetPassabilityClassName": () => "default"
 	});
 
 	AddMock(controller, IID_Attack, {

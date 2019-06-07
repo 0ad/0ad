@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -238,7 +238,7 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 
 	std::deque<std::wstring>::iterator Iter; //History iterator
 
-	CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+	std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
@@ -381,7 +381,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 	case SDLK_HOME:
 		if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
 		{
-			CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+			std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 			int linesShown = (int)m_fHeight/m_iFontHeight - 4;
 			m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
@@ -442,7 +442,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 	// BEGIN: Message History Lookup
 	case SDLK_PAGEUP:
 	{
-		CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+		std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 		if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
 		return;
@@ -504,7 +504,7 @@ void CConsole::InsertMessage(const std::string& message)
 	oldNewline = 0;
 
 	{
-		CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+		std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 		while ( (distance = wrapAround.find(newline, oldNewline)) != wrapAround.npos)
 		{

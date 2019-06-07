@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 
 #include "soundmanager/SoundManager.h"
 #include "soundmanager/data/SoundData.h"
+
+#include <mutex>
 
 CSoundItem::CSoundItem()
 {
@@ -51,7 +53,7 @@ bool CSoundItem::IdleTask()
 
 	if (m_LastPlay && m_ALSource)
 	{
-		CScopeLock lock(m_ItemMutex);
+		std::lock_guard<std::mutex> lock(m_ItemMutex);
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK;

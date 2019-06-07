@@ -134,7 +134,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 	let cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (cmpDamageReceiver && this.TestCollision(data.target, data.position, lateness))
 	{
-		data.multiplier = GetDamageBonus(data.target, data.bonus);
+		data.multiplier = GetDamageBonus(data.attacker, data.target, data.type, data.bonus);
 		this.CauseDamage(data);
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 
@@ -161,7 +161,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 			"strengths": data.strengths,
 			"target": ent,
 			"attacker": data.attacker,
-			"multiplier": GetDamageBonus(ent, data.bonus),
+			"multiplier": GetDamageBonus(data.attacker, ent, data.type, data.bonus),
 			"type": data.type,
 			"attackerOwner": data.attackerOwner
 		});
@@ -223,7 +223,7 @@ Damage.prototype.CauseSplashDamage = function(data)
 		}
 
 		if (data.splashBonus)
-			damageMultiplier *= GetDamageBonus(ent, data.splashBonus);
+			damageMultiplier *= GetDamageBonus(data.attacker, ent, data.type, data.splashBonus);
 
 		// Call CauseDamage which reduces the hitpoints, posts network command, plays sounds....
 		this.CauseDamage({

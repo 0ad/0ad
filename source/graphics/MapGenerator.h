@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,13 +18,14 @@
 #ifndef INCLUDED_MAPGENERATOR
 #define INCLUDED_MAPGENERATOR
 
+#include "lib/posix/posix_pthread.h"
 #include "ps/FileIo.h"
-#include "ps/ThreadUtil.h"
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/random/linear_congruential.hpp>
 
+#include <mutex>
 #include <set>
 #include <string>
 
@@ -147,7 +148,7 @@ private:
 	bool Run();
 
 	pthread_t m_WorkerThread;
-	CMutex m_WorkerMutex;
+	std::mutex m_WorkerMutex;
 };
 
 

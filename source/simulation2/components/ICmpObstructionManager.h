@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,6 +53,16 @@ class IObstructionTestFilter;
 class ICmpObstructionManager : public IComponent
 {
 public:
+	/**
+	 * Standard representation for all types of shapes, for use with geometry processing code.
+	 */
+	struct ObstructionSquare
+	{
+		entity_pos_t x, z; // position of center
+		CFixedVector2D u, v; // 'horizontal' and 'vertical' orthogonal unit vectors, representing orientation
+		entity_pos_t hw, hh; // half width, half height of square
+	};
+
 	/**
 	 * External identifiers for shapes.
 	 * (This is a struct rather than a raw u32 for type-safety.)
@@ -165,6 +175,46 @@ public:
 	virtual fixed DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const = 0;
 
 	/**
+	 * Calculate the largest straight line distance between the entity and the point.
+	 */
+	virtual fixed MaxDistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const = 0;
+
+	/**
+	 * Calculate the shortest distance between the entity and the target.
+	 */
+	virtual fixed DistanceToTarget(entity_id_t ent, entity_id_t target) const = 0;
+
+	/**
+	 * Calculate the largest straight line distance between the entity and the target.
+	 */
+	virtual fixed MaxDistanceToTarget(entity_id_t ent, entity_id_t target) const = 0;
+
+	/**
+	 * Calculate the shortest straight line distance between the source and the target
+	 */
+	virtual fixed DistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const = 0;
+
+	/**
+	 * Calculate the largest straight line distance between the source and the target
+	 */
+	virtual fixed MaxDistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const = 0;
+
+	/**
+	 * Check if the given entity is in range of the other point given those parameters.
+	 */
+	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
+
+	/**
+	 * Check if the given entity is in range of the target given those parameters.
+	 */
+	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
+
+	/**
+	 * Check if the given point is in range of the other point given those parameters.
+	 */
+	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
+
+	/**
 	 * Collision test a flat-ended thick line against the current set of shapes.
 	 * The line caps extend by @p r beyond the end points.
 	 * Only intersections going from outside to inside a shape are counted.
@@ -223,16 +273,6 @@ public:
 	 * The return value is false if an update is unnecessary.
 	 */
 	virtual void UpdateInformations(GridUpdateInformation& informations) = 0;
-
-	/**
-	 * Standard representation for all types of shapes, for use with geometry processing code.
-	 */
-	struct ObstructionSquare
-	{
-		entity_pos_t x, z; // position of center
-		CFixedVector2D u, v; // 'horizontal' and 'vertical' orthogonal unit vectors, representing orientation
-		entity_pos_t hw, hh; // half width, half height of square
-	};
 
 	/**
 	 * Find all the obstructions that are inside (or partially inside) the given range.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 
 #include <libxml/relaxng.h>
 #include <map>
+#include <mutex>
 
 TIMER_ADD_CLIENT(xml_validation);
 
@@ -36,11 +37,11 @@ TIMER_ADD_CLIENT(xml_validation);
  */
 class RelaxNGSchema;
 static std::map<std::string, shared_ptr<RelaxNGSchema> > g_SchemaCache;
-static CMutex g_SchemaCacheLock;
+static std::mutex g_SchemaCacheLock;
 
 void ClearSchemaCache()
 {
-	CScopeLock lock(g_SchemaCacheLock);
+	std::lock_guard<std::mutex> lock(g_SchemaCacheLock);
 	g_SchemaCache.clear();
 }
 
@@ -92,7 +93,7 @@ bool RelaxNGValidator::LoadGrammar(const std::string& grammar)
 	shared_ptr<RelaxNGSchema> schema;
 
 	{
-		CScopeLock lock(g_SchemaCacheLock);
+		std::lock_guard<std::mutex> lock(g_SchemaCacheLock);
 		std::map<std::string, shared_ptr<RelaxNGSchema> >::iterator it = g_SchemaCache.find(grammar);
 		if (it == g_SchemaCache.end())
 		{

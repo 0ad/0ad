@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,9 +23,10 @@
 #if CONFIG2_AUDIO
 
 #include "lib/external_libraries/openal.h"
-#include "ps/ThreadUtil.h"
 #include "soundmanager/data/SoundData.h"
 #include "soundmanager/items/ISoundItem.h"
+
+#include <mutex>
 
 class CSoundBase : public ISoundItem
 {
@@ -45,7 +46,7 @@ protected:
 
 	ALfloat	m_StartVolume;
 	ALfloat	m_EndVolume;
-	CMutex m_ItemMutex;
+	std::mutex m_ItemMutex;
 
 public:
 	CSoundBase();

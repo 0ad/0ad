@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,7 +87,7 @@ void MessagePasserImpl::Add(IMessage* msg)
 		debug_printf("%8.3f add message: %s\n", timer_Time(), msg->GetName());
 
 	{
-		CScopeLock lock(m_Mutex);
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		m_Queue.push(msg);
 	}
 }
@@ -101,7 +101,7 @@ IMessage* MessagePasserImpl::Retrieve()
 	IMessage* msg = NULL;
 
 	{
-		CScopeLock lock(m_Mutex);
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		if (! m_Queue.empty())
 		{
 			msg = m_Queue.front();
@@ -127,7 +127,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 	qry->m_Semaphore = static_cast<void*>(m_Semaphore);
 
 	{
-		CScopeLock lock(m_Mutex);
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		m_Queue.push(qry);
 	}
 
@@ -185,7 +185,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 
 bool MessagePasserImpl::IsEmpty()
 {
-	CScopeLock lock(m_Mutex);
+	std::lock_guard<std::mutex> lock(m_Mutex);
 	return m_Queue.empty();
 }
 

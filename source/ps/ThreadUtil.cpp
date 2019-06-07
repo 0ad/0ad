@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,10 +17,12 @@
 
 #include "precompiled.h"
 
+#include <thread>
+
 #include "ThreadUtil.h"
 
 static bool g_MainThreadSet;
-static pthread_t g_MainThread;
+static std::thread::id g_MainThread;
 
 bool ThreadUtil::IsMainThread()
 {
@@ -29,11 +31,11 @@ bool ThreadUtil::IsMainThread()
 	if (!g_MainThreadSet)
 		return true;
 
-	return pthread_equal(pthread_self(), g_MainThread) ? true : false;
+	return g_MainThread == std::this_thread::get_id();
 }
 
 void ThreadUtil::SetMainThread()
 {
-	g_MainThread = pthread_self();
+	g_MainThread = std::this_thread::get_id();
 	g_MainThreadSet = true;
 }

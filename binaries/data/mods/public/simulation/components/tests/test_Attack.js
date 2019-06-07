@@ -184,12 +184,12 @@ for (let className of ["Infantry", "Cavalry"])
 
 		TS_ASSERT(cmpAttack.GetBonusTemplate("Capture") === null);
 
-		let getAttackBonus = (t, e) => GetDamageBonus(e, cmpAttack.GetBonusTemplate(t));
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Melee", defender), className == "Cavalry" ? 2 : 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Ranged", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Ranged.Splash", defender), className == "Cavalry" ? 3 : 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Capture", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Slaughter", defender), 1);
+		let getAttackBonus = (s, t, e) => GetDamageBonus(s, e, t, cmpAttack.GetBonusTemplate(t));
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Melee", defender), className == "Cavalry" ? 2 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged.Splash", defender), className == "Cavalry" ? 3 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Capture", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Slaughter", defender), 1);
 	});
 
 // CanAttack rejects elephant attack due to RestrictedClasses

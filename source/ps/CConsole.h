@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,16 +22,16 @@
 #ifndef INCLUDED_CCONSOLE
 #define INCLUDED_CCONSOLE
 
-#include <stdarg.h>
-#include <string>
 #include <deque>
 #include <map>
+#include <mutex>
+#include <stdarg.h>
+#include <string>
 
 #include "graphics/ShaderProgramPtr.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/input.h"
 #include "ps/CStr.h"
-#include "ps/ThreadUtil.h"
 
 class CTextRenderer;
 
@@ -91,7 +91,7 @@ public:
 
 private:
 	// Lock for all state modified by InsertMessage
-	CMutex m_Mutex;
+	std::mutex m_Mutex;
 
 	float m_fX;
 	float m_fY;

@@ -45,18 +45,6 @@ public:
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
-	 * Determine wether the givven point is within the given range, using the same measurement
-	 * as MoveToPointRange.
-	 */
-	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
-
-	/**
-	 * Determine whether the target is within the given range, using the same measurement
-	 * as MoveToTargetRange.
-	 */
-	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
-
-	/**
 	 * Attempt to walk into range of a given target entity, or as close as possible.
 	 * The range is measured between approximately the edges of the unit and the target, so that
 	 * maxRange=0 is not unreachably close to the target.

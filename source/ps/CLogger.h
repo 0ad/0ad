@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,11 @@
 #define INCLUDED_CLOGGER
 
 #include <fstream>
+#include <mutex>
 #include <string>
 #include <set>
 #include <sstream>
 
-#include "ps/ThreadUtil.h"
 #include "third_party/cppformat/format.h"
 
 class CLogger;
@@ -105,7 +105,7 @@ private:
 	double m_RenderLastEraseTime;
 
 	// Lock for all state modified by logging commands
-	CMutex m_Mutex;
+	std::mutex m_Mutex;
 };
 
 /**

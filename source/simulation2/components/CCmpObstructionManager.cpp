@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -466,6 +466,15 @@ public:
 	}
 
 	virtual fixed DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const;
+	virtual fixed MaxDistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const;
+	virtual fixed DistanceToTarget(entity_id_t ent, entity_id_t target) const;
+	virtual fixed MaxDistanceToTarget(entity_id_t ent, entity_id_t target) const;
+	virtual fixed DistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const;
+	virtual fixed MaxDistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const;
+
+	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
+	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
+	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const;
 
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits = false) const;
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out) const;
@@ -657,18 +666,173 @@ private:
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
 
+/**
+ * DistanceTo function family, all end up in calculating a vector length, DistanceBetweenShapes or
+ * MaxDistanceBetweenShapes. The MaxFoo family calculates the opposite edge opposite edge distance.
+ * When the distance is undefined we return -1.
+ */
 fixed CCmpObstructionManager::DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const
 {
+	ObstructionSquare obstruction;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+	if (cmpObstruction && cmpObstruction->GetObstructionSquare(obstruction))
+	{
+		ObstructionSquare point;
+		point.x = px;
+		point.z = pz;
+		return DistanceBetweenShapes(obstruction, point);
+	}
+
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return fixed::FromInt(-1);
 
-	ObstructionSquare s;
-	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
-	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(s))
-		return (CFixedVector2D(px, pz) - cmpPosition->GetPosition2D()).Length();
+	return (CFixedVector2D(cmpPosition->GetPosition2D().X, cmpPosition->GetPosition2D().Y) - CFixedVector2D(px, pz)).Length();
+}
 
-	return Geometry::DistanceToSquare(CFixedVector2D(px - s.x, pz - s.z), s.u, s.v, CFixedVector2D(s.hw, s.hh));
+fixed CCmpObstructionManager::MaxDistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const
+{
+	ObstructionSquare obstruction;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(obstruction))
+	{
+		ObstructionSquare point;
+		point.x = px;
+		point.z = pz;
+		return MaxDistanceBetweenShapes(obstruction, point);
+	}
+
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return fixed::FromInt(-1);
+
+	return (CFixedVector2D(cmpPosition->GetPosition2D().X, cmpPosition->GetPosition2D().Y) - CFixedVector2D(px, pz)).Length();
+}
+
+fixed CCmpObstructionManager::DistanceToTarget(entity_id_t ent, entity_id_t target) const
+{
+	ObstructionSquare obstruction;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(obstruction))
+	{
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+			return fixed::FromInt(-1);
+		return DistanceToPoint(target, cmpPosition->GetPosition2D().X, cmpPosition->GetPosition2D().Y);
+	}
+
+	ObstructionSquare target_obstruction;
+	CmpPtr<ICmpObstruction> cmpObstructionTarget(GetSimContext(), target);
+	if (!cmpObstructionTarget || !cmpObstructionTarget->GetObstructionSquare(target_obstruction))
+	{
+		CmpPtr<ICmpPosition> cmpPositionTarget(GetSimContext(), target);
+		if (!cmpPositionTarget || !cmpPositionTarget->IsInWorld())
+			return fixed::FromInt(-1);
+		return DistanceToPoint(ent, cmpPositionTarget->GetPosition2D().X, cmpPositionTarget->GetPosition2D().Y);
+	}
+
+	return DistanceBetweenShapes(obstruction, target_obstruction);
+}
+
+fixed CCmpObstructionManager::MaxDistanceToTarget(entity_id_t ent, entity_id_t target) const
+{
+	ObstructionSquare obstruction;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(obstruction))
+	{
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+			return fixed::FromInt(-1);
+		return MaxDistanceToPoint(target, cmpPosition->GetPosition2D().X, cmpPosition->GetPosition2D().Y);
+	}
+
+	ObstructionSquare target_obstruction;
+	CmpPtr<ICmpObstruction> cmpObstructionTarget(GetSimContext(), target);
+	if (!cmpObstructionTarget || !cmpObstructionTarget->GetObstructionSquare(target_obstruction))
+	{
+		CmpPtr<ICmpPosition> cmpPositionTarget(GetSimContext(), target);
+		if (!cmpPositionTarget || !cmpPositionTarget->IsInWorld())
+			return fixed::FromInt(-1);
+		return MaxDistanceToPoint(ent, cmpPositionTarget->GetPosition2D().X, cmpPositionTarget->GetPosition2D().Y);
+	}
+
+	return MaxDistanceBetweenShapes(obstruction, target_obstruction);
+}
+
+fixed CCmpObstructionManager::DistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const
+{
+	// Sphere-sphere collision.
+	if (source.hh == fixed::Zero() && target.hh == fixed::Zero())
+		return (CFixedVector2D(target.x, target.z) - CFixedVector2D(source.x, source.z)).Length() - source.hw - target.hw;
+
+	// Square to square.
+	if (source.hh != fixed::Zero() && target.hh != fixed::Zero())
+		return Geometry::DistanceSquareToSquare(
+			CFixedVector2D(target.x, target.z) - CFixedVector2D(source.x, source.z),
+			source.u, source.v, CFixedVector2D(source.hw, source.hh),
+			target.u, target.v, CFixedVector2D(target.hw, target.hh));
+
+	// To cover both remaining cases, shape a is the square one, shape b is the circular one.
+	const ObstructionSquare& a = source.hh == fixed::Zero() ? target : source;
+	const ObstructionSquare& b = source.hh == fixed::Zero() ? source : target;
+	return Geometry::DistanceToSquare(
+		CFixedVector2D(b.x, b.z) - CFixedVector2D(a.x, a.z),
+		a.u, a.v, CFixedVector2D(a.hw, a.hh), true) - b.hw;
+}
+
+fixed CCmpObstructionManager::MaxDistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const
+{
+	// Sphere-sphere collision.
+	if (source.hh == fixed::Zero() && target.hh == fixed::Zero())
+		return (CFixedVector2D(target.x, target.z) - CFixedVector2D(source.x, source.z)).Length() + source.hw + target.hw;
+
+	// Square to square.
+	if (source.hh != fixed::Zero() && target.hh != fixed::Zero())
+		return Geometry::MaxDistanceSquareToSquare(
+			CFixedVector2D(target.x, target.z) - CFixedVector2D(source.x, source.z),
+			source.u, source.v, CFixedVector2D(source.hw, source.hh),
+			target.u, target.v, CFixedVector2D(target.hw, target.hh));
+
+	// To cover both remaining cases, shape a is the square one, shape b is the circular one.
+	const ObstructionSquare& a = source.hh == fixed::Zero() ? target : source;
+	const ObstructionSquare& b = source.hh == fixed::Zero() ? source : target;
+	return Geometry::MaxDistanceToSquare(
+		CFixedVector2D(b.x, b.z) - CFixedVector2D(a.x, a.z),
+		a.u, a.v, CFixedVector2D(a.hw, a.hh), true) + b.hw;
+}
+
+/**
+ * IsInRange function family depending on the DistanceTo family.
+ *
+ * In range if the edge to edge distance is inferior to maxRange
+ * and if the opposite edge to opposite edge distance is greater than minRange when the opposite bool is true
+ * or when the opposite bool is false the edge to edge distance is more than minRange.
+ *
+ * Using the opposite egde for minRange means that a unit is in range of a building if it is farther than
+ * clearance-buildingsize, which is generally going to be negative (and thus this returns true).
+ * NB: from a game POV, this means units can easily fire on buildings, which is good,
+ * but it also means that buildings can easily fire on units. Buildings are usually meant
+ * to fire from the edge, not the opposite edge, so this looks odd. For this reason one can choose
+ * to set the opposite bool false and use the edge to egde distance.
+ *
+ * We don't use squares because the are likely to overflow.
+ * We use a 0.0001 margin to avoid rounding errors.
+ */
+bool CCmpObstructionManager::IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
+{
+	fixed dist = DistanceToPoint(ent, px, pz);
+	return dist != fixed::FromInt(-1) && dist <= maxRange + fixed::FromFloat(0.0001) && (opposite ? MaxDistanceToPoint(ent, px, pz) : dist) >= minRange - fixed::FromFloat(0.0001);
+}
+
+bool CCmpObstructionManager::IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
+{
+	fixed dist = DistanceToTarget(ent, target);
+	return dist != fixed::FromInt(-1) && dist <= maxRange + fixed::FromFloat(0.0001) && (opposite ? MaxDistanceToTarget(ent, target) : dist) >= minRange- fixed::FromFloat(0.0001);
+}
+bool CCmpObstructionManager::IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const
+{
+	entity_pos_t distance = (CFixedVector2D(x, z) - CFixedVector2D(px, pz)).Length();
+	return distance <= maxRange + fixed::FromFloat(0.0001) && distance >= minRange - fixed::FromFloat(0.0001);
 }
 
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) const
