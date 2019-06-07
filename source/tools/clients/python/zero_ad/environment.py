@@ -127,7 +127,7 @@ class EntityTemplate():
 
     def get(self, path):
         node = self.data.find(path)
-        return node.text if node else None
+        return node.text if node is not None else None
 
     def set(self, path, value):
         node = self.data.find(path)
