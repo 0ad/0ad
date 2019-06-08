@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 15:42+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 16:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgid "Wooden Wall"
 msgstr "Dřevěná hradba"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
-#: simulation/templates/template_structure_defensive_wall.xml:27
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "Obežeňte město zdí kvůli lepší obraně."
 
@@ -171,7 +171,7 @@ msgstr "Střílí šípy. Obsaďte posádkou pro poskytnutí ochrany navíc. Pot
 msgid "StoneTower"
 msgstr "Kamenná věž"
 
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -179,29 +179,29 @@ msgstr "Kamenná věž"
 msgid "Stone Wall"
 msgstr "Kamenná hradba"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "Městská brána"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Umožňuje jednotkám průchod městskou hradbou. Může být zamknuta pro zabránění přístupu."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
 msgstr "Dlouhé hradební úseky lze měnit na brány."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Toto vám umožní přikázat jednotkám obcházet skrz vaše opevnění."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:62
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "Věž v hradbě"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:63
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Střílí šípy. Obsaďte posádkou pro obranu města proti útočníkům."
 
@@ -301,8 +301,8 @@ msgid "City"
 msgstr "Velkoměsto"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-msgid "ElephantStables"
-msgstr "Sloní stáje"
+msgid "ElephantStable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
@@ -342,17 +342,14 @@ msgstr "Cvičte občanské vojáky střelecké pěchoty. Zkoumejte vylepšení v
 msgid "Range"
 msgstr "Dostřel:"
 
-#: simulation/templates/template_structure_military_stable.xml:22
-msgid "Stable"
-msgstr ""
-
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
 msgstr "Cvičte občanské vojáky jízdy.  Zkoumejte vylepšení výcviku."
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Stables"
-msgstr "Stáje"
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"

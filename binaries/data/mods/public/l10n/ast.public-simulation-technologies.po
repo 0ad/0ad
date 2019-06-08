@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-05-23 02:04+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-04 22:50+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "Les unidaes ascendíes a la clas avanzada ganen enforma en calidá: un 20% más de salú, 1 nivel más d'armadura de toa mena, un 20% más de botín, un 20% más d'ataque pa unidaes cuerpu a cuerpu, 4m más d'algame y meyor precisión pa unidaes a distancia, velocidaes de movimientu más rápides y más velocidá y algame de curamientu pa curadores."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr "Los pueblos indiu y iranín teníen una tradición de xeitu pal arcu y un enclín a emplegar mases d'arqueros na batalla."
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "Algame +10 metros pa unidaes arqueres. Unidaes arqueres meyor precisión y -20% de muera d'allistamientu, anque tamién -20% de salú."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Tradición arquera"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Desblóquiase na Fas del pueblu."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -453,18 +480,6 @@ msgstr "Refuercios de madera pa cascos de barcos. +2 niveles pa toles tribes de 
 msgid "Reinforced hull"
 msgstr "Cascu reforciáu"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Desblóquiase na Fas del pueblu."
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "Una llanza llarga fecha específicamente pa caballería."
@@ -821,7 +836,7 @@ msgstr "Trabayadores +15% de ritmu agrícola."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr "Entrenamientu de recoyida"
+msgstr "Entrenamientu de recueya"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
@@ -1227,7 +1242,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros civiles aumenta otru +50%. La bonificación cultural de les Curuxes de plata apurre +10% na tasa de recoyida del metal a tolos trabayadores. La salú máxima de los Milicianos populares aumenta en +10%. Toles construcciones +9 a la tasa de rexeneración por guarecimientu."
+msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros civiles aumenta otru +50%. La bonificación cultural de les Curuxes de plata apurre +10% na tasa de recueya del metal a tolos trabayadores. La salú máxima de los Milicianos populares aumenta en +10%. Toles construcciones +9 a la tasa de rexeneración por guarecimientu."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1278,7 +1293,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros civiles aumenta en +30%. La bonificación cultural de les Curuxes de plata apurre +10% na tasa de recoyida del metal a tolos trabayadores. La salú máxima de los Milicianos populares aumenta en +20%. Toles construcciones +7 a la tasa de rexeneración por guarecimientu. "
+msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros civiles aumenta en +30%. La bonificación cultural de les Curuxes de plata apurre +10% na tasa de recueya del metal a tolos trabayadores. La salú máxima de los Milicianos populares aumenta en +20%. Toles construcciones +7 a la tasa de rexeneración por guarecimientu. "
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -2442,24 +2457,6 @@ msgstr "Allista curadores d'élite."
 msgid "Divine Instruction"
 msgstr "Instrucción divino"
 
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "Los indios teníen una tradición de xeitu pal arcu y un enclín a emplegar mases d'arqueros na batalla."
-
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "Algame +10 metros pa unidaes arqueres. Unidaes arqueres meyor precisión y -20% de muera d'allistamientu, anque tamién -20% de salú."
-
-#: simulation/data/technologies/mauryas/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Tradición arquera"
-
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
@@ -2491,12 +2488,6 @@ msgstr "Toles construcciones perses +25% de salú y puntos de captura, pero tami
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Arquiteutura"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "Los perses teníen una tradición de xeitu pal arcu y un enclín a emplegar mases d'arqueros na batalla. "
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
