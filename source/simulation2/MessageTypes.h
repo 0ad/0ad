@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -317,20 +317,17 @@ public:
 };
 
 /**
- * Sent by CCmpUnitMotion during Update, whenever the motion status has changed
- * since the previous update.
+ * Sent by CCmpUnitMotion during Update if an event happened that might interest other components.
  */
 class CMessageMotionChanged : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(MotionChanged)
 
-	CMessageMotionChanged(bool starting, bool error) :
-		starting(starting), error(error)
+	CMessageMotionChanged(bool error) : error(error)
 	{
 	}
 
-	bool starting; // whether this is a start or end of movement
 	bool error; // whether we failed to start moving (couldn't find any path)
 };
 

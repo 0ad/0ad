@@ -143,10 +143,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// as switching states)
 	},
 
-	"MoveStarted": function() {
-		// ignore spurious movement messages
-	},
-
 	"ConstructionFinished": function(msg) {
 		// ignore uninteresting construction messages
 	},
@@ -883,12 +879,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
 			},
-
-			"MoveStarted": function() {
-				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
-			}
 		},
 
 		"WALKING": {
@@ -898,16 +888,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 					return true;
 				}
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"leave": function() {
 				this.StopMoving();
-			},
-
-			"MoveStarted": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"MoveCompleted": function(msg) {
@@ -924,25 +911,19 @@ UnitAI.prototype.UnitFsmSpec = {
 					return true;
 				}
 				this.StartTimer(0, 1000);
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"leave": function() {
 				this.StopMoving();
+				this.StopTimer();
 			},
 
 			"Timer": function(msg) {
 				// check if there are no enemies to attack
 				this.FindWalkAndFightTargets();
-			},
-
-			"leave": function(msg) {
-				this.StopTimer();
-			},
-
-			"MoveStarted": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"MoveCompleted": function(msg) {
@@ -973,6 +954,10 @@ UnitAI.prototype.UnitFsmSpec = {
 					return true;
 				}
 				this.StartTimer(0, 1000);
+
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"Timer": function(msg) {
@@ -984,12 +969,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.StopTimer();
 				this.StopMoving();
 				delete this.patrolStartPosOrder;
-			},
-
-			"MoveStarted": function(msg) {
-				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"MoveCompleted": function() {
@@ -1039,16 +1018,13 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
 				},
 
 				"leave": function() {
 					this.StopMoving();
-				},
-
-				"MoveStarted": function(msg) {
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true);
 				},
 
 				"MoveCompleted": function(msg) {
@@ -1077,16 +1053,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 					return true;
 				}
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"leave": function() {
 				this.StopMoving();
-			},
-
-			"MoveStarted": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, false);
 			},
 
 			"MoveCompleted": function(msg) {
@@ -1110,16 +1083,13 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
 				},
 
 				"leave": function() {
 					this.StopMoving();
-				},
-
-				"MoveStarted": function(msg) {
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true);
 				},
 
 				"MoveCompleted": function(msg) {
@@ -1484,10 +1454,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.RespondToHealableEntities(msg.data.added);
 			},
 
-			"MoveStarted": function() {
-				this.SelectAnimation("move");
-			},
-
 			"MoveCompleted": function() {
 				this.SelectAnimation("idle");
 			},
@@ -1623,6 +1589,20 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return;
 					}
+
+					// Adapt the speed to the one of the target if needed
+					let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+					if (cmpObstructionManager.IsInTargetRange(this.entity, this.isGuardOf, 0, 3 * this.guardRange, true))
+					{
+						let cmpUnitAI = Engine.QueryInterface(this.isGuardOf, IID_UnitAI);
+						if (cmpUnitAI)
+						{
+							let speed = cmpUnitAI.GetWalkSpeed();
+							if (speed < this.GetWalkSpeed())
+								this.SetSpeedMultiplier(speed / this.GetWalkSpeed());
+						}
+					}
+
 					this.SetHeldPositionOnEntity(this.isGuardOf);
 				},
 
@@ -1631,21 +1611,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.ResetSpeedMultiplier();
 					this.StopTimer();
 					this.SetDefaultAnimationVariant();
-				},
-
-				"MoveStarted": function(msg) {
-					// Adapt the speed to the one of the target if needed
-					let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-					if (cmpObstructionManager.IsInTargetRange(this.entity, this.isGuardOf, 0, 3 * this.guardRange, true))
-					{
-						var cmpUnitAI = Engine.QueryInterface(this.isGuardOf, IID_UnitAI);
-						if (cmpUnitAI)
-						{
-							var speed = cmpUnitAI.GetWalkSpeed();
-							if (speed < this.GetWalkSpeed())
-								this.SetSpeedMultiplier(speed / this.GetWalkSpeed());
-						}
-					}
 				},
 
 				"MoveCompleted": function() {
@@ -3823,10 +3788,7 @@ UnitAI.prototype.StopTimer = function()
 
 UnitAI.prototype.OnMotionChanged = function(msg)
 {
-	if (msg.starting && !msg.error)
-		this.UnitFsm.ProcessMessage(this, {"type": "MoveStarted", "data": msg});
-	else if (!msg.starting || msg.error)
-		this.UnitFsm.ProcessMessage(this, {"type": "MoveCompleted", "data": msg});
+	this.UnitFsm.ProcessMessage(this, { "type": "MoveCompleted", "data": msg });
 };
 
 UnitAI.prototype.OnGlobalConstructionFinished = function(msg)

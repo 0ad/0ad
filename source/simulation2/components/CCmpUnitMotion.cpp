@@ -546,19 +546,6 @@ private:
 			|| m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT;
 	}
 
-	void StartFailed()
-	{
-		StopMoving();
-		m_State = STATE_IDLE; // don't go through the STOPPING state since we never even started
-
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(false);
-
-		CMessageMotionChanged msg(true, true);
-		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-	}
-
 	void MoveFailed()
 	{
 		StopMoving();
@@ -567,19 +554,7 @@ private:
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
 
-		CMessageMotionChanged msg(false, true);
-		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-	}
-
-	void StartSucceeded()
-	{
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(true);
-
-		m_Moving = true;
-
-		CMessageMotionChanged msg(true, false);
+		CMessageMotionChanged msg(true);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
@@ -594,7 +569,7 @@ private:
 		// No longer moving, so speed is 0.
 		m_CurSpeed = fixed::Zero();
 
-		CMessageMotionChanged msg(false, false);
+		CMessageMotionChanged msg(false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
@@ -716,7 +691,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 	{
 		if (m_PathState == PATHSTATE_WAITING_REQUESTING_LONG || m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT)
-			StartFailed();
+			MoveFailed();
 		else if (m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
 			StopMoving();
 		return;
@@ -737,9 +712,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		// close enough to the unit then we can probably get unstuck
 		if (m_LongPath.m_Waypoints.empty())
 			m_LongPath.m_Waypoints.emplace_back(Waypoint{ m_FinalGoal.x, m_FinalGoal.z });
-
-		if (!HasValidPath())
-			StartSucceeded();
 
 		m_PathState = PATHSTATE_FOLLOWING;
 
@@ -764,12 +736,12 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			else if (IsFormationMember())
 			{
 				m_Moving = false;
-				CMessageMotionChanged msg(true, true);
+				CMessageMotionChanged msg(true);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 				return;
 			}
 
-			CMessageMotionChanged msg(false, false);
+			CMessageMotionChanged msg(false);
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 
 			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
@@ -796,10 +768,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 		// else we could, so reset our number of tries.
 		m_Tries = 0;
-
-		// Now we've got a short path that we can follow
-		if (!HasValidPath())
-			StartSucceeded();
 
 		m_PathState = PATHSTATE_FOLLOWING;
 
@@ -1047,7 +1015,7 @@ void CCmpUnitMotion::Move(fixed dt)
 							cmpObstruction->SetMovingFlag(false);
 
 						m_Moving = false;
-						CMessageMotionChanged msg(false, false);
+						CMessageMotionChanged msg(false);
 						GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 						return;
 					}
@@ -1326,8 +1294,6 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// instead of computing a path.
 	if (TryGoingStraightToTargetEntity(from))
 	{
-		if (!HasValidPath())
-			StartSucceeded();
 		m_PathState = PATHSTATE_FOLLOWING;
 		return;
 	}
@@ -1335,8 +1301,6 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// Same thing applies to non-entity points
 	if (TryGoingStraightToGoalPoint(from))
 	{
-		if (!HasValidPath())
-			StartSucceeded();
 		m_PathState = PATHSTATE_FOLLOWING;
 		return;
 	}

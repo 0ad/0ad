@@ -269,7 +269,6 @@ CMessage* CMessageTerritoryPositionChanged::FromJSVal(const ScriptInterface& scr
 JS::Value CMessageMotionChanged::ToJSVal(const ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	SET_MSG_PROPERTY(starting);
 	SET_MSG_PROPERTY(error);
 	return JS::ObjectValue(*obj);
 }
@@ -277,9 +276,8 @@ JS::Value CMessageMotionChanged::ToJSVal(const ScriptInterface& scriptInterface)
 CMessage* CMessageMotionChanged::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(bool, starting);
 	GET_MSG_PROPERTY(bool, error);
-	return new CMessageMotionChanged(starting, error);
+	return new CMessageMotionChanged(error);
 }
 
 ////////////////////////////////
