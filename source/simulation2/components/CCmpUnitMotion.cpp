@@ -548,8 +548,6 @@ private:
 
 	void MoveFailed()
 	{
-		StopMoving();
-
 		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
@@ -690,10 +688,8 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 	{
-		if (m_PathState == PATHSTATE_WAITING_REQUESTING_LONG || m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT)
-			MoveFailed();
-		else if (m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
-			StopMoving();
+		// We will probably fail to move so inform components but keep on trying anyways.
+		MoveFailed();
 		return;
 	}
 
@@ -752,7 +748,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 			if (CloseEnoughFromDestinationToStop(pos))
 			{
-				StopMoving();
 				MoveSucceeded();
 
 				if (m_FacePointAfterMove)
@@ -935,7 +930,6 @@ void CCmpUnitMotion::Move(fixed dt)
 			// check if we've arrived.
 			if (CloseEnoughFromDestinationToStop(pos))
 			{
-				StopMoving();
 				MoveSucceeded();
 
 				if (m_FacePointAfterMove)
@@ -1027,8 +1021,6 @@ void CCmpUnitMotion::Move(fixed dt)
 					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
 					if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_TargetEntity, m_TargetMinRange, m_TargetMaxRange, false))
 					{
-						// Not in formation, so just finish moving
-						StopMoving();
 						m_State = STATE_IDLE;
 						MoveSucceeded();
 
