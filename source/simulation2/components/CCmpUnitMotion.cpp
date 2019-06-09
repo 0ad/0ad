@@ -143,7 +143,6 @@ public:
 	// cached for efficiency
 	fixed m_WalkSpeed, m_RunMultiplier;
 
-	bool m_Moving;
 	bool m_FacePointAfterMove;
 
 	enum State
@@ -293,7 +292,6 @@ public:
 	{
 		m_FormationController = paramNode.GetChild("FormationController").ToBool();
 
-		m_Moving = false;
 		m_FacePointAfterMove = true;
 
 		m_WalkSpeed = m_TemplateWalkSpeed = m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
@@ -353,7 +351,6 @@ public:
 
 		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
 
-		serialize.Bool("moving", m_Moving);
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
 
 		serialize.NumberU8("tries", m_Tries, 0, 255);
@@ -450,7 +447,7 @@ public:
 
 	virtual bool IsMoving() const
 	{
-		return m_Moving;
+		return m_MoveRequest.m_Type != MoveRequest::NONE;
 	}
 
 	virtual fixed GetSpeedMultiplier() const
@@ -522,7 +519,6 @@ public:
 	virtual void StopMoving()
 	{
 		m_MoveRequest = MoveRequest();
-		m_Moving = false;
 		m_ExpectedPathTicket = 0;
 		m_State = STATE_STOPPING;
 		m_PathState = PATHSTATE_NONE;
@@ -570,8 +566,6 @@ private:
 
 	void MoveSucceeded()
 	{
-		m_Moving = false;
-
 		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
@@ -688,8 +682,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	if (cmpObstruction)
 		cmpObstruction->SetMovingFlag(false);
 
-	m_Moving = false;
-
 	// Ignore obsolete path requests
 	if (ticket != m_ExpectedPathTicket)
 		return;
@@ -725,8 +717,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(true);
-
-		m_Moving = true;
 	}
 	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
 	{
@@ -743,7 +733,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 				m_LongPath.m_Waypoints.pop_back();
 			else if (IsFormationMember())
 			{
-				m_Moving = false;
 				CMessageMotionChanged msg(true);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 				return;
@@ -780,8 +769,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(true);
-
-		m_Moving = true;
 	}
 	else
 		LOGWARNING("unexpected PathResult (%u %d %d)", GetEntityId(), m_State, m_PathState);
@@ -1020,7 +1007,6 @@ void CCmpUnitMotion::Move(fixed dt)
 						if (cmpObstruction)
 							cmpObstruction->SetMovingFlag(false);
 
-						m_Moving = false;
 						CMessageMotionChanged msg(false);
 						GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 						return;
@@ -1272,8 +1258,6 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 	if (cmpObstruction)
 		cmpObstruction->SetMovingFlag(false);
-
-	m_Moving = false;
 
 	m_PathState = PATHSTATE_NONE;
 
