@@ -155,7 +155,6 @@ function TestFormationExiting(mode)
 
 	controllerFormation.SetMembers([unit]);
 	controllerAI.Walk(100, 100, false);
-	controllerAI.OnMotionChanged({ "starting": true });
 
 	TS_ASSERT_EQUALS(controllerAI.fsmStateName, "FORMATIONCONTROLLER.WALKING");
 	TS_ASSERT_EQUALS(unitAI.fsmStateName, "FORMATIONMEMBER.WALKING");
