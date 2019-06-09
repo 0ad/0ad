@@ -2543,7 +2543,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function() {
-					if (this.CheckRange(this.order.data))
+					if (this.CheckRange(this.order.data, IID_Builder))
 						this.SetNextState("REPAIRING");
 				},
 			},
@@ -2740,7 +2740,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"APPROACHING": {
 				"enter": function() {
-					if (!this.MoveTo(this.order.data))
+					if (!this.MoveToGarrisonRange(this.order.data.target))
 					{
 						this.FinishOrder();
 						return true;
@@ -2753,7 +2753,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function() {
-					if (this.CheckRange(this.order.data))
+					if (this.CheckGarrisonRange(this.order.data.target))
 						this.SetNextState("GARRISONED");
 				},
 			},
