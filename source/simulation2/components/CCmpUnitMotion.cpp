@@ -227,11 +227,25 @@ public:
 
 	u32 m_ExpectedPathTicket; // asynchronous request ID we're waiting for, or 0 if none
 
-	entity_id_t m_TargetEntity;
-	CFixedVector2D m_TargetPos;
-	CFixedVector2D m_TargetOffset;
-	entity_pos_t m_TargetMinRange;
-	entity_pos_t m_TargetMaxRange;
+	struct MoveRequest {
+		enum Type {
+			NONE,
+			POINT,
+			ENTITY,
+			OFFSET
+		} m_Type = NONE;
+		entity_id_t m_Entity = INVALID_ENTITY;
+		CFixedVector2D m_Position;
+		entity_pos_t m_MinRange, m_MaxRange;
+
+		// For readability
+		CFixedVector2D GetOffset() const { return m_Position; };
+
+		MoveRequest() = default;
+		MoveRequest(CFixedVector2D pos, entity_pos_t minRange, entity_pos_t maxRange) : m_Type(POINT), m_Position(pos), m_MinRange(minRange), m_MaxRange(maxRange) {};
+		MoveRequest(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) : m_Type(ENTITY), m_Entity(target), m_MinRange(minRange), m_MaxRange(maxRange) {};
+		MoveRequest(entity_id_t target, CFixedVector2D offset) : m_Type(OFFSET), m_Entity(target), m_Position(offset) {};
+	} m_MoveRequest;
 
 	// If the entity moves, it will do so at m_WalkSpeed * m_SpeedMultiplier.
 	fixed m_SpeedMultiplier;
@@ -309,8 +323,6 @@ public:
 
 		m_Tries = 0;
 
-		m_TargetEntity = INVALID_ENTITY;
-
 		m_FinalGoal.type = PathGoal::POINT;
 
 		m_DebugOverlayEnabled = false;
@@ -330,13 +342,12 @@ public:
 
 		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket);
 
-		serialize.NumberU32_Unbounded("target entity", m_TargetEntity);
-		serialize.NumberFixed_Unbounded("target pos x", m_TargetPos.X);
-		serialize.NumberFixed_Unbounded("target pos y", m_TargetPos.Y);
-		serialize.NumberFixed_Unbounded("target offset x", m_TargetOffset.X);
-		serialize.NumberFixed_Unbounded("target offset y", m_TargetOffset.Y);
-		serialize.NumberFixed_Unbounded("target min range", m_TargetMinRange);
-		serialize.NumberFixed_Unbounded("target max range", m_TargetMaxRange);
+		SerializeU8_Enum<MoveRequest::Type, MoveRequest::Type::OFFSET>()(serialize, "target type", m_MoveRequest.m_Type);
+		serialize.NumberU32_Unbounded("target entity", m_MoveRequest.m_Entity);
+		serialize.NumberFixed_Unbounded("target pos x", m_MoveRequest.m_Position.X);
+		serialize.NumberFixed_Unbounded("target pos y", m_MoveRequest.m_Position.Y);
+		serialize.NumberFixed_Unbounded("target min range", m_MoveRequest.m_MinRange);
+		serialize.NumberFixed_Unbounded("target max range", m_MoveRequest.m_MaxRange);
 
 		serialize.NumberFixed_Unbounded("speed multiplier", m_SpeedMultiplier);
 
@@ -510,6 +521,7 @@ public:
 
 	virtual void StopMoving()
 	{
+		m_MoveRequest = MoveRequest();
 		m_Moving = false;
 		m_ExpectedPathTicket = 0;
 		m_State = STATE_STOPPING;
@@ -536,7 +548,7 @@ private:
 
 	entity_id_t GetGroup() const
 	{
-		return IsFormationMember() ? m_TargetEntity : GetEntityId();
+		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
 	}
 
 	bool HasValidPath() const
@@ -1001,7 +1013,7 @@ void CCmpUnitMotion::Move(fixed dt)
 					// We've reached our assigned position. If the controller
 					// is idle, send a notification in case it should disband,
 					// otherwise continue following the formation next turn.
-					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
+					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
 					if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
 					{
 						CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
@@ -1016,10 +1028,9 @@ void CCmpUnitMotion::Move(fixed dt)
 				}
 				else
 				{
-					// check if target was reached in case of a moving target
 					CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
-					if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_TargetEntity, m_TargetMinRange, m_TargetMaxRange, false))
+					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
+					if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
 					{
 						m_State = STATE_IDLE;
 						MoveSucceeded();
@@ -1046,32 +1057,29 @@ void CCmpUnitMotion::Move(fixed dt)
 
 bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 {
-	if (m_TargetEntity == INVALID_ENTITY)
+	if (m_MoveRequest.m_Entity == INVALID_ENTITY)
 		return false;
 
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TargetEntity);
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_MoveRequest.m_Entity);
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return false;
 
-	if (m_TargetOffset.IsZero())
-	{
-		// No offset, just return the position directly
-		out = cmpPosition->GetPosition2D();
-	}
-	else
+	if (m_MoveRequest.m_Type == MoveRequest::OFFSET)
 	{
 		// There is an offset, so compute it relative to orientation
 		entity_angle_t angle = cmpPosition->GetRotation().Y;
-		CFixedVector2D offset = m_TargetOffset.Rotate(angle);
+		CFixedVector2D offset = m_MoveRequest.GetOffset().Rotate(angle);
 		out = cmpPosition->GetPosition2D() + offset;
 	}
+	else
+		out = cmpPosition->GetPosition2D();
 	return true;
 }
 
 bool CCmpUnitMotion::TryGoingStraightToGoalPoint(const CFixedVector2D& from)
 {
 	// Make sure the goal is a point (and not a point-like target like a formation controller)
-	if (m_FinalGoal.type != PathGoal::POINT || m_TargetEntity != INVALID_ENTITY)
+	if (m_MoveRequest.m_Type != MoveRequest::POINT)
 		return false;
 
 	// Fail if the goal is too far away
@@ -1164,7 +1172,7 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 	if (cmpOwnership)
 	{
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
-		if (cmpRangeManager && cmpRangeManager->GetLosVisibility(m_TargetEntity, cmpOwnership->GetOwner()) == ICmpRangeManager::VIS_HIDDEN)
+		if (cmpRangeManager && cmpRangeManager->GetLosVisibility(m_MoveRequest.m_Entity, cmpOwnership->GetOwner()) == ICmpRangeManager::VIS_HIDDEN)
 			return false;
 	}
 
@@ -1180,9 +1188,9 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 
 void CCmpUnitMotion::UpdateFinalGoal()
 {
-	if (m_TargetEntity == INVALID_ENTITY)
+	if (m_MoveRequest.m_Type != MoveRequest::ENTITY || m_MoveRequest.m_Type != MoveRequest::OFFSET)
 		return;
-	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
+	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
 	if (!cmpUnitMotion)
 		return;
 	if (IsFormationMember())
@@ -1196,7 +1204,7 @@ void CCmpUnitMotion::UpdateFinalGoal()
 
 bool CCmpUnitMotion::CloseEnoughFromDestinationToStop(const CFixedVector2D& from) const
 {
-	if (m_TargetEntity != INVALID_ENTITY || m_FinalGoal.DistanceToPoint(from) > SHORT_PATH_GOAL_RADIUS)
+	if (m_MoveRequest.m_Type != MoveRequest::POINT || m_FinalGoal.DistanceToPoint(from) > SHORT_PATH_GOAL_RADIUS)
 		return false;
 	return true;
 }
@@ -1250,7 +1258,7 @@ void CCmpUnitMotion::FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_p
 
 ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool noTarget) const
 {
-	entity_id_t group = noTarget ? m_TargetEntity : GetGroup();
+	entity_id_t group = noTarget ? m_MoveRequest.m_Entity : GetGroup();
 	return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), group);
 }
 
@@ -1414,10 +1422,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	}
 
 	m_State = STATE_INDIVIDUAL_PATH;
-	m_TargetEntity = target;
-	m_TargetOffset = CFixedVector2D();
-	m_TargetMinRange = minRange;
-	m_TargetMaxRange = maxRange;
+	m_MoveRequest = MoveRequest(CFixedVector2D(x, z), minRange, maxRange);
 	m_FinalGoal = goal;
 	m_Tries = 0;
 
@@ -1584,10 +1589,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	}
 
 	m_State = STATE_INDIVIDUAL_PATH;
-	m_TargetEntity = target;
-	m_TargetOffset = CFixedVector2D();
-	m_TargetMinRange = minRange;
-	m_TargetMaxRange = maxRange;
+	m_MoveRequest = MoveRequest(target, minRange, maxRange);
 	m_FinalGoal = goal;
 	m_Tries = 0;
 
@@ -1610,10 +1612,7 @@ void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, e
 	goal.z = pos.Y;
 
 	m_State = STATE_FORMATIONMEMBER_PATH;
-	m_TargetEntity = target;
-	m_TargetOffset = CFixedVector2D(x, z);
-	m_TargetMinRange = entity_pos_t::Zero();
-	m_TargetMaxRange = entity_pos_t::Zero();
+	m_MoveRequest = MoveRequest(target, CFixedVector2D(x, z));
 	m_FinalGoal = goal;
 	m_Tries = 0;
 
