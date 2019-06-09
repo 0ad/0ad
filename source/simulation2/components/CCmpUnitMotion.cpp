@@ -518,6 +518,13 @@ public:
 
 	virtual void StopMoving()
 	{
+		if (m_FacePointAfterMove)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (cmpPosition && cmpPosition->IsInWorld())
+				FaceTowardsPointFromPos(cmpPosition->GetPosition2D(), m_FinalGoal.x, m_FinalGoal.z);
+		}
+
 		m_MoveRequest = MoveRequest();
 		m_ExpectedPathTicket = 0;
 		m_State = STATE_STOPPING;
@@ -750,9 +757,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			if (CloseEnoughFromDestinationToStop(pos))
 			{
 				MoveSucceeded();
-
-				if (m_FacePointAfterMove)
-					FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
 				return;
 			}
 
@@ -930,10 +934,6 @@ void CCmpUnitMotion::Move(fixed dt)
 			if (CloseEnoughFromDestinationToStop(pos))
 			{
 				MoveSucceeded();
-
-				if (m_FacePointAfterMove)
-					FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
-
 				return;
 			}
 
