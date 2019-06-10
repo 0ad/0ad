@@ -76,7 +76,7 @@ public:
 	virtual fixed GetCurrentSpeed() const = 0;
 
 	/**
-	 * Get whether the unit is moving.
+	 * @returns true if the unit has a destination.
 	 */
 	virtual bool IsMoving() const = 0;
 
