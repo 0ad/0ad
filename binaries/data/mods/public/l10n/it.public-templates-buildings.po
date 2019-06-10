@@ -11,6 +11,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # Federico D'Alessio <federico98.dalessio@gmail.com>, 2018
 # francescogramazio <francescograma@gmail.com>, 2014
+# Italang, 2019
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2014-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-06-03 16:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-09 12:57+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,7 +138,7 @@ msgstr "Torre di Difesa"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Costruisci nei tuoi territori e in territori neutrali per esplorare aree della mappa. Ritorna lentamente a Gaia in territorio neutrale."
+msgstr "Costruisci nei tuoi territori e in territori neutrali per esplorare aree della mappa. Ritorna lentamente a Gaia se in territorio neutrale."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:27
@@ -157,7 +158,7 @@ msgstr "Torre d'avvistamento"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Scaglia frecce. Acquartiera delle unità per incrementare la difesa. Necessita la tecnologia \"Piombatoie\" per proteggere la base. Può svilupparsi in Torre di Pietra. "
+msgstr "Scaglia frecce. Acquartiera delle unità per incrementare la difesa. Necessita la tecnologia \"Caditoie\" per proteggere la base. Può svilupparsi in Torre di Pietra. "
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -171,7 +172,7 @@ msgstr "Torre di Difesa"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Scaglia frecce. Acquartiera delle unità per incrementare la difesa. Necessita la tecnologia \"Piombatoie\" per proteggere la base."
+msgstr "Scaglia frecce. Acquartiera delle unità per incrementare la difesa. Necessita la tecnologia \"Caditoie\" per proteggere la base."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "StoneTower"
@@ -218,7 +219,7 @@ msgstr "Struttura Economica"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
-msgstr "Economici"
+msgstr "Economia"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:32
 msgid "Dropsite for the food resource. Research food gathering improvements."
@@ -818,7 +819,7 @@ msgstr "Assolda mercenari."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:19
 msgid "Celtic Embassy"
-msgstr "Ambasciatore celtico"
+msgstr "Ambasciata Celtica"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
