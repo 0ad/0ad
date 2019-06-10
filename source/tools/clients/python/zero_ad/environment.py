@@ -38,9 +38,10 @@ class ZeroAD():
         res = self.stub.GetTemplates(req)
         return [ (t.name, EntityTemplate(t.content)) for t in res.templates ]
 
-    def update_templates(self):
-        types = list(set([unit.type() for unit in self.current_state.units()]))
-        template_pairs = self.get_templates(types)
+    def update_templates(self, types=[]):
+        all_types = list(set([unit.type() for unit in self.current_state.units()]))
+        all_types += types
+        template_pairs = self.get_templates(all_types)
 
         self.cache = {}
         for (name, tpl) in template_pairs:
@@ -128,7 +129,7 @@ class Entity():
 
     def get_template(self):
         if self.template is None:
-            self.game.update_templates()
+            self.game.update_templates([self.type()])
             self.template = self.game.cache[self.type()]
 
         return self.template
