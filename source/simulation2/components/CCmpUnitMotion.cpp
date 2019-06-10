@@ -807,6 +807,14 @@ void CCmpUnitMotion::Move(fixed dt)
 	// Keep track of the current unit's position during the update
 	CFixedVector2D pos = initialPos;
 
+	// If we're chasing a potentially-moving unit and are currently close
+	// enough to its current position, and we can head in a straight line
+	// to it, then throw away our current path and go straight to it
+	if (m_PathState == PATHSTATE_FOLLOWING ||
+		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT ||
+		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG)
+		TryGoingStraightToTargetEntity(initialPos);
+
 	bool wasObstructed = false;
 
 	if (m_PathState == PATHSTATE_FOLLOWING ||
@@ -821,12 +829,6 @@ void CCmpUnitMotion::Move(fixed dt)
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return;
-
-		// If we're chasing a potentially-moving unit and are currently close
-		// enough to its current position, and we can head in a straight line
-		// to it, then throw away our current path and go straight to it
-		if (m_PathState == PATHSTATE_FOLLOWING)
-			TryGoingStraightToTargetEntity(initialPos);
 
 		fixed basicSpeed = m_Speed;
 		// If in formation, run to keep up; otherwise just walk
