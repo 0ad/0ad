@@ -563,22 +563,38 @@ private:
 
 	void MoveFailed()
 	{
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(false);
-
 		CMessageMotionChanged msg(true);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
 	void MoveSucceeded()
 	{
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(false);
-
 		CMessageMotionChanged msg(false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+	}
+
+	/**
+	 * Update other components on our speed.
+	 * This doesn't use messages for efficiency.
+	 * This should only be called when speed changes.
+	 */
+	void UpdateMovementState(entity_pos_t speed)
+	{
+		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		// Moved last turn, didn't this turn.
+		if (speed == fixed::Zero() && m_CurSpeed > fixed::Zero())
+		{
+			if (cmpObstruction)
+				cmpObstruction->SetMovingFlag(false);
+		}
+		// Moved this turn, didn't last turn
+		else if (speed > fixed::Zero() && m_CurSpeed == fixed::Zero())
+		{
+			if (cmpObstruction)
+				cmpObstruction->SetMovingFlag(true);
+		}
+
+		m_CurSpeed = speed;
 	}
 
 	bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange, entity_id_t target);
@@ -681,11 +697,6 @@ REGISTER_COMPONENT_TYPE(UnitMotion)
 
 void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 {
-	// reset our state for sanity.
-	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-	if (cmpObstruction)
-		cmpObstruction->SetMovingFlag(false);
-
 	// Ignore obsolete path requests
 	if (ticket != m_ExpectedPathTicket)
 		return;
@@ -718,9 +729,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			m_LongPath.m_Waypoints.emplace_back(Waypoint{ m_FinalGoal.x, m_FinalGoal.z });
 
 		m_PathState = PATHSTATE_FOLLOWING;
-
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(true);
 	}
 	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
 	{
@@ -767,9 +775,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		m_Tries = 0;
 
 		m_PathState = PATHSTATE_FOLLOWING;
-
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(true);
 	}
 	else
 		LOGWARNING("unexpected PathResult (%u %d %d)", GetEntityId(), m_State, m_PathState);
@@ -784,6 +789,9 @@ void CCmpUnitMotion::Move(fixed dt)
 		m_State = STATE_IDLE;
 		MoveSucceeded();
 		m_CurSpeed = fixed::Zero();
+		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(false);
 		return;
 	}
 
@@ -898,7 +906,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 	// Update our speed over this turn so that the visual actor shows the correct animation.
 	if (pos == initialPos)
-		m_CurSpeed = fixed::Zero();
+		UpdateMovementState(fixed::Zero());
 	else
 	{
 		// Update the Position component after our movement (if we actually moved anywhere)
@@ -909,7 +917,7 @@ void CCmpUnitMotion::Move(fixed dt)
 		cmpPosition->MoveAndTurnTo(pos.X,pos.Y, angle);
 
 		// Calculate the mean speed over this past turn.
-		m_CurSpeed = cmpPosition->GetDistanceTravelled() / dt;
+		UpdateMovementState(offset.Length() / dt);
 	}
 
 	if (wasObstructed)
@@ -991,10 +999,6 @@ void CCmpUnitMotion::Move(fixed dt)
 				CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
 				if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
 				{
-					CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-					if (cmpObstruction)
-						cmpObstruction->SetMovingFlag(false);
-
 					CMessageMotionChanged msg(false);
 					GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 				}
@@ -1239,10 +1243,6 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 {
 	// reset our state for sanity.
 	m_ExpectedPathTicket = 0;
-
-	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-	if (cmpObstruction)
-		cmpObstruction->SetMovingFlag(false);
 
 	m_PathState = PATHSTATE_NONE;
 
