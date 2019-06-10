@@ -577,9 +577,6 @@ private:
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
 
-		// No longer moving, so speed is 0.
-		m_CurSpeed = fixed::Zero();
-
 		CMessageMotionChanged msg(false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
@@ -786,15 +783,11 @@ void CCmpUnitMotion::Move(fixed dt)
 	{
 		m_State = STATE_IDLE;
 		MoveSucceeded();
+		m_CurSpeed = fixed::Zero();
 		return;
 	}
 
 	if (m_State == STATE_IDLE)
-		return;
-
-	if (m_PathState == PATHSTATE_NONE ||
-	    m_PathState == PATHSTATE_WAITING_REQUESTING_LONG ||
-	    m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT)
 		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
@@ -903,9 +896,12 @@ void CCmpUnitMotion::Move(fixed dt)
 		}
 	}
 
-	// Update the Position component after our movement (if we actually moved anywhere)
-	if (pos != initialPos)
+	// Update our speed over this turn so that the visual actor shows the correct animation.
+	if (pos == initialPos)
+		m_CurSpeed = fixed::Zero();
+	else
 	{
+		// Update the Position component after our movement (if we actually moved anywhere)
 		CFixedVector2D offset = pos - initialPos;
 
 		// Face towards the target
