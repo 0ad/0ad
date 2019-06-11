@@ -1714,7 +1714,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"MovementUpdate": function() {
 				// When we've run far enough, stop fleeing
-				if (this.CheckTargetRangeExplicit(this.order.data, this.order.data.distanceToFlee, -1))
+				if (this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1))
 					this.FinishOrder();
 			},
 
