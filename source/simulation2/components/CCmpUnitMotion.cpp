@@ -610,6 +610,24 @@ private:
 	void Move(fixed dt);
 
 	/**
+	 * Returns true if we are possibly at our destination.
+	 */
+	bool PossiblyAtDestination();
+
+	/**
+	 * Process the move the unit will do this turn.
+	 * This does not send actually change the position.
+	 * @returns true if the move was obstructed.
+	 */
+	bool PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const;
+
+	/**
+	 * React if our move was obstructed.
+	 * @returns true if the obstruction required handling, false otherwise.
+	 */
+	bool HandleObstructedMove();
+
+	/**
 	 * Decide whether to approximate the given range from a square target as a circle,
 	 * rather than as a square.
 	 */
@@ -815,96 +833,7 @@ void CCmpUnitMotion::Move(fixed dt)
 		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG)
 		TryGoingStraightToTargetEntity(initialPos);
 
-	bool wasObstructed = false;
-
-	if (m_PathState == PATHSTATE_FOLLOWING ||
-	    m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT ||
-	    m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG)
-	{
-		// TODO: there's some asymmetry here when units look at other
-		// units' positions - the result will depend on the order of execution.
-		// Maybe we should split the updates into multiple phases to minimise
-		// that problem.
-
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-		if (!cmpPathfinder)
-			return;
-
-		fixed basicSpeed = m_Speed;
-		// If in formation, run to keep up; otherwise just walk
-		if (IsFormationMember())
-			basicSpeed = m_Speed.Multiply(m_RunMultiplier);
-
-		// Find the speed factor of the underlying terrain
-		// (We only care about the tile we start on - it doesn't matter if we're moving
-		// partially onto a much slower/faster tile)
-		// TODO: Terrain-dependent speeds are not currently supported
-		fixed terrainSpeed = fixed::FromInt(1);
-
-		fixed maxSpeed = basicSpeed.Multiply(terrainSpeed);
-
-		// We want to move (at most) maxSpeed*dt units from pos towards the next waypoint
-
-		fixed timeLeft = dt;
-		fixed zero = fixed::Zero();
-
-		while (timeLeft > zero)
-		{
-			// If we ran out of path, we have to stop
-			if (m_ShortPath.m_Waypoints.empty() && m_LongPath.m_Waypoints.empty())
-				break;
-
-			CFixedVector2D target;
-			if (m_ShortPath.m_Waypoints.empty())
-				target = CFixedVector2D(m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z);
-			else
-				target = CFixedVector2D(m_ShortPath.m_Waypoints.back().x, m_ShortPath.m_Waypoints.back().z);
-
-			CFixedVector2D offset = target - pos;
-
-			// Work out how far we can travel in timeLeft
-			fixed maxdist = maxSpeed.Multiply(timeLeft);
-
-			// If the target is close, we can move there directly
-			fixed offsetLength = offset.Length();
-			if (offsetLength <= maxdist)
-			{
-				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
-				{
-					pos = target;
-
-					// Spend the rest of the time heading towards the next waypoint
-					timeLeft = (maxdist - offsetLength) / maxSpeed;
-
-					if (m_ShortPath.m_Waypoints.empty())
-						m_LongPath.m_Waypoints.pop_back();
-					else
-						m_ShortPath.m_Waypoints.pop_back();
-
-					continue;
-				}
-				else
-				{
-					// Error - path was obstructed
-					wasObstructed = true;
-					break;
-				}
-			}
-			else
-			{
-				// Not close enough, so just move in the right direction
-				offset.Normalize(maxdist);
-				target = pos + offset;
-
-				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
-					pos = target;
-				else
-					wasObstructed = true; // Error - path was obstructed
-
-				break;
-			}
-		}
-	}
+	bool wasObstructed = PerformMove(dt, m_ShortPath, m_LongPath, pos);
 
 	// Update our speed over this turn so that the visual actor shows the correct animation.
 	if (pos == initialPos)
@@ -922,114 +851,208 @@ void CCmpUnitMotion::Move(fixed dt)
 		UpdateMovementState(offset.Length() / dt);
 	}
 
-	if (wasObstructed)
-	{
-		// Oops, we hit something (very likely another unit).
-		// This is when we might easily get stuck wrongly.
-
-		// check if we've arrived.
-		if (CloseEnoughFromDestinationToStop(pos))
-		{
-			MoveSucceeded();
-
-			return;
-		}
-
-		// If we still have long waypoints, try and compute a short path
-		// This will get us around units, amongst others.
-		// However in some cases a long waypoint will be in located in the obstruction of
-		// an idle unit. In that case, we need to scrap that waypoint or we might never be able to reach it.
-		// I am not sure why this happens but the following code seems to work.
-		if (!m_LongPath.m_Waypoints.empty())
-		{
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-			if (cmpObstructionManager)
-			{
-				// create a fake obstruction to represent our waypoint.
-				ICmpObstructionManager::ObstructionSquare square;
-				square.hh = m_Clearance;
-				square.hw = m_Clearance;
-				square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
-				square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
-				square.x = m_LongPath.m_Waypoints.back().x;
-				square.z = m_LongPath.m_Waypoints.back().z;
-				std::vector<entity_id_t> unitOnGoal;
-				// don't ignore moving units as those might be units like us, ie not really moving.
-				cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter(), true);
-				if (!unitOnGoal.empty())
-					m_LongPath.m_Waypoints.pop_back();
-			}
-			if (!m_LongPath.m_Waypoints.empty())
-			{
-				PathGoal goal;
-				if (m_LongPath.m_Waypoints.size() > 1 || m_FinalGoal.DistanceToPoint(pos) > LONG_PATH_MIN_DIST)
-					goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-				else
-				{
-					UpdateFinalGoal();
-					goal = m_FinalGoal;
-					m_LongPath.m_Waypoints.clear();
-					CFixedVector2D target = goal.NearestPointOnGoal(pos);
-					m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
-				}
-				RequestShortPath(pos, goal, true);
-				m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
-				return;
-			}
-		}
-		// Else, just entirely recompute
-		UpdateFinalGoal();
-		BeginPathing(pos, m_FinalGoal);
-
-		// potential TODO: We could switch the short-range pathfinder for something else entirely.
+	if (wasObstructed && HandleObstructedMove())
 		return;
-	}
-
-	// We successfully moved along our path, until running out of
-	// waypoints or time.
 
 	if (m_PathState == PATHSTATE_FOLLOWING)
 	{
-		// If we're not currently computing any new paths:
-		if (m_LongPath.m_Waypoints.empty() && m_ShortPath.m_Waypoints.empty())
+		if (PossiblyAtDestination())
 		{
-			if (IsFormationMember())
-			{
-				// We've reached our assigned position. If the controller
-				// is idle, send a notification in case it should disband,
-				// otherwise continue following the formation next turn.
-				CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-				if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
-				{
-					CMessageMotionChanged msg(false);
-					GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-				}
-			}
-			else
-			{
-				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-				CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-				if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
-				{
-					m_State = STATE_IDLE;
-					MoveSucceeded();
-
-					if (m_FacePointAfterMove)
-						FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
-					// TODO: if the goal was a square building, we ought to point towards the
-					// nearest point on the square, not towards its center
-				}
-			}
+			m_State = STATE_STOPPING;
+			return;
 		}
 
-		// If we have a target entity, and we're not miles away from the end of
-		// our current path, and the target moved enough, then recompute our
-		// whole path
+		// We may need to recompute our path sometimes (e.g. if our target moves).
+		// Since we request paths asynchronously anyways, this does not need to be done before moving.
 		if (IsFormationMember())
 			CheckTargetMovement(pos, CHECK_TARGET_MOVEMENT_MIN_DELTA_FORMATION);
 		else
 			CheckTargetMovement(pos, CHECK_TARGET_MOVEMENT_MIN_DELTA);
 	}
+}
+
+bool CCmpUnitMotion::PossiblyAtDestination()
+{
+	// If we're not currently computing any new paths:
+	if (m_LongPath.m_Waypoints.empty() && m_ShortPath.m_Waypoints.empty())
+	{
+		if (IsFormationMember())
+		{
+			// We've reached our assigned position. If the controller
+			// is idle, send a notification in case it should disband,
+			// otherwise continue following the formation next turn.
+			CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
+			if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
+				return true;
+		}
+		else
+		{
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+			CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
+			if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
+				return true;
+		}
+	}
+	return false;
+}
+
+bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const
+{
+	if (m_PathState != PATHSTATE_FOLLOWING &&
+	    m_PathState != PATHSTATE_FOLLOWING_REQUESTING_SHORT &&
+	    m_PathState != PATHSTATE_FOLLOWING_REQUESTING_LONG)
+		return false;
+
+	// TODO: there's some asymmetry here when units look at other
+	// units' positions - the result will depend on the order of execution.
+	// Maybe we should split the updates into multiple phases to minimise
+	// that problem.
+
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+	if (!cmpPathfinder)
+		return false;
+
+	fixed basicSpeed = m_Speed;
+	// If in formation, run to keep up; otherwise just walk
+	if (IsFormationMember())
+		basicSpeed = m_Speed.Multiply(m_RunMultiplier);
+
+	// Find the speed factor of the underlying terrain
+	// (We only care about the tile we start on - it doesn't matter if we're moving
+	// partially onto a much slower/faster tile)
+	// TODO: Terrain-dependent speeds are not currently supported
+	fixed terrainSpeed = fixed::FromInt(1);
+
+	fixed maxSpeed = basicSpeed.Multiply(terrainSpeed);
+
+	// We want to move (at most) maxSpeed*dt units from pos towards the next waypoint
+
+	fixed timeLeft = dt;
+	fixed zero = fixed::Zero();
+
+	while (timeLeft > zero)
+	{
+		// If we ran out of path, we have to stop
+		if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
+			break;
+
+		CFixedVector2D target;
+		if (shortPath.m_Waypoints.empty())
+			target = CFixedVector2D(longPath.m_Waypoints.back().x, longPath.m_Waypoints.back().z);
+		else
+			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
+
+		CFixedVector2D offset = target - pos;
+
+		// Work out how far we can travel in timeLeft
+		fixed maxdist = maxSpeed.Multiply(timeLeft);
+
+		// If the target is close, we can move there directly
+		fixed offsetLength = offset.Length();
+		if (offsetLength <= maxdist)
+		{
+			if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
+			{
+				pos = target;
+
+				// Spend the rest of the time heading towards the next waypoint
+				timeLeft = (maxdist - offsetLength) / maxSpeed;
+
+				if (shortPath.m_Waypoints.empty())
+					longPath.m_Waypoints.pop_back();
+				else
+					shortPath.m_Waypoints.pop_back();
+
+				continue;
+			}
+			else
+			{
+				// Error - path was obstructed
+				return true;
+			}
+		}
+		else
+		{
+			// Not close enough, so just move in the right direction
+			offset.Normalize(maxdist);
+			target = pos + offset;
+
+			if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
+				pos = target;
+			else
+				return true;
+
+			break;
+		}
+	}
+	return false;
+}
+
+bool CCmpUnitMotion::HandleObstructedMove()
+{
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return false;
+
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+	// Oops, we hit something (very likely another unit).
+
+	if (CloseEnoughFromDestinationToStop(pos))
+	{
+		// Pretend we're arrived in case other components agree and we end up stopping moving.
+		MoveSucceeded();
+		return true;
+	}
+
+	// If we still have long waypoints, try and compute a short path
+	// This will get us around units, amongst others.
+	// However in some cases a long waypoint will be in located in the obstruction of
+	// an idle unit. In that case, we need to scrap that waypoint or we might never be able to reach it.
+	// I am not sure why this happens but the following code seems to work.
+	if (!m_LongPath.m_Waypoints.empty())
+	{
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+		if (cmpObstructionManager)
+		{
+			// create a fake obstruction to represent our waypoint.
+			ICmpObstructionManager::ObstructionSquare square;
+			square.hh = m_Clearance;
+			square.hw = m_Clearance;
+			square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
+			square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
+			square.x = m_LongPath.m_Waypoints.back().x;
+			square.z = m_LongPath.m_Waypoints.back().z;
+			std::vector<entity_id_t> unitOnGoal;
+			// don't ignore moving units as those might be units like us, ie not really moving.
+			cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter());
+			if (!unitOnGoal.empty())
+				m_LongPath.m_Waypoints.pop_back();
+		}
+		if (!m_LongPath.m_Waypoints.empty())
+		{
+			PathGoal goal;
+			if (m_LongPath.m_Waypoints.size() > 1 || m_FinalGoal.DistanceToPoint(pos) > LONG_PATH_MIN_DIST)
+				goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+			else
+			{
+				UpdateFinalGoal();
+				goal = m_FinalGoal;
+				m_LongPath.m_Waypoints.clear();
+				CFixedVector2D target = goal.NearestPointOnGoal(pos);
+				m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
+			}
+			RequestShortPath(pos, goal, true);
+			m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
+			return true;
+		}
+	}
+	// Else, just entirely recompute
+	UpdateFinalGoal();
+	BeginPathing(pos, m_FinalGoal);
+
+	// potential TODO: We could switch the short-range pathfinder for something else entirely.
+	return true;
 }
 
 bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
