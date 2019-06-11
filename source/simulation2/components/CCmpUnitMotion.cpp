@@ -816,6 +816,9 @@ void CCmpUnitMotion::Move(fixed dt)
 	if (m_State == STATE_IDLE)
 		return;
 
+	if (PossiblyAtDestination())
+		MoveSucceeded();
+
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
@@ -856,12 +859,6 @@ void CCmpUnitMotion::Move(fixed dt)
 
 	if (m_PathState == PATHSTATE_FOLLOWING)
 	{
-		if (PossiblyAtDestination())
-		{
-			m_State = STATE_STOPPING;
-			return;
-		}
-
 		// We may need to recompute our path sometimes (e.g. if our target moves).
 		// Since we request paths asynchronously anyways, this does not need to be done before moving.
 		if (IsFormationMember())
