@@ -12,6 +12,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # francescogramazio <francescograma@gmail.com>, 2014
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Italang, 2019
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # Me Lazzi, 2014-2017
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-06-03 15:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-09 12:56+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1594,7 +1595,7 @@ msgstr "Le merlature sui bastioni consentono ai soldati una più ampia gamma di 
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr "Installa merli e feritoie per avere il 40% in più di frecce lanciate da ogni soldato acquartierato."
+msgstr "Installa merli e caditoie per avere il 40% in più di frecce lanciate da ogni soldato acquartierato."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1614,7 +1615,7 @@ msgstr "Fondazioni di Pietra"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Le Feritoie consentono di colpire i nemici ai piedi della torre"
+msgstr "Le caditoie consentono di colpire i nemici ai piedi della torre"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
@@ -1622,7 +1623,7 @@ msgstr "Rimuove la portata minima delle torri di difesa."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "Feritoie"
+msgstr "Caditoie"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
