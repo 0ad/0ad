@@ -1686,11 +1686,11 @@ UnitAI.prototype.UnitFsmSpec = {
 		"FLEEING": {
 			"enter": function() {
 				// We use the distance between the entities to account for ranged attacks
-				let distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
+				this.order.data.distanceToFlee = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 				// Use unit motion directly to ignore the visibility check. TODO: change this if we add LOS to fauna.
-				if (this.CheckTargetRangeExplicit(this.order.data.target, distance, distance) ||
-				    !cmpUnitMotion || !cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
+				if (this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1) ||
+				    !cmpUnitMotion || !cmpUnitMotion.MoveToTargetRange(this.order.data.target, this.order.data.distanceToFlee, -1))
 				{
 					this.FinishOrder();
 					return true;
@@ -1714,7 +1714,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"MovementUpdate": function() {
 				// When we've run far enough, stop fleeing
-				if (this.CheckRange(this.order.data))
+				if (this.CheckTargetRangeExplicit(this.order.data, this.order.data.distanceToFlee, -1))
 					this.FinishOrder();
 			},
 
@@ -1803,11 +1803,9 @@ UnitAI.prototype.UnitFsmSpec = {
 								this.PushOrderFront("Pack", { "force": true });
 								return;
 							}
-							if (this.MoveToTargetAttackRange(target, this.order.data.attackType))
-							{
-								this.SetNextState("COMBAT.CHASING");
-								return true;
-							}
+
+							this.SetNextState("COMBAT.CHASING");
+							return true;
 						}
 					}
 
@@ -1923,11 +1921,8 @@ UnitAI.prototype.UnitFsmSpec = {
 								this.PushOrderFront("Pack", { "force": true });
 								return;
 							}
-							if (this.MoveToTargetRange(target, IID_Attack, this.order.data.attackType))
-							{
-								this.SetNextState("COMBAT.CHASING");
-								return;
-							}
+							this.SetNextState("COMBAT.CHASING");
+							return;
 						}
 					}
 
@@ -1979,7 +1974,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"CHASING": {
 				"enter": function() {
-					if (!this.MoveTo(this.order.data))
+					if (!this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 					{
 						this.FinishOrder();
 						return true;
@@ -2219,20 +2214,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						{
 							// Try to follow the target
 							if (this.MoveToTargetRange(this.gatheringTarget, IID_ResourceGatherer))
-							{
-								this.SetNextState("APPROACHING");
-								return;
-							}
-
-							// Can't reach the target, or it doesn't exist any more
-
-							// We want to carry on gathering resources in the same area as
-							// the old one. So try to get close to the old resource's
-							// last known position
-
-							var maxRange = 8; // get close but not too close
-							if (this.order.data.lastPos &&
-							    this.MoveToPointRange(this.order.data.lastPos.x, this.order.data.lastPos.z, 0, maxRange))
 							{
 								this.SetNextState("APPROACHING");
 								return;
@@ -2530,7 +2511,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"REPAIR": {
 			"APPROACHING": {
 				"enter": function() {
-					if (!this.MoveTo(this.order.data))
+					if (!this.MoveTo(this.order.data, IID_Builder))
 					{
 						this.FinishOrder();
 						return true;
@@ -2568,10 +2549,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
 					{
-						if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
-							this.SetNextState("APPROACHING");
-						else
-							this.FinishOrder();
+						this.SetNextState("APPROACHING");
 						return true;
 					}
 					// Check if the target is still repairable
@@ -2619,11 +2597,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					// in that case, the repairTarget is deleted, and we can just return
 					if (!this.repairTarget)
 						return;
-					let inRange = this.CheckTargetRange(this.repairTarget, IID_Builder);
-					if (!inRange && this.MoveToTargetRange(this.repairTarget, IID_Builder))
+					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
 						this.SetNextState("APPROACHING");
-					else if (!inRange)
-						this.FinishOrder(); //can't approach and isn't in reach
 				},
 			},
 
