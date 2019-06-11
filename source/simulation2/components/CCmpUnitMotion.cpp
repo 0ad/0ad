@@ -612,7 +612,7 @@ private:
 	/**
 	 * Returns true if we are possibly at our destination.
 	 */
-	bool PossiblyAtDestination();
+	bool PossiblyAtDestination() const;
 
 	/**
 	 * Process the move the unit will do this turn.
@@ -868,27 +868,32 @@ void CCmpUnitMotion::Move(fixed dt)
 	}
 }
 
-bool CCmpUnitMotion::PossiblyAtDestination()
+bool CCmpUnitMotion::PossiblyAtDestination() const
 {
-	// If we're not currently computing any new paths:
-	if (m_LongPath.m_Waypoints.empty() && m_ShortPath.m_Waypoints.empty())
+	if (m_MoveRequest.m_Type == MoveRequest::NONE)
+		return false;
+
+	if (IsFormationMember())
 	{
-		if (IsFormationMember())
-		{
-			// We've reached our assigned position. If the controller
-			// is idle, send a notification in case it should disband,
-			// otherwise continue following the formation next turn.
-			CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-			if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
-				return true;
-		}
-		else
-		{
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-			CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-			if (!cmpUnitMotion || cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
-				return true;
-		}
+		// We've reached our assigned position. If the controller
+		// is idle, send a notification in case it should disband,
+		// otherwise continue following the formation next turn.
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		return cmpUnitMotion && !cmpUnitMotion->IsMoving();
+	}
+
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	ENSURE(cmpObstructionManager);
+
+	if (m_MoveRequest.m_Type == MoveRequest::POINT)
+		return cmpObstructionManager->IsInPointRange(GetEntityId(), m_MoveRequest.m_Position.X, m_MoveRequest.m_Position.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
+	if (m_MoveRequest.m_Type == MoveRequest::ENTITY)
+		return cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
+	if (m_MoveRequest.m_Type == MoveRequest::OFFSET)
+	{
+		CFixedVector2D targetPos;
+		ComputeTargetPosition(targetPos);
+		return cmpObstructionManager->IsInPointRange(GetEntityId(), m_MoveRequest.m_Position.X, m_MoveRequest.m_Position.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
 	}
 	return false;
 }
