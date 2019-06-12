@@ -215,7 +215,7 @@ EntitySelection.prototype.update = function()
 	this.checkRenamedEntities();
 
 	let changed = false;
-	let removeOwnerChanges = !g_IsObserver && !g_DevSettings.controlAll && this.toList().length > 1;
+	let removeOwnerChanges = !g_IsObserver && !g_DeveloperOverlay.isControlAll() && this.toList().length > 1;
 
 	for (let ent in this.selected)
 	{
