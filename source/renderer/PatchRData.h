@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,15 +18,18 @@
 #ifndef INCLUDED_PATCHRDATA
 #define INCLUDED_PATCHRDATA
 
-#include <vector>
 #include "graphics/SColor.h"
-#include "maths/Vector3D.h"
 #include "maths/Vector2D.h"
+#include "maths/Vector3D.h"
+#include "graphics/Patch.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgramPtr.h"
-#include "VertexBufferManager.h"
+#include "renderer/VertexBufferManager.h"
+
+#include <vector>
 
 class CPatch;
+class CShaderDefines;
 class CSimulation2;
 class CTerrainTextureEntry;
 class CTextRenderer;
@@ -176,4 +179,4 @@ private:
 	static const ssize_t water_cell_size = 1;
 };
 
-#endif
+#endif // INCLUDED_PATCHRDATA
