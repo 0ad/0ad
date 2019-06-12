@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,9 +64,9 @@ public:
 		CVector3D v (1, 2, 3);
 		bound += v;
 
-		CVector3D centre;
-		bound.GetCentre(centre);
-		TS_ASSERT_EQUALS(centre, v);
+		CVector3D center;
+		bound.GetCenter(center);
+		TS_ASSERT_EQUALS(center, v);
 	}
 
 	void test_extend_bound()
@@ -76,9 +76,9 @@ public:
 		CBoundingBoxAligned b (v, v);
 		bound += b;
 
-		CVector3D centre;
-		bound.GetCentre(centre);
-		TS_ASSERT_EQUALS(centre, v);
+		CVector3D center;
+		bound.GetCenter(center);
+		TS_ASSERT_EQUALS(center, v);
 	}
 
 	void test_aabb_to_obb_translation()

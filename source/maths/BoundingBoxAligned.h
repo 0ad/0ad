@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,22 +22,22 @@
 #ifndef INCLUDED_BOUND
 #define INCLUDED_BOUND
 
-// necessary includes
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 #include "graphics/ShaderProgramPtr.h"
 
 class CFrustum;
 class CMatrix3D;
 class CBoundingBoxOriented;
 
-///////////////////////////////////////////////////////////////////////////////
-// basic axis aligned bounding box (AABB) class
+// Basic axis aligned bounding box (AABB) class
 class CBoundingBoxAligned
 {
 public:
+	static const CBoundingBoxAligned EMPTY;
 
 	CBoundingBoxAligned() { SetEmpty(); }
-	CBoundingBoxAligned(const CVector3D& min, const CVector3D& max) {
+	CBoundingBoxAligned(const CVector3D& min, const CVector3D& max)
+	{
 		m_Data[0] = min;
 		m_Data[1] = max;
 	}
@@ -114,10 +114,10 @@ public:
 		return (std::max(v.X, 0.0f) * std::max(v.Y, 0.0f) * std::max(v.Z, 0.0f));
 	}
 
-	// return the centre of this bounding box
-	void GetCentre(CVector3D& centre) const
+	// return the center of this bounding box
+	void GetCenter(CVector3D& center) const
 	{
-		centre = (m_Data[0] + m_Data[1]) * 0.5f;
+		center = (m_Data[0] + m_Data[1]) * 0.5f;
 	}
 
 	/**
@@ -160,12 +160,6 @@ public:
 private:
 	// Holds the minimal and maximal coordinate points in m_Data[0] and m_Data[1], respectively.
 	CVector3D m_Data[2];
-
-public:
-	static const CBoundingBoxAligned EMPTY;
-
 };
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-#endif
+#endif // INCLUDED_BOUND

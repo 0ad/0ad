@@ -511,7 +511,7 @@ void ActorViewer::Render()
 	CVector3D centre;
 	CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 	if (cmpVisual)
-		cmpVisual->GetBounds().GetCentre(centre);
+		cmpVisual->GetBounds().GetCenter(centre);
 	else
 		centre.Y = 0.f;
 	centre.X = centre.Z = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
