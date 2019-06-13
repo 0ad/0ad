@@ -1235,31 +1235,6 @@ function openManual()
 	});
 }
 
-function toggleDeveloperOverlay()
-{
-	if (!g_GameAttributes.settings.CheatsEnabled && !g_IsReplay)
-		return;
-
-	let devCommands = Engine.GetGUIObjectByName("devCommands");
-	devCommands.hidden = !devCommands.hidden;
-
-	let message = devCommands.hidden ?
-		markForTranslation("The Developer Overlay was closed.") :
-		markForTranslation("The Developer Overlay was opened.");
-
-	// Only players can send the simulation chat command
-	if (Engine.GetPlayerID() == -1)
-		submitChatDirectly(message);
-	else
-		Engine.PostNetworkCommand({
-			"type": "aichat",
-			"message": message,
-			"translateMessage": true,
-			"translateParameters": [],
-			"parameters": {}
-		});
-}
-
 function closeOpenDialogs()
 {
 	closeMenu();

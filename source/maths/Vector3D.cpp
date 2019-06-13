@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,14 +24,29 @@
 
 #include "Vector3D.h"
 
-#include <math.h>
-#include <float.h>
 #include "MathUtil.h"
 #include "FixedVector3D.h"
+
+#include <cmath>
+#include <limits>
 
 CVector3D::CVector3D(const CFixedVector3D& v) :
 	X(v.X.ToFloat()), Y(v.Y.ToFloat()), Z(v.Z.ToFloat())
 {
+}
+
+// static
+CVector3D CVector3D::Max()
+{
+	const float max_float = std::numeric_limits<float>::max();
+	return CVector3D(max_float, max_float, max_float);
+}
+
+// static
+CVector3D CVector3D::Min()
+{
+	const float max_float = std::numeric_limits<float>::max();
+	return CVector3D(-max_float, -max_float, -max_float);
 }
 
 int CVector3D::operator ! () const
@@ -76,8 +91,5 @@ CVector3D CVector3D::Normalized () const
 
 float MaxComponent(const CVector3D& v)
 {
-	float max = -FLT_MAX;
-	for(int i = 0; i < 3; i++)
-		max = std::max(max, v[i]);
-	return max;
+	return std::max({v.X, v.Y, v.Z});
 }

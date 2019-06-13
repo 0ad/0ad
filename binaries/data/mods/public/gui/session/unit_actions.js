@@ -1440,7 +1440,7 @@ function someCanPatrol(entities)
  */
 function isUndeletable(entState)
 {
-	if (g_DevSettings.controlAll)
+	if (g_DeveloperOverlay.isControlAll())
 		return false;
 
 	if (entState.resourceSupply && entState.resourceSupply.killBeforeGather)

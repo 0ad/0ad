@@ -1,156 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <object
-	name="devCommands"
+	name="devCommandsOverlay"
 	type="image"
 	sprite="sessionOverlayBackground"
-	size="100%-225 50%-88 100%-8 50%+120"
+	size="100%-250 50%-200 100%-8 50%"
 	z="40"
 	hidden="true"
 	hotkey="session.devcommands.toggle"
 >
-	<action on="Press">
-		toggleDeveloperOverlay();
-	</action>
-
-	<!-- Control all units -->
-	<object size="0 0 100%-18 16" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Control all units</translatableAttribute>
+	<object name="dev_commands">
+		<repeat count="16">
+			<object name="dev_command[n]" size="0 0 100% 0">
+				<object name="dev_command_label[n]" size="0 0 100%-26 100%" type="text" style="devCommandsText"/>
+				<object name="dev_command_checkbox[n]" size="100%-24 1 100% 100%" type="checkbox" style="ModernTickBox"/>
+			</object>
+		</repeat>
 	</object>
-	<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="ModernTickBox">
-		<action on="Press">
-			Engine.PostNetworkCommand({
-				"type": "control-all",
-				"flag": this.checked
-			});
-		</action>
-	</object>
-
-	<!-- Change perspective -->
-	<object size="0 16 100%-18 32" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Change perspective</translatableAttribute>
-	</object>
-	<object size="100%-16 16 100% 32" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			toggleChangePerspective(this.checked);
-		</action>
-	</object>
-
-	<!-- Display selection state -->
-	<object size="0 32 100%-18 48" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Display selection state</translatableAttribute>
-	</object>
-	<object size="100%-16 32 100% 48" type="checkbox" name="devDisplayState" style="ModernTickBox"/>
-
-	<!-- Pathfinder overlay -->
-	<object size="0 48 100%-18 64" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Pathfinder overlay</translatableAttribute>
-	</object>
-	<object size="100%-16 48 100% 64" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);
-		</action>
-	</object>
-
-	<!-- Obstruction overlay -->
-	<object size="0 64 100%-18 80" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Obstruction overlay</translatableAttribute>
-	</object>
-	<object size="100%-16 64 100% 80" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);
-		</action>
-	</object>
-
-	<!-- Unit motion overlay -->
-	<object size="0 80 100%-18 96" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Unit motion overlay</translatableAttribute>
-	</object>
-	<object size="100%-16 80 100% 96" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			g_Selection.SetMotionDebugOverlay(this.checked);
-		</action>
-	</object>
-
-	<!-- Range overlay -->
-	<object size="0 96 100%-18 112" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Range overlay</translatableAttribute>
-	</object>
-	<object size="100%-16 96 100% 112" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);
-		</action>
-	</object>
-
-	<!-- Bounding box overlay -->
-	<object size="0 112 100%-18 128" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Bounding box overlay</translatableAttribute>
-	</object>
-	<object size="100%-16 112 100% 128" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			Engine.SetBoundingBoxDebugOverlay(this.checked);
-		</action>
-	</object>
-
-	<!-- Unrestricted camera -->
-	<object size="0 128 100%-18 144" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Restrict camera</translatableAttribute>
-	</object>
-	<object size="100%-16 128 100% 144" type="checkbox" style="ModernTickBox" checked="true">
-		<action on="Press">
-			Engine.GameView_SetConstrainCameraEnabled(this.checked);
-		</action>
-	</object>
-
-	<!-- Reveal map -->
-	<object size="0 144 100%-18 160" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Reveal map</translatableAttribute>
-	</object>
-	<object size="100%-16 144 100% 160" type="checkbox" name="devCommandsRevealMap" style="ModernTickBox">
-		<action on="Load">
-			this.checked = Engine.GuiInterfaceCall("IsMapRevealed");
-		</action>
-		<action on="Press">
-			Engine.PostNetworkCommand({
-				"type": "reveal-map",
-				"enable": this.checked
-			});
-		</action>
-	</object>
-
-	<!-- Time warp mode -->
-	<object size="0 160 100%-18 176" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Enable time warp</translatableAttribute>
-	</object>
-		<object size="100%-16 160 100% 176" type="checkbox" name="devTimeWarp" style="ModernTickBox">
-		<action on="Press">
-			if (this.checked)
-				showTimeWarpMessageBox();
-			Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);
-		</action>
-	</object>
-
-	<!-- Promote units -->
-	<object size="0 176 100%-18 192" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Promote selected units</translatableAttribute>
-	</object>
-	<object size="100%-16 176 100% 192" type="button" style="ModernTickBox">
-		<action on="Press">
-			Engine.PostNetworkCommand({
-				"type": "promote",
-				"entities": g_Selection.toList()
-			});
-		</action>
-	</object>
-
-	<!-- Hierarchical pathfinder overlay -->
-	<object size="0 192 100%-18 208" type="text" style="devCommandsText">
-		<translatableAttribute id="caption">Hierarchical pathfinder overlay</translatableAttribute>
-	</object>
-	<object size="100%-16 192 100% 208" type="checkbox" style="ModernTickBox">
-		<action on="Press">
-			Engine.GuiInterfaceCall("SetPathfinderHierDebugOverlay", this.checked);
-		</action>
-	</object>
-
 </object>

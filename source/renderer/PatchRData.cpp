@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include "renderer/PatchRData.h"
+
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
@@ -34,7 +36,6 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/World.h"
 #include "renderer/AlphaMapCalculator.h"
-#include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/WaterManager.h"
