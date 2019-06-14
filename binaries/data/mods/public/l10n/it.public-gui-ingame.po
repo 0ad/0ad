@@ -19,6 +19,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # giangy <giancarlo.moi@tiscali.it>, 2014
+# Italang, 2019
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Marco <inactive+Vamos@transifex.com>, 2013
 # Martin Falanga <iblaim97@hotmail.it>, 2017
@@ -41,8 +42,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-10 09:28+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -348,7 +349,7 @@ msgstr "%(player)s si è unito alla partita."
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s è stato bannato"
+msgstr "%(username)s è stato bandito"
 
 #: gui/session/messages.js:128
 #, javascript-format
@@ -373,7 +374,7 @@ msgstr "In attesa di altri giocatori:"
 
 #: gui/session/messages.js:155
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Sincronizzazione partita con gli altri giocatori..."
 
 #: gui/session/messages.js:164
 #, javascript-format
@@ -401,7 +402,7 @@ msgstr "Squadra"
 
 #: gui/session/messages.js:177 gui/session/session.js:518
 msgid "Observer"
-msgstr "Osservatore."
+msgstr "Osservatore"
 
 #: gui/session/messages.js:178
 msgid "Private"
@@ -562,7 +563,7 @@ msgstr "Replay salvato in %(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr "Scaricando lo stato corrente in %(filepath)s"
+msgstr "Scaricamento stato corrente in %(filepath)s"
 
 #: gui/session/messages.js:725 gui/session/messages.js:736
 msgid "Out of Sync"
@@ -586,7 +587,7 @@ msgstr "Tutti"
 #: gui/session/messages.js:807
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Alleati."
+msgstr "Alleati"
 
 #: gui/session/messages.js:811
 msgctxt "chat addressee"
@@ -675,7 +676,7 @@ msgstr "<%(user)s>"
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr "%(genericName)s — Assemblato"
+msgstr "%(genericName)s — Raggruppato"
 
 #: gui/session/selection_details.js:84
 #, javascript-format
@@ -819,19 +820,19 @@ msgstr "Sblocca Cancello"
 
 #: gui/session/selection_panels.js:472
 msgid "Pack"
-msgstr "Assembla"
+msgstr "Raggruppa"
 
 #: gui/session/selection_panels.js:480
 msgid "Unpack"
-msgstr "Installare"
+msgstr "Separa"
 
 #: gui/session/selection_panels.js:488
 msgid "Cancel Packing"
-msgstr "Annulla Imballaggio"
+msgstr "Annulla Raggruppamento"
 
 #: gui/session/selection_panels.js:496
 msgid "Cancel Unpacking"
-msgstr "Annulla Disimballaggio"
+msgstr "Annulla Separazione"
 
 #: gui/session/selection_panels.js:583
 msgid "Insufficient population capacity:"
@@ -927,7 +928,7 @@ msgstr "Fugge se attaccato"
 #: gui/session/selection_panels_helpers.js:84
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Attacca avversari a distanza, ma non si sposta"
+msgstr "Attacca avversari entro una certa distanza, ma non si sposta"
 
 #: gui/session/selection_panels_helpers.js:98
 #, javascript-format
@@ -952,17 +953,17 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:158
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s per allenare %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s per addestrare %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:160
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s per allenare %(number)s (%(fullBatch)s)."
+msgstr "%(action)s per addestrare %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:162
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s per allenare %(number)s."
+msgstr "%(action)s per addestrare %(number)s."
 
 #: gui/session/selection_panels_helpers.js:167
 msgid "Shift-click"
@@ -1008,7 +1009,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Selezionare un tipo di merce che si desidera modificare facendo clic su di essa,  quindi utilizzare le frecce delle altre merci per modificarne le quote. Puoi anche premere  %(hotkey)s quando selezioni un tipo di merce per portarne al 100%% la quota."
+msgstr "Selezionare un tipo di merce che si desidera modificare facendo clic su di essa,  quindi utilizzare le frecce delle altre merci per modificarne le quote. Puoi anche premere  %(hotkey)s quando selezioni un tipo di merce per portarne a 100%% la quota."
 
 #: gui/session/session.js:452
 #, javascript-format
@@ -1149,7 +1150,7 @@ msgstr "Acquartierati: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:904
 msgid "Right-click to establish a default route for new traders."
-msgstr "Clic destro per stabilire una rotta iniziale per i nuovi commercianti."
+msgstr "Clic destro per stabilire una rotta predefinita per i nuovi commercianti."
 
 #: gui/session/unit_actions.js:908
 #, javascript-format
@@ -1187,7 +1188,7 @@ msgstr "Ordina alle unità selezionate di riparare o costruire un edificio o uni
 
 #: gui/session/unit_actions.js:1166
 msgid "Focus on Rally Point."
-msgstr "Focus sui punti di raccolta"
+msgstr "Vai ai punti di raccolta"
 
 #: gui/session/unit_actions.js:1201
 msgid "Back to Work"
@@ -1199,7 +1200,7 @@ msgstr "Ordina alle unità selezionate di difendere un edificio o unità."
 
 #: gui/session/unit_actions.js:1238
 msgid "Remove guard"
-msgstr "Rimuovi Guardia"
+msgstr "Rimuovi Difesa"
 
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
@@ -1220,7 +1221,7 @@ msgstr "Premi per consentire agli alleati di usare questo punto di scarico."
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi per evitare che gli alleati utilizzino questo dropsite"
+msgstr "Premi per evitare che gli alleati utilizzino questo punto di scarico"
 
 #: gui/session/unit_actions.js:1369
 msgid "You are allowed to use this dropsite"
@@ -1241,7 +1242,7 @@ msgstr "Non puoi distruggere questa entità poichè hai meno della metà dei pun
 
 #: gui/session/unit_actions.js:1453
 msgid "This entity is undeletable"
-msgstr "Questa unità è incancellabile."
+msgstr "Questo elemento non è cancellabile."
 
 #: gui/session/chat_window.xml:(caption):19
 msgctxt "chat input"

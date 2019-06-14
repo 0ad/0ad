@@ -23,6 +23,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # giangy <giancarlo.moi@tiscali.it>, 2014
+# Italang, 2019
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Marco <inactive+Vamos@transifex.com>, 2013
@@ -44,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-10 08:42+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +61,7 @@ msgstr "Nessuno"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "La IA verrà disattivata per questo giocatore."
+msgstr "L'IA verrà disattivata per questo giocatore."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -132,7 +133,7 @@ msgstr "%(username)s è stato espulso"
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s è stato bannato"
+msgstr "%(username)s è stato bandito"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -179,16 +180,16 @@ msgstr "Nuove Mappe"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Nuove mappe in questa versione del gioco."
+msgstr "Mappe nuove introdotte con questa versione del gioco."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr "Mappe Scriptate"
+msgstr "Mappe a Livelli"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mappe con eventi concatenati e con la possibilità di generare unità nemiche."
+msgstr "Mappe con eventi concatenati (che si attivano al verificarsi di altri eventi) e che possono generare unità nemiche."
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -284,11 +285,11 @@ msgstr "Risorse Iniziali"
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Importo iniziale di ogni risorsa: %(resources)s."
+msgstr "Ammontare iniziale di ogni risorsa: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
-msgstr "Seleziona le risorse iniziali del giocatore."
+msgstr "Seleziona le risorse iniziali del gioco."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
@@ -315,7 +316,7 @@ msgstr "Durata Reliquia"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Minuti fino a quando il giocatore ha raggiunto la Vittoria con Reliquia."
+msgstr "Minuti con cui il giocatore raggiunge la Vittoria con Reliquia."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
@@ -323,7 +324,7 @@ msgstr "Durata Meraviglia"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "Minuti fino a quando il giocatore ha raggiunto la Vittoria con Meraviglia."
+msgstr "Minuti con cui il giocatore raggiunge la Vittoria con Meraviglia."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
@@ -405,7 +406,7 @@ msgstr "Disabilita Tesori"
 
 #: gui/gamesetup/gamesetup.js:903
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Non aggiungere tesori alla mappa."
 
 #: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
@@ -474,7 +475,7 @@ msgstr "Inizia una nuova partita con le impostazioni correnti."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Inizia una nuova partita con le impostazioni correnti (disabilitato finché tutti i giocatori non sono pronti)."
 
 #: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
@@ -486,7 +487,7 @@ msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Vedi Storia / Albero delle St
 #: gui/gamesetup/gamesetup.js:1110
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Configura l'AI: %(description)s"
+msgstr "Configura l'IA: %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
@@ -645,7 +646,7 @@ msgstr "Partita di %(playername)s"
 #: gui/loading/loading.js:33
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -667,11 +668,11 @@ msgstr "Giocatore IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
-msgstr "Difficoltà I.A.:"
+msgstr "Difficoltà IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr "Comportamento dell'AI"
+msgstr "Comportamento dell'IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
@@ -692,7 +693,7 @@ msgstr "Caricamento"
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
-msgstr "Caricamento dei dati  della mappa. Aspetta"
+msgstr "Caricamento dei dati mappa. Attendere..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
@@ -754,7 +755,7 @@ msgstr "Entra in una partita esistente."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Nome del Giocatore:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -771,11 +772,11 @@ msgstr "Configura il tuo server per ospitare una partita."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Nome Server:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Usa STUN per aggirare i firewall"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
