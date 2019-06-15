@@ -53,11 +53,16 @@ class GameState():
     def __init__(self, txt, game):
         self.data = json.loads(txt)
         self.game = game
+        self.mapSize = self.data['mapSize']
 
     def units(self, owner=None, type=None):
         filter_fn = lambda e: (owner is None or e['owner'] == owner) and \
                 (type is None or type in e['template'])
         return [ Entity(e, self.game) for e in self.data['entities'].values() if filter_fn(e) ]
+
+    def unit(self, id):
+        id = str(id)
+        return Entity(self.data['entities'][id], self.game) if id in self.data['entities'] else None
 
     def center(self, units=None):
         if units is None:
