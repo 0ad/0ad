@@ -14,11 +14,11 @@ class ZeroAD():
         self.current_state = None
         self.cache = {}
 
-    def step(self, actions):
+    def step(self, actions=[]):
         # TODO: Add player ids?
         cmds = Actions()
         cmds.actions.extend([
-            Action(content=json.dumps(a)) for a in actions
+            Action(content=json.dumps(a)) for a in actions if a is not None
         ])
         res = self.stub.Step(cmds)
         self.current_state = GameState(res.content, self)
