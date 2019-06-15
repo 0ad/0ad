@@ -10,6 +10,7 @@
 # Federico D'Alessio <federico98.dalessio@gmail.com>, 2018
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # Giulio Sanzone <sanzone.giulio@gmail.com>, 2016
+# Italang, 2019
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2015-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2017
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-01-07 13:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-10 08:09+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,15 +87,15 @@ msgstr "Errore sconosciuto"
 
 #: lobby/XmppClient.cpp:1145
 msgid "Stream error"
-msgstr "Errore di stream"
+msgstr "Errore di flusso"
 
 #: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
-msgstr "La versione dello stream in ingresso non è supportata"
+msgstr "La versione del flusso in ingresso non è supportata"
 
 #: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
-msgstr "Lo stream è stato chiuso dal server"
+msgstr "Il flusso è stato chiuso dal server"
 
 #: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
@@ -116,7 +117,7 @@ msgstr "Questo sistema non dispone di memoria sufficiente"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Il certificato del server non può essere verificato o l'handshake TLS non è stato completo con successo"
+msgstr "Il certificato del server non può essere verificato o la negoziazione TLS non è stato completo con successo"
 
 #: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
@@ -149,7 +150,7 @@ msgstr "Nome utente già esistente"
 #: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Errore durante la richiesta del game id: Errore:%s;%s."
+msgstr "Errore durante la richiesta del id gioco: Errore:%s;%s."
 
 #: ps/ModIo.cpp:275
 #, c-format
@@ -188,7 +189,7 @@ msgstr "La dimensione del file non corrisponde."
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "File non valido. File md5 previsto %s, file presente %s."
+msgstr "File non valido. Md5 previsto %s, ottenuto %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
@@ -206,7 +207,7 @@ msgstr "Gioco salvato in '%s'"
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Screenshot salvato in '%s'"
+msgstr "Schermata salvata in '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
