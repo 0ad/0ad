@@ -2406,7 +2406,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"RETURNRESOURCE": {
 			"APPROACHING": {
 				"enter": function() {
-					if (!this.MoveTo(this.order.data))
+					if (!this.MoveTo(this.order.data, IID_ResourceGatherer))
 					{
 						this.FinishOrder();
 						return true;
