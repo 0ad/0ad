@@ -16,7 +16,7 @@
 	"icon": "sword.png",
 	"researchTime": 40,
 	"tooltip": "Melee infantry +1 hack attack.",
-	"modifications": [{"value": "Attack/Melee/Hack", "add": 1.0}],
+	"modifications": [{"value": "Attack/Melee/Damage/Hack", "add": 1.0}],
 	"affects": ["Infantry Melee"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

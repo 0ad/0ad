@@ -2,9 +2,11 @@
 <Entity parent="template_unit_ship">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>35.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>35.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>45.0</MaxRange>
       <MinRange>0.0</MinRange>
       <PrepareTime>1000</PrepareTime>

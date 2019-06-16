@@ -14,9 +14,9 @@
 	"icon": "arrow.png",
 	"researchTime": 40,
 	"tooltip": "+20% ranged infantry attack.",
-	"modifications": [{"value": "Attack/Ranged/Hack", "multiply": 1.2},
-		{"value": "Attack/Ranged/Pierce", "multiply": 1.2},
-		{"value": "Attack/Ranged/Crush", "multiply": 1.2}],
+	"modifications": [{"value": "Attack/Ranged/Damage/Hack", "multiply": 1.2},
+		{"value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2},
+		{"value": "Attack/Ranged/Damage/Crush", "multiply": 1.2}],
 	"affects": ["Infantry Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -12,7 +12,7 @@ let player = 1;
 
 ApplyValueModificationsToEntity = function(value, stat, ent)
 {
-	if (value == "DeathDamage/Pierce" && ent == deadEnt)
+	if (value == "DeathDamage/Damage/Pierce" && ent == deadEnt)
 		return stat + 200;
 	return stat;
 };
@@ -21,9 +21,11 @@ let template = {
 	"Shape": "Circular",
 	"Range": 10.7,
 	"FriendlyFire": "false",
-	"Hack": 0.0,
-	"Pierce": 15.0,
-	"Crush": 35.0
+	"Damage": {
+		"Hack": 0.0,
+		"Pierce": 15.0,
+		"Crush": 35.0
+	}
 };
 
 let modifiedDamage = {

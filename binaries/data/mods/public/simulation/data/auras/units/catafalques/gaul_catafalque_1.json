@@ -3,12 +3,12 @@
 	"affects": ["Soldier"],
 	"modifications": [
 		{ "value": "Promotion/RequiredXp", "multiply": 0.75 },
-		{ "value": "Attack/Melee/Hack", "multiply": 1.05 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 1.05 },
-		{ "value": "Attack/Melee/Crush", "multiply": 1.05 },
-		{ "value": "Attack/Ranged/Hack", "multiply": 1.05 },
-		{ "value": "Attack/Ranged/Pierce", "multiply": 1.05 },
-		{ "value": "Attack/Ranged/Crush", "multiply": 1.05 }
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.05 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.05 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.05 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.05 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.05 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.05 }
 
 	],
 	"auraName": "Ambush Slaughter",

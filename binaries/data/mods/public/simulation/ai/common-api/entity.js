@@ -233,9 +233,9 @@ m.Template = m.Class({
 			return undefined;
 
 		return {
-			"Hack": +(this.get("Attack/" + type + "/Hack") || 0),
-			"Pierce": +(this.get("Attack/" + type + "/Pierce") || 0),
-			"Crush": +(this.get("Attack/" + type + "/Crush") || 0)
+			"Hack": +(this.get("Attack/" + type + "/Damage/Hack") || 0),
+			"Pierce": +(this.get("Attack/" + type + "/Damage/Pierce") || 0),
+			"Crush": +(this.get("Attack/" + type + "/Damage/Crush") || 0)
 		};
 	},
 

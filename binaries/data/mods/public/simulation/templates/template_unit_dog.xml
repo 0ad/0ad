@@ -7,9 +7,11 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>7</Hack>
-      <Pierce>2</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>7</Hack>
+        <Pierce>2</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>3</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>

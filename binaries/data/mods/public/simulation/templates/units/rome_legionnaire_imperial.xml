@@ -2,7 +2,9 @@
 <Entity parent="units/rome_legionnaire_marian">
   <Attack>
     <Melee>
-      <Hack>18.5</Hack>
+      <Damage>
+        <Hack>18.5</Hack>
+      </Damage>
     </Melee>
   </Attack>
   <Identity>

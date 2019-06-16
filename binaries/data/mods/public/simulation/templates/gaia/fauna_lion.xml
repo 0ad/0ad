@@ -2,9 +2,11 @@
 <Entity parent="template_unit_fauna_wild_violent">
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>20.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>4.0</MaxRange>
       <RepeatTime>2000</RepeatTime>
     </Melee>

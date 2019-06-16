@@ -14,7 +14,7 @@
 	"icon": "spear.png",
 	"researchTime": 40,
 	"tooltip": "All Spear units +2 hack attack.",
-	"modifications": [{"value": "Attack/Melee/Hack", "add": 2.0}],
+	"modifications": [{"value": "Attack/Melee/Damage/Hack", "add": 2.0}],
 	"affects": ["Spear"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

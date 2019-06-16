@@ -2,8 +2,10 @@
 <Entity parent="template_unit_cavalry_melee">
   <Attack>
     <Melee>
-      <Hack>6.0</Hack>
-      <Pierce>5.0</Pierce>
+      <Damage>
+        <Hack>6.0</Hack>
+        <Pierce>5.0</Pierce>
+      </Damage>
       <MaxRange>4.5</MaxRange>
       <Bonuses>
         <BonusCavMelee>

@@ -6,9 +6,11 @@
   </Footprint>
   <Attack>
     <Melee>
-      <Hack>1</Hack>
-      <Pierce>5</Pierce>
-      <Crush>2</Crush>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>5</Pierce>
+        <Crush>2</Crush>
+      </Damage>
       <MaxRange>4</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>

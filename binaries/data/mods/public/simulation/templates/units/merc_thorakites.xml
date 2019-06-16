@@ -6,7 +6,9 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack op="add">-2</Hack>
+      <Damage>
+        <Hack op="add">-2</Hack>
+      </Damage>
     </Melee>
   </Attack>
   <Cost>

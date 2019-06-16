@@ -16,8 +16,8 @@
 	"researchTime": 40,
 	"tooltip": "Guard units have uncommon courage and valor in battle. Champions +2 attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Hack", "add": 2.0, "affects": "Champion Melee"},
-		{"value": "Attack/Ranged/Pierce", "add": 2.0, "affects": "Champion Ranged"}
+		{"value": "Attack/Melee/Damage/Hack", "add": 2.0, "affects": "Champion Melee"},
+		{"value": "Attack/Ranged/Damage/Pierce", "add": 2.0, "affects": "Champion Ranged"}
 	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

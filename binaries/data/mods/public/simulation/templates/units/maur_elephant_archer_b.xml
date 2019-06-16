@@ -7,9 +7,11 @@
   <Attack>
     <Capture disable=""/>
     <Ranged>
-      <Hack op="mul">1.5</Hack>
-      <Pierce op="mul">1.5</Pierce>
-      <Crush op="mul">1.5</Crush>
+      <Damage>
+        <Hack op="mul">1.5</Hack>
+        <Pierce op="mul">1.5</Pierce>
+        <Crush op="mul">1.5</Crush>
+      </Damage>
       <RepeatTime op="mul">0.75</RepeatTime>
     </Ranged>
   </Attack>

@@ -2,9 +2,11 @@
 <Entity parent="template_unit_siege">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>100.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>10.0</Pierce>
+        <Crush>100.0</Crush>
+      </Damage>
       <MaxRange>80.0</MaxRange>
       <MinRange>26.0</MinRange>
       <PrepareTime>4000</PrepareTime>
@@ -22,9 +24,11 @@
         <Shape>Circular</Shape>
         <Range>10</Range>
         <FriendlyFire>false</FriendlyFire>
-        <Hack>0.0</Hack>
-        <Pierce>15.0</Pierce>
-        <Crush>35.0</Crush>
+        <Damage>
+          <Hack>0.0</Hack>
+          <Pierce>15.0</Pierce>
+          <Crush>35.0</Crush>
+        </Damage>
       </Splash>
       <PreferredClasses datatype="tokens">Structure</PreferredClasses>
     </Ranged>

@@ -2,8 +2,10 @@
 <Entity parent="template_unit_siege_boltshooter">
   <Attack>
     <Ranged>
-      <Pierce op="mul">1.2</Pierce>
-      <Crush op="mul">0.5</Crush>
+      <Damage>
+        <Pierce op="mul">1.2</Pierce>
+        <Crush op="mul">0.5</Crush>
+      </Damage>
       <MaxRange op="add">8.0</MaxRange>
     </Ranged>
   </Attack>

@@ -3,9 +3,9 @@
 	"radius": 60,
 	"affects": ["Melee Cavalry"],
 	"modifications": [
-		{ "value": "Attack/Melee/Hack", "multiply": 1.3 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 1.3 },
-		{ "value": "Attack/Melee/Crush", "multiply": 1.3 }
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.3 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.3 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.3 }
 	],
 	"auraName": "Cavalry Commander",
 	"auraDescription": "+30% attack for cavalry melee soldiers.",

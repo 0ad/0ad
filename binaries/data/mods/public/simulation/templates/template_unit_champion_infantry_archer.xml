@@ -2,9 +2,11 @@
 <Entity parent="template_unit_champion_infantry">
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>6.5</Pierce>
-      <Crush>0</Crush>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>6.5</Pierce>
+        <Crush>0</Crush>
+      </Damage>
       <MaxRange>76</MaxRange>
       <MinRange>0.0</MinRange>
       <PrepareTime>300</PrepareTime>

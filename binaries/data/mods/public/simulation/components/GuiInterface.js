@@ -388,7 +388,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 		for (let type of types)
 		{
-			ret.attack[type] = cmpAttack.GetAttackStrengths(type);
+			ret.attack[type] = {};
+			if (type == "Capture")
+				ret.attack[type] = cmpAttack.GetAttackStrengths(type);
+			else
+				ret.attack[type].damage = cmpAttack.GetAttackStrengths(type);
+
 			ret.attack[type].splash = cmpAttack.GetSplashDamage(type);
 
 			let range = cmpAttack.GetRange(type);

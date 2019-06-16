@@ -43,10 +43,12 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 	});
 
 	let cmpAttack = ConstructComponent(attacker, "Attack", {
-		"Melee" : {
-			"Hack": 11,
-			"Pierce": 5,
-			"Crush": 0,
+		"Melee": {
+			"Damage": {
+				"Hack": 11,
+				"Pierce": 5,
+				"Crush": 0
+			},
 			"MinRange": 3,
 			"MaxRange": 5,
 			"PreferredClasses": {
@@ -63,10 +65,12 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				}
 			}
 		},
-		"Ranged" : {
-			"Hack": 0,
-			"Pierce": 10,
-			"Crush": 0,
+		"Ranged": {
+			"Damage": {
+				"Hack": 0,
+				"Pierce": 10,
+				"Crush": 0
+			},
 			"MinRange": 10,
 			"MaxRange": 80,
 			"PrepareTime": 300,
@@ -82,13 +86,15 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 			"RestrictedClasses": {
 				"_string": "Elephant"
 			},
-			"Splash" : {
+			"Splash": {
 				"Shape": "Circular",
 				"Range": 10,
 				"FriendlyFire": "false",
-				"Hack": 0.0,
-				"Pierce": 15.0,
-				"Crush": 35.0,
+				"Damage": {
+					"Hack": 0.0,
+					"Pierce": 15.0,
+					"Crush": 35.0
+				},
 				"Bonuses": {
 					"BonusCav": {
 						"Classes": "Cavalry",
@@ -97,7 +103,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				}
 			}
 		},
-		"Capture" : {
+		"Capture": {
 			"Value": 8,
 			"MaxRange": 10,
 		},
@@ -128,7 +134,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 }
 
 // Validate template getter functions
-attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
+attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(), ["Melee", "Ranged", "Capture"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes([]), ["Melee", "Ranged", "Capture"]);
@@ -151,7 +157,7 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 		"Pierce": 10,
 		"Crush": 0
 	});
-	
+
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged.Splash"), {
 		"Hack": 0.0,
 		"Pierce": 15.0,
@@ -169,9 +175,11 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), {
-		"Hack": 0,
-		"Pierce": 15,
-		"Crush": 35,
+		"damage": {
+			"Hack": 0,
+			"Pierce": 15,
+			"Crush": 35,
+		},
 		"friendlyFire": false,
 		"shape": "Circular"
 	});

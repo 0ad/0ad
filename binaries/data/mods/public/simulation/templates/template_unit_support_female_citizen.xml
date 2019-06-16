@@ -2,17 +2,21 @@
 <Entity parent="template_unit_support">
   <Attack>
     <Melee>
-      <Hack>2.0</Hack>
-      <Pierce>0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>2.0</Hack>
+        <Pierce>0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>3</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
     </Melee>
     <Slaughter>
-      <Hack>25.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>25.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>2</MaxRange>
     </Slaughter>
   </Attack>

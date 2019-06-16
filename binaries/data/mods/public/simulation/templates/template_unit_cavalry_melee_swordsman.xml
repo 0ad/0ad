@@ -6,9 +6,11 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>6.5</Hack>
-      <Pierce>0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>6.5</Hack>
+        <Pierce>0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Melee>
   </Attack>

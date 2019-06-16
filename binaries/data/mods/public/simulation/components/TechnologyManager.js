@@ -36,7 +36,7 @@ TechnologyManager.prototype.Init = function()
 	//                 ]}
 	this.modifications = {};
 	this.modificationCache = {}; // Caches the values after technologies have been applied
-	                             // e.g. { "Attack/Melee/Hack" : {5: {"origValue": 8, "newValue": 10}, 7: {"origValue": 9, "newValue": 12}, ...}, ...}
+	                             // e.g. { "Attack/Melee/Damage/Hack" : {5: {"origValue": 8, "newValue": 10}, 7: {"origValue": 9, "newValue": 12}, ...}, ...}
 	                             // where 5 and 7 are entity id's
 
 	this.classCounts = {}; // stores the number of entities of each Class

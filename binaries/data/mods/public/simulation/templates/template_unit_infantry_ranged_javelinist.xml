@@ -6,9 +6,11 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>16.0</Pierce>
-      <Crush>0</Crush>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>16.0</Pierce>
+        <Crush>0</Crush>
+      </Damage>
       <MaxRange>24.0</MaxRange>
       <MinRange>0.0</MinRange>
       <PrepareTime>750</PrepareTime>

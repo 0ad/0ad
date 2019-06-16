@@ -16,7 +16,7 @@
 	"researchTime": 30,
 	"tooltip": "All Javelin units +2 pierce attack and +4 range.",
 	"modifications": [
-		{"value": "Attack/Ranged/Pierce", "add": 2.0},
+		{"value": "Attack/Ranged/Damage/Pierce", "add": 2.0},
 		{"value": "Attack/Ranged/MaxRange", "add": 4.0},
 		{"value": "Vision/Range", "add": 4.0}],
 	"affects": ["Javelin"],

@@ -122,7 +122,9 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Melee'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage strength") +
+				"<element name='Damage'>" +
+					DamageTypes.BuildSchema("damage strength") +
+				"</element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
 					"<data type='nonNegativeInteger'/>" +
@@ -139,7 +141,9 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Ranged'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage strength") +
+				"<element name='Damage'>" +
+					DamageTypes.BuildSchema("damage strength") +
+				"</element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<optional>"+
@@ -167,7 +171,9 @@ Attack.prototype.Schema =
 							"<element name='Shape' a:help='Shape of the splash damage, can be circular or linear'><text/></element>" +
 							"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-							DamageTypes.BuildSchema("damage strength") +
+							"<element name='Damage'>" +
+								DamageTypes.BuildSchema("damage strength") +
+							"</element>" +
 							Attack.prototype.bonusesSchema +
 						"</interleave>" +
 					"</element>" +
@@ -227,7 +233,9 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage strength") +
+				"<element name='Damage'>" +
+					DamageTypes.BuildSchema("damage strength") +
+				"</element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
@@ -448,10 +456,10 @@ Attack.prototype.GetAttackStrengths = function(type)
 	}
 
 	let applyMods = damageType =>
-		ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), this.entity);
+		ApplyValueModificationsToEntity("Attack/" + type + splash + "/Damage/" + damageType, +(template.Damage[damageType] || 0), this.entity);
 
 	if (type == "Capture")
-		return { "value": applyMods("Value") };
+		return { "value": ApplyValueModificationsToEntity("Attack/Capture/Value", +(template.Value || 0), this.entity) };
 
 	let ret = {};
 	for (let damageType of DamageTypes.GetTypes())
@@ -465,7 +473,8 @@ Attack.prototype.GetSplashDamage = function(type)
 	if (!this.template[type].Splash)
 		return false;
 
-	let splash = this.GetAttackStrengths(type + ".Splash");
+	let splash = {};
+	splash.damage = this.GetAttackStrengths(type + ".Splash");
 	splash.friendlyFire = this.template[type].Splash.FriendlyFire != "false";
 	splash.shape = this.template[type].Splash.Shape;
 	return splash;

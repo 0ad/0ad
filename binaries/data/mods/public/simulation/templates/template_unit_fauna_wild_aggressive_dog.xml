@@ -2,8 +2,10 @@
 <Entity parent="template_unit_fauna_wild_aggressive_wolf">
   <Attack>
     <Melee>
-      <Hack>7</Hack>
-      <Pierce>2</Pierce>
+      <Damage>
+        <Hack>7</Hack>
+        <Pierce>2</Pierce>
+      </Damage>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
     </Melee>
