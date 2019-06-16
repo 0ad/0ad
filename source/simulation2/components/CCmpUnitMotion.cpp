@@ -730,7 +730,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	// If we're chasing a potentially-moving unit and are currently close
 	// enough to its current position, and we can head in a straight line
 	// to it, then throw away our current path and go straight to it
-	TryGoingStraightToTarget(initialPos);
+	bool wentStraight = TryGoingStraightToTarget(initialPos);
 
 	bool wasObstructed = PerformMove(dt, m_ShortPath, m_LongPath, pos);
 
@@ -755,7 +755,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 	// We may need to recompute our path sometimes (e.g. if our target moves).
 	// Since we request paths asynchronously anyways, this does not need to be done before moving.
-	if (PathingUpdateNeeded(pos))
+	if (!wentStraight && PathingUpdateNeeded(pos))
 	{
 		PathGoal goal;
 		ComputeGoal(goal, m_MoveRequest);
