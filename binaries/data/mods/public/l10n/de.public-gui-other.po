@@ -15,7 +15,8 @@
 # James Jakubczyk <beshir75@gmail.com>, 2016
 # Johann Hackl <jhackl1234@gmail.com>, 2016
 # ... ... <jon12@gmx.de>, 2016-2017
-# Kilian Seizinger <Kilian.Seizinger@gmx.de>, 2019
+# duichwer <Kilian.Seizinger@gmx.de>, 2019
+# Kjell, 2019
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # Lukas Heiniger <kenionatus@techie.com>, 2019
@@ -49,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-15 11:11+0000\n"
+"Last-Translator: Kjell\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -587,39 +588,39 @@ msgstr ""
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Der Host hat das Spiel beendet."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Fehlerhafte Netzwerkprotokollversion."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Das Spiel lädt, bitte versuche es später erneut."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Das Spiel hat bereits begonnen, Zuschauer sind nicht erlaubt."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Du wurdest ausgeschlossen."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Du wurdest gebannt."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Spielername in Verwendung. Wenn du getrennt wurdest, versuche es in einigen Sekunden erneut."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Der Server ist voll."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Sichere Lobby Authentifizierung fehlgeschlagen. Trete über die Lobby bei."
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -3267,11 +3268,11 @@ msgstr "Rangsymbol über der Statusleiste"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Zeige eine Statusanzeige mit der Erfahrung über jeder ausgewählten Einheit."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Statusanzeige der Erfahrung"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3753,7 +3754,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Gibt einen Bevölkerungsboost."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
