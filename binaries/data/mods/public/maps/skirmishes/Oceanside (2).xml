@@ -33,9 +33,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="-28.6608" y="438.852" z="528.179"/>
-		<Rotation angle="1.40762"/>
-		<Declination angle="0.610866"/>
+		<Position x="421.104" y="376.328" z="45.1924"/>
+		<Rotation angle="0.333859"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -46,24 +46,35 @@
   "LockTeams": false,
   "Name": "Oceanside (2)",
   "PlayerData": [
-    null,
     {
       "Civ": "athen",
       "StartingCamera": {
         "Position": {
-          "x": 761.911,
-          "y": 181.437,
-          "z": 215.675
+          "x": 220.84,
+          "y": 184.853,
+          "z": 734.317
         },
         "Rotation": {
           "x": 35,
-          "y": 29.4027,
-          "z": -0.00000588004
+          "y": 0,
+          "z": 0
         }
       }
     },
     {
-      "Civ": "cart"
+      "Civ": "cart",
+      "StartingCamera": {
+        "Position": {
+          "x": 769.293,
+          "y": 181.491,
+          "z": 206.053
+        },
+        "Rotation": {
+          "x": 35,
+          "y": -2.28607,
+          "z": -4.27227e-7
+        }
+      }
     }
   ],
   "Preview": "oceanside.png",
