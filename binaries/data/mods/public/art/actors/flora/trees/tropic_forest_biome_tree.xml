@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="kapok_tree_a">
+      <mesh>gaia/kapok_tree_a.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kapok_tree_b">
+      <mesh>gaia/kapok_tree_b.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_1">
+      <mesh>gaia/deciduous_15.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_2">
+      <mesh>gaia/deciduous_20.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kapok_tree_c">
+      <mesh>gaia/kapok_tree_a.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kapok_tree_d">
+      <mesh>gaia/kapok_tree_b.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_3">
+      <mesh>gaia/deciduous_15.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_4">
+      <mesh>gaia/deciduous_20.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

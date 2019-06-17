@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="fern_a">
+      <mesh>gaia/fern_tropical_a.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fern_b">
+      <mesh>gaia/fern_tropical_a.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fern_c">
+      <mesh>gaia/fern_tropical_b.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fern_d">
+      <mesh>gaia/fern_tropical_b.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fern_e">
+      <mesh>gaia/fern_tropical_b.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_a">
+      <mesh>gaia/tropic_deciduous_06.dae</mesh>
+      <textures>
+        <texture file="gaia/tropic_deciduous_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fern_f">
+      <mesh>gaia/fern_tropical_a.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fern_g">
+      <mesh>gaia/fern_tropical_b.dae</mesh>
+      <textures>
+        <texture file="gaia/fern_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
