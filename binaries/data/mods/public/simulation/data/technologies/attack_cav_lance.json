@@ -16,7 +16,7 @@
 	"icon": "spear_cavalry.png",
 	"researchTime": 40,
 	"tooltip": "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack.",
-	"modifications": [{"value": "Attack/Melee/Hack", "add": 2.0}],
+	"modifications": [{"value": "Attack/Melee/Damage/Hack", "add": 2.0}],
 	"affects": ["Cavalry Melee"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

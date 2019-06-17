@@ -2,9 +2,11 @@
 <Entity parent="template_unit_ship">
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>10.0</Crush>
+      <Damage>
+        <Hack>10.0</Hack>
+        <Pierce>10.0</Pierce>
+        <Crush>10.0</Crush>
+      </Damage>
       <MaxRange>8.0</MaxRange>
       <PrepareTime>50</PrepareTime>
       <RepeatTime>100</RepeatTime>
@@ -20,9 +22,11 @@
     <Shape>Circular</Shape>
     <Range>30</Range>
     <FriendlyFire>true</FriendlyFire>
-    <Hack>300.0</Hack>
-    <Pierce>300.0</Pierce>
-    <Crush>300.0</Crush>
+    <Damage>
+      <Hack>300.0</Hack>
+      <Pierce>300.0</Pierce>
+      <Crush>300.0</Crush>
+    </Damage>
   </DeathDamage>
   <Footprint>
     <Square width="8.0" depth="24.0"/>

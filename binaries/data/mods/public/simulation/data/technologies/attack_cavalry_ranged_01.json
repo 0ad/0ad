@@ -15,9 +15,9 @@
 	"icon": "horse_rider.png",
 	"researchTime": 40,
 	"tooltip": "+20% ranged cavalry attack.",
-	"modifications": [{"value": "Attack/Ranged/Hack", "multiply": 1.2},
-		{"value": "Attack/Ranged/Pierce", "multiply": 1.2},
-		{"value": "Attack/Ranged/Crush", "multiply": 1.2}],
+	"modifications": [{"value": "Attack/Ranged/Damage/Hack", "multiply": 1.2},
+		{"value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2},
+		{"value": "Attack/Ranged/Damage/Crush", "multiply": 1.2}],
 	"affects": ["Cavalry Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

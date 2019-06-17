@@ -10,9 +10,11 @@
         <Shape>Circular</Shape>
         <Range>10</Range>
         <FriendlyFire>false</FriendlyFire>
-        <Hack>40.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>40.0</Crush>
+        <Damage>
+          <Hack>40.0</Hack>
+          <Pierce>0.0</Pierce>
+          <Crush>40.0</Crush>
+        </Damage>
       </Splash>
       <Projectile>
         <Speed>37.5</Speed>

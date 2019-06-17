@@ -2,9 +2,11 @@
 <Entity parent="template_unit_siege">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>12.0</Pierce>
-      <Crush>2.5</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>12.0</Pierce>
+        <Crush>2.5</Crush>
+      </Damage>
       <MaxRange>55.0</MaxRange>
       <MinRange>10.0</MinRange>
       <ElevationBonus>10</ElevationBonus>

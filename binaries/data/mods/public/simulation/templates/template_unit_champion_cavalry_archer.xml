@@ -2,9 +2,11 @@
 <Entity parent="template_unit_champion_cavalry">
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>14.0</Pierce>
-      <Crush>0</Crush>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>14.0</Pierce>
+        <Crush>0</Crush>
+      </Damage>
       <MaxRange>76.0</MaxRange>
       <MinRange>0.0</MinRange>
       <PrepareTime>500</PrepareTime>

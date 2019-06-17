@@ -15,12 +15,12 @@
 	"researchTime": 40,
 	"tooltip": "Inspire your troops with higher pay. All land and naval army +25% attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Hack", "multiply": 1.25},
-		{"value": "Attack/Melee/Pierce", "multiply": 1.25},
-		{"value": "Attack/Melee/Crush", "multiply": 1.25},
-		{"value": "Attack/Ranged/Hack", "multiply": 1.25},
-		{"value": "Attack/Ranged/Pierce", "multiply": 1.25},
-		{"value": "Attack/Ranged/Crush", "multiply": 1.25}
+		{"value": "Attack/Melee/Damage/Hack", "multiply": 1.25},
+		{"value": "Attack/Melee/Damage/Pierce", "multiply": 1.25},
+		{"value": "Attack/Melee/Damage/Crush", "multiply": 1.25},
+		{"value": "Attack/Ranged/Damage/Hack", "multiply": 1.25},
+		{"value": "Attack/Ranged/Damage/Pierce", "multiply": 1.25},
+		{"value": "Attack/Ranged/Damage/Crush", "multiply": 1.25}
 	],
 	"affects": ["Melee", "Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

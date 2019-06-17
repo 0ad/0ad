@@ -2,9 +2,11 @@
 <Entity parent="template_unit">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>100.0</Pierce>
-      <Crush>227.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>100.0</Pierce>
+        <Crush>227.0</Crush>
+      </Damage>
       <MaxRange>120</MaxRange>
       <MinRange>80</MinRange>
       <PrepareTime>0</PrepareTime>

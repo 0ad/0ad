@@ -2,9 +2,11 @@
 <Entity parent="template_structure_defensive">
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>0</Pierce>
-      <Crush>0</Crush>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>0</Pierce>
+        <Crush>0</Crush>
+      </Damage>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Delay>0</Delay>

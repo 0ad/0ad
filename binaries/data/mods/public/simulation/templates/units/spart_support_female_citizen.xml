@@ -2,7 +2,9 @@
 <Entity parent="template_unit_support_female_citizen">
   <Attack>
     <Melee>
-       <Hack op="mul">1.5</Hack>
+      <Damage>
+        <Hack op="mul">1.5</Hack>
+      </Damage>
     </Melee>
   </Attack>
   <Builder>

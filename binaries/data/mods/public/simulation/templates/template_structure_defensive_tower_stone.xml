@@ -2,7 +2,9 @@
 <Entity parent="template_structure_defensive_tower">
   <Attack>
     <Ranged>
-      <Pierce>12</Pierce>
+      <Damage>
+        <Pierce>12</Pierce>
+      </Damage>
       <MaxRange>76</MaxRange>
       <MinRange>10</MinRange>
       <ElevationBonus>15</ElevationBonus>

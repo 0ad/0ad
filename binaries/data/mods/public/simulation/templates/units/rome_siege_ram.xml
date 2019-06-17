@@ -2,7 +2,9 @@
 <Entity parent="template_unit_siege_ram">
   <Attack>
     <Melee>
-      <Crush op="mul">1.2</Crush>
+      <Damage>
+        <Crush op="mul">1.2</Crush>
+      </Damage>
     </Melee>
   </Attack>
   <Footprint replace="">

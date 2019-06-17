@@ -2,9 +2,11 @@
 <Entity parent="template_unit_ship">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>100.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>10.0</Pierce>
+        <Crush>100.0</Crush>
+      </Damage>
       <MaxRange>72.0</MaxRange>
       <MinRange>10.0</MinRange>
       <PrepareTime>2000</PrepareTime>
@@ -14,9 +16,11 @@
         <Shape>Circular</Shape>
         <Range>10</Range>
         <FriendlyFire>false</FriendlyFire>
-        <Hack>0.0</Hack>
-        <Pierce>15.0</Pierce>
-        <Crush>35.0</Crush>
+        <Damage>
+          <Hack>0.0</Hack>
+          <Pierce>15.0</Pierce>
+          <Crush>35.0</Crush>
+        </Damage>
       </Splash>
       <Projectile>
         <Speed>37.5</Speed>

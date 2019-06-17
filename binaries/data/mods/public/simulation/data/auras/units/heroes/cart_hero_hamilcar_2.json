@@ -4,12 +4,12 @@
 	"affects": ["Mercenary"],
 	"affectedPlayers": ["Enemy"],
 	"modifications": [
-		{ "value": "Attack/Melee/Hack", "multiply": 0.8 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 0.8 },
-		{ "value": "Attack/Melee/Crush", "multiply": 0.8 },
-		{ "value": "Attack/Ranged/Hack", "multiply": 0.8 },
-		{ "value": "Attack/Ranged/Pierce", "multiply": 0.8 },
-		{ "value": "Attack/Ranged/Crush", "multiply": 0.8 }
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 0.8 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 0.8 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 0.8 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 0.8 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 0.8 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 0.8 }
 	],
 	"auraName": "Subduer of Mercenaries",
 	"auraDescription": "-20% attack for enemy mercenaries."

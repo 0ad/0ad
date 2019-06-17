@@ -187,10 +187,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 				ret.attack[type] = {
 					"minRange": getAttackStat("MinRange"),
 					"maxRange": getAttackStat("MaxRange"),
-					"elevationBonus": getAttackStat("ElevationBonus")
+					"elevationBonus": getAttackStat("ElevationBonus"),
+					"damage": {}
 				};
 				for (let damageType of damageTypes.GetTypes())
-					ret.attack[type][damageType] = getAttackStat(damageType);
+					ret.attack[type].damage[damageType] = getAttackStat("Damage/" + damageType);
 
 				ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
 					(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
@@ -202,10 +203,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 				ret.attack[type].splash = {
 					// true if undefined
 					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false",
-					"shape": template.Attack[type].Splash.Shape
+					"shape": template.Attack[type].Splash.Shape,
+					"damage": {}
 				};
 				for (let damageType of damageTypes.GetTypes())
-					ret.attack[type].splash[damageType] = getAttackStat("Splash/" + damageType);
+					ret.attack[type].splash.damage[damageType] = getAttackStat("Splash/Damage/" + damageType);
 			}
 		}
 	}
@@ -213,10 +215,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 	if (template.DeathDamage)
 	{
 		ret.deathDamage = {
-			"friendlyFire": template.DeathDamage.FriendlyFire != "false"
+			"friendlyFire": template.DeathDamage.FriendlyFire != "false",
+			"damage": {}
 		};
 		for (let damageType of damageTypes.GetTypes())
-			ret.deathDamage[damageType] = getEntityValue("DeathDamage/" + damageType);
+			ret.deathDamage.damage[damageType] = getEntityValue("DeathDamage/Damage/" + damageType);
 	}
 
 	if (template.Auras && auraTemplates)
@@ -226,10 +229,10 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 		{
 			let aura = auraTemplates[auraID];
 			ret.auras[auraID] = {
-					"name": aura.auraName,
-					"description": aura.auraDescription || null,
-					"radius": aura.radius || null
-				};
+				"name": aura.auraName,
+				"description": aura.auraDescription || null,
+				"radius": aura.radius || null
+			};
 		}
 	}
 

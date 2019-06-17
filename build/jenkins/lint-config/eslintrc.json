@@ -19,6 +19,7 @@
         "no-negated-in-lhs": 1,
         "no-obj-calls": 1,
         "no-unreachable": 1,
+        "no-use-before-define": ["error", "nofunc"],
         "use-isnan": 1,
         "valid-jsdoc": 0,
         "valid-typeof": 1,

@@ -6,9 +6,11 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>24.0</Hack>
-      <Pierce>20.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>24.0</Hack>
+        <Pierce>20.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>4.5</MaxRange>
       <Bonuses>
         <BonusCavMelee>

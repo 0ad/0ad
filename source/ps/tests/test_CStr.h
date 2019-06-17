@@ -113,8 +113,7 @@ public:
 		// because GTK+ can change the locale when we're running Atlas.
 		// (If the host system doesn't have the locale we're using for this test
 		// then it'll just stick with the default, which is fine)
-		char* old = setlocale(LC_NUMERIC, NULL);
-		setlocale(LC_NUMERIC, "fr_FR.UTF-8");
+		char* old = setlocale(LC_NUMERIC, "fr_FR.UTF-8");
 
 		CStr8 str1("1.234");
 		TS_ASSERT_DELTA(str1.ToFloat(), 1.234f, 0.0001f);

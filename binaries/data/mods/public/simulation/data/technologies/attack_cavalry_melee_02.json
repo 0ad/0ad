@@ -16,9 +16,9 @@
 	"icon": "spear_cavalry.png",
 	"researchTime": 40,
 	"tooltip": "Equip your melee cavalry with better weapons. +20% melee cavalry attack.",
-	"modifications": [{"value": "Attack/Melee/Hack", "multiply": 1.2},
-		{"value": "Attack/Melee/Pierce", "multiply": 1.2},
-		{"value": "Attack/Melee/Crush", "multiply": 1.2}],
+	"modifications": [{"value": "Attack/Melee/Damage/Hack", "multiply": 1.2},
+		{"value": "Attack/Melee/Damage/Pierce", "multiply": 1.2},
+		{"value": "Attack/Melee/Damage/Crush", "multiply": 1.2}],
 	"affects": ["Cavalry Melee"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

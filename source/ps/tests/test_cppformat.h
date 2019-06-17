@@ -24,6 +24,9 @@ class TestCppformat : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
+		// Make test behave independent of current host locale
+		char* old = setlocale(LC_ALL, "en_US.UTF-8");
+
 		TS_ASSERT_EQUALS(fmt::sprintf("abc"), "abc");
 
 		TS_ASSERT_EQUALS(fmt::sprintf("%d", 123), "123");
@@ -54,5 +57,7 @@ public:
 		TS_ASSERT_EQUALS(fmt::sprintf("T%sT", (const char*)NULL), "T(null)T");
 
 		TS_ASSERT_EQUALS(fmt::sprintf("T%pT", (void*)0x1234), "T0x1234T");
+
+		setlocale(LC_ALL, old);
 	}
 };

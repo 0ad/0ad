@@ -2,9 +2,11 @@
 <Entity parent="template_structure_defensive_wall">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>8.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>8.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>72.0</MaxRange>
       <MinRange>12.0</MinRange>
       <PrepareTime>1200</PrepareTime>
