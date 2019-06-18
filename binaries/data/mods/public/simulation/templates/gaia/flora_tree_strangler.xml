@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_flora_tree">
+  <Footprint>
+    <Circle radius="7.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Strangler Fig</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="5.0" depth="5.0"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>500</Amount>
+    <MaxGatherers>10</MaxGatherers>
+  </ResourceSupply>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <VisualActor>
+    <Actor>flora/trees/strangler.xml</Actor>
+  </VisualActor>
+</Entity>
