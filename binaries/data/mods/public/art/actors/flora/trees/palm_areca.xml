@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="base"/>
+  </group>
+  <group>
+    <variant frequency="3" name="a">
+      <textures>
+        <texture file="gaia/palm_areca.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/palm_areca_1.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/palm_areca_2.dae</mesh>
+    </variant>
+    <variant frequency="3" name="3">
+      <mesh>gaia/palm_areca_3.dae</mesh>
+    </variant>
+    <variant frequency="2" name="4">
+      <mesh>gaia/palm_areca_4.dae</mesh>
+    </variant>
+    <variant frequency="1" name="5">
+      <mesh>gaia/palm_areca_5.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>
