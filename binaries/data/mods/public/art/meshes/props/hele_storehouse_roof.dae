@@ -1,81 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
       <author>Blender User</author>
-      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+      <authoring_tool>Blender 2.80.74 commit date:2019-06-17, commit time:21:07, hash:741641f4c3b8</authoring_tool>
     </contributor>
-    <created>2013-08-24T21:02:06</created>
-    <modified>2013-08-24T21:02:06</modified>
-    <unit name="meter" meter="0.0254"/>
+    <created>2019-06-18T14:10:25</created>
+    <modified>2019-06-18T14:10:25</modified>
+    <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
   <library_geometries>
-    <geometry id="default04Mesh_004-mesh" name="default04Mesh.004">
+    <geometry id="hele_storehouse_roof-mesh" name="hele_storehouse_roof">
       <mesh>
-        <source id="default04Mesh_004-mesh-positions">
-          <float_array id="default04Mesh_004-mesh-positions-array" count="72">0.4396905 -2.787099 4.308895 -5.937023 -2.787099 4.308895 -5.937021 -6.008654 5.311829 0.4396905 -6.00906 5.311635 0.4396905 -6.342742 5.334773 -5.937021 -6.342351 5.33499 -0.572764 2.468612 4.070057 -0.572764 0.3872653 4.070057 0.3311498 0.3872653 4.499501 0.3313012 2.468612 4.49944 0.4860007 2.468612 4.530842 0.4858539 0.3872653 4.530912 0.4396905 -2.316827 4.156133 -5.937023 -2.316827 4.156133 -0.7679474 2.468612 3.978693 -0.7679474 0.3872653 3.978693 5.562477 6.76641 3.57343 0.8880001 6.76641 3.57343 5.562477 3.50036 4.723735 5.562477 3.827329 4.653213 0.8880001 3.50078 4.723893 5.562477 6.50255 3.688867 0.8880001 3.82776 4.653351 0.8880001 6.50255 3.688867</float_array>
+        <source id="hele_storehouse_roof-mesh-positions">
+          <float_array id="hele_storehouse_roof-mesh-positions-array" count="54">6.008655 -5.93702 5.311829 6.009059 0.439691 5.311635 6.342741 0.4396911 5.334774 6.342351 -5.93702 5.33499 -0.3872658 0.3311494 4.499501 -2.468612 0.3313004 4.49944 -2.468612 0.486 4.530842 -0.3872658 0.4858535 4.530912 1.705478 0.4141154 4.015393 1.705479 -5.962598 4.015393 -2.468612 -0.7679482 3.978693 -0.3872655 -0.7679479 3.978693 -6.946183 5.542364 3.477182 -6.946182 0.8678867 3.477181 -3.500361 5.562476 4.723735 -3.82733 5.562476 4.653213 -3.500781 0.8879991 4.723893 -3.827761 0.8879991 4.65335</float_array>
           <technique_common>
-            <accessor source="#default04Mesh_004-mesh-positions-array" count="24" stride="3">
+            <accessor source="#hele_storehouse_roof-mesh-positions-array" count="18" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default04Mesh_004-mesh-normals">
-          <float_array id="default04Mesh_004-mesh-normals-array" count="54">3.81096e-5 0.06917685 0.9976044 3.47729e-5 0.06924039 0.9976 0 0.2972483 0.9548002 4.79884e-5 0.2971617 0.9548272 -0.1989278 4.72604e-5 0.9800142 -0.1989803 4.32064e-5 0.9800035 -0.4291259 0 0.9032447 -0.4290176 5.76832e-5 0.9032961 0 0.308945 0.9510799 0 0.308945 0.9510799 -0.4239465 0 0.9056872 -0.4239465 0 0.9056872 0 0.4008162 0.9161584 0 0.4008162 0.9161584 4.81649e-5 0.210887 0.9775105 5.20532e-5 0.2108339 0.9775219 5.89093e-5 0.3391137 0.9407454 0 0.3392048 0.9407126</float_array>
+        <source id="hele_storehouse_roof-mesh-normals">
+          <float_array id="hele_storehouse_roof-mesh-normals-array" count="36">-0.352823 5.9963e-5 0.9356902 -0.0691756 3.81106e-5 0.9976046 -0.2108857 4.81575e-5 0.9775108 -4.70345e-5 -0.1989306 0.9800136 -0.2884028 4.737e-5 0.9575092 -5.78189e-5 -0.4281201 0.9037219 -0.3529013 0 0.9356606 -0.06924015 3.46784e-5 0.9976001 -0.2108366 5.19974e-5 0.9775214 -4.31756e-5 -0.1989802 0.9800035 -0.2884672 -1.33109e-7 0.9574899 0 -0.428209 0.9036797</float_array>
           <technique_common>
-            <accessor source="#default04Mesh_004-mesh-normals-array" count="18" stride="3">
+            <accessor source="#hele_storehouse_roof-mesh-normals-array" count="12" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default04Mesh_004-mesh-map-0">
-          <float_array id="default04Mesh_004-mesh-map-0-array" count="108">0.879344 0.999808 0.547198 0.983596 0.879263 0.983563 0.879344 0.999808 0.547514 0.999808 0.547198 0.983596 0.490331 0.594772 0.889521 0.09857696 0.490331 0.09857696 0.889521 0.594816 0.889521 0.09857696 0.490331 0.594772 0.737256 0.999808 0.571031 0.983596 0.737216 0.983563 0.737256 0.999808 0.571189 0.999808 0.571031 0.983596 0.614358 0.250922 0.763099 0.074032 0.614358 0.074032 0.614358 0.250922 0.763099 0.250941 0.763099 0.074032 0.490331 0.09857696 0.889521 0.09857696 0.886739 0.023714 0.490331 0.09857696 0.886739 0.023714 0.487549 0.023714 0.614358 0.074032 0.763099 0.074032 0.762559 0.03189599 0.614358 0.074032 0.762559 0.03189599 0.613818 0.03189599 0.309914 0.01157599 9.88e-4 0.01157695 0.001194 0.067914 0.309914 0.01157599 0.001194 0.067914 0.310119 0.06791299 0.820217 0.911502 0.488386 0.911502 0.48807 0.995404 0.48807 0.995404 0.820135 0.995575 0.820217 0.911502 0.001194 0.565095 0.310119 0.565148 0.310119 0.06791299 0.001194 0.565095 0.310119 0.06791299 0.001194 0.067914</float_array>
+        <source id="hele_storehouse_roof-mesh-map-0">
+          <float_array id="hele_storehouse_roof-mesh-map-0-array" count="72">0.309914 0.01157593 0.001194 0.7486888 0.310119 0.7487418 0.5475152 0.9649936 0.8793441 0.999808 0.5475141 0.9998065 0.4896202 1.000859 0.8217672 0.961946 0.4899362 0.961946 0.3439726 0.9639517 0.5862808 1.000708 0.3439714 1.000706 0.889521 0.023714 0.4919322 0.8953549 0.8911219 0.8953968 0.2044883 0.06600028 0.0562874 0.2850263 0.2050284 0.2850453 0.309914 0.01157593 9.88e-4 0.01157695 0.001194 0.7486888 0.5475152 0.9649936 0.8793451 0.9649935 0.8793441 0.999808 0.4896202 1.000859 0.8216852 1.000938 0.8217672 0.961946 0.3439726 0.9639517 0.586282 0.9639517 0.5862808 1.000708 0.889521 0.023714 0.490331 0.023714 0.4919322 0.8953549 0.2044883 0.06600028 0.05574738 0.06600028 0.0562874 0.2850263</float_array>
           <technique_common>
-            <accessor source="#default04Mesh_004-mesh-map-0-array" count="54" stride="2">
+            <accessor source="#hele_storehouse_roof-mesh-map-0-array" count="36" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default04Mesh_004-mesh-map-1">
-          <float_array id="default04Mesh_004-mesh-map-1-array" count="108">0.4833265 0.1360221 0.4905886 0.002100884 0.4903129 0.136015 0.4833265 0.1360221 0.4836019 0.002107977 0.4905886 0.002100884 0.4836019 0.002107977 0.4164986 0.1365647 0.4167826 0.002650678 0.4833265 0.1360221 0.4164986 0.1365647 0.4836019 0.002107977 0.7282466 0.7099183 0.731517 0.6662557 0.7314763 0.7099506 0.7282466 0.7099183 0.7282873 0.6662233 0.731517 0.6662557 0.7282873 0.6662233 0.7095223 0.70953 0.7095661 0.665835 0.7282873 0.6662233 0.7282466 0.7099183 0.7095223 0.70953 0.4167826 0.002650678 0.4164986 0.1365647 0.4067496 0.1366478 0.4167826 0.002650678 0.4067496 0.1366478 0.4070337 0.002733826 0.7095661 0.665835 0.7095223 0.70953 0.705479 0.7094473 0.7095661 0.665835 0.705479 0.7094473 0.7055228 0.6657522 0.4088487 0.3206649 0.409057 0.2224987 0.4145027 0.2224339 0.4088487 0.3206649 0.4145027 0.2224339 0.4142946 0.3206002 0.4696756 0.3200694 0.4698746 0.221903 0.476682 0.221867 0.476682 0.221867 0.4764827 0.3200334 0.4696756 0.3200694 0.4698746 0.221903 0.4696756 0.3200694 0.4142946 0.3206002 0.4698746 0.221903 0.4142946 0.3206002 0.4145027 0.2224339</float_array>
+        <source id="hele_storehouse_roof-mesh-map-1">
+          <float_array id="hele_storehouse_roof-mesh-map-1-array" count="72">0.4088487 0.3206649 0.4698746 0.221903 0.4696756 0.3200694 0.4833265 0.1360221 0.4905886 0.002100825 0.4903129 0.1360149 0.476682 0.221867 0.4696756 0.3200694 0.4698746 0.221903 0.7282466 0.7099183 0.731517 0.6662557 0.7314763 0.7099506 0.4067496 0.1366478 0.4836019 0.002107918 0.4833265 0.1360221 0.705479 0.7094473 0.7282873 0.6662233 0.7282466 0.7099183 0.4088487 0.3206649 0.409057 0.2224987 0.4698746 0.221903 0.4833265 0.1360221 0.4836019 0.002107918 0.4905886 0.002100825 0.476682 0.221867 0.4764827 0.3200334 0.4696756 0.3200694 0.7282466 0.7099183 0.7282873 0.6662233 0.731517 0.6662557 0.4067496 0.1366478 0.4070337 0.002733767 0.4836019 0.002107918 0.705479 0.7094473 0.7055228 0.6657522 0.7282873 0.6662233</float_array>
           <technique_common>
-            <accessor source="#default04Mesh_004-mesh-map-1-array" count="54" stride="2">
+            <accessor source="#hele_storehouse_roof-mesh-map-1-array" count="36" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="default04Mesh_004-mesh-vertices">
-          <input semantic="POSITION" source="#default04Mesh_004-mesh-positions"/>
+        <vertices id="hele_storehouse_roof-mesh-vertices">
+          <input semantic="POSITION" source="#hele_storehouse_roof-mesh-positions"/>
         </vertices>
-        <polylist count="18">
-          <input semantic="VERTEX" source="#default04Mesh_004-mesh-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#default04Mesh_004-mesh-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#default04Mesh_004-mesh-map-0" offset="2" set="0"/>
-          <input semantic="TEXCOORD" source="#default04Mesh_004-mesh-map-1" offset="2" set="1"/>
-          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
-          <p>3 0 0 5 0 1 4 0 2 3 1 3 2 1 4 5 1 5 2 2 6 0 2 7 1 2 8 3 3 9 0 3 10 2 3 11 9 4 12 11 4 13 10 4 14 9 5 15 8 5 16 11 5 17 8 6 18 6 6 19 7 6 20 8 7 21 9 7 22 6 7 23 1 8 24 0 8 25 12 8 26 1 9 27 12 9 28 13 9 29 7 10 30 6 10 31 14 10 32 7 11 33 14 11 34 15 11 35 16 12 36 17 12 37 23 12 38 16 13 39 23 13 40 21 13 41 19 14 42 22 14 43 20 14 44 20 15 45 18 15 46 19 15 47 22 16 48 19 16 49 21 16 50 22 17 51 21 17 52 23 17 53</p>
-        </polylist>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#hele_storehouse_roof-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#hele_storehouse_roof-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#hele_storehouse_roof-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#hele_storehouse_roof-mesh-map-1" offset="2" set="1"/>
+          <p>12 0 0 17 0 1 15 0 2 1 1 3 3 1 4 2 1 5 16 2 6 15 2 7 17 2 8 5 3 9 7 3 10 6 3 11 8 4 12 0 4 13 1 4 14 10 5 15 4 5 16 5 5 17 12 6 18 13 6 19 17 6 20 1 7 21 0 7 22 3 7 23 16 8 24 14 8 25 15 8 26 5 9 27 4 9 28 7 9 29 8 10 30 9 10 31 0 10 32 10 11 33 11 11 34 4 11 35</p>
+        </triangles>
       </mesh>
-      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="default04_001" name="default04_001" type="NODE">
-        <translate sid="location">0 1.49012e-8 2.38419e-7</translate>
-        <rotate sid="rotationZ">0 0 1 -90</rotate>
-        <rotate sid="rotationY">0 1 0 180</rotate>
-        <rotate sid="rotationX">1 0 0 -180</rotate>
-        <scale sid="scale">1 1 1</scale>
-        <instance_geometry url="#default04Mesh_004-mesh"/>
+      <node id="hele_storehouse_roof" name="hele_storehouse_roof" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#hele_storehouse_roof-mesh" name="hele_storehouse_roof"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
