@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="tree_trunk_1">
+      <mesh>gaia/dead_deciduous.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_tree_no_bark_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_1">
+      <mesh>gaia/dead_deciduous_1.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_2">
+      <mesh>gaia/dead_deciduous_2.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="tree_3">
+      <mesh>gaia/dead_deciduous_3.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="tree_4">
+      <mesh>gaia/dead_deciduous_4.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="stump_1">
+      <mesh>gaia/dead_deciduous_5.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fallen_trees_1">
+      <mesh>gaia/dead_deciduous_6.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_dirt_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fallen_trees_2">
+      <mesh>gaia/dead_deciduous_7.dae</mesh>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fallen_trees_3">
+      <mesh>gaia/dead_deciduous_8.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_dirt_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fallen_trees_4">
+      <mesh>gaia/dead_deciduous_9.dae</mesh>
+      <textures>
+        <texture file="gaia/dead_deciduous_tree.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fallen_trees_log_2">
+      <mesh>gaia/eyecandy_tree_dead_d.dae</mesh>
+      <textures>
+        <texture file="gaia/prop_eyecandy_nature.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="fallen_trees_log_3">
+      <mesh>gaia/eyecandy_tree_dead_e.dae</mesh>
+      <textures>
+        <texture file="gaia/prop_eyecandy_nature.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_flora_bush">
+<Entity parent="template_gaia_flora_tree">
   <Identity>
-    <SpecificName>Deciduous Bush</SpecificName>
+    <SpecificName>Bush</SpecificName>
   </Identity>
   <ResourceSupply>
     <Amount>50</Amount>
   </ResourceSupply>
   <VisualActor>
-    <Actor>props/flora/bush_tempe_a.xml</Actor>
+    <Actor>flora/trees/temperate_bush_biome.xml</Actor>
   </VisualActor>
 </Entity>

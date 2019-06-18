@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <particles>
-
-    <texture>art/textures/particles/cloud_1_512.png</texture>
-    <blend mode="over"/>
-
-    <start_full/>
-
-    <constant name="emissionrate" value="0.075"/>
-    <uniform name="lifetime" min="50.0" max="100.0"/>
-    <uniform name="position.x" min="-1.0" max="5.0"/>
-    <uniform name="position.z" min="-1.0" max="1.0"/>
-    <constant name="position.y" value="120.0"/>
-	
-	<uniform name="angle" min="-10" max="10"/>
-
-    <uniform name="velocity.x" min="0.75" max="1.0"/>
-    <uniform name="velocity.y" min="-0.5" max="0.75"/>
-    <uniform name="velocity.angle" min="-0.05" max="0.05"/>
-	
-    <uniform name="size" min="25.0" max="60.0"/>
-	<uniform name="size.growthRate" min="-0.5" max="1.0"/>
-
+  <texture>art/textures/particles/cloud_1_512.png</texture>
+  <blend mode="over"/>
+  <use_relative_velocity/>
+  <constant name="emissionrate" value="1.0"/>
+  <constant name="lifetime" value="0.0"/>
+  <uniform name="position.x" min="5.0" max="0.0"/>
+  <uniform name="position.z" min="5.0" max="0.0"/>
+  <constant name="position.y" value="2.0"/>
+  <constant name="size" value="5.0"/>
+  <force x="4"/>
+  <force z="0"/>
 </particles>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <group>
+    <variant frequency="3" name="grass_1">
+      <mesh>gaia/temp_forest_grass_01.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_2">
+      <mesh>gaia/temp_forest_grass_01.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_3">
+      <mesh>gaia/temp_forest_grass_01.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_4">
+      <mesh>gaia/temp_forest_grass_01.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_5">
+      <mesh>gaia/temp_forest_grass_01.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_6">
+      <mesh>gaia/temp_forest_grass_02.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_7">
+      <mesh>gaia/temp_forest_grass_02.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="grass_8">
+      <mesh>gaia/temp_forest_grass_02.dae</mesh>
+      <textures>
+        <texture file="gaia/forest_grass_temp_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

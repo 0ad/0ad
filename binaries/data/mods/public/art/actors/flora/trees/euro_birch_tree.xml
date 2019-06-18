@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="tree_1">
+      <mesh>gaia/euro_birch_01.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_2">
+      <mesh>gaia/euro_birch_02.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_3">
+      <mesh>gaia/euro_birch_03.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_4">
+      <mesh>gaia/euro_birch_04.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_5">
+      <mesh>gaia/deciduous_09.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_6">
+      <mesh>gaia/deciduous_10.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_7">
+      <mesh>gaia/deciduous_11.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_8">
+      <mesh>gaia/deciduous_13.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_9">
+      <mesh>gaia/deciduous_15.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/birch_tree_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

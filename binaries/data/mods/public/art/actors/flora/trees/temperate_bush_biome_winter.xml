@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="bush_1">
+      <mesh>gaia/temp_bush_01.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_2">
+      <mesh>gaia/temp_bush_02.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_3">
+      <mesh>gaia/temp_bush_02.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_4">
+      <mesh>gaia/temp_bush_01.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_5">
+      <mesh>gaia/temp_bush_03.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_6">
+      <mesh>gaia/temp_bush_03.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_7">
+      <mesh>gaia/temp_bush_04.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bush_8">
+      <mesh>gaia/temp_bush_04.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_tree_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
