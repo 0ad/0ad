@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="base"/>
+  </group>
+  <group>
+    <variant frequency="3" name="a">
+      <textures>
+        <texture file="gaia/banana.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/banana.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/banana_2.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>
