@@ -9,6 +9,8 @@
     <variant frequency="3" name="a">
       <textures>
         <texture file="gaia/palm_areca.png" name="baseTex"/>
+        <texture file="gaia/palm_areca_norm.png" name="normTex"/>
+        <texture file="gaia/palm_areca_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -16,18 +18,18 @@
     <variant frequency="1" name="1">
       <mesh>gaia/palm_areca_1.dae</mesh>
     </variant>
-    <variant frequency="2" name="2">
+    <variant frequency="1" name="2">
       <mesh>gaia/palm_areca_2.dae</mesh>
     </variant>
-    <variant frequency="3" name="3">
+    <variant frequency="1" name="3">
       <mesh>gaia/palm_areca_3.dae</mesh>
     </variant>
-    <variant frequency="2" name="4">
+    <variant frequency="1" name="4">
       <mesh>gaia/palm_areca_4.dae</mesh>
     </variant>
     <variant frequency="1" name="5">
       <mesh>gaia/palm_areca_5.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>basic_trans_spec.xml</material>
 </actor>

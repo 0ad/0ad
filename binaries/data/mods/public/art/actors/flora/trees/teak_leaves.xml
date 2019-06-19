@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <textures>
+        <texture file="gaia/teak_norm.png" name="normTex"/>
+        <texture file="gaia/teak_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="a">
+      <textures>
+        <texture file="gaia/teak.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="1">
+      <mesh>gaia/tree_teak_1_leaves.dae</mesh>
+    </variant>
+    <variant frequency="4" name="2">
+      <mesh>gaia/tree_teak_2_leaves.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>
