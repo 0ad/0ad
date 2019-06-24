@@ -14,6 +14,7 @@
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017
+# ks k, 2019
 # moolow <copyhyeon@gmail.com>, 2018
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # red hare <www3@hotmail.co.jp>, 2017
@@ -25,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-17 09:43+0200\n"
-"PO-Revision-Date: 2019-06-17 14:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-24 03:33+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,6 +50,9 @@ msgid "Gather food from this bountiful oceanic resource."
 msgstr "이 풍부한 해양 자원에서 식량을 모으십시오."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
 msgid "Bush"
 msgstr "덤불"
 
@@ -174,7 +178,7 @@ msgstr "종교 성역"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "그리스 종교 성역"
+msgstr "그리스 종교 안식처"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:4
 msgid "Arctic Wolf"
@@ -248,7 +252,7 @@ msgstr "갈루스 갈루스 도메스티쿠스"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr "나일악어"
+msgstr "나일 악어"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:20
 msgid "Crocodylus niloticus"
@@ -520,7 +524,7 @@ msgstr "열매들"
 
 #: simulation/templates/gaia/flora_bush_berry.xml:5
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "숲에서 열매를 채집하십시오."
+msgstr "식량을 모우기 위해서 이 덤불에서 과일을 수집합니다."
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
@@ -528,11 +532,7 @@ msgstr "포도"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
-msgstr "음식으로 쓰일 포도를 채집하십시오."
-
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-msgid "Deciduous Bush"
-msgstr "낙엽 덤불"
+msgstr "식량용 쓰일 포도를 포도나무에서 채집합니다."
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -550,6 +550,18 @@ msgstr "사과 나무"
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
 msgstr "대나무"
+
+#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "용 대나무??"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:4
+msgid "Banana"
+msgstr "바나나"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:5
+msgid "Gather bananas for Food."
+msgstr "식량용으로 바나나를 채집합니다."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -612,13 +624,17 @@ msgid "Fruiting Date Palm"
 msgstr "대추야자 열매맺히는 중??"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Tree"
-msgstr "죽은 나무"
+msgid "Dead Deciduous Tree"
+msgstr "죽은 낙엽 나무"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
 msgstr "유럽 너도밤 나무"
+
+#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "자작나무"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -628,6 +644,11 @@ msgstr "무화과"
 msgid "Gather figs for Food."
 msgstr "음식으로 쓰일 무화과를 모으세요."
 
+#: simulation/templates/gaia/flora_tree_fir.xml:4
+#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
+msgid "Fir Tree"
+msgstr "전나무"
+
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr "전나무 묘목"
@@ -635,6 +656,10 @@ msgstr "전나무 묘목"
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "맹그로브"
+
+#: simulation/templates/gaia/flora_tree_maple.xml:4
+msgid "Maple"
+msgstr "단풍"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -650,7 +675,7 @@ msgstr "참나무"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "사철가시나무ehsms떡갈나무"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -659,6 +684,10 @@ msgstr "큰 참나무"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "올리브나무"
+
+#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "아레카 야자"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -698,13 +727,31 @@ msgstr "검은포플라"
 msgid "Senegal Date Palm"
 msgstr "세네갈 대추야자"
 
+#: simulation/templates/gaia/flora_tree_strangler.xml:8
+msgid "Strangler Fig"
+msgstr "교살 무화과"
+
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
 msgstr "소금 삼나무"
 
+#: simulation/templates/gaia/flora_tree_teak.xml:8
+msgid "Teak"
+msgstr "티크 나무"
+
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "낙엽 나무"
+
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
 msgstr "투나 나무"
+
+#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "열대 우림 나무"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Gags98 <gagspapikyan@gmail.com>, 2016,2018
+# Vahe Avagyan <vahe-a@outlook.fr>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-17 09:43+0200\n"
-"PO-Revision-Date: 2019-06-17 14:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-23 19:39+0000\n"
+"Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,15 +25,18 @@ msgstr "Գայա"
 #: simulation/templates/template_gaia_fish.xml:8
 #: simulation/templates/gaia/fauna_fish.xml:4
 msgid "Fish"
-msgstr ""
+msgstr "Ձուկ"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Gather food from this bountiful oceanic resource."
 msgstr "Հավաքել սնունդ այս օվկիանոսային առատ ռեսուրսից։"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
 msgid "Bush"
-msgstr "Թուփ"
+msgstr "Բույս"
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -80,7 +84,7 @@ msgstr "Գանձ, որը կարելի է արագ հավաքել։"
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
-msgstr "Կառուցվածք"
+msgstr "Կառուց"
 
 #: simulation/templates/template_unit.xml:42
 msgid "Unit"
@@ -512,10 +516,6 @@ msgstr "Խաղող"
 msgid "Gather grapes from these vines for Food."
 msgstr "Հավաքել խաղող այս վազերից՝ սնունդ ստանալու նպատակով։"
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-msgid "Deciduous Bush"
-msgstr "Տերևաթափվող թուփ"
-
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
 msgstr "Ակացիա"
@@ -531,6 +531,18 @@ msgstr "Խնձորենի"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_banana.xml:4
+msgid "Banana"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_banana.xml:5
+msgid "Gather bananas for Food."
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
@@ -594,13 +606,17 @@ msgid "Fruiting Date Palm"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Tree"
-msgstr "Մահացած ծառ"
+msgid "Dead Deciduous Tree"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
 msgstr "Եվրոպական հաճարենի"
+
+#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
+msgid "Silver Birch"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -610,12 +626,21 @@ msgstr "Թզենի"
 msgid "Gather figs for Food."
 msgstr "Հավաքել թուզ՝ սնունդ ստանալու նպատակով։"
 
+#: simulation/templates/gaia/flora_tree_fir.xml:4
+#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
+msgid "Fir Tree"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_maple.xml:4
+msgid "Maple"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
@@ -641,6 +666,10 @@ msgstr "Մեծ կաղնի"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Ձիթենի"
+
+#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
+msgid "Areca Palm"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -680,13 +709,31 @@ msgstr "Սև բարդի"
 msgid "Senegal Date Palm"
 msgstr "Սենեգալյան արմավենի"
 
+#: simulation/templates/gaia/flora_tree_strangler.xml:8
+msgid "Strangler Fig"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
 msgstr "Կարմրան"
 
+#: simulation/templates/gaia/flora_tree_teak.xml:8
+msgid "Teak"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
 msgstr "Թունա ծառ"
+
+#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"

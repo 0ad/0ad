@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-17 09:43+0200\n"
-"PO-Revision-Date: 2019-06-17 18:59+0000\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-21 20:04+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,9 @@ msgid "Gather food from this bountiful oceanic resource."
 msgstr "Събирайте храна от този богат океански ресурс."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
 msgid "Bush"
 msgstr "Храст"
 
@@ -519,10 +522,6 @@ msgstr "Грозде"
 msgid "Gather grapes from these vines for Food."
 msgstr "Събирайте грозде от тези лози за храна."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-msgid "Deciduous Bush"
-msgstr "Широколистен храст"
-
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
 msgstr "Акация"
@@ -539,6 +538,18 @@ msgstr "Ябълково дърво"
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
 msgstr "Бамбук"
+
+#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "Гигантски бамбук"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:4
+msgid "Banana"
+msgstr "Банан"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:5
+msgid "Gather bananas for Food."
+msgstr "Събирайте банани за храна."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -601,13 +612,17 @@ msgid "Fruiting Date Palm"
 msgstr "Финикова палма с плодове"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Tree"
-msgstr "Мъртво дърво"
+msgid "Dead Deciduous Tree"
+msgstr "Мъртво широколистно дърво"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
 msgstr "Европейски бук"
+
+#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "Бяла бреза"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -617,6 +632,11 @@ msgstr "Смокиня"
 msgid "Gather figs for Food."
 msgstr "Събирайте смокини за храна."
 
+#: simulation/templates/gaia/flora_tree_fir.xml:4
+#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
+msgid "Fir Tree"
+msgstr "Ела"
+
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr "Ела (фиданка)"
@@ -624,6 +644,10 @@ msgstr "Ела (фиданка)"
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "Мангрово дърво"
+
+#: simulation/templates/gaia/flora_tree_maple.xml:4
+msgid "Maple"
+msgstr "Явор"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -648,6 +672,10 @@ msgstr "Голям дъб"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Маслинено дърво"
+
+#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "Арекова палма"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -687,13 +715,31 @@ msgstr "Черна топола"
 msgid "Senegal Date Palm"
 msgstr "Сенегалска финикова палма"
 
+#: simulation/templates/gaia/flora_tree_strangler.xml:8
+msgid "Strangler Fig"
+msgstr "Задушаващ фикус"
+
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
 msgstr "Ракитовица"
 
+#: simulation/templates/gaia/flora_tree_teak.xml:8
+msgid "Teak"
+msgstr "Тик"
+
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "Широколистно дърво"
+
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
 msgstr "Индийско дърво"
+
+#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "Тропическо дърво"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"

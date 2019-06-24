@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-17 09:43+0200\n"
-"PO-Revision-Date: 2019-06-17 14:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-23 04:08+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,6 +39,9 @@ msgid "Gather food from this bountiful oceanic resource."
 msgstr "从丰富的海洋资源中采集食物"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
 msgid "Bush"
 msgstr "灌木"
 
@@ -206,7 +209,7 @@ msgstr "公牛"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
 msgid "Bos taurus taurus"
-msgstr ""
+msgstr "骆驼"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
@@ -214,11 +217,11 @@ msgstr "母牛"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
-msgstr ""
+msgstr "南非土牛"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
 msgid "Bos taurus africanus"
-msgstr ""
+msgstr "南非土牛"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:4
 msgid "Zebu"
@@ -520,10 +523,6 @@ msgstr "葡萄"
 msgid "Gather grapes from these vines for Food."
 msgstr "采集葡萄来获取食物。"
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-msgid "Deciduous Bush"
-msgstr "落叶灌木"
-
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
 msgstr "金合欢树"
@@ -540,6 +539,18 @@ msgstr "苹果树"
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
 msgstr "竹子"
+
+#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "龙头箭竹"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:4
+msgid "Banana"
+msgstr "香蕉"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:5
+msgid "Gather bananas for Food."
+msgstr "采集香蕉做食物"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -595,20 +606,24 @@ msgstr "海枣"
 
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
 msgid "Dead Palm"
-msgstr ""
+msgstr "枯棕榈"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
 msgstr "结枣棕榈"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Tree"
-msgstr "枯木"
+msgid "Dead Deciduous Tree"
+msgstr "枯落叶树"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
 msgstr "欧洲山毛榉树"
+
+#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "白桦树"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -618,6 +633,11 @@ msgstr "无花果"
 msgid "Gather figs for Food."
 msgstr "收集无花果作为食物。"
 
+#: simulation/templates/gaia/flora_tree_fir.xml:4
+#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
+msgid "Fir Tree"
+msgstr "枞树"
+
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr "杉树苗"
@@ -625,6 +645,10 @@ msgstr "杉树苗"
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "红树"
+
+#: simulation/templates/gaia/flora_tree_maple.xml:4
+msgid "Maple"
+msgstr "枫树"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -640,7 +664,7 @@ msgstr "橡树"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "冬青橡木"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -649,6 +673,10 @@ msgstr "大橡树"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "橄榄树"
+
+#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "槟榔棕榈"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -688,13 +716,31 @@ msgstr "黑杨树"
 msgid "Senegal Date Palm"
 msgstr "塞内加尔海枣"
 
+#: simulation/templates/gaia/flora_tree_strangler.xml:8
+msgid "Strangler Fig"
+msgstr "无花果"
+
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
 msgstr "柽柳树"
 
+#: simulation/templates/gaia/flora_tree_teak.xml:8
+msgid "Teak"
+msgstr "柚木"
+
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "落叶乔木"
+
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
 msgstr "香椿"
+
+#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "雨林树木"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"

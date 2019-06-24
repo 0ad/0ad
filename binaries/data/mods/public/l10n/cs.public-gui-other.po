@@ -11,7 +11,7 @@
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # Marek Harok <kenturin@seznam.cz>, 2017
 # Pavel Borecki <pavel.borecki@gmail.com>, 2019
-# fri, 2014-2018
+# fri, 2014-2019
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Radek Mašek <warrriog@gmail.com>, 2018
@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-05-13 19:23+0000\n"
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
+"PO-Revision-Date: 2019-06-21 08:46+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,7 +106,7 @@ msgstr "Nepřiřazená klávesová zkratka: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Stiskněte %(hotkey)s k automatickému doplnění jmen hráčů."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -570,43 +570,43 @@ msgstr "Špatné spojení s %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Toto je často způsobeno tím, že UDP port 20595 není správně směrován k serveru, kvůli firewallu nebo antivirovému programu."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Server skončil hru."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Nesprávná verze síťového protokolu."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Hra se načítá, zkuste to prosím znovu později"
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Hra již byla spuštěna, žádní pozorovatelé nejsou povoleni."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Byl jste vyhozen."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Byl jste zakázán."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Jméno hráče je již použito. V případě odpojení to zkuste za pár sekund."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Plný server."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Bezpečné přihlášení selhalo. Připojte se přes herní skupinu."
 
 #: gui/common/network.js:78
 #, javascript-format
@@ -1236,22 +1236,22 @@ msgstr "%(nick)s - %(name)s"
 #: gui/loadgame/load.js:118
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr "Mody: %(mods)s"
+msgstr "Pozměněné verze: %(mods)s"
 
 #: gui/loadgame/load.js:151
 #, javascript-format
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Tato uložená hra vyžaduje verzi %(requiredVersion)s 0 A.D., toto je však verze %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Tato uložená verze potřebuje starší verzi 0 A.D."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Toto uložení hry potřebuje odlišnou posloupnost pozměněných verzí:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -1656,7 +1656,7 @@ msgstr "Nehodnocené hry"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Filtrování záznamů her, podle jednoho či více anebo částečných jmen hráčů."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -2149,7 +2149,7 @@ msgstr "Neuložené změny ovlivní pouze toto sezení"
 
 #: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alpha XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2459,7 +2459,7 @@ msgstr "Dosah aury"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Sledovat přehrávání záznamu"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2571,7 +2571,7 @@ msgstr "Latinsky"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Peršan"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -3036,11 +3036,11 @@ msgstr "Upozornění na přezdívku"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Přijmout zvukové upozornění, pokud se ke hře připojí nový klient."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr ""
+msgstr "Nastavení hry - Upozornění na nového hráče"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3690,7 +3690,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "Může přepravit až 40 jednotek."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."

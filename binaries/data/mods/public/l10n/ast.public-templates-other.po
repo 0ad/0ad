@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-17 09:43+0200\n"
-"PO-Revision-Date: 2019-06-17 17:02+0000\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-21 23:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,9 @@ msgid "Gather food from this bountiful oceanic resource."
 msgstr "Recueyi comida de la bayura d'esti recursu marín."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
 msgid "Bush"
 msgstr "Arbustu"
 
@@ -513,10 +516,6 @@ msgstr "Uves"
 msgid "Gather grapes from these vines for Food."
 msgstr "Recueyi uves d'estes vides pa comida."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-msgid "Deciduous Bush"
-msgstr "Arbustu de fueya caduco"
-
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
 msgstr "Alcacia"
@@ -533,6 +532,18 @@ msgstr "Pumar"
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
 msgstr "Bambú"
+
+#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "Bambú xigante"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:4
+msgid "Banana"
+msgstr "Bananera"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:5
+msgid "Gather bananas for Food."
+msgstr "Recueyi bananes pa Comida"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -595,13 +606,17 @@ msgid "Fruiting Date Palm"
 msgstr "Palmera datilera con fruta"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Tree"
-msgstr "Árbole muertu"
+msgid "Dead Deciduous Tree"
+msgstr "Caducifoliu muertu"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
 msgstr "Faya"
+
+#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "Bidul llorosa"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -611,6 +626,11 @@ msgstr "Figal"
 msgid "Gather figs for Food."
 msgstr "Recueyi figos pa comida."
 
+#: simulation/templates/gaia/flora_tree_fir.xml:4
+#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
+msgid "Fir Tree"
+msgstr "Abetu"
+
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr "Abetu común nuevu"
@@ -618,6 +638,10 @@ msgstr "Abetu común nuevu"
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "Mangle"
+
+#: simulation/templates/gaia/flora_tree_maple.xml:4
+msgid "Maple"
+msgstr "Pládanu"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -642,6 +666,10 @@ msgstr "Carbayón"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Olivar"
+
+#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "Areca"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -681,13 +709,31 @@ msgstr "Chopu"
 msgid "Senegal Date Palm"
 msgstr "Palmera senegalesa"
 
+#: simulation/templates/gaia/flora_tree_strangler.xml:8
+msgid "Strangler Fig"
+msgstr "Matapalu"
+
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
 msgstr "Chamaricu"
 
+#: simulation/templates/gaia/flora_tree_teak.xml:8
+msgid "Teak"
+msgstr "Teca"
+
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "Caducifoliu"
+
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
 msgstr "Toona"
+
+#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "Árbole de viesca llenta"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
