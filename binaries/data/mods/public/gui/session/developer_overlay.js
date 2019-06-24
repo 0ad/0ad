@@ -108,6 +108,27 @@ DeveloperOverlay.prototype.getCommands = function() {
 				Engine.GuiInterfaceCall("SetPathfinderHierDebugOverlay", checked);
 			},
 		},
+		{
+			"label": translate("Enable culling"),
+			"onPress": checked => {
+				Engine.GameView_SetCullingEnabled(checked);
+			},
+			"checked": () => Engine.GameView_GetCullingEnabled(),
+		},
+		{
+			"label": translate("Lock cull camera"),
+			"onPress": checked => {
+				Engine.GameView_SetLockCullCameraEnabled(checked);
+			},
+			"checked": () => Engine.GameView_GetLockCullCameraEnabled(),
+		},
+		{
+			"label": translate("Display camera frustum"),
+			"onPress": checked => {
+				Engine.Renderer_SetDisplayFrustumEnabled(checked);
+			},
+			"checked": () => Engine.Renderer_GetDisplayFrustumEnabled(),
+		},
 	];
 };
 
