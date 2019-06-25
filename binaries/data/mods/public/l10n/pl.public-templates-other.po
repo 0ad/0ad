@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-17 09:43+0200\n"
-"PO-Revision-Date: 2019-06-18 18:52+0000\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-21 20:45+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,9 @@ msgid "Gather food from this bountiful oceanic resource."
 msgstr "Zbierz pożywienie z tego obfitego w ryby oceanu."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
 msgid "Bush"
 msgstr "Krzak"
 
@@ -532,10 +535,6 @@ msgstr "Winogrono"
 msgid "Gather grapes from these vines for Food."
 msgstr "Zbierz winogrona z tych winorośli jako Pożywienie"
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-msgid "Deciduous Bush"
-msgstr "Krzew liściasty"
-
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
 msgstr "Akacja"
@@ -552,6 +551,18 @@ msgstr "Jabłoń"
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
 msgstr "Bambus"
+
+#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "Dendrokalamus olbrzymi"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:4
+msgid "Banana"
+msgstr "Bananowiec"
+
+#: simulation/templates/gaia/flora_tree_banana.xml:5
+msgid "Gather bananas for Food."
+msgstr "Zbieraj banany, aby się nimi pożywić."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -614,13 +625,17 @@ msgid "Fruiting Date Palm"
 msgstr "Dojrzały daktylowiec"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Tree"
-msgstr "Martwe drzewo"
+msgid "Dead Deciduous Tree"
+msgstr "Martwe drzewo liściaste"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
 msgstr "Buk zwyczajny"
+
+#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "Brzoza zwisła"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -630,6 +645,11 @@ msgstr "Figowiec"
 msgid "Gather figs for Food."
 msgstr "Zbierz figi jako Pożywienie"
 
+#: simulation/templates/gaia/flora_tree_fir.xml:4
+#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
+msgid "Fir Tree"
+msgstr "Jodła"
+
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr "Młoda jodła"
@@ -637,6 +657,10 @@ msgstr "Młoda jodła"
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "Namorzyn"
+
+#: simulation/templates/gaia/flora_tree_maple.xml:4
+msgid "Maple"
+msgstr "Klon"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -661,6 +685,10 @@ msgstr "Wielki dąb"
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Drzewo oliwne"
+
+#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "Areka"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -700,13 +728,31 @@ msgstr "Czarna topola"
 msgid "Senegal Date Palm"
 msgstr "Daktylowiec nagięty"
 
+#: simulation/templates/gaia/flora_tree_strangler.xml:8
+msgid "Strangler Fig"
+msgstr "Fikus dusiciel"
+
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
 msgstr "Tamaryszek"
 
+#: simulation/templates/gaia/flora_tree_teak.xml:8
+msgid "Teak"
+msgstr "Teczyna"
+
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "Drzewo liściaste"
+
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
 msgstr "Cedr"
+
+#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "Drzewo lasu deszczowego"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"

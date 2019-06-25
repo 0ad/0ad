@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Vahe Avagyan <vahe-a@outlook.fr>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-06-23 20:15+0000\n"
+"Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +20,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
 msgid "None"
-msgstr "Ոչ մեկը"
+msgstr "Ոչ մի"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
@@ -28,12 +29,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
 msgid "None"
-msgstr "Ոչ մեկը"
+msgstr "Ոչ մի"
 
 #: gui/gamesetup/gamesetup.js:81
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "Պատահական"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
@@ -46,7 +47,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr ""
+msgstr "Պադրաստ եմ"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
@@ -55,7 +56,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "%(username)s պադրաստ է"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
@@ -67,7 +68,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Պադրաստ չեմ"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
@@ -100,12 +101,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:163
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
@@ -137,7 +138,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
-msgstr ""
+msgstr "Թազա քարտեզներ"
 
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
@@ -155,7 +156,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
-msgstr ""
+msgstr "Բոլոր քարտեզները"
 
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
@@ -469,7 +470,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1754
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Պատահական"
 
 #: gui/gamesetup/gamesetup.js:1756
 msgid "Pick any of the given maps at random."
@@ -478,7 +479,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Պատահական"
 
 #: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
@@ -493,15 +494,15 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
 msgid "Unknown"
-msgstr ""
+msgstr "Անհայտ"
 
 #: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
-msgstr ""
+msgstr "Այո"
 
 #: gui/gamesetup/gamesetup.js:2162
 msgid "No"
-msgstr ""
+msgstr "Ոչ"
 
 #: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
@@ -525,7 +526,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:2546
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
@@ -534,16 +535,16 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2594
 msgid "HH:mm"
-msgstr ""
+msgstr "ՀՀ։մմ"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -643,7 +644,7 @@ msgstr "Չեղարկել"
 
 #: gui/aiconfig/aiconfig.xml:(caption):52
 msgid "OK"
-msgstr ""
+msgstr "Եղավ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
@@ -691,7 +692,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):254
 msgid "Back"
-msgstr ""
+msgstr "Գաղտնաբառ"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
