@@ -41,6 +41,8 @@ enum
 	ID_MapTeams,
 	ID_MapKW_Demo,
 	ID_MapKW_Naval,
+	ID_MapKW_New,
+	ID_MapKW_Trigger,
 	ID_VC_Conquest,
 	ID_VC_ConquestUnits,
 	ID_VC_ConquestStructures,
@@ -185,9 +187,12 @@ void MapSettingsControl::CreateWidgets()
 	sizer->AddSpacer(5);
 
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
-	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(4, 5, 5);
+	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(4, 5, 15);
 	CREATE_CHECKBOX(this, kwGridSizer, "Demo", "If checked, map will only be visible using filters in game setup", ID_MapKW_Demo);
 	CREATE_CHECKBOX(this, kwGridSizer, "Naval", "If checked, map will only be visible using filters in game setup", ID_MapKW_Naval);
+	CREATE_CHECKBOX(this, kwGridSizer, "New", "If checked, the map will appear in the list of new maps", ID_MapKW_New);
+	CREATE_CHECKBOX(this, kwGridSizer, "Trigger", "If checked, the map will appear in the list of maps with trigger scripts", ID_MapKW_Trigger);
+
 	keywordsSizer->Add(kwGridSizer);
 	sizer->Add(keywordsSizer, wxSizerFlags().Expand());
 }
@@ -244,6 +249,8 @@ void MapSettingsControl::ReadFromEngine()
 
 		INIT_CHECKBOX(ID_MapKW_Demo, m_MapSettingsKeywords, "demo");
 		INIT_CHECKBOX(ID_MapKW_Naval, m_MapSettingsKeywords, "naval");
+		INIT_CHECKBOX(ID_MapKW_New, m_MapSettingsKeywords, "new");
+		INIT_CHECKBOX(ID_MapKW_Trigger, m_MapSettingsKeywords, "trigger");
 	}
 
 #undef INIT_CHECKBOX
@@ -311,15 +318,18 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 
 	// keywords
 	{
-		if (wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->GetValue())
-			m_MapSettingsKeywords.insert("demo");
-		else
-			m_MapSettingsKeywords.erase("demo");
+#define INSERT_KEYWORDS_CHECKBOX(name, ID) \
+		if (wxDynamicCast(FindWindow(ID), wxCheckBox)->GetValue()) \
+			m_MapSettingsKeywords.insert(name); \
+		else \
+			m_MapSettingsKeywords.erase(name);
 
-		if (wxDynamicCast(FindWindow(ID_MapKW_Naval), wxCheckBox)->GetValue())
-			m_MapSettingsKeywords.insert("naval");
-		else
-			m_MapSettingsKeywords.erase("naval");
+		INSERT_KEYWORDS_CHECKBOX("demo", ID_MapKW_Demo);
+		INSERT_KEYWORDS_CHECKBOX("naval", ID_MapKW_Naval);
+		INSERT_KEYWORDS_CHECKBOX("new", ID_MapKW_New);
+		INSERT_KEYWORDS_CHECKBOX("trigger", ID_MapKW_Trigger);
+
+#undef INSERT_KEYWORDS_CHECKBOX
 
 		AtObj keywords;
 		keywords.set("@array", "");
