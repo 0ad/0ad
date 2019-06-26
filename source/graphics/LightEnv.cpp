@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,21 +15,16 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * CLightEnv implementation
- */
-
 #include "precompiled.h"
 
-#include "maths/MathUtil.h"
-
 #include "graphics/LightEnv.h"
+
+#include "maths/MathUtil.h"
 
 
 CLightEnv::CLightEnv()
 	: m_Elevation(DEGTORAD(45)),
 	m_Rotation(DEGTORAD(315)),
-	m_LightingModel("standard"),
 	m_SunColor(1.5, 1.5, 1.5),
 	m_TerrainAmbientColor(0x50/255.f, 0x60/255.f, 0x85/255.f),
 	m_UnitsAmbientColor(0x80/255.f, 0x80/255.f, 0x80/255.f),

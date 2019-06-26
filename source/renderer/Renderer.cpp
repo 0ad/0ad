@@ -578,9 +578,6 @@ void CRenderer::ReloadShaders()
 #endif
 	}
 
-	if (m_LightEnv)
-		m->globalContext.Add(CStrIntern("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()), str_1);
-
 	if (m_Options.m_PreferGLSL && m_Options.m_Fog)
 		m->globalContext.Add(str_USE_FOG, str_1);
 

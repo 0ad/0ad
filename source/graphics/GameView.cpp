@@ -527,9 +527,6 @@ void CGameView::CheckLightEnv()
 	if (m->CachedLightEnv == g_LightEnv)
 		return;
 
-	if (m->CachedLightEnv.GetLightingModel() != g_LightEnv.GetLightingModel())
-		g_Renderer.MakeShadersDirty();
-
 	m->CachedLightEnv = g_LightEnv;
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
 
