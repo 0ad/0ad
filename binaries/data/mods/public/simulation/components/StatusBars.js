@@ -122,6 +122,12 @@ StatusBars.prototype.UpdateColor = function()
 		this.RegenerateSprites();
 };
 
+StatusBars.prototype.OnPlayerColorChanged = function(msg)
+{
+	if (this.enabled)
+		this.RegenerateSprites();
+};
+
 StatusBars.prototype.RegenerateSprites = function()
 {
 	let cmpOverlayRenderer = Engine.QueryInterface(this.entity, IID_OverlayRenderer);

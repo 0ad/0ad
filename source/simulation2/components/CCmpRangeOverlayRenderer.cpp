@@ -37,6 +37,7 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_PlayerColorChanged);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(RangeOverlayRenderer)
@@ -123,6 +124,7 @@ public:
 		}
 		case MT_Deserialized:
 		case MT_OwnershipChanged:
+		case MT_PlayerColorChanged:
 		{
 			UpdateColor();
 			break;
