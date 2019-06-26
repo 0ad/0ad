@@ -293,6 +293,7 @@ void main()
 	// -If a player has refraction OR reflection, we return a reflection of the actual skybox used.
 	// -If a player has reflection enabled, we also return a reflection of actual entities where applicable.
 
+	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
 	float reflMod = 0.75;
 	vec3 eye = reflect(v, n);
 
@@ -307,25 +308,13 @@ void main()
 	reflColor = refTex.rgb;
 
 	if (refTex.a < 0.99)
-	{
-#endif
-
-		// Calculate where we intersect with the skycube.
-		Ray myRay = Ray(vec3(worldPos.x / 4.0, worldPos.y, worldPos.z / 4.0), eye);
-		vec3 start = vec3(-1500.0 + mapSize / 2.0, -100.0, -1500.0 + mapSize / 2.0);
-		vec3 end = vec3(1500.0 + mapSize / 2.0, 500.0, 1500.0 + mapSize / 2.0);
-		float tmin = IntersectBox(myRay, start, end);
-		vec4 newpos = vec4(-worldPos.x / 4.0, worldPos.y, -worldPos.z / 4.0, 1.0) + vec4(eye * tmin, 0.0) - vec4(-mapSize / 2.0, worldPos.y, -mapSize / 2.0, 0.0);
-		newpos *= skyBoxRot;
-		newpos.y *= 4.0;
-#if !USE_REFLECTION
-		reflColor = textureCube(skyCube, newpos.rgb).rgb;
-#else
 		// Interpolate between the sky color and nearby objects.
 		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
-	}
-	// reflMod is used to reduce the intensity of sky reflections, which otherwise are too extreme.
+
+	// Let actual objects be reflected fully.
 	reflMod = max(refTex.a, 0.75);
+#else
+	reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
 #endif
 
 #else
