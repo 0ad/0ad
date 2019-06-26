@@ -46,7 +46,7 @@ CCamera::CCamera()
 
 CCamera::~CCamera() = default;
 
-void CCamera::SetProjection(float nearp, float farp, float fov)
+void CCamera::SetPerspectiveProjection(float nearp, float farp, float fov)
 {
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
@@ -56,7 +56,7 @@ void CCamera::SetProjection(float nearp, float farp, float fov)
 	m_ProjMat.SetPerspective(m_FOV, aspect, m_NearPlane, m_FarPlane);
 }
 
-void CCamera::SetProjectionTile(int tiles, int tile_x, int tile_y)
+void CCamera::SetPerspectiveProjectionTile(int tiles, int tile_x, int tile_y)
 {
 	const float aspect = static_cast<float>(m_ViewPort.m_Width) / static_cast<float>(m_ViewPort.m_Height);
 
