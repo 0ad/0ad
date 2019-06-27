@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,7 +85,7 @@ void AtlasViewActor::Render()
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
 	camera.SetViewPort(vp);
-	camera.SetProjection(2.f, 512.f, DEGTORAD(20.f));
+	camera.SetPerspectiveProjection(2.f, 512.f, DEGTORAD(20.f));
 	camera.UpdateFrustum();
 
 	m_ActorViewer->Render();
@@ -221,7 +221,8 @@ void AtlasViewGame::Render()
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
 	camera.SetViewPort(vp);
-	camera.SetProjection(g_Game->GetView()->GetNear(), g_Game->GetView()->GetFar(), g_Game->GetView()->GetFOV());
+	CGameView* gameView = g_Game->GetView();
+	camera.SetPerspectiveProjection(gameView->GetNear(), gameView->GetFar(), gameView->GetFOV());
 	camera.UpdateFrustum();
 
 	::Render();

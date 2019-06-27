@@ -362,7 +362,7 @@ CGameView::CGameView(CGame *pGame):
 	vp.m_Height = g_yres;
 	m->ViewCamera.SetViewPort(vp);
 
-	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 
@@ -380,7 +380,7 @@ CGameView::~CGameView()
 void CGameView::SetViewport(const SViewPort& vp)
 {
 	m->ViewCamera.SetViewPort(vp);
-	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 }
 
 CObjectManager& CGameView::GetObjectManager()
@@ -526,9 +526,6 @@ void CGameView::CheckLightEnv()
 {
 	if (m->CachedLightEnv == g_LightEnv)
 		return;
-
-	if (m->CachedLightEnv.GetLightingModel() != g_LightEnv.GetLightingModel())
-		g_Renderer.MakeShadersDirty();
 
 	m->CachedLightEnv = g_LightEnv;
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
@@ -887,7 +884,7 @@ void CGameView::Update(const float deltaRealTime)
 	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
 
 	// Update the camera matrix
-	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 }
@@ -1023,7 +1020,7 @@ float CGameView::GetFOV() const
 
 void CGameView::SetCameraProjection()
 {
-	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)

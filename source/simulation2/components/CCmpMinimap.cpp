@@ -35,6 +35,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_PlayerColorChanged);
 		componentManager.SubscribeToMessageType(MT_MinimapPing);
 	}
 
@@ -161,6 +162,7 @@ public:
 		}
 		case MT_Deserialized:
 		case MT_OwnershipChanged:
+		case MT_PlayerColorChanged:
 		{
 			UpdateColor();
 			break;

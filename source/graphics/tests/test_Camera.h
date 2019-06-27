@@ -42,7 +42,7 @@ public:
 			CVector3D(0.0f, 0.0f, 1.0f),
 			CVector3D(0.0f, 1.0f, 0.0f)
 		);
-		camera.SetProjection(1.0f, 101.0f, DEGTORAD(90.0f));
+		camera.SetPerspectiveProjection(1.0f, 101.0f, DEGTORAD(90.0f));
 		camera.UpdateFrustum();
 
 		const float sqrt2 = sqrtf(2.0f) / 2.0f;

@@ -272,7 +272,7 @@ m.Template = m.Class({
 			{
 				let bonusClasses = this.get("Attack/" + type + "/Bonuses/" + b + "/Classes");
 				if (bonusClasses)
-					Classes.push([bonusClasses.split(" "), +this.get("Attack/" + type +"/Bonuses" + b +"/Multiplier")]);
+					Classes.push([bonusClasses.split(" "), +this.get("Attack/" + type +"/Bonuses/" + b +"/Multiplier")]);
 			}
 		}
 		return Classes;
