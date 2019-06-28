@@ -618,10 +618,9 @@ extern_lib_defs = {
 				})
 			end
 			add_default_links({
-				win_names  = { "vorbisfile" },
+				win_names  = { "libvorbisfile" },
 				unix_names = { "vorbisfile" },
 				osx_names = { "vorbis", "vorbisenc", "vorbisfile", "ogg" },
-				dbg_suffix = "_d",
 			})
 		end,
 	},
