@@ -1,16 +1,16 @@
 {
 	"genericName": "Reinforced hull",
 	"description": "Wooden reinforcement beams for ship hulls.",
-	"cost": {"food": 0, "wood": 250, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_village"},
+	"cost": { "food": 0, "wood": 250, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "armor_ship_bronze.png",
 	"researchTime": 40,
 	"tooltip": "Wooden reinforcement beams for hulls. +2 levels to all ship armor types.",
 	"modifications": [
-		{"value": "Armour/Hack", "add": 2.0},
-		{"value": "Armour/Pierce", "add": 2.0},
-		{"value": "Armour/Crush", "add": 2.0}
+		{ "value": "Armour/Hack", "add": 2 },
+		{ "value": "Armour/Pierce", "add": 2 },
+		{ "value": "Armour/Crush", "add": 2 }
 	],
 	"affects": ["Ship"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

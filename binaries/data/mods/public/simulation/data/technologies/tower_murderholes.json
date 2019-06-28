@@ -1,15 +1,15 @@
 {
-  "genericName": "Murder Holes",
-  "description": "Murder holes allow hitting enemies at the foot of the tower.",
-  "cost": { "food": 0, "wood": 250, "stone": 100, "metal": 0 },
-  "requirements": { "tech": "phase_city" },
-  "requirementsTooltip": "Unlocked in City Phase.",
-  "icon": "murder_holes.png",
-  "researchTime": 40,
-  "tooltip": "Removes defensive towers' minimum range.",
-  "modifications": [
-    { "value": "Attack/Ranged/MinRange", "replace": 0 }
-  ],
-  "affects": ["DefenseTower"],
-  "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+	"genericName": "Murder Holes",
+	"description": "Murder holes allow hitting enemies at the foot of the tower.",
+	"cost": { "food": 0, "wood": 250, "stone": 100, "metal": 0 },
+	"requirements": { "tech": "phase_city" },
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "murder_holes.png",
+	"researchTime": 40,
+	"tooltip": "Removes defensive towers' minimum range.",
+	"modifications": [
+		{ "value": "Attack/Ranged/MinRange", "replace": 0 }
+	],
+	"affects": ["DefenseTower"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -8,20 +8,20 @@
 		"sele": "Dýnamis"
 	},
 	"description": "The will to fight is crucial to victory.",
-	"cost": {"food": 1500, "wood": 1500, "stone": 1500, "metal": 1500},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 1500, "wood": 1500, "stone": 1500, "metal": 1500 },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
 	"tooltip": "Inspire your troops with higher pay. All land and naval army +25% attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Damage/Hack", "multiply": 1.25},
-		{"value": "Attack/Melee/Damage/Pierce", "multiply": 1.25},
-		{"value": "Attack/Melee/Damage/Crush", "multiply": 1.25},
-		{"value": "Attack/Ranged/Damage/Hack", "multiply": 1.25},
-		{"value": "Attack/Ranged/Damage/Pierce", "multiply": 1.25},
-		{"value": "Attack/Ranged/Damage/Crush", "multiply": 1.25}
-	],
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.25 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.25 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.25 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.25 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.25 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.25 }
+ 	],
 	"affects": ["Melee", "Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

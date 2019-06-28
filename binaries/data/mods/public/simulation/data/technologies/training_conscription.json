@@ -7,7 +7,9 @@
 	"icon": "fist_spear.png",
 	"researchTime": 40,
 	"tooltip": "Faster batch training speed for the Barracks.",
-	"modifications": [{ "value": "ProductionQueue/BatchTimeModifier", "add": -0.1 }],
+	"modifications": [
+		{ "value": "ProductionQueue/BatchTimeModifier", "add": -0.1 }
+	],
 	"affects": ["Barracks"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

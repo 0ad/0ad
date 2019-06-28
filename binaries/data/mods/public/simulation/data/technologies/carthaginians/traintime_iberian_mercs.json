@@ -2,13 +2,15 @@
 	"pair": "carthaginians/pair_iberian_mercs_1",
 	"genericName": "Iberian Alliance",
 	"description": "Iberian mercenaries have their train time decreased.",
-	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 100},
-	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
+	"cost": { "food": 0, "wood": 100, "stone": 0, "metal": 100 },
+	"requirements": { "all": [{ "tech": "phase_town" }, { "civ": "cart" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
 	"tooltip": "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries.",
-	"modifications": [{"value": "Cost/BuildTime", "multiply": 0.8}],
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+	],
 	"affects": ["Iberian Mercenary"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

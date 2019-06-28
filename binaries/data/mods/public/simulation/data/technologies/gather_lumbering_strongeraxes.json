@@ -1,14 +1,16 @@
 {
 	"genericName": "Stronger Ax",
 	"description": "Increases wood gathering rates for trees.",
-	"cost": {"food": 0, "wood": 250, "stone": 0, "metal": 50},
+	"cost": { "food": 0, "wood": 250, "stone": 0, "metal": 50 },
 	"supersedes": "gather_lumbering_ironaxes",
-	"requirements": {"tech": "phase_town"},
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "wood_axe.png",
 	"researchTime": 40,
 	"tooltip": "Workers +15% lumbering rate for trees.",
-	"modifications": [{"value": "ResourceGatherer/Rates/wood.tree", "multiply": 1.15}],
+	"modifications": [
+		{ "value": "ResourceGatherer/Rates/wood.tree", "multiply": 1.15 }
+	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

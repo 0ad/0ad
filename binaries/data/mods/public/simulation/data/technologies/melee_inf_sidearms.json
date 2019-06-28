@@ -10,13 +10,15 @@
 		"rome": "Pugio"
 	},
 	"description": "Often, an infantryman would carry a secondary weapon in addition to his primary weapon of choice, to be drawn when the primary weapon has failed or been broken.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 50},
-	"requirements": {"any": [{"tech": "phase_town"},{"civ": "brit"},{"civ": "gaul"}]},
+	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 50 },
+	"requirements": { "any": [{ "tech": "phase_town" }, { "civ": "brit" }, { "civ": "gaul" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "sword.png",
 	"researchTime": 40,
 	"tooltip": "Melee infantry +1 hack attack.",
-	"modifications": [{"value": "Attack/Melee/Damage/Hack", "add": 1.0}],
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "add": 1 }
+	],
 	"affects": ["Infantry Melee"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

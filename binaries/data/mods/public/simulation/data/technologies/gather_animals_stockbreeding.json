@@ -1,12 +1,14 @@
 {
 	"genericName": "Stockbreeding",
 	"description": "Breeding livestock for food.",
-	"cost": {"food": 50, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_village"},
+	"cost": { "food": 50, "wood": 0, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_village" },
 	"icon": "meat.png",
 	"researchTime": 40,
 	"tooltip": "Breed time -25% for domestic animals (sheep, goats, cattle, etc.).",
-	"modifications": [{"value": "Cost/BuildTime", "multiply": 0.75}],
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.75 }
+	],
 	"affects": ["Domestic"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -1,13 +1,15 @@
 {
 	"genericName": "Advanced Italiote Mercenaries",
 	"description": "Upgrade all of your Italiote mercenaries to Advanced rank.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 300},
-	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
+	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 300 },
+	"requirements": { "all": [{ "tech": "phase_town" }, { "civ": "cart" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "upgrade_advanced.png",
 	"researchTime": 40,
 	"tooltip": "Upgrade all of your Italiote mercenaries to Advanced rank. This increases their military prowess, but decreases their resource gathering rates -25%. Unlocks Elite Italiote Mercenaries technology.",
-	"modifications": [{"value": "Promotion/RequiredXp", "replace": 0}],
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "replace": 0 }
+	],
 	"affects": ["Italian Basic"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -9,15 +9,17 @@
 		"rome": "Hasta"
 	},
 	"description": "Training increases ranged attack.",
-	"cost": {"food": 500, "wood": 750, "stone": 0, "metal": 350},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 500, "wood": 750, "stone": 0, "metal": 350 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "horse_rider.png",
 	"researchTime": 40,
 	"tooltip": "+20% ranged cavalry attack.",
-	"modifications": [{"value": "Attack/Ranged/Damage/Hack", "multiply": 1.2},
-		{"value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2},
-		{"value": "Attack/Ranged/Damage/Crush", "multiply": 1.2}],
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
+	],
 	"affects": ["Cavalry Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

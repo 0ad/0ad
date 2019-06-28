@@ -2,13 +2,15 @@
 	"pair": "carthaginians/pair_iberian_mercs_1",
 	"genericName": "Lusitanian Mercenary Captain",
 	"description": "Iberian mercenaries have their metal cost decreased.",
-	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 100},
-	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
+	"cost": { "food": 100, "wood": 0, "stone": 0, "metal": 100 },
+	"requirements": { "all": [{ "tech": "phase_town" }, { "civ": "cart" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "helmet_corinthian_silver.png",
 	"researchTime": 40,
 	"tooltip": "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian mercenaries.",
-	"modifications": [{"value": "Cost/Resources/metal", "add": -20}],
+	"modifications": [
+		{ "value": "Cost/Resources/metal", "add": -20 }
+	],
 	"affects": ["Iberian Mercenary"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

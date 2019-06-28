@@ -7,7 +7,9 @@
 	"icon": "armor_plates_gold.png",
 	"researchTime": 40,
 	"tooltip": "All Siege weapons +2 Hack armor levels.",
-	"modifications": [{ "value": "Armour/Hack", "add": 2.0 }],
+	"modifications": [
+		{ "value": "Armour/Hack", "add": 2 }
+	],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -9,15 +9,16 @@
 		"sele": "Argyraspís"
 	},
 	"description": "Only the most celebrated soldiers had shields faced with silver, as did the famous 'Silver Shields' regiment in Alexander the Great's army.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 500},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 500 },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "shields_generic_silver.png",
 	"researchTime": 40,
 	"tooltip": "Champions +2 Pierce Armor Levels, but also +10 Metal Cost.",
 	"modifications": [
-	{"value": "Armour/Pierce", "add": 2.0},
-	{"value": "Cost/Resources/metal", "add": 10}],
+		{ "value": "Armour/Pierce", "add": 2 },
+		{ "value": "Cost/Resources/metal", "add": 10 }
+	],
 	"affects": ["Champion"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

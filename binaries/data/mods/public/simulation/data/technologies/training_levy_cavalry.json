@@ -2,15 +2,15 @@
 	"pair": "pair_levy_01",
 	"genericName": "Levy Cavalry",
 	"description": "Calling up cavalry levies in time of war helps bolster the ranks of a king's army.",
-	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 100, "wood": 0, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "horse_trainer.png",
 	"researchTime": 40,
 	"tooltip": "All cavalry -20% train time, but also -10 health. Unlocks Conscription.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiply": 0.8},
-		{"value": "Health/Max", "add": -10}
+		{ "value": "Cost/BuildTime", "multiply": 0.8 },
+		{ "value": "Health/Max", "add": -10 }
 	],
 	"affects": ["Cavalry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

@@ -1,17 +1,17 @@
 {
 	"genericName": "Hypozomata undergirding",
 	"description": "The hypozomata braces the structure of a ship.",
-	"cost": {"food": 0, "wood": 150, "stone": 0, "metal": 150},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 0, "wood": 150, "stone": 0, "metal": 150 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"supersedes": "armor_ship_reinforcedhull",
 	"icon": "armor_ship_silver.png",
 	"researchTime": 40,
 	"tooltip": "The hypozomata braces the ship's structure. +2 levels to all ship armor types.",
 	"modifications": [
-		{"value": "Armour/Hack", "add": 2.0},
-		{"value": "Armour/Pierce", "add": 2.0},
-		{"value": "Armour/Crush", "add": 2.0}
+		{ "value": "Armour/Hack", "add": 2 },
+		{ "value": "Armour/Pierce", "add": 2 },
+		{ "value": "Armour/Crush", "add": 2 }
 	],
 	"affects": ["Ship"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

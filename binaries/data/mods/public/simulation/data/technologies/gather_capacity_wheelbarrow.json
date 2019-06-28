@@ -1,18 +1,18 @@
 {
 	"genericName": "Wheelbarrow",
 	"description": "Increases shuttling capacity for all resources.",
-	"cost": {"food": 500, "wood": 500, "stone": 0, "metal": 0},
+	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 0 },
 	"supersedes": "gather_capacity_basket",
-	"requirements": {"tech": "phase_town"},
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "wheelbarrow_empty.png",
 	"researchTime": 40,
 	"tooltip": "Workers use wheelbarrows. +5 shuttle capacity for all resources.",
 	"modifications": [
-		{"value": "ResourceGatherer/Capacities/food", "add": 5},
-		{"value": "ResourceGatherer/Capacities/wood", "add": 5},
-		{"value": "ResourceGatherer/Capacities/stone", "add": 5},
-		{"value": "ResourceGatherer/Capacities/metal", "add": 5}
+		{ "value": "ResourceGatherer/Capacities/food", "add": 5 },
+		{ "value": "ResourceGatherer/Capacities/wood", "add": 5 },
+		{ "value": "ResourceGatherer/Capacities/stone", "add": 5 },
+		{ "value": "ResourceGatherer/Capacities/metal", "add": 5 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

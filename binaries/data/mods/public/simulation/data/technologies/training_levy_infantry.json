@@ -2,15 +2,15 @@
 	"pair": "pair_levy_01",
 	"genericName": "Levy Infantry",
 	"description": "Calling up infantry levies in time of war helps bolster the ranks of a king's army.",
-	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 100, "wood": 0, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
 	"tooltip": "All infantry -10% train time, but also -5 health. Unlocks Conscription.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiply": 0.9},
-		{"value": "Health/Max", "add": -5}
+		{ "value": "Cost/BuildTime", "multiply": 0.9 },
+		{ "value": "Health/Max", "add": -5 }
 	],
 	"affects": ["Infantry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

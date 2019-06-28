@@ -6,13 +6,15 @@
 		"athen": "Sphágia"
 	},
 	"description": "Increases the Healing Rate of all healers.",
-	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 250},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 250 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "healing_rate.png",
 	"researchTime": 40,
 	"tooltip": "Healers +25% healing rate.",
-	"modifications": [{"value": "Heal/Rate", "multiply": 0.8}],
+	"modifications": [
+		{ "value": "Heal/Rate", "multiply": 0.8 }
+	],
 	"affects": ["Healer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
