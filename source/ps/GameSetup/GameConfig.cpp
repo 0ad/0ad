@@ -299,8 +299,8 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 
 	scriptInterface.SetProperty(attrs, "mapType", this->type);
 	scriptInterface.SetProperty(attrs, "map", std::string("maps/" + fullName));
+	scriptInterface.SetProperty(attrs, "gameSpeed", this->gameSpeed);
 	scriptInterface.SetProperty(settings, "mapType", this->type);
-	scriptInterface.SetProperty(settings, "gameSpeed", this->gameSpeed);
 	scriptInterface.SetProperty(settings, "CheatsEnabled", true);
 
 	// The seed is used for both random map generation and simulation
