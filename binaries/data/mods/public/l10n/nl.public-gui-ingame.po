@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 14:22+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "Bestuur alle eenheden"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "Wissel perspectief"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "Geef selectiestaat weer"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "Kortste-pad overlay"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "Obstructie overlay"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "Eenhedenverplaatsingsoverlay"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "Bereik overlay"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "Begrensingskader overlay"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "Beperk camera"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "Toon kaart"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "Activeer teruggang in de tijd"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Let op: terug gaan in de tijd is een ontwikkeloptie, en niet bedoeld voor gebruik over een lange periode. Incorrect gebruik kan er voor zorgen dat uw computer geheugen tekort komt, en zo het spel laten crashen (of zelfs andere programma's)."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "Teruggang in de tijd modus"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "Promoveer geselecteerde eenheden"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "Hiërarchische kortste-pad overlay"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr ""
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr ""
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr ""
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "De ontwikkelingsmodus is gesloten."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "De ontwikkelingsmodus is geopend."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -80,12 +163,12 @@ msgid "Confirmation"
 msgstr "Bevestiging"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nee"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -304,15 +387,7 @@ msgstr ","
 msgid "Manual"
 msgstr "Handleiding"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "De ontwikkelingsmodus is gesloten."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "De ontwikkelingsmodus is geopend."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -402,7 +477,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Team"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "Waarnemer"
 
@@ -732,7 +807,7 @@ msgid "Gain: %(gain)s"
 msgstr "Winst: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -971,41 +1046,41 @@ msgstr "%(action)s om %(number)s te rekruteren."
 msgid "Shift-click"
 msgstr "Shift-klik"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Voer het te versturen bericht in."
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Druk op %(hotkey)s om de publieke chat te openen."
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Druk op %(hotkey)s om de waarnemers chat te openen."
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Druk op %(hotkey)s om de bondgenoten chat te openen."
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Druk %(hotkey)s om de vorige geselecteerd privé-chat te openen."
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "Zoek een ongebruikte werkkracht"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "Zet Diplomatie Kleuren aan/uit."
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1013,7 +1088,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Selecteer het type goederen dat u wilt veranderen door er op te klikken. Gebruik dan de pijlen bij de andere goederen om hun deel te veranderen. U kunt ook %(hotkey)sindrukken terwijl u een type selecteert, om het aandeel naar 100 %% te brengen."
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1022,7 +1097,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Start door het selecteren van het middel dat u wilt verkopen van de bovenste rij. Voor elke keer dat de onderste knoppen worden aangeklikt, wordt%(quantity)svan het bovenste middel verkocht voor de weergegeven hoeveelheid van het onderste middel. Houd %(hotkey)singedrukt om de hoeveelheid tijdelijk met %(multiplier)s te vermenigvuldigen."
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1030,97 +1105,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Bekijk Geschiedenis / Boomstructuur\nLaatst geopende wordt heropend via klik."
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "Wilt u stoppen?"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "GEWONNEN!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "VERSLAGEN!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Het herspelen is klaar. Wilt u stoppen?"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nee"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s om volgorde te veranderen."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "Ongeordend"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "Aflopend"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "Oplopend"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "Bevolking (huidig / limiet)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximum bevolking: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "Let op: terug gaan in de tijd is een ontwikkeloptie, en niet bedoeld voor gebruik over een lange periode. Incorrect gebruik kan er voor zorgen dat uw computer geheugen tekort komt, en zo het spel laten crashen (of zelfs andere programma's)."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "Teruggang in de tijd modus"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1283,58 +1347,6 @@ msgstr "Filter de chat geschiedenis."
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Selecteer chat bestemmeling. "
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "Bestuur alle eenheden"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "Wissel perspectief"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "Geef selectiestaat weer"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "Kortste-pad overlay"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "Obstructie overlay"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "Eenhedenverplaatsingsoverlay"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "Bereik overlay"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "Begrensingskader overlay"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "Beperk camera"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "Toon kaart"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "Activeer teruggang in de tijd"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "Promoveer geselecteerde eenheden"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "Hiërarchische kortste-pad overlay"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

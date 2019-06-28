@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-06-08 11:33+0000\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-26 04:24+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "모든 사람들 조정"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "시점 바꾸기"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "선택률 보이기"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "내비게이션 덧판 보이기"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "방해물 덧판 보이기"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "사람 움직임 덧판 보이기"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "범위 덧판 보이기"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "테두리 상자 표시"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "카메라 제한"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "지도 보이기"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "시간여행 허가"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "참고: 시간여행 모드는 개발자용으로, 긴 시대에 걸쳐 사용하도록 만들어지지 않았습니다. 잘못 사용하는 경우 메모리가 부족하거나 놀이가 다운될 수 있습니다."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "시간여행 모드"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "선택한 유닛 승진"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "계층형 경로탐색 덧판 보이기"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr "도태 사용 --번역확인할것??"
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr "도태 카메라 잠금 -- 번역확인??"
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr "카메라 원뿔 표시"
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "개발자용 덧판이 닫혔습니다."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "개발자용 덧판이 열렸습니다."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -59,12 +142,12 @@ msgid "Confirmation"
 msgstr "확인"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "아니오"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "예"
 
@@ -274,15 +357,7 @@ msgstr ", "
 msgid "Manual"
 msgstr "설명서"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "개발자용 덧판이 닫혔습니다."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "개발자용 덧판이 열렸습니다."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -372,7 +447,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "편"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "관찰자"
 
@@ -702,7 +777,7 @@ msgid "Gain: %(gain)s"
 msgstr "얻음: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -940,41 +1015,41 @@ msgstr "%(number)s를 훈련하기 위해 %(action)s 이(가) 필요함"
 msgid "Shift-click"
 msgstr "쉬프트 + 클릭"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "보낼 메시지를 입력하십시오."
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "%(hotkey)s 키를 눌러 공개 대화창을 엽니다."
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "%(hotkey)s 키를 눌러 관찰자 대화창을 엽니다."
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "%(hotkey)s 키를 눌러 동맹 대화창을 엽니다."
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "이전에 선택한 비공개 대화를 열려면 %(hotkey)s 키를 누르십시오."
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "대기 중인 노동자 찾기"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "국경 색 변경"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -982,7 +1057,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "수정하려는 상품 유형을 클릭하여 선택하고 다른 유형의 화살표를 사용하여 공유를 수정하십시오. 한 가지 유형의 상품을 선택하는 동안 %(hotkey)s 키를 눌러 공유를 100%%로 가져올 수도 있습니다."
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -991,7 +1066,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "맨 위 줄에서 판매할 자원을 선택하십시오. 아랫줄의 버튼이 눌릴때마다 위에 자원 %(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 거래량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -999,97 +1074,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: 역사 / 건축도감 보기\n마지막으로 열렸던것을 클릭하면 다시 열립니다.??"
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "그만하시겠습니까?"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "이겼습니다!!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "졌습니다!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "확인"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "다시보기가 끝났습니다. 종료하시겠습니까?"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "아니요"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "예"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s 키로 정렬방식을 바꿉니다."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "정렬안됨"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "내림차순"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "오름차순"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "인구수 (현재 / 제한)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "최대 인구수: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "참고: 시간여행 모드는 개발자용으로, 긴 시대에 걸쳐 사용하도록 만들어지지 않았습니다. 잘못 사용하는 경우 메모리가 부족하거나 놀이가 다운될 수 있습니다."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "시간여행 모드"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1252,58 +1316,6 @@ msgstr "대화 기록을 걸러냅니다."
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "대화 대상을 선택하십시오."
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "모든 사람들 조정"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "시점 바꾸기"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "선택률 보이기"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "내비게이션 덧판 보이기"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "방해물 덧판 보이기"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "사람 움직임 덧판 보이기"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "범위 덧판 보이기"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "테두리 상자 표시"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "카메라 제한"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "지도 보이기"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "시간여행 허가"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "선택한 유닛 승진"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "계층형 경로탐색 덧판 보이기"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
