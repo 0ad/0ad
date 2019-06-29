@@ -45,13 +45,6 @@
 #define DISABLE_PATHFINDER 0
 
 /**
- * When advancing along the long path, and picking a new waypoint to move
- * towards, we'll pick one that's up to this far from the unit's current
- * position (to minimise the effects of grid-constrained movement)
- */
-static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*8);
-
-/**
  * Min/Max range to restrict short path queries to. (Larger ranges are slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
@@ -443,12 +436,22 @@ private:
 		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
 	}
 
+	/**
+	 * Warns other components that our current movement will likely fail (e.g. we won't be able to reach our target)
+	 * This should only be called before the actual movement in a given turn, or units might both move and try to do things
+	 * on the same turn, leading to gliding units.
+	 */
 	void MoveFailed()
 	{
 		CMessageMotionChanged msg(true);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
+	/**
+	 * Warns other components that our current movement is likely over (i.e. we probably reached our destination)
+	 * This should only be called before the actual movement in a given turn, or units might both move and try to do things
+	 * on the same turn, leading to gliding units.
+	 */
 	void MoveSucceeded()
 	{
 		CMessageMotionChanged msg(false);
@@ -565,12 +568,6 @@ private:
 	 * Returns whether our we need to recompute a path to reach our target.
 	 */
 	bool PathingUpdateNeeded(const CFixedVector2D& from) const;
-
-	/**
-	 * Returns whether the length of the given path, plus the distance from
-	 * 'from' to the first waypoints, it shorter than minDistance.
-	 */
-	bool PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const;
 
 	/**
 	 * Rotate to face towards the target point, given the current pos
@@ -892,22 +889,8 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// Oops, we hit something (very likely another unit).
 
-	CFixedVector2D targetPos;
-	if (!ComputeTargetPosition(targetPos))
-		return false;
-
-	// If we are almost within distance or only have one waypoint left, the problem is likely that our long path
-	// returned a position blocked by other entities, so use the short pathfinder to work around that.
-	if ((pos - targetPos).CompareLength(LONG_PATH_MIN_DIST) <= 0 || m_LongPath.m_Waypoints.size() == 1)
-	{
-		m_LongPath.m_Waypoints.clear();
-		PathGoal goal;
-		ComputeGoal(goal, m_MoveRequest);
-		RequestShortPath(pos, goal, false);
-		return true;
-	}
-	// Otherwise use the short pathfinder to go to the next waypoint
-	else if (!m_LongPath.m_Waypoints.empty())
+	// If we still have long waypoints, try and compute a short path
+	if (!m_LongPath.m_Waypoints.empty())
 	{
 		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
 		RequestShortPath(pos, goal, false);
@@ -1053,28 +1036,6 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	      m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
 		return false;
 
-	return true;
-}
-
-bool CCmpUnitMotion::PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const
-{
-	CFixedVector2D prev = from;
-	entity_pos_t distLeft = minDistance;
-
-	for (ssize_t i = (ssize_t)path.m_Waypoints.size()-1; i >= 0; --i)
-	{
-		// Check if the next path segment is longer than the requested minimum
-		CFixedVector2D waypoint(path.m_Waypoints[i].x, path.m_Waypoints[i].z);
-		CFixedVector2D delta = waypoint - prev;
-		if (delta.CompareLength(distLeft) > 0)
-			return false;
-
-		// Still short enough - prepare to check the next segment
-		distLeft -= delta.Length();
-		prev = waypoint;
-	}
-
-	// Reached the end of the path before exceeding minDistance
 	return true;
 }
 
