@@ -52,7 +52,7 @@
 # Pitong, 2017
 # slodki12341 <slodki1234@gmail.com>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
-# Tomasz Pudło <wptom@wp.pl>, 2016
+# tombox <wptom@wp.pl>, 2016
 # tomekpg <tomekpg@op.pl>, 2014
 # TotalNoobPL <krzysztof.gurbala@yahoo.com>, 2013
 # Voltinus <voltinusmail@gmail.com>, 2014
@@ -61,8 +61,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 17:43+0000\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 23:27+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -70,6 +70,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "Kontroluj wszystkie jednostki"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "Wybierz gracza"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "Szczegóły zaznaczenia"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "Warstwa szukania ścieżek"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "Warstwa przeszkód"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "Warstwa ruchu jednostek"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "Warstwa zasięgu"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "Pokaż bryły brzegowe"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "Ograniczenie kamery"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "Pokaż mapę"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "Włącz zwielokrotnienie szybkości"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Uwaga: tryb zwielokrotnienia szybkości jest narzędziem deweloperskim i nie powinien być używany przez długi okres czasu. Używanie go w sposób nieprawidłowy może spowodować wyczerpanie się dostępnej pamięci lub zamknięcie programu."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "Tryb zwielokrotnienia szybkości."
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "Awansuj wybrane jednostki"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "Hierarchiczna warstwa szukania ścieżek"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr "Włącz usuwanie niewidocznych powierzchni"
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr "Zablokuj kamerę na widok"
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr "Pokaż bryłę widzenia"
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "Warstwa programistyczna została zamknięta."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "Warstwa programistyczna została otwarta."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -102,12 +185,12 @@ msgid "Confirmation"
 msgstr "Potwierdzenie"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nie"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Tak"
 
@@ -344,15 +427,7 @@ msgstr ","
 msgid "Manual"
 msgstr "Instrukcja"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "Warstwa programistyczna została zamknięta."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "Warstwa programistyczna została otwarta."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -442,7 +517,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Drużyna"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "Obserwator"
 
@@ -772,7 +847,7 @@ msgid "Gain: %(gain)s"
 msgstr "Zysk: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -1013,41 +1088,41 @@ msgstr "%(action)s by wytrenować %(number)s."
 msgid "Shift-click"
 msgstr "Shift-klik"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Typ wiadomości do wysłania."
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Wciśnij %(hotkey)s aby otworzyć publiczny czat."
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Wciśnij %(hotkey)s aby otworzyć czat obserwatorów."
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Wciśnij %(hotkey)s aby otworzyć sojuszniczy czat."
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Naciśnij %(hotkey)s w celu przywrócenia poprzedniego prywatnego czatu."
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "Znajdź niepracującego robotnika"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "Przełącz kolory dyplomacji"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1055,7 +1130,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Wybierz jeden rodzaj dóbr, który chcesz modyfikować poprzez kliknięcie, a następnie użyj strzałek do zmodyfikowania udziałów innych dóbr. Możesz również wcisnąć %(hotkey)s podczas wybierania pierwszego typu dóbr by podnieść udział do 100 %%."
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1064,7 +1139,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Zacznij od wybrania surowca, który chciałbyś sprzedać z górnego rzędu. Za każdym razem, kiedy dolny przycisk jest wciśnięty, %(quantity)s górnego surowca będzie sprzedane za wskazaną ilość niższego surowca. Wciśnij i przytrzymaj %(hotkey)s, by tymczasowo pomnożyć ilość wymienianą o %(multiplier)s."
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1072,97 +1147,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Widok Historii / Drzewko konstrukcyjne\nTen sam widok zostanie otwarty ponownie po kliknięciu."
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "Czy chcesz wyjść?"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "ZWYCIĘSTWO!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "POKONANY!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Koniec powtórki. Czy chcesz wyjść?"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nie"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Tak"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s by zmienić kolejność."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "Nieposortowane"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "Malejąco"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "Rosnąco"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "Populacja (bieżąca / limit)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksymalna populacja: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "Uwaga: tryb zwielokrotnienia szybkości jest narzędziem deweloperskim i nie powinien być używany przez długi okres czasu. Używanie go w sposób nieprawidłowy może spowodować wyczerpanie się dostępnej pamięci lub zamknięcie programu."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "Tryb zwielokrotnienia szybkości."
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1325,58 +1389,6 @@ msgstr "Filtruj historię czatu"
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Wybierz adresata czatu."
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "Kontroluj wszystkie jednostki"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "Wybierz gracza"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "Szczegóły zaznaczenia"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "Warstwa szukania ścieżek"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "Warstwa przeszkód"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "Warstwa ruchu jednostek"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "Warstwa zasięgu"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "Pokaż bryły brzegowe"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "Ograniczenie kamery"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "Pokaż mapę"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "Włącz zwielokrotnienie szybkości"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "Awansuj wybrane jednostki"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "Hierarchiczna warstwa szukania ścieżek"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

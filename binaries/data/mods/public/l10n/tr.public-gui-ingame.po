@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 16:39+0000\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 14:27+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "Tüm birimleri yönet"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "Kamera açısı değiştir"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "Ekran seçim durumu"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "Yol Bulucu kaplaması"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "Tıkama kaplaması"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "Birim hareket göstergesi"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "Alan kaplaması"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "Çerçeveleme kutu kaplaması"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "Kamerayı kısıtla"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "Haritayı göster"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "Zaman atlaması aktif"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Not: zaman tüneli modu geliştirici seçeneğidir, ve zamanda büyük bölümlerin kullanımı için tasarlanmamıştır. Yanlış kullanımı oyunda bellek dolması veya çökmesine neden olabilir."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "Zaman tüneli modu"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "Seçilen birimleri terfi ettir."
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "Hiyerarşik Yol Bulucu Kaplaması"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr "Toplamayı etkinleştir"
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr "Toplama kamerayı sabitle"
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr "Kamera alanını göster"
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "Bu Geliştirici Kaplaması kapandı."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "Bu Geliştirici Kaplaması açıldı."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -80,12 +163,12 @@ msgid "Confirmation"
 msgstr "Onay"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Hayır"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Evet"
 
@@ -304,15 +387,7 @@ msgstr ", "
 msgid "Manual"
 msgstr "Kılavuz"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "Bu Geliştirici Kaplaması kapandı."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "Bu Geliştirici Kaplaması açıldı."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -402,7 +477,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Takım"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "İzleyici"
 
@@ -732,7 +807,7 @@ msgid "Gain: %(gain)s"
 msgstr "Kazanç: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -971,41 +1046,41 @@ msgstr "%(number)s tane eğitmek için %(action)s."
 msgid "Shift-click"
 msgstr "Üst karakter-tıklama"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Göndermek için mesaj yaz."
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Genel sohbeti açmak için %(hotkey)s tuşuna basın."
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "İzleyici sohbetini açmak için %(hotkey)s tuşuna bas."
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Müttefik sohbetini açmak için %(hotkey)s tuşuna bas."
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Daha önce seçilen özel sohbeti açmak için %(hotkey)s tuşuna basın."
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "Boş duran işçi bul"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "Diplomasi renklerini değiştir"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1013,7 +1088,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Değiştirmek istediğiniz bir ürün türünü tıklatarak seçin ve ardından paylaşımlarını değiştirmek için diğer türlerin oklarını kullanın. Ayrıca, tuşuna basabilirsiniz. %(hotkey)s Payını 100'e çıkarmak için bir tür mal seçerken%%."
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1022,7 +1097,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Üst sıradan satmak istediğiniz kaynağı seçerek başlayın. Alt düğmelere her basıldığında, %(quantity)s Alt kaynağın görüntülenen miktarı için satılacaktır. basın ve basılı tutun %(hotkey)s Işlem gören miktarı geçici olarak çarpmak için %(multiplier)s."
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1030,97 +1105,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s%(hotkey_structree)s: Tarihi görüntüle / Yapı Ağacı\nTıkladığınız da son açılan yeniden açılır."
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "Çıkmak istiyor musun?"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "ZAFER!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "YENİLDİN!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "Tamam"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Yeniden oynatma tamamladı. Çıkmak istiyor musunuz?"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Hayır"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s:%(hotkey)s emri değiştir."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "Sıralanmamış"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "Azalan"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "Artan"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "Nüfus (olan/limit)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "En fazla nüfus: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "Not: zaman tüneli modu geliştirici seçeneğidir, ve zamanda büyük bölümlerin kullanımı için tasarlanmamıştır. Yanlış kullanımı oyunda bellek dolması veya çökmesine neden olabilir."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "Zaman tüneli modu"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1283,58 +1347,6 @@ msgstr "Sohbet geçmişini filtreleyin."
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Sohbet adresi seçin."
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "Tüm birimleri yönet"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "Kamera açısı değiştir"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "Ekran seçim durumu"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "Yol Bulucu kaplaması"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "Tıkama kaplaması"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "Birim hareket göstergesi"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "Alan kaplaması"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "Çerçeveleme kutu kaplaması"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "Kamerayı kısıtla"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "Haritayı göster"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "Zaman atlaması aktif"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "Seçilen birimleri terfi ettir."
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "Hiyerarşik Yol Bulucu Kaplaması"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

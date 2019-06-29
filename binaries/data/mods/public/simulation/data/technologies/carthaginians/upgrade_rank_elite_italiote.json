@@ -1,14 +1,16 @@
 {
 	"genericName": "Elite Italiote Mercenaries",
 	"description": "Upgrade all of your Italiote Mercenaries to Elite rank.",
-	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 500},
-	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "cart"}]},
+	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 500 },
+	"requirements": { "all": [{ "tech": "phase_city" }, { "civ": "cart" }] },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "upgrade_elite.png",
 	"researchTime": 40,
 	"supersedes": "carthaginians/upgrade_rank_advanced_italiote",
 	"tooltip": "Upgrade all of your Italiote mercenaries to Elite rank. This increases their military prowess, but decreases their resource gathering rates another -25%.",
-	"modifications": [{"value": "Promotion/RequiredXp", "replace": 0}],
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "replace": 0 }
+	],
 	"affects": ["Italian Advanced"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

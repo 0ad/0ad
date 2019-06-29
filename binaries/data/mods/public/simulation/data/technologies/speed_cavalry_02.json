@@ -1,14 +1,16 @@
 {
 	"genericName": "Cavalry Speed Training",
 	"description": "Train your horses to move faster.",
-	"cost": {"food": 500, "wood": 500, "stone": 0, "metal": 150},
+	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 150 },
 	"supersedes": "speed_cavalry_01",
-	"requirements": {"tech": "phase_city"},
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "nisean_war_horses.png",
 	"researchTime": 40,
 	"tooltip": "+10% cavalry walk speed.",
-	"modifications": [{"value": "UnitMotion/WalkSpeed", "multiply": 1.1}],
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.1 }
+	],
 	"affects": ["Cavalry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

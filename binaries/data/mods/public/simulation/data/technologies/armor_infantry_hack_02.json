@@ -12,13 +12,15 @@
 		"cart": "Linothorakes"
 	},
 	"description": "Laminated linen body armor for infantrymen.",
-	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 100, "wood": 100, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_pteruges.png",
 	"researchTime": 40,
 	"tooltip": "All Infantry +1 Hack Armor Level.",
-	"modifications": [{"value": "Armour/Hack", "add": 1.0}],
+	"modifications": [
+		{ "value": "Armour/Hack", "add": 1 }
+	],
 	"affects": ["Infantry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

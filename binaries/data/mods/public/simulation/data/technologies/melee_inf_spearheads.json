@@ -8,13 +8,15 @@
 		"sele": "Sidḗreai Aikhmaí"
 	},
 	"description": "Using iron instead of bronze gave spears additional piercing power.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 200},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 200 },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "spear.png",
 	"researchTime": 40,
 	"tooltip": "All Spear units +2 hack attack.",
-	"modifications": [{"value": "Attack/Melee/Damage/Hack", "add": 2.0}],
+	"modifications": [
+		{ "value": "Attack/Damage/Melee/Hack", "add": 2 }
+	],
 	"affects": ["Spear"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

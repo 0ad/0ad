@@ -1,13 +1,15 @@
 {
 	"genericName": "Exploration",
 	"description": "Nobody knew better than the Carthaginians where in the ancient world they were going and going to go; their merchant traders had missions to everywhere.",
-	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 200},
-	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
+	"cost": { "food": 200, "wood": 0, "stone": 0, "metal": 200 },
+	"requirements": { "all": [{ "tech": "phase_town" }, { "civ": "cart" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_ship_gold.png",
 	"researchTime": 60,
 	"tooltip": "Carthaginians were explorers. All Traders and Ships +25% vision range.",
-	"modifications": [{"value": "Vision/Range", "multiply": 1.25}],
+	"modifications": [
+		{ "value": "Vision/Range", "multiply": 1.25 }
+	],
 	"affects": ["Trader", "Ship"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

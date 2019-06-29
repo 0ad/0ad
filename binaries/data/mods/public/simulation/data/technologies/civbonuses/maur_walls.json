@@ -2,12 +2,12 @@
 	"genericName": "Wooden Walls",
 	"autoResearch": true,
 	"description": "The Mauryas built their city walls out of wood, an abundant natural resource in India.",
-	"requirements": {"civ": "maur"},
+	"requirements": { "civ": "maur" },
 	"icon": "wooden_walls.png",
 	"tooltip": "Mauryan city walls have -20% less health and -20% less build time.",
 	"modifications": [
-		{"value": "Health/Max", "multiply": 0.8},
-		{"value": "Cost/BuildTime", "multiply": 0.8}
+		{ "value": "Health/Max", "multiply": 0.8 },
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
 	],
 	"affects": ["StoneWall"]
 }

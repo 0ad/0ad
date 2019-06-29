@@ -1,16 +1,18 @@
 {
 	"genericName": "Iron Weapons",
 	"description": "Using iron instead of bronze gave weapons additional power.",
-	"cost": {"food": 500, "wood": 500, "stone": 250, "metal": 450},
+	"cost": { "food": 500, "wood": 500, "stone": 250, "metal": 450 },
 	"supersedes": "attack_infantry_melee_01",
-	"requirements": {"tech": "phase_city"},
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "sword_cross.png",
 	"researchTime": 40,
 	"tooltip": "+20% melee infantry attack.",
-	"modifications": [{"value": "Attack/Melee/Damage/Hack", "multiply": 1.2},
-		{"value": "Attack/Melee/Damage/Pierce", "multiply": 1.2},
-		{"value": "Attack/Melee/Damage/Crush", "multiply": 1.2}],
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
+	],
 	"affects": ["Infantry Melee"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -1,17 +1,17 @@
 {
 	"genericName": "Baskets",
 	"description": "Increases shuttling capacity for all resources.",
-	"cost": {"food": 300, "wood": 300, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_village"},
+	"cost": { "food": 300, "wood": 300, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "gather_basket_empty.png",
 	"researchTime": 40,
 	"tooltip": "Workers use baskets. +5 shuttle capacity for all resources.",
 	"modifications": [
-		{"value": "ResourceGatherer/Capacities/food", "add": 5},
-		{"value": "ResourceGatherer/Capacities/wood", "add": 5},
-		{"value": "ResourceGatherer/Capacities/stone", "add": 5},
-		{"value": "ResourceGatherer/Capacities/metal", "add": 5}
+		{ "value": "ResourceGatherer/Capacities/food", "add": 5 },
+		{ "value": "ResourceGatherer/Capacities/wood", "add": 5 },
+		{ "value": "ResourceGatherer/Capacities/stone", "add": 5 },
+		{ "value": "ResourceGatherer/Capacities/metal", "add": 5 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

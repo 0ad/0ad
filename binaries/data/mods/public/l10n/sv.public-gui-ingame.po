@@ -24,15 +24,98 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-05-23 18:09+0000\n"
-"Last-Translator: mljungberg10 <mikael.ljungberg@gmail.com>\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 14:22+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "Kontrollera alla enheter"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "Ändra perspektiv"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "Visa urvalstillstånd"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "Pathfinderöverlägg"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "Hinderöverlägg"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "Enhetsrörelseöverlägg"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "Räckviddsöverlägg"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "Kantboxöverlägg"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "Begränsa kamera"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "Avslöja kartan"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "Aktivera Tidsböjning"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "OBS: Time Warp Läge är en utvecklarinställning och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att kräva för mycket minne och crasha."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "Time warp läge"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "Befordra valda enheter"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "Hierarkiska Pathfinderöverlägg"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr ""
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr ""
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr ""
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "Utvecklaröverlägget stängdes."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "Utvecklaröverlägget öppnades."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -61,12 +144,12 @@ msgid "Confirmation"
 msgstr "Bekräfta"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nej"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -285,15 +368,7 @@ msgstr ", "
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "Utvecklaröverlägget stängdes."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "Utvecklaröverlägget öppnades."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -383,7 +458,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Lag"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "Observatör"
 
@@ -713,7 +788,7 @@ msgid "Gain: %(gain)s"
 msgstr "Vinst: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -952,41 +1027,41 @@ msgstr "%(action)s för att träna %(number)s."
 msgid "Shift-click"
 msgstr "Skift-klicka"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Skriv ditt meddelande."
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Tryck %(hotkey)s för att öppna den offentliga chatten."
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Tryck %(hotkey)s för att öppna observatör chatten."
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Tryck %(hotkey)s för att öppna allierade chatten."
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Tryck %(hotkey)s för att öppna den senaste valda privata chatten."
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "Hitta sysslolös arbetare"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "Växla Diplomatifärger"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -994,7 +1069,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Välj typen av varor du vill ändra genom att klicka på den  och använd sedan pilarna i de andra typerna att ändra deras andelar. Du kan även trycka  %(hotkey)s samtidigt som du väljer resurs för att sätta andelen till 100%%."
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1003,7 +1078,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Börja med att välja resursen som du vill sälja i den övre raden. Vid varje klick på en av knapparna i den nedre raden säljs %(quantity)s av den övre resursen för den visade mängden av den nedre. Tryck och håll %(hotkey)s för att tillfälligt multiplicera alla mängder med %(multiplier)s."
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1011,97 +1086,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Historik / Stukturträd\nSenast öppnad kommer öppnas igen vid klick."
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "Vill du avsluta?"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "SEGRARE!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "BESEGRAD!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Replayen är över. Vill du avsluta?"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nej"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s för att byta ordning."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "Osorterat"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "Minskande"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "Ökande"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "Befolkning (nuvarande / gräns)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximal befolkning: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "OBS: Time Warp Läge är en utvecklarinställning och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att kräva för mycket minne och crasha."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "Time warp läge"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1264,58 +1328,6 @@ msgstr "Filtrera chatthistoriken."
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Välj chattmottagare."
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "Kontrollera alla enheter"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "Ändra perspektiv"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "Visa urvalstillstånd"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "Pathfinderöverlägg"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "Hinderöverlägg"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "Enhetsrörelseöverlägg"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "Räckviddsöverlägg"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "Kantboxöverlägg"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "Begränsa kamera"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "Avslöja kartan"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "Aktivera Tidsböjning"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "Befordra valda enheter"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "Hierarkiska Pathfinderöverlägg"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

@@ -9,15 +9,15 @@
 		"rome": "Fortitudo"
 	},
 	"description": "Guard units have uncommon bravery and valor in battle.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 300},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 300 },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "helmet_hero_side.png",
 	"researchTime": 40,
 	"tooltip": "Guard units have uncommon courage and valor in battle. Champions +2 attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Damage/Hack", "add": 2.0, "affects": "Champion Melee"},
-		{"value": "Attack/Ranged/Damage/Pierce", "add": 2.0, "affects": "Champion Ranged"}
+		{ "value": "Attack/Melee/Damage/Hack", "add": 2, "affects": "Champion Melee" },
+		{ "value": "Attack/Ranged/Damage/Pierce", "add": 2, "affects": "Champion Ranged" }
 	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -8,16 +8,18 @@
 		"ptol": "Átaktoi"
 	},
 	"description": "Training increases damage of ranged infantry units.",
-	"cost": {"food": 500, "wood": 500, "stone": 250, "metal": 350},
+	"cost": { "food": 500, "wood": 500, "stone": 250, "metal": 350 },
 	"supersedes": "attack_infantry_ranged_01",
-	"requirements": {"tech": "phase_city"},
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "javelin_thong.png",
 	"researchTime": 40,
 	"tooltip": "+20% ranged infantry attack.",
-	"modifications": [{"value": "Attack/Ranged/Damage/Hack", "multiply": 1.2},
-		{"value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2},
-		{"value": "Attack/Ranged/Damage/Crush", "multiply": 1.2}],
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
+	],
 	"affects": ["Infantry Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

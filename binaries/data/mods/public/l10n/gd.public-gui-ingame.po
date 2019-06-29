@@ -10,15 +10,98 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-05-08 05:27+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 14:22+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "Stiùirich a h‑uile aonad"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "Atharraich a’ bhuaidh-astair"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "Seall staid an taghaidh"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "Tar-chòmhdachadh an luirg-shlighean"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "Tar-chòmhdaich bacaidhean"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "Tar-chòmhdaich gluasad nan aonadan"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "Tar-chòmhdaich an rainse"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "Tar-chòmhdaich bogsa-iadhaidh"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "Cuingich an camara"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "Foillsich am mapa"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "Cuir dlùthadh an ama an comas"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "An aire: ’s e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh’fhaoidte gum falbh an cuimhne air a’ gheama no gun tuislich e."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "Modh dlùthadh an ama"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "Àrdaich na h‑aonadan a thagh thu"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "Tar-chòmhdachadh rangach an luirg-shlighean"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr ""
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr ""
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr ""
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "Chaidh tar-chòmhdachadh nan leasaichear a dhùnadh."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "Chaidh tar-chòmhdachadh nan leasaichear fhosgladh."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -51,12 +134,12 @@ msgid "Confirmation"
 msgstr "Dearbhadh"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Chan eil"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Tha"
 
@@ -293,15 +376,7 @@ msgstr ", "
 msgid "Manual"
 msgstr "Leabhar-mìneachaidh"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "Chaidh tar-chòmhdachadh nan leasaichear a dhùnadh."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "Chaidh tar-chòmhdachadh nan leasaichear fhosgladh."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -391,7 +466,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Sgioba"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "Amharc"
 
@@ -721,7 +796,7 @@ msgid "Gain: %(gain)s"
 msgstr "Buannachd: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -962,41 +1037,41 @@ msgstr "%(action)s gus %(number)s a thrèanadh."
 msgid "Shift-click"
 msgstr "Shift-bhriog"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Sgrìobh an teachdaireachd ri a cur."
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Brùth air %(hotkey)s gus a’ chabadaich phoblach fhosgladh."
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Brùth air %(hotkey)s gus cabadaich nan amharc fhosgladh."
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Brùth air %(hotkey)s gus cabadaich nan caidreabhach fhosgladh."
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Brùth air %(hotkey)s gus a’ chabadaich phrìobhaideach mu dheireadh a thagh thu fhosgladh."
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "Lorg obraiche na thàmh"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "Toglaich dathan na dioplòmasachd"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1004,7 +1079,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Briog air an t-seòrsa bathair a tha thu airson atharrachadh ’s cleachd iuchraichean nan seòrsaichean eile an uairsin gus an cuid atharrachadh. Ma chumas tu %(hotkey)s sìos nuair a thaghas tu bathar, cuiridh e a chuid air 100%%."
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1013,7 +1088,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "An toiseach, tagh an stòras a tha thu airson reic on ràgh air a’ bharr an toiseach. Gach turas a nì thu bruthadh air fear de na putanan gu h-ìosal, thèid %(quantity)s dhen stòras gu h-àrd a reic ’s gheibh thu uiread a stòrais mar tha ’ga shealltainn dhut gu h-ìosal. Cum %(hotkey)s sìos gus a h-uile uiread iomadachadh le %(multiplier)s rè seal."
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1021,97 +1096,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Seann an eachdraidh / Craobh nan sìobhaltas\nThèid am fear mu dheireadh air an robh thu fhosgladh a-rithist nuair a nì thu briogadh."
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "A bheil thu airson fàgail?"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "BUAIDH!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "RUAIG!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Chrìochnaich an ath-chluiche. A bheil thu airson fàgail?"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s gus an òrdugh atharrachadh."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "Gun òrdugh"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "A’ teàrnadh"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "A’ dìreadh"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "Sluagh (an-dràsta / as motha)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "An tomhas-sluaigh as motha: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "An aire: ’s e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh’fhaoidte gum falbh an cuimhne air a’ gheama no gun tuislich e."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "Modh dlùthadh an ama"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1274,58 +1338,6 @@ msgstr "Criathraich eachdraidh na cabadaich."
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Tagh faightear na cabadaich."
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "Stiùirich a h‑uile aonad"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "Atharraich a’ bhuaidh-astair"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "Seall staid an taghaidh"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "Tar-chòmhdachadh an luirg-shlighean"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "Tar-chòmhdaich bacaidhean"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "Tar-chòmhdaich gluasad nan aonadan"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "Tar-chòmhdaich an rainse"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "Tar-chòmhdaich bogsa-iadhaidh"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "Cuingich an camara"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "Foillsich am mapa"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "Cuir dlùthadh an ama an comas"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "Àrdaich na h‑aonadan a thagh thu"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "Tar-chòmhdachadh rangach an luirg-shlighean"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

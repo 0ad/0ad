@@ -14,15 +14,15 @@
 # Po-Chun Huang <aphroteus@gmail.com>, 2014
 # ryat <mj0011@yopmail.com>, 2015
 # samrmrf, 2013
-# sea bluegreen <wfzhang0511@gmail.com>, 2018
+# 青海 <wfzhang0511@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # 旭誠 張 <tea55688@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 14:22+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "控制所有單位"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "變更觀點"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "顯示選取狀態"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "尋路覆蓋層"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "障礙覆蓋層"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "單位移動覆蓋層"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "射程覆蓋層"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "邊框覆蓋層"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "限制攝影機"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "顯示地圖"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "啟用時間隧道"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "時空隧道模式"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "升職選定的單位"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "分級尋路覆蓋層"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr ""
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr ""
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr ""
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "開發者覆蓋層已關閉。"
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "開發者覆蓋層已開啟。"
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -56,12 +139,12 @@ msgid "Confirmation"
 msgstr "確認"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "是"
 
@@ -271,15 +354,7 @@ msgstr "，"
 msgid "Manual"
 msgstr "手冊"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "開發者覆蓋層已關閉。"
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "開發者覆蓋層已開啟。"
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -369,7 +444,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "團隊"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "觀察者"
 
@@ -699,7 +774,7 @@ msgid "Gain: %(gain)s"
 msgstr "收益: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -937,41 +1012,41 @@ msgstr "%(action)s 訓練 %(number)s."
 msgid "Shift-click"
 msgstr "Shift-左鍵點擊"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "輸入您想傳送的訊息。"
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "按 %(hotkey)s 以開啟公開聊天。"
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "按 %(hotkey)s 以開啟觀察者聊天。"
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "按 %(hotkey)s 以開啟隊伍聊天。"
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "按 %(hotkey)s 以開啟先前選定的私密聊天。"
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "尋找閒置工人"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "切換外交顏色"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -979,7 +1054,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "在您想要修改的物資上點選以選取，然後使用其他類型的資源的箭頭來調整它們的份額。您也可以在選取其中一種物資時按下 %(hotkey)s 來將其份額提升至 100%%。"
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -988,7 +1063,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "首先在上面那一行中選擇您要出售的資源。每次按下按鈕時，上面的資源將會賣出 %(quantity)s 到較低的資源數。按著 %(hotkey)s 鍵暫時將所有數量以 %(multiplier)s 增加。"
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -996,97 +1071,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s ：檢視歷史 / 科技樹\n點擊將開啟上次開啟的地方"
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "您是否要退出？"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "戰敗！"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "確定"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "重播已結束。您想要退出嗎？"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "否"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "是"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s：%(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s 來改變排序。"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "未排序"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "降冪"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "升冪"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "人口 (目前/上限)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "最大人口：%(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "時空隧道模式"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1249,58 +1313,6 @@ msgstr "過濾聊天歷史。"
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "選擇聊天訊息收件人。"
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "控制所有單位"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "變更觀點"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "顯示選取狀態"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "尋路覆蓋層"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "障礙覆蓋層"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "單位移動覆蓋層"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "射程覆蓋層"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "邊框覆蓋層"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "限制攝影機"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "顯示地圖"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "啟用時間隧道"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "升職選定的單位"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "分級尋路覆蓋層"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

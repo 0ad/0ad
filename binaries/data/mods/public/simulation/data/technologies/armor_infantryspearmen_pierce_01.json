@@ -9,13 +9,15 @@
 		"sele": "Aspidískos"
 	},
 	"description": "Plywood construction for large shields.",
-	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 0},
-	"requirements": {"any": [{"tech": "phase_town"},{"civ": "brit"},{"civ": "gaul"}]},
+	"cost": { "food": 0, "wood": 50, "stone": 0, "metal": 0 },
+	"requirements": { "any": [{ "tech": "phase_town" }, { "civ": "brit" }, { "civ": "gaul" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "shields_generic_wood.png",
 	"researchTime": 40,
 	"tooltip": "Infantry Spearmen +2 Pierce Armor Levels.",
-	"modifications": [{"value": "Armour/Pierce", "add": 2.0}],
+	"modifications": [
+		{ "value": "Armour/Pierce", "add": 2 }
+	],
 	"affects": ["Infantry Spear"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

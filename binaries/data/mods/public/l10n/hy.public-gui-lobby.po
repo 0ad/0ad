@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-06-23 20:16+0000\n"
+"PO-Revision-Date: 2019-06-24 10:44+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr "Դուք հիմա մոդերատոր եք"
+msgstr "Դուք հիմա մոդերատոր եք:"
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
@@ -241,7 +241,7 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Պատճառ. %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
@@ -394,12 +394,12 @@ msgstr ""
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Մուտքագրեք ձեր գաղտնաբառը"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Մուտքագրեք ձեր գաղտնաբառը"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
@@ -411,7 +411,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
@@ -449,7 +449,7 @@ msgstr ""
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
-msgstr ""
+msgstr "Մուտք գործել"
 
 #: gui/prelobby/login/login.js:32
 msgid "Connecting…"
@@ -457,7 +457,7 @@ msgstr ""
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
-msgstr ""
+msgstr "Ստեղծել նոր հաշիվ"
 
 #: gui/prelobby/register/register.js:26
 msgid "Registering…"

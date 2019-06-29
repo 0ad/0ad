@@ -6,14 +6,16 @@
 		"athen": "Hippocratic Oath"
 	},
 	"description": "Increases the Healing Rate of all healers.",
-	"cost": {"food": 1000, "wood": 0, "stone": 0, "metal": 500},
+	"cost": { "food": 1000, "wood": 0, "stone": 0, "metal": 500 },
 	"supersedes": "heal_rate",
-	"requirements": {"tech": "phase_city"},
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "healing_rate.png",
 	"researchTime": 40,
 	"tooltip": "Healers +25% healing rate.",
-	"modifications": [{"value": "Heal/Rate", "multiply": 0.8}],
+	"modifications": [
+		{ "value": "Heal/Rate", "multiply": 0.8 }
+	],
 	"affects": ["Healer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

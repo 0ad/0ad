@@ -6,14 +6,16 @@
 		"athen": "Pentakosiomédimnoi"
 	},
 	"description": "Upgrade all of your citizen-soldier infantrymen to Elite rank.",
-	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 500},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 500 },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "upgrade_elite.png",
 	"researchTime": 40,
 	"supersedes": "upgrade_rank_advanced_infantry",
 	"tooltip": "Upgrade all of your citizen-soldier infantrymen to Elite rank. This increases their military prowess, but decreases their resource gathering rates another -25%.",
-	"modifications": [{"value": "Promotion/RequiredXp", "replace": 0}],
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "replace": 0 }
+	],
 	"affects": ["Infantry Advanced"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

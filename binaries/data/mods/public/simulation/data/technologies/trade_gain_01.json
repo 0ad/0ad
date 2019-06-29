@@ -1,13 +1,15 @@
 {
 	"genericName": "Handicraft",
 	"description": "The progress in handicraft improves the trading profit.",
-	"cost": {"food": 0, "wood": 150, "stone": 0, "metal": 150},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 0, "wood": 150, "stone": 0, "metal": 150 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "metal_pot.png",
 	"researchTime": 40,
 	"tooltip": "Traders +10% gain.",
-	"modifications": [{"value": "Trader/GainMultiplier", "multiply": 1.10}],
+	"modifications": [
+		{ "value": "Trader/GainMultiplier", "multiply": 1.1 }
+	],
 	"affects": ["Trader"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

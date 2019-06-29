@@ -8,6 +8,8 @@
 	"icon": "diaspora.png",
 	"researchTime": 40,
 	"tooltip": "Allows using allied dropsites.",
-	"modifications": [{ "value": "Player/sharedDropsites", "replace": true }],
+	"modifications": [
+		{ "value": "Player/sharedDropsites", "replace": true }
+	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

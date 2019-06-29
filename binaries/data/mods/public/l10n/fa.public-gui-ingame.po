@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 14:53+0000\n"
+"POT-Creation-Date: 2019-06-24 09:42+0200\n"
+"PO-Revision-Date: 2019-06-24 14:22+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gui/session/developer_overlay.js:16
+msgid "Control all units"
+msgstr "کنترل همه نیروها"
+
+#: gui/session/developer_overlay.js:26
+msgid "Change perspective"
+msgstr "تغییر زاویه دید"
+
+#: gui/session/developer_overlay.js:32
+msgid "Display selection state"
+msgstr "نمایش حالت انتخابی"
+
+#: gui/session/developer_overlay.js:38
+msgid "Pathfinder overlay"
+msgstr "نمایش مسیریاب"
+
+#: gui/session/developer_overlay.js:44
+msgid "Obstruction overlay"
+msgstr "نمایش گرفتگی"
+
+#: gui/session/developer_overlay.js:50
+msgid "Unit motion overlay"
+msgstr "نمایش حرکت نیروها"
+
+#: gui/session/developer_overlay.js:56
+msgid "Range overlay"
+msgstr "نمایش شعاع حمله"
+
+#: gui/session/developer_overlay.js:62
+msgid "Bounding box overlay"
+msgstr "نمایش جعبه محدود"
+
+#: gui/session/developer_overlay.js:68
+msgid "Restrict camera"
+msgstr "محدود کردن دوربین"
+
+#: gui/session/developer_overlay.js:75
+msgid "Reveal map"
+msgstr "نمایان کردن نقشه"
+
+#: gui/session/developer_overlay.js:85
+msgid "Enable time warp"
+msgstr "فعال کردن تغییر زمان"
+
+#: gui/session/developer_overlay.js:91
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "نکته: حالت برگشت پذیری زمان یک ابزار توسعه دهندگان است و برای استفاده ی طولانی مدت ساخته نشده. استفاده ی نادرست از آن باعث افزایش شدید استفاده از حافظه و متوقف شدن برنامه شود."
+
+#: gui/session/developer_overlay.js:92
+msgid "Time warp mode"
+msgstr "مد بازگشت زمان"
+
+#: gui/session/developer_overlay.js:97
+msgid "Promote selected units"
+msgstr "ارتقاء واحد انتخاب شده"
+
+#: gui/session/developer_overlay.js:106
+msgid "Hierarchical pathfinder overlay"
+msgstr "پوشش مسیریاب سلسله مراتبی"
+
+#: gui/session/developer_overlay.js:112
+msgid "Enable culling"
+msgstr ""
+
+#: gui/session/developer_overlay.js:119
+msgid "Lock cull camera"
+msgstr ""
+
+#: gui/session/developer_overlay.js:126
+msgid "Display camera frustum"
+msgstr ""
+
+#: gui/session/developer_overlay.js:200
+msgid "The Developer Overlay was closed."
+msgstr "بخش توسعه دهنده بسته شد."
+
+#: gui/session/developer_overlay.js:201
+msgid "The Developer Overlay was opened."
+msgstr "بخش توسعه دهنده باز شد."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -52,12 +135,12 @@ msgid "Confirmation"
 msgstr "تایید"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "خیر"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:907 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "بله"
 
@@ -276,15 +359,7 @@ msgstr "،"
 msgid "Manual"
 msgstr "صفحه راهنما"
 
-#: gui/session/menu.js:1247
-msgid "The Developer Overlay was closed."
-msgstr "بخش توسعه دهنده بسته شد."
-
-#: gui/session/menu.js:1248
-msgid "The Developer Overlay was opened."
-msgstr "بخش توسعه دهنده باز شد."
-
-#: gui/session/menu.js:1274
+#: gui/session/menu.js:1249
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -374,7 +449,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "تیم"
 
-#: gui/session/messages.js:177 gui/session/session.js:518
+#: gui/session/messages.js:177 gui/session/session.js:513
 msgid "Observer"
 msgstr "ناظر"
 
@@ -704,7 +779,7 @@ msgid "Gain: %(gain)s"
 msgstr "بدست آورد: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1330
+#: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -943,41 +1018,41 @@ msgstr "%(action)s برای پرورش %(number)s."
 msgid "Shift-click"
 msgstr "شیفت و کلیک"
 
-#: gui/session/session.js:425
+#: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "وارد کردن پیام برای ارسال"
 
-#: gui/session/session.js:427
+#: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "کلید %(hotkey)s فشار دهید تا چت عمومی باز شود"
 
-#: gui/session/session.js:430
+#: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "کلید %(hotkey)s را فشار دهید تا چت ناظر باز شود"
 
-#: gui/session/session.js:431
+#: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "کلید %(hotkey)s فشار دهید تا چت هم پیمان ها باز شود"
 
-#: gui/session/session.js:433
+#: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "کلید %(hotkey)s را فشار دهید تا چت خصوصی باز انتخاب شده قبلی باز شود"
 
-#: gui/session/session.js:437
+#: gui/session/session.js:432
 msgid "Find idle worker"
 msgstr "کارگر بیکار پیدا کن"
 
-#: gui/session/session.js:441 gui/session/session.js:445
+#: gui/session/session.js:436 gui/session/session.js:440
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
 msgstr "تغییر رنگهای دیپلماسی"
 
-#: gui/session/session.js:448
+#: gui/session/session.js:443
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -985,7 +1060,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "انتخاب یک نوع از کالا هایی که می خواهید اصلاح کنید با کلید کردن بر روی آن، و سپس استفاده از فلش های سایر کالاها برای اصلاح سهم آنها. شما همچنین می توانید کلید %(hotkey)s را فشار دهید در زمانی که در حال انتخاب یک نوع از کالا ها هستید تا سهم آنها را به 100%% برسانید"
 
-#: gui/session/session.js:452
+#: gui/session/session.js:447
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -994,7 +1069,7 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "شروع با انتخاب منابعی که قصد دارید به فروش برسانید، از سطر بالا. برای هر بار که کلید پایین انتخاب می شود، %(quantity)s از منبع بالا در ازای مقداری که در پایین مشخص شده است به فروش می رسد. اگر کلید %(hotkey)s را فشار دهید و نگه دارید بصورت موقت مقدار معامله را به میزان %(multiplier)s چند برابر می کنید. "
 
-#: gui/session/session.js:654
+#: gui/session/session.js:643
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1002,97 +1077,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: دیدن تاریخچه / ساختار درختی\nآخرین موردی که باز شد اگر کلید کنید باز خواهد شد."
 
-#: gui/session/session.js:899
+#: gui/session/session.js:888
 msgid "Do you want to quit?"
 msgstr "آیا می‌خواهید خارج شوید؟"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:894
 msgid "VICTORIOUS!"
 msgstr "پیروزی!"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:895
 msgid "DEFEATED!"
 msgstr "شکست!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:896
 msgid "OK"
 msgstr "باشه"
 
-#: gui/session/session.js:981
+#: gui/session/session.js:969
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "ریپلی به پایان رسید. آیا میخواهید خارج شوید؟"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "تائید"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "No"
 msgstr "نه"
 
-#: gui/session/session.js:983
+#: gui/session/session.js:971
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "آری"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1166
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1218
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s برای تغییر سفارش."
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Unordered"
 msgstr "بی نظم"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Descending"
 msgstr "نزولی"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1198
 msgid "Ascending"
 msgstr "صعودی"
 
-#: gui/session/session.js:1269
+#: gui/session/session.js:1224
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1270
+#: gui/session/session.js:1225
 msgid "Population (current / limit)"
 msgstr "جمعیت (کنونی / سقف مجاز)"
 
-#: gui/session/session.js:1271
+#: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "بیشترین جمعیت: %(popCap)s"
 
-#: gui/session/session.js:1470
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "نکته: حالت برگشت پذیری زمان یک ابزار توسعه دهندگان است و برای استفاده ی طولانی مدت ساخته نشده. استفاده ی نادرست از آن باعث افزایش شدید استفاده از حافظه و متوقف شدن برنامه شود."
-
-#: gui/session/session.js:1471
-msgid "Time warp mode"
-msgstr "مد بازگشت زمان"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1488
+#: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (x%(speed)s)"
@@ -1255,58 +1319,6 @@ msgstr "فیلتر کردن تاریخچه چت"
 msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "انتخاب آدرس گیرنده چت"
-
-#: gui/session/developer_overlay.xml:(caption):18
-msgid "Control all units"
-msgstr "کنترل همه نیروها"
-
-#: gui/session/developer_overlay.xml:(caption):31
-msgid "Change perspective"
-msgstr "تغییر زاویه دید"
-
-#: gui/session/developer_overlay.xml:(caption):41
-msgid "Display selection state"
-msgstr "نمایش حالت انتخابی"
-
-#: gui/session/developer_overlay.xml:(caption):47
-msgid "Pathfinder overlay"
-msgstr "نمایش مسیریاب"
-
-#: gui/session/developer_overlay.xml:(caption):57
-msgid "Obstruction overlay"
-msgstr "نمایش گرفتگی"
-
-#: gui/session/developer_overlay.xml:(caption):67
-msgid "Unit motion overlay"
-msgstr "نمایش حرکت نیروها"
-
-#: gui/session/developer_overlay.xml:(caption):77
-msgid "Range overlay"
-msgstr "نمایش شعاع حمله"
-
-#: gui/session/developer_overlay.xml:(caption):87
-msgid "Bounding box overlay"
-msgstr "نمایش جعبه محدود"
-
-#: gui/session/developer_overlay.xml:(caption):97
-msgid "Restrict camera"
-msgstr "محدود کردن دوربین"
-
-#: gui/session/developer_overlay.xml:(caption):107
-msgid "Reveal map"
-msgstr "نمایان کردن نقشه"
-
-#: gui/session/developer_overlay.xml:(caption):123
-msgid "Enable time warp"
-msgstr "فعال کردن تغییر زمان"
-
-#: gui/session/developer_overlay.xml:(caption):135
-msgid "Promote selected units"
-msgstr "ارتقاء واحد انتخاب شده"
-
-#: gui/session/developer_overlay.xml:(caption):148
-msgid "Hierarchical pathfinder overlay"
-msgstr "پوشش مسیریاب سلسله مراتبی"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8

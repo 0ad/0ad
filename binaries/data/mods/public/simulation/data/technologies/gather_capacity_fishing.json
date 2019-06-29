@@ -1,14 +1,16 @@
 {
 	"genericName": "Salting Fish",
 	"description": "Salting allows to preserve fish longer.",
-	"cost": {"food": 200, "wood": 100, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 200, "wood": 100, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase. Requires Fishing Net.",
 	"supersedes": "gather_fishing_net",
 	"icon": "fish.png",
 	"researchTime": 30,
 	"tooltip": "Fishing Boats +20 food capacity.",
-	"modifications": [{"value": "ResourceGatherer/Capacities/food", "add": 20}],
+	"modifications": [
+		{ "value": "ResourceGatherer/Capacities/food", "add": 20 }
+	],
 	"affects": ["FishingBoat"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
