@@ -24,7 +24,7 @@ Mirage.prototype.Init = function()
 	this.hitpoints = null;
 	this.repairable = null;
 	this.unhealable = null;
-	this.IsInjured = null;
+	this.injured = null;
 
 	this.capturePoints = [];
 	this.maxCapturePoints = 0;
