@@ -2,6 +2,7 @@
 #define INCLUDED_RLINTERFACE
 #include <mutex>
 #include <queue>
+#include <tuple>
 #include <grpc/grpc.h>
 #include <grpcpp/server.h>
 #include <grpcpp/server_builder.h>
@@ -32,7 +33,7 @@ using boost::fibers::buffered_channel;
 enum GameMessageType { Reset, Commands };
 struct GameMessage {
     GameMessageType type;
-    std::queue<std::string> data;
+    std::queue<std::tuple<int, std::string>> data;
 };
 extern void EndGame();
 

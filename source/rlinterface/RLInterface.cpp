@@ -1,4 +1,5 @@
 #include "rlinterface/RLInterface.h"
+#include "simulation2/system/LocalTurnManager.h"
 
 using grpc::ServerContext;
 using boost::fibers::channel_op_status;
@@ -39,7 +40,8 @@ grpc::Status RLInterface::Step(ServerContext* context, const Actions* commands, 
     for (int i = 0; i < size; i++) 
     {
         std::string json_cmd = commands->actions(i).content();
-        msg.data.push(json_cmd);
+        int playerid = commands->actions(i).playerid();
+        msg.data.push(std::make_tuple(playerid, json_cmd));
     }
     m_GameMessages.push(msg);
     std::string state;
@@ -171,17 +173,21 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
                 }
 
                 const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+                CLocalTurnManager* turnMgr = static_cast<CLocalTurnManager*>(g_Game->GetTurnManager());
+
                 // Apply the commands
                 while (msg.data.size() > 0) 
                 {
-                    std::string json_cmd = msg.data.front();
+                    int playerid = std::get<0>(msg.data.front());
+                    std::string json_cmd = std::get<1>(msg.data.front());
                     msg.data.pop();
 
                     JSContext* cx = scriptInterface.GetContext();
                     JS::RootedValue command(cx);
                     std::cout << json_cmd << std::endl;
                     scriptInterface.ParseJSON(json_cmd, &command);
-                    g_Game->GetTurnManager()->PostCommand(command);
+                    // TODO: Make our own turn manager?
+                    turnMgr->PostCommand(playerid, command);
                 }
 
                 // Step the game engine

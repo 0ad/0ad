@@ -24,6 +24,11 @@ CLocalTurnManager::CLocalTurnManager(CSimulation2& simulation, IReplayLogger& re
 {
 }
 
+void CLocalTurnManager::PostCommand(int playerid, JS::HandleValue data)
+{
+	AddCommand(m_ClientId, playerid, data, m_CurrentTurn + 1);
+}
+
 void CLocalTurnManager::PostCommand(JS::HandleValue data)
 {
 	// Add directly to the next turn, ignoring COMMAND_DELAY,

@@ -689,9 +689,9 @@ class Action final :
 
   // accessors -------------------------------------------------------
 
-  // string content = 1;
+  // string content = 2;
   void clear_content();
-  static const int kContentFieldNumber = 1;
+  static const int kContentFieldNumber = 2;
   const ::std::string& content() const;
   void set_content(const ::std::string& value);
   #if LANG_CXX11
@@ -703,12 +703,19 @@ class Action final :
   ::std::string* release_content();
   void set_allocated_content(::std::string* content);
 
+  // int32 playerID = 1;
+  void clear_playerid();
+  static const int kPlayerIDFieldNumber = 1;
+  ::google::protobuf::int32 playerid() const;
+  void set_playerid(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:Action)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr content_;
+  ::google::protobuf::int32 playerid_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_RLAPI_2eproto;
 };
@@ -1670,7 +1677,21 @@ Actions::actions() const {
 
 // Action
 
-// string content = 1;
+// int32 playerID = 1;
+inline void Action::clear_playerid() {
+  playerid_ = 0;
+}
+inline ::google::protobuf::int32 Action::playerid() const {
+  // @@protoc_insertion_point(field_get:Action.playerID)
+  return playerid_;
+}
+inline void Action::set_playerid(::google::protobuf::int32 value) {
+  
+  playerid_ = value;
+  // @@protoc_insertion_point(field_set:Action.playerID)
+}
+
+// string content = 2;
 inline void Action::clear_content() {
   content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }

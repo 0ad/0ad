@@ -5,6 +5,7 @@ import json
 import math
 import gym
 from xml.etree import ElementTree
+from itertools import cycle
 
 class ZeroAD():
     def __init__(self, uri='localhost:50050'):
@@ -13,18 +14,23 @@ class ZeroAD():
         self.stub = RLAPIStub(channel)
         self.current_state = None
         self.cache = {}
+        self.player_id = None
 
-    def step(self, actions=[]):
-        # TODO: Add player ids?
+    def step(self, actions=[], player=None):
+        player_ids = cycle([self.player_id]) if player is None else cycle(player)
+
         cmds = Actions()
         cmds.actions.extend([
-            Action(content=json.dumps(a)) for a in actions if a is not None
+            Action(content=json.dumps(a), playerID=pid) for (a, pid) in zip(actions, player_ids) if a is not None
         ])
         res = self.stub.Step(cmds)
         self.current_state = GameState(res.content, self)
         return self.current_state
 
     def reset(self, config=None):
+        if config is not None:
+            self.player_id = config.playerID or 1
+
         req = ResetRequest(scenario=config)
         res = self.stub.Reset(req)
         self.current_state = GameState(res.content, self)

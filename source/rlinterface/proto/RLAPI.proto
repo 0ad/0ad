@@ -25,7 +25,8 @@ message Actions {
 }
 
 message Action {
-    string content = 1;
+    int32 playerID = 1;
+    string content = 2;
 }
 
 message Observation {

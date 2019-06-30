@@ -253,6 +253,7 @@ const ::google::protobuf::uint32 TableStruct_RLAPI_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Action, playerid_),
   PROTOBUF_FIELD_OFFSET(::Action, content_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Observation, _internal_metadata_),
@@ -303,11 +304,11 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SE
   { 12, -1, sizeof(::Template)},
   { 19, -1, sizeof(::Actions)},
   { 25, -1, sizeof(::Action)},
-  { 31, -1, sizeof(::Observation)},
-  { 37, -1, sizeof(::ResetRequest)},
-  { 43, -1, sizeof(::ConnectRequest)},
-  { 49, -1, sizeof(::AIPlayer)},
-  { 57, -1, sizeof(::ScenarioConfig)},
+  { 32, -1, sizeof(::Observation)},
+  { 38, -1, sizeof(::ResetRequest)},
+  { 44, -1, sizeof(::ConnectRequest)},
+  { 50, -1, sizeof(::AIPlayer)},
+  { 58, -1, sizeof(::ScenarioConfig)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -334,27 +335,28 @@ const char descriptor_table_protodef_RLAPI_2eproto[] =
   "ames\030\001 \003(\t\")\n\tTemplates\022\034\n\ttemplates\030\001 \003"
   "(\0132\t.Template\")\n\010Template\022\014\n\004name\030\001 \001(\t\022"
   "\017\n\007content\030\002 \001(\t\"#\n\007Actions\022\030\n\007actions\030\001"
-  " \003(\0132\007.Action\"\031\n\006Action\022\017\n\007content\030\001 \001(\t"
-  "\"\036\n\013Observation\022\017\n\007content\030\001 \001(\t\"1\n\014Rese"
-  "tRequest\022!\n\010scenario\030\001 \001(\0132\017.ScenarioCon"
-  "fig\"3\n\016ConnectRequest\022!\n\010scenario\030\001 \001(\0132"
-  "\017.ScenarioConfig\"8\n\010AIPlayer\022\n\n\002id\030\001 \001(\005"
-  "\022\014\n\004type\030\002 \001(\t\022\022\n\ndifficulty\030\003 \001(\r\"\323\001\n\016S"
-  "cenarioConfig\022\014\n\004type\030\001 \001(\t\022\014\n\004name\030\002 \001("
-  "\t\022\020\n\010username\030\003 \001(\t\022\020\n\010playerID\030\004 \001(\005\022\014\n"
-  "\004size\030\005 \001(\r\022\022\n\nnumPlayers\030\006 \001(\r\022\014\n\004seed\030"
-  "\007 \001(\r\022\016\n\006aiseed\030\010 \001(\r\022\021\n\tgameSpeed\030\t \001(\002"
-  "\022\032\n\007players\030\n \003(\0132\t.AIPlayer\022\022\n\nsaveRepl"
-  "ay\030\013 \001(\0102\260\001\n\005RLAPI\022 \n\004Step\022\010.Actions\032\014.O"
-  "bservation\"\000\022&\n\005Reset\022\r.ResetRequest\032\014.O"
-  "bservation\"\000\022*\n\007Connect\022\017.ConnectRequest"
-  "\032\014.Observation\"\000\0221\n\014GetTemplates\022\023.GetTe"
-  "mplateRequest\032\n.Templates\"\000b\006proto3"
+  " \003(\0132\007.Action\"+\n\006Action\022\020\n\010playerID\030\001 \001("
+  "\005\022\017\n\007content\030\002 \001(\t\"\036\n\013Observation\022\017\n\007con"
+  "tent\030\001 \001(\t\"1\n\014ResetRequest\022!\n\010scenario\030\001"
+  " \001(\0132\017.ScenarioConfig\"3\n\016ConnectRequest\022"
+  "!\n\010scenario\030\001 \001(\0132\017.ScenarioConfig\"8\n\010AI"
+  "Player\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\t\022\022\n\ndiff"
+  "iculty\030\003 \001(\r\"\323\001\n\016ScenarioConfig\022\014\n\004type\030"
+  "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\020\n"
+  "\010playerID\030\004 \001(\005\022\014\n\004size\030\005 \001(\r\022\022\n\nnumPlay"
+  "ers\030\006 \001(\r\022\014\n\004seed\030\007 \001(\r\022\016\n\006aiseed\030\010 \001(\r\022"
+  "\021\n\tgameSpeed\030\t \001(\002\022\032\n\007players\030\n \003(\0132\t.AI"
+  "Player\022\022\n\nsaveReplay\030\013 \001(\0102\260\001\n\005RLAPI\022 \n\004"
+  "Step\022\010.Actions\032\014.Observation\"\000\022&\n\005Reset\022"
+  "\r.ResetRequest\032\014.Observation\"\000\022*\n\007Connec"
+  "t\022\017.ConnectRequest\032\014.Observation\"\000\0221\n\014Ge"
+  "tTemplates\022\023.GetTemplateRequest\032\n.Templa"
+  "tes\"\000b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_RLAPI_2eproto = {
   false, InitDefaults_RLAPI_2eproto, 
   descriptor_table_protodef_RLAPI_2eproto,
-  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 795,
+  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 813,
 };
 
 void AddDescriptors_RLAPI_2eproto() {
@@ -1598,6 +1600,7 @@ class Action::HasBitSetters {
 };
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Action::kPlayerIDFieldNumber;
 const int Action::kContentFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -1614,6 +1617,7 @@ Action::Action(const Action& from)
   if (from.content().size() > 0) {
     content_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.content_);
   }
+  playerid_ = from.playerid_;
   // @@protoc_insertion_point(copy_constructor:Action)
 }
 
@@ -1621,6 +1625,7 @@ void Action::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
       &scc_info_Action_RLAPI_2eproto.base);
   content_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  playerid_ = 0;
 }
 
 Action::~Action() {
@@ -1648,6 +1653,7 @@ void Action::Clear() {
   (void) cached_has_bits;
 
   content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  playerid_ = 0;
   _internal_metadata_.Clear();
 }
 
@@ -1664,9 +1670,16 @@ const char* Action::_InternalParse(const char* begin, const char* end, void* obj
     ptr = ::google::protobuf::io::Parse32(ptr, &tag);
     GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
     switch (tag >> 3) {
-      // string content = 1;
+      // int32 playerID = 1;
       case 1: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
+        if (static_cast<::google::protobuf::uint8>(tag) != 8) goto handle_unusual;
+        msg->set_playerid(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // string content = 2;
+      case 2: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 18) goto handle_unusual;
         ptr = ::google::protobuf::io::ReadSize(ptr, &size);
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         ctx->extra_parse_data().SetFieldName("Action.content");
@@ -1714,9 +1727,22 @@ bool Action::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // string content = 1;
+      // int32 playerID = 1;
       case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &playerid_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string content = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (18 & 0xFF)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_content()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1756,14 +1782,19 @@ void Action::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string content = 1;
+  // int32 playerID = 1;
+  if (this->playerid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->playerid(), output);
+  }
+
+  // string content = 2;
   if (this->content().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->content().data(), static_cast<int>(this->content().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "Action.content");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->content(), output);
+      2, this->content(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1779,7 +1810,12 @@ void Action::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string content = 1;
+  // int32 playerID = 1;
+  if (this->playerid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->playerid(), target);
+  }
+
+  // string content = 2;
   if (this->content().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->content().data(), static_cast<int>(this->content().length()),
@@ -1787,7 +1823,7 @@ void Action::SerializeWithCachedSizes(
       "Action.content");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->content(), target);
+        2, this->content(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1811,11 +1847,18 @@ size_t Action::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string content = 1;
+  // string content = 2;
   if (this->content().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->content());
+  }
+
+  // int32 playerID = 1;
+  if (this->playerid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->playerid());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1849,6 +1892,9 @@ void Action::MergeFrom(const Action& from) {
 
     content_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.content_);
   }
+  if (from.playerid() != 0) {
+    set_playerid(from.playerid());
+  }
 }
 
 void Action::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1878,6 +1924,7 @@ void Action::InternalSwap(Action* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   content_.Swap(&other->content_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  swap(playerid_, other->playerid_);
 }
 
 ::google::protobuf::Metadata Action::GetMetadata() const {
