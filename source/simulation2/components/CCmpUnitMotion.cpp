@@ -634,6 +634,13 @@ private:
 	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const;
 
 	/**
+	 * Returns true if the target position is valid. False otherwise.
+	 * (this may indicate that the target is e.g. out of the world/dead).
+	 * NB: for code-writing convenience, if we have no target, this returns true.
+	 */
+	bool TargetHasValidPosition() const;
+
+	/**
 	 * Computes the current location of our target entity (plus offset).
 	 * Returns false if no target entity or no valid position.
 	 */
@@ -818,6 +825,18 @@ void CCmpUnitMotion::Move(fixed dt)
 
 	if (PossiblyAtDestination())
 		MoveSucceeded();
+	else if (!TargetHasValidPosition())
+	{
+		// Scrap waypoints - we don't know where to go.
+		// If the move request remains unchanged and the target again has a valid position later on,
+		// moving will be resumed.
+		// Units may want to move to move to the target's last known position,
+		// but that should be decided by UnitAI (handling MoveFailed), not UnitMotion.
+		m_LongPath.m_Waypoints.clear();
+		m_ShortPath.m_Waypoints.clear();
+
+		MoveFailed();
+	}
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -1055,6 +1074,15 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// potential TODO: We could switch the short-range pathfinder for something else entirely.
 	return true;
+}
+
+bool CCmpUnitMotion::TargetHasValidPosition() const
+{
+	if (m_MoveRequest.m_Type != MoveRequest::ENTITY)
+		return true;
+
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_MoveRequest.m_Entity);
+	return cmpPosition && cmpPosition->IsInWorld();
 }
 
 bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
