@@ -2218,6 +2218,18 @@ UnitAI.prototype.UnitFsmSpec = {
 								this.SetNextState("APPROACHING");
 								return;
 							}
+
+							// Our target is no longer visible - go to its last known position first
+							// and then hopefully it will become visible.
+							if (!this.CheckTargetVisible(target) && this.order.data.lastPos)
+							{
+								this.PushOrderFront("Walk", {
+									"x": this.order.data.lastPos.x,
+									"z": this.order.data.lastPos.z,
+									"force": this.order.data.force
+								});
+								return;
+							}
 						}
 					}
 
