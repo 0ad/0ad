@@ -201,16 +201,19 @@ public:
 
 	/**
 	 * Check if the given entity is in range of the other point given those parameters.
+	 * @param maxRange - if -1, treated as infinite.
 	 */
 	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
 
 	/**
 	 * Check if the given entity is in range of the target given those parameters.
+	 * @param maxRange - if -1, treated as infinite.
 	 */
 	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
 
 	/**
 	 * Check if the given point is in range of the other point given those parameters.
+	 * @param maxRange - if -1, treated as infinite.
 	 */
 	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
 

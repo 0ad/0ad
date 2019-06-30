@@ -821,18 +821,26 @@ fixed CCmpObstructionManager::MaxDistanceBetweenShapes(const ObstructionSquare& 
 bool CCmpObstructionManager::IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
 {
 	fixed dist = DistanceToPoint(ent, px, pz);
-	return dist != fixed::FromInt(-1) && dist <= maxRange + fixed::FromFloat(0.0001) && (opposite ? MaxDistanceToPoint(ent, px, pz) : dist) >= minRange - fixed::FromFloat(0.0001);
+	// Treat -1 max range as infinite
+	return dist != fixed::FromInt(-1) &&
+	      (dist <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
+	      (opposite ? MaxDistanceToPoint(ent, px, pz) : dist) >= minRange - fixed::FromFloat(0.0001);
 }
 
 bool CCmpObstructionManager::IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
 {
 	fixed dist = DistanceToTarget(ent, target);
-	return dist != fixed::FromInt(-1) && dist <= maxRange + fixed::FromFloat(0.0001) && (opposite ? MaxDistanceToTarget(ent, target) : dist) >= minRange- fixed::FromFloat(0.0001);
+	// Treat -1 max range as infinite
+	return dist != fixed::FromInt(-1) &&
+	      (dist <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
+	      (opposite ? MaxDistanceToTarget(ent, target) : dist) >= minRange - fixed::FromFloat(0.0001);
 }
 bool CCmpObstructionManager::IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const
 {
 	entity_pos_t distance = (CFixedVector2D(x, z) - CFixedVector2D(px, pz)).Length();
-	return distance <= maxRange + fixed::FromFloat(0.0001) && distance >= minRange - fixed::FromFloat(0.0001);
+	// Treat -1 max range as infinite
+	return (distance <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
+	        distance >= minRange - fixed::FromFloat(0.0001);
 }
 
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) const

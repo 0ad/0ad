@@ -1081,7 +1081,8 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 bool CCmpUnitMotion::TryGoingStraightToGoalPoint(const CFixedVector2D& from)
 {
 	// Make sure the goal is a point (and not a point-like target like a formation controller)
-	if (m_MoveRequest.m_Type != MoveRequest::POINT)
+	if (m_MoveRequest.m_Type != MoveRequest::POINT ||
+		m_MoveRequest.m_MinRange > fixed::Zero())
 		return false;
 
 	// Fail if the goal is too far away
