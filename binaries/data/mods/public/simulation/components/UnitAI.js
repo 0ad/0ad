@@ -1232,7 +1232,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 			// Move a tile outside the building
 			let range = 4;
-			if (this.CheckTargetRangeExplicit(msg.data.target, range, range))
+			if (this.CheckTargetRangeExplicit(msg.data.target, range, -1))
 			{
 				// We are already at the target, or can't move at all
 				this.FinishOrder();
@@ -1607,7 +1607,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Adapt the speed to the one of the target if needed
 					let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-					if (cmpObstructionManager.IsInTargetRange(this.entity, this.isGuardOf, 0, 3 * this.guardRange, true))
+					if (cmpObstructionManager.IsInTargetRange(this.entity, this.isGuardOf, 0, 3 * this.guardRange, false))
 					{
 						let cmpUnitAI = Engine.QueryInterface(this.isGuardOf, IID_UnitAI);
 						if (cmpUnitAI)
@@ -2216,6 +2216,18 @@ UnitAI.prototype.UnitFsmSpec = {
 							if (this.MoveToTargetRange(this.gatheringTarget, IID_ResourceGatherer))
 							{
 								this.SetNextState("APPROACHING");
+								return;
+							}
+
+							// Our target is no longer visible - go to its last known position first
+							// and then hopefully it will become visible.
+							if (!this.CheckTargetVisible(target) && this.order.data.lastPos)
+							{
+								this.PushOrderFront("Walk", {
+									"x": this.order.data.lastPos.x,
+									"z": this.order.data.lastPos.z,
+									"force": this.order.data.force
+								});
 								return;
 							}
 						}
@@ -2963,17 +2975,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.LeaveFoundation": function(msg) {
 			// Move a tile outside the building
-			var range = 4;
-			if (this.CheckTargetRangeExplicit(msg.data.target, range, range))
+			let range = 4;
+			if (this.CheckTargetRangeExplicit(msg.data.target, range, -1))
 			{
 				this.FinishOrder();
 				return;
 			}
-			else
-			{
-				this.order.data.min = range;
-				this.SetNextState("WALKING");
-			}
+			this.order.data.min = range;
+			this.SetNextState("WALKING");
 		},
 
 		"IDLE": {
@@ -4265,7 +4274,7 @@ UnitAI.prototype.CheckRange = function(data, iid, type)
 UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 {
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInPointRange(this.entity, x, z, min, max, true);
+	return cmpObstructionManager.IsInPointRange(this.entity, x, z, min, max, false);
 };
 
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
@@ -4276,7 +4285,7 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 	var range = cmpRanged.GetRange(type);
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, true);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
 };
 
 /**
@@ -4325,13 +4334,13 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 		return false;
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, Math.sqrt(maxRangeSq), true);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, Math.sqrt(maxRangeSq), false);
 };
 
 UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
 {
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, min, max, true);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, min, max, false);
 };
 
 UnitAI.prototype.CheckGarrisonRange = function(target)
@@ -4346,7 +4355,7 @@ UnitAI.prototype.CheckGarrisonRange = function(target)
 		range.max += cmpObstruction.GetUnitRadius()*1.5; // multiply by something larger than sqrt(2)
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, true);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
 };
 
 /**
@@ -5785,7 +5794,7 @@ UnitAI.prototype.MoveRandomly = function(distance)
 	// Then second half of the rotation
 	ang += halfDelta;
 	let dist = randFloat(0.5, 1.5) * distance;
-	cmpUnitMotion.MoveToPointRange(pos.x - 0.5 * Math.sin(ang), pos.z - 0.5 * Math.cos(ang), dist, dist);
+	cmpUnitMotion.MoveToPointRange(pos.x - 0.5 * Math.sin(ang), pos.z - 0.5 * Math.cos(ang), dist, -1);
 };
 
 UnitAI.prototype.SetFacePointAfterMove = function(val)
