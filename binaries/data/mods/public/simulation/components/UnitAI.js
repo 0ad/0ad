@@ -4383,24 +4383,29 @@ UnitAI.prototype.CheckTargetVisible = function(target)
 	return true;
 };
 
+/**
+ * Let an entity face its target.
+ * @param {number} target - The entity-ID of the target.
+ */
 UnitAI.prototype.FaceTowardsTarget = function(target)
 {
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPosition || !cmpPosition.IsInWorld())
-		return;
-	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
 		return;
-	var targetpos = cmpTargetPosition.GetPosition2D();
-	var angle = cmpPosition.GetPosition2D().angleTo(targetpos);
-	var rot = cmpPosition.GetRotation();
-	var delta = (rot.y - angle + Math.PI) % (2 * Math.PI) - Math.PI;
-	if (Math.abs(delta) > 0.2)
+
+	let targetPosition = cmpTargetPosition.GetPosition2D();
+
+	// Use cmpUnitMotion for units that support that, otherwise try cmpPosition (e.g. turrets)
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpUnitMotion)
 	{
-		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-		if (cmpUnitMotion)
-			cmpUnitMotion.FaceTowardsPoint(targetpos.x, targetpos.y);
+		cmpUnitMotion.FaceTowardsPoint(targetPosition.x, targetPosition.y);
+		return;
 	}
+
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (cmpPosition && cmpPosition.IsInWorld())
+		cmpPosition.TurnTo(cmpPosition.GetPosition2D().angleTo(targetPosition));
 };
 
 UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
