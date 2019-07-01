@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-24 09:42+0200\n"
-"PO-Revision-Date: 2019-06-24 17:24+0000\n"
+"PO-Revision-Date: 2019-06-30 16:13+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr ""
 
 #: gui/session/menu.js:162 gui/session/menu.js:194 gui/session/menu.js:205
 msgid "Confirmation"
-msgstr ""
+msgstr "Հաստատում"
 
 #: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
 #: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
@@ -373,7 +373,7 @@ msgstr ""
 #: gui/session/messages.js:112
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s հեռացել է խաղից։"
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:119
@@ -385,7 +385,7 @@ msgstr ""
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s միացել է խաղին։"
 
 #: gui/session/messages.js:127
 #, javascript-format
@@ -656,7 +656,7 @@ msgstr "ՀՀ։մմ"
 
 #: gui/session/messages.js:972
 msgid "Unknown Player"
-msgstr ""
+msgstr "Անհայտ խաղացող"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -712,7 +712,7 @@ msgstr ""
 #: gui/session/messages.js:1144
 #, javascript-format
 msgid "<%(user)s>"
-msgstr ""
+msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:68
 #, javascript-format
@@ -774,7 +774,7 @@ msgstr ""
 #: gui/session/selection_panels.js:596 gui/session/session.js:1285
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "մ։սս"
 
 #: gui/session/selection_details.js:252
 msgid "Current/max gatherers"
@@ -922,22 +922,22 @@ msgstr ""
 #: gui/session/selection_panels_helpers.js:56
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Բռնարար"
 
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "Զավթողական"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "Պաշտպանողական"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "Անգործունյա"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
@@ -1093,7 +1093,7 @@ msgstr ""
 #: gui/session/session.js:970
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Հաստատում"
 
 #: gui/session/session.js:971
 msgctxt "replayFinished"
@@ -1300,7 +1300,7 @@ msgstr ""
 
 #: gui/session/chat_window.xml:(caption):102
 msgid "Send"
-msgstr ""
+msgstr "Ուղարկել"
 
 #: gui/session/chat_window.xml:(tooltip):29
 msgctxt "chat input"
@@ -1353,11 +1353,11 @@ msgstr "Պակել"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
-msgstr ""
+msgstr "Ջատ"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
-msgstr ""
+msgstr "Պահպանել"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Summary"
@@ -1369,7 +1369,7 @@ msgstr ""
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
-msgstr ""
+msgstr "Ընտրանքներ"
 
 #: gui/session/menu.xml:(caption):98
 msgid "Resign"
@@ -1440,7 +1440,7 @@ msgstr ""
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "Պատրաստ"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1448,7 +1448,7 @@ msgstr "Հարց"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Այո՞ թե ո՞չ"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):14
 msgid "Hitpoints"
@@ -1486,15 +1486,15 @@ msgstr ""
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "Խաղի արագության"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"
-msgstr ""
+msgstr "Ընտրեք խաղի արագությունը"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "Մենյու"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIV"

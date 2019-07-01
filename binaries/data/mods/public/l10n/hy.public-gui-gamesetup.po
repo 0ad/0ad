@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-06-23 20:15+0000\n"
+"PO-Revision-Date: 2019-06-30 18:39+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s պատրաստ չէ"
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
@@ -81,12 +81,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s միացել է"
 
 #: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s հեռացել է"
 
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
@@ -166,7 +166,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Քարտեզ"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -204,7 +204,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "Քարտեզի Չափը"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -291,7 +291,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
-msgstr ""
+msgstr "Խաղի արագության"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
@@ -299,7 +299,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Դժվարություն"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
@@ -319,7 +319,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:788
 msgid "Pick a color."
-msgstr ""
+msgstr "Գույն ընտրեք։"
 
 #: gui/gamesetup/gamesetup.js:842
 msgid "Hero Garrison"
@@ -489,7 +489,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s."
 
 #: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
@@ -507,12 +507,12 @@ msgstr "Ոչ"
 #: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s."
 
 #: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:2462
 #, javascript-format
@@ -530,7 +530,7 @@ msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
-msgstr ""
+msgstr "Անհայտ խաղացող"
 
 #: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
@@ -549,7 +549,7 @@ msgstr "ՀՀ։մմ"
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)sի խաղը"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
@@ -562,7 +562,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Միացում սերվերին․․․"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:157
 #, javascript-format
@@ -602,14 +602,14 @@ msgstr ""
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)sի խաղը"
 
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading screen
 #: gui/loading/loading.js:33
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -660,11 +660,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
-msgstr ""
+msgstr "Խաղացողի Անունը"
 
 #: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
-msgstr ""
+msgstr "Գույն"
 
 #: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
@@ -684,7 +684,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
-msgstr ""
+msgstr "Ուղարկել"
 
 #: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Cheats enabled."
@@ -709,7 +709,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr ""
+msgstr "Ցանցային խաղ"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -718,7 +718,7 @@ msgstr ""
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Խաղացողի Անունը․"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -735,7 +735,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Սերվերի Անունը․"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
@@ -743,7 +743,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
-msgstr ""
+msgstr "Շարունակել"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-06-24 17:14+0000\n"
+"PO-Revision-Date: 2019-06-30 16:10+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: gui/common/functions_utility.js:30
 msgid "Gaia"
-msgstr ""
+msgstr "Գեա"
 
 #: gui/common/functions_utility.js:103
 msgctxt "map selection"
@@ -119,7 +119,7 @@ msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "իիիիի-ՄՄ-դդ ՀՀ։մմ։սս"
 
 #: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
@@ -402,7 +402,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
-msgstr ""
+msgstr "Քարտեզի Անունը"
 
 #: gui/common/gamedescription.js:349
 msgid "Map Description"
@@ -418,7 +418,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:372
 msgid "Map Size"
-msgstr ""
+msgstr "Քարտեզի Չափը"
 
 #: gui/common/gamedescription.js:381
 msgctxt "biome"
@@ -626,27 +626,27 @@ msgstr ""
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Շատ հեշտ"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Հեշտ"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Սովորական"
 
 #: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Դժվար"
 
 #: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Շատ դժվար"
 
 #: gui/common/settings.js:148
 msgctxt "aiBehavior"
@@ -661,20 +661,20 @@ msgstr ""
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr ""
+msgstr "Պաշտպանողական"
 
 #: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
-msgstr ""
+msgstr "Զավթողական"
 
 #: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s րոպե"
+msgstr[1] "%(min)s րոպե"
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
@@ -686,8 +686,8 @@ msgstr ""
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s րոպե"
+msgstr[1] "%(minutes)s րոպե"
 
 #: gui/common/settings.js:220
 msgctxt "map"
@@ -822,21 +822,21 @@ msgstr "%(amount)s %(resourceType)s"
 #: gui/common/tooltips.js:81
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s և %(lastAmount)s"
 
 #: gui/common/tooltips.js:110
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:112 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:717
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "վայրկյան"
+msgstr[1] "վայրկյան"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
@@ -851,8 +851,8 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
@@ -886,7 +886,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:239
 msgid "(None)"
-msgstr ""
+msgstr "(Ոչ մի)"
 
 #: gui/common/tooltips.js:243
 #, javascript-format
@@ -919,14 +919,14 @@ msgstr "+%(number)s"
 #. meters"
 #: gui/common/tooltips.js:298
 msgid "meters"
-msgstr ""
+msgstr "մետր"
 
 #: gui/common/tooltips.js:299 gui/common/tooltips.js:712
 #: gui/common/tooltips.js:742
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "մետր"
+msgstr[1] "մետր"
 
 #: gui/common/tooltips.js:318 gui/common/tooltips.js:376
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
@@ -1109,8 +1109,8 @@ msgstr "Վազելսվ"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
@@ -1304,7 +1304,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
-msgstr ""
+msgstr "Հաստատում"
 
 #: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
@@ -1573,11 +1573,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
-msgstr ""
+msgstr "Միայնակ խաղ"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
-msgstr ""
+msgstr "Ցանցային խաղ"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -1733,7 +1733,7 @@ msgstr ""
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
-msgstr ""
+msgstr "Պաշարներ"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
@@ -1839,7 +1839,7 @@ msgstr ""
 
 #: gui/summary/summary.js:45
 msgid "Sent"
-msgstr ""
+msgstr "Ուղարկված"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
@@ -2004,7 +2004,7 @@ msgstr ""
 #: gui/loadgame/load.xml:(caption):97
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
-msgstr ""
+msgstr "Քարտեզի Չափը."
 
 #: gui/loadgame/load.xml:(caption):101
 #: gui/replaymenu/replay_menu.xml:(caption):180
@@ -2026,7 +2026,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Քարտեզի Անունը"
 
 #: gui/loadgame/load.xml:(heading):44
 msgctxt "replay"
@@ -2059,7 +2059,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
-msgstr ""
+msgstr "Խաղի ընտրանքներ"
 
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
@@ -2071,7 +2071,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
-msgstr ""
+msgstr "Պահպանել"
 
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
@@ -2229,7 +2229,7 @@ msgstr ""
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):231
 msgid "Join Game"
-msgstr ""
+msgstr "Միանալ Խաղին"
 
 #: gui/pregame/mainmenu.xml:(caption):245
 msgid "Host Game"
@@ -2241,7 +2241,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):311
 msgid "Options"
-msgstr ""
+msgstr "Ընտրանքներ"
 
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Mod Selection"
@@ -2273,7 +2273,7 @@ msgstr "Կայքէջ"
 
 #: gui/pregame/mainmenu.xml:(caption):529
 msgid "Chat"
-msgstr ""
+msgstr "Ջատ"
 
 #: gui/pregame/mainmenu.xml:(caption):541
 msgid "Report a Bug"
@@ -2344,7 +2344,7 @@ msgstr "Խաղացողներ"
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Չափ"
 
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
@@ -2362,7 +2362,7 @@ msgstr ""
 
 #: gui/savegame/save.xml:(caption):14
 msgid "Save Game"
-msgstr ""
+msgstr "Խաղը պահպանել"
 
 #: gui/savegame/save.xml:(caption):28
 msgid "Description:"
@@ -2405,7 +2405,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
-msgstr ""
+msgstr "Շարունակել"
 
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
@@ -2521,7 +2521,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "Արվեստ"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -2780,7 +2780,7 @@ msgstr ""
 #: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "Սովորական"
 
 #: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
@@ -3015,19 +3015,19 @@ msgstr ""
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Very Easy"
-msgstr ""
+msgstr "Շատ հեշտ"
 
 #: gui/options/options.json[3].options[3].list[2].label
 msgid "Easy"
-msgstr ""
+msgstr "Հեշտ"
 
 #: gui/options/options.json[3].options[3].list[4].label
 msgid "Hard"
-msgstr ""
+msgstr "Դժվար"
 
 #: gui/options/options.json[3].options[3].list[5].label
 msgid "Very Hard"
-msgstr ""
+msgstr "Շատ դժվար"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
@@ -3047,11 +3047,11 @@ msgstr ""
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
-msgstr ""
+msgstr "Զավթողական"
 
 #: gui/options/options.json[3].options[4].list[3].label
 msgid "Defensive"
-msgstr ""
+msgstr "Պաշտպանողական"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
@@ -3379,14 +3379,14 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Միս"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Միս"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3407,14 +3407,14 @@ msgstr ""
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Հանքաքար"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Հանքաքար"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3465,14 +3465,14 @@ msgstr "Ժայռ"
 #: simulation/data/resources/wood.jsonname
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Փայտ"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Փայտ"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

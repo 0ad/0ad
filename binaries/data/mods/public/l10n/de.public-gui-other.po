@@ -32,6 +32,7 @@
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2016-2018
 # pilino1234 <pilino1234@zoho.eu>, 2016
+# Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
 # Michael Vetter <jubalh@openmailbox.org>, 2016
 # nautilusx, 2016
 # nautilusx, 2016
@@ -50,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-06-15 11:11+0000\n"
-"Last-Translator: Kjell\n"
+"PO-Revision-Date: 2019-06-30 19:08+0000\n"
+"Last-Translator: Michael Hecht <arachnovobica.mh@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -584,7 +585,7 @@ msgstr "Schlechte Verbindung zu %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Dies wird oft durch das nicht weiterleiten des UDP Ports 20595 auf der Host Seite, durch eine Firewall oder ein Anti-Virus Programm verursacht."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -3584,7 +3585,7 @@ msgstr "Baue Belagerungswaffen und bilde Bürgersoldaten aus."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Stationierte Einheiten in Gebäuden heilen sich langsam, beschützen das Lager vor Angriffen und verhindern den Verfall des Gebäudes."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3594,7 +3595,7 @@ msgstr "KASERNE"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Bilde alle Bürgersoldaten aus. Einige Gruppierungen können zusätzlich die Ausbildung von Championeinheiten freischalten."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3628,19 +3629,19 @@ msgstr "KARTHAGISCHE HEILIGE SCHAR"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Speerträger Championeinheit und Berittener Championeinheit für Karthago."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Beide können im Tempel ausgebildet werden, anstatt in der Festung wie die meisten anderen Championeinheiten."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Nutze den Speerträger als schwere Infanterieeinheit gegen berittene Einheiten. Nutze berittene Einheiten als schwere Angriffseinheit gegen Belagerungswaffen und Scharmützler."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3670,7 +3671,7 @@ msgstr "Ein mittelschweres Kriegsschiff."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Verfügbar für Britonen, Gallier und Iberer."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -3700,7 +3701,7 @@ msgstr "Kann in freundlichem und neutralem Territorium gebaut werden."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Bilde Bürger aus: Bürgerinnen, Bürgersoldaten und berittene Bürgersoldaten"
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3708,7 +3709,7 @@ msgstr "BOTSCHAFTEN"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Spezielle Kasernen sind für die Punier verfügbar."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
@@ -3718,7 +3719,7 @@ msgstr "Bilde Söldner jeder Fraktionen aus."
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Die Kosten der Söldner Bürgersoldaten werden von Nahrung zu Metal gewechselt."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3726,7 +3727,7 @@ msgstr "FISCHEN"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Fische auf den Meeren um einen reichen Fang einzuholen."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -3750,7 +3751,7 @@ msgstr "Die Festung ist das stärkste Gebäude jeder Zivilisation."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Bilde Championeinheiten, Helden und Belagerungswaffen aus."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
@@ -3758,7 +3759,7 @@ msgstr "Gibt einen Bevölkerungsboost."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Stationiere Truppen im Gebäude um ihm mehr Angriffskraft zu verleihen und somit die Verteidigung zu stärken."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3767,13 +3768,13 @@ msgstr "FREIHANDPLATZIERUNG"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Durch das taktisch kluge Positionieren der Einheiten, verschaffst du dir einen Vorteil auf dem Schlachtfeld!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Markiere deshalb einige Einheiten, drücke und halte die rechte Maustaste, ziehe eine Linie und lass die Maustaste dann wieder los."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -3861,7 +3862,7 @@ msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Der erste athenische Staatsmann des fünften Jahrhunderts v.Chr."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
@@ -3908,7 +3909,7 @@ msgstr "Benutzt gegen Kavallerie oder gegen andere Nahkampf-Infanterie, um sie a
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Verfügbar für: Kuschiten, Makedonier, Ptolemäer und Seleukiden."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -3918,7 +3919,7 @@ msgstr "QUINQUEREME"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Das schwerste normale Kriegsschiff. Verfügbar für: Punier, Ptolemäer, Römer und Seleukiden."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -3960,11 +3961,11 @@ msgstr "Freistehende Türme, die sich gut zur Verteidigung großer Gebiete der L
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Normalerweise kosten sie 100 Holz und 100 Stein, Iberische Verteidigungstürme kosten 50 Holz und 250 Stein (dafür sind sie stabiler)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Hat einen Fernangriff der mit jeder darin stationierten Einheit stärker wird."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3976,7 +3977,7 @@ msgstr "Stärkste Infanterieeinheit im Spiel."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Champion-Infanterieeinheit für die Spartaner verfügbar."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -4012,7 +4013,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Ein spezielles Bauwerk für die Athener, Makedonier und Spartaner verfügbar."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
@@ -4034,7 +4035,7 @@ msgstr "Ein günstiges Lager für alle Ressourcen außer Nahrung (Holz, Stein, M
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Erforsche Technologien um die Sammelfertigkeiten der Bürger zu verbessern."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4073,13 +4074,13 @@ msgstr "Zerfall tritt auf, wenn Gebäude nicht mit einem verbündeten Verwaltung
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Der Verfallsprozess kann durch das stationieren von einigen Einheiten verlangsamt oder gar umgekehrt werden."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Wenn der Verfall des Gebäudes abgeschlossen ist, wird es dem einflussreichsten, nächsten Spieler übertragen."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4089,7 +4090,7 @@ msgstr "THEMISTOKLES"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Athenischer Held, welcher die Griechen in den großen Seeschlachten von Artemisium und Salamis befehligte."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
@@ -4113,7 +4114,7 @@ msgstr "Gut zum Transportieren oder Kämpfen."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Stationiere Einheiten an Bord um die Angriffskraft zu steigern."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4127,13 +4128,13 @@ msgstr "Iberischer Held vom Stamm der Lusitaner."
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Insgesamt sieben Kampagnen gegen die Römer, während der Lusitanier Widerstandskämpfe von 147 bis 139 v.Chr."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Besitzt eine Aura der Guerilla-Taktik. Iberische Einheiten in der Nähe können den Gegner aus dem Hinterhalt überfallen."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4141,7 +4142,7 @@ msgstr "KRIEGSELEFANTEN"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Riesige Bestien aus Afrika und Indien, trainiert für den Krieg."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."

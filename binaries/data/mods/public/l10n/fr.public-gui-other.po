@@ -15,12 +15,13 @@
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2016
 # David D, 2018
 # foufy much <foufy68@hotmail.com>, 2016
-# François Magimel, 2018
+# François Magimel, 2018-2019
 # François Poirotte <clicky@erebot.net>, 2016
 # Glorfindel Of Gondolin, 2019
 # tavariz <guipoi@yahoo.fr>, 2016
 # Hadri man <hadriman@live.fr>, 2017-2018
 # Hamza ESSAD <essadhamza@outlook.fr>, 2017
+# Jérémi Mapas <jeremi.mapas@gmail.com>, 2019
 # Jo Du <jojo337@live.fr>, 2017-2018
 # jy jrts <lucashavard35@hotmail.fr>, 2017
 # Leyto Leyto <machin237@yahoo.fr>, 2016
@@ -50,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-05-21 16:21+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"PO-Revision-Date: 2019-06-29 15:19+0000\n"
+"Last-Translator: François Magimel\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -584,39 +585,39 @@ msgstr "Mauvaise connexion avec %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Cela est souvent causé par un port UDP 20595 qui n'a pas été retransmis du côté de l'hôte, soit par un pare-feu, soit par un logiciel antivirus."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "L'hôte a fermé la partie."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Version de protocole internet incorrecte."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "La partie est en cours de chargement, veuillez recommencer plus tard."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "La partie a déjà commencé, les observateurs ne sont pas autorisés."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Vous avez été expulsé."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Vous avez été banni."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nom d'utilisateur déjà connecté. Si vous avez été déconnecté, réessayez dans quelques secondes."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Serveur complet."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -3020,11 +3021,11 @@ msgstr "Notification de nom d'utilisateur"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Recevoir une notification audio lorsqu'un un nouveau joueur rejoint la configuration de la partie."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr ""
+msgstr "Configuration de la partie - Notification de nouveau joueur"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3268,11 +3269,11 @@ msgstr "Icone du rang au dessus de la barre de statut."
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Afficher une barre d'état de l'expérience au-dessus de chaque unité sélectionnée."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Barre d'état d'expérience."
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3584,7 +3585,7 @@ msgstr "Permet de construire des armes de siège et d'entraîner des citoyen-sol
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Mettez certaines de vos unités en garnison pour les soigner lentement et afin de protéger l'armée du camp des attaques et d'éviter son changement d’allégeance."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3594,11 +3595,11 @@ msgstr "CASERNE"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Entraînez tous les citoyens-soldats. Certains factions peuvent aussi débloquer l'entrainement de champions."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "Recherchez les technologies militaires uniques de chaque faction."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -3608,7 +3609,7 @@ msgstr "Construisez-en un tôt pour entraîner les citoyen-soldats pendant la mi
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Construisez une base avancée afin de réapprovisionner votre attaque avec des troupes neuves."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3616,11 +3617,11 @@ msgstr "FORGE"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Recherchez les structure pour tous les civilisations. "
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Recherchez les améliorations d'armes et d'armures pour vos unités."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -4163,7 +4164,7 @@ msgstr "Une ressource océanique."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 de nourriture."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
