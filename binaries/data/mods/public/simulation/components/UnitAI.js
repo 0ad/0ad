@@ -971,8 +971,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				delete this.patrolStartPosOrder;
 			},
 
-			"MovementUpdate": function() {
-				if (!this.CheckRange(this.order.data))
+			"MovementUpdate": function(msg) {
+				if (!msg.error && !this.CheckRange(this.order.data))
 					return;
 				/**
 				 * A-B-A-B-..:
@@ -1065,7 +1065,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"MovementUpdate": function(msg) {
-				if (!this.CheckRange(this.order.data))
+				if (!msg.error && !this.CheckRange(this.order.data))
 					return;
 
 				if (this.FinishOrder())
@@ -1562,8 +1562,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.FindWalkAndFightTargets();
 			},
 
-			"MovementUpdate": function() {
-				if (!this.CheckRange(this.order.data))
+			"MovementUpdate": function(msg) {
+				if (!msg.error && !this.CheckRange(this.order.data))
 					return;
 
 				if (this.orderQueue.length == 1)
@@ -1628,8 +1628,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.SetDefaultAnimationVariant();
 				},
 
-				"MovementUpdate": function() {
-					if (this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+				"MovementUpdate": function(msg) {
+					if (msg.error || this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
 						this.SetNextState("GUARDING");
 				},
 			},
@@ -1712,9 +1712,9 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.StopMoving();
 			},
 
-			"MovementUpdate": function() {
+			"MovementUpdate": function(msg) {
 				// When we've run far enough, stop fleeing
-				if (this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1))
+				if (msg.error || this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1))
 					this.FinishOrder();
 			},
 
@@ -2495,8 +2495,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.StopMoving();
 				},
 
-				"MovementUpdate": function() {
-					if (!this.CheckTargetRange(this.order.data.target, IID_Trader))
+				"MovementUpdate": function(msg) {
+					if (!msg.error && !this.CheckTargetRange(this.order.data.target, IID_Trader))
 						return;
 
 					if (this.waypoints && this.waypoints.length)
@@ -2536,8 +2536,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function() {
-					if (this.CheckRange(this.order.data, IID_Builder))
-						this.SetNextState("REPAIRING");
+					this.SetNextState("REPAIRING");
 				},
 			},
 
@@ -2740,8 +2739,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function() {
-					if (this.CheckGarrisonRange(this.order.data.target))
-						this.SetNextState("GARRISONED");
+					this.SetNextState("GARRISONED");
 				},
 			},
 
@@ -2924,8 +2922,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function() {
-					if (this.CheckRange(this.order.data))
-						this.SetNextState("LOADING");
+					this.SetNextState("LOADING");
 				},
 
 				"PickupCanceled": function() {
