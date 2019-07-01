@@ -2221,7 +2221,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 							// Our target is no longer visible - go to its last known position first
 							// and then hopefully it will become visible.
-							if (!this.CheckTargetVisible(target) && this.order.data.lastPos)
+							if (!this.CheckTargetVisible(this.gatheringTarget) && this.order.data.lastPos)
 							{
 								this.PushOrderFront("Walk", {
 									"x": this.order.data.lastPos.x,
