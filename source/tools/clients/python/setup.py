@@ -8,7 +8,7 @@ with open(requirementPath) as f:
     install_requires = f.read().splitlines()
 
 setup(name='zero_ad',
-      version='0.0.1',
+      version='0.0.2',
       description='Python client for 0 AD',
       url='http://github.com/brollb/0ad',
       author='Brian Broll',
