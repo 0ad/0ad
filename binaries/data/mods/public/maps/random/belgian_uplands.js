@@ -85,7 +85,7 @@ var playerIDs;
 
 while (true)
 {
-	g_Map.log("Randomizing heightmap")
+	g_Map.log("Randomizing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new RandomElevationPainter(heightRange.min, heightRange.max));

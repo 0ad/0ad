@@ -79,7 +79,7 @@ function TileClass(size)
 TileClass.prototype.has = function(position)
 {
 	return !!this.inclusionCount[position.x] && !!this.inclusionCount[position.x][position.y];
-}
+};
 
 TileClass.prototype.add = function(position)
 {

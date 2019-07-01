@@ -200,7 +200,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function()
 {
 	g_Map.log("Creating mountainrange with " + this.possibleEdges.length + " possible edges");
 
-	let max = this.possibleEdges.length
+	let max = this.possibleEdges.length;
 
 	while (this.possibleEdges.length)
 	{

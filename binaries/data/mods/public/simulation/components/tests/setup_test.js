@@ -1,6 +1,6 @@
 Engine.RegisterInterface("TestSetup");
 
-function TestSetup() {};
+function TestSetup() {}
 TestSetup.prototype.Init = function() {};
 
 Engine.RegisterSystemComponentType(IID_TestSetup, "TestSetup", TestSetup);

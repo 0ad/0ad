@@ -232,7 +232,7 @@ for (let i = 0; i < numIslands; ++i)
 					new TileClassPainter(clLand)
 				]);
 
-g_Map.log("Painting cliffs")
+g_Map.log("Painting cliffs");
 createArea(
 	new MapBoundsPlacer(),
 	new TerrainPainter(tCliff),

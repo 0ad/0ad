@@ -3936,7 +3936,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
 
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position)
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return undefined;
 

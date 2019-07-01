@@ -449,7 +449,7 @@ TechnologyManager.prototype.GetStartedTechs = function()
  */
 TechnologyManager.prototype.GetResearcher = function(tech)
 {
-	return this.researchQueued.get(tech)
+	return this.researchQueued.get(tech);
 };
 
 /**

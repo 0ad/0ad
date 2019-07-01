@@ -24,7 +24,7 @@ function messageBoxCallbackFunction(btnCode)
 
 	g_MessageBoxBtnFunctions = [];
 	g_MessageBoxCallbackArgs = [];
-};
+}
 
 function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbBtnCode, mbCallbackArgs)
 {

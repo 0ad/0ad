@@ -623,7 +623,7 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 	{
 		let wallEle = getWallElement(wallPart[0], style);
 		let addAngle = scaleFactor * wallEle.length / radius;
-		let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle))
+		let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle));
 		let place = Vector2D.average([position, target]);
 		let placeAngle = actualAngle + addAngle / 2;
 		if (g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))

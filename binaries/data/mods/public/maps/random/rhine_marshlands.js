@@ -35,7 +35,7 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 
-const heightMarsh = -2
+const heightMarsh = -2;
 const heightLand = 1;
 const heightOffsetBumpWater = 1;
 const heightOffsetBumpLand = 2;

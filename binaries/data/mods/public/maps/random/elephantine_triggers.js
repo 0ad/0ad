@@ -9,7 +9,7 @@ Trigger.prototype.InitElephantine = function()
 Trigger.prototype.InitElephantine_DefenderStance = function()
 {
 	for (let ent of TriggerHelper.GetPlayerEntitiesByClass(elephantinePlayerID, "Soldier"))
-		TriggerHelper.SetUnitStance(ent, "defensive")
+		TriggerHelper.SetUnitStance(ent, "defensive");
 };
 
 Trigger.prototype.InitElephantine_GarrisonBuildings = function()

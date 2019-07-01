@@ -299,7 +299,7 @@ UnitMotionFlying.prototype.GetCurrentSpeed = function()
 UnitMotionFlying.prototype.GetSpeedMultiplier = function()
 {
 	return this.GetCurrentSpeed() / this.GetWalkSpeed();
-}
+};
 
 UnitMotionFlying.prototype.GetPassabilityClassName = function()
 {

@@ -24,7 +24,7 @@ EntitiesObstructionPlacer.prototype.place = function(constraint)
 			new Vector2D(+halfObstructionSize.x, +halfObstructionSize.y)
 		].map(corner => Vector2D.add(entity.GetPosition2D(), corner.rotate(-entity.rotation.y)));
 
-		points = points.concat(new ConvexPolygonPlacer(obstructionCorners, this.failFraction).place(constraint))
+		points = points.concat(new ConvexPolygonPlacer(obstructionCorners, this.failFraction).place(constraint));
 	}
 
 	return points;

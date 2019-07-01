@@ -67,7 +67,7 @@ const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-g_Map.log("Creating player islands...")
+g_Map.log("Creating player islands...");
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)

@@ -170,7 +170,7 @@ for (let x of [fractionToTiles(randFloat(0.15, 0.25)), fractionToTiles(randFloat
 		undefined,
 		scaleByMapSize(20, 50),
 		20,
-		[areaPassage])
+		[areaPassage]);
 }
 
 var [playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers(), avoidClasses(clRiver, 15, clPlayer, 30));

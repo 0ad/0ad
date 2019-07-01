@@ -873,7 +873,7 @@ function updateBarterButtons()
 	Engine.GetGUIObjectByName("barterHelp").hidden = !canBarter;
 
 	if (canBarter)
-		g_ResourceData.GetCodes().forEach((resCode, i) => { barterUpdateCommon(resCode, i, "barter", g_ViewedPlayer) });
+		g_ResourceData.GetCodes().forEach((resCode, i) => { barterUpdateCommon(resCode, i, "barter", g_ViewedPlayer); });
 }
 
 function getIdleLandTradersText(traderNumber)

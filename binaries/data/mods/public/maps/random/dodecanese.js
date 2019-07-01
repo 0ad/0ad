@@ -366,7 +366,7 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 		// TILE_CENTERED_HEIGHT_MAP also influences the outcome of the placement.
 		let bridgeOrientation = direction % 2 ? 0 : Math.PI / 2;
 		bridgeCenter1[direction % 2 ? "y" : "x"] += 0.25;
-		bridgeCenter2[direction % 2 ? "y" : "x"] -= 0.25
+		bridgeCenter2[direction % 2 ? "y" : "x"] -= 0.25;
 
 		g_Map.placeEntityAnywhere(aBridge, 0, bridgeCenter1, bridgeOrientation);
 		g_Map.placeEntityAnywhere(aBridge, 0, bridgeCenter2, bridgeOrientation + Math.PI);
@@ -387,7 +387,7 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 	}
 
 	if (bridges >= maxBridges)
-		break
+		break;
 }
 
 g_Map.log("Creating smoke");
