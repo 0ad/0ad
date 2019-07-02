@@ -1421,16 +1421,19 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		if (distance < minRange)
 		{
 			// Too close to target - move outwards to a circle
-			// that's slightly larger than the min range
+			// that's slightly larger than the min range.
 			goal.type = PathGoal::INVERTED_CIRCLE;
-			goal.hw = minRange + Pathfinding::GOAL_DELTA;
+
+			// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
+			// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
+			goal.hw = minRange + m_Clearance * 3 /2;
 		}
 		else if (maxRange >= entity_pos_t::Zero() && distance > maxRange)
 		{
 			// Too far from target - move inwards to a circle
 			// that's slightly smaller than the max range
 			goal.type = PathGoal::CIRCLE;
-			goal.hw = maxRange - Pathfinding::GOAL_DELTA;
+			goal.hw = maxRange;
 
 			// If maxRange was abnormally small,
 			// collapse the circle into a point
@@ -1502,7 +1505,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	/*
 	* If we're starting outside the maxRange, we need to move closer in.
 	* If we're starting inside the minRange, we need to move further out.
-	* These ranges are measured from the center of this entity to the edge of the target;
+	* These ranges are measured from the edge of this entity to the edge of the target;
 	* we add the goal range onto the size of the target shape to get the goal shape.
 	* (Then we extend it outwards/inwards by a little bit to be sure we'll end up
 	* within the right range, in case of minor numerical inaccuracies.)
@@ -1544,7 +1547,9 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		// Circumscribe the square
 		entity_pos_t circleRadius = halfSize.Length();
 
-		entity_pos_t goalDistance = minRange + Pathfinding::GOAL_DELTA;
+		// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
+		// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
+		entity_pos_t goalDistance = minRange + m_Clearance * 3 /2;
 
 		if (ShouldTreatTargetAsCircle(minRange, circleRadius))
 		{
@@ -1592,7 +1597,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 				return true;
 			}
 
-			entity_pos_t goalDistance = maxRange - Pathfinding::GOAL_DELTA;
+			entity_pos_t goalDistance = maxRange;
 
 			goal.type = PathGoal::CIRCLE;
 			goal.hw = circleRadius + goalDistance;
@@ -1602,7 +1607,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			// The target is large relative to our range, so treat it as a square and
 			// get close enough that the diagonals come within range
 
-			entity_pos_t goalDistance = (maxRange - Pathfinding::GOAL_DELTA)*2 / 3; // multiply by slightly less than 1/sqrt(2)
+			entity_pos_t goalDistance = maxRange * 2 / 3; // multiply by slightly less than 1/sqrt(2)
 
 			goal.type = PathGoal::SQUARE;
 			goal.u = obstruction.u;

@@ -66,7 +66,7 @@ g_Map.log("Preventing water in player territory");
 for (let i = 0; i < numPlayers; ++i)
 	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 
-g_Map.log("Creating the lake...")
+g_Map.log("Creating the lake...");
 createArea(
 	new ChainPlacer(
 		2,

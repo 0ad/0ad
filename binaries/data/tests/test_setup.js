@@ -18,19 +18,19 @@ function fail(msg)
 global.TS_FAIL = function TS_FAIL(msg)
 {
 	fail(msg);
-}
+};
 
 global.TS_ASSERT = function TS_ASSERT(e)
 {
 	if (!e)
 		fail("Assert failed");
-}
+};
 
 global.TS_ASSERT_EQUALS = function TS_ASSERT_EQUALS(x, y)
 {
 	if (!(x === y))
 		fail("Expected equal, got "+uneval(x)+" !== "+uneval(y));
-}
+};
 
 global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDifference)
 {
@@ -38,13 +38,13 @@ global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDiffe
 
 	if (Math.abs(x - y) > maxDifference)
 		fail("Expected almost equal, got " + uneval(x) + " !== " + uneval(y));
-}
+};
 
 global.TS_ASSERT_UNEVAL_EQUALS = function TS_ASSERT_UNEVAL_EQUALS(x, y)
 {
 	if (!(uneval(x) === uneval(y)))
 		fail("Expected equal, got "+uneval(x)+" !== "+uneval(y));
-}
+};
 
 global.TS_ASSERT_EXCEPTION = function(func)
 {
@@ -53,10 +53,10 @@ global.TS_ASSERT_EXCEPTION = function(func)
 		Engine.TS_FAIL("Missed exception at:\n" + new Error().stack);
 	} catch (e) {
 	}
-}
+};
 
 global.TS_ASSERT_NUMBER = function(value)
 {
 	if (typeof value != "number" || !isFinite(value))
 		fail("The given value must be a real number!");
-}
+};

@@ -48,7 +48,7 @@ TestScript1_nontree.prototype.GetX = function() {
 //	print(uneval(this)+"\n");
 	this.x[0][0] += 1;
 	return this.x[0][0] + this.x[1][0] + this.x[2][0][0] + this.x[3].y[0];
-}
+};
 
 Engine.RegisterComponentType(IID_Test1, "TestScript1_nontree", TestScript1_nontree);
 

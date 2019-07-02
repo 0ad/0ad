@@ -5,8 +5,8 @@ const tSand = ["desert_sand_dunes_100", "desert_dirt_cracks","desert_sand_smooth
 const tDune = ["desert_sand_dunes_50"];
 const tForestFloor = "desert_forestfloor_palms";
 const tDirt = ["desert_dirt_rough","desert_dirt_rough","desert_dirt_rough", "desert_dirt_rough_2", "desert_dirt_rocks_2"];
-const tRoad = "desert_city_tile";;
-const tRoadWild = "desert_city_tile";;
+const tRoad = "desert_city_tile";
+const tRoadWild = "desert_city_tile";
 const tShore = "dirta";
 const tWater = "desert_sand_wet";
 
@@ -34,7 +34,7 @@ const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tFores
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
 const heightSeaGround = -3;
-const heightFloraMin = -2.5
+const heightFloraMin = -2.5;
 const heightFloraReedsMax = -1.9;
 const heightFloraMax = -1;
 const heightLand = 1;
@@ -59,13 +59,13 @@ var clMetal = g_Map.createTileClass();
 var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
 
-var waterRadius = scaleByMapSize(7, 50)
+var waterRadius = scaleByMapSize(7, 50);
 var shoreDistance = scaleByMapSize(4, 10);
 var forestDistance = scaleByMapSize(6, 20);
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-g_Map.log("Creating small oasis near the players...")
+g_Map.log("Creating small oasis near the players...");
 var forestDist = 1.2 * defaultPlayerBaseRadius();
 for (let i = 0; i < numPlayers; ++i)
 {

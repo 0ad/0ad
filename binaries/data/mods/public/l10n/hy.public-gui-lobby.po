@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-06-24 10:44+0000\n"
+"PO-Revision-Date: 2019-06-30 16:10+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:50
 msgid "Online"
-msgstr "Առցանց"
+msgstr "Կապի մեջ"
 
 #: gui/lobby/lobby.js:51
 msgid "Away"
@@ -81,7 +81,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr "Դուք հիմա մոդերատոր եք:"
+msgstr "Հիմա մոդերատոր եք:"
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
@@ -170,7 +170,7 @@ msgstr ""
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr ""
+msgstr "Հաստատում"
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
 #: gui/prelobby/common/credentials/credentials.js:56
@@ -453,7 +453,7 @@ msgstr "Մուտք գործել"
 
 #: gui/prelobby/login/login.js:32
 msgid "Connecting…"
-msgstr ""
+msgstr "Մուտքագրում․․․"
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
@@ -490,12 +490,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):193
 msgid "Map Name"
-msgstr ""
+msgstr "Քարտեզի Անունը"
 
 #: gui/lobby/lobby_panels.xml:(heading):196
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Չափ"
 
 #: gui/lobby/lobby_panels.xml:(heading):199
 msgctxt "map"
@@ -556,12 +556,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):132
 msgid "Map Size:"
-msgstr ""
+msgstr "Քարտեզի Չափը."
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby_panels.xml:(caption):157
 msgid "Join Game"
-msgstr ""
+msgstr "Միանալ Խաղին"
 
 #: gui/lobby/lobby_panels.xml:(caption):163
 msgid "Host Game"
@@ -573,7 +573,7 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
-msgstr ""
+msgstr "Ուղարկել"
 
 #: gui/lobby/lobby_panels.xml:(caption):299
 #: gui/lobby/lobby_panels.xml:(caption):361
@@ -619,7 +619,7 @@ msgstr "Չեղարկել"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr ""
+msgstr "Ստեղծել նոր հաշիվ"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"

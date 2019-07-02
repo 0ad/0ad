@@ -50,7 +50,7 @@ function loadBiomeFile(file)
 		return;
 	}
 
-	let biome = Engine.ReadJSONFile(path)
+	let biome = Engine.ReadJSONFile(path);
 
 	let copyProperties = (from, to) => {
 		for (let prop in from)

@@ -47,7 +47,7 @@ function initURLButtons(termsURL, urlButtons)
 function initLanguageSelection()
 {
 	let languageLabel = Engine.GetGUIObjectByName("languageLabel");
-	let languageLabelWidth = Engine.GetTextWidth(languageLabel.font, languageLabel.caption)
+	let languageLabelWidth = Engine.GetTextWidth(languageLabel.font, languageLabel.caption);
 	languageLabel.size = "0 0 " + languageLabelWidth + " 100%";
 
 	let languageDropdown = Engine.GetGUIObjectByName("languageDropdown");

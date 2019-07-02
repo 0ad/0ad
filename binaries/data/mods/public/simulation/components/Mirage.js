@@ -74,7 +74,7 @@ Mirage.prototype.CopyIdentity = function(cmpIdentity)
 	this.classesList = clone(cmpIdentity.GetClassesList());
 };
 
-Mirage.prototype.GetClassesList = function() { return this.classesList };
+Mirage.prototype.GetClassesList = function() { return this.classesList; };
 
 // Foundation data
 

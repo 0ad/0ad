@@ -10,8 +10,8 @@ const tSecondaryDirt = "medit_dirt_dry";
 const tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_2"];
 const tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
 const tDirt = ["desert_dirt_rough", "desert_dirt_rough_2"];
-const tRoad = "desert_shore_stones";;
-const tRoadWild = "desert_grass_a_stones";;
+const tRoad = "desert_shore_stones";
+const tRoadWild = "desert_grass_a_stones";
 
 const oTamarix = "gaia/flora_tree_tamarix";
 const oPalm = "gaia/flora_tree_date_palm";

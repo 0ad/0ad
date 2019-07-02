@@ -128,7 +128,7 @@ placePlayerBases({
 Engine.SetProgress(15);
 
 g_Map.log("Create the continent body");
-var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round()
+var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round();
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, Infinity, continentPosition),
 	[

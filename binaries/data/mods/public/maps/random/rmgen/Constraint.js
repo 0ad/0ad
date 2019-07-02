@@ -18,7 +18,7 @@ NullConstraint.prototype.allows = function(position)
 function AndConstraint(constraints)
 {
 	if (constraints instanceof Array)
-		this.constraints = constraints
+		this.constraints = constraints;
 	else if (!constraints)
 		this.constraints = [];
 	else
@@ -68,7 +68,7 @@ function AvoidAreasConstraint(areas)
 
 AvoidAreasConstraint.prototype.allows = function(position)
 {
-	return this.areas.every(area => !area.contains(position))
+	return this.areas.every(area => !area.contains(position));
 };
 
 /**

@@ -97,7 +97,7 @@ Heal.prototype.GetRangeOverlays = function()
 		"texture": this.template.RangeOverlay.LineTexture,
 		"textureMask": this.template.RangeOverlay.LineTextureMask,
 		"thickness": +this.template.RangeOverlay.LineThickness
-	}]
+	}];
 };
 
 /**
