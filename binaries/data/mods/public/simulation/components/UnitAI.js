@@ -402,6 +402,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 		this.order.data.attackType = type;
 
+		this.RememberTargetPosition();
+
 		// If we are already at the target, try attacking it from here
 		if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
 		{
@@ -525,6 +527,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": !!this.order.data.force, "hunting": true, "allowCapture": false });
 			return;
 		}
+
+		this.RememberTargetPosition();
 
 		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
@@ -1766,11 +1770,34 @@ UnitAI.prototype.UnitFsmSpec = {
 						if (this.GetStance().respondHoldGround)
 							this.WalkToHeldPosition();
 					}
+					else
+						this.RememberTargetPosition();
 				},
 
-				"MovementUpdate": function() {
+				"MovementUpdate": function(msg) {
+					if (msg.error)
+					{
+						// This also handles hunting.
+						if (this.orderQueue.length > 1)
+						{
+							this.FinishOrder();
+							return;
+						}
+						else if (!this.order.data.force)
+						{
+							this.SetNextState("COMBAT.FINDINGNEWTARGET");
+							return;
+						}
+						// Go to the last known position and try to find enemies there.
+						let lastPos = this.order.data.lastPos;
+						this.PushOrder("Walk", { "x": lastPos.x, "z": lastPos.z, "force": false });
+						this.PushOrder("WalkAndFight", { "x": lastPos.x, "z": lastPos.z, "force": false });
+						return;
+					}
+
 					if (!this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
 						return;
+
 					// If the unit needs to unpack, do so
 					if (this.CanUnpack())
 					{
@@ -1783,8 +1810,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"ATTACKING": {
 				"enter": function() {
-					var target = this.order.data.target;
-					var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+					let target = this.order.data.target;
+					let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 					// if the target is a formation, save the attacking formation, and pick a member
 					if (cmpFormation)
 					{
@@ -1792,65 +1819,69 @@ UnitAI.prototype.UnitFsmSpec = {
 						target = cmpFormation.GetClosestMember(this.entity);
 						this.order.data.target = target;
 					}
-					// Check the target is still alive and attackable
-					if (this.CanAttack(target) && !this.CheckTargetAttackRange(target, this.order.data.attackType))
-					{
-						// Can't reach it - try to chase after it
-						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
-						{
-							if (this.CanPack())
-							{
-								this.PushOrderFront("Pack", { "force": true });
-								return;
-							}
 
-							this.SetNextState("COMBAT.CHASING");
+					if (!this.CanAttack(target))
+					{
+						this.SetNextState("COMBAT.FINDINGNEWTARGET");
+						return true;
+					}
+
+					if (!this.CheckTargetAttackRange(target, this.order.data.attackType))
+					{
+						if (this.CanPack())
+						{
+							this.PushOrderFront("Pack", { "force": true });
 							return true;
 						}
+
+						this.SetNextState("COMBAT.APPROACHING");
+						return true;
 					}
 
 					this.StopMoving();
 
-					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+					let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					this.attackTimers = cmpAttack.GetTimers(this.order.data.attackType);
 
 					// If the repeat time since the last attack hasn't elapsed,
 					// delay this attack to avoid attacking too fast.
-					var prepare = this.attackTimers.prepare;
+					let prepare = this.attackTimers.prepare;
 					if (this.lastAttacked)
 					{
-						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-						var repeatLeft = this.lastAttacked + this.attackTimers.repeat - cmpTimer.GetTime();
+						let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+						let repeatLeft = this.lastAttacked + this.attackTimers.repeat - cmpTimer.GetTime();
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
 					this.oldAttackType = this.order.data.attackType;
 					// add prefix + no capital first letter for attackType
-					var animationName = "attack_" + this.order.data.attackType.toLowerCase();
+					let animationName = "attack_" + this.order.data.attackType.toLowerCase();
 					if (this.IsFormationMember())
 					{
-						var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-						if (cmpFormation)
-							animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
+						let cmpFormationController = Engine.QueryInterface(this.formationController, IID_Formation);
+						if (cmpFormationController)
+							animationName = cmpFormationController.GetFormationAnimation(this.entity, animationName);
 					}
+
 					this.SetAnimationVariant("combat");
+
 					this.SelectAnimation(animationName);
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee
 
 					// If using a non-default prepare time, re-sync the animation when the timer runs.
-					this.resyncAnimation = (prepare != this.attackTimers.prepare) ? true : false;
+					this.resyncAnimation = prepare != this.attackTimers.prepare;
 
 					this.FaceTowardsTarget(this.order.data.target);
 
-					var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+					let cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
 					if (cmpBuildingAI)
 						cmpBuildingAI.SetUnitAITarget(this.order.data.target);
 				},
 
 				"leave": function() {
-					var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+					let cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
 					if (cmpBuildingAI)
 						cmpBuildingAI.SetUnitAITarget(0);
 					this.StopTimer();
@@ -1858,107 +1889,65 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					var target = this.order.data.target;
-					var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+					let target = this.order.data.target;
+					let cmpFormation = Engine.QueryInterface(target, IID_Formation);
+
 					// if the target is a formation, save the attacking formation, and pick a member
 					if (cmpFormation)
 					{
-						var thisObject = this;
-						var filter = function(t) {
+						let thisObject = this;
+						let filter = function(t) {
 							return thisObject.CanAttack(t);
 						};
 						this.order.data.formationTarget = target;
 						target = cmpFormation.GetClosestMember(this.entity, filter);
 						this.order.data.target = target;
 					}
+
 					// Check the target is still alive and attackable
-					if (this.CanAttack(target))
+					if (!this.CanAttack(target))
 					{
-						// If we are hunting, first update the target position of the gather order so we know where will be the killed animal
-						if (this.order.data.hunting && this.orderQueue[1] && this.orderQueue[1].data.lastPos)
+						this.SetNextState("COMBAT.FINDINGNEWTARGET");
+						return;
+					}
+
+					this.RememberTargetPosition();
+
+					let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+					this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
+
+					this.FaceTowardsTarget(target);
+
+					// BuildingAI has it's own attack-routine
+					let cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+					if (!cmpBuildingAI)
+					{
+						let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+						cmpAttack.PerformAttack(this.order.data.attackType, target);
+					}
+
+					// Check we can still reach the target for the next attack
+					if (this.CheckTargetAttackRange(target, this.order.data.attackType))
+					{
+						if (this.resyncAnimation)
 						{
-							var cmpPosition = Engine.QueryInterface(this.order.data.target, IID_Position);
-							if (cmpPosition && cmpPosition.IsInWorld())
-							{
-								// Store the initial position, so that we can find the rest of the herd later
-								if (!this.orderQueue[1].data.initPos)
-									this.orderQueue[1].data.initPos = this.orderQueue[1].data.lastPos;
-								this.orderQueue[1].data.lastPos = cmpPosition.GetPosition();
-								// We still know where the animal is, so we shouldn't give up before going there
-								this.orderQueue[1].data.secondTry = undefined;
-							}
+							this.SetAnimationSync(this.attackTimers.repeat, this.attackTimers.repeat);
+							this.resyncAnimation = false;
 						}
+						return;
+					}
 
-						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-						this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
-
-						this.FaceTowardsTarget(target);
-
-						// BuildingAI has it's own attack-routine
-						var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
-						if (!cmpBuildingAI)
+					// Can't reach it - try to chase after it
+					if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
+					{
+						if (this.CanPack())
 						{
-							let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							cmpAttack.PerformAttack(this.order.data.attackType, target);
-						}
-
-						// Check we can still reach the target for the next attack
-						if (this.CheckTargetAttackRange(target, this.order.data.attackType))
-						{
-							if (this.resyncAnimation)
-							{
-								this.SetAnimationSync(this.attackTimers.repeat, this.attackTimers.repeat);
-								this.resyncAnimation = false;
-							}
+							this.PushOrderFront("Pack", { "force": true });
 							return;
 						}
-
-						// Can't reach it - try to chase after it
-						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
-						{
-							if (this.CanPack())
-							{
-								this.PushOrderFront("Pack", { "force": true });
-								return;
-							}
-							this.SetNextState("COMBAT.CHASING");
-							return;
-						}
-					}
-
-					// if we're targetting a formation, find a new member of that formation
-					var cmpTargetFormation = Engine.QueryInterface(this.order.data.formationTarget || INVALID_ENTITY, IID_Formation);
-					// if there is no target, it means previously searching for the target inside the target formation failed, so don't repeat the search
-					if (target && cmpTargetFormation)
-					{
-						this.order.data.target = this.order.data.formationTarget;
-						this.TimerHandler(msg.data, msg.lateness);
+						this.SetNextState("COMBAT.CHASING");
 						return;
 					}
-
-					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
-					// Except if in WalkAndFight mode where we look for more ennemies around before moving again
-					if (this.FinishOrder())
-					{
-						if (this.IsWalkingAndFighting())
-							this.FindWalkAndFightTargets();
-						return;
-					}
-
-					// See if we can switch to a new nearby enemy
-					if (this.FindNewTargets())
-					{
-						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
-						// Packable units may have switched to PACKING state, thus canceling the timer and having order.data.attackType undefined.
-						if (this.orderQueue.length > 0 && this.orderQueue[0].data && this.orderQueue[0].data.attackType &&
-						    this.orderQueue[0].data.attackType == this.oldAttackType)
-							this.TimerHandler(msg.data, msg.lateness);
-						return;
-					}
-
-					// Return to our original position
-					if (this.GetStance().respondHoldGround)
-						this.WalkToHeldPosition();
 				},
 
 				// TODO: respond to target deaths immediately, rather than waiting
@@ -1969,6 +1958,39 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.order.data.attackType == "Capture" && (this.GetStance().targetAttackersAlways || !this.order.data.force)
 						&& this.order.data.target != msg.data.attacker && this.GetBestAttackAgainst(msg.data.attacker, true) != "Capture")
 						this.RespondToTargetedEntities([msg.data.attacker]);
+				},
+			},
+
+			"FINDINGNEWTARGET": {
+				"enter": function() {
+					// If we're targetting a formation, find a new member of that formation.
+					let cmpTargetFormation = Engine.QueryInterface(this.order.data.formationTarget || INVALID_ENTITY, IID_Formation);
+					// if there is no target, it means previously searching for the target inside the target formation failed, so don't repeat the search
+					if (this.order.data.target && cmpTargetFormation)
+					{
+						this.order.data.target = this.order.data.formationTarget;
+						this.TimerHandler(msg.data, msg.lateness);
+						return;
+					}
+
+					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
+					// except if in WalkAndFight mode where we look for more enemies around before moving again.
+					if (this.FinishOrder())
+					{
+						if (this.IsWalkingAndFighting())
+							this.FindWalkAndFightTargets();
+						return true;
+					}
+
+					// See if we can switch to a new nearby enemy
+					if (this.FindNewTargets())
+						return true;
+
+					// Return to our original position
+					if (this.GetStance().respondHoldGround)
+						this.WalkToHeldPosition();
+
+					return true;
 				},
 			},
 
@@ -4917,7 +4939,16 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false)
 			this.WalkToTarget(target, queued);
 		return;
 	}
-	this.AddOrder("Attack", { "target": target, "force": true, "allowCapture": allowCapture}, queued);
+
+	let order = {
+		"target": target,
+		"force": true,
+		"allowCapture": allowCapture,
+	};
+
+	this.RememberTargetPosition(order);
+
+	this.AddOrder("Attack", order, queued);
 };
 
 /**
@@ -4992,14 +5023,16 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 	if (template.indexOf("resource|") != -1)
 		template = template.slice(9);
 
-	// Remember the position of our target, if any, in case it disappears
-	// later and we want to head to its last known position
-	var lastPos = undefined;
-	var cmpPosition = Engine.QueryInterface(target, IID_Position);
-	if (cmpPosition && cmpPosition.IsInWorld())
-		lastPos = cmpPosition.GetPosition();
+	let order = {
+		"target": target,
+		"type": type,
+		"template": template,
+		"force": force,
+	};
 
-	this.AddOrder("Gather", { "target": target, "type": type, "template": template, "lastPos": lastPos, "force": force }, queued);
+	this.RememberTargetPosition(order);
+
+	this.AddOrder("Gather", order, queued);
 };
 
 /**
@@ -5515,6 +5548,20 @@ UnitAI.prototype.SetSpeedMultiplier = function(speed)
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (cmpUnitMotion)
 		cmpUnitMotion.SetSpeedMultiplier(speed);
+};
+
+/*
+ * Remember the position of the target (in lastPos), if any, in case it disappears later
+ * and we want to head to its last known position.
+ * @param orderData - The order data to set this on. Defaults to this.order.data
+ */
+UnitAI.prototype.RememberTargetPosition = function(orderData)
+{
+	if (!orderData)
+		orderData = this.order.data;
+	let cmpPosition = Engine.QueryInterface(orderData.target, IID_Position);
+	if (cmpPosition && cmpPosition.IsInWorld())
+		orderData.lastPos = cmpPosition.GetPosition();
 };
 
 UnitAI.prototype.SetHeldPosition = function(x, z)
