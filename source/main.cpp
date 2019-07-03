@@ -751,7 +751,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		{
 			InitNonVisual(args);
             std::unique_ptr<RLInterface> service = StartRLInterface(args);
-			while (!g_Game || !g_Game->IsGameFinished())
+			while (g_Shutdown == ShutdownType::None)
             {
                 service.get()->ApplyEvents();
             }
