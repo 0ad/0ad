@@ -1216,6 +1216,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  *                                 (default 10 minutes)
  * -autostart-reliccount=NUM       sets the number of relics for relic victory condition
  *                                 (default 2 relics)
+ * -autostart-disable-replay       disable saving of replays
  *
  * Multiplayer:
  * -autostart-playername=NAME      sets local player NAME (default 'anonymous')
@@ -1250,7 +1251,7 @@ bool Autostart(const CmdLineArgs& args)
 		return false;
 
 	const bool nonVisual = args.Has("autostart-nonvisual");
-	g_Game = new CGame(nonVisual, !nonVisual);
+	g_Game = new CGame(nonVisual, !args.Has("autostart-disable-replay"));
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
