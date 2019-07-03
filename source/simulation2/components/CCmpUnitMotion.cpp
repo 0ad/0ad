@@ -647,16 +647,10 @@ private:
 	bool ComputeTargetPosition(CFixedVector2D& out) const;
 
 	/**
-	 * Attempts to replace the current path with a straight line to the goal,
-	 * if this goal is a point, is close enough and the route is not obstructed.
+	 * Attempts to replace the current path with a straight line to the target,
+	 * if it's close enough and the route is not obstructed.
 	 */
-	bool TryGoingStraightToGoalPoint(const CFixedVector2D& from);
-
-	/**
-	 * Attempts to replace the current path with a straight line to the target
-	 * entity, if it's close enough and the route is not obstructed.
-	 */
-	bool TryGoingStraightToTargetEntity(const CFixedVector2D& from);
+	bool TryGoingStraightToTarget(const CFixedVector2D& from);
 
 	/**
 	 * Returns whether the target entity has moved more than minDelta since our
@@ -688,7 +682,7 @@ private:
 
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
-	 * noTarget is true only when used inside tryGoingStraightToTargetEntity,
+	 * noTarget is true only when used inside TryGoingStraightToTarget,
 	 * in which case we do not want the target obstruction otherwise it would always fail
 	 */
 	ControlGroupMovementObstructionFilter GetObstructionFilter(bool noTarget = false) const;
@@ -853,7 +847,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	if (m_PathState == PATHSTATE_FOLLOWING ||
 		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT ||
 		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG)
-		TryGoingStraightToTargetEntity(initialPos);
+		TryGoingStraightToTarget(initialPos);
 
 	bool wasObstructed = PerformMove(dt, m_ShortPath, m_LongPath, pos);
 
@@ -1087,8 +1081,11 @@ bool CCmpUnitMotion::TargetHasValidPosition() const
 
 bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 {
-	if (m_MoveRequest.m_Entity == INVALID_ENTITY)
-		return false;
+	if (m_MoveRequest.m_Type == MoveRequest::POINT)
+	{
+		out = CFixedVector2D(m_MoveRequest.m_Position.X, m_MoveRequest.m_Position.Y);
+		return true;
+	}
 
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_MoveRequest.m_Entity);
 	if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -1106,35 +1103,7 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 	return true;
 }
 
-bool CCmpUnitMotion::TryGoingStraightToGoalPoint(const CFixedVector2D& from)
-{
-	// Make sure the goal is a point (and not a point-like target like a formation controller)
-	if (m_MoveRequest.m_Type != MoveRequest::POINT ||
-		m_MoveRequest.m_MinRange > fixed::Zero())
-		return false;
-
-	// Fail if the goal is too far away
-	CFixedVector2D goalPos(m_FinalGoal.x, m_FinalGoal.z);
-	if ((goalPos - from).CompareLength(DIRECT_PATH_RANGE) > 0)
-		return false;
-
-	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-	if (!cmpPathfinder)
-		return false;
-
-	// Check if there's any collisions on that route
-	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
-		return false;
-
-	// That route is okay, so update our path
-	m_LongPath.m_Waypoints.clear();
-	m_ShortPath.m_Waypoints.clear();
-	m_ShortPath.m_Waypoints.emplace_back(Waypoint{ goalPos.X, goalPos.Y });
-
-	return true;
-}
-
-bool CCmpUnitMotion::TryGoingStraightToTargetEntity(const CFixedVector2D& from)
+bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 {
 	CFixedVector2D targetPos;
 	if (!ComputeTargetPosition(targetPos))
@@ -1314,17 +1283,9 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	}
 #endif
 
-	// If we're aiming at a target entity and it's close and we can reach
-	// it in a straight line, then we'll just go along the straight line
-	// instead of computing a path.
-	if (TryGoingStraightToTargetEntity(from))
-	{
-		m_PathState = PATHSTATE_FOLLOWING;
-		return;
-	}
-
-	// Same thing applies to non-entity points
-	if (TryGoingStraightToGoalPoint(from))
+	// If the target is close and we can reach it in a straight line,
+	// then we'll just go along the straight line instead of computing a path.
+	if (TryGoingStraightToTarget(from))
 	{
 		m_PathState = PATHSTATE_FOLLOWING;
 		return;
