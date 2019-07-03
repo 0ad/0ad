@@ -475,6 +475,7 @@ public:
 	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
 	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
 	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const;
+	virtual bool AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
 
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits = false) const;
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out) const;
@@ -841,6 +842,15 @@ bool CCmpObstructionManager::IsPointInPointRange(entity_pos_t x, entity_pos_t z,
 	// Treat -1 max range as infinite
 	return (distance <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
 	        distance >= minRange - fixed::FromFloat(0.0001);
+}
+
+bool CCmpObstructionManager::AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
+{
+	fixed dist = DistanceBetweenShapes(source, target);
+	// Treat -1 max range as infinite
+	return dist != fixed::FromInt(-1) &&
+	      (dist <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
+	      (opposite ? MaxDistanceBetweenShapes(source, target) : dist) >= minRange - fixed::FromFloat(0.0001);
 }
 
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) const

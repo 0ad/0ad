@@ -218,6 +218,12 @@ public:
 	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
 
 	/**
+	 * Check if the given shape is in range of the target shape given those parameters.
+	 * @param maxRange - if -1, treated as infinite.
+	 */
+	virtual bool AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
+
+	/**
 	 * Collision test a flat-ended thick line against the current set of shapes.
 	 * The line caps extend by @p r beyond the end points.
 	 * Only intersections going from outside to inside a shape are counted.
