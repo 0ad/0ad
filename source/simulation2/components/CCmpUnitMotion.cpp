@@ -1065,7 +1065,17 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 		out = cmpPosition->GetPosition2D() + offset;
 	}
 	else
+	{
 		out = cmpPosition->GetPosition2D();
+		// If the target is moving, we might never get in range if we just try to reach its current position,
+		// so we have to try and move to a position where we will be in-range, including their movement.
+		// Since we request paths asynchronously a the end of our turn, we need to account for twice the movement speed.
+		// TODO: be cleverer about this. It fixes fleeing nicely currently, but orthogonal movement should be considered,
+		// and the overall logic could be improved upon.
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpUnitMotion && cmpUnitMotion->IsMoving())
+			out += (out - cmpPosition->GetPreviousPosition2D()) * 2;
+	}
 	return true;
 }
 
