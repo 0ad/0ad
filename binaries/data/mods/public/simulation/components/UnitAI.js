@@ -1797,7 +1797,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					if (!this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
+					{
+						// Try moving again,
+						// attack range uses a height-related formula and our actual max range might have changed.
+						if (!this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
+							this.FinishOrder();
 						return;
+					}
 
 					// If the unit needs to unpack, do so
 					if (this.CanUnpack())
@@ -4200,12 +4206,12 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	// for formation members, the formation will take care of the range check
 	if (this.IsFormationMember())
 	{
-		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		let cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
 		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation())
 			return false;
 	}
 
-	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
@@ -4215,39 +4221,33 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	var range = cmpAttack.GetRange(type);
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	let range = cmpAttack.GetRange(type);
 
-	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!thisCmpPosition.IsInWorld())
 		return false;
-	var s = thisCmpPosition.GetPosition();
+	let s = thisCmpPosition.GetPosition();
 
-	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
+	let targetCmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!targetCmpPosition.IsInWorld())
 		return false;
 
-	var t = targetCmpPosition.GetPosition();
+	let t = targetCmpPosition.GetPosition();
 	// h is positive when I'm higher than the target
-	var h = s.y-t.y+range.elevationBonus;
+	let h = s.y - t.y + range.elevationBonus;
 
+	let parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
 	// No negative roots please
-	if (h>-range.max/2)
-		var parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
-	else
+	if (h <= -range.max / 2)
 		// return false? Or hope you come close enough?
-		var parabolicMaxRange = 0;
-		//return false;
+		parabolicMaxRange = 0;
 
-	// the parabole changes while walking, take something in the middle
-	var guessedMaxRange = (range.max + parabolicMaxRange)/2;
+	// The parabole changes while walking so be cautious:
+	let guessedMaxRange = parabolicMaxRange > range.max ? (range.max + parabolicMaxRange) / 2 : parabolicMaxRange;
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange))
-		return true;
-
-	// if that failed, try closer
-	return cmpUnitMotion.MoveToTargetRange(target, range.min, Math.min(range.max, parabolicMaxRange));
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange);
 };
 
 UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
@@ -4323,42 +4323,42 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	// for formation members, the formation will take care of the range check
 	if (this.IsFormationMember())
 	{
-		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation()
-			&& cmpFormationUnitAI.order.data.target == target)
+		let cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation() &&
+		    cmpFormationUnitAI.order.data.target == target)
 			return true;
 	}
 
-	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
 	if (type != "Ranged")
 		return this.CheckTargetRange(target, IID_Attack, type);
 
-	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
+	let targetCmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 		return false;
 
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	var range = cmpAttack.GetRange(type);
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	let range = cmpAttack.GetRange(type);
 
-	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!thisCmpPosition.IsInWorld())
 		return false;
 
-	var s = thisCmpPosition.GetPosition();
+	let s = thisCmpPosition.GetPosition();
 
-	var t = targetCmpPosition.GetPosition();
+	let t = targetCmpPosition.GetPosition();
 
-	var h = s.y-t.y+range.elevationBonus;
-	var maxRangeSq = 2*range.max*(h + range.max/2);
+	let h = s.y - t.y + range.elevationBonus;
+	let maxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
 
-	if (maxRangeSq < 0)
+	if (maxRange < 0)
 		return false;
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, Math.sqrt(maxRangeSq), false);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, maxRange, false);
 };
 
 UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)

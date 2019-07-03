@@ -1401,13 +1401,6 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 			if (goal.hw <= entity_pos_t::Zero())
 				goal.type = PathGoal::POINT;
 		}
-		else
-		{
-			// We're already in range - no need to move anywhere
-			if (m_FacePointAfterMove)
-				FaceTowardsPointFromPos(pos, x, z);
-			return true;
-		}
 	}
 
 	m_State = STATE_INDIVIDUAL_PATH;
@@ -1527,12 +1520,6 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			goal.hh = obstruction.hh + goalDistance;
 		}
 	}
-	else if (maxRange < entity_pos_t::Zero() || distance < maxRange || previousDistance < maxRange)
-	{
-		// We're already in range - no need to move anywhere
-		FaceTowardsPointFromPos(pos, goal.x, goal.z);
-		return true;
-	}
 	else
 	{
 		// We might need to move closer:
@@ -1549,14 +1536,6 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			// check is still valid (though not sufficient)
 			entity_pos_t circleDistance = (pos - CFixedVector2D(obstruction.x, obstruction.z)).Length() - circleRadius;
 			entity_pos_t previousCircleDistance = (pos - CFixedVector2D(previousObstruction.x, previousObstruction.z)).Length() - circleRadius;
-
-			if (circleDistance < maxRange || previousCircleDistance < maxRange)
-			{
-				// We're already in range - no need to move anywhere
-				if (m_FacePointAfterMove)
-					FaceTowardsPointFromPos(pos, goal.x, goal.z);
-				return true;
-			}
 
 			entity_pos_t goalDistance = maxRange;
 
