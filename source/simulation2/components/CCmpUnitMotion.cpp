@@ -76,36 +76,6 @@ static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN
  */
 static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
 
-/**
- * If we're following a target entity,
- * we will recompute our path if the target has moved
- * more than this distance from where we last pathed to.
- */
-static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
-
-/**
- * If we're following as part of a formation,
- * but can't move to our assigned target point in a straight line,
- * we will recompute our path if the target has moved
- * more than this distance from where we last pathed to.
- */
-static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA_FORMATION = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
-
-/**
- * If we're following something but it's more than this distance away along
- * our path, then don't bother trying to repath regardless of how much it has
- * moved, until we get this close to the end of our old path.
- */
-static const entity_pos_t CHECK_TARGET_MOVEMENT_AT_MAX_DIST = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*16);
-
-/**
- * If we're following something and the angle between the (straight-line) directions to its previous target
- * position and its present target position is greater than a given angle, recompute the path even far away
- * (i.e. even if CHECK_TARGET_MOVEMENT_AT_MAX_DIST condition is not fulfilled). The actual check is done
- * on the cosine of this angle, with a PI/6 angle.
- */
-static const fixed CHECK_TARGET_MOVEMENT_MIN_COS = fixed::FromInt(866)/1000;
-
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
 
@@ -653,10 +623,9 @@ private:
 	bool TryGoingStraightToTarget(const CFixedVector2D& from);
 
 	/**
-	 * Returns whether the target entity has moved more than minDelta since our
-	 * last path computations, and we're close enough to it to care.
+	 * Returns whether our we need to recompute a path to reach our target.
 	 */
-	bool CheckTargetMovement(const CFixedVector2D& from, entity_pos_t minDelta);
+	bool PathingUpdateNeeded(const CFixedVector2D& from);
 
 	/**
 	 * Update goal position if moving target
@@ -874,10 +843,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	{
 		// We may need to recompute our path sometimes (e.g. if our target moves).
 		// Since we request paths asynchronously anyways, this does not need to be done before moving.
-		if (IsFormationMember())
-			CheckTargetMovement(pos, CHECK_TARGET_MOVEMENT_MIN_DELTA_FORMATION);
-		else
-			CheckTargetMovement(pos, CHECK_TARGET_MOVEMENT_MIN_DELTA);
+		PathingUpdateNeeded(pos);
 	}
 }
 
@@ -1099,7 +1065,17 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 		out = cmpPosition->GetPosition2D() + offset;
 	}
 	else
+	{
 		out = cmpPosition->GetPosition2D();
+		// If the target is moving, we might never get in range if we just try to reach its current position,
+		// so we have to try and move to a position where we will be in-range, including their movement.
+		// Since we request paths asynchronously a the end of our turn, we need to account for twice the movement speed.
+		// TODO: be cleverer about this. It fixes fleeing nicely currently, but orthogonal movement should be considered,
+		// and the overall logic could be improved upon.
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpUnitMotion && cmpUnitMotion->IsMoving())
+			out += (out - cmpPosition->GetPreviousPosition2D()) * 2;
+	}
 	return true;
 }
 
@@ -1140,49 +1116,60 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 	return true;
 }
 
-bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_t minDelta)
+bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from)
 {
+	if (m_MoveRequest.m_Type == MoveRequest::NONE)
+		return false;
+
 	CFixedVector2D targetPos;
 	if (!ComputeTargetPosition(targetPos))
 		return false;
 
-	// Fail unless the target has moved enough
-	CFixedVector2D oldTargetPos(m_FinalGoal.x, m_FinalGoal.z);
-	if ((targetPos - oldTargetPos).CompareLength(minDelta) < 0)
+	if (PossiblyAtDestination())
 		return false;
 
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return false;
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-	CFixedVector2D oldDir = (oldTargetPos - pos);
-	CFixedVector2D newDir = (targetPos - pos);
-	oldDir.Normalize();
-	newDir.Normalize();
-
-	// Fail unless we're close enough to the target to care about its movement
-	// and the angle between the (straight-line) directions of the previous and new target positions is small
-	if (oldDir.Dot(newDir) > CHECK_TARGET_MOVEMENT_MIN_COS && !PathIsShort(m_LongPath, from, CHECK_TARGET_MOVEMENT_AT_MAX_DIST))
-		return false;
-
-	// Fail if the target is no longer visible to this entity's owner
-	// (in which case we'll continue moving to its last known location,
-	// unless it comes back into view before we reach that location)
-	CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
-	if (cmpOwnership)
+	// Get the obstruction shape and translate it where we estimate the target to be.
+	ICmpObstructionManager::ObstructionSquare estimatedTargetShape;
+	if (m_MoveRequest.m_Type == MoveRequest::ENTITY)
 	{
-		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
-		if (cmpRangeManager && cmpRangeManager->GetLosVisibility(m_MoveRequest.m_Entity, cmpOwnership->GetOwner()) == ICmpRangeManager::VIS_HIDDEN)
-			return false;
+		CmpPtr<ICmpObstruction> cmpTargetObstruction(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpTargetObstruction)
+			cmpTargetObstruction->GetObstructionSquare(estimatedTargetShape);
 	}
 
-	// The target moved and we need to update our current path;
-	// change the goal here and expect our caller to start the path request
-	m_FinalGoal.x = targetPos.X;
-	m_FinalGoal.z = targetPos.Y;
-	RequestLongPath(from, m_FinalGoal);
-	m_PathState = PATHSTATE_FOLLOWING_REQUESTING_LONG;
+	estimatedTargetShape.x = targetPos.X;
+	estimatedTargetShape.z = targetPos.Y;
 
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	ICmpObstructionManager::ObstructionSquare shape;
+	if (cmpObstruction)
+		cmpObstruction->GetObstructionSquare(shape);
+
+	// Translate our own obstruction shape to our last waypoint or our current position, lacking that.
+	if (m_LongPath.m_Waypoints.empty() && m_ShortPath.m_Waypoints.empty())
+	{
+		shape.x = from.X;
+		shape.z = from.Y;
+	}
+	else
+	{
+		Waypoint& lastWaypoint = m_ShortPath.m_Waypoints.empty() ? m_LongPath.m_Waypoints.front() : m_ShortPath.m_Waypoints.front();
+		shape.x = lastWaypoint.x;
+		shape.z = lastWaypoint.z;
+	}
+
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	ENSURE(cmpObstructionManager);
+
+	if (cmpObstructionManager->AreShapesInRange(shape, estimatedTargetShape,
+	      m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
+		return false;
+
+	// We won't be in-range when we reach our final waypoint : recompute our path.
+	m_FinalGoal.x = estimatedTargetShape.x;
+	m_FinalGoal.z = estimatedTargetShape.z;
+	BeginPathing(from, m_FinalGoal);
+	m_PathState = PATHSTATE_FOLLOWING_REQUESTING_LONG;
 	return true;
 }
 
@@ -1401,13 +1388,6 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 			if (goal.hw <= entity_pos_t::Zero())
 				goal.type = PathGoal::POINT;
 		}
-		else
-		{
-			// We're already in range - no need to move anywhere
-			if (m_FacePointAfterMove)
-				FaceTowardsPointFromPos(pos, x, z);
-			return true;
-		}
 	}
 
 	m_State = STATE_INDIVIDUAL_PATH;
@@ -1527,12 +1507,6 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			goal.hh = obstruction.hh + goalDistance;
 		}
 	}
-	else if (maxRange < entity_pos_t::Zero() || distance < maxRange || previousDistance < maxRange)
-	{
-		// We're already in range - no need to move anywhere
-		FaceTowardsPointFromPos(pos, goal.x, goal.z);
-		return true;
-	}
 	else
 	{
 		// We might need to move closer:
@@ -1549,14 +1523,6 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			// check is still valid (though not sufficient)
 			entity_pos_t circleDistance = (pos - CFixedVector2D(obstruction.x, obstruction.z)).Length() - circleRadius;
 			entity_pos_t previousCircleDistance = (pos - CFixedVector2D(previousObstruction.x, previousObstruction.z)).Length() - circleRadius;
-
-			if (circleDistance < maxRange || previousCircleDistance < maxRange)
-			{
-				// We're already in range - no need to move anywhere
-				if (m_FacePointAfterMove)
-					FaceTowardsPointFromPos(pos, goal.x, goal.z);
-				return true;
-			}
 
 			entity_pos_t goalDistance = maxRange;
 

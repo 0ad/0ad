@@ -21,6 +21,7 @@ Autostart:
 -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory condition (default 10 minutes)
 -autostart-relicduration=NUM    sets the victory duration NUM for relic victory condition (default 10 minutes)
 -autostart-reliccount=NUM       sets the number of relics for relic victory condition (default 2 relics)
+-autostart-disable-replay       disable saving of replays
 Multiplayer:
 -autostart-playername=NAME      sets local player NAME (default 'anonymous')
 -autostart-host                 sets multiplayer host mode
