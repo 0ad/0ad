@@ -539,6 +539,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.GatherNearPosition": function(msg) {
 		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
+		this.order.data.initPos = { 'x': this.order.data.x, 'z': this.order.data.z };
 	},
 
 	"Order.ReturnResource": function(msg) {
@@ -2264,8 +2265,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// We're already in range, can't get anywhere near it or the target is exhausted.
 
-					let herdPos = this.order.data.initPos;
-
 					// Give up on this order and try our next queued order
 					// but first check what is our next order and, if needed, insert a returnResource order
 					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
@@ -2277,39 +2276,57 @@ UnitAI.prototype.UnitFsmSpec = {
 						if (nearby)
 							this.orderQueue.splice(1, 0, { "type": "ReturnResource", "data": { "target": nearby, "force": false } });
 					}
+
+					// Must go before FinishOrder or this.order will be undefined.
+					let initPos = this.order.data.initPos;
+
 					if (this.FinishOrder())
 						return;
 
 					// No remaining orders - pick a useful default behaviour
 
-					// Try to find a new resource of the same specific type near our current position:
-					// Also don't switch to a different type of huntable animal
-					let nearby = this.FindNearbyResource(function(ent, type, template) {
-						return (
-							(type.generic == "treasure" && resourceType.generic == "treasure") ||
-							(type.specific == resourceType.specific &&
-								(type.specific != "meat" || resourceTemplate == template))
-						);
-					}, new Vector2D(herdPos.x, herdPos.z));
-
-					if (nearby)
+					if (!initPos)
 					{
-						this.PerformGather(nearby, false, false);
-						return;
+						let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+						if (cmpPosition && cmpPosition.IsInWorld())
+						{
+							let pos = cmpPosition.GetPosition();
+							initPos = { 'x': pos.X, 'z': pos.Z };
+						}
 					}
 
-					// If hunting, try to go to the initial herd position to see if we are more lucky
-					if (herdPos)
+					if (initPos)
 					{
-						this.GatherNearPosition(herdPos.x, herdPos.z, resourceType, resourceTemplate);
-						return;
+						// Try to find a new resource of the same specific type near the initial resource position:
+						// Also don't switch to a different type of huntable animal
+						let nearby = this.FindNearbyResource(function(ent, type, template) {
+							return (
+								(type.generic == "treasure" && resourceType.generic == "treasure") ||
+								(type.specific == resourceType.specific &&
+									(type.specific != "meat" || resourceTemplate == template))
+							);
+						}, new Vector2D(initPos.x, initPos.z));
+
+						if (nearby)
+						{
+							this.PerformGather(nearby, false, false);
+							return;
+						}
+
+						// Failing that, try to move there and se if we are more lucky: maybe there are resources in FOW.
+						// Only move if we are some distance away (TODO: pick the distance better?)
+						if (!this.CheckPointRangeExplicit(initPos.x, initPos.z, 0, 10))
+						{
+							this.GatherNearPosition(initPos.x, initPos.z, resourceType, resourceTemplate);
+							return;
+						}
 					}
 
 					// Nothing else to gather - if we're carrying anything then we should
 					// drop it off, and if not then we might as well head to the dropsite
 					// anyway because that's a nice enough place to congregate and idle
 
-					nearby = this.FindNearestDropsite(resourceType.generic);
+					let nearby = this.FindNearestDropsite(resourceType.generic);
 					if (nearby)
 					{
 						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
