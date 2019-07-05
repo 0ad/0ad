@@ -60,9 +60,11 @@ Attack.prototype.Schema =
 	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
 	"<a:example>" +
 		"<Melee>" +
-			"<Hack>10.0</Hack>" +
-			"<Pierce>0.0</Pierce>" +
-			"<Crush>5.0</Crush>" +
+			"<Damage>" +
+				"<Hack>10.0</Hack>" +
+				"<Pierce>0.0</Pierce>" +
+				"<Crush>5.0</Crush>" +
+			"</Damage>" +
 			"<MaxRange>4.0</MaxRange>" +
 			"<RepeatTime>1000</RepeatTime>" +
 			"<Bonuses>" +
@@ -80,9 +82,11 @@ Attack.prototype.Schema =
 			"<PreferredClasses datatype=\"tokens\">Cavalry Infantry</PreferredClasses>" +
 		"</Melee>" +
 		"<Ranged>" +
-			"<Hack>0.0</Hack>" +
-			"<Pierce>10.0</Pierce>" +
-			"<Crush>0.0</Crush>" +
+			"<Damage>" +
+				"<Hack>0.0</Hack>" +
+				"<Pierce>10.0</Pierce>" +
+				"<Crush>0.0</Crush>" +
+			"</Damage>" +
 			"<MaxRange>44.0</MaxRange>" +
 			"<MinRange>20.0</MinRange>" +
 			"<ElevationBonus>15.0</ElevationBonus>" +
@@ -107,15 +111,19 @@ Attack.prototype.Schema =
 				"<Shape>Circular</Shape>" +
 				"<Range>20</Range>" +
 				"<FriendlyFire>false</FriendlyFire>" +
-				"<Hack>0.0</Hack>" +
-				"<Pierce>10.0</Pierce>" +
-				"<Crush>0.0</Crush>" +
+				"<Damage>" +
+					"<Hack>0.0</Hack>" +
+					"<Pierce>10.0</Pierce>" +
+					"<Crush>0.0</Crush>" +
+				"</Damage>" +
 			"</Splash>" +
 		"</Ranged>" +
 		"<Slaughter>" +
-			"<Hack>1000.0</Hack>" +
-			"<Pierce>0.0</Pierce>" +
-			"<Crush>0.0</Crush>" +
+			"<Damage>" +
+				"<Hack>1000.0</Hack>" +
+				"<Pierce>0.0</Pierce>" +
+				"<Crush>0.0</Crush>" +
+			"</Damage>" +
 			"<MaxRange>4.0</MaxRange>" +
 		"</Slaughter>" +
 	"</a:example>" +
