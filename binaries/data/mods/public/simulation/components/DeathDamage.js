@@ -24,9 +24,11 @@ DeathDamage.prototype.Schema =
 		"<Shape>Circular</Shape>" +
 		"<Range>20</Range>" +
 		"<FriendlyFire>false</FriendlyFire>" +
-		"<Hack>0.0</Hack>" +
-		"<Pierce>10.0</Pierce>" +
-		"<Crush>50.0</Crush>" +
+		"<Damage>" +
+			"<Hack>0.0</Hack>" +
+			"<Pierce>10.0</Pierce>" +
+			"<Crush>50.0</Crush>" +
+		"</Damage>" +
 	"</a:example>" +
 	"<element name='Shape' a:help='Shape of the splash damage, can be circular'><text/></element>" +
 	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
