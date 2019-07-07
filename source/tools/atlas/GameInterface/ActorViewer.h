@@ -18,13 +18,13 @@
 #ifndef INCLUDED_ACTORVIEWER
 #define INCLUDED_ACTORVIEWER
 
-#include "simulation2/system/Entity.h"
+#include "ps/CStr.h"
 #include "simulation2/helpers/Player.h"
+#include "simulation2/system/Entity.h"
 
 struct ActorViewerImpl;
 struct SColor4ub;
 class CSimulation2;
-class CStrW;
 
 class ActorViewer
 {
