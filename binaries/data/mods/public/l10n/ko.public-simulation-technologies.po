@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-06-24 05:36+0000\n"
+"PO-Revision-Date: 2019-07-05 15:04+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -41,13 +41,13 @@ msgstr "고급으로 승진한 유닛은 질적으로 많은것을 얻습니다:
 msgid ""
 "The Indian and Iranian peoples had a tradition of fine archery and a "
 "penchant for using massed archers in battle."
-msgstr ""
+msgstr "인도와 이란은 전장에서 전통 궁술과 궁수의 일제 사격에대한 전술이 있었습니다."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "활을 가진 유닛의 사거리가 +10m 늘어납니다. 궁수 유닛의 사격 정확도가 향상되고 훈련시간이 -20% 단축되지만, 체력은 -20% 감소합니다."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -1253,7 +1253,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 올빼미 은화 문명 보너스는 모든 근로자에게 +10% 금속 채집 비율을 추가로 부여합니다. 시민 군인의 최대 체력이 +10% 증가합니다. 모든 구조물에 주둔시 복구율이 +9% 증가합니다."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1277,7 +1277,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 시민 군인의 최대 체력이 +10% 증가합니다. 모든 구조물에 주둔시 복구율이 +9% 증가합니다."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1289,7 +1289,7 @@ msgstr "작은 도시 단계"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "서식 요구사항에 사용하기 위한 더미 기술이며, phase_town_generic 또는 phase_town_{civ}로 바뀝니다."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
