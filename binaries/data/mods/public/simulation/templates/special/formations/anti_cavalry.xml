@@ -15,14 +15,8 @@
     <MaxRows>2</MaxRows>
     <WidthDepthRatio>0.8</WidthDepthRatio>
     <Animations>
-      <idle>
-        1..1,1..-1: idle_anti_cavalry_front;
-        2..2,1..-1: idle_anti_cavalry_back
-      </idle>
-      <attack>
-        1..1,1..-1: attack_anti_cavalry_front;
-        2..2,1..-1: attack_anti_cavalry_back
-      </attack>
+      1..1,1..-1: anti_cavalry_front;
+      2..2,1..-1: anti_cavalry_back
     </Animations>
     <SpeedMultiplier>1</SpeedMultiplier>
   </Formation>

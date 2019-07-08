@@ -13,21 +13,9 @@
     <MaxColumns>8</MaxColumns>
     <MaxRows>8</MaxRows>
     <Animations>
-      <idle>
-        1..2,1..-1: syntagma_front_idle;
-        3..4,1..-1: syntagma_med_idle;
-        4..8,1..-1: syntagma_back_idle
-      </idle>
-      <walk>
-        1..2,1..-1: syntagma_front_walk;
-        3..4,1..-1: syntagma_med_walk;
-        4..8,1..-1: syntagma_back_walk
-      </walk>
-      <run>
-        1..2,1..-1: syntagma_front_run;
-        3..4,1..-1: syntagma_med_run;
-        4..8,1..-1: syntagma_back_run
-      </run>
+      1..2,1..-1: syntagma_front;
+      3..4,1..-1: syntagma_center;
+      5..8,1..-1: syntagma_back
     </Animations>  
     <Sloppyness>0.15</Sloppyness>
   </Formation>

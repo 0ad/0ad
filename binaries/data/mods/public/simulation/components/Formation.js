@@ -62,13 +62,8 @@ Formation.prototype.Schema =
 	"<element name='UnitSeparationDepthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Animations' a:help='Give a list of animations to use for the particular formation members, based on their positions'>" +
-		"<zeroOrMore>" +
-			"<element a:help='The name of the default animation (walk, idle, attack_ranged...) that will be transformed in the formation-specific ResetMoveAnimation'>" +
-				"<anyName/>" +
-				"<text a:help='example text: \"1..1,1..-1:animation1;2..2,1..-1;animation2\", this will set animation1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animations. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
-			"</element>" +
-		"</zeroOrMore>" +
+	"<element name='Animations' a:help='Give a list of animation variants to use for the particular formation members, based on their positions'>" +
+		"<text a:help='example text: \"1..1,1..-1:animation1;2..2,1..-1;animation2\", this will set animation1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animations. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
 	"</element>";
 
 var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
@@ -90,12 +85,10 @@ Formation.prototype.Init = function()
 	this.maxRows = +(this.template.MaxRows || 0);
 	this.centerGap = +(this.template.CenterGap || 0);
 
-	var animations = this.template.Animations;
-	this.animations = {};
-	for (var animationName in animations)
+	this.animations = [];
+	if (this.template.Animations)
 	{
-		var differentAnimations = animations[animationName].split(/\s*;\s*/);
-		this.animations[animationName] = [];
+		let differentAnimations = this.template.Animations.split(/\s*;\s*/);
 		// loop over the different rectangulars that will map to different animations
 		for (var rectAnimation of differentAnimations)
 		{
@@ -106,7 +99,7 @@ Formation.prototype.Init = function()
 			var minRow, maxRow, minColumn, maxColumn;
 			[minRow, maxRow] = rows.split(/\s*\.\.\s*/);
 			[minColumn, maxColumn] = columns.split(/\s*\.\.\s*/);
-			this.animations[animationName].push({
+			this.animations.push({
 				"minRow": +minRow,
 				"maxRow": +maxRow,
 				"minColumn": +minColumn,
@@ -206,16 +199,14 @@ Formation.prototype.GetPrimaryMember = function()
 /**
  * Get the formation animation for a certain member of this formation
  * @param entity The entity ID to get the animation for
- * @param defaultAnimation The name of the default wanted animation for the entity
- * E.g. "walk", "idle" ...
  * @return The name of the transformed animation as defined in the template
- * E.g. "walk_testudo_row1"
+ * E.g. "testudo_row1"
  */
-Formation.prototype.GetFormationAnimation = function(entity, defaultAnimation)
+Formation.prototype.GetFormationAnimation = function(entity)
 {
-	var animationGroup = this.animations[defaultAnimation];
-	if (!animationGroup || this.columnar || !this.memberPositions[entity])
-		return defaultAnimation;
+	var animationGroup = this.animations;
+	if (!animationGroup.length || this.columnar || !this.memberPositions[entity])
+		return "formation";
 	var row = this.memberPositions[entity].row;
 	var column = this.memberPositions[entity].column;
 	for (var i = 0; i < animationGroup.length; ++i)
@@ -246,7 +237,7 @@ Formation.prototype.GetFormationAnimation = function(entity, defaultAnimation)
 
 		return animationGroup[i].animation;
 	}
-	return defaultAnimation;
+	return "formation";
 };
 
 /**

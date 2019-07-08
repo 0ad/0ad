@@ -12,26 +12,9 @@
     <MaxColumns>20</MaxColumns>
     <MaxRows>8</MaxRows>
     <Animations>
-      <idle>
-        1..2,1..-1: phalanx_idle;
-        3..4,1..-1: phalanx_idle;
-        5..6,1..-1: phalanx_back_idle
-      </idle>
-      <walk>
-        1..2,1..-1: phalanx_walk;
-        3..4,1..-1: phalanx_walk;
-        5..6,1..-1: phalanx_walk
-      </walk>
-      <run>
-        1..2,1..-1: phalanx_run;
-        3..4,1..-1: phalanx_run;
-        5..6,1..-1: phalanx_run
-      </run>
-      <attack>
-        1..2,1..-1: phalanx_attack;
-        3..4,1..-1: phalanx_attack;
-        5..6,1..-1: phalanx_idle
-      </attack>
+      1..2,1..-1: phalanx_front;
+      3..4,1..-1: phalanx_center;
+      5..6,1..-1: phalanx_back
     </Animations>
   </Formation>
   <FormationAttack>

@@ -14,23 +14,14 @@
         <texture file="skeletal/rome_su4_imperial_legion.dds" name="baseTex"/>
       </textures>
     </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml"/>
-    <variant file="biped/formations/testudo_idle_top.xml"/>
-    <variant file="biped/formations/testudo_idle_front.xml"/>
-    <variant file="biped/formations/testudo_walk_top.xml"/>
-    <variant file="biped/formations/testudo_walk_front.xml"/>
-    <variant file="biped/formations/testudo_idle_front_left.xml"/>
-    <variant file="biped/formations/testudo_idle_front_right.xml"/>
-    <variant file="biped/formations/testudo_idle_left.xml"/>
-    <variant file="biped/formations/testudo_idle_right.xml"/>
-    <variant file="biped/formations/testudo_walk_left.xml"/>
-    <variant file="biped/formations/testudo_walk_right.xml"/>
-    <variant file="biped/formations/testudo_walk_front_left.xml"/>
-    <variant file="biped/formations/testudo_walk_front_right.xml"/>
+    <variant file="biped/formations/testudo_top.xml"/>
+    <variant file="biped/formations/testudo_front.xml"/>
+    <variant file="biped/formations/testudo_front_left.xml"/>
+    <variant file="biped/formations/testudo_front_right.xml"/>
+    <variant file="biped/formations/testudo_left.xml"/>
+    <variant file="biped/formations/testudo_right.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

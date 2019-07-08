@@ -37,7 +37,7 @@
   </group>
   <group>
     <variant frequency="1" name="idle"/>
-    <variant frequency="1" name="walk_testudo_top">
+    <variant frequency="1" name="testudo_top">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -45,7 +45,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="walk_testudo_front">
+    <variant frequency="1" name="testudo_front">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -53,7 +53,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="walk_testudo_front_left">
+    <variant frequency="1" name="testudo_front_left">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -61,7 +61,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="walk_testudo_front_right">
+    <variant frequency="1" name="testudo_front_right">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -69,7 +69,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="idle_testudo_top">
+    <variant frequency="1" name="testudo_top">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -77,7 +77,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="idle_testudo_front">
+    <variant frequency="1" name="testudo_front">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -85,7 +85,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="idle_testudo_front_left">
+    <variant frequency="1" name="testudo_front_left">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
@@ -93,7 +93,7 @@
         <prop actor="" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant frequency="1" name="idle_testudo_front_right">
+    <variant frequency="1" name="testudo_front_right">
       <props>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>

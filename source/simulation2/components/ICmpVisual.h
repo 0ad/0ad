@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -104,21 +104,6 @@ public:
 	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
 	virtual void SelectAnimation(const std::string& name, bool once, fixed speed) = 0;
-
-	/**
-	 * Replaces a specified animation with another. Only affects the special speed-based
-	 * animation determination behaviour.
-	 * @param name Animation to match.
-	 * @param replace Animation that should replace the matched animation.
-	 */
-	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace) = 0;
-
-	/**
-	 * Ensures that the given animation will be used when it normally would be,
-	 * removing reference to any animation that might replace it.
-	 * @param name Animation name to remove from the replacement map.
-	 */
-	virtual void ResetMoveAnimation(const std::string& name) = 0;
 
 	/**
 	 * Start playing the walk/run animations, scaled to the unit's movement speed.

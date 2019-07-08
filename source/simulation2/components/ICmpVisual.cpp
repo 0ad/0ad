@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,8 +28,6 @@ DEFINE_INTERFACE_METHOD_CONST_0("GetProjectileActor", std::wstring, ICmpVisual, 
 DEFINE_INTERFACE_METHOD_CONST_0("GetProjectileLaunchPoint", CFixedVector3D, ICmpVisual, GetProjectileLaunchPoint)
 DEFINE_INTERFACE_METHOD_3("SelectAnimation", void, ICmpVisual, SelectAnimation, std::string, bool, fixed)
 DEFINE_INTERFACE_METHOD_1("SelectMovementAnimation", void, ICmpVisual, SelectMovementAnimation, fixed)
-DEFINE_INTERFACE_METHOD_1("ResetMoveAnimation", void, ICmpVisual, ResetMoveAnimation, std::string)
-DEFINE_INTERFACE_METHOD_2("ReplaceMoveAnimation", void, ICmpVisual, ReplaceMoveAnimation, std::string, std::string)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncRepeat", void, ICmpVisual, SetAnimationSyncRepeat, fixed)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncOffset", void, ICmpVisual, SetAnimationSyncOffset, fixed)
 DEFINE_INTERFACE_METHOD_4("SetShadingColor", void, ICmpVisual, SetShadingColor, fixed, fixed, fixed, fixed)

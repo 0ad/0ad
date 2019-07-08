@@ -13,22 +13,12 @@
     <MinColumns>8</MinColumns>
     <MaxColumns>8</MaxColumns>
     <Animations>
-      <idle>
-        1..1,2..7: idle_testudo_front;
-        1..1,1..1: idle_testudo_front_left;
-        1..1,8..8: idle_testudo_front_right;
-        2..-1,8..8: idle_testudo_right;
-        2..-1,2..-1: idle_testudo_top;
-        2..-1,1..1: idle_testudo_left
-      </idle>
-      <walk>
-        1..1,2..7: walk_testudo_front;
-        1..1,1..1: walk_testudo_front_left;
-        1..1,8..8: walk_testudo_front_right;
-        2..-1,8..8: walk_testudo_right;
-        2..-1,2..-1: walk_testudo_top;
-        2..-1,1..1: walk_testudo_left
-      </walk>
+      1..1,2..7: testudo_front;
+      1..1,1..1: testudo_front_left;
+      1..1,8..8: testudo_front_right;
+      2..-1,8..8: testudo_right;
+      2..-1,2..-1: testudo_top;
+      2..-1,1..1: testudo_left
     </Animations>
     <SpeedMultiplier>0.25</SpeedMultiplier>
   </Formation>
