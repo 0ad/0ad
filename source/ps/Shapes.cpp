@@ -24,6 +24,11 @@ CRect::CRect() :
 {
 }
 
+CRect::CRect(const CRect& rect) :
+	left(rect.left), top(rect.top), right(rect.right), bottom(rect.bottom)
+{
+}
+
 CRect::CRect(const CPos &pos) :
 	left(pos.x), top(pos.y), right(pos.x), bottom(pos.y)
 {
@@ -218,6 +223,10 @@ CPos::CPos() : x(0.f), y(0.f)
 {
 }
 
+CPos::CPos(const CPos& pos) : x(pos.x), y(pos.y)
+{
+}
+
 CPos::CPos(const CSize& s) : x(s.cx), y(s.cy)
 {
 }
@@ -300,6 +309,10 @@ void CPos::operator-=(const CSize& a)
 /*************************************************************************/
 
 CSize::CSize() : cx(0.f), cy(0.f)
+{
+}
+
+CSize::CSize(const CSize& size) : cx(size.cx), cy(size.cy)
 {
 }
 

@@ -43,6 +43,7 @@ public:
 	CRect(const CPos &upperleft, const CPos &bottomright);
 	CRect(const CPos &pos, const CSize &size);
 	CRect(const float l, const float t, const float r, const float b);
+	CRect(const CRect&);
 
 	CRect& operator=(const CRect& a);
 	bool operator==(const CRect& a) const;
@@ -133,6 +134,7 @@ class CPos
 {
 public:
 	CPos();
+	CPos(const CPos& pos);
 	CPos(const CSize &pos);
 	CPos(const float px, const float py);
 
@@ -172,6 +174,7 @@ public:
 	CSize();
 	CSize(const CRect &rect);
 	CSize(const CPos &pos);
+	CSize(const CSize& size);
 	CSize(const float sx, const float sy);
 
 	CSize& operator=(const CSize& a);
