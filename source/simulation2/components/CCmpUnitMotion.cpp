@@ -944,45 +944,12 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// If we still have long waypoints, try and compute a short path
 	// This will get us around units, amongst others.
-	// However in some cases a long waypoint will be in located in the obstruction of
-	// an idle unit. In that case, we need to scrap that waypoint or we might never be able to reach it.
-	// I am not sure why this happens but the following code seems to work.
 	if (!m_LongPath.m_Waypoints.empty())
 	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-		if (cmpObstructionManager)
-		{
-			// create a fake obstruction to represent our waypoint.
-			ICmpObstructionManager::ObstructionSquare square;
-			square.hh = m_Clearance;
-			square.hw = m_Clearance;
-			square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
-			square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
-			square.x = m_LongPath.m_Waypoints.back().x;
-			square.z = m_LongPath.m_Waypoints.back().z;
-			std::vector<entity_id_t> unitOnGoal;
-			// don't ignore moving units as those might be units like us, ie not really moving.
-			cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter());
-			if (!unitOnGoal.empty())
-				m_LongPath.m_Waypoints.pop_back();
-		}
-		if (!m_LongPath.m_Waypoints.empty())
-		{
-			PathGoal goal;
-			if (m_LongPath.m_Waypoints.size() > 1 || m_FinalGoal.DistanceToPoint(pos) > LONG_PATH_MIN_DIST)
-				goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-			else
-			{
-				UpdateFinalGoal();
-				goal = m_FinalGoal;
-				m_LongPath.m_Waypoints.clear();
-				CFixedVector2D target = goal.NearestPointOnGoal(pos);
-				m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
-			}
-			RequestShortPath(pos, goal, true);
-			m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
-			return true;
-		}
+		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+		RequestShortPath(pos, goal, true);
+		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
+		return true;
 	}
 	// Else, just entirely recompute
 	UpdateFinalGoal();
