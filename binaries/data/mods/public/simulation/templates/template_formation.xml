@@ -36,6 +36,17 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Obstruction>
+    <Unit/>
+    <Active>true</Active>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <BlockConstruction>false</BlockConstruction>
+    <DisableBlockMovement>false</DisableBlockMovement>
+    <DisableBlockPathfinding>false</DisableBlockPathfinding>
+    <DeleteUponConstruction>false</DeleteUponConstruction>
+  </Obstruction>
   <Ownership/>
   <Position>
     <Altitude>0</Altitude>

@@ -772,7 +772,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					return;
 				}
 
-				this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
+				this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false, "min": 0, "max": 10 });
 				return;
 			}
 
@@ -1218,10 +1218,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 
 			// No orders left, we're an individual now
-			if (this.IsAnimal())
-				this.SetNextState("ANIMAL.IDLE");
-			else
-				this.SetNextState("INDIVIDUAL.IDLE");
+			this.SetNextState("INDIVIDUAL.IDLE");
 		},
 
 		// Override the LeaveFoundation order since we're not doing
@@ -1251,6 +1248,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"enter": function() {
+			if (this.IsAnimal())
+			{
+				// Animals can't go in formation.
+				warn("Entity " + this.entity + " was put in FORMATIONMEMBER state but is an animal");
+				this.FinishOrder();
+				this.SetNextState("ANIMAL.IDLE");
+				return true;
+			}
+
 			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 			if (cmpFormation)
 				this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
@@ -1261,13 +1267,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"IDLE": {
-			"enter": function() {
-				if (this.IsAnimal())
-					this.SetNextState("ANIMAL.IDLE");
-				else
-					this.SetNextState("INDIVIDUAL.IDLE");
-				return true;
-			},
+			// Formation members do nothing while Idle, but we need the state
+			// so that they keep the formation variant.
 		},
 
 		"WALKING": {
@@ -1276,11 +1277,22 @@ UnitAI.prototype.UnitFsmSpec = {
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
 			},
 
+			"leave": function() {
+				this.StopMoving();
+			},
+
 			// Occurs when the unit has reached its destination and the controller
 			// is done moving. The controller is notified.
 			"MovementUpdate": function(msg) {
 				// We can only finish this order if the move was really completed.
-				if (!this.CheckRange(this.order.data) || msg.error)
+				let cmpPosition = Engine.QueryInterface(this.formationController, IID_Position);
+				let atDestination = cmpPosition && cmpPosition.IsInWorld();
+				if (!atDestination && cmpPosition)
+				{
+					let pos = cmpPosition.GetPosition2D();
+					atDestination = this.CheckPointRangeExplicit(pos.X + this.order.data.x, pos.Y + this.order.data.z, 0, 0);
+				}
+				if (!atDestination && !msg.error)
 					return;
 
 				if (this.FinishOrder())
@@ -1386,15 +1398,15 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function() {
+				if (this.formationController)
+				{
+					this.SetNextState("FORMATIONMEMBER.IDLE");
+					return true;
+				}
+
 				// Switch back to idle animation to guarantee we won't
 				// get stuck with an incorrect animation
 				var animationName = "idle";
-				if (this.IsFormationMember())
-				{
-					var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-					if (cmpFormation)
-						animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
-				}
 				this.SelectAnimation(animationName);
 
 				// If we have some orders, it is because we are in an intermediary state

@@ -706,12 +706,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			// This makes sure that units don't clump too much when they are not in a formation and tasked to move.
 			if (m_LongPath.m_Waypoints.size() > 1)
 				m_LongPath.m_Waypoints.pop_back();
-			else if (IsFormationMember())
-			{
-				CMessageMotionChanged msg(true);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-				return;
-			}
 
 			CMessageMotionChanged msg(false);
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
@@ -818,15 +812,6 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	if (m_MoveRequest.m_Type == MoveRequest::NONE)
 		return false;
 
-	if (IsFormationMember())
-	{
-		// We've reached our assigned position. If the controller
-		// is idle, send a notification in case it should disband,
-		// otherwise continue following the formation next turn.
-		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-		return cmpUnitMotion && !cmpUnitMotion->IsMoving();
-	}
-
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	ENSURE(cmpObstructionManager);
 
@@ -836,9 +821,14 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 		return cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
 	if (m_MoveRequest.m_Type == MoveRequest::OFFSET)
 	{
+		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpControllerMotion && cmpControllerMotion->IsMoving())
+			return false;
+
 		CFixedVector2D targetPos;
 		ComputeTargetPosition(targetPos);
-		return cmpObstructionManager->IsInPointRange(GetEntityId(), m_MoveRequest.m_Position.X, m_MoveRequest.m_Position.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+		return cmpObstructionManager->IsInPointRange(GetEntityId(), targetPos.X, targetPos.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
 	}
 	return false;
 }
