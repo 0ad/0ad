@@ -91,7 +91,7 @@ const bool NOMERGE = false;
 #define COMMANDDATASTRUCT(t) \
 	struct d##t { \
 	private: \
-		const d##t& operator=(const d##t&); \
+		d##t& operator=(const d##t&) = delete; \
 	public:
 
 #define COMMANDSTRUCT(t, merge) \

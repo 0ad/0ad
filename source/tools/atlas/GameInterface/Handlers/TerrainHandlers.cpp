@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -175,8 +175,9 @@ QUERYHANDLER(GetTerrainTexturePreview)
 	}
 	else
 	{
-		sTerrainTexturePreview noPreview;
+		sTerrainTexturePreview noPreview{};
 		noPreview.name = std::wstring();
+		noPreview.loaded = false;
 		noPreview.imageHeight = 0;
 		noPreview.imageWidth = 0;
 		msg->preview = noPreview;

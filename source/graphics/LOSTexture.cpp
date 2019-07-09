@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -364,7 +364,7 @@ size_t CLOSTexture::GetBitmapSize(size_t w, size_t h, size_t* pitch)
 	return *pitch * (h + g_BlurSize - 1);
 }
 
-void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData, size_t w, size_t h, size_t pitch)
+void CLOSTexture::GenerateBitmap(const ICmpRangeManager::CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch)
 {
 	u8 *dataPtr = losData;
 

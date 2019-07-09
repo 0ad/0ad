@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ private:
 	void RecomputeTexture(int unit);
 
 	size_t GetBitmapSize(size_t w, size_t h, size_t* pitch);
-	void GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData, size_t w, size_t h, size_t pitch);
+	void GenerateBitmap(const ICmpRangeManager::CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch);
 
 	CSimulation2& m_Simulation;
 

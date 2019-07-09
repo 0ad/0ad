@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shield_ready.xml">
+    <variant frequency="1">
       <props>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
         <prop actor="props/units/heads/rome_monte_su.xml" attachpoint="helmet"/>
@@ -10,6 +10,17 @@
         <prop actor="props/units/shields/rome_scutum_su.xml" attachpoint="shield"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shield_ready.xml" />
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/formations/testudo_top.xml"/>
+    <variant file="biped/formations/testudo_front.xml"/>
+    <variant file="biped/formations/testudo_front_left.xml"/>
+    <variant file="biped/formations/testudo_front_right.xml"/>
+    <variant file="biped/formations/testudo_left.xml"/>
+    <variant file="biped/formations/testudo_right.xml"/>
   </group>
   <group>
     <variant frequency="2" name="Scale-Brass">
@@ -48,25 +59,6 @@
         <texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/>
       </textures>
     </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml"/>
-  </group>
-  <group>
-    <variant file="biped/formations/testudo_idle_top.xml"/>
-    <variant file="biped/formations/testudo_idle_front.xml"/>
-    <variant file="biped/formations/testudo_walk_top.xml"/>
-    <variant file="biped/formations/testudo_walk_front.xml"/>
-    <variant file="biped/formations/testudo_idle_front_left.xml"/>
-    <variant file="biped/formations/testudo_idle_front_right.xml"/>
-    <variant file="biped/formations/testudo_idle_left.xml"/>
-    <variant file="biped/formations/testudo_idle_right.xml"/>
-    <variant file="biped/formations/testudo_walk_left.xml"/>
-    <variant file="biped/formations/testudo_walk_right.xml"/>
-    <variant file="biped/formations/testudo_walk_front_left.xml"/>
-    <variant file="biped/formations/testudo_walk_front_right.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

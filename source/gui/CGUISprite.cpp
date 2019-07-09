@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,6 +69,11 @@ CGUISpriteInstance::CGUISpriteInstance(const CStr& SpriteName)
 CGUISpriteInstance::CGUISpriteInstance(const CGUISpriteInstance& Sprite)
 	: m_SpriteName(Sprite.m_SpriteName), m_CachedCellID(-1)
 {
+}
+
+CGUISpriteInstance& CGUISpriteInstance::operator=(const CGUISpriteInstance& Sprite)
+{
+	return this->operator=(Sprite.m_SpriteName);
 }
 
 CGUISpriteInstance& CGUISpriteInstance::operator=(const CStr& SpriteName)

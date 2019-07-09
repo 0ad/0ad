@@ -1250,6 +1250,15 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 		},
 
+		"enter": function() {
+			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+			if (cmpFormation)
+				this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+		},
+
+		"leave": function() {
+			this.SetDefaultAnimationVariant();
+		},
 
 		"IDLE": {
 			"enter": function() {
@@ -1263,16 +1272,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"WALKING": {
 			"enter": function() {
-				var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
 
-				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-				if (cmpFormation && cmpVisual)
-				{
-					cmpVisual.ReplaceMoveAnimation("walk", cmpFormation.GetFormationAnimation(this.entity, "walk"));
-					cmpVisual.ReplaceMoveAnimation("run", cmpFormation.GetFormationAnimation(this.entity, "run"));
-				}
 				this.SelectAnimation("move");
 			},
 
@@ -1285,13 +1287,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				if (this.FinishOrder())
 					return;
-
-				let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-				if (cmpVisual)
-				{
-					cmpVisual.ResetMoveAnimation("walk");
-					cmpVisual.ResetMoveAnimation("run");
-				}
 
 				let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				if (cmpFormation)
@@ -1861,19 +1856,12 @@ UnitAI.prototype.UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
+					if (!this.IsFormationMember())
+						this.SetAnimationVariant("combat");
+
 					this.oldAttackType = this.order.data.attackType;
 					// add prefix + no capital first letter for attackType
-					let animationName = "attack_" + this.order.data.attackType.toLowerCase();
-					if (this.IsFormationMember())
-					{
-						let cmpFormationController = Engine.QueryInterface(this.formationController, IID_Formation);
-						if (cmpFormationController)
-							animationName = cmpFormationController.GetFormationAnimation(this.entity, animationName);
-					}
-
-					this.SetAnimationVariant("combat");
-
-					this.SelectAnimation(animationName);
+					this.SelectAnimation("attack_" + this.order.data.attackType.toLowerCase());
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee
@@ -2795,9 +2783,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"GARRISONED": {
 				"enter": function() {
-					if (this.order.data.target)
-						var target = this.order.data.target;
-					else
+					let target = this.order.data.target;
+					if (!target)
 					{
 						this.FinishOrder();
 						return true;
@@ -2808,7 +2795,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Check that we can garrison here
 					if (this.CanGarrison(target))
-					{
 						// Check that we're in range of the garrison target
 						if (this.CheckGarrisonRange(target))
 						{
@@ -2859,7 +2845,10 @@ UnitAI.prototype.UnitFsmSpec = {
 								}
 
 								if (this.IsTurret())
+								{
 									this.SetNextState("IDLE");
+									return true;
+								}
 
 								return false;
 							}
@@ -2878,13 +2867,9 @@ UnitAI.prototype.UnitFsmSpec = {
 								}
 
 							}
-							if (!this.CheckTargetRangeExplicit(target, 0, 0) && this.MoveToTarget(target))
-							{
-								this.SetNextState("APPROACHING");
-								return false;
-							}
+							this.SetNextState("APPROACHING");
+							return true;
 						}
-					}
 					// Garrisoning failed for some reason, so finish the order
 					this.FinishOrder();
 					return true;
@@ -3045,7 +3030,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"ROAMING": {
 			"enter": function() {
 				// Walk in a random direction
-				this.SelectAnimation("walk", false, 1);
+				this.SelectAnimation("move", false, 1);
 				this.SetFacePointAfterMove(false);
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
@@ -5199,7 +5184,7 @@ UnitAI.prototype.MoveToMarket = function(targetMarket)
 	}
 
 	this.waypoints = undefined;
-	return this.MoveToTarget(targetMarket);
+	return this.MoveToTargetRange(targetMarket, IID_Trader);
 };
 
 UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,8 +73,6 @@ private:
 	CUnit* m_Unit;
 
 	fixed m_R, m_G, m_B; // shading color
-
-	std::map<std::string, std::string> m_AnimOverride;
 
 	// Current animation state
 	fixed m_AnimRunThreshold; // if non-zero this is the special walk/run mode
@@ -227,8 +225,6 @@ public:
 		serialize.NumberFixed_Unbounded("r", m_R);
 		serialize.NumberFixed_Unbounded("g", m_G);
 		serialize.NumberFixed_Unbounded("b", m_B);
-
-		SerializeMap<SerializeString, SerializeString>()(serialize, "anim overrides", m_AnimOverride);
 
 		serialize.NumberFixed_Unbounded("anim run threshold", m_AnimRunThreshold);
 		serialize.StringASCII("anim name", m_AnimName, 0, 256);
@@ -460,18 +456,6 @@ public:
 			return;
 
 		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());	
-	}
-
-	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace)
-	{
-		m_AnimOverride[name] = replace;
-	}
-
-	virtual void ResetMoveAnimation(const std::string& name)
-	{
-		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
-		if (it != m_AnimOverride.end())
-			m_AnimOverride.erase(name);
 	}
 
 	virtual void SelectMovementAnimation(fixed runThreshold)
@@ -796,10 +780,6 @@ void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 	}
 	else
 		name = speed < m_AnimRunThreshold ? "walk" : "run";
-
-	std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
-	if (it != m_AnimOverride.end())
-		name = it->second;
 
 	// Selecting the animation is going to reset the anim run threshold, so save it
 	fixed runThreshold = m_AnimRunThreshold;

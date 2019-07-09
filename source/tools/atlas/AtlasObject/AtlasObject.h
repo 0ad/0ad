@@ -131,6 +131,11 @@ class AtObj
 public:
 	AtObj() {}
 	AtObj(const AtObj& r) : m_Node(r.m_Node) {}
+	AtObj& operator=(const AtObj& r)
+	{
+		m_Node = r.m_Node;
+		return *this;
+	}
 
 	// Return an iterator to the children matching 'key'
 	const AtIter operator[] (const char* key) const;

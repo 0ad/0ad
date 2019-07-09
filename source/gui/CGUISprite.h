@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -161,6 +161,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 	CGUISpriteInstance(const CGUISpriteInstance& Sprite);
+	CGUISpriteInstance& operator=(const CGUISpriteInstance&);
 	CGUISpriteInstance& operator=(const CStr& SpriteName);
 	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const;
 	void Invalidate();

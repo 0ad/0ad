@@ -115,38 +115,6 @@ public:
 
 	bool m_FacePointAfterMove;
 
-	enum State
-	{
-		/*
-		 * Not moving at all.
-		 */
-		STATE_IDLE,
-
-		/*
-		 * Not moving at all. Will go to IDLE next turn.
-		 * (This one-turn delay is a hack to fix animation timings.)
-		 */
-		STATE_STOPPING,
-
-		/*
-		 * Member of a formation.
-		 * Pathing to the target (depending on m_PathState).
-		 * Target is m_TargetEntity plus m_TargetOffset.
-		 */
-		STATE_FORMATIONMEMBER_PATH,
-
-		/*
-		 * Individual unit or formation controller.
-		 * Pathing to the target (depending on m_PathState).
-		 * Target is m_TargetPos, m_TargetMinRange, m_TargetMaxRange;
-		 * if m_TargetEntity is not INVALID_ENTITY then m_TargetPos is tracking it.
-		 */
-		STATE_INDIVIDUAL_PATH,
-
-		STATE_MAX
-	};
-	u8 m_State;
-
 	enum PathState
 	{
 		/*
@@ -284,7 +252,6 @@ public:
 				cmpObstruction->SetUnitClearance(m_Clearance);
 		}
 
-		m_State = STATE_IDLE;
 		m_PathState = PATHSTATE_NONE;
 
 		m_ExpectedPathTicket = 0;
@@ -303,7 +270,6 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		serialize.NumberU8("state", m_State, 0, STATE_MAX-1);
 		serialize.NumberU8("path state", m_PathState, 0, PATHSTATE_MAX-1);
 
 		serialize.StringASCII("pass class", m_PassClassName, 0, 64);
@@ -497,7 +463,6 @@ public:
 
 		m_MoveRequest = MoveRequest();
 		m_ExpectedPathTicket = 0;
-		m_State = STATE_STOPPING;
 		m_PathState = PATHSTATE_NONE;
 		m_LongPath.m_Waypoints.clear();
 		m_ShortPath.m_Waypoints.clear();
@@ -516,7 +481,8 @@ private:
 
 	bool IsFormationMember() const
 	{
-		return m_State == STATE_FORMATIONMEMBER_PATH;
+		// TODO: this really shouldn't be what we are checking for.
+		return m_MoveRequest.m_Type == MoveRequest::OFFSET;
 	}
 
 	entity_id_t GetGroup() const
@@ -765,25 +731,16 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		m_PathState = PATHSTATE_FOLLOWING;
 	}
 	else
-		LOGWARNING("unexpected PathResult (%u %d %d)", GetEntityId(), m_State, m_PathState);
+		LOGWARNING("unexpected PathResult (%u %d)", GetEntityId(), m_PathState);
 }
 
 void CCmpUnitMotion::Move(fixed dt)
 {
 	PROFILE("Move");
 
-	if (m_State == STATE_STOPPING)
-	{
-		m_State = STATE_IDLE;
-		MoveSucceeded();
-		m_CurSpeed = fixed::Zero();
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		if (cmpObstruction)
-			cmpObstruction->SetMovingFlag(false);
-		return;
-	}
-
-	if (m_State == STATE_IDLE)
+	// If we were idle and will still be, we can return.
+	// TODO: this will need to be removed if pushing is implemented.
+	if (m_CurSpeed == fixed::Zero() && m_MoveRequest.m_Type == MoveRequest::NONE)
 		return;
 
 	if (PossiblyAtDestination())
@@ -1390,7 +1347,6 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		}
 	}
 
-	m_State = STATE_INDIVIDUAL_PATH;
 	m_MoveRequest = MoveRequest(CFixedVector2D(x, z), minRange, maxRange);
 	m_FinalGoal = goal;
 	m_Tries = 0;
@@ -1545,7 +1501,6 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		}
 	}
 
-	m_State = STATE_INDIVIDUAL_PATH;
 	m_MoveRequest = MoveRequest(target, minRange, maxRange);
 	m_FinalGoal = goal;
 	m_Tries = 0;
@@ -1568,7 +1523,6 @@ void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, e
 	goal.x = pos.X;
 	goal.z = pos.Y;
 
-	m_State = STATE_FORMATIONMEMBER_PATH;
 	m_MoveRequest = MoveRequest(target, CFixedVector2D(x, z));
 	m_FinalGoal = goal;
 	m_Tries = 0;

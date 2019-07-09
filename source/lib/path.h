@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -80,6 +80,12 @@ public:
 	typedef std::wstring String;
 
 	Path()
+	{
+		DetectSeparator();
+	}
+
+	Path(const Path& p)
+		: path(p.path)
 	{
 		DetectSeparator();
 	}
