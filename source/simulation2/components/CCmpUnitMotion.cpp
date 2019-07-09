@@ -27,6 +27,7 @@
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpValueModificationManager.h"
+#include "simulation2/components/ICmpVisual.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/MessageTypes.h"
@@ -517,18 +518,26 @@ private:
 	void UpdateMovementState(entity_pos_t speed)
 	{
 		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
 		// Moved last turn, didn't this turn.
 		if (speed == fixed::Zero() && m_CurSpeed > fixed::Zero())
 		{
 			if (cmpObstruction)
 				cmpObstruction->SetMovingFlag(false);
+			if (cmpVisual)
+				cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
 		}
 		// Moved this turn, didn't last turn
 		else if (speed > fixed::Zero() && m_CurSpeed == fixed::Zero())
 		{
 			if (cmpObstruction)
 				cmpObstruction->SetMovingFlag(true);
+			if (cmpVisual)
+				cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
 		}
+		// Speed change, update the visual actor if necessary.
+		else if (speed != m_CurSpeed && cmpVisual)
+			cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
 
 		m_CurSpeed = speed;
 	}
