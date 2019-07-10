@@ -603,11 +603,6 @@ private:
 	bool PathingUpdateNeeded(const CFixedVector2D& from);
 
 	/**
-	 * Update goal position if moving target
-	 */
-	void UpdateFinalGoal();
-
-	/**
 	 * Returns whether we are close enough to the target to assume it's a good enough
 	 * position to stop.
 	 */
@@ -630,6 +625,12 @@ private:
 	 * in which case we do not want the target obstruction otherwise it would always fail
 	 */
 	ControlGroupMovementObstructionFilter GetObstructionFilter(bool noTarget = false) const;
+
+	/**
+	 * Create a PathGoal from a move request.
+	 * @returns true if the goal was successfully created.
+	 */
+	bool ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) const;
 
 	/**
 	 * Start moving to the given goal, from our current position 'from'.
@@ -722,7 +723,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 				return;
 			}
 
-			UpdateFinalGoal();
+			ComputeGoal(m_FinalGoal, m_MoveRequest);
 			RequestLongPath(pos, m_FinalGoal);
 			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 			return;
@@ -952,7 +953,7 @@ bool CCmpUnitMotion::HandleObstructedMove()
 		return true;
 	}
 	// Else, just entirely recompute
-	UpdateFinalGoal();
+	ComputeGoal(m_FinalGoal, m_MoveRequest);
 	BeginPathing(pos, m_FinalGoal);
 
 	// potential TODO: We could switch the short-range pathfinder for something else entirely.
@@ -1096,22 +1097,6 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from)
 	return true;
 }
 
-void CCmpUnitMotion::UpdateFinalGoal()
-{
-	if (m_MoveRequest.m_Type != MoveRequest::ENTITY || m_MoveRequest.m_Type != MoveRequest::OFFSET)
-		return;
-	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-	if (!cmpUnitMotion)
-		return;
-	if (IsFormationMember())
-		return;
-	CFixedVector2D targetPos;
-	if (!ComputeTargetPosition(targetPos))
-		return;
-	m_FinalGoal.x = targetPos.X;
-	m_FinalGoal.z = targetPos.Y;
-}
-
 bool CCmpUnitMotion::CloseEnoughFromDestinationToStop(const CFixedVector2D& from) const
 {
 	if (m_MoveRequest.m_Type != MoveRequest::POINT || m_FinalGoal.DistanceToPoint(from) > SHORT_PATH_GOAL_RADIUS)
@@ -1172,7 +1157,124 @@ ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool 
 	return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), group);
 }
 
+// The pathfinder cannot go to "rounded rectangles" goals, which are what happens with square targets and a non-null range.
+// Depending on what the best approximation is, we either pretend the target is a circle or a square.
+// One needs to be careful that the approximated geometry will be in the range.
+bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const
+{
+	// Given a square, plus a target range we should reach, the shape at that distance
+	// is a round-cornered square which we can approximate as either a circle or as a square.
+	// Previously, we used the shape that minimized the worst-case error.
+	// However that is unsage in some situations. So let's be less clever and
+	// just check if our range is at least three times bigger than the circleradius
+	return (range > circleRadius*3);
+}
 
+bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) const
+{
+	if (moveRequest.m_Type == MoveRequest::NONE)
+		return false;
+
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return false;
+
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+	CFixedVector2D targetPosition;
+	if (!ComputeTargetPosition(targetPosition))
+		return false;
+
+	ICmpObstructionManager::ObstructionSquare targetObstruction;
+	if (moveRequest.m_Type == MoveRequest::ENTITY)
+	{
+		CmpPtr<ICmpObstruction> cmpTargetObstruction(GetSimContext(), moveRequest.m_Entity);
+		if (cmpTargetObstruction)
+			cmpTargetObstruction->GetObstructionSquare(targetObstruction);
+	}
+	targetObstruction.x = targetPosition.X;
+	targetObstruction.z = targetPosition.Y;
+
+	ICmpObstructionManager::ObstructionSquare obstruction;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	if (cmpObstruction)
+		cmpObstruction->GetObstructionSquare(obstruction);
+	else
+	{
+		obstruction.x = pos.X;
+		obstruction.z = pos.Y;
+	}
+
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	ENSURE(cmpObstructionManager);
+
+	entity_pos_t distance = cmpObstructionManager->DistanceBetweenShapes(obstruction, targetObstruction);
+
+	out.x = targetObstruction.x;
+	out.z = targetObstruction.z;
+	out.hw = targetObstruction.hw;
+	out.hh = targetObstruction.hh;
+	out.u = targetObstruction.u;
+	out.v = targetObstruction.v;
+
+	if (moveRequest.m_MinRange > fixed::Zero() || moveRequest.m_MaxRange > fixed::Zero() ||
+	     targetObstruction.hw > fixed::Zero())
+		out.type = PathGoal::SQUARE;
+	else
+	{
+		out.type = PathGoal::POINT;
+		return true;
+	}
+
+	CFixedVector2D halfSize(targetObstruction.hw, targetObstruction.hh);
+
+	if (distance < moveRequest.m_MinRange)
+	{
+		entity_pos_t circleRadius = halfSize.Length();
+
+		// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
+		// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
+		entity_pos_t goalDistance = moveRequest.m_MinRange + m_Clearance * 3 / 2;
+
+		if (ShouldTreatTargetAsCircle(moveRequest.m_MinRange, circleRadius))
+		{
+			out.type = PathGoal::INVERTED_CIRCLE;
+			out.hw = circleRadius + goalDistance;
+		}
+		else
+		{
+			out.type = PathGoal::INVERTED_SQUARE;
+			out.hw = targetObstruction.hw + goalDistance;
+			out.hh = targetObstruction.hh + goalDistance;
+		}
+	}
+	else if (moveRequest.m_MaxRange >= fixed::Zero() && distance > moveRequest.m_MaxRange)
+	{
+		entity_pos_t circleRadius = halfSize.Length();
+
+		if (ShouldTreatTargetAsCircle(moveRequest.m_MaxRange, circleRadius))
+		{
+			entity_pos_t goalDistance = moveRequest.m_MaxRange;
+
+			out.type = PathGoal::CIRCLE;
+			out.hw = circleRadius + goalDistance;
+		}
+		else
+		{
+			// The target is large relative to our range, so treat it as a square and
+			// get close enough that the diagonals come within range
+
+			entity_pos_t goalDistance = moveRequest.m_MaxRange * 2 / 3; // multiply by slightly less than 1/sqrt(2)
+
+			out.type = PathGoal::SQUARE;
+			entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
+			out.hw = targetObstruction.hw + delta;
+			out.hh = targetObstruction.hh + delta;
+		}
+	}
+	// Do nothing in particular in case we are already in range.
+	return true;
+}
 
 void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& goal)
 {
@@ -1270,66 +1372,13 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return false;
 
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-	PathGoal goal;
-	goal.x = x;
-	goal.z = z;
-
-	if (minRange.IsZero() && maxRange.IsZero())
-	{
-		// Non-ranged movement:
-
-		// Head directly for the goal
-		goal.type = PathGoal::POINT;
-	}
-	else
-	{
-		// Ranged movement:
-
-		entity_pos_t distance = (pos - CFixedVector2D(x, z)).Length();
-
-		if (distance < minRange)
-		{
-			// Too close to target - move outwards to a circle
-			// that's slightly larger than the min range.
-			goal.type = PathGoal::INVERTED_CIRCLE;
-
-			// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
-			// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
-			goal.hw = minRange + m_Clearance * 3 /2;
-		}
-		else if (maxRange >= entity_pos_t::Zero() && distance > maxRange)
-		{
-			// Too far from target - move inwards to a circle
-			// that's slightly smaller than the max range
-			goal.type = PathGoal::CIRCLE;
-			goal.hw = maxRange;
-
-			// If maxRange was abnormally small,
-			// collapse the circle into a point
-			if (goal.hw <= entity_pos_t::Zero())
-				goal.type = PathGoal::POINT;
-		}
-	}
-
 	m_MoveRequest = MoveRequest(CFixedVector2D(x, z), minRange, maxRange);
-	m_FinalGoal = goal;
+	ComputeGoal(m_FinalGoal, m_MoveRequest);
 	m_Tries = 0;
 
-	BeginPathing(pos, goal);
+	BeginPathing(cmpPosition->GetPosition2D(), m_FinalGoal);
 
 	return true;
-}
-
-bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const
-{
-	// Given a square, plus a target range we should reach, the shape at that distance
-	// is a round-cornered square which we can approximate as either a circle or as a square.
-	// Previously, we used the shape that minimized the worst-case error.
-	// However that is unsage in some situations. So let's be less clever and
-	// just check if our range is at least three times bigger than the circleradius
-	return (range > circleRadius*3);
 }
 
 bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
@@ -1340,138 +1389,11 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return false;
 
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	if (!cmpObstructionManager)
-		return false;
-
-	bool hasObstruction = false;
-	ICmpObstructionManager::ObstructionSquare obstruction;
-	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
-	if (cmpObstruction)
-		hasObstruction = cmpObstruction->GetObstructionSquare(obstruction);
-
-	if (!hasObstruction)
-	{
-		// The target didn't have an obstruction or obstruction shape, so treat it as a point instead
-
-		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), target);
-		if (!cmpTargetPosition || !cmpTargetPosition->IsInWorld())
-			return false;
-
-		CFixedVector2D targetPos = cmpTargetPosition->GetPosition2D();
-
-		return MoveToPointRange(targetPos.X, targetPos.Y, minRange, maxRange);
-	}
-
-	/*
-	* If we're starting outside the maxRange, we need to move closer in.
-	* If we're starting inside the minRange, we need to move further out.
-	* These ranges are measured from the edge of this entity to the edge of the target;
-	* we add the goal range onto the size of the target shape to get the goal shape.
-	* (Then we extend it outwards/inwards by a little bit to be sure we'll end up
-	* within the right range, in case of minor numerical inaccuracies.)
-	*
-	* There's a bit of a problem with large square targets:
-	* the pathfinder only lets us move to goals that are squares, but the points an equal
-	* distance from the target make a rounded square shape instead.
-	*
-	* When moving closer, we could shrink the goal radius to 1/sqrt(2) so the goal shape fits entirely
-	* within the desired rounded square, but that gives an unfair advantage to attackers who approach
-	* the target diagonally.
-	*
-	* If the target is small relative to the range (e.g. archers attacking anything),
-	* then we cheat and pretend the target is actually a circle.
-	* (TODO: that probably looks rubbish for things like walls?)
-	*
-	* If the target is large relative to the range (e.g. melee units attacking buildings),
-	* then we multiply maxRange by approx 1/sqrt(2) to guarantee they'll always aim close enough.
-	* (Those units should set minRange to 0 so they'll never be considered *too* close.)
-	*/
-
-	CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
-	PathGoal goal;
-	goal.x = obstruction.x;
-	goal.z = obstruction.z;
-
-	entity_pos_t distance = Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize, true);
-
-	// Compare with previous obstruction
-	ICmpObstructionManager::ObstructionSquare previousObstruction;
-	cmpObstruction->GetPreviousObstructionSquare(previousObstruction);
-	entity_pos_t previousDistance = Geometry::DistanceToSquare(pos - CFixedVector2D(previousObstruction.x, previousObstruction.z), obstruction.u, obstruction.v, halfSize, true);
-
-	bool inside = distance.IsZero() && !Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize).IsZero();
-	if ((distance < minRange && previousDistance < minRange) || inside)
-	{
-		// Too close to the square - need to move away
-
-		// Circumscribe the square
-		entity_pos_t circleRadius = halfSize.Length();
-
-		// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
-		// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
-		entity_pos_t goalDistance = minRange + m_Clearance * 3 /2;
-
-		if (ShouldTreatTargetAsCircle(minRange, circleRadius))
-		{
-			// The target is small relative to our range, so pretend it's a circle
-			goal.type = PathGoal::INVERTED_CIRCLE;
-			goal.hw = circleRadius + goalDistance;
-		}
-		else
-		{
-			goal.type = PathGoal::INVERTED_SQUARE;
-			goal.u = obstruction.u;
-			goal.v = obstruction.v;
-			goal.hw = obstruction.hw + goalDistance;
-			goal.hh = obstruction.hh + goalDistance;
-		}
-	}
-	else
-	{
-		// We might need to move closer:
-
-		// Circumscribe the square
-		entity_pos_t circleRadius = halfSize.Length();
-
-		if (ShouldTreatTargetAsCircle(maxRange, circleRadius))
-		{
-			// The target is small relative to our range, so pretend it's a circle
-
-			// Note that the distance to the circle will always be less than
-			// the distance to the square, so the previous "distance < maxRange"
-			// check is still valid (though not sufficient)
-			entity_pos_t circleDistance = (pos - CFixedVector2D(obstruction.x, obstruction.z)).Length() - circleRadius;
-			entity_pos_t previousCircleDistance = (pos - CFixedVector2D(previousObstruction.x, previousObstruction.z)).Length() - circleRadius;
-
-			entity_pos_t goalDistance = maxRange;
-
-			goal.type = PathGoal::CIRCLE;
-			goal.hw = circleRadius + goalDistance;
-		}
-		else
-		{
-			// The target is large relative to our range, so treat it as a square and
-			// get close enough that the diagonals come within range
-
-			entity_pos_t goalDistance = maxRange * 2 / 3; // multiply by slightly less than 1/sqrt(2)
-
-			goal.type = PathGoal::SQUARE;
-			goal.u = obstruction.u;
-			goal.v = obstruction.v;
-			entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
-			goal.hw = obstruction.hw + delta;
-			goal.hh = obstruction.hh + delta;
-		}
-	}
-
 	m_MoveRequest = MoveRequest(target, minRange, maxRange);
-	m_FinalGoal = goal;
+	ComputeGoal(m_FinalGoal, m_MoveRequest);
 	m_Tries = 0;
 
-	BeginPathing(pos, goal);
+	BeginPathing(cmpPosition->GetPosition2D(), m_FinalGoal);
 
 	return true;
 }
@@ -1482,18 +1404,11 @@ void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, e
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
 
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-	PathGoal goal;
-	goal.type = PathGoal::POINT;
-	goal.x = pos.X;
-	goal.z = pos.Y;
-
 	m_MoveRequest = MoveRequest(target, CFixedVector2D(x, z));
-	m_FinalGoal = goal;
+	ComputeGoal(m_FinalGoal, m_MoveRequest);
 	m_Tries = 0;
 
-	BeginPathing(pos, goal);
+	BeginPathing(cmpPosition->GetPosition2D(), m_FinalGoal);
 }
 
 
