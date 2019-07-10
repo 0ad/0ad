@@ -27,6 +27,7 @@
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpValueModificationManager.h"
+#include "simulation2/components/ICmpVisual.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/MessageTypes.h"
@@ -517,18 +518,26 @@ private:
 	void UpdateMovementState(entity_pos_t speed)
 	{
 		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
 		// Moved last turn, didn't this turn.
 		if (speed == fixed::Zero() && m_CurSpeed > fixed::Zero())
 		{
 			if (cmpObstruction)
 				cmpObstruction->SetMovingFlag(false);
+			if (cmpVisual)
+				cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
 		}
 		// Moved this turn, didn't last turn
 		else if (speed > fixed::Zero() && m_CurSpeed == fixed::Zero())
 		{
 			if (cmpObstruction)
 				cmpObstruction->SetMovingFlag(true);
+			if (cmpVisual)
+				cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
 		}
+		// Speed change, update the visual actor if necessary.
+		else if (speed != m_CurSpeed && cmpVisual)
+			cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
 
 		m_CurSpeed = speed;
 	}
@@ -697,12 +706,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			// This makes sure that units don't clump too much when they are not in a formation and tasked to move.
 			if (m_LongPath.m_Waypoints.size() > 1)
 				m_LongPath.m_Waypoints.pop_back();
-			else if (IsFormationMember())
-			{
-				CMessageMotionChanged msg(true);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-				return;
-			}
 
 			CMessageMotionChanged msg(false);
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
@@ -809,15 +812,6 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	if (m_MoveRequest.m_Type == MoveRequest::NONE)
 		return false;
 
-	if (IsFormationMember())
-	{
-		// We've reached our assigned position. If the controller
-		// is idle, send a notification in case it should disband,
-		// otherwise continue following the formation next turn.
-		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_MoveRequest.m_Entity);
-		return cmpUnitMotion && !cmpUnitMotion->IsMoving();
-	}
-
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	ENSURE(cmpObstructionManager);
 
@@ -827,9 +821,14 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 		return cmpObstructionManager->IsInTargetRange(GetEntityId(), m_MoveRequest.m_Entity, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
 	if (m_MoveRequest.m_Type == MoveRequest::OFFSET)
 	{
+		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpControllerMotion && cmpControllerMotion->IsMoving())
+			return false;
+
 		CFixedVector2D targetPos;
 		ComputeTargetPosition(targetPos);
-		return cmpObstructionManager->IsInPointRange(GetEntityId(), m_MoveRequest.m_Position.X, m_MoveRequest.m_Position.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+		return cmpObstructionManager->IsInPointRange(GetEntityId(), targetPos.X, targetPos.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
 	}
 	return false;
 }
@@ -945,45 +944,12 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// If we still have long waypoints, try and compute a short path
 	// This will get us around units, amongst others.
-	// However in some cases a long waypoint will be in located in the obstruction of
-	// an idle unit. In that case, we need to scrap that waypoint or we might never be able to reach it.
-	// I am not sure why this happens but the following code seems to work.
 	if (!m_LongPath.m_Waypoints.empty())
 	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-		if (cmpObstructionManager)
-		{
-			// create a fake obstruction to represent our waypoint.
-			ICmpObstructionManager::ObstructionSquare square;
-			square.hh = m_Clearance;
-			square.hw = m_Clearance;
-			square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
-			square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
-			square.x = m_LongPath.m_Waypoints.back().x;
-			square.z = m_LongPath.m_Waypoints.back().z;
-			std::vector<entity_id_t> unitOnGoal;
-			// don't ignore moving units as those might be units like us, ie not really moving.
-			cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter());
-			if (!unitOnGoal.empty())
-				m_LongPath.m_Waypoints.pop_back();
-		}
-		if (!m_LongPath.m_Waypoints.empty())
-		{
-			PathGoal goal;
-			if (m_LongPath.m_Waypoints.size() > 1 || m_FinalGoal.DistanceToPoint(pos) > LONG_PATH_MIN_DIST)
-				goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-			else
-			{
-				UpdateFinalGoal();
-				goal = m_FinalGoal;
-				m_LongPath.m_Waypoints.clear();
-				CFixedVector2D target = goal.NearestPointOnGoal(pos);
-				m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
-			}
-			RequestShortPath(pos, goal, true);
-			m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
-			return true;
-		}
+		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+		RequestShortPath(pos, goal, true);
+		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
+		return true;
 	}
 	// Else, just entirely recompute
 	UpdateFinalGoal();

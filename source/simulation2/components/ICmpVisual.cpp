@@ -27,7 +27,6 @@ DEFINE_INTERFACE_METHOD_CONST_0("GetAnimationName", std::string, ICmpVisual, Get
 DEFINE_INTERFACE_METHOD_CONST_0("GetProjectileActor", std::wstring, ICmpVisual, GetProjectileActor)
 DEFINE_INTERFACE_METHOD_CONST_0("GetProjectileLaunchPoint", CFixedVector3D, ICmpVisual, GetProjectileLaunchPoint)
 DEFINE_INTERFACE_METHOD_3("SelectAnimation", void, ICmpVisual, SelectAnimation, std::string, bool, fixed)
-DEFINE_INTERFACE_METHOD_1("SelectMovementAnimation", void, ICmpVisual, SelectMovementAnimation, fixed)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncRepeat", void, ICmpVisual, SetAnimationSyncRepeat, fixed)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncOffset", void, ICmpVisual, SetAnimationSyncOffset, fixed)
 DEFINE_INTERFACE_METHOD_4("SetShadingColor", void, ICmpVisual, SetShadingColor, fixed, fixed, fixed, fixed)

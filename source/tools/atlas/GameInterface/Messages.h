@@ -503,7 +503,9 @@ COMMAND(SetEnvironmentSettings, MERGE,	// merge lots of small changes into one u
 		((sEnvironmentSettings, settings))
 		);
 
-COMMAND(RecalculateWaterData, NOMERGE, ((float,unused)));
+COMMAND(RecalculateWaterData, NOMERGE, ((float, unused)));
+
+COMMAND(PickWaterHeight, NOMERGE, ((Position, screenPos)));
 
 QUERY(GetSkySets,
 	  // no inputs

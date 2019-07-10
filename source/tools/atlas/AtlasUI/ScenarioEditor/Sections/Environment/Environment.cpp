@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -198,7 +198,8 @@ END_EVENT_TABLE()
 //////////////////////////////////////////////////////////////////////////
 
 enum {
-	ID_RecomputeWaterData
+	ID_RecomputeWaterData,
+	ID_PickWaterHeight
 };
 static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 {
@@ -219,6 +220,7 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	waterSizer->Add(new wxButton(scrolledWindow, ID_RecomputeWaterData, _("Reset Water Data")), wxSizerFlags().Expand());
 	waterSizer->Add(m_WaterTypeList = new VariableListBox(scrolledWindow, _("Water Type"), g_EnvironmentSettings.watertype), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water height"), g_EnvironmentSettings.waterheight, 0.f, 1.2f), wxSizerFlags().Expand());
+	waterSizer->Add(new wxButton(scrolledWindow, ID_PickWaterHeight, _("Pick Water Height")), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Wind angle"), g_EnvironmentSettings.windangle, -M_PIf, M_PIf), wxSizerFlags().Expand());
@@ -269,20 +271,12 @@ void EnvironmentSidebar::OnFirstDisplay()
 	qry_effects.Post();
 	m_PostEffectList->SetChoices(*qry_effects.posteffects);
 
-	AtlasMessage::qGetEnvironmentSettings qry_env;
-	qry_env.Post();
-	g_EnvironmentSettings = qry_env.settings;
-
-	g_EnvironmentSettings.NotifyObservers();
+	UpdateEnvironmentSettings();
 }
 
 void EnvironmentSidebar::OnMapReload()
 {
-	AtlasMessage::qGetEnvironmentSettings qry_env;
-	qry_env.Post();
-	g_EnvironmentSettings = qry_env.settings;
-
-	g_EnvironmentSettings.NotifyObservers();
+	UpdateEnvironmentSettings();
 }
 
 void EnvironmentSidebar::RecomputeWaterData(wxCommandEvent& WXUNUSED(evt))
@@ -290,7 +284,22 @@ void EnvironmentSidebar::RecomputeWaterData(wxCommandEvent& WXUNUSED(evt))
 	POST_COMMAND(RecalculateWaterData, (0.0f));
 }
 
+void EnvironmentSidebar::UpdateEnvironmentSettings()
+{
+	AtlasMessage::qGetEnvironmentSettings qry_env;
+	qry_env.Post();
+	g_EnvironmentSettings = qry_env.settings;
+
+	g_EnvironmentSettings.NotifyObservers();
+}
+
+void EnvironmentSidebar::OnPickWaterHeight(wxCommandEvent& evt)
+{
+	m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("PickWaterHeight"), this);
+}
+
 BEGIN_EVENT_TABLE(EnvironmentSidebar, Sidebar)
 	EVT_BUTTON(ID_RecomputeWaterData, EnvironmentSidebar::RecomputeWaterData)
+	EVT_BUTTON(ID_PickWaterHeight, EnvironmentSidebar::OnPickWaterHeight)
 END_EVENT_TABLE();
 

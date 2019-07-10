@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -197,6 +197,43 @@ BEGIN_COMMAND(RecalculateWaterData)
 
 };
 END_COMMAND(RecalculateWaterData)
+
+BEGIN_COMMAND(PickWaterHeight)
+{
+	entity_pos_t m_OldWaterHeight, m_NewWaterHeight;
+
+	void Do()
+	{
+		CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		ENSURE(cmpWaterManager);
+
+		CVector3D worldPos = msg->screenPos->GetWorldSpace();
+		m_OldWaterHeight = cmpWaterManager->GetWaterLevel(
+			entity_pos_t::FromFloat(worldPos.X), entity_pos_t::FromFloat(worldPos.Z));
+		m_NewWaterHeight = entity_pos_t::FromFloat(worldPos.Y);
+		SetWaterHeight(m_NewWaterHeight);
+	}
+
+	void Redo()
+	{
+		SetWaterHeight(m_NewWaterHeight);
+	}
+
+	void Undo()
+	{
+		SetWaterHeight(m_OldWaterHeight);
+	}
+
+	void SetWaterHeight(entity_pos_t height)
+	{
+		CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		ENSURE(cmpWaterManager);
+
+		cmpWaterManager->SetWaterLevel(height);
+		cmpWaterManager->RecomputeWaterData();
+	}
+};
+END_COMMAND(PickWaterHeight)
 
 
 QUERYHANDLER(GetEnvironmentSettings)
