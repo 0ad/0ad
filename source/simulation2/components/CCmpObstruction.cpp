@@ -363,6 +363,8 @@ public:
 				if (!cmpObstructionManager)
 					break; // error
 
+				// Deactivate the obstruction in case PositionChanged messages are sent after this.
+				m_Active = false;
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = tag_t();
 				if(m_Type == CLUSTER)
