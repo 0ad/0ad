@@ -358,7 +358,7 @@ then
   mkdir -p build-release
   pushd build-release
 
-  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-png=builtin --without-libtiff --without-sdl --without-x --disable-webview --disable-webkit --disable-webviewwebkit --disable-webviewie"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libpng=builtin --without-libtiff --without-sdl --without-x --disable-webview --disable-webkit --disable-webviewwebkit --disable-webviewie --without-libjpeg"
   # wxWidgets configure now defaults to targeting 10.5, if not specified,
   # but that conflicts with our flags
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
