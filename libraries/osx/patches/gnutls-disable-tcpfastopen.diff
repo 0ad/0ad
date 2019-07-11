@@ -1,0 +1,11 @@
+--- lib/system/fastopen.c	2019-03-15 05:10:27.000000000 -0400
++++ lib/system/fastopen.c	2019-07-10 07:53:30.000000000 -0400
+@@ -38,7 +38,7 @@
+ 
+ /* TCP Fast Open on OSX behaves differently from Linux, so define these helpers */
+ #if defined __APPLE__ && defined __MACH__ && defined CONNECT_DATA_IDEMPOTENT && defined CONNECT_RESUME_ON_READ_WRITE
+-# define TCP_FASTOPEN_OSX
++//# define TCP_FASTOPEN_OSX
+ #elif defined TCP_FASTOPEN && defined MSG_FASTOPEN
+ # define TCP_FASTOPEN_LINUX
+ #endif
