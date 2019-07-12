@@ -116,54 +116,15 @@ public:
 
 	bool m_FacePointAfterMove;
 
-	enum PathState
-	{
-		/*
-		 * There is no path.
-		 * (This should only happen in IDLE and STOPPING.)
-		 */
-		PATHSTATE_NONE,
+	struct Ticket {
+		u32 m_Ticket = 0; // asynchronous request ID we're waiting for, or 0 if none
+		enum Type {
+			SHORT_PATH,
+			LONG_PATH
+		} m_Type;
 
-		/*
-		 * We have an outstanding long path request.
-		 * No paths are usable yet, so we can't move anywhere.
-		 */
-		PATHSTATE_WAITING_REQUESTING_LONG,
-
-		/*
-		 * We have an outstanding short path request.
-		 * m_LongPath is valid.
-		 * m_ShortPath is not yet valid, so we can't move anywhere.
-		 */
-		PATHSTATE_WAITING_REQUESTING_SHORT,
-
-		/*
-		 * We are following our path, and have no path requests.
-		 * m_LongPath and m_ShortPath are valid.
-		 */
-		PATHSTATE_FOLLOWING,
-
-		/*
-		 * We are following our path, and have an outstanding long path request.
-		 * (This is because our target moved a long way and we need to recompute
-		 * the whole path).
-		 * m_LongPath and m_ShortPath are valid.
-		 */
-		PATHSTATE_FOLLOWING_REQUESTING_LONG,
-
-		/*
-		 * We are following our path, and have an outstanding short path request.
-		 * (This is because our target moved and we've got a new long path
-		 * which we need to follow).
-		 * m_LongPath is valid; m_ShortPath is valid but obsolete.
-		 */
-		PATHSTATE_FOLLOWING_REQUESTING_SHORT,
-
-		PATHSTATE_MAX
-	};
-	u8 m_PathState;
-
-	u32 m_ExpectedPathTicket; // asynchronous request ID we're waiting for, or 0 if none
+		void clear() { m_Ticket = 0; }
+	} m_ExpectedPathTicket;
 
 	struct MoveRequest {
 		enum Type {
@@ -251,10 +212,6 @@ public:
 				cmpObstruction->SetUnitClearance(m_Clearance);
 		}
 
-		m_PathState = PATHSTATE_NONE;
-
-		m_ExpectedPathTicket = 0;
-
 		m_Tries = 0;
 
 		m_DebugOverlayEnabled = false;
@@ -267,11 +224,10 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		serialize.NumberU8("path state", m_PathState, 0, PATHSTATE_MAX-1);
-
 		serialize.StringASCII("pass class", m_PassClassName, 0, 64);
 
-		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket);
+		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket.m_Ticket);
+		SerializeU8_Enum<Ticket::Type, Ticket::Type::LONG_PATH>()(serialize, "ticket type", m_ExpectedPathTicket.m_Type);
 
 		SerializeU8_Enum<MoveRequest::Type, MoveRequest::Type::OFFSET>()(serialize, "target type", m_MoveRequest.m_Type);
 		serialize.NumberU32_Unbounded("target entity", m_MoveRequest.m_Entity);
@@ -461,8 +417,7 @@ public:
 		}
 
 		m_MoveRequest = MoveRequest();
-		m_ExpectedPathTicket = 0;
-		m_PathState = PATHSTATE_NONE;
+		m_ExpectedPathTicket.clear();
 		m_LongPath.m_Waypoints.clear();
 		m_ShortPath.m_Waypoints.clear();
 	}
@@ -487,13 +442,6 @@ private:
 	entity_id_t GetGroup() const
 	{
 		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
-	}
-
-	bool HasValidPath() const
-	{
-		return m_PathState == PATHSTATE_FOLLOWING
-			|| m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG
-			|| m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT;
 	}
 
 	void MoveFailed()
@@ -666,10 +614,11 @@ REGISTER_COMPONENT_TYPE(UnitMotion)
 void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 {
 	// Ignore obsolete path requests
-	if (ticket != m_ExpectedPathTicket)
+	if (ticket != m_ExpectedPathTicket.m_Ticket)
 		return;
 
-	m_ExpectedPathTicket = 0; // we don't expect to get this result again
+	Ticket::Type ticketType = m_ExpectedPathTicket.m_Type;
+	m_ExpectedPathTicket.clear();
 
 	// Check that we are still able to do something with that path
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
@@ -680,14 +629,9 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		return;
 	}
 
-	if (m_PathState == PATHSTATE_WAITING_REQUESTING_LONG || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG)
+	if (ticketType == Ticket::LONG_PATH)
 	{
 		m_LongPath = path;
-
-		// If we are following a path, leave the old m_ShortPath so we can carry on following it
-		// until a new short path has been computed
-		if (m_PathState == PATHSTATE_WAITING_REQUESTING_LONG)
-			m_ShortPath.m_Waypoints.clear();
 
 		// If there's no waypoints then we couldn't get near the target.
 		// Sort of hack: Just try going directly to the goal point instead
@@ -699,17 +643,15 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			if (ComputeTargetPosition(targetPos))
 				m_LongPath.m_Waypoints.emplace_back(Waypoint{ targetPos.X, targetPos.Y });
 		}
-
-		m_PathState = PATHSTATE_FOLLOWING;
 	}
-	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
+	else
 	{
 		m_ShortPath = path;
 
 		// If there's no waypoints then we couldn't get near the target
 		if (m_ShortPath.m_Waypoints.empty())
 		{
-			// If we're globally following a long path, try to remove the next waypoint, it might be obstructed
+			// If we're globally following a long path, try to remove the next waypoint, it might be obstructed (e.g. by idle entities)
 			// If not, and we are not in a formation, retry
 			// unless we are close to our target and we don't have a target entity.
 			// This makes sure that units don't clump too much when they are not in a formation and tasked to move.
@@ -734,17 +676,12 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			PathGoal goal;
 			ComputeGoal(goal, m_MoveRequest);
 			RequestLongPath(pos, goal);
-			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 			return;
 		}
 
 		// else we could, so reset our number of tries.
 		m_Tries = 0;
-
-		m_PathState = PATHSTATE_FOLLOWING;
 	}
-	else
-		LOGWARNING("unexpected PathResult (%u %d)", GetEntityId(), m_PathState);
 }
 
 void CCmpUnitMotion::Move(fixed dt)
@@ -783,10 +720,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	// If we're chasing a potentially-moving unit and are currently close
 	// enough to its current position, and we can head in a straight line
 	// to it, then throw away our current path and go straight to it
-	if (m_PathState == PATHSTATE_FOLLOWING ||
-		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT ||
-		m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG)
-		TryGoingStraightToTarget(initialPos);
+	TryGoingStraightToTarget(initialPos);
 
 	bool wasObstructed = PerformMove(dt, m_ShortPath, m_LongPath, pos);
 
@@ -809,17 +743,13 @@ void CCmpUnitMotion::Move(fixed dt)
 	if (wasObstructed && HandleObstructedMove())
 		return;
 
-	if (m_PathState == PATHSTATE_FOLLOWING)
+	// We may need to recompute our path sometimes (e.g. if our target moves).
+	// Since we request paths asynchronously anyways, this does not need to be done before moving.
+	if (PathingUpdateNeeded(pos))
 	{
-		// We may need to recompute our path sometimes (e.g. if our target moves).
-		// Since we request paths asynchronously anyways, this does not need to be done before moving.
-		if (PathingUpdateNeeded(pos))
-		{
-			PathGoal goal;
-			ComputeGoal(goal, m_MoveRequest);
-			BeginPathing(pos, goal);
-			m_PathState = PATHSTATE_FOLLOWING_REQUESTING_LONG;
-		}
+		PathGoal goal;
+		ComputeGoal(goal, m_MoveRequest);
+		BeginPathing(pos, goal);
 	}
 }
 
@@ -851,9 +781,7 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 
 bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const
 {
-	if (m_PathState != PATHSTATE_FOLLOWING &&
-	    m_PathState != PATHSTATE_FOLLOWING_REQUESTING_SHORT &&
-	    m_PathState != PATHSTATE_FOLLOWING_REQUESTING_LONG)
+	if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
 		return false;
 
 	// TODO: there's some asymmetry here when units look at other
@@ -963,7 +891,6 @@ bool CCmpUnitMotion::HandleObstructedMove()
 	{
 		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
 		RequestShortPath(pos, goal, true);
-		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
 		return true;
 	}
 
@@ -1294,9 +1221,7 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 
 void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& goal)
 {
-	m_ExpectedPathTicket = 0;
-
-	m_PathState = PATHSTATE_NONE;
+	m_ExpectedPathTicket.clear();
 
 #if DISABLE_PATHFINDER
 	{
@@ -1305,7 +1230,6 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 		m_LongPath.m_Waypoints.clear();
 		m_ShortPath.m_Waypoints.clear();
 		m_ShortPath.m_Waypoints.emplace_back(Waypoint{ goalPos.X, goalPos.Y });
-		m_PathState = PATHSTATE_FOLLOWING;
 		return;
 	}
 #endif
@@ -1313,10 +1237,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// If the target is close and we can reach it in a straight line,
 	// then we'll just go along the straight line instead of computing a path.
 	if (TryGoingStraightToTarget(from))
-	{
-		m_PathState = PATHSTATE_FOLLOWING;
 		return;
-	}
 
 	// Otherwise we need to compute a path.
 
@@ -1332,14 +1253,10 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 		m_LongPath.m_Waypoints.clear();
 		CFixedVector2D target = goal.NearestPointOnGoal(from);
 		m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
-		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
 		RequestShortPath(from, goal, true);
 	}
 	else
-	{
-		m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 		RequestLongPath(from, goal);
-	}
 }
 
 void CCmpUnitMotion::RequestLongPath(const CFixedVector2D& from, const PathGoal& goal)
@@ -1355,7 +1272,8 @@ void CCmpUnitMotion::RequestLongPath(const CFixedVector2D& from, const PathGoal&
 
 	cmpPathfinder->SetDebugPath(from.X, from.Y, improvedGoal, m_PassClass);
 
-	m_ExpectedPathTicket = cmpPathfinder->ComputePathAsync(from.X, from.Y, improvedGoal, m_PassClass, GetEntityId());
+	m_ExpectedPathTicket.m_Type = Ticket::LONG_PATH;
+	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputePathAsync(from.X, from.Y, improvedGoal, m_PassClass, GetEntityId());
 }
 
 void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal& goal, bool avoidMovingUnits)
@@ -1371,7 +1289,8 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
 		searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
 
-	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
+	m_ExpectedPathTicket.m_Type = Ticket::SHORT_PATH;
+	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
 }
 
 bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
