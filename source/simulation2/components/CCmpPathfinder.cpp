@@ -36,6 +36,7 @@
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/HierarchicalPathfinder.h"
 #include "simulation2/helpers/LongPathfinder.h"
+#include "simulation2/helpers/MapEdgeTiles.h"
 #include "simulation2/helpers/Rasterize.h"
 #include "simulation2/helpers/VertexPathfinder.h"
 #include "simulation2/serialization/SerializeTemplates.h"
@@ -637,8 +638,7 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 	}
 
 	// Compute off-world passability
-	// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
-	const int edgeSize = 3 * Pathfinding::NAVCELLS_PER_TILE; // number of tiles around the edge that will be off-world
+	const int edgeSize = MAP_EDGE_TILES * Pathfinding::NAVCELLS_PER_TILE;
 
 	NavcellData edgeMask = 0;
 	for (PathfinderPassability& passability : m_PassClasses)
