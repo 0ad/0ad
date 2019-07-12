@@ -674,8 +674,8 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			}
 
 			PathGoal goal;
-			ComputeGoal(goal, m_MoveRequest);
-			RequestLongPath(pos, goal);
+			if (ComputeGoal(goal, m_MoveRequest))
+				RequestLongPath(pos, goal);
 			return;
 		}
 
@@ -748,8 +748,8 @@ void CCmpUnitMotion::Move(fixed dt)
 	if (PathingUpdateNeeded(pos))
 	{
 		PathGoal goal;
-		ComputeGoal(goal, m_MoveRequest);
-		BeginPathing(pos, goal);
+		if (ComputeGoal(goal, m_MoveRequest))
+			BeginPathing(pos, goal);
 	}
 }
 
@@ -896,7 +896,9 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// Else, just entirely recompute
 	PathGoal goal;
-	ComputeGoal(goal, m_MoveRequest);
+	if (!ComputeGoal(goal, m_MoveRequest))
+		return false;
+
 	BeginPathing(pos, goal);
 
 	// potential TODO: We could switch the short-range pathfinder for something else entirely.
@@ -962,7 +964,8 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 
 	// Move the goal to match the target entity's new position
 	PathGoal goal;
-	ComputeGoal(goal, m_MoveRequest);
+	if (!ComputeGoal(goal, m_MoveRequest))
+		return false;
 	goal.x = targetPos.X;
 	goal.z = targetPos.Y;
 	// (we ignore changes to the target's rotation, since only buildings are
