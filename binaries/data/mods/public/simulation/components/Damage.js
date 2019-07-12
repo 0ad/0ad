@@ -9,9 +9,9 @@ Damage.prototype.Init = function()
 
 /**
  * Gives the position of the given entity, taking the lateness into account.
- * @param {number} ent - entity id of the entity we are finding the location for.
- * @param {number} lateness - the time passed since the expected time to fire the function.
- * @return {Vector3D} - the location of the entity.
+ * @param {number} ent - Entity id of the entity we are finding the location for.
+ * @param {number} lateness - The time passed since the expected time to fire the function.
+ * @return {Vector3D} The location of the entity.
  */
 Damage.prototype.InterpolatedLocation = function(ent, lateness)
 {
@@ -30,10 +30,10 @@ Damage.prototype.InterpolatedLocation = function(ent, lateness)
 
 /**
  * Test if a point is inside of an entity's footprint.
- * @param {number}   ent - id of the entity we are checking with.
- * @param {Vector3D} point - the point we are checking with.
- * @param {number}   lateness - the time passed since the expected time to fire the function.
- * @return {boolean} - true if the point is inside of the entity's footprint.
+ * @param {number}   ent - Id of the entity we are checking with.
+ * @param {Vector3D} point - The point we are checking with.
+ * @param {number}   lateness - The time passed since the expected time to fire the function.
+ * @return {boolean} True if the point is inside of the entity's footprint.
  */
 Damage.prototype.TestCollision = function(ent, point, lateness)
 {
@@ -66,9 +66,9 @@ Damage.prototype.TestCollision = function(ent, point, lateness)
 
 /**
  * Get the list of players affected by the damage.
- * @param {number}  attackerOwner - the player id of the attacker.
- * @param {boolean} friendlyFire - a flag indicating if allied entities are also damaged.
- * @return {number[]} - the ids of players need to be damaged
+ * @param {number}  attackerOwner - The player id of the attacker.
+ * @param {boolean} friendlyFire - A flag indicating if allied entities are also damaged.
+ * @return {number[]} The ids of players need to be damaged.
  */
 Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
 {
@@ -80,26 +80,26 @@ Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
 
 /**
  * Handles hit logic after the projectile travel time has passed.
- * @param {Object}   data - the data sent by the caller.
- * @param {number}   data.attacker - the entity id of the attacker.
- * @param {number}   data.target - the entity id of the target.
- * @param {Vector2D} data.origin - the origin of the projectile hit.
- * @param {Object}   data.strengths - data of the form { 'hack': number, 'pierce': number, 'crush': number }.
- * @param {string}   data.type - the type of damage.
- * @param {number}   data.attackerOwner - the player id of the owner of the attacker.
- * @param {boolean}  data.isSplash - a flag indicating if it's splash damage.
- * @param {Vector3D} data.position - the expected position of the target.
- * @param {number}   data.projectileId - the id of the projectile.
- * @param {Vector3D} data.direction - the unit vector defining the direction.
- * @param {Object}   data.bonus - the attack bonus template from the attacker.
- * @param {string}   data.attackImpactSound - the name of the sound emited on impact.
- * @param {Object}   data.statusEffects - status effects eg. poisoning, burning etc.
+ * @param {Object}   data - The data sent by the caller.
+ * @param {number}   data.attacker - The entity id of the attacker.
+ * @param {number}   data.target - The entity id of the target.
+ * @param {Vector2D} data.origin - The origin of the projectile hit.
+ * @param {Object}   data.strengths - Data of the form { 'hack': number, 'pierce': number, 'crush': number }.
+ * @param {string}   data.type - The type of damage.
+ * @param {number}   data.attackerOwner - The player id of the owner of the attacker.
+ * @param {boolean}  data.isSplash - A flag indicating if it's splash damage.
+ * @param {Vector3D} data.position - The expected position of the target.
+ * @param {number}   data.projectileId - The id of the projectile.
+ * @param {Vector3D} data.direction - The unit vector defining the direction.
+ * @param {Object}   data.bonus - The attack bonus template from the attacker.
+ * @param {string}   data.attackImpactSound - The name of the sound emited on impact.
+ * @param {Object}   data.statusEffects - Status effects eg. poisoning, burning etc.
  * ***When splash damage***
- * @param {boolean}  data.friendlyFire - a flag indicating if allied entities are also damaged.
- * @param {number}   data.radius - the radius of the splash damage.
- * @param {string}   data.shape - the shape of the splash range.
- * @param {Object}   data.splashBonus - the attack bonus template from the attacker.
- * @param {Object}   data.splashStrengths - data of the form { 'hack': number, 'pierce': number, 'crush': number }.
+ * @param {boolean}  data.friendlyFire - A flag indicating if allied entities are also damaged.
+ * @param {number}   data.radius - The radius of the splash damage.
+ * @param {string}   data.shape - The shape of the splash range.
+ * @param {Object}   data.splashBonus - The attack bonus template from the attacker.
+ * @param {Object}   data.splashStrengths - Data of the form { 'hack': number, 'pierce': number, 'crush': number }.
  */
 Damage.prototype.MissileHit = function(data, lateness)
 {
@@ -172,17 +172,17 @@ Damage.prototype.MissileHit = function(data, lateness)
 
 /**
  * Damages units around a given origin.
- * @param {Object}   data - the data sent by the caller.
- * @param {number}   data.attacker - the entity id of the attacker.
- * @param {Vector2D} data.origin - the origin of the projectile hit.
- * @param {number}   data.radius - the radius of the splash damage.
- * @param {string}   data.shape - the shape of the radius.
- * @param {Object}   data.strengths - data of the form { 'hack': number, 'pierce': number, 'crush': number }.
- * @param {string}   data.type - the type of damage.
- * @param {number}   data.attackerOwner - the player id of the attacker.
- * @param {Vector3D} [data.direction] - the unit vector defining the direction. Needed for linear splash damage.
- * @param {Object}   data.splashBonus - the attack bonus template from the attacker.
- * @param {number[]} data.playersToDamage - the array of player id's to damage.
+ * @param {Object}   data - The data sent by the caller.
+ * @param {number}   data.attacker - The entity id of the attacker.
+ * @param {Vector2D} data.origin - The origin of the projectile hit.
+ * @param {number}   data.radius - The radius of the splash damage.
+ * @param {string}   data.shape - The shape of the radius.
+ * @param {Object}   data.strengths - Data of the form { 'hack': number, 'pierce': number, 'crush': number }.
+ * @param {string}   data.type - The type of damage.
+ * @param {number}   data.attackerOwner - The player id of the attacker.
+ * @param {Vector3D} [data.direction] - The unit vector defining the direction. Needed for linear splash damage.
+ * @param {Object}   data.splashBonus - The attack bonus template from the attacker.
+ * @param {number[]} data.playersToDamage - The array of player id's to damage.
  */
 Damage.prototype.CauseSplashDamage = function(data)
 {
@@ -239,13 +239,13 @@ Damage.prototype.CauseSplashDamage = function(data)
 
 /**
  * Causes damage on a given unit.
- * @param {Object} data - the data passed by the caller.
- * @param {Object} data.strengths - data in the form of { 'hack': number, 'pierce': number, 'crush': number }.
- * @param {number} data.target - the entity id of the target.
- * @param {number} data.attacker - the entity id of the attacker.
- * @param {number} data.multiplier - the damage multiplier.
- * @param {string} data.type - the type of damage.
- * @param {number} data.attackerOwner - the player id of the attacker.
+ * @param {Object} data - The data passed by the caller.
+ * @param {Object} data.strengths - Data in the form of { 'hack': number, 'pierce': number, 'crush': number }.
+ * @param {number} data.target - The entity id of the target.
+ * @param {number} data.attacker - The entity id of the attacker.
+ * @param {number} data.multiplier - The damage multiplier.
+ * @param {string} data.type - The type of damage.
+ * @param {number} data.attackerOwner - The player id of the attacker.
  */
 Damage.prototype.CauseDamage = function(data)
 {
@@ -269,10 +269,10 @@ Damage.prototype.CauseDamage = function(data)
 
 /**
  * Gets entities near a give point for given players.
- * @param {Vector2D} origin - the point to check around.
- * @param {number}   radius - the radius around the point to check.
- * @param {number[]} players - the players of which we need to check entities.
- * @return {number[]} - the id's of the entities in range of the given point.
+ * @param {Vector2D} origin - The point to check around.
+ * @param {number}   radius - The radius around the point to check.
+ * @param {number[]} players - The players of which we need to check entities.
+ * @return {number[]} The id's of the entities in range of the given point.
  */
 Damage.prototype.EntitiesNearPoint = function(origin, radius, players)
 {
@@ -284,10 +284,10 @@ Damage.prototype.EntitiesNearPoint = function(origin, radius, players)
 };
 
 /**
- * Called when a unit kills something (another unit, building, animal etc)
- * @param {number} attacker - the entity id of the killer.
- * @param {number} target - the entity id of the target.
- * @param {number} attackerOwner - the player id of the attacker.
+ * Called when a unit kills something (another unit, building, animal etc).
+ * @param {number} attacker - The entity id of the killer.
+ * @param {number} target - The entity id of the target.
+ * @param {number} attackerOwner - The player id of the attacker.
  */
 Damage.prototype.TargetKilled = function(attacker, target, attackerOwner)
 {
