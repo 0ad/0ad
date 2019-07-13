@@ -64,18 +64,20 @@ static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TE
 static const entity_pos_t LONG_PATH_MIN_DIST = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
 
 /**
- * When short-pathing, and the short-range pathfinder failed to return a path,
- * Assume we are at destination if we are closer than this distance to the target
- * And we have no target entity.
- * This is somewhat arbitrary, but setting a too big distance means units might lose sight of their end goal too much;
- */
-static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
-
-/**
  * If we are this close to our target entity/point, then think about heading
  * for it in a straight line instead of pathfinding.
  */
 static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
+
+/**
+ * When we fail more than this many path computations in a row, inform other components that the move will fail.
+ * Experimentally, this number needs to be somewhat high or moving groups of units will lead to stuck units.
+ * However, too high means units will look idle for a long time when they are failing to move.
+ * TODO: if UnitMotion could send differentiated "unreachable" and "currently stuck" failing messages,
+ * this could probably be lowered.
+ * TODO: when unit pushing is implemented, this number can probably be lowered.
+ */
+static const u8 MAX_FAILED_PATH_COMPUTATIONS = 15;
 
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
@@ -115,6 +117,11 @@ public:
 	fixed m_WalkSpeed, m_RunMultiplier;
 
 	bool m_FacePointAfterMove;
+
+	// Number of path computations that failed (in a row).
+	// When this gets above MAX_FAILED_PATH_COMPUTATIONS, inform other components
+	// that the move will likely fail.
+	u8 m_FailedPathComputations = 0;
 
 	struct Ticket {
 		u32 m_Ticket = 0; // asynchronous request ID we're waiting for, or 0 if none
@@ -158,9 +165,6 @@ public:
 	// The last item in each path is the point we're currently heading towards.
 	WaypointPath m_LongPath;
 	WaypointPath m_ShortPath;
-
-	// Motion planning
-	u8 m_Tries; // how many tries we've done to get to our current Final Goal.
 
 	static std::string GetSchema()
 	{
@@ -212,8 +216,6 @@ public:
 				cmpObstruction->SetUnitClearance(m_Clearance);
 		}
 
-		m_Tries = 0;
-
 		m_DebugOverlayEnabled = false;
 	}
 
@@ -229,6 +231,8 @@ public:
 		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket.m_Ticket);
 		SerializeU8_Enum<Ticket::Type, Ticket::Type::LONG_PATH>()(serialize, "ticket type", m_ExpectedPathTicket.m_Type);
 
+		serialize.NumberU8("failed path computations", m_FailedPathComputations, 0, 255);
+
 		SerializeU8_Enum<MoveRequest::Type, MoveRequest::Type::OFFSET>()(serialize, "target type", m_MoveRequest.m_Type);
 		serialize.NumberU32_Unbounded("target entity", m_MoveRequest.m_Entity);
 		serialize.NumberFixed_Unbounded("target pos x", m_MoveRequest.m_Position.X);
@@ -241,8 +245,6 @@ public:
 		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
 
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
-
-		serialize.NumberU8("tries", m_Tries, 0, 255);
 
 		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
 		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
@@ -489,6 +491,19 @@ private:
 	}
 
 	/**
+	 * Increment the number of failed path and notify other components if required.
+	 */
+	void IncrementFailedPathComputationAndMaybeNotify()
+	{
+		m_FailedPathComputations++;
+		if (m_FailedPathComputations >= MAX_FAILED_PATH_COMPUTATIONS)
+		{
+			MoveFailed();
+			m_FailedPathComputations = 0;
+		}
+	}
+
+	/**
 	 * Handle the result of an asynchronous path query.
 	 */
 	void PathResult(u32 ticket, const WaypointPath& path);
@@ -555,12 +570,6 @@ private:
 	bool PathingUpdateNeeded(const CFixedVector2D& from) const;
 
 	/**
-	 * Returns whether we are close enough to the target to assume it's a good enough
-	 * position to stop.
-	 */
-	bool CloseEnoughFromDestinationToStop(const CFixedVector2D& from) const;
-
-	/**
 	 * Returns whether the length of the given path, plus the distance from
 	 * 'from' to the first waypoints, it shorter than minDistance.
 	 */
@@ -614,7 +623,7 @@ REGISTER_COMPONENT_TYPE(UnitMotion)
 void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 {
 	// Ignore obsolete path requests
-	if (ticket != m_ExpectedPathTicket.m_Ticket)
+	if (ticket != m_ExpectedPathTicket.m_Ticket || m_MoveRequest.m_Type == MoveRequest::NONE)
 		return;
 
 	Ticket::Type ticketType = m_ExpectedPathTicket.m_Type;
@@ -635,53 +644,50 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 		// If there's no waypoints then we couldn't get near the target.
 		// Sort of hack: Just try going directly to the goal point instead
-		// (via the short pathfinder), so if we're stuck and the user clicks
+		// (via the short pathfinder over the next turns), so if we're stuck and the user clicks
 		// close enough to the unit then we can probably get unstuck
+		// NB: this relies on HandleObstructedMove requesting short paths if we still have long waypoints.
 		if (m_LongPath.m_Waypoints.empty())
 		{
+			IncrementFailedPathComputationAndMaybeNotify();
 			CFixedVector2D targetPos;
 			if (ComputeTargetPosition(targetPos))
 				m_LongPath.m_Waypoints.emplace_back(Waypoint{ targetPos.X, targetPos.Y });
 		}
+		return;
 	}
-	else
+
+	m_ShortPath = path;
+
+	if (!m_ShortPath.m_Waypoints.empty())
+		return;
+
+	// Don't notify if we are a formation member - we can occasionally be stuck for a long time
+	// if our current offset is unreachable.
+	if (!IsFormationMember())
+		IncrementFailedPathComputationAndMaybeNotify();
+
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+	// If there's no waypoints then we couldn't get near the target
+	// If we're globally following a long path, try to remove the next waypoint,
+	// it might be obstructed (e.g. by idle entities which the long-range pathfinder doesn't see).
+	if (!m_LongPath.m_Waypoints.empty())
 	{
-		m_ShortPath = path;
-
-		// If there's no waypoints then we couldn't get near the target
-		if (m_ShortPath.m_Waypoints.empty())
+		m_LongPath.m_Waypoints.pop_back();
+		if (!m_LongPath.m_Waypoints.empty())
 		{
-			// If we're globally following a long path, try to remove the next waypoint, it might be obstructed (e.g. by idle entities)
-			// If not, and we are not in a formation, retry
-			// unless we are close to our target and we don't have a target entity.
-			// This makes sure that units don't clump too much when they are not in a formation and tasked to move.
-			if (m_LongPath.m_Waypoints.size() > 1)
-				m_LongPath.m_Waypoints.pop_back();
-
-			CMessageMotionChanged msg(false);
-			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-
-			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-			if (!cmpPosition || !cmpPosition->IsInWorld())
-				return;
-
-			CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-			if (CloseEnoughFromDestinationToStop(pos))
-			{
-				MoveSucceeded();
-				return;
-			}
-
-			PathGoal goal;
-			if (ComputeGoal(goal, m_MoveRequest))
-				RequestLongPath(pos, goal);
+			PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+			RequestShortPath(pos, goal, false);
 			return;
 		}
-
-		// else we could, so reset our number of tries.
-		m_Tries = 0;
 	}
+
+	PathGoal goal;
+	// If we can't compute a goal, we'll fail in the next Move() call so do nothing special.
+	if (!ComputeGoal(goal, m_MoveRequest))
+		return;
+	BeginPathing(pos, goal);
 }
 
 void CCmpUnitMotion::Move(fixed dt)
@@ -742,6 +748,8 @@ void CCmpUnitMotion::Move(fixed dt)
 
 	if (wasObstructed && HandleObstructedMove())
 		return;
+	else if (!wasObstructed)
+		m_FailedPathComputations = 0;
 
 	// We may need to recompute our path sometimes (e.g. if our target moves).
 	// Since we request paths asynchronously anyways, this does not need to be done before moving.
@@ -781,8 +789,9 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 
 bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const
 {
+	// If there are no waypoint, behave as though we were obstructed and let HandleObstructedMove handle it.
 	if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
-		return false;
+		return true;
 
 	// TODO: there's some asymmetry here when units look at other
 	// units' positions - the result will depend on the order of execution.
@@ -790,8 +799,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath
 	// that problem.
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-	if (!cmpPathfinder)
-		return false;
+	ENSURE(cmpPathfinder);
 
 	fixed basicSpeed = m_Speed;
 	// If in formation, run to keep up; otherwise just walk
@@ -879,21 +887,13 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// Oops, we hit something (very likely another unit).
 
-	if (CloseEnoughFromDestinationToStop(pos))
-	{
-		// Pretend we're arrived in case other components agree and we end up stopping moving.
-		MoveSucceeded();
-		return true;
-	}
-
 	// If we still have long waypoints, try and compute a short path
 	if (!m_LongPath.m_Waypoints.empty())
 	{
 		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-		RequestShortPath(pos, goal, true);
+		RequestShortPath(pos, goal, false);
 		return true;
 	}
-
 	// Else, just entirely recompute
 	PathGoal goal;
 	if (!ComputeGoal(goal, m_MoveRequest))
@@ -1036,18 +1036,6 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 		return false;
 
 	return true;
-}
-
-bool CCmpUnitMotion::CloseEnoughFromDestinationToStop(const CFixedVector2D& from) const
-{
-	if (m_MoveRequest.m_Type != MoveRequest::POINT)
-		return false;
-
-	CFixedVector2D targetPos;
-	if (!ComputeTargetPosition(targetPos))
-		return true; // We failed to compute a position so we'll stop anyways.
-
-	return (from - targetPos).CompareLength(SHORT_PATH_GOAL_RADIUS) <= 0;
 }
 
 bool CCmpUnitMotion::PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const
@@ -1285,8 +1273,7 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (!cmpPathfinder)
 		return;
 
-	// wrapping around on m_Tries isn't really a problem so don't check for overflow.
-	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * ++m_Tries, goal.DistanceToPoint(from));
+	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * (m_FailedPathComputations + 1), goal.DistanceToPoint(from));
 	if (goal.type != PathGoal::POINT && searchRange < goal.hw && searchRange < SHORT_PATH_MIN_SEARCH_RANGE * 2)
 		searchRange = std::min(goal.hw, SHORT_PATH_MIN_SEARCH_RANGE * 2);
 	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
@@ -1311,7 +1298,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		return false;
 
 	m_MoveRequest = moveRequest;
-	m_Tries = 0;
+	m_FailedPathComputations = 0;
 
 	BeginPathing(cmpPosition->GetPosition2D(), goal);
 
@@ -1334,7 +1321,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		return false;
 
 	m_MoveRequest = moveRequest;
-	m_Tries = 0;
+	m_FailedPathComputations = 0;
 
 	BeginPathing(cmpPosition->GetPosition2D(), goal);
 
@@ -1354,12 +1341,10 @@ void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, e
 		return;
 
 	m_MoveRequest = moveRequest;
-	m_Tries = 0;
+	m_FailedPathComputations = 0;
 
 	BeginPathing(cmpPosition->GetPosition2D(), goal);
 }
-
-
 
 void CCmpUnitMotion::RenderPath(const WaypointPath& path, std::vector<SOverlayLine>& lines, CColor color)
 {
