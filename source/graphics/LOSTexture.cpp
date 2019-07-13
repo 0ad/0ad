@@ -49,6 +49,7 @@ The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 
 
 // Blur with a NxN filter, where N = g_BlurSize must be an odd number.
+// Keep it in relation to the number of impassable tiles in MAP_EDGE_TILES.
 static const size_t g_BlurSize = 7;
 
 // Alignment (in bytes) of the pixel data passed into glTexSubImage2D.

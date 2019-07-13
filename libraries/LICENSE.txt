@@ -8,6 +8,9 @@ win32/ contains headers and precompiled static libs for Windows builds.
   osx/build-osx-libs.sh
     MIT
 
+  osx/patches
+    see license of applicable library
+
   source/cxxtest-4.4
     LGPL v3 - see COPYING
 
@@ -43,6 +46,9 @@ win32/ contains headers and precompiled static libs for Windows builds.
 
   win32/libpng
     libpng license
+
+  win32/libsodium
+    ISC license
 
   win32/libxml2
     MIT

@@ -21,11 +21,6 @@ const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
 
-/**
- * Number of impassable, unexplorable tiles at the map border.
- */
-const MAP_BORDER_WIDTH = 3;
-
 const g_DamageTypes = new DamageTypes();
 
 /**
