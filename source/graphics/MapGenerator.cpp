@@ -131,22 +131,7 @@ bool CMapGeneratorWorker::Run()
 	// Replace RNG with a seeded deterministic function
 	m_ScriptInterface->ReplaceNondeterministicRNG(m_MapGenRNG);
 
-	// Functions for RMS
-	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
-	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
-	m_ScriptInterface->RegisterFunction<JS::Value, std::wstring, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
-	m_ScriptInterface->RegisterFunction<JS::Value, std::string, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
-	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
-	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
-	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
-	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
-	m_ScriptInterface->RegisterFunction<int, CMapGeneratorWorker::GetTerrainTileSize>("GetTerrainTileSize");
-	m_ScriptInterface->SetGlobal("MAP_BORDER_WIDTH", static_cast<int>(MAP_EDGE_TILES));
-
-	// Globalscripts may use VFS script functions
-	m_ScriptInterface->LoadGlobalScripts();
+	RegisterScriptFunctions();
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
@@ -190,6 +175,39 @@ bool CMapGeneratorWorker::Run()
 	return true;
 }
 
+void CMapGeneratorWorker::RegisterScriptFunctions()
+{
+	// VFS
+	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
+
+	// Globalscripts may use VFS script functions
+	m_ScriptInterface->LoadGlobalScripts();
+
+	// File loading
+	m_ScriptInterface->RegisterFunction<bool, VfsPath, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
+	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
+	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
+
+	// Progression
+	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
+	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
+
+	// Template functions
+	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
+	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
+
+	// Engine constants
+
+	// Length of one tile of the terrain grid in metres.
+	// Useful to transform footprint sizes to the tilegrid coordinate system.
+	m_ScriptInterface->SetGlobal("TERRAIN_TILE_SIZE", static_cast<int>(TERRAIN_TILE_SIZE));
+
+	// Number of impassable tiles at the map border
+	m_ScriptInterface->SetGlobal("MAP_BORDER_WIDTH", static_cast<int>(MAP_EDGE_TILES));
+}
+
 int CMapGeneratorWorker::GetProgress()
 {
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
@@ -202,7 +220,7 @@ shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
 	return m_MapData;
 }
 
-bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
+bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& name)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	return self->LoadScripts(name);
@@ -259,12 +277,7 @@ std::vector<std::string> CMapGeneratorWorker::FindActorTemplates(ScriptInterface
 	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, ACTOR_TEMPLATES);
 }
 
-int CMapGeneratorWorker::GetTerrainTileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return TERRAIN_TILE_SIZE;
-}
-
-bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
+bool CMapGeneratorWorker::LoadScripts(const VfsPath& libraryName)
 {
 	// Ignore libraries that are already loaded
 	if (m_LoadedLibraries.find(libraryName) != m_LoadedLibraries.end())
@@ -273,7 +286,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	// Mark this as loaded, to prevent it recursively loading itself
 	m_LoadedLibraries.insert(libraryName);
 
-	VfsPath path = L"maps/random/" + libraryName + L"/";
+	VfsPath path = VfsPath(L"maps/random/") / libraryName / VfsPath();
 	VfsPaths pathnames;
 
 	// Load all scripts in mapgen directory
@@ -302,12 +315,12 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	return true;
 }
 
-JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& vfsPath)
+JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
 {
 	std::vector<u16> heightmap;
-	if (LoadHeightmapImageVfs(vfsPath, heightmap) != INFO::OK)
+	if (LoadHeightmapImageVfs(filename, heightmap) != INFO::OK)
 	{
-		LOGERROR("Could not load heightmap file '%s'", utf8_from_wstring(vfsPath).c_str());
+		LOGERROR("Could not load heightmap file '%s'", filename.string8());
 		return JS::UndefinedValue();
 	}
 
@@ -320,7 +333,7 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 }
 
 // See CMapReader::UnpackTerrain, CMapReader::ParseTerrain for the reordering
-JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const std::string& filename)
+JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
 {
 	if (!VfsFileExists(filename))
 		throw PSERROR_File_OpenFailed();
@@ -375,8 +388,7 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	JSContext* cx = self->m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	JS::RootedValue returnValue(cx);
-	self->m_ScriptInterface->Eval("({})", &returnValue);
+	JS::RootedValue returnValue(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
 	self->m_ScriptInterface->SetProperty(returnValue, "height", heightmap);
 	self->m_ScriptInterface->SetProperty(returnValue, "textureNames", textureNames);
 	self->m_ScriptInterface->SetProperty(returnValue, "textureIDs", textureIDs);
