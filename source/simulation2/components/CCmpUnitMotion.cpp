@@ -128,7 +128,7 @@ public:
 		enum Type {
 			SHORT_PATH,
 			LONG_PATH
-		} m_Type;
+		} m_Type = SHORT_PATH; // Pick some default value to avoid UB.
 
 		void clear() { m_Ticket = 0; }
 	} m_ExpectedPathTicket;
