@@ -1399,53 +1399,25 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function() {
+				// Switch back to idle animation to guarantee we won't
+				// get stuck with an incorrect animation
+				this.SelectAnimation("idle");
+
 				if (this.formationController)
 				{
 					this.SetNextState("FORMATIONMEMBER.IDLE");
 					return true;
 				}
 
-				// Switch back to idle animation to guarantee we won't
-				// get stuck with an incorrect animation
-				var animationName = "idle";
-				this.SelectAnimation(animationName);
-
-				// If we have some orders, it is because we are in an intermediary state
-				// from FinishOrder (SetNextState("IDLE") is only executed when we get
-				// a ProcessMessage), and thus we should not start another order which could
-				// put us in a weird state
-				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
-					return false;
-
-				// If the unit is guarding/escorting, go back to its duty
-				if (this.isGuardOf)
-				{
-					this.Guard(this.isGuardOf, false);
-					return true;
-				}
-
-				// The GUI and AI want to know when a unit is idle, but we don't
-				// want to send frequent spurious messages if the unit's only
-				// idle for an instant and will quickly go off and do something else.
-				// So we'll set a timer here and only report the idle event if we
-				// remain idle
-				this.StartTimer(1000);
-
-				// If a unit can heal and attack we first want to heal wounded units,
-				// so check if we are a healer and find whether there's anybody nearby to heal.
-				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
-				// If anyone in sight gets hurt that will be handled via LosHealRangeUpdate.
-				if (this.IsHealer() && this.FindNewHealTargets())
-					return true; // (abort the FSM transition since we may have already switched state)
-
-				// If we entered the idle state we must have nothing better to do,
-				// so immediately check whether there's anybody nearby to attack.
-				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
-				if (this.FindNewTargets())
-					return true; // (abort the FSM transition since we may have already switched state)
-
-				// Nobody to attack - stay in idle
-				return false;
+				// Idle is the default state. If units try, from the IDLE.enter sub-state, to
+				// begin another order, and that order fails (calling FinishOrder), they might
+				// end up in an infinite loop. To avoid this, all methods that could put the unit in
+				// a new state are done on the next turn.
+				// This wastes a turn but avoids infinite loops.
+				// Further, the GUI and AI want to know when a unit is idle,
+				// but sending this info in Idle.enter will send spurious messages.
+				// Pick 100 to execute on the next turn in SP and MP.
+				this.StartTimer(100);
 			},
 
 			"leave": function() {
@@ -1477,6 +1449,26 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"Timer": function(msg) {
+				// If the unit is guarding/escorting, go back to its duty
+				if (this.isGuardOf)
+				{
+					this.Guard(this.isGuardOf, false);
+					return;
+				}
+
+				// If a unit can heal and attack we first want to heal wounded units,
+				// so check if we are a healer and find whether there's anybody nearby to heal.
+				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
+				// If anyone in sight gets hurt that will be handled via LosHealRangeUpdate.
+				if (this.IsHealer() && this.FindNewHealTargets())
+					return; // (abort the FSM transition since we may have already switched state)
+
+				// If we entered the idle state we must have nothing better to do,
+				// so immediately check whether there's anybody nearby to attack.
+				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
+				if (this.FindNewTargets())
+					return; // (abort the FSM transition since we may have already switched state)
+
 				if (!this.isIdle)
 				{
 					this.isIdle = true;
@@ -3480,10 +3472,8 @@ UnitAI.prototype.FinishOrder = function()
 	this.orderQueue = [];
 	this.order = undefined;
 
-	// Switch to IDLE as a default state, but only if our current state is not IDLE
-	// as this can trigger infinite loops by entering IDLE repeatedly.
-	if (!this.GetCurrentState().endsWith(".IDLE"))
-		this.SetNextState("IDLE");
+	// Switch to IDLE as a default state.
+	this.SetNextState("IDLE");
 
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
