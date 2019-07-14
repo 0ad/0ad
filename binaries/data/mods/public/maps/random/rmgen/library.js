@@ -29,12 +29,6 @@ const g_DamageTypes = new DamageTypes();
 const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE; // Engine limit, Roughly 700 meters
 const MIN_HEIGHT = - SEA_LEVEL;
 
-/**
- * Length of one tile of the terrain grid in metres.
- * Useful to transform footprint sizes of templates to the coordinate system used by getMapSize.
- */
-const TERRAIN_TILE_SIZE = Engine.GetTerrainTileSize();
-
 const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
 
 /**
