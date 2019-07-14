@@ -997,6 +997,11 @@ void ScenarioEditor::OnHelp(wxCommandEvent& event)
 void ScenarioEditor::OnMenuOpen(wxMenuEvent& event)
 {
     // This could be done far more elegantly if wxMenuItem had changeable id.
+    // Ignore wxMSW system menu events, see https://trac.wildfiregames.com/ticket/5501
+    wxMenu* menu = event.GetMenu();
+    if (!menu)
+        return;
+
     wxMenu* pasteMenuItem = NULL;
     event.GetMenu()->FindItem(ID_Paste, &pasteMenuItem);
 
