@@ -529,7 +529,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		this.RememberTargetPosition();
-		this.order.data.initPos = this.order.data.lastPos;
+		if (!this.order.data.initPos)
+			this.order.data.initPos = this.order.data.lastPos;
 
 		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
