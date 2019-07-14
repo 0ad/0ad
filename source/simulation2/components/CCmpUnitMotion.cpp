@@ -70,6 +70,13 @@ static const entity_pos_t LONG_PATH_MIN_DIST = entity_pos_t::FromInt(TERRAIN_TIL
 static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
 
 /**
+ * To avoid recomputing paths too often, have some leeway for target range checks
+ * based on our distance to the target. Increase that incertainty by one navcell
+ * for every this many tiles of distance.
+ */
+static const entity_pos_t TARGET_UNCERTAINTY_MULTIPLIER = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
+
+/**
  * When we fail more than this many path computations in a row, inform other components that the move will fail.
  * Experimentally, this number needs to be somewhat high or moving groups of units will lead to stuck units.
  * However, too high means units will look idle for a long time when they are failing to move.
@@ -122,6 +129,11 @@ public:
 	// When this gets above MAX_FAILED_PATH_COMPUTATIONS, inform other components
 	// that the move will likely fail.
 	u8 m_FailedPathComputations = 0;
+
+	// If true, PathingUpdateNeeded returns false always.
+	// This is an optimisation against unreachable goals, where otherwise we would always
+	// be recomputing a path.
+	bool m_PretendLongPathIsCorrect = false;
 
 	struct Ticket {
 		u32 m_Ticket = 0; // asynchronous request ID we're waiting for, or 0 if none
@@ -232,6 +244,7 @@ public:
 		SerializeU8_Enum<Ticket::Type, Ticket::Type::LONG_PATH>()(serialize, "ticket type", m_ExpectedPathTicket.m_Type);
 
 		serialize.NumberU8("failed path computations", m_FailedPathComputations, 0, 255);
+		serialize.Bool("pretendLongPathIsCorrect", m_PretendLongPathIsCorrect);
 
 		SerializeU8_Enum<MoveRequest::Type, MoveRequest::Type::OFFSET>()(serialize, "target type", m_MoveRequest.m_Type);
 		serialize.NumberU32_Unbounded("target entity", m_MoveRequest.m_Entity);
@@ -638,9 +651,13 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		return;
 	}
 
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+
 	if (ticketType == Ticket::LONG_PATH)
 	{
 		m_LongPath = path;
+
+		m_PretendLongPathIsCorrect = false;
 
 		// If there's no waypoints then we couldn't get near the target.
 		// Sort of hack: Just try going directly to the goal point instead
@@ -654,6 +671,16 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			if (ComputeTargetPosition(targetPos))
 				m_LongPath.m_Waypoints.emplace_back(Waypoint{ targetPos.X, targetPos.Y });
 		}
+		// If this new path won't put us in range, it's highly likely that we are going somewhere unreachable.
+		// This means we will try to recompute the path every turn.
+		// To avoid this, act as if our current path leads us to the correct destination.
+		// (we will still fail the move when we arrive to the best possible position, and if we were blocked by
+		// an obstruction and it goes away we will notice when getting there as having no waypoint goes through
+		// HandleObstructedMove, so this is safe).
+		// TODO: For now, we won't warn components straight away as that could lead to units idling earlier than expected,
+		// but it should be done someday when the message can differentiate between different failure causes.
+		else if (PathingUpdateNeeded(pos))
+			m_PretendLongPathIsCorrect = true;
 		return;
 	}
 
@@ -666,8 +693,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	// if our current offset is unreachable.
 	if (!IsFormationMember())
 		IncrementFailedPathComputationAndMaybeNotify();
-
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	// If there's no waypoints then we couldn't get near the target
 	// If we're globally following a long path, try to remove the next waypoint,
@@ -726,7 +751,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	// If we're chasing a potentially-moving unit and are currently close
 	// enough to its current position, and we can head in a straight line
 	// to it, then throw away our current path and go straight to it
-	TryGoingStraightToTarget(initialPos);
+	bool wentStraight = TryGoingStraightToTarget(initialPos);
 
 	bool wasObstructed = PerformMove(dt, m_ShortPath, m_LongPath, pos);
 
@@ -753,7 +778,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 	// We may need to recompute our path sometimes (e.g. if our target moves).
 	// Since we request paths asynchronously anyways, this does not need to be done before moving.
-	if (PathingUpdateNeeded(pos))
+	if (!wentStraight && PathingUpdateNeeded(pos))
 	{
 		PathGoal goal;
 		if (ComputeGoal(goal, m_MoveRequest))
@@ -995,6 +1020,9 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	if (!ComputeTargetPosition(targetPos))
 		return false;
 
+	if (m_PretendLongPathIsCorrect)
+		return false;
+
 	if (PossiblyAtDestination())
 		return false;
 
@@ -1023,7 +1051,7 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	}
 	else
 	{
-		const Waypoint& lastWaypoint = m_ShortPath.m_Waypoints.empty() ? m_LongPath.m_Waypoints.front() : m_ShortPath.m_Waypoints.front();
+		const Waypoint& lastWaypoint = m_LongPath.m_Waypoints.empty() ? m_ShortPath.m_Waypoints.front() : m_LongPath.m_Waypoints.front();
 		shape.x = lastWaypoint.x;
 		shape.z = lastWaypoint.z;
 	}
@@ -1031,8 +1059,17 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	ENSURE(cmpObstructionManager);
 
-	if (cmpObstructionManager->AreShapesInRange(shape, estimatedTargetShape,
-	      m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false))
+	// Increase the ranges with distance, to avoid recomputing every turn against units that are moving and far-away for example.
+	entity_pos_t distance = (from - CFixedVector2D(estimatedTargetShape.x, estimatedTargetShape.z)).Length();
+	// When in straight-path distance, we want perfect detection.
+	distance = std::max(distance - DIRECT_PATH_RANGE, entity_pos_t::Zero());
+
+	// TODO: it could be worth computing this based on time to collision instead of linear distance.
+	entity_pos_t minRange = std::max(m_MoveRequest.m_MinRange - distance / TARGET_UNCERTAINTY_MULTIPLIER, entity_pos_t::Zero());
+	entity_pos_t maxRange = m_MoveRequest.m_MaxRange < entity_pos_t::Zero() ? m_MoveRequest.m_MaxRange :
+	    m_MoveRequest.m_MaxRange + distance / TARGET_UNCERTAINTY_MULTIPLIER;
+
+	if (cmpObstructionManager->AreShapesInRange(shape, estimatedTargetShape, minRange, maxRange, false))
 		return false;
 
 	return true;
@@ -1299,6 +1336,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 
 	m_MoveRequest = moveRequest;
 	m_FailedPathComputations = 0;
+	m_PretendLongPathIsCorrect = false;
 
 	BeginPathing(cmpPosition->GetPosition2D(), goal);
 
@@ -1322,6 +1360,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 
 	m_MoveRequest = moveRequest;
 	m_FailedPathComputations = 0;
+	m_PretendLongPathIsCorrect = false;
 
 	BeginPathing(cmpPosition->GetPosition2D(), goal);
 
@@ -1342,6 +1381,7 @@ void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, e
 
 	m_MoveRequest = moveRequest;
 	m_FailedPathComputations = 0;
+	m_PretendLongPathIsCorrect = false;
 
 	BeginPathing(cmpPosition->GetPosition2D(), goal);
 }
