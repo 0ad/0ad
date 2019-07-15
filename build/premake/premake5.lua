@@ -33,6 +33,30 @@ newoption { trigger = "libdir", description = "Directory for libraries (typicall
 -- Root directory of project checkout relative to this .lua file
 rootdir = "../.."
 
+-- generate code from protobuf
+if os.istarget("windows") then
+	-- TODO
+else
+    -- Generate cpp files
+    protodir = rootdir .. "/source/rlinterface/proto/"
+    gencppfiles = "protoc --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` RLAPI.proto && protoc --cpp_out=. RLAPI.proto"
+    updatefilenames = "mv RLAPI.pb.{cc,cpp} && mv RLAPI.grpc.pb.{cc,cpp}"
+    os.execute("cd " ..  protodir .. " && " .. gencppfiles .. " && " .. updatefilenames)
+
+    -- Generate python files
+    clientsdir = rootdir .. "/source/tools/clients/"
+    preparepython = "mkdir -p source/tools/clients/python/zero_ad/proto/zero_ad && cp source/rlinterface/proto/RLAPI.proto source/tools/clients/python/zero_ad"
+    genpythonfiles = "python -m grpc_tools.protoc --python_out=python --grpc_python_out=python -Ipython python/zero_ad/RLAPI.proto"
+
+    os.execute("cd " .. rootdir .. " && " .. preparepython)
+
+    _, _, exitcode = os.execute("cd " .. clientsdir .. " && " .. genpythonfiles)
+    if exitcode > 0 then
+        error("Unable to generate GRPC files for Python client. Is grpc-tools installed?")
+    end
+end
+
+
 dofile("extern_libs5.lua")
 
 -- detect compiler for non-Windows
