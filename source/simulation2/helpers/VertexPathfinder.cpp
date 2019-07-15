@@ -581,6 +581,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 		Vertex vert;
 		vert.status = Vertex::UNEXPLORED;
 		vert.quadInward = QUADRANT_NONE;
+		vert.quadOutward = QUADRANT_ALL;
 
 		vert.p.X = center.X - hd0.Dot(u);
 		vert.p.Y = center.Y + hd0.Dot(v);
