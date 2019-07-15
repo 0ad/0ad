@@ -161,6 +161,8 @@ function TestFormationExiting(mode)
 
 	controllerFormation.Disband();
 
+	unitAI.UnitFsm.ProcessMessage(unitAI, { "type": "Timer" });
+
 	if (mode == 0)
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.IDLE");
 	else if (mode == 1)

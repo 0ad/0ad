@@ -581,29 +581,44 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 		Vertex vert;
 		vert.status = Vertex::UNEXPLORED;
 		vert.quadInward = QUADRANT_NONE;
-		vert.quadOutward = QUADRANT_ALL;
 
 		vert.p.X = center.X - hd0.Dot(u);
 		vert.p.Y = center.Y + hd0.Dot(v);
-		if (aa) vert.quadInward = QUADRANT_BR;
+		if (aa)
+		{
+			vert.quadInward = QUADRANT_BR;
+			vert.quadOutward = (~vert.quadInward) & 0xF;
+		}
 		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
 			m_Vertexes.push_back(vert);
 
 		vert.p.X = center.X - hd1.Dot(u);
 		vert.p.Y = center.Y + hd1.Dot(v);
-		if (aa) vert.quadInward = QUADRANT_TR;
+		if (aa)
+		{
+			vert.quadInward = QUADRANT_TR;
+			vert.quadOutward = (~vert.quadInward) & 0xF;
+		}
 		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
 			m_Vertexes.push_back(vert);
 
 		vert.p.X = center.X + hd0.Dot(u);
 		vert.p.Y = center.Y - hd0.Dot(v);
-		if (aa) vert.quadInward = QUADRANT_TL;
+		if (aa)
+		{
+			vert.quadInward = QUADRANT_TL;
+			vert.quadOutward = (~vert.quadInward) & 0xF;
+		}
 		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
 			m_Vertexes.push_back(vert);
 
 		vert.p.X = center.X + hd1.Dot(u);
 		vert.p.Y = center.Y - hd1.Dot(v);
-		if (aa) vert.quadInward = QUADRANT_BL;
+		if (aa)
+		{
+			vert.quadInward = QUADRANT_BL;
+			vert.quadOutward = (~vert.quadInward) & 0xF;
+		}
 		if (vert.p.X >= rangeXMin && vert.p.Y >= rangeZMin && vert.p.X <= rangeXMax && vert.p.Y <= rangeZMax)
 			m_Vertexes.push_back(vert);
 
@@ -637,7 +652,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	}
 
 	// Clip out vertices that are inside an edgeSquare (i.e. trivially unreachable)
-	for (size_t i = 0; i < m_EdgeSquares.size(); ++i)
+	for (size_t i = 2; i < m_EdgeSquares.size(); ++i)
 	{
 		// If the start point is inside the square, ignore it
 		if (start.p.X >= m_EdgeSquares[i].p0.X &&
@@ -720,8 +735,8 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 				// To prevent integer overflows later on, we need to ensure all vertexes are
 				// 'close' to the source. The goal might be far away (not a good idea but
 				// sometimes it happens), so clamp it to the current search range
-				npos.X = clamp(npos.X, rangeXMin, rangeXMax);
-				npos.Y = clamp(npos.Y, rangeZMin, rangeZMax);
+				npos.X = clamp(npos.X, rangeXMin + EDGE_EXPAND_DELTA, rangeXMax - EDGE_EXPAND_DELTA);
+				npos.Y = clamp(npos.Y, rangeZMin + EDGE_EXPAND_DELTA, rangeZMax - EDGE_EXPAND_DELTA);
 			}
 			else
 				npos = m_Vertexes[n].p;
@@ -734,7 +749,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 			if (m_Vertexes[curr.id].p.X >= npos.X && m_Vertexes[curr.id].p.Y <= npos.Y) quad |= QUADRANT_BR;
 
 			// Check that the new vertex is in the right quadrant for the old vertex
-			if (!(m_Vertexes[curr.id].quadOutward & quad))
+			if (!(m_Vertexes[curr.id].quadOutward & quad) && curr.id != START_VERTEX_ID)
 			{
 				// Hack: Always head towards the goal if possible, to avoid missing it if it's
 				// inside another unit
@@ -765,13 +780,6 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 					m_Vertexes[n].h = request.goal.DistanceToPoint(npos);
 					m_Vertexes[n].pred = curr.id;
 
-					// If this is an axis-aligned shape, the path must continue in the same quadrant
-					// direction (but not go into the inside of the shape).
-					// Hack: If we started *inside* a shape then perhaps headed to its corner (e.g. the unit
-					// was very near another unit), don't restrict further pathing.
-					if (m_Vertexes[n].quadInward && !(curr.id == START_VERTEX_ID && g < fixed::FromInt(8)))
-						m_Vertexes[n].quadOutward = ((m_Vertexes[n].quadInward) & quad) & 0xF;
-
 					if (n == GOAL_VERTEX_ID)
 						m_Vertexes[n].p = npos; // remember the new best goal position
 
@@ -796,11 +804,6 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 					fixed gprev = m_Vertexes[n].g;
 					m_Vertexes[n].g = g;
 					m_Vertexes[n].pred = curr.id;
-
-					// If this is an axis-aligned shape, the path must continue in the same quadrant
-					// direction (but not go into the inside of the shape).
-					if (m_Vertexes[n].quadInward)
-						m_Vertexes[n].quadOutward = ((m_Vertexes[n].quadInward) & quad) & 0xF;
 
 					if (n == GOAL_VERTEX_ID)
 						m_Vertexes[n].p = npos; // remember the new best goal position

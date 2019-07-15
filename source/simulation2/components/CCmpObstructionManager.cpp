@@ -1328,7 +1328,7 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = ((it->second.flags & FLAG_MOVING) ? movingColor : defaultColor);
-			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.clearance.ToFloat()*2, it->second.clearance.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
+			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.clearance.ToFloat(), it->second.clearance.ToFloat(), 0, m_DebugOverlayLines.back(), true);
 		}
 
 		for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)

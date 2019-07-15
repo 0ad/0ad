@@ -521,12 +521,12 @@ m.HQ.prototype.checkEvents = function(gameState, events)
 			}
 			if (decayToGaia)
 				continue;
-			let ratioMax = 0.70 + randFloat(0., 0.1);
+			let ratioMax = 0.7 + randFloat(0, 0.1);
 			for (let evt of events.Attacked)
 			{
 				if (ent.id() != evt.target)
 					continue;
-				ratioMax = 0.85 + randFloat(0., 0.1);
+				ratioMax = 0.85 + randFloat(0, 0.1);
 				break;
 			}
 			if (captureRatio > ratioMax)
