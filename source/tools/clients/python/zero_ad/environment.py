@@ -9,7 +9,6 @@ from itertools import cycle
 
 class ZeroAD():
     def __init__(self, uri='localhost:50050'):
-        # TODO: If uri is none, spin up an instance ourselves!
         channel = grpc.insecure_channel(uri)
         self.stub = RLAPIStub(channel)
         self.current_state = None
