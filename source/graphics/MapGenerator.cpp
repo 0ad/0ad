@@ -188,8 +188,9 @@ void CMapGeneratorWorker::RegisterScriptFunctions()
 	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
 	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
 
-	// Progression
+	// Progression and profiling
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
+	m_ScriptInterface->RegisterFunction<double, CMapGeneratorWorker::GetMicroseconds>("GetMicroseconds");
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 
 	// Template functions
@@ -212,6 +213,11 @@ int CMapGeneratorWorker::GetProgress()
 {
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_Progress;
+}
+
+double CMapGeneratorWorker::GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return JS_Now();
 }
 
 shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
