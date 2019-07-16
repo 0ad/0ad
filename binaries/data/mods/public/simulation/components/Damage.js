@@ -113,7 +113,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 	// Do this first in case the direct hit kills the target
 	if (data.isSplash)
 	{
-		this.CauseSplashDamage({
+		this.CauseDamageOverArea({
 			"attacker": data.attacker,
 			"origin": Vector2D.from3D(data.position),
 			"radius": data.radius,
@@ -184,7 +184,7 @@ Damage.prototype.MissileHit = function(data, lateness)
  * @param {Object}   data.splashBonus - The attack bonus template from the attacker.
  * @param {number[]} data.playersToDamage - The array of player id's to damage.
  */
-Damage.prototype.CauseSplashDamage = function(data)
+Damage.prototype.CauseDamageOverArea = function(data)
 {
 	// Get nearby entities and define variables
 	let nearEnts = this.EntitiesNearPoint(data.origin, data.radius, data.playersToDamage);

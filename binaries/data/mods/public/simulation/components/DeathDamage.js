@@ -79,7 +79,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 
 	let radius = ApplyValueModificationsToEntity("DeathDamage/Range", +this.template.Range, this.entity);
 
-	cmpDamage.CauseSplashDamage({
+	cmpDamage.CauseDamageOverArea({
 		"attacker": this.entity,
 		"origin": pos,
 		"radius": radius,

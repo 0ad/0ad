@@ -212,7 +212,7 @@ function TestLinearSplashDamage()
 		}
 	});
 
-	cmpDamage.CauseSplashDamage(data);
+	cmpDamage.CauseDamageOverArea(data);
 	TS_ASSERT(hitEnts.has(60));
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT(hitEnts.has(62));
@@ -228,7 +228,7 @@ function TestLinearSplashDamage()
 		}
 	});
 
-	cmpDamage.CauseSplashDamage(data);
+	cmpDamage.CauseDamageOverArea(data);
 	TS_ASSERT(hitEnts.has(60));
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT(hitEnts.has(62));
@@ -310,7 +310,7 @@ function TestCircularSplashDamage()
 		}
 	});
 
-	cmpDamage.CauseSplashDamage({
+	cmpDamage.CauseDamageOverArea({
 		"attacker": 50,
 		"origin": new Vector2D(3, 4),
 		"radius": radius,
