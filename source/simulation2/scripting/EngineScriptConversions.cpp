@@ -32,6 +32,7 @@
 #include "simulation2/system/ParamNode.h"
 
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
+#define FAILVOID(msg) STMT(JS_ReportError(cx, msg))
 
 template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::MutableHandleValue ret, IComponent* const& val)
 {
@@ -180,29 +181,19 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 {
 	JSAutoRequest rq(cx);
 
-	// apply the Vector3D prototype to the return value;
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
-	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR3DPROTO).toObject());
-	JS::RootedObject obj(cx, JS_NewObjectWithGivenProto(cx, nullptr, proto));
+	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
+	JS::RootedValue valueVector3D(cx);
+	if (!JS_GetProperty(cx, global, "Vector3D", &valueVector3D))
+		FAILVOID("Failed to get Vector3D constructor");
 
-	if (!obj)
-	{
-		ret.setUndefined();
-		return;
-	}
+	JS::AutoValueArray<3> args(cx);
+	args[0].setNumber(val.X.ToDouble());
+	args[1].setNumber(val.Y.ToDouble());
+	args[2].setNumber(val.Z.ToDouble());
 
-	JS::RootedValue x(cx);
-	JS::RootedValue y(cx);
-	JS::RootedValue z(cx);
-	ToJSVal(cx, &x, val.X);
-	ToJSVal(cx, &y, val.Y);
-	ToJSVal(cx, &z, val.Z);
-
-	JS_SetProperty(cx, obj, "x", x);
-	JS_SetProperty(cx, obj, "y", y);
-	JS_SetProperty(cx, obj, "z", z);
-
-	ret.setObject(*obj);
+	if (!JS::Construct(cx, valueVector3D, args, ret))
+		FAILVOID("Failed to construct Vector3D object");
 }
 
 template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::HandleValue v, CFixedVector2D& out)
@@ -227,25 +218,18 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 {
 	JSAutoRequest rq(cx);
 
-	// apply the Vector2D prototype to the return value
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
-	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR2DPROTO).toObject());
-	JS::RootedObject obj(cx, JS_NewObjectWithGivenProto(cx, nullptr, proto));
-	if (!obj)
-	{
-		ret.setUndefined();
-		return;
-	}
+	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
+	JS::RootedValue valueVector2D(cx);
+	if (!JS_GetProperty(cx, global, "Vector2D", &valueVector2D))
+		FAILVOID("Failed to get Vector2D constructor");
 
-	JS::RootedValue x(cx);
-	JS::RootedValue y(cx);
-	ToJSVal(cx, &x, val.X);
-	ToJSVal(cx, &y, val.Y);
+	JS::AutoValueArray<2> args(cx);
+	args[0].setNumber(val.X.ToDouble());
+	args[1].setNumber(val.Y.ToDouble());
 
-	JS_SetProperty(cx, obj, "x", x);
-	JS_SetProperty(cx, obj, "y", y);
-
-	ret.setObject(*obj);
+	if (!JS::Construct(cx, valueVector2D, args, ret))
+		FAILVOID("Failed to construct Vector2D object");
 }
 
 template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u8>& val)

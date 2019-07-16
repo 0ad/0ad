@@ -429,8 +429,3 @@ Vector3D.div = function(v, f)
 {
 	return new Vector3D(v.x / f, v.y / f, v.z / f);
 };
-
-
-// make the prototypes easily accessible to C++
-const Vector2Dprototype = Vector2D.prototype;
-const Vector3Dprototype = Vector3D.prototype;
