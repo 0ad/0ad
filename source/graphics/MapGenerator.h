@@ -147,9 +147,14 @@ private:
 	static JS::Value LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename);
 
 	/**
-	 * Sets the progress bar, but only within the boundaries of the time that the loading screen consumes.
+	 * Sets the map generation progress, which is one of multiple stages determining the loading screen progress.
 	 */
 	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
+
+	/**
+	 * Microseconds since the epoch.
+	 */
+	static double GetMicroseconds(ScriptInterface::CxPrivate* pCxPrivate);
 
 	/**
 	 * Return the template data of the given template name.

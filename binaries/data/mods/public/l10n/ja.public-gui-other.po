@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Asakura, 2015,2017
+# Asakura, 2015,2017,2019
 # Kanetaka Suto, 2014-2016
 # karubabu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014,2016
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-10 02:52+0000\n"
+"Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +89,7 @@ msgstr "未割り当てのホットキー: %(hotkeyName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "%(hotkey)s を押してプレイヤー名を自動決定します。"
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -108,7 +108,7 @@ msgstr "読込みを中止しました"
 
 #: gui/common/functions_utility.js:30
 msgid "Gaia"
-msgstr "無所属"
+msgstr "野生"
 
 #: gui/common/functions_utility.js:103
 msgctxt "map selection"
@@ -525,17 +525,17 @@ msgstr "サーバーとの接続が切断状態です(%(seconds)s 秒)"
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s は接続が切断されました (%(seconds)s秒)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "サーバとの接続が切断されました (%(milliseconds)sミリ秒)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "%(player)s との接続が切断されました (%(milliseconds)sミリ秒)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -545,35 +545,35 @@ msgstr ""
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "ホストがゲームを終了しました"
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "ネットワークプロトコルのバージョン不適合"
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "ゲーム読込み中です。後ほどやり直してください"
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "ゲームはすでに始まっています。観戦はできません"
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "あなたは跳ね除けられました (kick)"
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "あなたは締め出されました (ban)"
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "そのプレイヤー名は既に使用されています。切断された場合、数秒後に再試行してください"
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "サーバーが満員です"
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -695,7 +695,7 @@ msgstr "短期戦"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "参加プレイヤー数と場所が固定されたマップです。他の設定を選択してください。"
 
 #: gui/common/settings.js:226
 msgctxt "map"
