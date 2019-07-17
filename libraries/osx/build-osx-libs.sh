@@ -696,6 +696,7 @@ then
           --with-included-libtasn1 \
           --without-p11-kit \
           --disable-tests \
+          --disable-nls \
     && make ${JOBS} && make install) || die "GnuTLS build failed"
   popd
   touch .already-built
