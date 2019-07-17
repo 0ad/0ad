@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -541,7 +541,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 		// some DDS tools mistakenly store the total size of all levels,
 		// so allow values close to that as well
 		const ssize_t totalSize = ssize_t(pitch*stored_h*1.333333f);
-		if(sd_pitch_or_size != pitch*stored_h && abs(ssize_t(sd_pitch_or_size)-totalSize) > 64)
+		if(sd_pitch_or_size != pitch*stored_h && std::abs(ssize_t(sd_pitch_or_size)-totalSize) > 64)
 			DEBUG_WARN_ERR(ERR::CORRUPTED);
 	}
 	// note: both flags set would be invalid; no need to check for that,
