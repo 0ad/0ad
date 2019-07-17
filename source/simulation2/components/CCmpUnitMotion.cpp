@@ -1197,18 +1197,24 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 		return true;
 	}
 
-	CFixedVector2D halfSize(targetObstruction.hw, targetObstruction.hh);
+	entity_pos_t circleRadius = CFixedVector2D(targetObstruction.hw, targetObstruction.hh).Length();
 
+	// TODO: because we cannot move to rounded rectangles, we have to make conservative approximations.
+	// This means we might end up in a situation where cons(max-range) < min range < max range < cons(min-range)
+	// When going outside of the min-range or inside the max-range, the unit will still go through the correct range
+	// but if it moves fast enough, this might not be picked up by PossiblyAtDestination().
+	// Fixing this involves moving to rounded rectangles, or checking more often in PerformMove().
+	// In the meantime, one should avoid that 'Speed over a turn' > MaxRange - MinRange, in case where
+	// min-range is not 0 and max-range is not infinity.
 	if (distance < moveRequest.m_MinRange)
 	{
-		entity_pos_t circleRadius = halfSize.Length();
-
 		// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
 		// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
 		entity_pos_t goalDistance = moveRequest.m_MinRange + m_Clearance * 3 / 2;
 
 		if (ShouldTreatTargetAsCircle(moveRequest.m_MinRange, circleRadius))
 		{
+			// We are safely away from the obstruction itself if we are away from the circumscribing circle
 			out.type = PathGoal::INVERTED_CIRCLE;
 			out.hw = circleRadius + goalDistance;
 		}
@@ -1221,11 +1227,11 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 	}
 	else if (moveRequest.m_MaxRange >= fixed::Zero() && distance > moveRequest.m_MaxRange)
 	{
-		entity_pos_t circleRadius = halfSize.Length();
-
 		if (ShouldTreatTargetAsCircle(moveRequest.m_MaxRange, circleRadius))
 		{
 			entity_pos_t goalDistance = moveRequest.m_MaxRange;
+			// We must go in-range of the inscribed circle, not the circumscribing circle.
+			circleRadius = std::min(targetObstruction.hw, targetObstruction.hh);
 
 			out.type = PathGoal::CIRCLE;
 			out.hw = circleRadius + goalDistance;
