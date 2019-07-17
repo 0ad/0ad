@@ -119,7 +119,7 @@ download_lib()
 
   if [ ! -e $filename ]; then
     echo "Downloading $filename"
-    curl -L -o ${filename} ${url}${filename} || die "Download of $url$filename failed"
+    curl -fLo ${filename} ${url}${filename} || die "Download of $url$filename failed"
   fi
 }
 
