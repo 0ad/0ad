@@ -32,7 +32,7 @@
 #include "simulation2/system/ParamNode.h"
 
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
-#define FAILVOID(msg) STMT(JS_ReportError(cx, msg))
+#define FAIL_VOID(msg) STMT(JS_ReportError(cx, msg); return)
 
 template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::MutableHandleValue ret, IComponent* const& val)
 {
@@ -185,7 +185,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
 	JS::RootedValue valueVector3D(cx);
 	if (!JS_GetProperty(cx, global, "Vector3D", &valueVector3D))
-		FAILVOID("Failed to get Vector3D constructor");
+		FAIL_VOID("Failed to get Vector3D constructor");
 
 	JS::AutoValueArray<3> args(cx);
 	args[0].setNumber(val.X.ToDouble());
@@ -193,7 +193,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	args[2].setNumber(val.Z.ToDouble());
 
 	if (!JS::Construct(cx, valueVector3D, args, ret))
-		FAILVOID("Failed to construct Vector3D object");
+		FAIL_VOID("Failed to construct Vector3D object");
 }
 
 template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::HandleValue v, CFixedVector2D& out)
@@ -222,14 +222,14 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
 	JS::RootedValue valueVector2D(cx);
 	if (!JS_GetProperty(cx, global, "Vector2D", &valueVector2D))
-		FAILVOID("Failed to get Vector2D constructor");
+		FAIL_VOID("Failed to get Vector2D constructor");
 
 	JS::AutoValueArray<2> args(cx);
 	args[0].setNumber(val.X.ToDouble());
 	args[1].setNumber(val.Y.ToDouble());
 
 	if (!JS::Construct(cx, valueVector2D, args, ret))
-		FAILVOID("Failed to construct Vector2D object");
+		FAIL_VOID("Failed to construct Vector2D object");
 }
 
 template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u8>& val)
