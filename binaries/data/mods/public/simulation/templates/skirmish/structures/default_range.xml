@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_range">
+  <Footprint>
+    <Square width="27.0" depth="27.0"/>
+  </Footprint>
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <Obstruction>
+    <Static width="26.0" depth="26.0"/>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <SkirmishReplacer>
+    <general>structures/{civ}_range</general>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/hellenes/range.xml</Actor>
+  </VisualActor>
+</Entity>

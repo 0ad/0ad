@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_workshop">
   <Identity>
-    <Civ>mace</Civ>
-    <SpecificName>Hoplothēkē</SpecificName>
+    <Civ>skirm</Civ>
   </Identity>
+  <ProductionQueue disable=""/>
+  <SkirmishReplacer>
+    <general>structures/{civ}_workshop</general>
+  </SkirmishReplacer>
   <VisualActor>
     <Actor>structures/hellenes/workshop.xml</Actor>
   </VisualActor>

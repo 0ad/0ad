@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Footprint>
+    <Square width="62.0" depth="66.0"/>
+  </Footprint>
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <Obstruction>
+    <Static width="59.0" depth="63.0"/>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <SkirmishReplacer>
+    <general>structures/{civ}_wonder</general>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/hellenes/temple_epic.xml</Actor>
+  </VisualActor>
+</Entity>

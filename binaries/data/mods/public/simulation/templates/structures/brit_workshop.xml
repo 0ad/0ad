@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_workshop">
-  <Footprint>
-    <Square width="32.0" depth="32.0"/>
-  </Footprint>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Miletucerdon</SpecificName>
   </Identity>
-  <Obstruction>
-    <Static width="32.0" depth="32.0"/>
-  </Obstruction>
   <VisualActor>
     <Actor>structures/britons/workshop.xml</Actor>
   </VisualActor>
