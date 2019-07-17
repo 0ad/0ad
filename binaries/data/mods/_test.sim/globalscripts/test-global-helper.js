@@ -39,7 +39,3 @@ Vector3D.prototype.add = function(v)
 	this.z += v.z;
 	return this;
 };
-
-// make the prototypes easily accessible to C++
-const Vector2Dprototype = Vector2D.prototype;
-const Vector3Dprototype = Vector3D.prototype;

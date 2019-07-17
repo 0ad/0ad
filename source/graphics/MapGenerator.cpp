@@ -105,6 +105,8 @@ void* CMapGeneratorWorker::RunThread(void *data)
 		self->m_Progress = -1;
 	}
 
+	SAFE_DELETE(self->m_ScriptInterface);
+
 	// At this point the random map scripts are done running, so the thread has no further purpose
 	//	and can die. The data will be stored in m_MapData already if successful, or m_Progress
 	//	will contain an error value on failure.
@@ -114,15 +116,6 @@ void* CMapGeneratorWorker::RunThread(void *data)
 
 bool CMapGeneratorWorker::Run()
 {
-	// We must destroy the ScriptInterface in the same thread because the JSAPI requires that!
-	// Also we must not be in a request when calling the ScriptInterface destructor, so the autoFree object
-	// must be instantiated before the request (destructors are called in reverse order of instantiation)
-	struct AutoFree {
-		AutoFree(ScriptInterface* p) : m_p(p) {}
-		~AutoFree() { SAFE_DELETE(m_p); }
-		ScriptInterface* m_p;
-	} autoFree(m_ScriptInterface);
-
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 

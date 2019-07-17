@@ -67,9 +67,6 @@ struct ScriptInterface_impl
 	JSCompartment* m_comp;
 	boost::rand48* m_rng;
 	JS::PersistentRootedObject m_nativeScope; // native function scope object
-
-	typedef std::map<ScriptInterface::CACHED_VAL, JS::PersistentRootedValue> ScriptValCache;
-	ScriptValCache m_ScriptValCache;
 };
 
 namespace
@@ -450,13 +447,6 @@ ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSConte
 	return pCxPrivate;
 }
 
-JS::Value ScriptInterface::GetCachedValue(CACHED_VAL valueIdentifier) const
-{
-	std::map<ScriptInterface::CACHED_VAL, JS::PersistentRootedValue>::const_iterator it = m->m_ScriptValCache.find(valueIdentifier);
-	ENSURE(it != m->m_ScriptValCache.end());
-	return it->second.get();
-}
-
 
 bool ScriptInterface::LoadGlobalScripts()
 {
@@ -474,13 +464,6 @@ bool ScriptInterface::LoadGlobalScripts()
 			return false;
 		}
 
-	JSAutoRequest rq(m->m_cx);
-	JS::RootedValue proto(m->m_cx);
-	JS::RootedObject global(m->m_cx, m->m_glob);
-	if (JS_GetProperty(m->m_cx, global, "Vector2Dprototype", &proto))
-		m->m_ScriptValCache[CACHE_VECTOR2DPROTO].init(GetJSRuntime(), proto);
-	if (JS_GetProperty(m->m_cx, global, "Vector3Dprototype", &proto))
-		m->m_ScriptValCache[CACHE_VECTOR3DPROTO].init(GetJSRuntime(), proto);
 	return true;
 }
 

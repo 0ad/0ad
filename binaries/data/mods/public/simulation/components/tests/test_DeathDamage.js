@@ -52,7 +52,7 @@ let result = {
 };
 
 AddMock(SYSTEM_ENTITY, IID_Damage, {
-	"CauseSplashDamage": data => TS_ASSERT_UNEVAL_EQUALS(data, result),
+	"CauseDamageOverArea": data => TS_ASSERT_UNEVAL_EQUALS(data, result),
 	"GetPlayersToDamage": (owner, friendlyFire) => playersToDamage
 });
 
