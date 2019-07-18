@@ -320,7 +320,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 
-		if (this.CheckTargetRangeExplicit(this.order.data.target, 0, 0))
+		if (this.CheckRange(this.order.data))
 		{
 			// We are already at the target, or can't move at all
 			this.FinishOrder();
@@ -334,29 +334,28 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.PickupUnit": function(msg) {
-		var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 		if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
 		{
 			this.FinishOrder();
 			return;
 		}
 
-		if (this.CheckTargetRangeExplicit(this.order.data.target, 0, 0))
+		if (this.CheckRange(this.order.data))
 		{
 			this.FinishOrder();
 			return;
 		}
 
-		// Check if we need to move     TODO implement a better way to know if we are on the shoreline
-		var needToMove = true;
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (this.lastShorelinePosition && cmpPosition && (this.lastShorelinePosition.x == cmpPosition.GetPosition().x)
-		    && (this.lastShorelinePosition.z == cmpPosition.GetPosition().z))
-		{
+		// Check if we need to move
+		// TODO implement a better way to know if we are on the shoreline
+		let needToMove = true;
+		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (this.lastShorelinePosition && cmpPosition && (this.lastShorelinePosition.x == cmpPosition.GetPosition().x) &&
+		   (this.lastShorelinePosition.z == cmpPosition.GetPosition().z))
 			// we were already on the shoreline, and have not moved since
 			if (DistanceBetweenEntities(this.entity, this.order.data.target) < 50)
 				needToMove = false;
-		}
 
 		if (needToMove)
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
@@ -665,21 +664,21 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		// Only used by other orders to walk there in formation
 		"Order.WalkToTargetRange": function(msg) {
-			if (!this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+			if (!this.CheckRange(this.order.data))
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
 		},
 
 		"Order.WalkToTarget": function(msg) {
-			if (!this.CheckTargetRangeExplicit(this.order.data.target, 0, 0))
+			if (!this.CheckRange(this.order.data))
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
 		},
 
 		"Order.WalkToPointRange": function(msg) {
-			if (!this.CheckPointRangeExplicit(this.order.data.x, this.order.data.z, this.order.data.min, this.order.data.max))
+			if (!this.CheckRange(this.order.data))
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
@@ -1291,7 +1290,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!atDestination && cmpPosition)
 				{
 					let pos = cmpPosition.GetPosition2D();
-					atDestination = this.CheckPointRangeExplicit(pos.X + this.order.data.x, pos.Y + this.order.data.z, 0, 0);
+					atDestination = this.CheckPointRangeExplicit(pos.X + this.order.data.x, pos.Y + this.order.data.z, 0, 1);
 				}
 				if (!atDestination && !msg.error)
 					return;
@@ -4147,7 +4146,7 @@ UnitAI.prototype.MoveTo = function(data, iid, type)
 UnitAI.prototype.MoveToPoint = function(x, z)
 {
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToPointRange(x, z, 0, 0);
+	return cmpUnitMotion.MoveToPointRange(x, z, 0, 0); // For point goals, allow a max range of 0.
 };
 
 UnitAI.prototype.MoveToPointRange = function(x, z, rangeMin, rangeMax)
@@ -4162,7 +4161,7 @@ UnitAI.prototype.MoveToTarget = function(target)
 		return false;
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, 0, 0);
+	return cmpUnitMotion.MoveToTargetRange(target, 0, 1);
 };
 
 UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
@@ -4268,7 +4267,7 @@ UnitAI.prototype.CheckRange = function(data, iid, type)
 		if (data.min || data.max)
 			return this.CheckTargetRangeExplicit(data.target, data.min || -1, data.max || -1);
 		else if (!iid)
-			return this.CheckTargetRangeExplicit(data.target, 0, 0);
+			return this.CheckTargetRangeExplicit(data.target, 0, 1);
 
 		return this.CheckTargetRange(data.target, iid, type);
 	}

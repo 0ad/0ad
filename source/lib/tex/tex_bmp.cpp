@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -103,7 +103,7 @@ Status TexCodecBmp::decode(u8* RESTRICT data, size_t UNUSED(size), Tex* RESTRICT
 	const u16 bpp      = read_le16(&hdr->biBitCount);
 	const u32 compress = read_le32(&hdr->biCompression);
 
-	const long h = abs(h_);
+	const long h = std::labs(h_);
 
 	size_t flags = 0;
 	flags |= (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;

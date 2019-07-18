@@ -437,8 +437,8 @@ public:
 
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		// bit of leeway for cell placement
-		TS_ASSERT(abs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), pi, pj)-20) < 1.5f);
-		TS_ASSERT(abs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), oi, oj) - euclidian(pi, pj, oi, oj)) < 22.0f);
+		TS_ASSERT(std::fabs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), pi, pj)-20) < 1.5f);
+		TS_ASSERT(std::fabs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), oi, oj) - euclidian(pi, pj, oi, oj)) < 22.0f);
 	}
 
 	void test_regions_flood_fill()

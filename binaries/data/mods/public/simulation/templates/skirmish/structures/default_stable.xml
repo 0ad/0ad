@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_stable">
+  <Footprint>
+    <Square width="25.0" depth="26.0"/>
+  </Footprint>
   <Identity>
-    <Civ>mace</Civ>
-    <SpecificName>Hippṓn</SpecificName>
+    <Civ>skirm</Civ>
   </Identity>
   <Obstruction>
     <Static width="23.0" depth="23.0"/>
   </Obstruction>
+  <ProductionQueue disable=""/>
+  <SkirmishReplacer>
+    <general>structures/{civ}_stable</general>
+  </SkirmishReplacer>
   <VisualActor>
     <Actor>structures/hellenes/stable.xml</Actor>
-    <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_stable">
-  <Footprint>
-    <Square width="25.0" depth="25.0"/>
-    <Height>12.0</Height>
-  </Footprint>
   <Identity>
     <Civ>maur</Civ>
   </Identity>
-  <Obstruction>
-    <Static width="20.0" depth="20.0"/>
-  </Obstruction>
   <VisualActor>
     <Actor>structures/mauryas/stable.xml</Actor>
     <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
