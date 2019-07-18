@@ -1634,6 +1634,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.StartTimer(1000, 1000);
 					this.SetHeldPositionOnEntity(this.entity);
 					this.SetAnimationVariant("combat");
+					this.FaceTowardsTarget(this.order.data.target);
 					return false;
 				},
 
@@ -1657,6 +1658,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("ESCORTING");
 					else
 					{
+						this.FaceTowardsTarget(this.order.data.target);
 						// if nothing better to do, check if the guarded needs to be healed or repaired
 						var cmpHealth = Engine.QueryInterface(this.isGuardOf, IID_Health);
 						if (cmpHealth && cmpHealth.IsInjured())
@@ -2145,8 +2147,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						this.StopMoving();
 						this.SetDefaultAnimationVariant();
-						var typename = "gather_" + this.order.data.type.specific;
-						this.SelectAnimation(typename);
+						this.FaceTowardsTarget(this.order.data.target);
+						this.SelectAnimation("gather_" + this.order.data.type.specific);
 					}
 					return false;
 				},
@@ -2191,6 +2193,8 @@ UnitAI.prototype.UnitFsmSpec = {
 							// drop them first to ensure we're only ever carrying one type
 							if (cmpResourceGatherer.IsCarryingAnythingExcept(resourceType.generic))
 								cmpResourceGatherer.DropResources();
+
+							this.FaceTowardsTarget(this.order.data.target);
 
 							// Collect from the target
 							let status = cmpResourceGatherer.PerformGather(this.gatheringTarget);
@@ -2597,6 +2601,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpBuilderList)
 						cmpBuilderList.AddBuilder(this.entity);
 
+					this.FaceTowardsTarget(this.order.data.target);
+
 					this.SelectAnimation("build");
 					this.StartTimer(1000, 1000);
 					return false;
@@ -2620,7 +2626,9 @@ UnitAI.prototype.UnitFsmSpec = {
 						return;
 					}
 
-					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+					this.FaceTowardsTarget(this.order.data.target);
+
+					let cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 					cmpBuilder.PerformBuilding(this.repairTarget);
 					// if the building is completed, the leave() function will be called
 					// by the ConstructionFinished message
