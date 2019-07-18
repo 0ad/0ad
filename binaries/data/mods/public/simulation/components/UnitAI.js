@@ -1266,13 +1266,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.SetDefaultAnimationVariant();
 		},
 
-		"IDLE": {
-			// Formation members do nothing while Idle, but we need the state
-			// so that they keep the formation variant.
-		},
+		"IDLE": "INDIVIDUAL.IDLE",
 
 		"WALKING": {
 			"enter": function() {
+				this.formationOffset = { "x": this.order.data.x, "z": this.order.data.z };
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
 			},
@@ -1402,12 +1400,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				// get stuck with an incorrect animation
 				this.SelectAnimation("idle");
 
-				if (this.formationController)
-				{
-					this.SetNextState("FORMATIONMEMBER.IDLE");
-					return true;
-				}
-
 				// Idle is the default state. If units try, from the IDLE.enter sub-state, to
 				// begin another order, and that order fails (calling FinishOrder), they might
 				// end up in an infinite loop. To avoid this, all methods that could put the unit in
@@ -1467,6 +1459,16 @@ UnitAI.prototype.UnitFsmSpec = {
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
 				if (this.FindNewTargets())
 					return; // (abort the FSM transition since we may have already switched state)
+
+				if (this.formationOffset && this.formationController)
+				{
+					this.PushOrder("FormationWalk", {
+						"target": this.formationController,
+						"x": this.formationOffset.x,
+						"z": this.formationOffset.z,
+					});
+					return;
+				}
 
 				if (!this.isIdle)
 				{
