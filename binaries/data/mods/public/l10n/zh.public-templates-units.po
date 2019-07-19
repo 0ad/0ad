@@ -7,6 +7,7 @@
 # scinart <akubeej@gmail.com>, 2018
 # Andersson Yang <calvinyang2002@icloud.com>, 2017
 # Charles Yang <mryang@minelandcn.com>, 2018
+# Julian, 2019
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # Mysterelee <8161525@qq.com>, 2014
 # rentt777 <35974380@qq.com>, 2017
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 16:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-18 15:07+0000\n"
+"Last-Translator: Julian\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "灵柩台"
 
 #: simulation/templates/template_unit_catafalque.xml:19
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "灵柩台，存放伟人的遗体。"
+msgstr "先圣灵柩台。"
 
 #: simulation/templates/template_unit_catafalque.xml:21
 msgid "Relic"
@@ -137,7 +138,7 @@ msgstr "剑"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 msgid "Cavalry Swordsman"
-msgstr "剑骑兵"
+msgstr "持剑骑兵"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:26
 msgid "Ranged Cavalry"
@@ -208,15 +209,15 @@ msgstr "精锐弓骑兵。"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:29
 msgid "Champion Cavalry Skirmisher"
-msgstr "精锐斥候骑兵"
+msgstr "精锐前卫骑兵"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
-msgstr "精锐长矛骑兵"
+msgstr "精锐持矛骑兵"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:29
 msgid "Champion Cavalry Swordsman"
-msgstr "精锐骑兵剑士"
+msgstr "精锐持剑骑兵"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 msgid "War Elephant"
@@ -252,11 +253,11 @@ msgstr "精锐散兵"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 msgid "Maceman"
-msgstr "马西曼"
+msgstr "链锤兵"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:29
 msgid "Champion Maceman"
-msgstr "精锐马西曼"
+msgstr "精锐链锤兵"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -299,7 +300,7 @@ msgstr "无法攻击建筑物。"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill, then gather food from this bountiful oceanic resource."
-msgstr "丰富的海洋资源，可收集食物。"
+msgstr "从富饶的海洋捕猎食物。"
 
 #: simulation/templates/template_unit_hero.xml:33
 #: simulation/templates/template_unit_hero.xml:31
@@ -317,7 +318,7 @@ msgstr "英雄弓骑兵"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr "英雄轻骑兵"
+msgstr "英雄前卫骑兵"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 msgid "Hero Cavalry Spearman"
@@ -641,7 +642,7 @@ msgstr "高级"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
-msgstr "斥侯骑兵"
+msgstr "压力"
 
 #: simulation/templates/units/athen_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_e.xml:4
@@ -876,11 +877,11 @@ msgstr "雅典义勇投石兵"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:15
 msgid "Athenian Hoplite"
-msgstr "矛兵"
+msgstr "雅典重甲步兵"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:16
 msgid "Hoplítēs Athēnaîos"
-msgstr "雅典重装步兵"
+msgstr "雅典重甲步兵"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -1164,7 +1165,7 @@ msgstr "神圣军团长枪兵"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
-msgstr ""
+msgstr "捣碎 "
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:9
 msgid "Ḥimelqart Baraq"
@@ -1696,7 +1697,7 @@ msgstr "盾牌兵"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:11
 msgid "Hypaspistḗs Argyraspídi"
-msgstr ""
+msgstr "银杏"
 
 #: simulation/templates/units/mace_hero_alexander.xml:20
 msgid "Alexander The Great"
@@ -1999,7 +2000,7 @@ msgstr "重装散兵"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"
-msgstr ""
+msgstr "曼卡·西利亚"
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Persian Apple Bearer"
@@ -2007,7 +2008,7 @@ msgstr "波斯苹果搬运工"
 
 #: simulation/templates/units/pers_arstibara.xml:14
 msgid "Arštibara"
-msgstr ""
+msgstr "铸造 "
 
 #: simulation/templates/units/pers_catafalque.xml:9
 msgid "Artaxerxes II"
@@ -2782,11 +2783,11 @@ msgstr "斯巴达妇女"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:22
 msgid "Spartiâtis"
-msgstr "妇女"
+msgstr "斯巴达人"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Períoikos"
-msgstr "商人"
+msgstr "波斯商人"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:34
 msgid "Fire Raiser"
@@ -2794,7 +2795,7 @@ msgstr "火焰喷射器"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:35
 msgid "Pyrobolos"
-msgstr ""
+msgstr "火药丸"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
 msgid "Theban Sacred Band Hoplite"
@@ -2806,15 +2807,15 @@ msgstr "底比斯神圣军团重装步兵"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
-msgstr "冠勇矛兵。"
+msgstr "勇冠掷矛手。"
 
 #: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"
-msgstr "铁司配亚黑衣军"
+msgstr "狄斯比亚黑衣军"
 
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Melanochitones"
-msgstr ""
+msgstr "美拉诺酮"
 
 #: simulation/templates/units/viking_longship.xml:4
 msgid "Longship"
