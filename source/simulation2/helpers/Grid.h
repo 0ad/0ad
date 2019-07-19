@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -190,8 +190,7 @@ class SparseGrid
 		size_t b = (j >> BucketBits) * m_BW + (i >> BucketBits);
 		if (!m_Data[b])
 		{
-			m_Data[b] = new T[BucketSize*BucketSize];
-			memset(m_Data[b], 0, BucketSize*BucketSize*sizeof(T));
+			m_Data[b] = new T[BucketSize*BucketSize]();
 		}
 		return m_Data[b];
 	}
@@ -204,8 +203,7 @@ public:
 		m_BW = (u16)((m_W + BucketSize-1) >> BucketBits);
 		m_BH = (u16)((m_H + BucketSize-1) >> BucketBits);
 
-		m_Data = new T*[m_BW*m_BH];
-		memset(m_Data, 0, m_BW*m_BH*sizeof(T*));
+		m_Data = new T*[m_BW*m_BH]();
 	}
 
 	~SparseGrid()
@@ -219,7 +217,7 @@ public:
 		for (size_t i = 0; i < (size_t)(m_BW*m_BH); ++i)
 			delete[] m_Data[i];
 
-		memset(m_Data, 0, m_BW*m_BH*sizeof(T*));
+		m_Data = new T*[m_BW*m_BH]();
 	}
 
 	void set(int i, int j, const T& value)
