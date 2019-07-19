@@ -56,7 +56,7 @@ static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_T
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
 static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
-static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*9);
+static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*10);
 
 /**
  * Minimum distance to goal for a long path request
@@ -703,7 +703,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		if (!m_LongPath.m_Waypoints.empty())
 		{
 			PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-			RequestShortPath(pos, goal, false);
+			RequestShortPath(pos, goal, true);
 			return;
 		}
 	}
@@ -912,18 +912,29 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	// Oops, we hit something (very likely another unit).
 
-	// If we still have long waypoints, try and compute a short path
-	if (!m_LongPath.m_Waypoints.empty())
-	{
-		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-		RequestShortPath(pos, goal, false);
-		return true;
-	}
-	// Else, just entirely recompute
 	PathGoal goal;
 	if (!ComputeGoal(goal, m_MoveRequest))
 		return false;
 
+	// If close enough, just compute a short path to the goal
+	if (goal.DistanceToPoint(pos) < LONG_PATH_MIN_DIST)
+	{
+		m_LongPath.m_Waypoints.clear();
+		RequestShortPath(pos, goal, true);
+		return true;
+	}
+
+	// If we still have long waypoints, try and compute a short path.
+	// Assume the next waypoint is impassable
+	if (m_LongPath.m_Waypoints.size() > 1)
+		m_LongPath.m_Waypoints.pop_back();
+	if (!m_LongPath.m_Waypoints.empty())
+	{
+		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+		RequestShortPath(pos, goal, true);
+		return true;
+	}
+	// Else, just entirely recompute
 	BeginPathing(pos, goal);
 
 	// potential TODO: We could switch the short-range pathfinder for something else entirely.
@@ -1281,12 +1292,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// the check is arbitrary but should be a reasonably small distance.
 	if (goal.DistanceToPoint(from) < LONG_PATH_MIN_DIST)
 	{
-		// add our final goal as a long range waypoint so we don't forget
-		// where we are going if the short-range pathfinder returns
-		// an aborted path.
 		m_LongPath.m_Waypoints.clear();
-		CFixedVector2D target = goal.NearestPointOnGoal(from);
-		m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
 		RequestShortPath(from, goal, true);
 	}
 	else
@@ -1317,8 +1323,6 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 		return;
 
 	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * (m_FailedPathComputations + 1), goal.DistanceToPoint(from));
-	if (goal.type != PathGoal::POINT && searchRange < goal.hw && searchRange < SHORT_PATH_MIN_SEARCH_RANGE * 2)
-		searchRange = std::min(goal.hw, SHORT_PATH_MIN_SEARCH_RANGE * 2);
 	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
 		searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
 
