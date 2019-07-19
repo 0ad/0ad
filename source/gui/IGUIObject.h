@@ -400,9 +400,9 @@ protected:
 	 * Does nothing if no script has been registered for that action.
 	 *
 	 * @param Action Name of action
-	 * @param Argument Argument to pass to action
+	 * @param paramData JS::HandleValueArray arguments to pass to the event.
 	 */
-	void ScriptEvent(const CStr& Action, JS::HandleValue Argument);
+	void ScriptEvent(const CStr& Action, JS::HandleValueArray paramData);
 
 	void SetScriptHandler(const CStr& Action, JS::HandleObject Function);
 

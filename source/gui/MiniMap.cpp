@@ -246,7 +246,11 @@ void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("({})", &coords);
 	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "x", x, false);
 	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "z", z, false);
-	ScriptEvent("worldclick", coords);
+
+	JS::AutoValueVector paramData(cx);
+	paramData.append(coords);
+
+	ScriptEvent("worldclick", paramData);
 }
 
 // This sets up and draws the rectangle on the minimap

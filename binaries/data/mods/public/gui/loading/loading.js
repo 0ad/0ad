@@ -58,25 +58,28 @@ function init(data)
 	}
 
 	Engine.GetGUIObjectByName("progressText").caption = "";
-	Engine.GetGUIObjectByName("progressbar").caption = 0;
+
+	let progressbar = Engine.GetGUIObjectByName("progressbar");
+	progressbar.caption = 0;
+	progressbar.onGameLoadProgress = displayProgress;
 
 	Engine.GetGUIObjectByName("quoteText").caption = translate(pickRandom(Engine.ReadFileLines(g_QuotesFile).filter(line => line)));
 }
 
-function displayProgress()
+function displayProgress(progression, description)
 {
 	// Make the progessbar finish a little early so that the user can actually see it finish
-	if (g_Progress >= 100)
+	if (progression >= 100)
 		return;
 
 	// Show 100 when it is really 99
-	let progress = g_Progress + 1;
+	let progress = progression + 1;
 
 	Engine.GetGUIObjectByName("progressbar").caption = progress; // display current progress
 	Engine.GetGUIObjectByName("progressText").caption = progress + "%";
 
 	// Displays detailed loading info rather than a percent
-	// Engine.GetGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
+	// Engine.GetGUIObjectByName("progressText").caption = description;
 
 	// Keep curved right edge of progress bar in sync with the rest of the progress bar
 	let middle = Engine.GetGUIObjectByName("progressbar");

@@ -726,11 +726,13 @@ function onNetworkOutOfSync(msg)
 	);
 }
 
-function onReplayOutOfSync()
+function onReplayOutOfSync(turn, hash, expectedHash)
 {
 	messageBox(
 		500, 140,
-		translate("Out-Of-Sync error!") + "\n" +
+		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
+			"turn": turn
+		}) + "\n" +
 			// Translation: This is shown if replay is out of sync
 			translateWithContext("Out-Of-Sync", "The current game state is different from the original game state."),
 		translate("Out of Sync")

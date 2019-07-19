@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -355,6 +355,11 @@ bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output) const
 void CGUIManager::SendEventToAll(const CStr& eventName) const
 {
 	top()->SendEventToAll(eventName);
+}
+
+void CGUIManager::SendEventToAll(const CStr& eventName, JS::HandleValueArray paramData) const
+{
+	top()->SendEventToAll(eventName, paramData);
 }
 
 void CGUIManager::TickObjects()
