@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -114,6 +114,11 @@
 # define ATLASDLLIMPEXP extern "C" __attribute__ ((visibility ("default")))
 #else
 # define ATLASDLLIMPEXP extern "C"
+#endif
+
+// wxWidgets 3.0 or later required
+#if !wxCHECK_VERSION(3, 0, 0)
+# error You are using an old wxWidgets release. At least wxWidgets >= 3.0.0 is required.
 #endif
 
 // Abort with an obvious message if wx isn't Unicode, instead of complaining
