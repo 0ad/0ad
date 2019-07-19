@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -160,6 +160,7 @@ XmppClient::~XmppClient()
 	DbgXMPP("XmppClient destroyed");
 	delete m_registration;
 	delete m_mucRoom;
+	delete m_sessionManager;
 
 	// Workaround for memory leak in gloox 1.0/1.0.1
 	m_client->removePresenceExtension(gloox::ExtCaps);
