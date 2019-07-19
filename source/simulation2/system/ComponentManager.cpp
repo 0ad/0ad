@@ -145,6 +145,8 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 		return false;
 	std::string content = file.DecodeUTF8(); // assume it's UTF-8
 	bool ok = m_ScriptInterface.LoadScript(filename, content);
+
+	m_CurrentlyHotloading = false;
 	return ok;
 }
 
@@ -374,9 +376,6 @@ void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* p
 void CComponentManager::Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name, JS::HandleValue value)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
-
-	// Set the value, and accept duplicates only if hotloading (otherwise it's an error,
-	// in order to detect accidental duplicate definitions of globals)
 	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value, componentManager->m_CurrentlyHotloading);
 }
 

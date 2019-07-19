@@ -135,8 +135,8 @@ public:
 
 	/**
 	 * Set the named property on the global object.
-	 * If @p replace is true, an existing property will be overwritten; otherwise attempts
-	 * to set an already-defined value will fail.
+	 * Optionally makes it {ReadOnly, DontEnum}. We do not allow to make it DontDelete, so that it can be hotloaded
+	 * by deleting it and re-creating it, which is done by setting @p replace to true.
 	 */
 	template<typename T>
 	bool SetGlobal(const char* name, const T& value, bool replace = false, bool constant = true, bool enumerate = true);
@@ -360,9 +360,9 @@ private:
 	bool Eval_(const char* code, JS::MutableHandleValue ret) const;
 	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret) const;
 	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate);
-	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool readonly, bool enumerate) const;
-	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool readonly, bool enumerate) const;
-	bool SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool readonly, bool enumerate) const;
+	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const;
+	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const;
+	bool SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate) const;
 	bool GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const;
 	bool GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue value) const;
 	static bool IsExceptionPending(JSContext* cx);
@@ -494,30 +494,30 @@ bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, 
 }
 
 template<typename T>
-bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T& value, bool readonly, bool enumerate) const
+bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T& value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetProperty_(obj, name, val, readonly, enumerate);
+	return SetProperty_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
-bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, const T& value, bool readonly, bool enumerate) const
+bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, const T& value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetProperty_(obj, name, val, readonly, enumerate);
+	return SetProperty_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
-bool ScriptInterface::SetPropertyInt(JS::HandleValue obj, int name, const T& value, bool readonly, bool enumerate) const
+bool ScriptInterface::SetPropertyInt(JS::HandleValue obj, int name, const T& value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetPropertyInt_(obj, name, val, readonly, enumerate);
+	return SetPropertyInt_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
