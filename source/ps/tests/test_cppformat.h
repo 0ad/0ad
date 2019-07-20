@@ -16,6 +16,7 @@
  */
 
 #include "lib/self_test.h"
+#include "lib/scoped_locale.h"
 
 #include "third_party/cppformat/format.h"
 
@@ -25,7 +26,7 @@ public:
 	void test_basic()
 	{
 		// Make test behave independent of current host locale
-		char* old = setlocale(LC_ALL, "en_US.UTF-8");
+		ScopedLocale(LC_ALL, "en_US.UTF-8");
 
 		TS_ASSERT_EQUALS(fmt::sprintf("abc"), "abc");
 
@@ -57,7 +58,5 @@ public:
 		TS_ASSERT_EQUALS(fmt::sprintf("T%sT", (const char*)NULL), "T(null)T");
 
 		TS_ASSERT_EQUALS(fmt::sprintf("T%pT", (void*)0x1234), "T0x1234T");
-
-		setlocale(LC_ALL, old);
 	}
 };
