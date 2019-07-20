@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -253,5 +253,28 @@ public:
 
 		TS_ASSERT(script.ParseJSON(stringified, &val));
 		TS_ASSERT_STR_EQUALS(script.ToString(&val), "({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
+	}
+
+	// This function tests a common way to mod functions, by crating a wrapper that
+	// extends the functionality and is then assigned to the name of the function.
+	void test_function_override()
+	{
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
+
+		TS_ASSERT(script.Eval(
+			"function f() { return 1; }"
+			"f = (function (originalFunction) {"
+				"return function () { return originalFunction() + 1; }"
+			"})(f);"
+		));
+
+		JS::RootedValue out(cx);
+		TS_ASSERT(script.Eval("f()", &out));
+
+		int outNbr = 0;
+		ScriptInterface::FromJSVal(cx, out, outNbr);
+		TS_ASSERT_EQUALS(2, outNbr);
 	}
 };

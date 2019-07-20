@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -111,6 +111,7 @@ public:
 	 * See CGUI::SendEventToAll; applies to the currently active page.
 	 */
 	void SendEventToAll(const CStr& eventName) const;
+	void SendEventToAll(const CStr& eventName, JS::HandleValueArray paramData) const;
 
 	/**
 	 * See CGUI::TickObjects; applies to @em all loaded pages.

@@ -589,21 +589,40 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 {
 	JSAutoRequest rq(m->m_cx);
 	JS::RootedObject global(m->m_cx, m->m_glob);
-	if (!replace)
+
+	bool found;
+	if (!JS_HasProperty(m->m_cx, global, name, &found))
+		return false;
+	if (found)
 	{
-		bool found;
-		if (!JS_HasProperty(m->m_cx, global, name, &found))
+		JS::Rooted<JSPropertyDescriptor> desc(m->m_cx);
+		if (!JS_GetOwnPropertyDescriptor(m->m_cx, global, name, &desc))
 			return false;
-		if (found)
+
+		if (desc.isReadonly())
 		{
-			JS_ReportError(m->m_cx, "SetGlobal \"%s\" called multiple times", name);
-			return false;
+			if (!replace)
+			{
+				JS_ReportError(m->m_cx, "SetGlobal \"%s\" called multiple times", name);
+				return false;
+			}
+
+			// This is not supposed to happen, unless the user has called SetProperty with constant = true on the global object
+			// instead of using SetGlobal.
+			if (desc.isPermanent())
+			{
+				JS_ReportError(m->m_cx, "The global \"%s\" is permanent and cannot be hotloaded", name);
+				return false;
+			}
+
+			LOGMESSAGE("Hotloading new value for global \"%s\".", name);
+			ENSURE(JS_DeleteProperty(m->m_cx, global, name));
 		}
 	}
 
 	uint attrs = 0;
 	if (constant)
-		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
+		attrs |= JSPROP_READONLY;
 	if (enumerate)
 		attrs |= JSPROP_ENUMERATE;
 

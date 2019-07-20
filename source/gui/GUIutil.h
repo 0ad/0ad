@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -222,6 +222,7 @@ private:
 	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T& arg);
 	typedef void (IGUIObject::*void_Object_pFunction_argRefT)(T& arg);
 	typedef void (IGUIObject::*void_Object_pFunction)();
+	typedef void (IGUIObject::*void_Object_pFunction_argTJS)(const T& arg, JS::HandleValueArray paramData);
 
 	/**
 	 * If you want to call a IGUIObject-function
@@ -277,6 +278,18 @@ private:
 		// Iterate children
 		for (IGUIObject* const& obj : *pObject)
 			RecurseObject(RR, obj, pFunc, Argument);
+	}
+
+	static void RecurseObject(int RR, IGUIObject* pObject, void_Object_pFunction_argTJS pFunc, const T& Argument, JS::HandleValueArray paramData)
+	{
+		if (CheckIfRestricted(RR, pObject))
+			return;
+
+		(pObject->*pFunc)(Argument, paramData);
+
+		// Iterate children
+		for (IGUIObject* const& obj : *pObject)
+			RecurseObject(RR, obj, pFunc, Argument, paramData);
 	}
 
 	/**

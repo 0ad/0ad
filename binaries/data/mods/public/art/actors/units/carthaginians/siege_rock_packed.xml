@@ -4,7 +4,9 @@
   <group>
     <variant frequency="1" name="wagon kart rock">
       <animations>
-        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" id="idle3" speed="80"/>
         <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Walk" speed="10"/>
         <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Run" speed="10"/>
       </animations>
@@ -13,6 +15,8 @@
         <prop actor="props/units/kart_rock_packed.xml" attachpoint="cargo"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_l"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_r"/>
+        <prop actor="units/carthaginians/ballista_infantry_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="units/carthaginians/ballista_infantry_b.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="props/wooden_wagon.png" name="baseTex"/>

@@ -274,8 +274,12 @@ void CGUI::SendEventToAll(const CStr& EventName)
 	// (sending events here) wasn't converting to lower case,
 	// leading to a similar problem.
 	// now fixed; case is irrelevant since all are converted to lower.
-	GUI<CStr>::RecurseObject(0, m_BaseObject,
-		&IGUIObject::ScriptEvent, EventName.LowerCase());
+	GUI<CStr>::RecurseObject(0, m_BaseObject, &IGUIObject::ScriptEvent, EventName.LowerCase());
+}
+
+void CGUI::SendEventToAll(const CStr& EventName, JS::HandleValueArray paramData)
+{
+	GUI<CStr>::RecurseObject(0, m_BaseObject, &IGUIObject::ScriptEvent, EventName.LowerCase(), paramData);
 }
 
 CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)

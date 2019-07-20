@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,11 +28,7 @@ public:
 	virtual void SaveToSubDir(wxConfigBase& config);
 
 private:
-#if wxCHECK_VERSION(2, 9, 0)
 	virtual void Load(const wxConfigBase& config)
-#else
-	virtual void Load(wxConfigBase& config)
-#endif
 	{
 		wxFileHistory::Load(config);
 	}

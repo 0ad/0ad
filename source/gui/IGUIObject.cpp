@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -450,7 +450,7 @@ InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	std::map<CStr, JS::Heap<JSObject*>>::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -477,24 +477,20 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	}
 }
 
-void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValue Argument)
+void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValueArray paramData)
 {
-	std::map<CStr, JS::Heap<JSObject*>>::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
-	JS::AutoValueVector paramData(cx);
-	paramData.append(Argument.get());
 	JS::RootedObject obj(cx, GetJSObject());
 	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(cx);
-	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result);
-	if (!ok)
-	{
+
+	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
 		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
-	}
 }
 
 JSObject* IGUIObject::GetJSObject()

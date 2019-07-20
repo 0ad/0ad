@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,22 +124,17 @@ public:
 		roundtrip<i32>(0, "0");
 		roundtrip<i32>(123, "123");
 		roundtrip<i32>(-123, "-123");
-		roundtrip<i32>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
-		roundtrip<i32>(1073741823, "1073741823"); // JSVAL_INT_MAX
-		roundtrip<i32>(-1073741823, "-1073741823"); // JSVAL_INT_MIN+1
-		roundtrip<i32>(-1073741824, "-1073741824"); // JSVAL_INT_MIN
+		roundtrip<i32>(JSVAL_INT_MAX - 1, "2147483646");
+		roundtrip<i32>(JSVAL_INT_MAX, "2147483647");
+		roundtrip<i32>(JSVAL_INT_MIN + 1, "-2147483647");
+		roundtrip<i32>(JSVAL_INT_MIN, "-2147483648");
 
 		roundtrip<u32>(0, "0");
 		roundtrip<u32>(123, "123");
-		roundtrip<u32>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
-		roundtrip<u32>(1073741823, "1073741823"); // JSVAL_INT_MAX
+		roundtrip<u32>(JSVAL_INT_MAX - 1, "2147483646");
+		roundtrip<u32>(JSVAL_INT_MAX, "2147483647");
 
-		{
-			TestLogger log; // swallow warnings about values not being stored as integer JS::Values
-			roundtrip<i32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
-			roundtrip<i32>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
-			roundtrip<u32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
-		}
+		roundtrip<u32>(static_cast<u32>(JSVAL_INT_MAX) + 1, "2147483648");
 
 		std::string s1 = "test";
 		s1[1] = '\0';
@@ -184,9 +179,9 @@ public:
 		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
 		JS::RootedValue val0(cx), val1(cx), val2(cx), val3(cx), val4(cx), val5(cx), val6(cx), val7(cx), val8(cx);
 		ScriptInterface::ToJSVal<i32>(cx, &val0, 0);
-		ScriptInterface::ToJSVal<i32>(cx, &val1, 2147483646); // JSVAL_INT_MAX-1
-		ScriptInterface::ToJSVal<i32>(cx, &val2, 2147483647); // JSVAL_INT_MAX
-		ScriptInterface::ToJSVal<i32>(cx, &val3, -2147483647); // JSVAL_INT_MIN+1
+		ScriptInterface::ToJSVal<i32>(cx, &val1, JSVAL_INT_MAX - 1);
+		ScriptInterface::ToJSVal<i32>(cx, &val2, JSVAL_INT_MAX);
+		ScriptInterface::ToJSVal<i32>(cx, &val3, JSVAL_INT_MIN + 1);
 		ScriptInterface::ToJSVal<i32>(cx, &val4, -(i64)2147483648u); // JSVAL_INT_MIN
 		TS_ASSERT(val0.isInt32());
 		TS_ASSERT(val1.isInt32());

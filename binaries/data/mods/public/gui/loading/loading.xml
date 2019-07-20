@@ -21,7 +21,6 @@
 			>
 				<object name="progressbar_left" size="-8 0 8 100%" type="image" sprite="LoadingProgressBarLeft"/>
 				<object name="progressbar_right" size="8 0 24 100%" type="image" sprite="LoadingProgressBarRight"/>
-				<action on="Progress">displayProgress();</action>
 				<object name="progressText" size="0 0 100% 100%" type="text" style="LoadingBarText"/>
 			</object>
 		</object>
