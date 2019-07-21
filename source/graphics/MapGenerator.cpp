@@ -334,14 +334,28 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 // See CMapReader::UnpackTerrain, CMapReader::ParseTerrain for the reordering
 JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
 {
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	JSContext* cx = self->m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
 	if (!VfsFileExists(filename))
-		throw PSERROR_File_OpenFailed();
+	{
+		self->m_ScriptInterface->ReportError(
+			("Terrain file \"" +  filename.string8() +  "\" does not exist!").c_str());
+
+		return JS::UndefinedValue();
+	}
 
 	CFileUnpacker unpacker;
 	unpacker.Read(filename, "PSMP");
 
 	if (unpacker.GetVersion() < CMapIO::FILE_READ_VERSION)
-		throw PSERROR_File_InvalidVersion();
+	{
+		self->m_ScriptInterface->ReportError(
+			("Could not load terrain file \"" +  filename.string8() +  "\" too old version!").c_str());
+
+		return JS::UndefinedValue();
+	}
 
 	// unpack size
 	ssize_t patchesPerSide = (ssize_t)unpacker.UnpackSize();
@@ -384,9 +398,6 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 		}
 	}
 
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue returnValue(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
 	self->m_ScriptInterface->SetProperty(returnValue, "height", heightmap);
 	self->m_ScriptInterface->SetProperty(returnValue, "textureNames", textureNames);

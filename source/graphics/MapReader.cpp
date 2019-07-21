@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,7 +102,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 
 	// check oldest supported version
 	if (file_format_version < FILE_READ_VERSION)
-		throw PSERROR_File_InvalidVersion();
+		throw PSERROR_Game_World_MapLoadFailed("Could not load terrain file - too old version!");
 
 	// delete all existing entities
 	if (pSimulation2)
@@ -451,7 +451,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	node_idx = entity_idx = 0;
 
 	if (xmb_file.Load(g_VFS, xml_filename, "scenario") != PSRETURN_OK)
-		throw PSERROR_File_ReadFailed();
+		throw PSERROR_Game_World_MapLoadFailed("Could not read map XML file!");
 
 	// define the elements and attributes that are frequently used in the XML file,
 	// so we don't need to do lots of string construction and comparison when
