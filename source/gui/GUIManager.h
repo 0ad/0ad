@@ -150,11 +150,7 @@ private:
 	{
 		CStrW name;
 		boost::unordered_set<VfsPath> inputs; // for hotloading
-
-		JSContext* cx;
 		shared_ptr<ScriptInterface::StructuredClone> initData; // data to be passed to the init() function
-		CStrW callbackPageName;
-
 		shared_ptr<CGUI> gui; // the actual GUI page
 	};
 
