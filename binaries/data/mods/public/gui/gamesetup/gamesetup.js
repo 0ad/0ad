@@ -1713,7 +1713,7 @@ function getFilteredMaps(filterFunc)
 		let file = g_GameAttributes.mapPath + mapFile;
 		let mapData = loadMapData(file);
 
-		if (!mapData.settings || filterFunc && !filterFunc(mapData.settings.Keywords || []))
+		if (!mapData || !mapData.settings || filterFunc && !filterFunc(mapData.settings.Keywords || []))
 			continue;
 
 		maps.push({
