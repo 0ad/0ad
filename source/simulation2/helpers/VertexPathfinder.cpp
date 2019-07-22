@@ -518,10 +518,24 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 
 	// Create impassable edges at the max-range boundary, so we can't escape the region
 	// where we're meant to be searching
+
 	fixed rangeXMin = request.x0 - request.range;
 	fixed rangeXMax = request.x0 + request.range;
 	fixed rangeZMin = request.z0 - request.range;
 	fixed rangeZMax = request.z0 + request.range;
+
+	// If useful, move the center of the search-space so that it's slightly towards the goal,
+	// as the vertex pathfinder tends to be used to get around entities in front of us.
+	CFixedVector2D toGoal = CFixedVector2D(request.goal.x, request.goal.z) - CFixedVector2D(request.x0, request.z0);
+	if (toGoal.CompareLength(request.range) >= 0)
+	{
+		fixed toGoalLength = toGoal.Length();
+		fixed inv = fixed::FromInt(1) / toGoalLength;
+		rangeXMin += (toGoal.Multiply(std::min(toGoalLength / 2, request.range * 3 / 5)).Multiply(inv)).X;
+		rangeXMax += (toGoal.Multiply(std::min(toGoalLength / 2, request.range * 3 / 5)).Multiply(inv)).X;
+		rangeZMin += (toGoal.Multiply(std::min(toGoalLength / 2, request.range * 3 / 5)).Multiply(inv)).Y;
+		rangeZMax += (toGoal.Multiply(std::min(toGoalLength / 2, request.range * 3 / 5)).Multiply(inv)).Y;
+	}
 
 	// Add domain edges
 	// (Inside-out square, so edges are in reverse from the usual direction.)

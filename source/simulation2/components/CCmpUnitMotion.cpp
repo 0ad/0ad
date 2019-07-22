@@ -53,10 +53,17 @@ static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_T
 
 /**
  * Min/Max range to restrict short path queries to. (Larger ranges are slower,
+ * Min/Max range to restrict short path queries to. (Larger ranges are (much) slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
-static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
-static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*10);
+static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3)/2;
+static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
+static const entity_pos_t SHORT_PATH_SEARCH_RANGE_INCREMENT = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
+
+/**
+ * When using the short-pathfinder to rejoin a long-path waypoint, aim for a circle of this radius around the waypoint.
+ */
+static const entity_pos_t SHORT_PATH_LONG_WAYPOINT_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
 
 /**
  * Minimum distance to goal for a long path request
@@ -461,13 +468,13 @@ private:
 
 	void MoveFailed()
 	{
-		CMessageMotionChanged msg(true);
+		CMessageMotionUpdate msg(CMessageMotionUpdate::LIKELY_FAILURE);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
 	void MoveSucceeded()
 	{
-		CMessageMotionChanged msg(false);
+		CMessageMotionUpdate msg(CMessageMotionUpdate::LIKELY_SUCCESS);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
@@ -689,6 +696,13 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	if (!m_ShortPath.m_Waypoints.empty())
 		return;
 
+	if (m_FailedPathComputations >= 1)
+	{
+		// Inform other components - we might be ordered to stop, and computeGoal will then fail and return early.
+		CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
+		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+	}
+
 	// Don't notify if we are a formation member - we can occasionally be stuck for a long time
 	// if our current offset is unreachable.
 	if (!IsFormationMember())
@@ -702,7 +716,9 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		m_LongPath.m_Waypoints.pop_back();
 		if (!m_LongPath.m_Waypoints.empty())
 		{
-			PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+			// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
+			// we'll easily be able to revert it using a long path.
+			PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, SHORT_PATH_LONG_WAYPOINT_RANGE };
 			RequestShortPath(pos, goal, true);
 			return;
 		}
@@ -908,6 +924,13 @@ bool CCmpUnitMotion::HandleObstructedMove()
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return false;
 
+	if (m_FailedPathComputations >= 1)
+	{
+		// Inform other components - we might be ordered to stop, and computeGoal will then fail and return early.
+		CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
+		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+	}
+
 	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	// Oops, we hit something (very likely another unit).
@@ -930,7 +953,9 @@ bool CCmpUnitMotion::HandleObstructedMove()
 		m_LongPath.m_Waypoints.pop_back();
 	if (!m_LongPath.m_Waypoints.empty())
 	{
-		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+		// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
+		// we'll easily be able to revert it using a long path.
+		PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, SHORT_PATH_LONG_WAYPOINT_RANGE };
 		RequestShortPath(pos, goal, true);
 		return true;
 	}
@@ -1322,7 +1347,7 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (!cmpPathfinder)
 		return;
 
-	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * (m_FailedPathComputations + 1), goal.DistanceToPoint(from));
+	fixed searchRange = SHORT_PATH_MIN_SEARCH_RANGE + SHORT_PATH_SEARCH_RANGE_INCREMENT * m_FailedPathComputations;
 	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
 		searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
 
