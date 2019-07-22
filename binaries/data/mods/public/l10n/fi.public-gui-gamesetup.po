@@ -5,8 +5,9 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
 # Ildradil <piggmatias@gmail.com>, 2013
-# Max, 2016
-# Max, 2015
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
+# Max Ihalempia, 2016
+# Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015-2016
 # Riku Viitanen <riisseli4@gmail.com>, 2015-2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 10:43+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr "Ei mitään"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "AI on poissa käytöstä tältä pelaajalta."
+msgstr "Tekoäly on pois käytöstä tältä pelaajalta."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -47,7 +48,7 @@ msgstr "Satunnainen"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Valitsee yhden satunnaisen sivilisaation pelin alussa."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -60,7 +61,7 @@ msgstr "Olen valmis"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Ilmoita että olet valmis aloittamaan pelin."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -69,11 +70,11 @@ msgstr "* %(username)s on valmis!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "Pysy valmiina"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Pysy valmiina vaikka pelin asetuksia muutettaisiin."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -175,7 +176,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Kartta"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -185,11 +186,11 @@ msgstr "Pelaaja"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Pelin tyyppi"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "Kartan tyyppi"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
@@ -205,7 +206,7 @@ msgstr "Valitse kartan suodatin."
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
-msgstr ""
+msgstr "Valitse kartta"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
@@ -213,7 +214,7 @@ msgstr "Valitse kartta pelattavaksi."
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "Kartan koko"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -229,7 +230,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr ""
+msgstr "Pelaajien määrä"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
@@ -252,7 +253,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
-msgstr ""
+msgstr "Aloitusresurssit"
 
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
@@ -265,7 +266,7 @@ msgstr "Valitse pelin aloitusresurssit"
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "Tulitauko"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
@@ -308,7 +309,7 @@ msgstr "Valitse pelin nopeus."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Vaikeustaso"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
@@ -398,7 +399,7 @@ msgstr "Lukitut joukkueet."
 
 #: gui/gamesetup/gamesetup.js:941
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Viimeinen elossa"
 
 #: gui/gamesetup/gamesetup.js:942
 msgid ""
@@ -408,7 +409,7 @@ msgstr "Voittaako viimeinen jäljellä oleva pelaaja vai viimeiset selvinneet li
 
 #: gui/gamesetup/gamesetup.js:955
 msgid "Cheats"
-msgstr ""
+msgstr "Huijaukset"
 
 #: gui/gamesetup/gamesetup.js:956
 msgid "Toggle the usability of cheats."
@@ -437,7 +438,7 @@ msgstr "Palaa päävalikkoon."
 
 #: gui/gamesetup/gamesetup.js:1016
 msgid "Start Game!"
-msgstr ""
+msgstr "Aloita peli!"
 
 #: gui/gamesetup/gamesetup.js:1032
 msgid "Start a new game with the current settings."
@@ -488,7 +489,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Satunnainen"
 
 #: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
@@ -498,7 +499,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
@@ -516,7 +517,7 @@ msgstr "Ei"
 #: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
@@ -618,7 +619,7 @@ msgstr "Pelaajan %(playername)s peli"
 #: gui/loading/loading.js:33
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -644,7 +645,7 @@ msgstr "Tekoälyn vaikeustaso:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Tekoälyn toiminta"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
@@ -665,7 +666,7 @@ msgstr "Ladataan"
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Ladataan kartan tietoja, odota hetki…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
@@ -689,7 +690,7 @@ msgstr "Joukkue"
 
 #: gui/gamesetup/gamesetup.xml:(caption):125
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Näytä tämä viesti myös jatkossa."
 
 #: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
@@ -727,7 +728,7 @@ msgstr "Liitytään käynnissä olevaan peliin."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Pelaajan nimi:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -744,7 +745,7 @@ msgstr "Pystytä palvelin hostiksi."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Palvelimen nimi:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"

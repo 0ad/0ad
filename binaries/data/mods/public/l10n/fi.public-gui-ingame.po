@@ -6,6 +6,7 @@
 # linux_eki <ekiuusi@gmail.com>, 2014-2016
 # Ildradil <piggmatias@gmail.com>, 2013
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Max Ihalempia, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-24 09:42+0200\n"
-"PO-Revision-Date: 2019-06-24 14:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 12:03+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,11 +109,11 @@ msgstr ""
 
 #: gui/session/developer_overlay.js:200
 msgid "The Developer Overlay was closed."
-msgstr "Kehittäjä paneeli suljettiin."
+msgstr "Kehittäjäpaneeli suljettiin."
 
 #: gui/session/developer_overlay.js:201
 msgid "The Developer Overlay was opened."
-msgstr "Kehittäjä paneeli avattiin."
+msgstr "Kehittäjäpaneeli avattiin."
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -188,7 +189,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Tulitaukoa jäljellä: %(time)s."
 
 #: gui/session/menu.js:460
 msgctxt "team"
@@ -215,7 +216,7 @@ msgstr "x"
 
 #: gui/session/menu.js:556
 msgid "Request your allies to attack this enemy"
-msgstr "Pyydä liittolaistasi hyökkäämään tähän viholliseen"
+msgstr "Pyydä liittolaisiasi hyökkäämään tähän viholliseen"
 
 #: gui/session/menu.js:573
 msgid ""
@@ -225,7 +226,7 @@ msgstr ""
 
 #: gui/session/menu.js:605
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Epäonnistunut lahjominen maksaa sinulle:"
 
 #: gui/session/menu.js:786
 #, javascript-format
@@ -277,7 +278,7 @@ msgstr[1] "Epäaktiivisia %(inactiveString)s."
 
 #: gui/session/menu.js:903
 msgid "There are no land traders."
-msgstr "Maakauppioita ei ole."
+msgstr "Maakauppiaita ei ole."
 
 #: gui/session/menu.js:911
 #, javascript-format
@@ -327,7 +328,7 @@ msgstr "Kauppalaivoja ei ole."
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s kauppa-alus liikkeellä"
-msgstr[1] "%(numberTrading)s kauppa-aluksia liikkeellä"
+msgstr[1] "%(numberTrading)s kauppa-alusta liikkeellä"
 
 #: gui/session/menu.js:986
 #, javascript-format
@@ -341,7 +342,7 @@ msgstr[1] "%(numberOfShipTraders)s epäaktiivisia"
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s kauppa-alus epäaktiivinen"
-msgstr[1] "%(numberOfShipTraders)s kauppa-aluksia epäaktiivisena"
+msgstr[1] "%(numberOfShipTraders)s kauppa-alusta epäaktiivisena"
 
 #: gui/session/menu.js:1214
 msgid "Resume"
@@ -393,7 +394,7 @@ msgstr "%(player)s poistui pelistä."
 #: gui/session/messages.js:119
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s on uudelleenliittynyt peliin."
+msgstr "%(player)s on liittynyt uudelleen peliin."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:121
@@ -429,7 +430,7 @@ msgstr "Odotetaan pelaajia liittymään:"
 
 #: gui/session/messages.js:155
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Synkronoidaan peliä muiden pelaajien kanssa…"
 
 #: gui/session/messages.js:164
 #, javascript-format
@@ -481,17 +482,17 @@ msgstr "Pelaajien keskustelu"
 #: gui/session/messages.js:231
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Liittolais-keskustelu"
+msgstr "Liittolaiskeskustelu"
 
 #: gui/session/messages.js:238
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Vihollis-keskustelu"
+msgstr "Viholliskeskustelu"
 
 #: gui/session/messages.js:245
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Katsoja-keskustelu"
+msgstr "Tarkkailijakeskustelu"
 
 #: gui/session/messages.js:252
 msgctxt "chat history filter"
@@ -509,17 +510,17 @@ msgstr "Sinut on lyöty!"
 #: gui/session/messages.js:267
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Sinä olet nyt liittoutunut %(player)s kanssa."
+msgstr "Olet nyt liittoutunut pelaajan %(player)s kanssa."
 
 #: gui/session/messages.js:268
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Sinä olet nyt sodassa %(player)s kanssa."
+msgstr "Olet nyt sodassa pelaajan %(player)s kanssa."
 
 #: gui/session/messages.js:269
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "You are nyt sovussa %(player)s kanssa."
+msgstr "Olet nyt sovussa pelaajan %(player)s kanssa."
 
 #: gui/session/messages.js:272
 #, javascript-format
@@ -539,21 +540,21 @@ msgstr "%(player)s on nyt sovussa kanssasi."
 #: gui/session/messages.js:277
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s on nyt liittoutunut %(player2)s kanssa."
+msgstr "%(player)s on nyt liittoutunut pelaajan %(player2)s kanssa."
 
 #: gui/session/messages.js:278
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s on nyt sodassa %(player2)s kanssa."
+msgstr "%(player)s on nyt sodassa pelaajan %(player2)s kanssa."
 
 #: gui/session/messages.js:279
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s on neutraali %(player2)s kanssa."
+msgstr "%(player)s on sovussa pelaajan %(player2)s kanssa."
 
 #: gui/session/messages.js:587
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Napsauta lopettaaksesi tämän oppaan."
 
 #: gui/session/messages.js:588
 msgid "Quit"
@@ -561,7 +562,7 @@ msgstr "Poistu"
 
 #: gui/session/messages.js:592
 msgid "Click when ready."
-msgstr "Klikkaa, kun olet valmis."
+msgstr "Napsauta kun olet valmis."
 
 #: gui/session/messages.js:596
 msgid "Follow the instructions."
@@ -581,17 +582,17 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Pelaajat: %(players)s"
 
 #: gui/session/messages.js:702
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "Pelisi tila on identtinen isännän peliin nähden."
 
 #: gui/session/messages.js:703
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "Pelisi tila eroaa isännän pelin tilaan nähden."
 
 #: gui/session/messages.js:709
 msgctxt "Out-Of-Sync"
@@ -632,7 +633,7 @@ msgstr ""
 #: gui/session/messages.js:735
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
-msgstr ""
+msgstr "Nykyinen pelin tila on eri kuin alkuperäisen pelin tila."
 
 #: gui/session/messages.js:799
 msgctxt "chat addressee"
@@ -686,12 +687,12 @@ msgstr "%(player)s lähetti sinulle %(amounts)s."
 #: gui/session/messages.js:1031
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "lähetit pelaajalle %(player2)s%(amounts)s"
+msgstr "Lähetit pelaajalle %(player2)s%(amounts)s"
 
 #: gui/session/messages.js:1036
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s on lähettänyt %(player2)slle %(amounts)s."
+msgstr "%(player)s on lähettänyt pelaajalle %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:1056
 #, javascript-format
@@ -706,7 +707,7 @@ msgstr "Karjaasi vastaan hyökkäsi %(attacker)s!"
 #: gui/session/messages.js:1070
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr "Sinua vastaan hyökkää %(attacker)s !"
+msgstr "Sinua vastaan hyökkää %(attacker)s!"
 
 #: gui/session/messages.js:1087
 #, javascript-format
@@ -792,7 +793,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:252
 msgid "Current/max gatherers"
-msgstr "Nykyiset/maksimi kerääjät"
+msgstr "Nykyiset/enimmäiskerääjät"
 
 #: gui/session/selection_details.js:271
 #, javascript-format
@@ -908,7 +909,7 @@ msgstr[1] ""
 #: gui/session/selection_panels.js:753
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Jäljellä: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:754
 msgctxt "Separator for a list of entity counts"
@@ -1027,27 +1028,27 @@ msgstr "Shift-klikkaa"
 #: gui/session/session.js:420
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Kirjoita viesti lähettääksesi."
+msgstr "Kirjoita lähetettävä viesti."
 
 #: gui/session/session.js:422
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Paina %(hotkey)s avataksesi julkisen chatin."
+msgstr "Paina %(hotkey)s avataksesi julkisen keskustelun."
 
 #: gui/session/session.js:425
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Paina %(hotkey)s avataksesi tarkastelijachatin"
+msgstr "Paina %(hotkey)s avataksesi tarkastelijakeskustelun"
 
 #: gui/session/session.js:426
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Paina %(hotkey)s avataksesi liittolaiskeskustelun."
 
 #: gui/session/session.js:428
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Paina %(hotkey)s avataksesi aiemmin valitun yksityisen keskustelun."
 
 #: gui/session/session.js:432
 msgid "Find idle worker"
@@ -1085,7 +1086,7 @@ msgstr ""
 
 #: gui/session/session.js:888
 msgid "Do you want to quit?"
-msgstr "Tahdotko lopettaa?"
+msgstr "Haluatko lopettaa?"
 
 #: gui/session/session.js:894
 msgid "VICTORIOUS!"
@@ -1132,7 +1133,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1196
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s vaihtaaksesi järjestystä"
 
 #: gui/session/session.js:1198
 msgid "Unordered"
@@ -1158,14 +1159,14 @@ msgstr "Väkiluku (nykyinen / raja)"
 #: gui/session/session.js:1226
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr "Maksimi väkiluku: %(popCap)s"
+msgstr "Enimmäisväkiluku: %(popCap)s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/session/session.js:1434
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
@@ -1400,11 +1401,11 @@ msgstr ""
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Tavoitteet"
 
 #: gui/session/session.xml:(caption):66
 msgid "Game Paused"
-msgstr "Peli pysäytettu"
+msgstr "Peli keskeytetty"
 
 #: gui/session/session.xml:(caption):69
 msgid "Click to Resume Game"
@@ -1500,7 +1501,7 @@ msgstr "Paina valitaksesi ryhmitetyt yksiköt, tuplaklikkaamalla saat keskitetty
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr "pelin nopeus"
+msgstr "Pelin nopeus"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

@@ -5,6 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015-2016,2018
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Kalle Mantyla <kalle.mantyla@gmail.com>, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 11:49+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,17 +29,17 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Hakkaus"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Lävistys"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "Murskaus"
 
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
@@ -48,7 +49,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: Sulje historia."
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -64,8 +65,8 @@ msgstr[1] "Siviilisaatiobonukset"
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Joukkoebonus"
-msgstr[1] "Joukkoebonukset"
+msgstr[0] "Joukkuebonus"
+msgstr[1] "Joukkuebonukset"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
@@ -84,7 +85,7 @@ msgstr "Sankarit"
 #: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr "%(civilization)s historia"
+msgstr "Sivilisaation %(civilization)s historia"
 
 #: gui/common/color.js:164
 #, javascript-format
@@ -272,12 +273,12 @@ msgstr ""
 
 #: gui/common/gamedescription.js:210
 msgid "No Team"
-msgstr "Ei joukkoetta"
+msgstr "Ei joukkuetta"
 
 #: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Joukkoe %(team)s"
+msgstr "Joukkue %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -301,7 +302,7 @@ msgstr "Päättymätön peli"
 
 #: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Voittajaa ei määritetä, vaikka kaikki kaatuisivat."
 
 #: gui/common/gamedescription.js:251
 #, javascript-format
@@ -351,11 +352,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:305
 msgid "Locked Teams"
-msgstr "Lukitut Joukkueet"
+msgstr "Lukitut joukkueet"
 
 #: gui/common/gamedescription.js:306
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Pelaajat eivät voi vaihtaa alussa valittuja joukkueita."
 
 #: gui/common/gamedescription.js:310
 msgid "Diplomacy"
@@ -367,17 +368,17 @@ msgstr "Pelaajat voivat muodostaa liittoumia ja julistaa sotia liittolaisille."
 
 #: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Viimeinen elossa"
 
 #: gui/common/gamedescription.js:317
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Vain yksi pelaaja voi voittaa pelin. Jos jäljellä olevat pelaajat ovat liittolaisia, peli jatkuu kunnes vain yksi on jäljellä."
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
-msgstr ""
+msgstr "Liittoutuneiden voitto"
 
 #: gui/common/gamedescription.js:322
 msgid ""
@@ -396,8 +397,8 @@ msgstr "pois käytöstä"
 #: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ensimmäisen minuutin aikana muut pelaajat pysyvät neutraaleina."
+msgstr[1] "Ensimmäisen %(min)s minuutin aikana muut pelaajat pysyvät neutraaleina."
 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
@@ -443,7 +444,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
-msgstr ""
+msgstr "Kansalaiskeskukset"
 
 #: gui/common/gamedescription.js:399
 msgid ""
@@ -475,7 +476,7 @@ msgstr "Aarteet"
 #: gui/common/gamedescription.js:425
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Pois käytöstä"
 
 #: gui/common/gamedescription.js:426
 msgctxt "treasures"
@@ -492,7 +493,7 @@ msgstr "Tutkittu kartan alue"
 
 #: gui/common/gamedescription.js:440
 msgid "Cheats"
-msgstr ""
+msgstr "Huijaukset"
 
 #: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -554,7 +555,7 @@ msgstr ""
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Isäntä on lopettanut pelin."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
@@ -562,27 +563,27 @@ msgstr ""
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Peli latautuu, yritä myöhemmin uudelleen."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Peli on jo alkanut, tarkkailijoita ei sallita."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Sinut on potkittu."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Sinut on estetty."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Pelaajanimi on käytössä. Jos yhteytesi katkesi, yritä uudelleen muutaman sekunnin kuluttua."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Palvelin on täynnä."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -859,8 +860,8 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
@@ -945,7 +946,7 @@ msgstr "%(label)s: %(value)s"
 #: gui/common/tooltips.js:324
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Oma tuli: %(enabled)s"
 
 #: gui/common/tooltips.js:341
 #, javascript-format
@@ -967,7 +968,7 @@ msgstr "Parantua:"
 
 #: gui/common/tooltips.js:352
 msgid "Health"
-msgstr ""
+msgstr "Terveys"
 
 #: gui/common/tooltips.js:377
 msgid "Projectile Limit"
@@ -1070,7 +1071,7 @@ msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Hinta:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1084,7 +1085,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:641
 msgid "Population Bonus:"
-msgstr "Väkiluku Bonus:"
+msgstr "Väkilukubonus:"
 
 #: gui/common/tooltips.js:662
 msgid "Insufficient resources:"
@@ -1197,11 +1198,11 @@ msgstr "Modit: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Tämä pelitallennus vaatii 0 A.D.:n version %(requiredVersion)s, mutta käytössäsi on %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Tämä pelitallennus vaatii vanhemman version 0 A.D.:stä."
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
@@ -1219,7 +1220,7 @@ msgstr "Varoitus"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Oletus: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1253,7 +1254,7 @@ msgstr "Asetusten nollaus poistaa tallennetut asetuksesi. Haluatko jatkaa?"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "Jotkin asetusarvot ovat virheellisiä! Haluatko varmasti tallentaa ne?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1268,7 +1269,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Lue lisää 0 A.D.:ssä olevista sivilisaatioista."
 
 #: gui/pregame/mainmenu.js:49
 #, javascript-format
@@ -1304,11 +1305,11 @@ msgstr "Ok"
 
 #: gui/pregame/mainmenu.js:123
 msgid "Read More"
-msgstr "Lue lisä"
+msgstr "Lue lisää"
 
 #: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Oletko varma että haluat sulkea 0 A.D:n?"
+msgstr "Haluatko varmasti sulkea 0 A.D:n?"
 
 #: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
@@ -1341,7 +1342,7 @@ msgstr "Ohjekirja"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Käyttöehdot"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1390,12 +1391,12 @@ msgstr "Kiitos kun autoit 0.A.D:n kehittämisessä!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Palaute on parhaillaan käytössä."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Tila: %(status)s."
 
 #: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
@@ -1426,7 +1427,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Resurssitarjonta:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
@@ -1519,7 +1520,7 @@ msgstr "Yhteenvetotietoja ei ole saatavilla."
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "Oletko varma, että haluat poistaa tämän uusinnan lopullisesti?"
+msgstr "Haluatko varmasti poistaa tämän uusinnan lopullisesti?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
@@ -1589,7 +1590,7 @@ msgstr "Moninpeli"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Mikä tahansa voiton ehto"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1627,11 +1628,11 @@ msgstr "Tallennettuja pelejä ei löytynyt"
 
 #: gui/savegame/save.js:64
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Tallennettu peli päällekirjoitetaan pysyvästi, oletko varma? "
+msgstr "Tallennettu peli korvataan pysyvästi, oletko varma? "
 
 #: gui/savegame/save.js:65
 msgid "OVERWRITE SAVE"
-msgstr "Päällekirjoita tallennus"
+msgstr "Korvaa tallennus"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1689,7 +1690,7 @@ msgstr "Linnoitukset"
 
 #: gui/summary/layout.js:30
 msgid "Civ centers"
-msgstr "Siviilikeskukset"
+msgstr "Kansalaiskeskukset"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
@@ -1712,7 +1713,7 @@ msgstr "Jalkaväki"
 
 #: gui/summary/layout.js:64
 msgid "Worker"
-msgstr "Tyentekijä"
+msgstr "Työntekijä"
 
 #: gui/summary/layout.js:65
 msgid "Cavalry"
@@ -1787,7 +1788,7 @@ msgstr "Vaihtokaupan hyötysuhde"
 #: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s vaihdettu"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
@@ -1796,7 +1797,7 @@ msgstr "Sekalaiset"
 
 #: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "Tappojen ja kuolemien suhde"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
@@ -1820,14 +1821,14 @@ msgstr "Feminisaatio"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Lahjukset"
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Lahjukset\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:357
 msgid "Team total"
@@ -1851,7 +1852,7 @@ msgstr "Lähetetty"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "Ostettu"
 
 #: gui/summary/summary.js:55
 msgid "Income"
@@ -1883,11 +1884,11 @@ msgstr "Käytetty"
 
 #: gui/summary/summary.js:90
 msgid "Received"
-msgstr ""
+msgstr "Vastaanotettu"
 
 #: gui/summary/summary.js:95
 msgid "Sold"
-msgstr ""
+msgstr "Myyty"
 
 #: gui/summary/summary.js:100
 msgid "Outcome"
@@ -1923,7 +1924,7 @@ msgstr "Olet voittanut taistelun!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr ""
+msgstr "Sinut on kukistettu…"
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
@@ -1967,7 +1968,7 @@ msgstr "Sulje"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "0 A.D. lopputekstit"
+msgstr "0 A.D. -lopputekstit"
 
 #: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
 msgid "Load Game"
@@ -1975,7 +1976,7 @@ msgstr "Lataa peli"
 
 #: gui/loadgame/load.xml:(caption):49
 msgid "No saved games found."
-msgstr ""
+msgstr "Tallennettuja pelejä ei löytynyt."
 
 #: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
 #: gui/savegame/save.xml:(caption):36
@@ -1994,7 +1995,7 @@ msgstr "Lataa"
 
 #: gui/loadgame/load.xml:(caption):75
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "Suodata yhteensopivat tallennetut pelit"
 
 #: gui/loadgame/load.xml:(caption):85
 msgid "Players:"
@@ -2055,7 +2056,7 @@ msgstr "Kieli:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "Paikallinen:"
+msgstr "Maa-asetus:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -2063,7 +2064,7 @@ msgstr "Kehittynyt"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
-msgstr "Hyväksyä"
+msgstr "Hyväksy"
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -2109,7 +2110,7 @@ msgstr "VAROITUS: Tämä on pelin varhainen kehitysversio. Monia ominaisuuksia e
 
 #: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
-msgstr "Avaa 0 A.D. peliohjekirja"
+msgstr "Avaa 0 A.D. -peliohjekirja"
 
 #: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
@@ -2117,7 +2118,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
-msgstr "Paina aloittaaksei uusi paikallinen peli"
+msgstr "Paina aloittaaksesi uusi yksinpeli."
 
 #: gui/pregame/mainmenu.xml:(tooltip):177
 msgid ""
@@ -2127,7 +2128,7 @@ msgstr "Elä uudelleen historia sotakampanjoissa. \\[Ei vielä lisätty]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
-msgstr "Paina ladataksesi tallennetun peli"
+msgstr "Paina ladataksesi tallennetun pelin."
 
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
@@ -2140,7 +2141,7 @@ msgstr "Liity moninpeliin"
 
 #: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Hostaa moninpeli.\\n\\nTarvitsee auki UDP portin 20595"
+msgstr "Isännöi moninpeli.\\n\\nTarvitsee auki UDP-portin 20595."
 
 #: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
@@ -2152,7 +2153,7 @@ msgstr "Päätä pelin kieli"
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "Valitse ja lataa modeja pelille."
 
 #: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2174,7 +2175,7 @@ msgstr "Taistele yhtä tai useampaa pelaajaa vastaan moninpelissä."
 
 #: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "Peliasetukset ja modivalinta."
 
 #: gui/pregame/mainmenu.xml:(tooltip):470
 msgid ""
@@ -2194,23 +2195,23 @@ msgstr "Paina avataksesi play0ad.com selaimessasi"
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "Paina avataksesi 0 A.D. IRC-chatin selaimessasi. (#0ad kanava osoitteessa webchat.quakenet.org)"
+msgstr "Paina avataksesi 0 A.D. -IRC-chatin selaimessasi. (#0ad-kanava osoitteessa webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Paina vieraillaksesi 0 A.D. Trac-sivustolla. Voit raportoida bugeista, kaatumisista tai virheistä."
+msgstr "Paina vieraillaksesi 0 A.D. -Trac-sivustolla. Voit raportoida bugeista, kaatumisista tai virheistä."
 
 #: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Paina avataksesi 0 A.D. käännös sivuston selaimessasi."
+msgstr "Paina avataksesi 0 A.D. -käännössivuston selaimessasi."
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Auta projektin kustannusten suhteen lahjoittamalla."
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
-msgstr "Paina nähdäksesi 0 A.D. lopputekstit."
+msgstr "Paina nähdäksesi 0 A.D. -lopputekstit."
 
 #: gui/pregame/mainmenu.xml:(caption):108
 msgid "Tutorial"
@@ -2245,7 +2246,7 @@ msgstr "Aloita moninpeli"
 
 #: gui/pregame/mainmenu.xml:(caption):261
 msgid "Game Lobby"
-msgstr "Pelinaula"
+msgstr "Peliaula"
 
 #: gui/pregame/mainmenu.xml:(caption):311
 msgid "Options"
@@ -2253,7 +2254,7 @@ msgstr "Asetukset"
 
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Mod Selection"
-msgstr "Modin valitseminen"
+msgstr "Modin valinta"
 
 #: gui/pregame/mainmenu.xml:(caption):351
 msgid "Welcome Screen"
@@ -2269,7 +2270,7 @@ msgstr "Asetukset"
 
 #: gui/pregame/mainmenu.xml:(caption):469
 msgid "Scenario Editor"
-msgstr "Skenaario editori"
+msgstr "Skenaarioeditori"
 
 #: gui/pregame/mainmenu.xml:(caption):483
 msgid "Exit"
@@ -2390,12 +2391,12 @@ msgstr "Tiedetyt ongelmat (netti)"
 
 #: gui/summary/summary.xml:(caption):116
 msgid "Charts"
-msgstr ""
+msgstr "Kaaviot"
 
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Luokka:"
 
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
@@ -2409,7 +2410,7 @@ msgstr "Tyyppi:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Katso uusinta"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2418,7 +2419,7 @@ msgstr "Jatka"
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
-msgstr "Kategoria"
+msgstr "Luokka"
 
 #: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
@@ -2432,7 +2433,7 @@ msgstr "Tyyppi"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr "Taiteen johtaja"
+msgstr "Taiteellinen johto"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
@@ -2456,11 +2457,11 @@ msgstr "Satunnaiset kartan ohjelmat"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr "2D taide"
+msgstr "2D-taide"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr "3D taide"
+msgstr "3D-taide"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2543,7 +2544,7 @@ msgstr "Pledgie kampanja 2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Indiegogo 2013 kampanja\nEnemmän kuin 1000 lahjoittajaa (!), sisältyen:"
+msgstr "Indiegogo 2013 -kampanja\nEnemmän kuin 1000 lahjoittajaa (!), sisältyen:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -2559,7 +2560,7 @@ msgstr "Historiaviitteet"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr "Yhteisö ja Hallinto"
+msgstr "Yhteisö ja hallinto"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2567,7 +2568,7 @@ msgstr "Ohjelmointipäälliköt"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr "Erityiset kiitokset"
+msgstr "Erityiskiitokset"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
@@ -2579,7 +2580,7 @@ msgstr "Muistaen "
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr "0 A.D. perustaja"
+msgstr "0 A.D. -perustaja"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -2591,11 +2592,11 @@ msgstr "Yhteisjohtosuunnittelijat"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr "Erityiset kiitokset:"
+msgstr "Erityiskiitokset:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "Ja kiitos koko yhteisölle mahdollistaen 0 A.D. tekemisen."
+msgstr "Ja kiitos koko yhteisölle mahdollistaen 0 A.D.:n tekemisen."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -2627,7 +2628,7 @@ msgstr "Pelaajanimi (Moninpeli)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "Keskeytä yksinpelit kun ikkuna kadottaa kohdistuksen."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2653,11 +2654,11 @@ msgstr "Verkkovaroitukset"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "Näytä kuvaruutu per sekuntti oikeassa yläkulmassa."
+msgstr "Näytä FPS (kuvaa per sekunti) oikeassa yläkulmassa."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr "FPS kerros"
+msgstr "FPS-kerros"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2696,7 +2697,7 @@ msgstr ""
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Pois käytöstä"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
@@ -2731,19 +2732,19 @@ msgstr "Yleinen"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Käynnistä 0 A.D. ikkunassa."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
-msgstr "Ikkunoitu"
+msgstr "Ikkunoitu tila"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Käytä OpenGL 2.0 varjostinta (suositeltu)."
+msgstr "Käytä OpenGL 2.0 -varjostimia (suositeltu)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
-msgstr "Suosi GLSL"
+msgstr "Suosi GLSL:ää"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
@@ -2775,7 +2776,7 @@ msgstr "Salli varjot."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
-msgstr "Varjostin"
+msgstr "Varjot"
 
 #: gui/options/options.json[1].options[6].list[0].label
 msgid "Very Low"
@@ -2850,7 +2851,7 @@ msgstr "Käytä korkealaatuisia tehosteita vedelle, rannikon aaltojen renderöin
 
 #: gui/options/options.json[1].options[11].label
 msgid "HQ Water Effects"
-msgstr "HQ vesiefektit"
+msgstr "Korkealaatuiset vesiefektit"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2942,7 +2943,7 @@ msgstr "Äänenvoimakkuuden taso."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "Pää-äänenvoimakkuus."
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2950,7 +2951,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "Musiikin äänenvoimakkuus"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3039,11 +3040,11 @@ msgstr "Erittäin vaikea"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Tekoälyn oletusvaikeustaso."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Tekoälyn oletusvaikeustaso"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3081,7 +3082,7 @@ msgstr ""
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Pelin asetukset"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
@@ -3090,7 +3091,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "TLS-salaus"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3276,7 +3277,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "Diplomatiavärit: oma"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3284,7 +3285,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Diplomatiavärit: liittolainen"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3292,7 +3293,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Diplomatiavärit: neutraali"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3300,7 +3301,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Diplomatiavärit: vihollinen"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3618,7 +3619,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Kallis ja hidas."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -3648,11 +3649,11 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "SIVILISAATIOKESKUKSET"
+msgstr "KANSALAISKESKUKSET"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "Uuden yhteiskuntasi perusta."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
@@ -3704,7 +3705,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Huomio! Kalat eivät ole ikuinen resurssi!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3783,7 +3784,7 @@ msgstr ""
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Yksiköt hänen muodostelmassaan ovat nopeampia ja vahvempia."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
@@ -3803,7 +3804,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Rakentuvat nopeasti, mutta ovat heikkoja."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
@@ -3827,7 +3828,7 @@ msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Huomattavin ateenalainen politiikko n. 495 – 429 eaa."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
@@ -3835,7 +3836,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Temppelit ovat halvempia kun hän elää."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3843,11 +3844,11 @@ msgstr "PERSIALAINEN ARKKITEHTUURI"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Erikoisteknologiaa persialaisille."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Kaikki persialaiset rakennukset ovat +25 % vahvempia."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4016,7 +4017,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Tutki parannusteknologioita."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
@@ -4059,7 +4060,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Kaikki laivat rakentuvat nopeammin, kun hän elää."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
@@ -4071,7 +4072,7 @@ msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Keskitason sotalaiva."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
@@ -4125,15 +4126,15 @@ msgstr "VALAAT"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Merellinen resurssi."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 ruokaa."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Kerättävissä kalastusalusten toimesta, kun valas on tapettu."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."

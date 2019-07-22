@@ -5,6 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2013-2014,2016,2018
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Max Ihalempia, 2016
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-01-07 13:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 08:54+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,11 +88,11 @@ msgstr "Tuleva striimiversion ei ole tuettu"
 
 #: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
-msgstr "Striimi on lopetettu serverin toimesta"
+msgstr "Striimi on suljettu palvelimen toimesta"
 
 #: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
-msgstr "Tapahtui I/O -virhe"
+msgstr "Tapahtui I/O-virhe"
 
 #: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
@@ -142,12 +143,12 @@ msgstr "Käyttäjänimi on jo olemassa"
 #: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Epäonnistuminen aloittaessa pelin tunnisteen kyselyä. Virhe: %s; %s."
 
 #: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Epäonnistuminen aloitaessa modien kyselyä. Virhe: %s; %s."
 
 #: ps/ModIo.cpp:301
 #, c-format
@@ -157,7 +158,7 @@ msgstr "Modihakemistoa ei voitu luoda: %s."
 #: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Ei voitu avata väliaikaista tiedostoa modin latausta varten: %s."
 
 #: ps/ModIo.cpp:336
 #, c-format
@@ -167,7 +168,7 @@ msgstr "Latauksen aloitus epäonnistui. Virhe:%s;%s."
 #: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Asynkroninen latausvirhe: %s, %s."
 
 #: ps/ModIo.cpp:410
 #, c-format
@@ -181,11 +182,11 @@ msgstr "Eriävät tiedostokoot."
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Virheellinen tiedosto. Odotettiin md5:ttä %s, saatiin %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Lopullisen tiivisteen laskeminen epäonnistui."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."

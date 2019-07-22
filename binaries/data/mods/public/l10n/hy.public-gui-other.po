@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-07-09 12:44+0000\n"
+"PO-Revision-Date: 2019-07-21 15:05+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "%(civilization)s-ի պատմությունը"
 
 #: gui/common/color.js:164
 #, javascript-format
@@ -840,7 +840,7 @@ msgstr[1] "վայրկյան"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
-msgstr ""
+msgstr "Առողջություն՝"
 
 #: gui/common/tooltips.js:175
 #, javascript-format
@@ -1062,7 +1062,7 @@ msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Գինը՝ "
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1160,7 +1160,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:821
 msgid "Loot:"
-msgstr ""
+msgstr "Փայաբաժին՝"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1172,7 +1172,7 @@ msgstr ""
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Սեխմել ավելի շատ տեղեկատվություն ստանալու համար։"
 
 #: gui/credits/credits.js:71
 #, javascript-format
@@ -1288,7 +1288,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
-msgstr ""
+msgstr "ՈԻՇԱԴՐՈՒԹՅՈՒՆ !"
 
 #: gui/pregame/mainmenu.js:123 gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
@@ -1300,7 +1300,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Հաստատ ցանկանու՞մ եք լքել \"0 A.D.\"-ն։"
 
 #: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
@@ -1328,12 +1328,12 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
-msgstr ""
+msgstr "Տեղեկագիրք"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Պայմաններ"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1356,38 +1356,38 @@ msgstr ""
 
 #: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
-msgstr ""
+msgstr "վերբեռնումը իրականացված է"
 
 #: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "վերբեռնումը ձախողված է (%(errorCode)s)"
 
 #: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "վերբեռնումը ձախողված է (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Անջատել"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Միացնել"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "Շնորհակալություն \"0 A.D.\"-ի բարելավման աշխատանքներին աջակցերու համար !"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Այս պահին հետընթացքը միացված է։"
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Իրավիճակ՝ %(status)s։"
 
 #: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
@@ -1395,13 +1395,13 @@ msgstr "անհայտ"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "Օգնեք \"0 A.D.\"-ն բարելավելու !"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Դուք կարողեկ մեզ ուղղարկել հաղորդագրություններ, ավտոմատ հետադարձ կապով, որը մեզ կարող է օգնել շտկելու թերությունները, բարելավել կատարողականությունները և համապատասխանությունը։"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1577,7 +1577,7 @@ msgstr "Միայնակ խաղ"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
-msgstr "Ցանցային խաղ"
+msgstr "Առցանց խաղ"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -1607,11 +1607,11 @@ msgstr "Խաղացողներ․ %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:300
 msgid "yyyy-MM-dd HH:mm"
-msgstr "իիիի-ՄՄ-դդ ՀՀ։մմ"
+msgstr "dd-MM-yyyy HH:mm"
 
 #: gui/replaymenu/replay_menu.js:330
 msgid "yyyy-MM"
-msgstr "իիիի-ՄՄ"
+msgstr "MM-yyyy"
 
 #: gui/savegame/save.js:30
 msgid "No saved games found"
@@ -2039,7 +2039,7 @@ msgstr "Լեզու"
 
 #: gui/locale/locale.xml:(caption):17
 msgid "Language:"
-msgstr "Լեզու."
+msgstr "Լեզու՝"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -2051,11 +2051,11 @@ msgstr ""
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "Լրացուցիչ"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
-msgstr ""
+msgstr "Հաստատել"
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -2097,7 +2097,7 @@ msgstr ""
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr ""
+msgstr "ՈԻՇԱԴՐՈՒԹՅՈՒՆ. խաղի այս տեսակը բարելավման ընթացքի մեջ է։ Որոշ առանձնահատկություններ դեռ ավելացված չեն։"
 
 #: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
@@ -2154,15 +2154,15 @@ msgstr ""
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Սովորել ինչպես խաղալ, սկսել խնամակալականը, բացահայտել "
 
 #: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
-msgstr ""
+msgstr "Մրցակցել համակարգչի հետ միայնակ։"
 
 #: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr ""
+msgstr "Մրցակցել մեկ կամ մի քանի խաղացողների հետ առցանց։"
 
 #: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
@@ -2176,11 +2176,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
-msgstr ""
+msgstr "Լքել խաղը։"
 
 #: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
-msgstr ""
+msgstr " Սեխմել play0ad.com համացանցային դիտարկիչով բացելու համար։"
 
 #: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
@@ -2211,7 +2211,7 @@ msgstr ""
 #: gui/pregame/mainmenu.xml:(caption):140
 #: gui/reference/structree/structree.xml:(caption):126
 msgid "History"
-msgstr ""
+msgstr "Պատմություն"
 
 #: gui/pregame/mainmenu.xml:(caption):162
 msgid "Matches"
@@ -2253,23 +2253,23 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):409
 msgid "Learn to Play"
-msgstr ""
+msgstr "Խաղալ սովորել"
 
 #: gui/pregame/mainmenu.xml:(caption):454
 msgid "Settings"
-msgstr ""
+msgstr "Կարգավորումներ"
 
 #: gui/pregame/mainmenu.xml:(caption):469
 msgid "Scenario Editor"
-msgstr ""
+msgstr "Սցենարի խմբագիր"
 
 #: gui/pregame/mainmenu.xml:(caption):483
 msgid "Exit"
-msgstr ""
+msgstr "Լքել"
 
 #: gui/pregame/mainmenu.xml:(caption):517
 msgid "Website"
-msgstr "Կայքէջ"
+msgstr "Կայք"
 
 #: gui/pregame/mainmenu.xml:(caption):529
 msgid "Chat"
@@ -2277,19 +2277,19 @@ msgstr "Ջատ"
 
 #: gui/pregame/mainmenu.xml:(caption):541
 msgid "Report a Bug"
-msgstr ""
+msgstr "Ազդարարել անսարքություն"
 
 #: gui/pregame/mainmenu.xml:(caption):553
 msgid "Translate the Game"
-msgstr ""
+msgstr "Խաղը թարգմանել"
 
 #: gui/pregame/mainmenu.xml:(caption):565
 msgid "Donate"
-msgstr ""
+msgstr "Նվիրաբերել"
 
 #: gui/pregame/mainmenu.xml:(caption):577
 msgid "Credits"
-msgstr ""
+msgstr "Վերջաբան"
 
 #: gui/pregame/mainmenu.xml:(caption):606
 msgid "WILDFIRE GAMES"
@@ -2297,7 +2297,7 @@ msgstr ""
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
-msgstr ""
+msgstr "Քաղաքակրթություն՝"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
@@ -2370,15 +2370,15 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
-msgstr ""
+msgstr "Բարի գալուստ !"
 
 #: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Ցուցադրել այս հաղորդագրությունն ավելի ուշ"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Գտնված թերություններ (Կայք)"
 
 #: gui/summary/summary.xml:(caption):116
 msgid "Charts"
@@ -2501,7 +2501,7 @@ msgstr ""
 #: gui/credits/texts/art.jsonContent[6].Title
 #: gui/options/options.json[2].label
 msgid "Sound"
-msgstr ""
+msgstr "Ձայներ"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
@@ -2559,7 +2559,7 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Հատւկ շնորհակալություն"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
@@ -2583,7 +2583,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Հատւկ շնորհակալություն․"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
@@ -2607,7 +2607,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "Խաղացողի անունը (Միայնակ խաղ)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
@@ -2615,7 +2615,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "Խաղացողի անունը (Առցանց խաղ)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
@@ -3500,7 +3500,7 @@ msgstr ""
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Շնորհակալություն \"0 A.D. Empires Ascendant\"-ը ներբեռնելու համար !"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -3510,19 +3510,19 @@ msgstr ""
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Այս խաղը դեռ բարելավման ընթացքի մեջ է։ Կան առանձնահատկությունների պակասություն և թերություններ։"
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Այս խաղը կալող է ունենալ բարձր կատարողականության թերություններ, մասնավորապես մեծ քարտեզների և զորամիավորումների մեծ քանակի վերաբերիալ։"
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]Ռազմական մարտավարության մասը բարելավման ընթացքի մեջ է, բայց դուք կարող եք այն միացնել կամ լուծարել։"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

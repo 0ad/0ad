@@ -4,6 +4,7 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # mrJalostaja <pauli.nykanen@yahoo.com>, 2015
 # Petri, 2014
 # Some Dude <jonpajanen2@gmail.com>, 2018
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
-"Last-Translator: Petri\n"
+"PO-Revision-Date: 2019-07-20 08:22+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Avataan %(url)s\n oletusselaimessa. Odota hetki…"
 
 #: gui/common/functions_msgbox.js:60
 msgid "Opening page"
@@ -124,7 +125,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Modi luetteloa ei voitu hakea.\n\n%(technicalDetails)s"
+msgstr "Modiluetteloa ei voitu hakea.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -161,7 +162,7 @@ msgstr "Vahvistusvirhe"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "Alustetaan mod.io käyttöliittymää."
+msgstr "Alustetaan mod.io-käyttöliittymää."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
@@ -230,7 +231,7 @@ msgstr "Suodatin"
 #: gui/modmod/modmod.js:286
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
-msgstr "Dependency not met: %(dep)s"
+msgstr "Riippuvuus ei täyty: %(dep)s"
 
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
@@ -254,11 +255,11 @@ msgstr ""
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io-käyttöehdot"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io-yksityisyyskäytäntö"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -273,11 +274,11 @@ msgstr ""
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Avaa %(url)s selaimessa."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io Modit"
+msgstr "mod.io-modit"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -379,7 +380,7 @@ msgstr "Vaihda modien käynnistysjärjestystä. Tämän pitäisi vastata modien 
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Pyrogenesis modinvalitsija"
+msgstr "Pyrogenesis-modinvalitsija"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -399,11 +400,11 @@ msgstr "Kieli"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Hylkää"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
-msgstr "Hyväksyä"
+msgstr "Hyväksy"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -415,7 +416,7 @@ msgstr ""
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "Olet aikeissa yhdistää mod.io-verkkopalveluun."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
@@ -446,7 +447,7 @@ msgstr ""
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D on suunniteltu helposti modattavaksi. Modit jaetaan .pyromod tiedostomuotoina, jotka voidaan avata .zip-tiedostojen tapaan."
+msgstr "0 A.D on suunniteltu helposti modattavaksi. Modit jaetaan .pyromod-tiedostomuodossa, jonka voi avata .zip-tiedostojen tapaan."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
