@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -982,7 +982,8 @@ std::string CSimulation2::GetAIData()
 
 	// Build single JSON string with array of AI data
 	JS::RootedValue ais(cx);
-	if (!scriptInterface.Eval("({})", &ais) || !scriptInterface.SetProperty(ais, "AIData", aiData))
+
+	if (!scriptInterface.CreateObject(&ais, "AIData", aiData))
 		return std::string();
 
 	return scriptInterface.StringifyJSON(&ais);

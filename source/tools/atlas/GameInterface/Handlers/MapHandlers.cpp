@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,10 +99,11 @@ QUERYHANDLER(GenerateMap)
 		scriptInterface.SetProperty(settings, "mapType", std::string("random"));
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.Eval("({})", &attrs);
-		scriptInterface.SetProperty(attrs, "mapType", std::string("random"));
-		scriptInterface.SetProperty(attrs, "script", std::wstring(*msg->filename));
-		scriptInterface.SetProperty(attrs, "settings", settings);
+		scriptInterface.CreateObject(
+			&attrs,
+			"mapType", std::string("random"),
+			"script", std::wstring(*msg->filename),
+			"settings", settings);
 
 		StartGame(&attrs);
 
@@ -121,26 +122,31 @@ QUERYHANDLER(GenerateMap)
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 
-		JS::RootedValue settings(cx);
-		scriptInterface.Eval("({})", &settings);
 		// Set up 8-element array of empty objects to satisfy init
 		JS::RootedValue playerData(cx);
-		scriptInterface.Eval("([])", &playerData);
+		scriptInterface.CreateArray(&playerData);
+
 		for (int i = 0; i < 8; ++i)
 		{
 			JS::RootedValue player(cx);
-			scriptInterface.Eval("({})", &player);
+			scriptInterface.CreateObject(&player);
 			scriptInterface.SetPropertyInt(playerData, i, player);
 		}
-		scriptInterface.SetProperty(settings, "mapType", std::string("scenario"));
-		scriptInterface.SetProperty(settings, "PlayerData", playerData);
 
-		JS::RootedValue atts(cx);
-		scriptInterface.Eval("({})", &atts);
-		scriptInterface.SetProperty(atts, "mapType", std::string("scenario"));
-		scriptInterface.SetProperty(atts, "map", std::wstring(L"maps/scenarios/_default"));
-		scriptInterface.SetProperty(atts, "settings", settings);
-		StartGame(&atts);
+		JS::RootedValue settings(cx);
+		scriptInterface.CreateObject(
+			&settings,
+			"mapType", std::string("scenario"),
+			"PlayerData", playerData);
+
+		JS::RootedValue attrs(cx);
+		scriptInterface.CreateObject(
+			&attrs,
+			"mapType", std::string("scenario"),
+			"map", std::wstring(L"maps/scenarios/_default"),
+			"settings", settings);
+
+		StartGame(&attrs);
 
 		msg->status = -1;
 	}
@@ -159,9 +165,11 @@ MESSAGEHANDLER(LoadMap)
 	CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
 
 	JS::RootedValue attrs(cx);
-	scriptInterface.Eval("({})", &attrs);
-	scriptInterface.SetProperty(attrs, "mapType", std::string("scenario"));
-	scriptInterface.SetProperty(attrs, "map", std::wstring(mapBase));
+
+	scriptInterface.CreateObject(
+		&attrs,
+		"mapType", std::string("scenario"),
+		"map", std::wstring(mapBase));
 
 	StartGame(&attrs);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,23 +91,23 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
-	JS::RootedObject mods(cx, JS_NewArrayObject(cx, availableMods.size()));
-	if (!mods)
-		return JS::NullValue();
+	JS::RootedValue mods(cx);
+	scriptInterface->CreateArray(&mods, availableMods.size());
 
 	u32 i = 0;
 	for (const ModIoModData& mod : availableMods)
 	{
-		JS::RootedValue m(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
+		JS::RootedValue m(cx);
+		scriptInterface->CreateObject(&m);
+
 		for (const std::pair<std::string, std::string>& prop : mod.properties)
 			scriptInterface->SetProperty(m, prop.first.c_str(), prop.second, true);
 
 		scriptInterface->SetProperty(m, "dependencies", mod.dependencies, true);
-
-		JS_SetElement(cx, mods, i++, m);
+		scriptInterface->SetPropertyInt(mods, i++, m);
 	}
 
-	return JS::ObjectValue(*mods);
+	return mods;
 }
 
 const std::map<DownloadProgressStatus, std::string> statusStrings = {
@@ -136,9 +136,10 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
 	JSContext* cx = scriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedValue progressData(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 
+	JS::RootedValue progressData(cx);
+	scriptInterface->CreateObject(&progressData);
 	scriptInterface->SetProperty(progressData, "status", statusStrings.at(progress.status), true);
 	scriptInterface->SetProperty(progressData, "progress", progress.progress, true);
 	scriptInterface->SetProperty(progressData, "error", progress.error, true);

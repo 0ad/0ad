@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -295,11 +295,14 @@ void CNetClient::PostPlayerAssignmentsToScript()
 	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
 		JS::RootedValue assignment(cx);
-		GetScriptInterface().Eval("({})", &assignment);
-		GetScriptInterface().SetProperty(assignment, "name", CStrW(p.second.m_Name), false);
-		GetScriptInterface().SetProperty(assignment, "player", p.second.m_PlayerID, false);
-		GetScriptInterface().SetProperty(assignment, "status", p.second.m_Status, false);
-		GetScriptInterface().SetProperty(newAssignments, p.first.c_str(), assignment, false);
+
+		GetScriptInterface().CreateObject(
+			&assignment,
+			"name", CStrW(p.second.m_Name),
+			"player", p.second.m_PlayerID,
+			"status", p.second.m_Status);
+
+		GetScriptInterface().SetProperty(newAssignments, p.first.c_str(), assignment);
 	}
 
 	PushGuiMessage(msg);
@@ -760,10 +763,12 @@ bool CNetClient::OnKicked(void *context, CFsmEvent* event)
 	CKickedMessage* message = (CKickedMessage*)event->GetParamRef();
 	JS::RootedValue msg(cx);
 
-	client->GetScriptInterface().Eval("({})", &msg);
-	client->GetScriptInterface().SetProperty(msg, "username", message->m_Name);
-	client->GetScriptInterface().SetProperty(msg, "type", CStr("kicked"));
-	client->GetScriptInterface().SetProperty(msg, "banned", message->m_Ban != 0);
+	client->GetScriptInterface().CreateObject(
+		&msg,
+		"username", message->m_Name,
+		"type", CStr("kicked"),
+		"banned", message->m_Ban != 0);
+
 	client->PushGuiMessage(msg);
 
 	return true;

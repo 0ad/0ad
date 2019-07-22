@@ -107,21 +107,16 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	}
 	else if (propName == "children")
 	{
-		JS::RootedObject obj(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
-		vp.setObject(*obj);
+		pScriptInterface->CreateArray(vp);
 
 		for (size_t i = 0; i < e->m_Children.size(); ++i)
-		{
-			JS::RootedValue val(cx);
-			ScriptInterface::ToJSVal(cx, &val, e->m_Children[i]);
-			JS_SetElement(cx, obj, i, val);
-		}
+			pScriptInterface->SetPropertyInt(vp, i, e->m_Children[i]);
 
 		return true;
 	}
 	else if (propName == "name")
 	{
-		vp.set(JS::StringValue(JS_NewStringCopyZ(cx, e->GetName().c_str())));
+		ScriptInterface::ToJSVal(cx, vp, e->GetName());
 		return true;
 	}
 	else
@@ -741,12 +736,13 @@ bool JSI_IGUIObject::getTextSize(JSContext* cx, uint argc, JS::Value* vp)
 	GUI<float>::GetSetting(obj, "buffer_zone", buffer_zone);
 	SGUIText text = obj->GetGUI()->GenerateText(caption, font, width, buffer_zone, obj);
 
-	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
+	JS::RootedValue objVal(cx);
 	try
 	{
-		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-		pScriptInterface->SetProperty(objVal, "width", text.m_Size.cx, false, true);
-		pScriptInterface->SetProperty(objVal, "height", text.m_Size.cy, false, true);
+		ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(
+			&objVal,
+			"width", text.m_Size.cx,
+			"height", text.m_Size.cy);
 	}
 	catch (PSERROR_Scripting_ConversionFailed&)
 	{
@@ -772,14 +768,15 @@ bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), JS::Value
 	e->UpdateCachedSize();
 	CRect size = e->m_CachedActualSize;
 
-	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
+	JS::RootedValue objVal(cx);
 	try
 	{
-		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-		pScriptInterface->SetProperty(objVal, "left", size.left, false, true);
-		pScriptInterface->SetProperty(objVal, "right", size.right, false, true);
-		pScriptInterface->SetProperty(objVal, "top", size.top, false, true);
-		pScriptInterface->SetProperty(objVal, "bottom", size.bottom, false, true);
+		ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(
+			&objVal,
+			"left", size.left,
+			"right", size.right,
+			"top", size.top,
+			"bottom", size.bottom);
 	}
 	catch (PSERROR_Scripting_ConversionFailed&)
 	{

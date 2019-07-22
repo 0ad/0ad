@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -147,12 +147,16 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue msg(cx);
-	scriptInterface.Eval("({ 'type':'out-of-sync' })", &msg);
-	scriptInterface.SetProperty(msg, "turn", turn);
-	scriptInterface.SetProperty(msg, "players", playerNamesStrings);
-	scriptInterface.SetProperty(msg, "expectedHash", expectedHashHex);
-	scriptInterface.SetProperty(msg, "hash", Hexify(hash));
-	scriptInterface.SetProperty(msg, "path_oos_dump", wstring_from_utf8(oosdumpPath.string8()));
-	scriptInterface.SetProperty(msg, "path_replay", wstring_from_utf8(m_Replay.GetDirectory().string8()));
+
+	scriptInterface.CreateObject(
+		&msg,
+		"type", std::wstring(L"out-of-sync"),
+		"turn", turn,
+		"players", playerNamesStrings,
+		"expectedHash", expectedHashHex,
+		"hash", Hexify(hash),
+		"path_oos_dump", wstring_from_utf8(oosdumpPath.string8()),
+		"path_replay", wstring_from_utf8(m_Replay.GetDirectory().string8()));
+
 	m_NetClient.PushGuiMessage(msg);
 }
