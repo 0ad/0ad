@@ -4,10 +4,45 @@
   <group>
     <variant frequency="1" name="barrels">
       <mesh>props/celt_blacksmith_armorstand_rome_csp_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chainmail-2a">
       <textures>
-        <texture file="skeletal/rome_csp_a.dds" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2b">
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2c">
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3a">
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3b">
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3c">
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>basic_trans_spec.xml</material>
 </actor>
