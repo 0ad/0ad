@@ -131,7 +131,7 @@ Attack.prototype.Schema =
 		"<element name='Melee'>" +
 			"<interleave>" +
 				"<element name='Damage'>" +
-					DamageTypes.BuildSchema("damage strength") +
+					BuildDamageTypesSchema("damage strength") +
 				"</element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
@@ -150,7 +150,7 @@ Attack.prototype.Schema =
 		"<element name='Ranged'>" +
 			"<interleave>" +
 				"<element name='Damage'>" +
-					DamageTypes.BuildSchema("damage strength") +
+					BuildDamageTypesSchema("damage strength") +
 				"</element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
@@ -180,7 +180,7 @@ Attack.prototype.Schema =
 							"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
 							"<element name='Damage'>" +
-								DamageTypes.BuildSchema("damage strength") +
+								BuildDamageTypesSchema("damage strength") +
 							"</element>" +
 							Attack.prototype.bonusesSchema +
 						"</interleave>" +
@@ -242,7 +242,7 @@ Attack.prototype.Schema =
 		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
 			"<interleave>" +
 				"<element name='Damage'>" +
-					DamageTypes.BuildSchema("damage strength") +
+					BuildDamageTypesSchema("damage strength") +
 				"</element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				Attack.prototype.bonusesSchema +
@@ -470,7 +470,7 @@ Attack.prototype.GetAttackStrengths = function(type)
 		return { "value": ApplyValueModificationsToEntity("Attack/Capture/Value", +(template.Value || 0), this.entity) };
 
 	let ret = {};
-	for (let damageType of DamageTypes.GetTypes())
+	for (let damageType in template.Damage)
 		ret[damageType] = applyMods(damageType);
 
 	return ret;

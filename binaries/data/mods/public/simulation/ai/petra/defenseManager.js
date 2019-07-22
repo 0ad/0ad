@@ -486,7 +486,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			else if (aMin === undefined)
 				continue;
 
-			armiesNeeding[aMin].need -= m.getMaxStrength(ent);
+			armiesNeeding[aMin].need -= m.getMaxStrength(ent, this.Config.debug, this.Config.DamageTypeImportance);
 			armiesNeeding[aMin].army.addOwn(gameState, potentialDefenders[i]);
 			armiesNeeding[aMin].army.assignUnit(gameState, potentialDefenders[i]);
 			potentialDefenders[i] = undefined;

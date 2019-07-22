@@ -488,7 +488,7 @@ m.DefenseArmy.prototype.evaluateStrength = function(ent, isOwn, remove)
 			entStrength = 2;
 	}
 	else
-		entStrength = m.getMaxStrength(ent);
+		entStrength = m.getMaxStrength(ent, this.Config.debug, this.Config.DamageTypeImportance);
 
 	// TODO adapt the getMaxStrength function for animals.
 	// For the time being, just increase it for elephants as the returned value is too small.

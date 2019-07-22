@@ -8,10 +8,11 @@ m.isSiegeUnit = function(ent)
 };
 
 /** returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too. */
-m.getMaxStrength = function(ent, againstClass)
+m.getMaxStrength = function(ent, debugLevel, DamageTypeImportance, againstClass)
 {
 	let strength = 0;
 	let attackTypes = ent.attackTypes();
+	let damageTypes = Object.keys(DamageTypeImportance);
 	if (!attackTypes)
 		return strength;
 
@@ -26,20 +27,10 @@ m.getMaxStrength = function(ent, againstClass)
 			let val = parseFloat(attackStrength[str]);
 			if (againstClass)
 				val *= ent.getMultiplierAgainst(type, againstClass);
-			switch (str)
-			{
-			case "Crush":
-				strength += val * 0.085 / 3;
-				break;
-			case "Hack":
-				strength += val * 0.075 / 3;
-				break;
-			case "Pierce":
-				strength += val * 0.065 / 3;
-				break;
-			default:
-				API3.warn("Petra: " + str + " unknown attackStrength in getMaxStrength");
-			}
+			if (DamageTypeImportance[str])
+				strength += DamageTypeImportance[str] * val / damageTypes.length;
+			else if (debugLevel > 0)
+				API3.warn("Petra: " + str + " unknown attackStrength in getMaxStrength (please add " + str + "  to config.js).");
 		}
 
 		let attackRange = ent.attackRange(type);
@@ -68,20 +59,10 @@ m.getMaxStrength = function(ent, againstClass)
 	for (let str in armourStrength)
 	{
 		let val = parseFloat(armourStrength[str]);
-		switch (str)
-		{
-		case "Crush":
-			strength += val * 0.085 / 3;
-			break;
-		case "Hack":
-			strength += val * 0.075 / 3;
-			break;
-		case "Pierce":
-			strength += val * 0.065 / 3;
-			break;
-		default:
-			API3.warn("Petra: " + str + " unknown armourStrength in getMaxStrength");
-		}
+		if (DamageTypeImportance[str])
+			strength += DamageTypeImportance[str] * val / damageTypes.length;
+		else if (debugLevel > 0)
+			API3.warn("Petra: " + str + " unknown armourStrength in getMaxStrength (please add " + str + "  to config.js).");
 	}
 
 	return strength * ent.maxHitpoints() / 100.0;

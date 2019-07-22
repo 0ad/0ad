@@ -17,7 +17,6 @@ var g_CivData = loadCivData(true, false);
  */
 var g_ParsedData = {};
 var g_ResourceData = new Resources();
-var g_DamageTypes = new DamageTypes();
 
 // This must be defined after the g_TechnologyData cache object is declared.
 var g_AutoResearchTechList = findAllAutoResearchedTechs();
@@ -110,7 +109,7 @@ function loadEntityTemplate(templateName)
 		return null;
 
 	let template = loadTemplate(templateName);
-	let parsed = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
+	let parsed = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
 	parsed.name.internal = templateName;
 
 	parsed.history = template.Identity.History;

@@ -776,13 +776,13 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 		{
 			if (param[0] == "strength")
 			{
-				aValue += m.getMaxStrength(a[1]) * param[1];
-				bValue += m.getMaxStrength(b[1]) * param[1];
+				aValue += m.getMaxStrength(a[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance) * param[1];
+				bValue += m.getMaxStrength(b[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance) * param[1];
 			}
 			else if (param[0] == "siegeStrength")
 			{
-				aValue += m.getMaxStrength(a[1], "Structure") * param[1];
-				bValue += m.getMaxStrength(b[1], "Structure") * param[1];
+				aValue += m.getMaxStrength(a[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance, "Structure") * param[1];
+				bValue += m.getMaxStrength(b[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance, "Structure") * param[1];
 			}
 			else if (param[0] == "speed")
 			{

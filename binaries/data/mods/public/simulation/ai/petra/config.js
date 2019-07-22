@@ -24,6 +24,14 @@ m.Config = function(difficulty, behavior)
 		"popForBlacksmith": 65,
 		"numSentryTowers": 1
 	};
+
+	// Define damage type importance factors here.
+	this.DamageTypeImportance = {
+		"Hack": 0.085,
+		"Pierce": 0.075,
+		"Crush": 0.065
+	};
+
 	this.Economy = {
 		"popPhase2": 38,	// How many units we want before aging to phase2.
 		"workPhase3": 65,	// How many workers we want before aging to phase3.
