@@ -576,10 +576,10 @@ function controlsPlayer(playerID)
 {
 	let playerStates = GetSimState().players;
 
-	return playerStates[Engine.GetPlayerID()] &&
+	return !!playerStates[Engine.GetPlayerID()] &&
 		playerStates[Engine.GetPlayerID()].controlsAll ||
 		Engine.GetPlayerID() == playerID &&
-		playerStates[playerID] &&
+		!!playerStates[playerID] &&
 		playerStates[playerID].state != "defeated";
 }
 

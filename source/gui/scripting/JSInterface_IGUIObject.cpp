@@ -132,7 +132,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			bool value;
 			GUI<bool>::GetSetting(e, propName, value);
-			vp.set(JS::BooleanValue(value));
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -465,7 +465,10 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_bool:
 	{
-		bool value = JS::ToBoolean(vp);
+		bool value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
+
 		GUI<bool>::SetSetting(e, propName, value);
 		break;
 	}
