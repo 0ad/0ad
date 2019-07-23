@@ -168,21 +168,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CColor color;
 			GUI<CColor>::GetSetting(e, propName, color);
-			JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
-			vp.setObject(*obj);
-			JS::RootedValue c(cx);
-			// Attempt to minimise ugliness through macrosity
-#define P(x) \
-	c = JS::NumberValue(color.x); \
-	if (c.isNull()) \
-		return false; \
-	JS_SetProperty(cx, obj, #x, c)
-
-			P(r);
-			P(g);
-			P(b);
-			P(a);
-#undef P
+			ScriptInterface::ToJSVal(cx, vp, color);
 			break;
 		}
 
@@ -539,21 +525,12 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 				return false;
 			}
 		}
-		else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUIColor::JSI_class, NULL))
+		else if (vp.isObject())
 		{
 			CColor color;
-			JS::RootedValue t(cx);
-			double s;
-#define PROP(x) \
-	JS_GetProperty(cx, vpObj, #x, &t); \
-	s = t.toDouble(); \
-	color.x = (float)s
-
-			PROP(r);
-			PROP(g);
-			PROP(b);
-			PROP(a);
-#undef PROP
+			if (!ScriptInterface::FromJSVal(cx, vp, color)
+				// Exception has been thrown already
+				return false;
 			GUI<CColor>::SetSetting(e, propName, color);
 		}
 		else

@@ -22,7 +22,6 @@
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
-/**** GUISize ****/
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
 	nullptr, nullptr,
@@ -127,79 +126,7 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
-
-/**** GUIColor ****/
-
-
-JSClass JSI_GUIColor::JSI_class = {
-	"GUIColor", 0,
-	nullptr, nullptr,
-	nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_GUIColor::construct, nullptr
-};
-
-JSFunctionSpec JSI_GUIColor::JSI_methods[] =
-{
-	JS_FN("toString", JSI_GUIColor::toString, 0, 0),
-	JS_FS_END
-};
-
-bool JSI_GUIColor::construct(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JSAutoRequest rq(cx);
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
-
-	if (args.length() == 4)
-	{
-		JS_SetProperty(cx, obj, "r", args[0]);
-		JS_SetProperty(cx, obj, "g", args[1]);
-		JS_SetProperty(cx, obj, "b", args[2]);
-		JS_SetProperty(cx, obj, "a", args[3]);
-	}
-	else
-	{
-		// Nice magenta:
-		JS::RootedValue c(cx, JS::NumberValue(1.0));
-		JS_SetProperty(cx, obj, "r", c);
-		JS_SetProperty(cx, obj, "b", c);
-		JS_SetProperty(cx, obj, "a", c);
-		c = JS::NumberValue(0.0);
-		JS_SetProperty(cx, obj, "g", c);
-	}
-
-	args.rval().setObject(*obj);
-	return true;
-}
-
-bool JSI_GUIColor::toString(JSContext* cx, uint argc, JS::Value* vp)
-{
-	UNUSED2(argc);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	double r, g, b, a;
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	pScriptInterface->GetProperty(rec.thisv(), "r", r);
-	pScriptInterface->GetProperty(rec.thisv(), "g", g);
-	pScriptInterface->GetProperty(rec.thisv(), "b", b);
-	pScriptInterface->GetProperty(rec.thisv(), "a", a);
-	char buffer[256];
-	// Convert to integers, to be compatible with the GUI's string SetSetting
-	snprintf(buffer, 256, "%d %d %d %d",
-		(int)(255.0 * r),
-		(int)(255.0 * g),
-		(int)(255.0 * b),
-		(int)(255.0 * a));
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
-	return true;
-}
-
-// Initialise all the types at once:
 void JSI_GUITypes::init(ScriptInterface& scriptInterface)
 {
 	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, nullptr,  JSI_GUISize::JSI_methods,  NULL, NULL);
-	scriptInterface.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, nullptr, JSI_GUIColor::JSI_methods, NULL, NULL);
 }
