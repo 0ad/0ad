@@ -26,7 +26,6 @@ namespace JSI_IGUIObject
 	extern JSFunctionSpec JSI_methods[];
 	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
-	bool construct(JSContext* cx, uint argc, JS::Value* vp);
 	bool toString(JSContext* cx, uint argc, JS::Value* vp);
 	bool focus(JSContext* cx, uint argc, JS::Value* vp);
 	bool blur(JSContext* cx, uint argc, JS::Value* vp);

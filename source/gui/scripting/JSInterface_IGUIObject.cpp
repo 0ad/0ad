@@ -36,7 +36,7 @@ JSClass JSI_IGUIObject::JSI_class = {
 	nullptr, nullptr,
 	JSI_IGUIObject::getProperty, JSI_IGUIObject::setProperty,
 	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_IGUIObject::construct, nullptr
+	nullptr, nullptr, nullptr, nullptr
 };
 
 JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
@@ -66,11 +66,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	if (!ScriptInterface::FromJSVal(cx, idval, propName))
 		return false;
 
-	// Skip some things which are known to be functions rather than properties.
-	// ("constructor" *must* be here, else it'll try to GetSettingType before
-	// the private IGUIObject* has been set (and thus crash). The others are
-	// partly for efficiency, and also to allow correct reporting of attempts to
-	// access nonexistent properties.)
+	// Skip registered functions and inherited properties
 	if (propName == "constructor" ||
 		propName == "prototype"   ||
 		propName == "toString"    ||
@@ -602,32 +598,9 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	return !JS_IsExceptionPending(cx);
 }
 
-
-bool JSI_IGUIObject::construct(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JSAutoRequest rq(cx);
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-
-	if (args.length() == 0)
-	{
-		JS_ReportError(cx, "GUIObject has no default constructor");
-		return false;
-	}
-
-	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIObject"));
-
-	// Store the IGUIObject in the JS object's 'private' area
-	IGUIObject* guiObject = (IGUIObject*)args[0].get().toPrivate();
-	JS_SetPrivate(obj, guiObject);
-
-	args.rval().setObject(*obj);
-	return true;
-}
-
 void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 {
-	scriptInterface.DefineCustomObjectType(&JSI_class, construct, 1, nullptr, JSI_methods, nullptr, nullptr);
+	scriptInterface.DefineCustomObjectType(&JSI_class, nullptr, 1, nullptr, JSI_methods, nullptr, nullptr);
 }
 
 bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
