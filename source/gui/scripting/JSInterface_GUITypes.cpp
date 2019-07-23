@@ -118,11 +118,10 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	catch (PSERROR_Scripting_ConversionFailed&)
 	{
-		rec.rval().setString(JS_NewStringCopyZ(cx, "<Error converting value to numbers>"));
+		ScriptInterface::ToJSVal(cx, rec.rval(), std::string("<Error converting value to numbers>"));
 		return true;
 	}
-
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer.c_str()));
+	ScriptInterface::ToJSVal(cx, rec.rval(), buffer);
 	return true;
 }
 

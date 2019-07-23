@@ -591,10 +591,7 @@ bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 	if (!e)
 		return false;
 
-	char buffer[256];
-	snprintf(buffer, 256, "[GUIObject: %s]", e->GetName().c_str());
-	buffer[255] = 0;
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
+	ScriptInterface::ToJSVal(cx, rec.rval(), "[GUIObject: " + e->GetName() + "]");
 	return true;
 }
 
