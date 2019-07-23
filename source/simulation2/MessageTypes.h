@@ -319,16 +319,25 @@ public:
 /**
  * Sent by CCmpUnitMotion during Update if an event happened that might interest other components.
  */
-class CMessageMotionChanged : public CMessage
+class CMessageMotionUpdate : public CMessage
 {
 public:
-	DEFAULT_MESSAGE_IMPL(MotionChanged)
+	DEFAULT_MESSAGE_IMPL(MotionUpdate)
 
-	CMessageMotionChanged(bool error) : error(error)
+	enum UpdateType {
+		LIKELY_SUCCESS, // UnitMotion considers it is arrived at destination.
+		LIKELY_FAILURE, // UnitMotion says it cannot reach the destination.
+		OBSTRUCTED, // UitMotion was obstructed. This does not mean stuck, but can be a hint to run range checks.
+		LENGTH
+	};
+
+	static const std::array<const char*, UpdateType::LENGTH> UpdateTypeStr;
+
+	CMessageMotionUpdate(UpdateType ut) : updateType(ut)
 	{
 	}
 
-	bool error; // whether we failed to start moving (couldn't find any path)
+	UpdateType updateType;
 };
 
 /**

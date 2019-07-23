@@ -547,14 +547,14 @@ GuiInterface.prototype.GetTemplateData = function(player, templateName)
 	let aurasTemplate = {};
 
 	if (!template.Auras)
-		return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
+		return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 
 	let auraNames = template.Auras._string.split(/\s+/);
 
 	for (let name of auraNames)
 		aurasTemplate[name] = AuraTemplates.Get(name);
 
-	return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
+	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)

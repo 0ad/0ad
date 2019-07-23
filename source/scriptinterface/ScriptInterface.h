@@ -131,6 +131,32 @@ public:
 	JSObject* CreateCustomObject(const std::string & typeName) const;
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
+	/**
+	 * Sets the given value to a new plain JS::Object. Can throw an exception in case of running out of memory.
+	 */
+	bool CreateObject(JS::MutableHandleValue objectValue) const;
+
+	/**
+	 * Sets the given value to a new plain JS::Object, converts the arguments to JS::Values and sets them as properties.
+	 * Can throw an exception.
+	 */
+	template<typename T, typename... Args>
+	bool CreateObject(JS::MutableHandleValue objectValue, const char* propertyName, const T& propertyValue, Args const&... args) const
+	{
+		return CreateObject(objectValue, args...) && SetProperty(objectValue, propertyName, propertyValue);
+	}
+
+	template<typename T, typename... Args>
+	bool CreateObject(JS::MutableHandleValue objectValue, const wchar_t* propertyName, const T& propertyValue, Args const&... args) const
+	{
+		return CreateObject(objectValue, args...) && SetProperty(objectValue, propertyName, propertyValue);
+	}
+
+	/**
+	 * Sets the given value to a new JS object or Null Value in case of out-of-memory.
+	 */
+	void CreateArray(JS::MutableHandleValue objectValue, size_t length = 0) const;
+
 	JS::Value GetGlobalObject() const;
 
 	/**

@@ -34,7 +34,7 @@ DeathDamage.prototype.Schema =
 	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
 	"<element name='Damage'>" +
-		DamageTypes.BuildSchema("damage strength") +
+		BuildDamageTypesSchema("damage strength") +
 	"</element>" +
 	DeathDamage.prototype.bonusesSchema;
 
@@ -51,7 +51,7 @@ DeathDamage.prototype.GetDeathDamageStrengths = function()
 		ApplyValueModificationsToEntity("DeathDamage/Damage/" + damageType, +(this.template.Damage[damageType] || 0), this.entity);
 
 	let ret = {};
-	for (let damageType of DamageTypes.GetTypes())
+	for (let damageType in this.template.Damage)
 		ret[damageType] = applyMods(damageType);
 
 	return ret;

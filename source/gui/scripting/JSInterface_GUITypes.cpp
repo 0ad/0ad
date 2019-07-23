@@ -197,71 +197,9 @@ bool JSI_GUIColor::toString(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
-/**** GUIMouse ****/
-
-
-JSClass JSI_GUIMouse::JSI_class = {
-	"GUIMouse", 0,
-	nullptr, nullptr,
-	nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_GUIMouse::construct, nullptr
-};
-
-JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
-{
-	JS_FN("toString", JSI_GUIMouse::toString, 0, 0),
-	JS_FS_END
-};
-
-bool JSI_GUIMouse::construct(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JSAutoRequest rq(cx);
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIMouse"));
-
-	if (args.length() == 3)
-	{
-		JS_SetProperty(cx, obj, "x", args[0]);
-		JS_SetProperty(cx, obj, "y", args[1]);
-		JS_SetProperty(cx, obj, "buttons", args[2]);
-	}
-	else
-	{
-		JS::RootedValue zero (cx, JS::NumberValue(0));
-		JS_SetProperty(cx, obj, "x", zero);
-		JS_SetProperty(cx, obj, "y", zero);
-		JS_SetProperty(cx, obj, "buttons", zero);
-	}
-
-	args.rval().setObject(*obj);
-	return true;
-}
-
-bool JSI_GUIMouse::toString(JSContext* cx, uint argc, JS::Value* vp)
-{
-	UNUSED2(argc);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	i32 x, y, buttons;
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	pScriptInterface->GetProperty(rec.thisv(), "x", x);
-	pScriptInterface->GetProperty(rec.thisv(), "y", y);
-	pScriptInterface->GetProperty(rec.thisv(), "buttons", buttons);
-
-	char buffer[256];
-	snprintf(buffer, 256, "%d %d %d", x, y, buttons);
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
-	return true;
-}
-
-
 // Initialise all the types at once:
 void JSI_GUITypes::init(ScriptInterface& scriptInterface)
 {
 	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, nullptr,  JSI_GUISize::JSI_methods,  NULL, NULL);
 	scriptInterface.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, nullptr, JSI_GUIColor::JSI_methods, NULL, NULL);
-	scriptInterface.DefineCustomObjectType(&JSI_GUIMouse::JSI_class, JSI_GUIMouse::construct, 1, nullptr, JSI_GUIMouse::JSI_methods, NULL, NULL);
 }

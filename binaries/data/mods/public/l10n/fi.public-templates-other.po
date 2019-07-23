@@ -4,6 +4,7 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015-2016,2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-21 16:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 11:53+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,11 +173,11 @@ msgstr "Napasusi"
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgid "Canis lupus"
-msgstr ""
+msgstr "Susi"
 
 #: simulation/templates/gaia/fauna_bear.xml:19
 msgid "Brown Bear"
-msgstr ""
+msgstr "Ruskakarhu"
 
 #: simulation/templates/gaia/fauna_bear.xml:20
 msgid "Ursus arctos"
@@ -200,7 +201,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:4
 msgid "Bull"
-msgstr ""
+msgstr "Sonni"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
@@ -209,7 +210,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
-msgstr ""
+msgstr "Lehmä"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
@@ -245,7 +246,7 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Saksanhirvi"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
@@ -253,7 +254,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Aasi"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
@@ -299,7 +300,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fish_tuna.xml:4
 msgid "Tuna"
-msgstr ""
+msgstr "Tonnikala"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
@@ -307,7 +308,7 @@ msgstr "Napakettu"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
-msgstr ""
+msgstr "Naali"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
@@ -315,7 +316,7 @@ msgstr "Punakettu"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
-msgstr ""
+msgstr "Punakettu"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:8
 msgid "Thomson's Gazelle"
@@ -327,7 +328,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr ""
+msgstr "Kirahvi"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
@@ -405,7 +406,7 @@ msgstr "Palava sika"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Porsas"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -429,7 +430,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Valkohai"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -534,7 +535,7 @@ msgstr "Omenapuu"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bambu"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
@@ -542,11 +543,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
+msgstr "Banaani"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:5
 msgid "Gather bananas for Food."
-msgstr ""
+msgstr "Kerää banaaneja saadaksesi ruokaa."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -619,7 +620,7 @@ msgstr "Pyökkipuu"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Rauduskoivu"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -644,7 +645,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Vaahtera"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -722,7 +723,7 @@ msgstr "Tamarixpuu"
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
-msgstr ""
+msgstr "Tiikki"
 
 #: simulation/templates/gaia/flora_tree_temperate.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
@@ -736,7 +737,7 @@ msgstr "Toonapuu"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "Sademetsän puu"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -1086,7 +1087,7 @@ msgstr "Taistelulinja"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "At least 4 units required."
-msgstr ""
+msgstr "Vaaditaan vähintään neljä yksikköä."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1102,7 +1103,7 @@ msgstr "Kolonna avoinna"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "At least 8 units required."
-msgstr ""
+msgstr "Vaaditaan vähintään kahdeksan yksikköä."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"

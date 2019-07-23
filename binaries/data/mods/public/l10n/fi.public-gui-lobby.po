@@ -4,6 +4,7 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015-2016
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-07 03:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 10:42+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,7 +139,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
-msgstr ""
+msgstr "Näytä tämä ohje."
 
 #: gui/lobby/lobby.js:353
 msgid "Chat commands:"
@@ -148,7 +149,7 @@ msgstr "Chattikomennot:"
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -216,13 +217,13 @@ msgstr "Mikä tahansa"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/lobby.js:548
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
@@ -246,7 +247,7 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Syy: %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
@@ -295,7 +296,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:1191
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "Haluatko vaihtaa modivalintasivulle?"
 
 #: gui/lobby/lobby.js:1192
 msgid "Incompatible mods"
@@ -313,7 +314,7 @@ msgstr "Tämän pelin osoite '%(ip)s' ei kelpaa."
 #: gui/lobby/lobby.js:1359
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "Komento '%(cmd)s' ei ole tuettu."
 
 #: gui/lobby/lobby.js:1371
 #, javascript-format
@@ -408,7 +409,7 @@ msgstr "Syötä salasanasi"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Valitse pidempi salasana"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -434,7 +435,7 @@ msgstr "Käyttöehdot"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr ""
+msgstr "Lue ja hyväksy käyttöehdot."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
@@ -442,15 +443,15 @@ msgstr "Käyttöehdot"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "Lue ja hyväksy käyttöehdot."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Yksityisyyskäytäntö"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Lue ja hyväksy yksityisyyskäytäntö."
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -657,7 +658,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Pelaajan nimi[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
@@ -684,7 +685,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Salasana[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
@@ -701,7 +702,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP-osoite[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
@@ -756,7 +757,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Keskusteluviestit[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
@@ -789,7 +790,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Pelien tilastot[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
@@ -883,7 +884,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Käyttäjän oikeudet:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""

@@ -459,10 +459,12 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(cx);
-	m_pGUI->GetScriptInterface()->Eval("({})", &mouse);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse, "x", m_pGUI->m_MousePos.x, false);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse, "y", m_pGUI->m_MousePos.y, false);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse, "buttons", m_pGUI->m_MouseButtons, false);
+
+	m_pGUI->GetScriptInterface()->CreateObject(
+		&mouse,
+		"x", m_pGUI->m_MousePos.x,
+		"y", m_pGUI->m_MousePos.y,
+		"buttons", m_pGUI->m_MouseButtons);
 
 	JS::AutoValueVector paramData(cx);
 	paramData.append(mouse);

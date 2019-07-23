@@ -79,33 +79,40 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 	if (!simulation.SerializeState(simStateStream))
 		WARN_RETURN(ERR::FAIL);
 
-	JS::RootedValue metadata(cx);
 	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
 	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface()));
-	simulation.GetScriptInterface().Eval("({})", &metadata);
-	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
-	simulation.GetScriptInterface().SetProperty(metadata, "mods", mods);
-	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
-	simulation.GetScriptInterface().SetProperty(metadata, "playerID", g_Game->GetPlayerID());
-	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", initAttributes);
+
+	JS::RootedValue metadata(cx);
+
+	simulation.GetScriptInterface().CreateObject(
+		&metadata,
+		"engine_version", std::string(engine_version),
+		"time", static_cast<double>(now),
+		"playerID", g_Game->GetPlayerID(),
+		"mods", mods,
+		"initAttributes", initAttributes);
 
 	JS::RootedValue guiMetadata(cx);
 	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
 
 	// get some camera data
-	JS::RootedValue cameraMetadata(cx);
-	simulation.GetScriptInterface().Eval("({})", &cameraMetadata);
 	const CVector3D cameraPosition = g_Game->GetView()->GetCameraPosition();
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosX", cameraPosition.X);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosY", cameraPosition.Y);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosZ", cameraPosition.Z);
 	const CVector3D cameraRotation = g_Game->GetView()->GetCameraRotation();
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotX", cameraRotation.X);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotY", cameraRotation.Y);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "Zoom", g_Game->GetView()->GetCameraZoom());
-	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
-	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
 
+	JS::RootedValue cameraMetadata(cx);
+
+	simulation.GetScriptInterface().CreateObject(
+		&cameraMetadata,
+		"PosX", cameraPosition.X,
+		"PosY", cameraPosition.Y,
+		"PosZ", cameraPosition.Z,
+		"RotX", cameraRotation.X,
+		"RotY", cameraRotation.Y,
+		"Zoom", g_Game->GetView()->GetCameraZoom());
+
+	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
+
+	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "description", description);
 
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(&metadata, true);
@@ -225,7 +232,8 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedObject games(cx, JS_NewArrayObject(cx, 0));
+	JS::RootedValue games(cx);
+	scriptInterface.CreateArray(&games);
 
 	Status err;
 
@@ -261,13 +269,15 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 		JS::RootedValue metadata(cx, loader.GetMetadata());
 
 		JS::RootedValue game(cx);
-		scriptInterface.Eval("({})", &game);
-		scriptInterface.SetProperty(game, "id", pathnames[i].Basename());
-		scriptInterface.SetProperty(game, "metadata", metadata);
-		JS_SetElement(cx, games, i, game);
+		scriptInterface.CreateObject(
+			&game,
+			"id", pathnames[i].Basename(),
+			"metadata", metadata);
+
+		scriptInterface.SetPropertyInt(games, i, game);
 	}
 
-	return JS::ObjectValue(*games);
+	return games;
 }
 
 bool SavedGames::DeleteSavedGame(const std::wstring& name)

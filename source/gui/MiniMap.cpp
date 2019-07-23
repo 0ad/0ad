@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -243,9 +243,7 @@ void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 	GetMouseWorldCoordinates(x, z);
 
 	JS::RootedValue coords(cx);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("({})", &coords);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "x", x, false);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "z", z, false);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->CreateObject(&coords, "x", x, "z", z);
 
 	JS::AutoValueVector paramData(cx);
 	paramData.append(coords);

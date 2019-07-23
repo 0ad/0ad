@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -630,7 +630,7 @@ public:
 
 		m_HasLoadedEntityTemplates = true;
 
-		m_ScriptInterface->Eval("({})", &m_EntityTemplates);
+		m_ScriptInterface->CreateObject(&m_EntityTemplates);
 
 		JS::RootedValue val(cx);
 		for (size_t i = 0; i < templates.size(); ++i)
@@ -1183,7 +1183,7 @@ private:
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue classesVal(cx);
-		scriptInterface.Eval("({})", &classesVal);
+		scriptInterface.CreateObject(&classesVal);
 
 		std::map<std::string, pass_class_t> classes;
 		cmpPathfinder->GetPassabilityClasses(classes);

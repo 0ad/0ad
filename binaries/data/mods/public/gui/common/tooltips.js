@@ -14,8 +14,6 @@ var g_AttackTypes = {
 	"Capture": translate("Capture Attack:")
 };
 
-var g_DamageTypes = new DamageTypes();
-
 var g_SplashDamageTypes = {
 	"Circular": translate("Circular Splash Damage"),
 	"Linear": translate("Linear Splash Damage")
@@ -222,7 +220,7 @@ function getArmorTooltip(template)
 			Object.keys(template.armour).map(
 				dmgType => sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 					"damage": template.armour[dmgType].toFixed(1),
-					"damageType": unitFont(translateWithContext("damage type", g_DamageTypes.GetNames()[dmgType])),
+					"damageType": unitFont(translateWithContext("damage type", dmgType)),
 					"armorPercentage":
 						'[font="sans-10"]' +
 						sprintf(translate("(%(armorPercentage)s)"), {
@@ -238,11 +236,10 @@ function damageTypesToText(dmg)
 	if (!dmg)
 		return '[font="sans-12"]' + translate("(None)") + '[/font]';
 
-	return g_DamageTypes.GetTypes().filter(
-		dmgType => dmg[dmgType]).map(
+	return Object.keys(dmg).filter(dmgType => dmg[dmgType]).map(
 		dmgType => sprintf(translate("%(damage)s %(damageType)s"), {
 			"damage": dmg[dmgType].toFixed(1),
-			"damageType": unitFont(translateWithContext("damage type", g_DamageTypes.GetNames()[dmgType]))
+			"damageType": unitFont(translateWithContext("damage type", dmgType))
 		})).join(commaFont(translate(", ")));
 }
 

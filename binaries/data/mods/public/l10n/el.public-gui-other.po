@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-29 15:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-07-21 20:37+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1201,7 +1201,7 @@ msgstr "Mods: %(mods)s"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Αυτή η αποθήκευση παιχνιδιού χρειάζεται την έκδοση%(requiredVersion)s του 0 A.D., ενώ έχει σωθεί στην έκδοση %(currentVersion)s."
 
 #: gui/loadgame/load.js:156
 msgid "This savegame needs an older version of 0 A.D."
@@ -1209,7 +1209,7 @@ msgstr "Αυτό το σωσμένο παιχνίδι χρειάζεται μί�
 
 #: gui/loadgame/load.js:163
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Αυτή η αποθήκευση παιχνιδιού χρειάζεται μια διαφορετική αλληλουχία από mods:"
 
 #: gui/loadgame/load.js:167
 msgid "Do you still want to proceed?"
@@ -2413,7 +2413,7 @@ msgstr "Τύπος:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Παρακολούθηση Επανάληψης"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"

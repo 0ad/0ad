@@ -1,8 +1,22 @@
-DamageTypes.prototype.BuildSchema = function(helptext = "")
+/**
+ * Builds a RelaxRNG schema based on currently valid elements.
+ *
+ * To prevent validation errors, disabled damage types are included in the schema.
+ *
+ * @param {string} helptext	- Text displayed as help
+ * @return {string}	- RelaxNG schema string
+ */
+function BuildDamageTypesSchema(helptext = "")
 {
-	return "<interleave>" + this.GetTypes().reduce((schema, type) =>
-		schema + "<element name='"+type+"' a:help='"+type+" "+helptext+"'><ref name='nonNegativeDecimal'/></element>",
-	"") + "</interleave>";
-};
+	return "<oneOrMore>" +
+		"<element a:help='" + helptext + "'>" +
+			"<anyName>" +
+				// Armour requires Foundation to not be a damage type.
+				"<except><name>Foundation</name></except>" +
+			"</anyName>" +
+			"<ref name='nonNegativeDecimal' />" +
+		"</element>" +
+	"</oneOrMore>";
+}
 
-DamageTypes = new DamageTypes();
+Engine.RegisterGlobal("BuildDamageTypesSchema", BuildDamageTypesSchema);

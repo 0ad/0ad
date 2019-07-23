@@ -262,7 +262,7 @@ function getWallElement(element, style)
 function readyWallElement(path, civCode)
 {
 	path = path.replace(/\{civ\}/g, civCode);
-	let template = GetTemplateDataHelper(Engine.GetTemplate(path), null, null, {}, g_DamageTypes, {});
+	let template = GetTemplateDataHelper(Engine.GetTemplate(path), null, null, {}, {});
 	let length = template.wallPiece ? template.wallPiece.length : template.obstruction.shape.width;
 
 	return deepfreeze({

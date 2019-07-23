@@ -398,10 +398,13 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 		}
 	}
 
-	JS::RootedValue returnValue(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
-	self->m_ScriptInterface->SetProperty(returnValue, "height", heightmap);
-	self->m_ScriptInterface->SetProperty(returnValue, "textureNames", textureNames);
-	self->m_ScriptInterface->SetProperty(returnValue, "textureIDs", textureIDs);
+	JS::RootedValue returnValue(cx);
+
+	self->m_ScriptInterface->CreateObject(
+		&returnValue,
+		"height", heightmap,
+		"textureNames", textureNames,
+		"textureIDs", textureIDs);
 
 	return returnValue;
 }

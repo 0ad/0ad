@@ -152,7 +152,8 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
 JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	const ScriptInterface& scriptInterface = *pCxPrivate->pScriptInterface;
+	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
 	CVFSFile file;
@@ -166,7 +167,10 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 
 	// split into array of strings (one per line)
 	std::stringstream ss(contents);
-	JS::RootedObject line_array(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+
+	JS::RootedValue line_array(cx);
+	scriptInterface.CreateArray(&line_array);
+
 	std::string line;
 	int cur_line = 0;
 
@@ -175,10 +179,10 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 		// Decode each line as UTF-8
 		JS::RootedValue val(cx);
 		ScriptInterface::ToJSVal(cx, &val, CStr(line).FromUTF8());
-		JS_SetElement(cx, line_array, cur_line++, val);
+		scriptInterface.SetPropertyInt(line_array, cur_line++, val);
 	}
 
-	return JS::ObjectValue(*line_array);
+	return line_array;
 }
 
 JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)

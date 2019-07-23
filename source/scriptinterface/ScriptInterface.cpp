@@ -579,6 +579,28 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	return ok;
 }
 
+bool ScriptInterface::CreateObject(JS::MutableHandleValue objectValue) const
+{
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+
+	objectValue.setObjectOrNull(JS_NewPlainObject(cx));
+	if (!objectValue.isObject())
+		throw PSERROR_Scripting_CreateObjectFailed();
+
+	return true;
+}
+
+void ScriptInterface::CreateArray(JS::MutableHandleValue objectValue, size_t length) const
+{
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+
+	objectValue.setObjectOrNull(JS_NewArrayObject(cx, length));
+	if (!objectValue.isObject())
+		throw PSERROR_Scripting_CreateObjectFailed();
+}
+
 JS::Value ScriptInterface::GetGlobalObject() const
 {
 	JSAutoRequest rq(m->m_cx);
