@@ -93,6 +93,12 @@ static const entity_pos_t TARGET_UNCERTAINTY_MULTIPLIER = entity_pos_t::FromInt(
  */
 static const u8 MAX_FAILED_PATH_COMPUTATIONS = 15;
 
+/**
+ * If we have failed path computations this many times and ComputePathToGoal is called,
+ * always run a long-path, to avoid getting stuck sometimes (see D1424).
+ */
+static const u8 MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH = 3;
+
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
 
@@ -602,10 +608,8 @@ private:
 
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
-	 * noTarget is true only when used inside TryGoingStraightToTarget,
-	 * in which case we do not want the target obstruction otherwise it would always fail
 	 */
-	ControlGroupMovementObstructionFilter GetObstructionFilter(bool noTarget = false) const;
+	ControlGroupMovementObstructionFilter GetObstructionFilter() const;
 
 	/**
 	 * Create a PathGoal from a move request.
@@ -1035,15 +1039,29 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 	// Find the point on the goal shape that we should head towards
 	CFixedVector2D goalPos = goal.NearestPointOnGoal(from);
 
-	// Check if there's any collisions on that route
-	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(true), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
+	// Check if there's any collisions on that route.
+	// For entity goals, skip only the specific obstruction tag or with e.g. walls we might ignore too many entities.
+	ICmpObstructionManager::tag_t specificIgnore;
+	if (m_MoveRequest.m_Type == MoveRequest::ENTITY)
+	{
+		CmpPtr<ICmpObstruction> cmpTargetObstruction(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpTargetObstruction)
+			specificIgnore = cmpTargetObstruction->GetObstruction();
+	}
+
+	if (specificIgnore.valid())
+	{
+		if (!cmpPathfinder->CheckMovement(SkipTagObstructionFilter(specificIgnore), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
+			return false;
+	}
+	else if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 		return false;
+
 
 	// That route is okay, so update our path
 	m_LongPath.m_Waypoints.clear();
 	m_ShortPath.m_Waypoints.clear();
 	m_ShortPath.m_Waypoints.emplace_back(Waypoint{ goalPos.X, goalPos.Y });
-
 	return true;
 }
 
@@ -1158,10 +1176,9 @@ void CCmpUnitMotion::FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_p
 	}
 }
 
-ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool noTarget) const
+ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter() const
 {
-	entity_id_t group = noTarget ? m_MoveRequest.m_Entity : GetGroup();
-	return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), group);
+	return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), GetGroup());
 }
 
 // The pathfinder cannot go to "rounded rectangles" goals, which are what happens with square targets and a non-null range.
@@ -1306,7 +1323,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 
 	// If the target is close and we can reach it in a straight line,
 	// then we'll just go along the straight line instead of computing a path.
-	if (TryGoingStraightToTarget(from))
+	if (m_FailedPathComputations != MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH && TryGoingStraightToTarget(from))
 		return;
 
 	// Otherwise we need to compute a path.
@@ -1315,7 +1332,8 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
 	// the check is arbitrary but should be a reasonably small distance.
-	if (goal.DistanceToPoint(from) < LONG_PATH_MIN_DIST)
+	// To avoid getting stuck because the short-range pathfinder is bounded, occasionally compute a long path instead.
+	if (m_FailedPathComputations != MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH && goal.DistanceToPoint(from) < LONG_PATH_MIN_DIST)
 	{
 		m_LongPath.m_Waypoints.clear();
 		RequestShortPath(from, goal, true);
