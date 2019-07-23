@@ -528,7 +528,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		else if (vp.isObject())
 		{
 			CColor color;
-			if (!ScriptInterface::FromJSVal(cx, vp, color)
+			if (!ScriptInterface::FromJSVal(cx, vp, color))
 				// Exception has been thrown already
 				return false;
 			GUI<CColor>::SetSetting(e, propName, color);
