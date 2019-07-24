@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,8 @@
 
 #include "scriptinterface/ScriptConversions.h"
 
+#include "gui/CGUIList.h"
+#include "gui/CGUISeries.h"
 #include "gui/IGUIObject.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/Hotkey.h"
@@ -138,8 +140,26 @@ template<> bool ScriptInterface::FromJSVal<CGUIString>(JSContext* cx, JS::Handle
 	return true;
 }
 
-// define some vectors
 JSVAL_VECTOR(CVector2D)
 JSVAL_VECTOR(std::vector<CVector2D>)
 JSVAL_VECTOR(CGUIString)
 
+template<> void ScriptInterface::ToJSVal<CGUIList>(JSContext* cx, JS::MutableHandleValue ret, const CGUIList& val)
+{
+	ToJSVal(cx, ret, val.m_Items);
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUIList>(JSContext* cx, JS::HandleValue v, CGUIList& out)
+{
+	return FromJSVal(cx, v, out.m_Items);
+}
+
+template<> void ScriptInterface::ToJSVal<CGUISeries>(JSContext* cx, JS::MutableHandleValue ret, const CGUISeries& val)
+{
+	ToJSVal(cx, ret, val.m_Series);
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUISeries>(JSContext* cx, JS::HandleValue v, CGUISeries& out)
+{
+	return FromJSVal(cx, v, out.m_Series);
+}

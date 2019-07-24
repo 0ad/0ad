@@ -269,7 +269,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUIList value;
 			GUI<CGUIList>::GetSetting(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value.m_Items);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -277,7 +277,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUISeries value;
 			GUI<CGUISeries>::GetSetting(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value.m_Series);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -547,7 +547,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	case GUIST_CGUIList:
 	{
 		CGUIList list;
-		if (ScriptInterface::FromJSVal(cx, vp, list.m_Items))
+		if (ScriptInterface::FromJSVal(cx, vp, list))
 			GUI<CGUIList>::SetSetting(e, propName, list);
 		else
 		{
@@ -560,7 +560,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	case GUIST_CGUISeries:
 	{
 		CGUISeries series;
-		if (ScriptInterface::FromJSVal(cx, vp, series.m_Series))
+		if (ScriptInterface::FromJSVal(cx, vp, series))
 			GUI<CGUISeries>::SetSetting(e, propName, series);
 		else
 		{
