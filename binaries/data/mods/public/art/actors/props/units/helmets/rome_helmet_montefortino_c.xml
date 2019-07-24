@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/helmet/celt_montefortino_03_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_montefortino_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="montefortino-conical-simple-feather-uni">
+      <mesh>props/helmet/rome_montefortino_a_2.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_mid"/>
+        <prop actor="props/units/helmets/props/helmet_feather_b.xml" attachpoint="feather_mid"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/rome_montefortino_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="montefortino-conical-standard-feather-tri">
+      <mesh>props/helmet/rome_montefortino_a_3.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_c.xml" attachpoint="feather_mid"/>
+        <prop actor="props/units/helmets/props/helmet_feather_b.xml" attachpoint="feather_mid"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/rome_montefortino_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="montefortino-dome-feather-quad">
+      <mesh>props/helmet/rome_montefortino_b_2.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_left"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_left_mid"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_right_mid"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_right"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/rome_montefortino_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

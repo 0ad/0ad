@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -6,19 +6,45 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="chain hauberk">
+    <variant frequency="1" name="a-rome-chainmail-1a">
       <textures>
-        <texture file="skeletal/rome_isw_a.dds" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chain thorax">
+    <variant frequency="1" name="a-rome-chainmail-1b">
       <textures>
-        <texture file="skeletal/rome_isw_e.dds" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_1_b.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="a-rome-chainmail-1c">
+      <textures>
+        <texture file="skeletal/rome_chainmail_1_c.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="a-rome-subarmalis-1a">
+      <textures>
+        <texture file="skeletal/rome_subarmalis_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_subarmalis_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="a-rome-subarmalis-2a">
+      <textures>
+        <texture file="skeletal/rome_subarmalis_2_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_subarmalis_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="a-rome-subarmalis-3a">
+      <textures>
+        <texture file="skeletal/rome_subarmalis_3_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_subarmalis_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -27,5 +53,5 @@
     <variant file="biped/attack_ranged_rome_ballista_fire_a.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
