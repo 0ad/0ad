@@ -409,6 +409,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.order.data.attackType = type;
 
 		this.RememberTargetPosition();
+		if (this.order.data.hunting && this.orderQueue.length > 1 && this.orderQueue[1].type === "Gather")
+			this.RememberTargetPosition(this.orderQueue[1].data);
 
 		// If we are already at the target, try attacking it from here
 		if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
@@ -1787,7 +1789,12 @@ UnitAI.prototype.UnitFsmSpec = {
 							this.WalkToHeldPosition();
 					}
 					else
+					{
 						this.RememberTargetPosition();
+						if (this.order.data.hunting && this.orderQueue.length > 1 &&
+						     this.orderQueue[1].type === "Gather")
+							this.RememberTargetPosition(this.orderQueue[1].data);
+					}
 				},
 
 				"MovementUpdate": function(msg) {
@@ -1927,6 +1934,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					this.RememberTargetPosition();
+					if (this.order.data.hunting && this.orderQueue.length > 1 && this.orderQueue[1].type === "Gather")
+						this.RememberTargetPosition(this.orderQueue[1].data);
 
 					let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 					this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
