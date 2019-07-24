@@ -2111,7 +2111,7 @@ function updateGUIDropdown(name, playerIdx = undefined)
 	let indexHidden = isControlArrayElementHidden(playerIdx);
 	let obj = (playerIdx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
 
-	let hidden = indexHidden || obj.hidden && obj.hidden(playerIdx);
+	let hidden = indexHidden || !!obj.hidden && obj.hidden(playerIdx);
 	let selected = hidden ? -1 : dropdown.list_data.indexOf(String(obj.get(playerIdx)));
 	let enabled = !indexHidden && (!obj.enabled || obj.enabled(playerIdx));
 
@@ -2142,7 +2142,7 @@ function updateGUICheckbox(name)
 	let obj = g_Checkboxes[name];
 
 	let checked = obj.get();
-	let hidden = obj.hidden && obj.hidden();
+	let hidden = !!obj.hidden && obj.hidden();
 	let enabled = !obj.enabled || obj.enabled();
 
 	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);

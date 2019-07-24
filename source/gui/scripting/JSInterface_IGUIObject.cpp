@@ -132,15 +132,15 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			bool value;
 			GUI<bool>::GetSetting(e, propName, value);
-			vp.set(JS::BooleanValue(value));
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
 		case GUIST_int:
 		{
-			int value;
-			GUI<int>::GetSetting(e, propName, value);
-			vp.set(JS::Int32Value(value));
+			i32 value;
+			GUI<i32>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -148,10 +148,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			u32 value;
 			GUI<u32>::GetSetting(e, propName, value);
-			if (value >= std::numeric_limits<u32>::max())
-				LOGERROR("Integer overflow on converting to GUIST_uint");
-			else
-				vp.set(JS::Int32Value(value));
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -159,30 +156,15 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			float value;
 			GUI<float>::GetSetting(e, propName, value);
-			// Create a garbage-collectable double
-			vp.set(JS::NumberValue(value));
-			return !vp.isNull();
+			ScriptInterface::ToJSVal(cx, vp, value);
+			break;
 		}
 
 		case GUIST_CColor:
 		{
 			CColor color;
 			GUI<CColor>::GetSetting(e, propName, color);
-			JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
-			vp.setObject(*obj);
-			JS::RootedValue c(cx);
-			// Attempt to minimise ugliness through macrosity
-#define P(x) \
-	c = JS::NumberValue(color.x); \
-	if (c.isNull()) \
-		return false; \
-	JS_SetProperty(cx, obj, #x, c)
-
-			P(r);
-			P(g);
-			P(b);
-			P(a);
-#undef P
+			ScriptInterface::ToJSVal(cx, vp, color);
 			break;
 		}
 
@@ -219,7 +201,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUIString value;
 			GUI<CGUIString>::GetSetting(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value.GetOriginalString());
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -241,7 +223,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 		case GUIST_CGUISpriteInstance:
 		{
-			CGUISpriteInstance *value;
+			CGUISpriteInstance* value;
 			GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
 			ScriptInterface::ToJSVal(cx, vp, value->GetName());
 			break;
@@ -283,7 +265,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUIList value;
 			GUI<CGUIList>::GetSetting(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value.m_Items);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -291,7 +273,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUISeries value;
 			GUI<CGUISeries>::GetSetting(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value.m_Series);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -360,7 +342,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	{
 	case GUIST_CStr:
 	{
-		std::string value;
+		CStr value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
@@ -370,7 +352,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_CStrW:
 	{
-		std::wstring value;
+		CStrW value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
@@ -390,13 +372,11 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_CGUIString:
 	{
-		std::wstring value;
+		CGUIString value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
-		CGUIString str;
-		str.SetValue(value);
-		GUI<CGUIString>::SetSetting(e, propName, str);
+		GUI<CGUIString>::SetSetting(e, propName, value);
 		break;
 	}
 
@@ -466,9 +446,9 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_float:
 	{
-		double value;
-		if (JS::ToNumber(cx, vp, &value) == true)
-			GUI<float>::SetSetting(e, propName, (float)value);
+		float value;
+		if (ScriptInterface::FromJSVal(cx, vp, value))
+			GUI<float>::SetSetting(e, propName, value);
 		else
 		{
 			JS_ReportError(cx, "Cannot convert value to float");
@@ -479,7 +459,10 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_bool:
 	{
-		bool value = JS::ToBoolean(vp);
+		bool value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
+
 		GUI<bool>::SetSetting(e, propName, value);
 		break;
 	}
@@ -539,21 +522,12 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 				return false;
 			}
 		}
-		else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUIColor::JSI_class, NULL))
+		else if (vp.isObject())
 		{
 			CColor color;
-			JS::RootedValue t(cx);
-			double s;
-#define PROP(x) \
-	JS_GetProperty(cx, vpObj, #x, &t); \
-	s = t.toDouble(); \
-	color.x = (float)s
-
-			PROP(r);
-			PROP(g);
-			PROP(b);
-			PROP(a);
-#undef PROP
+			if (!ScriptInterface::FromJSVal(cx, vp, color))
+				// Exception has been thrown already
+				return false;
 			GUI<CColor>::SetSetting(e, propName, color);
 		}
 		else
@@ -567,7 +541,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	case GUIST_CGUIList:
 	{
 		CGUIList list;
-		if (ScriptInterface::FromJSVal(cx, vp, list.m_Items))
+		if (ScriptInterface::FromJSVal(cx, vp, list))
 			GUI<CGUIList>::SetSetting(e, propName, list);
 		else
 		{
@@ -580,7 +554,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	case GUIST_CGUISeries:
 	{
 		CGUISeries series;
-		if (ScriptInterface::FromJSVal(cx, vp, series.m_Series))
+		if (ScriptInterface::FromJSVal(cx, vp, series))
 			GUI<CGUISeries>::SetSetting(e, propName, series);
 		else
 		{
@@ -614,10 +588,7 @@ bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 	if (!e)
 		return false;
 
-	char buffer[256];
-	snprintf(buffer, 256, "[GUIObject: %s]", e->GetName().c_str());
-	buffer[255] = 0;
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
+	ScriptInterface::ToJSVal(cx, rec.rval(), "[GUIObject: " + e->GetName() + "]");
 	return true;
 }
 

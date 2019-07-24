@@ -23,7 +23,7 @@ function init(data)
 	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
 
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	gameSelection.enabled = savedGames.length;
+	gameSelection.enabled = savedGames.length != 0;
 
 	if (!savedGames.length)
 	{
