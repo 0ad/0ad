@@ -411,7 +411,16 @@ static void Frame()
 	if (g_SoundManager)
 		g_SoundManager->IdleTask();
 
-	Render();
+	if (ShouldRender())
+	{
+		Render();
+
+		{
+			PROFILE3("swap buffers");
+			SDL_GL_SwapWindow(g_VideoMode.GetWindow());
+			ogl_WarnIfError();
+		}
+	}
 
 	g_Profiler.Frame();
 
