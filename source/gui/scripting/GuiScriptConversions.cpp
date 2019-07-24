@@ -134,7 +134,7 @@ template<> void ScriptInterface::ToJSVal<CGUIString>(JSContext* cx, JS::MutableH
 template<> bool ScriptInterface::FromJSVal<CGUIString>(JSContext* cx, JS::HandleValue v, CGUIString& out)
 {
 	std::wstring val;
-	if (!ScriptInterface::FromJSVal(cx, v, val))
+	if (!FromJSVal(cx, v, val))
 		return false;
 	out.SetValue(val);
 	return true;

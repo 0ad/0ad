@@ -138,9 +138,9 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 		case GUIST_int:
 		{
-			int value;
-			GUI<int>::GetSetting(e, propName, value);
-			vp.set(JS::Int32Value(value));
+			i32 value;
+			GUI<i32>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -148,10 +148,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			u32 value;
 			GUI<u32>::GetSetting(e, propName, value);
-			if (value >= std::numeric_limits<u32>::max())
-				LOGERROR("Integer overflow on converting to GUIST_uint");
-			else
-				vp.set(JS::Int32Value(value));
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -159,9 +156,8 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			float value;
 			GUI<float>::GetSetting(e, propName, value);
-			// Create a garbage-collectable double
-			vp.set(JS::NumberValue(value));
-			return !vp.isNull();
+			ScriptInterface::ToJSVal(cx, vp, value);
+			break;
 		}
 
 		case GUIST_CColor:
@@ -205,7 +201,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUIString value;
 			GUI<CGUIString>::GetSetting(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value.GetOriginalString());
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -227,7 +223,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 		case GUIST_CGUISpriteInstance:
 		{
-			CGUISpriteInstance *value;
+			CGUISpriteInstance* value;
 			GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
 			ScriptInterface::ToJSVal(cx, vp, value->GetName());
 			break;
@@ -346,7 +342,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	{
 	case GUIST_CStr:
 	{
-		std::string value;
+		CStr value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
@@ -356,7 +352,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_CStrW:
 	{
-		std::wstring value;
+		CStrW value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
@@ -376,13 +372,11 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_CGUIString:
 	{
-		std::wstring value;
+		CGUIString value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
-		CGUIString str;
-		str.SetValue(value);
-		GUI<CGUIString>::SetSetting(e, propName, str);
+		GUI<CGUIString>::SetSetting(e, propName, value);
 		break;
 	}
 
@@ -452,9 +446,9 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_float:
 	{
-		double value;
-		if (JS::ToNumber(cx, vp, &value) == true)
-			GUI<float>::SetSetting(e, propName, (float)value);
+		float value;
+		if (ScriptInterface::FromJSVal(cx, vp, value))
+			GUI<float>::SetSetting(e, propName, value);
 		else
 		{
 			JS_ReportError(cx, "Cannot convert value to float");
