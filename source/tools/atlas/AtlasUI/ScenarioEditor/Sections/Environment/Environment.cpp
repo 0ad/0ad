@@ -293,7 +293,7 @@ void EnvironmentSidebar::UpdateEnvironmentSettings()
 	g_EnvironmentSettings.NotifyObservers();
 }
 
-void EnvironmentSidebar::OnPickWaterHeight(wxCommandEvent& evt)
+void EnvironmentSidebar::OnPickWaterHeight(wxCommandEvent& WXUNUSED(evt))
 {
 	m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("PickWaterHeight"), this);
 }
