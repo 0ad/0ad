@@ -1514,7 +1514,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"MovementUpdate": function(msg) {
 				// If it looks like the path is failing, and we are close enough (3 tiles)
 				// stop anyways. This avoids pathing for an unreachable goal and reduces lag considerably.
-				if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, 12) ||
+				if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange) ||
 					 this.CheckRange(this.order.data))
 					this.FinishOrder();
 			},
@@ -1546,7 +1546,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"MovementUpdate": function(msg) {
 				// If it looks like the path is failing, and we are close enough (3 tiles)
 				// stop anyways. This avoids pathing for an unreachable goal and reduces lag considerably.
-				if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, 12) ||
+				if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange) ||
 					 this.CheckRange(this.order.data))
 					this.FinishOrder();
 			},
@@ -1586,9 +1586,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"MovementUpdate": function(msg) {
-				if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, 12) ||
-					 this.CheckRange(this.order.data))
-					this.FinishOrder();
+				if (!msg.likelyFailure && !msg.likelySuccess && !this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange))
+					return;
 
 				if (this.orderQueue.length == 1)
 					this.PushOrder("Patrol", this.patrolStartPosOrder);
@@ -2136,7 +2135,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"MovementUpdate": function(msg) {
 					// If we failed, the GATHERING timer will handle finding a valid resource.
-					if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, 8) ||
+					if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange) ||
 						 this.CheckRange(this.order.data))
 						this.SetNextState("GATHERING");
 				},
@@ -4473,6 +4472,12 @@ UnitAI.prototype.CheckTargetVisible = function(target)
 	// Either visible directly, or visible in fog
 	return true;
 };
+
+/**
+ * How close to our goal do we consider it's OK to stop if the goal appears unreachable.
+ * Currently 3 terrain tiles as that's relatively close but helps pathfinding.
+ */
+UnitAI.prototype.DefaultRelaxedMaxRange = 12;
 
 /**
  * @returns true if the unit is in the relaxed-range from the target.
