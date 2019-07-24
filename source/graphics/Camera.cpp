@@ -52,15 +52,12 @@ void CCamera::SetPerspectiveProjection(float nearp, float farp, float fov)
 	m_FarPlane = farp;
 	m_FOV = fov;
 
-	const float aspect = static_cast<float>(m_ViewPort.m_Width) / static_cast<float>(m_ViewPort.m_Height);
-	m_ProjMat.SetPerspective(m_FOV, aspect, m_NearPlane, m_FarPlane);
+	m_ProjMat.SetPerspective(m_FOV, GetAspectRatio(), m_NearPlane, m_FarPlane);
 }
 
 void CCamera::SetPerspectiveProjectionTile(int tiles, int tile_x, int tile_y)
 {
-	const float aspect = static_cast<float>(m_ViewPort.m_Width) / static_cast<float>(m_ViewPort.m_Height);
-
-	m_ProjMat.SetPerspectiveTile(m_FOV, aspect, m_NearPlane, m_FarPlane, tiles, tile_x, tile_y);
+	m_ProjMat.SetPerspectiveTile(m_FOV, GetAspectRatio(), m_NearPlane, m_FarPlane, tiles, tile_x, tile_y);
 }
 
 // Updates the frustum planes. Should be called
@@ -132,51 +129,52 @@ void CCamera::SetViewPort(const SViewPort& viewport)
 	m_ViewPort.m_Height = viewport.m_Height;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// GetCameraPlanePoints: return four points in camera space at given distance from camera
-void CCamera::GetCameraPlanePoints(float dist, CVector3D pts[4]) const
+float CCamera::GetAspectRatio() const
 {
-	float aspect = float(m_ViewPort.m_Width)/float(m_ViewPort.m_Height);
-	float x = dist*aspect*tanf(m_FOV*0.5f);
-	float y = dist*tanf(m_FOV*0.5f);
+	return static_cast<float>(m_ViewPort.m_Width) / static_cast<float>(m_ViewPort.m_Height);
+}
 
-	pts[0].X = -x;
-	pts[0].Y = -y;
-	pts[0].Z = dist;
-	pts[1].X = x;
-	pts[1].Y = -y;
-	pts[1].Z = dist;
-	pts[2].X = x;
-	pts[2].Y = y;
-	pts[2].Z = dist;
-	pts[3].X = -x;
-	pts[3].Y = y;
-	pts[3].Z = dist;
+void CCamera::GetViewQuad(float dist, Quad& quad) const
+{
+	const float y = dist * tanf(m_FOV * 0.5f);
+	const float x = y * GetAspectRatio();
+
+	quad[0].X = -x;
+	quad[0].Y = -y;
+	quad[0].Z = dist;
+	quad[1].X = x;
+	quad[1].Y = -y;
+	quad[1].Z = dist;
+	quad[2].X = x;
+	quad[2].Y = y;
+	quad[2].Z = dist;
+	quad[3].X = -x;
+	quad[3].Y = y;
+	quad[3].Z = dist;
 }
 
 void CCamera::BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) const
 {
-	CVector3D cPts[4];
-	GetCameraPlanePoints(m_FarPlane, cPts);
+	// Coordinates relative to the camera plane.
+	const float dx = static_cast<float>(px) / g_Renderer.GetWidth();
+	const float dy = 1.0f - static_cast<float>(py) / g_Renderer.GetHeight();
 
-	// transform to world space
-	CVector3D wPts[4];
-	for (int i = 0; i < 4; i++)
-		wPts[i] = m_Orientation.Transform(cPts[i]);
+	Quad points;
+	GetViewQuad(m_FarPlane, points);
 
-	// get world space position of mouse point
-	float dx = (float)px / (float)g_Renderer.GetWidth();
-	float dz = 1 - (float)py / (float)g_Renderer.GetHeight();
+	// Transform from camera space to world space.
+	for (CVector3D& point : points)
+		point = m_Orientation.Transform(point);
 
-	CVector3D vdx = wPts[1] - wPts[0];
-	CVector3D vdz = wPts[3] - wPts[0];
-	CVector3D pt = wPts[0] + (vdx * dx) + (vdz * dz);
+	// Get world space position of mouse point at the far clipping plane.
+	CVector3D basisX = points[1] - points[0];
+	CVector3D basisY = points[3] - points[0];
+	CVector3D targetPoint = points[0] + (basisX * dx) + (basisY * dy);
 
-	// copy origin
 	origin = m_Orientation.GetTranslation();
-	// build direction
-	dir = pt - origin;
+
+	// Build direction for the camera origin to the target point.
+	dir = targetPoint - origin;
 	dir.Normalize();
 }
 
@@ -355,19 +353,17 @@ void CCamera::LookAlong(const CVector3D& camera, CVector3D orientation, CVector3
 	m_Orientation._41 = 0.0f;	m_Orientation._42 = 0.0f;	m_Orientation._43 = 0.0f;			m_Orientation._44 = 1.0f;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////
 // Render the camera's frustum
 void CCamera::Render(int intermediates) const
 {
 #if CONFIG2_GLES
 #warning TODO: implement camera frustum for GLES
 #else
-	CVector3D nearPoints[4];
-	CVector3D farPoints[4];
+	Quad nearPoints;
+	Quad farPoints;
 
-	GetCameraPlanePoints(m_NearPlane, nearPoints);
-	GetCameraPlanePoints(m_FarPlane, farPoints);
+	GetViewQuad(m_NearPlane, nearPoints);
+	GetViewQuad(m_FarPlane, farPoints);
 	for(int i = 0; i < 4; i++)
 	{
 		nearPoints[i] = m_Orientation.Transform(nearPoints[i]);
