@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.77.0 commit date:2016-04-05, commit time:18:12, hash:abf6f08</authoring_tool>
+    </contributor>
+    <created>2019-06-04T07:24:07</created>
+    <modified>2019-06-04T07:24:07</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_lights>
+    <light id="Lamp-light" name="Lamp">
+      <technique_common>
+        <point>
+          <color sid="color">1 1 1</color>
+          <constant_attenuation>1</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0.00111109</quadratic_attenuation>
+        </point>
+      </technique_common>
+      <extra>
+        <technique profile="blender">
+          <adapt_thresh>0.000999987</adapt_thresh>
+          <area_shape>1</area_shape>
+          <area_size>0.1</area_size>
+          <area_sizey>0.1</area_sizey>
+          <area_sizez>1</area_sizez>
+          <atm_distance_factor>1</atm_distance_factor>
+          <atm_extinction_factor>1</atm_extinction_factor>
+          <atm_turbidity>2</atm_turbidity>
+          <att1>0</att1>
+          <att2>1</att2>
+          <backscattered_light>1</backscattered_light>
+          <bias>1</bias>
+          <blue>1</blue>
+          <buffers>1</buffers>
+          <bufflag>0</bufflag>
+          <bufsize>2880</bufsize>
+          <buftype>2</buftype>
+          <clipend>30.002</clipend>
+          <clipsta>1.000799</clipsta>
+          <compressthresh>0.04999995</compressthresh>
+          <dist sid="blender_dist">29.99998</dist>
+          <energy sid="blender_energy">1</energy>
+          <falloff_type>2</falloff_type>
+          <filtertype>0</filtertype>
+          <flag>0</flag>
+          <gamma sid="blender_gamma">1</gamma>
+          <green>1</green>
+          <halo_intensity sid="blnder_halo_intensity">1</halo_intensity>
+          <horizon_brightness>1</horizon_brightness>
+          <mode>8192</mode>
+          <ray_samp>1</ray_samp>
+          <ray_samp_method>1</ray_samp_method>
+          <ray_samp_type>0</ray_samp_type>
+          <ray_sampy>1</ray_sampy>
+          <ray_sampz>1</ray_sampz>
+          <red>1</red>
+          <samp>3</samp>
+          <shadhalostep>0</shadhalostep>
+          <shadow_b sid="blender_shadow_b">0</shadow_b>
+          <shadow_g sid="blender_shadow_g">0</shadow_g>
+          <shadow_r sid="blender_shadow_r">0</shadow_r>
+          <sky_colorspace>0</sky_colorspace>
+          <sky_exposure>1</sky_exposure>
+          <skyblendfac>1</skyblendfac>
+          <skyblendtype>1</skyblendtype>
+          <soft>3</soft>
+          <spotblend>0.15</spotblend>
+          <spotsize>75</spotsize>
+          <spread>1</spread>
+          <sun_brightness>1</sun_brightness>
+          <sun_effect_type>0</sun_effect_type>
+          <sun_intensity>1</sun_intensity>
+          <sun_size>1</sun_size>
+          <type>0</type>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_images/>
+  <library_effects>
+    <effect id="Material_001-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.25 0.25 0.25 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material_001-material" name="Material_001">
+      <instance_effect url="#Material_001-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="rome_helmet_m-Geometry_000-mesh" name="rome_helmet_m-Geometry.000">
+      <mesh>
+        <source id="rome_helmet_m-Geometry_000-mesh-positions">
+          <float_array id="rome_helmet_m-Geometry_000-mesh-positions-array" count="132">0.005741059 0.01678317 0.06757724 -0.01147794 0.003317058 0.08059275 0.136191 0.01100778 0.1816222 0.06792265 0.007941961 0.2302384 0.3206187 0.02042216 0.4547213 -0.01147794 0.003317058 0.08059275 -0.001492619 -0.002309203 0.072757 0.06792265 0.007941961 0.2302384 0.1071437 -0.002406179 0.1983391 0.2161224 0.00900793 0.3238508 0.1852612 0.01418209 0.3532512 0.2377772 0.015715 0.3069667 0.1852612 0.01418209 0.3532512 0.009613811 0.01678317 0.07280206 -0.01196342 0.003317058 0.07223784 0.0404644 0.01100772 0.2433062 -0.04322063 0.007941961 0.2387349 0.01431691 0.02042216 0.5718074 -0.01196342 0.003317058 0.07223784 7.28828e-4 -0.002309203 0.07233989 -0.04322063 0.007941961 0.2387349 0.007332444 -0.002406239 0.2382588 0.01424765 0.00900793 0.4043363 -0.02821213 0.01418209 0.4080725 0.04170519 0.015715 0.4046427 -0.02821213 0.01418209 0.4080725 0.01074528 0.01128727 0.07453006 -0.01726245 0.01665824 -0.01476329 -0.03798013 0.002023637 -0.009220898 -0.03798013 0.002023637 -0.009220898 -0.01012325 -0.002098858 0.08023524 0.0963158 -0.007233381 0.2241678 0.01581341 -0.009948432 0.2475234 0.1809921 -0.02243214 0.5424197 -0.03798013 0.002023637 -0.009220898 -0.02610874 -0.002902269 -0.01353299 -0.01012325 -0.002098858 0.08023524 0.001738131 -0.007717072 0.07570713 0.01581341 -0.009948432 0.2475234 0.06306469 -0.02023202 0.2295095 0.1250245 -0.02127993 0.3841694 0.08635836 -0.01639991 0.4021883 0.1511835 -0.01461464 0.3757865 0.08635836 -0.01639991 0.4021883</float_array>
+          <technique_common>
+            <accessor source="#rome_helmet_m-Geometry_000-mesh-positions-array" count="44" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_helmet_m-Geometry_000-mesh-normals">
+          <float_array id="rome_helmet_m-Geometry_000-mesh-normals-array" count="132">0.6793294 0.187358 -0.709513 0.5888993 0.7668875 -0.2551103 -0.2642373 0.9109137 0.3168833 -0.04834175 0.9988189 -0.004882991 0.6468192 0.04480183 0.7613264 0.8173651 0.1269903 -0.56195 -0.03912556 0.9991976 -0.008575856 -0.3476431 -0.9131928 0.2126572 0.2385122 -0.936439 -0.2572819 -0.1422502 -0.9781116 0.1518638 0.08542346 -0.9939524 -0.06900411 -0.05359202 -0.9900189 0.1303483 0.09112954 -0.9958329 0.003540158 0.9735236 0.1873558 -0.1309567 0.6194494 0.766888 0.1678254 -0.404196 0.910906 0.08292061 -0.03473037 0.9988194 -0.03396737 0.03082424 0.04474091 0.9985231 0.9893999 0.1269901 0.07043814 -0.02523934 0.9991977 -0.03109902 -0.4043788 -0.9131941 -0.05053967 0.3469163 -0.9364328 -0.05237162 -0.2059131 -0.9781103 0.03000038 0.1098085 -0.9939526 -6.40905e-4 -0.1232066 -0.9900172 0.06845486 0.0690034 -0.9958343 0.05960351 0.6425507 0.761606 -0.08417189 0.6387746 0.7549015 -0.1486303 -0.5247084 0.8239139 0.2141193 -0.4920273 0.8490691 0.1923307 -0.4101732 0.8805906 0.2373145 0.879109 0.196636 -0.4341679 -0.01913559 0.9985617 0.0500822 0.3618009 -0.030061 0.9317708 0.959487 0.1213436 -0.2542843 -0.009216606 0.9987241 0.04965388 -0.3607017 -0.9300912 0.0694608 0.346607 -0.9253434 -0.1536338 -0.4107557 -0.9105048 0.04754865 0.301718 -0.9339646 -0.1915112 -0.2085665 -0.9776138 0.02777224 0.07855695 -0.9911178 -0.1073062 -0.1181096 -0.992365 0.03552442 0.06006062 -0.9975013 -0.03720217</float_array>
+          <technique_common>
+            <accessor source="#rome_helmet_m-Geometry_000-mesh-normals-array" count="44" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_helmet_m-Geometry_000-mesh-map-0">
+          <float_array id="rome_helmet_m-Geometry_000-mesh-map-0-array" count="306">0.857414 0.3226274 0.857414 0.09607636 0.816041 0.09607636 0.816041 0.09607636 0.816041 0.3226274 0.857414 0.3226274 0.878101 0.5491794 0.8677575 0.4359034 0.847071 0.4359034 0.940161 0.09607636 0.898788 0.09607636 0.940161 0.3226274 0.940161 0.3226274 0.898788 0.09607636 0.898788 0.3226274 0.898788 0.3226274 0.909131 0.4359034 0.940161 0.3226274 0.878101 0.5491794 0.8884445 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.898788 0.3226274 0.857414 0.09607636 0.857414 0.09607636 0.898788 0.3226274 0.898788 0.09607636 0.847071 0.4359034 0.857414 0.3226274 0.816041 0.3226274 0.909131 0.4359034 0.8884445 0.4359034 0.878101 0.5491794 0.8884445 0.4359034 0.857414 0.3226274 0.8677575 0.4359034 0.898788 0.3226274 0.8884445 0.4359034 0.909131 0.4359034 0.847071 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.8884445 0.4359034 0.898788 0.3226274 0.857414 0.3226274 0.857414 0.3226274 0.857414 0.09607636 0.816041 0.09607636 0.816041 0.09607636 0.816041 0.3226274 0.857414 0.3226274 0.878101 0.5491794 0.8677575 0.4359034 0.847071 0.4359034 0.940161 0.09607636 0.898788 0.09607636 0.940161 0.3226274 0.940161 0.3226274 0.898788 0.09607636 0.898788 0.3226274 0.898788 0.3226274 0.909131 0.4359034 0.940161 0.3226274 0.878101 0.5491794 0.8884445 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.898788 0.3226274 0.857414 0.09607636 0.857414 0.09607636 0.898788 0.3226274 0.898788 0.09607636 0.847071 0.4359034 0.857414 0.3226274 0.816041 0.3226274 0.909131 0.4359034 0.8884445 0.4359034 0.878101 0.5491794 0.8884445 0.4359034 0.857414 0.3226274 0.8677575 0.4359034 0.898788 0.3226274 0.8884445 0.4359034 0.909131 0.4359034 0.847071 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.8884445 0.4359034 0.898788 0.3226274 0.857414 0.3226274 0.7131193 0.6987928 0.7131193 0.4722409 0.695676 0.4722409 0.695676 0.4722409 0.695676 0.6987928 0.7131193 0.6987928 0.857414 0.3226274 0.857414 0.09607636 0.816041 0.09607636 0.816041 0.09607636 0.816041 0.3226274 0.857414 0.3226274 0.878101 0.5491794 0.8677575 0.4359034 0.847071 0.4359034 0.7480063 0.4722409 0.730563 0.4722409 0.7480063 0.6987928 0.7480063 0.6987928 0.730563 0.4722409 0.730563 0.6987928 0.7131193 0.6987928 0.730563 0.6987928 0.7131193 0.4722409 0.7131193 0.4722409 0.730563 0.6987928 0.730563 0.4722409 0.940161 0.09607636 0.898788 0.09607636 0.940161 0.3226274 0.940161 0.3226274 0.898788 0.09607636 0.898788 0.3226274 0.898788 0.3226274 0.909131 0.4359034 0.940161 0.3226274 0.878101 0.5491794 0.8884445 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.898788 0.3226274 0.857414 0.09607636 0.857414 0.09607636 0.898788 0.3226274 0.898788 0.09607636 0.847071 0.4359034 0.857414 0.3226274 0.816041 0.3226274 0.909131 0.4359034 0.8884445 0.4359034 0.878101 0.5491794 0.8884445 0.4359034 0.857414 0.3226274 0.8677575 0.4359034 0.898788 0.3226274 0.8884445 0.4359034 0.909131 0.4359034 0.847071 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.8884445 0.4359034 0.898788 0.3226274 0.857414 0.3226274</float_array>
+          <technique_common>
+            <accessor source="#rome_helmet_m-Geometry_000-mesh-map-0-array" count="153" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rome_helmet_m-Geometry_000-mesh-vertices">
+          <input semantic="POSITION" source="#rome_helmet_m-Geometry_000-mesh-positions"/>
+        </vertices>
+        <polylist material="Material_001-material" count="51">
+          <input semantic="VERTEX" source="#rome_helmet_m-Geometry_000-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#rome_helmet_m-Geometry_000-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#rome_helmet_m-Geometry_000-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>2 0 0 0 1 1 1 2 2 1 2 3 3 3 4 2 0 5 4 4 6 11 5 7 10 6 8 5 7 9 6 8 10 7 9 11 7 9 12 6 8 13 8 10 14 8 10 15 12 11 16 7 9 17 4 4 18 9 12 19 11 5 20 2 0 21 8 10 22 0 1 23 0 1 24 8 10 25 6 8 26 10 6 27 2 0 28 3 3 29 12 11 30 9 12 31 4 4 32 9 12 33 2 0 34 11 5 35 8 10 36 9 12 37 12 11 38 10 6 39 11 5 40 2 0 41 9 12 42 8 10 43 2 0 44 15 13 45 13 14 46 14 15 47 14 15 48 16 16 49 15 13 50 17 17 51 24 18 52 23 19 53 18 20 54 19 21 55 20 22 56 20 22 57 19 21 58 21 23 59 21 23 60 25 24 61 20 22 62 17 17 63 22 25 64 24 18 65 15 13 66 21 23 67 13 14 68 13 14 69 21 23 70 19 21 71 23 19 72 15 13 73 16 16 74 25 24 75 22 25 76 17 17 77 22 25 78 15 13 79 24 18 80 21 23 81 22 25 82 25 24 83 23 19 84 24 18 85 15 13 86 22 25 87 21 23 88 15 13 89 26 26 90 27 27 91 28 28 92 29 29 93 30 30 94 26 26 95 31 31 96 26 26 97 30 30 98 30 30 99 32 32 100 31 31 101 33 33 102 42 34 103 41 35 104 34 36 105 35 37 106 36 38 107 36 38 108 35 37 109 37 39 110 26 26 111 37 39 112 27 27 113 27 27 114 37 39 115 35 37 116 36 38 117 37 39 118 38 40 119 38 40 120 37 39 121 39 41 122 39 41 123 43 42 124 38 40 125 33 33 126 40 43 127 42 34 128 31 31 129 39 41 130 26 26 131 26 26 132 39 41 133 37 39 134 41 35 135 31 31 136 32 32 137 43 42 138 40 43 139 33 33 140 40 43 141 31 31 142 42 34 143 39 41 144 40 43 145 43 42 146 41 35 147 42 34 148 31 31 149 40 43 150 39 41 151 31 31 152</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Lamp" name="Lamp" type="NODE">
+        <matrix sid="transform">-0.2908646 -0.7711008 0.5663932 4.076245 0.9551712 -0.1998834 0.2183912 1.005454 -0.05518906 0.6045247 0.7946723 5.903862 0 0 0 1</matrix>
+        <instance_light url="#Lamp-light"/>
+      </node>
+      <node id="rome_helmet_m_001_001" name="rome_helmet_m_001_001" type="NODE">
+        <matrix sid="transform">0.9429135 2.90611e-9 -0.3330376 0.02430323 0.02492626 0.9971952 0.07057255 0 0.3321035 -0.07484519 0.9402688 0 0 0 0 1</matrix>
+        <instance_geometry url="#rome_helmet_m-Geometry_000-mesh" name="rome_helmet_m_001_001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_001-material" target="#Material_001-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

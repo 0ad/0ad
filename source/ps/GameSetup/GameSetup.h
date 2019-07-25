@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@
 extern void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task);
 
 extern void Render();
+
+extern bool ShouldRender();
 
 /**
  * initialize global modules that are be needed before Init.

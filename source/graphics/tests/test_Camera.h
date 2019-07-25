@@ -71,7 +71,7 @@ public:
 			CVector3D(0.0f, 0.0f, 0.0f),
 			CVector3D(0.0f, 0.0f, 1.0f),
 			CVector3D(0.0f, 1.0f, 0.0f)
-			);
+		);
 		CMatrix3D projection;
 		projection.SetOrtho(-10.0f, 10.0f, -10.0f, 10.0f, -10.0f, 10.0f);
 		camera.SetProjection(projection);
@@ -122,5 +122,42 @@ public:
 			std::fabs(p1.m_Norm.X - p2.m_Norm.X) < EPS &&
 			std::fabs(p1.m_Norm.Y - p2.m_Norm.Y) < EPS &&
 			std::fabs(p1.m_Norm.Z - p2.m_Norm.Z) < EPS;
+	}
+
+	void test_persepctive_plane_points()
+	{
+		SViewPort viewPort;
+		viewPort.m_X = 0;
+		viewPort.m_Y = 0;
+		viewPort.m_Width = 512;
+		viewPort.m_Height = 512;
+
+		CCamera camera;
+		camera.SetViewPort(viewPort);
+		camera.LookAlong(
+			CVector3D(0.0f, 0.0f, 0.0f),
+			CVector3D(0.0f, 0.0f, 1.0f),
+			CVector3D(0.0f, 1.0f, 0.0f)
+		);
+		camera.m_Orientation.SetTranslation(CVector3D(1.0f, 2.0f, 3.0f));
+		camera.SetPerspectiveProjection(1.0f, 101.0f, DEGTORAD(90.0f));
+
+		CCamera::Quad quad;
+
+		// Zero distance point is the origin of all camera rays,
+		// so all plane points should be stay there.
+		camera.GetViewQuad(0.0f, quad);
+		for (const CVector3D& point : quad)
+			TS_ASSERT_EQUALS(point, CVector3D(0.0f, 0.0f, 0.0f));
+
+		// Points lying on the far plane.
+		CCamera::Quad expectedFarQuad = {
+			CVector3D(-101.0f, -101.0f, 101.0f),
+			CVector3D(101.0f, -101.0f, 101.0f),
+			CVector3D(101.0f, 101.0f, 101.0f),
+			CVector3D(-101.0f, 101.0f, 101.0f)
+		};
+		camera.GetViewQuad(camera.GetFarPlane(), quad);
+		TS_ASSERT_EQUALS(quad, expectedFarQuad);
 	}
 };

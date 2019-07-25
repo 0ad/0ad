@@ -40,6 +40,7 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpParticleManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
+#include "soundmanager/ISoundManager.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 
@@ -210,6 +211,10 @@ void AtlasViewGame::Update(float realFrameLength)
 		// not in every call to g_Game->Update
 		g_Game->Interpolate(actualFrameLength, realFrameLength);
 	}
+
+	// Run sound idle tasks every frame.
+	if (g_SoundManager)
+		g_SoundManager->IdleTask();
 
 	// Cinematic motion should be independent of simulation update, so we can
 	// preview the cinematics by themselves

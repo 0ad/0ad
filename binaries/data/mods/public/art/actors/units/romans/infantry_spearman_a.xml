@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/helmets/rome_helmet_italo_corinthian.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
@@ -16,11 +16,43 @@
     <variant frequency="1" name="Chainmail-Shoulder Doubling">
       <textures>
         <texture file="skeletal/rome_isp_a_1.dds" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Chainmail-No Shoulder Doubling">
+    <variant frequency="1" name="rome-chainmail-2a">
       <textures>
-        <texture file="skeletal/rome_isp_a_2.dds" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_2_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-2b">
+      <textures>
+        <texture file="skeletal/rome_chainmail_2_b.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-2c">
+      <textures>
+        <texture file="skeletal/rome_chainmail_2_c.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-3a">
+      <textures>
+        <texture file="skeletal/rome_chainmail_3_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-3b">
+      <textures>
+        <texture file="skeletal/rome_chainmail_3_b.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-3c">
+      <textures>
+        <texture file="skeletal/rome_chainmail_3_c.png" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_3_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -53,5 +85,5 @@
     <variant file="biped/formations/testudo_left.xml"/>
     <variant file="biped/formations/testudo_right.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -13,19 +13,64 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="pectoral--plain">
+    <variant frequency="0" name="pectoral--plain">
       <textures>
         <texture file="skeletal/rome_isw_b.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="pectoral--muscle">
+    <variant frequency="0" name="pectoral--muscle">
       <textures>
         <texture file="skeletal/rome_isw_b_2.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="pectoral">
+    <variant frequency="0" name="pectoral">
       <textures>
         <texture file="skeletal/rome_isw_b_3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cardiopylax-1a">
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cardiopylax-1b">
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="cardiopylax-1c">
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cardiopylax-2a">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_2_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cardiopylax-2b">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_2_b.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="cardiopylax-2c">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_2_c.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cardiopylax-padded-1a">
+      <textures>
+        <texture file="skeletal/rome_cardiopylax_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -56,5 +101,5 @@
     <variant file="biped/formations/testudo_left.xml"/>
     <variant file="biped/formations/testudo_right.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

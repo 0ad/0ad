@@ -217,7 +217,8 @@ public:
 		for (size_t i = 0; i < (size_t)(m_BW*m_BH); ++i)
 			delete[] m_Data[i];
 
-		m_Data = new T*[m_BW*m_BH]();
+		// Reset m_Data by value-constructing in place with placement new.
+		m_Data = new (m_Data) T*[m_BW*m_BH]();
 	}
 
 	void set(int i, int j, const T& value)
