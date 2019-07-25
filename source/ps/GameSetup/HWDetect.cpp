@@ -38,10 +38,11 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
+#include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "ps/scripting/JSInterface_Debug.h"
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
-#include "ps/GameSetup/Config.h"
 
 #ifdef SDL_VIDEO_DRIVER_X11
 #include <GL/glx.h>
@@ -214,6 +215,8 @@ void RunHardwareDetection()
 	ScriptInterface scriptInterface("Engine", "HWDetect", g_ScriptRuntime);
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
+
+	JSI_Debug::RegisterScriptFunctions(scriptInterface); // Engine.DisplayErrorDialog
 
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
