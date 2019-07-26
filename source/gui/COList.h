@@ -25,7 +25,7 @@
  */
 struct COListColumn
 {
-  CColor m_TextColor;
+  CGUIColor m_TextColor;
   CStr m_Id;
   float m_Width;
   CStrW m_Heading;

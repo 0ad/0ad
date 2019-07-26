@@ -18,18 +18,17 @@
 #include "precompiled.h"
 
 #include "JSInterface_IGUIObject.h"
-#include "JSInterface_GUITypes.h"
 
-#include "gui/IGUIObject.h"
 #include "gui/CGUI.h"
-#include "gui/IGUIScrollBar.h"
+#include "gui/CGUIColor.h"
 #include "gui/CList.h"
 #include "gui/GUIManager.h"
-
+#include "gui/IGUIObject.h"
+#include "gui/IGUIScrollBar.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
 #include "ps/CLogger.h"
-
-#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
+#include "scriptinterface/ScriptInterface.h"
 
 JSClass JSI_IGUIObject::JSI_class = {
 	"GUIObject", JSCLASS_HAS_PRIVATE,
@@ -160,11 +159,11 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			break;
 		}
 
-		case GUIST_CColor:
+		case GUIST_CGUIColor:
 		{
-			CColor color;
-			GUI<CColor>::GetSetting(e, propName, color);
-			ScriptInterface::ToJSVal(cx, vp, color);
+			CGUIColor value;
+			GUI<CGUIColor>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -422,33 +421,12 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		break;
 	}
 
-	case GUIST_CColor:
+	case GUIST_CGUIColor:
 	{
-		if (vp.isString())
-		{
-			std::wstring value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
-
-			if (e->SetSetting(propName, value) != PSRETURN_OK)
-			{
-				JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
-				return false;
-			}
-		}
-		else if (vp.isObject())
-		{
-			CColor color;
-			if (!ScriptInterface::FromJSVal(cx, vp, color))
-				// Exception has been thrown already
-				return false;
-			GUI<CColor>::SetSetting(e, propName, color);
-		}
-		else
-		{
-			JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
+		CGUIColor value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
-		}
+		GUI<CGUIColor>::SetSetting(e, propName, value);
 		break;
 	}
 

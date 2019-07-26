@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,10 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
-#include "GUIManager.h"
+#include "GUIutil.h"
 
+#include "gui/GUI.h"
+#include "gui/GUIManager.h"
 #include "maths/Matrix3D.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
@@ -102,26 +103,14 @@ bool __ParseString<CClientArea>(const CStrW& Value, CClientArea& Output)
 }
 
 template <>
-bool GUI<int>::ParseColor(const CStrW& Value, CColor& Output, int DefaultAlpha)
+bool GUI<int>::ParseColor(const CStrW& Value, CGUIColor& Output, int DefaultAlpha)
 {
-	// First, check our database in g_GUI for pre-defined colors
-	//  If we find anything, we'll ignore DefaultAlpha
-	// If it fails, it won't do anything with Output
-	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
-		return true;
-
 	return Output.ParseString(Value.ToUTF8(), DefaultAlpha);
 }
 
-
 template <>
-bool __ParseString<CColor>(const CStrW& Value, CColor& Output)
+bool __ParseString<CGUIColor>(const CStrW& Value, CGUIColor& Output)
 {
-	// First, check our database in g_GUI for pre-defined colors
-	// If it fails, it won't do anything with Output
-	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
-		return true;
-
 	return Output.ParseString(Value.ToUTF8());
 }
 

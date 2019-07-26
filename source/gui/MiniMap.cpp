@@ -67,7 +67,6 @@ CMiniMap::CMiniMap() :
 	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW),
 	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false), m_WaterHeight(0.0)
 {
-	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStrW,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;

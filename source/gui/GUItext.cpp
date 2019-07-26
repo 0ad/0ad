@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 
 #include <algorithm>
 
-#include "GUI.h"
+#include "gui/GUI.h"
 #include "lib/utf8.h"
 #include "graphics/FontMetrics.h"
 #include "ps/CLogger.h"
@@ -190,7 +190,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				case TextChunk::Tag::TAG_COLOR:
 					TextCall.m_UseCustomColor = true;
 
-					if (!GUI<CColor>::ParseString(tag.m_TagValue, TextCall.m_Color) && pObject)
+					if (!GUI<CGUIColor>::ParseString(tag.m_TagValue, TextCall.m_Color) && pObject)
 						LOGERROR("Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
 					break;
 				case TextChunk::Tag::TAG_FONT:

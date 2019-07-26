@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@
 
 #include "CList.h"
 
-#include "CGUIScrollBarVertical.h"
-
+#include "gui/CGUIColor.h"
+#include "gui/CGUIScrollBarVertical.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
@@ -42,8 +42,8 @@ CList::CList()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
 	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_EAlign,				"text_align");
-	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_CColor,				"textcolor_selected");
+	AddSetting(GUIST_CGUIColor,				"textcolor");
+	AddSetting(GUIST_CGUIColor,				"textcolor_selected");
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
 	AddSetting(GUIST_bool,					"auto_scroll");
 	AddSetting(GUIST_int,					"hovered");
@@ -384,8 +384,8 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 			}
 		}
 
-		CColor color;
-		GUI<CColor>::GetSetting(this, _textcolor, color);
+		CGUIColor color;
+		GUI<CGUIColor>::GetSetting(this, _textcolor, color);
 
 		for (size_t i = 0; i < pList->m_Items.size(); ++i)
 		{

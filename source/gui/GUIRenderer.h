@@ -18,9 +18,9 @@
 #ifndef INCLUDED_GUIRENDERER
 #define INCLUDED_GUIRENDERER
 
-#include "graphics/Color.h"
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
+#include "gui/CGUIColor.h"
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "ps/Shapes.h"
@@ -61,8 +61,8 @@ namespace GUIRenderer
 		CRect m_Vertices;
 		float m_DeltaZ;
 
-		CColor m_BorderColor; // == CColor() for no border
-		CColor m_BackColor;
+		CGUIColor m_BorderColor; // == CGUIColor() for no border
+		CGUIColor m_BackColor;
 	};
 
 	class DrawCalls : public std::vector<SDrawCall>

@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
+#include "gui/GUI.h"
 
 IGUITextOwner::IGUITextOwner() : m_GeneratedTextsValid(false)
 {
@@ -68,7 +68,7 @@ void IGUITextOwner::UpdateCachedSize()
 	m_GeneratedTextsValid = false;
 }
 
-void IGUITextOwner::DrawText(size_t index, const CColor& color, const CPos& pos, float z, const CRect& clipping)
+void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping)
 {
 	if (!m_GeneratedTextsValid)
 	{

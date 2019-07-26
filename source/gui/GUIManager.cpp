@@ -19,8 +19,7 @@
 
 #include "GUIManager.h"
 
-#include "CGUI.h"
-
+#include "gui/CGUI.h"
 #include "lib/timer.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
@@ -347,7 +346,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 }
 
 
-bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output) const
+bool CGUIManager::GetPreDefinedColor(const CStr& name, CGUIColor& output) const
 {
 	return top()->GetPreDefinedColor(name, output);
 }

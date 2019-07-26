@@ -16,8 +16,10 @@
  */
 
 #include "precompiled.h"
+
 #include "CChart.h"
 
+#include "gui/CGUIColor.h"
 #include "graphics/ShaderManager.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
@@ -29,7 +31,7 @@
 
 CChart::CChart()
 {
-	AddSetting(GUIST_CColor, "axis_color");
+	AddSetting(GUIST_CGUIColor, "axis_color");
 	AddSetting(GUIST_float, "axis_width");
 	AddSetting(GUIST_float, "buffer_zone");
 	AddSetting(GUIST_CStrW, "font");
@@ -65,7 +67,7 @@ void CChart::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CChart::DrawLine(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const
+void CChart::DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
 {
 	shader->Uniform(str_color, color);
 	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
@@ -79,7 +81,7 @@ void CChart::DrawLine(const CShaderProgramPtr& shader, const CColor& color, cons
 	glDisable(GL_LINE_SMOOTH);
 }
 
-void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const
+void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
 {
 	shader->Uniform(str_color, color);
 	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
@@ -103,8 +105,8 @@ void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 	ADD(m_CachedActualSize.left, m_CachedActualSize.top);
 	ADD(rect.left, rect.top - m_AxisWidth);
 #undef ADD
-	CColor axis_color(0.5f, 0.5f, 0.5f, 1.f);
-	GUI<CColor>::GetSetting(this, "axis_color", axis_color);
+	CGUIColor axis_color(0.5f, 0.5f, 0.5f, 1.f);
+	GUI<CGUIColor>::GetSetting(this, "axis_color", axis_color);
 	DrawTriangleStrip(shader, axis_color, vertices);
 }
 
@@ -169,7 +171,7 @@ void CChart::Draw()
 	glDepthMask(1);
 
 	for (size_t i = 0; i < m_TextPositions.size(); ++i)
-		DrawText(i, CColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i], bz + 0.5f);
+		DrawText(i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i], bz + 0.5f);
 }
 
 CRect CChart::GetChartRect() const

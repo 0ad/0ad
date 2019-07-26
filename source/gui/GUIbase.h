@@ -35,7 +35,7 @@ GUI Core, stuff that the whole GUI uses
 #include <map>
 #include <vector>
 
-#include "graphics/Color.h"
+#include "gui/CGUIColor.h"
 #include "ps/CStr.h"
 #include "ps/Errors.h"
 // I would like to just forward declare CSize, but it doesn't

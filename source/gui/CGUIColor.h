@@ -15,30 +15,22 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-This file is used by all bits of GUI code that need to repeat some code
-for a variety of types (to avoid repeating the list of types in half a dozen
-places, and to make it much easier to add a new type). Just do
-		#define TYPE(T) your_code_involving_T;
-		#include "GUItypes.h"
-		#undef TYPE
-to handle every possible type.
-*/
+#ifndef INCLUDED_GUICOLOR
+#define INCLUDED_GUICOLOR
 
-TYPE(bool)
-TYPE(int)
-TYPE(uint)
-TYPE(float)
-TYPE(CGUIColor)
-TYPE(CClientArea)
-TYPE(CGUIString)
-#ifndef GUITYPE_IGNORE_CGUISpriteInstance
-TYPE(CGUISpriteInstance)
-#endif
-TYPE(CStr)
-TYPE(CStrW)
-TYPE(EAlign)
-TYPE(EVAlign)
-TYPE(CPos)
-TYPE(CGUIList)
-TYPE(CGUISeries)
+#include "graphics/Color.h"
+#include "gui/GUIManager.h"
+
+/**
+ * Same as the CColor class, but this one can also parse colors predefined in the GUI page (such as "yellow").
+ */
+struct CGUIColor : public CColor
+{
+	 using CColor::CColor;
+
+	 bool ParseString(const CStr& value, int defaultAlpha = 255)
+	 {
+		 return g_GUI->GetPreDefinedColor(value, *this) || CColor::ParseString(value, defaultAlpha);
+	 }
+};
+#endif // INCLUDED_GUICOLOR

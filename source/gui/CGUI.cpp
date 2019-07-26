@@ -827,7 +827,7 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 	return Text;
 }
 
-void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping)
+void CGUI::DrawText(SGUIText& Text, const CGUIColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping)
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -854,7 +854,7 @@ void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos,
 		if (tc.m_pSpriteCall)
 			continue;
 
-		CColor color = tc.m_UseCustomColor ? tc.m_Color : DefaultColor;
+		CGUIColor color = tc.m_UseCustomColor ? tc.m_Color : DefaultColor;
 
 		textRenderer.Color(color);
 		textRenderer.Font(tc.m_Font);
@@ -872,9 +872,9 @@ void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos,
 	tech->EndPass();
 }
 
-bool CGUI::GetPreDefinedColor(const CStr& name, CColor& Output) const
+bool CGUI::GetPreDefinedColor(const CStr& name, CGUIColor& Output) const
 {
-	std::map<CStr, CColor>::const_iterator cit = m_PreDefinedColors.find(name);
+	std::map<CStr, CGUIColor>::const_iterator cit = m_PreDefinedColors.find(name);
 	if (cit == m_PreDefinedColors.end())
 		return false;
 
@@ -1510,16 +1510,16 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else if (attr_name == "backcolor")
 		{
-			CColor color;
-			if (!GUI<CColor>::ParseString(attr_value, color))
+			CGUIColor color;
+			if (!GUI<CGUIColor>::ParseString(attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_BackColor = color;
 		}
 		else if (attr_name == "bordercolor")
 		{
-			CColor color;
-			if (!GUI<CColor>::ParseString(attr_value, color))
+			CGUIColor color;
+			if (!GUI<CGUIColor>::ParseString(attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_BorderColor = color;
@@ -1566,7 +1566,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 
 		if (attr_name == "add_color")
 		{
-			CColor color;
+			CGUIColor color;
 			if (!GUI<int>::ParseColor(attr_value, color, 0))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else effects.m_AddColor = color;
@@ -1742,7 +1742,7 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 {
 	XMBAttributeList attributes = Element.GetAttributes();
 
-	CColor color;
+	CGUIColor color;
 	CStr name = attributes.GetNamedItem(pFile->GetAttributeID("name"));
 
 	// Try parsing value

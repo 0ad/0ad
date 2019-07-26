@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "gui/CGUIColor.h"
 #include "gui/CGUIList.h"
 #include "gui/CGUISeries.h"
 #include "gui/GUIbase.h"
@@ -143,6 +144,31 @@ template<> bool ScriptInterface::FromJSVal<CGUIString>(JSContext* cx, JS::Handle
 JSVAL_VECTOR(CVector2D)
 JSVAL_VECTOR(std::vector<CVector2D>)
 JSVAL_VECTOR(CGUIString)
+
+template<> void ScriptInterface::ToJSVal<CGUIColor>(JSContext* cx, JS::MutableHandleValue ret, const CGUIColor& val)
+{
+	ToJSVal<CColor>(cx, ret, val);
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleValue v, CGUIColor& out)
+{
+	if (v.isString())
+	{
+		CStr name;
+		if (!FromJSVal(cx, v, name))
+			return false;
+
+		if (!out.ParseString(name))
+		{
+			JS_ReportError(cx, "Invalid color '%s'", name);
+			return false;
+		}
+		return true;
+	}
+
+	// Parse as object
+	return FromJSVal<CColor>(cx, v, out);
+}
 
 template<> void ScriptInterface::ToJSVal<CClientArea>(JSContext* cx, JS::MutableHandleValue ret, const CClientArea& val)
 {

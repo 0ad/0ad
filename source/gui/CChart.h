@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,16 +18,16 @@
 #ifndef INCLUDED_CCHART
 #define INCLUDED_CCHART
 
-#include "GUI.h"
-#include "IGUITextOwner.h"
-#include "graphics/Color.h"
+#include "gui/GUI.h"
+#include "gui/IGUITextOwner.h"
 #include "maths/Vector2D.h"
+
 #include <vector>
 
 
 struct CChartData
 {
-	CColor m_Color;
+	CGUIColor m_Color;
 	std::vector<CVector2D> m_Points;
 };
 
@@ -77,11 +77,11 @@ private:
 	/**
 	 * Helper functions
 	 */
-	void DrawLine(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const;
+	void DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const;
 
 	// Draws the triangle sequence so that the each next triangle has a common edge with the previous one.
 	// If we need to draw n triangles, we need only n + 2 points.
-	void DrawTriangleStrip(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const;
+	void DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const;
 
 	// Represents axes as triangles and draws them with DrawTriangleStrip.
 	void DrawAxes(const CShaderProgramPtr& shader) const;
