@@ -233,15 +233,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			EAlign value;
 			GUI<EAlign>::GetSetting(e, propName, value);
-			CStr word;
-			switch (value)
-			{
-			case EAlign_Left: word = "left"; break;
-			case EAlign_Right: word = "right"; break;
-			case EAlign_Center: word = "center"; break;
-			default: debug_warn(L"Invalid EAlign!"); word = "error"; break;
-			}
-			ScriptInterface::ToJSVal(cx, vp, word);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -249,15 +241,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			EVAlign value;
 			GUI<EVAlign>::GetSetting(e, propName, value);
-			CStr word;
-			switch (value)
-			{
-			case EVAlign_Top: word = "top"; break;
-			case EVAlign_Bottom: word = "bottom"; break;
-			case EVAlign_Center: word = "center"; break;
-			default: debug_warn(L"Invalid EVAlign!"); word = "error"; break;
-			}
-			ScriptInterface::ToJSVal(cx, vp, word);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -382,50 +366,32 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_EAlign:
 	{
-		std::string value;
-		if (!ScriptInterface::FromJSVal(cx, vp, value))
+		EAlign a;
+		if (!ScriptInterface::FromJSVal(cx, vp, a))
 			return false;
 
-		EAlign a;
-		if (value == "left") a = EAlign_Left;
-		else if (value == "right") a = EAlign_Right;
-		else if (value == "center" || value == "centre") a = EAlign_Center;
-		else
-		{
-			JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
-			return false;
-		}
 		GUI<EAlign>::SetSetting(e, propName, a);
 		break;
 	}
 
 	case GUIST_EVAlign:
 	{
-		std::string value;
-		if (!ScriptInterface::FromJSVal(cx, vp, value))
+		EVAlign a;
+		if (!ScriptInterface::FromJSVal(cx, vp, a))
 			return false;
 
-		EVAlign a;
-		if (value == "top") a = EVAlign_Top;
-		else if (value == "bottom") a = EVAlign_Bottom;
-		else if (value == "center" || value == "centre") a = EVAlign_Center;
-		else
-		{
-			JS_ReportError(cx, "Invalid alignment (should be 'top', 'bottom' or 'center')");
-			return false;
-		}
 		GUI<EVAlign>::SetSetting(e, propName, a);
 		break;
 	}
 
 	case GUIST_int:
 	{
-		int value;
+		i32 value;
 		if (ScriptInterface::FromJSVal(cx, vp, value))
-			GUI<int>::SetSetting(e, propName, value);
+			GUI<i32>::SetSetting(e, propName, value);
 		else
 		{
-			JS_ReportError(cx, "Cannot convert value to int");
+			JS_ReportError(cx, "Cannot convert value to i32");
 			return false;
 		}
 		break;
