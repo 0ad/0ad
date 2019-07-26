@@ -144,6 +144,16 @@ JSVAL_VECTOR(CVector2D)
 JSVAL_VECTOR(std::vector<CVector2D>)
 JSVAL_VECTOR(CGUIString)
 
+template<> void ScriptInterface::ToJSVal<CClientArea>(JSContext* cx, JS::MutableHandleValue ret, const CClientArea& val)
+{
+	val.ToJSVal(cx, ret);
+}
+
+template<> bool ScriptInterface::FromJSVal<CClientArea>(JSContext* cx, JS::HandleValue v, CClientArea& out)
+{
+	return out.FromJSVal(cx, v);
+}
+
 template<> void ScriptInterface::ToJSVal<CGUIList>(JSContext* cx, JS::MutableHandleValue ret, const CGUIList& val)
 {
 	ToJSVal(cx, ret, val.m_Items);

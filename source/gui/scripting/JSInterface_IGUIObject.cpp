@@ -170,30 +170,9 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 		case GUIST_CClientArea:
 		{
-			CClientArea area;
-			GUI<CClientArea>::GetSetting(e, propName, area);
-
-			JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
-			vp.setObject(*obj);
-			try
-			{
-#define P(x, y, z) pScriptInterface->SetProperty(vp, #z, area.x.y, false, true)
-				P(pixel,	left,	left);
-				P(pixel,	top,	top);
-				P(pixel,	right,	right);
-				P(pixel,	bottom,	bottom);
-				P(percent,	left,	rleft);
-				P(percent,	top,	rtop);
-				P(percent,	right,	rright);
-				P(percent,	bottom,	rbottom);
-#undef P
-			}
-			catch (PSERROR_Scripting_ConversionFailed&)
-			{
-				debug_warn(L"Error creating size object!");
-				break;
-			}
-
+			CClientArea value;
+			GUI<CClientArea>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
 			break;
 		}
 
@@ -435,42 +414,11 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_CClientArea:
 	{
-		if (vp.isString())
-		{
-			std::wstring value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
-
-			if (e->SetSetting(propName, value) != PSRETURN_OK)
-			{
-				JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
-				return false;
-			}
-		}
-		else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUISize::JSI_class, NULL))
-		{
-			CClientArea area;
-			GUI<CClientArea>::GetSetting(e, propName, area);
-
-			ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-#define P(x, y, z) pScriptInterface->GetProperty(vp, #z, area.x.y)
-			P(pixel,	left,	left);
-			P(pixel,	top,	top);
-			P(pixel,	right,	right);
-			P(pixel,	bottom,	bottom);
-			P(percent,	left,	rleft);
-			P(percent,	top,	rtop);
-			P(percent,	right,	rright);
-			P(percent,	bottom,	rbottom);
-#undef P
-
-			GUI<CClientArea>::SetSetting(e, propName, area);
-		}
-		else
-		{
-			JS_ReportError(cx, "Size only accepts strings or GUISize objects");
+		CClientArea value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
-		}
+
+		GUI<CClientArea>::SetSetting(e, propName, value);
 		break;
 	}
 

@@ -41,6 +41,7 @@ GUI Core, stuff that the whole GUI uses
 // I would like to just forward declare CSize, but it doesn't
 //  seem to be defined anywhere in the predefined header.
 #include "ps/Shapes.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class IGUIObject;
 
@@ -202,6 +203,9 @@ public:
 	{
 		return pixel == other.pixel && percent == other.percent;
 	}
+
+	void ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const;
+	bool FromJSVal(JSContext* cx, JS::HandleValue v);
 };
 
 
