@@ -309,18 +309,6 @@ public:
 	template<typename T> static bool FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret);
 
 	/**
-	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take.
-	 * This calls JS_MaybeGC directly, which does not do incremental GC. Usually you should prefer MaybeIncrementalRuntimeGC.
-	 */
-	void MaybeGC();
-
-	/**
-	 * Triggers a full non-incremental garbage collection immediately. That should only be required in special cases and normally
-	 * you should try to use MaybeIncrementalRuntimeGC instead.
-	 */
-	void ForceGC();
-
-	/**
 	 * MathRandom (this function) calls the random number generator assigned to this ScriptInterface instance and
 	 * returns the generated number.
 	 * Math_random (with underscore, not this function) is a global function, but different random number generators can be
