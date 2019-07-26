@@ -23,7 +23,7 @@ class ZeroAD():
             Action(content=json.dumps(a), playerID=pid) for (a, pid) in zip(actions, player_ids) if a is not None
         ])
         res = self.stub.Step(cmds)
-        self.current_state = GameState(res.content, self)
+        self.current_state = GameState(json.loads(res.content), self)
         return self.current_state
 
     def reset(self, config=None):
@@ -32,7 +32,7 @@ class ZeroAD():
 
         req = ResetRequest(scenario=config)
         res = self.stub.Reset(req)
-        self.current_state = GameState(res.content, self)
+        self.current_state = GameState(json.loads(res.content), self)
         return self.current_state
 
     def get_template(self, name):
@@ -55,8 +55,8 @@ class ZeroAD():
         return template_pairs
 
 class GameState():
-    def __init__(self, txt, game):
-        self.data = json.loads(txt)
+    def __init__(self, data, game):
+        self.data = data
         self.game = game
         self.mapSize = self.data['mapSize']
 
