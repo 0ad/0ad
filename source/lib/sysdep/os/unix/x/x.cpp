@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -207,7 +207,7 @@ wchar_t *sys_clipboard_get()
 			&len, &bytes_left,
 			&data);
 		if(result != Success)
-			debug_printf("clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n",
+			debug_printf("clipboard_get: XGetWindowProperty failed! result: %d type:%lu len:%lu format:%d bytes_left:%lu\n",
 				result, type, len, format, bytes_left);
 		if(result == Success && bytes_left > 0)
 		{
@@ -218,9 +218,6 @@ wchar_t *sys_clipboard_get()
 
 			if(result == Success)
 			{
-				debug_printf("clipboard_get: XGetWindowProperty succeeded, returning data\n");
-				debug_printf("clipboard_get: data was: \"%s\", type was %lu, XA_STRING atom is %lu\n", (char *)data, type, XA_STRING);
-
 				if(type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
 				{
 					wchar_t *ret=(wchar_t *)malloc((bytes_left+1)*sizeof(wchar_t));
@@ -351,8 +348,6 @@ Status x11_clipboard_init()
 Status sys_clipboard_set(const wchar_t *str)
 {
 	ONCE(x11_clipboard_init());
-
-	debug_printf("sys_clipboard_set: %s\n", utf8_from_wstring(str).c_str());
 
 	if(selection_data)
 	{
