@@ -160,7 +160,7 @@ template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleV
 
 		if (!out.ParseString(name))
 		{
-			JS_ReportError(cx, "Invalid color '%s'", name);
+			JS_ReportError(cx, "Invalid color '%s'", name.c_str());
 			return false;
 		}
 		return true;
