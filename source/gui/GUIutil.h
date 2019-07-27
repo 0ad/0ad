@@ -32,10 +32,10 @@ GUI util
 #ifndef INCLUDED_GUIUTIL
 #define INCLUDED_GUIUTIL
 
-#include "CGUI.h"
-#include "CGUISprite.h"
-#include "GUIbase.h"
-#include "IGUIObject.h"
+#include "gui/CGUI.h"
+#include "gui/CGUISprite.h"
+#include "gui/GUIbase.h"
+#include "gui/IGUIObject.h"
 
 class CClientArea;
 class CGUIString;
@@ -190,10 +190,10 @@ public:
 	 * @return Resulting color
 	 * @see FallBackSprite
 	 */
-	static CColor FallBackColor(const CColor& prim, const CColor& sec)
+	static CGUIColor FallBackColor(const CGUIColor& prim, const CGUIColor& sec)
 	{
-		// CColor() == null.
-		return ((prim!=CColor())?(prim):(sec));
+		// CGUIColor() == null.
+		return ((prim!=CGUIColor())?(prim):(sec));
 	}
 
 	/**
@@ -214,7 +214,7 @@ public:
 		return __ParseString<T>(Value, tOutput);
 	}
 
-	static bool ParseColor(const CStrW& Value, CColor& tOutput, int DefaultAlpha);
+	static bool ParseColor(const CStrW& Value, CGUIColor& tOutput, int DefaultAlpha);
 
 private:
 

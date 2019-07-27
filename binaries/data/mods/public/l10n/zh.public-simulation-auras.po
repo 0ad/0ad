@@ -8,6 +8,7 @@
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
 # DuckSoft <ducksoft@foxmail.com>, 2018
+# Julian, 2019
 # jun dong <1846292@qq.com>, 2018
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # levinit levin <levinit@outlook.com>, 2018
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-05 14:22+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"PO-Revision-Date: 2019-07-22 09:08+0000\n"
+"Last-Translator: Julian\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,11 +83,11 @@ msgstr "麦罗埃金字塔"
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
 "Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr "有建成的金字塔的存在，市政中心的领土影响力将增加 10%。"
+msgstr "金字塔的作用加成，市政中心的统治影响范围+10%。"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
-msgstr "强大的祭司"
+msgstr "大祭司"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid ""
@@ -161,7 +162,7 @@ msgstr "每拥有一个奇迹，人口上限+10。"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr "荣耀扩张"
+msgstr "荣耀的进步"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -171,7 +172,7 @@ msgstr "每拥有一个奇观，人口上限额外+40(需解锁“荣耀扩张�
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr "武器修复"
+msgstr "修复车间"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
@@ -199,7 +200,7 @@ msgstr "贸易家"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied markets +10% international trade bonus."
-msgstr "盟友市场国际奖励 +10%。"
+msgstr "盟友国际市场交易奖励 +10%。"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -215,7 +216,7 @@ msgstr "雇佣兵"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied citizen-soldier javelinists −20% resource costs."
-msgstr "盟友民兵标枪手资源花费 -20％。"
+msgstr "盟友民兵标枪兵资源花费 -20％。"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -231,7 +232,7 @@ msgstr "货币标准化"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Allies +20% barter sell prices."
-msgstr "盟友以物以物价格 +20％ 。"
+msgstr "盟国+20%交易销售价格 。"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -257,7 +258,7 @@ msgstr "文明的摇篮"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "Allies +1.0 food trickle rate."
-msgstr "盟友食物涓流 +1.0。"
+msgstr "盟友食物涓流速率 +1.0。"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -281,7 +282,7 @@ msgstr "伯罗奔尼撒同盟 "
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied citizen-soldier infantry spearmen +10% health."
-msgstr "盟友的民兵步兵标枪手的生命值 + 10% 。"
+msgstr "盟友的民兵标枪步兵的生命值 + 10% 。"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -370,7 +371,7 @@ msgstr "雇佣头子"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr "Mandonius与他的兄弟因蒂比奥一起指挥参加过“泛尼战争”的伊比利亚新兵和雇佣军。\n为所有盟军士兵佣兵-25％铁需求。"
+msgstr "曼多尼乌斯和他的兄弟英迪比尔一起指挥伊比利亚新兵和雇佣军参加了布匿战争。\n所有盟军民兵和雇佣兵-25%金属成本。"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -390,7 +391,7 @@ msgstr "首位努比亚女王"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Awe: All enemy female citizens -15% gather rate."
-msgstr "夏娜达伽多女王君临麦罗埃帝国且担任麦罗埃宗教的要角，在她的全能统治下，施展了库施不能小看的法力。\n敬畏：所有敌人的女性公民 -15%收获速率。"
+msgstr "夏纳克达赫托在梅洛帝国和梅洛教派拥有至高无上的地位，她代表了库什的力量，这是一个不可小看的力量。\n敬畏：所有敌方女性公民-15%的采集速度。"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"

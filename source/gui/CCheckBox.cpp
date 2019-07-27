@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "CCheckBox.h"
 
+#include "gui/CGUIColor.h"
 #include "graphics/FontMetrics.h"
 #include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
@@ -48,10 +49,10 @@ CCheckBox::CCheckBox()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_pressed");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_disabled");
 	AddSetting(GUIST_float,					"square_side");
-	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_CColor,				"textcolor_over");
-	AddSetting(GUIST_CColor,				"textcolor_pressed");
-	AddSetting(GUIST_CColor,				"textcolor_disabled");
+	AddSetting(GUIST_CGUIColor,				"textcolor");
+	AddSetting(GUIST_CGUIColor,				"textcolor_over");
+	AddSetting(GUIST_CGUIColor,				"textcolor_pressed");
+	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 

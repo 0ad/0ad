@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
+#include "gui/GUI.h"
 
 IGUITextOwner::IGUITextOwner() : m_GeneratedTextsValid(false)
 {
@@ -47,6 +47,7 @@ void IGUITextOwner::HandleMessage(SGUIMessage& Message)
 		if (Message.value == "size" || Message.value == "z" ||
 			Message.value == "absolute" || Message.value == "caption" ||
 			Message.value == "font" || Message.value == "textcolor" ||
+			Message.value == "text_align" || Message.value == "text_valign" ||
 			Message.value == "buffer_zone")
 		{
 			m_GeneratedTextsValid = false;
@@ -67,7 +68,7 @@ void IGUITextOwner::UpdateCachedSize()
 	m_GeneratedTextsValid = false;
 }
 
-void IGUITextOwner::DrawText(size_t index, const CColor& color, const CPos& pos, float z, const CRect& clipping)
+void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping)
 {
 	if (!m_GeneratedTextsValid)
 	{

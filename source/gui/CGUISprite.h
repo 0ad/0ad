@@ -44,8 +44,8 @@ A GUI Sprite
 struct SGUIImageEffects
 {
 	SGUIImageEffects() : m_Greyscale(false) {}
-	CColor m_AddColor;
-	CColor m_SolidColor;
+	CGUIColor m_AddColor;
+	CGUIColor m_SolidColor;
 	bool m_Greyscale;
 };
 
@@ -109,8 +109,8 @@ public:
 	SGUIImageEffects* m_Effects;
 
 	// Color
-	CColor			m_BackColor;
-	CColor			m_BorderColor;
+	CGUIColor m_BackColor;
+	CGUIColor m_BorderColor;
 
 	// 0 or 1 pixel border is the only option
 	bool			m_Border;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ GUI Object Base - Button Behavior
 #ifndef INCLUDED_IGUIBUTTONBEHAVIOR
 #define INCLUDED_IGUIBUTTONBEHAVIOR
 
-#include "GUI.h"
+#include "gui/GUI.h"
 
 class CGUISpriteInstance;
 
@@ -82,7 +82,7 @@ public:
 	 *		textcolor_pressed	-- pressed
 	 *		textcolor_over		-- hovered
 	 */
-	CColor ChooseColor();
+	CGUIColor ChooseColor();
 
 
 protected:

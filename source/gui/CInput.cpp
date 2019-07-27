@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,9 +19,8 @@
 
 #include "CInput.h"
 
-#include "CGUIScrollBarVertical.h"
-#include "GUI.h"
-
+#include "gui/CGUIScrollBarVertical.h"
+#include "gui/GUI.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
@@ -59,8 +58,8 @@ CInput::CInput()
 	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
-	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_CColor,				"textcolor_selected");
+	AddSetting(GUIST_CGUIColor,				"textcolor");
+	AddSetting(GUIST_CGUIColor,				"textcolor_selected");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
@@ -1175,10 +1174,10 @@ void CInput::Draw()
 		return;
 
 	CStrW font_name_w;
-	CColor color, color_selected;
+	CGUIColor color, color_selected;
 	GUI<CStrW>::GetSetting(this, "font", font_name_w);
-	GUI<CColor>::GetSetting(this, "textcolor", color);
-	GUI<CColor>::GetSetting(this, "textcolor_selected", color_selected);
+	GUI<CGUIColor>::GetSetting(this, "textcolor", color);
+	GUI<CGUIColor>::GetSetting(this, "textcolor_selected", color_selected);
 	CStrIntern font_name(font_name_w.ToUTF8());
 
 	// Get pointer of caption, it might be very large, and we don't

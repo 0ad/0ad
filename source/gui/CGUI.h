@@ -49,7 +49,7 @@ class JSObject; // The GUI stores a JSObject*, so needs to know that JSObject ex
 class IGUIObject;
 class CGUISpriteInstance;
 struct SGUIText;
-struct CColor;
+struct CGUIColor;
 struct SGUIText;
 struct SGUIIcon;
 class CGUIString;
@@ -131,7 +131,7 @@ public:
 	 * @param z z value.
 	 * @param clipping
 	 */
-	void DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping);
+	void DrawText(SGUIText& Text, const CGUIColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping);
 
 	/**
 	 * Clean up, call this to clean up all memory allocated
@@ -244,7 +244,7 @@ public:
 	 * Get pre-defined color (if it exists)
 	 * Returns false if it fails.
 	 */
-	bool GetPreDefinedColor(const CStr& name, CColor& Output) const;
+	bool GetPreDefinedColor(const CStr& name, CGUIColor& Output) const;
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 	JS::Value GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
@@ -573,7 +573,7 @@ private:
 	 * color. Of course the colors have to be declared in XML, there are
 	 * no hard-coded values.
 	 */
-	std::map<CStr, CColor>	m_PreDefinedColors;
+	std::map<CStr, CGUIColor> m_PreDefinedColors;
 
 	//@}
 	//--------------------------------------------------------

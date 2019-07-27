@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ public:
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
-	virtual void DrawText(size_t index, const CColor& color, const CPos& pos, float z, const CRect& clipping = CRect());
+	virtual void DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping = CRect());
 
 	/**
 	 * Test if mouse position is over an icon

@@ -32,7 +32,7 @@
 class CGUI;
 class JSObject;
 class IGUIObject;
-struct CColor;
+struct CGUIColor;
 struct SGUIIcon;
 
 /**
@@ -105,7 +105,7 @@ public:
 	/**
 	 * See CGUI::GetPreDefinedColor; applies to the currently active page.
 	 */
-	bool GetPreDefinedColor(const CStr& name, CColor& output) const;
+	bool GetPreDefinedColor(const CStr& name, CGUIColor& output) const;
 
 	/**
 	 * See CGUI::SendEventToAll; applies to the currently active page.

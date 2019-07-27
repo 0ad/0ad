@@ -19,6 +19,7 @@
 
 #include "COList.h"
 
+#include "gui/CGUIColor.h"
 #include "i18n/L10n.h"
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
@@ -231,8 +232,8 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 			if (attr_name == "color")
 			{
-				CColor color;
-				if (!GUI<CColor>::ParseString(attr_value.FromUTF8(), color))
+				CGUIColor color;
+				if (!GUI<CGUIColor>::ParseString(attr_value.FromUTF8(), color))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 				else
 					column.m_TextColor = color;
@@ -393,8 +394,8 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	int selectedColumnOrder;
 	GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
 
-	CColor color;
-	GUI<CColor>::GetSetting(this, _textcolor, color);
+	CGUIColor color;
+	GUI<CGUIColor>::GetSetting(this, _textcolor, color);
 
 	float xpos = 0;
 	for (size_t col = 0; col < m_Columns.size(); ++col)
