@@ -29,7 +29,7 @@ DEFINE_INTERFACE_METHOD_3("MoveToFormationOffset", void, ICmpUnitMotion, MoveToF
 DEFINE_INTERFACE_METHOD_2("FaceTowardsPoint", void, ICmpUnitMotion, FaceTowardsPoint, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("StopMoving", void, ICmpUnitMotion, StopMoving)
 DEFINE_INTERFACE_METHOD_CONST_0("GetCurrentSpeed", fixed, ICmpUnitMotion, GetCurrentSpeed)
-DEFINE_INTERFACE_METHOD_CONST_0("IsMoving", bool, ICmpUnitMotion, IsMoving)
+DEFINE_INTERFACE_METHOD_CONST_0("IsMoveRequested", bool, ICmpUnitMotion, IsMoveRequested)
 DEFINE_INTERFACE_METHOD_CONST_0("GetSpeed", fixed, ICmpUnitMotion, GetSpeed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetRunMultiplier", fixed, ICmpUnitMotion, GetRunMultiplier)
@@ -75,9 +75,9 @@ public:
 		return m_Script.Call<fixed>("GetCurrentSpeed");
 	}
 
-	virtual bool IsMoving() const
+	virtual bool IsMoveRequested() const
 	{
-		return m_Script.Call<bool>("IsMoving");
+		return m_Script.Call<bool>("IsMoveRequested");
 	}
 
 	virtual fixed GetSpeed() const

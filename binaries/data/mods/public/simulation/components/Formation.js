@@ -389,7 +389,7 @@ Formation.prototype.FindInPosition = function()
 	for (var i = 0; i < this.members.length; ++i)
 	{
 		var cmpUnitMotion = Engine.QueryInterface(this.members[i], IID_UnitMotion);
-		if (!cmpUnitMotion.IsMoving())
+		if (!cmpUnitMotion.IsMoveRequested())
 		{
 			// Verify that members are stopped in FORMATIONMEMBER.WALKING
 			var cmpUnitAI = Engine.QueryInterface(this.members[i], IID_UnitAI);

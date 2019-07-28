@@ -45,13 +45,6 @@
 #define DISABLE_PATHFINDER 0
 
 /**
- * When advancing along the long path, and picking a new waypoint to move
- * towards, we'll pick one that's up to this far from the unit's current
- * position (to minimise the effects of grid-constrained movement)
- */
-static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*8);
-
-/**
  * Min/Max range to restrict short path queries to. (Larger ranges are slower,
  * Min/Max range to restrict short path queries to. (Larger ranges are (much) slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
@@ -360,7 +353,7 @@ public:
 		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
 	}
 
-	virtual bool IsMoving() const
+	virtual bool IsMoveRequested() const
 	{
 		return m_MoveRequest.m_Type != MoveRequest::NONE;
 	}
@@ -425,12 +418,28 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
-	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
-	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z);
+	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		return MoveTo(MoveRequest(CFixedVector2D(x, z), minRange, maxRange));
+	}
+
+	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		return MoveTo(MoveRequest(target, minRange, maxRange));
+	}
+
+	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)
+	{
+		MoveTo(MoveRequest(target, CFixedVector2D(x, z)));
+	}
 
 	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z);
 
+	/**
+	 * Clears the current MoveRequest - the unit will stop and no longer try and move.
+	 * This should never be called from UnitMotion, since MoveToX orders are given
+	 * by other components - these components should also decide when to stop.
+	 */
 	virtual void StopMoving()
 	{
 		if (m_FacePointAfterMove)
@@ -472,12 +481,22 @@ private:
 		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
 	}
 
+	/**
+	 * Warns other components that our current movement will likely fail (e.g. we won't be able to reach our target)
+	 * This should only be called before the actual movement in a given turn, or units might both move and try to do things
+	 * on the same turn, leading to gliding units.
+	 */
 	void MoveFailed()
 	{
 		CMessageMotionUpdate msg(CMessageMotionUpdate::LIKELY_FAILURE);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
+	/**
+	 * Warns other components that our current movement is likely over (i.e. we probably reached our destination)
+	 * This should only be called before the actual movement in a given turn, or units might both move and try to do things
+	 * on the same turn, leading to gliding units.
+	 */
 	void MoveSucceeded()
 	{
 		CMessageMotionUpdate msg(CMessageMotionUpdate::LIKELY_SUCCESS);
@@ -485,39 +504,7 @@ private:
 	}
 
 	/**
-	 * Update other components on our speed.
-	 * This doesn't use messages for efficiency.
-	 * This should only be called when speed changes.
-	 */
-	void UpdateMovementState(entity_pos_t speed)
-	{
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
-		// Moved last turn, didn't this turn.
-		if (speed == fixed::Zero() && m_CurSpeed > fixed::Zero())
-		{
-			if (cmpObstruction)
-				cmpObstruction->SetMovingFlag(false);
-			if (cmpVisual)
-				cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
-		}
-		// Moved this turn, didn't last turn
-		else if (speed > fixed::Zero() && m_CurSpeed == fixed::Zero())
-		{
-			if (cmpObstruction)
-				cmpObstruction->SetMovingFlag(true);
-			if (cmpVisual)
-				cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
-		}
-		// Speed change, update the visual actor if necessary.
-		else if (speed != m_CurSpeed && cmpVisual)
-			cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
-
-		m_CurSpeed = speed;
-	}
-
-	/**
-	 * Increment the number of failed path and notify other components if required.
+	 * Increment the number of failed path computations and notify other components if required.
 	 */
 	void IncrementFailedPathComputationAndMaybeNotify()
 	{
@@ -546,6 +533,8 @@ private:
 
 	/**
 	 * Returns true if we are possibly at our destination.
+	 * Since the concept of being at destination is dependent on why the move was requested,
+	 * UnitMotion can only ever hint about this, hence the conditional tone.
 	 */
 	bool PossiblyAtDestination() const;
 
@@ -557,16 +546,16 @@ private:
 	bool PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const;
 
 	/**
+	 * Update other components on our speed.
+	 * (For performance, this should try to avoid sending messages).
+	 */
+	void UpdateMovementState(entity_pos_t speed);
+
+	/**
 	 * React if our move was obstructed.
 	 * @returns true if the obstruction required handling, false otherwise.
 	 */
 	bool HandleObstructedMove();
-
-	/**
-	 * Decide whether to approximate the given range from a square target as a circle,
-	 * rather than as a square.
-	 */
-	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const;
 
 	/**
 	 * Returns true if the target position is valid. False otherwise.
@@ -601,12 +590,6 @@ private:
 	bool PathingUpdateNeeded(const CFixedVector2D& from) const;
 
 	/**
-	 * Returns whether the length of the given path, plus the distance from
-	 * 'from' to the first waypoints, it shorter than minDistance.
-	 */
-	bool PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const;
-
-	/**
 	 * Rotate to face towards the target point, given the current pos
 	 */
 	void FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_pos_t x, entity_pos_t z);
@@ -617,17 +600,22 @@ private:
 	ControlGroupMovementObstructionFilter GetObstructionFilter() const;
 
 	/**
+	 * Decide whether to approximate the given range from a square target as a circle,
+	 * rather than as a square.
+	 */
+	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const;
+
+	/**
 	 * Create a PathGoal from a move request.
 	 * @returns true if the goal was successfully created.
 	 */
 	bool ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) const;
 
 	/**
-	 * Start moving to the given goal, from our current position 'from'.
-	 * Might go in a straight line immediately, or might start an asynchronous
-	 * path request.
+	 * Compute a path to the given goal from the given position.
+	 * Might go in a straight line immediately, or might start an asynchronous path request.
 	 */
-	void BeginPathing(const CFixedVector2D& from, const PathGoal& goal);
+	void ComputePathToGoal(const CFixedVector2D& from, const PathGoal& goal);
 
 	/**
 	 * Start an asynchronous long path query.
@@ -638,6 +626,11 @@ private:
 	 * Start an asynchronous short path query.
 	 */
 	void RequestShortPath(const CFixedVector2D& from, const PathGoal& goal, bool avoidMovingUnits);
+
+	/**
+	 * General handler for MoveTo interface functions.
+	 */
+	bool MoveTo(MoveRequest request);
 
 	/**
 	 * Convert a path into a renderable list of lines
@@ -763,7 +756,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		}
 	}
 
-	BeginPathing(pos, goal);
+	ComputePathToGoal(pos, goal);
 }
 
 void CCmpUnitMotion::Move(fixed dt)
@@ -833,7 +826,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	{
 		PathGoal goal;
 		if (ComputeGoal(goal, m_MoveRequest))
-			BeginPathing(pos, goal);
+			ComputePathToGoal(pos, goal);
 	}
 }
 
@@ -852,7 +845,7 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	if (m_MoveRequest.m_Type == MoveRequest::OFFSET)
 	{
 		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_MoveRequest.m_Entity);
-		if (cmpControllerMotion && cmpControllerMotion->IsMoving())
+		if (cmpControllerMotion && cmpControllerMotion->IsMoveRequested())
 			return false;
 
 		CFixedVector2D targetPos;
@@ -953,6 +946,33 @@ bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath
 	return false;
 }
 
+void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed)
+{
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
+	// Moved last turn, didn't this turn.
+	if (speed == fixed::Zero() && m_CurSpeed > fixed::Zero())
+	{
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(false);
+		if (cmpVisual)
+			cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
+	}
+	// Moved this turn, didn't last turn
+	else if (speed > fixed::Zero() && m_CurSpeed == fixed::Zero())
+	{
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+		if (cmpVisual)
+			cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
+	}
+	// Speed change, update the visual actor if necessary.
+	else if (speed != m_CurSpeed && cmpVisual)
+		cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
+
+	m_CurSpeed = speed;
+}
+
 bool CCmpUnitMotion::HandleObstructedMove()
 {
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
@@ -995,7 +1015,7 @@ bool CCmpUnitMotion::HandleObstructedMove()
 		return true;
 	}
 	// Else, just entirely recompute
-	BeginPathing(pos, goal);
+	ComputePathToGoal(pos, goal);
 
 	// potential TODO: We could switch the short-range pathfinder for something else entirely.
 	return true;
@@ -1038,7 +1058,7 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 		// TODO: be cleverer about this. It fixes fleeing nicely currently, but orthogonal movement should be considered,
 		// and the overall logic could be improved upon.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
-		if (cmpUnitMotion && cmpUnitMotion->IsMoving())
+		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested())
 			out += (out - cmpPosition->GetPreviousPosition2D()) * 2;
 	}
 	return true;
@@ -1157,28 +1177,6 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	if (cmpObstructionManager->AreShapesInRange(shape, estimatedTargetShape, minRange, maxRange, false))
 		return false;
 
-	return true;
-}
-
-bool CCmpUnitMotion::PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const
-{
-	CFixedVector2D prev = from;
-	entity_pos_t distLeft = minDistance;
-
-	for (ssize_t i = (ssize_t)path.m_Waypoints.size()-1; i >= 0; --i)
-	{
-		// Check if the next path segment is longer than the requested minimum
-		CFixedVector2D waypoint(path.m_Waypoints[i].x, path.m_Waypoints[i].z);
-		CFixedVector2D delta = waypoint - prev;
-		if (delta.CompareLength(distLeft) > 0)
-			return false;
-
-		// Still short enough - prepare to check the next segment
-		distLeft -= delta.Length();
-		prev = waypoint;
-	}
-
-	// Reached the end of the path before exceeding minDistance
 	return true;
 }
 
@@ -1337,10 +1335,8 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 	return true;
 }
 
-void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& goal)
+void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoal& goal)
 {
-	m_ExpectedPathTicket.clear();
-
 #if DISABLE_PATHFINDER
 	{
 		CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
@@ -1404,70 +1400,24 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
 }
 
-bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+bool CCmpUnitMotion::MoveTo(MoveRequest request)
 {
-	PROFILE("MoveToPointRange");
-
-	MoveRequest moveRequest(CFixedVector2D(x, z), minRange, maxRange);
-
-	PathGoal goal;
-	if (!ComputeGoal(goal, moveRequest))
-		return false;
+	PROFILE("MoveTo");
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return false;
 
-	m_MoveRequest = moveRequest;
-	m_FailedPathComputations = 0;
-	m_PretendLongPathIsCorrect = false;
-
-	BeginPathing(cmpPosition->GetPosition2D(), goal);
-
-	return true;
-}
-
-bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
-{
-	PROFILE("MoveToTargetRange");
-
-	MoveRequest moveRequest(target, minRange, maxRange);
-
 	PathGoal goal;
-
-	if (!ComputeGoal(goal, moveRequest))
+	if (!ComputeGoal(goal, request))
 		return false;
 
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return false;
-
-	m_MoveRequest = moveRequest;
+	m_MoveRequest = request;
 	m_FailedPathComputations = 0;
 	m_PretendLongPathIsCorrect = false;
 
-	BeginPathing(cmpPosition->GetPosition2D(), goal);
-
+	ComputePathToGoal(cmpPosition->GetPosition2D(), goal);
 	return true;
-}
-
-void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)
-{
-	MoveRequest moveRequest(target, CFixedVector2D(x, z));
-
-	PathGoal goal;
-	if (!ComputeGoal(goal, moveRequest))
-		return;
-
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), target);
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return;
-
-	m_MoveRequest = moveRequest;
-	m_FailedPathComputations = 0;
-	m_PretendLongPathIsCorrect = false;
-
-	BeginPathing(cmpPosition->GetPosition2D(), goal);
 }
 
 void CCmpUnitMotion::RenderPath(const WaypointPath& path, std::vector<SOverlayLine>& lines, CColor color)

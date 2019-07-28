@@ -78,7 +78,7 @@ public:
 	/**
 	 * @returns true if the unit has a destination.
 	 */
-	virtual bool IsMoving() const = 0;
+	virtual bool IsMoveRequested() const = 0;
 
 	/**
 	 * Get the unit template walk speed after modifications.
