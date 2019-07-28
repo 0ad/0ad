@@ -49,29 +49,6 @@ CMatrix3D GetDefaultGuiMatrix();
 
 struct SGUIMessage;
 
-/**
- * Base class to only the class GUI. This superclass is
- * kind of a templateless extention of the class GUI.
- * Used for other functions to friend with, because it
- * can't friend with GUI since it's templated (at least
- * not on all compilers we're using).
- */
-class CInternalCGUIAccessorBase
-{
-protected:
-	/// Get object pointer
-	static IGUIObject* GetObjectPointer(CGUI& GUIinstance, const CStr& Object);
-
-	/// const version
-	static const IGUIObject* GetObjectPointer(const CGUI& GUIinstance, const CStr& Object);
-
-	/// Wrapper for ResetStates
-	static void QueryResetting(IGUIObject* pObject);
-
-	static void HandleMessage(IGUIObject* pObject, SGUIMessage& message);
-};
-
-
 #ifndef NDEBUG
 // Used to ensure type-safety, sort of
 template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
@@ -86,12 +63,11 @@ template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
  * and are only within this class because it's convenient
  */
 template <typename T=int>
-class GUI : public CInternalCGUIAccessorBase
+class GUI
 {
 	// Private functions further ahead
 	friend class CGUI;
 	friend class IGUIObject;
-	friend class CInternalCGUIAccessorBase;
 
 public:
 
@@ -120,53 +96,6 @@ public:
 	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 */
 	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage = false);
-
-	/**
-	 * Retrieves a setting by settings name and object name
-	 *
-	 * @param GUIinstance GUI Object const ref
-	 * @param Object Object name
-	 * @param Setting Setting by name
-	 * @param Value Stores value here, note type T!
-	 */
-	static PSRETURN GetSetting(const CGUI& GUIinstance, const CStr& Object, const CStr& Setting, T& Value)
-	{
-		if (!GUIinstance.ObjectExists(Object))
-			return PSRETURN_GUI_NullObjectProvided;
-
-		// Retrieve pointer and call sibling function
-		const IGUIObject* pObject = GetObjectPointer(GUIinstance, Object);
-
-		return GetSetting(pObject, Setting, Value);
-	}
-
-	/**
-	 * Sets a value by setting and object name using a real
-	 * datatype as input
-	 *
-	 * This is just a wrapper so that we can type the object name
-	 *  and not input the actual pointer.
-	 *
-	 * @param GUIinstance GUI Object, reference since we'll be changing values
-	 * @param Object Object name
-	 * @param Setting Setting by name
-	 * @param Value Sets value to this, note type T!
-	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
-	 */
-	static PSRETURN SetSetting(CGUI& GUIinstance, const CStr& Object, const CStr& Setting, const T& Value, const bool& SkipMessage = false)
-	{
-		if (!GUIinstance.ObjectExists(Object))
-			return PSRETURN_GUI_NullObjectProvided;
-
-		// Retrieve pointer and call sibling function
-
-		// Important, we don't want to use this T, we want
-		//  to use the standard T, since that will be the
-		//  one with the friend relationship
-		IGUIObject* pObject = GetObjectPointer(GUIinstance, Object);
-
-		return SetSetting(pObject, Setting, Value, SkipMessage);
-	}
 
 	/**
 	 * This will return the value of the first sprite if it's not null,

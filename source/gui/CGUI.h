@@ -68,7 +68,6 @@ class CGUI
 	NONCOPYABLE(CGUI);
 
 	friend class IGUIObject;
-	friend class CInternalCGUIAccessorBase;
 
 private:
 	// Private typedefs

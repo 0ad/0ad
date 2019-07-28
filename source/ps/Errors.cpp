@@ -38,7 +38,6 @@ class PSERROR_File_WriteFailed : public PSERROR_File { public: PSERROR_File_Writ
 class PSERROR_GUI_InvalidSetting : public PSERROR_GUI { public: PSERROR_GUI_InvalidSetting(); PSERROR_GUI_InvalidSetting(const char* msg); PSRETURN getCode() const; };
 class PSERROR_GUI_JSOpenFailed : public PSERROR_GUI { public: PSERROR_GUI_JSOpenFailed(); PSERROR_GUI_JSOpenFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_GUI_NameAmbiguity : public PSERROR_GUI { public: PSERROR_GUI_NameAmbiguity(); PSERROR_GUI_NameAmbiguity(const char* msg); PSRETURN getCode() const; };
-class PSERROR_GUI_NullObjectProvided : public PSERROR_GUI { public: PSERROR_GUI_NullObjectProvided(); PSERROR_GUI_NullObjectProvided(const char* msg); PSRETURN getCode() const; };
 class PSERROR_GUI_ObjectNeedsName : public PSERROR_GUI { public: PSERROR_GUI_ObjectNeedsName(); PSERROR_GUI_ObjectNeedsName(const char* msg); PSRETURN getCode() const; };
 class PSERROR_GUI_OperationNeedsGUIObject : public PSERROR_GUI { public: PSERROR_GUI_OperationNeedsGUIObject(); PSERROR_GUI_OperationNeedsGUIObject(const char* msg); PSRETURN getCode() const; };
 class PSERROR_GUI_UnableToParse : public PSERROR_GUI { public: PSERROR_GUI_UnableToParse(); PSERROR_GUI_UnableToParse(const char* msg); PSRETURN getCode() const; };
@@ -82,10 +81,9 @@ extern const PSRETURN PSRETURN_File_WriteFailed = 0x05000006;
 extern const PSRETURN PSRETURN_GUI_InvalidSetting = 0x06000001;
 extern const PSRETURN PSRETURN_GUI_JSOpenFailed = 0x06000002;
 extern const PSRETURN PSRETURN_GUI_NameAmbiguity = 0x06000003;
-extern const PSRETURN PSRETURN_GUI_NullObjectProvided = 0x06000004;
-extern const PSRETURN PSRETURN_GUI_ObjectNeedsName = 0x06000005;
-extern const PSRETURN PSRETURN_GUI_OperationNeedsGUIObject = 0x06000006;
-extern const PSRETURN PSRETURN_GUI_UnableToParse = 0x06000007;
+extern const PSRETURN PSRETURN_GUI_ObjectNeedsName = 0x06000004;
+extern const PSRETURN PSRETURN_GUI_OperationNeedsGUIObject = 0x06000005;
+extern const PSRETURN PSRETURN_GUI_UnableToParse = 0x06000006;
 extern const PSRETURN PSRETURN_Game_World_MapLoadFailed = 0x07030001;
 extern const PSRETURN PSRETURN_Scripting_DefineType_AlreadyExists = 0x08010001;
 extern const PSRETURN PSRETURN_Scripting_DefineType_CreationFailed = 0x08010002;
@@ -173,14 +171,12 @@ extern const PSRETURN MASK__PSRETURN_GUI_JSOpenFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_GUI_JSOpenFailed = 0x06000002;
 extern const PSRETURN MASK__PSRETURN_GUI_NameAmbiguity = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_GUI_NameAmbiguity = 0x06000003;
-extern const PSRETURN MASK__PSRETURN_GUI_NullObjectProvided = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_GUI_NullObjectProvided = 0x06000004;
 extern const PSRETURN MASK__PSRETURN_GUI_ObjectNeedsName = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_GUI_ObjectNeedsName = 0x06000005;
+extern const PSRETURN CODE__PSRETURN_GUI_ObjectNeedsName = 0x06000004;
 extern const PSRETURN MASK__PSRETURN_GUI_OperationNeedsGUIObject = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_GUI_OperationNeedsGUIObject = 0x06000006;
+extern const PSRETURN CODE__PSRETURN_GUI_OperationNeedsGUIObject = 0x06000005;
 extern const PSRETURN MASK__PSRETURN_GUI_UnableToParse = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_GUI_UnableToParse = 0x06000007;
+extern const PSRETURN CODE__PSRETURN_GUI_UnableToParse = 0x06000006;
 extern const PSRETURN MASK__PSRETURN_Game_World_MapLoadFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Game_World_MapLoadFailed = 0x07030001;
 extern const PSRETURN MASK__PSRETURN_Scripting_DefineType_AlreadyExists = 0xffffffff;
@@ -311,21 +307,17 @@ PSERROR_GUI_NameAmbiguity::PSERROR_GUI_NameAmbiguity() : PSERROR_GUI(NULL) { }
 PSERROR_GUI_NameAmbiguity::PSERROR_GUI_NameAmbiguity(const char* msg) : PSERROR_GUI(msg) { }
 PSRETURN PSERROR_GUI_NameAmbiguity::getCode() const { return 0x06000003; }
 
-PSERROR_GUI_NullObjectProvided::PSERROR_GUI_NullObjectProvided() : PSERROR_GUI(NULL) { }
-PSERROR_GUI_NullObjectProvided::PSERROR_GUI_NullObjectProvided(const char* msg) : PSERROR_GUI(msg) { }
-PSRETURN PSERROR_GUI_NullObjectProvided::getCode() const { return 0x06000004; }
-
 PSERROR_GUI_ObjectNeedsName::PSERROR_GUI_ObjectNeedsName() : PSERROR_GUI(NULL) { }
 PSERROR_GUI_ObjectNeedsName::PSERROR_GUI_ObjectNeedsName(const char* msg) : PSERROR_GUI(msg) { }
-PSRETURN PSERROR_GUI_ObjectNeedsName::getCode() const { return 0x06000005; }
+PSRETURN PSERROR_GUI_ObjectNeedsName::getCode() const { return 0x06000004; }
 
 PSERROR_GUI_OperationNeedsGUIObject::PSERROR_GUI_OperationNeedsGUIObject() : PSERROR_GUI(NULL) { }
 PSERROR_GUI_OperationNeedsGUIObject::PSERROR_GUI_OperationNeedsGUIObject(const char* msg) : PSERROR_GUI(msg) { }
-PSRETURN PSERROR_GUI_OperationNeedsGUIObject::getCode() const { return 0x06000006; }
+PSRETURN PSERROR_GUI_OperationNeedsGUIObject::getCode() const { return 0x06000005; }
 
 PSERROR_GUI_UnableToParse::PSERROR_GUI_UnableToParse() : PSERROR_GUI(NULL) { }
 PSERROR_GUI_UnableToParse::PSERROR_GUI_UnableToParse(const char* msg) : PSERROR_GUI(msg) { }
-PSRETURN PSERROR_GUI_UnableToParse::getCode() const { return 0x06000007; }
+PSRETURN PSERROR_GUI_UnableToParse::getCode() const { return 0x06000006; }
 
 PSERROR_Game_World_MapLoadFailed::PSERROR_Game_World_MapLoadFailed() : PSERROR_Game_World(NULL) { }
 PSERROR_Game_World_MapLoadFailed::PSERROR_Game_World_MapLoadFailed(const char* msg) : PSERROR_Game_World(msg) { }
@@ -441,10 +433,9 @@ const char* GetErrorString(PSRETURN code)
 	case 0x06000001: return "GUI_InvalidSetting";
 	case 0x06000002: return "GUI_JSOpenFailed";
 	case 0x06000003: return "GUI_NameAmbiguity";
-	case 0x06000004: return "GUI_NullObjectProvided";
-	case 0x06000005: return "GUI_ObjectNeedsName";
-	case 0x06000006: return "GUI_OperationNeedsGUIObject";
-	case 0x06000007: return "GUI_UnableToParse";
+	case 0x06000004: return "GUI_ObjectNeedsName";
+	case 0x06000005: return "GUI_OperationNeedsGUIObject";
+	case 0x06000006: return "GUI_UnableToParse";
 	case 0x07030001: return "Game_World_MapLoadFailed";
 	case 0x08010001: return "Scripting_DefineType_AlreadyExists";
 	case 0x08010002: return "Scripting_DefineType_CreationFailed";
@@ -493,10 +484,9 @@ void ThrowError(PSRETURN code)
 	case 0x06000001: throw PSERROR_GUI_InvalidSetting(); break;
 	case 0x06000002: throw PSERROR_GUI_JSOpenFailed(); break;
 	case 0x06000003: throw PSERROR_GUI_NameAmbiguity(); break;
-	case 0x06000004: throw PSERROR_GUI_NullObjectProvided(); break;
-	case 0x06000005: throw PSERROR_GUI_ObjectNeedsName(); break;
-	case 0x06000006: throw PSERROR_GUI_OperationNeedsGUIObject(); break;
-	case 0x06000007: throw PSERROR_GUI_UnableToParse(); break;
+	case 0x06000004: throw PSERROR_GUI_ObjectNeedsName(); break;
+	case 0x06000005: throw PSERROR_GUI_OperationNeedsGUIObject(); break;
+	case 0x06000006: throw PSERROR_GUI_UnableToParse(); break;
 	case 0x07030001: throw PSERROR_Game_World_MapLoadFailed(); break;
 	case 0x08010001: throw PSERROR_Scripting_DefineType_AlreadyExists(); break;
 	case 0x08010002: throw PSERROR_Scripting_DefineType_CreationFailed(); break;

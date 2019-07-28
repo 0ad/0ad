@@ -296,6 +296,12 @@ IGUIObject* IGUIObject::GetParent() const
 	return m_pParent;
 }
 
+void IGUIObject::ResetStates()
+{
+	// Notify the gui that we aren't hovered anymore
+	UpdateMouseOver(nullptr);
+}
+
 void IGUIObject::UpdateCachedSize()
 {
 	bool absolute;

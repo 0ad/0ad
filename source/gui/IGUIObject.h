@@ -79,7 +79,6 @@ struct SGUISetting
 class IGUIObject
 {
 	friend class CGUI;
-	friend class CInternalCGUIAccessorBase;
 	friend class IGUIScrollBar;
 	friend class GUITooltip;
 
@@ -189,6 +188,11 @@ public:
 	 * the cached size with this function.
 	 */
 	virtual void UpdateCachedSize();
+
+	/**
+	 * Reset internal state of this object.
+	 */
+	virtual void ResetStates();
 
 	/**
 	 * Set a setting by string, regardless of what type it is.
@@ -317,16 +321,8 @@ protected:
 	 */
 	void SetParent(IGUIObject* pParent) { m_pParent = pParent; }
 
-	/**
-	 * Reset internal state of this object
-	 */
-	virtual void ResetStates()
-	{
-		// Notify the gui that we aren't hovered anymore
-		UpdateMouseOver(NULL);
-	}
-
 public:
+
 	CGUI* GetGUI() { return m_pGUI; }
 	const CGUI* GetGUI() const { return m_pGUI; }
 
