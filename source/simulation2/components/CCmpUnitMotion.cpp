@@ -530,6 +530,11 @@ private:
 	}
 
 	/**
+	 * If path would take us farther away from the goal than pos currently is, return false, else return true.
+	 */
+	bool RejectFartherPaths(const PathGoal& goal, const WaypointPath& path, const CFixedVector2D& pos) const;
+
+	/**
 	 * Handle the result of an asynchronous path query.
 	 */
 	void PathResult(u32 ticket, const WaypointPath& path);
@@ -644,6 +649,18 @@ private:
 
 REGISTER_COMPONENT_TYPE(UnitMotion)
 
+bool CCmpUnitMotion::RejectFartherPaths(const PathGoal& goal, const WaypointPath& path, const CFixedVector2D& pos) const
+{
+	if (path.m_Waypoints.empty())
+		return false;
+
+	// Reject the new path if it does not lead us closer to the target's position.
+	if (goal.DistanceToPoint(pos) <= goal.DistanceToPoint(CFixedVector2D(path.m_Waypoints.front().x, path.m_Waypoints.front().z)))
+		return true;
+
+	return false;
+}
+
 void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 {
 	// Ignore obsolete path requests
@@ -664,8 +681,19 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
+	PathGoal goal;
+	// If we can't compute a goal, we'll fail in the next Move() call so do nothing special.
+	if (!ComputeGoal(goal, m_MoveRequest))
+		return;
+
 	if (ticketType == Ticket::LONG_PATH)
 	{
+		if (RejectFartherPaths(goal, path, pos))
+		{
+			IncrementFailedPathComputationAndMaybeNotify();
+			return;
+		}
+
 		m_LongPath = path;
 
 		m_PretendLongPathIsCorrect = false;
@@ -692,6 +720,13 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		// but it should be done someday when the message can differentiate between different failure causes.
 		else if (PathingUpdateNeeded(pos))
 			m_PretendLongPathIsCorrect = true;
+		return;
+	}
+
+	// Reject new short paths if they were aiming at the goal directly (i.e. no long waypoints still exists).
+	if (m_LongPath.m_Waypoints.empty() && RejectFartherPaths(goal, path, pos))
+	{
+		IncrementFailedPathComputationAndMaybeNotify();
 		return;
 	}
 
@@ -728,10 +763,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		}
 	}
 
-	PathGoal goal;
-	// If we can't compute a goal, we'll fail in the next Move() call so do nothing special.
-	if (!ComputeGoal(goal, m_MoveRequest))
-		return;
 	BeginPathing(pos, goal);
 }
 
