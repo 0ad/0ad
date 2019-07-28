@@ -286,3 +286,18 @@ template<> bool ScriptInterface::FromJSVal<EAlign>(JSContext* cx, JS::HandleValu
 	}
 	return true;
 }
+
+template<> void ScriptInterface::ToJSVal<CGUISpriteInstance>(JSContext* cx, JS::MutableHandleValue ret, const CGUISpriteInstance& val)
+{
+	ToJSVal(cx, ret, val.GetName());
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUISpriteInstance>(JSContext* cx, JS::HandleValue v, CGUISpriteInstance& out)
+{
+	std::string name;
+	if (!FromJSVal(cx, v, name))
+		return false;
+
+	out.SetName(name);
+	return true;
+}

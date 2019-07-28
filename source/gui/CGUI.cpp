@@ -608,7 +608,7 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 					Text.m_Size.cy = std::max(Text.m_Size.cy, Image.m_YTo);
 
 					Images[j].push_back(Image);
-					Text.m_SpriteCalls.push_back(SpriteCall);
+					Text.m_SpriteCalls.push_back(std::move(SpriteCall));
 				}
 			}
 		}
@@ -784,7 +784,10 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 
 						// Sprite call can exist within only a newline segment,
 						//  therefore we need this.
-						Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
+						Text.m_SpriteCalls.insert(
+							Text.m_SpriteCalls.end(),
+							std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
+							std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
 						break;
 					}
 					else if (x > width_range[To] && j == temp_from)
@@ -800,8 +803,15 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 				}
 
 				// Add the whole Feedback2.m_TextCalls to our m_TextCalls.
-				Text.m_TextCalls.insert(Text.m_TextCalls.end(), Feedback2.m_TextCalls.begin(), Feedback2.m_TextCalls.end());
-				Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
+				Text.m_TextCalls.insert(
+					Text.m_TextCalls.end(),
+					std::make_move_iterator(Feedback2.m_TextCalls.begin()),
+					std::make_move_iterator(Feedback2.m_TextCalls.end()));
+
+				Text.m_SpriteCalls.insert(
+					Text.m_SpriteCalls.end(),
+					std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
+					std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
 
 				if (j == (int)string.m_Words.size()-2)
 					done = true;
@@ -1677,7 +1687,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
-	m_ScrollBarStyles[name] = scrollbar;
+	m_ScrollBarStyles[name] = std::move(scrollbar);
 }
 
 void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)

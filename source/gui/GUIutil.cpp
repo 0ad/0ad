@@ -325,6 +325,24 @@ PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& V
 	return ret;
 }
 
+template <typename T>
+PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage)
+{
+	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
+		[&pObject, &Setting, &Value]() {
+			*static_cast<T*>(pObject->m_Settings[Setting].m_pSetting) = std::move(Value);
+		});
+}
+
+template <typename T>
+PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
+{
+	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
+		[&pObject, &Setting, &Value]() {
+			*static_cast<T*>(pObject->m_Settings[Setting].m_pSetting) = Value;
+		});
+}
+
 // Helper function for SetSetting
 template <typename T>
 bool IsBoolTrue(const T&)
@@ -338,7 +356,7 @@ bool IsBoolTrue<bool>(const bool& v)
 }
 
 template <typename T>
-PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
+PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage, const std::function<void()>& valueSet)
 {
 	ENSURE(pObject != NULL);
 
@@ -354,12 +372,9 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 	CheckType<T>(pObject, Setting);
 #endif
 
-	// Set value
-	*(T*)pObject->m_Settings[Setting].m_pSetting = Value;
+	valueSet();
 
-	//
 	//	Some settings needs special attention at change
-	//
 
 	// If setting was "size", we need to re-cache itself and all children
 	if (Setting == "size")
@@ -386,6 +401,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 #define TYPE(T) \
 	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
 	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
+	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage);
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
@@ -397,4 +413,4 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 // and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
 // instead. (This is mainly useful to stop me accidentally using the wrong function.)
 template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance*& Value);
-template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, const CGUISpriteInstance& Value, const bool& SkipMessage);
+template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance& Value, const bool& SkipMessage);

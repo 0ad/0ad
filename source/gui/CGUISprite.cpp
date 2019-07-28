@@ -30,7 +30,7 @@ void CGUISprite::AddImage(SGUIImage* image)
 	m_Images.push_back(image);
 }
 
-void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const
+void CGUISpriteInstance::Draw(const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const
 {
 	if (m_CachedSize != Size || m_CachedCellID != CellID)
 	{
@@ -39,12 +39,6 @@ void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*
 		m_CachedCellID = CellID;
 	}
 	GUIRenderer::Draw(m_DrawCallCache, Z);
-}
-
-void CGUISpriteInstance::Invalidate()
-{
-	m_CachedSize = CRect();
-	m_CachedCellID = -1;
 }
 
 bool CGUISpriteInstance::IsEmpty() const
@@ -66,21 +60,10 @@ CGUISpriteInstance::CGUISpriteInstance(const CStr& SpriteName)
 {
 }
 
-CGUISpriteInstance::CGUISpriteInstance(const CGUISpriteInstance& Sprite)
-	: m_SpriteName(Sprite.m_SpriteName), m_CachedCellID(-1)
-{
-}
-
-CGUISpriteInstance& CGUISpriteInstance::operator=(const CGUISpriteInstance& Sprite)
-{
-	return this->operator=(Sprite.m_SpriteName);
-}
-
-CGUISpriteInstance& CGUISpriteInstance::operator=(const CStr& SpriteName)
+void CGUISpriteInstance::SetName(const CStr& SpriteName)
 {
 	m_SpriteName = SpriteName;
+	m_CachedSize = CRect();
 	m_DrawCallCache.clear();
-	Invalidate();
-	return *this;
+	m_CachedCellID = -1;
 }
-

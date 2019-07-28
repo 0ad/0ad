@@ -203,7 +203,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		{
 			CGUISpriteInstance* value;
 			GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
-			ScriptInterface::ToJSVal(cx, vp, value->GetName());
+			ScriptInterface::ToJSVal(cx, vp, *value);
 			break;
 		}
 
@@ -324,11 +324,11 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	case GUIST_CGUISpriteInstance:
 	{
-		std::string value;
+		CGUISpriteInstance value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
 			return false;
 
-		GUI<CGUISpriteInstance>::SetSetting(e, propName, CGUISpriteInstance(value));
+		GUI<CGUISpriteInstance>::SetSetting(e, propName, value);
 		break;
 	}
 

@@ -159,7 +159,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				SpriteCall.m_CellID = icon.m_CellID;
 
 				// Add sprite call
-				Feedback.m_SpriteCalls.push_back(SpriteCall);
+				Feedback.m_SpriteCalls.push_back(std::move(SpriteCall));
 
 				// Finalize text call
 				TextCall.m_pSpriteCall = &Feedback.m_SpriteCalls.back();
