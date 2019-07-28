@@ -527,10 +527,17 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.order.data.secondTry = true;
 					this.PushOrderFront("Walk", this.order.data.lastPos);
 				}
+				// We couldn't move there, or the target moved away
 				else
 				{
-					// We couldn't move there, or the target moved away
-					this.FinishOrder();
+					let data = this.order.data;
+					if (!this.FinishOrder())
+						this.PushOrderFront("GatherNearPosition", {
+							"x": data.lastPos.x,
+							"z": data.lastPos.z,
+							"type": data.type,
+							"template": data.template
+						});
 				}
 				return;
 			}
@@ -777,14 +784,20 @@ UnitAI.prototype.UnitFsmSpec = {
 						msg.data.secondTry = true;
 						this.PushOrderFront("Walk", msg.data.lastPos);
 					}
+					// We couldn't move there, or the target moved away
 					else
 					{
-						// We couldn't move there, or the target moved away
-						this.FinishOrder();
+						let data = msg.data;
+						if (!this.FinishOrder())
+							this.PushOrderFront("GatherNearPosition", {
+								"x": data.lastPos.x,
+								"z": data.lastPos.z,
+								"type": data.type,
+								"template": data.template
+							});
 					}
 					return;
 				}
-
 				this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false, "min": 0, "max": 10 });
 				return;
 			}
