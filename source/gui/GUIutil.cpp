@@ -255,8 +255,6 @@ bool __ParseString<CGUISeries>(const CStrW& UNUSED(Value), CGUISeries& UNUSED(Ou
 	return false;
 }
 
-//--------------------------------------------------------
-
 CMatrix3D GetDefaultGuiMatrix()
 {
 	float xres = g_xres / g_GuiScale;
@@ -274,31 +272,6 @@ CMatrix3D GetDefaultGuiMatrix()
 	return m;
 }
 
-//--------------------------------------------------------
-//  Utilities implementation
-//--------------------------------------------------------
-IGUIObject* CInternalCGUIAccessorBase::GetObjectPointer(CGUI& GUIinstance, const CStr& Object)
-{
-	return GUIinstance.FindObjectByName(Object);
-}
-
-const IGUIObject* CInternalCGUIAccessorBase::GetObjectPointer(const CGUI& GUIinstance, const CStr& Object)
-{
-	return GUIinstance.FindObjectByName(Object);
-}
-
-void CInternalCGUIAccessorBase::QueryResetting(IGUIObject* pObject)
-{
-	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
-}
-
-void CInternalCGUIAccessorBase::HandleMessage(IGUIObject* pObject, SGUIMessage& message)
-{
-	pObject->HandleMessage(message);
-}
-
-
-
 #ifndef NDEBUG
 	#define TYPE(T) \
 		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
@@ -314,8 +287,6 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject* pObject, SGUIMessage& 
 	#undef TYPE
 #endif
 
-
-//--------------------------------------------------------------------
 
 template <typename T>
 PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value)
@@ -399,13 +370,13 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 	{
 		// Hiding an object requires us to reset it and all children
 		if (IsBoolTrue(Value))
-			QueryResetting(pObject);
+			RecurseObject(0, pObject, &IGUIObject::ResetStates);
 	}
 
 	if (!SkipMessage)
 	{
 		SGUIMessage msg(GUIM_SETTINGS_UPDATED, Setting);
-		HandleMessage(pObject, msg);
+		pObject->HandleMessage(msg);
 	}
 
 	return PSRETURN_OK;

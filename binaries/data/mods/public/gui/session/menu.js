@@ -140,12 +140,6 @@ function chatMenuButton()
 	openChat();
 }
 
-function diplomacyMenuButton()
-{
-	closeOpenDialogs();
-	openDiplomacy();
-}
-
 function pauseMenuButton()
 {
 	togglePause();
@@ -563,7 +557,7 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 {
 	let button = Engine.GetGUIObjectByName("diplomacySpyRequest[" + (i - 1) + "]");
 	let template = GetTemplateData("special/spy");
-	button.hidden = hidden || !template || GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
+	button.hidden = hidden || !template || !!GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
 	if (button.hidden)
 		return;
 

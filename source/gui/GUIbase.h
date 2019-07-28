@@ -211,7 +211,6 @@ public:
 
 ERROR_GROUP(GUI);
 
-ERROR_TYPE(GUI, NullObjectProvided);
 ERROR_TYPE(GUI, InvalidSetting);
 ERROR_TYPE(GUI, OperationNeedsGUIObject);
 ERROR_TYPE(GUI, NameAmbiguity);
