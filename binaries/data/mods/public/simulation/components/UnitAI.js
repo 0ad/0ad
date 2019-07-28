@@ -1825,7 +1825,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						}
 						// Go to the last known position and try to find enemies there.
 						let lastPos = this.order.data.lastPos;
-						this.PushOrder("Walk", { "x": lastPos.x, "z": lastPos.z, "force": false });
 						this.PushOrder("WalkAndFight", { "x": lastPos.x, "z": lastPos.z, "force": false });
 						return;
 					}
@@ -1924,19 +1923,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					let target = this.order.data.target;
-					let cmpFormation = Engine.QueryInterface(target, IID_Formation);
-
-					// if the target is a formation, save the attacking formation, and pick a member
-					if (cmpFormation)
-					{
-						let thisObject = this;
-						let filter = function(t) {
-							return thisObject.CanAttack(t);
-						};
-						this.order.data.formationTarget = target;
-						target = cmpFormation.GetClosestMember(this.entity, filter);
-						this.order.data.target = target;
-					}
 
 					// Check the target is still alive and attackable
 					if (!this.CanAttack(target))
@@ -1984,6 +1970,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("COMBAT.CHASING");
 						return;
 					}
+
+					this.SetNextState("FINDINGNEWTARGET");
 				},
 
 				// TODO: respond to target deaths immediately, rather than waiting
@@ -1999,14 +1987,20 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"FINDINGNEWTARGET": {
 				"enter": function() {
-					// If we're targetting a formation, find a new member of that formation.
-					let cmpTargetFormation = Engine.QueryInterface(this.order.data.formationTarget || INVALID_ENTITY, IID_Formation);
-					// if there is no target, it means previously searching for the target inside the target formation failed, so don't repeat the search
-					if (this.order.data.target && cmpTargetFormation)
+					// Try to find the formation the target was a part of.
+					let cmpFormation = Engine.QueryInterface(this.order.data.target, IID_Formation);
+					if (!cmpFormation)
+						cmpFormation = Engine.QueryInterface(this.order.data.formationTarget || INVALID_ENTITY, IID_Formation);
+
+					// If the target is a formation, pick closest member.
+					if (cmpFormation)
 					{
-						this.order.data.target = this.order.data.formationTarget;
-						this.TimerHandler(msg.data, msg.lateness);
-						return;
+						let filter = (t) => this.CanAttack(t);
+						this.order.data.formationTarget = this.order.data.target;
+						let target = cmpFormation.GetClosestMember(this.entity, filter);
+						this.order.data.target = target;
+						this.SetNextState("COMBAT.ATTACKING");
+						return true;
 					}
 
 					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
