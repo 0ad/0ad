@@ -32,6 +32,7 @@
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -68,8 +69,25 @@ struct SGUISetting
 {
 	SGUISetting() : m_pSetting(NULL) {}
 
+	/**
+	 * Stores the instance of the setting type holding the setting data. Can be set from XML and JS.
+	 */
 	void				*m_pSetting;
+
 	EGUISettingType		m_Type;
+
+	template<typename T>
+	void Init(IGUIObject& pObject, const CStr& Name);
+
+	/**
+	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
+	 */
+	std::function<bool(JSContext* cx, JS::HandleValue v)> m_FromJSVal;
+
+	/**
+	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
+	 */
+	std::function<void(JSContext* cx, JS::MutableHandleValue v)> m_ToJSVal;
 };
 
 /**
