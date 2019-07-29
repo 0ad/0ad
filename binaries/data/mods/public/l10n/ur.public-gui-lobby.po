@@ -3,49 +3,46 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Gags98 <gagspapikyan@gmail.com>, 2017
-# Vahe Avagyan <vahe-a@outlook.fr>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-07-27 10:49+0000\n"
-"Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
-"Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
+"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"Language-Team: Urdu (http://www.transifex.com/wildfire-games/0ad/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hy\n"
+"Language: ur\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gui/lobby/lobby.js:50
 msgid "Online"
-msgstr "Գծի վրա"
+msgstr ""
 
 #: gui/lobby/lobby.js:51
 msgid "Away"
-msgstr "Բացակա"
+msgstr ""
 
 #: gui/lobby/lobby.js:52
 msgid "Busy"
-msgstr "Զբաղված"
+msgstr ""
 
 #: gui/lobby/lobby.js:53
 msgid "Offline"
-msgstr "Անցանց"
+msgstr ""
 
 #: gui/lobby/lobby.js:54
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr "Անհայտ"
+msgstr ""
 
 #: gui/lobby/lobby.js:58
 msgid "Moderator"
-msgstr "Մոդերատոր"
+msgstr ""
 
 #: gui/lobby/lobby.js:59
 msgid "Player"
-msgstr "Խաղացող"
+msgstr ""
 
 #: gui/lobby/lobby.js:60
 msgid "Muted Player"
@@ -63,12 +60,12 @@ msgstr ""
 #: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s միացել է:"
+msgstr ""
 
 #: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s հեռացել է:"
+msgstr ""
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
@@ -81,7 +78,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr "Հիմա մոդերատոր եք:"
+msgstr ""
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
@@ -143,7 +140,7 @@ msgstr ""
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr "%(command)s - %(description)s"
+msgstr ""
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -170,42 +167,42 @@ msgstr ""
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr "Հաստատում"
+msgstr ""
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
-msgstr "Ոչ"
+msgstr ""
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
-msgstr "Այո"
+msgstr ""
 
 #: gui/lobby/lobby.js:460
 msgctxt "previous page"
 msgid "Back"
-msgstr "Գաղտնաբառ"
+msgstr ""
 
 #: gui/lobby/lobby.js:461
 msgctxt "previous page"
 msgid "Main Menu"
-msgstr "Գլխավոր մենյու"
+msgstr ""
 
 #: gui/lobby/lobby.js:530
 msgctxt "map size"
 msgid "Any"
-msgstr "Ամեն"
+msgstr ""
 
 #: gui/lobby/lobby.js:535
 msgctxt "player number"
 msgid "Any"
-msgstr "Ամեն"
+msgstr ""
 
 #: gui/lobby/lobby.js:539 gui/lobby/lobby.js:553
 msgctxt "map"
 msgid "Any"
-msgstr "Ամեն"
+msgstr ""
 
 #: gui/lobby/lobby.js:547
 #, javascript-format
@@ -241,7 +238,7 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr "Պատճառ. %(reason)s"
+msgstr ""
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
@@ -277,12 +274,12 @@ msgstr ""
 
 #: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1524
 msgid "HH:mm"
-msgstr "HH:mm"
+msgstr ""
 
 #: gui/lobby/lobby.js:1148
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr "Խաղացողներ․ %(current)s/%(total)s "
+msgstr ""
 
 #: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
@@ -319,37 +316,37 @@ msgstr ""
 #: gui/lobby/lobby.js:1444
 #, javascript-format
 msgid "* %(sender)s"
-msgstr "* %(sender)s"
+msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:1449
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr "%(sender)s%(action)s"
+msgstr ""
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:1458 gui/lobby/lobby.js:1479 gui/lobby/lobby.js:1506
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr "<%(sender)s>"
+msgstr ""
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:1463 gui/lobby/lobby.js:1484 gui/lobby/lobby.js:1511
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr "%(sender)s %(message)s"
+msgstr ""
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:1473
 #, javascript-format
 msgid "== %(message)s"
-msgstr "== %(message)s"
+msgstr ""
 
 #: gui/lobby/lobby.js:1501
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr "(%(private)s) <%(sender)s>"
+msgstr ""
 
 #: gui/lobby/lobby.js:1502
 msgid "Private"
@@ -360,28 +357,28 @@ msgstr ""
 #: gui/lobby/lobby.js:1527
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
+msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:1532
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
+msgstr ""
 
 #: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr "%(nick)s (%(rating)s)"
+msgstr ""
 
 #: gui/lobby/lobby.js:1587
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: gui/lobby/lobby.js:1589
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr "%(percentage)s %%"
+msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -394,12 +391,12 @@ msgstr ""
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr "Մուտքագրեք ձեր գաղտնաբառը"
+msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr "Մուտքագրեք ձեր գաղտնաբառը"
+msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
@@ -411,7 +408,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr "Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում"
+msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
@@ -433,7 +430,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
-msgstr "Օգտագործման պայմաններ"
+msgstr ""
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
@@ -449,15 +446,15 @@ msgstr ""
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
-msgstr "Մուտք գործել"
+msgstr ""
 
 #: gui/prelobby/login/login.js:32
 msgid "Connecting…"
-msgstr "Մուտքագրում․․․"
+msgstr ""
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
-msgstr "Ստեղծել նոր հաշիվ"
+msgstr ""
 
 #: gui/prelobby/register/register.js:26
 msgid "Registering…"
@@ -480,7 +477,7 @@ msgstr ""
 #: gui/lobby/lobby_panels.xml:(heading):190
 #: gui/lobby/lobby_panels.xml:(heading):289
 msgid "Name"
-msgstr "Անուն"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):30
 #: gui/lobby/lobby_panels.xml:(heading):205
@@ -490,12 +487,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):193
 msgid "Map Name"
-msgstr "Քարտեզի Անունը"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):196
 msgctxt "map"
 msgid "Size"
-msgstr "Չափ"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):199
 msgctxt "map"
@@ -504,7 +501,7 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):202
 msgid "Players"
-msgstr "Խաղացողներ"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):286
 msgid "Rank"
@@ -528,7 +525,7 @@ msgstr ""
 #: gui/lobby/lobby_panels.xml:(caption):64
 #: gui/lobby/lobby_panels.xml:(caption):343
 msgid "Wins:"
-msgstr "Հաղթանակներ․"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):68
 #: gui/lobby/lobby_panels.xml:(caption):347
@@ -556,12 +553,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):132
 msgid "Map Size:"
-msgstr "Քարտեզի Չափը."
+msgstr ""
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby_panels.xml:(caption):157
 msgid "Join Game"
-msgstr "Միանալ Խաղին"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):163
 msgid "Host Game"
@@ -573,12 +570,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
-msgstr "Ուղարկել"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):299
 #: gui/lobby/lobby_panels.xml:(caption):361
 msgid "Back"
-msgstr "Գաղտնաբառ"
+msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):305
 msgid "Update"
@@ -602,11 +599,11 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr "Մասնակցային անուն."
+msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr "Գաղտնաբառ."
+msgstr ""
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
@@ -615,11 +612,11 @@ msgstr ""
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
-msgstr "Չեղարկել"
+msgstr ""
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr "Ստեղծել նոր հաշիվ"
+msgstr ""
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
