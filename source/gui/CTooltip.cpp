@@ -43,6 +43,7 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_bool,					"hide_object");
 
 	// Private settings:
+	// This is set by GUITooltip
 	AddSetting(GUIST_CPos,					"_mousepos");
 
 	// Defaults

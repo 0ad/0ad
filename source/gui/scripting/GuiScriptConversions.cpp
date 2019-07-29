@@ -170,6 +170,34 @@ template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleV
 	return FromJSVal<CColor>(cx, v, out);
 }
 
+template<> void ScriptInterface::ToJSVal<CPos>(JSContext* cx, JS::MutableHandleValue ret, const CPos& val)
+{
+	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "x", val.x, "y", val.y);
+}
+
+template<> bool ScriptInterface::FromJSVal<CPos>(JSContext* cx, JS::HandleValue v, CPos& out)
+{
+	if (!v.isObject())
+	{
+		JS_ReportError(cx, "CPos value must be an object!");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "x", out.x))
+	{
+		JS_ReportError(cx, "Failed to get CPos.x property");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "y", out.y))
+	{
+		JS_ReportError(cx, "Failed to get CPos.y property");
+		return false;
+	}
+
+	return true;
+}
+
 template<> void ScriptInterface::ToJSVal<CClientArea>(JSContext* cx, JS::MutableHandleValue ret, const CClientArea& val)
 {
 	val.ToJSVal(cx, ret);
@@ -301,3 +329,5 @@ template<> bool ScriptInterface::FromJSVal<CGUISpriteInstance>(JSContext* cx, JS
 	out.SetName(name);
 	return true;
 }
+
+#undef SET

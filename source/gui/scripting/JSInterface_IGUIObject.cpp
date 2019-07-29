@@ -167,6 +167,14 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			break;
 		}
 
+		case GUIST_CPos:
+		{
+			CPos value;
+			GUI<CPos>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
+			break;
+		}
+
 		case GUIST_CClientArea:
 		{
 			CClientArea value;
@@ -418,6 +426,16 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			return false;
 
 		GUI<CClientArea>::SetSetting(e, propName, value);
+		break;
+	}
+
+	case GUIST_CPos:
+	{
+		CPos value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
+
+		GUI<CPos>::SetSetting(e, propName, value);
 		break;
 	}
 
