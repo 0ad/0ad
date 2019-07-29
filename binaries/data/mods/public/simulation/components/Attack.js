@@ -412,8 +412,12 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 
 	// Check whether the target is capturable and prefer that when it is allowed.
 	let captureIndex = types.indexOf("Capture");
-	if (captureIndex != -1 && allowCapture)
-		return "Capture";
+	if (captureIndex != -1)
+	{
+		if (allowCapture)
+			return "Capture";
+		types.splice(captureIndex, 1);
+	}
 
 	let isPreferred = className => this.GetPreferredClasses(className).some(isTargetClass);
 

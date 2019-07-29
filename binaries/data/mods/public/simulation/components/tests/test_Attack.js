@@ -268,6 +268,7 @@ testGetBestAttackAgainst("FemaleCitizen", "Melee", undefined);
 testGetBestAttackAgainst("Archer", "Ranged", undefined);
 testGetBestAttackAgainst("Domestic", "Slaughter", "Slaughter");
 testGetBestAttackAgainst("Structure", "Capture", "Capture", true);
+testGetBestAttackAgainst("Structure", "Ranged", undefined, false);
 
 function testPredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity)
 {
