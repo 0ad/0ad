@@ -18,4 +18,6 @@ new_state = game.step(actions, player=[2, 1])
 
 while 1:
     state = game.step()
+    print('units are at', *state.center(state.units(owner=1)))
+    print('enemies are at', *state.center(state.units(owner=2)))
     time.sleep(1)
