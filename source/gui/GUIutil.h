@@ -37,6 +37,8 @@ GUI util
 #include "gui/GUIbase.h"
 #include "gui/IGUIObject.h"
 
+#include <functional>
+
 class CClientArea;
 class CGUIString;
 class CMatrix3D;
@@ -90,10 +92,17 @@ public:
 	 * This is the official way of setting a setting, no other
 	 *  way should only cautiously be used!
 	 *
+	 * This variant will use the move-assignment.
+	 *
 	 * @param pObject Object pointer
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
 	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
+	 */
+	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage = false);
+
+	/**
+	 * This variant will copy the value.
 	 */
 	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage = false);
 
@@ -146,6 +155,12 @@ public:
 	static bool ParseColor(const CStrW& Value, CGUIColor& tOutput, int DefaultAlpha);
 
 private:
+
+	/**
+	 * Changes the value of the setting by calling the valueSet functon that performs either a copy or move assignment.
+	 * Updates some internal data depending on the setting changed.
+	 */
+	static PSRETURN SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage, const std::function<void()>& valueSet);
 
 	// templated typedef of function pointer
 	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T& arg);
@@ -238,7 +253,6 @@ private:
 			RecurseObject(RR, obj, pFunc);
 	}
 
-private:
 	/**
 	 * Checks restrictions for the iteration, for instance if
 	 * you tell the recursor to avoid all hidden objects, it

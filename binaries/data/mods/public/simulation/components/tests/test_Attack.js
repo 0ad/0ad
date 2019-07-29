@@ -205,7 +205,7 @@ attackComponentTest("Elephant", true, (attacker, cmpAttack, defender) => {
 	TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender), false);
 });
 
-function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
+function testGetBestAttackAgainst(defenderClass, bestAttack, bestAllyAttack, isBuilding = false)
 {
 	attackComponentTest(defenderClass, true, (attacker, cmpAttack, defender) => {
 
@@ -259,21 +259,15 @@ function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 		if (!isBuilding)
 			allowCapturing.push(false);
 
-		let attack;
-		if (defenderClass == "Domestic")
-			attack = "Slaughter";
-		else if (defenderClass == "Structure")
-			attack = "Capture";
-
 		for (let ac of allowCapturing)
-			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAttack);
+			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAllyAttack);
 	});
 }
 
-testGetBestAttackAgainst("FemaleCitizen", "Melee");
-testGetBestAttackAgainst("Archer", "Ranged");
-testGetBestAttackAgainst("Domestic", "Slaughter");
-testGetBestAttackAgainst("Structure", "Capture", true);
+testGetBestAttackAgainst("FemaleCitizen", "Melee", undefined);
+testGetBestAttackAgainst("Archer", "Ranged", undefined);
+testGetBestAttackAgainst("Domestic", "Slaughter", "Slaughter");
+testGetBestAttackAgainst("Structure", "Capture", "Capture", true);
 
 function testPredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity)
 {
