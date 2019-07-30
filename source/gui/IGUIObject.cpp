@@ -27,6 +27,24 @@
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
+template<typename T>
+void SGUISetting::Init(IGUIObject& pObject, const CStr& Name)
+{
+	m_pSetting = new T();
+
+	m_FromJSVal = [Name, &pObject](JSContext* cx, JS::HandleValue v) {
+		T value;
+		if (!ScriptInterface::FromJSVal<T>(cx, v, value))
+			return false;
+
+		GUI<T>::SetSetting(&pObject, Name, value);
+		return true;
+	};
+
+	m_ToJSVal = [Name, this](JSContext* cx, JS::MutableHandleValue v) {
+		ScriptInterface::ToJSVal<T>(cx, v, *static_cast<T*>(m_pSetting));
+	};
+}
 
 IGUIObject::IGUIObject()
 	: m_pGUI(NULL), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
@@ -151,7 +169,7 @@ void IGUIObject::AddSetting(const EGUISettingType& Type, const CStr& Name)
 	{
 #define TYPE(type) \
 	case GUIST_##type: \
-		m_Settings[Name].m_pSetting = new type(); \
+		m_Settings[Name].Init<type>(*this, Name);\
 		break;
 
 		// Construct the setting.

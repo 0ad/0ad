@@ -1,95 +1,133 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="3" name="Bush Temperate Large A1-light">
       <mesh>gaia/bush_tempe_la_a_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large A1-dark">
       <mesh>gaia/bush_tempe_la_a_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_a2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_a2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large A2-light">
       <mesh>gaia/bush_tempe_la_a_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large A2-dark">
       <mesh>gaia/bush_tempe_la_a_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_a2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_a2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large A3-light">
       <mesh>gaia/bush_tempe_la_a_3.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large A3-dark">
       <mesh>gaia/bush_tempe_la_a_3.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_a2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_a2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large B1-light">
       <mesh>gaia/bush_tempe_la_b_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_b2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_b2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large B1-dark">
       <mesh>gaia/bush_tempe_la_b_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large B2-light">
       <mesh>gaia/bush_tempe_la_b_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_b2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_b2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large B2-dark">
       <mesh>gaia/bush_tempe_la_b_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_la_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_la_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large C1">
       <mesh>gaia/bush_tempe_la_a_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large C2">
       <mesh>gaia/bush_tempe_la_a_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large C3">
       <mesh>gaia/bush_tempe_la_a_3.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large D1">
       <mesh>gaia/bush_tempe_la_b_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Bush Temperate Large D2">
       <mesh>gaia/bush_tempe_la_b_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Bush Temperate Brown A1">
       <mesh>gaia/bush_dese_a_1.dae</mesh>
-      <textures><texture file="gaia/bush_dese_dry_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_dese_dry_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Bush Temperate Brown A2">
       <mesh>gaia/bush_dese_a_2.dae</mesh>
-      <textures><texture file="gaia/bush_dese_dry_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_dese_dry_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Bush Temperate Burnt A1">
       <mesh>gaia/bush_dese_a_1.dae</mesh>
-      <textures><texture file="gaia/bush_dese_dry_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_dese_dry_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Bush Temperate Burnt A2">
       <mesh>gaia/bush_dese_a_2.dae</mesh>
-      <textures><texture file="gaia/bush_dese_dry_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_dese_dry_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Bush Temperate Dusty A1">
       <mesh>gaia/bush_dese_a_1.dae</mesh>
-      <textures><texture file="gaia/bush_dese_dry_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_dese_dry_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Bush Temperate Dusty A2">
       <mesh>gaia/bush_dese_a_2.dae</mesh>
-      <textures><texture file="gaia/bush_dese_dry_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_dese_dry_c.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <material>basic_trans_wind.xml</material>
 </actor>

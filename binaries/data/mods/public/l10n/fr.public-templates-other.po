@@ -4,6 +4,7 @@
 # 
 # Translators:
 # adrien vigneron <adrienvigneron@ml1.net>, 2017
+# Anakine Capdecomme-Mabit <anakine.capmab@gmail.com>, 2019
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # François Magimel, 2019
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-29 15:20+0000\n"
-"Last-Translator: François Magimel\n"
+"PO-Revision-Date: 2019-07-27 01:01+0000\n"
+"Last-Translator: Anakine Capdecomme-Mabit <anakine.capmab@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +43,11 @@ msgstr "Gaia"
 #: simulation/templates/template_gaia_fish.xml:8
 #: simulation/templates/gaia/fauna_fish.xml:4
 msgid "Fish"
-msgstr "poisson"
+msgstr "Poisson"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Gather food from this bountiful oceanic resource."
-msgstr "Rassemblez de la nourriture de cette abondante ressource océanique."
+msgstr "Récoltez de la nourriture de cette abondante ressource océanique."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -77,7 +78,7 @@ msgstr "Un gisement de minerai, donnant accès à des formes rares de métaux pr
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
-msgstr ""
+msgstr "Carrière de pierres"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Mine these to provide Stone building material."
@@ -194,7 +195,7 @@ msgstr "Ours brun"
 
 #: simulation/templates/gaia/fauna_bear.xml:20
 msgid "Ursus arctos"
-msgstr "Ours brun"
+msgstr "Ours polaire"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Wild Boar"
@@ -214,12 +215,12 @@ msgstr "Dromadaire"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:4
 msgid "Bull"
-msgstr ""
+msgstr "Taureau"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
 msgid "Bos taurus taurus"
-msgstr ""
+msgstr "Taureau"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
@@ -227,11 +228,11 @@ msgstr "Vache"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
-msgstr ""
+msgstr "Taureau d'Afrique"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
 msgid "Bos taurus africanus"
-msgstr ""
+msgstr "Taureau d'Afrique"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:4
 msgid "Zebu"
@@ -419,7 +420,7 @@ msgstr "Cochon enflammé"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Cochonnet"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -548,11 +549,11 @@ msgstr "Pommier"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bambou"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Bambou géant"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
@@ -560,11 +561,11 @@ msgstr "Banane"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:5
 msgid "Gather bananas for Food."
-msgstr ""
+msgstr "Récolter des bananes pour de la nourriture."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "Figuier des banians"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
@@ -573,15 +574,15 @@ msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "Pousse de baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr ""
+msgstr "Jeune baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Baobab mort"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -616,7 +617,7 @@ msgstr "Palmier dattier"
 
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
 msgid "Dead Palm"
-msgstr ""
+msgstr "Palmier mort"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
@@ -654,11 +655,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Mangrove"
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Érable"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -999,7 +1000,7 @@ msgstr "Porte de palissade"
 #: simulation/templates/other/palisades_rocks_gate.xml:23
 msgid ""
 "Allow units access through a palisade wall. Can be locked to prevent access."
-msgstr ""
+msgstr "Laisse passer les unités à travers une palissade. Peut-être verrouillée pour empêcher l'accès."
 
 #: simulation/templates/other/palisades_rocks_long.xml:18
 #: simulation/templates/other/palisades_rocks_medium.xml:18
@@ -1088,11 +1089,11 @@ msgstr "Espion"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "At least 16 melee infantry units required."
-msgstr ""
+msgstr "Au moins 16 unités d'infanterie de mêlée requises."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "Anti-cavalerie"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
@@ -1116,7 +1117,7 @@ msgstr "Colonne ouverte"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "At least 8 units required."
-msgstr ""
+msgstr "Au moins 8 unités requises."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1136,7 +1137,7 @@ msgstr "Aucune"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "At least 10 hoplite infantry required."
-msgstr ""
+msgstr "Au moins 10 hoplites requis."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1148,7 +1149,7 @@ msgstr "Dispersion"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Only ranged units allowed."
-msgstr ""
+msgstr "Autorisé seulement aux unités à distance."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1156,7 +1157,7 @@ msgstr "Escarmouche"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "At least 16 pike infantry units required."
-msgstr ""
+msgstr "Au moins 16 unités d'infanterie de pique requises."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1168,7 +1169,7 @@ msgstr "Tortue"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "At least 6 cavalry units required."
-msgstr ""
+msgstr "Au moins 6 unités de cavalerie requises."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

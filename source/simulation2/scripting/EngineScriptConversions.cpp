@@ -361,3 +361,6 @@ template<> bool ScriptInterface::FromJSVal<CCinemaPath>(JSContext* cx, JS::Handl
 
 // define vectors
 JSVAL_VECTOR(CFixedVector2D)
+
+#undef FAIL
+#undef FAIL_VOID
