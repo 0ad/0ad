@@ -6,13 +6,34 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/mace_hetairoi.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/spearman_relax.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet Boeotian Bronze-01">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Boeotian Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_b2_laurel.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Boeotian Silver-01">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_s2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Boeotian Silver-02">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_s2_laurel.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

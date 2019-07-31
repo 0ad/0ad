@@ -13,6 +13,23 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Hele Thracian Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b5.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Armor-Linen-Quilted-01">
       <textures>
         <texture file="skeletal/ptol_pikeman_a_01.png" name="baseTex"/>

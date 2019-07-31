@@ -18,6 +18,18 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Hele Thracian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-05">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b5_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant file="biped/rider/elephantry/turret_idle.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/rider/elephantry/african_turret_death.xml">

@@ -5,7 +5,6 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/hele_phrygian_c.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_thrace.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/rhomphaia.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
@@ -15,6 +14,28 @@
       <textures>
         <texture file="skeletal/thrace_blackcloak_a.dds" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Hele Phrygian Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_c.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Phrygian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Phrygian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Phrygian Helmet-04">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b5.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

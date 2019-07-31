@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="attic-04">
+      <mesh>props/helmet/hele_attic_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_attic_04_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_attic_04_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_attic_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Mask-03">
+      <props>
+        <prop actor="props/units/helmets/props/hele_attic_mask_b1.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_attic_visor_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mask-04">
+      <props>
+        <prop actor="props/units/helmets/props/hele_attic_mask_b2.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_attic_visor_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Feather-01">
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_01"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_02"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_03"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_04"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Feather-02">
+      <props>
+        <prop actor="props/units/helmets/props/rome_bronze_crest.xml" attachpoint="rome_crest"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_R"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_L"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

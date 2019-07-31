@@ -15,14 +15,24 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet Hele_Su3">
-      <props>
-        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet Phrygian Bronze">
+    <variant frequency="1" name="Helmet Phrygian Bronze-01">
       <props>
         <prop actor="props/units/helmets/hele_phrygian_c.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-03">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b8.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-04">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b9.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

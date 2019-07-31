@@ -7,12 +7,48 @@
       <props>
         <prop actor="props/units/shields/mace_pez_adv.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet Phrygian Bronze-01">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-03">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-04">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b8.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Bronze-05">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b9.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze-01">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b5.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

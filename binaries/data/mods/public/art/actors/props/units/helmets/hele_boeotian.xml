@@ -2,8 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="helmets/hele_boeotian_gold_01.xml"/>
-    <variant file="helmets/hele_boeotian_bronze_01.xml"/>
+    <variant name="boeotian-01">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
+    </variant>
   </group>
-  <material>player_trans_parallax_spec_helmet.xml</material>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_boeotian_01_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_boeotian_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_boeotian_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

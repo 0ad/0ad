@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="thracian-05">
+      <mesh>props/helmet/hele_thracian_d.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_thracian_05_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_thracian_05_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_thracian_05_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Masked - Crest 01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2_small.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_thracian_mask_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Masked - Crest 02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_thracian_mask_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Masked - Crest 03">
+      <props>
+        <prop actor="props/units/helmets/props/chalkaspides_high_crest.xml" attachpoint="crest"/>
+        <prop actor="props/units/helmets/props/hele_thracian_mask_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crested - 01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crested - 02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crested - 03">
+      <props>
+        <prop actor="props/units/helmets/props/chalkaspides_high_crest.xml" attachpoint="crest"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

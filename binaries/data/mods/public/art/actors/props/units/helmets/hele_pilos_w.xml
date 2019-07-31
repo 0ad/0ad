@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Pilos-01">
+      <mesh>props/helmet/hele_pilos_a1.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="White">
+      <textures>
+        <texture file="props/helmet/hele_pilos_01_white.png" name="baseTex"/>
+        <texture file="props/helmet/hele_pilos_01_norm.png" name="normTex"/>
+        <texture file="props/camel_blanket_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

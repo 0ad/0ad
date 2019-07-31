@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Phrygian-08">
+      <mesh>props/helmet/hele_phrygian_h.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_phrygian_08_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_08_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_08_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

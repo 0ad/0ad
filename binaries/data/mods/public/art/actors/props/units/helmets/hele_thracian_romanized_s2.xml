@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/helmet/hele_thracian_romanized_b.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_thracian_romanized_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_thracian_romanized_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Mask+Crest">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_mask_f.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_thracian_romanized_crest_s2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crest">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_romanized_crest_s2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Silver">
+      <textures>
+        <texture file="props/helmet/hele_thracian_romanized_02_silver_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Silver+Bronze">
+      <textures>
+        <texture file="props/helmet/hele_thracian_romanized_02_silver_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

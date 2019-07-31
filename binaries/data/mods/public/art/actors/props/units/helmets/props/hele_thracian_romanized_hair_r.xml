@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Thracian Hair">
+      <mesh>props/helmet/props/hele_thracian_romanized_hair_r.dae</mesh>
+      <textures>
+        <texture file="props/helmet/sele_hero_seleucus_nikator_diffuse.png" name="baseTex"/>
+        <texture file="props/helmet/sele_hero_seleucus_nikator_spec.png" name="specTex"/>
+        <texture file="props/helmet/sele_hero_seleucus_nikator_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>
