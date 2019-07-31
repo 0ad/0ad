@@ -41,7 +41,7 @@ struct TableStruct_RLAPI_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[10]
+  static const ::google::protobuf::internal::ParseTable schema[9]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -57,9 +57,6 @@ extern ActionDefaultTypeInternal _Action_default_instance_;
 class Actions;
 class ActionsDefaultTypeInternal;
 extern ActionsDefaultTypeInternal _Actions_default_instance_;
-class ConnectRequest;
-class ConnectRequestDefaultTypeInternal;
-extern ConnectRequestDefaultTypeInternal _ConnectRequest_default_instance_;
 class GetTemplateRequest;
 class GetTemplateRequestDefaultTypeInternal;
 extern GetTemplateRequestDefaultTypeInternal _GetTemplateRequest_default_instance_;
@@ -83,7 +80,6 @@ namespace protobuf {
 template<> ::AIPlayer* Arena::CreateMaybeMessage<::AIPlayer>(Arena*);
 template<> ::Action* Arena::CreateMaybeMessage<::Action>(Arena*);
 template<> ::Actions* Arena::CreateMaybeMessage<::Actions>(Arena*);
-template<> ::ConnectRequest* Arena::CreateMaybeMessage<::ConnectRequest>(Arena*);
 template<> ::GetTemplateRequest* Arena::CreateMaybeMessage<::GetTemplateRequest>(Arena*);
 template<> ::Observation* Arena::CreateMaybeMessage<::Observation>(Arena*);
 template<> ::ResetRequest* Arena::CreateMaybeMessage<::ResetRequest>(Arena*);
@@ -956,121 +952,6 @@ class ResetRequest final :
 };
 // -------------------------------------------------------------------
 
-class ConnectRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ConnectRequest) */ {
- public:
-  ConnectRequest();
-  virtual ~ConnectRequest();
-
-  ConnectRequest(const ConnectRequest& from);
-
-  inline ConnectRequest& operator=(const ConnectRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  #if LANG_CXX11
-  ConnectRequest(ConnectRequest&& from) noexcept
-    : ConnectRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline ConnectRequest& operator=(ConnectRequest&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-  #endif
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return default_instance().GetDescriptor();
-  }
-  static const ConnectRequest& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ConnectRequest* internal_default_instance() {
-    return reinterpret_cast<const ConnectRequest*>(
-               &_ConnectRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    7;
-
-  void Swap(ConnectRequest* other);
-  friend void swap(ConnectRequest& a, ConnectRequest& b) {
-    a.Swap(&b);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline ConnectRequest* New() const final {
-    return CreateMaybeMessage<ConnectRequest>(nullptr);
-  }
-
-  ConnectRequest* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<ConnectRequest>(arena);
-  }
-  void CopyFrom(const ::google::protobuf::Message& from) final;
-  void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const ConnectRequest& from);
-  void MergeFrom(const ConnectRequest& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
-  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
-  #else
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input) final;
-  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const final;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      ::google::protobuf::uint8* target) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ConnectRequest* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // .ScenarioConfig scenario = 1;
-  bool has_scenario() const;
-  void clear_scenario();
-  static const int kScenarioFieldNumber = 1;
-  const ::ScenarioConfig& scenario() const;
-  ::ScenarioConfig* release_scenario();
-  ::ScenarioConfig* mutable_scenario();
-  void set_allocated_scenario(::ScenarioConfig* scenario);
-
-  // @@protoc_insertion_point(class_scope:ConnectRequest)
- private:
-  class HasBitSetters;
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::ScenarioConfig* scenario_;
-  mutable ::google::protobuf::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_RLAPI_2eproto;
-};
-// -------------------------------------------------------------------
-
 class AIPlayer final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:AIPlayer) */ {
  public:
@@ -1109,7 +990,7 @@ class AIPlayer final :
                &_AIPlayer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    7;
 
   void Swap(AIPlayer* other);
   friend void swap(AIPlayer& a, AIPlayer& b) {
@@ -1243,7 +1124,7 @@ class ScenarioConfig final :
                &_ScenarioConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    8;
 
   void Swap(ScenarioConfig* other);
   friend void swap(ScenarioConfig& a, ScenarioConfig& b) {
@@ -1858,61 +1739,6 @@ inline void ResetRequest::set_allocated_scenario(::ScenarioConfig* scenario) {
 
 // -------------------------------------------------------------------
 
-// ConnectRequest
-
-// .ScenarioConfig scenario = 1;
-inline bool ConnectRequest::has_scenario() const {
-  return this != internal_default_instance() && scenario_ != nullptr;
-}
-inline void ConnectRequest::clear_scenario() {
-  if (GetArenaNoVirtual() == nullptr && scenario_ != nullptr) {
-    delete scenario_;
-  }
-  scenario_ = nullptr;
-}
-inline const ::ScenarioConfig& ConnectRequest::scenario() const {
-  const ::ScenarioConfig* p = scenario_;
-  // @@protoc_insertion_point(field_get:ConnectRequest.scenario)
-  return p != nullptr ? *p : *reinterpret_cast<const ::ScenarioConfig*>(
-      &::_ScenarioConfig_default_instance_);
-}
-inline ::ScenarioConfig* ConnectRequest::release_scenario() {
-  // @@protoc_insertion_point(field_release:ConnectRequest.scenario)
-  
-  ::ScenarioConfig* temp = scenario_;
-  scenario_ = nullptr;
-  return temp;
-}
-inline ::ScenarioConfig* ConnectRequest::mutable_scenario() {
-  
-  if (scenario_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ScenarioConfig>(GetArenaNoVirtual());
-    scenario_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:ConnectRequest.scenario)
-  return scenario_;
-}
-inline void ConnectRequest::set_allocated_scenario(::ScenarioConfig* scenario) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete scenario_;
-  }
-  if (scenario) {
-    ::google::protobuf::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      scenario = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, scenario, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  scenario_ = scenario;
-  // @@protoc_insertion_point(field_set_allocated:ConnectRequest.scenario)
-}
-
-// -------------------------------------------------------------------
-
 // AIPlayer
 
 // int32 id = 1;
@@ -2290,8 +2116,6 @@ inline void ScenarioConfig::set_savereplay(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

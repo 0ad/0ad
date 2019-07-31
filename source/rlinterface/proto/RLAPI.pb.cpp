@@ -48,10 +48,6 @@ class ResetRequestDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<ResetRequest> _instance;
 } _ResetRequest_default_instance_;
-class ConnectRequestDefaultTypeInternal {
- public:
-  ::google::protobuf::internal::ExplicitlyConstructed<ConnectRequest> _instance;
-} _ConnectRequest_default_instance_;
 class AIPlayerDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<AIPlayer> _instance;
@@ -161,21 +157,6 @@ static void InitDefaultsResetRequest_RLAPI_2eproto() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsResetRequest_RLAPI_2eproto}, {
       &scc_info_ScenarioConfig_RLAPI_2eproto.base,}};
 
-static void InitDefaultsConnectRequest_RLAPI_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_ConnectRequest_default_instance_;
-    new (ptr) ::ConnectRequest();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::ConnectRequest::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_ConnectRequest_RLAPI_2eproto =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsConnectRequest_RLAPI_2eproto}, {
-      &scc_info_ScenarioConfig_RLAPI_2eproto.base,}};
-
 static void InitDefaultsAIPlayer_RLAPI_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -213,12 +194,11 @@ void InitDefaults_RLAPI_2eproto() {
   ::google::protobuf::internal::InitSCC(&scc_info_Action_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Observation_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ResetRequest_RLAPI_2eproto.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_ConnectRequest_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_AIPlayer_RLAPI_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ScenarioConfig_RLAPI_2eproto.base);
 }
 
-::google::protobuf::Metadata file_level_metadata_RLAPI_2eproto[10];
+::google::protobuf::Metadata file_level_metadata_RLAPI_2eproto[9];
 constexpr ::google::protobuf::EnumDescriptor const** file_level_enum_descriptors_RLAPI_2eproto = nullptr;
 constexpr ::google::protobuf::ServiceDescriptor const** file_level_service_descriptors_RLAPI_2eproto = nullptr;
 
@@ -268,12 +248,6 @@ const ::google::protobuf::uint32 TableStruct_RLAPI_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::ResetRequest, scenario_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::ConnectRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::ConnectRequest, scenario_),
-  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::AIPlayer, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -306,9 +280,8 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SE
   { 25, -1, sizeof(::Action)},
   { 32, -1, sizeof(::Observation)},
   { 38, -1, sizeof(::ResetRequest)},
-  { 44, -1, sizeof(::ConnectRequest)},
-  { 50, -1, sizeof(::AIPlayer)},
-  { 58, -1, sizeof(::ScenarioConfig)},
+  { 44, -1, sizeof(::AIPlayer)},
+  { 52, -1, sizeof(::ScenarioConfig)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -319,7 +292,6 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::_Action_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_Observation_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_ResetRequest_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_ConnectRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_AIPlayer_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_ScenarioConfig_default_instance_),
 };
@@ -327,7 +299,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 ::google::protobuf::internal::AssignDescriptorsTable assign_descriptors_table_RLAPI_2eproto = {
   {}, AddDescriptors_RLAPI_2eproto, "RLAPI.proto", schemas,
   file_default_instances, TableStruct_RLAPI_2eproto::offsets,
-  file_level_metadata_RLAPI_2eproto, 10, file_level_enum_descriptors_RLAPI_2eproto, file_level_service_descriptors_RLAPI_2eproto,
+  file_level_metadata_RLAPI_2eproto, 9, file_level_enum_descriptors_RLAPI_2eproto, file_level_service_descriptors_RLAPI_2eproto,
 };
 
 const char descriptor_table_protodef_RLAPI_2eproto[] =
@@ -338,25 +310,22 @@ const char descriptor_table_protodef_RLAPI_2eproto[] =
   " \003(\0132\007.Action\"+\n\006Action\022\020\n\010playerID\030\001 \001("
   "\005\022\017\n\007content\030\002 \001(\t\"\036\n\013Observation\022\017\n\007con"
   "tent\030\001 \001(\t\"1\n\014ResetRequest\022!\n\010scenario\030\001"
-  " \001(\0132\017.ScenarioConfig\"3\n\016ConnectRequest\022"
-  "!\n\010scenario\030\001 \001(\0132\017.ScenarioConfig\"8\n\010AI"
-  "Player\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\t\022\022\n\ndiff"
-  "iculty\030\003 \001(\r\"\323\001\n\016ScenarioConfig\022\014\n\004type\030"
-  "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\020\n"
-  "\010playerID\030\004 \001(\005\022\014\n\004size\030\005 \001(\r\022\022\n\nnumPlay"
-  "ers\030\006 \001(\r\022\014\n\004seed\030\007 \001(\r\022\016\n\006aiseed\030\010 \001(\r\022"
-  "\021\n\tgameSpeed\030\t \001(\002\022\032\n\007players\030\n \003(\0132\t.AI"
-  "Player\022\022\n\nsaveReplay\030\013 \001(\0102\260\001\n\005RLAPI\022 \n\004"
-  "Step\022\010.Actions\032\014.Observation\"\000\022&\n\005Reset\022"
-  "\r.ResetRequest\032\014.Observation\"\000\022*\n\007Connec"
-  "t\022\017.ConnectRequest\032\014.Observation\"\000\0221\n\014Ge"
-  "tTemplates\022\023.GetTemplateRequest\032\n.Templa"
-  "tes\"\000b\006proto3"
+  " \001(\0132\017.ScenarioConfig\"8\n\010AIPlayer\022\n\n\002id\030"
+  "\001 \001(\005\022\014\n\004type\030\002 \001(\t\022\022\n\ndifficulty\030\003 \001(\r\""
+  "\323\001\n\016ScenarioConfig\022\014\n\004type\030\001 \001(\t\022\014\n\004name"
+  "\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\020\n\010playerID\030\004 \001"
+  "(\005\022\014\n\004size\030\005 \001(\r\022\022\n\nnumPlayers\030\006 \001(\r\022\014\n\004"
+  "seed\030\007 \001(\r\022\016\n\006aiseed\030\010 \001(\r\022\021\n\tgameSpeed\030"
+  "\t \001(\002\022\032\n\007players\030\n \003(\0132\t.AIPlayer\022\022\n\nsav"
+  "eReplay\030\013 \001(\0102\204\001\n\005RLAPI\022 \n\004Step\022\010.Action"
+  "s\032\014.Observation\"\000\022&\n\005Reset\022\r.ResetReques"
+  "t\032\014.Observation\"\000\0221\n\014GetTemplates\022\023.GetT"
+  "emplateRequest\032\n.Templates\"\000b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_RLAPI_2eproto = {
   false, InitDefaults_RLAPI_2eproto, 
   descriptor_table_protodef_RLAPI_2eproto,
-  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 813,
+  "RLAPI.proto", &assign_descriptors_table_RLAPI_2eproto, 716,
 };
 
 void AddDescriptors_RLAPI_2eproto() {
@@ -2519,293 +2488,6 @@ void ResetRequest::InternalSwap(ResetRequest* other) {
 
 // ===================================================================
 
-void ConnectRequest::InitAsDefaultInstance() {
-  ::_ConnectRequest_default_instance_._instance.get_mutable()->scenario_ = const_cast< ::ScenarioConfig*>(
-      ::ScenarioConfig::internal_default_instance());
-}
-class ConnectRequest::HasBitSetters {
- public:
-  static const ::ScenarioConfig& scenario(const ConnectRequest* msg);
-};
-
-const ::ScenarioConfig&
-ConnectRequest::HasBitSetters::scenario(const ConnectRequest* msg) {
-  return *msg->scenario_;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int ConnectRequest::kScenarioFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-ConnectRequest::ConnectRequest()
-  : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:ConnectRequest)
-}
-ConnectRequest::ConnectRequest(const ConnectRequest& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_scenario()) {
-    scenario_ = new ::ScenarioConfig(*from.scenario_);
-  } else {
-    scenario_ = nullptr;
-  }
-  // @@protoc_insertion_point(copy_constructor:ConnectRequest)
-}
-
-void ConnectRequest::SharedCtor() {
-  ::google::protobuf::internal::InitSCC(
-      &scc_info_ConnectRequest_RLAPI_2eproto.base);
-  scenario_ = nullptr;
-}
-
-ConnectRequest::~ConnectRequest() {
-  // @@protoc_insertion_point(destructor:ConnectRequest)
-  SharedDtor();
-}
-
-void ConnectRequest::SharedDtor() {
-  if (this != internal_default_instance()) delete scenario_;
-}
-
-void ConnectRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const ConnectRequest& ConnectRequest::default_instance() {
-  ::google::protobuf::internal::InitSCC(&::scc_info_ConnectRequest_RLAPI_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void ConnectRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:ConnectRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  if (GetArenaNoVirtual() == nullptr && scenario_ != nullptr) {
-    delete scenario_;
-  }
-  scenario_ = nullptr;
-  _internal_metadata_.Clear();
-}
-
-#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-const char* ConnectRequest::_InternalParse(const char* begin, const char* end, void* object,
-                  ::google::protobuf::internal::ParseContext* ctx) {
-  auto msg = static_cast<ConnectRequest*>(object);
-  ::google::protobuf::int32 size; (void)size;
-  int depth; (void)depth;
-  ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::ParseFunc parser_till_end; (void)parser_till_end;
-  auto ptr = begin;
-  while (ptr < end) {
-    ptr = ::google::protobuf::io::Parse32(ptr, &tag);
-    GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-    switch (tag >> 3) {
-      // .ScenarioConfig scenario = 1;
-      case 1: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
-        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        parser_till_end = ::ScenarioConfig::_InternalParse;
-        object = msg->mutable_scenario();
-        if (size > end - ptr) goto len_delim_till_end;
-        ptr += size;
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
-            {parser_till_end, object}, ptr - size, ptr));
-        break;
-      }
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->EndGroup(tag);
-          return ptr;
-        }
-        auto res = UnknownFieldParse(tag, {_InternalParse, msg},
-          ptr, end, msg->_internal_metadata_.mutable_unknown_fields(), ctx);
-        ptr = res.first;
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr != nullptr);
-        if (res.second) return ptr;
-      }
-    }  // switch
-  }  // while
-  return ptr;
-len_delim_till_end:
-  return ctx->StoreAndTailCall(ptr, end, {_InternalParse, msg},
-                               {parser_till_end, object}, size);
-}
-#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-bool ConnectRequest::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:ConnectRequest)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .ScenarioConfig scenario = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_scenario()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:ConnectRequest)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:ConnectRequest)
-  return false;
-#undef DO_
-}
-#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-
-void ConnectRequest::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:ConnectRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .ScenarioConfig scenario = 1;
-  if (this->has_scenario()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, HasBitSetters::scenario(this), output);
-  }
-
-  if (_internal_metadata_.have_unknown_fields()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        _internal_metadata_.unknown_fields(), output);
-  }
-  // @@protoc_insertion_point(serialize_end:ConnectRequest)
-}
-
-::google::protobuf::uint8* ConnectRequest::InternalSerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ConnectRequest)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .ScenarioConfig scenario = 1;
-  if (this->has_scenario()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, HasBitSetters::scenario(this), target);
-  }
-
-  if (_internal_metadata_.have_unknown_fields()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:ConnectRequest)
-  return target;
-}
-
-size_t ConnectRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ConnectRequest)
-  size_t total_size = 0;
-
-  if (_internal_metadata_.have_unknown_fields()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        _internal_metadata_.unknown_fields());
-  }
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .ScenarioConfig scenario = 1;
-  if (this->has_scenario()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *scenario_);
-  }
-
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void ConnectRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:ConnectRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ConnectRequest* source =
-      ::google::protobuf::DynamicCastToGenerated<ConnectRequest>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ConnectRequest)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:ConnectRequest)
-    MergeFrom(*source);
-  }
-}
-
-void ConnectRequest::MergeFrom(const ConnectRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:ConnectRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.has_scenario()) {
-    mutable_scenario()->::ScenarioConfig::MergeFrom(from.scenario());
-  }
-}
-
-void ConnectRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:ConnectRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void ConnectRequest::CopyFrom(const ConnectRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ConnectRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool ConnectRequest::IsInitialized() const {
-  return true;
-}
-
-void ConnectRequest::Swap(ConnectRequest* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void ConnectRequest::InternalSwap(ConnectRequest* other) {
-  using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(scenario_, other->scenario_);
-}
-
-::google::protobuf::Metadata ConnectRequest::GetMetadata() const {
-  ::google::protobuf::internal::AssignDescriptors(&::assign_descriptors_table_RLAPI_2eproto);
-  return ::file_level_metadata_RLAPI_2eproto[kIndexInFileMessages];
-}
-
-
-// ===================================================================
-
 void AIPlayer::InitAsDefaultInstance() {
 }
 class AIPlayer::HasBitSetters {
@@ -4019,9 +3701,6 @@ template<> PROTOBUF_NOINLINE ::Observation* Arena::CreateMaybeMessage< ::Observa
 }
 template<> PROTOBUF_NOINLINE ::ResetRequest* Arena::CreateMaybeMessage< ::ResetRequest >(Arena* arena) {
   return Arena::CreateInternal< ::ResetRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::ConnectRequest* Arena::CreateMaybeMessage< ::ConnectRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::ConnectRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::AIPlayer* Arena::CreateMaybeMessage< ::AIPlayer >(Arena* arena) {
   return Arena::CreateInternal< ::AIPlayer >(arena);

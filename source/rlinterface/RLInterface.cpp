@@ -4,28 +4,6 @@
 using grpc::ServerContext;
 using boost::fibers::channel_op_status;
 
-grpc::Status RLInterface::Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) 
-{
-    std::cout << ">>> Aquiring lock for Connect" << std::endl;
-    std::lock_guard<std::mutex> lock(m_lock);
-
-    if (req->has_scenario())
-    {
-        m_GameConfig = GameConfig::from(req->scenario());
-    }
-
-    GameMessage msg = { GameMessageType::Reset };
-    m_GameMessages.push(msg);
-
-    std::string state;
-    std::cout << "Waiting for game state" << std::endl;
-    m_GameStates.pop(state);
-    obs->set_content(state);
-
-    std::cout << ">>> Connect Complete" << std::endl;
-    return grpc::Status::OK;
-}
-
 grpc::Status RLInterface::Step(ServerContext* context, const Actions* commands, Observation* obs) 
 {
     std::cout << ">>> Acquiring lock for Step" << std::endl;

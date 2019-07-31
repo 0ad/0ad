@@ -3,7 +3,6 @@ syntax = "proto3";
 service RLAPI {
     rpc Step(Actions) returns (Observation) {}
     rpc Reset(ResetRequest) returns (Observation) {}
-    rpc Connect(ConnectRequest) returns (Observation) {}
     rpc GetTemplates(GetTemplateRequest) returns (Templates) {}
 }
 
@@ -34,10 +33,6 @@ message Observation {
 }
 
 message ResetRequest {
-    ScenarioConfig scenario = 1;
-}
-
-message ConnectRequest {
     ScenarioConfig scenario = 1;
 }
 

@@ -42,7 +42,6 @@ class RLInterface final : public RLAPI::Service
 
     public:
 
-        grpc::Status Connect(ServerContext* context, const ConnectRequest* req, Observation* obs) override;
         grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override;
         grpc::Status Reset(ServerContext* context, const ResetRequest* req, Observation* obs) override;
         grpc::Status GetTemplates(ServerContext* context, const GetTemplateRequest* req, Templates* res) override;
@@ -50,7 +49,6 @@ class RLInterface final : public RLAPI::Service
         void Listen(std::string server_address);
         void ApplyEvents();  // Apply RPC messages to the game engine
         std::string GetGameState();
-        // TODO: Add a render method??
 
     private:
         std::unique_ptr<grpc::Server> m_Server;
