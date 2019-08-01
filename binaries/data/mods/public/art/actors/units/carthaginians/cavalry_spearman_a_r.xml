@@ -8,7 +8,33 @@
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/cart_tarantine_a.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Samnite-Attic-01">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_a1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Attic-02">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_a2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Attic-03">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_a3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Attic-04">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_a4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Phrygian-01">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_a11.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

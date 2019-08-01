@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="thracian-06">
+      <mesh>props/helmet/hele_thracian_e.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_thracian_07_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_thracian_07_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_thracian_07_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Masked - Crest 01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2_small.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_thracian_e_hinged_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Masked - Crest 02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_thracian_e_hinged_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crested - 01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crested - 02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_crest_hair_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

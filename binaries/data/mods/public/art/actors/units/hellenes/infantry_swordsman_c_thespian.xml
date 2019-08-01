@@ -5,11 +5,32 @@
     <variant file="biped/base_swordsman_shieldarm.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/hele_corinthian_iron.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_corinthian.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/thespian.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/thespian_black.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Helmet-Corinthian-01">
+      <props>
+        <prop actor="props/units/helmets/hele_corinthian_i1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="Helmet-Corinthian-02">
+      <props>
+        <prop actor="props/units/helmets/hele_corinthian_i2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="Helmet-Corinthian-03">
+      <props>
+        <prop actor="props/units/helmets/hele_corinthian_i3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="Helmet-Corinthian-04">
+      <props>
+        <prop actor="props/units/helmets/hele_corinthian_i4.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

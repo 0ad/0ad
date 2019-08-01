@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Chalcidean-03">
+      <mesh>props/helmet/hele_chalcidean_c.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze-03">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_03_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_chalcidean_03_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_chalcidean_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Mask-01">
+      <props>
+        <prop actor="props/units/helmets/props/chalcidean_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_attic_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mask-03">
+      <props>
+        <prop actor="props/units/helmets/props/chalcidean_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_chalcidean_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

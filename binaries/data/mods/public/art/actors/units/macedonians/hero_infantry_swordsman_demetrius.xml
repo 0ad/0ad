@@ -17,6 +17,28 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Helmet Phrygian Silver-01">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_s.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Silver-02">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_s2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Silver-03">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_s8.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Phrygian Silver-04">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_s9.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml">

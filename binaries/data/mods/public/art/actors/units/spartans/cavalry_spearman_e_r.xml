@@ -6,9 +6,20 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/hele_cav_a.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/spearman_ready_reverse.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Boeotian-01">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Boeotian-02">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_crest.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

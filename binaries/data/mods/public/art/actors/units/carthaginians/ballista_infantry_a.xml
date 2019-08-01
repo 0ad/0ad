@@ -5,12 +5,38 @@
     <variant file="biped/base_slave_male.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/kart_isp_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/kart_isp_e_1.dds" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet-Carthaginian-Bronze-01">
+      <props>
+        <prop actor="props/units/helmets/cart_helmet_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Carthaginian-Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/cart_helmet_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze-Black">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_br.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b6.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Phrygian-Bronze">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b10.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

@@ -7,10 +7,36 @@
       <props>
         <prop actor="props/units/heads/new/head_philip.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/heads/mace_philip.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_phrygian_s7.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="cuirass-gorgon-philip">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_s.xml" attachpoint="helmet"/>
       </props>
       <textures>
+        <texture file="skeletal/mace_cuirass_gorgon_philip.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_gorgon_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cuirass-vergina-1a">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_s.xml" attachpoint="helmet"/>
+      </props>
+      <textures>
+        <texture file="skeletal/mace_cuirass_vergina_1_a.png" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="curass-vergina-old">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
         <texture file="skeletal/hele_philip_3.dds" name="baseTex"/>
+        <texture file="skeletal/mace_cuirass_vergina_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

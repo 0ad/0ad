@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Pilos-02">
+      <mesh>props/helmet/hele_pilos_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_pilos_02_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_pilos_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_pilos_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Ornament">
+      <props>
+        <prop actor="props/units/helmets/props/hele_pilos_ornament_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="No-Ornament">
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

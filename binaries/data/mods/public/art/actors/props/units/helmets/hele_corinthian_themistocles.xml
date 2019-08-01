@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant name="Corinthian">
-      <mesh>props/helmet/hele_corinthian_b.dae</mesh>
+      <mesh>props/helmet/hele_corinthian_c.dae</mesh>
     </variant>
   </group>
   <group>
@@ -14,11 +14,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Patterned">
+    <variant frequency="1" name="Leonidas Helmet">
       <textures>
-        <texture file="props/helmet/hele_corinthian_themistocles.png" name="baseTex"/>
-        <texture file="props/helmet/hele_corinthian_b_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_corinthian_b_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_corinthian_03_checker.png" name="baseTex"/>
+        <texture file="props/helmet/hele_corinthian_03_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_corinthian_03_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

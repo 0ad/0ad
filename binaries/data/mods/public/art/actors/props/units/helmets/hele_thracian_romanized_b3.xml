@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/helmet/hele_thracian_romanized_c.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_thracian_romanized_03_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_thracian_romanized_03_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_thracian_romanized_03_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_romanized_long_hair.xml" attachpoint="hair_M"/>
+        <prop actor="props/units/helmets/props/hele_thracian_romanized_hair_r.xml" attachpoint="hair_R"/>
+        <prop actor="props/units/helmets/props/hele_thracian_romanized_hair_l.xml" attachpoint="hair_L"/>
+        <prop actor="props/units/helmets/props/hele_thracian_mask_s3.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

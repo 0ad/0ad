@@ -2,12 +2,21 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base" file="helmets/hele_pilos_base_crested.xml"/>
+    <variant name="Pilos-01">
+      <mesh>props/helmet/hele_pilos_a1.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/pilos_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <group>
-    <variant frequency="33" file="helmets/hele_pilos_base_bronze_01.xml" name="bronze-a"/>
-    <variant frequency="33" file="helmets/hele_pilos_base_bronze_02.xml" name="bronze-b"/>
-    <variant frequency="33" file="helmets/hele_pilos_base_gold.xml" name="gold"/>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_pilos_01_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_pilos_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_pilos_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_spec_helmet.xml</material>
 </actor>

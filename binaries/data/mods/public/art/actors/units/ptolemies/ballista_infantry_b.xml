@@ -5,13 +5,29 @@
     <variant file="biped/base_slave_male.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/spartan_phalangite_helmet.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_egyptian_e.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/ptol_isp_a_1.png" name="baseTex"/>
         <texture file="skeletal/ptol_isp_a_1_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Hele Thracian Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b5_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b4_crested.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

@@ -14,6 +14,23 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Hele Thracian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_p3_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-04">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_s2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Thorax-Chainmail">
       <textures>
         <texture file="skeletal/mace_thoakrites.dds" name="baseTex"/>

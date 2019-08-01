@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="attic-01">
+      <mesh>props/helmet/hele_attic_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze-01">
+      <textures>
+        <texture file="props/helmet/hele_attic_01_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_attic_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_attic_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze-02">
+      <textures>
+        <texture file="props/helmet/hele_attic_03_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_attic_03_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_attic_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Mask-01">
+      <props>
+        <prop actor="props/units/helmets/props/illyrian_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_attic_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mask-02">
+      <props>
+        <prop actor="props/units/helmets/props/illyrian_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_attic_mask_b2.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="No-Mask">
+      <props>
+        <prop actor="props/units/helmets/props/illyrian_crest.xml" attachpoint="root"/>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Feather-01">
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_01"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_02"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_03"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_04"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Winged-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_attic_wings.xml" attachpoint="wing_R"/>
+        <prop actor="props/units/helmets/props/hele_attic_wings.xml" attachpoint="wing_L"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

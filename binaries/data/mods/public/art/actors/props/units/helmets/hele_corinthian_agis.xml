@@ -2,8 +2,17 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Corinthian">
+    <variant name="corinthian-01">
       <mesh>props/helmet/hele_corinthian_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_corinthian_01_iron.png" name="baseTex"/>
+        <texture file="props/helmet/hele_corinthian_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_corinthian_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -11,15 +20,6 @@
       <props>
         <prop actor="props/units/helmets/props/hele_corinthian_crest_transversal.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Iron">
-      <textures>
-        <texture file="props/helmet/hele_corinthian_iron.png" name="baseTex"/>
-        <texture file="props/helmet/hele_corinthian_a_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_corinthian_a_spec.png" name="specTex"/>
-      </textures>
     </variant>
   </group>
   <material>basic_trans_parallax_spec.xml</material>

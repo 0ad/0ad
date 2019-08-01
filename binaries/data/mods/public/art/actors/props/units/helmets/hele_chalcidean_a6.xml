@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_06_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_chalcidean_06_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/hele_boeotian_hair.xml" attachpoint="hair"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Hispano-01">
+      <mesh>props/helmet/hele_chalcidean_f1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Hispano-02">
+      <mesh>props/helmet/hele_chalcidean_f2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_06_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_06_brass.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Mask-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_hispano_chalcidean_ornament_b1.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_hispano_chalcidean_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="No-Mask">
+      <props>
+        <prop actor="props/units/helmets/props/hele_hispano_chalcidean_ornament_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

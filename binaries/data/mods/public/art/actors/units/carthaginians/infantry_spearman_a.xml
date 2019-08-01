@@ -7,8 +7,39 @@
       <props>
         <prop actor="props/units/shields/kart_round_isp_adv.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/heads/kart_isp_a.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet-Carthaginian-Bronze-01">
+      <props>
+        <prop actor="props/units/helmets/cart_helmet_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Carthaginian-Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/cart_helmet_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze-Black">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_br.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze-Player">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b6.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Phrygian-Bronze">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b10.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

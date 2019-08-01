@@ -5,7 +5,6 @@
     <variant file="biped/base_hoplite.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/athen_round_epilektos.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
@@ -13,6 +12,43 @@
       <textures>
         <texture file="skeletal/athen_epilektos_1.png" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Hele Phrygian Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_c.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Phrygian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Phrygian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Phrygian Helmet-04">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b8.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Pilos Helmet-05">
+      <props>
+        <prop actor="props/units/helmets/hele_pilos.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Thracian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b5_crested.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>
