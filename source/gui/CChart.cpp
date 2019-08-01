@@ -29,7 +29,8 @@
 
 #include <cmath>
 
-CChart::CChart()
+CChart::CChart(CGUI* pGUI)
+	: IGUIObject(pGUI)
 {
 	AddSetting(GUIST_CGUIColor, "axis_color");
 	AddSetting(GUIST_float, "axis_width");

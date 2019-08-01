@@ -23,7 +23,8 @@
 #include "gui/GUI.h"
 #include "lib/ogl.h"
 
-CText::CText()
+CText::CText(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
@@ -51,7 +52,7 @@ CText::CText()
 	GUI<bool>::SetSetting(this, "clip", true);
 
 	// Add scroll-bar
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
+	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
 	bar->SetRightAligned(true);
 	AddScrollBar(bar);
 
@@ -65,10 +66,8 @@ CText::~CText()
 
 void CText::SetupText()
 {
-	if (!GetGUI())
+	if (m_GeneratedTexts.empty())
 		return;
-
-	ENSURE(m_GeneratedTexts.size()>=1);
 
 	CStrW font;
 	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())

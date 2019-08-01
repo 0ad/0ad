@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ class CMiniMap : public IGUIObject
 {
 	GUI_OBJECT(CMiniMap)
 public:
-	CMiniMap();
+	CMiniMap(CGUI* pGUI);
 	virtual ~CMiniMap();
 protected:
 	virtual void Draw();

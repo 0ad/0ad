@@ -22,7 +22,8 @@
 #include "gui/CGUIColor.h"
 #include "lib/ogl.h"
 
-CButton::CButton()
+CButton::CButton(CGUI* pGUI)
+	: IGUIObject(pGUI)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");

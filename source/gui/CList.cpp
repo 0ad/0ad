@@ -27,11 +27,11 @@
 #include "soundmanager/ISoundManager.h"
 
 
-CList::CList()
-	: m_Modified(false), m_PrevSelectedItem(-1), m_LastItemClickTime(0)
+CList::CList(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI),
+	  m_Modified(false), m_PrevSelectedItem(-1), m_LastItemClickTime(0)
 {
 	// Add sprite_disabled! TODO
-
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
@@ -60,7 +60,7 @@ CList::CList()
 	GUI<bool>::SetSetting(this, "auto_scroll", false);
 
 	// Add scroll-bar
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
+	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
 	bar->SetRightAligned(true);
 	AddScrollBar(bar);
 }

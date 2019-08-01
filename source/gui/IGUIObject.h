@@ -107,7 +107,7 @@ class IGUIObject
 	friend bool JSI_IGUIObject::getTextSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
-	IGUIObject();
+	IGUIObject(CGUI* pGUI);
 	virtual ~IGUIObject();
 
 	/**
@@ -332,8 +332,6 @@ protected:
 	 */
 	virtual float GetBufferedZ() const;
 
-	void SetGUI(CGUI* const& pGUI);
-
 	/**
 	 * Set parent of this object
 	 */
@@ -516,7 +514,7 @@ protected:
 
 private:
 	// An object can't function stand alone
-	CGUI									*m_pGUI;
+	CGUI* m_pGUI;
 
 	// Internal storage for registered script handlers.
 	std::map<CStr, JS::Heap<JSObject*> >	m_ScriptHandlers;
@@ -535,6 +533,7 @@ class CGUIDummyObject : public IGUIObject
 	GUI_OBJECT(CGUIDummyObject)
 
 public:
+	CGUIDummyObject(CGUI* pGUI) : IGUIObject(pGUI) {}
 
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.

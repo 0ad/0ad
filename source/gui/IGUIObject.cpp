@@ -46,8 +46,8 @@ void SGUISetting::Init(IGUIObject& pObject, const CStr& Name)
 	};
 }
 
-IGUIObject::IGUIObject()
-	: m_pGUI(NULL), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
+IGUIObject::IGUIObject(CGUI* pGUI)
+	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
 {
 	AddSetting(GUIST_bool,			"enabled");
 	AddSetting(GUIST_bool,			"hidden");
@@ -81,19 +81,13 @@ IGUIObject::~IGUIObject()
 			debug_warn(L"Invalid setting type");
 		}
 
-	if (m_pGUI)
+	if (!m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
 }
 
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
-void IGUIObject::SetGUI(CGUI* const& pGUI)
-{
-	if (!m_pGUI)
-		JS_AddExtraGCRootsTracer(pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
-	m_pGUI = pGUI;
-}
 
 void IGUIObject::AddChild(IGUIObject* pChild)
 {
@@ -452,9 +446,11 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
 {
-	// m_ScriptHandlers is only rooted after SetGUI() has been called (which sets up the GC trace callbacks),
-	// so we can't safely store objects in it if the GUI hasn't been set yet.
 	ENSURE(m_pGUI && "A GUI must be associated with the GUIObject before adding ScriptHandlers!");
+
+	if (m_ScriptHandlers.empty())
+		JS_AddExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
+
 	m_ScriptHandlers[Action] = JS::Heap<JSObject*>(Function);
 }
 
@@ -564,6 +560,8 @@ bool IGUIObject::IsRootObject() const
 
 void IGUIObject::TraceMember(JSTracer* trc)
 {
+	// Please ensure to adapt the Tracer enabling and disabling in accordance with the GC things traced!
+
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
 		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }

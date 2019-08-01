@@ -19,7 +19,8 @@
 
 #include "GUI.h"
 
-IGUIScrollBarOwner::IGUIScrollBarOwner()
+IGUIScrollBarOwner::IGUIScrollBarOwner(CGUI* pGUI)
+	: IGUIObject(pGUI)
 {
 }
 
@@ -40,7 +41,6 @@ void IGUIScrollBarOwner::ResetStates()
 void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
 {
 	scrollbar->SetHostObject(this);
-	scrollbar->SetGUI(GetGUI());
 	m_ScrollBars.push_back(scrollbar);
 }
 

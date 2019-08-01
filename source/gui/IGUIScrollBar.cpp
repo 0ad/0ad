@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,9 @@
 #include "GUI.h"
 #include "maths/MathUtil.h"
 
-IGUIScrollBar::IGUIScrollBar() : m_pStyle(NULL), m_pGUI(NULL),
+IGUIScrollBar::IGUIScrollBar(CGUI* m_pGUI)
+								: m_pGUI(m_pGUI),
+								 m_pStyle(NULL),
 								 m_X(300.f), m_Y(300.f),
 								 m_ScrollRange(1.f), m_ScrollSpace(0.f), // MaxPos: not 0, due to division.
 								 m_Length(200.f), m_Width(20.f),

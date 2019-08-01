@@ -22,7 +22,8 @@
 
 #include <algorithm>
 
-CTooltip::CTooltip()
+CTooltip::CTooltip(CGUI* pGUI)
+	: IGUIObject(pGUI)
 {
 	// If the tooltip is an object by itself:
 	AddSetting(GUIST_float,					"buffer_zone");

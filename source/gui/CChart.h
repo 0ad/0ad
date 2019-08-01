@@ -41,7 +41,7 @@ class CChart : public IGUITextOwner
 	GUI_OBJECT(CChart)
 
 public:
-	CChart();
+	CChart(CGUI* pGUI);
 	virtual ~CChart();
 
 protected:

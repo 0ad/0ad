@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,7 +155,7 @@ struct SGUIScrollBarStyle
 class IGUIScrollBar
 {
 public:
-	IGUIScrollBar();
+	IGUIScrollBar(CGUI* m_pGUI);
 	virtual ~IGUIScrollBar();
 
 public:
@@ -245,12 +245,6 @@ public:
 	 * @return CGUI pointer
 	 */
 	CGUI* GetGUI() const;
-
-	/**
-	 * Set GUI pointer
-	 * @param pGUI pointer to CGUI object.
-	 */
-	void SetGUI(CGUI* pGUI) { m_pGUI = pGUI; }
 
 	/**
 	 * Set Width
