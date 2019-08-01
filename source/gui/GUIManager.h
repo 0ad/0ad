@@ -148,13 +148,14 @@ public:
 private:
 	struct SGUIPage
 	{
+		SGUIPage(const CStrW& pageName, const shared_ptr<ScriptInterface::StructuredClone> initData);
+		void LoadPage(shared_ptr<ScriptRuntime> scriptRuntime);
+
 		CStrW name;
 		boost::unordered_set<VfsPath> inputs; // for hotloading
 		shared_ptr<ScriptInterface::StructuredClone> initData; // data to be passed to the init() function
 		shared_ptr<CGUI> gui; // the actual GUI page
 	};
-
-	void LoadPage(SGUIPage& page);
 
 	shared_ptr<CGUI> top() const;
 
