@@ -17,7 +17,10 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Gender' a:help='Unit gender for voices. Choices includes male or female.'>" +
+		"<element name='Phenotype' a:help='Unit phenotype for voices and visual. If more than one is specified a random one will be chosen.'>" +
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
@@ -95,14 +98,11 @@ Identity.prototype.Init = function()
 {
 	this.classesList = GetIdentityClasses(this.template);
 	this.visibleClassesList = GetVisibleIdentityClasses(this.template);
+	if (this.template.Phenotype)
+		this.phenotype = pickRandom(this.GetPossiblePhenotypes());
+	else
+		this.phenotype = "default";
 };
-
-Identity.prototype.Deserialize = function ()
-{
-	this.Init();
-};
-
-Identity.prototype.Serialize = null; // we have no dynamic state to save
 
 Identity.prototype.GetCiv = function()
 {
@@ -114,9 +114,22 @@ Identity.prototype.GetLang = function()
 	return this.template.Lang || "greek"; // ugly default
 };
 
-Identity.prototype.GetGender = function()
+/**
+ * Get a list of possible Phenotypes.
+ * @return {string[]} A list of possible phenotypes.
+ */
+Identity.prototype.GetPossiblePhenotypes = function()
 {
-	return this.template.Gender || "male"; // ugly default
+	return this.template.Phenotype._string.split(/\s+/);
+};
+
+/**
+ * Get the current Phenotype.
+ * @return {string} The current phenotype.
+ */
+Identity.prototype.GetPhenotype = function()
+{
+	return this.phenotype;
 };
 
 Identity.prototype.GetRank = function()
