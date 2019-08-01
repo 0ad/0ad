@@ -11,11 +11,13 @@ units = state.units(owner=1)
 home_base = state.units(owner=1)[0].position()
 enemies = state.units(owner=2)
 enemy_base = state.units(owner=2)[0].position()
-print('moving all ({len(enemies)}) enemies to home base at ', *home_base)
-print('moving all ({len(units)}) units to enemy base at ', *enemy_base)
+print(f'moving all ({len(enemies)}) enemies to home base at ', *home_base)
+print(f'moving all ({len(units)}) units to enemy base at ', *enemy_base)
 actions = [zero_ad.actions.walk(enemies, *home_base), zero_ad.actions.walk(units, *enemy_base)]
 new_state = game.step(actions, player=[2, 1])
 
 while 1:
     state = game.step()
+    print('units are at', *state.center(state.units(owner=1)))
+    print('enemies are at', *state.center(state.units(owner=2)))
     time.sleep(1)
