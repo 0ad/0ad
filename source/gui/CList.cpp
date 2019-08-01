@@ -28,7 +28,7 @@
 
 
 CList::CList(CGUI* pGUI)
-	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI),
+	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIScrollBarOwner(pGUI),
 	  m_Modified(false), m_PrevSelectedItem(-1), m_LastItemClickTime(0)
 {
 	// Add sprite_disabled! TODO

@@ -24,7 +24,7 @@
 #include "lib/ogl.h"
 
 CText::CText(CGUI* pGUI)
-	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI)
+	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");

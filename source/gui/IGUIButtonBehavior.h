@@ -49,7 +49,7 @@ class CGUISpriteInstance;
 class IGUIButtonBehavior : virtual public IGUIObject
 {
 public:
-	IGUIButtonBehavior();
+	IGUIButtonBehavior(CGUI* pGUI);
 	virtual ~IGUIButtonBehavior();
 
 	/**

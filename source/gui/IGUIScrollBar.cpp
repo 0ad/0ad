@@ -20,8 +20,8 @@
 #include "GUI.h"
 #include "maths/MathUtil.h"
 
-IGUIScrollBar::IGUIScrollBar(CGUI* m_pGUI)
-								: m_pGUI(m_pGUI),
+IGUIScrollBar::IGUIScrollBar(CGUI* pGUI)
+								: m_pGUI(pGUI),
 								 m_pStyle(NULL),
 								 m_X(300.f), m_Y(300.f),
 								 m_ScrollRange(1.f), m_ScrollSpace(0.f), // MaxPos: not 0, due to division.

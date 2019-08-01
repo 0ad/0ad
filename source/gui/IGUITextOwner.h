@@ -45,7 +45,7 @@ GUI Object Base - Text Owner
 class IGUITextOwner : virtual public IGUIObject
 {
 public:
-	IGUITextOwner();
+	IGUITextOwner(CGUI* pGUI);
 	virtual ~IGUITextOwner();
 
 	/**

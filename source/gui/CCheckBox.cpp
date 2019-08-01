@@ -29,7 +29,7 @@
  * Thus the font, caption, textcolor and other settings have no effect.
  */
 CCheckBox::CCheckBox(CGUI* pGUI)
-	: IGUIObject(pGUI)
+	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIButtonBehavior(pGUI)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");

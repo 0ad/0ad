@@ -22,7 +22,8 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-IGUIButtonBehavior::IGUIButtonBehavior() : m_Pressed(false)
+IGUIButtonBehavior::IGUIButtonBehavior(CGUI* pGUI)
+	: IGUIObject(pGUI), m_Pressed(false)
 {
 }
 

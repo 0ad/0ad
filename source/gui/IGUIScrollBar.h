@@ -155,7 +155,7 @@ struct SGUIScrollBarStyle
 class IGUIScrollBar
 {
 public:
-	IGUIScrollBar(CGUI* m_pGUI);
+	IGUIScrollBar(CGUI* pGUI);
 	virtual ~IGUIScrollBar();
 
 public:

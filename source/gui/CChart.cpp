@@ -30,7 +30,7 @@
 #include <cmath>
 
 CChart::CChart(CGUI* pGUI)
-	: IGUIObject(pGUI)
+	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting(GUIST_CGUIColor, "axis_color");
 	AddSetting(GUIST_float, "axis_width");

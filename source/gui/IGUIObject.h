@@ -514,7 +514,7 @@ protected:
 
 private:
 	// An object can't function stand alone
-	CGUI* m_pGUI;
+	CGUI* const m_pGUI;
 
 	// Internal storage for registered script handlers.
 	std::map<CStr, JS::Heap<JSObject*> >	m_ScriptHandlers;

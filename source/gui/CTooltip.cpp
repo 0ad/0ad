@@ -23,7 +23,7 @@
 #include <algorithm>
 
 CTooltip::CTooltip(CGUI* pGUI)
-	: IGUIObject(pGUI)
+	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
 	// If the tooltip is an object by itself:
 	AddSetting(GUIST_float,					"buffer_zone");
