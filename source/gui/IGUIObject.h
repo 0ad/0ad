@@ -244,6 +244,12 @@ public:
 	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
 
 	/**
+	 * Creates the JS Object representing this page upon first use.
+	 * Can be overridden by derived classes to extend it.
+	 */
+	virtual void CreateJSObject();
+
+	/**
 	 * Retrieves the JSObject representing this GUI object.
 	 */
 	JSObject* GetJSObject();
@@ -509,10 +515,10 @@ protected:
 	 *
 	 * @see SetupSettings()
 	 */
-	public:
+public:
 	std::map<CStr, SGUISetting>				m_Settings;
 
-private:
+protected:
 	// An object can't function stand alone
 	CGUI* const m_pGUI;
 
