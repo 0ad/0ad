@@ -45,7 +45,7 @@ class COList : public CList
 	GUI_OBJECT(COList)
 
 public:
-	COList();
+	COList(CGUI* pGUI);
 
 protected:
 	void SetupText();

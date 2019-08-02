@@ -39,8 +39,9 @@
 
 extern int g_yres;
 
-CInput::CInput()
-	: m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
+CInput::CInput(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI),
+	m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
 	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_ComposingText(false),
 	m_iComposedLength(0), m_iComposedPos(0), m_iInsertPos(0), m_Readonly(false)
 {
@@ -65,7 +66,7 @@ CInput::CInput()
 
 	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
+	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
 	bar->SetRightAligned(true);
 	AddScrollBar(bar);
 }

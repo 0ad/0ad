@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ class CImage : public IGUIObject
 	GUI_OBJECT(CImage)
 
 public:
-	CImage();
+	CImage(CGUI* pGUI);
 	virtual ~CImage();
 
 protected:

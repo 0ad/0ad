@@ -19,7 +19,8 @@
 
 #include "gui/GUI.h"
 
-IGUITextOwner::IGUITextOwner() : m_GeneratedTextsValid(false)
+IGUITextOwner::IGUITextOwner(CGUI* pGUI)
+	: IGUIObject(pGUI), m_GeneratedTextsValid(false)
 {
 }
 

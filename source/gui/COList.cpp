@@ -27,7 +27,8 @@
 const float SORT_SPRITE_DIM = 16.0f;
 const CPos COLUMN_SHIFT = CPos(0, 4);
 
-COList::COList() : CList()
+COList::COList(CGUI* pGUI)
+	: CList(pGUI), IGUIObject(pGUI)
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_heading");
 	AddSetting(GUIST_bool,					"sortable"); // The actual sorting is done in JS for more versatility

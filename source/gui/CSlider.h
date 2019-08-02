@@ -26,7 +26,7 @@ class CSlider : public IGUIObject
 	GUI_OBJECT(CSlider)
 
 public:
-	CSlider();
+	CSlider(CGUI* pGUI);
 	virtual ~CSlider();
 
 protected:

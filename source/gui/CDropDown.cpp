@@ -26,8 +26,9 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-CDropDown::CDropDown()
-	: m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
+CDropDown::CDropDown(CGUI* pGUI)
+	: CList(pGUI), IGUIObject(pGUI),
+	  m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
 {
 	AddSetting(GUIST_float,					"button_width");
 	AddSetting(GUIST_float,					"dropdown_size");

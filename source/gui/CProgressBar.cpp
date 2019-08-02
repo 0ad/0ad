@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,8 @@
 
 #include "lib/ogl.h"
 
-CProgressBar::CProgressBar()
+CProgressBar::CProgressBar(CGUI* pGUI)
+	: IGUIObject(pGUI)
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_background");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_bar");

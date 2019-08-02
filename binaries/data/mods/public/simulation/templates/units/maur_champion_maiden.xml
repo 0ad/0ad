@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
     <Civ>maur</Civ>
-    <Gender>female</Gender>
+    <Phenotype datatype="tokens">female</Phenotype>
     <GenericName>Maiden Guard</GenericName>
     <SpecificName>Visha Kanya</SpecificName>
     <SelectionGroupName>units/maur_champion_maiden</SelectionGroupName>

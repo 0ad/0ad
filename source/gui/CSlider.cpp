@@ -22,8 +22,8 @@
 #include "ps/CLogger.h"
 
 
-CSlider::CSlider()
-	: m_IsPressed(false), m_ButtonSide(0)
+CSlider::CSlider(CGUI* pGUI)
+	: IGUIObject(pGUI), m_IsPressed(false), m_ButtonSide(0)
 {
 	AddSetting(GUIST_float, "value");
 	AddSetting(GUIST_float, "min_value");

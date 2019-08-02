@@ -290,8 +290,8 @@ CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
-	m_BaseObject = new CGUIDummyObject;
-	m_BaseObject->SetGUI(this);
+
+       m_BaseObject = new CGUIDummyObject(this);
 }
 
 CGUI::~CGUI()
@@ -305,12 +305,10 @@ CGUI::~CGUI()
 IGUIObject* CGUI::ConstructObject(const CStr& str)
 {
 	if (m_ObjectTypes.count(str) > 0)
-		return (*m_ObjectTypes[str])();
-	else
-	{
-		// Error reporting will be handled with the NULL return.
-		return NULL;
-	}
+		return (*m_ObjectTypes[str])(this);
+
+	// Error reporting will be handled with the nullptr return.
+	return nullptr;
 }
 
 void CGUI::Initialize()
@@ -401,9 +399,6 @@ void CGUI::AddObject(IGUIObject* pObject)
 {
 	try
 	{
-		// Add CGUI pointer
-		GUI<CGUI*>::RecurseObject(0, pObject, &IGUIObject::SetGUI, this);
-
 		m_BaseObject->AddChild(pObject);
 
 		// Cache tree
@@ -1148,8 +1143,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 
-			// We need to set the GUI this object belongs to because RegisterScriptHandler requires an associated GUI.
-			object->SetGUI(this);
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
 		}
 		else if (element_name == elmt_repeat)
@@ -1732,7 +1725,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 {
-	IGUIObject* object = new CTooltip;
+	IGUIObject* object = new CTooltip(this);
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{

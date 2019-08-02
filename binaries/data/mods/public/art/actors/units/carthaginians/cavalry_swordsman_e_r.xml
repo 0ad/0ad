@@ -8,11 +8,22 @@
         <prop actor="props/units/heads/new/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/kart_csw_round_e.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
       </props>
       <textures>
         <texture file="skeletal/kart_ijv_e_2.dds" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Berru Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino_01.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>
