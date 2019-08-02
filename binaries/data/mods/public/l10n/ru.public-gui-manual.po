@@ -8,7 +8,7 @@
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # anton.tsyganenko <anton-tsyganenko@yandex.ru>, 2015
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2019
 # Check Tester <registruser@yandex.com>, 2018
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-21 09:44+0100\n"
-"PO-Revision-Date: 2019-04-01 23:14+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2019-08-01 10:05+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,7 +141,7 @@ msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"]  — игра
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Многопользовательская[font=\"sans-bold-14\"] — игра с соперниками, по интернету."
+msgstr "• [font=\"sans-bold-14\"]Сетевая игра[font=\"sans-bold-14\"] — игра с соперниками в интернете."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -149,7 +149,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Чтобы создать многопользовательскую игру, выберите «Создать игру». Другие игроки должны «Присоединиться к игре» и ввести Ваш IP-адрес. Игра использует UDP порт 20595, поэтому убедитесь, что он доступен из сети. Возможно Вам потребуется настройка своего NAT/firewall и т.д."
+msgstr "Чтобы создать сетевую игру, выберите «Создать игру». Другие игроки должны выбрать «Присоединиться к игре» и ввести ваш IP-адрес. Игра использует UDP-порт 20595, поэтому убедитесь, что он доступен из сети. Возможно вам потребуется настройка NAT, сетевого экрана и т. д."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -159,7 +159,7 @@ msgstr "[font=\"sans-bold-16\"]Настройки игры"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]В многопользовательской игре только хозяин может изменить параметры игры."
+msgstr "[font=\"sans-14\"]В сетевой игре только хозяин может менять параметры игры."
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
@@ -439,7 +439,7 @@ msgstr "Ctrl + Tab: Переключить окно сводки."
 
 #: gui/manual/intro.txt:93
 msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr "Alt + L: Показать лобби многопользовательской игры в новом окне."
+msgstr "Alt + L: Показать сетевую комнату в диалоговом окне."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
