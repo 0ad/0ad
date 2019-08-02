@@ -104,7 +104,6 @@ class IGUIObject
 	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
 	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
-	friend bool JSI_IGUIObject::getTextSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
 	IGUIObject(CGUI* pGUI);
@@ -352,6 +351,11 @@ public:
 	 * Take focus!
 	 */
 	void SetFocus();
+
+	/**
+	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
+	 */
+	virtual void* GetTextOwner() { return nullptr; }
 
 protected:
 	/**

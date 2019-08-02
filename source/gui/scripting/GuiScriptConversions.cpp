@@ -170,6 +170,34 @@ template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleV
 	return FromJSVal<CColor>(cx, v, out);
 }
 
+template<> void ScriptInterface::ToJSVal<CSize>(JSContext* cx, JS::MutableHandleValue ret, const CSize& val)
+{
+	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "width", val.cx, "height", val.cy);
+}
+
+template<> bool ScriptInterface::FromJSVal<CSize>(JSContext* cx, JS::HandleValue v, CSize& out)
+{
+	if (!v.isObject())
+	{
+		JS_ReportError(cx, "CSize value must be an object!");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "width", out.cx))
+	{
+		JS_ReportError(cx, "Failed to get CSize.cx property");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "height", out.cy))
+	{
+		JS_ReportError(cx, "Failed to get CSize.cy property");
+		return false;
+	}
+
+	return true;
+}
+
 template<> void ScriptInterface::ToJSVal<CPos>(JSContext* cx, JS::MutableHandleValue ret, const CPos& val)
 {
 	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "x", val.x, "y", val.y);
