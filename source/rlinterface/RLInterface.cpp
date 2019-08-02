@@ -6,7 +6,6 @@ using boost::fibers::channel_op_status;
 
 grpc::Status RLInterface::Step(ServerContext* context, const Actions* commands, Observation* obs) 
 {
-    std::cout << ">>> Acquiring lock for Step" << std::endl;
     std::lock_guard<std::mutex> lock(m_lock);
 
     // Interactions with the game engine (g_Game) must be done in the main
@@ -26,13 +25,11 @@ grpc::Status RLInterface::Step(ServerContext* context, const Actions* commands, 
     m_GameStates.pop(state);
     obs->set_content(state);
 
-    std::cout << ">>> Step Complete" << std::endl;
     return grpc::Status::OK;
 }
 
 grpc::Status RLInterface::Reset(ServerContext* context, const ResetRequest* req, Observation* obs) 
 {
-    std::cout << ">>> Acquiring lock for Reset" << std::endl;
     std::lock_guard<std::mutex> lock(m_lock);
     if (req->has_scenario())
     {
@@ -45,7 +42,6 @@ grpc::Status RLInterface::Reset(ServerContext* context, const ResetRequest* req,
     m_GameStates.pop(state);
     obs->set_content(state);
 
-    std::cout << ">>> Reset Complete" << std::endl;
     return grpc::Status::OK;
 }
 
@@ -54,7 +50,7 @@ grpc::Status RLInterface::GetTemplates(ServerContext* context, const GetTemplate
     std::lock_guard<std::mutex> lock(m_lock);
     if (!g_Game)
     {
-        debug_warn(L"Game not running. Have you started a scenario with a Reset message?");
+        LOGWARNING("Game not running. Have you started a scenario with a Reset message?");
         return grpc::Status(grpc::StatusCode::FAILED_PRECONDITION, "Game not running.");
     }
 
@@ -101,7 +97,6 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
     GameMessage msg;
     while (m_GameMessages.try_pop(msg) == channel_op_status::success)
     {
-        std::cout << "Applying game message!" << std::endl;
         switch (msg.type)
         {
             case GameMessageType::Reset:
@@ -146,7 +141,7 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
             case GameMessageType::Commands:
                 if (!isGameStarted)
                 {
-                    LOGERROR("Cannot apply game commands w/o running game. Ignoring...");
+                    LOGWARNING("Cannot apply game commands w/o running game. Ignoring...");
                     continue;
                 }
 
@@ -162,9 +157,7 @@ void RLInterface::ApplyEvents()  // Apply RPC messages to the game engine
 
                     JSContext* cx = scriptInterface.GetContext();
                     JS::RootedValue command(cx);
-                    std::cout << json_cmd << std::endl;
                     scriptInterface.ParseJSON(json_cmd, &command);
-                    // TODO: Make our own turn manager?
                     turnMgr->PostCommand(playerid, command);
                 }
 
