@@ -59,7 +59,7 @@ public:
 	/**
 	 * Subscribe the custom JS methods.
 	 */
-	void CreateJSObject() override;
+	void CreateJSObject();
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -91,7 +91,7 @@ public:
 	/**
 	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
 	 */
-	virtual void* GetTextOwner() override { return this; }
+	virtual void* GetTextOwner() { return this; }
 
 protected:
 

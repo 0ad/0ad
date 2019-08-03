@@ -24,7 +24,7 @@
 
 JSFunctionSpec JSI_IGUITextOwner::JSI_methods[] =
 {
-	JS_FN("getTextSize", GetTextSize, 0, 0),
+	JS_FN("getTextSize", JSI_IGUITextOwner::GetTextSize, 0, 0),
 	JS_FS_END
 };
 
