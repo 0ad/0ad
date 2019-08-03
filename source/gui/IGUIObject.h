@@ -104,7 +104,6 @@ class IGUIObject
 	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
 	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
-	friend bool JSI_IGUIObject::getTextSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
 	IGUIObject(CGUI* pGUI);
@@ -244,6 +243,12 @@ public:
 	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
 
 	/**
+	 * Creates the JS Object representing this page upon first use.
+	 * Can be overridden by derived classes to extend it.
+	 */
+	virtual void CreateJSObject();
+
+	/**
 	 * Retrieves the JSObject representing this GUI object.
 	 */
 	JSObject* GetJSObject();
@@ -346,6 +351,11 @@ public:
 	 * Take focus!
 	 */
 	void SetFocus();
+
+	/**
+	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
+	 */
+	virtual void* GetTextOwner() { return nullptr; }
 
 protected:
 	/**
@@ -509,10 +519,10 @@ protected:
 	 *
 	 * @see SetupSettings()
 	 */
-	public:
+public:
 	std::map<CStr, SGUISetting>				m_Settings;
 
-private:
+protected:
 	// An object can't function stand alone
 	CGUI* const m_pGUI;
 

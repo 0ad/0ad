@@ -17,7 +17,10 @@
 
 #include "precompiled.h"
 
+#include "IGUITextOwner.h"
+
 #include "gui/GUI.h"
+#include "gui/scripting/JSInterface_IGUITextOwner.h"
 
 IGUITextOwner::IGUITextOwner(CGUI* pGUI)
 	: IGUIObject(pGUI), m_GeneratedTextsValid(false)
@@ -28,6 +31,14 @@ IGUITextOwner::~IGUITextOwner()
 {
 	for (SGUIText* const& t : m_GeneratedTexts)
 		delete t;
+}
+
+void IGUITextOwner::CreateJSObject()
+{
+	IGUIObject::CreateJSObject();
+
+	JSI_IGUITextOwner::RegisterScriptFunctions(
+		GetGUI()->GetScriptInterface()->GetContext(), m_JSObject);
 }
 
 void IGUITextOwner::AddText(SGUIText* text)
@@ -108,6 +119,21 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUITex
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");
 		break;
 	}
+}
+
+CSize IGUITextOwner::CalculateTextSize()
+{
+	if (!m_GeneratedTextsValid)
+	{
+		SetupText();
+		m_GeneratedTextsValid = true;
+	}
+
+	if (m_GeneratedTexts.empty())
+		return CSize();
+
+	// GUI Object types that use multiple texts may override this function.
+	return m_GeneratedTexts[0]->m_Size;
 }
 
 bool IGUITextOwner::MouseOverIcon()

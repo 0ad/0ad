@@ -5,7 +5,7 @@
 # Translators:
 # Alexander Olkhovskiy, 2015
 # Alexander Olkhovskiy, 2015-2016
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2017
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -31,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-05-24 14:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-08-01 12:51+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -523,7 +523,7 @@ msgstr[3] "%(players)s и %(lastPlayer)s победили (последние и
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
-msgstr "Последний оставшийся игрок выигрывает."
+msgstr "Последний оставшийся игрок одерживает победу."
 
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
@@ -726,7 +726,7 @@ msgstr "Захватить реликвию"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr "Нанесите противникам поражение, убив всех их юнитов и разрушив все их постройки."
+msgstr "Нанесите противникам поражение, убив всех и разрушив все строения."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -734,7 +734,7 @@ msgstr "Завоевание"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr "Нанесите противникам поражение, разрушив все их постройки."
+msgstr "Нанесите противникам поражение, разрушив все строения."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -796,7 +796,7 @@ msgstr "Очень много"
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr "Смертельный бой"
+msgstr "Бой насмерть"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
@@ -856,7 +856,7 @@ msgstr "Маленькая"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Маленькие карты подходят для игры 1 на 1, так как игроки могут быстро добраться до врага, всё ещё имея немного места для расширения. "
+msgstr "Маленькие карты подходят для игры один на один, так как игроки могут быстро добраться до врага, но при этом имеют пространство для развития. "
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""

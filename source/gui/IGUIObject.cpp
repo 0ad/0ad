@@ -515,18 +515,22 @@ void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValueArray paramData)
 		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
 }
 
-JSObject* IGUIObject::GetJSObject()
+void IGUIObject::CreateJSObject()
 {
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
+
+	m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+	JS_SetPrivate(m_JSObject.get(), this);
+}
+
+JSObject* IGUIObject::GetJSObject()
+{
 	// Cache the object when somebody first asks for it, because otherwise
-	// we end up doing far too much object allocation. TODO: Would be nice to
-	// not have these objects hang around forever using up memory, though.
+	// we end up doing far too much object allocation.
 	if (!m_JSObject.initialized())
-	{
-		m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
-		JS_SetPrivate(m_JSObject.get(), this);
-	}
+		CreateJSObject();
+
 	return m_JSObject.get();
 }
 

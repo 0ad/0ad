@@ -5,20 +5,9 @@
     <variant>
       <mesh>props/helmet/props/bryastovets_props.dae</mesh>
       <textures>
+        <texture file="props/helmet/bryastovets_props_bronze.png" name="baseTex"/>
         <texture file="props/helmet/bryastovets_props_norm.png" name="normTex"/>
         <texture file="props/helmet/bryastovets_props_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Bronze">
-      <textures>
-        <texture file="props/helmet/bryastovets_props_bronze.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Silver">
-      <textures>
-        <texture file="props/helmet/bryastovets_props_silver.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

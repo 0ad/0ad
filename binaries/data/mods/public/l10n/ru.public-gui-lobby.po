@@ -5,7 +5,7 @@
 # Translators:
 # Alexander Olkhovskiy, 2014,2016
 # Alex <yanebotan@ngs.ru>, 2015
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2019
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2018
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-12-08 13:58+0000\n"
-"Last-Translator: Dmitriy Kulikov <kulikov@dima.perm.ru>\n"
+"PO-Revision-Date: 2019-08-01 14:42+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -306,7 +306,7 @@ msgstr "Игроки: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
-msgstr "Ваши моды не соответствуют модам в этой игре"
+msgstr "Ваши действующие моды не сочетаются с модами в этой игре."
 
 #: gui/lobby/lobby.js:1191
 msgid "Do you want to switch to the mod selection page?"
@@ -490,7 +490,7 @@ msgstr "Зарегистрированный"
 #: gui/lobby/lobby.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "Многопользовательская комната"
+msgstr "Сетевая комната"
 
 #: gui/lobby/lobby_panels.xml:(heading):24
 msgid "Status"
@@ -657,12 +657,12 @@ msgstr "Регистрация"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Политика конфиденциальности сетевой комнаты 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Дата документа:[/font] 2018-10-16"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
@@ -686,7 +686,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Наличие уникального имени игрока является обязательным условием для получения рейтинга, позволяющим игрокам, модераторам и разработчикам идентифицировать игроков, с которыми они встречались ранее, обсуждать игру, координировать сражения и дающим модераторам возможность следить за соблюдением правил."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -723,7 +723,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "Когда игрок начинает сражение в сетевой комнате, его IP-адрес отправляется всем, кто находится в сети, чтобы другие игроки могли присоединиться к этой игре."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -743,7 +743,7 @@ msgstr ""
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr ""
+msgstr "    IP-адреса будут храниться не более трёх лет для этих целей."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
@@ -761,23 +761,23 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. Нахождение в сети[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "Какие игроки в настоящее время подключены к сетевой комнате и к какому сражению они присоединились, отображено для всех."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Сообщения в чате[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr ""
+msgstr "В сетевой комнате есть общедоступный чат, где игроки могут обсудить игру и организовать сетевые сражения."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
@@ -804,19 +804,19 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Статистика сражения[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr ""
+msgstr "Игроки в сетевой комнате могут зарабатывать рейтинг, отражающий их игровые навыки."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr ""
+msgstr "Рейтинг всех игроков публикуется Wildfire Games и позволяет игрокам сосредоточиться на соревновательных или сбалансированных сочетаниях, если они того пожелают."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -824,11 +824,11 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr ""
+msgstr "Во время рейтинговых сражений игроки отправляют игровые данные (такие как количество обученных единиц, собранные ресурсы и победитель) в Wildfire Games, чтобы Wildfire Games могла обновлять рейтинги игроков на основе этой статистики."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr ""
+msgstr "Wildfire Games собирает игровую статистику для:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
@@ -887,18 +887,18 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr ""
+msgstr "2. Wildfire Games имеет законные интересы в обеспечении сетевой комнаты, в развитии и усовершенствовании 0 A.D. и сетевой комнаты, в обеспечении соблюдения Условий пользования и в защите от кибератак (Общий регламент по защите данных (ЕС) §6.1.f.)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr ""
+msgstr "3. Wildfire Games не обрабатывает дополнительные данные для сетевой комнаты и не запрашивает согласия на обработку данных (Общий регламент по защите данных (ЕС) §§6.1.a, 7, 8, 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Права пользователя:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
@@ -1063,7 +1063,7 @@ msgstr ""
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Условия предоставления услуг сетевой комнатой 0 A.D. Empires Ascendant[/font]служба"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1071,25 +1071,25 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr ""
+msgstr "Сетевая комната 0 A.D. Empires Ascendant это серсис от Wildfire Games, позволяющий игрокам настраивать сетевые сражения, публично обсуждать игру и зарабатывать рейтинг, отражающий их игровые навыки."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr ""
+msgstr "В связи с тематикой исторических военных действий, описанием и изображением насилия и применяемым в сетевой комнате языком, 0 A.D. и сетевая комната не предназначены для маленьких детей (Закон о защите конфиденциальности детей в интернете (США) §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr ""
+msgstr "Минимальный возраст пользования сетевой комнатой — 13 лет."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Используя сетевую комнату 0 A.D., вы соглашаетесь со следующим:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1111,13 +1111,13 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Wildfire Games сохраняет за собой права на:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:16
 msgid ""
 " 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
 "suspending or terminating user accounts."
-msgstr ""
+msgstr "1. Модерируйте сервис, т.е. обеспечивайте соблюдение Условий пользования, ограничивая, приостанавливая или прекращая действие учетных записей пользователей."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
@@ -1151,23 +1151,23 @@ msgstr ""
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Условия пользования сетевой комнатой 0 A.D. Empires Ascendant[/font]служба"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Дата документа:[/font] 2018-10-13"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
 " 1. Only create one account per person on the service unless authorized by "
 "Wildfire Games."
-msgstr ""
+msgstr "1. Создавайте только одну учетную запись на человека на сервисе если на обратное не разрешено Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr ""
+msgstr "2. Не выдавать себя за других пользователей сервиса и использовать только свое зарегистрированное имя пользователя в сетевых сражениях."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
@@ -1205,7 +1205,7 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr ""
+msgstr " 8. Не подрывать задуманный игровой процесс и не получать намеренно несправедливое преимущество в сетевых сражениях (например, мошенничество, использование эксплойтов или ошибок)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""

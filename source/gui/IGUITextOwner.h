@@ -36,6 +36,7 @@ GUI Object Base - Text Owner
 #define INCLUDED_IGUITEXTOWNER
 
 #include "GUI.h"
+#include "gui/scripting/JSInterface_IGUITextOwner.h"
 
 /**
  * Framework for handling Output text.
@@ -44,6 +45,8 @@ GUI Object Base - Text Owner
  */
 class IGUITextOwner : virtual public IGUIObject
 {
+	friend bool JSI_IGUITextOwner::GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
+
 public:
 	IGUITextOwner(CGUI* pGUI);
 	virtual ~IGUITextOwner();
@@ -52,6 +55,11 @@ public:
 	 * Adds a text object.
 	 */
 	void AddText(SGUIText* text);
+
+	/**
+	 * Subscribe the custom JS methods.
+	 */
+	void CreateJSObject() override;
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -80,6 +88,11 @@ public:
 	 */
 	virtual bool MouseOverIcon();
 
+	/**
+	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
+	 */
+	virtual void* GetTextOwner() override { return this; }
+
 protected:
 
 	/**
@@ -101,6 +114,11 @@ protected:
 	 * Calculate the position for the text, based on the alignment.
 	 */
 	void CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUIText& Text);
+
+	/**
+	 * Calculate the size of the first generated text.
+	 */
+	CSize CalculateTextSize();
 };
 
 #endif // INCLUDED_IGUITEXTOWNER

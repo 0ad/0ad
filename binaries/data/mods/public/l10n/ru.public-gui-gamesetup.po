@@ -15,7 +15,7 @@
 # Homunkul <Behal.inc@gmail.com>, 2014
 # bigaltum <bigaltum@gmail.com>, 2014
 # Bogdan Artemyev <bogarto@mail.ru>, 2014
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2019
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # Владимир Смирнов <delpfine2012@gmail.com>, 2014
@@ -83,8 +83,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-05-03 13:43+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2019-08-01 21:19+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -658,7 +658,7 @@ msgstr "Название игры уже используется"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr "Сбой подключения к хосту через STUN."
+msgstr "Сбой в создании игры через STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
@@ -780,11 +780,11 @@ msgstr "Восстановить команды по умолчанию."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Показать многопользовательское лобби в диалоговом окне."
+msgstr "Показать сетевую комнату в диалоговом окне."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Многопользовательская игра"
+msgstr "Сетевая игра"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -806,7 +806,7 @@ msgstr "Порт сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "Настроить сервер в качестве хоста."
+msgstr "Настроить сервер для создания игры."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
