@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ namespace JSI_Renderer
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Silhouettes);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ShowSky);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(SmoothLOS);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(Postproc);
+	DECLARE_BOOLEAN_SCRIPT_SETTING(PostProc);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(DisplayFrustum);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -217,7 +217,7 @@ void CDecalRData::BuildArrays()
 	VertexArrayIterator<float[2]> UV = m_UV.GetIterator<float[2]>();
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-	bool cpuLighting = (g_Renderer.GetRenderPath() == CRenderer::RP_FIXED);
+	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
 
 	for (ssize_t j = j0; j <= j1; ++j)
 	{

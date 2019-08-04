@@ -27,6 +27,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 #include "renderer/TimeManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -63,7 +64,7 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation)
 	m_Texture(0), m_TextureSmooth1(0), m_TextureSmooth2(0),  m_smoothFbo(0),
 	m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
-	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 		CreateShader();
 }
 
@@ -84,7 +85,7 @@ bool CLOSTexture::CreateShader()
 	if (!m_ShaderInitialized)
 	{
 		LOGERROR("Failed to load SmoothLOS shader, disabling.");
-		g_Renderer.m_Options.m_SmoothLOS = false;
+		g_RenderingOptions.SetSmoothLOS(false);
 		return false;
 	}
 
@@ -125,7 +126,7 @@ void CLOSTexture::BindTexture(int unit)
 
 GLuint CLOSTexture::GetTextureSmooth()
 {
-	if (CRenderer::IsInitialised() && !g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return GetTexture();
 	else
 		return whichTex ? m_TextureSmooth1 : m_TextureSmooth2;
@@ -133,7 +134,7 @@ GLuint CLOSTexture::GetTextureSmooth()
 
 void CLOSTexture::InterpolateLOS()
 {
-	if (CRenderer::IsInitialised() && !g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return;
 
 	if (!m_ShaderInitialized)
@@ -259,7 +260,7 @@ void CLOSTexture::ConstructTexture(int unit)
 	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
 	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
 
-	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
 		glGenTextures(1, &m_TextureSmooth1);
 		glGenTextures(1, &m_TextureSmooth2);
@@ -347,7 +348,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize, pitch);
 
-	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS && recreated)
+	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS() && recreated)
 	{
 		g_Renderer.BindTexture(unit, m_TextureSmooth1);
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);

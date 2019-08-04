@@ -46,6 +46,7 @@
 #include "renderer/DecalRData.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 #include "renderer/ShadowMap.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/VertexArray.h"
@@ -649,7 +650,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 			defines.Add(str_USE_SHADOWS_ON_WATER, str_1);
 
 		// haven't updated the ARB shader yet so I'll always load the GLSL
-		/*if (!g_Renderer.m_Options.m_PreferGLSL && !superFancy)
+		/*if (!g_RenderingOptions.GetPreferGLSL() && !superFancy)
 			m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("arb/water_high", defines);
 		else*/
 			m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("glsl/water_high", defines);

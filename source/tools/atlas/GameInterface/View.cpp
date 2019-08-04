@@ -352,7 +352,7 @@ void AtlasViewGame::SetParam(const std::wstring& name, const std::wstring& value
 	}
 	else if (name == L"renderpath")
 	{
-		g_Renderer.SetRenderPath(g_Renderer.GetRenderPathByName(CStrW(value).ToUTF8()));
+		g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(CStrW(value).ToUTF8()));
 	}
 }
 

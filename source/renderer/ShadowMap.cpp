@@ -38,6 +38,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ShadowMap implementation
@@ -438,7 +439,7 @@ void ShadowMapInternals::CreateTexture()
 		Width, Height, formatname);
 
 
-	if (g_Renderer.m_Options.m_ShadowAlphaFix)
+	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		glGenTextures(1, &DummyTexture);
 		g_Renderer.BindTexture(0, DummyTexture);
@@ -497,7 +498,7 @@ void ShadowMapInternals::CreateTexture()
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
 
-	if (g_Renderer.m_Options.m_ShadowAlphaFix)
+	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
 	}
@@ -525,7 +526,7 @@ void ShadowMapInternals::CreateTexture()
 		LOGWARNING("Framebuffer object incomplete: 0x%04X", status);
 
 		// Disable shadow rendering (but let the user try again if they want)
-		g_Renderer.m_Options.m_Shadows = false;
+		g_RenderingOptions.SetShadows(false);
 	}
 }
 

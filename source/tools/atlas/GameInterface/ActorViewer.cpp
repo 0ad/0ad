@@ -42,6 +42,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/ProfileViewer.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
@@ -253,7 +254,7 @@ ActorViewer::ActorViewer()
 	m.WalkEnabled = false;
 	m.GroundEnabled = true;
 	m.WaterEnabled = false;
-	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
+	m.ShadowsEnabled = g_RenderingOptions.GetShadows();
 	m.SelectionBoxEnabled = false;
 	m.AxesMarkerEnabled = false;
 	m.PropPointsMode = 0;
@@ -447,8 +448,8 @@ void ActorViewer::SetEnabled(bool enabled)
 	if (enabled)
 	{
 		// Set shadows, sky and water.
-		m.OldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
-		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
+		m.OldShadows = g_RenderingOptions.GetShadows();
+		g_RenderingOptions.SetShadows(m.ShadowsEnabled);
 
 		m.OldSky = g_Renderer.GetSkyManager()->GetRenderSky();
 		g_Renderer.GetSkyManager()->SetRenderSky(false);
@@ -459,7 +460,7 @@ void ActorViewer::SetEnabled(bool enabled)
 	else
 	{
 		// Restore the old renderer state
-		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.OldShadows);
+		g_RenderingOptions.SetShadows(m.OldShadows);
 		g_Renderer.GetSkyManager()->SetRenderSky(m.OldSky);
 		g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
 	}

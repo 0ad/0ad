@@ -115,7 +115,7 @@
 				"label": "Post Processing",
 				"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc).",
 				"config": "postproc",
-				"function": "Renderer_SetPostprocEnabled"
+				"function": "Renderer_SetPostProcEnabled"
 			},
 			{
 				"type": "slider",

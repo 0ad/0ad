@@ -43,6 +43,7 @@
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -574,7 +575,7 @@ void CMiniMap::Draw()
 	if (m_EntitiesDrawn > 0)
 	{
 #if !CONFIG2_GLES
-		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 			glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
 
@@ -593,7 +594,7 @@ void CMiniMap::Draw()
 		CVertexBuffer::Unbind();
 
 #if !CONFIG2_GLES
-		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 			glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
 	}

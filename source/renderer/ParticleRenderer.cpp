@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 	{
 		// Only construct the shaders when shaders are supported and enabled; otherwise
 		// RenderParticles will never be called so it's safe to leave the shaders as null
-		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 		{
 			m->shader = g_Renderer.GetShaderManager().LoadEffect(str_particle, context, CShaderDefines());
 			m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context, CShaderDefines());

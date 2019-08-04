@@ -370,7 +370,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 	CVector3D normal;
 
-	bool cpuLighting = (g_Renderer.GetRenderPath() == CRenderer::RP_FIXED);
+	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
 
 	size_t index = blendVertices.size();
 
@@ -545,7 +545,7 @@ void CPatchRData::BuildVertices()
 	CTerrain* terrain=m_Patch->m_Parent;
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
-	bool cpuLighting = (g_Renderer.GetRenderPath() == CRenderer::RP_FIXED);
+	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
 
 	// build vertices
 	for (ssize_t j=0;j<vsize;j++) {

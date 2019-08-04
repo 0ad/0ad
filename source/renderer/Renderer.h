@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 
 #include "graphics/ShaderDefines.h"
 #include "renderer/Scene.h"
+#include "renderer/RenderingOptions.h"
 
 // necessary declarations
 class CFontManager;
@@ -72,25 +73,6 @@ class CRenderer :
 public:
 	// various enumerations and renderer related constants
 	enum { NumAlphaMaps=14 };
-	enum Option {
-		OPT_NOVBO,
-		OPT_SHADOWS,
-		OPT_WATEREFFECTS,
-		OPT_WATERFANCYEFFECTS,
-		OPT_WATERREALDEPTH,
-		OPT_WATERREFLECTION,
-		OPT_WATERREFRACTION,
-		OPT_SHADOWSONWATER,
-		OPT_SHADOWPCF,
-		OPT_PARTICLES,
-		OPT_PREFERGLSL,
-		OPT_FOG,
-		OPT_SILHOUETTES,
-		OPT_SHOWSKY,
-		OPT_SMOOTHLOS,
-		OPT_POSTPROC,
-		OPT_DISPLAYFRUSTUM,
-	};
 
 	enum CullGroup {
 		CULL_DEFAULT,
@@ -100,18 +82,6 @@ public:
 		CULL_SILHOUETTE_OCCLUDER,
 		CULL_SILHOUETTE_CASTER,
 		CULL_MAX
-	};
-
-	enum RenderPath {
-		// If no rendering path is configured explicitly, the renderer
-		// will choose the path when Open() is called.
-		RP_DEFAULT,
-
-		// Classic fixed function.
-		RP_FIXED,
-
-		// Use new ARB/GLSL system
-		RP_SHADER
 	};
 
 	// stats class - per frame counts of number of draw calls, poly counts etc
@@ -134,34 +104,6 @@ public:
 		size_t m_Particles;
 	};
 
-	// renderer options
-	struct Options {
-		bool m_NoVBO;
-		bool m_Shadows;
-
-		bool m_WaterEffects;
-		bool m_WaterFancyEffects;
-		bool m_WaterRealDepth;
-		bool m_WaterRefraction;
-		bool m_WaterReflection;
-		bool m_WaterShadows;
-
-		RenderPath m_RenderPath;
-		bool m_ShadowAlphaFix;
-		bool m_ARBProgramShadow;
-		bool m_ShadowPCF;
-		bool m_Particles;
-		bool m_PreferGLSL;
-		bool m_ForceAlphaTest;
-		bool m_GPUSkinning;
-		bool m_Fog;
-		bool m_Silhouettes;
-		bool m_SmoothLOS;
-		bool m_ShowSky;
-		bool m_Postproc;
-		bool m_DisplayFrustum;
-	} m_Options;
-
 	struct Caps {
 		bool m_VBO;
 		bool m_ARBProgram;
@@ -182,14 +124,6 @@ public:
 
 	// resize renderer view
 	void Resize(int width,int height);
-
-	// set/get boolean renderer option
-	void SetOptionBool(enum Option opt, bool value);
-	bool GetOptionBool(enum Option opt) const;
-	void SetRenderPath(RenderPath rp);
-	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
-	static CStr GetRenderPathName(RenderPath rp);
-	static RenderPath GetRenderPathByName(const CStr& name);
 
 	// return view width
 	int GetWidth() const { return m_Width; }
@@ -360,6 +294,7 @@ protected:
 	friend class ShaderInstancingModelRenderer;
 	friend class TerrainRenderer;
 	friend class WaterRenderer;
+	friend struct SRenderingOptions;
 
 	//BEGIN: Implementation of SceneCollector
 	void Submit(CPatch* patch);
@@ -402,6 +337,8 @@ protected:
 
 	// enable oblique frustum clipping with the given clip plane
 	void SetObliqueFrustumClipping(CCamera& camera, const CVector4D& clipPlane) const;
+
+	void SetRenderPath(RenderPath rp);
 
 	void ReloadShaders();
 	void RecomputeSystemShaderDefines();

@@ -37,6 +37,7 @@
 #include "maths/Matrix3D.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -406,7 +407,7 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 		if (unit.visibility == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
-		if (!g_AtlasGameLoop->running && !g_RenderActors && (unit.flags & ACTOR_ONLY))
+		if (!g_AtlasGameLoop->running && !g_RenderingOptions.GetRenderActors() && (unit.flags & ACTOR_ONLY))
 			continue;
 
 		if (!g_AtlasGameLoop->running && (unit.flags & VISIBLE_IN_ATLAS_ONLY))

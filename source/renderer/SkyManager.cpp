@@ -39,7 +39,7 @@
 #include "ps/World.h"
 #include "renderer/SkyManager.h"
 #include "renderer/Renderer.h"
-
+#include "renderer/RenderingOptions.h"
 
 SkyManager::SkyManager()
 	: m_RenderSky(true), m_SkyCubeMap(0)
@@ -226,7 +226,7 @@ void SkyManager::RenderSky()
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
 
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 	{
 		skytech = g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 		skytech->BeginPass();
@@ -280,7 +280,7 @@ void SkyManager::RenderSky()
 
 	glEnd();
 
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 	{
 		skytech->EndPass();
 	}
