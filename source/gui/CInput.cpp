@@ -77,13 +77,14 @@ CInput::~CInput()
 
 void CInput::UpdateBufferPositionSetting()
 {
-	int* bufferPos = (int*)m_Settings["buffer_position"].m_pSetting;
-	*bufferPos = m_iBufferPos;
+	GUI<i32>::SetSetting(this, "buffer_position", m_iBufferPos, true);
 }
 
 void CInput::ClearComposedText()
 {
-	CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+	CStrW* pCaption = nullptr;
+	GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
+
 	pCaption->erase(m_iInsertPos, m_iComposedLength);
 	m_iBufferPos = m_iInsertPos;
 	UpdateBufferPositionSetting();
@@ -112,7 +113,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			return IN_PASS;
 
 		// Text has been committed, either single key presses or through an IME
-		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		CStrW* pCaption = nullptr;
+		GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
 		std::wstring text = wstring_from_utf8(ev->ev.text.text);
 
 		m_WantedX = 0.0f;
@@ -149,7 +151,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 		// Text is being composed with an IME
 		// TODO: indicate this by e.g. underlining the uncommitted text
-		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		CStrW* pCaption = nullptr;
+		GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
 		const char* rawText = ev->ev.edit.text;
 		int rawLength = strlen(rawText);
 		std::wstring wtext = wstring_from_utf8(rawText);
@@ -200,7 +203,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
-		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		CStrW* pCaption = nullptr;
+		GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
 		SDL_Keycode keyCode = ev->ev.key.keysym.sym;
 
 		ManuallyImmutableHandleKeyDownEvent(keyCode, pCaption);
@@ -569,7 +573,9 @@ void CInput::ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStr
 
 InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 {
-	CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+	CStrW* pCaption = nullptr;
+	GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
+
 	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
 	std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
@@ -936,7 +942,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		if (m_ComposingText)
 			break;
 
-		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		CStrW* pCaption = nullptr;
+		GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
 
 		if (pCaption->empty())
 			break;
@@ -1193,7 +1200,7 @@ void CInput::Draw()
 			mask_char = maskStr[0];
 	}
 	else
-		pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
 
 	CGUISpriteInstance* sprite = NULL;
 	CGUISpriteInstance* sprite_selectarea = NULL;
@@ -1993,7 +2000,8 @@ int CInput::GetXTextPosition(const std::list<SRow>::const_iterator& current, con
 
 void CInput::DeleteCurSelection()
 {
-	CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+	CStrW* pCaption = nullptr;
+	GUI<CStrW>::GetSettingPointer(this, "caption", pCaption);
 
 	int virtualFrom;
 	int virtualTo;
