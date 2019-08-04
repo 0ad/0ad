@@ -37,7 +37,7 @@ class CProfiler2GPU_base
 
 protected:
 	CProfiler2GPU_base(CProfiler2& profiler, const char* name) :
-		m_Profiler(profiler), m_Storage(profiler, name)
+		m_Profiler(profiler), m_Storage(*new CProfiler2::ThreadStorage(profiler, name))
 	{
 		m_Storage.RecordSyncMarker(m_Profiler.GetTime());
 		m_Storage.Record(CProfiler2::ITEM_EVENT, m_Profiler.GetTime(), "thread start");
@@ -51,7 +51,7 @@ protected:
 	}
 
 	CProfiler2& m_Profiler;
-	CProfiler2::ThreadStorage m_Storage;
+	CProfiler2::ThreadStorage& m_Storage;
 };
 
 //////////////////////////////////////////////////////////////////////////

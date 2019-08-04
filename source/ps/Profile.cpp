@@ -463,7 +463,7 @@ static long get_memory_alloc_count()
 // http://www.gnu.org/software/libc/manual/html_node/Hooks-for-Malloc.html
 static intptr_t malloc_count = 0;
 static void *(*old_malloc_hook) (size_t, const void*);
-static pthread_mutex_t alloc_hook_mutex = PTHREAD_MUTEX_INITIALIZER;
+static std::mutex alloc_hook_mutex;
 static void *malloc_hook(size_t size, const void* UNUSED(caller))
 {
 	// This doesn't really work across threads. The hooks are global variables, and
@@ -473,24 +473,22 @@ static void *malloc_hook(size_t size, const void* UNUSED(caller))
 
 	// Two threads may execute the hook simultaneously, so we need to do the
 	// temporary unhooking in a thread-safe way, so for simplicity we just use a mutex.
-	pthread_mutex_lock(&alloc_hook_mutex);
+	std::lock_guard<std::mutex> lock(alloc_hook_mutex);
 	++malloc_count;
 	__malloc_hook = old_malloc_hook;
 	void* result = malloc(size);
 	old_malloc_hook = __malloc_hook;
 	__malloc_hook = malloc_hook;
-	pthread_mutex_unlock(&alloc_hook_mutex);
 	return result;
 }
 
 static void alloc_hook_initialize()
 {
-	pthread_mutex_lock(&alloc_hook_mutex);
+	std::lock_guard<std::mutex> lock(alloc_hook_mutex);
 	old_malloc_hook = __malloc_hook;
 	__malloc_hook = malloc_hook;
 	// (we don't want to bother hooking realloc and memalign, because if they allocate
 	// new memory then they'll be caught by the malloc hook anyway)
-	pthread_mutex_unlock(&alloc_hook_mutex);
 }
 /*
 It would be nice to do:
