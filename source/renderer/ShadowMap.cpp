@@ -24,6 +24,8 @@
 #include "ShadowMap.h"
 
 #include "graphics/LightEnv.h"
+#include "graphics/Camera.h"
+#include "graphics/Frustum.h"
 #include "graphics/ShaderManager.h"
 #include "gui/GUIMatrix.h"
 #include "lib/bits.h"
