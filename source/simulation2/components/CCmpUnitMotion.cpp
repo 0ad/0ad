@@ -137,9 +137,11 @@ public:
 	u8 m_FailedPathComputations = 0;
 
 	// If true, PathingUpdateNeeded returns false always.
-	// This is an optimisation against unreachable goals, where otherwise we would always
-	// be recomputing a path.
-	bool m_PretendLongPathIsCorrect = false;
+	// This exists because the goal may be unreachable to the short/long pathfinder.
+	// In such cases, we would compute inacceptable paths and PathingUpdateNeeded would trigger every turn.
+	// To avoid that, when we know the new path is imperfect, treat it as OK and follow it until the end.
+	// When reaching the end, we'll run through HandleObstructedMove and this will be reset.
+	bool m_FollowKnownImperfectPath = false;
 
 	struct Ticket {
 		u32 m_Ticket = 0; // asynchronous request ID we're waiting for, or 0 if none
@@ -250,7 +252,7 @@ public:
 		SerializeU8_Enum<Ticket::Type, Ticket::Type::LONG_PATH>()(serialize, "ticket type", m_ExpectedPathTicket.m_Type);
 
 		serialize.NumberU8("failed path computations", m_FailedPathComputations, 0, 255);
-		serialize.Bool("pretendLongPathIsCorrect", m_PretendLongPathIsCorrect);
+		serialize.Bool("followknownimperfectpath", m_FollowKnownImperfectPath);
 
 		SerializeU8_Enum<MoveRequest::Type, MoveRequest::Type::OFFSET>()(serialize, "target type", m_MoveRequest.m_Type);
 		serialize.NumberU32_Unbounded("target entity", m_MoveRequest.m_Entity);
@@ -522,6 +524,20 @@ private:
 	bool RejectFartherPaths(const PathGoal& goal, const WaypointPath& path, const CFixedVector2D& pos) const;
 
 	/**
+	 * If there are 2 waypoints of more remaining in longPath, return SHORT_PATH_LONG_WAYPOINT_RANGE.
+	 * Otherwise the pathing should be exact.
+	 */
+	entity_pos_t ShortPathWaypointRange(const WaypointPath& longPath) const
+	{
+		return longPath.m_Waypoints.size() >= 2 ? SHORT_PATH_LONG_WAYPOINT_RANGE : entity_pos_t::Zero();
+	}
+
+	bool InShortPathRange(const PathGoal& goal, const CFixedVector2D& pos) const
+	{
+		return goal.DistanceToPoint(pos) < LONG_PATH_MIN_DIST;
+	}
+
+	/**
 	 * Handle the result of an asynchronous path query.
 	 */
 	void PathResult(u32 ticket, const WaypointPath& path);
@@ -689,7 +705,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 		m_LongPath = path;
 
-		m_PretendLongPathIsCorrect = false;
+		m_FollowKnownImperfectPath = false;
 
 		// If there's no waypoints then we couldn't get near the target.
 		// Sort of hack: Just try going directly to the goal point instead
@@ -712,7 +728,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		// TODO: For now, we won't warn components straight away as that could lead to units idling earlier than expected,
 		// but it should be done someday when the message can differentiate between different failure causes.
 		else if (PathingUpdateNeeded(pos))
-			m_PretendLongPathIsCorrect = true;
+			m_FollowKnownImperfectPath = true;
 		return;
 	}
 
@@ -725,8 +741,13 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 	m_ShortPath = path;
 
+	m_FollowKnownImperfectPath = false;
 	if (!m_ShortPath.m_Waypoints.empty())
+	{
+		if (PathingUpdateNeeded(pos))
+			m_FollowKnownImperfectPath = true;
 		return;
+	}
 
 	if (m_FailedPathComputations >= 1)
 	{
@@ -750,7 +771,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		{
 			// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
 			// we'll easily be able to revert it using a long path.
-			PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, SHORT_PATH_LONG_WAYPOINT_RANGE };
+			PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, ShortPathWaypointRange(m_LongPath) };
 			RequestShortPath(pos, goal, true);
 			return;
 		}
@@ -994,27 +1015,24 @@ bool CCmpUnitMotion::HandleObstructedMove()
 	if (!ComputeGoal(goal, m_MoveRequest))
 		return false;
 
-	// If close enough, just compute a short path to the goal
-	if (goal.DistanceToPoint(pos) < LONG_PATH_MIN_DIST)
+	if (!InShortPathRange(goal, pos))
 	{
-		m_LongPath.m_Waypoints.clear();
-		RequestShortPath(pos, goal, true);
-		return true;
+		// If we still have long waypoints, try and compute a short path.
+		// Assume the next waypoint is impassable
+		if (m_LongPath.m_Waypoints.size() > 1)
+			m_LongPath.m_Waypoints.pop_back();
+		if (!m_LongPath.m_Waypoints.empty())
+		{
+			// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
+			// we'll easily be able to revert it using a long path.
+			PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, ShortPathWaypointRange(m_LongPath) };
+			RequestShortPath(pos, goal, true);
+			return true;
+		}
 	}
 
-	// If we still have long waypoints, try and compute a short path.
-	// Assume the next waypoint is impassable
-	if (m_LongPath.m_Waypoints.size() > 1)
-		m_LongPath.m_Waypoints.pop_back();
-	if (!m_LongPath.m_Waypoints.empty())
-	{
-		// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
-		// we'll easily be able to revert it using a long path.
-		PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, SHORT_PATH_LONG_WAYPOINT_RANGE };
-		RequestShortPath(pos, goal, true);
-		return true;
-	}
-	// Else, just entirely recompute
+	// Else, just entirely recompute. This will ensure we occasionally run a long path so avoid getting stuck
+	// in the short pathfinder, which can happen when an entity is right ober an obstruction's edge.
 	ComputePathToGoal(pos, goal);
 
 	// potential TODO: We could switch the short-range pathfinder for something else entirely.
@@ -1125,7 +1143,7 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	if (!ComputeTargetPosition(targetPos))
 		return false;
 
-	if (m_PretendLongPathIsCorrect)
+	if (m_FollowKnownImperfectPath)
 		return false;
 
 	if (PossiblyAtDestination())
@@ -1360,13 +1378,16 @@ void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoa
 	// need a long path, so we shouldn't simply check linear distance
 	// the check is arbitrary but should be a reasonably small distance.
 	// To avoid getting stuck because the short-range pathfinder is bounded, occasionally compute a long path instead.
-	if (m_FailedPathComputations != MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH && goal.DistanceToPoint(from) < LONG_PATH_MIN_DIST)
+	if (m_FailedPathComputations != MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH && InShortPathRange(goal, from))
 	{
 		m_LongPath.m_Waypoints.clear();
 		RequestShortPath(from, goal, true);
 	}
 	else
+	{
+		m_ShortPath.m_Waypoints.clear();
 		RequestLongPath(from, goal);
+	}
 }
 
 void CCmpUnitMotion::RequestLongPath(const CFixedVector2D& from, const PathGoal& goal)
@@ -1414,7 +1435,7 @@ bool CCmpUnitMotion::MoveTo(MoveRequest request)
 
 	m_MoveRequest = request;
 	m_FailedPathComputations = 0;
-	m_PretendLongPathIsCorrect = false;
+	m_FollowKnownImperfectPath = false;
 
 	ComputePathToGoal(cmpPosition->GetPosition2D(), goal);
 	return true;
