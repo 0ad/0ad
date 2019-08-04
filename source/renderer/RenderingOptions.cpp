@@ -18,6 +18,8 @@
 #include "precompiled.h"
 
 #include "RenderingOptions.h"
+
+#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
 #include "renderer/Renderer.h"
