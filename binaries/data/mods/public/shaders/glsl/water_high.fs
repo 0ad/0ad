@@ -307,8 +307,9 @@ void main()
 
 	reflColor = refTex.rgb;
 
-	if (refTex.a < 0.99)
-		// Interpolate between the sky color and nearby objects.
+	// Interpolate between the sky color and nearby objects.
+	// Only do this when alpha is rather low, or transparent leaves show up as extremely white.
+	if (refTex.a < 0.4)
 		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
 
 	// Let actual objects be reflected fully.
