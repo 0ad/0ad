@@ -26,26 +26,26 @@ CTooltip::CTooltip(CGUI* pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
 	// If the tooltip is an object by itself:
-	AddSetting(GUIST_float,					"buffer_zone");
-	AddSetting(GUIST_CGUIString,			"caption");
-	AddSetting(GUIST_CStrW,					"font");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"delay");
-	AddSetting(GUIST_CGUIColor,				"textcolor");
-	AddSetting(GUIST_float,					"maxwidth");
-	AddSetting(GUIST_CPos,					"offset");
-	AddSetting(GUIST_EVAlign,				"anchor");
-	AddSetting(GUIST_EAlign,				"text_align");
+	AddSetting<float>("buffer_zone");
+	AddSetting<CGUIString>("caption");
+	AddSetting<CStrW>("font");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<int>("delay");
+	AddSetting<CGUIColor>("textcolor");
+	AddSetting<float>("maxwidth");
+	AddSetting<CPos>("offset");
+	AddSetting<EVAlign>("anchor");
+	AddSetting<EAlign>("text_align");
 	// This is used for tooltips that are hidden/revealed manually by scripts, rather than through the standard tooltip display mechanism
-	AddSetting(GUIST_bool,					"independent");
+	AddSetting<bool>("independent");
 
 	// If the tooltip is just a reference to another object:
-	AddSetting(GUIST_CStr,					"use_object");
-	AddSetting(GUIST_bool,					"hide_object");
+	AddSetting<CStr>("use_object");
+	AddSetting<bool>("hide_object");
 
 	// Private settings:
 	// This is set by GUITooltip
-	AddSetting(GUIST_CPos,					"_mousepos");
+	AddSetting<CPos>("_mousepos");
 
 	// Defaults
 	GUI<int>::SetSetting(this, "delay", 500);

@@ -27,39 +27,20 @@
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
-template<typename T>
-void SGUISetting::Init(IGUIObject& pObject, const CStr& Name)
-{
-	m_pSetting = new T();
-
-	m_FromJSVal = [Name, &pObject](JSContext* cx, JS::HandleValue v) {
-		T value;
-		if (!ScriptInterface::FromJSVal<T>(cx, v, value))
-			return false;
-
-		GUI<T>::SetSetting(&pObject, Name, value);
-		return true;
-	};
-
-	m_ToJSVal = [Name, this](JSContext* cx, JS::MutableHandleValue v) {
-		ScriptInterface::ToJSVal<T>(cx, v, *static_cast<T*>(m_pSetting));
-	};
-}
-
 IGUIObject::IGUIObject(CGUI* pGUI)
 	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
 {
-	AddSetting(GUIST_bool,			"enabled");
-	AddSetting(GUIST_bool,			"hidden");
-	AddSetting(GUIST_CClientArea,	"size");
-	AddSetting(GUIST_CStr,			"style");
-	AddSetting(GUIST_CStr,			"hotkey");
-	AddSetting(GUIST_float,			"z");
-	AddSetting(GUIST_bool,			"absolute");
-	AddSetting(GUIST_bool,			"ghost");
-	AddSetting(GUIST_float,			"aspectratio");
-	AddSetting(GUIST_CStrW,			"tooltip");
-	AddSetting(GUIST_CStr,			"tooltip_style");
+	AddSetting<bool>("enabled");
+	AddSetting<bool>("hidden");
+	AddSetting<CClientArea>("size");
+	AddSetting<CStr>("style");
+	AddSetting<CStr>("hotkey");
+	AddSetting<float>("z");
+	AddSetting<bool>("absolute");
+	AddSetting<bool>("ghost");
+	AddSetting<float>("aspectratio");
+	AddSetting<CStrW>("tooltip");
+	AddSetting<CStr>("tooltip_style");
 
 	// Setup important defaults
 	GUI<bool>::SetSetting(this, "hidden", false);
@@ -70,16 +51,8 @@ IGUIObject::IGUIObject(CGUI* pGUI)
 
 IGUIObject::~IGUIObject()
 {
-	for (const std::pair<CStr, SGUISetting>& p : m_Settings)
-		switch (p.second.m_Type)
-		{
-			// delete() needs to know the type of the variable - never delete a void*
-#define TYPE(t) case GUIST_##t: delete (t*)p.second.m_pSetting; break;
-#include "GUItypes.h"
-#undef TYPE
-		default:
-			debug_warn(L"Invalid setting type");
-		}
+	for (const std::pair<CStr, IGUISetting*>& p : m_Settings)
+		delete p.second;
 
 	if (!m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
@@ -150,33 +123,15 @@ void IGUIObject::Destroy()
 	// Is there anything besides the children to destroy?
 }
 
-void IGUIObject::AddSetting(const EGUISettingType& Type, const CStr& Name)
+template<typename T>
+void IGUIObject::AddSetting(const CStr& Name)
 {
-	// Is name already taken?
-	if (m_Settings.count(Name) >= 1)
+	// This can happen due to inheritance
+	if (SettingExists(Name))
 		return;
 
-	// Construct, and set type
-	m_Settings[Name].m_Type = Type;
-
-	switch (Type)
-	{
-#define TYPE(type) \
-	case GUIST_##type: \
-		m_Settings[Name].Init<type>(*this, Name);\
-		break;
-
-		// Construct the setting.
-		#include "GUItypes.h"
-
-#undef TYPE
-
-	default:
-		debug_warn(L"IGUIObject::AddSetting failed, type not recognized!");
-		break;
-	}
+	m_Settings[Name] = new CGUISetting<T>(*this, Name);
 }
-
 
 bool IGUIObject::MouseOver()
 {
@@ -222,12 +177,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 
 bool IGUIObject::SettingExists(const CStr& Setting) const
 {
-	// Because GetOffsets will direct dynamically defined
-	//  classes with polymorphism to respective ms_SettingsInfo
-	//  we need to make no further updates on this function
-	//  in derived classes.
-	//return (GetSettingsInfo().count(Setting) >= 1);
-	return (m_Settings.count(Setting) >= 1);
+	return m_Settings.count(Setting) == 1;
 }
 
 PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage)
@@ -235,45 +185,11 @@ PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const b
 	if (!SettingExists(Setting))
 		return PSRETURN_GUI_InvalidSetting;
 
-	SGUISetting set = m_Settings[Setting];
-
-#define TYPE(type) \
-	else if (set.m_Type == GUIST_##type) \
-	{ \
-		type _Value; \
-		if (!GUI<type>::ParseString(Value, _Value)) \
-			return PSRETURN_GUI_UnableToParse; \
-		GUI<type>::SetSetting(this, Setting, _Value, SkipMessage); \
-	}
-
-	if (0)
-		;
-#include "GUItypes.h"
-#undef TYPE
-	else
-	{
-		// Why does it always fail?
-		//return PS_FAIL;
-		return LogInvalidSettings(Setting);
-	}
-	return PSRETURN_OK;
-}
-
-
-
-PSRETURN IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType& Type) const
-{
-	if (!SettingExists(Setting))
-		return LogInvalidSettings(Setting);
-
-	if (m_Settings.find(Setting) == m_Settings.end())
-		return LogInvalidSettings(Setting);
-
-	Type = m_Settings.find(Setting)->second.m_Type;
+	if (!m_Settings[Setting]->FromString(Value, SkipMessage))
+		return PSRETURN_GUI_UnableToParse;
 
 	return PSRETURN_OK;
 }
-
 
 void IGUIObject::ChooseMouseOverAndClosest(IGUIObject*& pObject)
 {
@@ -570,8 +486,7 @@ void IGUIObject::TraceMember(JSTracer* trc)
 		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
-PSRETURN IGUIObject::LogInvalidSettings(const CStr8& Setting) const
-{
-	LOGWARNING("IGUIObject: setting %s was not found on an object", Setting.c_str());
-	return PSRETURN_GUI_InvalidSetting;
-}
+// Instantiate templated functions:
+#define TYPE(T) template void IGUIObject::AddSetting<T>(const CStr& Name);
+#include "GUItypes.h"
+#undef TYPE

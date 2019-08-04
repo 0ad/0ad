@@ -32,15 +32,15 @@
 CChart::CChart(CGUI* pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
-	AddSetting(GUIST_CGUIColor, "axis_color");
-	AddSetting(GUIST_float, "axis_width");
-	AddSetting(GUIST_float, "buffer_zone");
-	AddSetting(GUIST_CStrW, "font");
-	AddSetting(GUIST_CStrW, "format_x");
-	AddSetting(GUIST_CStrW, "format_y");
-	AddSetting(GUIST_CGUIList, "series_color");
-	AddSetting(GUIST_CGUISeries, "series");
-	AddSetting(GUIST_EAlign, "text_align");
+	AddSetting<CGUIColor>("axis_color");
+	AddSetting<float>("axis_width");
+	AddSetting<float>("buffer_zone");
+	AddSetting<CStrW>("font");
+	AddSetting<CStrW>("format_x");
+	AddSetting<CStrW>("format_y");
+	AddSetting<CGUIList>("series_color");
+	AddSetting<CGUISeries>("series");
+	AddSetting<EAlign>("text_align");
 
 	GUI<float>::GetSetting(this, "axis_width", m_AxisWidth);
 	GUI<CStrW>::GetSetting(this, "format_x", m_FormatX);

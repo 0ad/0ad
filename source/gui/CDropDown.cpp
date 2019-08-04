@@ -30,30 +30,30 @@ CDropDown::CDropDown(CGUI* pGUI)
 	: CList(pGUI), IGUIObject(pGUI),
 	  m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
 {
-	AddSetting(GUIST_float,					"button_width");
-	AddSetting(GUIST_float,					"dropdown_size");
-	AddSetting(GUIST_float,					"dropdown_buffer");
-	AddSetting(GUIST_uint,					"minimum_visible_items");
-//	AddSetting(GUIST_CStrW,					"font");
-	AddSetting(GUIST_CStrW,					"sound_closed");
-	AddSetting(GUIST_CStrW,					"sound_disabled");
-	AddSetting(GUIST_CStrW,					"sound_enter");
-	AddSetting(GUIST_CStrW,					"sound_leave");
-	AddSetting(GUIST_CStrW,					"sound_opened");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_disabled");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_list");			// Background of the drop down list
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");				// Button that sits to the right
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_over");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_pressed");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_disabled");
-	AddSetting(GUIST_EVAlign,				"text_valign");
+	AddSetting<float>("button_width");
+	AddSetting<float>("dropdown_size");
+	AddSetting<float>("dropdown_buffer");
+	AddSetting<uint>("minimum_visible_items");
+//	AddSetting<CStrW, "font");
+	AddSetting<CStrW>("sound_closed");
+	AddSetting<CStrW>("sound_disabled");
+	AddSetting<CStrW>("sound_enter");
+	AddSetting<CStrW>("sound_leave");
+	AddSetting<CStrW>("sound_opened");
+	AddSetting<CGUISpriteInstance>("sprite");				// Background that sits around the size
+	AddSetting<CGUISpriteInstance>("sprite_disabled");
+	AddSetting<CGUISpriteInstance>("sprite_list");			// Background of the drop down list
+	AddSetting<CGUISpriteInstance>("sprite2");				// Button that sits to the right
+	AddSetting<CGUISpriteInstance>("sprite2_over");
+	AddSetting<CGUISpriteInstance>("sprite2_pressed");
+	AddSetting<CGUISpriteInstance>("sprite2_disabled");
+	AddSetting<EVAlign>("text_valign");
 
 	// Add these in CList! And implement TODO
-	//AddSetting(GUIST_CGUIColor,				"textcolor_over");
-	//AddSetting(GUIST_CGUIColor,				"textcolor_pressed");
-	AddSetting(GUIST_CGUIColor,				"textcolor_selected");
-	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
+	//AddSetting<CGUIColor>("textcolor_over");
+	//AddSetting<CGUIColor>("textcolor_pressed");
+	AddSetting<CGUIColor>("textcolor_selected");
+	AddSetting<CGUIColor>("textcolor_disabled");
 
 	// Scrollbar is forced to be true.
 	GUI<bool>::SetSetting(this, "scrollbar", true);

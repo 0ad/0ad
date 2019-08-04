@@ -45,24 +45,24 @@ CInput::CInput(CGUI* pGUI)
 	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_ComposingText(false),
 	m_iComposedLength(0), m_iComposedPos(0), m_iInsertPos(0), m_Readonly(false)
 {
-	AddSetting(GUIST_int,					"buffer_position");
-	AddSetting(GUIST_float,					"buffer_zone");
-	AddSetting(GUIST_CStrW,					"caption");
-	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_CStrW,					"font");
-	AddSetting(GUIST_CStrW,					"mask_char");
-	AddSetting(GUIST_bool,					"mask");
-	AddSetting(GUIST_int,					"max_length");
-	AddSetting(GUIST_bool,					"multiline");
-	AddSetting(GUIST_bool,					"readonly");
-	AddSetting(GUIST_bool,					"scrollbar");
-	AddSetting(GUIST_CStr,					"scrollbar_style");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
-	AddSetting(GUIST_CGUIColor,				"textcolor");
-	AddSetting(GUIST_CGUIColor,				"textcolor_selected");
-	AddSetting(GUIST_CStrW,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip_style");
+	AddSetting<i32>("buffer_position");
+	AddSetting<float>("buffer_zone");
+	AddSetting<CStrW>("caption");
+	AddSetting<i32>("cell_id");
+	AddSetting<CStrW>("font");
+	AddSetting<CStrW>("mask_char");
+	AddSetting<bool>("mask");
+	AddSetting<i32>("max_length");
+	AddSetting<bool>("multiline");
+	AddSetting<bool>("readonly");
+	AddSetting<bool>("scrollbar");
+	AddSetting<CStr>("scrollbar_style");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<CGUISpriteInstance>("sprite_selectarea");
+	AddSetting<CGUIColor>("textcolor");
+	AddSetting<CGUIColor>("textcolor_selected");
+	AddSetting<CStrW>("tooltip");
+	AddSetting<CStr>("tooltip_style");
 
 	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 

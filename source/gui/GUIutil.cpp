@@ -27,6 +27,41 @@
 
 extern int g_xres, g_yres;
 
+template<typename T>
+CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name)
+	: m_pSetting(T()), m_Name(Name), m_pObject(pObject)
+{
+}
+
+template<typename T>
+bool CGUISetting<T>::FromString(const CStrW& Value, const bool& SkipMessage)
+{
+	T settingValue;
+
+	if (!GUI<T>::ParseString(Value, settingValue))
+		return false;
+
+	GUI<T>::SetSetting(&m_pObject, m_Name, settingValue, SkipMessage);
+	return true;
+};
+
+template<typename T>
+bool CGUISetting<T>::FromJSVal(JSContext* cx, JS::HandleValue Value)
+{
+	T settingValue;
+	if (!ScriptInterface::FromJSVal<T>(cx, Value, settingValue))
+		return false;
+
+	GUI<T>::SetSetting(&m_pObject, m_Name, settingValue);
+	return true;
+};
+
+template<typename T>
+void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
+{
+	ScriptInterface::ToJSVal<T>(cx, Value, m_pSetting);
+};
+
 template <>
 bool __ParseString<bool>(const CStrW& Value, bool& Output)
 {
@@ -272,28 +307,12 @@ CMatrix3D GetDefaultGuiMatrix()
 	return m;
 }
 
-#ifndef NDEBUG
-	#define TYPE(T) \
-		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
-			std::map<CStr, SGUISetting>::const_iterator it = obj->m_Settings.find(setting);	\
-			if (it == obj->m_Settings.end() || it->second.m_Type != GUIST_##T)	\
-			{	\
-				/* Abort now, to avoid corrupting everything by invalidly \
-					casting pointers */ \
-				DEBUG_DISPLAY_ERROR(L"FATAL ERROR: Inconsistent types in GUI");	\
-			}	\
-		}
-	#include "GUItypes.h"
-	#undef TYPE
-#endif
-
-
 template <typename T>
 PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value)
 {
 	ENSURE(pObject != NULL);
 
-	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
+	std::map<CStr, IGUISetting*>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
 	{
 		LOGWARNING("setting %s was not found on object %s",
@@ -302,15 +321,11 @@ PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Settin
 		return PSRETURN_GUI_InvalidSetting;
 	}
 
-	if (it->second.m_pSetting == NULL)
+	if (it->second == nullptr)
 		return PSRETURN_GUI_InvalidSetting;
 
-#ifndef NDEBUG
-	CheckType<T>(pObject, Setting);
-#endif
-
 	// Get value
-	Value = (T*)(it->second.m_pSetting);
+	Value = &(static_cast<CGUISetting<T>* >(it->second)->m_pSetting);
 
 	return PSRETURN_OK;
 }
@@ -330,7 +345,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, 
 {
 	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
 		[&pObject, &Setting, &Value]() {
-			*static_cast<T*>(pObject->m_Settings[Setting].m_pSetting) = std::move(Value);
+			static_cast<CGUISetting<T>* >(pObject->m_Settings[Setting])->m_pSetting = std::move(Value);
 		});
 }
 
@@ -339,7 +354,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 {
 	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
 		[&pObject, &Setting, &Value]() {
-			*static_cast<T*>(pObject->m_Settings[Setting].m_pSetting) = Value;
+			static_cast<CGUISetting<T>* >(pObject->m_Settings[Setting])->m_pSetting = Value;
 		});
 }
 
@@ -367,10 +382,6 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;
 	}
-
-#ifndef NDEBUG
-	CheckType<T>(pObject, Setting);
-#endif
 
 	valueSet();
 
@@ -402,7 +413,9 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
 	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
-	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage);
+	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage); \
+	template class CGUISetting<T>; \
+
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
 #undef GUITYPE_IGNORE_CGUISpriteInstance
@@ -414,3 +427,4 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 // instead. (This is mainly useful to stop me accidentally using the wrong function.)
 template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance*& Value);
 template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance& Value, const bool& SkipMessage);
+template class CGUISetting<CGUISpriteInstance>;

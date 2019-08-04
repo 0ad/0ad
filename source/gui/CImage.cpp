@@ -26,10 +26,10 @@
 CImage::CImage(CGUI* pGUI)
 	: IGUIObject(pGUI)
 {
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_CStrW,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip_style");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<int>("cell_id");
+	AddSetting<CStrW>("tooltip");
+	AddSetting<CStr>("tooltip_style");
 }
 
 CImage::~CImage()

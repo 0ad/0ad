@@ -26,26 +26,26 @@
 CText::CText(CGUI* pGUI)
 	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI), IGUITextOwner(pGUI)
 {
-	AddSetting(GUIST_float,					"buffer_zone");
-	AddSetting(GUIST_CGUIString,			"caption");
-	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_bool,					"clip");
-	AddSetting(GUIST_CStrW,					"font");
-	AddSetting(GUIST_bool,					"scrollbar");
-	AddSetting(GUIST_CStr,					"scrollbar_style");
-	AddSetting(GUIST_bool,					"scroll_bottom");
-	AddSetting(GUIST_bool,					"scroll_top");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_EAlign,				"text_align");
-	AddSetting(GUIST_EVAlign,				"text_valign");
-	AddSetting(GUIST_CGUIColor,				"textcolor");
-	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
-	AddSetting(GUIST_CStrW,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip_style");
+	AddSetting<float>("buffer_zone");
+	AddSetting<CGUIString>("caption");
+	AddSetting<int>("cell_id");
+	AddSetting<bool>("clip");
+	AddSetting<CStrW>("font");
+	AddSetting<bool>("scrollbar");
+	AddSetting<CStr>("scrollbar_style");
+	AddSetting<bool>("scroll_bottom");
+	AddSetting<bool>("scroll_top");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<EAlign>("text_align");
+	AddSetting<EVAlign>("text_valign");
+	AddSetting<CGUIColor>("textcolor");
+	AddSetting<CGUIColor>("textcolor_disabled");
+	AddSetting<CStrW>("tooltip");
+	AddSetting<CStr>("tooltip_style");
 
 	// Private settings
-	AddSetting(GUIST_CStrW,					"_icon_tooltip");
-	AddSetting(GUIST_CStr,					"_icon_tooltip_style");
+	AddSetting<CStrW>("_icon_tooltip");
+	AddSetting<CStr>("_icon_tooltip_style");
 
 	//GUI<bool>::SetSetting(this, "ghost", true);
 	GUI<bool>::SetSetting(this, "scrollbar", false);

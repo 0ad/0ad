@@ -36,59 +36,13 @@
 #include <string>
 #include <vector>
 
-struct SGUISetting;
 struct SGUIStyle;
 class CGUI;
 
 class JSObject;
+class IGUISetting;
 
 ERROR_TYPE(GUI, UnableToParse);
-
-/**
- * Setting Type
- * @see SGUISetting
- *
- * For use of later macros, all names should be GUIST_ followed
- * by the code name (case sensitive!).
- */
-#define TYPE(T) GUIST_##T,
-enum EGUISettingType
-{
-	#include "GUItypes.h"
-};
-#undef TYPE
-
-/**
- * A GUI Setting is anything that can be inputted from XML as
- * \<object\>-attributes (with exceptions). For instance:
- * \<object style="null"\>
- *
- * "style" will be a SGUISetting.
- */
-struct SGUISetting
-{
-	SGUISetting() : m_pSetting(NULL) {}
-
-	/**
-	 * Stores the instance of the setting type holding the setting data. Can be set from XML and JS.
-	 */
-	void				*m_pSetting;
-
-	EGUISettingType		m_Type;
-
-	template<typename T>
-	void Init(IGUIObject& pObject, const CStr& Name);
-
-	/**
-	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
-	 */
-	std::function<bool(JSContext* cx, JS::HandleValue v)> m_FromJSVal;
-
-	/**
-	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
-	 */
-	std::function<void(JSContext* cx, JS::MutableHandleValue v)> m_ToJSVal;
-};
 
 /**
  * GUI object such as a button or an input-box.
@@ -190,9 +144,7 @@ public:
 	//@{
 
 	/**
-	 * Checks if settings exists, only available for derived
-	 * classes that has this set up, that's why the base
-	 * class just returns false
+	 * Returns whether there is a setting with the given name registered.
 	 *
 	 * @param Setting setting name
 	 * @return True if settings exist.
@@ -223,15 +175,6 @@ public:
 	 * @return PSRETURN (PSRETURN_OK if successful)
 	 */
 	PSRETURN SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage = false);
-
-	/**
-	 * Retrieves the type of a named setting.
-	 *
-	 * @param Setting Setting by name
-	 * @param Type Stores an EGUISettingType
-	 * @return PSRETURN (PSRETURN_OK if successful)
-	 */
-	PSRETURN GetSettingType(const CStr& Setting, EGUISettingType& Type) const;
 
 	/**
 	 * Set the script handler for a particular object-specific action
@@ -273,7 +216,7 @@ protected:
 	 * @param Type Setting type
 	 * @param Name Setting reference name
 	 */
-	void AddSetting(const EGUISettingType& Type, const CStr& Name);
+	template<typename T> void AddSetting(const CStr& Name);
 
 	/**
 	 * Calls Destroy on all children, and deallocates all memory.
@@ -464,13 +407,6 @@ private:
 	//  as parent.
 	bool IsRootObject() const;
 
-	/**
-	 * Logs an invalid setting search and returns the correct return result
-	 *
-	 * @return the error result
-	 */
-	PSRETURN LogInvalidSettings(const CStr8& Setting) const;
-
 	static void Trace(JSTracer* trc, void* data)
 	{
 		reinterpret_cast<IGUIObject*>(data)->TraceMember(trc);
@@ -520,7 +456,7 @@ protected:
 	 * @see SetupSettings()
 	 */
 public:
-	std::map<CStr, SGUISetting>				m_Settings;
+	std::map<CStr, IGUISetting*> m_Settings;
 
 protected:
 	// An object can't function stand alone

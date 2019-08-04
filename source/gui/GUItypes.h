@@ -26,8 +26,8 @@ to handle every possible type.
 */
 
 TYPE(bool)
-TYPE(int)
-TYPE(uint)
+TYPE(i32)
+TYPE(u32)
 TYPE(float)
 TYPE(CGUIColor)
 TYPE(CClientArea)
