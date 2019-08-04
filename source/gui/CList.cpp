@@ -32,27 +32,27 @@ CList::CList(CGUI* pGUI)
 	  m_Modified(false), m_PrevSelectedItem(-1), m_LastItemClickTime(0)
 {
 	// Add sprite_disabled! TODO
-	AddSetting(GUIST_float,					"buffer_zone");
-	AddSetting(GUIST_CStrW,					"font");
-	AddSetting(GUIST_bool,					"scrollbar");
-	AddSetting(GUIST_CStr,					"scrollbar_style");
-	AddSetting(GUIST_CStrW,					"sound_disabled");
-	AddSetting(GUIST_CStrW,					"sound_selected");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
-	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_EAlign,				"text_align");
-	AddSetting(GUIST_CGUIColor,				"textcolor");
-	AddSetting(GUIST_CGUIColor,				"textcolor_selected");
-	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
-	AddSetting(GUIST_bool,					"auto_scroll");
-	AddSetting(GUIST_int,					"hovered");
-	AddSetting(GUIST_CStrW,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip_style");
+	AddSetting<float>("buffer_zone");
+	AddSetting<CStrW>("font");
+	AddSetting<bool>("scrollbar");
+	AddSetting<CStr>("scrollbar_style");
+	AddSetting<CStrW>("sound_disabled");
+	AddSetting<CStrW>("sound_selected");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<CGUISpriteInstance>("sprite_selectarea");
+	AddSetting<int>(	"cell_id");
+	AddSetting<EAlign>("text_align");
+	AddSetting<CGUIColor>("textcolor");
+	AddSetting<CGUIColor>("textcolor_selected");
+	AddSetting<int>(	"selected");	// Index selected. -1 is none.
+	AddSetting<bool>("auto_scroll");
+	AddSetting<int>(	"hovered");
+	AddSetting<CStrW>("tooltip");
+	AddSetting<CStr>("tooltip_style");
 
 	// Each list item has both a name (in 'list') and an associated data string (in 'list_data')
-	AddSetting(GUIST_CGUIList,				"list");
-	AddSetting(GUIST_CGUIList,				"list_data"); // TODO: this should be a list of raw strings, not of CGUIStrings
+	AddSetting<CGUIList>("list");
+	AddSetting<CGUIList>("list_data");
 
 	GUI<bool>::SetSetting(this, "scrollbar", false);
 	GUI<int>::SetSetting(this, "selected", -1);

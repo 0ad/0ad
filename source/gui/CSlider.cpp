@@ -21,17 +21,16 @@
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
 
-
 CSlider::CSlider(CGUI* pGUI)
 	: IGUIObject(pGUI), m_IsPressed(false), m_ButtonSide(0)
 {
-	AddSetting(GUIST_float, "value");
-	AddSetting(GUIST_float, "min_value");
-	AddSetting(GUIST_float, "max_value");
-	AddSetting(GUIST_int, "cell_id");
-	AddSetting(GUIST_CGUISpriteInstance, "sprite");
-	AddSetting(GUIST_CGUISpriteInstance, "sprite_bar");
-	AddSetting(GUIST_float, "button_width");
+	AddSetting<float>("value");
+	AddSetting<float>("min_value");
+	AddSetting<float>("max_value");
+	AddSetting<int>("cell_id");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<CGUISpriteInstance>("sprite_bar");
+	AddSetting<float>("button_width");
 
 	GUI<float>::GetSetting(this, "value", m_Value);
 	GUI<float>::GetSetting(this, "min_value", m_MinValue);

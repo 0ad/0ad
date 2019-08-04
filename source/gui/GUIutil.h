@@ -42,6 +42,69 @@ GUI util
 class CClientArea;
 class CGUIString;
 class CMatrix3D;
+template<typename T> class GUI;
+
+class IGUISetting
+{
+public:
+	virtual ~IGUISetting() {};
+
+	/**
+	 * Parses the given string and assigns to the setting value. Used for parsing XML attributes.
+	 */
+	virtual bool FromString(const CStrW& Value, const bool& SkipMessage) = 0;
+
+	/**
+	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
+	 */
+	virtual bool FromJSVal(JSContext* cx, JS::HandleValue Value) = 0;
+
+	/**
+	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
+	 */
+	virtual void ToJSVal(JSContext* cx, JS::MutableHandleValue Value) = 0;
+};
+
+template<typename T>
+class CGUISetting : public IGUISetting
+{
+	friend class GUI<T>;
+
+public:
+	CGUISetting(IGUIObject& pObject, const CStr& Name);
+
+	/**
+	 * Parses the given string and assigns to the setting value. Used for parsing XML attributes.
+	 */
+	bool FromString(const CStrW& Value, const bool& SkipMessage) override;
+
+	/**
+	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
+	 */
+	bool FromJSVal(JSContext* cx, JS::HandleValue Value) override;
+
+	/**
+	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
+	 */
+	void ToJSVal(JSContext* cx, JS::MutableHandleValue Value) override;
+
+private:
+
+	/**
+	 * The object that stores this setting.
+	 */
+	IGUIObject& m_pObject;
+
+	/**
+	 * Property name identifying the setting.
+	 */
+	const CStr m_Name;
+
+	/**
+	 * Holds the value of the setting..
+	 */
+	T m_pSetting;
+};
 
 template <typename T>
 bool __ParseString(const CStrW& Value, T& tOutput);
@@ -50,12 +113,6 @@ bool __ParseString(const CStrW& Value, T& tOutput);
 CMatrix3D GetDefaultGuiMatrix();
 
 struct SGUIMessage;
-
-#ifndef NDEBUG
-// Used to ensure type-safety, sort of
-template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
-#endif
-
 
 /**
  * Includes static functions that needs one template

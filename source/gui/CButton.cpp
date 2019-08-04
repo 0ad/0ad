@@ -25,27 +25,27 @@
 CButton::CButton(CGUI* pGUI)
 	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI), IGUITextOwner(pGUI)
 {
-	AddSetting(GUIST_float,					"buffer_zone");
-	AddSetting(GUIST_CGUIString,			"caption");
-	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_CStrW,					"font");
-	AddSetting(GUIST_CStrW,					"sound_disabled");
-	AddSetting(GUIST_CStrW,					"sound_enter");
-	AddSetting(GUIST_CStrW,					"sound_leave");
-	AddSetting(GUIST_CStrW,					"sound_pressed");
-	AddSetting(GUIST_CStrW,					"sound_released");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_disabled");
-	AddSetting(GUIST_EAlign,				"text_align");
-	AddSetting(GUIST_EVAlign,				"text_valign");
-	AddSetting(GUIST_CGUIColor,				"textcolor");
-	AddSetting(GUIST_CGUIColor,				"textcolor_over");
-	AddSetting(GUIST_CGUIColor,				"textcolor_pressed");
-	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
-	AddSetting(GUIST_CStrW,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip_style");
+	AddSetting<float>("buffer_zone");
+	AddSetting<CGUIString>("caption");
+	AddSetting<int>("cell_id");
+	AddSetting<CStrW>("font");
+	AddSetting<CStrW>("sound_disabled");
+	AddSetting<CStrW>("sound_enter");
+	AddSetting<CStrW>("sound_leave");
+	AddSetting<CStrW>("sound_pressed");
+	AddSetting<CStrW>("sound_released");
+	AddSetting<CGUISpriteInstance>("sprite");
+	AddSetting<CGUISpriteInstance>("sprite_over");
+	AddSetting<CGUISpriteInstance>("sprite_pressed");
+	AddSetting<CGUISpriteInstance>("sprite_disabled");
+	AddSetting<EAlign>("text_align");
+	AddSetting<EVAlign>("text_valign");
+	AddSetting<CGUIColor>("textcolor");
+	AddSetting<CGUIColor>("textcolor_over");
+	AddSetting<CGUIColor>("textcolor_pressed");
+	AddSetting<CGUIColor>("textcolor_disabled");
+	AddSetting<CStrW>("tooltip");
+	AddSetting<CStr>("tooltip_style");
 
 	// Add text
 	AddText(new SGUIText());

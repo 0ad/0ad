@@ -116,7 +116,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	}
 	else if (e->SettingExists(propName))
 	{
-		e->m_Settings[propName].m_ToJSVal(cx, vp);
+		e->m_Settings[propName]->ToJSVal(cx, vp);
 		return true;
 	}
 
@@ -168,7 +168,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	}
 
 	if (e->SettingExists(propName))
-		return e->m_Settings[propName].m_FromJSVal(cx, vp);
+		return e->m_Settings[propName]->FromJSVal(cx, vp);
 
 	JS_ReportError(cx, "Property '%s' does not exist!", propName.c_str());
 	return false;

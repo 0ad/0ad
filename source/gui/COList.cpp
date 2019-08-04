@@ -30,13 +30,13 @@ const CPos COLUMN_SHIFT = CPos(0, 4);
 COList::COList(CGUI* pGUI)
 	: CList(pGUI), IGUIObject(pGUI)
 {
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_heading");
-	AddSetting(GUIST_bool,					"sortable"); // The actual sorting is done in JS for more versatility
-	AddSetting(GUIST_CStr,					"selected_column");
-	AddSetting(GUIST_int,					"selected_column_order");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_asc");  // Show the order of sorting
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_desc");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite_not_sorted");
+	AddSetting<CGUISpriteInstance>("sprite_heading");
+	AddSetting<bool>("sortable"); // The actual sorting is done in JS for more versatility
+	AddSetting<CStr>("selected_column");
+	AddSetting<int>("selected_column_order");
+	AddSetting<CGUISpriteInstance>("sprite_asc");  // Show the order of sorting
+	AddSetting<CGUISpriteInstance>("sprite_desc");
+	AddSetting<CGUISpriteInstance>("sprite_not_sorted");
 }
 
 void COList::SetupText()
@@ -299,8 +299,8 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 		m_Columns.push_back(column);
 
-		AddSetting(GUIST_CGUIList, "list_" + column.m_Id);
-		AddSetting(GUIST_bool, "hidden_" + column.m_Id);
+		AddSetting<CGUIList>("list_" + column.m_Id);
+		AddSetting<bool>("hidden_" + column.m_Id);
 		GUI<bool>::SetSetting(this, "hidden_" + column.m_Id, hidden);
 
 		SetupText();
