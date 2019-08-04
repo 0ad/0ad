@@ -23,6 +23,7 @@
 #include "graphics/TextureManager.h"
 #include "gui/CGUIColor.h"
 #include "gui/GUIutil.h"
+#include "gui/GUIMatrix.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
 #include "lib/utf8.h"

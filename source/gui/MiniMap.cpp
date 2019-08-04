@@ -30,6 +30,7 @@
 #include "graphics/TerritoryTexture.h"
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
+#include "gui/GUIMatrix.h"
 #include "lib/bits.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"

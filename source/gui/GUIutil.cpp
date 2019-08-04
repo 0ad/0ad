@@ -21,11 +21,7 @@
 
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
-#include "maths/Matrix3D.h"
 #include "ps/CLogger.h"
-#include "ps/GameSetup/Config.h"
-
-extern int g_xres, g_yres;
 
 template<typename T>
 CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name)
@@ -288,23 +284,6 @@ template <>
 bool __ParseString<CGUISeries>(const CStrW& UNUSED(Value), CGUISeries& UNUSED(Output))
 {
 	return false;
-}
-
-CMatrix3D GetDefaultGuiMatrix()
-{
-	float xres = g_xres / g_GuiScale;
-	float yres = g_yres / g_GuiScale;
-
-	CMatrix3D m;
-	m.SetIdentity();
-	m.Scale(1.0f, -1.f, 1.0f);
-	m.Translate(0.0f, yres, -1000.0f);
-
-	CMatrix3D proj;
-	proj.SetOrtho(0.f, xres, 0.f, yres, -1.f, 1000.f);
-	m = proj * m;
-
-	return m;
 }
 
 template <typename T>

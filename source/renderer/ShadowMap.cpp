@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,24 +21,21 @@
 
 #include "precompiled.h"
 
-#include "gui/GUIutil.h"
-#include "lib/bits.h"
-#include "lib/ogl.h"
-#include "ps/CLogger.h"
-#include "ps/ConfigDB.h"
-#include "ps/Profile.h"
+#include "ShadowMap.h"
 
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
-
+#include "gui/GUIMatrix.h"
+#include "lib/bits.h"
+#include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
-
+#include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
+#include "ps/Profile.h"
 #include "renderer/Renderer.h"
-#include "renderer/ShadowMap.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ShadowMap implementation
