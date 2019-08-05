@@ -24,13 +24,22 @@
 /**
  * Same as the CColor class, but this one can also parse colors predefined in the GUI page (such as "yellow").
  */
-struct CGUIColor : public CColor
+struct CGUIColor : CColor
 {
-	 using CColor::CColor;
+	CGUIColor()
+	{
+		CColor();
+	}
 
-	 bool ParseString(const CStr& value, int defaultAlpha = 255)
-	 {
-		 return g_GUI->GetPreDefinedColor(value, *this) || CColor::ParseString(value, defaultAlpha);
-	 }
+	CGUIColor(float r, float g, float b, float a)
+	{
+		CColor(r, g, b, a);
+	}
+
+	bool ParseString(const CStr& value, int defaultAlpha = 255)
+	{
+		return g_GUI->GetPreDefinedColor(value, *this) || CColor::ParseString(value, defaultAlpha);
+	}
 };
 #endif // INCLUDED_GUICOLOR
+
