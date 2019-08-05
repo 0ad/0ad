@@ -242,12 +242,13 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 {
 	JSContext* cx = scriptInterface.GetContext();
 
-    JS::RootedValue attrs(cx);
-	scriptInterface.Eval("({})", &attrs);
+	JS::RootedValue attrs(cx);
 	JS::RootedValue settings(cx);
-	scriptInterface.Eval("({})", &settings);
 	JS::RootedValue playerData(cx);
-	scriptInterface.Eval("([])", &playerData);
+
+	scriptInterface.CreateObject(&attrs);
+	scriptInterface.CreateObject(&settings);
+	scriptInterface.CreateArray(&playerData);
 
 	// The directory in front of the actual map name indicates which type
 	// of map is being loaded. Drawback of this approach is the association
@@ -272,9 +273,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 		}
 		else
 		{
-            // TODO: Throw an exception
 			// Problem with JSON file
-            //throw std::runtime_error("Error reading random map script '%s'", utf8_from_wstring(scriptPath));
 			LOGERROR("Autostart: Error reading random map script '%s'", utf8_from_wstring(scriptPath));
 			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
 		}
@@ -285,12 +284,11 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 		for (size_t i = 0; i < this->numPlayers; ++i)
 		{
 			JS::RootedValue player(cx);
-			scriptInterface.Eval("({})", &player);
 
 			// We could load player_defaults.json here, but that would complicate the logic
 			// even more and autostart is only intended for developers anyway
             // FIXME: enable setting the civilizations
-			scriptInterface.SetProperty(player, "Civ", std::string("athen"));
+			scriptInterface.CreateObject(&player, "Civ", std::string("athen"));
 			scriptInterface.SetPropertyInt(playerData, i, player);
 		}
 	}
@@ -307,8 +305,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 		scriptInterface.GetProperty(settings, "PlayerData", &playerData);
 	}
 	else
-	{
-        // TODO: Throw an exception
+	{  // TODO: Throw an exception?
 		LOGERROR("Autostart: Unrecognized map type '%s'", utf8_from_wstring(mapDirectory));
 		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
 	}
@@ -350,7 +347,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
                 LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
                 continue;
             }
-            scriptInterface.Eval("({})", &player);
+            scriptInterface.CreateObject(&player);
         }
 
         scriptInterface.SetProperty(player, "Team", teamID);
@@ -374,7 +371,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
                 LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
                 continue;
             }
-            scriptInterface.Eval("({})", &player);
+            scriptInterface.CreateObject(&player);
         }
 
         scriptInterface.SetProperty(player, "AI", std::string(name));
@@ -398,7 +395,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
                 LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
                 continue;
             }
-            scriptInterface.Eval("({})", &player);
+            scriptInterface.CreateObject(&player);
         }
 
         scriptInterface.SetProperty(player, "AIDiff", difficulty);
@@ -422,7 +419,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
                     LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
                     continue;
                 }
-                scriptInterface.Eval("({})", &player);
+                scriptInterface.CreateObject(&player);
             }
 
             scriptInterface.SetProperty(player, "Civ", std::string(name));
