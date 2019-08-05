@@ -21,10 +21,7 @@ function openTerms(page)
 function acceptTerms(data)
 {
 	g_Terms[data.page].accepted = data.accepted;
-
-	let value = data.accepted ? getTermsHash(data.page) : "0";
-	Engine.ConfigDB_CreateValue("user", g_Terms[data.page].config, value);
-	Engine.ConfigDB_WriteValueToFile("user", g_Terms[data.page].config, value, "config/user.cfg");
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", g_Terms[data.page].config, data.accepted ? getTermsHash(data.page) : "0", "config/user.cfg");
 
 	if (g_Terms[data.page].callback)
 		g_Terms[data.page].callback(data);

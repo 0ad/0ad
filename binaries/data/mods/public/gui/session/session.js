@@ -960,6 +960,11 @@ function updateGUIObjects()
 	g_DeveloperOverlay.update();
 }
 
+function saveResPopTooltipSort()
+{
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.session.respoptooltipsort", String((+Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort") + 2) % 3 - 1), "config/user.cfg");
+}
+
 function onReplayFinished()
 {
 	closeOpenDialogs();
@@ -1333,7 +1338,7 @@ function recalculateStatusBarDisplay(remove = false)
 function toggleConfigBool(configName)
 {
 	let enabled = Engine.ConfigDB_GetValue("user", configName) != "true";
-	saveSettingAndWriteToUserConfig(configName, String(enabled));
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", configName, String(enabled), "config/user.cfg");
 	return enabled;
 }
 

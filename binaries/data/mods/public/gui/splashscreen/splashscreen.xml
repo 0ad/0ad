@@ -28,8 +28,8 @@
 		<object name="btnOK" type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">OK</translatableAttribute>
 			<action on="Press"><![CDATA[
-			saveSettingAndWriteToUserConfig("gui.splashscreen.enable", String(Engine.GetGUIObjectByName("displaySplashScreen").checked));
-			saveSettingAndWriteToUserConfig("gui.splashscreen.version", Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"));
+			Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.splashscreen.enable", String(Engine.GetGUIObjectByName("displaySplashScreen").checked), "config/user.cfg");
+			Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.splashscreen.version", Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"), "config/user.cfg");
 			Engine.PopGuiPageCB();
 			]]></action>
 		</object>

@@ -6,7 +6,7 @@
 			<object size="0 -2 40 38" type="image" name="resource[n]_icon" ghost="true"/>
 			<object size="34 0 100%-2 100%-2" type="text" style="resourceText" name="resource[n]_count"/>
 			<action on="Press">
-				saveSettingAndWriteToUserConfig("gui.session.respoptooltipsort", (+Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort") + 2) % 3 - 1);
+				saveResPopTooltipSort();
 				updatePlayerDisplay();
 			</action>
 		</object>

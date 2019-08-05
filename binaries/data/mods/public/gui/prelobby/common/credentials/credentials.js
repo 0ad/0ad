@@ -56,10 +56,10 @@ function toggleRememberPassword()
 			[translate("No"), translate("Yes")],
 			[
 				() => { checkbox.checked = true; },
-				() => { saveSettingAndWriteToUserConfig("lobby.rememberpassword", String(!enabled)); }
+				() => { Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.rememberpassword", String(!enabled), "config/user.cfg"); }
 			]);
 	else
-		saveSettingAndWriteToUserConfig("lobby.rememberpassword", String(!enabled));
+		Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.rememberpassword", String(!enabled), "config/user.cfg");
 }
 
 function getEncryptedPassword()
@@ -78,11 +78,11 @@ function getEncryptedPassword()
 function saveCredentials()
 {
 	let username = Engine.GetGUIObjectByName("username").caption;
-	saveSettingAndWriteToUserConfig("playername.multiplayer", username);
-	saveSettingAndWriteToUserConfig("lobby.login", username);
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "playername.multiplayer", username, "config/user.cfg");
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.login", username, "config/user.cfg");
 
 	if (Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true")
-		saveSettingAndWriteToUserConfig("lobby.password", getEncryptedPassword());
+		Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.password", getEncryptedPassword(), "config/user.cfg");
 	else
 	{
 		Engine.ConfigDB_RemoveValue("user", "lobby.password");
