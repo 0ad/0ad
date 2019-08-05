@@ -317,7 +317,7 @@ static void RendererIncrementalLoad()
 	while (more && timer_Time() - startTime < maxTime);
 }
 
-static void Frame()
+static void Frame(bool using_interface=false, RLInterface* service=nullptr)
 {
 	g_Profiler2.RecordFrameStart();
 	PROFILE2("frame");
@@ -389,9 +389,17 @@ static void Frame()
 
 	ogl_WarnIfError();
 
+	if (using_interface)
+	{
+		service->ApplyEvents();
+	}
+
 	if (g_Game && g_Game->IsGameStarted() && need_update)
 	{
-		g_Game->Update(realTimeSinceLastFrame);
+		if (!using_interface)
+		{
+			g_Game->Update(realTimeSinceLastFrame);
+		}
 
 		g_Game->GetView()->Update(float(realTimeSinceLastFrame));
 	}
@@ -473,121 +481,6 @@ static std::unique_ptr<RLInterface> StartRLInterface(CmdLineArgs args)
     std::unique_ptr<RLInterface> service(new RLInterface);
     service.get()->Listen(server_address);
     return service;
-}
-
-static void* RunRenderLoop(std::unique_ptr<RLInterface>& service)
-{
-    // TODO: Update this according to the changes in the main loop
-	g_Profiler2.RecordFrameStart();
-	PROFILE2("frame");
-	g_Profiler2.IncrementFrameNumber();
-	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
-
-	ogl_WarnIfError();
-
-	// get elapsed time
-	const double time = timer_Time();
-	g_frequencyFilter->Update(time);
-	// .. old method - "exact" but contains jumps
-#if 0
-	static double last_time;
-	const double time = timer_Time();
-	const float TimeSinceLastFrame = (float)(time-last_time);
-	last_time = time;
-	ONCE(return);	// first call: set last_time and return
-
-	// .. new method - filtered and more smooth, but errors may accumulate
-#else
-	const float realTimeSinceLastFrame = 1.0 / g_frequencyFilter->SmoothedFrequency();
-#endif
-	ENSURE(realTimeSinceLastFrame > 0.0f);
-
-	// Decide if update is necessary
-	bool need_update = true;
-
-	// If we are not running a multiplayer game, disable updates when the game is
-	// minimized or out of focus and relinquish the CPU a bit, in order to make
-	// debugging easier.
-	if (g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus)
-	{
-		PROFILE3("non-focus delay");
-		need_update = false;
-		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
-		SDL_Delay(10);
-	}
-
-	// this scans for changed files/directories and reloads them, thus
-	// allowing hotloading (changes are immediately assimilated in-game).
-	ReloadChangedFiles();
-
-	ProgressiveLoad();
-
-	RendererIncrementalLoad();
-
-	PumpEvents();
-
-	// if the user quit by closing the window, the GL context will be broken and
-	// may crash when we call Render() on some drivers, so leave this loop
-	// before rendering
-	if (g_Shutdown != ShutdownType::None)
-		return NULL;
-
-	// respond to pumped resize events
-	if (g_ResizedW || g_ResizedH)
-	{
-		g_VideoMode.ResizeWindow(g_ResizedW, g_ResizedH);
-		g_ResizedW = g_ResizedH = 0;
-	}
-
-	if (g_NetClient)
-		g_NetClient->Poll();
-
-	ogl_WarnIfError();
-
-	g_GUI->TickObjects();
-
-	ogl_WarnIfError();
-
-    service.get()->ApplyEvents();
-	if (need_update)
-	{
-        if (g_Game && g_Game->IsGameStarted())  // The game could be reset by ApplyEvents
-        {
-            g_Game->GetView()->Update(float(0.03));
-        }
-        // FIXME: realTimeSinceLastFrame is 0??
-		//g_Game->GetView()->Update(float(realTimeSinceLastFrame));
-	}
-
-	// Immediately flush any messages produced by simulation code
-	if (g_NetClient)
-		g_NetClient->Flush();
-
-	// Keep us connected to any XMPP servers
-	if (g_XmppClient)
-		g_XmppClient->recv();
-
-	g_UserReporter.Update();
-
-	g_Console->Update(realTimeSinceLastFrame);
-	ogl_WarnIfError();
-
-	// We do not have to render an inactive fullscreen frame, because it can
-	// lead to errors for some graphic card families.
-	if (!g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen()))
-	{
-		Render();
-
-		PROFILE3("swap buffers");
-		SDL_GL_SwapWindow(g_VideoMode.GetWindow());
-	}
-	ogl_WarnIfError();
-
-	g_Profiler.Frame();
-
-	g_GameRestarted = false;
-
-	LimitFPS();
 }
 
 // moved into a helper function to ensure args is destroyed before
@@ -769,7 +662,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
             std::unique_ptr<RLInterface> service = StartRLInterface(args);
 			while (g_Shutdown == ShutdownType::None)
             {
-                RunRenderLoop(service);
+                Frame(true, service.get());
             }
 		}
 
