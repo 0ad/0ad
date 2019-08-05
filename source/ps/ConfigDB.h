@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,8 @@
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 
+#include <map>
+
 // Namespace priorities: User supersedes mod supersedes system.
 //						 Command-line arguments override everything.
 
@@ -48,15 +50,9 @@ typedef std::vector<CStr> CConfigValueSet;
 
 #define g_ConfigDB CConfigDB::GetSingleton()
 
-class CConfigDB: public Singleton<CConfigDB>
+class CConfigDB : public Singleton<CConfigDB>
 {
-	static std::map<CStr, CConfigValueSet> m_Map[];
-	static VfsPath m_ConfigFile[];
-	static bool m_HasChanges[];
-
 public:
-	CConfigDB();
-
 	/**
 	 * Attempt to retrieve the value of a config variable with the given name;
 	 * will search CFG_COMMAND first, and then all namespaces from the specified
@@ -163,6 +159,11 @@ public:
 	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value, const VfsPath& path);
 
 	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value);
+
+private:
+	static std::map<CStr, CConfigValueSet> m_Map[];
+	static VfsPath m_ConfigFile[];
+	static bool m_HasChanges[];
 };
 
 

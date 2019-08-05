@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="piglet">
+      <animations>
+        <animation file="quadraped/animal_piglet_idle_01.dae" name="Idle" speed="10"/>
+        <animation file="quadraped/animal_piglet_idle_02.dae" name="Idle" speed="10"/>
+        <animation file="quadraped/animal_piglet_idle_03.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/animal_piglet_attack_01.dae" name="attack_melee" speed="120"/>
+        <animation file="quadraped/animal_piglet_walk_01.dae" name="Walk" speed="60"/>
+        <animation file="quadraped/animal_piglet_run_01.dae" name="Run" speed="8"/>
+      </animations>
+      <mesh>skeletal/animal_piglet.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="tex-01">
+      <textures>
+        <texture file="skeletal/animal_pig_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="tex-02">
+      <textures>
+        <texture file="skeletal/animal_pig_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="tex-03">
+      <textures>
+        <texture file="skeletal/animal_pig_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant frequency="0" name="feeding">
+      <animations>
+        <animation file="quadraped/animal_piglet_feeding_01.dae" name="Idle" speed="60"/>
+        <animation file="quadraped/animal_piglet_idle_01.dae" name="Idle" speed="10"/>
+      </animations>
+    </variant>
+    <variant name="death">
+      <animations>
+        <animation file="quadraped/animal_piglet_death_01.dae" name="Death" speed="50"/>
+      </animations>
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/animal_pig_dead.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

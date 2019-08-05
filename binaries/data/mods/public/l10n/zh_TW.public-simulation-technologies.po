@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -7,16 +7,18 @@
 # Hsu Karinsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
-# Jerry Shen <jerry82422@gmail.com>, 2018
+# JerryShen <jerry82422@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
+# 又齊 劉 <bill19981002@gmail.com>, 2018
+# 旭誠 張 <tea55688@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-09-15 07:11+0000\n"
-"Last-Translator: Hsu Karinsu <m80126colin@gmail.com>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,19 +32,46 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
+msgstr "升級到進階等級的單位得到了很多的強化：20％的生命值加權，升一級追加1 個盔甲等級，可以多得到20％的戰利品。另外近戰單位還有20％ 的攻擊加權；遠程單位得到更高準確度，射程也追加4公尺；治療師則有更快的移動速度、治療速度和治療範圍。"
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
 msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "執弓單位射程+10 單位，弓箭手單位有更好的準確度且訓練時間 -20% 但生命值也 -20% "
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "箭術傳統"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "在村莊階段解鎖。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "用於馬匹臉部的金屬盔甲。"
+msgstr "馬臉的金屬護盔"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "將您騎兵的座騎裝上盔甲。所有騎兵 +1 劈砍及穿刺盔甲等級。"
+msgstr "將您騎兵的座騎批上盔甲。所有騎兵 +1 劈砍及穿刺盔甲等級。"
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -233,7 +262,7 @@ msgstr "鐵甲"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "步兵的有襯墊的亞麻布衣或皮革衣。"
+msgstr "步兵的有襯墊亞麻布衣或皮革衣。"
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
@@ -360,7 +389,7 @@ msgstr "Aspidískos"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr "在轉角處加固 (羅馬塔盾) 或是在邊緣加固 (希臘盾牌) 的最好的盾牌。"
+msgstr "最好的盾牌會在轉角處 (羅馬塔盾) 或是在邊緣 (希臘盾牌) 有所加固。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
@@ -458,18 +487,6 @@ msgstr "以木頭加固橫樑的船體。所有船隻的所有傷害類型皆 +2
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
 msgstr "強化船身"
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "在村莊階段解鎖。"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -701,7 +718,7 @@ msgstr "秘密的鋼鐵加工技術讓劍鋒有著獨特而美麗的紋路。不
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "所有的劍士單位、戰錘單位劈砍攻擊+20% 。"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -733,7 +750,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "升級為精銳等級的單位獲得以下加權：額外生命值 20％，每類型+1額外盔甲等級，20％額外戰利品。近戰單位額外攻擊力 20％；遠程單位射程增加4 公尺，精準度也更高；治療師有更快的移動速度與、更高的治療速度與治療範圍。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -830,8 +847,8 @@ msgid "Gather Training"
 msgstr "採集訓練"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "網子使捕魚效率提昇。"
+msgid "Nets improve the productivity of fishing boats."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -970,12 +987,12 @@ msgid "Wicker Baskets"
 msgstr "柳條製籃子"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "駐守在軍營中的單位會隨時間不斷的被治療。"
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "駐紮在軍營內的單位會隨時間恢復生命值。"
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "當駐守在軍營中時，單位會隨時間不斷的恢復生命值。"
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "單位駐紮在軍營中時會隨時間恢復生命值。"
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1107,7 +1124,7 @@ msgstr "近戰步兵 +1 劈砍攻擊力。"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "使用鐵代替青銅讓長矛有了額外的穿刺力量。"
+msgstr "使用鐵代替青銅使矛有了額外的穿刺力量。"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
@@ -1175,14 +1192,14 @@ msgstr "隨身武器 vs. 非正規軍"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr "長矛打鬥 vs. 小規模戰鬥"
+msgstr "長矛戰鬥 vs. 散兵戰鬥"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "步兵劈砍盔甲 vs. 長矛兵穿刺盔甲"
+msgstr "步兵劈砍盔甲 vs. 矛兵穿刺盔甲"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1218,7 +1235,7 @@ msgstr "城市階段"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "用於模板需要的假技術，由phase_city_generic 或 phase_city_{civ} 取而代之。"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1269,7 +1286,7 @@ msgstr "鄉鎮階段"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "用於模板需要的假技術，由phase_town_generic or phase_town_{civ} 取而代之。"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1474,7 +1491,7 @@ msgstr "改善砲彈的準確度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "弩炮增加了精準度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1595,7 +1612,7 @@ msgstr "城垛射孔可以攻擊塔底的敵人。"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "移除防禦塔的最短射程限制"
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1607,7 +1624,7 @@ msgstr "急速射手增加射出弓箭的最大射程。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "增加防禦塔的最遠射程到8單位"
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1631,7 +1648,7 @@ msgstr "夜間瞭望增強了警覺性。"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "後哨，增加一隻箭來防禦箭塔"
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1707,9 +1724,9 @@ msgstr "進階工藝"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "藉由一次訓練一組或一個大隊的士兵數，顯著增加軍營中的士兵的訓練速度。"
+msgstr "在軍營一次訓練大批士兵能顯著提升他們的訓練速度。"
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1773,8 +1790,8 @@ msgid ""
 msgstr "警衛部隊(精英)是裝備最好的武器並有最佳訓練的專家。"
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "解鎖在軍營訓練精英的能力。"
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr "解鎖在軍營訓練鬥士的能力。"
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1944,23 +1961,6 @@ msgstr "精銳公民步兵"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "迦太基人建造三個同心圓的城牆圍住他們的城市。這些城牆從未被破壞。就算城市被羅馬人攻擊時，也是透過城市的港口而非強攻城牆。"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "迦太基的城牆、城門、以及塔樓都有一般城牆的 3 倍生命值，但同時得耗費 2 倍的建造時間。"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "三重城牆"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2264,27 +2264,128 @@ msgstr "升級您所有的義大利傭兵到精銳等級。這可以增強他們
 msgid "Elite Italiote Mercenaries"
 msgstr "精銳義大利傭兵"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "迦太基人建造三個同心圓的城牆圍住他們的城市。這些城牆從未被破壞。就算城市被羅馬人攻擊時，也是透過城市的港口而非強攻城牆。"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "迦太基的城牆、城門、以及塔樓都有一般城牆的 3 倍生命值，但同時得耗費 2 倍的建造時間。"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "三重城牆"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "塞爾特建築物大多以木頭加上瓦礫來建造。"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "塞爾特建築物少 20% 生命值，但同時花費也便宜 20% 且建造較快。"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "木造建築"
 
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "希臘人使用來自於早期邁錫尼時代的石造建築物。"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "所有建築物會有額外的 10% 的生命值與捕獲／占領值，不過同時也要花費多 10% 的時間來建造。"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "古希臘建築物"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "孔雀王朝涵蓋了數十個原先獨立的王國，其領土面積約有5百萬平方公里，人口總數約6千萬人。孔雀王朝的統治者有著萬王之王的稱號，並指揮著60萬名步兵、9000頭大象、8000輛雙輪戰車、以及3萬名騎兵，使其可以說是當時最大型的軍隊。"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "萬王之王"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "孔雀王朝的城牆 -20% 生命值且建造時間 -20%。"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "木牆"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "由於阿契美尼德王朝的龐大規模及其組織結構，波斯人可以在戰時大量徵召步兵。儘管波斯步兵整體來說訓練有素且意志堅定。但是他們缺乏肉搏戰的經驗。而且，除了少數的精銳部隊以外，波斯的步兵並非職業的常備軍。"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "波斯人的人口上限 +10%。"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "偉大國王的徵召"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "斯巴達人並不具有世界上最大型的軍隊，但他們在當時卻有著世界上最好的軍隊。他們重質不重量。有人說，斯巴達並不需要堅固的城牆，它的軍隊就是銅牆鐵壁。"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "斯巴達的人口上限 -10%。"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "敗北"
+
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "長矛戰鬥訓練增加了持矛步兵單位的傷害力。"
+msgstr "長矛戰鬥訓練增加了矛步兵單位的傷害力。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr "長槍兵 +2 劈砍攻擊。"
+msgstr "矛兵 +2 劈砍攻擊。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
@@ -2295,36 +2396,6 @@ msgstr "步兵長矛戰鬥"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "希臘人使用來自於早期邁錫尼時代的石造建築物。"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "所有建築物會有額外的 10% 的生命值與捕獲點數，不過同時也要花費多 10% 的時間來建造。"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "古希臘建築物"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "斯巴達人並不具有世界上最大型的軍隊，但他們在當時卻有著世界上最好的軍隊。他們重質不重量。有人說，斯巴達並不需要堅固的城牆，它的軍隊就是銅牆鐵壁。"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "斯巴達的人口上限 -10%。"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "敗北"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2372,7 +2443,7 @@ msgstr "雅典長城"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -2384,7 +2455,7 @@ msgstr "紀念性建築"
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "大祭司已經親自指導了你的祭司 - 願他得到阿蒙神的祝福。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
@@ -2393,78 +2464,6 @@ msgstr "訓練精英級治療者"
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "神聖指示"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "孔雀王朝涵蓋了數十個原先獨立的王國，其領土面積約有5百萬平方公里，人口總數約6千萬人。孔雀王朝的統治者有著萬王之王的稱號，並指揮著60萬名步兵、9000頭大象、8000輛雙輪戰車、以及3萬名騎兵，使其可以說是當時最大型的軍隊。"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "孔雀王朝的人口上限 +10%。"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "萬王之王"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "印度人有良好的箭術傳統並愛好在戰爭中運用大量弓箭手。"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr ""
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "箭術傳統"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "印度擁有豐富的天然資源，孔雀王朝以木頭建造他們的城牆。"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "孔雀王朝的城牆 -20% 生命值且建造時間 -20%。"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "木牆"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "由於阿契美尼德王朝的龐大規模及其組織結構，波斯人可以在戰時大量徵召步兵。儘管波斯步兵整體來說訓練有素且意志堅定。但是他們缺乏肉搏戰的經驗。而且，除了少數的精銳部隊以外，波斯的步兵並非職業的常備軍。"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "波斯人的人口上限 +10%。"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "偉大國王的徵召"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2492,17 +2491,11 @@ msgstr "波斯人從薩第斯到蘇薩建造了驚人的1677英哩長的皇家�
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "所有波斯建築物 +25% 生命值及捕獲點數，但也 +20% 建造時間。"
+msgstr "所有波斯建築物 +25% 生命值及捕獲／占領值，但也 +20% 建造時間。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "波斯建築"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "波斯人有良好的箭術傳統並愛好在戰爭中使用大量弓箭手。"
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2598,7 +2591,7 @@ msgstr "自亞歷山大大帝開始，希臘的文化逐漸變為整個帝國的
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "城鎮中心 +100% 血量及捕獲點數和雙倍的箭矢。"
+msgstr "城鎮中心 +100% 血量及捕獲／占領值，並具有雙倍箭矢。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2655,7 +2648,7 @@ msgstr "塞琉古的傳統軍隊。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr "解鎖銀盾兵及長柄刀雙輪戰車。"
+msgstr "解鎖銀盾長槍兵及長柄刀雙輪戰車。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -2671,7 +2664,7 @@ msgstr "銀盾兵，或稱 Argyraspidai，是馬其頓軍隊中的精銳重裝�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "升級精英盾兵為有更多的生命值、以及更好盔甲的銀盾兵。"
+msgstr "將精英盾兵升級成銀盾兵，有著更強攻擊力及盔甲。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

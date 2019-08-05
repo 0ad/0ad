@@ -1,367 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.58 commit date:2019-04-24, commit time:02:30, hash:1b839e85e142</authoring_tool>
     </contributor>
-    <created>2010-11-29T08:12:26Z</created>
-    <modified>2010-11-29T08:12:26Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <created>2019-05-04T00:04:36</created>
+    <modified>2019-05-04T00:04:36</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__301-image" name="Map__301">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\Meshes\meshes\structural\hellenes\Map__50_Mix.tga</init_from>
-    </image>
-    <image id="Map__302-image" name="Map__302">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_wonder_rooftile.png</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_08___Default" name="_08___Default">
-      <instance_effect url="#_08___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_08___Default-fx" name="_08___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <texture texture="Map__301-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__302-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">32.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_images/>
   <library_geometries>
-    <geometry id="parthenon_OBJ_011-lib" name="parthenon_OBJ_011Mesh">
+    <geometry id="propylaea_rooftiles-mesh" name="propylaea_rooftiles">
       <mesh>
-        <source id="parthenon_OBJ_011-lib-Position">
-          <float_array id="parthenon_OBJ_011-lib-Position-array" count="84">
-13.772860 -17.185490 12.766990
-13.772860 -17.817280 12.766990
-0.000000 -21.671089 12.770620
--13.772860 -17.817280 12.766990
--13.772860 -17.185490 12.766990
-13.772860 -17.185490 -0.201892
-13.772860 -17.817280 -0.201892
--13.772860 -17.817280 -0.201892
--13.772860 -17.185490 -0.201892
-0.000000 -21.671089 -0.201892
-4.709604 -20.353291 -0.201892
-13.772860 -17.601231 -0.201892
--13.772860 -17.601231 -0.201892
--4.709603 -20.353291 -0.201892
-13.772860 -15.588600 29.563850
-13.772860 -16.220400 29.563850
-0.000000 -20.074200 29.567480
--13.772860 -16.220400 29.563850
--13.772860 -15.588600 29.563850
-13.772860 -15.588600 12.082100
-13.772860 -16.220400 12.082100
--13.772860 -16.220400 12.082100
--13.772860 -15.588600 12.082100
-0.000000 -20.074200 12.082100
-1.555805 -19.638870 12.082100
-13.772860 -16.149010 12.082100
--13.772860 -16.149010 12.082100
--1.555804 -19.638870 12.082100
-</float_array>
+        <source id="propylaea_rooftiles-mesh-positions">
+          <float_array id="propylaea_rooftiles-mesh-positions-array" count="102">1.808432 3.095629 1.182897 1.808432 3.095628 12.06953 1.808432 3.095629 6.26133 -1.654159 3.095627 13.33712 1.808432 3.095628 13.33712 11.25392 2.67525 13.74965 -11.75596 2.235439 15.70061 0.05310595 2.232326 19.00493 11.86218 2.235441 15.70061 -11.75596 13.35517 15.70062 11.86217 13.35517 15.70062 0.05310493 13.35517 19.00493 -11.75596 -12.16646 14.33142 0.0531072 -12.16957 17.63573 11.86218 -12.16646 14.33142 -11.75596 2.822674 14.33142 11.86218 2.822677 14.33142 0.05310589 2.822675 17.63573 -11.75596 2.235439 15.15891 -11.75596 2.235439 15.70061 11.86218 2.235441 15.70061 11.86218 2.235441 15.15891 -11.75596 13.35517 15.15891 -11.75596 13.35517 15.70062 11.86217 13.35517 15.70062 11.86217 13.35517 15.15891 -11.75596 -12.16646 13.78971 -11.75596 -12.16646 14.33142 11.86218 -12.16646 14.33142 11.86218 -12.16646 13.78971 -11.75596 2.822674 13.78971 -11.75596 2.822674 14.33142 11.86218 2.822677 14.33142 11.86218 2.822677 13.78971</float_array>
           <technique_common>
-            <accessor source="#parthenon_OBJ_011-lib-Position-array" count="28" stride="3">
+            <accessor source="#propylaea_rooftiles-mesh-positions-array" count="34" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="parthenon_OBJ_011-lib-Normal0">
-          <float_array id="parthenon_OBJ_011-lib-Normal0-array" count="216">
-0.796686 -0.604358 0.000000
-0.624226 -0.781243 0.000000
-0.269448 -0.962981 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.269448 -0.962981 0.000000
-0.269448 -0.962981 0.000000
-0.624226 -0.781243 0.000000
-0.000000 -1.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--0.269448 -0.962981 0.000000
--0.624226 -0.781243 0.000000
--0.796686 -0.604358 0.000000
--0.624226 -0.781243 0.000000
--0.269448 -0.962981 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
--0.624226 -0.781243 0.000000
-0.796686 -0.604358 0.000000
-0.624226 -0.781243 0.000000
-0.269448 -0.962981 0.000000
-0.000000 -0.999969 0.000000
-0.000000 -0.999969 0.000000
-0.269448 -0.962981 0.000000
-0.269448 -0.962981 0.000000
-0.624226 -0.781243 0.000000
-0.000000 -0.999969 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--0.269448 -0.962981 0.000000
--0.624226 -0.781243 0.000000
--0.796686 -0.604358 0.000000
--0.624226 -0.781243 0.000000
--0.269448 -0.962981 0.000000
-0.000000 -0.999969 0.000000
-0.000000 -0.999969 0.000000
-0.000000 -0.999969 0.000000
--0.624226 -0.781243 0.000000
-</float_array>
+        <source id="propylaea_rooftiles-mesh-normals">
+          <float_array id="propylaea_rooftiles-mesh-normals-array" count="30">-1 -1.58322e-7 0 1 0 0 -0.2694567 0 0.9630125 0 0 1 1 2.29362e-7 0 1 0 0 -1 0 0 0.2694567 0 0.9630125 -1 0 0 -1 0 0</float_array>
           <technique_common>
-            <accessor source="#parthenon_OBJ_011-lib-Normal0-array" count="72" stride="3">
+            <accessor source="#propylaea_rooftiles-mesh-normals-array" count="10" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="parthenon_OBJ_011-lib-UV0">
-          <float_array id="parthenon_OBJ_011-lib-UV0-array" count="112">
-0.342360 0.072530
-0.998882 0.072530
-0.342340 0.685367
-0.998882 1.003821
-0.342277 1.003820
-0.342340 0.685367
-0.998882 0.072530
-0.342752 0.001032
-1.001179 0.001032
-0.342752 0.047476
-0.342752 0.047476
-1.001179 0.001032
-1.001179 0.071613
-0.342752 0.071613
-0.342752 0.047476
-1.001179 0.001032
-0.342752 0.001032
-1.001179 0.001032
-0.342752 0.047476
-0.342752 0.071613
-1.001179 0.071613
-0.342340 0.685367
-0.998882 0.072530
-0.342360 0.072530
-0.998882 0.072530
-0.342340 0.685367
-0.342277 1.003820
-0.998882 1.003821
-0.113906 0.072530
-0.998882 0.072530
-0.113879 0.898619
-0.998882 1.003821
-0.113858 1.003819
-0.113879 0.898619
-0.998882 0.072530
-0.113636 0.001032
-1.001179 0.001032
-0.113636 0.063638
-0.113636 0.063638
-1.001179 0.001032
-1.001179 0.071613
-0.113636 0.071613
-0.113636 0.063638
-1.001179 0.001032
-0.113636 0.001032
-1.001179 0.001032
-0.113636 0.063638
-0.113636 0.071613
-1.001179 0.071613
-0.113879 0.898619
-0.998882 0.072530
-0.113906 0.072530
-0.998882 0.072530
-0.113879 0.898619
-0.113858 1.003819
-0.998882 1.003821
-</float_array>
+        <source id="propylaea_rooftiles-mesh-map-0">
+          <float_array id="propylaea_rooftiles-mesh-map-0-array" count="96">0.342752 0.07161295 1.001179 0.001031994 1.001179 0.07161295 1.001179 0.001031994 0.113636 0.07161295 1.001179 0.07161295 0.998882 0.07252997 0.998882 1.003821 0.342277 1.00382 0.998882 0.07252997 0.113858 1.003819 0.113906 0.07252997 1.001179 0.001031994 0.342752 0.07161295 1.001179 0.07161295 1.001179 0.001031994 0.113636 0.001031994 0.113636 0.07161295 0.342752 0.07161295 0.342752 0.001031994 1.001179 0.001031994 0.342277 1.00382 0.998882 1.003821 0.998882 0.07252997 0.998882 0.07252997 0.998882 1.003821 0.113858 1.003819 0.342277 1.00382 0.998882 0.07252997 0.34236 0.07252997 0.113636 0.07161295 1.001179 0.001031994 1.001179 0.07161295 0.998882 0.07252997 0.342277 1.00382 0.34236 0.07252997 0.113858 1.003819 0.998882 0.07252997 0.113906 0.07252997 0.113636 0.07161295 0.113636 0.001031994 1.001179 0.001031994 0.113858 1.003819 0.998882 1.003821 0.998882 0.07252997 1.001179 0.001031994 0.342752 0.001031994 0.342752 0.07161295</float_array>
           <technique_common>
-            <accessor source="#parthenon_OBJ_011-lib-UV0-array" count="56" stride="2">
+            <accessor source="#propylaea_rooftiles-mesh-map-0-array" count="48" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="parthenon_OBJ_011-lib-Vertex">
-          <input semantic="POSITION" source="#parthenon_OBJ_011-lib-Position"/>
+        <source id="propylaea_rooftiles-mesh-map-1">
+          <float_array id="propylaea_rooftiles-mesh-map-1-array" count="96">0.9628963 0.3168733 0.9693187 0.4487488 0.9628963 0.4487487 0.907846 0.187663 0.9142686 0.009897947 0.9142686 0.1876629 0.2022542 0.2941049 0.2021989 0.1541913 0.3341112 0.1541916 0.008946239 0.2941049 0.1866929 0.1541916 0.1867113 0.2941052 0.3337604 0.7558474 0.3401829 0.6239719 0.3401829 0.7558473 0.907846 0.187663 0.907846 0.009898006 0.9142686 0.009897947 0.9628963 0.3168733 0.9693187 0.3168734 0.9693187 0.4487488 0.3341112 0.1541916 0.2021989 0.1541913 0.2022542 0.014005 0.008946239 0.2941049 0.008890986 0.1541913 0.1866929 0.1541916 0.3341112 0.1541916 0.2022542 0.014005 0.3341297 0.01400524 0.9130619 0.49332 0.9194843 0.6710851 0.9130619 0.6710851 0.2022542 0.2941049 0.3341112 0.1541916 0.3341296 0.2941051 0.1866929 0.1541916 0.008946299 0.014005 0.1867113 0.0140053 0.9130619 0.49332 0.9194843 0.4933201 0.9194843 0.6710851 0.1866929 0.1541916 0.008890986 0.1541913 0.008946299 0.014005 0.3337604 0.7558474 0.3337604 0.623972 0.3401829 0.6239719</float_array>
+          <technique_common>
+            <accessor source="#propylaea_rooftiles-mesh-map-1-array" count="48" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="propylaea_rooftiles-mesh-vertices">
+          <input semantic="POSITION" source="#propylaea_rooftiles-mesh-positions"/>
         </vertices>
-        <polygons material="_08___Default" count="24">
-          <input semantic="VERTEX" offset="0" source="#parthenon_OBJ_011-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#parthenon_OBJ_011-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#parthenon_OBJ_011-lib-UV0"/>
-          <p>6 0 0 1 1 1 10 2 2</p>
-          <p>2 3 3 9 4 4 10 5 5</p>
-          <p>10 6 5 1 7 6 2 8 3</p>
-          <p>5 9 7 0 10 8 11 11 9</p>
-          <p>11 12 10 0 13 11 1 14 12</p>
-          <p>1 15 12 6 16 13 11 17 10</p>
-          <p>12 18 14 4 19 15 8 20 16</p>
-          <p>4 21 17 12 22 18 7 23 19</p>
-          <p>7 24 19 3 25 20 4 26 17</p>
-          <p>13 27 21 3 28 22 7 29 23</p>
-          <p>3 30 24 13 31 25 9 32 26</p>
-          <p>9 33 26 2 34 27 3 35 24</p>
-          <p>20 36 28 15 37 29 24 38 30</p>
-          <p>16 39 31 23 40 32 24 41 33</p>
-          <p>24 42 33 15 43 34 16 44 31</p>
-          <p>19 45 35 14 46 36 25 47 37</p>
-          <p>25 48 38 14 49 39 15 50 40</p>
-          <p>15 51 40 20 52 41 25 53 38</p>
-          <p>26 54 42 18 55 43 22 56 44</p>
-          <p>18 57 45 26 58 46 21 59 47</p>
-          <p>21 60 47 17 61 48 18 62 45</p>
-          <p>27 63 49 17 64 50 21 65 51</p>
-          <p>17 66 52 27 67 53 23 68 54</p>
-          <p>23 69 54 16 70 55 17 71 52</p>
-        </polygons>
+        <triangles count="16">
+          <input semantic="VERTEX" source="#propylaea_rooftiles-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#propylaea_rooftiles-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#propylaea_rooftiles-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#propylaea_rooftiles-mesh-map-1" offset="2" set="1"/>
+          <p>23 0 0 18 0 1 19 0 2 29 1 3 32 1 4 28 1 5 6 2 6 7 3 7 11 3 8 12 2 9 17 3 10 15 2 11 21 4 12 24 4 13 20 4 14 29 5 15 33 5 16 32 5 17 23 6 18 22 6 19 18 6 20 11 3 21 7 3 22 8 7 23 12 2 24 13 3 25 17 3 26 11 3 27 8 7 28 10 7 29 31 8 30 26 8 31 27 8 32 6 2 33 11 3 34 9 2 35 17 3 36 14 7 37 16 7 38 31 9 39 30 9 40 26 9 41 17 3 42 13 3 43 14 7 44 21 5 45 25 5 46 24 5 47</p>
+        </triangles>
       </mesh>
     </geometry>
   </library_geometries>
-  <library_animations>
-    <animation id="parthenon_OBJ_011-anim" name="parthenon_OBJ_011">
-      <animation>
-        <source id="parthenon_OBJ_011-Matrix-animation-input">
-          <float_array id="parthenon_OBJ_011-Matrix-animation-input-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#parthenon_OBJ_011-Matrix-animation-input-array" count="0">
-              <param name="TIME" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="parthenon_OBJ_011-Matrix-animation-output-transform">
-          <float_array id="parthenon_OBJ_011-Matrix-animation-output-transform-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#parthenon_OBJ_011-Matrix-animation-output-transform-array" count="0" stride="16">
-              <param type="float4x4"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="parthenon_OBJ_011-Interpolations">
-          <Name_array id="parthenon_OBJ_011-Interpolations-array" count="0">
-</Name_array>
-          <technique_common>
-            <accessor source="#parthenon_OBJ_011-Interpolations-array" count="0">
-              <param type="name"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <sampler id="parthenon_OBJ_011-Matrix-animation-transform">
-          <input semantic="INPUT" source="#parthenon_OBJ_011-Matrix-animation-input"/>
-          <input semantic="OUTPUT" source="#parthenon_OBJ_011-Matrix-animation-output-transform"/>
-          <input semantic="INTERPOLATION" source="#parthenon_OBJ_011-Interpolations"/>
-        </sampler>
-        <channel source="#parthenon_OBJ_011-Matrix-animation-transform" target="parthenon_OBJ_011/matrix"/>
-      </animation>
-    </animation>
-  </library_animations>
+  <library_controllers/>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="parthenon_OBJ_011" name="parthenon_OBJ_011">
-        <matrix sid="matrix">-0.857416 0.000000 0.000000 0.053105 -0.000000 -0.857416 -0.000000 0.423795 0.000000 -0.000000 0.857416 -13.182063 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#parthenon_OBJ_011-lib">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="_08___Default" target="#_08___Default"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+    <visual_scene id="Scene" name="Scene">
+      <node id="propylaea_rooftiles" name="propylaea_rooftiles" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#propylaea_rooftiles-mesh" name="propylaea_rooftiles"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
-

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+	<castshadow/>
+  <group>
+    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_spearman.xml" name="Spearman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_swordsman.xml"  name="Swordsman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_archer.xml" name="Archer Horse"/>
+  </group>
+	<group>
+		<variant>
+			<mesh>props/horse/armor_pers_winged_02.dae</mesh>
+			<textures>
+          <texture file="props/horse/winged_armor_02.png" name="baseTex"/>
+          <texture file="props/horse/winged_armor_02_norm.png" name="normTex"/>
+          <texture file="props/horse/winged_armor_02_spec.png" name="specTex"/>
+      </textures>
+		</variant>
+	</group>
+	<material>basic_trans_parallax_spec.xml</material>
+</actor>

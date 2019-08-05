@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
+#include "gui/CGUIColor.h"
 #include "gui/GUIutil.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
@@ -139,10 +140,10 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 		if (SpriteName.Find("color:") != -1)
 		{
 			CStrW value = wstring_from_utf8(SpriteName.AfterLast("color:").BeforeFirst(":"));
-			CColor color;
+			CGUIColor color;
 
 			// Check color is valid
-			if (!GUI<CColor>::ParseString(value, color))
+			if (!GUI<CGUIColor>::ParseString(value, color))
 			{
 				LOGERROR("GUI: Error parsing sprite 'color' (\"%s\")", utf8_from_wstring(value));
 				return;
@@ -230,7 +231,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 		}
 
 		Call.m_BackColor = (*cit)->m_BackColor;
-		Call.m_BorderColor = (*cit)->m_Border ? (*cit)->m_BorderColor : CColor();
+		Call.m_BorderColor = (*cit)->m_Border ? (*cit)->m_BorderColor : CGUIColor();
 		Call.m_DeltaZ = (*cit)->m_DeltaZ;
 
 		if (!Call.m_HasTexture)
@@ -239,7 +240,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 		}
 		else if ((*cit)->m_Effects)
 		{
-			if ((*cit)->m_Effects->m_AddColor != CColor())
+			if ((*cit)->m_Effects->m_AddColor != CGUIColor())
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_add);
 				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_AddColor;
@@ -252,7 +253,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_grayscale);
 			}
-			else if ((*cit)->m_Effects->m_SolidColor != CColor())
+			else if ((*cit)->m_Effects->m_SolidColor != CGUIColor())
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid_mask);
 				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_SolidColor;
@@ -437,7 +438,7 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 			shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 
-			if (cit->m_BorderColor != CColor())
+			if (cit->m_BorderColor != CGUIColor())
 			{
 				shader->Uniform(str_color, cit->m_BorderColor);
 

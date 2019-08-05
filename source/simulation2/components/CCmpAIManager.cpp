@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/helpers/HierarchicalPathfinder.h"
 #include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/serialization/DebugSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
@@ -331,7 +332,7 @@ public:
 	{
 		WaypointPath ret;
 		PathGoal pathGoal = { PathGoal::POINT, goal.X, goal.Y };
-		m_LongPathfinder.ComputePath(pos.X, pos.Y, pathGoal, passClass, ret);
+		m_LongPathfinder.ComputePath(m_HierarchicalPathfinder, pos.X, pos.Y, pathGoal, passClass, ret);
 
 		for (Waypoint& wp : ret.m_Waypoints)
 			waypoints.emplace_back(wp.x, wp.z);
@@ -501,7 +502,8 @@ public:
 		m_NonPathfindingPassClasses = nonPathfindingPassClassMasks;
 		m_PathfindingPassClasses = pathfindingPassClassMasks;
 
-		m_LongPathfinder.Reload(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+		m_LongPathfinder.Reload(&m_PassabilityMap);
+		m_HierarchicalPathfinder.Recompute(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
 		if (m_HasSharedComponent)
 		{
@@ -533,9 +535,15 @@ public:
 
 		m_PassabilityMap = passabilityMap;
 		if (globallyDirty)
-			m_LongPathfinder.Reload(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+		{
+			m_LongPathfinder.Reload(&m_PassabilityMap);
+			m_HierarchicalPathfinder.Recompute(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+		}
 		else
-			m_LongPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
+		{
+			m_LongPathfinder.Update(&m_PassabilityMap);
+			m_HierarchicalPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
+		}
 
 		JSContext* cx = m_ScriptInterface->GetContext();
 		if (dimensionChange || justDeserialized)
@@ -622,7 +630,7 @@ public:
 
 		m_HasLoadedEntityTemplates = true;
 
-		m_ScriptInterface->Eval("({})", &m_EntityTemplates);
+		m_ScriptInterface->CreateObject(&m_EntityTemplates);
 
 		JS::RootedValue val(cx);
 		for (size_t i = 0; i < templates.size(); ++i)
@@ -802,7 +810,8 @@ public:
 		deserializer.NumberU16_Unbounded("pathfinder grid h", mapH);
 		m_PassabilityMap = Grid<NavcellData>(mapW, mapH);
 		deserializer.RawBytes("pathfinder grid data", (u8*)m_PassabilityMap.m_Data, mapW*mapH*sizeof(NavcellData));
-		m_LongPathfinder.Reload(&m_PassabilityMap, m_NonPathfindingPassClasses, m_PathfindingPassClasses);
+		m_LongPathfinder.Reload(&m_PassabilityMap);
+		m_HierarchicalPathfinder.Recompute(&m_PassabilityMap, m_NonPathfindingPassClasses, m_PathfindingPassClasses);
 	}
 
 	int getPlayerSize()
@@ -922,6 +931,7 @@ private:
 
 	std::map<std::string, pass_class_t> m_NonPathfindingPassClasses;
 	std::map<std::string, pass_class_t> m_PathfindingPassClasses;
+	HierarchicalPathfinder m_HierarchicalPathfinder;
 	LongPathfinder m_LongPathfinder;
 
 	bool m_CommandsComputed;
@@ -1173,7 +1183,7 @@ private:
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue classesVal(cx);
-		scriptInterface.Eval("({})", &classesVal);
+		scriptInterface.CreateObject(&classesVal);
 
 		std::map<std::string, pass_class_t> classes;
 		cmpPathfinder->GetPassabilityClasses(classes);

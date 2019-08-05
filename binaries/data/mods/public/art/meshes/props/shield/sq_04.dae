@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.44 commit date:2019-02-11, commit time:23:10, hash:036ec5cae4f7</authoring_tool>
+    </contributor>
+    <created>2019-03-04T12:01:56</created>
+    <modified>2019-03-04T12:01:56</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Shield_Render-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color sid="diffuse">0 0.8000001 0.001424498 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0 0 0 1</color>
+            </specular>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Shield_Render-material" name="Shield_Render">
+      <instance_effect url="#Shield_Render-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plano_049-mesh" name="Plano.049">
+      <mesh>
+        <source id="Plano_049-mesh-positions">
+          <float_array id="Plano_049-mesh-positions-array" count="75">-0.5182315 0.9814769 0.02405554 -1.65029e-5 -1.294816 0.02405554 -1.65029e-5 1.291494 0.02405554 -0.4887394 -1.085827 0.02405554 0.4887064 -1.085827 0.02405554 -0.4887394 1.082506 0.02405554 0.4887064 1.082506 0.02405554 -0.4350039 1.15855 0.02405554 -0.4350039 -1.155122 0.02405554 0.4349709 -1.155122 0.02405554 0.4349709 1.15855 0.02405554 0.5194291 0.9814769 0.02405554 -0.5182315 -0.9599162 0.02405554 0.5194291 -0.9599167 0.02405554 -0.5182315 0.01078045 0.02405554 0.5194291 0.01078045 0.02405554 -1.64382e-5 0.01078045 0.02405554 -0.2175102 -1.269682 0.02405554 -0.2175102 1.266361 0.02405554 0.2174772 -1.269682 0.02405554 0.2174772 1.266361 0.02405554 0.5194291 -0.4745681 0.02405554 -0.5182315 -0.4745678 0.02405554 -0.5182315 0.4961286 0.02405554 0.5194291 0.4961287 0.02405554</float_array>
+          <technique_common>
+            <accessor source="#Plano_049-mesh-positions-array" count="25" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_049-mesh-normals">
+          <float_array id="Plano_049-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Plano_049-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_049-mesh-map-0">
+          <float_array id="Plano_049-mesh-map-0-array" count="144">0.9105861 0.5047673 0.4994365 0.5047672 0.9105864 0.3218038 0.499437 0.01259213 0.4994365 0.5047672 0.3272871 0.02206659 0.4994365 0.5047672 0.1126037 0.9087792 0.08926039 0.8706939 0.8862683 0.9087795 0.8437357 0.9374458 0.4994365 0.5047672 0.1126037 0.9087792 0.4994365 0.5047672 0.1551362 0.9374457 0.1551362 0.9374457 0.4994365 0.5047672 0.327286 0.9780878 0.327286 0.9780878 0.4994365 0.5047672 0.4994359 0.9875623 0.1126047 0.09137511 0.4994365 0.5047672 0.08926123 0.1388401 0.8437357 0.9374458 0.6715857 0.9780879 0.4994365 0.5047672 0.6715857 0.9780879 0.4994359 0.9875623 0.4994365 0.5047672 0.4994365 0.5047672 0.9105858 0.8706942 0.8862683 0.9087795 0.6715868 0.02206665 0.4994365 0.5047672 0.499437 0.01259213 0.3272871 0.02206659 0.4994365 0.5047672 0.1551373 0.06525266 0.9105858 0.6877307 0.4994365 0.5047672 0.9105861 0.5047673 0.08926057 0.6877306 0.08926081 0.5047671 0.4994365 0.5047672 0.9105864 0.3218038 0.4994365 0.5047672 0.9105867 0.1388402 0.8862691 0.09137523 0.4994365 0.5047672 0.8437367 0.06525278 0.8437367 0.06525278 0.4994365 0.5047672 0.6715868 0.02206665 0.08926093 0.3218037 0.4994365 0.5047672 0.08926081 0.5047671 0.9105867 0.1388402 0.4994365 0.5047672 0.8862691 0.09137523 0.08926123 0.1388401 0.4994365 0.5047672 0.08926093 0.3218037 0.9105858 0.8706942 0.4994365 0.5047672 0.9105858 0.6877307 0.08926039 0.8706939 0.08926057 0.6877306 0.4994365 0.5047672 0.1551373 0.06525266 0.4994365 0.5047672 0.1126047 0.09137511</float_array>
+          <technique_common>
+            <accessor source="#Plano_049-mesh-map-0-array" count="72" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plano_049-mesh-vertices">
+          <input semantic="POSITION" source="#Plano_049-mesh-positions"/>
+        </vertices>
+        <polylist material="Shield_Render-material" count="24">
+          <input semantic="VERTEX" source="#Plano_049-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plano_049-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plano_049-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>15 0 0 16 0 1 21 0 2 1 0 3 16 0 4 17 0 5 16 0 6 5 0 7 0 0 8 6 0 9 10 0 10 16 0 11 5 0 12 16 0 13 7 0 14 7 0 15 16 0 16 18 0 17 18 0 18 16 0 19 2 0 20 3 0 21 16 0 22 12 0 23 10 0 24 20 0 25 16 0 26 20 0 27 2 0 28 16 0 29 16 0 30 11 0 31 6 0 32 19 0 33 16 0 34 1 0 35 17 0 36 16 0 37 8 0 38 24 0 39 16 0 40 15 0 41 23 0 42 14 0 43 16 0 44 21 0 45 16 0 46 13 0 47 4 0 48 16 0 49 9 0 50 9 0 51 16 0 52 19 0 53 22 0 54 16 0 55 14 0 56 13 0 57 16 0 58 4 0 59 12 0 60 16 0 61 22 0 62 11 0 63 16 0 64 24 0 65 0 0 66 23 0 67 16 0 68 8 0 69 16 0 70 3 0 71</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Shields_Spinas" name="Shields_Spinas">
+      <node id="Shield_Sq_04" name="Shield_Sq_04" type="NODE">
+        <matrix sid="transform">1 0 2.22045e-16 0 0 7.54979e-8 -1 0 -2.22045e-16 1 7.54979e-8 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plano_049-mesh" name="Shield_Sq_04">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Shield_Render-material" target="#Shield_Render-material">
+                <bind_vertex_input semantic="MapaUV" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_orle" name="prop_orle" type="NODE">
+          <matrix sid="transform">1 0 -2.22045e-16 0 0 7.54979e-8 1 -4.81368e-10 2.22045e-16 -1 7.54979e-8 0.006375909 0 0 0 1</matrix>
+        </node>
+        <node id="prop_handle" name="prop_handle" type="NODE">
+          <matrix sid="transform">1 0 -2.22045e-16 0 0 7.54979e-8 1 0 2.22045e-16 -1 7.54979e-8 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_spina" name="prop_spina" type="NODE">
+          <matrix sid="transform">1 0 -2.22045e-16 0 0 7.54979e-8 1 0 2.22045e-16 -1 7.54979e-8 0 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Shields_Spinas"/>
+  </scene>
+</COLLADA>

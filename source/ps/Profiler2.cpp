@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,6 +31,7 @@
 #include "third_party/mongoose/mongoose.h"
 
 #include <iomanip>
+#include <map>
 #include <unordered_map>
 
 CProfiler2 g_Profiler2;
@@ -296,13 +297,13 @@ void CProfiler2::RegisterCurrentThread(const std::string& name)
 
 void CProfiler2::AddThreadStorage(ThreadStorage* storage)
 {
-	CScopeLock lock(m_Mutex);
+	std::lock_guard<std::mutex> lock(m_Mutex);
 	m_Threads.push_back(storage);
 }
 
 void CProfiler2::RemoveThreadStorage(ThreadStorage* storage)
 {
-	CScopeLock lock(m_Mutex);
+	std::lock_guard<std::mutex> lock(m_Mutex);
 	m_Threads.erase(std::find(m_Threads.begin(), m_Threads.end(), storage));
 }
 
@@ -723,7 +724,7 @@ void CProfiler2::ConstructJSONOverview(std::ostream& stream)
 {
 	TIMER(L"profile2 overview");
 
-	CScopeLock lock(m_Mutex);
+	std::lock_guard<std::mutex> lock(m_Mutex);
 
 	stream << "{\"threads\":[";
 	for (size_t i = 0; i < m_Threads.size(); ++i)
@@ -901,7 +902,7 @@ const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::s
 	{
 		TIMER(L"profile2 get buffer");
 
-		CScopeLock lock(m_Mutex); // lock against changes to m_Threads or deletions of ThreadStorage
+		std::lock_guard<std::mutex> lock(m_Mutex); // lock against changes to m_Threads or deletions of ThreadStorage
 
 		ThreadStorage* storage = NULL;
 		for (size_t i = 0; i < m_Threads.size(); ++i)
@@ -939,7 +940,7 @@ void CProfiler2::SaveToFile()
 	std::vector<ThreadStorage*> threads;
 
 	{
-		CScopeLock lock(m_Mutex);
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		threads = m_Threads;
 	}
 

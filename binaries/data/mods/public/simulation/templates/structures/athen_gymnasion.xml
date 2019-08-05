@@ -20,6 +20,7 @@
   </Health>
   <Identity>
     <Civ>athen</Civ>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Gymnasium</GenericName>
     <SpecificName>Gymnásion</SpecificName>
     <Tooltip>Train champion units.</Tooltip>
@@ -44,11 +45,10 @@
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>
       <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <VisualActor>
     <Actor>structures/athenians/gymnasion.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_8x9.xml</FoundationActor>
   </VisualActor>
 </Entity>

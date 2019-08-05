@@ -3,20 +3,20 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="units/macedonians/hero_cavalry_swordsman_alexander_r.xml" attachpoint="rider"/>
-        <prop actor="props/horse/cav_rein_swordsman.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse_hele_alex.dds" name="baseTex"/>
-      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/pure_black.xml" frequency="1" name="pure_black"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

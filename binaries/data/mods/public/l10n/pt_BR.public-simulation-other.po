@@ -1,14 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Adriano Ramos <adriano157@gmail.com>, 2015
 # borg 2k <estevanborg@gmail.com>, 2017-2018
+# Cristiano M Magalhaes <crixtiano@gmail.com>, 2019
 # Ernan, 2014
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Igor Aleixo <igor.pavao@gmail.com>, 2016-2017
-# Jose Victor <josevictor@riseup.net>, 2017
+# jose, 2017
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
 # Mihailov Vasilievic Filho, 2015
@@ -20,15 +21,15 @@
 # Raphael Mendonça, 2014
 # dddb155916b6708524139dbbf813fa7c, 2017
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
-# Tiago, 2018
-# Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
+# Tiago, 2018-2019
+# Vinícius Pereira <lameiravinicius24@gmail.com>, 2018-2019
 # Werther Ramalho <werther23@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-07-23 02:22+0000\n"
-"Last-Translator: Vinícius Pereira <lameiravinicius24@gmail.com>\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-06-26 12:39+0000\n"
+"Last-Translator: Cristiano M Magalhaes <crixtiano@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -253,8 +254,8 @@ msgstr "%(_player_)s, você deve me enviar um tributo de %(_amount_)s %(_resourc
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "A menos que você me envie  %(_amount_)s %(_resource_)s, uma aliança entre nós não será feita %(_player_)s."
+" %(_player_)s."
+msgstr "A menos que você me envie %(_amount_)s %(_resource_)s, uma aliança não será formada, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -561,7 +562,7 @@ msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resour
 msgid "The production queue is full."
 msgstr "A fila de produção está cheia."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Não é possível encontrar espaço livre para gerar unidades treinadas"
 
@@ -618,7 +619,7 @@ msgstr "Impossível abrigar unidade(s)"
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguma(s) unidade(s) não pode(m) voltar ao trabalho"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Os requisitos tecnológicos da construção não foram atingidos."
 
@@ -750,8 +751,9 @@ msgstr "Regicida"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Seja o primeiro a construir ou capturar uma maravilha e a manter por um certo tempo para ganhar o jogo. O cronômetro será zerado quando a Maravilha for destruída ou capturada ou em vitória aliada quando as alianças dos proprietários mudarem."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Seja o primeiro a construir ou capturar uma Maravilha e mantê-la por um determinado tempo para vencer o jogo. O cronômetro irá reiniciar quando a Maravilha for destruída ou capturada. Se o modo vitória aliada estiver habilitado, o cronômetro também irá reiniciar quando as alianças do proprietário mudarem."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -896,5 +898,5 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra é o bot AI padrão de 0 A.D. Por favor reporte os problemas para a Wildfire Games (veja o link no menu principal). \n\nA IA tem um bônus/penalidade no estoque de recursos (taxa de coleta ou ganho comercial) variando de -60% para Sandbox a +60% para Muito Difícil (Médio 0%) e os níveis mais fáceis têm uma taxa de produção e construção mais lenta. Além disso, o nível Caixa de Areia não se expande nem ataca."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra é a IA padrão do 0 A.D. Por favor reporte problemas para Wildfire Games (veja o link no menu principal).\n\nAs taxas de coleta de recursos e ganho na troca da IA depende do nível de dificuldade (Caixa de Areia −58%, Muito Fácil −44%, Fácil −25%, Médio ±0%, Difícil +25%, Muito Difícil +56%). Os níveis mais fáceis também tem uma taxa de pesquisa, treinamento e construção menor. Além disso, o nível Caixa de Areia não expande nem ataca. "

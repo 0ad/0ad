@@ -23,8 +23,7 @@
   </Health>
   <Identity>
     <GenericName>Greek Theater</GenericName>
-    <SpecificName>Théātron</SpecificName>
-    <Classes datatype="tokens">Theater -ConquestCritical</Classes>
+    <Classes datatype="tokens">Theater</Classes>
     <Icon>structures/theatron.png</Icon>
   </Identity>
   <Loot>
@@ -40,7 +39,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_greek_theater.xml</select>
       <constructed>interface/complete/building/complete_greek_theater.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

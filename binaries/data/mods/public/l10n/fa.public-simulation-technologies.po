@@ -1,17 +1,18 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ahmad Reza Kazemi <ahmadreza.kazemi82@gmail.com>, 2019
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-09-23 07:47+0000\n"
-"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +27,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "نیروها ارتقا پیدا می کنند به کلاس پیشرفته تر و کیفیت آنها افزایش پیدا می کند: 20% سلامت بیشتر،  افزایش زره به مقدار 1 واحد برای تمام انواع زره ، 20% غنیمت بیشتر، 20% قدرت حمله بیشتر برای نیروهای نزدیکزن، 4 متر شعاع حمله بیشتر و دقت بیشتر برای نیروهای دورزن، برای نیروهای درمانگر سرعت حرکت، سرعت درمان و شعاع درمان بیشتر."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "شعاع حمله +10 متر برای نیروهای کماندار. نیروهای کماندار دقت بهتری پیدا می کنند و -20% زمان پرورش کاهش می یابد اما سلامت آنها نیز -20%."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "سنت کمانداری"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "قفل آن در فاز روستایی باز خواهد شد."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -454,18 +482,6 @@ msgstr "تیرک های تقویت شده ی چوبی برای بدنه ی کش�
 msgid "Reinforced hull"
 msgstr "بدنه ی تقویت شده"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "قفل آن در فاز روستایی باز خواهد شد."
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "یک نیزه بلند که مخصوص سواره نظام ساخته شده است"
@@ -825,8 +841,8 @@ msgid "Gather Training"
 msgstr "آموزش جمع کردن"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "تور ماهی گیری باعث بهبود بهره وری ماهیگیری می شود"
+msgid "Nets improve the productivity of fishing boats."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -965,12 +981,12 @@ msgid "Wicker Baskets"
 msgstr "سبد های حصیری"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "سربازان مستقر شده در پادگان با گذر زمان درمان می شوند."
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "سربازان مستقر شده در پادگان ها با گذر زمان درمان می شوند."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "نیروها با گذر زمان در حالی که در پادگان مستقر شده اند سلامت خود را مجدد کسب می کنند."
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "نیروها با گذر زمان در حالی که در پادگان ها مستقر شده اند سلامت خود را مجدد کسب می کنند."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1702,9 +1718,9 @@ msgstr "صنایع دستی پیشرفته"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "افزایش چشمگیر در سرعت پرورش سربازهای پادگان با پرورش آنها در دسته های بزرگتر یا گردان ها"
+msgstr ""
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1768,8 +1784,8 @@ msgid ""
 msgstr "واحد های سلحشور سربازانی حرفه ای هستند که بهترین سلاح ها را در دست دارند و بیشترین آموزش را می بینند."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "اجازه می دهد که از سربازخانه، واحد های سلحشور تربیت کنید."
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1939,23 +1955,6 @@ msgstr "پیاده نظام-شهروند زبده"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "کارتاژها دیوارهای خود را در سه لایه دایره ای می ساختند. این دیوارها هیچ گاه اجازه عبور دشمن را ندادند حتی زمانی که شهر توسط رومی ها تصرف شد این کار از سمت بندر صورت گرفت و نه از سمت دیوار ها"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "دیوارهای، دروازه های و برج های دفاعی کارتاژها 3 برابر سلامت بیشتر دارند به نسبت سازه های معمولی اما هزینه ساخت و مدت زمان ساخت آنها نیز دو برابر بیشتر است"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "دیوارهای سه لایه"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2259,19 +2258,120 @@ msgstr "ارتقا تمام مزدوران ایتالیایی شما به رتب
 msgid "Elite Italiote Mercenaries"
 msgstr "مزدوران ایتالیایی پیشرفته"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "کارتاژها دیوارهای خود را در سه لایه دایره ای می ساختند. این دیوارها هیچ گاه اجازه عبور دشمن را ندادند حتی زمانی که شهر توسط رومی ها تصرف شد این کار از سمت بندر صورت گرفت و نه از سمت دیوار ها"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "دیوارهای، دروازه های و برج های دفاعی کارتاژها 3 برابر سلامت بیشتر دارند به نسبت سازه های معمولی اما هزینه ساخت و مدت زمان ساخت آنها نیز دو برابر بیشتر است"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "دیوارهای سه لایه"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "سازه های سلتی بیشتر از چوب و تکه سنگ به عنوان پی ریز آن ساخته می شدند"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "ساختمان های سلتی 20% سلامت کمتر دارند اما 20% نیز ارزانتر هستند و سریعتر ساخته می شوند"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "ساختمان های چوبی"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "یونانی از از ابتدای دوران میکنایی ساختمان های سنگی می ساختند."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "تمام ساختمان ها 10% سلامت و امتیاز تسخیر بیشتر خواهند داشت اما 10% زمان بیشتری نیز برای ساخت آنها نیاز است."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "معماری یونان"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "امپراتوری مائوریان متشکل از دهها پادهاشی مستقل سابق بود که زیر پرچم مائوریان قرار گرفته بودند و وسعت این امپراتوری به بیش از 5 میلیون کیلومتر مربع با جمعیت نزدیک به 60 میلیون نفر رسیده بود. نایب السلطنه مائوریان ها که عنوان امپراتور امپراتورها را با خود داشت سپاهی با 600000 پیاده نظام، 9000 فیل جنگی، 8000 ارابه جنگی و 30000 سواره نظام را فرمان می داد که بدون شک عظیم ترین نیروی نظامی در زمان خوب بود."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "امپراتور امپراتوران"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "دیوارهای شهر مائوریان ها -20% سلامت و -20% زمان ساخت کمتر دارد."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "دیوار های چوبی"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "ایرانی ها می توانستند یک ارتش پیاده نظام بزرگ را آماده نبرد کنند و اینکار را انجام می داند چراکه امپراتوری هخامنشی یک امپراتوری بزرگ و گسترده بود. با این وجود درحالی که سربازان ایرانی بخوبی آموزش دیده و سرسخت بودند اما در نبردهای تن به تن و جنگ های نزدیک زیاد قوی نبودند. البته به استثنای دسته های خاص و زبده. بطور کل پیاده نظام ایران یک نیروی حرفه ای به حساب نمی آمد."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "ایرانی ها +10% سقف جمعیت بهره مند هستند"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "سربازگیری پادشاه بزرگ"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "اسپارتها بزرگترین ارتش دنیا را نداشتند اما آنها بهترین ارتش دنبا در زمان خود بودند. چیزی که آنها نداشتند تعداد نفرات بود اما کیفیت سربازانشان بسیار بالا بود. نقل شده است که اسپارتها نیازی به ساخت دیوار برای محافظت از شهر های خود نداشتند مردانشان همچون دیوار از آنها حفاظت می کردند."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "اسپارتها 10% کمتر سقف جمعیت دارند."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "زیردستان"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2290,36 +2390,6 @@ msgstr "جنگ با نیزه ی پیاده نظام"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "یونانی از از ابتدای دوران میکنایی ساختمان های سنگی می ساختند."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "تمام ساختمان ها 10% سلامت و امتیاز تسخیر بیشتر خواهند داشت اما 10% زمان بیشتری نیز برای ساخت آنها نیاز است."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "معماری یونان"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "اسپارتها بزرگترین ارتش دنیا را نداشتند اما آنها بهترین ارتش دنبا در زمان خود بودند. چیزی که آنها نداشتند تعداد نفرات بود اما کیفیت سربازانشان بسیار بالا بود. نقل شده است که اسپارتها نیازی به ساخت دیوار برای محافظت از شهر های خود نداشتند مردانشان همچون دیوار از آنها حفاظت می کردند."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "اسپارتها 10% کمتر سقف جمعیت دارند."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "زیردستان"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2367,9 +2437,9 @@ msgstr "دیواره ای بلند آتنی"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% HP و -50% سرعت ساخت برای مراکز تمدن، معابد، هرم ها و سازه های عجایب"
+msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2388,78 +2458,6 @@ msgstr "پرورش درمانگرهای زبده"
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "دستور الهی"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "امپراتوری مائوریان متشکل از دهها پادهاشی مستقل سابق بود که زیر پرچم مائوریان قرار گرفته بودند و وسعت این امپراتوری به بیش از 5 میلیون کیلومتر مربع با جمعیت نزدیک به 60 میلیون نفر رسیده بود. نایب السلطنه مائوریان ها که عنوان امپراتور امپراتورها را با خود داشت سپاهی با 600000 پیاده نظام، 9000 فیل جنگی، 8000 ارابه جنگی و 30000 سواره نظام را فرمان می داد که بدون شک عظیم ترین نیروی نظامی در زمان خوب بود."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "مائوریان ها 10% سقف جمعیت بیشتری دارند"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "امپراتور امپراتوران"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "هندی ها بصورت سنتی دارای کمانداران بسیار ماهری بودند و تمایل عجیبی برای استفاده گسترده از کمانداران در نبرد ها داشتند"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "شعاع حمله +10 متر برای نیروهای کماندار. نیروهای کماندار دقت بهتری پیدا می کنند و -20% زمان پرورش کاهش می یابد اما سلامت آنها نیز -20%."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "سنت کمانداری"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "مائوریان ها دیوارهای شهر خود را از چوب می ساختند، منبع فراوانی که در هند در اختیار آنها بود."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "دیوارهای شهر مائوریان ها -20% سلامت و -20% زمان ساخت کمتر دارد."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "دیوار های چوبی"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "ایرانی ها می توانستند یک ارتش پیاده نظام بزرگ را آماده نبرد کنند و اینکار را انجام می داند چراکه امپراتوری هخامنشی یک امپراتوری بزرگ و گسترده بود. با این وجود درحالی که سربازان ایرانی بخوبی آموزش دیده و سرسخت بودند اما در نبردهای تن به تن و جنگ های نزدیک زیاد قوی نبودند. البته به استثنای دسته های خاص و زبده. بطور کل پیاده نظام ایران یک نیروی حرفه ای به حساب نمی آمد."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "ایرانی ها +10% سقف جمعیت بهره مند هستند"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "سربازگیری پادشاه بزرگ"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2492,12 +2490,6 @@ msgstr "تمام سازه های ایرانی ها +25% سلامت و امتیا
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "معماری پارسیان"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "پارسیان سنتی دیرینه در کمانداری دارند و علاقه ی زیادی به استفاده از انبوهی از کمانداران در نبرد داشتند."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""

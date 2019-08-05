@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,11 +35,13 @@ GUI Core, stuff that the whole GUI uses
 #include <map>
 #include <vector>
 
+#include "gui/CGUIColor.h"
 #include "ps/CStr.h"
 #include "ps/Errors.h"
 // I would like to just forward declare CSize, but it doesn't
 //  seem to be defined anywhere in the predefined header.
 #include "ps/Shapes.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class IGUIObject;
 
@@ -47,7 +49,8 @@ class IGUIObject;
 // Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
 public:																	\
-	static IGUIObject* ConstructObject() { return new obj(); }
+	static IGUIObject* ConstructObject(CGUI* pGUI)					\
+		{ return new obj(pGUI); }
 
 
 /**
@@ -201,12 +204,14 @@ public:
 	{
 		return pixel == other.pixel && percent == other.percent;
 	}
+
+	void ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const;
+	bool FromJSVal(JSContext* cx, JS::HandleValue v);
 };
 
 
 ERROR_GROUP(GUI);
 
-ERROR_TYPE(GUI, NullObjectProvided);
 ERROR_TYPE(GUI, InvalidSetting);
 ERROR_TYPE(GUI, OperationNeedsGUIObject);
 ERROR_TYPE(GUI, NameAmbiguity);

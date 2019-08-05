@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# abuyop <abuyop@gmail.com>, 2014,2017-2018
+# abuyop <abuyop@gmail.com>, 2014,2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 02:40+0000\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2019-01-27 01:59+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -233,30 +233,44 @@ msgstr "Dependensi tidak dipenuhi: %(dep)s"
 msgid "All dependencies met"
 msgstr "Semua dependensi dipenuhi"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Benarkan"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Dilumpuhkan"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Tiada mod dipilih."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Penafian"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "Terma mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "Dasar Kerahsiaan mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "OK"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Tonton atas-talian"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Buka %(url)s dalam pelayar."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -382,7 +396,7 @@ msgstr "Bahasa"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Tolak"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -390,40 +404,40 @@ msgstr "Terima"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "Penafian mod.io 0 A.D. Empires Ascendant (Kekuasaan Empayar)"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Tarikh Dikumen: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "Anda kini sedang bersambung dengan perkhidmatan atas-talian mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Perkhidmatan ini menyediakan laluan mudah untuk muat turun dan pasang mod buatan-komuniti dan daripada DBolical Pty Ltd, syarikat disebalik IndieDB dan ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Perkhidmatan untuk pengguna berusia 13 tahun dan ke atas."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games telah memastikan sambungan ini selamat dan menyemak mod jika ada kerentanan keselamatan, tetapi tidak memberi jaminan ia tidak menimbulkan apa-apa risiko."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Dengan menggunakan perkhidmatan ini, anda memahami dan setuju dengan Terma Penggunaan mod.io serta Dasar Kerahsiaan yang mana Wildfire Games tidak bertanggungjawab atas apa jua kerosakan yang berlaku daripada perkhidmatan ini."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

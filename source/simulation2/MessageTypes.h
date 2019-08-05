@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -317,21 +317,27 @@ public:
 };
 
 /**
- * Sent by CCmpUnitMotion during Update, whenever the motion status has changed
- * since the previous update.
+ * Sent by CCmpUnitMotion during Update if an event happened that might interest other components.
  */
-class CMessageMotionChanged : public CMessage
+class CMessageMotionUpdate : public CMessage
 {
 public:
-	DEFAULT_MESSAGE_IMPL(MotionChanged)
+	DEFAULT_MESSAGE_IMPL(MotionUpdate)
 
-	CMessageMotionChanged(bool starting, bool error) :
-		starting(starting), error(error)
+	enum UpdateType {
+		LIKELY_SUCCESS, // UnitMotion considers it is arrived at destination.
+		LIKELY_FAILURE, // UnitMotion says it cannot reach the destination.
+		OBSTRUCTED, // UitMotion was obstructed. This does not mean stuck, but can be a hint to run range checks.
+		LENGTH
+	};
+
+	static const std::array<const char*, UpdateType::LENGTH> UpdateTypeStr;
+
+	CMessageMotionUpdate(UpdateType ut) : updateType(ut)
 	{
 	}
 
-	bool starting; // whether this is a start or end of movement
-	bool error; // whether we failed to start moving (couldn't find any path)
+	UpdateType updateType;
 };
 
 /**

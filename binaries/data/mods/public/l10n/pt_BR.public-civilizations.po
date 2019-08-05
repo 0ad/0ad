@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -20,7 +20,7 @@
 # Filipe Oliveira <contato@fmoliveira.com.br>, 2013
 # Guilherme Soster <guilhermesosters@gmail.com>, 2014
 # Hunteros <jorgebosch@ymail.com>, 2013
-# Jose Victor <josevictor@riseup.net>, 2017
+# jose, 2017
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Junior Lage <junimslage@gmail.com>, 2017
 # Leonardo Barros <leonardobatzeta@gmail.com>, 2018
@@ -38,17 +38,18 @@
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
 # Raphael Mendonça, 2014
 # Rowel <luciomeiradavid@hotmail.com>, 2014
-# Rui <xymarior@yandex.com>, 2018
+# Rui <xymarior@yandex.com>, 2018-2019
 # Sturm <gravador202@yahoo.com.br>, 2014
-# Tiago, 2018
+# Tiago, 2018-2019
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
+# Werther Ramalho <werther23@gmail.com>, 2019
 # yurids, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-07-25 08:39+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-05-15 20:30+0000\n"
+"Last-Translator: Werther Ramalho <werther23@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,8 +99,8 @@ msgid ""
 msgstr "Os gregos foram bem sucedidos em helenizar diversos estrangeiros. Durante o Período Helenístico, o grego foi a língua franca do Mundo Antigo, amplamente falada da Espanha à Índia."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Navios são construídos 25% mais rápido."
+msgid "Allied warships −25% construction time."
+msgstr "Navios de guerra aliados têm -25% no tempo de construção."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -348,8 +349,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "A religião e o druidismo dos celtas inspiraram a mentalidade guerreira deste povo."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% de custo para curandeiros aliados."
+msgid "Allied healers −20% resource costs."
+msgstr "Curandeiros aliados custam -20% de recursos."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -465,7 +466,7 @@ msgid ""
 "as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
 "Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
 "tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aide. Kunobelinos seems to have been indifferent to the Romans. He traded "
+"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
 "with them freely, but had few qualms subjugating known Roman allies, and "
 "even sent his youngest son Adminius as a fosterling to be educated in Roman "
 "Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
@@ -593,8 +594,8 @@ msgid ""
 msgstr "Não muito diferente da Peninsula Ibérica, o norte da África era conhecido como região dos cavalos, capaz de treinar mais de 100.000 cavalos de montaria por ano. O norte africano também foi o lar do Elefante-da-Floresta."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% de bônus de lucro comercial para aliados em rotas internacionais."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Mercados aliados têm +10% de bônus de comércio internacional."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -800,8 +801,8 @@ msgid "Gauls"
 msgstr "Gauleses"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% no tempo de pesquisa para tecnologias dos aliados."
+msgid "Allied structures −20% technology research time."
+msgstr "Estruturas aliadas têm -20% no tempo de pesquisa de tecnologias."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -859,7 +860,7 @@ msgstr "Viridovix"
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr "Uma quantidade definida de metal e alimentos de toda a estrutura destruída ou capturados."
+msgstr "Uma quantidade definida de metal e comida de cada estrutura destruída ou capturada."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
@@ -1000,10 +1001,8 @@ msgid ""
 msgstr "Não muito diferente da Península Ibérica, o norte da África era conhecido como a terra dos cavalos, capaz de produzir mais de 100.000 montarias por ano. Lá também era o lar do Elefante-da-Floresta norte africano."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "Grupos pequenos de infantaria do cidadão-soldado e custo de escaramuçadores cavaleiros de -20% para os aliados."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Cidadão-dardista custam -20% de recursos."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1131,7 +1130,7 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr "Indíbil era rei dos Ilergetes, uma grande federação de povos estabelecidos ao longo do rio Ebro, no noroeste da península Ibérica. Durante a expansão bárcida, em 212 a.C., ele inicialmente pretendia se aliar aos cartagineses, que haviam tomado o controle de grande parte do território a sul e a oeste da península, no entanto, após sua derrota e captura numa importante batalha, ele foi convencido a se juntar aos romanos, talvez sendo enganado,por Cipião Africano. Mas essa aliança não durou muito tempo, pois as promessas de Cipião eram vãs e os Romanos mostraram-se mais conquistadores do que aliados. Por isso, quando os Romanos acabaram com a presença cartaginesa na 'Hispânia' em 206 a.C., Indíbil e um príncipe tribal chamado Mandônio (que pode ter sido seu irmão) revoltaram-se contra eles. Ultrapassados em número e em armas, foram derrotados mais uma vez, tendo Indíbil perdido a vida e Mandônio sido capturado e posteriormente executado. Depois desta batalha, os Ilergetes viveram pacificamente sob domínio romano."
+msgstr "Indíbil era rei dos Ilergetes, uma grande federação de povos estabelecidos ao longo do rio Ebro, no noroeste da península Ibérica. Durante a expansão bárcida, em 212 a.C., ele inicialmente pretendia se aliar aos cartagineses, que haviam tomado o controle de grande parte do território a sul e a oeste da península, no entanto, após sua derrota e captura numa importante batalha, ele foi convencido a se juntar aos romanos, talvez sendo enganado,por Cipião Africano. Mas essa aliança não durou muito tempo, pois as promessas de Cipião eram vãs e os Romanos mostraram-se mais conquistadores do que aliados. Por isso, quando os Romanos acabaram com a presença cartaginesa na 'Hispânia' em 206 a.C., Indíbil e um príncipe tribal chamado Mandônio, que pode ter sido seu irmão, revoltaram-se contra eles. Ultrapassados em número e em armas, foram derrotados mais uma vez no ano de 205 a.C., tendo Indíbil perdido a vida e Mandônio sido capturado e posteriormente executado. Depois desta batalha, os Ilergetes viveram pacificamente sob domínio romano."
 
 #: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
@@ -1201,10 +1200,8 @@ msgid "Elephant Suppliers"
 msgstr "Fornecedores de Elefantes"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Reduz em 20% o custo e o tempo de treinamento para elefantes dos aliados dos jogadores Cuchitas."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Elefantes aliados custam -20% de recursos e tempo de treinamento."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1268,9 +1265,9 @@ msgstr "Arquitetura Monumental"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+50% de HP e -50% de tempo de construção para Centros Cívicos, Templos, Pirâmides e Maravilhas."
+msgstr "+50% de pontos de vida e -50% no tempo de construção para Centros Cívicos, Templos, Pirâmides e Maravilhas."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1413,8 +1410,8 @@ msgid ""
 msgstr "Os gregos eram altamente bem sucedidos em helenizada por vários estrangeiros. Durante a era helenística, o grego era a língua franca do mundo antigo, falado amplamente da Espanha à Índia."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% nos preços de venda no mercado."
+msgid "Allies +20% barter sell prices."
+msgstr "Aliados têm +20% no preço de venda de trocas comerciais."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1634,14 +1631,14 @@ msgid ""
 msgstr "Macedônia foi um reino grego antigo, centrado na porção nordeste da península grega. Sob a liderança de Alexandre o Grande, forças macedônicas e aliadas tomaram a maior parte do mundo que conheciam, incluindo Egito, Pérsia e partes do subcontinente indiano, permitindo a difusão das culturas helenísticas e orientais por muitos anos."
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
+msgid "Mauryas"
 msgstr "Máurias"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Máurias tem um bônus de +10% de capacidade populacional (ex., 330 de cap. pop. em vez do habitual 300)."
+msgstr "Máurias tem um bônus de +10% de capacidade populacional (ex., 330 de capacidade populacional em vez do habitual 300)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1651,14 +1648,14 @@ msgstr "Imperador dos Imperadores"
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
 msgstr "O Império Máuria abrangia dezenas de reinos previamente independentes em uma área de 5 milhões de quilômetros quadrados, com uma população perto dos 60 milhões de pessoas. Os regentes máurias tinham o título de Imperador dos Imperadores e comandavam um exército profissional de 600,000 na infantaria, 9000 elefantes, 8000 bigas e 30,000 cavaleiros, indiscutivelmente a maior armada de sua época."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
+msgid "The Mauryas enjoy access to 4 champions."
 msgstr "Os Máurias têm acesso a 4 campeões."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
@@ -1674,8 +1671,10 @@ msgid ""
 msgstr "Kshatriya ou Kashtriya, guerreiro de significado, é um dos quatro varnas (ordens sociais) no hinduísmo. Tradicionalmente Kshatriya constituem a elite militar e acórdão do sistema social védico-Hindu esboçado por Vedas e as leis de Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "Templos aliados e suas tecnologias tem -50% de custo e tempo de pesquisa."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Templos aliados têm -50% no custo de recursos e tempo de construção."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1848,8 +1847,8 @@ msgid ""
 msgstr "Os Persas recrutavam um grande número de pessoas para integrarem seus regimentos de infantaria em períodos de guerra, devido à enorme dimensão do império aquemênida e à maneira como estava organizado. Em geral, a infantaria persa era bem treinada e combatia com bastante empenho. No entanto, ela não se saia muito bem no combate corpo a corpo. Com exceção dos regimentos de elite, a infantaria persa não era um exército profissional permanente."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Maiores rendimentos (+15%) das rotas comerciais terrestres para comerciantes aliados."
+msgid "Allied land traders +15% trade gain."
+msgstr "Comerciantes terrestres aliados têm +15% de ganho no comércio."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2054,7 +2053,7 @@ msgstr "Ptolemaico"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
-"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
 msgstr "Os Ptolomeus recebem o acampamento mercenário, um quartel que é construído em território neutro e treina soldados mercenários."
 
@@ -2063,6 +2062,7 @@ msgid "Mercenary Army"
 msgstr "Exército Mercenário"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2093,8 +2093,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Pode capturar elefantes e camelos selvagens para reduzir o custo de treino desses animais."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Todos os aliados ganham um pequeno rendimento em comida."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Aliados têm +1.0 na taxa constante de comida."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2249,18 +2249,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Devem ser construídos em território neutro. Não tem nenhum efeito sobre o raio de território. Treina todas as unidades 'mercenárias'."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "A dinastia de Ptolomeu Greco-macedônio contou com um grande número de mercenários gregos e estrangeiros para a maior parte de sua força militar, principalmente porque a lealdade de unidades egípcios nativos muitas vezes era suspeito. Com efeito, durante uma revolta nativa, Alto Egito foi perdido para os Ptolomeus por décadas. Mercenários eram frequentemente endurecidos pela batalha e sua lealdade poderia ser comprada, por vezes, mais barato, às vezes mais caras. Este fato não mais importa, já que o Egito sob os Ptolomeus era tão próspero quanto viria a ser o mais rico dos Estados deixados por Alexandre."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Farol"
@@ -2326,8 +2314,8 @@ msgid ""
 msgstr "Cidadania romana era altamente valorizada no mundo antigo. Direitos básicos e privilégios que eram dados a cidadãos romanos eram negados a povos conquistados. Diz-se que ferir um cidadão romano era como ferir a própria Roma, e atrairia toda a ira romana sobre o perpetrador."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% no tempo de treinamento para infantaria aliada."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Cidadãos-soldados de infantaria têm -20% no tempo de treinamento."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2536,8 +2524,8 @@ msgid ""
 msgstr "Selêucida e certamente sucessivas guerra evoluíram ao longo dos séculos 3 e 2. O contato com iniciantes orientais como os Parthians e revoltas constantes de Satrápias periféricos como Bactria causado nos Selêucidas uma reforma em seus militares e mudaram suas táticas, especificamente no braço de cavalaria. Guerra com os romanos do Ocidente e as invasões do Gálatas também forçou os Selêucidas para reformar seus regimentos de infantaria a ser mais flexível."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Centros Civis aliados são 20% mais barato."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Centros cívicos aliados custam -20% de recursos."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2551,7 +2539,7 @@ msgstr "O núcleo político do Império Selêucida consistia de quatro cidades '
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
-msgstr "Seleuco I Nicator"
+msgstr "Seleuco I Nicátor"
 
 #: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
@@ -2722,9 +2710,9 @@ msgstr "Seleukos A' Nikator"
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleukus "
+" the verge of collapse he managed to weld back together the empire Seleucus "
 "I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"Parthia were brought to heel, temporarily securing his eastern borders. He "
 "then turned his attention to mother Greece, attempting to fulfill the dreams"
 " of his fathers by invading Greece under the pretext of liberation. The "
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
@@ -2826,10 +2814,8 @@ msgid ""
 msgstr "No âmbito da Constituição redigida pelo mítico legislador Licurgo, foi fundada a instituição da Agogê, em que os Espartanos eram treinados desde os 6 anos para serem guerreiros excepcionais, em defesa de Esparta."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Aumenta a saúde da infantaria cidadão-soldado lanceiro em 10% para os aliados dos jogadores Espartanos."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Cidadão-lanceiro têm +10% de saúde."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

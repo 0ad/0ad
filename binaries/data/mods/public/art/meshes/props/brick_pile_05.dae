@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2019-04-20T19:59:17</created>
+    <modified>2019-04-20T19:59:17</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="brick_pile_05-mesh" name="brick_pile_05">
+      <mesh>
+        <source id="brick_pile_05-mesh-positions">
+          <float_array id="brick_pile_05-mesh-positions-array" count="9">-0.1803882 -0.04630726 -1.951926 -0.1803883 -0.04198896 -1.951926 -0.1760702 -0.04198896 -1.951926</float_array>
+          <technique_common>
+            <accessor source="#brick_pile_05-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="brick_pile_05-mesh-normals">
+          <float_array id="brick_pile_05-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#brick_pile_05-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="brick_pile_05-mesh-map-0">
+          <float_array id="brick_pile_05-mesh-map-0-array" count="6">0.753448 0.295875 0.712383 0.295875 0.712383 0.381111</float_array>
+          <technique_common>
+            <accessor source="#brick_pile_05-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="brick_pile_05-mesh-vertices">
+          <input semantic="POSITION" source="#brick_pile_05-mesh-positions"/>
+        </vertices>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#brick_pile_05-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#brick_pile_05-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#brick_pile_05-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 1 0 1 0 0 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="brick_pile_05" name="brick_pile_05" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#brick_pile_05-mesh" name="brick_pile_05"/>
+        <node id="prop_brick_01" name="prop_brick_01" type="NODE">
+          <matrix sid="transform">1 0 0 -1.280532 0 1 0 1.00359e-5 0 0 1 5.96046e-8 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_02" name="prop_brick_02" type="NODE">
+          <matrix sid="transform">1 0 0 -1.19209e-7 0 1 0 -9.0152e-7 0 0 1 5.96046e-8 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_03" name="prop_brick_03" type="NODE">
+          <matrix sid="transform">1 0 0 1.280532 0 1 0 -9.0152e-7 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_04" name="prop_brick_04" type="NODE">
+          <matrix sid="transform">1 0 0 0.6402668 0 1 0 1.00657e-5 0 0 1 0.7683601 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_05" name="prop_brick_05" type="NODE">
+          <matrix sid="transform">1 0 0 -0.6402651 0 1 0 1.00359e-5 0 0 1 0.7683601 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

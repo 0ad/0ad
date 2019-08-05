@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mask Scale">
+      <mesh>props/helmet/props/hele_phrygian_mask_c.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_phrygian_mask_b_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_b_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

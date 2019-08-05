@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@
 #include "ps/ThreadUtil.h"
 
 #include <fstream>
+#include <mutex>
 #include <string>
 
 #define DEBUG_UPLOADS 0
@@ -161,7 +162,7 @@ public:
 	 */
 	void SetEnabled(bool enabled)
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		if (enabled != m_Enabled)
 		{
 			m_Enabled = enabled;
@@ -181,7 +182,7 @@ public:
 	bool Shutdown()
 	{
 		{
-			CScopeLock lock(m_WorkerMutex);
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
 			m_Shutdown = true;
 		}
 
@@ -200,7 +201,7 @@ public:
 	 */
 	std::string GetStatus()
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		return m_Status;
 	}
 
@@ -210,7 +211,7 @@ public:
 	void Submit(const shared_ptr<CUserReport>& report)
 	{
 		{
-			CScopeLock lock(m_WorkerMutex);
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
 			m_ReportQueue.push_back(report);
 		}
 
@@ -314,19 +315,19 @@ private:
 
 	bool GetEnabled()
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		return m_Enabled;
 	}
 
 	bool GetShutdown()
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		return m_Shutdown;
 	}
 
 	void SetStatus(const std::string& status)
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		m_Status = status;
 #if DEBUG_UPLOADS
 		debug_printf(">>> CUserReporterWorker status: %s\n", status.c_str());
@@ -340,7 +341,7 @@ private:
 		shared_ptr<CUserReport> report;
 
 		{
-			CScopeLock lock(m_WorkerMutex);
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
 			if (m_ReportQueue.empty())
 				return false;
 			report = m_ReportQueue.front();
@@ -381,7 +382,7 @@ private:
 			// so shut down and stop talking to it (to avoid wasting bandwidth)
 			if (code == 410)
 			{
-				CScopeLock lock(m_WorkerMutex);
+				std::lock_guard<std::mutex> lock(m_WorkerMutex);
 				m_Shutdown = true;
 				return false;
 			}
@@ -401,7 +402,7 @@ private:
 		// a long interval
 
 		{
-			CScopeLock lock(m_WorkerMutex);
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
 			m_ReportQueue.push_front(report);
 		}
 
@@ -489,7 +490,7 @@ private:
 private:
 	// Thread-related members:
 	pthread_t m_WorkerThread;
-	CMutex m_WorkerMutex;
+	std::mutex m_WorkerMutex;
 	SDL_sem* m_WorkerSem;
 
 	// Shared by main thread and worker thread:

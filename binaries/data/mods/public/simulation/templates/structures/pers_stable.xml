@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_stable">
+  <Cost>
+    <Resources>
+      <wood>0</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="22.0" depth="20.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Paraspa</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="18.0" depth="16.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/persians/stable.xml</Actor>
+    <FoundationActor>structures/fndn_6x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

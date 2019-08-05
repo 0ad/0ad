@@ -1,15 +1,15 @@
 # Translation template for Pyrogenesis.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2018
+# David Sowa <isithere2@yahoo.com>, 2017-2019
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 22:55+0000\n"
+"POT-Creation-Date: 2019-01-07 09:44+0100\n"
+"PO-Revision-Date: 2019-04-20 18:07+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -22,153 +22,153 @@ msgstr ""
 msgid "Long strings"
 msgstr "Cadenes llargues"
 
-#: lobby/XmppClient.cpp:787
+#: lobby/XmppClient.cpp:800
 msgid "unknown subtype (see logs)"
-msgstr "sotriba desconocida (mirar rexistros)"
+msgstr "desconozse'l sotipu (mirar rexistros)"
 
-#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
-#: lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1180
 msgid "Error"
 msgstr "Fallu"
 
-#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
+#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
 msgid "No error"
 msgstr "Nun hai fallos"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1102
 msgid "Player already logged in"
 msgstr "El xugador yá anició sesión"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
 msgstr "Prohíbese"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1106
 msgid "Internal server error"
-msgstr "Fallu internu del sirvidor"
+msgstr "Fallu nel sirvidor internu"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1110
 msgid "Not allowed"
 msgstr "Nun se permite"
 
-#: lobby/XmppClient.cpp:1072
+#: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
 msgstr "Nun s'autorizó"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
-msgstr "Receutor non disponible temporalmente"
+msgstr "El receptor nun ta disponible temporalmente"
 
-#: lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1116
 msgid "Registration required"
 msgstr "Ríquese'l rexistru"
 
-#: lobby/XmppClient.cpp:1081
+#: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
-msgstr "Serviciu non disponible"
+msgstr "El serviciu nun ta disponible"
 
-#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
+#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
 msgid "Unknown error"
-msgstr "Fallu desconocíu"
+msgstr "Desconozse'l fallu"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1145
 msgid "Stream error"
 msgstr "Fallu nel fluxu"
 
-#: lobby/XmppClient.cpp:1107
+#: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
 msgstr "Nun se sofita la versión del fluxu entrante"
 
-#: lobby/XmppClient.cpp:1108
+#: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
-msgstr "El sirvidor zarró'l fluxu"
+msgstr "El fluxu zarrólu'l sirvidor"
 
-#: lobby/XmppClient.cpp:1112
+#: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
 msgstr "Hebo un fallu I/O"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
 msgstr "La conexón refugóla'l sirvidor"
 
-#: lobby/XmppClient.cpp:1115
+#: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
-msgstr "Falló la resolución del nome del nome d'agospiu del sirvidor"
+msgstr "Falló la resolución del nome d'agospiu del sirvidor"
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
 msgstr "Esti sistema ta ensin memoria"
 
-#: lobby/XmppClient.cpp:1118
+#: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Nun pudo verificase'l certificáu'l sirvidor o la negociación TLS nun se completó con ésitu"
 
-#: lobby/XmppClient.cpp:1119
+#: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
 msgstr "El sirvidor nun ufrió'l cifráu TLS riquíu"
 
-#: lobby/XmppClient.cpp:1121
+#: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falló l'autenticación. Nun esiste la cuenta o la clave incorreuta"
+msgstr "Falló l'autenticación. Clave incorreuta o la cuenta nun esiste"
 
-#: lobby/XmppClient.cpp:1122
+#: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
-msgstr "L'usuariu o'l sistema pidió desconectase"
+msgstr "L'usuariu o'l sistema pidió desconeutase"
 
-#: lobby/XmppClient.cpp:1123
+#: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
 msgstr "Nun hai conexones actives"
 
-#: lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
 msgstr "La cuenta rexistróse con ésitu"
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
 msgstr "Nun s'apurrió tola información precisa"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1185
 msgid "Username already exists"
 msgstr "Yá esiste'l nome d'usuariu"
 
-#: ps/ModIo.cpp:244
+#: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Hebo un fallu al entamar la consulta pa la identificación del xuegu. Fallu: %s; %s."
 
-#: ps/ModIo.cpp:274
+#: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Hebo un fallu al entamar la consulta pa los mods. Fallu: %s; %s."
+msgstr "Hebo un fallu al entamar la consulta pa camudos. Fallu: %s; %s."
 
-#: ps/ModIo.cpp:300
+#: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo facese'l direutoriu mod: %s."
+msgstr "Nun pudo criase'l direutoriu camudos: %s."
 
-#: ps/ModIo.cpp:325
+#: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrise'l ficheru temporal del mod baxáu: %s."
+msgstr "Nun pudo abrise'l ficheru temporal pa la baxada'l camudu: %s."
 
-#: ps/ModIo.cpp:335
+#: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Hebo un fallu al entamar la baxada. Fallu: %s; %s."
+msgstr "Falló al entamar la baxada. Fallu: %s; %s."
 
-#: ps/ModIo.cpp:380
+#: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Fallu de baxada asíncrona: %s, %s."
 
-#: ps/ModIo.cpp:408
+#: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Falló la baxada. Respuesta del sirvidor: %s; %s."
+msgstr "Falló la baxada. Rempuesta del sirvidor: %s; %s."
 
-#: ps/ModIo.cpp:511
+#: ps/ModIo.cpp:513
 msgid "Mismatched filesize."
 msgstr "Nun concasa'l tamañu del ficheru."
 
@@ -179,11 +179,11 @@ msgstr "Ficheru non válidu. Albidróse md5 %s, recibió %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr "Hebo un fallu al calcular el hash final."
+msgstr "Falló al calcular el hash final."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr "Hebo un fallu al verificar la firma."
+msgstr "Falló al verificar la robla."
 
 #: ps/SavedGame.cpp:128
 #, c-format
@@ -193,23 +193,8 @@ msgstr "Partida guardada en '%s'"
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Captura de pantalla guardada en '%s'"
+msgstr "Semeya de pantalla guardada en '%s'"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: ps/scripting/JSInterface_Debug.cpp:88
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s(compilación personalizada) "
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#. dennis-ignore: *
-#: ps/scripting/JSInterface_Debug.cpp:94
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s(%ls) "
-
-#: ps/scripting/JSInterface_Debug.cpp:115
+#: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
 msgstr "compilación personalizada"

@@ -92,7 +92,7 @@ const oKushChampions = [
 	"units/kush_champion_infantry_amun",
 	"units/kush_champion_infantry_apedemak"
 ];
-const oPtolSiege = ["units/ptol_mechanical_siege_lithobolos_unpacked", "units/ptol_mechanical_siege_polybolos_unpacked"];
+const oPtolSiege = ["units/ptol_siege_lithobolos_unpacked", "units/ptol_siege_polybolos_unpacked"];
 const oTriggerPointCityPath = "trigger/trigger_point_A";
 const oTriggerPointAttackerPatrol = "trigger/trigger_point_B";
 

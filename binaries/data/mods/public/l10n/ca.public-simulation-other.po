@@ -1,9 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Albert F. <alb.fontquerni@gmail.com>, 2018
+# Albert F. <alb.fontquerni@gmail.com>, 2018-2019
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc Famadas <kiski97@gmail.com>, 2015
 # Francesc Famadas <kiski97@gmail.com>, 2015
@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-10-17 14:42+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-07-10 15:04+0000\n"
 "Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -243,8 +243,8 @@ msgstr "%(_player_)s, m'heu d'enviar un tribut de %(_amount_)s %(_resource_)s ab
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "Llevat que m'envieu %(_amount_)s %(_resource_)s, no formaré cap aliança amb vós, %(_player_)s,"
+" %(_player_)s."
+msgstr "Si no m'envieu %(_amount_)s %(_resource_)s, no formaré cap aliança amb vós, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -551,7 +551,7 @@ msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s, %(resourc
 msgid "The production queue is full."
 msgstr "La cua de producció està plena."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "No hi ha espai al punt de sortida per a les noves unitats"
 
@@ -608,7 +608,7 @@ msgstr "No es poden expulsar les unitats"
 msgid "Some unit(s) can't go back to work"
 msgstr "Algunes unitats no poden tornar a la feina"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "No s'han aconseguit totes les tecnologies necessàries."
 
@@ -740,8 +740,9 @@ msgstr "Regicidi"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Sigueu el primer a construir o capturar una Meravella i mantenir-la durant un cert temps per guanyar el joc. El temporitzador es restablirà quan la meravella es destrueix o es capturi o en victòria aliada quan les aliances dels propietaris canviïn."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Sigueu el primer a construir o capturar una Meravella i mantenir-la durant un cert temps per guanyar el joc. El temporitzador es restablirà quan la meravella es destrueixi o es capturi. Si la victòria aliada està activada, el temporitzador també es restablirà quan les aliances del propietari canviïn."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -787,7 +788,7 @@ msgstr "Molt fàcil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "Escolliu aquesta dificultat si no us agrada ser escombrats."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -886,5 +887,5 @@ msgstr "Bot Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra és la IA per defecte del 0 A.D. Informeu dels problemes a Wildfire Games (vegeu l'enllaç al menú principal).\n\nLa IA té una bonificació/penalització en l'acumulació de recursos (ja sigui per la taxa de recollida o per benefici del comerç) que varien des del -60% per al mode de proves fins a +60% per a la màxima dificultat (0% per a la dificultat mitjana) i els nivells fàcils tenen una taxa de producció i construcció més lenta. A més, en el mode de proves la IA no s'expandeix ni ataca."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra és la IA per defecte del 0 A.D. Informeu dels problemes a Wildfire Games (vegeu l'enllaç al menú principal).\nLa taxa de recol·lecció de recursos i benefici del comerç de la IA depenen del nivell de dificultat (Mode proves −58%, Molt fàcil −44%, Fàcil−25%, Mitjà±0%, Difícil+25%, Molt difícil +56%). En els nivells més fàcils tenen una taxa de recerca, reclutament i construcció més lenta. A més, en el mode de proves la IA no s'expandeix ni ataca."

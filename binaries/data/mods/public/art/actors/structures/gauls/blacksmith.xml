@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Blacksmith">
+      <mesh>structural/gaul_blacksmith.dae</mesh>
+      <props>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_01"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_02"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_03"/>
+        <prop actor="props/structures/celts/blacksmith_barrels.xml" attachpoint="barrels" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/blacksmith_bucket_water.xml" attachpoint="water_bucket" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/blacksmith_bucket.xml" attachpoint="water_bucket" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/blacksmith_armorstand_wood.xml" attachpoint="armorstand" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/blacksmith_armorstand_armor.xml" attachpoint="armorstand" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/units/tools/hammer.xml" attachpoint="hammer_01"/>
+        <prop actor="props/units/tools/hammer.xml" attachpoint="hammer_02"/>
+        <prop actor="props/units/tools/hammer.xml" attachpoint="hammer_03"/>
+        <prop actor="props/units/tools/hammer.xml" attachpoint="hammer_04"/>
+        <prop actor="props/units/tools/tongs_01.xml" attachpoint="tongs_01"/>
+        <prop actor="props/units/tools/tongs_01.xml" attachpoint="tongs_02"/>
+        <prop actor="props/units/tools/tongs_01.xml" attachpoint="tongs_03"/>
+        <prop actor="props/units/tools/tongs_02.xml" attachpoint="tongs_04"/>
+        <prop actor="props/units/tools/tongs_02.xml" attachpoint="tongs_05"/>
+        <prop actor="props/structures/britons/workshop_anvil.xml" attachpoint="anvil_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_01"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="box_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_pile.xml" attachpoint="box_pile_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_01" />
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_02" />
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_03"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_oval_big_04" />
+        <prop actor="props/units/shields/gaul_shield_jav_oval_d_01.xml" attachpoint="shield_oval_small_01" />
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_01.xml" attachpoint="shield_oval_small_02" />
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_02.xml" attachpoint="shield_oval_small_03" />
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_oval_small_04" />
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_01.xml" attachpoint="shield_hex_01" />
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_02.xml" attachpoint="shield_hex_02" />
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_hex_03" />
+        <prop actor="props/units/shields/gaul_shield_cav_sw_hex_a_01.xml" attachpoint="shield_hex_04" />
+        <prop actor="props/units/shields/gaul_shield_cav_sw_hex_a_01.xml" attachpoint="shield_hex_05" />
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_02.xml" attachpoint="shield_square_01" />
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_01.xml" attachpoint="shield_square_02"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_03.xml" attachpoint="shield_square_03"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_02.xml" attachpoint="shield_square_04"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="sword_01"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="sword_02"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="sword_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="sword_04" />
+        <prop actor="props/units/weapons/csword.xml" attachpoint="sword_05" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet_01"/>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet_02"/>
+        <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet_03"/>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet_04"/>
+        <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet_05"/>
+        <prop actor="props/units/helmets/celt_helmet_waterloo.xml" attachpoint="helmet_06"/>
+        <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet_07"/>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet_08"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_blacksmith.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -1,97 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author>Blender User</author>
-      <authoring_tool>Blender 2.69.0 r60995</authoring_tool>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
     </contributor>
-    <created>2014-03-06T22:46:59</created>
-    <modified>2014-03-06T22:46:59</modified>
-    <unit name="inch" meter="0.0254"/>
+    <created>2019-04-15T17:56:45</created>
+    <modified>2019-04-15T17:56:45</modified>
+    <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
   <library_geometries>
-    <geometry id="Plane001Mesh-mesh" name="Plane001Mesh">
+    <geometry id="found_1x3_mesh-mesh" name="found_1x3_mesh">
       <mesh>
-        <source id="Plane001Mesh-mesh-positions">
-          <float_array id="Plane001Mesh-mesh-positions-array" count="9">-1.125968 -0.95122 0 1.125968 -0.95122 0 -1.125968 0.95122 0</float_array>
+        <source id="found_1x3_mesh-mesh-positions">
+          <float_array id="found_1x3_mesh-mesh-positions-array" count="9">0.04473471 -0.05295294 -0.5934072 0.04473471 -0.05263578 -0.5934072 0.04446691 -0.05295294 -0.5934072</float_array>
           <technique_common>
-            <accessor source="#Plane001Mesh-mesh-positions-array" count="3" stride="3">
+            <accessor source="#found_1x3_mesh-mesh-positions-array" count="3" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Plane001Mesh-mesh-normals">
-          <float_array id="Plane001Mesh-mesh-normals-array" count="3">0 0 1</float_array>
+        <source id="found_1x3_mesh-mesh-normals">
+          <float_array id="found_1x3_mesh-mesh-normals-array" count="3">0 0 1</float_array>
           <technique_common>
-            <accessor source="#Plane001Mesh-mesh-normals-array" count="1" stride="3">
+            <accessor source="#found_1x3_mesh-mesh-normals-array" count="1" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Plane001Mesh-mesh-map-0">
-          <float_array id="Plane001Mesh-mesh-map-0-array" count="6">0 1 0 0 1 0</float_array>
+        <source id="found_1x3_mesh-mesh-map-0">
+          <float_array id="found_1x3_mesh-mesh-map-0-array" count="6">0 1 0 0 1 0</float_array>
           <technique_common>
-            <accessor source="#Plane001Mesh-mesh-map-0-array" count="3" stride="2">
+            <accessor source="#found_1x3_mesh-mesh-map-0-array" count="3" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Plane001Mesh-mesh-vertices">
-          <input semantic="POSITION" source="#Plane001Mesh-mesh-positions"/>
+        <vertices id="found_1x3_mesh-mesh-vertices">
+          <input semantic="POSITION" source="#found_1x3_mesh-mesh-positions"/>
         </vertices>
-        <polylist count="1">
-          <input semantic="VERTEX" source="#Plane001Mesh-mesh-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#Plane001Mesh-mesh-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#Plane001Mesh-mesh-map-0" offset="2" set="0"/>
-          <vcount>3 </vcount>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#found_1x3_mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#found_1x3_mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#found_1x3_mesh-mesh-map-0" offset="2" set="0"/>
           <p>2 0 0 0 0 1 1 0 2</p>
-        </polylist>
+        </triangles>
       </mesh>
-      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_controllers/>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Plane001" name="Plane001" type="NODE">
-        <matrix sid="transform">0.1676443 0 0 0 0 0.1676443 0 2.02378e-9 0 0 0.1676443 -0.7190112 0 0 0 1</matrix>
-        <instance_geometry url="#Plane001Mesh-mesh"/>
-        <node id="Object14_Pivot001_001" name="Object14_Pivot001_001" type="NODE">
-          <matrix sid="transform">5.763984 0 0 0 0 5.763984 0 0 0 0 5.763983 4.256464 0 0 0 1</matrix>
+      <node id="found_1x3" name="found_1x3" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#found_1x3_mesh-mesh" name="found_1x3"/>
+        <node id="prop-box_01" name="prop-box_01" type="NODE">
+          <matrix sid="transform">-0.2588193 -0.9659258 0 -0.4000002 0.9659258 -0.2588193 0 4.5 0 0 1 0 0 0 0 1</matrix>
         </node>
-        <node id="prop-box001" name="prop-box001" type="NODE">
-          <matrix sid="transform">2.255583 -0.6043816 0 31.90146 0.6043816 2.255583 0 2.849986 0 0 2.33515 4.256464 0 0 0 1</matrix>
+        <node id="prop-delimitator_01" name="prop-delimitator_01" type="NODE">
+          <matrix sid="transform">-1.62921e-7 -1 0 -2 1 -1.62921e-7 0 -6 0 0 1 0 0 0 0 1</matrix>
         </node>
-        <node id="prop-woodStick001" name="prop-woodStick001" type="NODE">
-          <matrix sid="transform">2.33515 0 0 9.285439 0 2.33515 0 14.61767 0 0 2.33515 4.256464 0 0 0 1</matrix>
+        <node id="prop-delimitator_02" name="prop-delimitator_02" type="NODE">
+          <matrix sid="transform">-1 3.89414e-7 0 2 -3.89414e-7 -1 0 -6 0 0 1 0 0 0 0 1</matrix>
         </node>
-        <node id="prop-woodStick002" name="prop-woodStick002" type="NODE">
-          <matrix sid="transform">2.33515 0 0 -18.75475 0 2.33515 0 14.61767 0 0 2.33515 4.256464 0 0 0 1</matrix>
+        <node id="prop-delimitator_03" name="prop-delimitator_03" type="NODE">
+          <matrix sid="transform">1.94707e-7 1 0 2 -1 1.94707e-7 0 6 0 0 1 0 0 0 0 1</matrix>
         </node>
-        <node id="prop-woodStick003" name="prop-woodStick003" type="NODE">
-          <matrix sid="transform">2.33515 0 0 -18.75475 0 2.33515 0 -14.61767 0 0 2.33515 4.256464 0 0 0 1</matrix>
+        <node id="prop-delimitator_04" name="prop-delimitator_04" type="NODE">
+          <matrix sid="transform">1 1.19209e-7 0 -2 -1.19209e-7 1 0 6 0 0 1 0 0 0 0 1</matrix>
         </node>
-        <node id="prop-woodPile001" name="prop-woodPile001" type="NODE">
-          <matrix sid="transform">1.6512 -1.6512 0 -13.97413 1.6512 1.6512 0 -0.734754 0 0 2.33515 4.256464 0 0 0 1</matrix>
-        </node>
-        <node id="prop-Delimitator001" name="prop-Delimitator001" type="NODE">
-          <matrix sid="transform">2.33515 0 0 -41.09496 0 2.33515 0 14.70961 0 0 2.33515 4.256464 0 0 0 1</matrix>
-        </node>
-        <node id="prop-Delimitator002" name="prop-Delimitator002" type="NODE">
-          <matrix sid="transform">-3.80444e-7 -2.33515 0 -41.09496 2.33515 -3.80444e-7 0 -14.7096 0 0 2.33515 4.256464 0 0 0 1</matrix>
-        </node>
-        <node id="prop-Delimitator003" name="prop-Delimitator003" type="NODE">
-          <matrix sid="transform">-2.33515 -3.52598e-7 0 41.09496 3.52598e-7 -2.33515 0 -14.7096 0 0 2.33515 4.256464 0 0 0 1</matrix>
-        </node>
-        <node id="prop-Delimitator004" name="prop-Delimitator004" type="NODE">
-          <matrix sid="transform">-3.80444e-7 2.33515 0 41.09496 -2.33515 -3.80444e-7 0 14.70961 0 0 2.33515 4.256464 0 0 0 1</matrix>
+        <node id="prop-woodpile_01" name="prop-woodpile_01" type="NODE">
+          <matrix sid="transform">-0.7071073 -0.7071063 0 0.1050001 0.7071063 -0.7071073 0 -2 0 0 1 0 0 0 0 1</matrix>
         </node>
       </node>
     </visual_scene>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ public:
 		TS_ASSERT_EQUALS((Pathfinding::NAVCELL_SIZE >> 1).ToInt_RoundToZero(), Pathfinding::NAVCELL_SIZE_LOG2);
 	}
 
-	void test_pathgoal()
+	void test_pathgoal_nearest_distance()
 	{
 		entity_pos_t i = Pathfinding::NAVCELL_SIZE;
 		CFixedVector2D u(i*1, i*0);
@@ -76,6 +76,11 @@ public:
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*2);
 			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*8 + v*6);
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*10);
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*3, i*12, i*9));
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*3, i*8, i*6));
+			TS_ASSERT(goal.RectContainsGoal(i*8, i*6, i*12, i*9));
+			TS_ASSERT(!goal.RectContainsGoal(i*4, i*3, i*7, i*5));
+			TS_ASSERT(!goal.RectContainsGoal(i*9, i*7, i*13, i*15));
 		}
 
 		{
@@ -84,6 +89,10 @@ public:
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*0);
 			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*4 + v*3);
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*5);
+			TS_ASSERT(goal.RectContainsGoal(i*7, i*5, i*9, i*7)); // fully inside
+			TS_ASSERT(goal.RectContainsGoal(i*3, i*1, i*13, i*11)); // fully outside
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*3, i*8, i*6)); // partially inside
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*0, i*12, i*1)); // touching the edge
 		}
 
 		{
@@ -92,6 +101,10 @@ public:
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*3);
 			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*0 + v*0);
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*0);
+			TS_ASSERT(!goal.RectContainsGoal(i*7, i*5, i*9, i*7)); // fully inside
+			TS_ASSERT(goal.RectContainsGoal(i*3, i*1, i*13, i*11)); // fully outside
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*3, i*8, i*6)); // partially inside
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*0, i*12, i*1)); // touching the edge
 		}
 
 		{
@@ -100,6 +113,11 @@ public:
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*0);
 			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*4 + v*3);
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*5);
+			TS_ASSERT(goal.RectContainsGoal(i*7, i*5, i*9, i*7)); // fully inside
+			TS_ASSERT(goal.RectContainsGoal(i*3, i*1, i*13, i*11)); // fully outside
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*3, i*8, i*6)); // partially inside
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*2, i*12, i*3)); // touching the edge
+			TS_ASSERT(goal.RectContainsGoal(i*3, i*0, i*4, i*10)); // touching the edge
 		}
 
 		{
@@ -108,6 +126,11 @@ public:
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*1);
 			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*0 + v*0);
 			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*0);
+			TS_ASSERT(!goal.RectContainsGoal(i*7, i*5, i*9, i*7)); // fully inside
+			TS_ASSERT(goal.RectContainsGoal(i*3, i*1, i*13, i*11)); // fully outside
+			TS_ASSERT(!goal.RectContainsGoal(i*4, i*3, i*8, i*6)); // inside, touching (should fail)
+			TS_ASSERT(goal.RectContainsGoal(i*4, i*2, i*12, i*3)); // touching the edge
+			TS_ASSERT(goal.RectContainsGoal(i*3, i*0, i*4, i*10)); // touching the edge
 		}
 	}
 
@@ -129,6 +152,8 @@ public:
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
 
+		sim2.PreInitGame();
+		sim2.InitGame();
 		sim2.Update(0);
 
 		CmpPtr<ICmpPathfinder> cmp(sim2, SYSTEM_ENTITY);
@@ -188,10 +213,8 @@ public:
 			cmpObstructionMan->AddUnitShape(INVALID_ENTITY, x, z, fixed::FromInt(2), 0, INVALID_ENTITY);
 		}
 
-		NullObstructionFilter filter;
 		PathGoal goal = { PathGoal::POINT, range, range };
-		WaypointPath path;
-		cmpPathfinder->ComputeShortPath(filter, range/3, range/3, fixed::FromInt(2), range, goal, 0, path);
+		WaypointPath path = cmpPathfinder->ComputeShortPath(ShortPathRequest{ 0, range/3, range/3, fixed::FromInt(2), range, goal, 0, false, 0, 0 });
 		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
 			printf("# %d: %f %f\n", (int)i, path.m_Waypoints[i].x.ToFloat(), path.m_Waypoints[i].z.ToFloat());
 	}
@@ -240,6 +263,8 @@ public:
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
 
+		sim2.PreInitGame();
+		sim2.InitGame();
 		sim2.Update(0);
 
 		std::ofstream stream(OsString("perf2.html").c_str(), std::ofstream::out | std::ofstream::trunc);
@@ -295,6 +320,8 @@ public:
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
 
+		sim2.PreInitGame();
+		sim2.InitGame();
 		sim2.Update(0);
 
 		std::ofstream stream(OsString("perf3.html").c_str(), std::ofstream::out | std::ofstream::trunc);

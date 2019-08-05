@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Manipula-A">
+      <mesh>props/shield/props/celt_manipula_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Manipula-B">
+      <mesh>props/shield/props/celt_manipula_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/shield/shield_props_01.png" name="baseTex"/>
+        <texture file="props/shield/shield_props_norm.png" name="normTex"/>
+        <texture file="props/shield/shield_props_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

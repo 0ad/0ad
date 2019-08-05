@@ -5,7 +5,7 @@
   </Cost>
   <Identity>
     <Civ>gaul</Civ>
-    <SpecificName>Gallic Dun</SpecificName>
+    <SpecificName>Dunon</SpecificName>
     <Tooltip>Train Gallic heroes and champions. Construct siege rams.</Tooltip>
   </Identity>
   <ProductionQueue>
@@ -27,7 +27,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
       <constructed>interface/complete/building/complete_fortress.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <VisualActor>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.60 commit date:2019-04-30, commit time:22:49, hash:480a09a92f7f</authoring_tool>
+    </contributor>
+    <created>2019-05-01T17:07:43</created>
+    <modified>2019-05-01T17:07:43</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="foundation_9x2-mesh" name="foundation_9x2">
+      <mesh>
+        <source id="foundation_9x2-mesh-positions">
+          <float_array id="foundation_9x2-mesh-positions-array" count="9">-0.180388 -0.04630762 -1.951926 -0.1803882 -0.04198908 -1.951926 -0.17607 -0.04198908 -1.951926</float_array>
+          <technique_common>
+            <accessor source="#foundation_9x2-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="foundation_9x2-mesh-normals">
+          <float_array id="foundation_9x2-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#foundation_9x2-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="foundation_9x2-mesh-map-0">
+          <float_array id="foundation_9x2-mesh-map-0-array" count="6">0.753448 0.295875 0.712383 0.295875 0.712383 0.381111</float_array>
+          <technique_common>
+            <accessor source="#foundation_9x2-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="foundation_9x2-mesh-vertices">
+          <input semantic="POSITION" source="#foundation_9x2-mesh-positions"/>
+        </vertices>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#foundation_9x2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#foundation_9x2-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#foundation_9x2-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 1 0 1 0 0 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="foundation_9x2" name="foundation_9x2" type="NODE">
+        <matrix sid="transform">-1.62921e-7 -1 0 0 1 -1.62921e-7 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#foundation_9x2-mesh" name="foundation_9x2"/>
+        <node id="prop_delimitator_01" name="prop_delimitator_01" type="NODE">
+          <matrix sid="transform">-4.45446e-6 -1 0 -3.999974 1 -4.45446e-6 0 -18.00001 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_delimitator_02" name="prop_delimitator_02" type="NODE">
+          <matrix sid="transform">1 -4.05312e-6 0 -4.000025 4.05312e-6 1 0 17.99999 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_delimitator_03" name="prop_delimitator_03" type="NODE">
+          <matrix sid="transform">5.43992e-6 1 0 3.999974 -1 5.43992e-6 0 18.00001 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_delimitator_04" name="prop_delimitator_04" type="NODE">
+          <matrix sid="transform">-1 3.72727e-6 0 4.000025 -3.72727e-6 -1 0 -17.99999 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_post_01" name="prop_post_01" type="NODE">
+          <matrix sid="transform">5.43992e-6 1 0 4 -1 5.43992e-6 0 2.25704e-5 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_post_02" name="prop_post_02" type="NODE">
+          <matrix sid="transform">1 -4.05312e-6 0 -4 4.05312e-6 1 0 -2.22882e-5 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_post_03" name="prop_post_03" type="NODE">
+          <matrix sid="transform">1 -4.05312e-6 0 -3.999999 4.05312e-6 1 0 -8.000024 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_post_05" name="prop_post_05" type="NODE">
+          <matrix sid="transform">5.43992e-6 1 0 4 -1 5.43992e-6 0 -7.999977 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_post_04" name="prop_post_04" type="NODE">
+          <matrix sid="transform">5.43992e-6 1 0 3.999999 -1 5.43992e-6 0 8.000023 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_post_06" name="prop_post_06" type="NODE">
+          <matrix sid="transform">1 -4.05312e-6 0 -4 4.05312e-6 1 0 7.999976 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_01" name="prop_brick_01" type="NODE">
+          <matrix sid="transform">-0.9961949 0.08715362 0 -2.450003 -0.08715362 -0.9961949 0 5.745252 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_box_01" name="prop_box_01" type="NODE">
+          <matrix sid="transform">-0.2588187 -0.9659259 0 2.6426 0.9659259 -0.2588187 0 -2.447984 0 0 1 -4.06072e-4 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brickpile_01" name="prop_brickpile_01" type="NODE">
+          <matrix sid="transform">1 1.07288e-6 0 -2.73421 -1.07288e-6 1 0 -13.46998 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_wood_pile_01" name="prop_wood_pile_01" type="NODE">
+          <matrix sid="transform">-0.7665329 0.6422051 0 1.512636 -0.6422051 -0.7665329 0 -13.06301 0 0 1 -0.06195365 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brickpile_02" name="prop_brickpile_02" type="NODE">
+          <matrix sid="transform">-5.20549e-7 1 0 2.988136 -1 -5.20549e-7 0 2.011676 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brickpile_03" name="prop_brickpile_03" type="NODE">
+          <matrix sid="transform">1 0 0 -3.347173 0 1 0 -0.3463695 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brickpile_04" name="prop_brickpile_04" type="NODE">
+          <matrix sid="transform">7.90754e-7 -1 0 -0.8111068 1 7.90754e-7 0 16.37604 0 0 1 -0.02240454 0 0 0 1</matrix>
+        </node>
+        <node id="prop_box_02" name="prop_box_02" type="NODE">
+          <matrix sid="transform">-0.2588187 -0.9659259 0 0.7044861 0.9659259 -0.2588187 0 4.430513 0 0 1 -4.06072e-4 0 0 0 1</matrix>
+        </node>
+        <node id="prop_box_03" name="prop_box_03" type="NODE">
+          <matrix sid="transform">-0.2588187 -0.9659259 0 -0.5925358 0.9659259 -0.2588187 0 -4.756415 0 0 1 -4.06072e-4 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_02" name="prop_brick_02" type="NODE">
+          <matrix sid="transform">-0.9961949 0.08715362 0 1.808714 -0.08715362 -0.9961949 0 13.17849 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_03" name="prop_brick_03" type="NODE">
+          <matrix sid="transform">-0.9010859 -0.4336408 0 1.879304 0.4336408 -0.9010859 0 11.13529 0 0 1 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_brick_04" name="prop_brick_04" type="NODE">
+          <matrix sid="transform">-0.8653873 -0.5011036 0 0.03732105 0.5011036 -0.8653873 0 12.15604 0 0 1 -5.96046e-8 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

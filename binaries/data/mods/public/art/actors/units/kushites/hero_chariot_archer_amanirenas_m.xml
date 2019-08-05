@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <animations>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="Idle" id="idle3" speed="80"/>
+        <animation file="mechanical/chariot_move.dae" name="Walk" speed="7"/>
+        <animation file="mechanical/chariot_move.dae" name="Run" speed="7"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death1" speed="100"/>
+        <animation file="mechanical/chariot_death.dae" name="Death" id="death2" speed="100"/>
+    		<animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
+      </animations>
+      <mesh>structural/kush_chariot.dae</mesh>
+      <props>
+        <prop actor="units/kushites/hero_chariot_archer_h1.xml" attachpoint="horse5"/>
+        <prop actor="units/kushites/hero_chariot_archer_h2.xml" attachpoint="horse6"/>
+        <prop actor="units/kushites/hero_chariot_archer_amanirenas_r.xml" attachpoint="rider4"/>
+        <prop actor="units/kushites/hero_chariot_archer_d.xml" attachpoint="driver4"/>
+      </props>
+      <textures>
+        <texture file="structural/kush_chariot.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

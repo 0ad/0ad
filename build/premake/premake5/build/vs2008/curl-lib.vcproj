@@ -12,14 +12,17 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="bin\Release"
-			IntermediateDirectory="obj\Release\curl-lib"
+			OutputDirectory="bin\x86\Release"
+			IntermediateDirectory="obj\x86\Release\curl-lib"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
@@ -40,7 +43,73 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MT /MP /Ox /W0 /EHsc"
+				AdditionalOptions="/MP /Ox /MT /W0 /EHsc"
+				AdditionalIncludeDirectories="..\..\contrib\curl\include;..\..\contrib\curl\lib;..\..\contrib\mbedtls\include;..\..\contrib\zlib"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;BUILDING_LIBCURL;CURL_STATICLIB;HTTP_ONLY;USE_ZLIB;USE_SCHANNEL;USE_WINDOWS_SSPI"
+				UsePrecompiledHeader="0"
+				ProgramDataBaseFileName=""
+				DebugInformationFormat="0"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;BUILDING_LIBCURL;CURL_STATICLIB;HTTP_ONLY;USE_ZLIB;USE_SCHANNEL;USE_WINDOWS_SSPI"
+				AdditionalIncludeDirectories="..\..\contrib\curl\include;..\..\contrib\curl\lib;..\..\contrib\mbedtls\include;..\..\contrib\zlib"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/NOLOGO"
+				AdditionalDependencies="crypt32.lib"
+				OutputFile="$(OutDir)\curl-lib.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="bin\x64\Release"
+			IntermediateDirectory="obj\x64\Release\curl-lib"
+			ConfigurationType="4"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP /Ox /MT /W0 /EHsc"
 				AdditionalIncludeDirectories="..\..\contrib\curl\include;..\..\contrib\curl\lib;..\..\contrib\mbedtls\include;..\..\contrib\zlib"
 				PreprocessorDefinitions="PREMAKE_COMPRESSION;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;BUILDING_LIBCURL;CURL_STATICLIB;HTTP_ONLY;USE_ZLIB;USE_SCHANNEL;USE_WINDOWS_SSPI"
 				UsePrecompiledHeader="0"
@@ -83,8 +152,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="bin\Debug"
-			IntermediateDirectory="obj\Debug\curl-lib"
+			OutputDirectory="bin\x86\Debug"
+			IntermediateDirectory="obj\x86\Debug\curl-lib"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
@@ -105,7 +174,73 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MTd /MP /Z7 /W0 /EHsc"
+				AdditionalOptions="/MP /MTd /Z7 /W0 /EHsc"
+				AdditionalIncludeDirectories="..\..\contrib\curl\include;..\..\contrib\curl\lib;..\..\contrib\mbedtls\include;..\..\contrib\zlib"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;BUILDING_LIBCURL;CURL_STATICLIB;HTTP_ONLY;USE_ZLIB;USE_SCHANNEL;USE_WINDOWS_SSPI"
+				UsePrecompiledHeader="0"
+				ProgramDataBaseFileName=""
+				DebugInformationFormat="0"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;BUILDING_LIBCURL;CURL_STATICLIB;HTTP_ONLY;USE_ZLIB;USE_SCHANNEL;USE_WINDOWS_SSPI"
+				AdditionalIncludeDirectories="..\..\contrib\curl\include;..\..\contrib\curl\lib;..\..\contrib\mbedtls\include;..\..\contrib\zlib"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/NOLOGO"
+				AdditionalDependencies="crypt32.lib"
+				OutputFile="$(OutDir)\curl-lib.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="bin\x64\Debug"
+			IntermediateDirectory="obj\x64\Debug\curl-lib"
+			ConfigurationType="4"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP /MTd /Z7 /W0 /EHsc"
 				AdditionalIncludeDirectories="..\..\contrib\curl\include;..\..\contrib\curl\lib;..\..\contrib\mbedtls\include;..\..\contrib\zlib"
 				PreprocessorDefinitions="PREMAKE_COMPRESSION;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;BUILDING_LIBCURL;CURL_STATICLIB;HTTP_ONLY;USE_ZLIB;USE_SCHANNEL;USE_WINDOWS_SSPI"
 				UsePrecompiledHeader="0"

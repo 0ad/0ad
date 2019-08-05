@@ -1,18 +1,18 @@
 # Translation template for Pyrogenesis.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
 # Asakura, 2018
 # Kanetaka Suto, 2013-2016
-# karu babu <karubabu@protonmail.com>, 2018
+# karubabu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-07-30 05:30+0000\n"
-"Last-Translator: karu babu <karubabu@protonmail.com>\n"
+"POT-Creation-Date: 2019-01-07 09:44+0100\n"
+"PO-Revision-Date: 2019-01-07 13:41+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,153 +24,153 @@ msgstr ""
 msgid "Long strings"
 msgstr "長い文字列"
 
-#: lobby/XmppClient.cpp:787
+#: lobby/XmppClient.cpp:800
 msgid "unknown subtype (see logs)"
 msgstr "未知のサブタイプ（ログを参照）"
 
-#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
-#: lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1180
 msgid "Error"
 msgstr "エラー"
 
-#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
+#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
 msgid "No error"
 msgstr "エラーなし"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1102
 msgid "Player already logged in"
 msgstr "プレイヤーは既にログイン済みです"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
 msgstr "禁止された"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1106
 msgid "Internal server error"
 msgstr "内部サーバーエラー"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1110
 msgid "Not allowed"
 msgstr "許可されていない"
 
-#: lobby/XmppClient.cpp:1072
+#: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
 msgstr "認証されていない"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
 msgstr "受信先が一時的に利用不能"
 
-#: lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1116
 msgid "Registration required"
 msgstr "登録が必要"
 
-#: lobby/XmppClient.cpp:1081
+#: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
 msgstr "サービスが利用不能"
 
-#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
+#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
 msgid "Unknown error"
 msgstr "不明なエラー"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1145
 msgid "Stream error"
 msgstr "ストリームエラー"
 
-#: lobby/XmppClient.cpp:1107
+#: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
 msgstr "受信したストリームのバージョンが未対応です"
 
-#: lobby/XmppClient.cpp:1108
+#: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
 msgstr "ストリームはサーバーに閉じられました"
 
-#: lobby/XmppClient.cpp:1112
+#: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
 msgstr "I/O エラーが発生しました"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
 msgstr "接続はサーバーに拒否されました"
 
-#: lobby/XmppClient.cpp:1115
+#: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
 msgstr "サーバーのホスト名の解決に失敗しました"
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
 msgstr "このシステムのメモリが足りません"
 
-#: lobby/XmppClient.cpp:1118
+#: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "このサーバーは証明書の正当性が検証できなかったか、TLS ハンドシェイクが正しく完了しませんでした"
 
-#: lobby/XmppClient.cpp:1119
+#: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
 msgstr "このサーバーは必要な TLS 暗号化を提供しませんでした"
 
-#: lobby/XmppClient.cpp:1121
+#: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "認証に失敗しました。パスワードが違うかアカウントが存在しません"
 
-#: lobby/XmppClient.cpp:1122
+#: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
 msgstr "ユーザーもしくはシステムが切断を要請しました"
 
-#: lobby/XmppClient.cpp:1123
+#: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
 msgstr "有効な接続がありません"
 
-#: lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
 msgstr "アカウントが登録されました"
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
 msgstr "すべての必要な情報が示されていません"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1185
 msgid "Username already exists"
 msgstr "ユーザー名は既に存在します"
 
-#: ps/ModIo.cpp:244
+#: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "ゲームIDの照会開始中にエラーが発生しました。エラー: %s; %s"
 
-#: ps/ModIo.cpp:274
+#: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "MODの照会開始中にエラーが発生しました。エラー: %s; %s"
 
-#: ps/ModIo.cpp:300
+#: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "MODディレクトリー%sを作成できませんでした。"
 
-#: ps/ModIo.cpp:325
+#: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "MODダウンロードのための一時ファイルを開くことが出来ませんでした。: %s"
 
-#: ps/ModIo.cpp:335
+#: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "ダウンロードの開始に失敗しました。エラー: %s; %s"
 
-#: ps/ModIo.cpp:380
+#: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "非同期ダウンロードに失敗しました。:%s, %s"
 
-#: ps/ModIo.cpp:408
+#: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "ダウンロードに失敗しました。サーバーレスポンス: %s; %s"
 
-#: ps/ModIo.cpp:511
+#: ps/ModIo.cpp:513
 msgid "Mismatched filesize."
 msgstr "ファイルサイズが一致しませんでした。"
 
@@ -197,21 +197,6 @@ msgstr "'%s'にゲームを保存"
 msgid "Screenshot written to '%s'"
 msgstr "'%s'にスクリーンショットを記録"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: ps/scripting/JSInterface_Debug.cpp:88
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (custom build)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#. dennis-ignore: *
-#: ps/scripting/JSInterface_Debug.cpp:94
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: ps/scripting/JSInterface_Debug.cpp:115
+#: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
 msgstr "カスタムビルド"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ class CDropDown : public CList
 	GUI_OBJECT(CDropDown)
 
 public:
-	CDropDown();
+	CDropDown(CGUI* pGUI);
 	virtual ~CDropDown();
 
 //	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }

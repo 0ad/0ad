@@ -1,25 +1,28 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Pavel Šindelář <pavelsin123@gmail.com>, 2017
 # Vít Pelčák, 2017
-# fri, 2017
 # Radek Mašek <warrriog@gmail.com>, 2018
 # Ondřej Štolpa <ondstolpa@gmail.com>, 2018
+# Tomáš Matýs <thommathys@gmail.com>, 2018
+# fri, 2019
+# Kuba Nepekchal <nepejchaljakub@gmail.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-01-29 09:05+0100\n"
-"PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: Ondřej Štolpa <ondstolpa@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2017-06-04 12:59+0000\n"
+"Last-Translator: Kuba Nepekchal <nepejchaljakub@gmail.com>, 2019\n"
 "Language-Team: Czech (https://www.transifex.com/wildfire-games/teams/17418/cs/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
@@ -51,6 +54,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Vyberte budovu správního střediska a podržte při klepnutí na ikonu hoplity "
+"klávesu%(hotkey)s, abyste započali hromadné cvičení hoplítů."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -81,6 +86,8 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Když jsou připraveni, vyberte nově vycvičené hoplíty a zaměstnejte je, aby "
+"postavili sklad poblíž stromů. Začnou shromažďovat dřevo, když to postaví."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -88,6 +95,8 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Vycvičte skupinu harcovníků podržením %(hotkey)s a klikáním na ikonu "
+"harcovníka ve Správním Středisku."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
@@ -98,10 +107,12 @@ msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Postavte s jakýmkoliv nezaměstnaným občanem, který by jinak byl bez práce, "
+"na volné ploše vedle správního střediska zemědělskou usedlost."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Počkejte než se postaví zemědělská usedlost."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -109,6 +120,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Když je zemědělská usedlost hotova, stavební dělníci, kteří ji postavili, "
+"začnou automaticky shromažďovat jídlo, jestliže je nějaké poblíž. Vyberte "
+"budovatele a nechte je místo toho založit vedle statku pole."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -116,6 +130,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Zakladatelé pole nyní automaticky začnou shromažďovat jídlo z pole. Teď "
+"využijte čerstvě vycvičenou skupinu harcovníků, a nakažte jim hned vedle "
+"postavit další dům."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -123,6 +140,9 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Vycvičte ve správním středisku skupinu hoplítů. Klepněte na správní "
+"středisko, a pak klepněte pravým tlačítkem myši na strom stojící poblíž. "
+"Jednotky vycvičené ve správním středisku budou nyní automaticky těžit dřevo."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
@@ -133,6 +153,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Vyber správní středisko, poté přesuň kurzor myši na strom a stiskni pravé "
+"tlačítko, když uvidíš, že se kurzor změnil na ikonu dřeva."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -140,17 +162,23 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Pošlete nečinné harcovníky na severovýchodní hranici vašeho území, aby tam "
+"zřídili předsunutou základnu. Toto je pátá budova vesnické fáze, kterou "
+"musíte postavit, což vám umožní dostat se dál do městské fáze."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
-"'II' icon (you have to wait for the outpost to be built first). This will "
+"II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Znovu vyberte Správní centrum a postupte do Městské Fáze kliknutím na II "
+"ikonu (musíte nejprve vyčkat dokud nebude postaven tábor). To vám umožní "
+"stavět budovy z Městské fáze."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
-"While waiting for the phasing up, you may reaffect your idle workers to "
+"While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
 
@@ -159,6 +187,9 @@ msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Začněte ve správním středisku cvičit skupinu občanek a nastavte jejich "
+"shromažďovací bod na zemědělskou usedlost (klepněte na ni pravým tlačítkem "
+"myši)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
@@ -169,22 +200,31 @@ msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"Postavte poblíž kasárna. Vždy, když je dosaženo populační meze velikosti "
+"osídlení, postavte novou obytnou budovu. K tomu použijte kteroukoli "
+"dostupnou jednotku, která může stavět."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Připravte se na útok vedený nepřátelským hráčem. Vycvičte v kasárnách více "
+"vojáků a nechte vojáky jsoucí bez práce poblíž předsunuté základny postavit "
+"obrannou věž."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"Postavte kovárnu a vyzkoumejte technologii výcviku pěchoty (ikona meče), "
+"čímž dojde ke zlepšení dovednosti vašich pěšáků provádět útok sečnými "
+"zbraněmi."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Nepřítel přichází. Vycvičte více vojáků, abyste jej mohli porazit."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
@@ -195,6 +235,8 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Nepřátelský útok byl zmařen. Nyní postavte tržnici a chrám a nechejte nové "
+"jednotky nasbírat potřebné suroviny."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
@@ -207,7 +249,7 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
-"barracks."
+"Barracks."
 msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:337
@@ -215,6 +257,9 @@ msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Nyní, když jste ve velkoměstském fázi, postavte poblíž pevnost (nejprve "
+"nasbírejte nějaký kámen, pokud to bude zapotřebí) a použijte ji k postavení "
+"2 beranidel."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -222,6 +267,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Utvořte nyní ze všech vojáků, kteří sbírají suroviny, malé skupiny a nakažte"
+" jim, aby na mapě hledali protivníkova správní střediska. Poté co "
+"nepřátelská základna byla odhalena, pošlete své obléhací stroje a všechny "
+"zbývající vojáky a zničte ji.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -234,9 +283,9 @@ msgstr "Nepřítel byl poražen. Úkoly tohoto návodu jsou teď splněny."
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
 "This tutorial will teach the basics of developing your economy. Typically, "
-"you will start with a Civic Center and a couple units in 'Village Phase' and"
-" ultimately, your goal will be to develop and expand your empire, often by "
-"evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"you will start with a Civic Center and a couple units in Village Phase and "
+"ultimately, your goal will be to develop and expand your empire, often by "
+"evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
@@ -245,16 +294,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Před začátkem můžete přepnout mezi režimem na celou obrazovku a okenním režimem zmáčknutím %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Můžete změnit hloubku přiblížení použitím kolečka myši a pohled kamery "
+"použitím jakýchkoli tlačítek šipek na klávesnici.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Změňte velikost okna podle vaší libosti.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -262,6 +315,9 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"Také můžete přepínat mezi ukazováním a skrýváním tohoto okna návodu kdykoliv zmáčknutím %(hotkey)s.\n"
+" "
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -287,8 +343,8 @@ msgstr ""
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
-"technologies. Hover the cursor over the 'II' icon. The tooltip will tell us "
-"that advancing to 'Town Phase' requires both more constructed structures as "
+"technologies. Hover the cursor over the II icon. The tooltip will tell us "
+"that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
 
@@ -377,7 +433,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
-"First, let's set a rally-point. Setting a rally point on a building that can"
+"First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
 "Wood on the group of trees to the south of the Civic Center. To do so, "
@@ -387,7 +443,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
-"Rally-Points are indicated by a small flag at the end of the blue line."
+"Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
@@ -395,10 +451,12 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Vyber správní středisko, poté přesuň kurzor myši na strom a stiskni pravé "
+"tlačítko, když uvidíš, že se kurzor změnil na ikonu dřeva."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
-"Now that the rally-point is set, we can produce additional units and they "
+"Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
 
@@ -413,16 +471,16 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
-msgstr ""
+msgstr "Nezapomínej držet Shift při klikání, abys vytvořil několik jednotek."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Podržte shift a klepněte na ikonu hoplíty."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Počkejte než se vycvičí jednotky.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -446,6 +504,8 @@ msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"Nově vytvořené jednotky automaticky půjdou ke stromům a začnou sbírat "
+"dřevo.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -469,6 +529,8 @@ msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Zvolení občané automaticky začnou se stavbou budovy, jakmile položíš "
+"základy."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
@@ -485,23 +547,23 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
-msgstr ""
+msgstr "Nezapomínej držet Shift při kliknutí, abys vytvořil několik jednotek."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Podržte shift a klepněte na ikonu občanky."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally-point of the Civic Center away from gathering Wood."
+"remove the current rally point of the Civic Center away from gathering Wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
-"the flag icon indicating the rally-point is crossed out)."
+"the flag icon indicating the rally point is crossed out)."
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Brzy budou připravené jednotky.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -524,6 +586,8 @@ msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Teď, když jsou jednotky připravené, tak se podívejme jak se staví několik "
+"domů v řadě."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -603,8 +667,8 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is constructed, the builders will automatically start "
-"gathering it.\n"
+"When the field is ready, the builders will automatically start gathering "
+"it.\n"
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
@@ -618,9 +682,9 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally-point on a field by "
+"gatherers, select the Civic Center and setup a rally point on a field by "
 "right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally-point will help building it, while they will gather it when "
+"sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
 
@@ -633,14 +697,17 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Nyní třikrát klikněte na ikonu občanky v pravém dolním panelu, abyste "
+"vycvičil tři další farmářky."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
 msgstr ""
+"Klepněte bez přidržení tlačítka Shift abyste vycvičili jedinou jednotku."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Klepněte na ikonu občanky."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -659,39 +726,39 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
-"We should start preparing to phase up into 'Town Phase', which will unlock "
+"We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
-"over the 'Town Phase' icon to see what is still needed.\n"
+"over the Town Phase icon to see what is still needed.\n"
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
-"in case of attack, so let's build barracks.\n"
+"in case of attack, so let's build Barracks.\n"
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
-"Select four of your soldiers and ask them to build a barracks: as before, "
-"start selecting the soldiers, click on the barracks icon in the production "
+"Select four of your soldiers and ask them to build a Barracks: as before, "
+"start selecting the soldiers, click on the Barracks icon in the production "
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
-"Let's wait for the barracks to be built. As this construction is lengthy, "
+"Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the barracks foundation by right-clicking"
-" on it (you should see a hammer icon), and then produce two more builders by"
-" clicking on the hoplite icon twice."
+"Center and set up a rally point on the Barracks foundation by right-clicking"
+" on it (you should see a hammer icon). Then produce two more builders by "
+"clicking on the hoplite icon twice."
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
-"You should now be able to research 'Town Phase'. Select the Civic Center and"
-" click on the technology icon.\n"
+"You should now be able to research Town Phase. Select the Civic Center and "
+"click on the technology icon.\n"
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
@@ -731,16 +798,20 @@ msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Proveďte podobný sled událostí se zbývajícími vojáky a dolem na kovy na "
+"západě."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"Toto je konec úvodu. Nyní máte znát, jaké jsou základy založení vašeho "
+"hospodářství."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Toto je základní výuka na započetí hraní 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -749,11 +820,11 @@ msgstr "Hráč 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "Hráč 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Úvodní výuka"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -761,6 +832,9 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Tato mapa vám nabídne hrubý návod na to, jak začít hru efektivně. Na začátku"
+" je nejdůležitější nasbírat materiály co nejrychleji to jde, abyste byli "
+"později schopni postavit dostatek jednotek."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

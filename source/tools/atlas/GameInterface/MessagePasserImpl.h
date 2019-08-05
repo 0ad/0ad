@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,9 +20,11 @@
 
 #include "MessagePasser.h"
 
-#include "ps/ThreadUtil.h"
+#include "lib/posix/posix_pthread.h"
 #include "ps/CStr.h"
 #include <queue>
+
+#include <mutex>
 
 class MessagePasserImpl : public AtlasMessage::MessagePasser
 {
@@ -39,7 +41,7 @@ public:
 	void SetTrace(bool t);
 
 private:
-	CMutex m_Mutex;
+	std::mutex m_Mutex;
 	CStr m_SemaphoreName;
 	sem_t* m_Semaphore;
 	std::queue<AtlasMessage::IMessage*> m_Queue;

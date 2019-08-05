@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,20 +8,21 @@
 # helenkwok2011, 2017
 # Hsu Karinsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
-# Jeff Huang <s8321414@gmail.com>, 2013-2014,2016-2017
-# Jerry Shen <jerry82422@gmail.com>, 2018
+# Jeff Huang <s8321414@gmail.com>, 2013-2014,2016-2018
+# JerryShen <jerry82422@gmail.com>, 2018
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
 # ryat <mj0011@yopmail.com>, 2015
 # samrmrf, 2013
 # shiung hanching <shiunghanching@gmail.com>, 2017
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# 又齊 劉 <bill19981002@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-09-15 05:17+0000\n"
-"Last-Translator: Hsu Karinsu <m80126colin@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-05-19 09:12+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,8 +72,8 @@ msgid ""
 msgstr "希臘人對在傳播希臘文化上非常成功。在希臘化時代，希臘文是世界通用語言，涵蓋西班牙至印度。"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "船的建造快 25％。"
+msgid "Allied warships −25% construction time."
+msgstr "同盟的戰船 −25% 建造時間。"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -321,8 +322,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "塞爾特人的宗教信仰及德魯伊激發了他們的好戰心態。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "盟友醫療者 -20% 資源消耗。"
+msgid "Allied healers −20% resource costs."
+msgstr " 同盟的醫療者 −20% 資源成本。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -428,7 +429,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech…"
-msgstr ""
+msgstr "羅馬語描述的Caractacus（卡拉克塔克斯)，是他真名Karatakos 的一種變體記載，這個名字被刻印在很多很多的硬幣上。就是這個名字，在西元43 年羅馬入侵後，成為被人們所牢記英國反抗羅馬入侵的勇士，他是圖維勞尼部落（Catuvellauni  ）聯盟的國王庫諾貝林（Cunobelin ）的兒子。卡拉克塔克斯反抗羅馬長達9年並小有成就，但後來還是逃往位於威爾斯的部落，並在那兒吃了決定性的敗仗。最終他逃往北不列顛，然而在那裡被捕獲而被交給了羅馬人。被帶往羅馬後，皇帝克勞狄烏斯(Claudius  )允許卡拉克塔克斯活下來，他最終死於義大利。相傳，他和妻子都皈依了基督教，但對此並無明確記載。或許更加引人注意的一個事實是他被羅馬人抓走之後活了下來。以羅馬的一貫政策，通常會公開處決這種人作為慶祝，不過卡拉克塔克斯請求在皇帝和元老院面前為自己辯護，他具體說了什麼已不為人知，但塔西佗（Tacitus ）封他這段演說為「著名演說」..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -438,7 +439,7 @@ msgid ""
 "as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
 "Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
 "tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aide. Kunobelinos seems to have been indifferent to the Romans. He traded "
+"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
 "with them freely, but had few qualms subjugating known Roman allies, and "
 "even sent his youngest son Adminius as a fosterling to be educated in Roman "
 "Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
@@ -463,7 +464,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr "庫諾貝利諾斯 (Kunobelinos) ，其名可能以拉丁語寫法邱諾貝林 (Cunobelin) 較為人熟知，曾是卡托瓦拉尼 (Catuvellauni) 的強大統治者。他被羅馬人稱作「不列顛之王」。他從卡姆樓墩倫姆 (Camulodunum)，也就是現今的高車士打 (Colchester)  開始擴張。他趁羅馬於條頓堡森林一役（即日爾曼尼亞之禍）被擊敗之時，藉機征服與羅馬為盟的鄰近部落：初來諾凡提斯 (Trinovantes)，而此時羅馬無力給予援助。庫諾貝利諾斯對羅馬的態度似乎漠不在乎，雖然在他的統治之下與羅馬人自由貿易，但卻幾無顧慮地征服與羅馬同盟的部落，還送三子阿得命你由斯 (Adminius) 以人質身份在羅馬高庭接受教育；阿得命你由斯為何對羅馬態度友善可能原由於此。後來庫諾貝利諾斯使其掌管座落在肯特 (Kent) 的坎塔希 (Cantaci)，此區域乃是羅馬在不列顛發揮影響與進行交易的主要地區。庫諾貝利諾斯精明地發現他最小的兒子與羅馬、高盧羅馬的掌權政治人物、貿易家友好，正好適合管理該地。然而，他其餘二位兒子卻對羅馬人毫無情感，當庫諾貝利諾斯一死，即位的土格丹姆諾斯 (Togdumnos) 便逮捕、處決或驅逐許多羅馬親近者，其中包括他的弟弟阿得命你由斯，並廢黜阿特雷巴特人 (Atrebates) 國王維利卡 (Verica)，後來國王懇求羅馬帝國看在兩國間的關係上協助收復失土 ─ 此即羅馬入侵之始。土格丹姆諾斯於與羅馬人的戰爭中死亡，後來由兄弟卡拉塔可斯繼位。說來諷刺，引起羅馬藉口入侵的導火線竟是因為三子親近羅馬。總結來看，庫諾貝利諾斯在位期間，是歷任不列顛國王之中最輝煌的一位。他征服了不列顛南半部絕大部分地區（他統治時期的錢幣流通地區遠及今日所知威爾斯的邊界）。他最初僅掌控由四個小部落構成的卡圖維勞尼邦聯 (Catuvellauni)，後來陸續征服大量土地，並被尊為「不列顛國王」。不列顛國王的稱號非常偉大，以致後來坎布里亞 (Cambria) 的部落還協助庫諾貝利諾斯的兒子對抗羅馬人及其不列顛同盟，甚至到後羅馬不列顛時期人民 (post-Roman Britons) 更推崇他為民族英雄；對於戰國征服者、國家統一者等的美好想望，是後羅馬不列顛時期或稱羅馬治不列顛時期人民 (Romano-British) 熱切期盼的。"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -566,8 +567,8 @@ msgid ""
 msgstr "與伊比利半島不同，北非被稱為馬國，每年能生產多達 100,000 頭座騎。這裡也是北非森林象的家。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "盟友的國際貿易路線多 10% 貿易利潤。"
+msgid "Allied markets +10% international trade bonus."
+msgstr "同盟的市集 +10% 國際貿易加成。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -773,8 +774,8 @@ msgid "Gauls"
 msgstr "高盧人"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "盟友的科技 -10% 研發時間。"
+msgid "Allied structures −20% technology research time."
+msgstr "同盟的建築 −20% 科技研發時間。"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -832,7 +833,7 @@ msgstr "Viridovix"
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr "每個摧毀或佔領的建築物都會給予一定量的金屬及食物。"
+msgstr "每個摧毀或占領的建築物都會給予一定量的金屬及食物。"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
@@ -973,10 +974,8 @@ msgid ""
 msgstr "與北非的努米底亞不同，伊比利半島被稱為「馬國」，每年可以生產出高達 100,000 匹的座騎。"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "盟友的公民輕步兵 / 輕騎兵 -20% 花費。"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1037,7 +1036,7 @@ msgid ""
 "Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
 "of their throwing spears, soaking that in some sort of flammable pitch, then"
 " setting it afire just before throwing."
-msgstr "伊比利部落士兵將他們的長矛纏上草，並淋上瀝青之類的易燃物，然後在投擲前點火。"
+msgstr "伊比利部落士兵將他們的矛纏上草，並淋上瀝青之類的易燃物，然後在投擲前點火。"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
@@ -1167,73 +1166,71 @@ msgstr "大象召集"
 msgid ""
 "Can capture Gaia elephants and garrison them into a corral to reduce "
 "training costs for War Elephants."
-msgstr ""
+msgstr "可以捕獲大地之母的大象並讓它們駐在畜欄，以減少戰象的訓練費用。"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
 msgstr "大象供應商"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "庫施的盟友大象的花費與訓練時間 - 20%"
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "同盟的大象 −20% 資源成本與訓練時間。"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
-msgstr ""
+msgstr "卡什塔"
 
 #: simulation/data/civs/kush.jsonAINames[1]
 msgid "Alara"
-msgstr ""
+msgstr "阿拉拉"
 
 #: simulation/data/civs/kush.jsonAINames[2]
 msgid "Pebatjma"
-msgstr ""
+msgstr "培巴特吉瑪"
 
 #: simulation/data/civs/kush.jsonAINames[3]
 msgid "Shabaka"
-msgstr ""
+msgstr "沙巴卡"
 
 #: simulation/data/civs/kush.jsonAINames[4]
 msgid "Shebitku"
-msgstr ""
+msgstr "沙巴塔卡"
 
 #: simulation/data/civs/kush.jsonAINames[5]
 msgid "Qalhata"
-msgstr ""
+msgstr "坎爾哈塔"
 
 #: simulation/data/civs/kush.jsonAINames[6]
 msgid "Takahatenamun"
-msgstr ""
+msgstr "Takahatenamun"
 
 #: simulation/data/civs/kush.jsonAINames[7]
 msgid "Tantamani"
-msgstr ""
+msgstr "坦沃塔瑪尼"
 
 #: simulation/data/civs/kush.jsonAINames[8]
 msgid "Atlanersa"
-msgstr ""
+msgstr "阿特拉納薩"
 
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
-msgstr ""
+msgstr "Nasalsa"
 
 #: simulation/data/civs/kush.jsonAINames[10]
 msgid "Malewiebamani"
-msgstr ""
+msgstr "Malewiebamani"
 
 #: simulation/data/civs/kush.jsonAINames[11]
 msgid "Harsiotef"
-msgstr ""
+msgstr "哈西厄特夫"
 
 #: simulation/data/civs/kush.jsonAINames[12]
 msgid "Shanakdakhete"
-msgstr ""
+msgstr "Shanakdakhete"
 
 #: simulation/data/civs/kush.jsonAINames[13]
 msgid "Amanishakheto"
-msgstr ""
+msgstr "阿馬尼什克托"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 msgid "Monumental Architecture"
@@ -1241,13 +1238,13 @@ msgstr "紀念性建築"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
-msgstr ""
+msgstr "准許訓練精銳等級治療者"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "High Priest of Amun"
@@ -1257,15 +1254,15 @@ msgstr "阿蒙神的高等祭司"
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "大祭司已經親自指導了你的祭司 - 願他得到阿蒙神的祝福。"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
-msgstr ""
+msgstr "Nastasen"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
 msgid "Arakamani"
-msgstr ""
+msgstr "Arakamani"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
 msgid "Amanirenas"
@@ -1279,7 +1276,7 @@ msgstr "庫施非洲人"
 msgid ""
 "The great African kingdom that straddled the Nile River in Nubia, in the "
 "South of Egypt."
-msgstr ""
+msgstr "這個強大的非洲王國跨越了在埃及南方，努比亞的尼羅河。"
 
 #: simulation/data/civs/kush.jsonStructures[0].Name
 msgid "Temple of Amun"
@@ -1289,7 +1286,7 @@ msgstr "阿蒙神廟"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr "庫施人可以將個別神廟升級為阿蒙神廟，因而能更快地訓練納帕塔神殿衛隊的精英和更快速地治療部隊。"
+msgstr "庫施人可以將個別神殿升級為阿蒙神殿，能更快訓練精英納帕塔神殿衛隊，並更快治療單位。"
 
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
@@ -1304,7 +1301,7 @@ msgstr "戰神阿培德馬克神廟（ Apedemak 獅頭人身 ）"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr "庫施人可以將個別神廟升級為戰神阿培德馬克神殿，因而能更快地訓練美羅埃神殿衛隊的精英且更快速地治療部隊。\n"
+msgstr "庫施人可以將個別神殿升級為戰神阿培德馬克神殿，因而能更快訓練精英美羅埃神殿衛隊，並更快治療部隊。\n"
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
@@ -1366,7 +1363,7 @@ msgstr "在希臘統一後，腓力二世成立了以馬其頓為首，集合希
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "長矛兵可以使用緩慢但強而有力的馬其頓方陣。"
+msgstr "長槍步兵可以使用緩慢但強而有力的馬其頓方陣。"
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Name
 msgid "Syntagma"
@@ -1386,8 +1383,8 @@ msgid ""
 msgstr "希臘人同化各種異族人相當成功。在希臘化時代時，希臘語是古代世界的通用語言，從西班牙到印度都被廣泛的使用。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "市集賣價 +20%。"
+msgid "Allies +20% barter sell prices."
+msgstr "同盟 +20% 易貨銷售價格。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1480,7 +1477,7 @@ msgstr "當腓力二世登上馬其頓王國的寶座之後，他開始對馬其
 msgid ""
 "Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
 "and armor, but also greater cost."
-msgstr "升級精英盾兵到銀盾兵，有著更強大的攻擊力及護甲，但花費也較高。"
+msgstr "將精英盾兵升級成銀盾兵，有著更強大的攻擊力及護甲，但花費也較高。"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
@@ -1607,14 +1604,14 @@ msgid ""
 msgstr "馬其頓是一個古希臘王國，集中在希臘半島的東北部。在亞歷山大大帝的領導下，馬其頓軍隊及其盟友擊敗了埃及、波斯以及部份的印度次大陸，促進了希臘文化和東方文化的交流。"
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
-msgstr "孔雀王朝"
+msgid "Mauryas"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "孔雀王朝有 +10% 的人口上限獎勵 (即人口上限為 330 而非平常的 300)。"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1624,15 +1621,15 @@ msgstr "萬王之王。"
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "孔雀王朝涵蓋了數十個原先獨立的王國，其領土面積約有 5 百萬平方公里，人口總數約 6 千萬人。孔雀王朝的統治者有著萬王之王的稱號，並指揮著 60 萬名步兵、9000 頭大象、8000 輛雙輪戰車、以及 3 萬名騎兵，使其可以說是當時最大型的軍隊。"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
-msgstr "孔雀王朝享有使用 4 種精英的權利。"
+msgid "The Mauryas enjoy access to 4 champions."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -1647,8 +1644,10 @@ msgid ""
 msgstr "剎帝利或 Kashtriya，意思是戰士，是四個印度教種姓（社會階級）其中之一。傳統上來說，剎帝利在印度教社會系統中構成了軍隊及統治階級的精英，在吠陀經及摩奴法典中所描述。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "盟友的神廟與神廟科技 -50% 資源花費與研究時間。"
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "同盟的神廟 −50% 資源成本和建造時間；神廟科技 −50% 資源成本和研發時間。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1821,8 +1820,8 @@ msgid ""
 msgstr "由於阿契美尼德王朝的龐大規模及其組織結構，波斯人可以在戰時大量徵召步兵。儘管波斯步兵整體來說訓練有素且意志堅定。但是他們缺乏肉搏戰的經驗。而且，除了少數的精英部隊以外，波斯的步兵並非職業的常備軍。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "盟友的商人可從陸地貿易取得較高的利潤 (+15%)。"
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2027,15 +2026,16 @@ msgstr "托勒密"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
-"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr "托勒密有傭兵營，一個可以在中立地帶上建造並訓練傭兵的軍營。"
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
 msgstr "傭兵軍團"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2066,8 +2066,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "可以捕獲大地之母的大象及駱駝以減少他們的訓練花費。"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "所有盟友會自動獲得一個緩慢的食物收入。"
+msgid "Allies +1.0 food trickle rate."
+msgstr "同盟 +1.0 食物細流率。"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2222,18 +2222,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "必須建造在中立地帶上。沒有領土範圍效果。訓練所有「傭兵」單位。"
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "希臘─馬其頓托勒密王朝依靠大量的希臘及外國雇傭兵作為大多數的軍事力量，主要是因為懷疑當地的埃及部隊的忠誠度。事實上，在一次當地的反抗以後，上埃及便脫離了托勒密的掌控幾十年。傭兵們往往久經沙場，而他們的忠誠可以用錢買到，有時便宜，有時昂貴。這並不重要，因為托勒密埃及是所有亞歷山大繼業者的國家裡最富有的。"
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "燈塔"
@@ -2299,8 +2287,8 @@ msgid ""
 msgstr "在遠古時的世界，羅馬的公民身份相當受到敬重。羅馬公民被賦與了其他被征服民族所沒有的權利與特權。據說，傷害一個羅馬公民就是與整個羅馬為敵，整個羅馬都會團結起來制服施暴者。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "盟友步兵 -20% 訓練時間。"
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "同盟的公民步兵 −20% 訓練時間。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2509,8 +2497,8 @@ msgid ""
 msgstr "塞琉古及更確切的說是繼業者戰爭在第 3 世紀及第 2 世紀中逐漸的推展。與東方的新起之秀，像是帕提亞，及經常發生反抗的總督轄地，像是巴克特里亞，接觸，導致了塞琉古改革其軍隊並改變戰術，特別是騎兵所使用的武器。與其西方的羅馬人的戰爭，及加拉太人的入侵，也迫使塞琉古改革其步兵軍團，使其更靈活。"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "盟友的城鎮中心會便宜 20%。"
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2695,15 +2683,15 @@ msgstr "勝利者 塞琉古一世"
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleukus "
+" the verge of collapse he managed to weld back together the empire Seleucus "
 "I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"Parthia were brought to heel, temporarily securing his eastern borders. He "
 "then turned his attention to mother Greece, attempting to fulfill the dreams"
 " of his fathers by invading Greece under the pretext of liberation. The "
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr "安條克在他統治的初期繼承了一個陷入困境的王國。但他成功的將瀕鄰崩潰的帝國重新融為一體，這連塞琉古一世本人都很難做到。巴克特里亞及帕提亞的反專制起義被帶到了更東邊的地方，使其可以暫時保護好自己的東部邊界。然後他把注意力轉向希臘，企圖以解放希臘為名入侵，以實現他父親的夢想。亞該亞同盟與阿塔羅斯王朝聯合羅馬在馬格尼西亞戰役中打敗他，永遠埋藏了重聚亞歷山大帝國的夢想。"
+msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
@@ -2799,10 +2787,8 @@ msgid ""
 msgstr "根據被賦予神權的來古格士所制定的法律，因而確立了斯巴達的教育制度，斯巴達人從6歲開始就會被訓練為勇猛的戰士以防衛斯巴達人的領土。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "斯巴達玩家的盟友長矛公民兵的生命值多 10%。"
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2866,7 +2852,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "斯巴達的女性公民無法被俘虜，並會頑強的反抗任何攻擊者。她們也可以建造防禦塔及柵欄。"
+msgstr "斯巴達的女性公民無法被捕獲，並會頑強反抗任何攻擊者。他們也可以建造防禦塔及柵欄。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2900,7 +2886,7 @@ msgstr "Paeans 是重裝步兵向敵人衝鋒時所唱的戰歌。其中最著�
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "矛兵生命值 +25％，但訓練時間 +10％。"
+msgstr "矛步兵生命值 +25％，但訓練時間 +10％。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

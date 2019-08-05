@@ -83,7 +83,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	enum op {
 		INVALID,
 		ADD,
-		MUL
+		MUL,
+		MUL_ROUND
 	} op = INVALID;
 	bool replacing = false;
 	bool filtering = false;
@@ -117,6 +118,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 					op = ADD;
 				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul")
 					op = MUL;
+				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul_round")
+					op = MUL_ROUND;
 				else
 					LOGWARNING("Invalid op '%ls'", attr.Value);
 			}
@@ -178,7 +181,10 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 			node.m_Value = (oldval + mod).ToString().FromUTF8();
 			break;
 		case MUL:
-			node.m_Value = (oldval.Multiply(mod)).ToString().FromUTF8();
+			node.m_Value = oldval.Multiply(mod).ToString().FromUTF8();
+			break;
+		case MUL_ROUND:
+			node.m_Value = fixed::FromInt(oldval.Multiply(mod).ToInt_RoundToNearest()).ToString().FromUTF8();
 			break;
 		}
 		hasSetValue = true;

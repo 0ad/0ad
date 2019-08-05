@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
   <Footprint>
-    <Square width="1.4" depth="2.8"/>
+    <Square width="2" depth="4.0"/>
     <Height>1.5</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Pig</SpecificName>
+    <GenericName>Pig</GenericName>
+    <SpecificName>Sus scrofa domesticus</SpecificName>
     <Icon>gaia/fauna_pig.png</Icon>
   </Identity>
   <Position>
@@ -25,9 +25,6 @@
   </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.45</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.45</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/pig1.xml</Actor>

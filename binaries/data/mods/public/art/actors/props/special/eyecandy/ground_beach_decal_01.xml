@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="edge_1">
+      <decal width="20" depth="25" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="props/ground_beach_decal_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>

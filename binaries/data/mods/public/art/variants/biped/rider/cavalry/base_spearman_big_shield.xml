@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant file="biped/rider/cavalry/base_spearman.xml">
   <animations>
-    <animation file="biped/rider/cavalry/gallop_shield_b.dae" name="Run" speed="7"/>
-    <animation file="biped/rider/cavalry/attack_stab_spearman_shield_long_c.dae" name="attack_melee" event="0.5" id="attack1" speed="230"/>
-    <animation file="biped/rider/cavalry/attack_stab_spearman_shield_c.dae" event="0.5" name="attack_melee" id="attack2" speed="230"/>
-    <animation file="biped/rider/cavalry/attack_stab_spearman_shield_c.dae" event="0.5" name="attack_melee" id="attack3" speed="230"/>
-    <animation file="biped/rider/cavalry/attack_stab_spearman_shield_c.dae" event="0.5" name="attack_melee" id="attack4" speed="230"/>
-    <animation file="biped/rider/cavalry/attack_capture_shield.dae" name="attack_capture" speed="100"/>
+    <animation file="biped/rider/cavalry/spearman/gallop_shield.dae" name="Run" speed="7"/>
+    <animation file="biped/rider/cavalry/spearman/attack_shield_stab_02.dae" name="attack_melee" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/cavalry/spearman/attack_shield_stab_01.dae" event="0.5" name="attack_melee" id="attack2" speed="60"/>
+    <animation file="biped/rider/cavalry/spearman/attack_shield_stab_01.dae" event="0.5" name="attack_melee" id="attack3" speed="60"/>
+    <animation file="biped/rider/cavalry/spearman/attack_shield_stab_01.dae" event="0.5" name="attack_melee" id="attack4" speed="60"/>
+    <animation file="biped/rider/cavalry/attack_capture.dae" name="attack_capture" speed="100"/>
   </animations>
 </variant>
-  

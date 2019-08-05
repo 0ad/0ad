@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_geo_rock">
+  <Footprint>
+    <Circle radius="4.25"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Identity>
+    <Icon>gaia/geology_stone_2.png</Icon>
+  </Identity>
+  <Position>
+    <Anchor>upright</Anchor>
+  </Position>
+  <VisualActor>
+    <Actor>geology/stone_savanna_quarried.xml</Actor>
+  </VisualActor>
+</Entity>

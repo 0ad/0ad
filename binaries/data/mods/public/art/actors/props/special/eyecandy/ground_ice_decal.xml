@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="ice_01">
+      <decal width="40" depth="40" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="props/ground_decal_ice_01.png" name="baseTex"/>
+        <texture file="props/ground_decal_ice_01_norm.png" name="normTex"/>
+        <texture file="props/ground_decal_ice_01_spec.png" name="specTex"/>		
+      </textures>
+    </variant>
+    <variant frequency="1" name="ice_02">
+      <decal width="30" depth="30" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="props/ground_decal_ice_01.png" name="baseTex"/>
+        <texture file="props/ground_decal_ice_01_norm.png" name="normTex"/>
+        <texture file="props/ground_decal_ice_01_spec.png" name="specTex"/>		
+      </textures>
+    </variant>
+    <variant frequency="1" name="ice_03">
+      <decal width="20" depth="20" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="props/ground_decal_ice_01.png" name="baseTex"/>
+        <texture file="props/ground_decal_ice_01_norm.png" name="normTex"/>
+        <texture file="props/ground_decal_ice_01_spec.png" name="specTex"/>		
+      </textures>
+    </variant>
+    <variant frequency="1" name="ice_04">
+      <decal width="10" depth="10" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="props/ground_decal_ice_01.png" name="baseTex"/>
+        <texture file="props/ground_decal_ice_01_norm.png" name="normTex"/>
+        <texture file="props/ground_decal_ice_01_spec.png" name="specTex"/>		
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>

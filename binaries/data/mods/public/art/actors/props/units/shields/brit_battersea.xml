@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Battersea Shield">
+      <mesh>props/shield/brit_battersea.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/shield/brit_battersea.png" name="baseTex"/>
+        <texture file="props/shield/brit_battersea_norm.png" name="normTex"/>
+        <texture file="props/shield/brit_battersea_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/brit_battersea_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

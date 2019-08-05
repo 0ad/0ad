@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+     <variant frequency="1" name="ship_oar">
+      <mesh>props/kush_oar.dae</mesh>
+      <textures>
+        <texture file="structural/kush_trireme.png" name="baseTex"/>
+      </textures>
+      <animations>
+        <animation file="other/ship_oar_a_idle_l.dae" name="idle" speed="50"/>
+        <animation file="other/ship_oar_a_move_l.dae" name="Walk" speed="8"/>
+      </animations>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

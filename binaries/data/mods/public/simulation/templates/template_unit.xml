@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_entity_full">
+<Entity>
+  <AIProxy/>
   <Armour>
     <Hack>1</Hack>
     <Pierce>1</Pierce>
@@ -37,6 +38,7 @@
     <Unhealable>false</Unhealable>
   </Health>
   <Identity>
+    <Civ>gaia</Civ>
     <GenericName>Unit</GenericName>
     <Classes datatype="tokens">Unit ConquestCritical</Classes>
     <Formations datatype="tokens">
@@ -49,8 +51,10 @@
       special/formations/flank
       special/formations/battle_line
     </Formations>
+    <Phenotype datatype="tokens">male</Phenotype>
     <Undeletable>false</Undeletable>
   </Identity>
+  <Looter/>
   <Minimap>
     <Type>unit</Type>
   </Minimap>
@@ -66,6 +70,14 @@
     <DeleteUponConstruction>false</DeleteUponConstruction>
   </Obstruction>
   <OverlayRenderer/>
+  <Ownership/>
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+    <FloatDepth>0.0</FloatDepth>
+    <TurnRate>6.0</TurnRate>
+  </Position>
   <RangeOverlayManager/>
   <RangeOverlayRenderer/>
   <ResourceGatherer>
@@ -100,6 +112,7 @@
     <BarHeight>0.333</BarHeight>
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>
+  <StatusEffectsReceiver/>
   <UnitAI>
     <DefaultStance>aggressive</DefaultStance>
     <FleeDistance>12.0</FleeDistance>
@@ -109,15 +122,9 @@
   </UnitAI>
   <UnitMotion>
     <FormationController>false</FormationController>
-    <WalkSpeed>9.0</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-      <Range>50.0</Range>
-      <RangeMin>0.0</RangeMin>
-      <RegenTime>0.1</RegenTime>
-      <DecayTime>0.2</DecayTime>
-    </Run>
     <PassabilityClass>default</PassabilityClass>
+    <WalkSpeed>9.0</WalkSpeed>
+    <RunMultiplier>1.67</RunMultiplier>
   </UnitMotion>
   <Visibility>
     <RetainInFog>false</RetainInFog>

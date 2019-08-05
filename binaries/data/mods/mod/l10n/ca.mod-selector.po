@@ -7,14 +7,15 @@
 # Albert F. <alb.fontquerni@gmail.com>, 2018
 # Haommin <tfs.msimangu@gmail.com>, 2014
 # juan Aragó <juan_arago@yahoo.es>, 2018
+# Klan Ruiz Martin <rodamit@gmail.com>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Haommin <tfs.msimangu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-17 14:55+0000\n"
-"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -238,6 +239,14 @@ msgstr "Dependència no accessible: %(dep)s"
 msgid "All dependencies met"
 msgstr "S'han trobat totes les dependències"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Activa"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Desactivar"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "No s'ha seleccionat cap mod."
@@ -258,7 +267,13 @@ msgstr "Política de privacitat de mod.io"
 msgid "OK"
 msgstr "D'acord"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Veure en línia"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "Obre %(url)s al navegador."

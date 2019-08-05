@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,7 +99,7 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 	BuildDirEntListState state(cx);
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
-	return OBJECT_TO_JSVAL(state.filename_array);
+	return JS::ObjectValue(*state.filename_array);
 }
 
 // Return true iff the file exits
@@ -152,12 +152,13 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
 JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	const ScriptInterface& scriptInterface = *pCxPrivate->pScriptInterface;
+	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 
@@ -166,7 +167,10 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 
 	// split into array of strings (one per line)
 	std::stringstream ss(contents);
-	JS::RootedObject line_array(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+
+	JS::RootedValue line_array(cx);
+	scriptInterface.CreateArray(&line_array);
+
 	std::string line;
 	int cur_line = 0;
 
@@ -175,10 +179,10 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 		// Decode each line as UTF-8
 		JS::RootedValue val(cx);
 		ScriptInterface::ToJSVal(cx, &val, CStr(line).FromUTF8());
-		JS_SetElement(cx, line_array, cur_line++, val);
+		scriptInterface.SetPropertyInt(line_array, cur_line++, val);
 	}
 
-	return JS::ObjectValue(*line_array);
+	return line_array;
 }
 
 JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)

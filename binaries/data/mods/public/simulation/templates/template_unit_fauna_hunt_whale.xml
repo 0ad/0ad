@@ -6,11 +6,7 @@
     <Unhealable>true</Unhealable>
   </Health>
   <Identity>
-    <Classes datatype="tokens">SeaCreature</Classes>
-    <Civ>gaia</Civ>
-    <GenericName>Cetacean</GenericName>
     <Tooltip>Kill, then gather food from this bountiful oceanic resource.</Tooltip>
-    <Icon>gaia/fauna_fish.png</Icon>
   </Identity>
   <Loot>
     <xp>10</xp>
@@ -54,8 +50,6 @@
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
     <WalkSpeed op="mul">1.8</WalkSpeed>
-    <Run>
-      <Speed op="mul">1.8</Speed>
-    </Run>
+    <RunMultiplier>1</RunMultiplier>
   </UnitMotion>
 </Entity>

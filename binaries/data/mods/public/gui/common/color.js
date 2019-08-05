@@ -34,7 +34,7 @@ function guiToRgbColor(string)
 		"r": +color[0],
 		"g": +color[1],
 		"b": +color[2],
-		"alpha": color.length == 4 ? +color[3] : undefined
+		"a": color.length == 4 ? +color[3] : undefined
 	};
 }
 
@@ -176,7 +176,7 @@ function colorizeHotkey(text, hotkey)
  */
 function colorizeAutocompleteHotkey(string)
 {
-	return sprintf(string || translate("Press %(hotkey)s to autocomplete playernames."), {
+	return sprintf(string || translate("Press %(hotkey)s to autocomplete player names."), {
 		"hotkey":
 			setStringTags("\\[" + translateWithContext("hotkey", "Tab") + "]", g_HotkeyTags)
 	});

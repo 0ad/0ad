@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,13 +18,13 @@
 #ifndef INCLUDED_SCRIPTINTERFACE
 #define INCLUDED_SCRIPTINTERFACE
 
-#include <boost/random/linear_congruential.hpp>
-
 #include "lib/file/vfs/vfs_path.h"
-
 #include "maths/Fixed.h"
 #include "ScriptTypes.h"
 #include "ps/Errors.h"
+
+#include <boost/random/linear_congruential.hpp>
+#include <map>
 
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);
@@ -115,9 +115,6 @@ public:
 	 */
 	bool LoadGlobalScripts();
 
-	enum CACHED_VAL { CACHE_VECTOR2DPROTO, CACHE_VECTOR3DPROTO };
-	JS::Value GetCachedValue(CACHED_VAL valueIdentifier) const;
-
 	/**
 	 * Replace the default JS random number geenrator with a seeded, network-sync'd one.
 	 */
@@ -134,15 +131,41 @@ public:
 	JSObject* CreateCustomObject(const std::string & typeName) const;
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
+	/**
+	 * Sets the given value to a new plain JS::Object. Can throw an exception in case of running out of memory.
+	 */
+	bool CreateObject(JS::MutableHandleValue objectValue) const;
+
+	/**
+	 * Sets the given value to a new plain JS::Object, converts the arguments to JS::Values and sets them as properties.
+	 * Can throw an exception.
+	 */
+	template<typename T, typename... Args>
+	bool CreateObject(JS::MutableHandleValue objectValue, const char* propertyName, const T& propertyValue, Args const&... args) const
+	{
+		return CreateObject(objectValue, args...) && SetProperty(objectValue, propertyName, propertyValue);
+	}
+
+	template<typename T, typename... Args>
+	bool CreateObject(JS::MutableHandleValue objectValue, const wchar_t* propertyName, const T& propertyValue, Args const&... args) const
+	{
+		return CreateObject(objectValue, args...) && SetProperty(objectValue, propertyName, propertyValue);
+	}
+
+	/**
+	 * Sets the given value to a new JS object or Null Value in case of out-of-memory.
+	 */
+	void CreateArray(JS::MutableHandleValue objectValue, size_t length = 0) const;
+
 	JS::Value GetGlobalObject() const;
 
 	/**
 	 * Set the named property on the global object.
-	 * If @p replace is true, an existing property will be overwritten; otherwise attempts
-	 * to set an already-defined value will fail.
+	 * Optionally makes it {ReadOnly, DontEnum}. We do not allow to make it DontDelete, so that it can be hotloaded
+	 * by deleting it and re-creating it, which is done by setting @p replace to true.
 	 */
 	template<typename T>
-	bool SetGlobal(const char* name, const T& value, bool replace = false);
+	bool SetGlobal(const char* name, const T& value, bool replace = false, bool constant = true, bool enumerate = true);
 
 	/**
 	 * Set the named property on the given object.
@@ -286,18 +309,6 @@ public:
 	template<typename T> static bool FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret);
 
 	/**
-	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take.
-	 * This calls JS_MaybeGC directly, which does not do incremental GC. Usually you should prefer MaybeIncrementalRuntimeGC.
-	 */
-	void MaybeGC();
-
-	/**
-	 * Triggers a full non-incremental garbage collection immediately. That should only be required in special cases and normally
-	 * you should try to use MaybeIncrementalRuntimeGC instead.
-	 */
-	void ForceGC();
-
-	/**
 	 * MathRandom (this function) calls the random number generator assigned to this ScriptInterface instance and
 	 * returns the generated number.
 	 * Math_random (with underscore, not this function) is a global function, but different random number generators can be
@@ -362,10 +373,10 @@ private:
 	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const;
 	bool Eval_(const char* code, JS::MutableHandleValue ret) const;
 	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret) const;
-	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace);
-	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool readonly, bool enumerate) const;
-	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool readonly, bool enumerate) const;
-	bool SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool readonly, bool enumerate) const;
+	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate);
+	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const;
+	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const;
+	bool SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate) const;
 	bool GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const;
 	bool GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue value) const;
 	static bool IsExceptionPending(JSContext* cx);
@@ -488,39 +499,39 @@ inline JS::HandleValue ScriptInterface::AssignOrFromJSVal<JS::HandleValue>(JSCon
 }
 
 template<typename T>
-bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
+bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetGlobal_(name, val, replace);
+	return SetGlobal_(name, val, replace, constant, enumerate);
 }
 
 template<typename T>
-bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T& value, bool readonly, bool enumerate) const
+bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T& value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetProperty_(obj, name, val, readonly, enumerate);
+	return SetProperty_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
-bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, const T& value, bool readonly, bool enumerate) const
+bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, const T& value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetProperty_(obj, name, val, readonly, enumerate);
+	return SetProperty_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
-bool ScriptInterface::SetPropertyInt(JS::HandleValue obj, int name, const T& value, bool readonly, bool enumerate) const
+bool ScriptInterface::SetPropertyInt(JS::HandleValue obj, int name, const T& value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
-	return SetPropertyInt_(obj, name, val, readonly, enumerate);
+	return SetPropertyInt_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>

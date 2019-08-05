@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,7 @@
 
 #include "GUIManager.h"
 
-#include "CGUI.h"
-
+#include "gui/CGUI.h"
 #include "lib/timer.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
@@ -83,22 +82,22 @@ void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptIn
 {
 	// The page stack is cleared (including the script context where initData came from),
 	// therefore we have to clone initData.
+
 	shared_ptr<ScriptInterface::StructuredClone> initDataClone;
 	if (!initData.isUndefined())
-	{
 		initDataClone = srcScriptInterface->WriteStructuredClone(initData);
-	}
+
 	m_PageStack.clear();
+
 	PushPage(pageName, initDataClone);
 }
 
 void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::StructuredClone> initData)
 {
-	m_PageStack.push_back(SGUIPage());
-	m_PageStack.back().name = pageName;
-	m_PageStack.back().initData = initData;
-	LoadPage(m_PageStack.back());
-
+	// Push the page prior to loading its contents, because that may push
+	// another GUI page on init which should be pushed on top of this new page.
+	m_PageStack.emplace_back(SGUIPage(pageName, initData));
+	m_PageStack.back().LoadPage(m_ScriptRuntime);
 	ResetCursor();
 }
 
@@ -161,30 +160,18 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 	}
 }
 
-void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message)
+CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const shared_ptr<ScriptInterface::StructuredClone> initData)
+	: name(pageName), initData(initData), inputs(), gui()
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	// Set up scripted init data for the standard message box window
-	JS::RootedValue data(cx);
-	m_ScriptInterface->Eval("({})", &data);
-	m_ScriptInterface->SetProperty(data, "width", width, false);
-	m_ScriptInterface->SetProperty(data, "height", height, false);
-	m_ScriptInterface->SetProperty(data, "mode", 2, false);
-	m_ScriptInterface->SetProperty(data, "title", std::wstring(title), false);
-	m_ScriptInterface->SetProperty(data, "message", std::wstring(message), false);
-
-	// Display the message box
-	PushPage(L"page_msgbox.xml", m_ScriptInterface->WriteStructuredClone(data));
 }
 
-void CGUIManager::LoadPage(SGUIPage& page)
+void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 {
 	// If we're hotloading then try to grab some data from the previous page
 	shared_ptr<ScriptInterface::StructuredClone> hotloadData;
-	if (page.gui)
+	if (gui)
 	{
-		shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface();
+		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 		JSContext* cx = scriptInterface->GetContext();
 		JSAutoRequest rq(cx);
 
@@ -194,13 +181,13 @@ void CGUIManager::LoadPage(SGUIPage& page)
 		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
 	}
 
-	page.inputs.clear();
-	page.gui.reset(new CGUI(m_ScriptRuntime));
+	inputs.clear();
+	gui.reset(new CGUI(scriptRuntime));
 
-	page.gui->Initialize();
+	gui->Initialize();
 
-	VfsPath path = VfsPath("gui") / page.name;
-	page.inputs.insert(path);
+	VfsPath path = VfsPath("gui") / name;
+	inputs.insert(path);
 
 	CXeromyces xero;
 	if (xero.Load(g_VFS, path, "gui_page") != PSRETURN_OK)
@@ -214,7 +201,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 	if (root.GetNodeName() != elmt_page)
 	{
-		LOGERROR("GUI page '%s' must have root element <page>", utf8_from_wstring(page.name));
+		LOGERROR("GUI page '%s' must have root element <page>", utf8_from_wstring(name));
 		return;
 	}
 
@@ -222,7 +209,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	{
 		if (node.GetNodeName() != elmt_include)
 		{
-			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", utf8_from_wstring(page.name));
+			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", utf8_from_wstring(name));
 			continue;
 		}
 
@@ -239,22 +226,18 @@ void CGUIManager::LoadPage(SGUIPage& page)
 			VfsPaths pathnames;
 			vfs::GetPathnames(g_VFS, directory, L"*.xml", pathnames);
 			for (const VfsPath& path : pathnames)
-				page.gui->LoadXmlFile(path, page.inputs);
+				gui->LoadXmlFile(path, inputs);
 		}
 		else
 		{
 			VfsPath path = VfsPath("gui") / nameW;
-			page.gui->LoadXmlFile(path, page.inputs);
+			gui->LoadXmlFile(path, inputs);
 		}
 	}
 
-	// Remember this GUI page, in case the scripts call FindObjectByName
-	shared_ptr<CGUI> oldGUI = m_CurrentGUI;
-	m_CurrentGUI = page.gui;
+	gui->SendEventToAll("load");
 
-	page.gui->SendEventToAll("load");
-
-	shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface();
+	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
@@ -262,17 +245,15 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	JS::RootedValue hotloadDataVal(cx);
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 
-	if (page.initData)
-		scriptInterface->ReadStructuredClone(page.initData, &initDataVal);
+	if (initData)
+		scriptInterface->ReadStructuredClone(initData, &initDataVal);
 
 	if (hotloadData)
 		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
 
 	if (scriptInterface->HasProperty(global, "init") &&
 	    !scriptInterface->CallFunctionVoid(global, "init", initDataVal, hotloadDataVal))
-		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(page.name));
-
-	m_CurrentGUI = oldGUI;
+		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(name));
 }
 
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)
@@ -281,7 +262,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 		if (p.inputs.count(path))
 		{
 			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(p.name));
-			LoadPage(p);
+			p.LoadPage(m_ScriptRuntime);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}
 
@@ -292,7 +273,7 @@ Status CGUIManager::ReloadAllPages()
 {
 	// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 	for (SGUIPage& p : m_PageStack)
-		LoadPage(p);
+		p.LoadPage(m_ScriptRuntime);
 
 	return INFO::OK;
 }
@@ -370,24 +351,19 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 }
 
 
-bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output) const
+bool CGUIManager::GetPreDefinedColor(const CStr& name, CGUIColor& output) const
 {
 	return top()->GetPreDefinedColor(name, output);
-}
-
-IGUIObject* CGUIManager::FindObjectByName(const CStr& name) const
-{
-	// This can be called from scripts run by TickObjects,
-	// and we want to return it the same GUI page as is being ticked
-	if (m_CurrentGUI)
-		return m_CurrentGUI->FindObjectByName(name);
-	else
-		return top()->FindObjectByName(name);
 }
 
 void CGUIManager::SendEventToAll(const CStr& eventName) const
 {
 	top()->SendEventToAll(eventName);
+}
+
+void CGUIManager::SendEventToAll(const CStr& eventName, JS::HandleValueArray paramData) const
+{
+	top()->SendEventToAll(eventName, paramData);
 }
 
 void CGUIManager::TickObjects()
@@ -402,11 +378,7 @@ void CGUIManager::TickObjects()
 	PageStackType pageStack = m_PageStack;
 
 	for (const SGUIPage& p : pageStack)
-	{
-		m_CurrentGUI = p.gui;
 		p.gui->TickObjects();
-	}
-	m_CurrentGUI.reset();
 }
 
 void CGUIManager::Draw()
@@ -424,11 +396,9 @@ void CGUIManager::UpdateResolution()
 
 	for (const SGUIPage& p : pageStack)
 	{
-		m_CurrentGUI = p.gui;
 		p.gui->UpdateResolution();
 		p.gui->SendEventToAll("WindowResized");
 	}
-	m_CurrentGUI.reset();
 }
 
 bool CGUIManager::TemplateExists(const std::string& templateName) const

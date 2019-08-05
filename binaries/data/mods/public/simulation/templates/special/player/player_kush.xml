@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="special/player/player">
-  <Auras datatype="tokens">teambonuses/kush_player_team_bonus</Auras>
+  <Auras datatype="tokens">
+    teambonuses/kush_player_teambonus
+  </Auras>
 </Entity>

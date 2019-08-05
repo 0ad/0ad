@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "simulation2/MessageTypes.h"
 
 #include "ICmpFootprint.h"
+#include "ICmpIdentity.h"
 #include "ICmpUnitRenderer.h"
 #include "ICmpOwnership.h"
 #include "ICmpPosition.h"
@@ -55,11 +56,11 @@ class CCmpVisualActor : public ICmpVisual
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(MT_Update_Final);
 		componentManager.SubscribeToMessageType(MT_InterpolatedPositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_Create);
 		componentManager.SubscribeToMessageType(MT_Destroy);
 	}
 
@@ -71,13 +72,11 @@ private:
 
 	// Not initialized in non-visual mode
 	CUnit* m_Unit;
+	CModelAbstract::CustomSelectionShape* m_ShapeDescriptor = nullptr;
 
 	fixed m_R, m_G, m_B; // shading color
 
-	std::map<std::string, std::string> m_AnimOverride;
-
 	// Current animation state
-	fixed m_AnimRunThreshold; // if non-zero this is the special walk/run mode
 	std::string m_AnimName;
 	bool m_AnimOnce;
 	fixed m_AnimSpeed;
@@ -94,6 +93,10 @@ private:
 
 	bool m_VisibleInAtlasOnly;
 	bool m_IsActorOnly;	// an in-world entity should not have this or it might not be rendered.
+
+	bool m_SilhouetteDisplay;
+	bool m_SilhouetteOccluder;
+	bool m_DisableShadows;
 
 	ICmpUnitRenderer::tag_t m_ModelTag;
 
@@ -199,17 +202,23 @@ public:
 		m_Seed = GetEntityId();
 
 		m_IsFoundationActor = paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk();
-		if (m_IsFoundationActor)
-			m_BaseActorName = m_ActorName = paramNode.GetChild("FoundationActor").ToString();
-		else
-			m_BaseActorName = m_ActorName = paramNode.GetChild("Actor").ToString();
+
+		m_BaseActorName = paramNode.GetChild(m_IsFoundationActor ? "FoundationActor" : "Actor").ToString();
+		ParseActorName(m_BaseActorName);
 
 		m_VisibleInAtlasOnly = paramNode.GetChild("VisibleInAtlasOnly").ToBool();
 		m_IsActorOnly = paramNode.GetChild("ActorOnly").IsOk();
 
-		InitModel(paramNode);
+		m_SilhouetteDisplay = paramNode.GetChild("SilhouetteDisplay").ToBool();
+		m_SilhouetteOccluder = paramNode.GetChild("SilhouetteOccluder").ToBool();
+		m_DisableShadows = paramNode.GetChild("DisableShadows").ToBool();
 
-		SelectAnimation("idle");
+		// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the
+		// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
+		// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
+		// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
+		// initialize the selection shape descriptor on-demand.
+		InitSelectionShapeDescriptor(paramNode);
 	}
 
 	virtual void Deinit()
@@ -228,9 +237,6 @@ public:
 		serialize.NumberFixed_Unbounded("g", m_G);
 		serialize.NumberFixed_Unbounded("b", m_B);
 
-		SerializeMap<SerializeString, SerializeString>()(serialize, "anim overrides", m_AnimOverride);
-
-		serialize.NumberFixed_Unbounded("anim run threshold", m_AnimRunThreshold);
 		serialize.StringASCII("anim name", m_AnimName, 0, 256);
 		serialize.Bool("anim once", m_AnimOnce);
 		serialize.NumberFixed_Unbounded("anim speed", m_AnimSpeed);
@@ -267,6 +273,9 @@ public:
 
 		SerializeCommon(deserialize);
 
+		InitModel();
+		SelectAnimation("idle");
+
 		// If we serialized a different seed or different actor, reload actor
 		if (oldSeed != GetActorSeed() || m_BaseActorName != m_ActorName)
 			ReloadActor();
@@ -285,12 +294,6 @@ public:
 	{
 		switch (msg.GetType())
 		{
-		case MT_Update_Final:
-		{
-			const CMessageUpdate_Final& msgData = static_cast<const CMessageUpdate_Final&> (msg);
-			Update(msgData.turnLength);
-			break;
-		}
 		case MT_OwnershipChanged:
 		{
 			if (!m_Unit)
@@ -322,7 +325,7 @@ public:
 				newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/Actor", m_BaseActorName, GetEntityId());
 			if (newActorName != m_ActorName)
 			{
-				m_ActorName = newActorName;
+				ParseActorName(newActorName);
 				ReloadActor();
 			}
 			break;
@@ -335,6 +338,13 @@ public:
 				CmpPtr<ICmpUnitRenderer> cmpModelRenderer(GetSystemEntity());
 				cmpModelRenderer->UpdateUnitPos(m_ModelTag, msgData.inWorld, msgData.pos0, msgData.pos1);
 			}
+			break;
+		}
+		case MT_Create:
+		{
+			InitModel();
+
+			SelectAnimation("idle");
 			break;
 		}
 		case MT_Destroy:
@@ -441,7 +451,6 @@ public:
 
 	virtual void SelectAnimation(const std::string& name, bool once = false, fixed speed = fixed::FromInt(1))
 	{
-		m_AnimRunThreshold = fixed::Zero();
 		m_AnimName = name;
 		m_AnimOnce = once;
 		m_AnimSpeed = speed;
@@ -462,21 +471,12 @@ public:
 		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());	
 	}
 
-	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace)
+	virtual void SelectMovementAnimation(const std::string& name, fixed speed)
 	{
-		m_AnimOverride[name] = replace;
-	}
-
-	virtual void ResetMoveAnimation(const std::string& name)
-	{
-		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
-		if (it != m_AnimOverride.end())
-			m_AnimOverride.erase(name);
-	}
-
-	virtual void SelectMovementAnimation(fixed runThreshold)
-	{
-		m_AnimRunThreshold = runThreshold;
+		ENSURE(name == "idle" || name == "walk" || name == "run");
+		if (m_AnimName != "idle" && m_AnimName != "walk" && m_AnimName != "run")
+			return;
+		SelectAnimation(name, false, speed);
 	}
 
 	virtual void SetAnimationSyncRepeat(fixed repeattime)
@@ -546,8 +546,11 @@ public:
 	}
 
 private:
+	// Replace {phenotype} with the correct value in m_ActorName
+	void ParseActorName(std::wstring base);
+
 	/// Helper function shared by component init and actor reloading
-	void InitModel(const CParamNode& paramNode);
+	void InitModel();
 
 	/// Helper method; initializes the model selection shape descriptor from XML. Factored out for readability of @ref Init.
 	void InitSelectionShapeDescriptor(const CParamNode& paramNode);
@@ -557,15 +560,30 @@ private:
 	// ReloadUnitAnimation is used for a minimal reloading upon deserialization, when the actor and seed are identical.
 	// It is also used by ReloadActor.
 	void ReloadUnitAnimation();
-
-	void Update(fixed turnLength);
 };
 
 REGISTER_COMPONENT_TYPE(VisualActor)
 
 // ------------------------------------------------------------------------------------------------------------------
 
-void CCmpVisualActor::InitModel(const CParamNode& paramNode)
+void CCmpVisualActor::ParseActorName(std::wstring base)
+{
+	CmpPtr<ICmpIdentity> cmpIdentity(GetEntityHandle());
+	const std::wstring pattern = L"{phenotype}";
+	if (cmpIdentity)
+	{
+		size_t pos = base.find(pattern);
+		while (pos != std::string::npos)
+		{
+			base.replace(pos, pattern.size(),  cmpIdentity->GetPhenotype());
+			pos = base.find(pattern, pos + pattern.size());
+		}
+	}
+
+	m_ActorName = base;
+}
+
+void CCmpVisualActor::InitModel()
 {
 	if (!GetSimContext().HasUnitManager())
 		return;
@@ -583,10 +601,10 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 	{
 		u32 modelFlags = 0;
 
-		if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+		if (m_SilhouetteDisplay)
 			modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
 
-		if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+		if (m_SilhouetteOccluder)
 			modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
 
 		CmpPtr<ICmpVisibility> cmpVisibility(GetEntityHandle());
@@ -596,20 +614,13 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 		model.ToCModel()->AddFlagsRec(modelFlags);
 	}
 
-	if (paramNode.GetChild("DisableShadows").IsOk())
+	if (m_DisableShadows)
 	{
 		if (model.ToCModel())
 			model.ToCModel()->RemoveShadowsRec();
 		else if (model.ToCModelDecal())
 			model.ToCModelDecal()->RemoveShadows();
 	}
-
-	// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the
-	// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
-	// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
-	// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
-	// initialize the selection shape descriptor on-demand.
-	InitSelectionShapeDescriptor(paramNode);
 
 	m_Unit->SetID(GetEntityId());
 
@@ -637,12 +648,16 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 			m_ModelTag = cmpModelRenderer->AddUnit(GetEntityHandle(), m_Unit, boundSphere, flags);
 		}
 	}
+
+	// the model is now responsible for cleaning up the descriptor
+	if (m_ShapeDescriptor != nullptr)
+		m_Unit->GetModel().SetCustomSelectionShape(m_ShapeDescriptor);
 }
 
 void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 {
 	// by default, we don't need a custom selection shape and we can just keep the default behaviour
-	CModelAbstract::CustomSelectionShape* shapeDescriptor = NULL;
+	m_ShapeDescriptor = nullptr;
 
 	const CParamNode& shapeNode = paramNode.GetChild("SelectionShape");
 	if (shapeNode.IsOk())
@@ -674,11 +689,11 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 					size1 *= 2;
 				}
 
-				shapeDescriptor = new CModelAbstract::CustomSelectionShape;
-				shapeDescriptor->m_Type = CModelAbstract::CustomSelectionShape::BOX;
-				shapeDescriptor->m_Size0 = size0;
-				shapeDescriptor->m_Size1 = size1;
-				shapeDescriptor->m_Height = fpHeight.ToFloat();
+				m_ShapeDescriptor = new CModelAbstract::CustomSelectionShape;
+				m_ShapeDescriptor->m_Type = CModelAbstract::CustomSelectionShape::BOX;
+				m_ShapeDescriptor->m_Size0 = size0;
+				m_ShapeDescriptor->m_Size1 = size1;
+				m_ShapeDescriptor->m_Height = fpHeight.ToFloat();
 			}
 			else
 			{
@@ -688,11 +703,11 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 		else if (shapeNode.GetChild("Box").IsOk())
 		{
 			// TODO: we might need to support the ability to specify a different box center in the future
-			shapeDescriptor = new CModelAbstract::CustomSelectionShape;
-			shapeDescriptor->m_Type = CModelAbstract::CustomSelectionShape::BOX;
-			shapeDescriptor->m_Size0 = shapeNode.GetChild("Box").GetChild("@width").ToFixed().ToFloat();
-			shapeDescriptor->m_Size1 = shapeNode.GetChild("Box").GetChild("@depth").ToFixed().ToFloat();
-			shapeDescriptor->m_Height = shapeNode.GetChild("Box").GetChild("@height").ToFixed().ToFloat();
+			m_ShapeDescriptor = new CModelAbstract::CustomSelectionShape;
+			m_ShapeDescriptor->m_Type = CModelAbstract::CustomSelectionShape::BOX;
+			m_ShapeDescriptor->m_Size0 = shapeNode.GetChild("Box").GetChild("@width").ToFixed().ToFloat();
+			m_ShapeDescriptor->m_Size1 = shapeNode.GetChild("Box").GetChild("@depth").ToFixed().ToFloat();
+			m_ShapeDescriptor->m_Height = shapeNode.GetChild("Box").GetChild("@height").ToFixed().ToFloat();
 		}
 		else if (shapeNode.GetChild("Cylinder").IsOk())
 		{
@@ -704,10 +719,6 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 			LOGERROR("[VisualActor] No selection shape specified");
 		}
 	}
-
-	ENSURE(m_Unit);
-	// the model is now responsible for cleaning up the descriptor
-	m_Unit->GetModel().SetCustomSelectionShape(shapeDescriptor);
 }
 
 void CCmpVisualActor::ReloadActor()
@@ -728,7 +739,9 @@ void CCmpVisualActor::ReloadActor()
 	const CParamNode* node = cmpTemplateManager->LoadLatestTemplate(GetEntityId());
 	ENSURE(node && node->GetChild("VisualActor").IsOk());
 
-	InitModel(node->GetChild("VisualActor"));
+	InitSelectionShapeDescriptor(node->GetChild("VisualActor"));
+
+	InitModel();
 
 	ReloadUnitAnimation();
 
@@ -762,47 +775,4 @@ void CCmpVisualActor::ReloadUnitAnimation()
 		m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
 	if (!m_AnimSyncOffsetTime.IsZero())
 		m_Unit->GetAnimation()->SetAnimationSyncOffset(m_AnimSyncOffsetTime.ToFloat());
-}
-
-void CCmpVisualActor::Update(fixed UNUSED(turnLength))
-{
-	// This function is currently only used to update the animation if the speed in
-	// CCmpUnitMotion changes. This also only happens in the "special movement mode"
-	// triggered by SelectMovementAnimation.
-
-	// TODO: This should become event based, in order to save performance and to make the code
-	// far less hacky. We should also take into account the speed when the animation is different
-	// from the "special movement mode" walking animation.
-
-	// If we're not in the special movement mode, nothing to do.
-	if (m_AnimRunThreshold.IsZero())
-		return;
-
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return;
-
-	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetEntityHandle());
-	if (!cmpUnitMotion)
-		return;
-
-	fixed speed = cmpUnitMotion->GetCurrentSpeed();
-	std::string name;
-
-	if (speed.IsZero())
-	{
-		speed = fixed::FromFloat(1.f);
-		name = "idle";
-	}
-	else
-		name = speed < m_AnimRunThreshold ? "walk" : "run";
-
-	std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
-	if (it != m_AnimOverride.end())
-		name = it->second;
-
-	// Selecting the animation is going to reset the anim run threshold, so save it
-	fixed runThreshold = m_AnimRunThreshold;
-	SelectAnimation(name, false, speed);
-	m_AnimRunThreshold = runThreshold;
 }

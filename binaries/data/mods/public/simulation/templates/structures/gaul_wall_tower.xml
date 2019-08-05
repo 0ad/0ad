@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall_tower">
+<Entity parent="template_structure_defensive_wall_tower">
   <Attack disable=""/>
   <Footprint>
     <Square width="10.0" depth="10.0"/>
@@ -8,7 +8,7 @@
   <GarrisonHolder disable=""/>
   <Identity>
     <Civ>gaul</Civ>
-    <SpecificName>Tyrau</SpecificName>
+    <SpecificName>Uxelon</SpecificName>
     <Tooltip>Does not shoot or garrison.</Tooltip>
   </Identity>
   <Obstruction>
@@ -16,7 +16,7 @@
   </Obstruction>
   <RallyPoint disable=""/>
   <VisualActor>
-    <Actor>structures/celts/wall_tower.xml</Actor>
+    <Actor>structures/gauls/wall_tower.xml</Actor>
   </VisualActor>
   <WallPiece>
     <Length>9.0</Length>

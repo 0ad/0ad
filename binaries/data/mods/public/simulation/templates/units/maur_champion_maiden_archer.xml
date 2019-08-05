@@ -2,12 +2,12 @@
 <Entity parent="template_unit_champion_infantry_archer">
   <Identity>
     <Civ>maur</Civ>
-    <Gender>female</Gender>
+    <Phenotype datatype="tokens">female</Phenotype>
     <GenericName>Maiden Guard Archer</GenericName>
     <SpecificName>Visha Kanya</SpecificName>
     <Icon>units/maur_champion_maiden_archer.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/mauryans/infantry_archer_c.xml</Actor>
+    <Actor>units/mauryas/infantry_archer_c.xml</Actor>
   </VisualActor>
 </Entity>

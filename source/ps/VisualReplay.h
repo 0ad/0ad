@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,12 +29,20 @@ namespace VisualReplay
 {
 
 /**
- * Returns the path to the sim-log directory (that contains the directories with the replay files.
- *
- * @param scriptInterface - the ScriptInterface in which to create the return data.
- * @return OsPath the absolute file path
+ * Returns the absolute path to the sim-log directory (that contains the directories with the replay files.
  */
-OsPath GetDirectoryName();
+OsPath GetDirectoryPath();
+
+/**
+ * Returns the absolute path to the replay cache file.
+ */
+OsPath GetCacheFilePath();
+
+/**
+ * Returns the absolute path to the temporary replay cache file used to
+ * always have a valid cache file in place even if bad things happen.
+ */
+OsPath GetTempCacheFilePath();
 
 /**
  * Replays the commands.txt file in the given subdirectory visually.

@@ -45,12 +45,12 @@ function initialRallyPointTest(test_function)
 initialRallyPointTest((cmpRallyPoint) => {});
 
 initialRallyPointTest((cmpRallyPoint) => {
-	cmpRallyPoint.Unset()
+	cmpRallyPoint.Unset();
 	return true;
 });
 
 initialRallyPointTest((cmpRallyPoint) => {
-	cmpRallyPoint.Reset()
+	cmpRallyPoint.Reset();
 	return true;
 });
 

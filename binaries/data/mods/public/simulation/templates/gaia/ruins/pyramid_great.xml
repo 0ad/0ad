@@ -5,8 +5,6 @@
     <Height>10.0</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <GenericName>Pyramid</GenericName>
     <SpecificName>Great Pyramid</SpecificName>
     <Icon>gaia/special_pyramid.png</Icon>
   </Identity>
@@ -24,7 +22,6 @@
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <StatusBars>

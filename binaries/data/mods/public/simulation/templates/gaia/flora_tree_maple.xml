@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_flora_tree">
+  <Identity>
+    <SpecificName>Maple</SpecificName>
+  </Identity>
+  <ResourceSupply>
+    <Amount>300</Amount>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>flora/trees/temperate_maple_trees.xml</Actor>
+  </VisualActor>
+</Entity>

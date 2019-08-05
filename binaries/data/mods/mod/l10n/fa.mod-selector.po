@@ -5,12 +5,12 @@
 # Translators:
 # علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
 # Amin Behshad, 2015,2018
-# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-18 03:22+0000\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2019-04-30 02:55+0000\n"
 "Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -235,6 +235,14 @@ msgstr "پیشنیاز ها برآورده نشده : %(dep)s"
 msgid "All dependencies met"
 msgstr "همه وابستگی ها تامین شد"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "فعال"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "غیر فعال"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "هیچ مدی انتخاب نشده است"
@@ -255,7 +263,13 @@ msgstr "قوانین حریم شخصی mod.io"
 msgid "OK"
 msgstr "باشه"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "ملاحظه بصورت آنلاین"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "بازکردن %(url)s در مرورگر."

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,9 +10,12 @@
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # The_Gipsy <xelectronhd@gmail.com>, 2018
 # Jesus A <jasenjot@gmail.com>, 2017
+# Jesus Covo <jurdikd@gmail.com>, 2019
 # Jhon Valencia <jhonvalencia314@gmail.com>, 2017
+# Joseba Uranga <shadowjosebau@gmail.com>, 2019
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # juanda097 <juanda097@protonmail.ch>, 2014-2015
+# juanda097 <juanda097@protonmail.ch>, 2019
 # juanda097 <juanda097@protonmail.ch>, 2014
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Miguel Rodriguez <mrr256@hotmail.com>, 2017
@@ -23,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-06-12 21:10+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-07-26 20:37+0000\n"
+"Last-Translator: Joseba Uranga <shadowjosebau@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -250,8 +253,8 @@ msgstr "Envíame un tributo de %(_amount_)s %(_resource_)s para que acepte tu al
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "No aceptaré tu petición de alianza hasta que me envíes %(_amount_)s %(_resource_)s, %(_player_)s."
+" %(_player_)s."
+msgstr "Al menos que me envíes %(_amount_)s%(_resource_)s, una alianza no sera formada,%(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -317,14 +320,14 @@ msgstr "Si me pagas %(_amount_)s %(_resource_)s como tributo, aceptaré tu petic
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "%(_player_)s, si me envías  %(_amount_)s %(_resource_)s, aceptaré un pacto de neutralidad."
+msgstr "%(_player_)s, si tu me mandas%(_amount_)s %(_resource_)s, aceptaré un pacto de neutralidad."
 
 #: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "%(_player_)s, no aceptaré tu petición de neutralidad a menos que me entregues  %(_amount_)s %(_resource_)s como tributo pronto."
+msgstr ", No aceptaré tu petición de neutralidad a menos que me entregues tributo a mí pronto."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
@@ -558,7 +561,7 @@ msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(r
 msgid "The production queue is full."
 msgstr "La cola de producción está llena."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Las unidades reclutadas no tienen suficiente sitio para aparecer"
 
@@ -615,7 +618,7 @@ msgstr "No se han podido desguarnecer las unidades"
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Todavía no se han cumplido los requisitos tecnológicos del edificio."
 
@@ -747,8 +750,9 @@ msgstr "Regicidio"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Sé el primero en construir o capturar una maravilla y mantenerla durante cierto tiempo para ganar la partida. El temporizador se reinicia cuando la maravilla se destruye o captura o, en modo victoria aliada, cuando las alianzas del dueño cambien."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Sé el primero en construir o capturar una maravilla y consérvala durante un cierto tiempo para ganar la partida. El temporizador se reajustará cuando la Maravilla sea destruida o capturada. Si el modo de victoria aliada está activado, el temporizador también se restablecerá cuando cambien las alianzas del propietario."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -893,5 +897,5 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra es el bot de IA por defecto de 0 A.D. Por favor, informe de cualquier problema a Wildfire Games (véase el link en el menú principal).\n\nLa IA tiene un bonus o una penalización en las reservas de recursos (ya sea en el índice de recolección o en la ganancia por el comercio) que varía del -60% en su versión De Prueba hasta un +60% en modo Muy Difícil (Intermedio: 0%) y los niveles de dificultad más sencillos tienen un índice producción y de construcción más lento. Además, en los niveles De Prueba, la IA ni se expande ni ataca."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra es el bot AI por defecto de 0 A.D. Por favor reporte los problemas a Wildfire Games (vea el enlace en el menú principal).\n\nLa tasa de obtención de recursos y la ganancia comercial de la IA dependen del nivel de dificultad (Sandbox -58%, Muy fácil -44%, Fácil -25%, Medio ±0%, Difícil +25%, Muy difícil +56%). Los niveles más fáciles también tienen un ritmo más lento de investigación, entrenamiento y construcción. Además, el nivel Sandbox no se expande ni ataca."

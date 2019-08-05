@@ -1,23 +1,26 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
+# annihilator solar <incoming@upcmail.nl>, 2019
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
-# bb jansen <b.jansen5@students.uu.nl>, 2018
+# bb <b.jansen5@students.uu.nl>, 2019
+# bb <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Ellen Roels, 2015
 # Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
-# Frode Lindeijer, 2015
+# Freagarach . <freagarach@gmail.com>, 2019
+# 魔大农, 2015
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Marijn Billiet <marijnbilliet@gmail.com>, 2017-2018
 # Mark Lemmens <the_white_eagle@telenet.be>, 2015
-# Mark Martines <mark-martines@hotmail.com>, 2017
+# 477f07d437f0da0e33ec4ecd7b8e2b62, 2017
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2015-2016
 # Reginas - <reginas@hotmail.nl>, 2016
@@ -31,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 04:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-06-01 19:46+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +112,7 @@ msgstr "Sneltoets niet toegewezen: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames."
+msgid "Press %(hotkey)s to autocomplete player names."
 msgstr "Druk op %(hotkey)s om spelersnamen automatisch aan te vullen."
 
 #: gui/common/color.js:181
@@ -127,14 +130,19 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Laden afgebroken"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Willekeurig"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Versie: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -150,30 +158,32 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
 #: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Dit spel zal permanent verwijderd worden, weet je het zeker?"
+msgstr "Dit spel zal permanent verwijderd worden, weet u het zeker?"
 
 #: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
 msgstr "VERWIJDER"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Nee"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Ja"
 
@@ -398,7 +408,7 @@ msgstr "Indien een speler wint, winnen alle geallieerde spelers ook. Indien éé
 msgid "Ceasefire"
 msgstr "Wapenstilstand"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "uitgeschakeld"
 
@@ -458,7 +468,7 @@ msgstr "Beschavingcentrums"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Spelers beginnen met een paar eenheden en moeten een geschikte plek vinden om hun stad te bouwen."
+msgstr "Spelers beginnen met slechts een klein aantal eenheden en moeten een geschikte plek vinden om hun stad te bouwen."
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
@@ -556,92 +566,82 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Slechte verbinding met %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Onbekende reden"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Dit wordt vaak veroorzaakt door een antivirus-programma, een firewall, of het ontbreken van een forward-regel voor UDP poort 20595 op de host computer."
-
-#: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "De host heeft het spel beëindigd."
-
-#: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Onjuiste versie van het netwerkprotocol"
-
-#: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "Spel wordt geladen, probeer het later nog eens"
-
-#: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "Het spel is al begonnen, waarnemers zijn niet toegestaan"
-
-#: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Je werd uitgesloten"
-
-#: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Je werd verbannen"
-
-#: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Naam al in gebruik. Als je terug in het spel probeert te komen, wacht dan even en probeer het over een paar seconden opnieuw."
-
-#: gui/common/network.js:75
-msgid "Server full"
-msgstr "Server is vol"
-
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
+" by a firewall, or anti-virus software."
 msgstr ""
 
-#: gui/common/network.js:79
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr ""
+
+#: gui/common/network.js:68
+msgid "Incorrect network protocol version."
+msgstr ""
+
+#: gui/common/network.js:69
+msgid "Game is loading, please try again later."
+msgstr ""
+
+#: gui/common/network.js:70
+msgid "Game has already started, no observers allowed."
+msgstr ""
+
+#: gui/common/network.js:71
+msgid "You have been kicked."
+msgstr ""
+
+#: gui/common/network.js:72
+msgid "You have been banned."
+msgstr ""
+
+#: gui/common/network.js:73
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr ""
+
+#: gui/common/network.js:74
+msgid "Server full."
+msgstr ""
+
+#: gui/common/network.js:75
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr ""
+
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Ongeldige waarde %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Reden: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Verbinding met de server verloren."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Verbinden met de server mislukt."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Alleen de host kan spelers uitsluiten!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Gebruikers (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ", "
 
@@ -725,7 +725,7 @@ msgstr "Schermutseling"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr "Een kaart met een voorgedefinieerd landschap en spelersaantal. De overige instellingen mag je zelf instellen."
+msgstr "Een kaart met een voorgedefinieerd landschap en spelersaantal. De overige instellingen mag u zelf instellen."
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -736,7 +736,7 @@ msgstr "Willekeurig"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Creëer een unieke kaart met elke keer een andere grondstoffenverdeling. Het aantal spelers en de teams kunnen vrij gekozen worden."
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -745,7 +745,7 @@ msgstr "Scenario"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Een kaart met een voorgedefinieerd landschap en spelinstellingen."
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
@@ -799,11 +799,11 @@ msgstr "Verover Aanval"
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Circulaire Omgevingsschade"
 
 #: gui/common/tooltips.js:21
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Lineaire Omgevingsschade"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -1011,15 +1011,15 @@ msgstr "Aantal reparateurs:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wijs een extra werker toe om het repareren met %(second)s seconde te versnellen."
+msgstr[1] "Wijs een extra werker toe om het repareren met %(second)s seconden te versnellen."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wijs een extra werker toe om het repareren in %(second)s seconde af te ronden."
+msgstr[1] "Wijs een extra werker toe om het repareren in %(second)s seconden af te ronden."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1030,15 +1030,15 @@ msgstr "Aantal werklieden:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wijs een extra werker toe om de constructie met %(second)s seconde te versnellen."
+msgstr[1] "Wijs een extra werker toe om de constructie met %(second)s seconden te versnellen."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wijs een extra werker toe om de constructie in %(second)s seconde af te ronden."
+msgstr[1] "Wijs een extra werker toe om de constructie in %(second)s seconden af te ronden."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1056,7 +1056,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Grondstoffen Bonus:"
 
 #: gui/common/tooltips.js:524
 #, javascript-format
@@ -1201,10 +1201,39 @@ msgstr "Klik rechts om meer informatie te zien."
 msgid "Click to view more information."
 msgstr "Klik om meer informatie te zien."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
+
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Mods: %(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr "Dit opgeslagen spel vereist 0 A.D. versie %(requiredVersion)s, terwijl u werkt op versie %(currentVersion)s."
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr "Dit opgeslagen spel vereist een oudere versie van 0 A.D."
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr "Dit opgeslagen spel vereist een andere volgorde mods:"
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr "Wilt u verder gaan?"
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "Waarschuwing"
 
 #: gui/options/options.js:100
 #, javascript-format
@@ -1239,20 +1268,15 @@ msgstr "Waarde: %(val)s (minimaal: %(min)s, maximaal: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "Opties resetten zal de opgeslagen instellingen verwijderen. Ben je zeker dat je verder wilt?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "Waarschuwing"
+msgstr "Opties resetten zal de opgeslagen instellingen verwijderen. Bent u zeker dat u verder wilt?"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "Sommige instellingen zijn niet geldig! Zeker dat je deze wil bewaren?"
+msgstr "Sommige instellingen zijn niet geldig! Zeker dat u deze wilt bewaren?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Je hebt je veranderingen niet opgeslagen. Weet je zeker dat je dit venster wil sluiten?"
+msgstr "U hebt uw veranderingen niet opgeslagen. Weet u zeker dat u dit venster wilt sluiten?"
 
 #: gui/pregame/mainmenu.js:41
 #, javascript-format
@@ -1279,7 +1303,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)s Waarschuwing: U blijkt niet-shader (fixed functions) graphics te gebruiken. Deze optie zal in de toekomst verdwijnen uit 0 A.D. om meer geavanceerde graphics mogelijk te maken. We stellen voor om uw grafische kaar op te waarderen naar een recentere shader-compatibele kaart."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1301,115 +1325,110 @@ msgstr "OK"
 msgid "Read More"
 msgstr "Lees meer"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Versie: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Ben je zeker dat je 0 A.D. wil stoppen?"
+msgstr "Bent u zeker dat u 0 A.D. wilt stoppen?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Ben je zeker dat je 0 A.D. wil stoppen en de Scenario Editor wil openen?"
+msgstr "Bent u zeker dat u 0 A.D. wil stoppen en de Scenario Editor wil openen?"
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "De scenariobewerker is niet beschikbaar of heeft  een probleem ondervonden. Bekijk de log voor meer informatie."
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Fout"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Handleiding"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Gebruikersvoorwaarden"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
 msgstr ""
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Publicaties"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "verbinden met server"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "aan het versturen (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "uploaden geslaagd"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "versturen mislukt (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "versturen mislukt  (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "Feedback uitschakelen"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "Feedback inschakelen"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Bedankt om 0 A.D. te helpen verbeteren!"
 
-#: gui/pregame/userreport/userreport.js:81
-msgid "Feedback is currently enabled."
-msgstr ""
-
 #: gui/pregame/userreport/userreport.js:82
+msgid "Feedback is currently enabled."
+msgstr "Feedback is momenteel geactiveerd."
+
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Status: %(status)s"
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "onbekend"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "Help om 0 A.D. te verbeteren!"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "U kunt ons automatisch feedback sturen. Dit kan ons helpen om bugs op te lossen en de prestaties en compatibiliteit te verbeteren."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1442,7 +1461,7 @@ msgstr "%(health_min)stot%(health_max)s"
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr ""
+msgstr "%(hotkey)s: Schakel naar Geschiedenis."
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
@@ -1451,49 +1470,49 @@ msgstr "%(hotkey)s: Sluit structuurboom"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:139
+#: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
 msgstr "Gebouwd door:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:152
+#: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
 msgstr "Gerekruteerd door:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:165
+#: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
 msgstr "Onderzocht door:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:177
+#: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
-msgstr ""
+msgstr "Bouwt:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:198
+#: gui/reference/viewer/viewer.js:194
 msgid "Researches:"
-msgstr ""
+msgstr "Onderzoekt:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:210
+#: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
-msgstr ""
+msgstr "Rekruteert:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:223
+#: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Om te bouwen tot:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "Deze herhaling vereist een andere volgorde mods:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -1502,7 +1521,7 @@ msgstr "Deze herhaling is niet compatibel met jouw versie van het spel!"
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr "Jouw versie: %(version)s"
+msgstr "Uw versie: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
@@ -1519,7 +1538,7 @@ msgstr "Geen samenvatting beschikbaar."
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "Weet je zeker dat je deze replay permanent wil verwijderen?"
+msgstr "Weet u zeker dat u deze replay permanent wil verwijderen?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
@@ -1604,8 +1623,9 @@ msgid "Unrated games"
 msgstr "Oefenspellen"
 
 #: gui/replaymenu/replay_menu.js:193
-msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Filter herhalingen door één of meerdere, gedeeltelijk of complete, spelersnamen in te typen. "
+msgid ""
+"Filter replays by typing one or more, partial or complete player names."
+msgstr "Filter herhalingen door één of meerdere, gedeeltelijke of complete, spelersnamen in te typen."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -1619,6 +1639,18 @@ msgstr "dd-MM-tutu HH:mm"
 #: gui/replaymenu/replay_menu.js:330
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
+
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "Geen opgeslagen spellen gevonden"
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "Opgeslagen spel zal permanent overschreven worden, bent u zeker?"
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr "OVERSCHRIJF OPGESLAGEN SPEL"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1751,7 +1783,7 @@ msgstr "Buit"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "Vee gefokt"
 
 #: gui/summary/layout.js:126
 #, javascript-format
@@ -1898,23 +1930,23 @@ msgstr "Score aan het einde van de game"
 
 #: gui/summary/summary.js:495
 msgid "You have been disconnected."
-msgstr "Je verbinding is verbroken."
+msgstr "Uw verbinding is verbroken."
 
 #: gui/summary/summary.js:497
 msgid "You have left the game."
-msgstr "Je hebt het spel verlaten"
+msgstr "U hebt het spel verlaten"
 
 #: gui/summary/summary.js:499
 msgid "You have won the battle!"
-msgstr "Je hebt de slag gewonnen!"
+msgstr "U hebt de slag gewonnen!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr "Je bent verslagen..."
+msgstr "U bent verslagen..."
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
-msgstr "Je hebt het spel verlaten."
+msgstr "U hebt het spel verlaten."
 
 #: gui/summary/summary.js:505
 #, javascript-format
@@ -1956,6 +1988,78 @@ msgstr "Sluiten"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. credits"
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Laad spel"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "Geen opgeslagen spellen gevonden."
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "Verwijder"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "Laad"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr "Filter compatibele opgeslagen spellen"
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "Spelers:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr "Gespeelde tijd:"
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Kaarttype:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Kaartgrootte:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Overwinning:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Datum / Tijd"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Kaarttype"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Kaartnaam"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Omschrijving"
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "Taal"
@@ -1971,10 +2075,6 @@ msgstr "Taal:"
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Taalvariant:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Annuleren"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1996,7 +2096,7 @@ msgstr "Reset"
 msgid "Revert"
 msgstr "Herstel"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "Opslaan"
 
@@ -2017,8 +2117,8 @@ msgid "Unsaved changes affect this session only"
 msgstr "Niet-opgeslagen veranderingen hebben alleen effect op deze sessie"
 
 #: gui/pregame/mainmenu.xml:505
-msgid "Alpha XXIII: Ken Wood"
-msgstr "Alpha XXII: Ken Wood"
+msgid "Alpha XXIV"
+msgstr "Alfa XXIV"
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2055,7 +2155,7 @@ msgstr "Verleden spellen afspelen."
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
-msgstr "Sluit je aan bij een bestaand multiplayer spel."
+msgstr "Sluit u aan bij een bestaand multiplayer spel."
 
 #: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
@@ -2071,17 +2171,17 @@ msgstr "Kies de taal van het spel."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "Selecteer en download mods voor het spel."
 
 #: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Toon het welkomstscherm. Nuttig als je het per ongeluk verborgen had."
+msgstr "Toon het welkomstscherm. Nuttig als u het per ongeluk verborgen had."
 
 #: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Leer het spel kennen, start de oefening, ontdek de technologiebomen en de geschiedenis achter de beschavingen."
 
 #: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
@@ -2099,7 +2199,7 @@ msgstr "Spelinstellingen en mod instellingen."
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Open de Atlas scenariobewerker in een nieuw venster. Je kan dit ook starten met de opdrachtpromt optie \"-editor\" op een meer betrouwbare manier."
+msgstr "Open de Atlas scenariobewerker in een nieuw venster. U kan dit ook starten met de opdrachtpromt optie \"-editor\" op een meer betrouwbare manier."
 
 #: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
@@ -2107,7 +2207,7 @@ msgstr "Stopt het spel"
 
 #: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Klik om play0ad.com in je webbrowser te openen."
+msgstr "Klik om play0ad.com in uw webbrowser te openen."
 
 #: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
@@ -2121,11 +2221,11 @@ msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander 
 
 #: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Klik om de 0 A.D. vertaalpagina te openen in je browser."
+msgstr "Klik om de 0 A.D. vertaalpagina te openen in uw browser."
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Help het project met een donatie."
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
@@ -2147,10 +2247,6 @@ msgstr "Matches"
 #: gui/pregame/mainmenu.xml:(caption):176
 msgid "Campaigns"
 msgstr "Veldtochten"
-
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "Laad spel"
 
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
@@ -2246,18 +2342,6 @@ msgstr "Herhaal spellen"
 msgid "Filter compatible replays"
 msgstr "Filter compatibele herhalingen"
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Kaarttype:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Kaartgrootte:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Overwinning:"
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Spoiler"
@@ -2265,10 +2349,6 @@ msgstr "Spoiler"
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Hoofdmenu"
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Verwijder"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2283,20 +2363,10 @@ msgstr "Samenvatting"
 msgid "Start Replay"
 msgstr "Start Herhaling"
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Datum / Tijd"
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Spelers"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Kaartnaam"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2316,6 +2386,14 @@ msgstr "Duur"
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "Spel opslaan"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "Omschrijving:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2349,8 +2427,8 @@ msgid "Type:"
 msgstr "Type:"
 
 #: gui/summary/summary.xml:(caption):227
-msgid "Replay"
-msgstr "Replay"
+msgid "Watch Replay"
+msgstr "Bekijk Herhaling"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2460,6 +2538,10 @@ msgstr "Grieks"
 msgid "Latin"
 msgstr "Latijn"
 
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr "Perzisch"
+
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
 msgstr "Stemmen"
@@ -2548,7 +2630,7 @@ msgstr "Vertalers"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr "Hoe wil je genoemd worden in singleplayer wedstrijden?"
+msgstr "Hoe wilt u genoemd worden in singleplayer wedstrijden?"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
@@ -2556,7 +2638,7 @@ msgstr "Spelernaam (singleplayer)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "Hoe wil je genoemd worden in multiplayer wedstrijden (met uitzondering van de lobby)?"
+msgstr "Hoe wilt u genoemd worden in multiplayer wedstrijden (met uitzondering van de lobby)?"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
@@ -2574,7 +2656,7 @@ msgstr "Achtergrondpauze"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Als u het uitschakeld wordt het welkomsscherm slechts éénmaal getoond, elke keer wanneer er een nieuwe versie beschikbaar is. U kunt het altijd openen uit het hoofdmenu."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
@@ -2594,7 +2676,7 @@ msgstr "Toon de frames per seconde teller in de rechter bovenhoek"
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr "FPS overlay"
+msgstr "FPS Overlay"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2639,7 +2721,7 @@ msgstr "Uitgeschakeld"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Sta iedereen of enkel vrienden toe om het spel toe te treden als waarnemer nadat het spel gestart is."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -2903,7 +2985,7 @@ msgstr "Volume van de spelelementen."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "Actievolume"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -2915,11 +2997,19 @@ msgstr "UI geluidsvolume"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr "Ontvang een audiobericht wanneer iemand jouw alias intypt."
+msgstr "Ontvang een audiobericht wanneer iemand uw alias intypt."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
 msgstr "Alias Aankondiging"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr ""
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3006,27 +3096,36 @@ msgstr ""
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
-msgstr ""
+msgstr "Wijs spelers toe"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
 msgstr "Spel Instellingen"
 
 #: gui/options/options.json[4].options[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Aantal berichten die geladen worden wanneer je in de lobby binnen komt."
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr ""
 
 #: gui/options/options.json[4].options[0].label
+msgid "TLS Encryption"
+msgstr ""
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "Aantal berichten die geladen worden wanneer u in de lobby binnen komt."
+
+#: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
 msgstr "Chat log"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr ""
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
 msgstr ""
 
@@ -3067,7 +3166,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Laat een chatnotificatie zien wanneer u wordt aangevallen door een andere speler."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
@@ -3077,20 +3176,20 @@ msgstr "Chat aanvalsnotificatie"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Laat een chatnotificatie zien wanneer een geallieerde grondstoffen geschonken heeft aan een teamgenoot als Vaste Teams aan staat en alle schenkingen in waarnemer modus."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Chatnotificatie Schenking"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Laat een chatnotificatie zien aan waarnemers als een speler grondstoffen heeft geruild."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Chatnotificatie Ruilen"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3108,17 +3207,17 @@ msgstr "Alles weergegeven"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Laat een chatnotificatie zien wanneer u of een geallieerde het onderzoeken van een nieuwe fase bent begonnen, heeft afgebroken of heeft voltooid en van fasen van alle spelers in waarnemer modus."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Chatnotificatie Fasen"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Laat het aanvalsbereik van de geselecteerde verdedigingswerken zien (dit kan ook omgezet worden tijdens het spelen door de sneltoets)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
@@ -3128,7 +3227,7 @@ msgstr "Zichtbaar aanvalsbereik"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Laat het aurabereik van de geselecteerde eenheden en bouwwerken zien (dit kan ook omgezet worden tijdens het spelen door de sneltoets)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
@@ -3138,7 +3237,7 @@ msgstr "Aura bereik visualisatie"
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Laat het helingsbereik van de geselecteerde eenheden zien (dit kan ook omgezet worden tijdens het spelen door de sneltoets)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
@@ -3146,77 +3245,85 @@ msgstr "Helingsbereik visualisatie"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Laat Rang icoon boven statusbalken zien."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Rang icoon boven statusbalk"
 
 #: gui/options/options.json[5].options[11].tooltip
+msgid "Show an experience status bar above each selected unit."
+msgstr ""
+
+#: gui/options/options.json[5].options[11].label
+msgid "Experience status bar"
+msgstr ""
+
+#: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Laat gedetailleerde tips voor train-bare manschappen in manschap producerende gebouwen zien"
 
-#: gui/options/options.json[5].options[11].label
+#: gui/options/options.json[5].options[12].label
 msgid "Detailed Tooltips"
 msgstr "Gedetailleerd hulpmiddelen tips"
 
-#: gui/options/options.json[5].options[12].list[0].label
+#: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
 msgstr "Ongeordend"
 
-#: gui/options/options.json[5].options[12].list[1].label
+#: gui/options/options.json[5].options[13].list[1].label
 msgid "Ascending"
 msgstr "Oplopend"
 
-#: gui/options/options.json[5].options[12].list[2].label
+#: gui/options/options.json[5].options[13].list[2].label
 msgid "Descending"
 msgstr "Aflopend"
 
-#: gui/options/options.json[5].options[12].tooltip
+#: gui/options/options.json[5].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr ""
 
-#: gui/options/options.json[5].options[12].label
+#: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
 msgstr ""
 
-#: gui/options/options.json[5].options[13].tooltip
+#: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Kleur van je eigen eenheden wanneer diplomatie kleuren zijn geactiveerd."
 
-#: gui/options/options.json[5].options[13].label
+#: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Self"
 msgstr "Diplomaat kleuren: Eigen"
 
-#: gui/options/options.json[5].options[14].tooltip
+#: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Kleur van de geallieerden wanneer diplomatie kleuren zijn geactiveerd."
 
-#: gui/options/options.json[5].options[14].label
+#: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Ally"
 msgstr "Diplomaat kleuren: Geallieerden"
 
-#: gui/options/options.json[5].options[15].tooltip
+#: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Kleur van neutrale spelers wanneer diplomatie kleuren zijn geactiveerd."
 
-#: gui/options/options.json[5].options[15].label
-msgid "Diplomacy Colors: Neutral"
-msgstr ""
-
-#: gui/options/options.json[5].options[16].tooltip
-msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
-
 #: gui/options/options.json[5].options[16].label
+msgid "Diplomacy Colors: Neutral"
+msgstr "Diplomatie Kleuren: Neutraal"
+
+#: gui/options/options.json[5].options[17].tooltip
+msgid "Color of enemies when diplomacy colors are enabled."
+msgstr "Kleur van de vijanden wanneer diplomatie kleuren zijn ingeschakeld."
+
+#: gui/options/options.json[5].options[17].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Diplomatie Kleuren: Vijand"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Verander opties betreffende de in-game instellingen."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
@@ -3415,7 +3522,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Alhoewel redelijk gemakkelijk voor een ervaren speler, is het niveau van standaard AI nogal uitdagend voor nieuwe spelers welke de basismechanismen van het spel nog moeten beheersen. Beginnelingen worden geadviseerd om te starten met spelen tegen een lager niveau AI (Zandbak of Heel makkelijk). Verander het niveau van de AI door op het tandwiel icoon te klikken nabij de speler welke u aan wilt passen, in het selectiepaneel hierboven."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3450,24 +3557,19 @@ msgstr "ROMEINS LEGERKAMP"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
-"- Build anywhere on the map, even in enemy territory. Good for building a "
-"secret base behind enemy lines or to consolidate gains within enemy "
-"territory."
-msgstr "- Bouw het overal op de kaart, zelfs in vijandig gebied. Goed om vijand te verassen met een verborgen basis achter de linies."
+"Buildable in neutral or enemy territory. Good for building a secret base "
+"behind enemy lines or to consolidate gains within enemy territory."
+msgstr "Kan gebouwd worden in neutraal en vijandig territorium. Goed om vijand te verassen met een verborgen basis achter de linies of om gebied te versterken in vijandelijk gebied."
+
+#: gui/text/tips/army_camp.txt:3
+msgid "Construct siege weapons and train citizen-soldiers."
+msgstr "Bouw belegeringswapens en rekruteer burgersoldaten."
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr "- Bij verval wordt het eigendom van de terreineigenaar indien het gebouwd wordt op niet-geallieerd terrein."
-
-#: gui/text/tips/army_camp.txt:6
-msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Bouw belegeringswapens en rekruteer burgersoldaten."
-
-#: gui/text/tips/army_camp.txt:8
 msgid ""
-"- Garrison up to 40 units to slowly heal the units and protect the army camp"
-" from attacks and decay."
-msgstr "- Stationeer tot 40 eenheden om ze traag te genezen en het kamp te laten beschermen tegen aanvallen en verval."
+"Garrison units to slowly heal them and protect the army camp from attacks "
+"and decay."
+msgstr "Stationeer eenheden om ze traag te genezen en ze het Legerkamp te laten beschermen tegen aanvallen en verval."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3475,189 +3577,173 @@ msgstr "KAZERNE"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"- Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Rekruteer burgersoldaten. Sommige beschavingen kunnen ook kampioenen rekruteren."
+msgstr "Rekruteer burgersoldaten. Sommige beschavingen kunnen ook kampioenen rekruteren."
+
+#: gui/text/tips/barracks.txt:3
+msgid "Research military technologies unique to each faction."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:4
-msgid "- Research military technologies unique to each faction."
-msgstr "- Onderzoek militaire technologieën, uniek voor iedere beschaving."
-
-#: gui/text/tips/barracks.txt:6
 msgid ""
-"- Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Bouw er één voordat je naar de stad fase gaat om nieuwe eenheden te kunnen blijven rekruteren."
+msgstr ""
 
-#: gui/text/tips/barracks.txt:8
-msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr "- Bouw dicht bij de frontlijn om het gevecht met verse troepen te kunnen voorzien."
+#: gui/text/tips/barracks.txt:5
+msgid "Build in a forward base to resupply your assault with fresh troops."
+msgstr "Bouw dicht bij de frontlijn om de aanval van verse troepen te kunnen voorzien."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
 msgstr "SMIDSE"
 
 #: gui/text/tips/blacksmith.txt:2
-msgid "- Research structure for all factions."
-msgstr "- Onderzoeksgebouw voor alle beschavingen."
+msgid "Research structure for all factions."
+msgstr ""
 
-#: gui/text/tips/blacksmith.txt:4
-msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Onderzoek nieuwe wapens en verbeterde bescherming voor jouw eenheden."
-
-#: gui/text/tips/blacksmith.txt:6
-msgid ""
-"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Beman met een burgersoldaat om het onderzoeken te versnellen (NOG NIET GEÏMPLEMENTEERD)."
+#: gui/text/tips/blacksmith.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr "Onderzoek nieuwe wapens en verbeterde bescherming voor jouw eenheden."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
 msgstr "CARTHAAGSE HEILIGE SCHARE"
 
 #: gui/text/tips/carth_sacred_band.txt:2
-msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- Kampioen speervechter (ruiter en infanterie) voor Carthago."
+msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr "Kampioen speervechters (ruiter en infanterie) voor Carthago."
+
+#: gui/text/tips/carth_sacred_band.txt:3
+msgid ""
+"Both are trainable from the Temple, instead of the Fortress like most other "
+"champions."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both are trainable from the Temple, instead of the Fortress like most "
-"other champions."
-msgstr "- Kunnen beiden in de tempel gerekruteerd worden, in tegenstelling tot het fort voor de meeste andere kampioenen."
-
-#: gui/text/tips/carth_sacred_band.txt:6
-msgid ""
-"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
-"heavy shock against siege weapons and skirmishers."
-msgstr "- Gebruik de speervechters als zware infanterie tegen ruiters. Gebruik cavalerie om snel belegeringswapens en tirailleurs uit te schakelen."
+"Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
+" shock against siege weapons and skirmishers."
+msgstr ""
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "KATAPULTEN"
 
 #: gui/text/tips/catapults.txt:2
-msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Belegeringswapens die goed zijn tegen gebouwen van op een veilige afstand."
+msgid "Ranged siege engines that are good against buildings."
+msgstr ""
+
+#: gui/text/tips/catapults.txt:3
+msgid "Expensive and slow."
+msgstr "Duur en traag."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
-"- May upgrade to flaming projectiles for extra effectiveness against "
-"buildings and units."
-msgstr "- Kan ook verbeterd worden om vlammende projectielen af te vuren en zo meer schade aan te richten."
-
-#: gui/text/tips/catapults.txt:6
-msgid "- Expensive and slow."
-msgstr "- Duur en traag."
-
-#: gui/text/tips/catapults.txt:8
-msgid ""
-"- Pack up into carts for movement, and unpack into stationary engines for "
+"Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- Pak ze in tot wagens om te vervoeren en pak ze uit om te gebruiken."
+msgstr "Pak ze in tot wagens om te vervoeren en pak ze uit om te gebruiken!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
 msgstr "KELTISCHE OORLOGSAAK"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "- A medium \"trireme\"-class warship."
-msgstr "- Een medium \"trireme\"-klasse oorlogsschip."
+msgid "A medium trireme-class warship."
+msgstr "Een medium \"trireme\"-klasse oorlogsschip."
+
+#: gui/text/tips/celtic_war_barge.txt:3
+msgid "Available to Britons, Gauls, and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr "- Beschikbaar voor de Keltische beschavingen (Britten en Galliërs)."
+msgid "Can transport up to 40 units."
+msgstr "Kan tot 40 eenheden vervoeren."
 
-#: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Can transport up to 40 units across the waters."
-msgstr "- Kan tot 40 eenheden over het water vervoeren."
-
-#: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrisoned infantry."
-msgstr "- Verhoog de vuurkracht m.b.v. extra infanteriebemanning."
-
-#: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- Heeft geen ram functie (zoals andere triremes), maar is sterker en heeft meer bewapening."
+#: gui/text/tips/celtic_war_barge.txt:5
+msgid "Increases firepower with garrisoned infantry."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
 msgstr "BESCHAVINGSCENTRA"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The foundation of your new colony."
-msgstr "- Het fundament van een nieuwe kolonie."
+msgid "The foundation of your new colony."
+msgstr "Het fundament van uw nieuwe kolonie."
+
+#: gui/text/tips/civic_centres.txt:3
+msgid "Claim large tracts of territory."
+msgstr "Eigen grote delen territorium toe."
 
 #: gui/text/tips/civic_centres.txt:4
-msgid "- Claim large tracts of territory."
-msgstr "- Eigen je een groot territorium toe."
+msgid "Can be built in friendly and neutral territory."
+msgstr "Kan in geallieerd en neutraal territorium gebouwd worden."
 
-#: gui/text/tips/civic_centres.txt:6
-msgid "- Can be built in friendly and neutral territory."
-msgstr "- Kan in geallieerd en neutraal territorium gebouwd worden."
-
-#: gui/text/tips/civic_centres.txt:8
+#: gui/text/tips/civic_centres.txt:5
 msgid ""
-"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
-"citizen soldiers."
-msgstr "- Rekruteer burgers: vrouwen, standaard burgersoldaten en cavalrie."
+"Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
+"citizen-soldiers."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
 msgstr "AMBASSADES"
 
 #: gui/text/tips/embassies.txt:2
-msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- Speciale \"kazerne\" voor Carthago."
+msgid "Special Barracks available to the Carthaginians."
+msgstr ""
+
+#: gui/text/tips/embassies.txt:3
+msgid "Train mercenaries from each of the ethnically-themed embassies."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:4
-msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Rekruteer huurlingen van verschillende beschavingen."
-
-#: gui/text/tips/embassies.txt:6
 msgid ""
-"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
-"Metal cost."
-msgstr "- Huurlingen kosten metaal i.p.v. voedsel."
+"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
+"cost."
+msgstr "Huurlingen kosten Metaal in plaats van Voedsel."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
 msgstr "VISSEN"
 
 #: gui/text/tips/fishing.txt:2
-msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Vis de zeeën voor een overvloedige oogst. "
+msgid "Fish the seas for a bountiful harvest."
+msgstr "Bevis de zeeën voor een overvloedige oogst."
+
+#: gui/text/tips/fishing.txt:3
+msgid "Fishing boats carry a large amount of food per trip."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of food per trip."
-msgstr "- Vissersboten kunnen veel voedsel in één uitvaart vervoeren."
+msgid "Fishing is faster than gathering food on fields."
+msgstr ""
 
-#: gui/text/tips/fishing.txt:6
-msgid "- Fishing is faster than gathering food on fields."
-msgstr "- Vissen is sneller dan voedsel verzamelen op velden."
-
-#: gui/text/tips/fishing.txt:8
-msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Voorzichtig! Vis is geen onuitputtelijke grondstof!"
+#: gui/text/tips/fishing.txt:5
+msgid "Careful! Fish are not an infinite resource!"
+msgstr "Voorzichtig! Vis is geen onuitputtelijke grondstof!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "FORT"
 
 #: gui/text/tips/fortress.txt:2
-msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- Het fort is gewoonlijk het sterkste gebouw van iedere beschaving."
+msgid "The Fortress is usually each faction's strongest building."
+msgstr ""
+
+#: gui/text/tips/fortress.txt:3
+msgid "Trains Champions, Heroes, and Siege Weapons."
+msgstr "Rekruteer Kampioenen en Helden en maak Belegeringswapenen."
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Rekruteer sterke eenheden zoals kampioenen, helden en maak belegeringswapens."
+msgid "Gives a population boost."
+msgstr "Geeft een bevolkingsbonus."
 
-#: gui/text/tips/fortress.txt:6
-msgid "- Gives a population boost."
-msgstr "- Geeft een bevolkingsbonus."
-
-#: gui/text/tips/fortress.txt:8
-msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- Beman met soldaten om meer vuurkracht te geven aan de defensie."
+#: gui/text/tips/fortress.txt:5
+msgid "Garrison soldiers inside to add more firepower to its defense."
+msgstr ""
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3665,18 +3751,17 @@ msgstr ""
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
-"- Gain an advantage on the battleground by tactically positioning your "
-"units!"
+"Gain an advantage on the battleground by tactically positioning your units!"
+msgstr ""
+
+#: gui/text/tips/freehand_position.txt:3
+msgid ""
+"Therefore select some units, press and hold the right mouse button, draw any"
+" line, then release the button."
 msgstr ""
 
 #: gui/text/tips/freehand_position.txt:4
-msgid ""
-"- Therefore select some units, press and hold the right mouse button, draw "
-"any line, then release the button."
-msgstr ""
-
-#: gui/text/tips/freehand_position.txt:6
-msgid "- Your units will now spread out on this line."
+msgid "Your units will now spread out on this line."
 msgstr ""
 
 #: gui/text/tips/gathering.txt:1
@@ -3684,26 +3769,26 @@ msgid "RESOURCE GATHERING"
 msgstr "GRONDSTOFFEN VERZAMELEN"
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr " - Gebruik burgersoldaten en werksters om grondstoffen te verzamelen."
+msgid "Use citizen-soldiers and female citizens to gather resources."
+msgstr "Gebruik burgersoldaten en vrouwelijke burgers om grondstoffen te verzamelen."
+
+#: gui/text/tips/gathering.txt:3
+msgid "Female citizens gather vegetable resources faster."
+msgstr "Vrouwelijke burgers zijn sneller in het verzamelen van plantaardig voedsel."
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female citizens are faster gathering vegetable resources."
-msgstr " - Werksters zijn sneller in het verzamelen van plantaardig voedsel."
+msgid "Infantry citizen-soldiers are faster gathering minerals."
+msgstr "Infanterie burgersoldaten zijn sneller in het mijnen."
+
+#: gui/text/tips/gathering.txt:5
+msgid "Cavalry citizen-soldiers are faster gathering meat."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr "- Burgercavalerie is sneller in het verzamelen van mineralen."
-
-#: gui/text/tips/gathering.txt:8
-msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr "- Burgercavalerie is sneller in vlees verzamelen."
-
-#: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of a citizen soldier (advanced, elite), the better he"
-" fights, but the less efficient he is at gathering resources."
-msgstr " - Hoe hoger de rang van een burgersoldaat (Geavanceerd, Elite), hoe beter hij vecht maar hoe minder efficient hij grondstoffen kan verzamelen."
+"The higher the level of a citizen-soldier (advanced, elite), the better he "
+"fights, but the less efficient he is at gathering resources."
+msgstr ""
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3711,310 +3796,275 @@ msgstr "IPHICRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
-"- The Athenian general who reformed the Athenian army to be faster and more "
+"The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- De Atheense generaal die het Atheense leger hervormd heeft om sneller en beter manuvreerbaar te zijn."
+msgstr ""
+
+#: gui/text/tips/iphicrates.txt:3
+msgid "Units in his formation are faster and stronger."
+msgstr "Eenheden in zijn formatie zijn sneller en sterker."
 
 #: gui/text/tips/iphicrates.txt:4
-msgid "- Units in his formation are faster and stronger."
-msgstr "- Eenheden in zijn formatie zijn sneller en sterker."
-
-#: gui/text/tips/iphicrates.txt:6
-msgid "- Skirmishers move faster while he lives."
-msgstr "- Tirailleurs bewegen sneller zolang hij leeft."
+msgid "Skirmishers move faster while he lives."
+msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
 msgstr "VOORPOSTEN"
 
 #: gui/text/tips/outposts.txt:2
-msgid "- Build in neutral territory for a large scouting range."
-msgstr "- Bouw in neutraal terrein om het te verkennen."
+msgid "Build in neutral territory for a large scouting range."
+msgstr ""
+
+#: gui/text/tips/outposts.txt:3
+msgid "Cheap, at 80 Wood."
+msgstr "Goedkoop, slechts 80 Hout."
 
 #: gui/text/tips/outposts.txt:4
-msgid "- Cheap, at 80 Wood."
-msgstr "- Goedkoop, slechts 80 hout."
+msgid "They construct quickly, but are weak."
+msgstr "Ze zijn snel te maken, maar niet sterk."
 
-#: gui/text/tips/outposts.txt:6
-msgid "- They construct quickly, but are weak."
-msgstr "- Ze zijn snel te maken, maar niet sterk."
-
-#: gui/text/tips/outposts.txt:8
-msgid ""
-"- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "- Beman met een eenheid om de voorpost niet te laten vervallen op neutraal terrein."
+#: gui/text/tips/outposts.txt:5
+msgid "Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
 msgstr "PALISSADEN SCHUTTING"
 
 #: gui/text/tips/palisades.txt:2
-msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Een snelle, goedkope schutting."
+msgid "A quick, cheap wooden wall available to all factions."
+msgstr "Een snelle, goedkope schutting beschikbaar voor alle beschavingen."
 
-#: gui/text/tips/palisades.txt:4
-msgid "- Most factions have access to them in Village Phase."
-msgstr "- De meeste beschavingen kunnen ze al gebruiken in de dorpsfase."
-
-#: gui/text/tips/palisades.txt:6
-msgid ""
-"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
-" by siege weapons."
-msgstr "- Kan vernield worden door soldaten, in tegenstelling tot stenen muren die enkel met special ontworpen wapens vernield kunnen worden."
+#: gui/text/tips/palisades.txt:3
+msgid "Most factions have access to them in Village Phase."
+msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
 msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
-msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr "- De bekendste Atheense politicus van de 5de eeuw V.C."
+msgid "The foremost Athenian politician of the 5th century BC."
+msgstr "De bekendste Atheense politicus van de 5de eeuw V.C."
+
+#: gui/text/tips/pericles.txt:3
+msgid "Buildings construct faster within his range."
+msgstr ""
 
 #: gui/text/tips/pericles.txt:4
-msgid "- Buildings construct faster within his range."
-msgstr "- Gebouwen worden sneller gebouwd in zijn zicht."
-
-#: gui/text/tips/pericles.txt:6
-msgid "- Temples are cheaper while he lives."
-msgstr "- Tempels zijn goedkoper tijdens zijn leven."
+msgid "Temples are cheaper while he lives."
+msgstr "Tempels zijn goedkoper tijdens zijn leven."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
 msgstr "PERZISCHE ARCHITECTUUR"
 
 #: gui/text/tips/persian_architecture.txt:2
-msgid "- Special Technology for the Persians."
-msgstr "- Speciale technologie voor de Perzen."
+msgid "Special technology for the Persians."
+msgstr "Speciale technologie voor de Perzen."
+
+#: gui/text/tips/persian_architecture.txt:3
+msgid "All Persian buildings +25% stronger."
+msgstr "Alle Perzische gebouwen zijn 25% sterker."
 
 #: gui/text/tips/persian_architecture.txt:4
-msgid "- All Persian buildings +25% stronger."
-msgstr "- Alle Perzische gebouwen 25% sterker."
+msgid "Build time lengthened by +20% as a consequence."
+msgstr ""
 
-#: gui/text/tips/persian_architecture.txt:6
-msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- Constructietijd met 20% verlengd als gevolg."
-
-#: gui/text/tips/persian_architecture.txt:8
+#: gui/text/tips/persian_architecture.txt:5
 msgid ""
-"- Persians also have access to a great number of structural & defensive "
+"Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "- Perzen hebben toegang tot een groot aantal structurele en defensieve technologieën."
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
 msgstr "PIEKENIERS"
 
 #: gui/text/tips/pikemen.txt:2
-msgid "- Heavily armored and slow. Low attack."
-msgstr "- Zwaar gepantserd en traag. Slechte aanval."
+msgid "Heavily armored and slow. Low attack."
+msgstr ""
 
-#: gui/text/tips/pikemen.txt:4
+#: gui/text/tips/pikemen.txt:3
 msgid ""
-"- Used against cavalry or against other melee infantry to pin them in place."
+"Used against cavalry or against other melee infantry to pin them in place."
 msgstr "Gebruikt tegen cavalerie of andere mêlee infanterie om hen op hun plaats te houden"
 
-#: gui/text/tips/pikemen.txt:6
-msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- Beschikbaar voor: Macedonians, Seleucids en Ptolemies."
+#: gui/text/tips/pikemen.txt:4
+msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "HEAVY WARSHIP"
-msgstr "ZWAAR OORLOGSSCHIP"
+msgid "QUINQUEREME"
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
-"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
-"and Seleucids."
-msgstr "- Het zwaarste oorlogsschip. Beschikbaar voor Rome, Carthago, de Ptolemeërs en de Seleudicen"
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
+"Romans, and Seleucids."
+msgstr "Het zwaarste oorlogsschip. Beschikbaar voor Rome, Carthago, de Ptolemeërs en de Seleudicen."
+
+#: gui/text/tips/quinquereme.txt:3
+msgid "Transports up to 50 units."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Transports up to 50 units."
-msgstr "- Kan tot 50 eenheden vervoeren."
-
-#: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrisoned catapults."
-msgstr "- Verhoog de vuurkracht m.b.v. extra katapulten."
-
-#: gui/text/tips/quinquereme.txt:8
-msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- Kan andere schepen laten zinken door te rammen (NOG NIET GEÏMPLEMENTEERD)."
+msgid "Increases firepower with garrisoned catapults."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
 msgstr "SAVANNE BIOTOOP"
 
 #: gui/text/tips/savanna_biome.txt:2
-msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- Over het algemeen vlak, met slechts enkele waterplassen of rotsige punten."
+msgid "Generally flat, with a few watering holes and rocky outcrops."
+msgstr ""
+
+#: gui/text/tips/savanna_biome.txt:3
+msgid "Chock full of herd animals for plentiful hunting."
+msgstr "Vol makke dieren die eenvoudig bejaagd kunnen worden."
 
 #: gui/text/tips/savanna_biome.txt:4
-msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- Vol makke dieren die eenvoudig bejaagd kunnen worden."
+msgid "Rich in all types of mining."
+msgstr ""
 
-#: gui/text/tips/savanna_biome.txt:6
-msgid "- Rich in all types of mining."
-msgstr "- Rijk aan alle soorten mijnbouw grondstoffen"
-
-#: gui/text/tips/savanna_biome.txt:8
-msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- Hout is zeldzaam, er zijn slechts enkele dikke baobab bomen."
+#: gui/text/tips/savanna_biome.txt:5
+msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "VERDEDIGINGSTORENS"
 
 #: gui/text/tips/scout_towers.txt:2
-msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- Alleenstaande torens, goed om grote porties land te verdedigen."
+msgid "Free-standing towers good for defending large areas of countryside."
+msgstr ""
+
+#: gui/text/tips/scout_towers.txt:3
+msgid ""
+"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
+"Wood and 250 Stone (because they're stronger)."
+msgstr "Ze kosten normaal 100 Hout en 100 Steen. Iberische Verdedigingstorens kosten 50 Hout en 250 Steen (omdat ze sterker zijn)."
 
 #: gui/text/tips/scout_towers.txt:4
-msgid ""
-"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
-"Stone (because they're stronger)."
-msgstr "- Ze kosten normaal tussen 100 hout en 100 steen. Iberische verdedigingstorens kosten 300 steen (omdat ze sterker zijn)."
-
-#: gui/text/tips/scout_towers.txt:6
-msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Hoe meer bemanning, hoe meer pijlen er geschoten worden."
+msgid "Has a ranged attack that increases for each garrisoned unit."
+msgstr "Hoe meer bemanning, hoe meer pijlen er geschoten worden."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
 msgstr "Spartanen"
 
 #: gui/text/tips/spartan_hoplites.txt:2
-msgid "- Strongest infantry unit in the game."
-msgstr "- Sterkste infanterie eenheid in het spel."
+msgid "Strongest infantry unit in the game."
+msgstr "Sterkste Infanterie eenheid in het spel."
+
+#: gui/text/tips/spartan_hoplites.txt:3
+msgid "Champion Infantry available to the Spartans."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:4
-msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Kampioen infanterie beschikbaar voor de Spartanen."
-
-#: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- Gebruik ze om vijandelijke cavalerie af te slachten of als ondersteuning van je reguliere infanterie."
-
-#: gui/text/tips/spartan_hoplites.txt:8
-msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Gebruik de 'falanx' formatie voor extra bescherming."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
 msgstr "SPEERVECHTERS"
 
 #: gui/text/tips/spearmen.txt:2
-msgid "- The basic melee infantry for every faction in the game."
-msgstr "- De basis man-tegen-man infanterie voor elke civilisatie in het spel."
+msgid "The basic melee infantry for every faction in the game."
+msgstr "De basis Mêlee Infanterie voor elke beschaving in het spel."
+
+#: gui/text/tips/spearmen.txt:3
+msgid "Used against cavalry for an attack bonus."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
-msgid "- Used against cavalry for an attack bonus."
-msgstr "- Gebruik tegen cavalerie voor een aanvalsbonus."
+msgid "Decent hack attack make them good front line troops."
+msgstr ""
 
-#: gui/text/tips/spearmen.txt:6
-msgid "- Decent hack attack make them good front line troops."
-msgstr "- Goede frontlinie troepen dankzij een fatsoenlijke slagaanval."
-
-#: gui/text/tips/spearmen.txt:8
+#: gui/text/tips/spearmen.txt:5
 msgid ""
-"- They are countered by ranged units and swordsmen, so support your spearmen"
-" with slingers or cavalry."
-msgstr "- Ze worden tegengegaan door ranged eenheden en zwaardvechters. Ondersteun je speervechters met katapulten en cavalerie."
+"They are countered by ranged units and swordsmen, so support your spearmen "
+"with slingers or cavalry."
+msgstr "Zwak tegen afstandseenheden en zwaardvechters. Ondersteun je speervechters dus met slingeraars of cavalerie."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
 msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special structure for Greek factions."
-msgstr "- Een speciaal gebouw voor de Griekse beschavingen."
+msgid "A special structure for  Athenians, Macedonians, and Spartans."
+msgstr ""
+
+#: gui/text/tips/stoa.txt:3
+msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr "Rekruteert Zwaar Bewapende Speerwerpers en Kampioen Zwaardvechters."
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Train zwaar bewapende speerwerpers en kampioen zwaardvechters."
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Grants +10 Population."
-msgstr "- Geeft +10 bevolkingsbonus."
+msgid "Grants +10 Population."
+msgstr "Geeft +10 Bevolkingsbonus."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
 msgstr "BERGPLAATS"
 
 #: gui/text/tips/storehouses.txt:2
-msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- Een goedkoop pakhuis voor niet-voedsel grondstoffen (hout, steen, metaal)."
+msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr "Een goedkoop pakhuis voor niet-voedsel grondstoffen (Hout, Steen, Metaal)."
 
-#: gui/text/tips/storehouses.txt:4
+#: gui/text/tips/storehouses.txt:3
 msgid ""
-"- Research technologies to improve the gathering capabilities of your "
+"Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "Onderzoek technologieën om de verzamelsnelheid van je burgers te verbeteren."
-
-#: gui/text/tips/syntagma.txt:1
-msgid "SYNTAGMA FORMATION"
-msgstr "SYNTAGMA FORMATIE"
-
-#: gui/text/tips/syntagma.txt:2
-msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Een formatie voor 'piekenier' infanterie."
-
-#: gui/text/tips/syntagma.txt:4
-msgid "- Formation is slow and cumbersome."
-msgstr "- Formatie is traag en saai."
-
-#: gui/text/tips/syntagma.txt:6
-msgid "- Nearly invulnerable from the front."
-msgstr "- Bijna onkwetsbaar langs de voorkant."
-
-#: gui/text/tips/syntagma.txt:8
-msgid "- Vulnerable to attacks from the rear."
-msgstr "- Kwetsbaar voor aanvallen vanaf de achterkant."
+msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
 msgstr "TEMPELS"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure."
-msgstr "- Structuur uit de stadsfase."
+msgid "Town Phase structure."
+msgstr "Gebouw uit de Stadsfase."
+
+#: gui/text/tips/temples.txt:3
+msgid "Recruit Healers to heal your troops on the battlefield."
+msgstr ""
 
 #: gui/text/tips/temples.txt:4
-msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- Rekruteer helers om je troepen te genezen op het slagveld."
+msgid "Research healing technologies."
+msgstr "Onderzoek genezings technologieën."
+
+#: gui/text/tips/temples.txt:5
+msgid "Its aura heals nearby units."
+msgstr "Heeft een aura om nabije eenheden te helen."
 
 #: gui/text/tips/temples.txt:6
-msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- Onderzoek heling, religieuze en culturele technologieën."
-
-#: gui/text/tips/temples.txt:8
-msgid "- Its \"aura\" heals nearby units."
-msgstr "- Heeft een aura om nabije eenheden te helen."
-
-#: gui/text/tips/temples.txt:10
-msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Breng gekwetste eenheden binnen om sneller te genezen."
+msgid "Garrison wounded units inside for quicker healing."
+msgstr "Breng gekwetste eenheden binnen om sneller te genezen."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
 msgstr "TERRITORIUMVERVAL"
 
+#: gui/text/tips/territory_decay.txt:2
+msgid ""
+"Decay happens when buildings are not connected to an allied Civil Center."
+msgstr ""
+
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- Verval vindt plaats wanneer gebouwen niet verbonden zijn met een geallieerd beschavingscentrum."
+"The decay process can be slowed down or reversed by garrisoning some units "
+"in the structure."
+msgstr "Het verval kan vertraagd of teniet gedaan worden door enkele eenheden het gebouw te laten bemannen."
 
-#: gui/text/tips/territory_decay.txt:5
+#: gui/text/tips/territory_decay.txt:4
 msgid ""
-"- The decay process can be slowed down or reversed by garrisoning some units"
-" in the structure."
-msgstr "- Het verval kan vertraagd of teniet gedaan worden door enkele eenheden het gebouw te laten bemannen."
-
-#: gui/text/tips/territory_decay.txt:7
-msgid ""
-"- When the decay is completed, the building will be given to the most "
+"When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- Wanneer het verval compleet is, zal het gebouw aan de meest invloedrijke buur gegeven worden."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4022,113 +4072,88 @@ msgstr "THEMISTOCLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
-"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Atheense held die de Grieken commandeerde tijdens de grote zeeslagen van Artemsium en Salamis."
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:3
+msgid "All ships are built faster while he lives."
+msgstr "Alle schepen worden sneller gebouwd tijdens zijn leven."
 
 #: gui/text/tips/themistocles.txt:4
-msgid "- All ships are built faster while he lives."
-msgstr "- Alle schepen worden sneller gebouwd tijdens zijn leven."
-
-#: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside sails much faster."
-msgstr "- Het schip waarin hij zich bevindt kan sneller zeilen."
+msgid "The ship he is garrisoned inside sails much faster."
+msgstr "Het schip waarin hij zich bevindt kan sneller zeilen."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
 msgstr "TRIREEM"
 
 #: gui/text/tips/triremes.txt:2
-msgid "- The Medium Warship."
-msgstr "- Mediumgroot oorlogsschip."
+msgid "The Medium Warship."
+msgstr "Middelgroot Oorlogsschip."
+
+#: gui/text/tips/triremes.txt:3
+msgid "Good for transporting or fighting."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid ""
-"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Beschikbaar voor Romeinen, Carthagers, Grieken en Perzen."
-
-#: gui/text/tips/triremes.txt:6
-msgid "- Good for transporting or fighting."
-msgstr "- Goed als transportmiddel of om te vechten."
-
-#: gui/text/tips/triremes.txt:8
-msgid "- Garrison troops aboard to increase fire power."
-msgstr "- Beman met troepen om de vuurkracht te verhogen."
-
-#: gui/text/tips/triremes.txt:10
-msgid ""
-"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Beman met een katapult voor een zwaardere aanval (NOG NIET GEÏMPLEMENTEERD)."
-
-#: gui/text/tips/triremes.txt:12
-msgid ""
-"- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use (NOT IMPLEMENTED YET)."
-msgstr "- Kan een ander schip rammen, met vernieling tot gevolg. De aanval vraagt wat tijd om voor te bereiden (NOG NIET GEÏMPLEMENTEERD). "
+msgid "Garrison troops aboard to increase fire power."
+msgstr "Beman met troepen om de vuurkracht te verhogen."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
 msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
-msgid "- Iberian hero of the Lusitani tribe."
-msgstr "- Iberische held van de Lusitani stam."
+msgid "Iberian hero of the Lusitani tribe."
+msgstr ""
+
+#: gui/text/tips/viriato.txt:3
+msgid ""
+"At least seven campaigns against the Romans during the Lusitani Wars from "
+"147 to 139 BC."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
-"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
-"147 to 139 B.C."
-msgstr "- Minstens 7 slagen tegen de Romeinen tijdens de 'Lusitani oorlogen' van 147 tot 139 V.C."
-
-#: gui/text/tips/viriato.txt:6
-msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Snel en kan wisselen tussen het zwaard en een vlammende speer als wapen."
-
-#: gui/text/tips/viriato.txt:8
-msgid ""
-"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
-"to ambush their opponents."
-msgstr "- Als aura heeft hij de \"guerrilla tactiek\", daarmee kunnen dichtbije Iberische eenheden tegenstanders in een hinderlaag lokken."
+"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
+"their opponents."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
 msgstr "KRIJGSOLIFANTEN"
 
 #: gui/text/tips/war_elephants.txt:2
-msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- Grote beesten van Afrika en Indië, getraind voor de oorlog."
+msgid "Huge beasts from Africa and India, trained for war."
+msgstr ""
+
+#: gui/text/tips/war_elephants.txt:3
+msgid "High Food and Metal cost, but very powerful."
+msgstr "Hoge Voedsel- en Metaalkosten, maar heel krachtig."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
-"- High Food and Metal cost, but very powerful. Strongest against Structures "
-"and Cavalry."
-msgstr "- Hoge voedsel- en metaalkost, maar heel krachtig. Sterkst tegen gebouwen en ruiters."
-
-#: gui/text/tips/war_elephants.txt:6
-msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Kwetsbaar voor tirailleurs."
-
-#: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Beschikbaar voor: de Mauryanen, de Ptolemeërs, de Seleuciden en Carthago"
+"Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
 msgstr "WALVISSEN"
 
 #: gui/text/tips/whales.txt:2
-msgid "- An oceanic resource."
-msgstr "- Een oceanische voedselbron."
+msgid "An oceanic resource."
+msgstr "Een oceanische voedselbron."
+
+#: gui/text/tips/whales.txt:3
+msgid "2000 Food."
+msgstr "2000 Voedsel."
 
 #: gui/text/tips/whales.txt:4
-msgid "- 2000 Food."
-msgstr "- 2000 voedsel."
+msgid "Gatherable by Fishing Boats after the whale is killed."
+msgstr ""
 
-#: gui/text/tips/whales.txt:6
-msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- Voedsel kan opgehaald worden door vissers nadat de walvis gedood is."
-
-#: gui/text/tips/whales.txt:8
-msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Zwemmen rond in de oceaan en vluchten wanneer ze worden aangevallen."
+#: gui/text/tips/whales.txt:5
+msgid "Roam around the oceans of the game and flee when attacked."
+msgstr "Zwemmen rond in de oceaan en vluchten wanneer ze worden aangevallen."

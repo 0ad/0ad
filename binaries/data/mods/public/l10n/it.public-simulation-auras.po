@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -11,21 +11,23 @@
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2017
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Italang, 2019
 # Kevin Tonel <prophetinnocence@gmail.com>, 2018
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2016-2017
-# Michele Marongiu <michelemarongiu@gmail.com>, 2017
+# Michele Marongiu <michelemarongiu@gmail.com>, 2017,2019
 # Nicolas Benetton <inm.bene96@gmail.com>, 2018
 # Paolo Gianpaolo <gpuse91@gmail.com>, 2017
 # Slave Gjorgjievski <slave93@hotmail.it>, 2018
+# Thomas Zilio <thomaszilio77@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-10-17 13:22+0000\n"
-"Last-Translator: Davide Redana <davide.redana@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-06-11 07:14+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +45,7 @@ msgstr "Ripara le navi in presidio di 10 punti vita al secondo."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
-msgstr "Benedizione degli Dei."
+msgstr "Benedizione degli Dei"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
@@ -51,15 +53,15 @@ msgstr "Cura le unità per 3 punti vita al secondo."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr "Passione Religiosa.\n"
+msgstr "Fervore Religioso"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
-msgstr "+20% danni fisici per i soldati."
+msgstr "+20% danni d'attacco per i soldati."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr "Patriottismo."
+msgstr "Patriottismo"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
@@ -67,7 +69,7 @@ msgstr "I lavoratori ottengono +15% velocità di raccolta vicino alle piramidi."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "Presenza persuasiva"
+msgstr "Presenza Esortativa"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
@@ -90,16 +92,16 @@ msgstr "Sacerdozio potente"
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr "Rafforza il sacerdozio di Amon e destabilizza l'influenza del tuo monarca. -5% salute agli eroi per ogni tempio costruito"
+msgstr "Rafforza il sacerdozio di Amon e destabilizza l'influenza del tuo monarca.\n-5% salute agli eroi per ogni tempio costruito"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
-msgstr "Potere della conoscenza"
+msgstr "Potere della Conoscenza"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "Riduce il costo ed il tempo di ricerca delle tecnologie del 10% per ogni libreria posseduta"
+msgstr "Riduce il costo ed il tempo di ricerca delle tecnologie del 10% per ogni biblioteca posseduta."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -180,60 +182,56 @@ msgid "Delian League"
 msgstr "Lega di Delo"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "Le navi vengono costruite il 25% più velocemente."
+msgid "Allied warships −25% construction time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "Druidi"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "Agli alleati occorre -20% di risorse richieste per addestrare i guaritori"
+msgid "Allied healers −20% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Mastro commerciante"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "10% bonus di profitti per trattative su rotte commerciali internazionali."
+msgid "Allied markets +10% international trade bonus."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "Sapienza Druidica"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "-20% di attesa per le tecnologie degli alleati."
+msgid "Allied structures −20% technology research time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "Riduce il costo degli schermagliatori cittadino-soldato con il 20% per gli alleati di giocatori iberici"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "Fornitori di Elefanti"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Riduce il costo e il tempo dell'addestramento per gli elefanti del 20% per gli alleati dei giocatori Kushiti."
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "Valuta Standardizzata"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "+20% sui prezzi di vendita al mercato."
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -241,51 +239,49 @@ msgstr "Supporto religioso di Ashoka"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "I templi alleati e le loro tecnologie costano -50%, in risorse e tempo."
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "La Strada Reale"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Introiti maggiori (+15%) dalle vie di commercio terrene per tutti gli alleati."
+msgid "Allied land traders +15% trade gain."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Granaio del Mediterraneo"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Tutti gli alleati ottengono automaticamente un po' di cibo."
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "Coscrizione"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "-20% di tempo di formazione per la fanteria alleata."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Tetrapoli Siriaca"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "Riduce il costo dei centri cittadini del 20% per gli alleati di giocatori Seleucidi"
+msgid "Allied civil centers −20% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "Lega Peloponnesiaca"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Aumenta la salute per i lancieri di fanteria cittadini-soldati del 10% per gli alleati dei giocatori Spartani."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -402,9 +398,9 @@ msgstr "Tempio di Naqa"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Come in tutte le culture, la religione ha giocato un ruolo importante nell'impero Moroë. Shanakdakheto ha costruito il tempio intorno al 160 D.C come simbolo di avanzamento dei Moroë. +1 di tasso di cura per tutte le guarnigioni vicino al tempio."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -412,9 +408,9 @@ msgstr "Saccheggiatore di Città"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr "Durante la Prima Guerra Macedone, Filippo e le sue truppe saccheggiarono Thermum, il centro religioso e politico della Etolia.\n+5 cibo e legna per ogni unità nemica uccisa o struttura distrutta."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -502,9 +498,9 @@ msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Figlio di Seleuco Nicatore, Antioco riuscì nel formidabile compito di tenere insieme l'impero, fondando templi e sconfiggendo i Galli invasori con elefanti da guerra.\ncosto -10% per gli Elefanti da Guerra."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -556,8 +552,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "+15% nelle abilità di costruzione e di riparazione per i lavoratori."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Tempio di Atena"
+msgid "Temple of Athena Nike"
+msgstr "Tempio di Atena Nike"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -739,12 +735,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "-20% costo e tempo di creazione dei Templi di Apedemak e delle sue Guardie del Tempio Meroe."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
-msgstr "Massacro dei Fedeli"
+msgid "Slaughter of the Faithful"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Tasso di guarigione del Nemico ridotto del 50%"
+msgid "Enemy healers −50% healing rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -809,7 +805,7 @@ msgstr "Vittoria di Pirro"
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
 msgid ""
 "All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr "Tutti i soldati ricevono +20% finché Pirro è in vita, ma perdono -15% HP"
+msgstr "Tutti i soldati ricevono +20% finché Pirro è in vita, ma perdono -15% punti vita."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
@@ -825,9 +821,9 @@ msgstr "Maestro"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Potenzia un edificio con -20% di costi e -50% di tempo per la ricerca quando lo presidia."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -925,7 +921,7 @@ msgstr "+1  di armatura per tutte le unità e strutture."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
-msgstr "Trionfo."
+msgstr "Trionfo"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."

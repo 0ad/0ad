@@ -263,38 +263,31 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			}
 
 			// Find the template data so we can determine the build costs
-			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-			var template = cmpTemplateManager.GetTemplate(templateName);
+			let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			let template = cmpTemplateManager.GetTemplate(templateName);
 			if (!template)
 				return;
-			if (template.Promotion)
+			if (template.Promotion && ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template) == 0)
 			{
-				var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template);
-
-				if (requiredXp == 0)
-				{
-					this.AddBatch(template.Promotion.Entity, type, count, metadata);
-					return;
-				}
+				this.AddBatch(template.Promotion.Entity, type, count, metadata);
+				return;
 			}
 
 			// Apply a time discount to larger batches.
-			var timeMult = this.GetBatchTime(count);
+			let timeMult = this.GetBatchTime(count);
 
 			// We need the costs after tech modifications
 			// Obviously we don't have the entities yet, so we must use template data
-			var costs = {};
-			var totalCosts = {};
-			var buildTime = ApplyValueModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, cmpPlayer.GetPlayerID(), template);
-			var time = timeMult * buildTime;
+			let costs = {};
+			let totalCosts = {};
+			let buildTime = ApplyValueModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, cmpPlayer.GetPlayerID(), template);
+			let time = timeMult * buildTime;
 
 			for (let res in template.Cost.Resources)
 			{
 				costs[res] = ApplyValueModificationsToTemplate("Cost/Resources/"+res, +template.Cost.Resources[res], cmpPlayer.GetPlayerID(), template);
 				totalCosts[res] = Math.floor(count * costs[res]);
 			}
-
-			var population = ApplyValueModificationsToTemplate("Cost/Population", +template.Cost.Population, cmpPlayer.GetPlayerID(), template);
 
 			// TrySubtractResources should report error to player (they ran out of resources)
 			if (!cmpPlayer.TrySubtractResources(totalCosts))
@@ -303,8 +296,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			// Update entity count in the EntityLimits component
 			if (template.TrainingRestrictions)
 			{
-				var unitCategory = template.TrainingRestrictions.Category;
-				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+				let unitCategory = template.TrainingRestrictions.Category;
+				let cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
 				cmpPlayerEntityLimits.ChangeCount(unitCategory, count);
 			}
 
@@ -315,14 +308,14 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"count": count,
 				"metadata": metadata,
 				"resources": costs,
-				"population": population,
+				"population": ApplyValueModificationsToTemplate("Cost/Population", +template.Cost.Population, cmpPlayer.GetPlayerID(), template),
 				"productionStarted": false,
 				"timeTotal": time*1000,
 				"timeRemaining": time*1000,
 			});
 
 			// Call the related trigger event
-			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+			let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 			cmpTrigger.CallEvent("TrainingQueued", { "playerid": cmpPlayer.GetPlayerID(), "unitTemplate": templateName, "count": count, "metadata": metadata, "trainerEntity": this.entity });
 		}
 		else if (type == "technology")
@@ -354,7 +347,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 
 			// Tell the technology manager that we have started researching this so that people can't research the same
 			// thing twice.
-			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+			let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.QueuedResearch(templateName, this.entity);
 			if (this.queue.length == 0)
 				cmpTechnologyManager.StartedResearch(templateName, false);
@@ -371,7 +364,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			});
 
 			// Call the related trigger event
-			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+			let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 			cmpTrigger.CallEvent("ResearchQueued", { "playerid": cmpPlayer.GetPlayerID(), "technologyTemplate": templateName, "researcherEntity": this.entity });
 		}
 		else
@@ -385,14 +378,14 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 		// If this is the first item in the queue, start the timer
 		if (!this.timer)
 		{
-			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 			this.timer = cmpTimer.SetTimeout(this.entity, IID_ProductionQueue, "ProgressTimeout", g_ProgressInterval, {});
 		}
 	}
 	else
 	{
-		var notification = { "players": [cmpPlayer.GetPlayerID()], "message": markForTranslation("The production queue is full."), "translateMessage": true };
-		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		let notification = { "players": [cmpPlayer.GetPlayerID()], "message": markForTranslation("The production queue is full."), "translateMessage": true };
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
 	}
 };
@@ -557,34 +550,18 @@ ProductionQueue.prototype.OnDestroy = function()
  */
 ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 {
-	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
+	let cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 
-	var createdEnts = [];
-	var spawnedEnts = [];
+	let createdEnts = [];
+	let spawnedEnts = [];
 
+	// We need entities to test spawning, but we don't want to waste resources,
+	//	so only create them once and use as needed
 	if (this.entityCache.length == 0)
-	{
-		// We need entities to test spawning, but we don't want to waste resources,
-		//	so only create them once and use as needed
-		for (var i = 0; i < count; ++i)
-		{
-			var ent = Engine.AddEntity(templateName);
-			this.entityCache.push(ent);
-
-			// Decrement entity count in the EntityLimits component
-			// since it will be increased by EntityLimits.OnGlobalOwnershipChanged function,
-			// i.e. we replace a 'trained' entity to an 'alive' one
-			var cmpTrainingRestrictions = Engine.QueryInterface(ent, IID_TrainingRestrictions);
-			if (cmpTrainingRestrictions)
-			{
-				var unitCategory = cmpTrainingRestrictions.GetCategory();
-				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
-				cmpPlayerEntityLimits.ChangeCount(unitCategory, -1);
-			}
-		}
-	}
+		for (let i = 0; i < count; ++i)
+			this.entityCache.push(Engine.AddEntity(templateName));
 
 	let cmpAutoGarrison;
 	if (cmpRallyPoint)
@@ -630,6 +607,18 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			spawnedEnts.push(ent);
 		}
 
+		// Decrement entity count in the EntityLimits component
+		// since it will be increased by EntityLimits.OnGlobalOwnershipChanged function,
+		// i.e. we replace a 'trained' entity by 'alive' one
+		// Must be done after spawn check so EntityLimits decrements only if unit spawns
+		let cmpTrainingRestrictions = Engine.QueryInterface(ent, IID_TrainingRestrictions);
+		if (cmpTrainingRestrictions)
+		{
+			let unitCategory = cmpTrainingRestrictions.GetCategory();
+			let cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+			cmpPlayerEntityLimits.ChangeCount(unitCategory, -1);
+		}
+
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
 		let cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
@@ -650,11 +639,11 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		// rally point is placed.
 		if (cmpRallyPoint)
 		{
-			var rallyPos = cmpRallyPoint.GetPositions()[0];
+			let rallyPos = cmpRallyPoint.GetPositions()[0];
 			if (rallyPos)
 			{
-				var commands = GetRallyPointCommands(cmpRallyPoint, spawnedEnts);
-				for (var com of commands)
+				let commands = GetRallyPointCommands(cmpRallyPoint, spawnedEnts);
+				for (let com of commands)
 					ProcessCommand(cmpOwnership.GetOwner(), com);
 			}
 		}

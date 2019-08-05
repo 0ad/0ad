@@ -190,7 +190,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the 'II' icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
+		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the II icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
 		"IsDone": function()
 		{
 			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_generic");
@@ -202,7 +202,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("While waiting for the phasing up, you may reaffect your idle workers to gathering the resources you are short of."),
+		"instructions": markForTranslation("While waiting for the phasing up, you may reassign your idle workers to gathering the resources you are short of."),
 		"IsDone": function()
 		{
 			let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -326,7 +326,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("While waiting for the phase change, you may train more soldiers at the barracks."),
+		"instructions": markForTranslation("While waiting for the phase change, you may train more soldiers at the Barracks."),
 		"OnResearchFinished": function(msg)
 		{
 			if (msg.tech == "phase_city_generic")
@@ -345,7 +345,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate == "units/spart_mechanical_siege_ram")
+			if (msg.unitTemplate == "units/spart_siege_ram")
 				++this.ramCount;
 			if (this.IsDone())
 			{

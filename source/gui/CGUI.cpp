@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -274,18 +274,24 @@ void CGUI::SendEventToAll(const CStr& EventName)
 	// (sending events here) wasn't converting to lower case,
 	// leading to a similar problem.
 	// now fixed; case is irrelevant since all are converted to lower.
-	GUI<CStr>::RecurseObject(0, m_BaseObject,
-		&IGUIObject::ScriptEvent, EventName.LowerCase());
+	GUI<CStr>::RecurseObject(0, m_BaseObject, &IGUIObject::ScriptEvent, EventName.LowerCase());
+}
+
+void CGUI::SendEventToAll(const CStr& EventName, JS::HandleValueArray paramData)
+{
+	GUI<CStr>::RecurseObject(0, m_BaseObject, &IGUIObject::ScriptEvent, EventName.LowerCase(), paramData);
 }
 
 CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 	: m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 {
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
+	m_ScriptInterface->SetCallbackData(this);
+
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
-	m_BaseObject = new CGUIDummyObject;
-	m_BaseObject->SetGUI(this);
+
+       m_BaseObject = new CGUIDummyObject(this);
 }
 
 CGUI::~CGUI()
@@ -299,12 +305,10 @@ CGUI::~CGUI()
 IGUIObject* CGUI::ConstructObject(const CStr& str)
 {
 	if (m_ObjectTypes.count(str) > 0)
-		return (*m_ObjectTypes[str])();
-	else
-	{
-		// Error reporting will be handled with the NULL return.
-		return NULL;
-	}
+		return (*m_ObjectTypes[str])(this);
+
+	// Error reporting will be handled with the nullptr return.
+	return nullptr;
 }
 
 void CGUI::Initialize()
@@ -395,9 +399,6 @@ void CGUI::AddObject(IGUIObject* pObject)
 {
 	try
 	{
-		// Add CGUI pointer
-		GUI<CGUI*>::RecurseObject(0, pObject, &IGUIObject::SetGUI, this);
-
 		m_BaseObject->AddChild(pObject);
 
 		// Cache tree
@@ -475,6 +476,15 @@ void CGUI::SetFocusedObject(IGUIObject* pObject)
 	}
 }
 
+const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
+{
+	std::map<CStr, SGUIScrollBarStyle>::const_iterator it = m_ScrollBarStyles.find(style);
+	if (it == m_ScrollBarStyles.end())
+		return nullptr;
+
+ 	return &it->second;
+}
+
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
 {
@@ -540,8 +550,9 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 	// get the alignment type for the control we are computing the text for since
 	// we are computing the horizontal alignment in this method in order to not have
 	// to run through the TextCalls a second time in the CalculateTextPosition method again
-	EAlign align;
-	GUI<EAlign>::GetSetting(pObject, "text_align", align);
+	EAlign align = EAlign_Left;
+	if (pObject->SettingExists("text_align"))
+		GUI<EAlign>::GetSetting(pObject, "text_align", align);
 
 	// Go through string word by word
 	for (int i = 0; i < (int)string.m_Words.size()-1 && !done; ++i)
@@ -592,7 +603,7 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 					Text.m_Size.cy = std::max(Text.m_Size.cy, Image.m_YTo);
 
 					Images[j].push_back(Image);
-					Text.m_SpriteCalls.push_back(SpriteCall);
+					Text.m_SpriteCalls.push_back(std::move(SpriteCall));
 				}
 			}
 		}
@@ -768,7 +779,10 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 
 						// Sprite call can exist within only a newline segment,
 						//  therefore we need this.
-						Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
+						Text.m_SpriteCalls.insert(
+							Text.m_SpriteCalls.end(),
+							std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
+							std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
 						break;
 					}
 					else if (x > width_range[To] && j == temp_from)
@@ -784,8 +798,15 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 				}
 
 				// Add the whole Feedback2.m_TextCalls to our m_TextCalls.
-				Text.m_TextCalls.insert(Text.m_TextCalls.end(), Feedback2.m_TextCalls.begin(), Feedback2.m_TextCalls.end());
-				Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
+				Text.m_TextCalls.insert(
+					Text.m_TextCalls.end(),
+					std::make_move_iterator(Feedback2.m_TextCalls.begin()),
+					std::make_move_iterator(Feedback2.m_TextCalls.end()));
+
+				Text.m_SpriteCalls.insert(
+					Text.m_SpriteCalls.end(),
+					std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
+					std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
 
 				if (j == (int)string.m_Words.size()-2)
 					done = true;
@@ -811,7 +832,7 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 	return Text;
 }
 
-void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping)
+void CGUI::DrawText(SGUIText& Text, const CGUIColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping)
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -838,7 +859,7 @@ void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos,
 		if (tc.m_pSpriteCall)
 			continue;
 
-		CColor color = tc.m_UseCustomColor ? tc.m_Color : DefaultColor;
+		CGUIColor color = tc.m_UseCustomColor ? tc.m_Color : DefaultColor;
 
 		textRenderer.Color(color);
 		textRenderer.Font(tc.m_Font);
@@ -856,9 +877,9 @@ void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos,
 	tech->EndPass();
 }
 
-bool CGUI::GetPreDefinedColor(const CStr& name, CColor& Output) const
+bool CGUI::GetPreDefinedColor(const CStr& name, CGUIColor& Output) const
 {
-	std::map<CStr, CColor>::const_iterator cit = m_PreDefinedColors.find(name);
+	std::map<CStr, CGUIColor>::const_iterator cit = m_PreDefinedColors.find(name);
 	if (cit == m_PreDefinedColors.end())
 		return false;
 
@@ -1122,8 +1143,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 
-			// We need to set the GUI this object belongs to because RegisterScriptHandler requires an associated GUI.
-			object->SetGUI(this);
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
 		}
 		else if (element_name == elmt_repeat)
@@ -1494,16 +1513,16 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else if (attr_name == "backcolor")
 		{
-			CColor color;
-			if (!GUI<CColor>::ParseString(attr_value, color))
+			CGUIColor color;
+			if (!GUI<CGUIColor>::ParseString(attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_BackColor = color;
 		}
 		else if (attr_name == "bordercolor")
 		{
-			CColor color;
-			if (!GUI<CColor>::ParseString(attr_value, color))
+			CGUIColor color;
+			if (!GUI<CGUIColor>::ParseString(attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_BorderColor = color;
@@ -1550,7 +1569,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 
 		if (attr_name == "add_color")
 		{
-			CColor color;
+			CGUIColor color;
 			if (!GUI<int>::ParseColor(attr_value, color, 0))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else effects.m_AddColor = color;
@@ -1661,7 +1680,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
-	m_ScrollBarStyles[name] = scrollbar;
+	m_ScrollBarStyles[name] = std::move(scrollbar);
 }
 
 void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
@@ -1706,7 +1725,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 {
-	IGUIObject* object = new CTooltip;
+	IGUIObject* object = new CTooltip(this);
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
@@ -1726,7 +1745,7 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 {
 	XMBAttributeList attributes = Element.GetAttributes();
 
-	CColor color;
+	CGUIColor color;
 	CStr name = attributes.GetNamedItem(pFile->GetAttributeID("name"));
 
 	// Try parsing value

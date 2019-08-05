@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,48 +16,14 @@
  */
 
 /*
-Shapes.h
-
 --Overview--
 
 	Classes mostly useful for representing 2D screen overlays;
 	includes functionality for overlay position, color, texture and borders.
-
-	CColor is used more widely for various game systems.
 */
 
 #ifndef INCLUDED_SHAPES
 #define INCLUDED_SHAPES
-
-#include "graphics/SColor.h"
-
-class CStr8;
-
-struct CColor
-{
-	CColor() : r(-1.f), g(-1.f), b(-1.f), a(1.f) {}
-	CColor(float cr,float cg,float cb,float ca) : r(cr), g(cg), b(cb), a(ca) {}
-
-	bool ParseString(const CStr8& Value, int DefaultAlpha = 255);
-
-	bool operator == (const CColor &color) const;
-
-	bool operator != (const CColor &color) const
-	{
-		return !(*this==color);
-	}
-
-	// For passing to glColor[34]fv:
-	const float* FloatArray() const { return &r; }
-
-	// For passing to CRenderer:
-	SColor4ub AsSColor4ub() const
-	{
-		return SColor4ub((u8)(r*255.0), (u8)(g*255.0), (u8)(b*255.0), (u8)(a*255.0));
-	}
-
-	float r, g, b, a;
-};
 
 class CPos;
 class CSize;
@@ -67,8 +33,6 @@ class CSize;
  * Rectangle class used for screen rectangles. It's very similar to the MS
  * CRect, but with FLOATS because it's meant to be used with OpenGL which
  * takes float values.
- *
- * Changed to floats 2004-08-31 /GL
  */
 class CRect
 {
@@ -79,27 +43,27 @@ public:
 	CRect(const CPos &upperleft, const CPos &bottomright);
 	CRect(const CPos &pos, const CSize &size);
 	CRect(const float l, const float t, const float r, const float b);
+	CRect(const CRect&);
 
-	// Operators
-	CRect&				operator =  (const CRect& a);
-	bool				operator == (const CRect& a) const;
-	bool				operator != (const CRect& a) const;
-	CRect				operator -	(void) const;
-	CRect				operator +	(void) const;
+	CRect& operator=(const CRect& a);
+	bool operator==(const CRect& a) const;
+	bool operator!=(const CRect& a) const;
+	CRect operator-() const;
+	CRect operator+() const;
 
-	CRect				operator +  (const CRect& a) const;
-	CRect				operator +  (const CPos& a) const;
-	CRect				operator +  (const CSize& a) const;
-	CRect				operator -  (const CRect& a) const;
-	CRect				operator -  (const CPos& a) const;
-	CRect				operator -  (const CSize& a) const;
+	CRect operator+(const CRect& a) const;
+	CRect operator+(const CPos& a) const;
+	CRect operator+(const CSize& a) const;
+	CRect operator-(const CRect& a) const;
+	CRect operator-(const CPos& a) const;
+	CRect operator-(const CSize& a) const;
 
-	void				operator += (const CRect& a);
-	void				operator += (const CPos& a);
-	void				operator += (const CSize& a);
-	void				operator -= (const CRect& a);
-	void				operator -= (const CPos& a);
-	void				operator -= (const CSize& a);
+	void operator+=(const CRect& a);
+	void operator+=(const CPos& a);
+	void operator+=(const CSize& a);
+	void operator-=(const CRect& a);
+	void operator-=(const CPos& a);
+	void operator-=(const CSize& a);
 
 	/**
 	 * @return Width of Rectangle
@@ -170,25 +134,25 @@ class CPos
 {
 public:
 	CPos();
+	CPos(const CPos& pos);
 	CPos(const CSize &pos);
-	CPos(const float &_x, const float &_y);
+	CPos(const float px, const float py);
 
-	// Operators
-	CPos&				operator =  (const CPos& a);
-	bool				operator == (const CPos& a) const;
-	bool				operator != (const CPos& a) const;
-	CPos				operator -	(void) const;
-	CPos				operator +	(void) const;
+	CPos& operator=(const CPos& a);
+	bool operator==(const CPos& a) const;
+	bool operator!=(const CPos& a) const;
+	CPos operator-() const;
+	CPos operator+() const;
 
-	CPos				operator +  (const CPos& a) const;
-	CPos				operator +  (const CSize& a) const;
-	CPos				operator -  (const CPos& a) const;
-	CPos				operator -  (const CSize& a) const;
+	CPos operator+(const CPos& a) const;
+	CPos operator+(const CSize& a) const;
+	CPos operator-(const CPos& a) const;
+	CPos operator-(const CSize& a) const;
 
-	void				operator += (const CPos& a);
-	void				operator += (const CSize& a);
-	void				operator -= (const CPos& a);
-	void				operator -= (const CSize& a);
+	void operator+=(const CPos& a);
+	void operator+=(const CSize& a);
+	void operator-=(const CPos& a);
+	void operator-=(const CSize& a);
 
 public:
 	/**
@@ -210,24 +174,24 @@ public:
 	CSize();
 	CSize(const CRect &rect);
 	CSize(const CPos &pos);
-	CSize(const float &_cx, const float &_cy);
+	CSize(const CSize& size);
+	CSize(const float sx, const float sy);
 
-	// Operators
-	CSize&				operator =  (const CSize& a);
-	bool				operator == (const CSize& a) const;
-	bool				operator != (const CSize& a) const;
-	CSize				operator -	(void) const;
-	CSize				operator +	(void) const;
+	CSize& operator=(const CSize& a);
+	bool operator==(const CSize& a) const;
+	bool operator!=(const CSize& a) const;
+	CSize operator-() const;
+	CSize operator+() const;
 
-	CSize				operator +  (const CSize& a) const;
-	CSize				operator -  (const CSize& a) const;
-	CSize				operator /  (const float &a) const;
-	CSize				operator *  (const float &a) const;
+	CSize operator+(const CSize& a) const;
+	CSize operator-(const CSize& a) const;
+	CSize operator/(const float a) const;
+	CSize operator*(const float a) const;
 
-	void				operator += (const CSize& a);
-	void				operator -= (const CSize& a);
-	void				operator /= (const float& a);
-	void				operator *= (const float& a);
+	void operator+=(const CSize& a);
+	void operator-=(const CSize& a);
+	void operator/=(const float a);
+	void operator*=(const float a);
 
 public:
 	/**

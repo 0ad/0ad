@@ -1,14 +1,16 @@
 {
 	"genericName": "Elite Citizen-Cavalry",
 	"description": "Promote all of your citizen-soldier cavalrymen to Advanced rank.",
-	"cost": {"food": 600, "wood": 0, "stone": 0, "metal": 400},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 600, "wood": 0, "stone": 0, "metal": 400 },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "upgrade_elite.png",
 	"researchTime": 40,
 	"supersedes": "upgrade_rank_advanced_cavalry",
 	"tooltip": "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases their military prowess, but decreases their meat gathering rates another -25%.",
-	"modifications": [{"value": "Promotion/RequiredXp", "replace": 0}],
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "replace": 0 }
+	],
 	"affects": ["Cavalry Advanced"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

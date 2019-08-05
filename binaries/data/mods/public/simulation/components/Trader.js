@@ -34,19 +34,19 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 
 	// For ship increase gain for each garrisoned trader
 	// Calculate this here to save passing unnecessary stuff into the CalculateTraderGain function
-	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 	if (cmpIdentity && cmpIdentity.HasClass("Ship"))
 	{
-		var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 		if (cmpGarrisonHolder)
 		{
-			var garrisonMultiplier = 1;
-			var garrisonedTradersCount = 0;
+			let garrisonMultiplier = 1;
+			let garrisonedTradersCount = 0;
 			for (let entity of cmpGarrisonHolder.GetEntities())
 			{
-				var cmpGarrisonedUnitTrader = Engine.QueryInterface(entity, IID_Trader);
+				let cmpGarrisonedUnitTrader = Engine.QueryInterface(entity, IID_Trader);
 				if (cmpGarrisonedUnitTrader)
-					garrisonedTradersCount++;
+					++garrisonedTradersCount;
 			}
 			garrisonMultiplier *= 1 + GARRISONED_TRADER_ADDITION * garrisonedTradersCount / 100;
 
@@ -98,13 +98,11 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		// set the target as second one
 		if (target == this.markets[0])
 			return false;
-		else
-		{
-			this.index = 0;
-			this.markets.push(target);
-			cmpTargetMarket.AddTrader(this.entity);
-			this.goods.amount = this.CalculateGain(this.markets[0], this.markets[1]);
-		}
+
+		this.index = 0;
+		this.markets.push(target);
+		cmpTargetMarket.AddTrader(this.entity);
+		this.goods.amount = this.CalculateGain(this.markets[0], this.markets[1]);
 	}
 	else
 	{
@@ -141,13 +139,13 @@ Trader.prototype.HasBothMarkets = function()
 
 Trader.prototype.CanTrade = function(target)
 {
-	var cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	let cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 
-	var cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
+	let cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
 	if (!cmpTargetMarket)
 		return false;
 
-	var cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
+	let cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
 	if (cmpTargetFoundation)
 		return false;
 
@@ -155,11 +153,10 @@ Trader.prototype.CanTrade = function(target)
 		!(cmpTraderIdentity.HasClass("Ship") && cmpTargetMarket.HasType("naval")))
 		return false;
 
-	var cmpTraderPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	var cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
-	var targetPlayerId = cmpTargetPlayer.GetPlayerID();
+	let cmpTraderPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
 
-	return !cmpTraderPlayer.IsEnemy(targetPlayerId);
+	return !cmpTraderPlayer.IsEnemy(cmpTargetPlayer.GetPlayerID());
 };
 
 Trader.prototype.AddResources = function(ent, gain)
@@ -270,11 +267,11 @@ Trader.prototype.StopTrading = function()
 // to be able to trade with it.
 Trader.prototype.GetRange = function()
 {
-	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	var max = 1;
+	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	let max = 1;
 	if (cmpObstruction)
 		max += cmpObstruction.GetUnitRadius()*1.5;
-	return { "min": 0, "max": max};
+	return { "min": 0, "max": max };
 };
 
 Trader.prototype.OnGarrisonedUnitsChanged = function()

@@ -2,7 +2,7 @@
 <Entity parent="template_unit_support_healer">
   <Identity>
     <Civ>cart</Civ>
-    <Gender>female</Gender>
+    <Phenotype datatype="tokens">female</Phenotype>
     <SelectionGroupName>units/cart_support_healer_b</SelectionGroupName>
     <SpecificName>Kehinit</SpecificName>
     <Icon>units/cart_support_healer.png</Icon>

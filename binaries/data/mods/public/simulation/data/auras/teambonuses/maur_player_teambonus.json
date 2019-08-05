@@ -3,15 +3,15 @@
 	"affects": ["Temple"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
-		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.5 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.5 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.5 },
+		{ "value": "Cost/BuildTime", "multiply": 0.5 },
 		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.5 },
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.5 },
 		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.5 },
 		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.5 },
-		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.5 },
-		{ "value": "Cost/BuildTime", "multiply": 0.5 },
-		{ "value": "Cost/Resources/stone", "multiply": 0.5 },
-		{ "value": "Cost/Resources/wood", "multiply": 0.5 }
+		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.5 }
 	],
 	"auraName": "Ashoka's Religious Support",
-	"auraDescription": "Allied temples and temple technologies -50% cost, in resources and time."
+	"auraDescription": "Allied temples −50% resource costs and building time; temple technologies −50% resource costs and research time."
 }

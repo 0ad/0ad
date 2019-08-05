@@ -9,6 +9,7 @@
   </Footprint>
   <Identity>
     <Civ>maur</Civ>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <SpecificName>Harmya</SpecificName>
     <Icon>gaia/special_stoa.png</Icon>
   </Identity>
@@ -36,6 +37,6 @@
     <Weight>65535</Weight>
   </TerritoryInfluence>
   <VisualActor>
-    <Actor>structures/mauryans/misc_structure_01.xml</Actor>
+    <Actor>structures/mauryas/misc_structure_01.xml</Actor>
   </VisualActor>
 </Entity>

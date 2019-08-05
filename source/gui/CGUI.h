@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ class JSObject; // The GUI stores a JSObject*, so needs to know that JSObject ex
 class IGUIObject;
 class CGUISpriteInstance;
 struct SGUIText;
-struct CColor;
+struct CGUIColor;
 struct SGUIText;
 struct SGUIIcon;
 class CGUIString;
@@ -68,12 +68,10 @@ class CGUI
 	NONCOPYABLE(CGUI);
 
 	friend class IGUIObject;
-	friend class IGUIScrollBarOwner;
-	friend class CInternalCGUIAccessorBase;
 
 private:
 	// Private typedefs
-	typedef IGUIObject *(*ConstructObjectFunction)();
+	using ConstructObjectFunction = IGUIObject* (*)(CGUI*);
 
 public:
 	CGUI(const shared_ptr<ScriptRuntime>& runtime);
@@ -96,6 +94,14 @@ public:
 	 * @param EventName String representation of event name
 	 */
 	void SendEventToAll(const CStr& EventName);
+
+	/**
+	 * Sends a specified script event to every object
+	 *
+	 * @param EventName String representation of event name
+	 * @param paramData JS::HandleValueArray storing the arguments passed to the event handler.
+	 */
+	void SendEventToAll(const CStr& EventName, JS::HandleValueArray paramData);
 
 	/**
 	 * Displays the whole GUI
@@ -124,7 +130,7 @@ public:
 	 * @param z z value.
 	 * @param clipping
 	 */
-	void DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping);
+	void DrawText(SGUIText& Text, const CGUIColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping);
 
 	/**
 	 * Clean up, call this to clean up all memory allocated
@@ -172,6 +178,8 @@ public:
 	 * Returns the GUI object under the mouse, or NULL if none.
 	 */
 	IGUIObject* FindObjectUnderMouse() const;
+
+	const SGUIScrollBarStyle* GetScrollBarStyle(const CStr& style) const;
 
 	/**
 	 * The GUI needs to have all object types inputted and
@@ -235,7 +243,7 @@ public:
 	 * Get pre-defined color (if it exists)
 	 * Returns false if it fails.
 	 */
-	bool GetPreDefinedColor(const CStr& name, CColor& Output) const;
+	bool GetPreDefinedColor(const CStr& name, CGUIColor& Output) const;
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 	JS::Value GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
@@ -564,7 +572,7 @@ private:
 	 * color. Of course the colors have to be declared in XML, there are
 	 * no hard-coded values.
 	 */
-	std::map<CStr, CColor>	m_PreDefinedColors;
+	std::map<CStr, CGUIColor> m_PreDefinedColors;
 
 	//@}
 	//--------------------------------------------------------

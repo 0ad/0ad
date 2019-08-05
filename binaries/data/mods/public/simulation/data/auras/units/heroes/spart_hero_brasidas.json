@@ -3,7 +3,7 @@
 	"radius": 60,
 	"affects": ["Javelin Infantry Citizen"],
 	"modifications": [
-		{ "value": "Attack/Ranged/Pierce", "multiply": 1.25 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.25 },
 		{ "value": "Armour/Pierce", "add": 1 },
 		{ "value": "Armour/Hack", "add": 1 },
 		{ "value": "Armour/Crush", "add": 1 }

@@ -18,6 +18,13 @@ function testFoundation(...mocks)
 {
 	ResetState();
 
+	let finalTemplate = "structures/athen_civil_centre.xml";
+	let foundationHP = 1;
+	let maxHP = 100;
+	let rot = new Vector3D(1, 2, 3);
+	let pos = new Vector2D(4, 5);
+	let cmpFoundation;
+
 	AddMock(SYSTEM_ENTITY, IID_Trigger, {
 		"CallEvent": () => {},
 	});
@@ -39,12 +46,6 @@ function testFoundation(...mocks)
 		TS_ASSERT_EQUALS(source, newEnt);
 	});
 	Engine.RegisterGlobal("MT_EntityRenamed", "entityRenamed");
-
-	let finalTemplate = "structures/athen_civil_centre.xml";
-	let foundationHP = 1;
-	let maxHP = 100;
-	let rot = new Vector3D(1, 2, 3);
-	let pos = new Vector2D(4, 5);
 
 	AddMock(foundationEnt, IID_Cost, {
 		"GetBuildTime": () => 50,
@@ -119,7 +120,7 @@ function testFoundation(...mocks)
 		TS_ASSERT_EQUALS(template, "construction|" + finalTemplate);
 		return previewEnt;
 	};
-	let cmpFoundation = ConstructComponent(foundationEnt, "Foundation", {});
+	cmpFoundation = ConstructComponent(foundationEnt, "Foundation", {});
 	cmpFoundation.InitialiseConstruction(player, finalTemplate);
 
 	TS_ASSERT_EQUALS(cmpFoundation.owner, player);

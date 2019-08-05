@@ -12,17 +12,22 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>25.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>60.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
-      <Spread>1.5</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <Speed>75.0</Speed>
+        <Spread>1.5</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <RangeOverlay>
         <LineTexture>outline_border.png</LineTexture>
         <LineTextureMask>outline_border_mask.png</LineTextureMask>
@@ -74,7 +79,7 @@
     <Civ>rome</Civ>
     <GenericName>Entrenched Army Camp</GenericName>
     <SpecificName>Castrum Vallum</SpecificName>
-    <Classes datatype="tokens">ArmyCamp</Classes>
+    <Classes datatype="tokens">ArmyCamp ConquestCritical</Classes>
     <Icon>structures/roman_camp.png</Icon>
     <Tooltip>Build in neutral or enemy territory. Construct siege weapons and train citizen-soldiers. Heal garrisoned units slowly.</Tooltip>
   </Identity>
@@ -92,19 +97,18 @@
       units/{civ}_infantry_spearman_a
       units/{civ}_infantry_javelinist_b
       units/{civ}_cavalry_spearman_b
-      units/{civ}_mechanical_siege_ballista_packed
-      units/{civ}_mechanical_siege_scorpio_packed
-      units/{civ}_mechanical_siege_oxybeles_packed
-      units/{civ}_mechanical_siege_lithobolos_packed
-      units/{civ}_mechanical_siege_ram
-      units/{civ}_mechanical_siege_tower
+      units/{civ}_siege_ballista_packed
+      units/{civ}_siege_scorpio_packed
+      units/{civ}_siege_oxybeles_packed
+      units/{civ}_siege_lithobolos_packed
+      units/{civ}_siege_ram
+      units/{civ}_siege_tower
     </Entities>
   </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
       <constructed>interface/complete/building/complete_broch.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryDecay>

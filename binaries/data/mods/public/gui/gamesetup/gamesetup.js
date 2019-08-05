@@ -724,6 +724,7 @@ var g_Dropdowns = {
  */
 var g_PlayerDropdowns = {
 	"playerAssignment": {
+		"tooltip": (playerIdx) => translate("Select player."),
 		"labels": (playerIdx) => g_PlayerAssignmentList.Name || [],
 		"colors": (playerIdx) => g_PlayerAssignmentList.Color || [],
 		"ids": (playerIdx) => g_PlayerAssignmentList.Choice || [],
@@ -758,6 +759,7 @@ var g_PlayerDropdowns = {
 		"autocomplete": 100,
 	},
 	"playerTeam": {
+		"tooltip": (playerIdx) => translate("Select player's team."),
 		"labels": (playerIdx) => g_PlayerTeamList.label,
 		"ids": (playerIdx) => g_PlayerTeamList.id,
 		"default": (playerIdx) => 0,
@@ -769,7 +771,7 @@ var g_PlayerDropdowns = {
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 	},
 	"playerCiv": {
-		"tooltip": (hoverIdx, playerIdx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Chose the civilization for this player"),
+		"tooltip": (hoverIdx, playerIdx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Choose the civilization for this player."),
 		"labels": (playerIdx) => g_PlayerCivList.name,
 		"colors": (playerIdx) => g_PlayerCivList.color,
 		"ids": (playerIdx) => g_PlayerCivList.code,
@@ -783,6 +785,7 @@ var g_PlayerDropdowns = {
 		"autocomplete": 90,
 	},
 	"playerColorPicker": {
+		"tooltip": (playerIdx) => translate("Pick a color."),
 		"labels": (playerIdx) => g_PlayerColorPickerList.map(color => "■"),
 		"colors": (playerIdx) => g_PlayerColorPickerList.map(color => rgbToGuiColor(color)),
 		"ids": (playerIdx) => g_PlayerColorPickerList.map((color, index) => index),
@@ -897,7 +900,7 @@ var g_Checkboxes = Object.assign(
 		},
 		"disableTreasures": {
 			"title": () => translate("Disable Treasures"),
-			"tooltip": () => translate("Disable all treasures on the map."),
+			"tooltip": () => translate("Do not add treasures to the map."),
 			"default": () => false,
 			"defined": () => g_GameAttributes.settings.DisableTreasures !== undefined,
 			"get": () => g_GameAttributes.settings.DisableTreasures,
@@ -997,7 +1000,7 @@ var g_MiscControls = {
 		},
 	},
 	"chatInput": {
-		"tooltip": () => colorizeAutocompleteHotkey(translate("Press %(hotkey)s to autocomplete playernames or settings.")),
+		"tooltip": () => colorizeAutocompleteHotkey(translate("Press %(hotkey)s to autocomplete player names or settings.")),
 	},
 	"cheatWarningText": {
 		"hidden": () => !g_IsNetworked || !g_GameAttributes.settings.CheatsEnabled,
@@ -1027,7 +1030,7 @@ var g_MiscControls = {
 				!g_IsNetworked || Object.keys(g_PlayerAssignments).every(guid =>
 					g_PlayerAssignments[guid].status || g_PlayerAssignments[guid].player == -1) ?
 					translate("Start a new game with the current settings.") :
-					translate("Start a new game with the current settings (disabled until all players are ready)"),
+					translate("Start a new game with the current settings (disabled until all players are ready)."),
 		"enabled": () => !g_GameStarted && (
 		                   !g_IsController ||
 		                   Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].status ||
@@ -1246,6 +1249,9 @@ function slideSettingsPanel(dt)
  */
 function updateSettingsPanelPosition(offset)
 {
+	if (!offset)
+		return;
+
 	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
 	let settingsPanelSize = settingsPanel.size;
 	settingsPanelSize.left += offset;
@@ -1614,6 +1620,9 @@ function onClientJoin(newGUID, newAssignments)
 		"username": playername
 	});
 
+	if (newGUID != Engine.GetPlayerGUID() && Object.keys(g_PlayerAssignments).length)
+		soundNotification("gamesetup.join");
+
 	let isRejoiningPlayer = newAssignments[newGUID].player != -1;
 
 	// Assign the client (or only buddies if prefered) to an unused playerslot and rejoining players to their old slot
@@ -1704,7 +1713,7 @@ function getFilteredMaps(filterFunc)
 		let file = g_GameAttributes.mapPath + mapFile;
 		let mapData = loadMapData(file);
 
-		if (!mapData.settings || filterFunc && !filterFunc(mapData.settings.Keywords || []))
+		if (!mapData || !mapData.settings || filterFunc && !filterFunc(mapData.settings.Keywords || []))
 			continue;
 
 		maps.push({
@@ -2102,7 +2111,7 @@ function updateGUIDropdown(name, playerIdx = undefined)
 	let indexHidden = isControlArrayElementHidden(playerIdx);
 	let obj = (playerIdx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
 
-	let hidden = indexHidden || obj.hidden && obj.hidden(playerIdx);
+	let hidden = indexHidden || !!obj.hidden && obj.hidden(playerIdx);
 	let selected = hidden ? -1 : dropdown.list_data.indexOf(String(obj.get(playerIdx)));
 	let enabled = !indexHidden && (!obj.enabled || obj.enabled(playerIdx));
 
@@ -2133,7 +2142,7 @@ function updateGUICheckbox(name)
 	let obj = g_Checkboxes[name];
 
 	let checked = obj.get();
-	let hidden = obj.hidden && obj.hidden();
+	let hidden = !!obj.hidden && obj.hidden();
 	let enabled = !obj.enabled || obj.enabled();
 
 	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);

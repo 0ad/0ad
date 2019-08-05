@@ -69,14 +69,11 @@
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <WalkSpeed op="mul">0.6</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.6</Speed>
-    </Run>
   </UnitMotion>
   <Vision>
     <Range>50</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/mauryans/support_elephant.xml</Actor>
+    <Actor>units/mauryas/support_elephant.xml</Actor>
   </VisualActor>
 </Entity>

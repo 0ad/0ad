@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_ram">
+  <Footprint replace="">
+    <Square width="8.0" depth="12.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>maur</Civ>
+    <Icon>units/maur_siege_ram.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/mauryas/siege_ram.xml</Actor>
+  </VisualActor>
+</Entity>

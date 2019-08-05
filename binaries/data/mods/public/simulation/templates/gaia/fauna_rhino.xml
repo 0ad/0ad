@@ -2,9 +2,11 @@
 <Entity parent="template_unit_fauna_hunt_aggressive">
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>20.0</Crush>
+      <Damage>
+        <Hack>20.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>20.0</Crush>
+      </Damage>
       <MaxRange>6.0</MaxRange>
       <RepeatTime>2000</RepeatTime>
     </Melee>
@@ -14,8 +16,8 @@
     <Height>2.0</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Rhinoceros</SpecificName>
+    <GenericName>White Rhinoceros</GenericName>
+    <SpecificName>Ceratotherium simum</SpecificName>
     <Icon>gaia/fauna_rhino.png</Icon>
   </Identity>
   <Position>

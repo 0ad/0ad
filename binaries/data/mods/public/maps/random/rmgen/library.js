@@ -22,23 +22,10 @@ const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
 
 /**
- * Number of impassable, unexplorable tiles at the map border.
- */
-const MAP_BORDER_WIDTH = 3;
-
-const g_DamageTypes = new DamageTypes();
-
-/**
  * Constants needed for heightmap_manipulation.js
  */
 const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE; // Engine limit, Roughly 700 meters
 const MIN_HEIGHT = - SEA_LEVEL;
-
-/**
- * Length of one tile of the terrain grid in metres.
- * Useful to transform footprint sizes of templates to the coordinate system used by getMapSize.
- */
-const TERRAIN_TILE_SIZE = Engine.GetTerrainTileSize();
 
 const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
 

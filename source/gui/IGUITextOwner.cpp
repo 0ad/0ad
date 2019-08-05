@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,13 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
+#include "IGUITextOwner.h"
 
-IGUITextOwner::IGUITextOwner() : m_GeneratedTextsValid(false)
+#include "gui/GUI.h"
+#include "gui/scripting/JSInterface_IGUITextOwner.h"
+
+IGUITextOwner::IGUITextOwner(CGUI* pGUI)
+	: IGUIObject(pGUI), m_GeneratedTextsValid(false)
 {
 }
 
@@ -27,6 +31,14 @@ IGUITextOwner::~IGUITextOwner()
 {
 	for (SGUIText* const& t : m_GeneratedTexts)
 		delete t;
+}
+
+void IGUITextOwner::CreateJSObject()
+{
+	IGUIObject::CreateJSObject();
+
+	JSI_IGUITextOwner::RegisterScriptFunctions(
+		GetGUI()->GetScriptInterface()->GetContext(), m_JSObject);
 }
 
 void IGUITextOwner::AddText(SGUIText* text)
@@ -47,6 +59,7 @@ void IGUITextOwner::HandleMessage(SGUIMessage& Message)
 		if (Message.value == "size" || Message.value == "z" ||
 			Message.value == "absolute" || Message.value == "caption" ||
 			Message.value == "font" || Message.value == "textcolor" ||
+			Message.value == "text_align" || Message.value == "text_valign" ||
 			Message.value == "buffer_zone")
 		{
 			m_GeneratedTextsValid = false;
@@ -67,7 +80,7 @@ void IGUITextOwner::UpdateCachedSize()
 	m_GeneratedTextsValid = false;
 }
 
-void IGUITextOwner::DrawText(size_t index, const CColor& color, const CPos& pos, float z, const CRect& clipping)
+void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping)
 {
 	if (!m_GeneratedTextsValid)
 	{
@@ -106,6 +119,21 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUITex
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");
 		break;
 	}
+}
+
+CSize IGUITextOwner::CalculateTextSize()
+{
+	if (!m_GeneratedTextsValid)
+	{
+		SetupText();
+		m_GeneratedTextsValid = true;
+	}
+
+	if (m_GeneratedTexts.empty())
+		return CSize();
+
+	// GUI Object types that use multiple texts may override this function.
+	return m_GeneratedTexts[0]->m_Size;
 }
 
 bool IGUITextOwner::MouseOverIcon()

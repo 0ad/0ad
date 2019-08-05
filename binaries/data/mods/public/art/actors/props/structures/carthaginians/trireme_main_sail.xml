@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/main_sail_base.xml" name="Trireme Sail">
+      <mesh>props/kart_trireme_main_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/kart_sail_01.xml" name="tree"/>
+    <variant frequency="100" file="others/ships/kart_sail_02.xml" name="tanit"/>
+    <variant frequency="100" file="others/ships/kart_sail_03.xml" name="other"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

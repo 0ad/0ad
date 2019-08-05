@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,8 +27,8 @@
 
 #include <boost/random/linear_congruential.hpp>
 #include <boost/unordered_map.hpp>
-
 #include <map>
+#include <set>
 #include <unordered_map>
 
 class IComponent;
@@ -195,6 +195,11 @@ public:
 	 * If @p allowCreate is true and there is no existing CEntityHandle, a new handle will be allocated.
 	 */
 	CEntityHandle LookupEntityHandle(entity_id_t ent, bool allowCreate = false);
+
+	/**
+	 * Returns true if the entity with id @p ent exists.
+	 */
+	bool EntityExists(entity_id_t ent) const;
 
 	/**
 	 * Returns a new entity ID that has never been used before.

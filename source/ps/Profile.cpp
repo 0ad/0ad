@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 
 #include "Profile.h"
 #include "ProfileViewer.h"
+#include "ThreadUtil.h"
+
 #include "lib/timer.h"
 
 #if OS_WIN && !defined(NDEBUG)
@@ -753,4 +755,21 @@ void CProfileManager::PerformStructuralReset()
 	root->Call();
 	current = root;
 	g_ProfileViewer.AddRootTable(root->display_table, true);
+}
+
+CProfileSample::CProfileSample(const char* name)
+{
+	if (CProfileManager::IsInitialised())
+	{
+		// The profiler is only safe to use on the main thread
+		if(ThreadUtil::IsMainThread())
+			g_Profiler.Start(name);
+	}
+}
+
+CProfileSample::~CProfileSample()
+{
+	if (CProfileManager::IsInitialised())
+		if(ThreadUtil::IsMainThread())
+			g_Profiler.Stop();
 }

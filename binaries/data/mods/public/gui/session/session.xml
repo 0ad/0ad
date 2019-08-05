@@ -24,7 +24,7 @@
 	</action>
 
 	<action on="ReplayOutOfSync">
-		onReplayOutOfSync();
+		onReplayOutOfSync(arguments[0], arguments[1], arguments[2]);
 	</action>
 
 	<!-- Hotkeys won't work properly unless outside menu -->

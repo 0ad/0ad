@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -80,6 +80,8 @@
 
 #include "lib/timer.h"
 #include "ps/ThreadUtil.h"
+
+#include <mutex>
 
 struct mg_context;
 
@@ -453,7 +455,7 @@ private:
 
 	CProfiler2GPU* m_GPU;
 
-	CMutex m_Mutex;
+	std::mutex m_Mutex;
 	std::vector<ThreadStorage*> m_Threads; // thread-safe; protected by m_Mutex
 };
 

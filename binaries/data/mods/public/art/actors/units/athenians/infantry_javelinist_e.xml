@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/thracian_cap_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_thrace.xml" attachpoint="head"/>
@@ -15,14 +15,64 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic-white">
+    <variant frequency="1" name="tunic-thracian-1d">
       <textures>
-        <texture file="skeletal/hele_ijv_e_2.dds" name="baseTex"/>
+        <texture file="skeletal/thrac_tunic_advanced_1_d.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic-brown">
+    <variant frequency="1" name="tunic-thracian-1e">
       <textures>
-        <texture file="skeletal/hele_ijv_e_3.dds" name="baseTex"/>
+        <texture file="skeletal/thrac_tunic_advanced_1_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-1f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_1_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-2d">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_2_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-2e">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_2_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-2f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_2_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-3d">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_3_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-3e">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_3_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-3f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_3_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-4d">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_4_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-4e">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_4_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-4f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_4_f.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,15 +1,16 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# ValihrAnt <go.3@inbox.lv>, 2018
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
 # Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:12+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-24 14:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +236,7 @@ msgstr ""
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
+" %(_player_)s."
 msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:88
@@ -546,7 +547,7 @@ msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmo
 msgid "The production queue is full."
 msgstr "Ražošanas rinda ir pilna."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Nevar atrast brīvu vietu, kur iznākt apmācītām vienībām"
 
@@ -593,7 +594,7 @@ msgstr "Pieprasīts uzbrukums pret %(_player_)s."
 
 #: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
-msgstr ""
+msgstr "Nav uzpērkamas vienības"
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
@@ -603,7 +604,7 @@ msgstr "Nav iespējams izvest garnizona vienību(-as)"
 msgid "Some unit(s) can't go back to work"
 msgstr "Daža(s) vienība(s) nevar atgriezties pie darba"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Būves tehnoloģisks priekšnosacījums nav sasniegts."
 
@@ -701,7 +702,7 @@ msgstr ""
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "Sakauj pretiniekus, nogalinot visas to vienības un iznīcinot visas to struktūras."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -709,7 +710,7 @@ msgstr "Pilnīga uzvara"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "Sakauj pretiniekus, iznīcinot visas to struktūras."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -717,7 +718,7 @@ msgstr "Būvju uzvara"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "Sakauj pretiniekus, nogalinot visas to vienības."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -735,7 +736,8 @@ msgstr "Varoņa slepkavība"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
@@ -881,5 +883,5 @@ msgstr "MI Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr ""

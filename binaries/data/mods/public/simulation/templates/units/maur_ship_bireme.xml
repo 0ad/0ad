@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_ship_bireme">
+<Entity parent="template_unit_ship_bireme">
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Yudhpot</SpecificName>
     <Icon>units/maur_ship_bireme.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/mauryans/bireme.xml</Actor>
+    <Actor>structures/mauryas/bireme.xml</Actor>
   </VisualActor>
 </Entity>

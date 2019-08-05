@@ -1,15 +1,15 @@
 {
-  "genericName": "Stone Foundations",
-  "description": "Outposts survive twice as long in neutral territory.",
-  "cost": { "food": 0, "wood": 0, "stone": 100, "metal": 0 },
-  "requirements": { "tech": "phase_village" },
-  "requirementsTooltip": "Unlocked in Town Phase.",
-  "icon": "blocks_three.png",
-  "researchTime": 40,
-  "tooltip": "Outposts -50% territory decay rate.",
-  "modifications": [
-    { "value": "TerritoryDecay/DecayRate", "multiply": 0.5 }
-  ],
-  "affects": ["Outpost"],
-  "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+	"genericName": "Stone Foundations",
+	"description": "Outposts survive twice as long in neutral territory.",
+	"cost": { "food": 0, "wood": 0, "stone": 100, "metal": 0 },
+	"requirements": { "tech": "phase_village" },
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "blocks_three.png",
+	"researchTime": 40,
+	"tooltip": "Outposts -50% territory decay rate.",
+	"modifications": [
+		{ "value": "TerritoryDecay/DecayRate", "multiply": 0.5 }
+	],
+	"affects": ["Outpost"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

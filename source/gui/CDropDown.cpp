@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,14 +19,16 @@
 
 #include "CDropDown.h"
 
+#include "gui/CGUIColor.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-CDropDown::CDropDown()
-	: m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
+CDropDown::CDropDown(CGUI* pGUI)
+	: CList(pGUI), IGUIObject(pGUI),
+	  m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
 {
 	AddSetting(GUIST_float,					"button_width");
 	AddSetting(GUIST_float,					"dropdown_size");
@@ -48,10 +50,10 @@ CDropDown::CDropDown()
 	AddSetting(GUIST_EVAlign,				"text_valign");
 
 	// Add these in CList! And implement TODO
-	//AddSetting(GUIST_CColor,				"textcolor_over");
-	//AddSetting(GUIST_CColor,				"textcolor_pressed");
-	AddSetting(GUIST_CColor,				"textcolor_selected");
-	AddSetting(GUIST_CColor,				"textcolor_disabled");
+	//AddSetting(GUIST_CGUIColor,				"textcolor_over");
+	//AddSetting(GUIST_CGUIColor,				"textcolor_pressed");
+	AddSetting(GUIST_CGUIColor,				"textcolor_selected");
+	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
 
 	// Scrollbar is forced to be true.
 	GUI<bool>::SetSetting(this, "scrollbar", true);
@@ -486,7 +488,7 @@ void CDropDown::Draw()
 	CGUISpriteInstance* sprite2;
 	CGUISpriteInstance* sprite2_second;
 	int cell_id, selected = 0;
-	CColor color;
+	CGUIColor color;
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
@@ -494,7 +496,7 @@ void CDropDown::Draw()
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite2);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 	GUI<int>::GetSetting(this, "selected", selected);
-	GUI<CColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled", color);
+	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled", color);
 
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, enabled ? "sprite" : "sprite_disabled", sprite);
 	GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);

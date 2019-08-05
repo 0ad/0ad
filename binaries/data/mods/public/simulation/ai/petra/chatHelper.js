@@ -82,7 +82,7 @@ m.answerDiplomacyRequestMessages = {
 		"acceptWithTribute": [
 			markForTranslation("I will ally with you, %(_player_)s, but only if you send me a tribute of %(_amount_)s %(_resource_)s."),
 			markForTranslation("%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s before I accept an alliance with you."),
-			markForTranslation("Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed, %(_player_)s,")
+			markForTranslation("Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed, %(_player_)s.")
 		],
 		"waitingForTribute": [
 			markForTranslation("%(_player_)s, my offer still stands. I will ally with you only if you send me a tribute of %(_amount_)s %(_resource_)s."),

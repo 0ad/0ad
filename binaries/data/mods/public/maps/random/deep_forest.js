@@ -162,7 +162,7 @@ createArea(
 
 // Woods and general hight map
 for (var x = 0; x < mapSize; x++)
-	for (var z = 0;z < mapSize;z++)
+	for (var z = 0; z < mapSize; z++)
 	{
 		let position = new Vector2D(x, z);
 

@@ -47,7 +47,9 @@ Status debug_CaptureContext(void* UNUSED(context))
 
 void debug_break()
 {
+#ifndef NDEBUG
 	kill(getpid(), SIGTRAP);
+#endif
 }
 
 #define DEBUGGER_WAIT 3

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -266,20 +266,25 @@ CMessage* CMessageTerritoryPositionChanged::FromJSVal(const ScriptInterface& scr
 
 ////////////////////////////////
 
-JS::Value CMessageMotionChanged::ToJSVal(const ScriptInterface& scriptInterface) const
+const std::array<const char*, CMessageMotionUpdate::UpdateType::LENGTH> CMessageMotionUpdate::UpdateTypeStr = { {
+	"likelySuccess", "likelyFailure", "obstructed"
+} };
+
+JS::Value CMessageMotionUpdate::ToJSVal(const ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	SET_MSG_PROPERTY(starting);
-	SET_MSG_PROPERTY(error);
+	JS::RootedValue prop(cx);
+
+	if (!JS_SetProperty(cx, obj, UpdateTypeStr[updateType], JS::TrueHandleValue))
+		return JS::UndefinedValue();
+
 	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageMotionChanged::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
+CMessage* CMessageMotionUpdate::FromJSVal(const ScriptInterface&, JS::HandleValue)
 {
-	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(bool, starting);
-	GET_MSG_PROPERTY(bool, error);
-	return new CMessageMotionChanged(starting, error);
+	LOGWARNING("CMessageMotionUpdate::FromJSVal not implemented");
+	return NULL;
 }
 
 ////////////////////////////////
@@ -291,7 +296,7 @@ JS::Value CMessageTerrainChanged::ToJSVal(const ScriptInterface& scriptInterface
 	SET_MSG_PROPERTY(j0);
 	SET_MSG_PROPERTY(i1);
 	SET_MSG_PROPERTY(j1);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 CMessage* CMessageTerrainChanged::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
@@ -331,7 +336,7 @@ CMessage* CMessageVisibilityChanged::FromJSVal(const ScriptInterface& scriptInte
 JS::Value CMessageWaterChanged::ToJSVal(const ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 CMessage* CMessageWaterChanged::FromJSVal(const ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))

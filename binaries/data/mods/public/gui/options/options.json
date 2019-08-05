@@ -308,6 +308,12 @@
 				"label": "Nick Notification",
 				"tooltip": "Receive audio notification when someone types your nick.",
 				"config": "sound.notify.nick"
+			},
+			{
+				"type": "boolean",
+				"label": "Game Setup - New Player Notification",
+				"tooltip": "Receive audio notification when a new client joins the game setup.",
+				"config": "sound.notify.gamesetup.join"
 			}
 		]
 	},
@@ -377,6 +383,12 @@
 		"tooltip": "These settings only affect the multiplayer.",
 		"options":
 		[
+			{
+				"type": "boolean",
+				"label": "TLS Encryption",
+				"tooltip": "Protect login and data exchanged with the lobby server using TLS encryption.",
+				"config": "lobby.tls"
+			},
 			{
 				"type": "number",
 				"label": "Chat Backlog",
@@ -477,6 +489,12 @@
 				"label": "Rank icon above status bar",
 				"tooltip": "Show rank icons above status bars.",
 				"config": "gui.session.rankabovestatusbar"
+			},
+			{
+				"type": "boolean",
+				"label": "Experience status bar",
+				"tooltip": "Show an experience status bar above each selected unit.",
+				"config": "gui.session.experiencestatusbar"
 			},
 			{
 				"type": "boolean",

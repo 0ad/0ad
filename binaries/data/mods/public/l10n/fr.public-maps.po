@@ -1,15 +1,16 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2015
-# Cyril Mercier <cyril.mercier21@gmail.com>, 2018
+# Cyril Mercier, 2018
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2016
 # David D, 2018
 # François Poirotte <clicky@erebot.net>, 2016
+# Glorfindel Of Gondolin, 2019
 # Hadri man <hadriman@live.fr>, 2018
 # Jérémi Mapas <jeremi.mapas@gmail.com>, 2017
 # Jo Du <jojo337@live.fr>, 2017-2018
@@ -26,6 +27,7 @@
 # silure, 2014
 # Polakrity <sxk-fr@live.fr>, 2014,2017-2018
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
+# Tim Jayet <timjayet@gmail.com>, 2019
 # oiseauroch <tobollive@aol.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
 # Valentin Guidal <valentin.guidal@gmail.com>, 2017
@@ -34,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-24 11:58+0000\n"
-"Last-Translator: Hadri man <hadriman@live.fr>\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-07-01 12:43+0000\n"
+"Last-Translator: Tim Jayet <timjayet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +138,7 @@ msgstr "Forêt des Ardennes"
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
-" mountain range in the north-west africa."
+" mountain range in the Northwest Africa."
 msgstr "Un terrain accidenté avec peu de place pour les bâtiments et peu de bois. Représente la chaîne de montagnes du nord-ouest de l'Afrique."
 
 #: maps/random/atlas_mountains.jsonsettings.Name
@@ -333,15 +335,15 @@ msgstr "Volcan éteint"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
-"The \"Island of Meroe\", a vast peninsula flanked by the Nile and Atbarah "
+"The \"Island of Meroë\", a vast peninsula flanked by the Nile and Atbarah "
 "rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr "\"L'Île de Meroë\" est une vaste péninsule entre le Nil et les fleuves Atbarah, ayant formé le centre de l'antique Kush. Où les déserts durs commencent à céder la place aux savanes semi-arides et de petites forêts d'acacias pointent dans le paysage. La zone est riche en ressources et le Nil éternel apporte la vie, mais de grands dangers guettent sur la rive opposée."
+msgstr "\"L'Île de Meroë\" est une énorme péninsule entre le Nil et les fleuves Atbarah, ayant formé le centre de l'antique Kush. Où les déserts durs commencent à céder la place aux savanes semi-arides et de petites forêts d'acacias pointent dans le paysage. La zone est riche en ressources et le Nil omniprésent apporte la vie, mais de graves menaces (métiers à tisser ?) sur la rive opposée."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
-msgid "Fields of Meroe"
+msgid "Fields of Meroë"
 msgstr "Champs de Méroé"
 
 #: maps/random/flood.jsonsettings.Description
@@ -416,10 +418,10 @@ msgstr "Port"
 #: maps/random/hellas.jsonsettings.Description
 msgid ""
 "Hellas, home to the Greeks and through them birthplace to the foundation of "
-"western civilization. Yet the land lacks unity, countless cit-states vie for"
-" dominance. Will you lead your polis to glory and greatness or see it fall "
-"into oblivion, erased from the histories?"
-msgstr "Hellade, la maison des Grecs et à travers eux le lieu de naissance de la fondation de la civilisation occidentale. Pourtant, le pays manque d'unité, d'innombrables cit-états luttent pour la domination. Voulez-vous conduire votre polis à la gloire et à la grandeur ou le voir tomber dans l'oubli, effacé des histoires ?"
+"western civilization. Yet the land lacks unity, countless city-states vie "
+"for dominance. Will you lead your polis to glory and greatness or see it "
+"fall into oblivion, erased from the histories?"
+msgstr "Hellade, la maison des Grecs et à travers eux le lieu de naissance de la fondation de la civilisation occidentale. Pourtant, le pays manque d'unité, d'innombrables cités-états luttent pour la domination. Voulez-vous conduire votre polis à la gloire et à la grandeur ou le voir tomber dans l'oubli, effacé des histoires ?"
 
 #: maps/random/hellas.jsonsettings.Name
 msgid "Hellas"
@@ -596,7 +598,6 @@ msgid ""
 msgstr "La Méditerranée, berceau des Phéniciens, des Grecs, des Égyptiens et plus tard des Romains. Ils ont pris le savoir rudimentaire et les principes d'organisation de la Mésopotamie et les ont perfectionné, faisant de la côte Méditerranéenne le centre de l'apprentissage et du savoir, et posant ainsi les fondations de la civilisation telle que nous la connaissons aujourd'hui. La mer Méditerranée est presque entièrement entourée de terre : au nord par la Gallia Transalpina (Gaule transalpine), l'Italie, la Grèce (Graecia) et l'Anatolie, à l'est par la Syrie, au sud par la Lybie et la Mauritanie, et à l'ouest par l'Ibérie. Le nom Méditerranée est dérivé du latin, mais les Romains eux-mêmes préféraient le terme « Mare internum » ou même « Mare nostrum »."
 
 #: maps/random/mediterranean.jsonsettings.Name
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Méditerranée"
 
@@ -918,353 +919,6 @@ msgstr "Un lac entouré de collines."
 msgid "Wild Lake"
 msgstr "Lac sauvage"
 
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Les eaux vitalisantes du Nil favorisent la vie le long de ses rives, tandis que la longue saison sèche roussit la terre."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Les eaux vitalisantes du Nil favorisent la vie le long de ses rives, tandis que la longue saison sèche roussit la terre."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgid "Dry Season"
-msgstr "Saison sèche"
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Saison sèche"
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "En se délectant de la pluie tant attendue, le terrain cuit se transforme en un refuge luxuriant tant pour l'homme que pour la bête."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "En se délectant de la pluie tant attendue, le terrain cuit se transforme en un refuge luxuriant tant pour l'homme que pour la bête."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgid "Rainy Season"
-msgstr "Saison des pluies"
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Saison des pluies"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Une région située dans de hautes montages enneigées. Des vents mordants balayent les abondantes forêts de conifères, ce qui fait même frissonner les plus résistants chevreuils et chèvres de montagne ."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Une région située dans de hautes montages enneigées. Des vents mordants balayent les abondantes forêts de conifères, ce qui fait même frissonner les plus résistants chevreuils et chèvres de montagne ."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgid "Alpine"
-msgstr "Alpes"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpes"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "L'automne est à son apogée. Le paysage possède un impressionnant mélange de couleurs irrévocablement entremêlées. Les hêtres et les chênes natifs de cette zone tempérée présentent un feuillage multicolore tandis que les pins se montrent indifférents à l'hiver qui approche."
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "L'automne est à son apogée. Le paysage possède un impressionnant mélange de couleurs irrévocablement entremêlées. Les hêtres et les chênes natifs de cette zone tempérée présentent un feuillage multicolore tandis que les pins se montrent indifférents à l'hiver qui approche."
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgid "Autumn"
-msgstr "Automne"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Automne"
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Une zone semi-désertique qui abrite de nombreux palmiers dattiers et des arbustes Tamarix. Des troupeaux de chameaux errent dans la nature et quelques gazelles occasionnelles sursautent de peur après être dérangées."
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Une zone semi-désertique qui abrite de nombreux palmiers dattiers et des arbustes Tamarix. Des troupeaux de chameaux errent dans la nature et quelques gazelles occasionnelles sursautent de peur après être dérangées."
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgid "Desert"
-msgstr "Désert"
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Désert"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Commencez dans une région bénie par le climat méditerranéen, une terre chaleureuse et accueillante. Les cyprès sont dans une lutte perpétuelle contre les palmiers dominants tandis que les cerfs pâlissent dans leur ombre, parfaitement inconscients."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Commencez dans une région bénie par le climat méditerranéen, une terre chaleureuse et accueillante. Les cyprès sont dans une lutte perpétuelle contre les palmiers dominants tandis que les cerfs pâlissent dans leur ombre, parfaitement inconscients."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "La savane, un climat sec dans lequel seuls les robustes Baobab prospèrent. Les gazelles solitaires pâturent l'herbe éparse, tandis que les troupeaux de zèbres, de gnous, de girafes ou d'éléphants errent dans la nature à la recherche de nourriture."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "La savane, un climat sec dans lequel seuls les robustes Baobab prospèrent. Les gazelles solitaires pâturent l'herbe éparse, tandis que les troupeaux de zèbres, de gnous, de girafes ou d'éléphants errent dans la nature à la recherche de nourriture."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgid "Savanna"
-msgstr "Savanne"
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savanne"
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Installez-vous dans les régions froides du Nord, l'habitat naturel du laineux bœuf musqué. Ici, vous pouvez dépérir sur votre sort et chasser un ou deux morses occasionnels."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Installez-vous dans les régions froides du Nord, l'habitat naturel du laineux bœuf musqué. Ici, vous pouvez dépérir sur votre sort et chasser un ou deux morses occasionnels."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgid "Snowy"
-msgstr "Enneigé"
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Enneigé"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Des prairies luxuriantes tapissent la terre, dans des endroits donnant lieu à de magnifiques et variées forêts feuillues. Peupliers, pins, hêtres et chênes se disputent la suprématie, mais cette guerre de racines est une lutte sans fin. De nombreux pommiers parsèment la terre, profitant aux cerfs et aux moutons qui se délectent sur les fruits tombés cette année."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Des prairies luxuriantes tapissent la terre, dans des endroits donnant lieu à de magnifiques et variées forêts feuillues. Peupliers, pins, hêtres et chênes se disputent la suprématie, mais cette guerre de racines est une lutte sans fin. De nombreux pommiers parsèment la terre, profitant aux cerfs et aux moutons qui se délectent sur les fruits tombés cette année."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgid "Temperate"
-msgstr "Tempéré"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Tempéré"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Explorez les mystérieux tropiques. Un environnement extrêmement vert et humide vous attends. Les grands arbres Toona verront d'un mauvais œil cette invasion de leur vie privée et des tigres féroces seront déterminés à défendre leur territoire à tout prix."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Explorez les mystérieux tropiques. Un environnement extrêmement vert et humide vous attends. Les grands arbres Toona verront d'un mauvais œil cette invasion de leur vie privée et des tigres féroces seront déterminés à défendre leur territoire à tout prix."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgid "Tropic"
-msgstr "Tropiques"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropiques"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Solidifiant son emprise, le froid rigoureux a réussi à geler le golfe. La glace épaisse formée est capable de résister à tout poids."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Solidifiant son emprise, le froid rigoureux a réussi à geler le golfe. La glace épaisse formée est capable de résister à tout poids."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgid "Frozen Lake"
-msgstr "Lac gelé "
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Lac Glacé"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Une brise de fin de printemps se propage dans les forêts de conifères du golfe de Botnie. Des troupeaux de cerfs parsèment le paysage et des lapins joueurs s'ébattent dans les sous-bois."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Une brise de fin de printemps se propage dans les forêts de conifères du golfe de Botnie. Des troupeaux de cerfs parsèment le paysage et des lapins joueurs s'ébattent dans les sous-bois."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgid "Late Spring"
-msgstr "Fin de printemps"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Fin de printemps"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "L'hiver s'est installé, tapissant la terre de ses premières neiges. Le golfe pas encore gelé offre d'excellentes possibilités de pêche."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "L'hiver s'est installé, tapissant la terre de ses premières neiges. Le golfe pas encore gelé offre d'excellentes possibilités de pêche."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgid "Winter"
-msgstr "Hiver"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Hiver"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Le printemps dans la région montagneuse, pourtant la chaleur a déjà commencée à se faire sentir. Les herbes vertes à courte durée de vie sont sur la retraite, frayant la voie pour roussir l'été."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Le printemps dans la région montagneuse, pourtant la chaleur a déjà commencée à se faire sentir. Les herbes vertes à courte durée de vie sont sur la retraite, frayant la voie pour roussir l'été."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgid "Spring"
-msgstr "Printemps"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Spring"
-msgstr "Printemps"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Une  terre aride, hostile. La chaleur brûlante a cuit le sol en une couleur brune maladive, et les arbres restants luttent pour la survie."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Une  terre aride, hostile. La chaleur brûlante a cuit le sol en une couleur brune maladive, et les arbres restants luttent pour la survie."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgid "Summer"
-msgstr "Été"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Été"
-
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
 msgstr "Il continue de pleuvoir, nous allons devoir évacuer vite !"
@@ -1281,11 +935,11 @@ msgstr "Nous devons trouver un emplacement sec, nos terres vont bientôt être s
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Le lac commence à avaler la terre, nous devons trouver un abri !"
 
-#: maps/random/jebel_barkal_triggers.js:578
+#: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
 msgstr "Napata attaque !"
 
-#: maps/random/jebel_barkal_triggers.js:590
+#: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "Napata va attaquer dans %(time)s!"
@@ -1328,47 +982,47 @@ msgstr "Plutôt pas"
 msgid "Say rather not"
 msgstr "Dire Plutôt pas"
 
-#: maps/scenarios/treasure_islands.js:10
+#: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Ramassez les trésors avant votre ennemi ! Que le meilleur gagne !"
 
-#: maps/scenarios/treasure_islands.js:29
+#: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
 msgstr "Pas encore de gagnant, préparez-vous pour la bataille !"
 
-#: maps/scenarios/treasure_islands.js:44
+#: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Le trésor de votre ennemi est rempli à ras bord, vous avez perdu !"
 
-#: maps/scenarios/treasure_islands.js:49
+#: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Votre trésor est rempli à ras bord, vous avez gagné !"
 
-#: maps/scenarios/treasure_islands.js:61
+#: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Plus vite ! Votre ennemi a presque gagné !"
 
-#: maps/scenarios/treasure_islands.js:72
+#: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Trésors restants à ramasser pour gagner : %(remainingTreasures)s !"
 
-#: maps/scenarios/treasure_islands.js:80
+#: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
 msgstr "Vous avez ramassé un trésor !"
 
-#: maps/scenarios/treasure_islands.js:92
+#: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
 msgstr "Battez votre ennemi pour gagner !"
 
-#: maps/scenarios/treasure_islands.js:101
+#: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] "%(lastPlayer)s a gagné (Trésor capturé)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont gagné (Trésor capturé)."
 
-#: maps/scenarios/treasure_islands.js:105
+#: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
@@ -1396,7 +1050,7 @@ msgstr "Printemps dans Arcadie, en Grèce. Les pluies de printemps ont gorgé ce
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[0].Name:27 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[1].Name:40 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
 #: Romans.xml:PlayerData[0].Name:39 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[0].Name:27 maps/scenarios/The Massacre of
@@ -1440,7 +1094,6 @@ msgstr "Printemps dans Arcadie, en Grèce. Les pluies de printemps ont gorgé ce
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:39 maps/skirmishes/Thessalian Plains
@@ -1463,7 +1116,7 @@ msgstr "Joueur 1"
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[2].Name:40 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
 #: Romans.xml:PlayerData[1].Name:39 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[1].Name:27 maps/scenarios/The Massacre of
@@ -1506,7 +1159,6 @@ msgstr "Joueur 1"
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:39 maps/skirmishes/Thessalian Plains
@@ -1741,7 +1393,7 @@ msgstr "Force d'invasion"
 #: maps/scenarios/Necropolis.xml:PlayerData[2].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[2].Name:27 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[2].Name:39 maps/scenarios/Siwa
+#: Gauls.xml:PlayerData[3].Name:40 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
@@ -2083,12 +1735,12 @@ msgid "Sandbox - The Athenians"
 msgstr "Test - Athéniens"
 
 #: maps/scenarios/Sandbox - Britons.xml:Description:39 maps/scenarios/Sandbox
-#: - Gauls.xml:Description:39
+#: - Gauls.xml:Description:40
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Jouer avec la faction gauloise dans un environnement de test idyllique."
 
 #: maps/scenarios/Sandbox - Britons.xml:PlayerData[3].Name:39
-#: maps/scenarios/Sandbox - Gauls.xml:PlayerData[3].Name:39
+#: maps/scenarios/Sandbox - Gauls.xml:PlayerData[4].Name:40
 msgid "Roman Interlopers"
 msgstr "Intrus romains"
 
@@ -2114,7 +1766,7 @@ msgstr "Gardiens"
 msgid "Sandbox - The Carthaginians"
 msgstr "Test - Carthaginois"
 
-#: maps/scenarios/Sandbox - Gauls.xml:Name:39
+#: maps/scenarios/Sandbox - Gauls.xml:Name:40
 msgid "Sandbox - The Gauls"
 msgstr "Test - Gaulois"
 
@@ -2155,21 +1807,21 @@ msgstr "Les Macédoniens"
 msgid "Sandbox - The Macedonians"
 msgstr "Test - Macédoniens"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:Description:39
+#: maps/scenarios/Sandbox - Mauryas.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
 msgstr "Carte vitrine de la faction indienne des Mauryas."
 
-#: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[0].Name:39
+#: maps/scenarios/Sandbox - Mauryas.xml:PlayerData[0].Name:39
 msgid "Mauryan Indians"
 msgstr "Indiens maurya"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[1].Name:39
+#: maps/scenarios/Sandbox - Mauryas.xml:PlayerData[1].Name:39
 msgid "Enemy"
 msgstr "Ennemi"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:Name:39
-msgid "Sandbox - The Mauryans"
-msgstr "Test - Mauryas"
+#: maps/scenarios/Sandbox - Mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
+msgstr "Bac à sable - Les Mauryas"
 
 #: maps/scenarios/Sandbox - Persians.xml:Description:39
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
@@ -2415,7 +2067,7 @@ msgstr "Toutes les unités du jeu."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27
+#: map.xml:Description:27 maps/scenarios/test-foundation.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "Donnez une description intéressante de votre carte."
 
@@ -2440,6 +2092,7 @@ msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Une démo de bataille rapide utilisant les légionnaires romains."
 
 #: maps/scenarios/_default.xml:Name:28
+#: maps/scenarios/test-foundation.xml:Name:40
 msgid "Unnamed map"
 msgstr "Carte sans nom"
 
@@ -2470,6 +2123,18 @@ msgstr "Démo - Navires"
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
 msgstr "Carte tempérée de base"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Name:28
+msgid "Unit Motion Integration Test"
+msgstr ""
+
+#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+msgid ""
+"This map is designed to test some basic unit movement cases. It will involve"
+" unitAI, unitMotion and the relevant pathfinders and thus acts as an "
+"integrated test map. Look for things such as stuck units, wrong animations, "
+"and weird pathing."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
@@ -2696,6 +2361,14 @@ msgid ""
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
 msgstr "combatter pour les restes de l'Égypte ancienne !\n\nChaque joueur commence avec des villes avancées et une petite armée possédant leurs avantages et inconvénients spécifiques. Faite attention, il y a 7 puissantes forteresses et des bandits en maraude ! \n\nOn est un siècle avant 0 A.D. L'Égypte est en guerre civile entre les  grecs (Alexandrie représentée par les séleucides) et le pouvoir traditionnel ( Menphis, représenté par les Ptolémés). Thèbes dans le sud près du Nil a déjà été prise par les Kushites. Au Nord-Ouest Al-Dschabal al-Achdar, au niveau de la citée méditerranéene Cyrene, les Romains préparent l'invasion. Des désert à l'est, les ennemis d'at-Tih et du mont Sinaï (representé par les Persans) avancent vers l'oasis Siwa. Charga (représenté par Carthage) dans le désert du Sud-Ouest cherche lui aussi à se tailler une part du gâteau.\nEmplacements :\n- Alexandrie : Bibliothèque, port\n- Menphis : Nécropole, pyramides, temple d'Apis\n- Thebes : quartier des temples, vallées des rois\n- Cyrene :  Macchi mediterannéene, bosquets d'oliviers\n- Fayyum : sanctuaire des crocodiles, barrage sur le Nil\n- Desert de l'Est : mont Sinaï, oued profond, récif de la mer rouge\n- Desert de l'Ouest : Oasis Charga et Siwa, depression de Qattara\n"
 
+#: maps/skirmishes/Farmland (2).xml:Description:40
+msgid "Farmland in Eastern Europe."
+msgstr "Terre agricoles en Europe de l'Est."
+
+#: maps/skirmishes/Farmland (2).xml:Name:40
+msgid "Farmland (2)"
+msgstr "Terre agricole"
+
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
@@ -2880,6 +2553,14 @@ msgstr "Echoués dans le Nord glacial, 2 joueurs combattent pour la suprémacie 
 msgid "Northern Island (2)"
 msgstr "Îles nordiques (2)"
 
+#: maps/skirmishes/Oceanside (2).xml:Description:40
+msgid "A Lush temperate biome along an ocean. "
+msgstr ""
+
+#: maps/skirmishes/Oceanside (2).xml:Name:40
+msgid "Oceanside (2)"
+msgstr ""
+
 #: maps/skirmishes/Persian Highlands (4).xml:Description:39
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
@@ -2949,17 +2630,6 @@ msgstr "La grande île méditerranéenne de Sicile est ouverte à la conquête.\
 msgid "Sicilia Nomad (2)"
 msgstr "Sicile Nomade (2)"
 
-#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
-msgid ""
-"A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
-"\n"
-"Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
-msgstr "Une carte composée de deux oasis, le bois et les ressources animales sont concentrés au milieu de la carte. Des terres arables entourent les oasis, absorbant le peu d'humidité qui existe.\n\nLa Pierre et le Métal ne peuvent se trouver que dans l'arrière pays montagneux. Les trésors, si activés, peuvent être trouvés éparpillés dans les déserts alentours."
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
-msgid "Siwa Oasis (2)"
-msgstr "Oasis de Siwa (2)"
-
 #: maps/skirmishes/Skirmish Demo.xml:Description:39
 msgid "A demo Skirmish map."
 msgstr "Une carte de démo du mode escarmouche."
@@ -2993,6 +2663,14 @@ msgstr "Une oasis entourée de montagnes et de désert. Les terres agricoles pr�
 #: maps/skirmishes/Team Oasis - 2v2.xml:Name:39
 msgid "Team Oasis (2v2)"
 msgstr "Oasis par équipe (2v2)"
+
+#: maps/skirmishes/Temperate Roadway (2).xml:Description:40
+msgid "Temperate zone map with plentiful resources. Map Size: Small"
+msgstr "Carte zone temperée avec abondance de ressource. Taille de la carte : Petite"
+
+#: maps/skirmishes/Temperate Roadway (2).xml:Name:40
+msgid "Temperate Roadway (2)"
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Description:39
 msgid ""
@@ -3059,7 +2737,195 @@ msgstr "Les montagnes tapissant la patrie perse, enjambant la Perside, Élam et 
 msgid "Zagros Mountains (2)"
 msgstr "Monts Zagros (2)"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Les eaux vitalisantes du Nil favorisent la vie le long de ses rives, tandis que la longue saison sèche roussit la terre."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Saison sèche"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "En se délectant de la pluie tant attendue, le terrain cuit se transforme en un refuge luxuriant tant pour l'homme que pour la bête."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Saison des pluies"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Une région située dans de hautes montages enneigées. Des vents mordants balayent les abondantes forêts de conifères, ce qui fait même frissonner les plus résistants chevreuils et chèvres de montagne ."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr "Alpes"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-colored foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "L'automne est à son apogée. Le paysage possède un impressionnant mélange de couleurs irrévocablement entremêlées. Les hêtres et les chênes natifs de cette zone tempérée présentent un feuillage multicolore tandis que les pins se montrent indifférents à l'hiver qui approche."
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr "Automne"
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Une zone semi-désertique qui abrite de nombreux palmiers dattiers et des arbustes Tamarix. Des troupeaux de chameaux errent dans la nature et quelques gazelles occasionnelles sursautent de peur après être dérangées."
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr "Désert"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Commencez dans une région bénie par le climat méditerranéen, une terre chaleureuse et accueillante. Les cyprès sont dans une lutte perpétuelle contre les palmiers dominants tandis que les cerfs pâlissent dans leur ombre, parfaitement inconscients."
+
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Mediterranean"
 msgstr "Méditerranéen "
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "La savane, un climat sec dans lequel seuls les robustes Baobab prospèrent. Les gazelles solitaires pâturent l'herbe éparse, tandis que les troupeaux de zèbres, de gnous, de girafes ou d'éléphants errent dans la nature à la recherche de nourriture."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Savanne"
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Installez-vous dans les régions froides du Nord, l'habitat naturel du laineux bœuf musqué. Ici, vous pouvez dépérir sur votre sort et chasser un ou deux morses occasionnels."
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr "Enneigé"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Des prairies luxuriantes tapissent la terre, dans des endroits donnant lieu à de magnifiques et variées forêts feuillues. Peupliers, pins, hêtres et chênes se disputent la suprématie, mais cette guerre de racines est une lutte sans fin. De nombreux pommiers parsèment la terre, profitant aux cerfs et aux moutons qui se délectent sur les fruits tombés cette année."
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr "Tempéré"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Explorez les mystérieux tropiques. Un environnement extrêmement vert et humide vous attends. Les grands arbres Toona verront d'un mauvais œil cette invasion de leur vie privée et des tigres féroces seront déterminés à défendre leur territoire à tout prix."
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Tropiques"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Solidifiant son emprise, le froid rigoureux a réussi à geler le golfe. La glace épaisse formée est capable de résister à tout poids."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Lac Glacé"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Une brise de fin de printemps se propage dans les forêts de conifères du golfe de Botnie. Des troupeaux de cerfs parsèment le paysage et des lapins joueurs s'ébattent dans les sous-bois."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Fin de printemps"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "L'hiver s'est installé, tapissant la terre de ses premières neiges. Le golfe pas encore gelé offre d'excellentes possibilités de pêche."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Hiver"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Le printemps dans la région montagneuse, pourtant la chaleur a déjà commencée à se faire sentir. Les herbes vertes à courte durée de vie sont sur la retraite, frayant la voie pour roussir l'été."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Printemps"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Une  terre aride, hostile. La chaleur brûlante a cuit le sol en une couleur brune maladive, et les arbres restants luttent pour la survie."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Été"

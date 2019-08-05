@@ -1,20 +1,21 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2017
-# Любомир Василев, 2017
-# Nerwitz Panzerfizt, 2017
+# Nerwitz Panzerfizt, 2018
+# Любомир Василев, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-01-29 09:05+0100\n"
-"PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: Nerwitz Panzerfizt, 2017\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2017-06-04 12:59+0000\n"
+"Last-Translator: Любомир Василев, 2019\n"
 "Language-Team: Bulgarian (https://www.transifex.com/wildfire-games/teams/17418/bg/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -73,8 +74,8 @@ msgid ""
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
 "Изберете двете бездействащи жени и постройте къща наблизо като натиснете "
-"върху иконката, изобразяваща къща в панела за строеж. Поставете къщата "
-"някъде върху терена с ляв бутон."
+"върху иконката, изобразяваща къща. Поставете къщата някъде върху терена с "
+"левия бутон на мишката."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -82,9 +83,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
-"Щом завърши обучението им, изберете хоплитите и им дайте задача да построят "
-"склад до близките дървета. След като бъде построен, те ще започнат да "
-"събират дървесина."
+"Когато станат готови, изберете новообучените хоплити и им дайте задача да "
+"построят склад до близките дървета. След като бъде построен, те ще започнат "
+"да събират дървесина."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -137,10 +138,10 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
-"Обучете партида хоплити от селищния център. Изберете градския център и "
-"съответно, щракнете с десен бутон върху някое близко дърво. Така единиците, "
-"излизащи от градския център, автоматично ще събират дървесина от посоченото "
-"място."
+"Обучете партида хоплити от селищния център. Изберете селищния център, и "
+"докато е избран, щракнете с десен бутон върху някое близко дърво. Така "
+"единиците, излизащи от градския център, автоматично ще събират дървесина от "
+"посоченото място."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
@@ -152,8 +153,7 @@ msgid ""
 " when you see your cursor change into a Wood icon."
 msgstr ""
 "Изберете селищния център, а след това посочете дървото с мишката и щракнете "
-"десния бутон върху него, когато видите, че курсорът изобразява иконка с "
-"дърво."
+"с десния бутон върху него, когато курсорът се превърне в иконка с дърво."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -162,14 +162,14 @@ msgid ""
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
 "Наредете на бездействащите копиехвъргачи да построят аванпост на "
-"североизточния край на вашата територия. Това ще е петата сграда от Селската"
-" фаза, която ще сте построили, така че ще можете да преминете към Градската "
+"североизточния край на територията Ви. Това ще е петата сграда от Селската "
+"фаза, която ще сте построили, така че ще можете да преминете към Градската "
 "фаза."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
-"'II' icon (you have to wait for the outpost to be built first). This will "
+"II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
 "Изберете селищния център отново и преминете към Градската фаза, като "
@@ -178,12 +178,11 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
-"While waiting for the phasing up, you may reaffect your idle workers to "
+"While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
-"Докато чакате преминаването на развитие към следващата фаза, може да "
-"накарате бездействащите работници да събират ресурсите, от които имате "
-"нужда."
+"Докато чакате преминаването към следващата фаза, може да накарате "
+"бездействащите работници да събират ресурсите, от които имате нужда."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -235,8 +234,8 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
-"Успешно отблъснахте нападението на врага. Сега постройте пазар и храм, и "
-"същевременно наредете на новите единици да събират нужните ресурси."
+"Врагът беше отблъснат. Сега постройте пазар и храм, и същевременно наредете "
+"на новите единици да събират нужните ресурси."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
@@ -249,10 +248,10 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
-"barracks."
+"Barracks."
 msgstr ""
-"Докато чакате преминаването на развитие към следващата фаза, може да обучите"
-" още войници в казармата."
+"Докато чакате преминаването към следващата фаза, може да обучите още войници"
+" в казармата."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -269,10 +268,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
-"Изискайте от всички войници, които събират ресурси, да спрат, и наместо това"
-" ги разделете на малки групи, които да потърсят вражеския селищен център на "
-"картата. След като забележите вражеската база, изпратете обсадните си оръжия"
-" и всички останали войници, за да я унищожите.\n"
+"Спрете всички войници, които събират ресурси, и ги разделете на малки групи,"
+" които да потърсят вражеския селищен център на картата. След като забележите"
+" вражеската база, изпратете обсадните си оръжия и всички останали войници, "
+"за да я унищожите.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -280,17 +279,17 @@ msgstr "Жените трябва да продължат да събират р
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr "Победа! Разгромихте врага. Задачите от обучението бяха завършени."
+msgstr "Врагът бе победен. Задачите от обучението бяха завършени."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
 "This tutorial will teach the basics of developing your economy. Typically, "
-"you will start with a Civic Center and a couple units in 'Village Phase' and"
-" ultimately, your goal will be to develop and expand your empire, often by "
-"evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"you will start with a Civic Center and a couple units in Village Phase and "
+"ultimately, your goal will be to develop and expand your empire, often by "
+"evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"Това обучение има за цел да демонстрира основите на развитие на икономиката "
-"Ви. Обикновено в началото започвате със Селищен център и няколко единици в "
+"Това обучение има за цел да демонстрира основите на развитие на икономиката."
+" Обикновено в началото започвате със Селищен център и няколко единици в "
 "„Селска фаза“, като целта е да развиете и разширите империята си, за което "
 "често се налага да преминете през „Градската фаза“ и „Мегаполисната фаза“.\n"
 
@@ -301,7 +300,7 @@ msgid ""
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
 "\n"
-"Преди да започнете, запомнете, че за удобството на игра, можете да превключвате между режимите на цял екран и в прозорец чрез %(hotkey)s."
+"Преди да започнете, запомнете, че можете да превключвате между режимите на цял екран и в прозорец чрез %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
@@ -355,8 +354,8 @@ msgstr ""
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
-"technologies. Hover the cursor over the 'II' icon. The tooltip will tell us "
-"that advancing to 'Town Phase' requires both more constructed structures as "
+"technologies. Hover the cursor over the II icon. The tooltip will tell us "
+"that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
 "Горният ред с бутони съдържа портретите на единиците, които могат да бъдат "
@@ -473,7 +472,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
-"First, let's set a rally-point. Setting a rally point on a building that can"
+"First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
 "Wood on the group of trees to the south of the Civic Center. To do so, "
@@ -489,7 +488,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
-"Rally-Points are indicated by a small flag at the end of the blue line."
+"Rally points are indicated by a small flag at the end of the blue line."
 msgstr "Сборните точки се виждат като малко флагче на края на синята линия."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
@@ -503,7 +502,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
-"Now that the rally-point is set, we can produce additional units and they "
+"Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
 "След като сборната точка вече е определена, можем да създадем допълнителни "
@@ -638,9 +637,9 @@ msgstr "Задръжте Shift и щракнете върху иконката �
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally-point of the Civic Center away from gathering Wood."
+"remove the current rally point of the Civic Center away from gathering Wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
-"the flag icon indicating the rally-point is crossed out)."
+"the flag icon indicating the rally point is crossed out)."
 msgstr ""
 "В това време, да погледнем наоколо. Изглежда вече имаме достатъчно "
 "работници, които събират дърва. Трябва да премахнем текущата сборна точка на"
@@ -797,11 +796,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is constructed, the builders will automatically start "
-"gathering it.\n"
+"When the field is ready, the builders will automatically start gathering "
+"it.\n"
 msgstr ""
-"Когато строежът на фермата приключи, строителите ѝ автоматично ще започнат "
-"да събират храна от нея.\n"
+"Когато фермата стане готова, строителите ѝ автоматично ще започнат да "
+"събират храна от нея.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -819,9 +818,9 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally-point on a field by "
+"gatherers, select the Civic Center and setup a rally point on a field by "
 "right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally-point will help building it, while they will gather it when "
+"sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
 "На една нива може да работят най-много пет фермера. За да добавите "
@@ -876,9 +875,9 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
-"We should start preparing to phase up into 'Town Phase', which will unlock "
+"We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
-"over the 'Town Phase' icon to see what is still needed.\n"
+"over the Town Phase icon to see what is still needed.\n"
 msgstr ""
 "Трябва да започнем да се подготвяме за преминаване към „Градската фаза“, "
 "която ще отключи много нови единици и сгради. Изберете селищния център и "
@@ -889,7 +888,7 @@ msgstr ""
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
-"in case of attack, so let's build barracks.\n"
+"in case of attack, so let's build Barracks.\n"
 msgstr ""
 "Вече имаме достатъчно ресурси, но ни липсва една сграда. Въпреки че това "
 "обучение се концентрира върху икономиката, все пак не вреди да бъдем "
@@ -897,8 +896,8 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
-"Select four of your soldiers and ask them to build a barracks: as before, "
-"start selecting the soldiers, click on the barracks icon in the production "
+"Select four of your soldiers and ask them to build a Barracks: as before, "
+"start selecting the soldiers, click on the Barracks icon in the production "
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
@@ -908,23 +907,23 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
-"Let's wait for the barracks to be built. As this construction is lengthy, "
+"Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the barracks foundation by right-clicking"
-" on it (you should see a hammer icon), and then produce two more builders by"
-" clicking on the hoplite icon twice."
+"Center and set up a rally point on the Barracks foundation by right-clicking"
+" on it (you should see a hammer icon). Then produce two more builders by "
+"clicking on the hoplite icon twice."
 msgstr ""
 "Да изчакаме построяването на казармата. Тъй като този строеж отнема повече "
 "време, можете да добавите двама во̀ини, за да го ускорите. За да направите "
 "това, изберете селищния си център и поставете сборната точка върху основата "
 "на казармата като щракнете с десния бутон върху нея (курсорът трябва да се "
-"превърне в чук), след което произведете още двама строители като натиснете "
+"превърне в чук). След това произведете още двама строители като натиснете "
 "два пъти иконката с хоплит."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
-"You should now be able to research 'Town Phase'. Select the Civic Center and"
-" click on the technology icon.\n"
+"You should now be able to research Town Phase. Select the Civic Center and "
+"click on the technology icon.\n"
 msgstr ""
 "Сега вече трябва да можете да проучите „Градската фаза“. Изберете селищния "
 "център и натиснете иконката на технологията.\n"

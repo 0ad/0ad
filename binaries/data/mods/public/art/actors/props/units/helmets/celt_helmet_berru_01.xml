@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron">
+      <textures>
+        <texture file="props/helmet/celt_berru_01_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass">
+      <textures>
+        <texture file="props/helmet/celt_berru_01_brass.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/celt_berru_01_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <mesh>props/helmet/celt_berru_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_berru_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_berru_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

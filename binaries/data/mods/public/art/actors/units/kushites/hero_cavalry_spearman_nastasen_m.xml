@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant file="quadraped/base_horse_swordsman.xml" frequency="1" name="Spearman Horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_barb.dae</mesh>
       <props>
         <prop actor="units/kushites/hero_cavalry_spearman_nastasen_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/kush_crest_bronze.xml" attachpoint="head"/>
@@ -11,17 +11,17 @@
         <prop actor="props/horse/cav_pelt_kush.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_straps_kush_hero.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_straps_head_kush_gold.xml" attachpoint="head"/>
-        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
-      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/black_alt.xml" frequency="1" name="black"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml" name="Spearman Horse"/>
     <variant file="quadraped/base_horse_run.xml" name="Spearman Horse"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -96,35 +96,22 @@ public:
 	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
 	 * pick one at random (not network-synchronised).
-	 * If @p soundgroup is specified, then the sound will be played at each 'event' point in the
-	 * animation cycle.
 	 * @param name animation name (e.g. "idle", "walk", "melee"; the names are determined by actor XML files)
 	 * @param once if true then the animation will play once and freeze at the final frame, else it will loop
 	 * @param speed animation speed multiplier (typically 1.0 for the default speed)
-	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
 	virtual void SelectAnimation(const std::string& name, bool once, fixed speed) = 0;
 
 	/**
-	 * Replaces a specified animation with another. Only affects the special speed-based
-	 * animation determination behaviour.
-	 * @param name Animation to match.
-	 * @param replace Animation that should replace the matched animation.
+	 * Start playing the given movement animation unless we are currently playing a non-movement animation.
+	 * This is necessary so UnitMotion can set the movement animations without overwriting specific animations
+	 * that might have been set by other components.
+	 * TODO: Non-movement animations should probably be made into variants, defining "idle" (really "default"), "walk" and "run" as appropriate,
+	 * and this would no longer be necessary.
+	 * @param name animation name (i.e. one of "idle", "walk", "run").
+	 * @param speed animation speed multiplier (typically 1.0 for the default speed)
 	 */
-	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace) = 0;
-
-	/**
-	 * Ensures that the given animation will be used when it normally would be,
-	 * removing reference to any animation that might replace it.
-	 * @param name Animation name to remove from the replacement map.
-	 */
-	virtual void ResetMoveAnimation(const std::string& name) = 0;
-
-	/**
-	 * Start playing the walk/run animations, scaled to the unit's movement speed.
-	 * @param runThreshold movement speed at which to switch to the run animation
-	 */
-	virtual void SelectMovementAnimation(fixed runThreshold) = 0;
+	virtual void SelectMovementAnimation(const std::string& name, fixed speed) = 0;
 
 	/**
 	 * Adjust the speed of the current animation, so it can match simulation events.

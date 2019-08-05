@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base-2">
+      <mesh>props/helmet/iber_helmet_b_2.dae</mesh>
+      <textures>
+        <texture file="props/helmet/iber_helmet_b_2.png" name="baseTex"/>
+        <texture file="props/helmet/iber_helmet_b_2_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_helmet_b_2_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Base-3">
+      <mesh>props/helmet/iber_helmet_b_3.dae</mesh>
+      <textures>
+        <texture file="props/helmet/iber_helmet_b_3.png" name="baseTex"/>
+        <texture file="props/helmet/iber_helmet_b_3_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_helmet_b_3_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Base-4">
+      <mesh>props/helmet/iber_helmet_b_4.dae</mesh>
+      <textures>
+        <texture file="props/helmet/iber_helmet_b_4.png" name="baseTex"/>
+        <texture file="props/helmet/iber_helmet_b_4_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_helmet_b_4_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

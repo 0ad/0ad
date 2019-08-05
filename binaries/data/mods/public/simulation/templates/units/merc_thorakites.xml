@@ -6,7 +6,9 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack op="add">-2</Hack>
+      <Damage>
+        <Hack op="add">-2</Hack>
+      </Damage>
     </Melee>
   </Attack>
   <Cost>
@@ -16,7 +18,6 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>gaia</Civ>
     <Lang>greek</Lang>
     <GenericName>Armored Swordsman</GenericName>
     <SpecificName>Thōrakitēs</SpecificName>

@@ -1,10 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Balázs Meskó <meskobalazs@gmail.com>, 2016-2018
-# Balázs Úr <urbalazs@gmail.com>, 2015-2016
+# Balázs Meskó <meskobalazs@gmail.com>, 2016-2019
+# Balázs Úr, 2015-2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015-2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-11 17:41+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-24 18:01+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -240,7 +240,7 @@ msgstr "%(_player_)s, %(_amount_)s %(_resource_)s sarcot kell küldened, mielőt
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
+" %(_player_)s."
 msgstr "%(_player_)s, amennyiben nem küldesz %(_amount_)s %(_resource_)s, szövetségünk nem jön létre."
 
 #: simulation/ai/petra/chatHelper.js:88
@@ -548,7 +548,7 @@ msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(re
 msgid "The production queue is full."
 msgstr "A termelési sor tele van."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Nem található szabad hely a kiképzett egységek elhelyezéséhez"
 
@@ -605,7 +605,7 @@ msgstr "Nem lehet kiengedni az egységeket"
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -737,7 +737,8 @@ msgstr "Királygyilkosság"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
 msgstr "Légy az első aki felépít vagy elfoglal egy Csodát, és tartsd meg egy bizonyos ideig, hogy megnyert a játékot. Az időzítő visszaáll, ha a Csoda elpusztul vagy elfoglalják, illetve szövetséges győzelem esetén akkor is, ha a tulajdonos szövetsége megváltozik."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
@@ -883,5 +884,5 @@ msgstr "Petra bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük jelentsd a hibákat a Wildfire Games-nek (lásd a hivatkozást a főmenüben).\n\nA MI bónusz/büntetés rendszert alkalmaz a nyersanyagok felhalmozására (gyűjtési sebességre és kereskedés növekedésre is) -60%-tól a homokozóban +60%-ig nagyon nehéz szinten (a közepes szint 0%), és a könnyebb szinteken lassabb a termelési és építési sebesség. Továbbá a homokozó szinten nincs terjeszkedés és támadás."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük jelentsd a hibákat a Wildfire Games-nek (lásd a hivatkozást a főmenüben).\n\nA MI nyersanyag begyűjtési sebessége és kereskedelmi haszna a nehézségi szinttől függ (Homokozó: –58%, Nagyon könnyű: –44%, Könnyű: –25%, Közepes: ±0%, Nehéz: +25%, Nagyon nehéz: +56%). A könnyebb szinteken lassabb a kutatási, a kiképzési és az építési sebesség. Továbbá, a Homokozó szinten nem terjeszkedik és nem támad."

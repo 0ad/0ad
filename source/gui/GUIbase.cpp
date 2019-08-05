@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "GUI.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
 
 #include "ps/CLogger.h"
 
@@ -134,5 +135,96 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	percent.top =		percents[1];
 	percent.right =		percents[2];
 	percent.bottom =	percents[3];
+	return true;
+}
+
+void CClientArea::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
+{
+	JSAutoRequest rq(cx);
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	ret.setObjectOrNull(pScriptInterface->CreateCustomObject("GUISize"));
+
+	if (!ret.isObject())
+	{
+		JS_ReportError(cx, "CClientArea value is not an Object");
+		return;
+	}
+
+	JS::RootedObject obj(cx, &ret.toObject());
+	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
+	{
+		JS_ReportError(cx, "CClientArea value is not a CClientArea class instance");
+		return;
+	}
+
+#define P(x, y, z)\
+	if (!pScriptInterface->SetProperty(ret, #z, x.y)) \
+	{ \
+		JS_ReportError(cx, "Could not SetProperty '%s'", #z); \
+		return; \
+	}
+	P(pixel, left, left);
+	P(pixel, top, top);
+	P(pixel, right, right);
+	P(pixel, bottom, bottom);
+	P(percent, left, rleft);
+	P(percent, top, rtop);
+	P(percent, right, rright);
+	P(percent, bottom, rbottom);
+#undef P
+}
+
+bool CClientArea::FromJSVal(JSContext* cx, JS::HandleValue v)
+{
+	JSAutoRequest rq(cx);
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+
+	if (v.isString())
+	{
+		CStrW str;
+		if (!ScriptInterface::FromJSVal(cx, v, str))
+		{
+			JS_ReportError(cx, "Could not read CClientArea string");
+			return false;
+		}
+
+		if (!SetClientArea(str.ToUTF8()))
+		{
+			JS_ReportError(cx, "Could not set SetClientArea");
+			return false;
+		}
+		return true;
+	}
+
+	if (!v.isObject())
+	{
+		JS_ReportError(cx, "CClientArea value is not an String, nor Object");
+		return false;
+	}
+
+	JS::RootedObject obj(cx, &v.toObject());
+	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
+	{
+		JS_ReportError(cx, "CClientArea value is not a CClientArea class instance");
+		return false;
+	}
+
+#define P(x, y, z) \
+	if (!pScriptInterface->GetProperty(v, #z, x.y))\
+	{\
+		JS_ReportError(cx, "CClientArea could not get object property '%s'", #z);\
+		return false;\
+	}
+
+	P(pixel, left, left);
+	P(pixel, top, top);
+	P(pixel, right, right);
+	P(pixel, bottom, bottom);
+	P(percent, left, rleft);
+	P(percent, top, rtop);
+	P(percent, right, rright);
+	P(percent, bottom, rbottom);
+#undef P
+
 	return true;
 }

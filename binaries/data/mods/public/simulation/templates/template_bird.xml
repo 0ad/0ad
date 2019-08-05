@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This entity file is meant to make birds move
+  on the map instead of just staying there,
+  but not affect the gameplay in any way.
+  They have a minimum number of components. -->
+<Entity>
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+    <FloatDepth>0.0</FloatDepth>
+    <TurnRate>1.0</TurnRate>
+  </Position>
+  <Selectable>
+    <EditorOnly/>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <UnitAI>
+    <DefaultStance>passive</DefaultStance>
+    <NaturalBehaviour>passive</NaturalBehaviour>
+    <FormationController>false</FormationController>
+    <CanGuard>false</CanGuard>
+    <CanPatrol>false</CanPatrol>
+    <RoamDistance>1000.0</RoamDistance>
+    <FleeDistance>10.0</FleeDistance>
+    <RoamTimeMin>10000</RoamTimeMin>
+    <RoamTimeMax>100000</RoamTimeMax>
+    <FeedTimeMin>1</FeedTimeMin>
+    <FeedTimeMax>2</FeedTimeMax>
+  </UnitAI>
+  <UnitMotionFlying>
+    <MaxSpeed>15.0</MaxSpeed>
+    <TakeoffSpeed>1.0</TakeoffSpeed>
+    <LandingSpeed>5.0</LandingSpeed>
+    <AccelRate>5.0</AccelRate>
+    <SlowingRate>5.0</SlowingRate>
+    <BrakingRate>5.0</BrakingRate>
+    <TurnRate>0.5</TurnRate>
+    <OvershootTime>2.0</OvershootTime>
+    <FlyingHeight>40.0</FlyingHeight>
+    <ClimbRate>4.0</ClimbRate>
+    <DiesInWater>false</DiesInWater>
+    <PassabilityClass>unrestricted</PassabilityClass>
+  </UnitMotionFlying>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+    <AlwaysVisible>false</AlwaysVisible>
+    <Corpse>false</Corpse>
+    <Preview>false</Preview>
+  </Visibility>
+  <Vision>
+    <Range>0</Range>
+  </Vision>
+  <VisualActor>
+    <SilhouetteDisplay>false</SilhouetteDisplay>
+    <SilhouetteOccluder>false</SilhouetteOccluder>
+    <VisibleInAtlasOnly>false</VisibleInAtlasOnly>
+  </VisualActor>
+</Entity>

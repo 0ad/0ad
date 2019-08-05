@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,36 +35,6 @@ class CMapReader;
  */
 class CLightEnv
 {
-friend class CMapWriter;
-friend class CMapReader;
-friend class CXMLReader;
-private:
-	/**
-	 * Height of sun above the horizon, in radians.
-	 * For example, an elevation of M_PI/2 means the sun is straight up.
-	 */
-	float m_Elevation;
-
-	/**
-	 * Direction of sun on the compass, in radians.
-	 * For example, a rotation of zero means the sun is in the direction (0,0,-1)
-	 * and a rotation of M_PI/2 means the sun is in the direction (1,0,0) (not taking
-	 * elevation into account).
-	 */
-	float m_Rotation;
-
-	/**
-	 * Vector corresponding to m_Elevation and m_Rotation.
-	 * Updated by CalculateSunDirection.
-	 */
-	CVector3D m_SunDir;
-
-	/**
-	 * A string that shaders use to determine what lighting model to implement.
-	 * Current recognised values are "old" and "standard".
-	 */
-	std::string m_LightingModel;
-
 public:
 	RGBColor m_SunColor;
 	RGBColor m_TerrainAmbientColor;
@@ -76,18 +46,14 @@ public:
 
 	float m_Brightness, m_Contrast, m_Saturation, m_Bloom;
 
-public:
 	CLightEnv();
 
 	float GetElevation() const { return m_Elevation; }
 	float GetRotation() const { return m_Rotation; }
 	const CVector3D& GetSunDir() const { return m_SunDir; }
-	const std::string& GetLightingModel() const { return m_LightingModel; }
 
 	void SetElevation(float f);
 	void SetRotation(float f);
-
-	void SetLightingModel(const std::string& model) { m_LightingModel = model; }
 
 	/**
 	 * Calculate brightness of a point of a unit with the given normal vector,
@@ -137,7 +103,6 @@ public:
 	{
 		return m_Elevation == o.m_Elevation &&
 			m_Rotation == o.m_Rotation &&
-			m_LightingModel == o.m_LightingModel &&
 			m_SunColor == o.m_SunColor &&
 			m_TerrainAmbientColor == o.m_TerrainAmbientColor &&
 			m_UnitsAmbientColor == o.m_UnitsAmbientColor &&
@@ -156,6 +121,30 @@ public:
 	}
 
 private:
+	friend class CMapWriter;
+	friend class CMapReader;
+	friend class CXMLReader;
+
+	/**
+	* Height of sun above the horizon, in radians.
+	* For example, an elevation of M_PI/2 means the sun is straight up.
+	*/
+	float m_Elevation;
+
+	/**
+	* Direction of sun on the compass, in radians.
+	* For example, a rotation of zero means the sun is in the direction (0,0,-1)
+	* and a rotation of M_PI/2 means the sun is in the direction (1,0,0) (not taking
+	* elevation into account).
+	*/
+	float m_Rotation;
+
+	/**
+	* Vector corresponding to m_Elevation and m_Rotation.
+	* Updated by CalculateSunDirection.
+	*/
+	CVector3D m_SunDir;
+
 	void CalculateSunDirection();
 };
 

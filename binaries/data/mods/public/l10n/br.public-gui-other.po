@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-16 10:22+0000\n"
-"Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 15:59+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,8 +101,8 @@ msgstr "Berradenn-glavier ebet: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "Pouezit war %(hotkey)s evit em-klokaat en un doare anv ar c'hoarierien."
+msgid "Press %(hotkey)s to autocomplete player names."
+msgstr ""
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -119,14 +119,19 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Dilezet eo bet ar gargadenn"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Dre-zegouezh"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Stumm: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -142,7 +147,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -156,16 +161,18 @@ msgid "DELETE"
 msgstr "DILEMEL"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Ket"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Ya"
 
@@ -305,7 +312,7 @@ msgstr "C'hoariadenn Difin"
 
 #: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Ne vo trec'her ebet termenet, ma vo trec'het an holl zoken."
+msgstr ""
 
 #: gui/common/gamedescription.js:251
 #, javascript-format
@@ -347,7 +354,7 @@ msgstr "Harozed diskouezet"
 
 #: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Harozed n'hallont ket bezañ gwarizonet ha gallout a reont bezañ tizhet gant argadoù."
+msgstr ""
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
@@ -365,7 +372,7 @@ msgstr "Skipailhoù Morailhet"
 
 #: gui/common/gamedescription.js:306
 msgid "Players can't change the initial teams."
-msgstr "Ar c'hoarierien n'hallont ket kemmañ ar skipailhoù kentañ."
+msgstr "Ar c'hoarierien ne c'hallont ket cheñch skipailhoù ar penn-kentañ."
 
 #: gui/common/gamedescription.js:310
 msgid "Diplomacy"
@@ -383,7 +390,7 @@ msgstr "An Den Diwezhañ War-Sav"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Ur c'hoarier hepken a c'hell kaout ar maout. Ma vo kevredidi ar c'hoarierien a chom, e kendalc'ho ar c'hoari betek ma chomo unan hepken."
+msgstr ""
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
@@ -393,13 +400,13 @@ msgstr "Trec'h ar Gevreded"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "Ma'z aio ar maout gant ur c'hoarier, ez aio ar maout gant e pe hec'h c'hevredidi ivez. Ma chomo ur strollad a gevredidi, ez aio ar maout ganto."
+msgstr ""
 
 #: gui/common/gamedescription.js:326
 msgid "Ceasefire"
 msgstr "Harz-tennañ"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "lazhet"
 
@@ -462,7 +469,7 @@ msgstr "Kreizennoù Keodedel"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Ar c'hoarierien a grog hepken gant un nebeud unanennoù ha ret eo dezho kavout ul lec'h dereat evit sevel o c'heoded."
+msgstr ""
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
@@ -493,7 +500,7 @@ msgstr "Lazhet"
 #: gui/common/gamedescription.js:426
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "Evel ma oa bet spisaet gant ar gartenn."
+msgstr ""
 
 #: gui/common/gamedescription.js:430
 msgid "Revealed Map"
@@ -560,92 +567,82 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Kevreadenn-fall evit %(player)s ( %(milliseconds)sms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Abeg dianav"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "An dra-mañ a vez degaset alies gant porzh UDP 20595 ne vez ket lakaet en a-raok war an tu ostiz, gant ur maltouter, pe meizant enep-viruz "
+" by a firewall, or anti-virus software."
+msgstr ""
+
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr ""
 
 #: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "Tardet en deus an ostiz ar gant ar c'hoariadenn"
+msgid "Incorrect network protocol version."
+msgstr ""
 
 #: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "Stumm direizh protokol ar rouedad"
+msgid "Game is loading, please try again later."
+msgstr ""
 
 #: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "Emañ ar c'hoari o kargañ, klaskit en-dro diwezhatoc'h mar plij"
+msgid "Game has already started, no observers allowed."
+msgstr ""
 
 #: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "Ar c'hoariadenn he deus kroget dija, difennet eo da sellet outi"
+msgid "You have been kicked."
+msgstr ""
 
 #: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Skarzhet hoc'h bet"
+msgid "You have been banned."
+msgstr ""
 
 #: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Forbannet oc'h bet kuit"
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr ""
 
 #: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Anv c'hoarier implijet. M'oc'h bet digevreet, klask adarre a-benn un nebeud eilennoù"
+msgid "Server full."
+msgstr ""
 
 #: gui/common/network.js:75
-msgid "Server full"
-msgstr "Leun emañ ar servijer"
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr ""
 
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
-msgstr "C'hwitet eo dilesadur an hall sur. Emezelañ dre an hall"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Talvoud direizh %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Abeg: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "Kollet eo bet kevreadenn ar servijer."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "Bez ez eus bet ur fazi en ur gevreañ ouzh ar servijer."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Digevreet"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "N'eus nemet an ostiz a c'hall botaouiñ ar pratikoù!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Implijidi (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ","
 
@@ -755,7 +752,7 @@ msgstr "Senario"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr "Ur gartenn gant ur gweledva rakspisaet hag arventennoù krogad."
+msgstr ""
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
@@ -793,7 +790,7 @@ msgstr "Dianav"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr "Amplegad Trec'h Dianav"
+msgstr ""
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -801,19 +798,19 @@ msgstr "Tagadenn meskadeg:"
 
 #: gui/common/tooltips.js:13
 msgid "Ranged Attack:"
-msgstr "Argad renket:"
+msgstr ""
 
 #: gui/common/tooltips.js:14
 msgid "Capture Attack:"
-msgstr "  Pakadur, pakusted Argad:"
+msgstr ""
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
-msgstr "Gwast Lederezh Tro"
+msgstr ""
 
 #: gui/common/tooltips.js:21
 msgid "Linear Splash Damage"
-msgstr "Gwast Lenerezh Lineek"
+msgstr ""
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -944,7 +941,7 @@ msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:264
 msgid "Interval:"
-msgstr "Esaouenn pad:"
+msgstr ""
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:715
 msgid "Rate:"
@@ -1015,7 +1012,7 @@ msgstr "Yec'hed"
 
 #: gui/common/tooltips.js:377
 msgid "Projectile Limit"
-msgstr "Harz Bannadell"
+msgstr ""
 
 #: gui/common/tooltips.js:382
 msgctxt "projectiles"
@@ -1029,7 +1026,7 @@ msgstr "Dre Unanenn"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr "Niver a zreserien:"
+msgstr ""
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -1093,7 +1090,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
-msgstr "Dibun Danvez:"
+msgstr ""
 
 #: gui/common/tooltips.js:524
 #, javascript-format
@@ -1244,15 +1241,44 @@ msgstr "Klikit-dehou evit gwelout muioc'h a ditouroù."
 msgid "Click to view more information."
 msgstr "Klikit evit gwelout muioc'h a ditouroù."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Modoù : %(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr ""
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr ""
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr ""
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "Diwallit"
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr "Dre-ziouer: %(value)s"
+msgstr ""
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1276,26 +1302,21 @@ msgstr "Uc'hek: %(max)s"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr "Talvoudegezh: %(val)s (bihanañ: %(min)s, brasañ: %(max)s)"
+msgstr ""
 
 #: gui/options/options.js:299
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "Oc'h adlakaat reizh an dibaboù a ziverko hoc'h arventennoù enrollet. Fellout a ra deoc'h kenderc'hel?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "Diwallit"
+msgstr ""
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "Un nebeud talvoudegezhioù arventenn zo nullet! Sur oc'h evit enrollañ anezho?"
+msgstr ""
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Kemmoù dienrollet ho peus, fellout a ra deoc'h serriñ ar prenestr-mañ?"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:41
 #, javascript-format
@@ -1344,40 +1365,35 @@ msgstr "Mat eo"
 msgid "Read More"
 msgstr "Lenn Muioc'h"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Stumm: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ha c'hoant ho peus kuitaat 0 A.D. da vat?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Kadarnadenn"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Ha c'hoant ho peus kuitaat 0 A.D. da vat ha digeriñ an Aozer Senarioioù?"
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Fazi"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "Loc'hañ hall al lies-c'hoarierien evit emezelañ ha degemer c'hoarioù gwelus en doare foran ha gellet flapañ gant c'hoarierien all. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Dornlevr"
 
@@ -1390,65 +1406,65 @@ msgstr "Termenoù"
 msgid "Please read and accept the UserReporter Terms and Conditions."
 msgstr "Lennit hag asantit Termenoù an ImplijerKelaouer mar plij."
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
 msgstr "Embannadennoù"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "o kevreañ ouzh ar servijer"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "oc'h ezkargañ (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "pellgargañ kaset da benn"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "pellgargañ c'hwitet (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "pellgargañ c'hwitet (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "Lazhañ an evezhiadennoù"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "Enaouiñ an evezhiadennoù"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Trugarez deoc'h da reiñ an dorn evit gwellaat 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:81
+#: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
 msgstr "An evezhiadennoù a zo war enaou bremañ."
 
-#: gui/pregame/userreport/userreport.js:82
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Stad: %(status)s."
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "dianav"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "Roit an dorn evit gwellaat 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
@@ -1469,7 +1485,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr "Pourvezañ Danvez:"
+msgstr ""
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
@@ -1494,53 +1510,53 @@ msgstr "%(hotkey)s: Serriñ Frammadur Gwezenn."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:139
+#: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
 msgstr "Savet gant:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:152
+#: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
 msgstr "Stummet gant:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:165
+#: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
 msgstr "Kaset da benn enklaskoù diwar e benn e:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:177
+#: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
 msgstr "Savet:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:198
+#: gui/reference/viewer/viewer.js:194
 msgid "Researches:"
-msgstr "Enklaskoù:"
+msgstr ""
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:210
+#: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
-msgstr "Stummadurioù:"
+msgstr ""
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:223
+#: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
-msgstr "Gouest da vezañ pellgarget:"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr "An adloc'hañ-mañ en deus ezhomm da gaout ur sekañs disheñvel a vodoù:"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr "Ne glot ket an adloc'hañ-mañ gant stumm ho c'hoari!"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
@@ -1554,19 +1570,19 @@ msgstr "Stumm rediet: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
-msgstr "Adloc'hañ digenglotus"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:117
 msgid "No summary data available."
-msgstr "Roadenn verradur dieub ebet."
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "Sur oc'h e fell deoc'h skarzhañ an adloc'hañ-mañ en doare pad?"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
-msgstr "Skarzhañ adloc'hañ"
+msgstr ""
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1638,11 +1654,11 @@ msgstr "Lies-c'hoarier"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr "N'eus forzh peseurt doare trec'h"
+msgstr ""
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr "C'hoarioù renket ha direnket"
+msgstr ""
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
@@ -1653,8 +1669,9 @@ msgid "Unrated games"
 msgstr "C'hoariadennoù Nann-renket"
 
 #: gui/replaymenu/replay_menu.js:193
-msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Adloc'hañ a ra ar sil dre bouezañ unan pe vuioc'h, anvioù c'hoarier darnel pe glok."
+msgid ""
+"Filter replays by typing one or more, partial or complete player names."
+msgstr ""
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -1668,6 +1685,18 @@ msgstr "dd-MM-yyyy HH:mm"
 #: gui/replaymenu/replay_menu.js:330
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
+
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "C'hoariadenn enrollet ebet"
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr ""
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr ""
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1800,7 +1829,7 @@ msgstr "Preizhadenn"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr "Sevel chatal"
+msgstr ""
 
 #: gui/summary/layout.js:126
 #, javascript-format
@@ -1813,11 +1842,11 @@ msgstr "Marc'had"
 
 #: gui/summary/layout.js:153
 msgid "Trade income"
-msgstr "Gounid Kenwerzh"
+msgstr ""
 
 #: gui/summary/layout.js:154
 msgid "Barter efficiency"
-msgstr "Efedusted trok"
+msgstr ""
 
 #. Translation: use %(resourceWithinSentence)s if needed
 #: gui/summary/layout.js:160
@@ -1832,15 +1861,15 @@ msgstr "A bep seurt"
 
 #: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
-msgstr "Lazhañ / Danevell Marv"
+msgstr ""
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr "Kontroll kartenn (lein)"
+msgstr ""
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr "Kontroll kartenn (echu)"
+msgstr ""
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
@@ -1856,14 +1885,14 @@ msgstr "Feur merc'hed"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr "Troidelloù"
+msgstr ""
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr "Strobinellerezhioù\n(%(succeeded)s / %(failed)s)"
+msgstr ""
 
 #: gui/summary/layout.js:357
 msgid "Team total"
@@ -1899,7 +1928,7 @@ msgstr "Paket"
 
 #: gui/summary/summary.js:65
 msgid "Succeeded"
-msgstr "Kaset da benn"
+msgstr ""
 
 #: gui/summary/summary.js:70
 msgid "Destroyed"
@@ -1931,11 +1960,11 @@ msgstr "Disoc'h"
 
 #: gui/summary/summary.js:105
 msgid "Failed"
-msgstr "C'hwitet"
+msgstr ""
 
 #: gui/summary/summary.js:335
 msgid "Time elapsed"
-msgstr "Amzer dremenet"
+msgstr ""
 
 #: gui/summary/summary.js:491
 msgid "Current Scores"
@@ -1943,7 +1972,7 @@ msgstr "Skoroù er mare-mañ"
 
 #: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
-msgstr "Skoroù e dibenn ar c'hoari."
+msgstr ""
 
 #: gui/summary/summary.js:495
 msgid "You have been disconnected."
@@ -1968,7 +1997,7 @@ msgstr "Dilezet ho peus ar c'hoariadenn."
 #: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr "Amzer c'hoari tremenet: %(time)s"
+msgstr ""
 
 #: gui/summary/summary.js:513
 #, javascript-format
@@ -1992,7 +2021,7 @@ msgstr "Dibab ur sevenadurezh"
 #: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr "Frammadur Gwezenn"
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
@@ -2004,6 +2033,78 @@ msgstr "Serriñ"
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "Kreditoù 0 A.D."
+
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Kargañ ur C'hoariadenn"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "N'eo ket bet kavet c'hoari enrollet ebet."
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "Nullañ"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "Dilemel"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "Kargañ"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "C'hoarierien:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr ""
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Doare kartenn:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Ment ar gartenn:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Trec'h:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Deiziad / Eur"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Doare ar gartenn"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Anv ar gartenn"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Diskrivadur"
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
@@ -2019,11 +2120,7 @@ msgstr "Yezh:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "Lec'h:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Nullañ"
+msgstr ""
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -2039,23 +2136,23 @@ msgstr "Dibarzhioù ar C'hoari"
 
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
-msgstr "Adderaouekaat"
+msgstr ""
 
 #: gui/options/options.xml:(caption):48
 msgid "Revert"
 msgstr "Nullañ"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "Enrollañ"
 
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
-msgstr "Adderaouekaat a ra arventennoù implijer d'o diouer c'hoari"
+msgstr ""
 
 #: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
-msgstr "Distreiñ a ra d'an arventennoù enrollet a-raok"
+msgstr ""
 
 #: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
@@ -2063,11 +2160,11 @@ msgstr "Enrollañ ar cheñchamantoù"
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
-msgstr "Kemmoù dienrollet a ra neuz d'an dalc'h-mañ hepken"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:505
-msgid "Alpha XXIII: Ken Wood"
-msgstr "Alfa XXIII: Anaout koad"
+msgid "Alpha XXIV"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2081,7 +2178,7 @@ msgstr "Digeriñ dornlevr ar c'hoari 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
-msgstr "Loc'hañ an tutorial armerzhel."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
@@ -2091,7 +2188,7 @@ msgstr "Klikit amañ evit loc'hañ gant ur c'hoari nevez en e-unan."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr "Bevañ adarre an istor dre vrezeliadennoù milourel istorel. \\[N'EO KET KASET DA BENN]"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
@@ -2100,7 +2197,7 @@ msgstr "Klikit amañ evit kargañ ur c'hoari enrollet."
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
-msgstr "Lenn c'hoarioù a-raok adarre."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
@@ -2108,11 +2205,11 @@ msgstr "Oc'h emezelañ en ur c'hoari lies-c'hoarier a zo anezhañ."
 
 #: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Degemer ur c'hoari lies-c'hoarier. \\n\\nA c'houlenn porzh UDP 20595 evit bezañ digor."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
-msgstr "Lakaat reizh arventennoù c'hoari."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
@@ -2124,17 +2221,17 @@ msgstr "Diuzañ ha pellgargañ modoù evit ar c'hoari."
 
 #: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Diskouez ar skramm Degemer. Talvoudus eo ma vo kuzhet ganeoc'h dre fazi."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr "Deskiñ penaos lenn, loc'hañ an tutorial, dizoloiñ ar gwez teknologiezh, hag an istor a-dreñv d'ar sevenadurioù"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
-msgstr "Broudañ lenner an urzhiataer evit ur c'hrogad gant ur c'hoarier hepken."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
@@ -2174,7 +2271,7 @@ msgstr "Klikit evit digeriñ pajenn troidigezh 0 A.D. en ho merdeer."
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
-msgstr "Sikour frejoù ar raktres gant donezonoù."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
@@ -2196,10 +2293,6 @@ msgstr "Krogadoù"
 #: gui/pregame/mainmenu.xml:(caption):176
 msgid "Campaigns"
 msgstr "Brezeliadennoù"
-
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "Kargañ ur C'hoariadenn"
 
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
@@ -2281,7 +2374,7 @@ msgstr "Sevenadurezh:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "Unanennoù Stummer"
+msgstr ""
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2293,35 +2386,19 @@ msgstr "Adsell ouzh ar c'hoariadennoù "
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
-msgstr "Adwezhioù kenglotus sil"
-
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Doare kartenn:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Ment ar gartenn:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Trec'h:"
+msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
-msgstr "Preizher"
+msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Lañser Pennañ"
 
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Dilemel"
-
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
-msgstr "Kargañ adarre Krubuilh"
+msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2330,22 +2407,12 @@ msgstr "E berr-ha-berr"
 
 #: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
-msgstr "Loc'hañ Adlenn"
-
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Deiziad / Eur"
+msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "C'hoarierien"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Anv ar gartenn"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2364,7 +2431,15 @@ msgstr "Pad"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Adsevel krubuilh an adlenn eus dilez. Gorrek en doare galloudel!"
+msgstr ""
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "C'hoari enrollet"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "Diskrivadur:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2376,11 +2451,11 @@ msgstr "Diskouez ar gemennadenn-mañ en amzer da zont"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
-msgstr "Embannadurioù anavezet (web)"
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):116
 msgid "Charts"
-msgstr "Renkadurioù"
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
@@ -2398,8 +2473,8 @@ msgid "Type:"
 msgstr "Doare :"
 
 #: gui/summary/summary.xml:(caption):227
-msgid "Replay"
-msgstr "Video"
+msgid "Watch Replay"
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2422,11 +2497,11 @@ msgstr "Doare"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr "Renerezh Arzel"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr "Rener Son"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
@@ -2434,7 +2509,7 @@ msgstr "Sonaozour"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr "Renerien arzel"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
@@ -2442,7 +2517,7 @@ msgstr "Kartennourien"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr "Skridoù Kartenn Dre-zegouezh"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
@@ -2454,11 +2529,11 @@ msgstr "Arz 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr "Sonerezh ouzhpenn, benveg tos, djembe, standilhonañ"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr "Sonerezh ouzhpenn"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
@@ -2470,7 +2545,7 @@ msgstr "Djembe"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr "Frammadur taboulin, darbuka, rik, tomoù"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -2509,6 +2584,10 @@ msgstr "Grek"
 msgid "Latin"
 msgstr "Latin"
 
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
+
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
 msgstr "Mouezhioù"
@@ -2529,7 +2608,7 @@ msgstr "Pledgie #2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Brezeliadenn 2013 Indiegogo\n\nMuioc'h eget 1000 a donezonerien (!), o lakaat e-barzh:"
+msgstr ""
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -2541,15 +2620,15 @@ msgstr "Penn"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr "Daveoù Istorel"
+msgstr ""
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr "Kumuniezh ha Renerezh"
+msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr "Renerien programmiñ"
+msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
@@ -2569,11 +2648,11 @@ msgstr "Saver 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr "Pennoù Raktres"
+msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr "Eil-Pennoù Leurennaozerien"
+msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -2585,7 +2664,7 @@ msgstr "Ha mersi bras d'ar gumuniezh a-bezh evit kas 0 A.D. da benn."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr "Istorour ebet a oa bet gloazet e-pad diorroadur ar raktres-mañ."
+msgstr ""
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
@@ -2597,7 +2676,7 @@ msgstr "Troerien"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr "Penaos e fell deoc'h bezañ darempredet e krogadoù ur c'hoarier hepken."
+msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
@@ -2613,7 +2692,7 @@ msgstr "Anv ar c'hoarier (Lies-c'hoarier)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr "Ehanañ c'hoarioù gant ur c'hoarier pa vo kollet fokuz gant ar prenestr."
+msgstr ""
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2635,15 +2714,15 @@ msgstr "Diskouez peseurt c'hoarier zo bet kevreet fall e c'hoariadennoù lies-c'
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network Warnings"
-msgstr "Diwalloù Rouedad"
+msgstr ""
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "Diskouez skeudenn dre eilenn er c'horn dehoù en nec'h."
+msgstr ""
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr "Golo FPS"
+msgstr ""
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2651,7 +2730,7 @@ msgstr "Diskouez an amzer sistem a-vremañ er c'horn krec'h dehou."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Realtime Overlay"
-msgstr "Golo Amzer wirion"
+msgstr ""
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2659,15 +2738,15 @@ msgstr "Diskouez ar padelezh darvanañ a-vremañ er c'horn krec'h dehou."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
-msgstr "Goloiñ Amzer C'hoari"
+msgstr ""
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr "Diskouez bepred peurest amzer harz-an-tan."
+msgstr ""
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
-msgstr "Goloiñ Amzer Harz-an-tan"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2688,19 +2767,19 @@ msgstr "Lazhet"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Aotren an holl dud pe vignoned hepken d'emezelañ ar c'hoari evel arseller goude ma vo loc'het."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
-msgstr "Emezeladurioù Arseller Diwezhat"
+msgstr ""
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Diarbenn arsellerien a zeu d'emezelañ ma vo tizhet an harz."
+msgstr ""
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
-msgstr "Arseller Harz"
+msgstr ""
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2713,7 +2792,7 @@ msgstr ""
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr "Jeneral"
+msgstr ""
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -2725,11 +2804,11 @@ msgstr "Mod Prenestrel"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Implijout an arliverien OpenGL 2.0 (erbedet)."
+msgstr ""
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
-msgstr "Kavout gwelloc'h GLSL"
+msgstr ""
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
@@ -2737,23 +2816,23 @@ msgstr "Enaouiñ al latar."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr "Latar"
+msgstr ""
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr "Implijout siloù goude doare-ober ar skramm-gorreenn (HDR, Bloum, DOF, hag all hag all)."
+msgstr ""
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
-msgstr "Oc'h ober goude doare-ober"
+msgstr ""
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Niver a efedoù arliver. GOULENN A RA ADLOC'HAÑ C'HOARI"
+msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr "Efedoù Skeuder"
+msgstr ""
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
@@ -2774,7 +2853,7 @@ msgstr "Izel"
 #: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr "Krenn / Etre"
+msgstr ""
 
 #: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
@@ -2788,27 +2867,27 @@ msgstr "Uhel-Kenañ"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr "Spister kartenn skeud. Talvoudegezhioù uhel a c'hell harzañ ar c'hoari pa vez implijet ur gartenn c'hrafikoù gant memor izel!"
+msgstr ""
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
-msgstr "Perzh Skeud"
+msgstr ""
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr "Levnaat skeudoù."
+msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
-msgstr "Silañ Skeud"
+msgstr ""
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr "Diskouez trolinennoù unanennoù a-dreñv da savadurioù."
+msgstr ""
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
-msgstr "Dremmskeud dre unanenn"
+msgstr ""
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
@@ -2822,7 +2901,7 @@ msgstr "Rannigoù"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr "Pa vez OFF, implijout an arventennoù izelañ ar gwellañ evit reiñ dour. Lakaat a ra arventennoù all da vezañ direizh."
+msgstr ""
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water Effects"
@@ -2832,7 +2911,7 @@ msgstr "Efedoù Dour"
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "Implijout efedoù perzh uhel evit dour, en ur reiñ gwagennoù aod, eonenn aod, ha roud bigi."
+msgstr ""
 
 #: gui/options/options.json[1].options[11].label
 msgid "HQ Water Effects"
@@ -2844,43 +2923,43 @@ msgstr "Implijout donded dour ar mare-mañ e jedadennoù roet."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
-msgstr "Donded Dour Gwirion"
+msgstr ""
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr "Aotren dour evit dameuc'hiñ ur skeud melezour."
+msgstr ""
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
-msgstr "Dameuc'hoù Dour"
+msgstr ""
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr "Implijout kartenn un dassked dour gwir ha treuzwelusted ebet."
+msgstr ""
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
-msgstr "Dassked Dour"
+msgstr ""
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr "Teurel skeudoù war an dour."
+msgstr ""
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
-msgstr "Skeudoù war an dour"
+msgstr ""
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Sevel teñvalijenn ha brellerezh brezel en doare aes."
+msgstr ""
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
-msgstr "Levnaat LOS"
+msgstr ""
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr "Skeudenniñ Oabl."
+msgstr ""
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2888,7 +2967,7 @@ msgstr "Diskouez an oabl"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Lakaat ar sinkronelaat a-blom da vont en-dro evit stagañ rogiñ skramm. GOULENN A RA ADLOC'HAÑ C'HOARI"
+msgstr ""
 
 #: gui/options/options.json[1].options[18].label
 msgid "VSync"
@@ -2902,37 +2981,37 @@ msgstr "Evit espern karg-labour ar CPU, lakait fonnusaat ar frekañs rentañ en 
 
 #: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Menus"
-msgstr "Rogiñ FPS e Lañseroù"
+msgstr ""
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "Evit enrollañ karg labour CPU, lakaat frekañs rogiñ da zigreskiñ er c'hoarioù o vont en-dro. Kregiñ da lakaat an uhelañ evit diweredekaat rogiñ."
+msgstr ""
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
-msgstr "Rogiñ FPS er C'hoarioù"
+msgstr ""
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr "Lakaat kempouez ar son etre askorad ha neuziad gwelet."
+msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr "Grafikoù"
+msgstr ""
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr "Mestroniañ gounid aodio."
+msgstr ""
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
-msgstr "Mestroniañ Ampled"
+msgstr ""
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr "E gounid sonerezh c'hoari."
+msgstr ""
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2940,7 +3019,7 @@ msgstr "Ampled son ar sonerezh"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr "E gounid son aergelc'h c'hoari."
+msgstr ""
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -2948,7 +3027,7 @@ msgstr "Ampled son an aergelc'h"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "E gounid son ober unanenn c'hoari."
+msgstr ""
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -2956,7 +3035,7 @@ msgstr "Ampled son an obererezh"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr "Gounid son UI."
+msgstr ""
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
@@ -2964,15 +3043,23 @@ msgstr "Ampled son an UI"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr "Degemer kemennadenn aodio pa vez skrivet ho lesanv gant unan bennak."
+msgstr ""
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
-msgstr "Kemennadenn Lesanv"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr ""
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr "Diskouez alioù pa vez staliet ur c'hoari."
+msgstr ""
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable Game Setting Tips"
@@ -2980,7 +3067,7 @@ msgstr "Enaouiñ alioù staliadur ar c'hoari"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr "Stlejañ panell an arventennoù pa vez digoret, serret pe adventet."
+msgstr ""
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
@@ -2989,11 +3076,11 @@ msgstr "Enaouiñ stlejañ ar banell arventennoù"
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr "Enrollañ hag adlakaat arventennoù krogad evit un adimplij buan pa vez degemeret ur c'hoari all."
+msgstr ""
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
-msgstr "Derc'hel Arventennoù Krogad "
+msgstr ""
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -3017,11 +3104,11 @@ msgstr "Diaes-tre"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "Dre-ziouer diaested an AI."
+msgstr ""
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr " Diaested Dre-ziouer AI"
+msgstr ""
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3041,43 +3128,52 @@ msgstr " Difenn"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "Dre-ziouer emzalc'h an AI."
+msgstr ""
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr "Emzalc'h Dre-ziouer AI"
+msgstr ""
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr "Fiziañ en doare emgefreek emezelañ arvalien da lec'hiadurioù al lenner dieub e-pad staliadur ar c'hrogad."
+msgstr ""
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
-msgstr "Fiziañ C'hoarierien"
+msgstr ""
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr "Staliadur C'hoari"
+msgstr ""
 
 #: gui/options/options.json[4].options[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Niver a gemennoù berniet da gargañ pa vez emezelet ouzh an hall."
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr ""
 
 #: gui/options/options.json[4].options[0].label
-msgid "Chat Backlog"
+msgid "TLS Encryption"
 msgstr ""
 
 #: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "Niver a gemennoù berniet da gargañ pa vez emezelet ouzh an hall."
+
+#: gui/options/options.json[4].options[1].label
+msgid "Chat Backlog"
+msgstr ""
+
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr "Diskouez renkadur keitat ar c'hoarierien a gemer perzh en ur peuliad eus listenn ar c'hoari."
+msgstr ""
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
-msgstr "Peuliad Renkadur C'hoari"
+msgstr ""
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3095,51 +3191,51 @@ msgstr "Berradenn-glavier an unanenn c'hloazet a sell pizh ouzh an unanennoù di
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
-msgstr "Yec'hed Unanenn C'hloazet"
+msgstr ""
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "Niver a unanennoù stummet dre strollad dre-ziouer."
+msgstr ""
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr "Ment Stummadur Strollad"
+msgstr ""
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Niver a amzerioù e rankit lakaat anezho da zibunañ evit kreskaat/disteraat ment ar strollad dre 1."
+msgstr ""
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr "Dibunañ Feur Kresk Strollad"
+msgstr ""
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr "Diskouez ur gemenadenn flapva ma viot argadet gant ur c'hoarier all."
+msgstr ""
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr "Kemenadenn Flapva Argad"
+msgstr ""
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Diskouez ur gemennadenn flapva ma enoro an hini kevredet d'un ezel skipailh all ma vo serret skipailhoù, hag an holl enorioù er mod arseller."
+msgstr ""
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr "Prouenn Kemennadenn Flapva"
+msgstr ""
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr "Diskouez ur gemennadenn flapva da arsellerien pa vo eskemmet danvezioù gant ur c'hoarier."
+msgstr ""
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr "Eskemm Kemennadenn Flapva"
+msgstr ""
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3151,17 +3247,17 @@ msgstr "Echuet"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
-msgstr "An holl skrammet"
+msgstr ""
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Diskouez ur gemennadenn flapva ma vo loc'het, nullet pe leuniet un taolad nevez ganeoc'h pe gant an hini kevredet, ha taoladoù an holl c'hoarierien er mod arseller."
+msgstr ""
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr "Taolad kemennadenn Flapva"
+msgstr ""
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3171,121 +3267,129 @@ msgstr "Skrammañ pouez argad ar frammoù difenn diuzet (gallout a ra bezañ gwi
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr "Lakaat war wel Pouez Argad"
+msgstr ""
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Skrammañ pouez aoraoù an unanennoù ha frammoù diuzet (gallout a ra bezañ gwintet e-barzh ar c'hoari gant ar verradenn)."
+msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
-msgstr "Lakaat war wel Pouez Aora"
+msgstr ""
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr "Skrammañ pouez pare an unanennoù diuzet (gallout a ra bezañ gwintet e-barzh ar c'hoari gant ar verradenn)."
+msgstr ""
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
-msgstr "Lakaat war wel Pouez Pareañ "
+msgstr ""
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr "Diskouez renk arlunioù a-us d'ar varrenn stad."
+msgstr ""
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr "Renk arlun a-us d'ar varrenn stad"
+msgstr ""
 
 #: gui/options/options.json[5].options[11].tooltip
-msgid ""
-"Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Diskouez biñvioù servij munudet evit unanennoù gouest da vezañ stummet e savadurioù produiñ unanenn."
+msgid "Show an experience status bar above each selected unit."
+msgstr ""
 
 #: gui/options/options.json[5].options[11].label
-msgid "Detailed Tooltips"
-msgstr "Biñvioù servij Munudet"
-
-#: gui/options/options.json[5].options[12].list[0].label
-msgid "Unordered"
-msgstr "Dizhurzh"
-
-#: gui/options/options.json[5].options[12].list[1].label
-msgid "Ascending"
-msgstr "O kreskaat"
-
-#: gui/options/options.json[5].options[12].list[2].label
-msgid "Descending"
-msgstr "O tiskenn"
+msgid "Experience status bar"
+msgstr ""
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
-"Dynamically sort players in the resources and population tooltip by value."
-msgstr "C'hoarierien urzhiet en doare buhezek en danvezioù ha benveg servij poblañs dre dalvoudegezh."
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr ""
 
 #: gui/options/options.json[5].options[12].label
-msgid "Sort resources and population tooltip"
-msgstr "Danvezioù urzhiet ha benveg servij poblañs"
+msgid "Detailed Tooltips"
+msgstr ""
+
+#: gui/options/options.json[5].options[13].list[0].label
+msgid "Unordered"
+msgstr ""
+
+#: gui/options/options.json[5].options[13].list[1].label
+msgid "Ascending"
+msgstr ""
+
+#: gui/options/options.json[5].options[13].list[2].label
+msgid "Descending"
+msgstr "O tiskenn"
 
 #: gui/options/options.json[5].options[13].tooltip
+msgid ""
+"Dynamically sort players in the resources and population tooltip by value."
+msgstr ""
+
+#: gui/options/options.json[5].options[13].label
+msgid "Sort resources and population tooltip"
+msgstr ""
+
+#: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Liv hoc'h unanennoù pa vez enaouet al livioù diplomaterezh."
 
-#: gui/options/options.json[5].options[13].label
+#: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Self"
-msgstr "Livioù Diplomaterezh: Ardivink"
+msgstr ""
 
-#: gui/options/options.json[5].options[14].tooltip
+#: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Liv ar re gevredet pa vez enaouet al livioù diplomaterezh."
 
-#: gui/options/options.json[5].options[14].label
+#: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Ally"
-msgstr "Livioù Diplomaterezh: Kevredet"
+msgstr ""
 
-#: gui/options/options.json[5].options[15].tooltip
+#: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Liv ar c'hoarierien neptu pa vez enaouet al livioù diplomaterezh."
 
-#: gui/options/options.json[5].options[15].label
+#: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Neutral"
-msgstr "Livioù Diplomaterezh: Neptu"
+msgstr ""
 
-#: gui/options/options.json[5].options[16].tooltip
+#: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Liv hoc'h enebourien pa vez enaouet al livioù diplomaterezh."
 
-#: gui/options/options.json[5].options[16].label
+#: gui/options/options.json[5].options[17].label
 msgid "Diplomacy Colors: Enemy"
-msgstr "Livioù Diplomaterezh: Enebour"
+msgstr ""
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr "Kemmañ dibarzhioù da geñver an arventennoù e-barzh ar c'hoari."
+msgstr ""
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr "E-barzh ar C'hoari"
+msgstr ""
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Dastum eus loened, bodennadoù frouezh ruz, pesketa, pe maezioù."
+msgstr ""
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr "Mengleuz eus mengleuzioù metal pe garierennoù."
+msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr "Mengleuz eus roc'hoù, karierennoù maen pe zismantroù."
+msgstr ""
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr "Digreskiñ eus gwez pe goadigoù."
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3479,280 +3583,258 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[Skdkleiz=\"sevelArlun\"]Ar c'hoari-mañ zo o tiorren c'hoazh. Mankout a ra perzhioù hag enderc'hel a ra drein."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[skdkleiz=\"arlunDale\"]Ar c'hoari a c'hell kaout kudennoù askorad, dreist-holl gant kartennoù ledan hag un niver bras a unanennoù."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[skdkleiz=\"arlunStummañ\"]Stummadurioù zo ul labour war gresk, hogen gallout a rit gwintañ stummadurioù stummañ ha disrannadur evel ho c'hoant."
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr "KAMP ARME ROMAN"
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
-"- Build anywhere on the map, even in enemy territory. Good for building a "
-"secret base behind enemy lines or to consolidate gains within enemy "
-"territory."
-msgstr "-Sevel e n'eus forzh pelec'h war ar gartenn, en tiriad enebour zoken. Mat evit sevel un diazezlec'h kuzh a-dreñv d'al linennoù enebour pe greñvaat gounidoù e-barzh an tiriad enebour."
+"Buildable in neutral or enemy territory. Good for building a secret base "
+"behind enemy lines or to consolidate gains within enemy territory."
+msgstr ""
+
+#: gui/text/tips/army_camp.txt:3
+msgid "Construct siege weapons and train citizen-soldiers."
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr "- Dispenn a ra evit perc'henn an tiriad pa vez savet en tiriad digevredet"
-
-#: gui/text/tips/army_camp.txt:6
-msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Savit armoù seziz ha stummit soudarded-keodedour."
-
-#: gui/text/tips/army_camp.txt:8
 msgid ""
-"- Garrison up to 40 units to slowly heal the units and protect the army camp"
-" from attacks and decay."
-msgstr "- Gwarnizon a 40 unanenn evit pareañ goustadik an unanennoù ha gwareziñ kamp an arme diouzh argadoù ha dispenn."
+"Garrison units to slowly heal them and protect the army camp from attacks "
+"and decay."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr " kazarnioù"
+msgstr ""
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"- Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Stummit an holl soudarded-keodedour. Kavailhadoù 'zo a c'hell divorailhañ stummadur ar gampioned ivez."
+msgstr ""
+
+#: gui/text/tips/barracks.txt:3
+msgid "Research military technologies unique to each faction."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:4
-msgid "- Research military technologies unique to each faction."
-msgstr "- Kasit da benn enklaskoù diwar-benn teknologiezhioù milourel unanel evit pep kavailhad."
-
-#: gui/text/tips/barracks.txt:6
 msgid ""
-"- Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Savit unan abred evit stummañ soudarded-keodedour e-pad ma fonnusait ho tiazezadur."
+msgstr ""
 
-#: gui/text/tips/barracks.txt:8
-msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr "- Sevel en un diazezlec'h en a-raok evit pourvezañ adarre hoc'h argad gant bagadoù nevez."
+#: gui/text/tips/barracks.txt:5
+msgid "Build in a forward base to resupply your assault with fresh troops."
+msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
 msgstr "GOVEL"
 
 #: gui/text/tips/blacksmith.txt:2
-msgid "- Research structure for all factions."
-msgstr "- Kasit da benn enklaskoù diwar-benn savadur an holl gavailhadoù."
+msgid "Research structure for all factions."
+msgstr ""
 
-#: gui/text/tips/blacksmith.txt:4
-msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Kasit da benn enklaskoù diwar-benn gwellaennoù an armoù hag an houarnwiskoù evit hoc'h unanennoù."
-
-#: gui/text/tips/blacksmith.txt:6
-msgid ""
-"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Lakaat e gwarnizon ur soudard-keodedour e-diabarzh evit kas da benn enklaskoù buanoc'h (NEKET BET EMPLEMENTET C'HOAZH)."
+#: gui/text/tips/blacksmith.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr "BANDENN SAKR KARTAJINIAN"
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:2
-msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- Goafer Kampion ha Goafer War-Varc'h Kampion evit Kartago."
+msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr ""
+
+#: gui/text/tips/carth_sacred_band.txt:3
+msgid ""
+"Both are trainable from the Temple, instead of the Fortress like most other "
+"champions."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both are trainable from the Temple, instead of the Fortress like most "
-"other champions."
-msgstr "- An daou zo gouest da vezañ stummet eus an templ, en enep d'ar c'hreñvlec'h evel an darn vrasañ eus kampioned all."
-
-#: gui/text/tips/carth_sacred_band.txt:6
-msgid ""
-"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
-"heavy shock against siege weapons and skirmishers."
-msgstr "- Implijout ar c'hoaferien evel arme war droad pounner a-enep d'ar marc'hegerezh. Implijout ar marc'hegerezh evel stroñsad pounner a-enep da armoù seziz ha tagerien."
+"Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
+" shock against siege weapons and skirmishers."
+msgstr ""
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "BANNEREZED"
 
 #: gui/text/tips/catapults.txt:2
-msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Mekanikoù seziz renket a vez mat a-enep d'ar savadurioù."
+msgid "Ranged siege engines that are good against buildings."
+msgstr ""
+
+#: gui/text/tips/catapults.txt:3
+msgid "Expensive and slow."
+msgstr ""
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
-"- May upgrade to flaming projectiles for extra effectiveness against "
-"buildings and units."
-msgstr "- Gallout a rafe lakaat reizh bannadelloù tan evit efedusted dreist a-enep da savadurioù hag unanennoù."
-
-#: gui/text/tips/catapults.txt:6
-msgid "- Expensive and slow."
-msgstr "- Ker ha goustad."
-
-#: gui/text/tips/catapults.txt:8
-msgid ""
-"- Pack up into carts for movement, and unpack into stationary engines for "
+"Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- Renkañ e-barzh karrigelloù evit fiñvadur, ha direnkañ e-barzh mekanikoù difiñv evit an argadiñ!"
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
 msgstr "LESTR BREZEL KELTIEK"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "- A medium \"trireme\"-class warship."
-msgstr "- Ul lestr-brezel \"teirroeñvek\" etre he c'hlas anezhi."
+msgid "A medium trireme-class warship."
+msgstr ""
+
+#: gui/text/tips/celtic_war_barge.txt:3
+msgid "Available to Britons, Gauls, and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr "- Dieub d'ar Bagadoù Keltek (Britoned, Galianed)."
+msgid "Can transport up to 40 units."
+msgstr ""
 
-#: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Can transport up to 40 units across the waters."
-msgstr "- Gallout a ra treuzdougen ouzhpenn 40 unanenn a-us d'an dourioù."
-
-#: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrisoned infantry."
-msgstr "- Kreskaat a ra galloud tan gant arme war droad gwarizonet."
-
-#: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- N'hall ket kentraouiñ evel an deirroeñvegoù-all, nemet muioc'h a boentoù-buhez hag a houarnwisk a zo ganti."
+#: gui/text/tips/celtic_war_barge.txt:5
+msgid "Increases firepower with garrisoned infantry."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
 msgstr "KREIZENNOÚ GEODEDEL"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The foundation of your new colony."
-msgstr "- DIazez, fondezon ho trevadenn nevez."
+msgid "The foundation of your new colony."
+msgstr ""
+
+#: gui/text/tips/civic_centres.txt:3
+msgid "Claim large tracts of territory."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:4
-msgid "- Claim large tracts of territory."
-msgstr "- Disklêriañ rannvroioù ledan ho tiriad."
+msgid "Can be built in friendly and neutral territory."
+msgstr ""
 
-#: gui/text/tips/civic_centres.txt:6
-msgid "- Can be built in friendly and neutral territory."
-msgstr "- Gallout a ra bezañ savet en tiriad neptu ha mignon."
-
-#: gui/text/tips/civic_centres.txt:8
+#: gui/text/tips/civic_centres.txt:5
 msgid ""
-"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
-"citizen soldiers."
-msgstr "- Stummit keodedourien: kededourezed, soudarded-keodedour war droad ha soudarded-keodedour war varc'h."
+"Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
+"citizen-soldiers."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
 msgstr "KANNADOURIEZHOÙ"
 
 #: gui/text/tips/embassies.txt:2
-msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- \"Kazarnioù\" dibar dieub evit bagad Kartago."
+msgid "Special Barracks available to the Carthaginians."
+msgstr ""
+
+#: gui/text/tips/embassies.txt:3
+msgid "Train mercenaries from each of the ethnically-themed embassies."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:4
-msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Stummañ soudarded gopret eus pep a gannati hervez ar genel."
-
-#: gui/text/tips/embassies.txt:6
 msgid ""
-"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
-"Metal cost."
-msgstr "- Goprsoudarded \"soudard-keodedour\" o devez o c'houst Boued boaz troet e koust Metal."
+"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
+"cost."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
 msgstr "PESKETA"
 
 #: gui/text/tips/fishing.txt:2
-msgid "- Fish the seas for a bountiful harvest."
-msgstr " - Pesketa er morioù evit un dastum a-bouez."
+msgid "Fish the seas for a bountiful harvest."
+msgstr ""
+
+#: gui/text/tips/fishing.txt:3
+msgid "Fishing boats carry a large amount of food per trip."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of food per trip."
-msgstr "- Bigi pesketa a zoug ur bern boued dre veaj."
+msgid "Fishing is faster than gathering food on fields."
+msgstr ""
 
-#: gui/text/tips/fishing.txt:6
-msgid "- Fishing is faster than gathering food on fields."
-msgstr "- Pesketa a vez buanoc'h eget dastum boued war ar maezioù."
-
-#: gui/text/tips/fishing.txt:8
-msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Diwall! N'eo ket pesk un danvez didermen!"
+#: gui/text/tips/fishing.txt:5
+msgid "Careful! Fish are not an infinite resource!"
+msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "KREÑVLEC'H"
 
 #: gui/text/tips/fortress.txt:2
-msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- Ar c'hreñvlec'h a vez savadur kreñv pep bagad da gustum."
+msgid "The Fortress is usually each faction's strongest building."
+msgstr ""
+
+#: gui/text/tips/fortress.txt:3
+msgid "Trains Champions, Heroes, and Siege Weapons."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Stummañ a ra unanennoù kreñv evel Kampioned, Harozed, hag Armoù Seziz."
+msgid "Gives a population boost."
+msgstr ""
 
-#: gui/text/tips/fortress.txt:6
-msgid "- Gives a population boost."
-msgstr "- Reiñ a ra ur c'hresk a boblañs."
-
-#: gui/text/tips/fortress.txt:8
-msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- Soudarded Gwarnizon a-ziabarzh evit ouzhpennañ muioc'h a c'halloud tan evit e zifenn."
+#: gui/text/tips/fortress.txt:5
+msgid "Garrison soldiers inside to add more firepower to its defense."
+msgstr ""
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr "SAVLEC'H GANT DIEUBIDIGEZH A FIÑV"
+msgstr ""
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
-"- Gain an advantage on the battleground by tactically positioning your "
-"units!"
-msgstr "- Gounit ur splet war lec'h an emgann en ur lakaat hoc'h unanennoù en doare kadoniel!"
+"Gain an advantage on the battleground by tactically positioning your units!"
+msgstr ""
+
+#: gui/text/tips/freehand_position.txt:3
+msgid ""
+"Therefore select some units, press and hold the right mouse button, draw any"
+" line, then release the button."
+msgstr ""
 
 #: gui/text/tips/freehand_position.txt:4
-msgid ""
-"- Therefore select some units, press and hold the right mouse button, draw "
-"any line, then release the button."
-msgstr "- Diuzañ neuze un nebeud unanennoù, pouezañ ha derc'hel ar bouton logodenn dehoù, tresañ ul linenn, warlerc'h leuskel ar bouton."
-
-#: gui/text/tips/freehand_position.txt:6
-msgid "- Your units will now spread out on this line."
-msgstr "- Hoc'h unanennoù a vo dispaket bremañ war al linenn-mañ."
+msgid "Your units will now spread out on this line."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr "DASTUM DANVEZ"
+msgstr ""
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr "- Implijout soudarded-keodedour ha keodedourezed evit dastum mammennoù."
+msgid "Use citizen-soldiers and female citizens to gather resources."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:3
+msgid "Female citizens gather vegetable resources faster."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female citizens are faster gathering vegetable resources."
-msgstr "- Ar c'heodedourezed a vez buanoc'h o tastum mammennoù plant."
+msgid "Infantry citizen-soldiers are faster gathering minerals."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:5
+msgid "Cavalry citizen-soldiers are faster gathering meat."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr "- Soudarded-keodedour war droad a vez buanoc'h o tastum mein."
-
-#: gui/text/tips/gathering.txt:8
-msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr "- soudarded-keodedour war varc'h a vez buanoc'h o tastum kig."
-
-#: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of a citizen soldier (advanced, elite), the better he"
-" fights, but the less efficient he is at gathering resources."
-msgstr "- Seul uheloc'h e vez al live ur soudard-keodedour (araokaet, begenn), seul welloc'h ec'h en em gann, seul zisteroc'h a-se e vez o tastum mammennoù."
+"The higher the level of a citizen-soldier (advanced, elite), the better he "
+"fights, but the less efficient he is at gathering resources."
+msgstr ""
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3760,310 +3842,275 @@ msgstr "IPHICRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
-"- The Athenian general who reformed the Athenian army to be faster and more "
+"The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- Ar jeneral Atenian en doa adkempennet an arme Atenian evit bezañ buanoc'h hag aesoc'h da sturiañ."
+msgstr ""
+
+#: gui/text/tips/iphicrates.txt:3
+msgid "Units in his formation are faster and stronger."
+msgstr ""
 
 #: gui/text/tips/iphicrates.txt:4
-msgid "- Units in his formation are faster and stronger."
-msgstr "- Unanennoù en e stummadur a vez buanoc'h ha kreñvoc'h."
-
-#: gui/text/tips/iphicrates.txt:6
-msgid "- Skirmishers move faster while he lives."
-msgstr " - Tagerien a fiñv buanoc'h tra ma vev."
+msgid "Skirmishers move faster while he lives."
+msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr "KAMP-ARAOKAET"
+msgstr ""
 
 #: gui/text/tips/outposts.txt:2
-msgid "- Build in neutral territory for a large scouting range."
-msgstr "- Sevel en tiriad neptu evit un astenn ledan a ged."
+msgid "Build in neutral territory for a large scouting range."
+msgstr ""
+
+#: gui/text/tips/outposts.txt:3
+msgid "Cheap, at 80 Wood."
+msgstr ""
 
 #: gui/text/tips/outposts.txt:4
-msgid "- Cheap, at 80 Wood."
-msgstr "- Marc'had-mat, gant 80 koad."
+msgid "They construct quickly, but are weak."
+msgstr ""
 
-#: gui/text/tips/outposts.txt:6
-msgid "- They construct quickly, but are weak."
-msgstr "- Sevel a reont buan, hogen gwan int."
-
-#: gui/text/tips/outposts.txt:8
-msgid ""
-"- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "- Gwarnizoniñ un unanenn e-barzh se evit herzel anezho ouzh an diskar en tiriad neptu."
+#: gui/text/tips/outposts.txt:5
+msgid "Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "  mogerioù PEULGAE"
+msgstr ""
 
 #: gui/text/tips/palisades.txt:2
-msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Ur voger koad marc'had-mat, buan dieub evit an holl vagadoù."
+msgid "A quick, cheap wooden wall available to all factions."
+msgstr ""
 
-#: gui/text/tips/palisades.txt:4
-msgid "- Most factions have access to them in Village Phase."
-msgstr "- An darn vrasañ eus ar bagadoù o deus ur moned evito e Pazenn ar C'hêriadennoù."
-
-#: gui/text/tips/palisades.txt:6
-msgid ""
-"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
-" by siege weapons."
-msgstr "- Gouest da vezañ argadet gant soudarded enebour, disheñvel diouzh Mogerioù Kêr Vras, a vez gouest da vezañ argadet gant armoù seziz hepken."
+#: gui/text/tips/palisades.txt:3
+msgid "Most factions have access to them in Village Phase."
+msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr "PERIKLES"
+msgstr ""
 
 #: gui/text/tips/pericles.txt:2
-msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr "- Ar politikour Atenian pennañ eus ar 5vet kantved g J.-K."
+msgid "The foremost Athenian politician of the 5th century BC."
+msgstr ""
+
+#: gui/text/tips/pericles.txt:3
+msgid "Buildings construct faster within his range."
+msgstr ""
 
 #: gui/text/tips/pericles.txt:4
-msgid "- Buildings construct faster within his range."
-msgstr "- Savadurioù a vez savet buanoc'h e-barzh e astennad."
-
-#: gui/text/tips/pericles.txt:6
-msgid "- Temples are cheaper while he lives."
-msgstr "- An temploù a vez marc'had-matoc'h e-keit ha ma vev."
+msgid "Temples are cheaper while he lives."
+msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
 msgstr "SAVEREZH PERSIAN"
 
 #: gui/text/tips/persian_architecture.txt:2
-msgid "- Special Technology for the Persians."
-msgstr "- Teknologiezh dispar evit ar Bersianed."
+msgid "Special technology for the Persians."
+msgstr ""
+
+#: gui/text/tips/persian_architecture.txt:3
+msgid "All Persian buildings +25% stronger."
+msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:4
-msgid "- All Persian buildings +25% stronger."
-msgstr "- An holl savadurioù Persian zo kreñvoc'h gant +25%."
+msgid "Build time lengthened by +20% as a consequence."
+msgstr ""
 
-#: gui/text/tips/persian_architecture.txt:6
-msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- An amzer sevel zo hiraet gant +20% evel heuliadenn."
-
-#: gui/text/tips/persian_architecture.txt:8
+#: gui/text/tips/persian_architecture.txt:5
 msgid ""
-"- Persians also have access to a great number of structural & defensive "
+"Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "- Ar Bersianed o deus ur moned ivez evit un niver bras a deknologiezhioù frammadurel & difenn."
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr "SOUDARDED GANT PIKOU"
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:2
-msgid "- Heavily armored and slow. Low attack."
-msgstr "- Houarnwisket pounner ha gorrek. Argad difonn."
+msgid "Heavily armored and slow. Low attack."
+msgstr ""
+
+#: gui/text/tips/pikemen.txt:3
+msgid ""
+"Used against cavalry or against other melee infantry to pin them in place."
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:4
-msgid ""
-"- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- Implijet a-enep ur varc'hegerezh pe a-enep un troiaden meskadeg all evit stagañ anezho war al lec'h."
-
-#: gui/text/tips/pikemen.txt:6
-msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- Hegerzus evit: Makedonianed, Seleukided ha Ptolemied."
+msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "HEAVY WARSHIP"
-msgstr "LESTR-VREZEL KREÑV"
+msgid "QUINQUEREME"
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
-"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
-"and Seleucids."
-msgstr "- Al lestr-brezel-standard ponnerañ. Hegerzus evit: Roma, Kartago, Ptolemied, ha Seleukided."
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
+"Romans, and Seleucids."
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:3
+msgid "Transports up to 50 units."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Transports up to 50 units."
-msgstr "- Treuzdougenoù gouest da dizhout 50 unanenn."
-
-#: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrisoned catapults."
-msgstr "- Kreskaat a ra galloud an tan gant bannerezed gwarizonet."
-
-#: gui/text/tips/quinquereme.txt:8
-msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- En deus un argad pouez a gas ar bigi enebour d'ar strad (N'EO KET SEVENET C'HOAZH)."
+msgid "Increases firepower with garrisoned catapults."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr "BIOM SAVANENN"
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:2
-msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- Plaen dre vras, gant un nebeud toulloù dour ha rezedoù roc'hellek."
+msgid "Generally flat, with a few watering holes and rocky outcrops."
+msgstr ""
+
+#: gui/text/tips/savanna_biome.txt:3
+msgid "Chock full of herd animals for plentiful hunting."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:4
-msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- Leun chouk a dropelladoù loened evit ur chase leun."
+msgid "Rich in all types of mining."
+msgstr ""
 
-#: gui/text/tips/savanna_biome.txt:6
-msgid "- Rich in all types of mining."
-msgstr "- Pinvidik en holl zoare mengleuz."
-
-#: gui/text/tips/savanna_biome.txt:8
-msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- Koad ez a da vezañ dibaot, hogen ez eo produerezh bras gwez Baobab."
+#: gui/text/tips/savanna_biome.txt:5
+msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "TOUROÙ DIFENN"
 
 #: gui/text/tips/scout_towers.txt:2
-msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- Tourioù war-sav mat evit difenn gorreennoù ledan war ar maezioù."
+msgid "Free-standing towers good for defending large areas of countryside."
+msgstr ""
+
+#: gui/text/tips/scout_towers.txt:3
+msgid ""
+"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
+"Wood and 250 Stone (because they're stronger)."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:4
-msgid ""
-"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
-"Stone (because they're stronger)."
-msgstr "- Koustañ a reont 100 Koad ha 100 Maen dre vras. Tourioù Difenn Iberian a goust 300 Maen (abalamour ma vezont kreñvoc'h)."
-
-#: gui/text/tips/scout_towers.txt:6
-msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- En deus un argad renket a gresk evit pep unanenn gwarizonet."
+msgid "Has a ranged attack that increases for each garrisoned unit."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
 msgstr "SPARTED"
 
 #: gui/text/tips/spartan_hoplites.txt:2
-msgid "- Strongest infantry unit in the game."
-msgstr "- An unanenn war droad kreñvañ er c'hoari."
+msgid "Strongest infantry unit in the game."
+msgstr ""
+
+#: gui/text/tips/spartan_hoplites.txt:3
+msgid "Champion Infantry available to the Spartans."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:4
-msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Arme war droad kampion dieub evit ar bagad Spartan."
-
-#: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- Implijout anezho evit lazhadegañ ur marc'hegerezh enebour pe evel nerzh pouez evit skoriñ hoc'h arme war droad reoliek."
-
-#: gui/text/tips/spartan_hoplites.txt:8
-msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Implijout ar stummidigezh 'Falañj' evit bonuzioù harnezel eus ar vegenn."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr "GOAFERIEN"
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:2
-msgid "- The basic melee infantry for every faction in the game."
-msgstr "- Troadeien meskadeg pep kavailhad er c'hoari."
+msgid "The basic melee infantry for every faction in the game."
+msgstr ""
+
+#: gui/text/tips/spearmen.txt:3
+msgid "Used against cavalry for an attack bonus."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
-msgid "- Used against cavalry for an attack bonus."
-msgstr "- Implijet a-enep d'ar marc'hegerezh evit un argad bonuz."
+msgid "Decent hack attack make them good front line troops."
+msgstr ""
 
-#: gui/text/tips/spearmen.txt:6
-msgid "- Decent hack attack make them good front line troops."
-msgstr "- Un argad dereat troc'husted a lak anezho da vezañ bagadoù linenn talbenn mat."
-
-#: gui/text/tips/spearmen.txt:8
+#: gui/text/tips/spearmen.txt:5
 msgid ""
-"- They are countered by ranged units and swordsmen, so support your spearmen"
-" with slingers or cavalry."
-msgstr "- Diarbennet emaint gant an unanennoù a-bell hag ar c'hlezeourien, harpit neuze ho koaferien gant batalmerien pe gant marc'hegerezh."
+"They are countered by ranged units and swordsmen, so support your spearmen "
+"with slingers or cavalry."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
 msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special structure for Greek factions."
-msgstr "- Ur frammadur dibar evit bagadoù Grek."
+msgid "A special structure for  Athenians, Macedonians, and Spartans."
+msgstr ""
+
+#: gui/text/tips/stoa.txt:3
+msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Stummañ a ra Tagerien Bounner ha Kampioned War droad gant kleze."
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Grants +10 Population."
-msgstr "- Reiñ a ra +10 a Boblañs."
+msgid "Grants +10 Population."
+msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
 msgstr "ETREPAOUEZIOÙ"
 
 #: gui/text/tips/storehouses.txt:2
-msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- Ul lec'h-daspun marc'had-mat evit danvezioù nann-boued (koad, maen, metal)."
+msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr ""
 
-#: gui/text/tips/storehouses.txt:4
+#: gui/text/tips/storehouses.txt:3
 msgid ""
-"- Research technologies to improve the gathering capabilities of your "
+"Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Kasit da benn enklaskoù diwar-benn an teknologiezhioù evit gwellaat barregezhioù dastum ho keodedourien."
-
-#: gui/text/tips/syntagma.txt:1
-msgid "SYNTAGMA FORMATION"
-msgstr "STUMMIDIGEZH, STUMMADUR, FURMIDIGEZH SYNTAGMA"
-
-#: gui/text/tips/syntagma.txt:2
-msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Ur stummidigezh, stummadur, furmidigezh evit soudarded gant pikoù e doare arme war droad."
-
-#: gui/text/tips/syntagma.txt:4
-msgid "- Formation is slow and cumbersome."
-msgstr "- Ar stummidigezh, stummadur, furmidigezh zo gorrek ha pounner kenañ."
-
-#: gui/text/tips/syntagma.txt:6
-msgid "- Nearly invulnerable from the front."
-msgstr "- Tost dic'hloas adalek an talbenn."
-
-#: gui/text/tips/syntagma.txt:8
-msgid "- Vulnerable to attacks from the rear."
-msgstr "- Tizhus d'an argadoù eus an a-dreñv."
+msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
 msgstr "TEMPLOÙ"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure."
-msgstr "- savadur Pazenn ar C'hêrioù."
+msgid "Town Phase structure."
+msgstr ""
+
+#: gui/text/tips/temples.txt:3
+msgid "Recruit Healers to heal your troops on the battlefield."
+msgstr ""
 
 #: gui/text/tips/temples.txt:4
-msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- Tuta pareourien evit pareañ ho pagadoù war dachenn emgann."
+msgid "Research healing technologies."
+msgstr ""
+
+#: gui/text/tips/temples.txt:5
+msgid "Its aura heals nearby units."
+msgstr ""
 
 #: gui/text/tips/temples.txt:6
-msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- Kasit da benn enklaskoù diwar-benn ar pareañ, fealded relijiel, ha teknologiezhioù sevenadurel."
-
-#: gui/text/tips/temples.txt:8
-msgid "- Its \"aura\" heals nearby units."
-msgstr "- E/Hec'h \"aora\" a bare unanennoù tost."
-
-#: gui/text/tips/temples.txt:10
-msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Unanennoù gloazet gwarnizon e-barzh evit bezañ pareet buanoc'h."
+msgid "Garrison wounded units inside for quicker healing."
+msgstr ""
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr "DISKAR TIRIAD"
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:2
+msgid ""
+"Decay happens when buildings are not connected to an allied Civil Center."
+msgstr ""
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- An diskar a c'hoarvez pa ne vez ket savadurioù kevreet d'ur Greizenn Geodedel kevredet."
+"The decay process can be slowed down or reversed by garrisoning some units "
+"in the structure."
+msgstr ""
 
-#: gui/text/tips/territory_decay.txt:5
+#: gui/text/tips/territory_decay.txt:4
 msgid ""
-"- The decay process can be slowed down or reversed by garrisoning some units"
-" in the structure."
-msgstr "- Doare ober an diskar a c'hell bezañ gorrekaet pe gaset en tu-gil gant gwarizoniñ un nebeud unanennoù er frammadur."
-
-#: gui/text/tips/territory_decay.txt:7
-msgid ""
-"- When the decay is completed, the building will be given to the most "
+"When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- Ma vo echu an diskar, e vo roet ar savadur d'an amezeg levezonusañ."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4071,113 +4118,88 @@ msgstr "THEMISTOCLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
-"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Haroz Atenian en doa renet ar C'hresianed en emgannoù meur war vor Artemisiom ha Salamis."
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:3
+msgid "All ships are built faster while he lives."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:4
-msgid "- All ships are built faster while he lives."
-msgstr "- An holl vigi zo savet buanoc'h tra ma vev."
-
-#: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside sails much faster."
-msgstr "- Ar vag a oa bet gwarizonet gantañ e-barzh a vordo kalz buanoc'h."
+msgid "The ship he is garrisoned inside sails much faster."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
 msgstr "LESTR-TEIRROEÑVEK"
 
 #: gui/text/tips/triremes.txt:2
-msgid "- The Medium Warship."
-msgstr "- Al Lestr-brezel Krenn."
+msgid "The Medium Warship."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:3
+msgid "Good for transporting or fighting."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid ""
-"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Dieub evit ar bagadoù Roman, Kartajinian, Hellenek, ha Persian."
-
-#: gui/text/tips/triremes.txt:6
-msgid "- Good for transporting or fighting."
-msgstr "- Mat evit an treuzdougen pe an emgann."
-
-#: gui/text/tips/triremes.txt:8
-msgid "- Garrison troops aboard to increase fire power."
-msgstr "- Bagadoù Gwarnizon war vourzh evit kreskaat galloud an tan."
-
-#: gui/text/tips/triremes.txt:10
-msgid ""
-"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Gwarnizoniñ ur vannerez war vourzh evit un argad sez hirbad (N'EO KET SEVENET C'HOAZH)."
-
-#: gui/text/tips/triremes.txt:12
-msgid ""
-"- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use (NOT IMPLEMENTED YET)."
-msgstr "- Gouest da gaout argad doare tourz ur vag-ouzh-bag distruj a rank kargañ adarre etre pep implij. (N'EO KET SEVENET C'HOAZH)."
+msgid "Garrison troops aboard to increase fire power."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
 msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
-msgid "- Iberian hero of the Lusitani tribe."
-msgstr "- Haroz Iberian ar meuriad Luzitani."
+msgid "Iberian hero of the Lusitani tribe."
+msgstr ""
+
+#: gui/text/tips/viriato.txt:3
+msgid ""
+"At least seven campaigns against the Romans during the Lusitani Wars from "
+"147 to 139 BC."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
-"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
-"147 to 139 B.C."
-msgstr "- D'an nebeutañ 7 brezeliadenn a-enep d'ar Romaned e-pad ar 'Brezel Luzitanian' eus 147 betek 139 kent J.-K."
-
-#: gui/text/tips/viriato.txt:6
-msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Fiñv buan ha gallout a ra kemmañ etre kleze ha speg entanet."
-
-#: gui/text/tips/viriato.txt:8
-msgid ""
-"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
-"to ambush their opponents."
-msgstr "- E \"aora\" a zo an \"Guerilha Taktikel\" a ro tro d'an unanennoù Iberian tost da dagañ-stign o enebourien."
+"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
+"their opponents."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
 msgstr "OLIFANTED BREZEL"
 
 #: gui/text/tips/war_elephants.txt:2
-msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- Loened divent eus Afrika hag India, stummet evit ar brezel."
+msgid "Huge beasts from Africa and India, trained for war."
+msgstr ""
+
+#: gui/text/tips/war_elephants.txt:3
+msgid "High Food and Metal cost, but very powerful."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
-"- High Food and Metal cost, but very powerful. Strongest against Structures "
-"and Cavalry."
-msgstr "- Koust uhel a Voued ha Metal, met galloudus kenañ. An hini kreñvañ a-enep da Frammadurioù ha Marc'hegerezh."
-
-#: gui/text/tips/war_elephants.txt:6
-msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Gallout a ra bezañ tizhet gant tagerien arme war droad."
-
-#: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Hegerzus evit: Maourianed, Ptolemied, Seleukided ha Kartajinianed."
+"Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
 msgstr "BALUMED"
 
 #: gui/text/tips/whales.txt:2
-msgid "- An oceanic resource."
-msgstr "- Un danvez meurvorel."
+msgid "An oceanic resource."
+msgstr ""
+
+#: gui/text/tips/whales.txt:3
+msgid "2000 Food."
+msgstr ""
 
 #: gui/text/tips/whales.txt:4
-msgid "- 2000 Food."
-msgstr "- 2000 a Voued."
+msgid "Gatherable by Fishing Boats after the whale is killed."
+msgstr ""
 
-#: gui/text/tips/whales.txt:6
-msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- Gouest da vezañ dastumet gant bigi pesketa goude ma vo lazhet ar balum."
-
-#: gui/text/tips/whales.txt:8
-msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Dibuniñ holl veurvorioù ar c'hoari ha tec'hel kuit pa vez argadet."
+#: gui/text/tips/whales.txt:5
+msgid "Roam around the oceans of the game and flee when attacked."
+msgstr ""

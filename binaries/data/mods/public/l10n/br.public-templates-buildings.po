@@ -1,22 +1,23 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Anton Bretéché <antonabbreizh@gmail.com>, 2016
-# ernest olory <ernestolory@hotmail.fr>, 2016
-# Feñch Gallig <ducraig@hotmail.fr>, 2017
+# ernest olory <ernestolory@hotmail.fr>, 2016,2019
+# Feñch Gallig <ducraig@hotmail.fr>, 2017,2019
+# Goulven <goulvenbreizh@hotmail.fr>, 2018-2019
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
-# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017,2019
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 # Goulven <goulvenbreizh@hotmail.fr>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-09-19 13:19+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-08-01 18:22+0000\n"
+"Last-Translator: Feñch Gallig <ducraig@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,57 +25,48 @@ msgstr ""
 "Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
-#: simulation/templates/template_structure_civic.xml:14
+#: simulation/templates/template_structure_civic.xml:15
 msgid "Civic Structure"
 msgstr "Savadur Sivil"
 
-#: simulation/templates/template_structure_civic.xml:15
+#: simulation/templates/template_structure_civic.xml:16
 msgid "Civic"
 msgstr "Keodad"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:82
+#: simulation/templates/template_structure_civic_civil_centre.xml:85
 msgid "Civic Center"
 msgstr "Kreizenn Geodedel"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:86
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Savit evit dont da vezañ perc'henn war pezhioù tiriadoù ledan. Stummit keodediz."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:85
-#: simulation/templates/template_structure_civic_civil_centre.xml:47
+#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:50
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "KreizennSivil"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
-#: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Trevadenn Vilourel"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:32
-msgid "Klēroukhía"
-msgstr "Klēroukhía"
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
-msgid "Stoa"
-msgstr "Stoa"
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
 msgid "Hellenic Royal Stoa"
 msgstr "Stoa Hellenel Roueel"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Recruit special units."
 msgstr "Tutañ unanennoù ispisial."
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
 #: simulation/templates/template_structure_civic_temple.xml:35
-#: simulation/templates/template_structure_defense_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:32
-#: simulation/templates/template_structure_military_blacksmith.xml:34
-#: simulation/templates/template_structure_military_embassy.xml:41
-#: simulation/templates/template_structure_military_kennel.xml:43
-#: simulation/templates/structures/cart_super_dock.xml:46
+#: simulation/templates/template_structure_military_blacksmith.xml:27
+#: simulation/templates/template_structure_military_embassy.xml:38
+#: simulation/templates/template_structure_military_kennel.xml:40
+#: simulation/templates/structures/cart_super_dock.xml:47
 #: simulation/templates/structures/gaul_tavern.xml:28
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
@@ -87,12 +79,14 @@ msgid "Increase the population limit."
 msgstr "Lakaat da greskiñ bevenn ar boblañs."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_tower_outpost.xml:51
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
-#: simulation/templates/template_structure_military_barracks.xml:31
-#: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_barracks.xml:24
+#: simulation/templates/template_structure_military_dock.xml:28
+#: simulation/templates/template_structure_military_range.xml:24
+#: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
 msgstr "Kêriadenn"
@@ -114,61 +108,70 @@ msgstr "Stummit pareerien. Unanennoù e gwarnizon evit pareañ anezho buan (3 FB
 msgid "Temple"
 msgstr "Templ"
 
-#: simulation/templates/template_structure_defense.xml:14
+#: simulation/templates/template_structure_defensive.xml:14
 msgid "Defensive Structure"
 msgstr "Savadur Difenn"
 
-#: simulation/templates/template_structure_defense_tower.xml:30
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
-#: simulation/templates/template_structure_defense_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr "Moger Goad"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:17
+msgid "Wall off your town for a stout defense."
+msgstr "Tro-droit gant ur Voger ho kêr evit a-benn kaout un difenn kreñv."
+
+#: simulation/templates/template_structure_defensive_tower.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "DefenseTower"
 msgstr "TourDifenn"
 
-#: simulation/templates/template_structure_defense_tower_outpost.xml:50
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:50
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "Sevel e-barzh tiriadoù neptuek ha glan evit mont da zizoloiñ gorread ar gartenn. Goustadik ec'h amdro betek Gaia tra ma vez en un tiriad neptuek."
 
-#: simulation/templates/template_structure_defense_tower_outpost.xml:51
-#: simulation/templates/template_structure_defense_tower_outpost.xml:27
-#: simulation/templates/template_structure_defense_tower_outpost.xml:49
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:27
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:49
 msgid "Outpost"
 msgstr "Kamp-Araokaet"
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 msgid "Sentry Tower"
 msgstr "Tour-Ged"
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 msgid "SentryTower"
 msgstr "TourGed"
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
 msgstr "Tenn biroù. Lakaat unannennoù en gwarnizon evit kaout un difenn ouzhpenn. Ezhomm 'zo da gaout teknologiezh an tarzhelloù evit gwareziñ he zroad. Gallout a ra bezañ gwellaet en tour-maen."
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:58
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Kreñvaat gant mein ha gwellaat en un tour difenn."
 
-#: simulation/templates/template_structure_defense_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "Defense Tower"
 msgstr "Tour Difenn"
 
-#: simulation/templates/template_structure_defense_tower_stone.xml:30
+#: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
 msgstr "Tenn biroù. Lakaat unanennoù en gwarnizon evit kaout un difenn ouzhpenn. Ezhomm 'zo da gaout teknologiezh an tarzhelloù evit gwareziñ he zroad."
 
-#: simulation/templates/template_structure_defense_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "StoneTower"
 msgstr "Tour-Mein"
 
-#: simulation/templates/template_structure_defense_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -176,47 +179,38 @@ msgstr "Tour-Mein"
 msgid "Stone Wall"
 msgstr "Moger Vein"
 
-#: simulation/templates/template_structure_defense_wall.xml:27
-#: simulation/templates/template_structure_defense_wallset.xml:11
-msgid "Wall off your town for a stout defense."
-msgstr "Tro-droit gant ur Voger ho kêr evit a-benn kaout un difenn kreñv."
-
-#: simulation/templates/template_structure_defense_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "Dorioù Kêr"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Lezel a raio hoc'h unanennoù d'ober monedone gant ur voger eus ar gêr. Prennet e c'hall bezañ a-benn mirout ouzh ar monedone."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
 msgstr "Amdroet e c'hall bezañ tammoù hir eus ar mogerioù e dorioù."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Ar pezh-mañ a lezo hoc'h unanennoù da dremen dre ho kreñvadurioù."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "Touribell Voger"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:60
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Biroù a denn. Lakait tud e gwarnizon a-benn difenn ur voger-gêr a-enep d'an argaderien."
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
-msgid "City Wall"
-msgstr "Moger Gêr"
-
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Savadur Ekonomikel"
 
-#: simulation/templates/template_structure_economic.xml:16
-#: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
 msgstr "Ekonomiezh"
 
@@ -237,7 +231,7 @@ msgstr "Stummit unanennoù kenwerzh evit gwerzhañ etre marc'hadoù all. Mammenn
 
 #: simulation/templates/template_structure_economic_market.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
-#: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_dock.xml:28
 msgid "Market"
 msgstr "Marc'had"
 
@@ -252,119 +246,122 @@ msgstr "Lec'hioù daspugn evit ar c'hoad, ar vein hag ar vammenn metal. Lec'h ev
 msgid "Storehouse"
 msgstr "Etrepaouez"
 
-#: simulation/templates/template_structure_military.xml:14
+#: simulation/templates/template_structure_military.xml:24
 msgid "Military Structure"
 msgstr "Savadur Milourel"
 
-#: simulation/templates/template_structure_military.xml:15
+#: simulation/templates/template_structure_military.xml:25
 msgid "Military"
 msgstr "Milourel"
 
-#: simulation/templates/template_structure_military_barracks.xml:30
+#: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
 msgstr "Stummit soudarded-keodedour. Kasit da benn enklaskoù diwar-benn ar gwellaennoù stummañ."
 
-#: simulation/templates/template_structure_military_barracks.xml:31
-#: simulation/templates/template_structure_military_barracks.xml:29
+#: simulation/templates/template_structure_military_barracks.xml:24
+#: simulation/templates/template_structure_military_barracks.xml:22
 msgid "Barracks"
 msgstr "Kazarnioù"
 
-#: simulation/templates/template_structure_military_barracks_range.xml:7
-msgid "Archery Range"
-msgstr "Kamp Gwaregata"
-
-#: simulation/templates/template_structure_military_barracks_range.xml:8
-msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Stummit soudarded-keodedour war droad a-bell. Kasit da benn enklaskoù diwar-benn ar gwellaennoù stummañ."
-
-#: simulation/templates/template_structure_military_barracks_stables.xml:7
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "Stables"
-msgstr "Krevier"
-
-#: simulation/templates/template_structure_military_barracks_stables.xml:8
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Stummit soudard-keodedour war-varc'h. Kasit da benn enklaskoù diwar-benn ar gwellaennoù stummañ."
-
-#: simulation/templates/template_structure_military_blacksmith.xml:33
+#: simulation/templates/template_structure_military_blacksmith.xml:26
 msgid "Research weapons and armor improvements."
 msgstr "Kasit da benn enklaskoù diwar-benn ar gwelladennoù armoù hag an houarnwiskoù."
 
-#: simulation/templates/template_structure_military_blacksmith.xml:34
-#: simulation/templates/template_structure_military_blacksmith.xml:30
+#: simulation/templates/template_structure_military_blacksmith.xml:27
+#: simulation/templates/template_structure_military_blacksmith.xml:23
 msgid "Blacksmith"
 msgstr "Govell"
 
-#: simulation/templates/template_structure_military_dock.xml:25
+#: simulation/templates/template_structure_military_dock.xml:26
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
 msgstr "Da vezañ savet war an aod evit sevel listri-brezel ha digeriñ ar c'henwerzh war-vor. Kasit da benn enklaskoù diwar-benn al listri."
 
-#: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_military_dock.xml:24
+#: simulation/templates/template_structure_military_dock.xml:28
+#: simulation/templates/template_structure_military_dock.xml:25
 msgid "Dock"
 msgstr "Porzh"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:32
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Elephant Stables"
 msgstr "Krevier Olifanted"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:35
+#: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "Train elephant units."
 msgstr "Stummañ unanennoù olifant."
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:36
-#: simulation/templates/template_structure_military_fortress.xml:72
-#: simulation/templates/template_structure_military_workshop.xml:36
+#: simulation/templates/template_structure_military_elephant_stables.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
-#: simulation/templates/template_structure_wonder.xml:52
+#: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Kêr"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:36
-msgid "ElephantStables"
-msgstr "Krevier Olifanted"
+#: simulation/templates/template_structure_military_elephant_stables.xml:30
+msgid "ElephantStable"
+msgstr "Kraou Olifant"
 
-#: simulation/templates/template_structure_military_embassy.xml:41
-#: simulation/templates/template_structure_military_embassy.xml:42
+#: simulation/templates/template_structure_military_embassy.xml:38
+#: simulation/templates/template_structure_military_embassy.xml:39
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
 msgstr "Kannati"
 
-#: simulation/templates/template_structure_military_fortress.xml:36
-#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:39
+#: simulation/templates/template_structure_military_fortress.xml:70
 msgid "Fortress"
 msgstr "Kreñvlec'h"
 
-#: simulation/templates/template_structure_military_fortress.xml:70
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
 msgstr "Stummañ harozed, kampioned hag armoù seziz. Kasit da benn enklaskoù diwar-benn gwellaennoù an armoù-seziz."
 
-#: simulation/templates/template_structure_military_kennel.xml:41
-#: simulation/templates/structures/brit_kennel.xml:5
+#: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
 msgstr "Kondi"
 
-#: simulation/templates/template_structure_military_kennel.xml:44
+#: simulation/templates/template_structure_military_kennel.xml:41
 msgid "Train war dogs."
 msgstr "Stummañ chas-brezel."
 
-#: simulation/templates/template_structure_military_workshop.xml:32
+#: simulation/templates/template_structure_military_range.xml:22
+msgid "Practice Range"
+msgstr "Astenn Pleustradeg"
+
+#: simulation/templates/template_structure_military_range.xml:23
+msgid "Train citizen-soldier ranged infantry. Research training improvements."
+msgstr "Stummit soudarded-keodedour war droad a-bell. Kasit da benn enklaskoù diwar-benn ar gwellaennoù stummañ."
+
+#: simulation/templates/template_structure_military_range.xml:24
+msgid "Range"
+msgstr "Astenn"
+
+#: simulation/templates/template_structure_military_stable.xml:25
+msgid "Train citizen-soldier cavalry. Research training improvements."
+msgstr "Stummit soudard-keodedour war-varc'h. Kasit da benn enklaskoù diwar-benn ar gwellaennoù stummañ."
+
+#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr "Marchosi"
+
+#: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"
 msgstr "Stal Vekanikerezh-Seziz"
 
-#: simulation/templates/template_structure_military_workshop.xml:35
+#: simulation/templates/template_structure_military_workshop.xml:28
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
 msgstr "Sevel mekanikoù-seziz evit distrujañ savadurioù hoc'h enebourien. Kasit da benn enklaskoù diwar-benn an teknologiezhioù seziz evit gwellaat efedusted an armoù-se."
 
-#: simulation/templates/template_structure_military_workshop.xml:36
+#: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
 msgstr "Stal-labour"
 
@@ -372,7 +369,7 @@ msgstr "Stal-labour"
 msgid "Resource Structure"
 msgstr "Savadur Mammenn"
 
-#: simulation/templates/template_structure_resource.xml:19
+#: simulation/templates/template_structure_resource.xml:18
 msgid "Resource"
 msgstr "Mammenn"
 
@@ -393,8 +390,9 @@ msgid "Field"
 msgstr "Park"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Gounit legumaj evit ar boued. Gouniderien maksimom: 5."
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
+msgstr "Dastum greun evit ar boued. Pep kouer da heul a labour gant nebeutoc'h a efedusted."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
@@ -408,44 +406,33 @@ msgstr "Ar savadur-mañ a zo unan ispisial ha dibar evit ur sevenadurezh ispisia
 msgid "Library"
 msgstr "Levraoueg"
 
-#: simulation/templates/template_structure_special_library.xml:19
+#: simulation/templates/template_structure_special_library.xml:18
 msgid "Research special technologies."
 msgstr "Kasit da benn enklaskoù diwar-benn teknologiezhioù ispisial."
 
-#: simulation/templates/template_structure_special_rotarymill.xml:23
+#: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
 msgstr "Milin-Dro"
-
-#: simulation/templates/template_structure_special_rotarymill.xml:25
-msgid "Melonas"
-msgstr "Melonas"
 
 #: simulation/templates/template_structure_special_theatron.xml:25
 msgid "Greek Theater"
 msgstr "C'hoariva Gresian"
 
-#: simulation/templates/template_structure_special_theatron.xml:26
-msgid "Théātron"
-msgstr "Théātron"
-
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:52
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Kas gloar d'ho sevenadurezh hag ouzhpennañ tachennoù douar ledan d'hoc'h impalaeriezh."
 
-#: simulation/templates/template_structure_wonder.xml:52
-#: simulation/templates/template_structure_wonder.xml:50
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:51
 msgid "Wonder"
 msgstr "Marzenn"
 
 #: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/athen_stable.xml:12
 #: simulation/templates/structures/mace_barracks.xml:18
-#: simulation/templates/structures/mace_stable.xml:12
 #: simulation/templates/structures/spart_barracks.xml:18
-#: simulation/templates/structures/spart_range.xml:12
-#: simulation/templates/structures/spart_stable.xml:12
+#: simulation/templates/structures/spart_range.xml:5
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Stratēgeîon"
 msgstr "Stratēgeîon"
@@ -502,15 +489,15 @@ msgstr "Epiteíkhisma"
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
 msgstr "Sevel mekanikoù-seziz. Lakait e gwarnizon soudarded e-barzh evit un difenn kreñv."
 
-#: simulation/templates/structures/athen_gymnasion.xml:23
+#: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
 msgstr "Pleustrva"
 
-#: simulation/templates/structures/athen_gymnasion.xml:24
+#: simulation/templates/structures/athen_gymnasion.xml:25
 msgid "Gymnásion"
 msgstr "Gymnásion"
 
-#: simulation/templates/structures/athen_gymnasion.xml:25
+#: simulation/templates/structures/athen_gymnasion.xml:26
 msgid "Train champion units."
 msgstr "Stummañ unanennoù kampion."
 
@@ -539,17 +526,31 @@ msgstr "Kamp-Araokaet Gresian"
 msgid "Prophylakḗ"
 msgstr "Prophylakḗ"
 
-#: simulation/templates/structures/athen_prytaneion.xml:24
+#: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Council Chamber"
 msgstr "Kambr ar C'huzul"
 
-#: simulation/templates/structures/athen_prytaneion.xml:25
+#: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Prytaneîon"
 msgstr "Prytaneîon"
 
-#: simulation/templates/structures/athen_prytaneion.xml:26
+#: simulation/templates/structures/athen_prytaneion.xml:27
 msgid "Train heroes. Research special technologies."
 msgstr "Stummit harozed. Kasit da benn enklaskoù diwar-benn teknologiezhioù ispisial."
+
+#: simulation/templates/structures/athen_royal_stoa.xml:5
+#: simulation/templates/structures/mace_royal_stoa.xml:5
+#: simulation/templates/structures/spart_royal_stoa.xml:12
+msgid "Stoá"
+msgstr "Stoá"
+
+#: simulation/templates/structures/athen_stable.xml:9
+#: simulation/templates/structures/mace_stable.xml:9
+#: simulation/templates/structures/ptol_stable.xml:9
+#: simulation/templates/structures/sele_stable.xml:9
+#: simulation/templates/structures/spart_stable.xml:9
+msgid "Hippṓn"
+msgstr "Hippṓn"
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
@@ -561,6 +562,12 @@ msgstr "Apothḗkē"
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
 msgstr "Naṓs"
+
+#: simulation/templates/structures/athen_theatron.xml:5
+#: simulation/templates/structures/mace_theatron.xml:5
+#: simulation/templates/structures/spart_theatron.xml:5
+msgid "Théātron"
+msgstr "Théātron"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -618,24 +625,22 @@ msgid "Pāyaud"
 msgstr "Pāyaud"
 
 #: simulation/templates/structures/brit_barracks.xml:15
-#: simulation/templates/structures/gaul_barracks.xml:15
-msgid "Gwersyllty"
-msgstr "Kazarn"
+msgid "Coriosessa"
+msgstr "Coriosessa"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
-msgid "Amoridas"
-msgstr "Amoridas"
+msgid "Gobanion"
+msgstr "Gobanion"
 
 #: simulation/templates/structures/brit_civil_centre.xml:12
-#: simulation/templates/structures/gaul_civil_centre.xml:9
-msgid "Caer"
-msgstr "Kêr"
+msgid "Tigernotreba"
+msgstr "Tigernotreba"
 
 #: simulation/templates/structures/brit_corral.xml:8
 #: simulation/templates/structures/gaul_corral.xml:8
-msgid "Cavalidos"
-msgstr "Kavalidos"
+msgid "Cagion"
+msgstr "Cagion"
 
 #: simulation/templates/structures/brit_crannog.xml:12
 msgid "Island Settlement"
@@ -646,31 +651,37 @@ msgid "Increase population limit and defend waterways."
 msgstr "Lakaat da greskiñ bevenn ar boblañs ha difenn an hentoù-bageal."
 
 #: simulation/templates/structures/brit_crannog.xml:17
-#: simulation/templates/structures/brit_dock.xml:15
-#: simulation/templates/structures/gaul_dock.xml:15
-msgid "Crannóc"
-msgstr "Krannog"
+msgid "Cranogion"
+msgstr "Cranogion"
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
+#: simulation/templates/structures/brit_sentry_tower.xml:5
 #: simulation/templates/structures/brit_wall_tower.xml:11
 #: simulation/templates/structures/gaul_defense_tower.xml:9
+#: simulation/templates/structures/gaul_sentry_tower.xml:5
 #: simulation/templates/structures/gaul_wall_tower.xml:11
-msgid "Tyrau"
-msgstr "Tourioù"
+msgid "Uxelon"
+msgstr "Ukselon"
+
+#: simulation/templates/structures/brit_dock.xml:15
+#: simulation/templates/structures/gaul_dock.xml:15
+msgid "Counos"
+msgstr "Kounos"
 
 #: simulation/templates/structures/brit_farmstead.xml:14
 #: simulation/templates/structures/gaul_farmstead.xml:11
-msgid "Ffermdy"
-msgstr "Ti-feurm"
+msgid "Buta"
+msgstr "Buta"
 
 #: simulation/templates/structures/brit_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
-msgid "Varmo"
-msgstr "Varmo"
+msgid "Olca"
+msgstr "Olka"
 
 #: simulation/templates/structures/brit_fortress.xml:15
-msgid "Brythonic Broch"
-msgstr "Broc'h Predenek"
+#: simulation/templates/structures/gaul_fortress.xml:8
+msgid "Dunon"
+msgstr "Dunon"
 
 #: simulation/templates/structures/brit_fortress.xml:16
 msgid "Train Brythonic heroes and champions. Construct siege rams."
@@ -678,31 +689,51 @@ msgstr "Stummit harozed Predenek ha kampioned. Savit tourzioù-seziz."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:5
-msgid "Annedd"
-msgstr "Annez"
+msgid "Tegia"
+msgstr "Tegia"
+
+#: simulation/templates/structures/brit_kennel.xml:5
+msgid "Cunattegia"
+msgstr "Kunattegia"
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
-msgid "Marchnaty"
-msgstr "Koc'hu"
+msgid "Magos"
+msgstr "Magos"
 
 #: simulation/templates/structures/brit_outpost.xml:5
-msgid "Brythonic Outpost"
-msgstr "Kamp-Araokaet Predenek"
+#: simulation/templates/structures/gaul_outpost.xml:5
+msgid "Antosolicon"
+msgstr "Antosolikon"
+
+#: simulation/templates/structures/brit_range.xml:5
+#: simulation/templates/structures/gaul_range.xml:8
+msgid "Budinadon"
+msgstr "Budinadon"
+
+#: simulation/templates/structures/brit_rotarymill.xml:5
+msgid "Melonas"
+msgstr "Melonas"
+
+#: simulation/templates/structures/brit_stable.xml:9
+#: simulation/templates/structures/gaul_stable.xml:9
+msgid "Eposton"
+msgstr "Eposton"
 
 #: simulation/templates/structures/brit_storehouse.xml:11
 #: simulation/templates/structures/gaul_storehouse.xml:11
-msgid "Ystordy"
-msgstr "Dastumlec'h"
+msgid "Capanon"
+msgstr "Capanon"
 
 #: simulation/templates/structures/brit_temple.xml:18
 #: simulation/templates/structures/gaul_temple.xml:18
-msgid "Addoldy"
-msgstr "Gwarezva"
+msgid "Nemeton"
+msgstr "Nemeton"
 
 #: simulation/templates/structures/brit_wall_gate.xml:9
-msgid "Dor"
-msgstr "Dor"
+#: simulation/templates/structures/gaul_wall_gate.xml:9
+msgid "Duoricos"
+msgstr "Duoricos"
 
 #: simulation/templates/structures/brit_wall_long.xml:29
 #: simulation/templates/structures/brit_wall_medium.xml:23
@@ -712,8 +743,8 @@ msgstr "Dor"
 #: simulation/templates/structures/gaul_wall_medium.xml:23
 #: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
-msgid "Gwarchglawdd"
-msgstr "Kreñvlec'hioù"
+msgid "Rate"
+msgstr "Feur"
 
 #: simulation/templates/structures/brit_wall_tower.xml:12
 #: simulation/templates/structures/gaul_wall_tower.xml:12
@@ -724,6 +755,11 @@ msgstr "Na denn ket ha n'haller ket lakaat tud e gwarnizon e-barzh."
 #: simulation/templates/structures/gaul_wonder.xml:9
 msgid "Stonehenge"
 msgstr "Stonehenge"
+
+#: simulation/templates/structures/brit_workshop.xml:8
+#: simulation/templates/structures/gaul_workshop.xml:5
+msgid "Miletucerdon"
+msgstr "Miletucerdon"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
@@ -838,19 +874,19 @@ msgstr "Moger-izel"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:44
+#: simulation/templates/structures/cart_super_dock.xml:45
 msgid "Naval Shipyard"
 msgstr "Chanter-bigi"
 
-#: simulation/templates/structures/cart_super_dock.xml:45
+#: simulation/templates/structures/cart_super_dock.xml:46
 msgid "Cothon"
 msgstr "Koton"
 
-#: simulation/templates/structures/cart_super_dock.xml:46
+#: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Shipyard"
 msgstr "Chanter-bigi"
 
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/cart_super_dock.xml:48
 msgid "Construct and repair mighty warships."
 msgstr "Savit ha kempennit listri-brezel kreñv."
 
@@ -894,17 +930,21 @@ msgstr "Jdar"
 msgid "Temple of Ba'al Hammon"
 msgstr "Templ Ba'al Hammon"
 
-#: simulation/templates/structures/gaul_fortress.xml:8
-msgid "Gallic Dun"
-msgstr "Din Galian"
+#: simulation/templates/structures/gaul_barracks.xml:15
+msgid "Coriosedlon"
+msgstr "Coriosedlon"
+
+#: simulation/templates/structures/gaul_civil_centre.xml:9
+msgid "Lissos"
+msgstr "Lissos"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
 msgstr "Stummit harozed ha kampioned Galian. Savit tourzioù-seziz."
 
-#: simulation/templates/structures/gaul_outpost.xml:5
-msgid "Gallic Outpost"
-msgstr "Kamp-Araokaet Galian"
+#: simulation/templates/structures/gaul_rotarymill.xml:5
+msgid "Brauon"
+msgstr "Brauon"
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -918,9 +958,13 @@ msgstr "Tavarn"
 msgid "Recruit Naked Fanatics."
 msgstr "Tutañ Tud Trelatet Noazh."
 
-#: simulation/templates/structures/gaul_wall_gate.xml:9
-msgid "Duro"
-msgstr "Duro"
+#: simulation/templates/structures/gaul_theatron.xml:6
+msgid "Assembly of Princes"
+msgstr "Bodadeg Priñsed"
+
+#: simulation/templates/structures/gaul_theatron.xml:7
+msgid "Remogantion"
+msgstr "Remogantioñ"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1046,8 +1090,8 @@ msgid "Mryt"
 msgstr "Mryt"
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
-msgid "Kushite Elephant Stables"
-msgstr "Krevier Olifanted Kushite"
+msgid "Ỉ﻿ḥ Abu"
+msgstr "Ỉḥ Abu"
 
 #: simulation/templates/structures/kush_farmstead.xml:9
 msgid "snwt"
@@ -1109,9 +1153,9 @@ msgstr "Piramidenn Vihan"
 msgid "mr"
 msgstr "mr"
 
-#: simulation/templates/structures/kush_range.xml:9
-msgid "Kushite Archery Range"
-msgstr "Kamp Gwaregerien Kushite."
+#: simulation/templates/structures/kush_range.xml:8
+msgid "Pr-Pdt"
+msgstr "Pr-Pdt"
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
 msgid "tsmt"
@@ -1126,8 +1170,8 @@ msgid "ḥwt-nṯr"
 msgstr "ḥwt-nṯr"
 
 #: simulation/templates/structures/kush_stable.xml:9
-msgid "Kushite Cavalry Stable"
-msgstr "Marchosi ar Varc'hegerezh Kushite"
+msgid "Ỉḥ Ssmt"
+msgstr "Ỉḥ Ssmt"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wd3t"
@@ -1181,8 +1225,8 @@ msgid "Mnw nht"
 msgstr "Mnw nht"
 
 #: simulation/templates/structures/kush_workshop.xml:5
-msgid "Kushite Siege Workshop"
-msgstr "Stal-labour Mekanikerezh-Seziz Kushite"
+msgid "Pr-ỉwn n ms﻿"
+msgstr "Pr-ỉwn n ms"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
@@ -1267,7 +1311,7 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur_palace.xml:12
+#: simulation/templates/structures/maur_palace.xml:13
 msgid "Harmya"
 msgstr "Harmya"
 
@@ -1400,15 +1444,15 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Stummañ Kampion Marc'heg ha Savit Tourzioù-seziz."
 
-#: simulation/templates/structures/pers_hall.xml:28
+#: simulation/templates/structures/pers_hall.xml:29
 msgid "Persian Hall"
 msgstr "Koc'hu Persian"
 
-#: simulation/templates/structures/pers_hall.xml:29
+#: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarthi Visadahyu"
 msgstr "Duvarthi Visadahyu"
 
-#: simulation/templates/structures/pers_hall.xml:31
+#: simulation/templates/structures/pers_hall.xml:32
 msgid "Train War Elephants and Kardakes mercenaries."
 msgstr "Stummañ Olifanted Brezel ha goprsoudarded Kardak."
 
@@ -1443,17 +1487,9 @@ msgstr "Ardatašta"
 msgid "Didebani"
 msgstr "Didebani"
 
-#: simulation/templates/structures/pers_stables.xml:18
-msgid "Cavalry Stables"
-msgstr "Marchosi ar Marc'hegerezh"
-
-#: simulation/templates/structures/pers_stables.xml:19
+#: simulation/templates/structures/pers_stable.xml:15
 msgid "Paraspa"
 msgstr "Paraspa"
-
-#: simulation/templates/structures/pers_stables.xml:21
-msgid "Train citizen-cavalry units."
-msgstr "Stummañ unanennoù marc'heger-keodedour."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1558,19 +1594,20 @@ msgstr "Kamp Goprsoudarded"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr "Stratopedeia Misthophoron"
+msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:32
 msgid ""
-"Cheap barracks-like structure that is buildable in neutral territory, but "
+"Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Savadur marc'hadmat peurheñvel ouzh ar c'hazarnioù, a c'hall bezañ savet en un tiriad neptuek, nemet n'en deus levezon ebet war an tiriad. Stummit goprsoudarded."
+msgstr "Frammadur heñvel ouzh kazarnioù marc'had-mat a c'hell bezañ savet en un tiriad neptu, hogen skignañ a ra levezon diriadel ebet. Stummañ goprsoudarded."
+
+#: simulation/templates/structures/ptol_military_colony.xml:9
+#: simulation/templates/structures/sele_military_colony.xml:9
+msgid "Klēroukhía"
+msgstr "Klēroukhía"
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
-msgid "Klēroukhia"
-msgstr "Klēroukhia"
-
-#: simulation/templates/structures/ptol_military_colony.xml:11
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
@@ -1612,19 +1649,19 @@ msgstr " Bolz-Enor"
 msgid "Special Imperial Roman building."
 msgstr "Savadur ispisial an Impalaeriezh Roman"
 
-#: simulation/templates/structures/rome_army_camp.xml:42
+#: simulation/templates/structures/rome_army_camp.xml:45
 msgid "ArmyCamp"
 msgstr "KampArme"
 
-#: simulation/templates/structures/rome_army_camp.xml:75
+#: simulation/templates/structures/rome_army_camp.xml:78
 msgid "Entrenched Army Camp"
 msgstr "Kamp-Difenn Milourel"
 
-#: simulation/templates/structures/rome_army_camp.xml:76
+#: simulation/templates/structures/rome_army_camp.xml:79
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:79
+#: simulation/templates/structures/rome_army_camp.xml:82
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
@@ -1815,7 +1852,7 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:9
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
@@ -1843,23 +1880,23 @@ msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
 msgstr "Savit mekanikoù-seziz. Betek 20 soudard da veañ lakaet e gwarnizon evit un difenn kreñv."
 
-#: simulation/templates/structures/spart_gerousia.xml:21
+#: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"
 msgstr "Sened Spartan"
 
-#: simulation/templates/structures/spart_gerousia.xml:22
+#: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Gerontía"
 msgstr "Gerontía"
 
-#: simulation/templates/structures/spart_gerousia.xml:23
+#: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train heroes."
 msgstr "Stummit harozed."
 
-#: simulation/templates/structures/spart_syssiton.xml:24
+#: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
 msgstr "Predva Milourel"
 
-#: simulation/templates/structures/spart_syssiton.xml:25
+#: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Syssítion"
 msgstr "Syssítion"
 

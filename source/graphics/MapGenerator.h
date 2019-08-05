@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,13 +18,14 @@
 #ifndef INCLUDED_MAPGENERATOR
 #define INCLUDED_MAPGENERATOR
 
+#include "lib/posix/posix_pthread.h"
 #include "ps/FileIo.h"
-#include "ps/ThreadUtil.h"
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/random/linear_congruential.hpp>
 
+#include <mutex>
 #include <set>
 #include <string>
 
@@ -111,43 +112,129 @@ public:
 	shared_ptr<ScriptInterface::StructuredClone> GetResults();
 
 private:
-// Mapgen
+
+	/**
+	 * Expose functions defined in this class to the script.
+	 */
+	void RegisterScriptFunctions();
 
 	/**
 	 * Load all scripts of the given library
 	 *
-	 * @param libraryName String specifying name of the library (subfolder of ../maps/random/)
+	 * @param libraryName VfsPath specifying name of the library (subfolder of ../maps/random/)
 	 * @return true if all scripts ran successfully, false if there's an error
 	 */
-	bool LoadScripts(const std::wstring& libraryName);
+	bool LoadScripts(const VfsPath& libraryName);
 
-	// callbacks for script functions
-	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
+	/**
+	 * Recursively load all script files in the given folder.
+	 */
+	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& name);
+
+	/**
+	 * Finalize map generation and pass results from the script to the engine.
+	 */
 	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
-	static JS::Value LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& src);
-	static JS::Value LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const std::string& filename);
+
+	/**
+	 * Load an image file and return it as a height array.
+	 */
+	static JS::Value LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& src);
+
+	/**
+	 * Load an Atlas terrain file (PMP) returning textures and heightmap.
+	 */
+	static JS::Value LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename);
+
+	/**
+	 * Sets the map generation progress, which is one of multiple stages determining the loading screen progress.
+	 */
 	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
+
+	/**
+	 * Microseconds since the epoch.
+	 */
+	static double GetMicroseconds(ScriptInterface::CxPrivate* pCxPrivate);
+
+	/**
+	 * Return the template data of the given template name.
+	 */
 	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
+
+	/**
+	 * Check whether the given template exists.
+	 */
 	static bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
+
+	/**
+	 * Returns all template names of simulation entity templates.
+	 */
 	static std::vector<std::string> FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
+
+	/**
+	 * Returns all template names of actors.
+	 */
 	static std::vector<std::string> FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
-	static int GetTerrainTileSize(ScriptInterface::CxPrivate* pCxPrivate);
 
-	std::set<std::wstring> m_LoadedLibraries;
-	shared_ptr<ScriptInterface::StructuredClone> m_MapData;
-	boost::rand48 m_MapGenRNG;
-	int m_Progress;
-	ScriptInterface* m_ScriptInterface;
-	VfsPath m_ScriptPath;
-	std::string m_Settings;
-	CTemplateLoader m_TemplateLoader;
-
-// Thread
+	/**
+	 * Perform map generation in an independent thread.
+	 */
 	static void* RunThread(void* data);
+
+	/**
+	 * Perform the map generation.
+	 */
 	bool Run();
 
+	/**
+	 * Currently loaded script librarynames.
+	 */
+	std::set<VfsPath> m_LoadedLibraries;
+
+	/**
+	 * Result of the mapscript generation including terrain, entities and environment settings.
+	 */
+	shared_ptr<ScriptInterface::StructuredClone> m_MapData;
+
+	/**
+	 * Deterministic random number generator.
+	 */
+	boost::rand48 m_MapGenRNG;
+
+	/**
+	 * Current map generation progress.
+	 */
+	int m_Progress;
+
+	/**
+	 * Provides the script context.
+	 */
+	ScriptInterface* m_ScriptInterface;
+
+	/**
+	 * Map generation script to run.
+	 */
+	VfsPath m_ScriptPath;
+
+	/**
+	 * Map and simulation settings chosen in the gamesetup stage.
+	 */
+	std::string m_Settings;
+
+	/**
+	 * Backend to loading template data.
+	 */
+	CTemplateLoader m_TemplateLoader;
+
+	/**
+	 * Holds the mapgeneration thread identifier.
+	 */
 	pthread_t m_WorkerThread;
-	CMutex m_WorkerMutex;
+
+	/**
+	 * Avoids thread synchronization issues.
+	 */
+	std::mutex m_WorkerMutex;
 };
 
 

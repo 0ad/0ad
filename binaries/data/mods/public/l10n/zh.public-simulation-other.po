@@ -1,22 +1,24 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
+# liulitchi <xingzuo88@qq.com>, 2018
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
-# liulitchi <xingzuo88@qq.com>, 2018
+# liulitchi <xingzuo88@qq.com>, 2018-2019
+# 星臣 <yuronglong1996@gmail.com>, 2017
 # 星臣 <yuronglong1996@gmail.com>, 2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-10-13 09:24+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-07-23 07:55+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +32,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "我正对 %(_player_)s 发动大规模军事攻击，来加入我吧。"
+msgstr "我将对 %(_player_)s 发动大规模攻击，来加入我吧。"
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -83,7 +85,7 @@ msgstr "这会儿我无帮你对抗 %(_player_)s ，我正计划攻打 %(_player
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "礼物送你， %(_player_)s ，好好利用。"
+msgstr "区区薄礼， %(_player_)s ，善加利用。"
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
@@ -100,14 +102,14 @@ msgstr "这次我可以帮你， %(_player_)s，记得要合理调配资源。"
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "我需要 %(resource)s ,  您可以帮忙吗？我会归功于您的。"
+msgstr "我需要 %(resource)s ,  你可以帮忙吗？我会归功于你的。"
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "如果您能提供给我一些 %(resource)s, 我将会更积极参与我们的联合行动。"
+msgstr "如果你能提供给我一些 %(resource)s, 我会更积极地参与联合行动。"
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
@@ -132,17 +134,17 @@ msgstr "与玩家 %(_player_)s 新建一条贸易路线，分享你们的收益�
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "现在玩家 %(_player_)s 是我盟友了。"
+msgstr "现在 %(_player_)s 是我盟友了。"
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "我和 %(_player_)s 互相中立。"
+msgstr "我和 %(_player_)s 互表中立。"
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "玩家 %(_player_)s 已与我为敌。"
+msgstr "%(_player_)s 已与我为敌。"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -154,19 +156,19 @@ msgstr "对不起，%(_player_)s ，不能接受你的结盟提议。"
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "不能和你结盟， %(_player_)s ， 不过，我会保持中立。"
+msgstr " %(_player_)s ，我不会和你结盟。不过，我会保持中立。"
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "我拒绝你的结盟提议，%(_player_)s ，不过我们互相中立。"
+msgstr "拒绝你的结盟提议，%(_player_)s ，不过我们互相中立。"
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr "%(_player_)s ， 只有中立态度符合我。"
+msgstr "%(_player_)s ， 只有中立态度符合我的利益。"
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
@@ -194,25 +196,25 @@ msgstr "你的和平提议不值一提，%(_player_)s 。"
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr "%(_player_)s ，对你不断的提出的和平提议，我们的回复是——拒绝。"
+msgstr "%(_player_)s ，对你不断的提出的和平提议，我们的回复是——拒绝!"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr "%(_player_)s ，我们接受你的结盟请求，这会使我们互利共赢。"
+msgstr "%(_player_)s ，接受你的结盟请求，这让我们互利共赢。"
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr "%(_player_)s ， 我们结盟，真是再明智不过了。"
+msgstr "%(_player_)s ，双方结盟，是为明智之举。"
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr "%(_player_)s，让这项和平协议保证我们共同繁荣。"
+msgstr "%(_player_)s，愿这项和平协议保证我们共同繁荣。"
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
@@ -222,7 +224,7 @@ msgstr "我们目标一致，%(_player_)s，同意结盟。"
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "%(_player_)s ，从今往后我们就是盟友了。"
+msgstr "%(_player_)s ，往后我们就是盟友了。"
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
@@ -242,8 +244,8 @@ msgstr "%(_player_)s ， 你若能给我%(_amount_)s %(_resource_)s，可以考�
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "%(_player_)s ，除非你进贡 %(_amount_)s %(_resource_)s ，否则盟约不会生效。"
+" %(_player_)s."
+msgstr "除非你给我%(_amount_)s%(_resource_)s ,否则同盟免谈%(_player_)s 。"
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -429,7 +431,7 @@ msgstr "敌对"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "不能在%(territoryType)s的领土上建造  %(name)s.。有效的领土： %(validTerritories)s"
+msgstr "不能在 %(territoryType)s 的领土上建造 %(name)s.。有效的领土： %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
@@ -485,11 +487,11 @@ msgstr "敌对"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "您可以在 %(time)s 后攻击"
+msgstr "你可以在 %(time)s 后攻击"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "您现在可以攻击了！"
+msgstr "你现在可以攻击了！"
 
 #: simulation/components/EndGameManager.js:171
 #, javascript-format
@@ -499,7 +501,7 @@ msgstr[0] "%(players)s 和 %(lastPlayer)s 获得胜利 (胜者为王）。"
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
-msgstr "最后剩下的玩家获胜。"
+msgstr "笑到最后的玩家获胜。"
 
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
@@ -509,7 +511,7 @@ msgstr "%(category)s 已达到最大建造数 %(limit)s"
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)s  已达到最大训练数 %(limit)s"
+msgstr "%(category)s 已达到最大训练数 %(limit)s"
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
@@ -547,7 +549,7 @@ msgstr "资源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 msgid "The production queue is full."
 msgstr "生产队列已满。"
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "无法找到可用空间来部署受训单位"
 
@@ -558,7 +560,7 @@ msgstr "%(player)s 被击败(作弊)。"
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr "您需要选择用于训练单位的建筑。"
+msgstr "需要选择训练单位的建筑。"
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
@@ -566,12 +568,12 @@ msgstr "(作弊 - 控制所有单位)"
 
 #: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
-msgstr "(作弊——显示全部地图)"
+msgstr "(作弊 - 显示全部地图)"
 
 #: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr "%(player)s已退出。"
+msgstr "%(player)s 已退出。"
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
@@ -604,13 +606,13 @@ msgstr "无法撤离单位"
 msgid "Some unit(s) can't go back to work"
 msgstr "某些单位无法返回工作岗位"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
-msgstr "该建筑的科技要求不满足。"
+msgstr "未达到该建筑的科技要求。"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "盖亚"
+msgstr "大自然"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
@@ -682,11 +684,11 @@ msgstr "快速 (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr "快速 (10x)"
+msgstr "高速 (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr "快速 (20x)"
+msgstr "飞速 (20x)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
@@ -736,7 +738,8 @@ msgstr "弑君者"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
 msgstr "第一个建成或占领奇观，并保持一段时间以赢得比赛。 当奇观被摧毁或被占领时，计时器将被重置。"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
@@ -779,7 +782,7 @@ msgstr "新手玩家，建议选择本难度。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr "非常简单"
+msgstr "极易"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
@@ -813,7 +816,7 @@ msgstr "骨灰级难度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
-msgstr "非常困难"
+msgstr "极难"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -837,7 +840,7 @@ msgstr "小地图，适合1v1比赛，可以及早碰头，也有一些扩展空
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr "中型地图为，1v1空间充足，但即使是八名玩家也适合。"
+msgstr "中型地图，1v1空间充足，但即使是八名玩家也适合。"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -861,7 +864,7 @@ msgstr "当地图的大部分被水或山脉覆盖时，建议使用大型地图
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr "极大型"
+msgstr "极大"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
@@ -872,7 +875,7 @@ msgstr "超大地图，不建议使用，玩家接触耗时很久，游戏性会
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
-msgstr "巨大型"
+msgstr "巨型"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -882,5 +885,5 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra是游戏默认AI。 欢迎向开发组提交问题（请参阅主菜单中的链接）。\n\nAI对资源搜集效率有加成/减成，从沙盒的-60％，中等0%，到极难+ 60％不等，最简单AI生产和建筑较慢。 此外，沙盒级别AI不会扩张，更不会攻击。"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra是默认的AI。 可向Wildfire Games提交问题（请参阅主菜单中的链接）。\n\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％。 最易的AI科研、训练和建筑较慢。沙盒级别的AI既不会扩张，也不会主动攻击。"

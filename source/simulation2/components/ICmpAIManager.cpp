@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,9 +64,10 @@ public:
 		std::wstring dirname = GetWstringFromWpath(*it);
 
 		JS::RootedValue ai(cx);
+		self->m_ScriptInterface.CreateObject(&ai);
+
 		JS::RootedValue data(cx);
 		self->m_ScriptInterface.ReadJSONFile(pathname, &data);
-		self->m_ScriptInterface.Eval("({})", &ai);
 		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
 		self->m_ScriptInterface.SetProperty(ai, "data", data, true);
 		u32 length;

@@ -8,8 +8,8 @@
     <Max>5</Max>
   </Health>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Chicken</SpecificName>
+    <GenericName>Chicken</GenericName>
+    <SpecificName>Gallus gallus domesticus</SpecificName>
     <Icon>gaia/fauna_chicken.png</Icon>
   </Identity>
   <Obstruction>
@@ -40,9 +40,6 @@
   </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.15</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.15</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/chicken.xml</Actor>

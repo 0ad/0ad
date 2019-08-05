@@ -2,6 +2,22 @@ function Attack() {}
 
 var g_AttackTypes = ["Melee", "Ranged", "Capture"];
 
+Attack.prototype.statusEffectsSchema =
+	"<optional>" +
+		"<element name='StatusEffects' a:help='Effects like poisioning or burning a unit.'>" +
+			"<oneOrMore>" +
+				"<element>" +
+					"<anyName/>" +
+					"<interleave>" +
+							"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Interval' a:help='Interval between the occurances of the effect.'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Damage' a:help='Damage caused by the effect.'><ref name='nonNegativeDecimal'/></element>" +
+					"</interleave>" +
+				"</element>" +
+			"</oneOrMore>" +
+		"</element>" +
+	"</optional>";
+
 Attack.prototype.bonusesSchema =
 	"<optional>" +
 		"<element name='Bonuses'>" +
@@ -44,9 +60,11 @@ Attack.prototype.Schema =
 	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
 	"<a:example>" +
 		"<Melee>" +
-			"<Hack>10.0</Hack>" +
-			"<Pierce>0.0</Pierce>" +
-			"<Crush>5.0</Crush>" +
+			"<Damage>" +
+				"<Hack>10.0</Hack>" +
+				"<Pierce>0.0</Pierce>" +
+				"<Crush>5.0</Crush>" +
+			"</Damage>" +
 			"<MaxRange>4.0</MaxRange>" +
 			"<RepeatTime>1000</RepeatTime>" +
 			"<Bonuses>" +
@@ -64,16 +82,16 @@ Attack.prototype.Schema =
 			"<PreferredClasses datatype=\"tokens\">Cavalry Infantry</PreferredClasses>" +
 		"</Melee>" +
 		"<Ranged>" +
-			"<Hack>0.0</Hack>" +
-			"<Pierce>10.0</Pierce>" +
-			"<Crush>0.0</Crush>" +
+			"<Damage>" +
+				"<Hack>0.0</Hack>" +
+				"<Pierce>10.0</Pierce>" +
+				"<Crush>0.0</Crush>" +
+			"</Damage>" +
 			"<MaxRange>44.0</MaxRange>" +
 			"<MinRange>20.0</MinRange>" +
 			"<ElevationBonus>15.0</ElevationBonus>" +
 			"<PrepareTime>800</PrepareTime>" +
 			"<RepeatTime>1600</RepeatTime>" +
-			"<ProjectileSpeed>50.0</ProjectileSpeed>" +
-			"<Spread>2.5</Spread>" +
 			"<Delay>1000</Delay>" +
 			"<Bonuses>" +
 				"<Bonus1>" +
@@ -82,6 +100,8 @@ Attack.prototype.Schema =
 				"</Bonus1>" +
 			"</Bonuses>" +
 			"<Projectile>" +
+				"<Speed>50.0</Speed>" +
+				"<Spread>2.5</Spread>" +
 				"<ActorName>props/units/weapons/rock_flaming.xml</ActorName>" +
 				"<ImpactActorName>props/units/weapons/rock_explosion.xml</ImpactActorName>" +
 				"<ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>" +
@@ -91,22 +111,28 @@ Attack.prototype.Schema =
 				"<Shape>Circular</Shape>" +
 				"<Range>20</Range>" +
 				"<FriendlyFire>false</FriendlyFire>" +
-				"<Hack>0.0</Hack>" +
-				"<Pierce>10.0</Pierce>" +
-				"<Crush>0.0</Crush>" +
+				"<Damage>" +
+					"<Hack>0.0</Hack>" +
+					"<Pierce>10.0</Pierce>" +
+					"<Crush>0.0</Crush>" +
+				"</Damage>" +
 			"</Splash>" +
 		"</Ranged>" +
 		"<Slaughter>" +
-			"<Hack>1000.0</Hack>" +
-			"<Pierce>0.0</Pierce>" +
-			"<Crush>0.0</Crush>" +
+			"<Damage>" +
+				"<Hack>1000.0</Hack>" +
+				"<Pierce>0.0</Pierce>" +
+				"<Crush>0.0</Crush>" +
+			"</Damage>" +
 			"<MaxRange>4.0</MaxRange>" +
 		"</Slaughter>" +
 	"</a:example>" +
 	"<optional>" +
 		"<element name='Melee'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage strength") +
+				"<element name='Damage'>" +
+					BuildDamageTypesSchema("damage strength") +
+				"</element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
 					"<data type='nonNegativeInteger'/>" +
@@ -123,7 +149,9 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Ranged'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage strength") +
+				"<element name='Damage'>" +
+					BuildDamageTypesSchema("damage strength") +
+				"</element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<optional>"+
@@ -144,49 +172,55 @@ Attack.prototype.Schema =
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" +
 					"<data type='positiveInteger'/>" +
 				"</element>" +
-				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second)'>" +
-					"<ref name='positiveDecimal'/>" +
-				"</element>" +
-				"<element name='Gravity' a:help='The gravity affecting the projectile. This affects the shape of the flight curve.'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-				"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='Delay' a:help='Delay of the damage in milliseconds'><ref name='nonNegativeDecimal'/></element>" +
-				Attack.prototype.bonusesSchema +
-				Attack.prototype.preferredClassesSchema +
-				Attack.prototype.restrictedClassesSchema +
-				"<optional>" +
-					"<element name='Projectile'>" +
-						"<interleave>" +
-							"<oneOrMore>" +
-								"<choice>" +
-									"<element name='ActorName' a:help='actor of the projectile animation'>" +
-										"<text/>" +
-									"</element>" +
-									"<interleave>" +
-										"<element name='ImpactActorName' a:help='actor of the projectile impact animation'>" +
-											"<text/>" +
-										"</element>" +
-										"<element name='ImpactAnimationLifetime' a:help='length of the projectile impact animation'>" +
-											"<ref name='positiveDecimal'/>" +
-										"</element>" +
-									"</interleave>" +
-								"</choice>" +
-							"</oneOrMore>" +
-						"</interleave>" +
-					"</element>" +
-				"</optional>" +
 				"<optional>" +
 					"<element name='Splash'>" +
 						"<interleave>" +
 							"<element name='Shape' a:help='Shape of the splash damage, can be circular or linear'><text/></element>" +
 							"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-							DamageTypes.BuildSchema("damage strength") +
+							"<element name='Damage'>" +
+								BuildDamageTypesSchema("damage strength") +
+							"</element>" +
 							Attack.prototype.bonusesSchema +
 						"</interleave>" +
 					"</element>" +
 				"</optional>" +
+				"<element name='Projectile'>" +
+					"<interleave>" +
+						"<element name='Speed' a:help='Speed of projectiles (in meters per second).'>" +
+							"<ref name='positiveDecimal'/>" +
+						"</element>" +
+						"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
+						"<element name='Gravity' a:help='The gravity affecting the projectile. This affects the shape of the flight curve.'>" +
+							"<ref name='nonNegativeDecimal'/>" +
+						"</element>" +
+						"<optional>" +
+							"<element name='LaunchPoint' a:help='Delta from the unit position where to launch the projectile.'>" +
+								"<attribute name='y'>" +
+									"<data type='decimal'/>" +
+								"</attribute>" +
+							"</element>" +
+						"</optional>" +
+						"<optional>" +
+							"<element name='ActorName' a:help='actor of the projectile animation.'>" +
+								"<text/>" +
+							"</element>" +
+						"</optional>" +
+						"<optional>" +
+							"<element name='ImpactActorName' a:help='actor of the projectile impact animation'>" +
+								"<text/>" +
+							"</element>" +
+							"<element name='ImpactAnimationLifetime' a:help='length of the projectile impact animation.'>" +
+								"<ref name='positiveDecimal'/>" +
+							"</element>" +
+						"</optional>" +
+					"</interleave>" +
+				"</element>" +
+				Attack.prototype.statusEffectsSchema +
+				Attack.prototype.bonusesSchema +
+				Attack.prototype.preferredClassesSchema +
+				Attack.prototype.restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -207,7 +241,9 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage strength") +
+				"<element name='Damage'>" +
+					BuildDamageTypesSchema("damage strength") +
+				"</element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
@@ -372,18 +408,14 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	if (isTargetClass("Domestic") && this.template.Slaughter)
 		return "Slaughter";
 
-	let types = this.GetAttackTypes().filter(type => !this.GetRestrictedClasses(type).some(isTargetClass));
+	let types = this.GetAttackTypes().filter(type => this.CanAttack(target, [type]));
 
-	// check if the target is capturable
+	// Check whether the target is capturable and prefer that when it is allowed.
 	let captureIndex = types.indexOf("Capture");
 	if (captureIndex != -1)
 	{
-		let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
-
-		let cmpPlayer = QueryOwnerInterface(this.entity);
-		if (allowCapture && cmpPlayer && cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()))
+		if (allowCapture)
 			return "Capture";
-		// not capturable, so remove this attack
 		types.splice(captureIndex, 1);
 	}
 
@@ -428,13 +460,13 @@ Attack.prototype.GetAttackStrengths = function(type)
 	}
 
 	let applyMods = damageType =>
-		ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), this.entity);
+		ApplyValueModificationsToEntity("Attack/" + type + splash + "/Damage/" + damageType, +(template.Damage[damageType] || 0), this.entity);
 
 	if (type == "Capture")
-		return { "value": applyMods("Value") };
+		return { "value": ApplyValueModificationsToEntity("Attack/Capture/Value", +(template.Value || 0), this.entity) };
 
 	let ret = {};
-	for (let damageType of DamageTypes.GetTypes())
+	for (let damageType in template.Damage)
 		ret[damageType] = applyMods(damageType);
 
 	return ret;
@@ -445,7 +477,8 @@ Attack.prototype.GetSplashDamage = function(type)
 	if (!this.template[type].Splash)
 		return false;
 
-	let splash = this.GetAttackStrengths(type + ".Splash");
+	let splash = {};
+	splash.damage = this.GetAttackStrengths(type + ".Splash");
 	splash.friendlyFire = this.template[type].Splash.FriendlyFire != "false";
 	splash.shape = this.template[type].Splash.Shape;
 	return splash;
@@ -493,8 +526,8 @@ Attack.prototype.PerformAttack = function(type, target)
 		//  * Obstacles like trees could reduce the probability of the target being hit
 		//  * Obstacles like walls should block projectiles entirely
 
-		let horizSpeed = +this.template[type].ProjectileSpeed;
-		let gravity = +this.template[type].Gravity;
+		let horizSpeed = +this.template[type].Projectile.Speed;
+		let gravity = +this.template[type].Projectile.Gravity;
 		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
 
 		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -513,7 +546,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		let predictedPosition = (timeToTarget !== false) ? Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition) : targetPosition;
 
 		// Add inaccuracy based on spread.
-		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template.Ranged.Spread, this.entity) *
+		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template[type].Projectile.Spread, this.entity) *
 			predictedPosition.horizDistanceTo(selfPosition) / 100;
 
 		let randNorm = randomNormal2D();
@@ -534,16 +567,14 @@ Attack.prototype.PerformAttack = function(type, target)
 		let actorName = "";
 		let impactActorName = "";
 		let impactAnimationLifetime = 0;
-		if (this.template.Ranged.Projectile)
-		{
-			actorName = this.template.Ranged.Projectile.ActorName || "";
-			impactActorName = this.template.Ranged.Projectile.ImpactActorName || "";
-			impactAnimationLifetime = this.template.Ranged.Projectile.ImpactAnimationLifetime || 0;
-		}
 
-		let launchPoint = selfPosition.clone();
-		// TODO: remove this when all the ranged unit templates are updated with Projectile/Launchpoint
-		launchPoint.y += 3;
+		actorName = this.template[type].Projectile.ActorName || "";
+		impactActorName = this.template[type].Projectile.ImpactActorName || "";
+		impactAnimationLifetime = this.template[type].Projectile.ImpactAnimationLifetime || 0;
+
+		// TODO: Use unit rotation to implement x/z offsets.
+		let deltaLaunchPoint = new Vector3D(0, this.template[type].Projectile.LaunchPoint["@y"], 0.0);
+		let launchPoint = Vector3D.add(selfPosition, deltaLaunchPoint);
 		
 		let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 		if (cmpVisual)
@@ -576,25 +607,26 @@ Attack.prototype.PerformAttack = function(type, target)
 			"bonus": this.GetBonusTemplate(type),
 			"isSplash": false,
 			"attackerOwner": attackerOwner,
-			"attackImpactSound": attackImpactSound
+			"attackImpactSound": attackImpactSound,
+			"statusEffects": this.template[type].StatusEffects
 		};
-		if (this.template.Ranged.Splash)
+		if (this.template[type].Splash)
 		{
-			data.friendlyFire = this.template.Ranged.Splash.FriendlyFire != "false";
-			data.radius = +this.template.Ranged.Splash.Range;
-			data.shape = this.template.Ranged.Splash.Shape;
+			data.friendlyFire = this.template[type].Splash.FriendlyFire != "false";
+			data.radius = +this.template[type].Splash.Range;
+			data.shape = this.template[type].Splash.Shape;
 			data.isSplash = true;
 			data.splashStrengths = this.GetAttackStrengths(type + ".Splash");
 			data.splashBonus = this.GetBonusTemplate(type + ".Splash");
 		}
-		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000 + +this.template.Ranged.Delay, data);
+		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000 + +this.template[type].Delay, data);
 	}
 	else if (type == "Capture")
 	{
 		if (attackerOwner == INVALID_PLAYER)
 			return;
 
-		let multiplier = GetDamageBonus(target, this.GetBonusTemplate(type));
+		let multiplier = GetDamageBonus(this.entity, target, type, this.GetBonusTemplate(type));
 		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)
 			return;
@@ -621,7 +653,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			"strengths": this.GetAttackStrengths(type),
 			"target": target,
 			"attacker": this.entity,
-			"multiplier": GetDamageBonus(target, this.GetBonusTemplate(type)),
+			"multiplier": GetDamageBonus(this.entity, target, type, this.GetBonusTemplate(type)),
 			"type": type,
 			"attackerOwner": attackerOwner
 		});

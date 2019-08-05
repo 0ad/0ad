@@ -25,6 +25,7 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Persian Hall</GenericName>
     <SpecificName>Duvarthi Visadahyu</SpecificName>
     <Icon>structures/pers_hall.png</Icon>
@@ -50,7 +51,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
       <constructed>interface/complete/building/complete_broch.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
@@ -60,6 +60,6 @@
   </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/persians/hall.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
   </VisualActor>
 </Entity>

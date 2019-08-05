@@ -21,6 +21,7 @@
   </Health>
   <Identity>
     <Civ>athen</Civ>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Council Chamber</GenericName>
     <SpecificName>Prytaneîon</SpecificName>
     <Tooltip>Train heroes. Research special technologies.</Tooltip>
@@ -50,7 +51,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_tholos.xml</select>
       <constructed>interface/complete/building/complete_tholos.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <VisualActor>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/shield/props/orle_oval_02.dae</mesh>
+      <textures>
+        <texture file="props/shield/orle_iron.png" name="baseTex"/>
+        <texture file="props/shield/orle_spec.png" name="specTex"/>
+        <texture file="props/shield/orle_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

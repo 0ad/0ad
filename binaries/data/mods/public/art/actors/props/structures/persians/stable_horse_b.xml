@@ -2,46 +2,27 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_fauna.xml" name="fauna horse">
-      <mesh>skeletal/horse.dae</mesh>
+    <variant frequency="1" file="quadraped/base_horse_stable.xml" name="Stable Horse">
+      <mesh>skeletal/horse_persian.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant frequency="16" name="black2">
-      <textures>
-        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="17" name="brown2">
-      <textures>
-        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="16" name="chestnut2">
-      <textures>
-        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="17" name="dun2">
-      <textures>
-        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="17" name="gray2">
-      <textures>
-        <texture file="skeletal/horse_gray_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="17" name="tan2">
-      <textures>
-        <texture file="skeletal/horse_tan_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
+    <variant file="quadraped/horse/stable/brown.xml" frequency="1" name="11"/>
+    <variant file="quadraped/horse/stable/dark_chestnut.xml" frequency="1" name="10"/>
+    <variant file="quadraped/horse/stable/pure_black.xml" frequency="1" name="09"/>
+    <variant file="quadraped/horse/stable/fading_black.xml" frequency="1" name="08"/>
+    <variant file="quadraped/horse/stable/cherrybay.xml" frequency="1" name="07"/>
+    <variant file="quadraped/horse/stable/gray.xml" frequency="1" name="06"/>
+    <variant file="quadraped/horse/stable/halflinger.xml" frequency="1" name="05"/>
+    <variant file="quadraped/horse/stable/chestnut_02.xml" frequency="1" name="04"/>
+    <variant file="quadraped/horse/stable/chestnut_01.xml" frequency="1" name="03"/>
+    <variant file="quadraped/horse/stable/bay_01.xml" frequency="1" name="02"/>
+    <variant file="quadraped/horse/stable/bay_02.xml" frequency="1" name="01"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

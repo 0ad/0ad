@@ -1,7 +1,7 @@
 Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
-			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"),
+			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in Village Phase and ultimately, your goal will be to develop and expand your empire, often by evolving to Town Phase and City Phase afterward.\n"),
 			{
 				"text": markForTranslation("\nBefore starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."),
 				"hotkey": ["togglefullscreen"]
@@ -22,7 +22,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings supports. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover the cursor over any icon to show a tooltip with more details.\n"),
-			markForTranslation("The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover the cursor over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources.")
+			markForTranslation("The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover the cursor over the II icon. The tooltip will tell us that advancing to Town Phase requires both more constructed structures as well as more Food and Wood resources.")
 		]
 	},
 	{
@@ -76,8 +76,8 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("All your units are now gathering resources. We should train more units!\n"),
-			markForTranslation("First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"),
-			markForTranslation("Rally-Points are indicated by a small flag at the end of the blue line.")
+			markForTranslation("First, let's set a rally point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"),
+			markForTranslation("Rally points are indicated by a small flag at the end of the blue line.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -94,7 +94,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"),
+			markForTranslation("Now that the rally point is set, we can produce additional units and they will do their assigned task automatically.\n"),
 			markForTranslation("Citizen soldiers gather wood faster than female citizens. Select the Civic Center and, while holding Shift, click on the second unit icon, the hoplites (holding Shift trains a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually.")
 		],
 		"OnTrainingQueued": function(msg)
@@ -175,7 +175,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("Let's wait for the units to be trained.\n"),
-			markForTranslation("In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out).")
+			markForTranslation("In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally point is crossed out).")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -299,7 +299,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("When the field is constructed, the builders will automatically start gathering it.\n"),
+			markForTranslation("When the field is ready, the builders will automatically start gathering it.\n"),
 			markForTranslation("The cavalry unit should have slaughtered all chickens by now. Select it and explore the south-west area: there is a lake with some camels around. Move your cavalry by right-clicking on the point you want to go, and when you see a herd of camels, right-click on one of them to start hunting for food.")
 		],
 		"OnPlayerCommand": function(msg)
@@ -311,7 +311,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("A field can have up to five farmers working on it. To add additional gatherers, select the Civic Center and setup a rally-point on a field by right-clicking on it. As long as the field is not yet build, new workers sent by a rally-point will help building it, while they will gather it when built.")
+			markForTranslation("A field can have up to five farmers working on it. To add additional gatherers, select the Civic Center and setup a rally point on a field by right-clicking on it. As long as the field is not yet build, new workers sent by a rally point will help building it, while they will gather it when built.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -368,9 +368,9 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the cursor over the 'Town Phase' icon to see what is still needed.\n"),
-			markForTranslation("We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"),
-			markForTranslation("Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build.")
+			markForTranslation("We should start preparing to phase up into Town Phase, which will unlock many more units and buildings. Select the Civic Center and hover the cursor over the Town Phase icon to see what is still needed.\n"),
+			markForTranslation("We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build Barracks.\n"),
+			markForTranslation("Select four of your soldiers and ask them to build a Barracks: as before, start selecting the soldiers, click on the Barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -381,7 +381,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Let's wait for the barracks to be built. As this construction is lengthy, you can add two soldiers to build it faster. To do so, select your Civic Center and set up a rally-point on the barracks foundation by right-clicking on it (you should see a hammer icon), and then produce two more builders by clicking on the hoplite icon twice.")
+			markForTranslation("Let's wait for the Barracks to be built. As this construction is lengthy, you can add two soldiers to build it faster. To do so, select your Civic Center and set up a rally point on the Barracks foundation by right-clicking on it (you should see a hammer icon). Then produce two more builders by clicking on the hoplite icon twice.")
 		],
 		"OnStructureBuilt": function(msg)
 		{
@@ -391,7 +391,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("You should now be able to research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"),
+			markForTranslation("You should now be able to research Town Phase. Select the Civic Center and click on the technology icon.\n"),
 			markForTranslation("If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers.")
 		],
 		"IsDone": function()

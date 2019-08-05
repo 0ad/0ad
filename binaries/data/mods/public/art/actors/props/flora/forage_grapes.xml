@@ -2,20 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Base">
-      <mesh>gaia/bush_grapes.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant name="grapes">
-      <textures><texture file="gaia/bush_grapes.png" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="prop">
-      <props>
-        <prop actor="props/flora/forage_grapes_prop.xml" attachpoint="root"/>
-      </props>
+    <variant frequency="1" name="grapes">
+      <mesh>gaia/grape_bush.dae</mesh>
+      <textures>
+        <texture file="gaia/grape_bushes.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

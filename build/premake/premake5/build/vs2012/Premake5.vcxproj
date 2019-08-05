@@ -5,9 +5,17 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -23,7 +31,20 @@
     <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
@@ -35,25 +56,68 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\bin\release\</OutDir>
-    <IntDir>obj\Release\Premake5\</IntDir>
+    <IntDir>obj\x86\Release\Premake5\</IntDir>
+    <TargetName>premake5</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\bin\release\</OutDir>
+    <IntDir>obj\x64\Release\Premake5\</IntDir>
     <TargetName>premake5</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\bin\debug\</OutDir>
-    <IntDir>obj\Debug\Premake5\</IntDir>
+    <IntDir>obj\x86\Debug\Premake5\</IntDir>
+    <TargetName>premake5</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\bin\debug\</OutDir>
+    <IntDir>obj\x64\Debug\Premake5\</IntDir>
     <TargetName>premake5</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PreprocessorDefinitions>PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
@@ -94,10 +158,29 @@
       <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\host\buffered_io.h" />
     <ClInclude Include="..\..\src\host\curl_utils.h" />
     <ClInclude Include="..\..\src\host\lua_shimtable.h" />
+    <ClInclude Include="..\..\src\host\path_isabsolute.h" />
     <ClInclude Include="..\..\src\host\premake.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +240,18 @@
     <None Include="..\..\CHANGES.txt" />
     <None Include="..\..\CONTRIBUTORS.txt" />
     <None Include="..\..\LICENSE.txt" />
+    <None Include="..\..\mobdebug.lua" />
+    <None Include="..\..\modules\android\LICENSE.txt" />
+    <None Include="..\..\modules\android\README.md" />
+    <None Include="..\..\modules\android\_manifest.lua" />
+    <None Include="..\..\modules\android\_preload.lua" />
+    <None Include="..\..\modules\android\android.lua" />
+    <None Include="..\..\modules\android\tests\_tests.lua" />
+    <None Include="..\..\modules\android\tests\test_android_project.lua" />
+    <None Include="..\..\modules\android\vsandroid_androidproj.lua" />
+    <None Include="..\..\modules\android\vsandroid_sln2005.lua" />
+    <None Include="..\..\modules\android\vsandroid_vcxproj.lua" />
+    <None Include="..\..\modules\android\vsandroid_vstudio.lua" />
     <None Include="..\..\modules\codelite\README.md" />
     <None Include="..\..\modules\codelite\_manifest.lua" />
     <None Include="..\..\modules\codelite\_preload.lua" />
@@ -172,7 +267,8 @@
     <None Include="..\..\modules\d\_manifest.lua" />
     <None Include="..\..\modules\d\_preload.lua" />
     <None Include="..\..\modules\d\actions\gmake.lua" />
-    <None Include="..\..\modules\d\actions\vstudio.lua" />
+    <None Include="..\..\modules\d\actions\vcxproj.lua" />
+    <None Include="..\..\modules\d\actions\visuald.lua" />
     <None Include="..\..\modules\d\d.lua" />
     <None Include="..\..\modules\d\tests\_tests.lua" />
     <None Include="..\..\modules\d\tests\test_dmd.lua" />
@@ -223,13 +319,16 @@
     <None Include="..\..\modules\gmake2\gmake2_utility.lua" />
     <None Include="..\..\modules\gmake2\gmake2_workspace.lua" />
     <None Include="..\..\modules\gmake2\tests\_tests.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_buildcmds.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_clang.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_file_rules.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_flags.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_ldflags.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_linking.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_makefile.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_objects.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_pch.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_perfile_flags.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_target_rules.lua" />
     <None Include="..\..\modules\gmake2\tests\test_gmake2_tools.lua" />
     <None Include="..\..\modules\raw\README.md" />
@@ -246,7 +345,6 @@
     <None Include="..\..\modules\vstudio\_manifest.lua" />
     <None Include="..\..\modules\vstudio\_preload.lua" />
     <None Include="..\..\modules\vstudio\tests\_tests.lua" />
-    <None Include="..\..\modules\vstudio\tests\cs2005\projectelement.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\projectsettings.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_assembly_refs.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_build_events.lua" />
@@ -255,8 +353,8 @@
     <None Include="..\..\modules\vstudio\tests\cs2005\test_debug_props.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_files.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_icon.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_no_warn.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua" />
-    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_framework_folders.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_packages_config.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_references.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_output_props.lua" />
@@ -264,6 +362,9 @@
     <None Include="..\..\modules\vstudio\tests\cs2005\test_project_refs.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_targets.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_user_file.lua" />
+    <None Include="..\..\modules\vstudio\tests\dotnet2005\projectelement.lua" />
+    <None Include="..\..\modules\vstudio\tests\dotnet2005\test_nuget_framework_folders.lua" />
+    <None Include="..\..\modules\vstudio\tests\fs2005\projectsettings.lua" />
     <None Include="..\..\modules\vstudio\tests\sln2005\test_dependencies.lua" />
     <None Include="..\..\modules\vstudio\tests\sln2005\test_header.lua" />
     <None Include="..\..\modules\vstudio\tests\sln2005\test_nested_projects.lua" />
@@ -300,15 +401,16 @@
     <None Include="..\..\modules\vstudio\tests\vc2010\test_filter_ids.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_filters.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_floatingpoint.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_fxcompile_settings.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_globals.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_header.lua" />
-    <None Include="..\..\modules\vstudio\tests\vc2010\test_imagexex_settings.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_item_def_group.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_language_settings.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_language_targets.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_link.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_manifest.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_nmake_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_nuget_package_references.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_nuget_packages_config.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_output_props.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_platform_toolset.lua" />
@@ -321,11 +423,15 @@
     <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_vars.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_xml.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_target_machine.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_tokens.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_user_file.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_vectorextensions.lua" />
     <None Include="..\..\modules\vstudio\vs2005.lua" />
     <None Include="..\..\modules\vstudio\vs2005_csproj.lua" />
     <None Include="..\..\modules\vstudio\vs2005_csproj_user.lua" />
+    <None Include="..\..\modules\vstudio\vs2005_dotnetbase.lua" />
+    <None Include="..\..\modules\vstudio\vs2005_fsproj.lua" />
+    <None Include="..\..\modules\vstudio\vs2005_fsproj_user.lua" />
     <None Include="..\..\modules\vstudio\vs2005_solution.lua" />
     <None Include="..\..\modules\vstudio\vs2008.lua" />
     <None Include="..\..\modules\vstudio\vs200x_vcproj.lua" />
@@ -358,6 +464,7 @@
     <None Include="..\..\modules\xcode\xcode_project.lua" />
     <None Include="..\..\premake4.lua" />
     <None Include="..\..\premake5.lua" />
+    <None Include="..\..\scripts\changes.lua" />
     <None Include="..\..\scripts\embed.lua" />
     <None Include="..\..\scripts\package.lua" />
     <None Include="..\..\src\_manifest.lua" />

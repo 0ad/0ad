@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,11 @@
 
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
+#include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/archive_zip.h"
-#include "i18n/L10n.h"
 #include "lib/utf8.h"
+#include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -78,31 +79,40 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 	if (!simulation.SerializeState(simStateStream))
 		WARN_RETURN(ERR::FAIL);
 
-	JS::RootedValue metadata(cx);
 	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
 	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface()));
-	simulation.GetScriptInterface().Eval("({})", &metadata);
-	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
-	simulation.GetScriptInterface().SetProperty(metadata, "mods", mods);
-	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
-	simulation.GetScriptInterface().SetProperty(metadata, "playerID", g_Game->GetPlayerID());
-	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", initAttributes);
+
+	JS::RootedValue metadata(cx);
+
+	simulation.GetScriptInterface().CreateObject(
+		&metadata,
+		"engine_version", std::string(engine_version),
+		"time", static_cast<double>(now),
+		"playerID", g_Game->GetPlayerID(),
+		"mods", mods,
+		"initAttributes", initAttributes);
 
 	JS::RootedValue guiMetadata(cx);
 	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
 
 	// get some camera data
-	JS::RootedValue cameraMetadata(cx);
-	simulation.GetScriptInterface().Eval("({})", &cameraMetadata);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosX", g_Game->GetView()->GetCameraPosX());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosY", g_Game->GetView()->GetCameraPosY());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosZ", g_Game->GetView()->GetCameraPosZ());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotX", g_Game->GetView()->GetCameraRotX());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotY", g_Game->GetView()->GetCameraRotY());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata, "Zoom", g_Game->GetView()->GetCameraZoom());
-	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
-	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
+	const CVector3D cameraPosition = g_Game->GetView()->GetCameraPosition();
+	const CVector3D cameraRotation = g_Game->GetView()->GetCameraRotation();
 
+	JS::RootedValue cameraMetadata(cx);
+
+	simulation.GetScriptInterface().CreateObject(
+		&cameraMetadata,
+		"PosX", cameraPosition.X,
+		"PosY", cameraPosition.Y,
+		"PosZ", cameraPosition.Z,
+		"RotX", cameraRotation.X,
+		"RotY", cameraRotation.Y,
+		"Zoom", g_Game->GetView()->GetCameraZoom());
+
+	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
+
+	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "description", description);
 
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(&metadata, true);
@@ -222,7 +232,8 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedObject games(cx, JS_NewArrayObject(cx, 0));
+	JS::RootedValue games(cx);
+	scriptInterface.CreateArray(&games);
 
 	Status err;
 
@@ -258,13 +269,15 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 		JS::RootedValue metadata(cx, loader.GetMetadata());
 
 		JS::RootedValue game(cx);
-		scriptInterface.Eval("({})", &game);
-		scriptInterface.SetProperty(game, "id", pathnames[i].Basename());
-		scriptInterface.SetProperty(game, "metadata", metadata);
-		JS_SetElement(cx, games, i, game);
+		scriptInterface.CreateObject(
+			&game,
+			"id", pathnames[i].Basename(),
+			"metadata", metadata);
+
+		scriptInterface.SetPropertyInt(games, i, game);
 	}
 
-	return JS::ObjectValue(*games);
+	return games;
 }
 
 bool SavedGames::DeleteSavedGame(const std::wstring& name)

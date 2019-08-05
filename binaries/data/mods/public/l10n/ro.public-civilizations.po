@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-08-14 11:29+0000\n"
-"Last-Translator: Sofia Ionut <sionutstefan@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-07-25 17:30+0000\n"
+"Last-Translator: Denis Cherean <denis.cherean@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,8 +76,8 @@ msgid ""
 msgstr "Grecii au avut mult succes în elenizarea multor străini diferiţi. În timpul epocii elenistice, greaca era lingua franca pentru lumea antică, fiind vorbită din Spania până în India."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Navele se construiesc cu 25% mai rapid."
+msgid "Allied warships −25% construction time."
+msgstr "Corăbii de război aliate -25% durată de construcție."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -326,8 +326,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Religie celtică și druidism inspirat din mentalitatea de războinici a acestora."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% din costul resurselor pentru vindecătorii aliați"
+msgid "Allied healers −20% resource costs."
+msgstr "Vindecatorii aliați -20% costuri de resurse."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -443,7 +443,7 @@ msgid ""
 "as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
 "Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
 "tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aide. Kunobelinos seems to have been indifferent to the Romans. He traded "
+"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
 "with them freely, but had few qualms subjugating known Roman allies, and "
 "even sent his youngest son Adminius as a fosterling to be educated in Roman "
 "Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
@@ -571,8 +571,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgid "Allied markets +10% international trade bonus."
+msgstr "Piețe aliate +10% bonus pentru comerțul internațional."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -778,8 +778,8 @@ msgid "Gauls"
 msgstr "Gali"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr ""
+msgid "Allied structures −20% technology research time."
+msgstr "Cladirile aliate -20% durata de cercetare a technologiilor."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -978,10 +978,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr ""
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Cetățenii soldați aliați cu sulițe -20% costuri de resurse."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1176,13 +1174,11 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "Elefanți Furnizori"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Reduce costul si timpul de antrenament pentru elefantii cu 20% pentru aliatii jucatorilor Kushite."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Elefanții aliați -20% costuri de resurse și durată de recrutare."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1246,7 +1242,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr ""
 
@@ -1391,8 +1387,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% prețuri de vânzare la piață"
+msgid "Allies +20% barter sell prices."
+msgstr "Aliații +20% negociere la prețuri de vânzare."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1612,12 +1608,12 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
+msgid "Mauryas"
 msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
 msgstr ""
 
@@ -1629,14 +1625,14 @@ msgstr "Împăratul împăraţilor."
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
 msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
+msgid "The Mauryas enjoy access to 4 champions."
 msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
@@ -1652,8 +1648,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr ""
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Templuri aliate -50% costuri de resurse și durata de construcție; technologie templuri -50% costuri de resurse și durata de cercetare."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1826,8 +1824,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Venit mai mare (+15%) din rutele de comerţ pe uscat pentru negustorii aliaţilor."
+msgid "Allied land traders +15% trade gain."
+msgstr "Negustorii aliați la pas +15% câştiguri din comerț."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2032,7 +2030,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
-"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
 msgstr ""
 
@@ -2041,6 +2039,7 @@ msgid "Mercenary Army"
 msgstr "Armată de mercenari"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2071,8 +2070,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Toți aliații primesc automat prelingeri de mâncare "
+msgid "Allies +1.0 food trickle rate."
+msgstr "Aliați +1.0 creștere a mâncării."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2227,18 +2226,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr ""
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr ""
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Far"
@@ -2304,8 +2291,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% timp de antrenare pentru infanteria aliata"
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Cetățenii soldați aliați de infanterie -20% durată de recrutare."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2514,8 +2501,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Centrele civice aliate sunt cu 20% mai ieftine."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Centre civile aliate -20% costuri de resurse."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2700,9 +2687,9 @@ msgstr "Seleukos A' Nikator"
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleukus "
+" the verge of collapse he managed to weld back together the empire Seleucus "
 "I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"Parthia were brought to heel, temporarily securing his eastern borders. He "
 "then turned his attention to mother Greece, attempting to fulfill the dreams"
 " of his fathers by invading Greece under the pretext of liberation. The "
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
@@ -2804,10 +2791,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Crește sănătatea pentru cetățeni-soldați, infanterie, sulițași cu 10% pentru aliații jucătorilor Spartani"
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Cetățenii soldați aliați înarmați cu sulițe +10% viață."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

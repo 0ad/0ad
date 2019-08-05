@@ -2,9 +2,11 @@
 <Entity parent="template_unit_fauna_wild_aggressive">
   <Attack>
     <Melee>
-      <Hack>30.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>30.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>2000</RepeatTime>
     </Melee>
@@ -14,9 +16,8 @@
     <Height>1.5</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Crocodylus niloticus</SpecificName>
     <GenericName>Nile Crocodile</GenericName>
+    <SpecificName>Crocodylus niloticus</SpecificName>
     <Icon>gaia/fauna_crocodile.png</Icon>
   </Identity>
   <Position>
@@ -39,9 +40,6 @@
   </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">0.3</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.3</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/crocodile.xml</Actor>

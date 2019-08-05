@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
+# Facundo Abiega <abiegafacundo@gmail.com>, 2018
 # Poino Comer <poino.comer@gmail.com>, 2018
 # Jorge Telechea <f00ck6006l3@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 02:40+0000\n"
-"Last-Translator: Franco Falleti <ezefran256@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"Last-Translator: Jorge Telechea <f00ck6006l3@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,7 +105,7 @@ msgstr ""
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Error de inicio"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -141,7 +142,7 @@ msgstr ""
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Error de descarga"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -150,12 +151,12 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Error de verificación del archivo. \n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "Error de verificación"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
@@ -163,7 +164,7 @@ msgstr ""
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Iniciando"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
@@ -171,35 +172,35 @@ msgstr "Cancelar"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "Buscando y actualizando lista de mods disponibles"
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "Actualizando"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "Cancelar actualización"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "Descargando “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "Descargando"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "Cancelar descarga"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr " %(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -234,6 +235,14 @@ msgstr "Dependencia no encontrada:%(dep)s"
 msgid "All dependencies met"
 msgstr "Todas las dependencias son correctas"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Activar"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr ""
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "No se ha seleccionado ningún mod."
@@ -254,7 +263,13 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr ""
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr ""
@@ -273,11 +288,11 @@ msgstr "Volver"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "Actualizar lista"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "Descarga"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -321,7 +336,7 @@ msgstr "Activar mods"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Habilitar/Deshabilitar"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
@@ -333,11 +348,11 @@ msgstr "Salir"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "Descargar mods"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -379,11 +394,11 @@ msgstr ""
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Rechazar"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"

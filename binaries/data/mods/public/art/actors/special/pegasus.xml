@@ -3,19 +3,19 @@
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_fauna.xml" name="fauna horse">
-      <mesh>skeletal/horse.dae</mesh>
+      <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="props/special/pegasus_wings.xml" attachpoint="rider"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
-      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/pure_white.xml" frequency="1" name="white"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

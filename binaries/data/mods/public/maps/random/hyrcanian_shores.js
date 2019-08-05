@@ -63,7 +63,7 @@ var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
 var clHighlands = g_Map.createTileClass();
 
-var waterPosition = fractionToTiles(0.25)
+var waterPosition = fractionToTiles(0.25);
 var highlandsPosition = fractionToTiles(0.75);
 
 var startAngle = randomAngle();

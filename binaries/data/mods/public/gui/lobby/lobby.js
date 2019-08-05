@@ -685,7 +685,7 @@ function updateToggleBuddy()
 
 	let toggleBuddyButton = Engine.GetGUIObjectByName("toggleBuddyButton");
 	toggleBuddyButton.caption = g_Buddies.indexOf(playerName) != -1 ? translate("Unmark as Buddy") : translate("Mark as Buddy");
-	toggleBuddyButton.enabled = playerName && playerName != g_Username;
+	toggleBuddyButton.enabled = !!playerName && playerName != g_Username;
 }
 
 /**
@@ -1120,7 +1120,7 @@ function updateGameSelection()
 
 	Engine.GetGUIObjectByName("gameInfo").hidden = !game;
 	Engine.GetGUIObjectByName("joinGameButton").hidden = g_Dialog || !game;
-	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = game;
+	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = !!game;
 
 	if (!game)
 		return;
@@ -1433,7 +1433,7 @@ function ircFormat(msg)
 	let coloredFrom = msg.from && colorPlayerName(msg.from);
 
 	// Handle commands allowed past handleChatCommand.
-	if (msg.text[0] == '/')
+	if (msg.text && msg.text[0] == '/')
 	{
 		let [command, message] = ircSplit(msg.text);
 		switch (command)

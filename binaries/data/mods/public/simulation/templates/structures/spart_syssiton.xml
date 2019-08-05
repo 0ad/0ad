@@ -21,9 +21,9 @@
   </Health>
   <Identity>
     <Civ>spart</Civ>
+    <Classes datatype="tokens">ConquestCritical Syssiton</Classes>
     <GenericName>Military Mess Hall</GenericName>
     <SpecificName>Syssítion</SpecificName>
-    <Classes datatype="tokens">Syssiton</Classes>
     <Tooltip>Train Spartan heroes and Spartiate champion hoplites.</Tooltip>
     <Icon>structures/syssition.png</Icon>
   </Identity>
@@ -51,11 +51,10 @@
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>
       <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <VisualActor>
     <Actor>structures/spartans/syssiton.xml</Actor>
-    <FoundationActor>structures/fndn_4x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_5x8.xml</FoundationActor>
   </VisualActor>
 </Entity>

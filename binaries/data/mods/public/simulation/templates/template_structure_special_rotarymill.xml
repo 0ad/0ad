@@ -19,10 +19,8 @@
   </Footprint>
   <GarrisonHolder disable=""/>
   <Identity>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
     <GenericName>Rotary Mill</GenericName>
     <Icon>structures/rotarymill.png</Icon>
-    <SpecificName>Melonas</SpecificName>
   </Identity>
   <Loot>
     <food>50</food>
@@ -38,7 +36,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_ffactri.xml</select>
       <constructed>interface/complete/building/complete_ffactri.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <StatusBars>
@@ -48,7 +45,6 @@
     <Radius>32</Radius>
   </TerritoryInfluence>
   <VisualActor>
-    <Actor>structures/celts/special.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
   </VisualActor>
 </Entity>

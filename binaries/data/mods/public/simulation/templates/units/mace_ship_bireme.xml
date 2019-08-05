@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_ship_bireme">
+<Entity parent="template_unit_ship_bireme">
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Hemiolos</SpecificName>
     <Icon>units/hele_ship_bireme.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/hellenes/pentekonter.xml</Actor>
+    <Actor>structures/macedonians/pentekonter.xml</Actor>
   </VisualActor>
 </Entity>

@@ -165,8 +165,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 	if (template.Armour)
 	{
 		ret.armour = {};
-		for (let damageType of damageTypes.GetTypes())
-			ret.armour[damageType] = getEntityValue("Armour/" + damageType);
+		for (let damageType in template.Armour)
+			if (damageType != "Foundation")
+				ret.armour[damageType] = getEntityValue("Armour/" + damageType);
 	}
 
 	if (template.Attack)
@@ -187,10 +188,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 				ret.attack[type] = {
 					"minRange": getAttackStat("MinRange"),
 					"maxRange": getAttackStat("MaxRange"),
-					"elevationBonus": getAttackStat("ElevationBonus")
+					"elevationBonus": getAttackStat("ElevationBonus"),
+					"damage": {}
 				};
-				for (let damageType of damageTypes.GetTypes())
-					ret.attack[type][damageType] = getAttackStat(damageType);
+				for (let damageType in template.Attack[type].Damage)
+					ret.attack[type].damage[damageType] = getAttackStat("Damage/" + damageType);
 
 				ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
 					(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
@@ -202,10 +204,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 				ret.attack[type].splash = {
 					// true if undefined
 					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false",
-					"shape": template.Attack[type].Splash.Shape
+					"shape": template.Attack[type].Splash.Shape,
+					"damage": {}
 				};
-				for (let damageType of damageTypes.GetTypes())
-					ret.attack[type].splash[damageType] = getAttackStat("Splash/" + damageType);
+				for (let damageType in template.Attack[type].Splash.Damage)
+					ret.attack[type].splash.damage[damageType] = getAttackStat("Splash/Damage/" + damageType);
 			}
 		}
 	}
@@ -213,10 +216,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 	if (template.DeathDamage)
 	{
 		ret.deathDamage = {
-			"friendlyFire": template.DeathDamage.FriendlyFire != "false"
+			"friendlyFire": template.DeathDamage.FriendlyFire != "false",
+			"damage": {}
 		};
-		for (let damageType of damageTypes.GetTypes())
-			ret.deathDamage[damageType] = getEntityValue("DeathDamage/" + damageType);
+		for (let damageType in template.DeathDamage.Damage)
+			ret.deathDamage.damage[damageType] = getEntityValue("DeathDamage/Damage/" + damageType);
 	}
 
 	if (template.Auras && auraTemplates)
@@ -226,10 +230,10 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 		{
 			let aura = auraTemplates[auraID];
 			ret.auras[auraID] = {
-					"name": aura.auraName,
-					"description": aura.auraDescription || null,
-					"radius": aura.radius || null
-				};
+				"name": aura.auraName,
+				"description": aura.auraDescription || null,
+				"radius": aura.radius || null
+			};
 		}
 	}
 
@@ -398,8 +402,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 		ret.speed = {
 			"walk": getEntityValue("UnitMotion/WalkSpeed"),
 		};
-		if (template.UnitMotion.Run)
-			ret.speed.run = getEntityValue("UnitMotion/Run/Speed");
+		ret.speed.run = getEntityValue("UnitMotion/WalkSpeed");
+		if (template.UnitMotion.RunMultiplier)
+			ret.speed.run *= getEntityValue("UnitMotion/RunMultiplier");
 	}
 
 	if (template.Upgrade)

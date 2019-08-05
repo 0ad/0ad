@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-10-13 12:59+0000\n"
-"Last-Translator: Mohamed Salah <googexel@gmail.com>\n"
+"POT-Creation-Date: 2019-05-31 09:43+0200\n"
+"PO-Revision-Date: 2019-05-31 16:03+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,15 +29,15 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: simulation/templates/template_unit_catafalque.xml:17
+#: simulation/templates/template_unit_catafalque.xml:16
 msgid "Catafalque"
 msgstr "النعش"
 
-#: simulation/templates/template_unit_catafalque.xml:20
+#: simulation/templates/template_unit_catafalque.xml:19
 msgid "A catafalque that holds the remains of a great leader."
 msgstr ""
 
-#: simulation/templates/template_unit_catafalque.xml:22
+#: simulation/templates/template_unit_catafalque.xml:21
 msgid "Relic"
 msgstr "أثر"
 
@@ -70,7 +70,7 @@ msgstr "جنديّ"
 #: simulation/templates/units/gaul_support_healer_b.xml:8
 #: simulation/templates/units/iber_support_healer_b.xml:10
 #: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:9
+#: simulation/templates/units/pers_support_healer_b.xml:10
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
@@ -92,8 +92,8 @@ msgstr "الأساسيّة"
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
 #: simulation/templates/template_unit_infantry_melee.xml:19
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:42
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:35
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_siege_ram.xml:35
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "اشتباك"
@@ -137,54 +137,54 @@ msgstr "سيف"
 msgid "Cavalry Swordsman"
 msgstr "مبارز خيّال"
 
-#: simulation/templates/template_unit_cavalry_ranged.xml:23
+#: simulation/templates/template_unit_cavalry_ranged.xml:26
 msgid "Ranged Cavalry"
 msgstr "خيّال مسافيّ القتال"
 
-#: simulation/templates/template_unit_cavalry_ranged.xml:24
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:25
-#: simulation/templates/template_unit_champion_infantry_archer.xml:28
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:28
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:20
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:31
-#: simulation/templates/template_unit_hero_infantry_archer.xml:21
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:20
-#: simulation/templates/template_unit_infantry_ranged.xml:29
-#: simulation/templates/template_unit_infantry_ranged.xml:28
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:51
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:61
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:47
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
+#: simulation/templates/template_unit_cavalry_ranged.xml:27
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:28
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:28
+#: simulation/templates/template_unit_champion_infantry_archer.xml:31
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:31
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:23
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
+#: simulation/templates/template_unit_hero_infantry_archer.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
+#: simulation/templates/template_unit_infantry_ranged.xml:32
+#: simulation/templates/template_unit_infantry_ranged.xml:31
+#: simulation/templates/template_unit_ship_bireme.xml:54
+#: simulation/templates/template_unit_ship_quinquereme.xml:64
+#: simulation/templates/template_unit_ship_trireme.xml:54
+#: simulation/templates/template_unit_siege_boltshooter.xml:50
+#: simulation/templates/template_unit_siege_stonethrower.xml:51
+#: simulation/templates/template_unit_siege_tower.xml:58
 msgid "Ranged"
 msgstr "مسافيّ"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
-#: simulation/templates/template_unit_champion_infantry_archer.xml:28
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:20
-#: simulation/templates/template_unit_hero_infantry_archer.xml:21
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:27
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:28
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:28
+#: simulation/templates/template_unit_champion_infantry_archer.xml:31
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_archer.xml:24
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:29
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:30
 msgid "Archer"
 msgstr "رامٍ"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:25
 msgid "Cavalry Archer"
 msgstr "رامٍ خيّال"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:25
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:28
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:31
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:20
-#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:28
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:31
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
+#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:28
 msgid "Javelin"
 msgstr "رمح خفيف"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:25
 msgid "Cavalry Skirmisher"
 msgstr "مناوش خيّال"
 
@@ -200,11 +200,11 @@ msgstr "بطل"
 msgid "Champion Cavalry"
 msgstr "خيّال بطل"
 
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:26
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:29
 msgid "Champion Cavalry Archer."
 msgstr "رامٍ خيّال بطل"
 
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:26
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:29
 msgid "Champion Cavalry Skirmisher"
 msgstr "مناوش خيّال بطل"
 
@@ -221,8 +221,8 @@ msgid "War Elephant"
 msgstr "فيل حرب"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:27
-#: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:14
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:26
+#: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
 #: simulation/templates/template_unit_hero_elephant_melee.xml:35
 #: simulation/templates/units/maur_elephant_archer_b.xml:37
 #: simulation/templates/units/maur_support_elephant.xml:27
@@ -240,11 +240,11 @@ msgstr "مشاة"
 msgid "Champion Infantry"
 msgstr "جنديّ مشاة بطل"
 
-#: simulation/templates/template_unit_champion_infantry_archer.xml:29
+#: simulation/templates/template_unit_champion_infantry_archer.xml:32
 msgid "Champion Archer"
 msgstr "رامٍ بطل"
 
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:29
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:32
 msgid "Champion Skirmisher"
 msgstr "مناوش بطل"
 
@@ -295,19 +295,7 @@ msgstr "كلب حرب"
 msgid "Cannot attack structures."
 msgstr "لا يمكنه الهجوم على الأبنية."
 
-#: simulation/templates/template_unit_fauna.xml:12
-msgid "Fauna"
-msgstr "حيوانات"
-
-#: simulation/templates/template_unit_fauna_fish.xml:10
-msgid "Fish"
-msgstr "أسماك"
-
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:11
-msgid "Cetacean"
-msgstr "حيوان ثديي"
-
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:12
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill, then gather food from this bountiful oceanic resource."
 msgstr "اقتل ثمّ اجمع الطّعام من هذا المورد المحيطيّ الوافر."
 
@@ -321,11 +309,11 @@ msgstr "أشوس"
 msgid "Hero Cavalry"
 msgstr "خيّال أشوس"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:21
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
 msgstr "رامٍ خيّال أشوس"
 
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:30
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
 msgstr "مناوش خيّال أشوس"
 
@@ -349,11 +337,11 @@ msgstr "معالج"
 msgid "Support"
 msgstr "دعم"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:20
+#: simulation/templates/template_unit_hero_infantry_archer.xml:23
 msgid "Hero Archer"
 msgstr "رامٍ أشوس"
 
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:21
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 msgid "Hero Skirmisher"
 msgstr "مناوش أشوس"
 
@@ -391,132 +379,132 @@ msgstr "رمّاح"
 msgid "Swordsman"
 msgstr "مبارز"
 
-#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
+#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:29
 msgid "Skirmisher"
 msgstr "مناوش"
 
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:29
 msgid "Sling"
 msgstr "مقلاع"
 
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
 msgid "Slinger"
 msgstr "رامٍ بالمقلاع"
 
-#: simulation/templates/template_unit_mechanical.xml:13
-#: simulation/templates/template_unit_mechanical.xml:12
+#: simulation/templates/template_unit_ship.xml:36
+#: simulation/templates/template_unit_siege.xml:25
 msgid "Mechanical"
 msgstr "ميكانيكي"
 
-#: simulation/templates/template_unit_mechanical_ship.xml:34
-#: simulation/templates/template_unit_mechanical_ship.xml:33
+#: simulation/templates/template_unit_ship.xml:36
+#: simulation/templates/template_unit_ship.xml:34
 msgid "Ship"
 msgstr "سفينة"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
+#: simulation/templates/template_unit_ship_bireme.xml:53
 msgid "Light Warship"
 msgstr "سفينة حربيّة خفيفة"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:51
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:42
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:61
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
+#: simulation/templates/template_unit_ship_bireme.xml:54
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_quinquereme.xml:64
+#: simulation/templates/template_unit_ship_trireme.xml:54
 msgid "Warship"
 msgstr "سفينة حربيّة"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:53
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:60
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:53
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
+#: simulation/templates/template_unit_ship_bireme.xml:56
+#: simulation/templates/template_unit_ship_quinquereme.xml:63
+#: simulation/templates/template_unit_ship_trireme.xml:56
+#: simulation/templates/template_unit_siege_tower.xml:59
 msgid "Garrison units for transport and to increase firepower."
 msgstr "حصّن الوحدات للتنقل و زيادة قوة النيران."
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
+#: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Fire Ship"
 msgstr "سفينة نار"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
 msgstr "سفينة نار"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:43
+#: simulation/templates/template_unit_ship_fire.xml:43
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
 msgstr "تستنزف حياة سفن العدوّ بسرعة. تفقد حياتها ببطء لأنّها مشتعلة، وبالتّالي عليك استخدام سفن النّار بسرعة."
 
-#: simulation/templates/template_unit_mechanical_ship_fishing.xml:35
+#: simulation/templates/template_unit_ship_fishing.xml:35
 #: simulation/templates/units/kush_ship_fishing.xml:5
 msgid "Fishing Boat"
 msgstr "قارب صيد"
 
-#: simulation/templates/template_unit_mechanical_ship_fishing.xml:36
+#: simulation/templates/template_unit_ship_fishing.xml:36
 msgid "Fish the waters for food."
 msgstr "اصطد السمك من الماء للحصول على الطعام"
 
-#: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
+#: simulation/templates/template_unit_ship_merchant.xml:29
 msgid "Merchantman"
 msgstr "سفينة تجاريّة"
 
-#: simulation/templates/template_unit_mechanical_ship_merchant.xml:31
+#: simulation/templates/template_unit_ship_merchant.xml:31
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
 msgstr "تاجرْ بين المرافئ. حصِّن تاجراً لتحصل على المزيد من الفائدة (+20% لكل وحدة محصنة). اجمع كنوزاً بحرية قابلة للمنفعة."
 
-#: simulation/templates/template_unit_mechanical_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:32
 #: simulation/templates/template_unit_support_trader.xml:15
 #: simulation/templates/template_unit_support_trader.xml:16
 msgid "Trader"
 msgstr "تاجر"
 
-#: simulation/templates/template_unit_mechanical_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:32
 #: simulation/templates/template_unit_support_trader.xml:15
 msgid "Bribable"
 msgstr "برايببل"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:59
+#: simulation/templates/template_unit_ship_quinquereme.xml:62
 msgid "Heavy Warship"
 msgstr "سفينة حربيّة ثقيلة"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_trireme.xml:53
 msgid "Medium Warship"
 msgstr "سفينة حربيّة متوسطة"
 
-#: simulation/templates/template_unit_mechanical_siege.xml:17
-#: simulation/templates/template_unit_mechanical_siege.xml:18
+#: simulation/templates/template_unit_siege.xml:25
+#: simulation/templates/template_unit_siege.xml:26
 msgid "Siege"
 msgstr "حصار"
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:46
+#: simulation/templates/template_unit_siege_boltshooter.xml:49
 msgid "Bolt Shooter"
 msgstr "قاذفة أسهم"
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:47
+#: simulation/templates/template_unit_siege_boltshooter.xml:50
 msgid "BoltShooter"
 msgstr "قاذفة أسهم"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:49
-msgid "Siege Catapult"
-msgstr "منجنيق حصار"
-
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
-msgid "Catapult"
-msgstr "منجنيق"
-
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
+#: simulation/templates/template_unit_siege_ram.xml:34
 msgid "Battering Ram"
 msgstr "رأس كبش"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:35
+#: simulation/templates/template_unit_siege_ram.xml:35
 msgid "Ram"
 msgstr "كبش"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
+#: simulation/templates/template_unit_siege_stonethrower.xml:50
+msgid "Siege Catapult"
+msgstr "منجنيق حصار"
+
+#: simulation/templates/template_unit_siege_stonethrower.xml:51
+msgid "Catapult"
+msgstr "منجنيق"
+
+#: simulation/templates/template_unit_siege_tower.xml:57
 msgid "Siege Tower"
 msgstr "برج حصار"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
+#: simulation/templates/template_unit_siege_tower.xml:58
 msgid "SiegeTower"
 msgstr "برج حصار"
 
@@ -787,11 +775,11 @@ msgid "Scythian Archer"
 msgstr "رامٍ إصقوثيّ"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
-#: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:21
+#: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:22
 msgid "Toxótēs Skythikós"
 msgstr "توكسس سكايدوس"
 
-#: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:20
+#: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:21
 msgid "Greek Gastraphetes"
 msgstr ""
 
@@ -844,20 +832,20 @@ msgstr "بلتست تراقي"
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
 #: simulation/templates/units/mace_infantry_slinger_b.xml:22
-#: simulation/templates/units/merc_black_cloak.xml:15
-#: simulation/templates/units/merc_thorakites.xml:25
-#: simulation/templates/units/merc_thureophoros.xml:16
-#: simulation/templates/units/pers_kardakes_hoplite.xml:14
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:14
+#: simulation/templates/units/merc_black_cloak.xml:14
+#: simulation/templates/units/merc_thorakites.xml:24
+#: simulation/templates/units/merc_thureophoros.xml:15
+#: simulation/templates/units/pers_kardakes_hoplite.xml:15
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:15
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:14
 #: simulation/templates/units/ptol_infantry_archer_b.xml:18
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:21
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 #: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:22
-#: simulation/templates/units/samnite_skirmisher.xml:7
-#: simulation/templates/units/samnite_spearman.xml:7
-#: simulation/templates/units/samnite_swordsman.xml:7
+#: simulation/templates/units/samnite_skirmisher.xml:6
+#: simulation/templates/units/samnite_spearman.xml:6
+#: simulation/templates/units/samnite_swordsman.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:15
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:22
@@ -892,20 +880,6 @@ msgstr "هوبليت أثيني"
 msgid "Hoplítēs Athēnaîos"
 msgstr "هوبلايت اثانيوس"
 
-#: simulation/templates/units/athen_mechanical_siege_lithobolos_packed.xml:5
-#: simulation/templates/units/mace_mechanical_siege_lithobolos_packed.xml:5
-#: simulation/templates/units/ptol_mechanical_siege_lithobolos_packed.xml:5
-#: simulation/templates/units/sele_mechanical_siege_lithobolos_packed.xml:5
-msgid "Lithobólos"
-msgstr ""
-
-#: simulation/templates/units/athen_mechanical_siege_oxybeles_packed.xml:5
-#: simulation/templates/units/cart_mechanical_siege_oxybeles_packed.xml:5
-#: simulation/templates/units/mace_mechanical_siege_oxybeles_packed.xml:5
-#: simulation/templates/units/spart_mechanical_siege_oxybeles_packed.xml:5
-msgid "Oxybelḗs"
-msgstr ""
-
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
 msgstr "قادس إغريقي"
@@ -932,12 +906,28 @@ msgid "Ploîon Phortēgikón"
 msgstr "قارب تجارة"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
+#: simulation/templates/units/mace_ship_trireme.xml:5
+#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
 msgstr "ترايس اثاينا"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
 msgstr "سفينة ثلاثيّة المجاديف أثينيّة"
+
+#: simulation/templates/units/athen_siege_lithobolos_packed.xml:5
+#: simulation/templates/units/mace_siege_lithobolos_packed.xml:5
+#: simulation/templates/units/ptol_siege_lithobolos_packed.xml:5
+#: simulation/templates/units/sele_siege_lithobolos_packed.xml:5
+msgid "Lithobólos"
+msgstr ""
+
+#: simulation/templates/units/athen_siege_oxybeles_packed.xml:5
+#: simulation/templates/units/cart_siege_oxybeles_packed.xml:5
+#: simulation/templates/units/mace_siege_oxybeles_packed.xml:5
+#: simulation/templates/units/spart_siege_oxybeles_packed.xml:5
+msgid "Oxybelḗs"
+msgstr ""
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaía"
@@ -989,9 +979,9 @@ msgstr "خيّال كلتيّ"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:15
-#: simulation/templates/units/pers_cavalry_archer_b.xml:9
-#: simulation/templates/units/pers_hero_darius.xml:12
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
+#: simulation/templates/units/pers_cavalry_archer_b.xml:10
+#: simulation/templates/units/pers_hero_darius.xml:13
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
 msgstr "عربة"
@@ -1060,11 +1050,6 @@ msgstr "رماح كلتي"
 msgid "Celtic Spearman"
 msgstr "رمّاح كلتيّ"
 
-#: simulation/templates/units/brit_mechanical_siege_ram.xml:9
-#: simulation/templates/units/gaul_mechanical_siege_ram.xml:9
-msgid "Reithe"
-msgstr "كبش الضرب\"سلاح\""
-
 #: simulation/templates/units/brit_ship_fishing.xml:5
 msgid "Manea"
 msgstr "مانا"
@@ -1084,6 +1069,11 @@ msgstr "سفيتة حربية متوسطة"
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
 msgstr "ينقل جنود كثر عبر البحر"
+
+#: simulation/templates/units/brit_siege_ram.xml:9
+#: simulation/templates/units/gaul_siege_ram.xml:9
+msgid "Reithe"
+msgstr "كبش الضرب\"سلاح\""
 
 #: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
@@ -1240,18 +1230,13 @@ msgid "Seḫīr Ḥerev"
 msgstr ""
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:20
+#: simulation/templates/units/samnite_swordsman.xml:4
 #: simulation/templates/units/samnite_swordsman.xml:5
-#: simulation/templates/units/samnite_swordsman.xml:6
 msgid "Samnite Swordsman"
 msgstr "مبارز سامنيّ"
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 msgid "Seḫīr Romaḥ"
-msgstr ""
-
-#: simulation/templates/units/cart_mechanical_siege_ballista_packed.xml:5
-#: simulation/templates/units/rome_mechanical_siege_ballista_packed.xml:20
-msgid "Ballista"
 msgstr ""
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
@@ -1288,13 +1273,16 @@ msgid "Ḥameš-Mašōt"
 msgstr ""
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
-#: simulation/templates/units/mace_ship_trireme.xml:5
-#: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
 msgstr "ثلاثيّة مجاديف"
 
 #: simulation/templates/units/cart_ship_trireme.xml:6
 msgid "Tlat-Mašōt"
+msgstr ""
+
+#: simulation/templates/units/cart_siege_ballista_packed.xml:5
+#: simulation/templates/units/rome_siege_ballista_packed.xml:20
+msgid "Ballista"
 msgstr ""
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
@@ -1411,10 +1399,6 @@ msgstr ""
 msgid "Ezpatari"
 msgstr ""
 
-#: simulation/templates/units/iber_mechanical_siege_ram.xml:9
-msgid "Ahariburu"
-msgstr ""
-
 #: simulation/templates/units/iber_ship_fire.xml:5
 msgid "Iberian Fire Ship"
 msgstr "سفينة نار أيبيريّة"
@@ -1429,6 +1413,10 @@ msgstr ""
 
 #: simulation/templates/units/iber_ship_trireme.xml:18
 msgid "Ponti"
+msgstr ""
+
+#: simulation/templates/units/iber_siege_ram.xml:9
+msgid "Ahariburu"
 msgstr ""
 
 #: simulation/templates/units/iber_support_female_citizen.xml:5
@@ -1533,10 +1521,12 @@ msgid "Axe"
 msgstr ""
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
+#: simulation/templates/units/kush_hero_amanirenas_chariot.xml:8
 msgid "Amanirenas"
 msgstr ""
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:9
+#: simulation/templates/units/kush_hero_amanirenas_chariot.xml:9
 msgid "Amnirense qore li kdwe li"
 msgstr ""
 
@@ -1606,14 +1596,6 @@ msgstr ""
 msgid "knw hps"
 msgstr ""
 
-#: simulation/templates/units/kush_mechanical_siege_tower.xml:5
-msgid "Kushite Siege Tower"
-msgstr ""
-
-#: simulation/templates/units/kush_mechanical_siege_tower.xml:6
-msgid "iwn n ms"
-msgstr ""
-
 #: simulation/templates/units/kush_ship_fishing.xml:6
 msgid "Wh’-rmw"
 msgstr ""
@@ -1632,6 +1614,14 @@ msgstr ""
 
 #: simulation/templates/units/kush_ship_trireme.xml:12
 msgid "shry ‘3"
+msgstr ""
+
+#: simulation/templates/units/kush_siege_tower.xml:5
+msgid "Kushite Siege Tower"
+msgstr ""
+
+#: simulation/templates/units/kush_siege_tower.xml:6
+msgid "iwn n ms"
 msgstr ""
 
 #: simulation/templates/units/kush_support_female_citizen.xml:5
@@ -1776,24 +1766,23 @@ msgstr "قلاع رودسي"
 msgid "Sphendonḗtēs Rhódios"
 msgstr "سفانتنتيس روديوس"
 
-#: simulation/templates/units/mace_mechanical_siege_ram.xml:9
-#: simulation/templates/units/spart_mechanical_siege_ram.xml:9
-msgid "Poliorkitikós Kriós"
-msgstr ""
-
-#: simulation/templates/units/mace_mechanical_siege_tower.xml:5
-#: simulation/templates/units/ptol_mechanical_siege_tower.xml:5
-#: simulation/templates/units/sele_mechanical_siege_tower.xml:5
-msgid "Helépolis"
-msgstr ""
-
 #: simulation/templates/units/mace_ship_bireme.xml:5
 msgid "Hemiolos"
 msgstr ""
 
 #: simulation/templates/units/mace_ship_trireme.xml:6
-#: simulation/templates/units/spart_ship_trireme.xml:6
-msgid "Triḗrēs"
+msgid "Macedonian Trireme"
+msgstr ""
+
+#: simulation/templates/units/mace_siege_ram.xml:9
+#: simulation/templates/units/spart_siege_ram.xml:9
+msgid "Poliorkitikós Kriós"
+msgstr ""
+
+#: simulation/templates/units/mace_siege_tower.xml:5
+#: simulation/templates/units/ptol_siege_tower.xml:5
+#: simulation/templates/units/sele_siege_tower.xml:5
+msgid "Helépolis"
 msgstr ""
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
@@ -1838,7 +1827,7 @@ msgid "Rath"
 msgstr ""
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Indian War Elephant"
 msgstr "فيل حرب هنديّ"
 
@@ -1982,240 +1971,240 @@ msgstr ""
 msgid "Vaishya"
 msgstr "فيشيا"
 
-#: simulation/templates/units/merc_black_cloak.xml:13
+#: simulation/templates/units/merc_black_cloak.xml:12
 msgid "Thracian Black Cloak"
 msgstr "تراقيّ ذو عباءة سوداء"
 
-#: simulation/templates/units/merc_black_cloak.xml:14
+#: simulation/templates/units/merc_black_cloak.xml:13
 msgid "Rhomphaiaphoros"
 msgstr ""
 
-#: simulation/templates/units/merc_thorakites.xml:21
+#: simulation/templates/units/merc_thorakites.xml:20
 msgid "Armored Swordsman"
 msgstr "مبارز مدرع"
 
-#: simulation/templates/units/merc_thorakites.xml:22
+#: simulation/templates/units/merc_thorakites.xml:21
 msgid "Thōrakitēs"
 msgstr "ثوراكيتس"
 
-#: simulation/templates/units/merc_thureophoros.xml:12
+#: simulation/templates/units/merc_thureophoros.xml:11
 msgid "Heavy Skirmisher"
 msgstr "مناوش ثقيل"
 
-#: simulation/templates/units/merc_thureophoros.xml:13
+#: simulation/templates/units/merc_thureophoros.xml:12
 msgid "Thyreophóros"
 msgstr "ثايروفورس"
 
-#: simulation/templates/units/noldor_ship_bireme.xml:9
+#: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"
 msgstr ""
 
-#: simulation/templates/units/pers_arstibara.xml:12
+#: simulation/templates/units/pers_arstibara.xml:13
 msgid "Persian Apple Bearer"
 msgstr "حمال تفاح فارسيّ"
 
-#: simulation/templates/units/pers_arstibara.xml:13
+#: simulation/templates/units/pers_arstibara.xml:14
 msgid "Arštibara"
 msgstr ""
 
-#: simulation/templates/units/pers_catafalque.xml:8
+#: simulation/templates/units/pers_catafalque.xml:9
 msgid "Artaxerxes II"
 msgstr ""
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:11
+#: simulation/templates/units/pers_cavalry_archer_b.xml:12
 msgid "Babylonian Scythed Chariot"
 msgstr "عربة بابليّة مزوّدة بمنجل"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:12
+#: simulation/templates/units/pers_cavalry_archer_b.xml:13
 msgid "Babiruviya Ratha"
 msgstr ""
 
-#: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
+#: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
 msgstr "خيال خفيف ميدي"
 
-#: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
+#: simulation/templates/units/pers_cavalry_javelinist_b.xml:8
 msgid "Mada Asabara"
 msgstr ""
 
-#: simulation/templates/units/pers_cavalry_spearman_b.xml:6
+#: simulation/templates/units/pers_cavalry_spearman_b.xml:7
 msgid "Cappadocian Cavalry"
 msgstr "خيّال كبادوكيّ"
 
-#: simulation/templates/units/pers_cavalry_spearman_b.xml:7
+#: simulation/templates/units/pers_cavalry_spearman_b.xml:8
 msgid "Katpaduka Asabara"
 msgstr ""
 
-#: simulation/templates/units/pers_cavalry_swordsman_b.xml:6
+#: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
 msgid "Hyrcanian Cavalry"
 msgstr "خيّال هيركانيّ"
 
-#: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
+#: simulation/templates/units/pers_cavalry_swordsman_b.xml:8
 msgid "Varkaniya Asabara"
 msgstr ""
 
-#: simulation/templates/units/pers_champion_cavalry.xml:5
+#: simulation/templates/units/pers_champion_cavalry.xml:6
 msgid "Bactrian Heavy Lancer"
 msgstr "خيال حربة ثقيل باختري"
 
-#: simulation/templates/units/pers_champion_cavalry.xml:6
-#: simulation/templates/units/pers_champion_cavalry_archer.xml:6
+#: simulation/templates/units/pers_champion_cavalry.xml:7
+#: simulation/templates/units/pers_champion_cavalry_archer.xml:7
 msgid "Bakhtrish Asabara"
 msgstr ""
 
-#: simulation/templates/units/pers_champion_cavalry_archer.xml:5
+#: simulation/templates/units/pers_champion_cavalry_archer.xml:6
 msgid "Bactrian Heavy Cavalry Archer"
 msgstr "رام ثقيل خيال باختري"
 
-#: simulation/templates/units/pers_champion_elephant.xml:6
+#: simulation/templates/units/pers_champion_elephant.xml:7
 msgid "Hinduya Pila"
 msgstr ""
 
-#: simulation/templates/units/pers_champion_infantry.xml:5
+#: simulation/templates/units/pers_champion_infantry.xml:6
 msgid "Persian Immortal"
 msgstr "فارسي خالد"
 
-#: simulation/templates/units/pers_champion_infantry.xml:6
+#: simulation/templates/units/pers_champion_infantry.xml:7
 msgid "Anusiya"
 msgstr "أنوسيا"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:8
+#: simulation/templates/units/pers_hero_cyrus.xml:9
 msgid "Cyrus II The Great"
 msgstr "كورش الثاني الكبير"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:9
+#: simulation/templates/units/pers_hero_cyrus.xml:10
 msgid "Kurush II"
 msgstr "كورش الثاني"
 
-#: simulation/templates/units/pers_hero_darius.xml:13
+#: simulation/templates/units/pers_hero_darius.xml:14
 msgid "Darius The Great"
 msgstr "دارا الكبير"
 
-#: simulation/templates/units/pers_hero_darius.xml:14
+#: simulation/templates/units/pers_hero_darius.xml:15
 msgid "Darayavahush I"
 msgstr "دارايافاهوش الأول"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:8
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
+#: simulation/templates/units/pers_hero_xerxes.xml:9
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:14
 msgid "Xerxes I"
 msgstr "خشايار الأول"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:9
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:14
+#: simulation/templates/units/pers_hero_xerxes.xml:10
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:15
 msgid "Xsayarsa I"
 msgstr "خشيارشاه الأول"
 
-#: simulation/templates/units/pers_infantry_archer_b.xml:14
+#: simulation/templates/units/pers_infantry_archer_b.xml:15
 msgid "Sogdian Archer"
 msgstr "رامٍ سوقديانيّ"
 
-#: simulation/templates/units/pers_infantry_archer_b.xml:15
+#: simulation/templates/units/pers_infantry_archer_b.xml:16
 msgid "Sugda Vaçabara"
 msgstr ""
 
-#: simulation/templates/units/pers_infantry_javelinist_b.xml:14
+#: simulation/templates/units/pers_infantry_javelinist_b.xml:15
 msgid "Anatolian Auxiliary"
 msgstr "مساعد أناضولي"
 
-#: simulation/templates/units/pers_infantry_javelinist_b.xml:15
+#: simulation/templates/units/pers_infantry_javelinist_b.xml:16
 msgid "Spardiya Takabara"
 msgstr ""
 
-#: simulation/templates/units/pers_infantry_spearman_b.xml:14
+#: simulation/templates/units/pers_infantry_spearman_b.xml:15
 msgid "Shield Bearer"
 msgstr "حامل الدرع"
 
-#: simulation/templates/units/pers_infantry_spearman_b.xml:15
+#: simulation/templates/units/pers_infantry_spearman_b.xml:16
 msgid "Sparabara"
 msgstr ""
 
-#: simulation/templates/units/pers_kardakes_hoplite.xml:11
+#: simulation/templates/units/pers_kardakes_hoplite.xml:12
 msgid "Cardaces Hoplite"
 msgstr "هوبليت كردكي"
 
-#: simulation/templates/units/pers_kardakes_hoplite.xml:12
+#: simulation/templates/units/pers_kardakes_hoplite.xml:13
 msgid "Hoplites Kardakes"
 msgstr ""
 
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:11
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:12
 msgid "Cardaces Skirmisher"
 msgstr "مناوش كردكيّ"
 
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:12
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:13
 msgid "Peltastes Kardakes"
 msgstr ""
 
-#: simulation/templates/units/pers_mechanical_siege_ram.xml:17
-msgid "Assyrian Siege Ram"
-msgstr "مدق حصار آشوري"
-
-#: simulation/templates/units/pers_mechanical_siege_ram.xml:18
-msgid "Athuriya Hamaranakuba"
-msgstr ""
-
-#: simulation/templates/units/pers_ship_bireme.xml:9
+#: simulation/templates/units/pers_ship_bireme.xml:10
 msgid "Cypriot Galley"
 msgstr "قادس قبرصي"
 
-#: simulation/templates/units/pers_ship_bireme.xml:10
+#: simulation/templates/units/pers_ship_bireme.xml:11
 msgid "Hamaraniyanava"
 msgstr ""
 
-#: simulation/templates/units/pers_ship_fishing.xml:5
+#: simulation/templates/units/pers_ship_fishing.xml:6
 msgid "Masiyakara"
 msgstr ""
 
-#: simulation/templates/units/pers_ship_merchant.xml:9
+#: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Ionian Trade Ship"
 msgstr "سفينة تجارة أيونيّة"
 
-#: simulation/templates/units/pers_ship_merchant.xml:10
+#: simulation/templates/units/pers_ship_merchant.xml:11
 msgid "Yaunash Nav"
 msgstr ""
 
-#: simulation/templates/units/pers_ship_trireme.xml:9
+#: simulation/templates/units/pers_ship_trireme.xml:10
 msgid "Phoenician Trireme"
 msgstr "ثلاثيّة مجاديف فينيقيّة"
 
-#: simulation/templates/units/pers_ship_trireme.xml:10
+#: simulation/templates/units/pers_ship_trireme.xml:11
 msgid "Vazarka Hamaraniyanava"
 msgstr ""
 
-#: simulation/templates/units/pers_support_female_citizen.xml:5
-msgid "Banu Miyanrudani"
+#: simulation/templates/units/pers_siege_ram.xml:18
+msgid "Assyrian Siege Ram"
+msgstr "مدق حصار آشوري"
+
+#: simulation/templates/units/pers_siege_ram.xml:19
+msgid "Athuriya Hamaranakuba"
 msgstr ""
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
+msgid "Banu Miyanrudani"
+msgstr ""
+
+#: simulation/templates/units/pers_support_female_citizen.xml:7
 msgid "Mesopotamian Woman"
 msgstr "امرأة رافديّة"
 
-#: simulation/templates/units/pers_support_healer_b.xml:6
+#: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Median Magus"
 msgstr "كاهن مجوسي ميدي"
 
-#: simulation/templates/units/pers_support_healer_b.xml:7
+#: simulation/templates/units/pers_support_healer_b.xml:8
 msgid "Maguš Mada"
 msgstr ""
 
-#: simulation/templates/units/pers_support_trader.xml:9
+#: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
 msgstr "تاجر آرامي"
 
-#: simulation/templates/units/pers_support_trader.xml:10
+#: simulation/templates/units/pers_support_trader.xml:11
 msgid "Tamkarum Arami"
 msgstr ""
 
-#: simulation/templates/units/pers_support_trader.xml:12
+#: simulation/templates/units/pers_support_trader.xml:13
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
 msgstr "تاجر بالموارد بين أسواقك أنت وأسواق حلفائك. الفرس لهم زيادة +25% في التجارة الأرضية."
 
-#: simulation/templates/units/plane.xml:43
+#: simulation/templates/units/plane.xml:45
 msgid "P-51 Mustang"
 msgstr "مستانج P-51"
 
-#: simulation/templates/units/plane.xml:44
+#: simulation/templates/units/plane.xml:46
 msgid "A World War 2 American fighter plane."
 msgstr "طائرة أمريكية مقاتلة في الحرب العالمية الثانية."
 
@@ -2347,10 +2336,6 @@ msgstr ""
 msgid "Gallikós Mistophorós"
 msgstr ""
 
-#: simulation/templates/units/ptol_mechanical_siege_polybolos_packed.xml:5
-msgid "Polybolos"
-msgstr ""
-
 #: simulation/templates/units/ptol_ship_bireme.xml:6
 #: simulation/templates/units/sele_ship_bireme.xml:6
 msgid "Dierēs"
@@ -2363,6 +2348,10 @@ msgstr "اكوتبريز"
 #: simulation/templates/units/ptol_ship_trireme.xml:5
 msgid "Pentḗrēs"
 msgstr "بينريز"
+
+#: simulation/templates/units/ptol_siege_polybolos_packed.xml:5
+msgid "Polybolos"
+msgstr ""
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:5
 msgid "Gýnē Aigýptia"
@@ -2478,20 +2467,8 @@ msgstr "عضو في فيلق ماريوسي"
 msgid "Marian Legionarius"
 msgstr ""
 
-#: simulation/templates/units/rome_mechanical_siege_onager.xml:33
-msgid "Onager"
-msgstr ""
-
-#: simulation/templates/units/rome_mechanical_siege_ram.xml:14
-msgid "Aries"
-msgstr ""
-
-#: simulation/templates/units/rome_mechanical_siege_scorpio_packed.xml:16
-msgid "Scorpio"
-msgstr ""
-
 #: simulation/templates/units/rome_ship_bireme.xml:5
-msgid "Liburnus"
+msgid "Liburna"
 msgstr ""
 
 #: simulation/templates/units/rome_ship_fishing.xml:5
@@ -2518,6 +2495,18 @@ msgstr ""
 msgid "Roman Trireme"
 msgstr "ثلاثية مجاديف رومانية"
 
+#: simulation/templates/units/rome_siege_onager.xml:35
+msgid "Onager"
+msgstr ""
+
+#: simulation/templates/units/rome_siege_ram.xml:14
+msgid "Aries"
+msgstr ""
+
+#: simulation/templates/units/rome_siege_scorpio_packed.xml:16
+msgid "Scorpio"
+msgstr ""
+
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Romana"
 msgstr ""
@@ -2542,13 +2531,13 @@ msgstr "تاجر عاميّ"
 msgid "Mercator Plebeius"
 msgstr ""
 
+#: simulation/templates/units/samnite_skirmisher.xml:4
 #: simulation/templates/units/samnite_skirmisher.xml:5
-#: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "Samnite Skirmisher"
 msgstr "مناوش سامنيّ"
 
+#: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_spearman.xml:5
-#: simulation/templates/units/samnite_spearman.xml:6
 msgid "Samnite Spearman"
 msgstr "رمّاح سامنيّ"
 
@@ -2781,6 +2770,10 @@ msgstr "هوبليت بيريويكوي"
 msgid "Hoplítēs Períoikos"
 msgstr "هوبلايتس بايروريكس"
 
+#: simulation/templates/units/spart_ship_trireme.xml:6
+msgid "Spartan Trireme"
+msgstr ""
+
 #: simulation/templates/units/spart_support_female_citizen.xml:21
 msgid "Spartan Woman"
 msgstr "امرأة أسبارطيّة"
@@ -2793,34 +2786,34 @@ msgstr "سبارتتيش"
 msgid "Émporos Períoikos"
 msgstr "امبورس بيرويكيس"
 
-#: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:32
+#: simulation/templates/units/theb_siege_fireraiser.xml:34
 msgid "Fire Raiser"
 msgstr "مشعل النيران"
 
-#: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:33
+#: simulation/templates/units/theb_siege_fireraiser.xml:35
 msgid "Pyrobolos"
 msgstr ""
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
 msgid "Theban Sacred Band Hoplite"
 msgstr "فرقة هوبليت مقدسة ثيفية"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Hieroû Thebaíou Lókhou Hoplítai"
 msgstr "هايرو تابوتو لوكاو هوبلاتاى"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:8
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
 msgstr "رمّاح بطل"
 
-#: simulation/templates/units/thespian_melanochitones.xml:6
+#: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"
 msgstr "ثسبيّ ذو عباءة سوداء"
 
-#: simulation/templates/units/thespian_melanochitones.xml:7
+#: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Melanochitones"
 msgstr ""
 
-#: simulation/templates/units/viking_longboat.xml:5
-msgid "Longboat"
-msgstr "قارب طويل"
+#: simulation/templates/units/viking_longship.xml:4
+msgid "Longship"
+msgstr ""

@@ -8,14 +8,16 @@
 		"ptol": "Prometōpídion"
 	},
 	"description": "Metal armor for a horse's face.",
-	"cost": {"food": 0, "wood": 1000, "stone": 0, "metal": 350},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 0, "wood": 1000, "stone": 0, "metal": 350 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_plates_cavalry.png",
 	"researchTime": 40,
 	"tooltip": "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor level.",
-	"modifications": [{"value": "Armour/Hack", "add": 1.0},
-		{"value": "Armour/Pierce", "add": 1.0}],
+	"modifications": [
+		{ "value": "Armour/Hack", "add": 1 },
+		{ "value": "Armour/Pierce", "add": 1 }
+	],
 	"affects": ["Cavalry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

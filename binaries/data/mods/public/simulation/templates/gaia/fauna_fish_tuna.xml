@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_fish">
+<Entity parent="template_gaia_fish">
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Tuna Fish</SpecificName>
-    <Tooltip>Gather food from this bountiful oceanic resource.</Tooltip>
+    <SpecificName>Tuna</SpecificName>
     <Icon>gaia/fauna_fish.png</Icon>
   </Identity>
   <VisualActor>

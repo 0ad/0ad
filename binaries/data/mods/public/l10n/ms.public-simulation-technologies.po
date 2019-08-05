@@ -1,15 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# abuyop <abuyop@gmail.com>, 2014-2018
+# abuyop <abuyop@gmail.com>, 2014-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-23 16:40+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,6 +24,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "Unit dinaik pangkat ke kelas mahir dengan kualiti lebih baik: 20% hayat tambahan, 1 aras perisai tambahan bagi setiap jenis, 20% rampasan perang tambahan, 20% serangan tambahan untuk unit tempur, 4m jangkauan tambahan dan kepersisan lebih baik untuk unit jarak jauh, kelajuan pergerakan lebih pantas dan kelajuan penyembuhan lebih baik serta jangkauan bomoh lebih jauh."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "Jangkauan +10 meter untuk unit pembawa-busur. Ketepatan unit pemanah lebih baik dan masa latihan mereka -20%, dan juga -20% hayat."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Tradisi Memanah"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Dibuka dalam Fasa Kampung,"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -452,18 +479,6 @@ msgstr "Rasuk diperkukuhkan dengan kayu untuk badan kapal. +2 tahap pada semua j
 msgid "Reinforced hull"
 msgstr "Badan kapal diperkukuh"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Dibuka dalam Fasa Kampung,"
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "Tombak panjang yang direka khusus untuk askar berkuda."
@@ -823,8 +838,8 @@ msgid "Gather Training"
 msgstr "Latihan Mengumpul"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "Pukat menambahbaik penangkapan ikan."
+msgid "Nets improve the productivity of fishing boats."
+msgstr "Pukat menambahbaik produktiviti bot nelayan."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -963,12 +978,12 @@ msgid "Wicker Baskets"
 msgstr "Bakul Anyaman"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "Unit bergarison di dalam berek sembuh mengikut masa."
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "Unit bergarison di dalam Berek sembuh mengikut masa."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Unit semakin sembuh dalam satu tempoh ketika garison di dalam berek."
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "Unit semakin sembuh dalam satu tempoh ketika bergarison di dalam Berek."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1439,11 +1454,11 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr "Tambahbaik perisai pada jentera pengepung"
+msgstr "Tambahbaik perisai pada senjata pengepung"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr "Semua jentera Pengepung +2 aras perisai tetak."
+msgstr "Semua senjata Pengepung +2 aras perisai tetak."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1451,15 +1466,15 @@ msgstr "Perpelatan Perisai"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
-msgstr "Teknologi lanjutan menambahbaik kecekapan pengepung"
+msgstr "Teknologi lanjutan menambahbaik kecekapan pengepungan"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr "Semua jentera Pengepung +25 kerosakan Rempuh."
+msgstr "Semua senjata Pengepung +25 kerosakan Rempuh."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
-msgstr "Pengepung Mahir"
+msgstr "Pengepungan Mahir"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
@@ -1475,11 +1490,11 @@ msgstr "Ketepatan Bolt"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr "Jentera pengepung kurang perlukan sumber logam"
+msgstr "Senjata pengepung kurang memerlukan sumber logam"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
-msgstr "Jentera pengepung kurang 20% kos logam"
+msgstr "Senjata pengepung kurang 20% kos logam"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1487,7 +1502,7 @@ msgstr "Pekerja Logam"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege weapons cost less wood"
-msgstr "Jentera pengepung kurang perlukan kayu"
+msgstr "Senjata pengepung kurang memerlukan kayu"
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege weapons cost 20% less wood"
@@ -1499,11 +1514,11 @@ msgstr "Pengajar Artileri"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr "Jentera pengepung tak bergerak dicantum dan dileraikan dengan lebih pantas"
+msgstr "Senjata pengepung tak bergerak dicantum dan dileraikan dengan lebih pantas"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr "-25% masa memasang dan melerai jentera pengepung tidak bergerak."
+msgstr "-25% masa memasang dan melerai senjata pengepung tidak bergerak."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1700,9 +1715,9 @@ msgstr "Kraftangan Mahir"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "Tingkatkan kelajuan tempoh latihan askar di dalam berek dengan melatih mereka dalam kelompok yang banyak atau dalam bentuk batalion."
+msgstr "Tingkatkan kelajuan tempoh latihan askar di dalam Berek dengan melatih mereka dalam kelompok yang banyak atau dalam bentuk batalion."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1766,8 +1781,8 @@ msgid ""
 msgstr "Unit pengawal (Pahlawan) adalah profesional yang memiliki senjata terbaik dan telah menikmati latihan yang terbaik."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "Buka keupayaan melatih Pahlawan di berek."
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr "Buka keupayaan melatih Pahlawan di dalam Berek."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1937,23 +1952,6 @@ msgstr "Askar-Rakyat Infantri Elit"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "Puak Carthage membina tembok bandar mereka dalam tiga lingkaran sepusat. Tembok-tembok ini sukar dicerobohi. Walaupun bandar telah ditawan oleh puak Rom, ia dilakukan menerusi pelabuhan bandar, bukannya dengan menembusi temboknya."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Tembok, pintu pagar, dan menara Carthage mempunyai 3x hayat berbanding tembok biasa, juga masa pembinaan 2x ganda."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Tembok Tiga Lapis"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2257,19 +2255,120 @@ msgstr "Tatar semua askar upahan Italiote anda ke pangkat Elit. Ia meningkatkan 
 msgid "Elite Italiote Mercenaries"
 msgstr "Askar Upahan Italiote"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Puak Carthage membina tembok bandar mereka dalam tiga lingkaran sepusat. Tembok-tembok ini sukar dicerobohi. Walaupun bandar telah ditawan oleh puak Rom, ia dilakukan menerusi pelabuhan bandar, bukannya dengan menembusi temboknya."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Tembok, pintu pagar, dan menara Carthage mempunyai 3x hayat berbanding tembok biasa, juga masa pembinaan 2x ganda."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Tembok Tiga Lapis"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Struktur Celt kebanyakannya diperbuat dari kayu dengan tapak puing."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Bangunan Celt kurang 20% hayat, tetapi 20% lebih murah dan pantas dibina."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Pembinaan Kayu"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Yunani menggunakan pembinaan batu seawal zaman Mycenae"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Semua struktur mempunyai 10% lebih hayat dan mata tangkapan, tetapi perlu 10% lebih lama dibina."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Senibina Yunani"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Empayar Maurya terdiri daripada berdozen-dozen kerajaan kecil yang meliputi kawasan sejumlah 5 juta kilometer persegi, dengan populasi hampir 60 juta orang. Pemangku raja Maurya memegang jawatan Maharaja bagi Maharaja dan mengetuai sejumlah 600,000 orang askar infantri, 9000 ekor gajah perang, 8000 kereta kuda perang dan 30,000 askar berkuda, menjadikannya ketumbukan tentera terbesar pada zaman tersebut."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Maurya memilik had populasi maksimum 10% lebih tinggi."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Maharaja bagi Maharaja"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "Maurya membina tembok dari kayu, yang merupakan sumber asli paling banyak di India."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Tembok bandar Maury kurang -20% hayat dan -20% tempoh pembinaan."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Tembok Kayu"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Puak Parsi pernah mengerahkan sejumlah besar askar infantri ketika perang kerana saiz empayar Achaemenid dan proses pengerahan yang sebegitu. Umumnya askar infantri Parsi terlatih dan berperang dengan semangat waja. Walaubagaimanapun askar Parsi lemah dari segi pertarungan tanpa senjata, perlawanan jarak dekat. Dan juga selain dari regimen elit, askar infantri Parsi bukanlah kuasa ketenteraan yang terhebat."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Parsi memilik had populasi maksimum 10% lebih tinggi."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Kerahan Raja Agung"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Puak Sparta tidak mempunyai aksar yang terbesar di dunia, tetapi askar yang terbaik di dunia kerana komitmen mereka. Askar mereka kurang kuantitinya tetapi lebih berkualiti. Pernah disebut Sparta tidak memerlukan tembok bandar yang kuat, kerana tembok yang sebenar adalah penduduknya."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Puak Sparta memiliki had populasi maksimum 10% lebih rendah."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Orang Tertindas"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2288,36 +2387,6 @@ msgstr "Perlawanan Askar Bertombak"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Yunani menggunakan pembinaan batu seawal zaman Mycenae"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Semua struktur mempunyai 10% lebih hayat dan mata tangkapan, tetapi perlu 10% lebih lama dibina."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Senibina Yunani"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Puak Sparta tidak mempunyai aksar yang terbesar di dunia, tetapi askar yang terbaik di dunia kerana komitmen mereka. Askar mereka kurang kuantitinya tetapi lebih berkualiti. Pernah disebut Sparta tidak memerlukan tembok bandar yang kuat, kerana tembok yang sebenar adalah penduduknya."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Puak Sparta memiliki had populasi maksimum 10% lebih rendah."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Orang Tertindas"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2365,9 +2434,9 @@ msgstr "Tembok Panjang Athen"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% Hayat dan -50% masa pembinaan untuk Pusat Sivik, Kuil, Piramid dan Keajaiban."
+msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2386,78 +2455,6 @@ msgstr "Latih bomoh berpangkat elit."
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "Arahan Ketuhanan"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Empayar Maurya terdiri daripada berdozen-dozen kerajaan kecil yang meliputi kawasan sejumlah 5 juta kilometer persegi, dengan populasi hampir 60 juta orang. Pemangku raja Maurya memegang jawatan Maharaja bagi Maharaja dan mengetuai sejumlah 600,000 orang askar infantri, 9000 ekor gajah perang, 8000 kereta kuda perang dan 30,000 askar berkuda, menjadikannya ketumbukan tentera terbesar pada zaman tersebut."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Maurya memilik had populasi maksimum 10% lebih tinggi."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Maharaja bagi Maharaja"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "Bangsa india mempunyai tradisi memanah dan gemar menggunakan pemanah secara beramai-ramai di dalam pertempuran."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "Jangkauan +10 meter untuk unit pembawa-busur. Ketepatan unit pemanah lebih baik dan masa latihan mereka -20%, dan juga -20% hayat."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Tradisi Memanah"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "Maurya membina tembok dari kayu, yang merupakan sumber yang paling banyak di India."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Tembok bandar Maury kurang -20% hayat dan -20% tempoh pembinaan."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Tembok Kayu"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Puak Parsi pernah mengerahkan sejumlah besar askar infantri ketika perang kerana saiz empayar Achaemenid dan proses pengerahan yang sebegitu. Umumnya askar infantri Parsi terlatih dan berperang dengan semangat waja. Walaubagaimanapun askar Parsi lemah dari segi pertarungan tanpa senjata, perlawanan jarak dekat. Dan juga selain dari regimen elit, askar infantri Parsi bukanlah kuasa ketenteraan yang terhebat."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Parsi memilik had populasi maksimum 10% lebih tinggi."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Kerahan Raja Agung"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2490,12 +2487,6 @@ msgstr "Semua struktur Parsi +25% hayat dan mata tangkapan, tetapi perlu +20% ma
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Senibina Parsi"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "Bangsa Parsi mempunyai tradisi kehalusan memanah dan gemar menggunakan pemanah secara beramai-ramai di dalam pertempuran."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2601,7 +2592,7 @@ msgstr "Metropolis Keyunanian"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "Kurangkan tempoh latihan pahlawan dan jentera pengepung dalam kubu dengan melatih mereka dalam kelompok yang banyak atau dalam bentuk batalion."
+msgstr "Kurangkan tempoh latihan pahlawan dan senjata pengepung dalam kubu dengan melatih mereka dalam kelompok yang banyak atau dalam bentuk batalion."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

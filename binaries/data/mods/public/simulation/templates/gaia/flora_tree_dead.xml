@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_tree">
   <Identity>
-    <SpecificName>Dead Tree</SpecificName>
+    <SpecificName>Dead Deciduous Tree</SpecificName>
   </Identity>
+  <ResourceSupply>
+    <Amount>200</Amount>
+  </ResourceSupply>
   <VisualActor>
-    <Actor>flora/trees/tree_dead.xml</Actor>
+    <Actor>flora/trees/temperate_dead_forest.xml</Actor>
   </VisualActor>
 </Entity>

@@ -1,15 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Brian Mac Giolla Mhuire <brian@oireas.com>, 2018
+# Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019
 # Coinneach Donáll Mac Ocslaigh <coinneachoxley@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-06-09 04:24+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-25 16:17+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,7 @@ msgstr "A %(_player_)s, teastaíonn ort cíos a sheol chugam do %(_amount_)s %(_
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
+" %(_player_)s."
 msgstr "Mura seolann tú %(_amount_)s %(_resource_)s chugam, ní bheimid inár gcomhaontas le chéile, a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
@@ -552,7 +552,7 @@ msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s, %(resour
 msgid "The production queue is full."
 msgstr ".Tá an scuaine táirgthe ró-lán."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Ní féidir le spás ar fáil a aimsiú d'aonaid thraenáilte a sceitheadh"
 
@@ -609,7 +609,7 @@ msgstr "Níl ábalta aona(i)d a chur i ngarastún"
 msgid "Some unit(s) can't go back to work"
 msgstr "Ní féidir le roinnt aona(i)d a chur ag obair"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Ní bhailí iad riachtanais teicneolaíochta an fhoirgnimh seo."
 
@@ -741,7 +741,8 @@ msgstr "Rímharú"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
 msgstr "Bí i do cheann d'Iontas a thógáil nó a ghabháil, agus é a choinniú d'am ar leith agus don chluiche a bhuachan. Athshocróidh an t-amadóir nuair atá an tIontas scriosta nó gabháilte, nó sa bhua comhaontais nuair a athróidh comhaontais an úinéara."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
@@ -887,5 +888,5 @@ msgstr "Bota Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Is bota réamhshocraithe í Petra de chuid 0 A.D. Tuairiscigh deacrachtaí go Wildfire Games le do thoil (féic ar an nasc sa phríomhroghchlár).\n\nFaigh an tIS bónas/pionós ar stoc-charnadh acmhainne (ráta bailithe nó méadú trádála) do -60% i mBosca Gainimh go +60% i ndeacracht An-Deacair (0% do Mheánach) agus tá rátaí táirgeachta is tógála níos lú. Ní ionsaíonn an tIS i mBosca Gainimh agus ní mhéadaíonn sé a chríocha."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Is bota réamhshocraithe í Petra de chuid 0 A.D. Tuairiscigh deacrachtaí go Wildfire Games le do thoil (féic ar an nasc sa phríomhroghchlár).\n\nFaigh an tIS bónas/pionós ar a ráta bailithe agus  méadú trádála (-58% i mBosca Gainimh, -44% in An-Éasca, -25% in Éasca, ±0% i Meánach, +25% i nDeacair, +56% in An-Deacair). Tá rátaí táirgeachta is tógála níos lú acu freisin. Ní ionsaíonn an tIS i mBosca Gainimh agus ní mhéadaíonn sé a chríocha."

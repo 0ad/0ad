@@ -1,17 +1,17 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Thadah D. Denyse <juchuf@gmail.com>, 2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2018
-# Osoitz <oelkoro@gmail.com>, 2015
-# Thadah D. Denyse <juchuf@gmail.com>, 2016
+# Gontzal M. Pujana <juchuf@gmail.com>, 2016
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
+# Osoitz <oelkoro@gmail.com>, 2015,2019
+# Gontzal M. Pujana <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 16:12+0000\n"
+"POT-Creation-Date: 2019-06-21 09:44+0200\n"
+"PO-Revision-Date: 2019-06-30 10:07+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "Ardenne oihana"
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
-" mountain range in the north-west africa."
+" mountain range in the Northwest Africa."
 msgstr "Lur gorabeheratsua eraikinetako leku gutxirekin eta egur eskasarekin. Afrikako ipar-mendebaleko mendilerroa irudikatzen du."
 
 #: maps/random/atlas_mountains.jsonsettings.Name
@@ -309,16 +309,16 @@ msgstr "Sumendi Hila"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
-"The \"Island of Meroe\", a vast peninsula flanked by the Nile and Atbarah "
+"The \"Island of Meroë\", a vast peninsula flanked by the Nile and Atbarah "
 "rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr "\"Meroe uhartea\", Nilo eta Atbarah ibaiek inguratutako penintsula zabala, Kush antzinako koroaren bihotza izan zen. Basamortu gogorrak sabana erdi elkortu bihurtu eta akazia baso txikiak tartekatzen dira. Baliabide aberatsak daude, eta Nilok bizitza ekartzen du, baina mehatxu larriak kontrako ibaiertzera inguratzen dira."
+msgstr "\"Meroë uhartea\", Nilo eta Atbarah ibaiek inguratutako penintsula zabala, Kush antzinako koroaren bihotza izan zen. Basamortu gogorrak sabana erdi elkortu bihurtu eta akazia baso txikiak tartekatzen dira. Baliabide aberatsak daude, eta Nilok bizitza ekartzen du, baina mehatxu larriak kontrako ibaiertzera inguratzen dira."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
-msgid "Fields of Meroe"
-msgstr "Meroe zelaiak"
+msgid "Fields of Meroë"
+msgstr "Meroé zelaiak"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -392,9 +392,9 @@ msgstr "Kaia"
 #: maps/random/hellas.jsonsettings.Description
 msgid ""
 "Hellas, home to the Greeks and through them birthplace to the foundation of "
-"western civilization. Yet the land lacks unity, countless cit-states vie for"
-" dominance. Will you lead your polis to glory and greatness or see it fall "
-"into oblivion, erased from the histories?"
+"western civilization. Yet the land lacks unity, countless city-states vie "
+"for dominance. Will you lead your polis to glory and greatness or see it "
+"fall into oblivion, erased from the histories?"
 msgstr "Hellas, Grekoen bizilekua eta haien eskutik, mendebaldeko zibilizazioaren oinarrien jaio lekua. Halere, lurraldeak ez du batasunik, hainbat hiri-estatuk nagusi izatearen asmoz borrokatzen dira. Zure polisa handitasunera eta loriara eramango duzu edo ahanzturan erortzen ikusiko duzu, historietatik ezabaturik?"
 
 #: maps/random/hellas.jsonsettings.Name
@@ -572,7 +572,6 @@ msgid ""
 msgstr "Mediterraneoa: Feniziar, Greko, Egiptoar, eta beranduago Erromatarren bizilekua. Mesopotamia klasikoko antolaketaren funtsa hartu eta zerbait hobeagoan bihurtu zuten, jakintzaren zentroa eta ikasketak mediterraneoko kostaldera eramanez eta gaur egungo zibilizazioaren ezagueraren oinarriak jarriz. Itsasoa kostaldeaz ia erabat inguraturik dago: iparretik Alpeak haragoko Galia, Italia, Grezia eta Anatolia. Ekialdean Siria. Hegoaldean Libia eta Mauritania, eta Iberia sartaldean. Izena latinaren mailegua da, baino erromatarrek nahiago zuten «mare internum» edo «mare nostrum» deitu."
 
 #: maps/random/mediterranean.jsonsettings.Name
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Mediterraneoa"
 
@@ -894,353 +893,6 @@ msgstr "Mendi tontorrak inguratutako lakua."
 msgid "Wild Lake"
 msgstr "Laku basatia"
 
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgid "Dry Season"
-msgstr "Urtaro Lehorra"
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Urtaro Lehorra "
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgid "Rainy Season"
-msgstr "Euri garaia"
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Euri garaia"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Goi mendi elurtutako eskualde bat. Haize sarkorrek konifera baso ugarien artean erratza pasatzen dute, mendiko orein eta ahuntz gogorrenak ere dardaraz jarriz."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Goi mendi elurtutako eskualde bat. Haize sarkorrek konifera baso ugarien artean erratza pasatzen dute, mendiko orein eta ahuntz gogorrenak ere dardaraz jarriz."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgid "Alpine"
-msgstr "Alpinoa"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpinoa"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Udazken bete betea. Paisaiak elkar loturiko kolore nahasketa miragarria da. Pago zuhaitzek eta bertako haritzek kolore anitzetako hostoak dituzte hostorik galtzeen ez duten pinuek gertu dagoen neguari muzin egiten dioten bitartean."
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Udazken bete betea. Paisaiak elkar loturiko kolore nahasketa miragarria da. Pago zuhaitzek eta bertako haritzek kolore anitzetako hostoak dituzte hostorik galtzeen ez duten pinuek gertu dagoen neguari muzin egiten dioten bitartean. "
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgid "Autumn"
-msgstr "Udazkena"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Udazkena "
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Palmerak eta milazka bilguneak dituen ia basamortua den gunea. Gamelu taldeak naturan zehar dabiltza eta tarteka ikusten den gazelak salto egiten du traba egingo dioten beldurrez."
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Palmerak eta milazka bilguneak dituen ia basamortua den gunea. Gamelu taldeak naturan zehar dabiltza eta tarteka ikusten den gazelak salto egiten du traba egingo dioten beldurrez. "
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgid "Desert"
-msgstr "Basamortua"
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Basamortua"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Mediterraneoko klimak bedeinkaturiko eskualde batean has zaitez, lurralde bero eta abegikor batean. Altzifrek betiko haizearen kontrako borrokan dihardute oreinak bere itzalean bazkatzen diren bitartean, axolagabe eta zoriontsu."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Mediterraneoko klimak bedeinkaturiko eskualde batean has zaitez, lurralde bero eta abegikor batean. Altzifrek betiko haizearen kontrako borrokan dihardute oreinak bere itzalean bazkatzen diren bitartean, axolagabe eta zoriontsu. "
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Sabana, Baobab zuhaitz sendoak baino aurrera egiten ez duten klima lehorra. Gazela bakartiak belar exkaxaren artetik dabiltza, zebra, ñu, jirafak edo elefanteak naturan zehar janari bila doazen bitartean."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Sabana, Baobab zuhaitz sendoak baino aurrera egiten ez duten klima lehorra. Gazela bakartiak belar exkaxaren artetik dabiltza, zebra, ñu, jirafak edo elefanteak naturan zehar janari bila doazen bitartean."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgid "Savanna"
-msgstr "Sabana"
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Sabana "
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Iparreko eskualde hotzetan kokatu, muskox iletsuaren bizilekua. Hemen utz dezakezu daramazuna eta tarteka azalduko den mortsa bat, edo bi, ehizatu."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Iparreko eskualde hotzetan kokatu, muskox iletsuaren bizilekua. Hemen utz dezakezu daramazuna eta tarteka azalduko den mortsa bat, edo bi, ehizatu."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgid "Snowy"
-msgstr "Elurra"
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Elurra"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Zelai mardulak lurra estaltzen dute, hosto zabaleko zuhaitzei tokia eginez. Makal, pinu, pago eta haritzek beren nagusitasunagatik borrokatzen dira, baino sustrai guda hau amaitu ezinezko borroka da. Sagasti anitzek tartekatzen dira lurrean eta ardiek urtetan eroritako fruitu hortaz elikatzen dira."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Zelai mardulak lurra estaltzen dute, hosto zabaleko zuhaitzei tokia eginez. Makal, pinu, pago eta haritzek beren nagusitasunagatik borrokatzen dira, baino sustrai guda hau amaitu ezinezko borroka da. Sagasti anitzek tartekatzen dira lurrean eta ardiek urtetan eroritako fruitu hortaz elikatzen dira."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgid "Temperate"
-msgstr "Epela"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Epela"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Tropiko misteriotsuak esploratu. Giro ezin berdeagoa, eta bide batez ezin umelagoa zain dago. Toona zuhaitz altuek beren pribatutasunaren inbasioa ez dute begi onez ikusten eta tigre krudelek bere lurraldearen babesean arduratuko dira sutsuki."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Tropiko misteriotsuak esploratu. Giro ezin berdeagoa, eta bide batez ezin umelagoa zain dago. Toona zuhaitz altuek beren pribatutasunaren inbasioa ez dute begi onez ikusten eta tigre krudelek bere lurraldearen babesean arduratuko dira sutsuki."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgid "Tropic"
-msgstr "Tropikoa"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropikoa"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Heldulekua gogortuz, izotz handiak golkoa izoztea lortu du. Sortu den izotz geruza lodiak edozein karga jasan dezake."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Heldulekua gogortuz, izotz handiak golkoa izoztea lortu du. Sortu den izotz geruza lodiak edozein karga jasan dezake."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgid "Frozen Lake"
-msgstr "Laku izoztua"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Laku izoztua"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Udaberri bukaerako brisa bat Botnia Golkoko konifera basoen artetik zabaltzen da. Orein taldeak margotzen dira paisaian eta untxi jolastiak sasitzan dabiltza saltoka."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Udaberri bukaerako brisa bat Botnia Golkoko konifera basoen artetik zabaltzen da. Orein taldeak margotzen dira paisaian eta untxi jolastiak sasitzan dabiltza saltoka."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgid "Late Spring"
-msgstr "Udaberri Berantiarra"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Udaberri Berantiarra"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "Negu betea heldu da, lurra lehen elurrez estalirik. Oraindik izoztu gabeko golkoak arrantzarako aukera handiak uzten ditu."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "Negu betea heldu da, lurra lehen elurrez estalirik. Oraindik izoztu gabeko golkoak arrantzarako aukera handiak uzten ditu."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgid "Winter"
-msgstr "Negua"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Negua"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Udaberria goi landetan, baino beroa jada sentitzen hasia da. Bizi laburreko belar berde motzak desagertuz doaz, uda sargoriari tokia eginez."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Udaberria goi landetan, baino beroa jada sentitzen hasia da. Bizi laburreko belar berde motzak desagertuz doaz, uda sargoriari tokia eginez."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgid "Spring"
-msgstr "Udaberria"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Spring"
-msgstr "Udaberria"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Lur elkor eta etsaia. Bero kiskalgarriak lurra marroi bihurtu du eta gelditzen diren zuhaitzak bizirauteko borrokatzen dira."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Lur elkor eta etsaia. Bero kiskalgarriak lurra marroi bihurtu du eta gelditzen diren zuhaitzak bizirauteko borrokatzen dira."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgid "Summer"
-msgstr "Uda"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Uda"
-
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
 msgstr "Euria eten gabe, azkar alde egin beharko dugu!"
@@ -1257,11 +909,11 @@ msgstr "Lur lehorra aurkitu beharrean gaude, gure lurrak laster itoko dira!"
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Lakuak lurra jaten hasi dira, aterpea aurkitu beharrean gaude!"
 
-#: maps/random/jebel_barkal_triggers.js:578
+#: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
 msgstr "Napata erasotzen ari da!"
 
-#: maps/random/jebel_barkal_triggers.js:590
+#: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "Napata erasoan %(time)s!"
@@ -1304,47 +956,47 @@ msgstr "Hobeto ez"
 msgid "Say rather not"
 msgstr "Esan hobeto ez"
 
-#: maps/scenarios/treasure_islands.js:10
+#: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Altxorraz jabetu etsaiak egin aurretik! Onenak irabaz dezala!"
 
-#: maps/scenarios/treasure_islands.js:29
+#: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
 msgstr "Oraindik ez da garailerik, prestatu borrokarako!"
 
-#: maps/scenarios/treasure_islands.js:44
+#: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Etsaien kutxak aberastasunez beterik daude, galdu duzu!"
 
-#: maps/scenarios/treasure_islands.js:49
+#: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Zure kutxak aberastasunez beterik daude, irabazi duzu!"
 
-#: maps/scenarios/treasure_islands.js:61
+#: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Agudo! Etsaiak ia lortu du!"
 
-#: maps/scenarios/treasure_islands.js:72
+#: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Garaipena lortzeko beharrezko altxorrak:  %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:80
+#: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
 msgstr "Altxorraz jabetu zara!"
 
-#: maps/scenarios/treasure_islands.js:92
+#: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
 msgstr "Garaitu etsaia garaipena lortzeko!"
 
-#: maps/scenarios/treasure_islands.js:101
+#: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] "%(lastPlayer)s irabazi du (altxorra jasorik)."
 msgstr[1] "%(players)s and %(lastPlayer)s irabazi dute (altxorra jasorik)."
 
-#: maps/scenarios/treasure_islands.js:105
+#: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
@@ -1372,7 +1024,7 @@ msgstr "Udaberria da Arkadian, Grezia. Udaberriko euriek urte guztian zehar leho
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[0].Name:27 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[1].Name:40 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
 #: Romans.xml:PlayerData[0].Name:39 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[0].Name:27 maps/scenarios/The Massacre of
@@ -1416,7 +1068,6 @@ msgstr "Udaberria da Arkadian, Grezia. Udaberriko euriek urte guztian zehar leho
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:39 maps/skirmishes/Thessalian Plains
@@ -1439,7 +1090,7 @@ msgstr "1. jokalaria"
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[2].Name:40 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
 #: Romans.xml:PlayerData[1].Name:39 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[1].Name:27 maps/scenarios/The Massacre of
@@ -1482,7 +1133,6 @@ msgstr "1. jokalaria"
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:39 maps/skirmishes/Thessalian Plains
@@ -1717,7 +1367,7 @@ msgstr "Indar Inbasorea"
 #: maps/scenarios/Necropolis.xml:PlayerData[2].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[2].Name:27 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[2].Name:39 maps/scenarios/Siwa
+#: Gauls.xml:PlayerData[3].Name:40 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
@@ -2059,12 +1709,12 @@ msgid "Sandbox - The Athenians"
 msgstr "Frogarako Antzokia - Atenastarrak"
 
 #: maps/scenarios/Sandbox - Britons.xml:Description:39 maps/scenarios/Sandbox
-#: - Gauls.xml:Description:39
+#: - Gauls.xml:Description:40
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Esperimentatu nahi bezala Galiarrekin frogarako inguru sinestezinean."
 
 #: maps/scenarios/Sandbox - Britons.xml:PlayerData[3].Name:39
-#: maps/scenarios/Sandbox - Gauls.xml:PlayerData[3].Name:39
+#: maps/scenarios/Sandbox - Gauls.xml:PlayerData[4].Name:40
 msgid "Roman Interlopers"
 msgstr "Erromatar Mugalariak"
 
@@ -2090,7 +1740,7 @@ msgstr "Basapiztiak"
 msgid "Sandbox - The Carthaginians"
 msgstr "Frogarako Antzokia - Kartagoarrak"
 
-#: maps/scenarios/Sandbox - Gauls.xml:Name:39
+#: maps/scenarios/Sandbox - Gauls.xml:Name:40
 msgid "Sandbox - The Gauls"
 msgstr "Frogarako Antzokia - Galiarrak"
 
@@ -2131,20 +1781,20 @@ msgstr "Mazedoniarrak"
 msgid "Sandbox - The Macedonians"
 msgstr "Frogarako Antzokia - Mazedoniarrak"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:Description:39
+#: maps/scenarios/Sandbox - Mauryas.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
 msgstr "Hindu Mauryarren fakzioaren adibide mapa."
 
-#: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[0].Name:39
+#: maps/scenarios/Sandbox - Mauryas.xml:PlayerData[0].Name:39
 msgid "Mauryan Indians"
 msgstr "Hindu Mauryarrak"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[1].Name:39
+#: maps/scenarios/Sandbox - Mauryas.xml:PlayerData[1].Name:39
 msgid "Enemy"
 msgstr "Etsaia"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:Name:39
-msgid "Sandbox - The Mauryans"
+#: maps/scenarios/Sandbox - Mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
 msgstr "Frogarako Antzokia - Mauryarrak"
 
 #: maps/scenarios/Sandbox - Persians.xml:Description:39
@@ -2391,7 +2041,7 @@ msgstr "Unitate bakoitza jokoan."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27
+#: map.xml:Description:27 maps/scenarios/test-foundation.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "Zure mapari azalpen interesgarria ematen dio."
 
@@ -2416,6 +2066,7 @@ msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Borroka azkarraren adibidea Erromatar legionarioekin."
 
 #: maps/scenarios/_default.xml:Name:28
+#: maps/scenarios/test-foundation.xml:Name:40
 msgid "Unnamed map"
 msgstr "Mapa izengabea"
 
@@ -2446,6 +2097,18 @@ msgstr "Itsas Adibidea"
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
 msgstr "Oinarrizko Mapa Epela"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Name:28
+msgid "Unit Motion Integration Test"
+msgstr "Unitateen mugimenduaren integrazio proba"
+
+#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+msgid ""
+"This map is designed to test some basic unit movement cases. It will involve"
+" unitAI, unitMotion and the relevant pathfinders and thus acts as an "
+"integrated test map. Look for things such as stuck units, wrong animations, "
+"and weird pathing."
+msgstr "mapa hau unitateen mugimenduaren oinarrizko kaus batzuk probatzeko diseinatu da. unitAI, unitMotion eta dagozkien bide bilatze algoritmoak barne-hartzen ditu eta integratutako probarako mapa gisa balio du. Bilatu blokatutako unitateak, animazio okerrak, eta ibilbide bereziak."
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
@@ -2672,6 +2335,14 @@ msgid ""
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
 msgstr "Antzinako Egiptoko aztarnen alde borrokatu!\n\nJokalariak garaturik diren hiri eta armada txikiekin hasten dira, bakoitzak abantaila eta desabantaila desberdinak dituzte. Kontuz, badira 7 indartsu boteretsu eta lapur maltzurrak.\n\nHau 0 A.D. aurreko mendea da. Egipto zatiturik dago barnean helenístico (Alejandría,  seleuzidak ordezkaturik) eta barne influentzien (Memphis, Ptolomeok ordezkaturik) artean Tebas Kushek hartua izan da NIlo hegoaldeko kliman. Al-Dschabal al-Achdaren ipar-mendebaldean, Cirene mediterraneoko hiria aurkitzen den lekuan, erromatarrak inbasioa prestatzen ari dira. Tih basamortua eta Sinai menditik, etsaiak (persiarrak ordezkaturik) Siwa oasira aldera doaz. Chargak ere (Kartagok ordezkaturik) hego-mendebaldeko basamortuan, pastelaren zati bat bereganatu nahi du.\nTokiak:\n- Alejandria: Liburutegia, kaia\n- Memphis: Necropoli, piramide, Apis santutegia\n- Tebas: tenpluaren distritua, Erregeen harana\n- Cirene: Macchie mediterraneo, olibondoak\n- Fayyum: krokodiloen santutegia, Niloko aldaparoa\n- Ekialdeko basamortua: Sinaí mendia, Wadi sakona, Itsas Gorriaren labarrak\n- Mendebaldeko basamortua: Oasis Charga eta Siwa, Qattarako sakonunea\n"
 
+#: maps/skirmishes/Farmland (2).xml:Description:40
+msgid "Farmland in Eastern Europe."
+msgstr "Landa lurrak Europa Ekialdean"
+
+#: maps/skirmishes/Farmland (2).xml:Name:40
+msgid "Farmland (2)"
+msgstr "Landalurrak (2)"
+
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
@@ -2856,6 +2527,14 @@ msgstr "Iparreko hotzaren handitasunean galdurik, 2 jokalarik uhartetxoaren kont
 msgid "Northern Island (2)"
 msgstr "Iparreko Uhartea (2)"
 
+#: maps/skirmishes/Oceanside (2).xml:Description:40
+msgid "A Lush temperate biome along an ocean. "
+msgstr "Bioma epel oparo bat ozeanoan zehar."
+
+#: maps/skirmishes/Oceanside (2).xml:Name:40
+msgid "Oceanside (2)"
+msgstr "Ozeanoaren aldea (2)"
+
 #: maps/skirmishes/Persian Highlands (4).xml:Description:39
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
@@ -2925,17 +2604,6 @@ msgstr "Sizilia mediterraneoko uhartea konkistarako prest.\n[color=\"orange\"]Pi
 msgid "Sicilia Nomad (2)"
 msgstr "Nomadak Sizilian (2)"
 
-#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
-msgid ""
-"A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
-"\n"
-"Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
-msgstr "Bi oasien mapa dagoen ia egur guztia eta animali baliabideak erdian dituena. Landa lurrak oasien inguruan daude dagoen hezetasuna baliatzeko.\n\nBai harria eta bai metala barnealdeko lur harritsuetan aurkitzen dira. Altxorrak, aktibatu ezkero, inguruko basamortuetan zabaldurik agertuko dira."
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
-msgid "Siwa Oasis (2)"
-msgstr "Siwako Oasia (2)"
-
 #: maps/skirmishes/Skirmish Demo.xml:Description:39
 msgid "A demo Skirmish map."
 msgstr "Borroka txikien adibidezko mapa."
@@ -2969,6 +2637,14 @@ msgstr "Mendiak eta basamortua inguratutako oasi bat. Uraren bazterreko landa ze
 #: maps/skirmishes/Team Oasis - 2v2.xml:Name:39
 msgid "Team Oasis (2v2)"
 msgstr "Taldekako Oasia (2v2)"
+
+#: maps/skirmishes/Temperate Roadway (2).xml:Description:40
+msgid "Temperate zone map with plentiful resources. Map Size: Small"
+msgstr "Baliabide ugariko gune epelen mapa. Maparen tamaina: txikia"
+
+#: maps/skirmishes/Temperate Roadway (2).xml:Name:40
+msgid "Temperate Roadway (2)"
+msgstr "Bide epela (2)"
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Description:39
 msgid ""
@@ -3035,7 +2711,195 @@ msgstr "Persis, Susiana eta Mediaren artean irteten diren mendi neutralak Pertsi
 msgid "Zagros Mountains (2)"
 msgstr "Zagros Mendiak (2)"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Urtaro Lehorra "
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Euri garaia"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Goi mendi elurtutako eskualde bat. Haize sarkorrek konifera baso ugarien artean erratza pasatzen dute, mendiko orein eta ahuntz gogorrenak ere dardaraz jarriz."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr "Alpinoa"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-colored foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "Udazken bete betea. Paisaiak elkar loturiko kolore nahasketa miragarria da. Pago zuhaitzek eta bertako haritzek kolore anitzetako hostoak dituzte hostorik galtzeen ez duten pinuek gertu dagoen neguari muzin egiten dioten bitartean. "
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr "Udazkena "
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Palmerak eta milazka bilguneak dituen ia basamortua den gunea. Gamelu taldeak naturan zehar dabiltza eta tarteka ikusten den gazelak salto egiten du traba egingo dioten beldurrez. "
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr "Basamortua"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Mediterraneoko klimak bedeinkaturiko eskualde batean has zaitez, lurralde bero eta abegikor batean. Altzifrek betiko haizearen kontrako borrokan dihardute oreinak bere itzalean bazkatzen diren bitartean, axolagabe eta zoriontsu. "
+
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Mediterranean"
 msgstr "Mediterraneoa"
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "Sabana, Baobab zuhaitz sendoak baino aurrera egiten ez duten klima lehorra. Gazela bakartiak belar exkaxaren artetik dabiltza, zebra, ñu, jirafak edo elefanteak naturan zehar janari bila doazen bitartean."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Sabana "
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Iparreko eskualde hotzetan kokatu, muskox iletsuaren bizilekua. Hemen utz dezakezu daramazuna eta tarteka azalduko den mortsa bat, edo bi, ehizatu."
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr "Elurra"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Zelai mardulak lurra estaltzen dute, hosto zabaleko zuhaitzei tokia eginez. Makal, pinu, pago eta haritzek beren nagusitasunagatik borrokatzen dira, baino sustrai guda hau amaitu ezinezko borroka da. Sagasti anitzek tartekatzen dira lurrean eta ardiek urtetan eroritako fruitu hortaz elikatzen dira."
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr "Epela"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Tropiko misteriotsuak esploratu. Giro ezin berdeagoa, eta bide batez ezin umelagoa zain dago. Toona zuhaitz altuek beren pribatutasunaren inbasioa ez dute begi onez ikusten eta tigre krudelek bere lurraldearen babesean arduratuko dira sutsuki."
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Tropikoa"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Heldulekua gogortuz, izotz handiak golkoa izoztea lortu du. Sortu den izotz geruza lodiak edozein karga jasan dezake."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Laku izoztua"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Udaberri bukaerako brisa bat Botnia Golkoko konifera basoen artetik zabaltzen da. Orein taldeak margotzen dira paisaian eta untxi jolastiak sasitzan dabiltza saltoka."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Udaberri Berantiarra"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Negu betea heldu da, lurra lehen elurrez estalirik. Oraindik izoztu gabeko golkoak arrantzarako aukera handiak uzten ditu."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Negua"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Udaberria goi landetan, baino beroa jada sentitzen hasia da. Bizi laburreko belar berde motzak desagertuz doaz, uda sargoriari tokia eginez."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Udaberria"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Lur elkor eta etsaia. Bero kiskalgarriak lurra marroi bihurtu du eta gelditzen diren zuhaitzak bizirauteko borrokatzen dira."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Uda"

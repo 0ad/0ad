@@ -41,6 +41,7 @@
   </Health>
   <Identity>
     <Civ>cart</Civ>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Naval Shipyard</GenericName>
     <SpecificName>Cothon</SpecificName>
     <VisibleClasses datatype="tokens">-City Shipyard Town</VisibleClasses>
@@ -78,7 +79,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_dock.xml</select>
       <constructed>interface/complete/building/complete_dock.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>

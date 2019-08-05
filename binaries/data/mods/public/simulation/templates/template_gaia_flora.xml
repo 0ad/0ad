@@ -20,8 +20,8 @@
     <MaxGatherers>8</MaxGatherers>
   </ResourceSupply>
   <Selectable>
-    <EditorOnly disable=""/>
     <Overlay>
+      <Outline disable=""/>
       <Texture>
         <MainTexture>circle/128x128.png</MainTexture>
         <MainTextureMask>circle/128x128_mask.png</MainTextureMask>

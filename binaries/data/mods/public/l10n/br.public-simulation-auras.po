@@ -1,14 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
-# ernest olory <ernestolory@hotmail.fr>, 2016-2018
+# ernest olory <ernestolory@hotmail.fr>, 2016-2019
 # Feñch Gallig <ducraig@hotmail.fr>, 2017
+# Goulven <goulvenbreizh@hotmail.fr>, 2018-2019
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # nolwenn briand <briandnolwenn22@orange.fr>, 2017
-# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017,2019
 # tjyu gh <anna.point22@orange.fr>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Youenn Jacquet <youennjacquet@gmail.com>, 2017
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-09-19 12:53+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-05-23 18:06+0000\n"
+"Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "Fealded"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "+50% a feur adtiñvat lealded evit ar savadur gwarnizonet."
+msgstr "+50% a feur adtiñvañ lealded evit ar savadur gwarnizonet."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -173,60 +174,56 @@ msgid "Delian League"
 msgstr "Kevre Delios"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "Al listri a vez savet 25% buanoc'h."
+msgid "Allied warships −25% construction time."
+msgstr "Listri-brezel kevredet  -25% a amzer sevel."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "Drouized"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "Ar re gevreded o deus -20% a goust danvez evit stummañ pareourien."
+msgid "Allied healers −20% resource costs."
+msgstr "Ar bareourien kevredet a goust -20% a zanvezioù."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Penngenwerzhourien"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "10% a c'hounid-kenwerzh evit hentoù etrebroadel ar re gevreded."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Marc'hadoù kevredet +10% a vonuz kenwerzh etrebroadel."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "Furnez an drouized"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "-20% a amzer evit kas da benn enklaskoù war teknologiezhioù ar re gevreded."
+msgid "Allied structures −20% technology research time."
+msgstr "Savadurioù kevredet -20% a amzer-enklask evit an teknologiezhioù."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "Digreskiñ ar ra koust ar soudarded-keodedour tennataer eus 20% evit ar re zo kevredet gant ar c'hoarierien Iberek"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Soudard-keodedour kevredet spegerien -20% a goust."
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "Pourvezer olifanted"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Digreskiñ a ra koust hag amzer-stummañ an olifanted eus 20% evit pep c'hoarier Kushite kevredet."
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Olifanted kevredet -20% a goust hag a amzer-stummañ."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "Teulenn Standardizet"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "+20 % sa brizioù gwerzh er marc'had."
+msgid "Allies +20% barter sell prices."
+msgstr "Kevredidi +20% a briz gwerzhañ trok."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -234,51 +231,49 @@ msgstr "Skoazell Relijiel Ashoka"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "Templ ar re gevredet ha teknologiezhioù an templ a goust -50% e mammenn hag e amzer."
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Temploù kevredet -50% a goust danvez hag amzer sevel; teknologiezhioù templ -50% a goust danvez hag amzer-enklask."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "An Hent-Roueel"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Korvoder uheloc'h (+15%) an hentoù-kenwerzh evit kenwerzhourien ar re gevreded."
+msgid "Allied land traders +15% trade gain."
+msgstr "Kenwerzherien ar vro kevredet + 15% a c'hounid kenwerzh."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Grignol ar Morkreizdouarel"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "An holl re gevredet a c'hounez en un doare emgefreek ur buzad moan a voued."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Kevredidi +1.0 a feur gwazhennig voued."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "Enrollañ en arme"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "-20% a amzer stummañ evit soudarded-keodedour war-droad ar re gevredet."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Soudard-keodedour war droad kevredet -20% ag a amzer stummañ."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Tetrapolis Sirian"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "Digreskiñ ar c'houst evit ar c'hreizennoù keodedel eus 20% evit ar re zo kevredet gant c'hoarierien Seleukid"
+msgid "Allied civil centers −20% resource costs."
+msgstr "Kreizennoù keodedel kevredet -20% a goust danvez."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "Kevre ar Peloponnesos"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Lakaat da greskiñ yec'hed ar soudard-keodedour goafer war droad eus 10% evit ar re a zo kevredet gant c'hoarierien Spart."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Soudard-keodedour goafer war droad kevredet +10% a yec'hed."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -306,7 +301,7 @@ msgstr "Fortun Ekonomikel"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "-10% cost for economic technologies."
-msgstr "Solon en deus diazezet ur sistem nevez a pouezioù ha muzulioù, an tadoù oa kalonekaet da glask marc'hadoù evit o mibien.\n-10% a goust evit an tenkologiezhioù ekonomikel."
+msgstr "Solon en deus diazezet ur sistem nevez a pouezioù ha muzulioù, an tadoù oa kalonekaet da glask marc'hadoù evit o mibien.\n-10% a goust evit an teknologiezhioù ekonomikel."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -395,9 +390,9 @@ msgstr "Templ Naka"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Evel gant an holl sevenadurioù all, ar relijion en doa ur roll a-bouez en Impalaeriezh Meroë. Shanakdakheto en doa lakaet an templ da vezañ savet tro 160 a-raok J.-K. evel arrouez araokadur Meroë.\n+1 feur pareañ en gwarnizon evit an temploù nepell."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr "Evel gant an holl sevenadurioù all, ar relijion en doa ur roll a-bouez en Impalaeriezh Meroë. Shanakdakheto en doa lakaet an templ da vezañ savet tro 160 a-raok J.-K. evel arouez araokadur Meroë.\n+1 a feur pareañ evit an unanennoù gwarnizonet e-barzh temploù nepell."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -405,9 +400,9 @@ msgstr "Preizher kêrioù"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr "E-pad ar C'hentañ Brezel Makedonian, Fulup hag e vagadoù o doa gwastet Thermum, kêrbenn relijiel ha politikel Aetolia.\n+5 a voued ha koad evit kement unanenn enebour lazhet pe stummadur distrujet."
+msgstr "E-pad ar brezel makedoniat kentañ o doa Filip hag e vagadoù dizalbadet Thermom, kreizenn relijiel ha politikel Aetolia.\n+5 a voued ha koad evit pep unanenn enebour lazhet pe frammadur distrujet."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -461,7 +456,7 @@ msgstr "Goude palforsadenn Lukresia gant mab Roue Tarkinius Superbus ha da heul 
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
-msgstr "Krouer ha Difenner ar Republik"
+msgstr "Saver ha Difenner ar Republik"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -471,7 +466,7 @@ msgstr "Brutus a oa unan eus an dud-pennañ e-barzh diskar ar vonarkiezh ha savi
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
-msgstr "Krouer Templ Ezida"
+msgstr "Saver Templ Ezida"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -495,9 +490,9 @@ msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Mab Selekus Nikator, Antiokus a zo deuet war e lerc'h evit stagañ e-barzh al labour hep e bar evit derc'hel a-sav an impalaeriezh en e-bezh,  tra ma veze savet temploù gantañ ha reiñ lamm da aloubadeg ar Galianed gant olifanted brezel.\n-10% a goust evit an Olifanted Brezel."
+msgstr "Mab Seleucus Nicator, Antiochus a zo deuet a-benn da virout an impalaeriezh unvanet en ur sevel temploù hag en ur vezañ trec'h war ar Galianed alouberien gant olifanted brezel.\n-10% a goust evit an Olifanted Brezel."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -542,15 +537,15 @@ msgstr "An holl spegourien war-droad +15% a dizh."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr "Program Saverezh Periklean"
+msgstr "Program saverezh Periklean"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "+15% build and repair rate for workers."
 msgstr "+15% a feur sevel ha kempenn evit al labourerien."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Templ Atena"
+msgid "Temple of Athena Nike"
+msgstr "Templ Atena Nike"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -732,12 +727,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "-20% a goust hag en en amzer evit sevel templ Apedemak ha gwarded templ Meroe."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
-msgstr "Marv ar feiz"
+msgid "Slaughter of the Faithful"
+msgstr "Lazhadeg an dud Fidel"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Ar feur paerañ a zo digresket eus 50%."
+msgid "Enemy healers −50% healing rate."
+msgstr "Pareourien enebour -50% a feur pareañ."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -773,7 +768,7 @@ msgstr "Alouber"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr "-50% a feur gwarnizonoù azganet evit kreizennoù keodedel enebour."
+msgstr "-50% a feur adteñvañ en-gwarnizon evit kreizennoù keodedel an enebour."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -781,7 +776,7 @@ msgstr "Taksiarkes"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
-msgstr "+20% a argad ha +20% a bakadur evit goafourien."
+msgstr "+20% a dagusted ha +20% a bakusted evit ar goafourien."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -818,25 +813,25 @@ msgstr "Kelenner"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Emgefrekait ur savadur gant ur c'houst a -20% evit un amzer-enklask a -50% pa vez lakaet e gwarnizon e-barzh."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr "Emgefrekait ur savadur en ul lakaat ur gwarnizon e-barzh evit digreskiñ koust an teknologiezhioù deus -20% hag o amzer enklask deus -50%."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr "Azgenel"
+msgstr "Adteñvañ"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
-msgstr "Rener war al linenn kentan"
+msgstr "Komandant al Linenn gentañ"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr "+20% a argad ha +1 a bakadur evit soudarded marc'hegerezh."
+msgstr "+20% a dagusted ha +1 a bakusted evit ar soudarded war varc'h."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
-msgstr "Renerezh"
+msgstr "Levierezh"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers, siege engines and traders."
@@ -848,7 +843,7 @@ msgstr "Merour"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate for workers."
-msgstr "+15% a feur dastum ha feur sevel evit labourerien."
+msgstr "+15% a feur dastum hag a feur sevel evit al labourerien."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
@@ -856,7 +851,7 @@ msgstr "Brogarour"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "-20% attack repeat time for soldiers and siege engines."
-msgstr "-20% a amzer pleustradenn argad evit soudarded ha ijinennoù seziz."
+msgstr "-20% a amzer etre an tagadennoù evit ar soudarded ha mekanikoù seziz."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -865,11 +860,11 @@ msgstr "Kenseurt"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "+10% health for allied heroes."
-msgstr "+10% a yec'hed evit harozed kevredet."
+msgstr "+10% a yec'hed evit an harozed kevredet."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "-10% health for enemy heroes."
-msgstr "-10% a yec'hed evit harozed enebour."
+msgstr "-10% a yec'hed evit an harozed enebour."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -877,19 +872,19 @@ msgstr "Rafia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr "Goafourien o deus 40% a yec'hed gwelloc'h e-pad e vuhezpad."
+msgstr "Ar Goaferien o deus ur yec'hed gwelloc'h eus 40% a-hed o buhez."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
-msgstr "Penn Savadur"
+msgstr "Gwarezour ar Savadurioù"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "+10% build and repair rate for workers."
-msgstr "+10% a sevel ha feur dresan evit labourerien."
+msgstr "+10% a feur sevel ha kempenn evit al labourerien."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr "Penn Goprsoudard"
+msgstr "Mestr ar C'hoprsoudarded"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -35% resources during his lifetime."
@@ -902,7 +897,7 @@ msgstr "Kleze Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "+15% attack for cavalry."
-msgstr "+15% a argad evit Marc'hegerezh."
+msgstr "+15% a dagusted evit ar varc'hegerezh."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "-10% attack for enemy infantry."
@@ -962,4 +957,4 @@ msgstr "An Hini Diwezhañ War-Sav"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr "+25% a argad ha +1 a bakadur evit goaferien."
+msgstr "+25% a dagusted ha +1 a dagusted evit ar goaferien."

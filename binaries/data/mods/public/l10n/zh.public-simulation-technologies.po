@@ -1,16 +1,17 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
+# Julian, 2019
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
 # Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
-# liulitchi <xingzuo88@qq.com>, 2018
+# liulitchi <xingzuo88@qq.com>, 2018-2019
 # yhcvb <yhcvb@126.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
 # 武军 李 <lwj7863439@gmail.com>, 2016
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-10-17 18:07+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-07-19 02:29+0000\n"
+"Last-Translator: Julian\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,12 +36,39 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "单位升级至高级以后将获得以下属性加成：+20%生命值，+1点装甲（针对所有类型的护甲），+20%的战利品收益，近战单位+20%攻击值，远程攻击单位+4米射程并拥有更高的攻击精度，更快的移动速度，医疗兵获得额外的治疗速度和治疗距离。"
+msgstr "单位升级属性加成：+20%生命值，+1点装甲（针对所有类型的护甲），+20%的战利品收益，近战单位+20%攻击值，远程攻击单位+4米射程并拥有更高的攻击精度，移动速度提高，医疗兵获得额外的治疗速度和治疗距离。"
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr "印度和伊朗人有良好的射箭传统，喜欢在战斗中大量使用弓箭。"
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "持弓单位射程+10米。 弓箭手射击精度提高，训练时间-20％，生命值-20％。"
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "箭术传统"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "解锁村落阶段。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "金属盔甲(马脸)。"
+msgstr "马头金属盔甲。"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
@@ -108,7 +136,7 @@ msgstr "马头盔甲"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "于城镇阶段解锁。"
+msgstr "城镇阶段解锁。"
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -121,7 +149,7 @@ msgstr "于城镇阶段解锁。"
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
-msgstr "Prometōpídion"
+msgstr "马头盔甲"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -201,7 +229,7 @@ msgstr "金属盔甲(马身)。"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "于城市阶段时解锁。"
+msgstr "城市阶段解锁。"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -229,11 +257,11 @@ msgstr "铁质英雄盔甲"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidḗrea Panoplía"
-msgstr "Sidḗrea Panoplía"
+msgstr "铁质英雄盔甲"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr "Lorica Ferrea"
+msgstr "铁质盔甲"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
@@ -278,7 +306,7 @@ msgstr "古希腊薄甲"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "层压亚麻盔甲(步兵)。"
+msgstr "层压亚麻盔甲（步兵）。"
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
@@ -331,7 +359,7 @@ msgstr "纯铜打造的盔甲。只有最好的士兵才可以穿戴这种盔甲
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "冠军单位 +2 劈砍盔甲等级，但也 +10 金属消耗。"
+msgstr "冠勇单位 +2 劈砍盔甲等级，但也 +10 金属消耗。"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -359,7 +387,7 @@ msgstr "加班盾牌结构"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 msgid "Aspidískos"
-msgstr "Aspidískos"
+msgstr "阿司匹斯克"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -382,7 +410,7 @@ msgstr "强化护盾"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspís"
-msgstr "Aspís"
+msgstr "阿斯匹斯"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
@@ -397,11 +425,11 @@ msgstr "青铜盾镶边"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr "Khalkaspís"
+msgstr "哈尔卡波斯"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr "Khrysaspís"
+msgstr "克利萨斯图斯"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -411,7 +439,7 @@ msgstr "只有最著名的士兵才拥有镶银盾牌，如亚历山大大帝军
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "冠军单位 +2 穿刺盔甲等级，但也 +10 金属消耗。"
+msgstr "冠勇单位 +2 穿刺盔甲等级，但也 +10 金属消耗。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -423,7 +451,7 @@ msgstr "银盾"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspís"
-msgstr "Argyraspís"
+msgstr "阿基拉斯匹斯"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -464,18 +492,6 @@ msgstr "以木头加固横梁的船体。所有船只的所有伤害类型皆 +2
 msgid "Reinforced hull"
 msgstr "加固船体"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "于乡村阶段解锁。"
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "骑兵专用长矛。"
@@ -495,7 +511,7 @@ msgstr "长矛骑兵"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 msgid "Xystón"
-msgstr "Xystón"
+msgstr "铁质武器"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
@@ -503,7 +519,7 @@ msgstr "Xystón"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr "哈斯塔长枪"
+msgstr "长枪团"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
@@ -538,7 +554,7 @@ msgstr "密集骑兵战斗训练"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
-msgstr "绪斯同骑枪"
+msgstr "铁质武器"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -566,7 +582,7 @@ msgstr "+20% 远程骑兵攻击力。"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr "远距离骑兵战斗训练"
+msgstr "远程骑兵战斗训练"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
@@ -575,12 +591,12 @@ msgstr "让你的远距离骑兵装备更好的武器。远距离骑兵 +20% 攻
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr "守卫状态的单位在战斗中拥有少见的英勇。"
+msgstr "守卫在战斗中拥有少见的英勇。"
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "护卫状态中的单位在战斗中有罕见的英勇。精英 +2 攻击力。"
+msgstr "守卫在战斗中有罕见的英勇。冠勇单位 +2 攻击力。"
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -592,7 +608,7 @@ msgstr "英雄主义"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreía"
-msgstr "Andreía"
+msgstr "安德烈"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
@@ -627,7 +643,7 @@ msgstr "随身武器"
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
-msgstr "宽刃剑"
+msgstr "双刃铁刀"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
@@ -671,11 +687,11 @@ msgstr "远程非正规军步兵"
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
 msgid "Átaktoi"
-msgstr "Átaktoi"
+msgstr "远程步兵"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr "远程步兵班"
+msgstr "远程步兵团"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -684,7 +700,7 @@ msgstr "士气是制胜的关键。"
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "用更高的薪酬激励你的军队，所有陆上和海上军队攻击力+25%"
+msgstr "用更高的薪酬激励你的军队，所有陆上和海上军队攻击力+25% 。"
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -696,7 +712,7 @@ msgstr "士气"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dýnamis"
-msgstr "Dýnamis"
+msgstr "士气"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -710,7 +726,7 @@ msgstr "所有的剑士和钉锤兵+20%劈砍攻击力"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr "钢铁加工"
+msgstr "铁器加工"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
@@ -722,11 +738,11 @@ msgstr "托雷多钢"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "使用碎石材料减少修建城墙所需的材料和时间"
+msgstr "使用碎石材料，减少造墙花费及时间。"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "城墙修建时间 -20%， 但护甲等级 -1。"
+msgstr "城墙修建时间 -20%， 护甲等级 -1。"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -738,7 +754,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr "晋升为精英阶层的单位获得了很多提高：20％的额外生命值，每种类型1个额外护甲等级，20％额外战利品，近战单位额外攻击20％，额外射程4米，远程单位精度更高，移动速度更快，医师的速度和额外的治疗速度和范围也有提高。"
+msgstr "晋升为精锐阶层的单位获得了很多提高：20％的额外生命值，每种类型1个额外护甲等级，20％额外战利品，近战单位额外攻击20％，额外射程4米，远程单位精度更高，移动速度更快，医师的速度和额外的治疗速度和范围也有提高。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -784,11 +800,11 @@ msgstr "渔船 +20 食物容量。"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr "腌制鱼肉"
+msgstr "鱼肉腌制"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "城镇阶段解锁。需要渔网。"
+msgstr "解锁“城镇阶段”。需要渔网。"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -804,7 +820,7 @@ msgstr "对农场施加额外的营养物质。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr "工人耕种速度 +25% 。"
+msgstr "耕种速度 +25% 。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -828,15 +844,15 @@ msgstr "训练工人以增加耕种的采集速度。"
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr "工人耕种速度 +15%。"
+msgstr "耕种速度 +15% 。"
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "采集训练"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "渔网可以提高捕鱼效率。"
+msgid "Nets improve the productivity of fishing boats."
+msgstr "使用渔网，提高效率。"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -864,7 +880,7 @@ msgstr "铁制斧头"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
-msgstr "工人伐木速度+50%。"
+msgstr "工人伐木速度 +50% 。"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -964,7 +980,7 @@ msgstr "楔槌"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets for foraging."
-msgstr "采集食物的篮子"
+msgstr "采集食物的篮子。"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -975,16 +991,16 @@ msgid "Wicker Baskets"
 msgstr "柳条篮筐"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "驻守在军营中的单位会随时间不断的被治疗。"
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "驻扎在兵营内，单位会缓慢恢复。"
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "当驻守在军营中时，单位会随时间不断的恢复生命值。"
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "驻扎在兵营内，单位会缓慢恢复。"
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
-msgstr "生活条件"
+msgstr "生活质量"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -1048,7 +1064,7 @@ msgstr "希波克拉底誓言（医师从业宣言）"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "在神庙驻守的单位，更快被治愈。"
+msgstr "在神庙驻守的单位，治愈速度加快。"
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
@@ -1136,7 +1152,7 @@ msgstr "长矛 vs. 马头盔甲"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr "精英 vs. 业余"
+msgstr "冠勇 vs. 业余"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -1168,11 +1184,11 @@ msgstr "驻守治疗 vs. 自我治疗"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 msgid "Females vs. Population"
-msgstr "女性 vs. 人口"
+msgstr "妇女 vs. 人口"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr "女性公民 vs. 人口"
+msgstr "妇女 vs. 人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1191,7 +1207,7 @@ msgstr "步兵劈砍盔甲 vs. 长矛兵穿刺盔甲"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
-msgstr "征召步兵 vs. 征召骑兵"
+msgstr "步兵征召 vs. 骑兵征召"
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
@@ -1274,7 +1290,7 @@ msgstr "城镇阶段"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "用于模板要求的虚拟技术，被 phase_town_generic or phase_town_{civ} 替代。"
+msgstr "用于模板要求的虚拟科技，被 phase_town_generic 或 phase_town_{civ} 替代。"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1328,7 +1344,7 @@ msgstr "为公共庆典或接待外国使节，国家或部落经常会构造宴
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "市政大厅人口容量 +5"
+msgstr "市政中心人口容量 +5"
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1336,7 +1352,7 @@ msgstr "餐厅"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Thólos"
-msgstr "提洛斯"
+msgstr "拱顶"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
 msgid ""
@@ -1364,12 +1380,12 @@ msgstr "雅典集会"
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr "庭院的大小从仅仅用围栏围住的区域到大型修剪过的草皮并有廊柱的围墙的区域都有。"
+msgstr "庭院，小到仅仅用围栏围住，大到修剪过的大型草皮区域，并有廊柱的围墙的地方。"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr "房舍人口容量奖励 +20% 。"
+msgstr "房屋人口容量 +20% 。"
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1416,11 +1432,11 @@ msgstr "奇观会吸引更多的人加入你的文明。"
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr "光荣扩张。每拥有一奇迹，便进一步增加人口限制40。"
+msgstr "荣耀扩张。每拥有一处奇迹，人口限制+40。"
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr "光荣扩张"
+msgstr "荣耀扩张"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1443,11 +1459,11 @@ msgstr "标枪皮带"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Himás"
-msgstr "Himás"
+msgstr "西马斯"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
-msgstr "Amentum"
+msgstr "安门图"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
@@ -1475,7 +1491,7 @@ msgstr "进阶攻城武器"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
-msgstr "改善炮弹的准确度"
+msgstr "提高砲弹的精度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
@@ -1483,7 +1499,7 @@ msgstr "弩射手提高了准度。"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
-msgstr "弩箭准确度"
+msgstr "弩箭精准度"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
@@ -1507,7 +1523,7 @@ msgstr "攻城武器木材消耗 -20%"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
-msgstr "砲兵教练"
+msgstr "砲兵专家"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
@@ -1532,7 +1548,7 @@ msgstr "骑兵移动速度 +10%。"
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr "培育骑兵"
+msgstr "培育马匹"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
@@ -1588,7 +1604,7 @@ msgstr "比起正常的哨所，在中立领土上存活时间加倍。"
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr "哨所 -50%领土衰减率。"
+msgstr "哨所的领土衰减率-50%。"
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1604,11 +1620,11 @@ msgstr "取消防御塔的最小射程"
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "猎杀洞"
+msgstr "射击孔"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "急速射手增加射出弓箭的最大射程。"
+msgstr "增加弓箭的最大射程。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
@@ -1616,7 +1632,7 @@ msgstr "防御塔的最大射程 +8米"
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr "急速射手"
+msgstr "射箭手"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
@@ -1632,7 +1648,7 @@ msgstr "信鸽"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
-msgstr "夜间瞭望增强了警觉性。"
+msgstr "夜间守望增强了警觉性。"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
@@ -1648,7 +1664,7 @@ msgstr "哨兵"
 #: simulation/data/technologies/tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/tower_watch.jsonspecificName.mace
 msgid "Nyktophýlakes"
-msgstr "Nyktophýlakes"
+msgstr "哨兵"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1668,7 +1684,7 @@ msgstr "贸易协定"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr "增加商人的防御。"
+msgstr "增加商人的防御值。"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
@@ -1712,9 +1728,9 @@ msgstr "进阶工艺"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "通过大批训练显著提升士兵的训练速度。"
+msgstr "批量训练单位，可提高军营的训练速度。"
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1735,12 +1751,12 @@ msgstr "在战时征召骑兵协助支援国王的军队。"
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "所有骑兵 -20% 训练时间,但也 -10 生命值。解锁募兵。"
+msgstr "所有骑兵 -20% 训练时间,但也 -10 生命值。解锁“募兵”。"
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "征召骑兵"
+msgstr "骑兵征召"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
@@ -1752,12 +1768,12 @@ msgstr "在战时征召步兵协助支援国王的军队。"
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "所有步兵训练时间 -10% ,但也生命值 -5 。解锁募兵。"
+msgstr "所有步兵训练时间 -10% ,同时生命值 -5 。解锁“募兵”。"
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "征召步兵"
+msgstr "步兵征召"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
@@ -1769,27 +1785,27 @@ msgstr "码头获得整组建造速度奖励。"
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
-msgstr "造船工程师"
+msgstr "海军工程师"
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "警卫部队(精英)是装备最好的武器并有最佳训练的专家。"
+msgstr "警卫部队(冠勇单位)是装备最好的武器并有最佳训练的专家。"
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "解锁在军营训练精英的能力。"
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr "可在军营解锁训练冠军单位的科技。"
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "解锁精英单位"
+msgstr "解锁冠勇单位"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Ágēma"
-msgstr "Ágēma"
+msgstr "艾格玛"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1815,7 +1831,7 @@ msgstr "宗教庆典"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
-msgstr "良善女神"
+msgstr "罗马良善女神"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
@@ -1826,7 +1842,7 @@ msgstr "扩大贸易引向商店主和其家人在国外的常设机构，允许
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr "允许使用盟友的码头。"
+msgstr "可以使用盟友的码头。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1948,24 +1964,7 @@ msgstr "精锐步兵民兵"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
-msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "迦太基人把他们的城墙修筑成三堵同心圆结构，这些城墙构筑的防线从未被攻破过。即使当罗马人攻占他们的城市时，也是通过城市的港口，而不是城墙发起进攻的。"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "迦太基的城墙、城门和塔楼的生命值是普通同类建筑的3倍，但所需造价和建造时间也为同类建筑的2倍。"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "三重城墙"
+msgstr "梭伦改革"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2145,7 +2144,7 @@ msgstr "与伊比利亚城镇结盟以招募时间 -20% 在伊比利亚佣兵上
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr "伊比利亚盟友"
+msgstr "伊比利亚同盟"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
@@ -2269,19 +2268,120 @@ msgstr "升级你所有的意大利佣兵到精锐等级。这可以增强他们
 msgid "Elite Italiote Mercenaries"
 msgstr "精锐意大利佣兵"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "迦太基人把他们的城墙修筑成三堵同心圆结构，这些城墙构筑的防线从未被攻破过。即使当罗马人攻占他们的城市时，也是通过城市的港口，而不是城墙发起进攻的。"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "迦太基的城墙、城门和塔楼的生命值是普通同类建筑的3倍，但所需造价和建造时间也为同类建筑的2倍。"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "三重城墙"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "凯尔特建筑大多为建造在碎石地基上的木制结构。"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "凯尔特建筑生命值偏低20%，但花费和建造时间相应缩短20%。"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "木制建筑"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "希腊人使用来自于早期迈锡尼时代的石头建筑。"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "所有建筑生命值和分数均偏高10%，但建造时间需相应延长10%。"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "古希腊建筑"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "印度孔雀王朝，涵盖了原先数十个独立的王国。领土面积约500万平方公里，人口约6000万。统治者有“万王之王”的称号，并有步兵60万、战象9000头、双轮战车8000辆以及骑兵3万名，可以说是当时军队之最。"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "印度孔雀王朝 +10% 人口上限。"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "万王之王"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "转轮王"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "印度用木材建造城墙。"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "孔雀王朝的城墙-20％HP，-20％建造时间。"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "木墙"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精英部队以外，波斯步兵不是职业的常备军。"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "波斯人口上限+10% 。"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "国王征召"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "斯巴达人并不具有世界上最大型的军队,但他们在当时却有著世界上最好的军队。他们重质不重量。有人说,斯巴达并不需要坚固的城墙,它的军队就是铜墙铁壁。"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "斯巴达最大人口 -10% 。"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "败北"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2300,36 +2400,6 @@ msgstr "长矛步兵战斗"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "希腊人使用来自于早期迈锡尼时代的石头建筑。"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "所有建筑生命值和分数均偏高10%，但建造时间需相应延长10%。"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "古希腊建筑"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "斯巴达人并不具有世界上最大型的军队,但他们在当时却有著世界上最好的军队。他们重质不重量。有人说,斯巴达并不需要坚固的城墙,它的军队就是铜墙铁壁。"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "斯巴达最大人口 -10% 。"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "败北"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2357,7 +2427,7 @@ msgstr "雅典的三列桨战船可以训练陆战队员及克里特弓箭手佣
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
-msgstr "伊菲克拉特改革"
+msgstr "伊菲克拉特斯改革"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsondescription
 msgid ""
@@ -2365,7 +2435,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "雅典长墙（The Long Walls of Athens）是在老谋深算的米斯托克利（Themistocles ）的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
+msgstr "雅典长墙，是在老谋深算的地米斯托克利的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
@@ -2377,13 +2447,13 @@ msgstr "雅典长墙"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "城镇中心、寺庙、金字塔和奇观 +25% HP ，-50%建造时间。"
+msgstr "市政中心、神庙、金字塔和奇观生命值 +25%，建造时间 -50% 。"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr "纪念碑"
+msgstr "纪念建筑"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
@@ -2393,93 +2463,21 @@ msgstr "大祭司亲自指导你的祭司——愿阿蒙赐福于他。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr "训练精英医师。"
+msgstr "训练精锐医师。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "神圣教导"
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "孔雀王朝涵盖了数十个原先独立的王国,其领土面积约有5百万平方公里，人口总数约6千万人。孔雀王朝的统治者有著万王之王的称号，并指挥著60万名步兵、9000头大象、8000辆双轮战车、以及3万名骑兵，使其可以说是当时最大型的军队。"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "孔雀王朝人口上限 +10%。"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "万王之王"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "转轮王"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "印度人有良好的箭术传统，惯于在战争中大量使用弓箭。"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "持弓单位射程+10米。 弓箭手射击精度提高，训练时间-20％，生命值-20％。"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "箭术传统"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "孔雀王朝使用印度当地丰富的自然资源——木头来修筑他们的城墙。"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "孔雀王朝的城墙-20％HP，-20％建造时间。"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "木墙"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精英部队以外，波斯步兵不是职业的常备军。"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "波斯人口上限+10%。"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "大王征召"
-
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr "精英盾步兵的训练速度是正常的两倍快,但会减少些许的最大生命值。"
+msgstr "冠勇盾步兵的训练速度是正常的两倍快,但会减少些许的最大生命值。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "精英盾步兵训练时间 -50%，生命值 -10%。"
+msgstr "冠勇盾步兵训练时间 -50%，生命值 -10%。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2503,12 +2501,6 @@ msgstr "所有波斯建筑物+25% 生命值及捕获点数，但也+20% 建造�
 msgid "Persian Architecture"
 msgstr "波斯建筑"
 
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "波斯人有良好的箭术传统，并爱好战争中大量使用弓箭手。"
-
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
@@ -2526,13 +2518,13 @@ msgstr "腓尼基人的三列桨战船有着训练骑兵单位的能力。"
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr "马的运输"
+msgstr "马匹运输"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr "藉由一次训练一组或一个大队的骑兵,显著增加马厩中的骑兵的训练速度。"
+msgstr "由一次训练一组或一个大队的骑兵,显著增加马厩中的骑兵的训练速度。"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
@@ -2540,27 +2532,27 @@ msgstr "加快马厩中以小组为单位的训练速度。"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr "骑兵征兵"
+msgstr "骑兵募兵制"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr "步兵征兵"
+msgstr "步兵募兵制"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "所有骑兵训练时间-20%，但同时-5%生命值。解锁骑兵招募。"
+msgstr "所有骑兵训练时间-20%，但同时-5%生命值。解锁“骑兵募兵制”。"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "所有步兵训练时间-20%，但同时-5%生命值。解锁步兵招募。"
+msgstr "所有步兵训练时间-20%，同时-5%生命值。解锁“骑兵募兵制”。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr "罗马人，天生的战略后勤大师。"
+msgstr "罗马人，天生的后勤的战略大师。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
@@ -2576,7 +2568,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr "预知未来的书籍或称《西彼拉占语集》，是一套神谕及谈话的集合，记载于希腊的六步格诗中，由罗马的最后一个国王，卢基乌斯·塔奎尼乌斯·苏培布斯，从一位女预言家处购得，并透过共和国及帝国的历史得知有重大危机即将发生。"
+msgstr "《西彼拉占语集》，据传是预知未来的书籍。是一套神谕及谈话的集合，文法为希腊的六步格诗。由罗马的最后一个国王，卢基乌斯·塔奎尼乌斯·苏培布斯，从一位女预言家处购得，并透过共和国及帝国的历史得知有重大危机即将发生。"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2584,7 +2576,7 @@ msgstr "所有单位视野 +25% 。"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr "预知未来的书籍"
+msgstr "预言书"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
@@ -2592,7 +2584,7 @@ msgstr "西彼拉占语集"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
-msgstr "传统军队 vs. 革新军队"
+msgstr "军队传统化 vs. 革新军队"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -2607,13 +2599,13 @@ msgstr "城镇中心的生命值和得分+100%，默认防御弓箭数量翻倍�
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
-msgstr "希腊化的大都市"
+msgstr "希腊化都市"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "藉由一次训练一组或一个大队的精英及攻城武器，显著增加堡垒中的精英及攻城武器的训练速度。"
+msgstr "显著增加堡垒中的冠勇单位及攻城武器的训练速度。"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -2628,7 +2620,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "现已灭绝的 Nisian 品种的马曾是古代身型最大且最强大的一种马。后来在塞琉古及波斯,不论是骑士或是座骑都备受称赞,并随著时间的推进穿上了更厚重的盔甲。"
+msgstr "现已灭绝的尼西亚马曾是古代身型最大且最强大的一种马。后来在塞琉古及波斯,不论是骑士或是座骑都备受称赞,随着时间的推进穿上了更厚重的盔甲。"
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -2636,7 +2628,7 @@ msgstr "所有骑兵生命值 +20% 。"
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
-msgstr "尼森战马"
+msgstr "尼西亚战马"
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
@@ -2652,7 +2644,7 @@ msgstr "解锁罗马重剑兵及塞琉古铁甲骑兵。"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
-msgstr "军队改革"
+msgstr "革新军队"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The traditional army of the Seleucids."
@@ -2664,7 +2656,7 @@ msgstr "解锁银盾兵及长柄刀双轮战车。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
-msgstr "传统军队"
+msgstr "军队传统化"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -2676,7 +2668,7 @@ msgstr "银盾兵，或称 Argyraspidai ，是马其顿军队中的精锐重装�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "将持盾冠军步兵升级为银盾，拥有更强大的血量和防御。"
+msgstr "将持盾冠勇步兵升级为银盾，拥有更强大的血量和防御。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

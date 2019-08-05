@@ -1,23 +1,23 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
-# Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
+# Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014,2019
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Dimaver <dimaver@ukr.net>, 2014
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014-2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
-# Микола Франчук <thekolian1996@gmail.com>, 2018
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2019
 # Сергій Дубик <dubyk@ukr.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-09-29 17:41+0000\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-06-23 08:16+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -68,8 +68,8 @@ msgid ""
 msgstr "Греки були дуже успішними в Еллінізації кількох іноземних націй. Впродовж Еллінської ери, грецька було вільною мовою Античного Світу, широко використовуваною він Іспанії до Індії."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Кораблі будуються на 25% швидше."
+msgid "Allied warships −25% construction time."
+msgstr "Союзні військові кораблі отримують -25% до часу побудови."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -285,7 +285,7 @@ msgstr "Афіни, колиска Західної цивілізації ті 
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Британці"
+msgstr "Бритонці(брити)"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
@@ -318,8 +318,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Кельтська релігія і друїдистичні вірування сприяли їхньому войовничому світогляду."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% від вартості для союзних цілителів."
+msgid "Allied healers −20% resource costs."
+msgstr "Союзні цілителі коштують -20% ресурсів."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -391,7 +391,7 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr "Британці наносили на свої тіла постійні знаки у вигляді тату або тимчасово размальовували себе фарбою синього кольору. Результат був дуже лякаючим."
+msgstr "Бритонці наносили на свої тіла постійні знаки у вигляді тату або тимчасово размальовували себе фарбою синього кольору. Результат був дуже лякаючим."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
@@ -435,7 +435,7 @@ msgid ""
 "as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
 "Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
 "tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aide. Kunobelinos seems to have been indifferent to the Romans. He traded "
+"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
 "with them freely, but had few qualms subjugating known Roman allies, and "
 "even sent his youngest son Adminius as a fosterling to be educated in Roman "
 "Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
@@ -515,7 +515,7 @@ msgstr "Будка"
 
 #: simulation/data/civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr "Британці славилися виведенням бойових собак."
+msgstr "Бритонці славилися виведенням бойових собак."
 
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
@@ -523,7 +523,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Брити були кельтськими племенами на Британських островах. За допомогою колісниць, мечників та могутньої піхоти організовували жахливі повстання проти Риму на захист своїх традицій та інтересів. Також вони побудували тисячі унікальних об'єктів, таких як фортеці на пагорбах, житла на воді і болотах та круглі кам'яні башти."
+msgstr "Брити(бритонці) були кельтськими племенами на Британських островах. За допомогою колісниць, мечників та могутньої піхоти організовували жахливі повстання проти Риму на захист своїх традицій та інтересів. Також вони побудували тисячі унікальних об'єктів, таких як фортеці на пагорбах, житла на воді і болотах та круглі кам'яні башти."
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -563,8 +563,8 @@ msgid ""
 msgstr "Північна Африка замало відрізнялася від Піренейського півострова і була відома як земля коней, здатна виробляти до 100 000 голів щорічно. Також відома як батьківщина північноафриканських лісових слонів."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "Бонусні 10% до прибутку від торгівлі для союзників на міжнародних маршрутах."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Союзні ринки отримують +10% бонусу до міжнародної торгівлі."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -728,7 +728,7 @@ msgstr "Кельти постачали лютих воїнів-найманці
 
 #: simulation/data/civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr "Посольство"
+msgstr "Італіотське Посольство"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
@@ -770,8 +770,8 @@ msgid "Gauls"
 msgstr "Гали"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% від часу досліджень у союзників."
+msgid "Allied structures −20% technology research time."
+msgstr "Союзні будівлі -20% до часу досліджень технологій."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -898,7 +898,7 @@ msgid ""
 "brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
 "for power in northern Britain in around 390 B.C., and were regarded as gods "
 "in old Celtic tradition."
-msgstr "Бренн - ім'я, яке римські історики дали знаменитому лідеру галлів, що захопив Рим у часи Камілла. Згідно із Гальфрідом Монмутським, священнослужителем, який написав \"Історію королів Британії\", Бренн і його брат Белін вторглися в Галлію і здобули перемогу над Римом у 390 р. до н. е., \"доводячи\", що британці завоювали Рим, велику цивілізацію в світі, задовго до підкорення Римом британців. Ми знаємо із багатьох древніх джерел, які передували Гальфріду, що Рим був дійсно переможений, але не в 390, а в 387 р., і що загарбників очолювала людина на ім'я Бренн (у латинському варіанті - Brennus), але він і його орда були галльськими сенонами, а не бритами. У цьому епізоді видно деякі особливості методів редагування Гальфріда: він змінив Brennus - Brennos, створив брата Беліна, запозичив галльське вторгнення, але опустив деталі, які виставляли кельтів слабкими або дурними. Його методика - і добавки, і відкидання. Як і розповідь про походження Трої, історія пограбування Риму не є чистою вигадкою; це творча перебудова наявних фактів з подробицями, доданими по мірі необхідності. В силу своєї історичної асоціації Белі та Брана часто плутають з більш ранніми братами Беліном і Бренном (сини Дунвало Молмутіуса), які боролися за владу в північній Британії приблизно в 390 р. до н. е. і вважалися богами в старій кельтської міфології."
+msgstr "Бренн - ім'я, яке римські історики дали знаменитому лідеру галлів, що захопив Рим у часи Камілла. Згідно із Гальфрідом Монмутським, священнослужителем, який написав \"Історію королів Британії\", Бренн і його брат Белін вторглися в Галлію і здобули перемогу над Римом у 390 р. до н. е., \"доводячи\", що бритонці завоювали Рим, велику цивілізацію в світі, задовго до підкорення Римом бритонців. Ми знаємо із багатьох древніх джерел, які передували Гальфріду, що Рим був дійсно переможений, але не в 390, а в 387 р., і що загарбників очолювала людина на ім'я Бренн (у латинському варіанті - Brennus), але він і його орда були галльськими сенонами, а не бритами. У цьому епізоді видно деякі особливості методів редагування Гальфріда: він змінив Brennus - Brennos, створив брата Беліна, запозичив галльське вторгнення, але опустив деталі, які виставляли кельтів слабкими або дурними. Його методика - і добавки, і відкидання. Як і розповідь про походження Трої, історія пограбування Риму не є чистою вигадкою; це творча перебудова наявних фактів з подробицями, доданими по мірі необхідності. В силу своєї історичної асоціації Белі та Брана часто плутають з більш ранніми братами Беліном і Бренном (сини Дунвало Молмутіуса), які боролися за владу в північній Британії приблизно в 390 р. до н. е. і вважалися богами в старій кельтської міфології."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -970,10 +970,8 @@ msgid ""
 msgstr "Як і Нумідію в Північній Африці, Піренейський півострів називали \"країною коней\" за здатність вирощувати до 100 000 поголів'я щорічно."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "Застрільники-піхотинці і застрільники-кіннотники на -20% дешевші для союзників."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1164,17 +1162,15 @@ msgstr "Загін для слонів"
 msgid ""
 "Can capture Gaia elephants and garrison them into a corral to reduce "
 "training costs for War Elephants."
-msgstr "Може ловити диких слонів і відводити їх у загін, щоб знизити витрати на навчання Бойових Слонів."
+msgstr "Може знизити витрати на навчання Бойових слонів, шляхом поміщення Диких слонів у Загін."
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
 msgstr "Постачальники слонів"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Зменшує вартість та час тренування слонів на 20% для союзників-кушитів."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Вартість та час тренування союзних зменшена на -20%."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1238,9 +1234,9 @@ msgstr "Монументальна архітектура"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+50% одиниць здоров'я і -50% часу на будівництво для міських центрів, храмів, пірамід і Чудес."
+msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1383,8 +1379,8 @@ msgid ""
 msgstr "Греки були дуже успішними в еллінізації численних іноземних націй. Впродовж Еллінської ери грецька було вільною мовою Античного Світу, широко використовуваною від Іспанії до Індії."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% до продажних цін на ринку."
+msgid "Allies +20% barter sell prices."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1604,12 +1600,12 @@ msgid ""
 msgstr "Македонія була древнім грецьким царством, розташованим в північно-східній частині Балканського півострова. Під проводом Олександра Великого македонські війська та їхні союзники завоювали більшу частину відомого їм світу, включаючи Єгипет, Персію і частина Індійського субконтиненту, тим самим поклавши початок змішання еллінської та східної культури протягом багатьох років."
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
-msgstr "Маурї'ни"
+msgid "Mauryas"
+msgstr "Маур'їни"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
 msgstr "Маур'їни володіють +10% бонусом до максимуму населення (тобто, максимум 330 замість звичайного 300)."
 
@@ -1621,15 +1617,15 @@ msgstr "Цар серед царів"
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "Імперія Маур'їв охоплювала десятки раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів з населенням близько 60 мільйонів осіб. Правителі Маур'їв носили титул \"імператора імператорів\" і керували регулярною армією з 600000 піхотинців, 9000 слонів, 8000 колісниць, і 30000 кінноти, що робить її, мабуть, найбільшою армією свого часу."
+msgstr "Імперія Маур'їв охоплювала десятки раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів з населенням близько 60 мільйонів осіб. Правителі Маур'їв носили титул \"Імператора імператорів\" і керували регулярною армією з 600000 піхотинців, 9000 слонів, 8000 колісниць, і 30000 кінноти, що робить її, мабуть, найбільшою армією свого часу."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
-msgstr "Маур'ї задовольняються доступом до 4 чемпіонам."
+msgid "The Mauryas enjoy access to 4 champions."
+msgstr "Маур'ї задовольняються доступом до 4 чемпіонів."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -1644,8 +1640,10 @@ msgid ""
 msgstr "Кшатрія або каштрія - воїн, що належить до одної з чотирьох варн (станів) в індуїзмі. Традиційно кшатрії складаються з військової та правлячої еліти індійської ведичної соціальної системи, описаної у Ведах і Законах Ману."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "-50% від часу дослідження для храмів та храмових технологій союзників"
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Для союзних храмів -50% від ресурсів та часу побудови; для храмових технологій  -50% від ресурсів та часу побудови."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1818,8 +1816,8 @@ msgid ""
 msgstr "Перси могли і користувалися можливістю набирати велику кількість піхоти під час військових дій через величезні розміри Ахеменідської імперії та її організації. В цілому перська піхота була добре натренована і билася з великим завзяттям. Незважаючи на це, піхота була погано підготовлена для близького бою. Також за винятком елітних полків перська піхота не відносилася до професійних військ."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Більш високий дохід (+15%) від землі на торговому шляху для союзних купців."
+msgid "Allied land traders +15% trade gain."
+msgstr "Купці союзних земель отримують +15% до прибутків."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2024,15 +2022,16 @@ msgstr "Птолемеї"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
-"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr "Птолемеї отримують табір найманців - казарми, побудовані на нейтральній території і тренують найманих солдатів."
+msgstr "Птолемеї отримують Табір Найманців - Казарми, побудовані на нейтральній території, що тренують найманих солдатів."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
 msgstr "Армія найманців"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2063,8 +2062,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Може навчати диких слонів і верблюдів за меншу вартість."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Всі союзники автоматично здобувають невеликий приплив їжі."
+msgid "Allies +1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2219,18 +2218,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Повинен бути зведений на нейтральній території. Не має впливу на навколишній світ. Навчає найманців."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Греко-македонська династія Птолемеїв спиралася в основному на грецьких та іноземних найманців головним чином тому, що лояльність місцевих єгипетських військ часто була під сумнівом. Зокрема, під час одного повстання Верхній Єгипет був втрачений для Птолемеїв на багато десятиліть. Найманці нерідко були загартовані в боях і їхню лояльність можна було купити, іноді дешево, а іноді - дорого. Але це не мало значення, бо Єгипет при Птолемеях настільки процвітав, що був найбагатшою з держав колишньої імперії Олександра Великого."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Маяк"
@@ -2296,8 +2283,8 @@ msgid ""
 msgstr "Римське громадянство дуже високо цінувалося в стародавні часи. Римлянам надавалися базові права і привілеї, яких не було у мешканців захоплених територій. Заподіяння шкоди римлянину прирівнювалося до заподіяння шкоди Риму і вся сила Риму могла обрушитися на зловмисника."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% від часу тренування для союзної піхоти."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2506,8 +2493,8 @@ msgid ""
 msgstr "Військова справа селевкідів і їхніх наступників розвивалася протягом 3-го і 2-го століть. Зіткнення зі східними вискочками, такими як парфяни, і постійні повстання периферійних сатрапій, таких як Бактрія, змусили селевкідів реформувати свою армію і змінювати тактику, зокрема у кавалерії. Війна з римлянами на заході і вторгнення галатів також змусили селевкідів реформувати свою піхоту для забезпечення більшої гнучкості."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Союзні центри цивілізації на 20% дешевші."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Вартість союзних громадських центрів на -20% менше."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2692,15 +2679,15 @@ msgstr "Селевк А Нікатор"
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleukus "
+" the verge of collapse he managed to weld back together the empire Seleucus "
 "I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"Parthia were brought to heel, temporarily securing his eastern borders. He "
 "then turned his attention to mother Greece, attempting to fulfill the dreams"
 " of his fathers by invading Greece under the pretext of liberation. The "
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr "Антіох на початку свого правління успадкував неспокійне царство. На грані розвалу йому вдалося зібрати разом імперію Селевка I. Бунтівні східні сатрапи Бактрії та Парфії були підкорені, тимчасово охороняючи його східні кордони. Потім він звернув свою увагу на материкову Грецію. Намагаючись втілити в життя мрії своїх батьків, він вторгся в Грецію під приводом звільнення. Ахейський союз і Пергамське царство об'єдналися з римлянами, щоб перемогти його в битві при Магнезії, назавжди поховавши мрію возз'єднання імперії Александра."
+msgstr "Антіох на початку свого правління успадкував неспокійне царство. На грані розвалу йому вдалося зібрати разом імперію Селевка I. Бунтівні східні сатрапи Бактрії та Парфії були підкорені, тимчасово охороняючи його східні кордони. Потім він звернув свою увагу на материкову Грецію. Намагаючись втілити в життя мрії своїх батьків, він вторгся в Грецію під приводом звільнення. Ахейський союз і Пергамське царство об'єдналися з римлянами, щоб перемогти його в битві при Магнезії, назавжди поховавши мрію возз'єднання імперії Олександра."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
@@ -2796,10 +2783,8 @@ msgid ""
 msgstr "Відповідно до Конституції, розробленої законотворцем Лікургом, був заснований інститут Агоге, в якому Спартанці тренувалися з 6 років, щоб стати чудовими воїнами для захисту держави Спарти."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Збільшує здоров'я піхоти зі списами з городян-солдат на 10% для союзників спартанців."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

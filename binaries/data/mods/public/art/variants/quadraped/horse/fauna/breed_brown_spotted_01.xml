@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="quadraped/horse/horse_base.xml" frequency="1" name="brown">
+  <textures>
+    <texture file="skeletal/horse_brown_spotted_01.png" name="baseTex"/>
+  </textures>
+  <props>
+    <prop actor="props/horse/fauna/horse_breed_hair_mane_black_brown.xml" attachpoint="hair"/>
+    <prop actor="props/horse/fauna/horse_breed_hair_tail_black_brown.xml" attachpoint="hair"/>
+  </props>
+</variant>
+

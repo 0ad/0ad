@@ -1,14 +1,14 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Любомир Василев, 2016-2018
+# Любомир Василев, 2016-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-17 07:26+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-06 10:53+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -164,60 +164,56 @@ msgid "Delian League"
 msgstr "Делоски морски съюз"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "Корабите се строят 25% по-бързо."
+msgid "Allied warships −25% construction time."
+msgstr "-25% време за строеж на съюзническите кораби."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "Друиди"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "-20% цена за обучение на лечителите за съюзниците."
+msgid "Allied healers −20% resource costs."
+msgstr "-20% цена за съюзническите лечители."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Майсторски търговци"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "+10% допълнителна печалба от търговията по съюзническите международни маршрути."
+msgid "Allied markets +10% international trade bonus."
+msgstr "+10% бонус на международната търговия за съюзническите пазари"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "Друидска мъдрост"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "-20% време за проучване на технологии за съюзниците."
+msgid "Allied structures −20% technology research time."
+msgstr "-20% време за проучване на технологии за съюзническите сгради."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Сарипеко"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "Цената на стрелците се намалява с 20% за съюзниците на играчите, играещи с иберите"
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "-20% цена за съюзническите копиехвъргачи."
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "Доставчици на слонове"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Времето за обучение и цената на слоновете се намаляват за съюзниците на играчите, играещи с кушитите."
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "-20% цена и време за обучение за съюзническите слонове."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "Стандартизирана валута"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "+20% цени на продажба в пазара."
+msgid "Allies +20% barter sell prices."
+msgstr "+20% продажна цена при обмен за съюзниците."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -225,51 +221,49 @@ msgstr "Религиозната подкрепа на Ашока"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "Времето за проучване и цената на съюзническите храмове и технологиите в тях се намаляват с 50%."
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "−50% цена и време за строеж за съюзническите храмове; −50% цена и време за проучване на технологиите в храмовете."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "Царският път"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Повишени приходи (+15%) от сухоземните търговски маршрути за съюзническите търговци."
+msgid "Allied land traders +15% trade gain."
+msgstr "+15% печалба за съюзническите сухоземни търговци."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Житницата на Средиземноморието"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Всички съюзници получават по малко храна от време на време."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Увеличение на периодичното получаване на храна с +1.0 за съюзниците."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "Военна повинност"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "-20% време за обучение за съюзническите пехотни граждани-во̀ини."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "-20% цена за съюзническите пехотни граждани-во̀ини."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Сирийски тетраполий"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "Цената на селищните центрове се намалява с 20% за съюзниците на играчите, играещи със селевкидите"
+msgid "Allied civil centers −20% resource costs."
+msgstr "-20% цена за съюзническите селищни центрове."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "Пелопонески съюз"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Здравето на пехотните граждани-во̀ини с копия се увеличава с 10% за съюзниците на играчите, играещи със спартанците."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "+10% здраве за съюзническите пехотни копиеносци."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -386,9 +380,9 @@ msgstr "Храмът в Нага"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
-msgstr "Подобно на всяка друга култура, и в Мероитската империя религията имала важна роля. Шанакдакете построила храма около 160 г. пр.н.е., като знак за напредъка на Мероитската империя.\n+1 скорост на лечение за единиците на гарнизон за близките храмове."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
+msgstr "Подобно на всяка друга култура, и в Мероитската империя религията имала важна роля. Шанакдакете построила храма около 160 г. пр.н.е., като знак за напредъка на Мероитската империя.\n+1 скорост на лечение за единиците на гарнизон в близките храмове."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -396,7 +390,7 @@ msgstr "Грабител на градове"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
 msgstr "По време на Първата македонска война, Филип и войниците му плячкосали Термо, религиозният и политически център на Етолия.\n+5 храна и дърва от всяка убита вражеска единица или унищожена сграда."
 
@@ -486,7 +480,7 @@ msgstr "Басилеус мегас"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
 msgstr "Синът на Селевк I Никатор, Антиох, успял в трудната задача да запази империята цяла, като в същото време създавал храмове и победил нахлуващите гали с бойни слонове.\n-10% цена на бойните слонове."
 
@@ -540,8 +534,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "+15% бързина на строене и поправяне за работниците."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Храм на Атина"
+msgid "Temple of Athena Nike"
+msgstr "Храм на Атина Нике"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -723,12 +717,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "-20% цена и време за строеж на храмовете на Апедемак и техния меройски храмов пазител."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
+msgid "Slaughter of the Faithful"
 msgstr "Клане на верните"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Вражеската скорост на лечение се намалява с 50%."
+msgid "Enemy healers −50% healing rate."
+msgstr "Вражеските лечители лекуват -50% по-бавно."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -809,9 +803,9 @@ msgstr "Учител"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
-msgstr "Намалява цената с -20% и времето за извършване на проучвания в една сграда с -50% когато той е на гарнизон в нея."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
+msgstr "Намалява цената с -20% и времето за извършване на проучвания на технологии в една сграда с -50% когато той е на гарнизон в нея."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"

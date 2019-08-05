@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_trader.xml" name="Trader Horse">
+      <mesh>props/horse/chest_colorband_01.dae</mesh>
+      <textures>
+        <texture file="props/horse/peytral_spec.png" name="specTex"/>
+        <texture file="props/horse/peytral_iron_03.png" name="baseTex"/>
+        <texture file="props/horse/peytral_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

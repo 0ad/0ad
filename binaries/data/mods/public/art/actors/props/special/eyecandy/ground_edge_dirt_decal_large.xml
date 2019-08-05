@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Base">
+      <decal width="30" depth="30" angle="0" offsetx="0" offsetz="0"/>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="edge_1">
+      <textures>
+        <texture file="props/ground_dirt_decal_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="edge_2">
+      <textures>
+        <texture file="props/ground_dirt_decal_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>

@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
@@ -10,6 +10,7 @@
 # Federico D'Alessio <federico98.dalessio@gmail.com>, 2018
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # Giulio Sanzone <sanzone.giulio@gmail.com>, 2016
+# Italang, 2019
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2015-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2017
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-06-17 08:10+0000\n"
-"Last-Translator: Federico D'Alessio <federico98.dalessio@gmail.com>\n"
+"POT-Creation-Date: 2019-01-07 09:44+0100\n"
+"PO-Revision-Date: 2019-06-10 08:09+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,160 +36,160 @@ msgstr ""
 msgid "Long strings"
 msgstr "Stringhe Lunghe"
 
-#: lobby/XmppClient.cpp:787
+#: lobby/XmppClient.cpp:800
 msgid "unknown subtype (see logs)"
 msgstr "sottotipo sconosciuto (vedi registri)"
 
-#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
-#: lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1180
 msgid "Error"
 msgstr "Errore"
 
-#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
+#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
 msgid "No error"
 msgstr "Nessun errore"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1102
 msgid "Player already logged in"
 msgstr "Giocatore già connesso"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
 msgstr "Vietato"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1106
 msgid "Internal server error"
 msgstr "Errore interno al server"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1110
 msgid "Not allowed"
 msgstr "Non permesso"
 
-#: lobby/XmppClient.cpp:1072
+#: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
 msgstr "Non autorizzato"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatario temporaneamente non disponibile"
 
-#: lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1116
 msgid "Registration required"
 msgstr "Registrazione richiesta"
 
-#: lobby/XmppClient.cpp:1081
+#: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
 msgstr "Servizio non disponibile"
 
-#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
+#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1145
 msgid "Stream error"
-msgstr "Errore di stream"
+msgstr "Errore di flusso"
 
-#: lobby/XmppClient.cpp:1107
+#: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
-msgstr "La versione dello stream in ingresso non è supportata"
+msgstr "La versione del flusso in ingresso non è supportata"
 
-#: lobby/XmppClient.cpp:1108
+#: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
-msgstr "Lo stream è stato chiuso dal server"
+msgstr "Il flusso è stato chiuso dal server"
 
-#: lobby/XmppClient.cpp:1112
+#: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
 msgstr "Si è verificato un errore di I/O"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
 msgstr "La connessione è stata rifiutata dal server"
 
-#: lobby/XmppClient.cpp:1115
+#: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
 msgstr "Risoluzione dell'hostname del server fallita"
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
 msgstr "Questo sistema non dispone di memoria sufficiente"
 
-#: lobby/XmppClient.cpp:1118
+#: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Il certificato del server non può essere verificato o l'handshake TLS non è stato completo con successo"
+msgstr "Il certificato del server non può essere verificato o la negoziazione TLS non è stato completo con successo"
 
-#: lobby/XmppClient.cpp:1119
+#: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
 msgstr "Il server non supportava la crittografia TLS richiesta"
 
-#: lobby/XmppClient.cpp:1121
+#: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Autenticazione fallita. Password errata o account inesistente"
 
-#: lobby/XmppClient.cpp:1122
+#: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
 msgstr "L'utente o il sistema hanno richiesto una disconnessione "
 
-#: lobby/XmppClient.cpp:1123
+#: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
 msgstr "Non c'è connessione attiva"
 
-#: lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
 msgstr "Il tuo account è stato registrato con successo"
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
 msgstr "Non sono state fornite tutte le informazioni necessarie"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1185
 msgid "Username already exists"
 msgstr "Nome utente già esistente"
 
-#: ps/ModIo.cpp:244
+#: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Errore durante la richiesta del game id: Errore:%s;%s."
+msgstr "Errore durante la richiesta del id gioco: Errore:%s;%s."
 
-#: ps/ModIo.cpp:274
+#: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Errore durante il caricamento delle mod. Errore: %s;%s."
 
-#: ps/ModIo.cpp:300
+#: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Errore durante la creazione della cartella mod: %s."
 
-#: ps/ModIo.cpp:325
+#: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Errore durante l'apertura di un file temporaneo per il download della mod: %s."
 
-#: ps/ModIo.cpp:335
+#: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Errore all'avvio del download. Errore: %s; %s."
 
-#: ps/ModIo.cpp:380
+#: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Errore di sincronizzazione durante il download: %s, %s."
 
-#: ps/ModIo.cpp:408
+#: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Errore durante il download. Risposta del server: %s; %s."
 
-#: ps/ModIo.cpp:511
+#: ps/ModIo.cpp:513
 msgid "Mismatched filesize."
 msgstr "La dimensione del file non corrisponde."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "File non valido. File md5 previsto %s, file presente %s."
+msgstr "File non valido. Md5 previsto %s, ottenuto %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
@@ -206,23 +207,8 @@ msgstr "Gioco salvato in '%s'"
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Screenshot salvato in '%s'"
+msgstr "Schermata salvata in '%s'"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: ps/scripting/JSInterface_Debug.cpp:88
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (personalizzata)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#. dennis-ignore: *
-#: ps/scripting/JSInterface_Debug.cpp:94
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: ps/scripting/JSInterface_Debug.cpp:115
+#: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
 msgstr "personalizzata"

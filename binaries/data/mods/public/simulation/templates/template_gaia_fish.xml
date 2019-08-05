@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia">
+  <Footprint>
+    <Circle radius="10.0"/>
+    <Height>2.5</Height>
+  </Footprint>
+  <Identity>
+    <GenericName>Fish</GenericName>
+    <Classes datatype="tokens">SeaCreature</Classes>
+    <Tooltip>Gather food from this bountiful oceanic resource.</Tooltip>
+  </Identity>
+  <Minimap>
+    <Type>food</Type>
+    <Color r="227" g="130" b="141"/>
+  </Minimap>
+  <Obstruction>
+    <Unit/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <DeleteUponConstruction>true</DeleteUponConstruction>
+  </Obstruction>
+  <Position>
+    <Altitude>-2.0</Altitude>
+    <Floating>true</Floating>
+  </Position>
+  <ResourceSupply>
+    <KillBeforeGather>false</KillBeforeGather>
+    <Amount>1000</Amount>
+    <Type>food.fish</Type>
+    <MaxGatherers>4</MaxGatherers>
+  </ResourceSupply>
+  <Selectable>
+    <Overlay>
+      <Outline>
+        <LineThickness>0.2</LineThickness>
+      </Outline>
+    </Overlay>
+  </Selectable>
+  <StatusBars>
+    <BarWidth>4.0</BarWidth>
+    <BarHeight>0.666</BarHeight>
+    <HeightOffset>5.0</HeightOffset>
+  </StatusBars>
+</Entity>

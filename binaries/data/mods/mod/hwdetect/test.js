@@ -31,7 +31,7 @@ for (var settings of hwdetectTestData)
 	var disabled = [];
 	for (var d of ["disable_audio", "disable_s3tc", "disable_shadows", "disable_shadowpcf", "disable_allwater", "disable_fancywater", "override_renderpath"])
 		if (output[d] !== undefined)
-			disabled.push(d+"="+output[d])
+			disabled.push(d+"="+output[d]);
 
 	print("<tr>");
 	print("<td>" + os);

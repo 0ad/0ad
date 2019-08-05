@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -185,6 +185,7 @@ public:
 	void SetOrtho(float left, float right, float bottom, float top, float near, float far);
 	// set this matrix to the perspective projection matrix
 	void SetPerspective(float fov, float aspect, float near, float far);
+	void SetPerspectiveTile(float fov, float aspect, float near, float far, int tiles, int tile_x, int tile_y);
 
 	// concatenate arbitrary matrix onto this matrix
 	void Concatenate(const CMatrix3D& m)
@@ -321,4 +322,4 @@ public:
 	CVector3D RotateTransposed(const CVector3D& vector) const;
 };
 
-#endif
+#endif // INCLUDED_MATRIX3D

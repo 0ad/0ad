@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -13,11 +13,13 @@
 # Ege Arda Anılan <ege_9933@hotmail.com>, 2018
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
+# Emre JILTA <jilta.e@gmail.com>, 2019
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # mahmut özcan <faradundamarti@yandex.com>, 2013
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
+# Günay Yılmaz <turkoman07@gmail.com>, 2019
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2017
 # Kudret <kudretemre@hotmail.com.tr>, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
@@ -31,7 +33,7 @@
 # Serkan <fkserkank@gmail.com>, 2013
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # Taha Karadoğan <tahakaradogan@gmail.com>, 2016
-# Typhoon das <info@typhoonwebexpert.com>, 2017
+# Tayfun Toprakcıoğlu, 2017
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
 # Umut Yasar <ucyucyy@gmail.com>, 2017
 # utkugun <utkugundogan@gmail.com>, 2015
@@ -39,15 +41,16 @@
 # volcanology <volkansag@hotmail.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
 # Volkan SARIBÜLBÜL <rvolkansaribulbul@gmail.com>, 2015
+# Volkan Sarıoğlu <volkan60volkan@gmail.com>, 2019
 # yakup <mutouk@yandex.ru>, 2014-2018
 # Yavuz Karakişi <yavuzka@hotmail.com.tr>, 2014
 # Yunus Emre  Çakmak <yuney12345@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2018-10-14 02:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-04-15 09:50+0200\n"
+"PO-Revision-Date: 2019-04-16 07:56+0000\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +65,7 @@ msgstr "Yok"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "Bu oyuncu için yapay zeka devredışı bırakılacak."
+msgstr "Bu oyuncu için yapay zekâ devre dışı bırakılacak."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -76,7 +79,7 @@ msgstr "Rastgele"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr "Oyuna başlarken rastgele bir uygarlık seçer"
+msgstr "Oyuna başlarken rastgele bir uygarlık seç."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -89,7 +92,7 @@ msgstr "Hazırım"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr "Oynamaya hazırsınız."
+msgstr "Oynamaya hazır olduğunuzu bildirin."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -102,7 +105,7 @@ msgstr "Hazırda bekleyin"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr "Oyun ayarları değiştiğinde, hazır ol."
+msgstr "Oyun ayarları değiştiğinde dahi hazır ol."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -110,7 +113,7 @@ msgstr "Hazır değilim!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr "Oynamaya hazır olmadığını beyan et."
+msgstr "Oynamaya hazır olmadığını bildir."
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
@@ -149,7 +152,7 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "Default"
-msgstr "Varsayılan"
+msgstr "Öntanımlı"
 
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
@@ -214,11 +217,11 @@ msgstr "Oyuncu"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "Oyun Tipi"
+msgstr "Oyun Türü"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr "Harita Tipi"
+msgstr "Harita Türü"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
@@ -343,23 +346,35 @@ msgstr "Zorluk"
 msgid "Select the difficulty of this scenario."
 msgstr "Bu senaryo için zorluk seçin."
 
-#: gui/gamesetup/gamesetup.js:772
-msgid "Chose the civilization for this player"
-msgstr "Bu oyuncu için uygarlık seç"
+#: gui/gamesetup/gamesetup.js:727
+msgid "Select player."
+msgstr "Oyuncu seç."
 
-#: gui/gamesetup/gamesetup.js:839
+#: gui/gamesetup/gamesetup.js:762
+msgid "Select player's team."
+msgstr "Oyuncunun takımını seç."
+
+#: gui/gamesetup/gamesetup.js:774
+msgid "Choose the civilization for this player."
+msgstr "Bu oyuncu için uygarlık seçin."
+
+#: gui/gamesetup/gamesetup.js:788
+msgid "Pick a color."
+msgstr "Bir renk seçin."
+
+#: gui/gamesetup/gamesetup.js:842
 msgid "Hero Garrison"
 msgstr "Kahraman Garnizonu"
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:843
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Kahramanın garnizon edilebilirliğini göster."
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:855
 msgid "Nomad"
 msgstr "Göçebe"
 
-#: gui/gamesetup/gamesetup.js:853
+#: gui/gamesetup/gamesetup.js:856
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -367,217 +382,282 @@ msgstr "Göçebe modunda, oyuncular sadece kısıtlı sayıda birimle başlar ve
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:869
 msgid "Revealed Map"
 msgstr "Açılmış Harita"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:869
+#: gui/gamesetup/gamesetup.js:872
 msgid "Toggle revealed map (see everything)."
 msgstr "Açığa çıkarılan haritası değiştir(her şeyi gör)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
+#: gui/gamesetup/gamesetup.js:888
 msgid "Explored Map"
 msgstr "Keşfedilmiş Harita"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:891
 msgid "Toggle explored map (see initial map)."
 msgstr "Keşfedilmiş haritayı kapat (başlangıç haritasına dön)."
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:902
 msgid "Disable Treasures"
 msgstr "Hazineleri Devre Dışı Bırak"
 
-#: gui/gamesetup/gamesetup.js:900
-msgid "Disable all treasures on the map."
-msgstr "Hazineleri haritada gösterme."
+#: gui/gamesetup/gamesetup.js:903
+msgid "Do not add treasures to the map."
+msgstr "Haritaya hazine eklemeyin."
 
-#: gui/gamesetup/gamesetup.js:911
+#: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
 msgstr "Casusları devre dışı bırak:"
 
-#: gui/gamesetup/gamesetup.js:912
+#: gui/gamesetup/gamesetup.js:915
 msgid "Disable spies during the game."
 msgstr "Oyun sırasında casusları devre dışı bırak."
 
-#: gui/gamesetup/gamesetup.js:923
+#: gui/gamesetup/gamesetup.js:926
 msgid "Teams Locked"
 msgstr "Takımlar Kilitli"
 
-#: gui/gamesetup/gamesetup.js:924
+#: gui/gamesetup/gamesetup.js:927
 msgid "Toggle locked teams."
 msgstr "Takımları kilitle."
 
-#: gui/gamesetup/gamesetup.js:938
+#: gui/gamesetup/gamesetup.js:941
 msgid "Last Man Standing"
 msgstr "Son Kalan Kişi"
 
-#: gui/gamesetup/gamesetup.js:939
+#: gui/gamesetup/gamesetup.js:942
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "En son kalan oyuncu veya son kalan müttefikler kazanma şansını değiştirin."
 
-#: gui/gamesetup/gamesetup.js:952
+#: gui/gamesetup/gamesetup.js:955
 msgid "Cheats"
 msgstr "Hileler"
 
-#: gui/gamesetup/gamesetup.js:953
+#: gui/gamesetup/gamesetup.js:956
 msgid "Toggle the usability of cheats."
 msgstr "Hile kullanımını aç."
 
-#: gui/gamesetup/gamesetup.js:966
+#: gui/gamesetup/gamesetup.js:969
 msgid "Rated Game"
 msgstr "Oylanmış Oyun"
 
-#: gui/gamesetup/gamesetup.js:967
+#: gui/gamesetup/gamesetup.js:970
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Eğer bu oyun liderlik tablosu için oylanacaksa seçimi değiştir."
 
-#: gui/gamesetup/gamesetup.js:1000
+#: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Oyuncu adlarını ve ayarları otomatik tamamlamak için %(hotkey)s e bas."
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "Oyuncu adlarını ve ayarlarını otomatik tamamlamak için %(hotkey)s basın"
 
-#: gui/gamesetup/gamesetup.js:1008
+#: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
 msgstr "Bekleme salonuna geri dön."
 
-#: gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:1012
 msgid "Return to the main menu."
 msgstr "Ana menüye dönün."
 
-#: gui/gamesetup/gamesetup.js:1013
+#: gui/gamesetup/gamesetup.js:1016
 msgid "Start Game!"
 msgstr "Oyuna Başla!"
 
-#: gui/gamesetup/gamesetup.js:1029
+#: gui/gamesetup/gamesetup.js:1032
 msgid "Start a new game with the current settings."
 msgstr "Geçerli ayarlarla yeni bir oyun başlat."
 
-#: gui/gamesetup/gamesetup.js:1030
+#: gui/gamesetup/gamesetup.js:1033
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
-"ready)"
-msgstr "Geçerli ayarlarla yeni bir oyun başlatın (tüm oyuncular hazır oluncaya dek devre dışı bırakın)"
+"ready)."
+msgstr "Mevcut ayarlarla yeni bir oyun başlatın (tüm oyuncular hazır olmadıkça kullanılamaz)."
 
-#: gui/gamesetup/gamesetup.js:1042
+#: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Geçmişi Görüntüle / Yapı Ağacı\nTıkladığınızda son açılan yeniden açılacak."
 
-#: gui/gamesetup/gamesetup.js:1107
+#: gui/gamesetup/gamesetup.js:1110
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "AI Yapılandırması: %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "%(name)s ayarlar sekmesini değiştir."
 
-#: gui/gamesetup/gamesetup.js:1399
+#: gui/gamesetup/gamesetup.js:1405
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Ayarlar sekmesini aşağıya indirmek için %(hotkey)s kullan."
 
-#: gui/gamesetup/gamesetup.js:1400
+#: gui/gamesetup/gamesetup.js:1406
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Ayarlar sekmesini yukarı kaldırmak için %(hotkey)s kullan."
 
-#: gui/gamesetup/gamesetup.js:1745
+#: gui/gamesetup/gamesetup.js:1754
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1756
 msgid "Pick any of the given maps at random."
 msgstr "Verilen haritalardan birini rastgele seç."
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1780
+#: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
 msgstr "Rastgele bir biyom seç."
 
-#: gui/gamesetup/gamesetup.js:2118
+#: gui/gamesetup/gamesetup.js:2127
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s"
 
-#: gui/gamesetup/gamesetup.js:2123
+#: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#: gui/gamesetup/gamesetup.js:2153
+#: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/gamesetup/gamesetup.js:2153
+#: gui/gamesetup/gamesetup.js:2162
 msgid "No"
 msgstr "Hayır"
 
-#: gui/gamesetup/gamesetup.js:2160
+#: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s"
 
-#: gui/gamesetup/gamesetup.js:2248
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2453
+#: gui/gamesetup/gamesetup.js:2462
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "YZ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2461
+#: gui/gamesetup/gamesetup.js:2470
 msgid "Unassigned"
 msgstr "Atanmamış"
 
-#: gui/gamesetup/gamesetup.js:2537
+#: gui/gamesetup/gamesetup.js:2546
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2544
+#: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
 msgstr "Bilinmeyen Oyuncu"
 
-#: gui/gamesetup/gamesetup.js:2583
+#: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2584
+#: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2585
+#: gui/gamesetup/gamesetup.js:2594
 msgid "HH:mm"
 msgstr "SS:dd"
 
-#: gui/loading/loading.js:48
+#: gui/gamesetup_mp/gamesetup_mp.js:55
+#, javascript-format
+msgid "%(name)s's game"
+msgstr "%(name)s'in oyunu"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:114
+msgid "Please enter a valid server name."
+msgstr "Lütfen geçerli bir sunucu adı girin."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:121
+#, javascript-format
+msgid "Server port number must be between %(min)s and %(max)s."
+msgstr "Sunucu bağlantı noktası numarası %(min)s ve %(max)s arasında olmalıdır."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:138
+msgid "Connecting to server..."
+msgstr "Sunucuya bağlanılıyor..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:157
+#, javascript-format
+msgid "Net message: %(message)s"
+msgstr "Ağ mesajı: %(message)s"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:221
+msgid "Registering with server..."
+msgstr "Sunucuya kaydediliyor"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:227
+msgid "Game has already started, rejoining..."
+msgstr "Oyun zaten başladı, tekrar katılıyor..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:298
+msgid "Game name already in use."
+msgstr "Oyun ismi zaten kullanılıyor."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:308
+msgid "Failed to host via STUN."
+msgstr "STUN sunucusu kullanarak oyun kurma başarısız oldu."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:322
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr "Oyun kurma başarısız: %(message)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
+msgid "Error"
+msgstr "Hata"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:351
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr "Oyuna giriş başarısız: %(message)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:373
+#, javascript-format
+msgid "%(playername)s's game"
+msgstr "%(playername)s'nin oyunu"
+
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading screen
+#: gui/loading/loading.js:33
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "Yükleniyor \"%(map)s\""
 
-#: gui/loading/loading.js:52
+#: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "Hazırlanıyor \"%(map)s\""
@@ -599,6 +679,7 @@ msgid "AI Behavior:"
 msgstr "AI Davranış:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
 msgid "Cancel"
 msgstr "İptal"
 
@@ -638,59 +719,90 @@ msgstr "Medeniyet"
 msgid "Team"
 msgstr "Takım"
 
-#: gui/gamesetup/gamesetup.xml:(caption):131
-msgid "Show this message in the future"
-msgstr "Gelecekte bu mesajı göster"
+#: gui/gamesetup/gamesetup.xml:(caption):125
+msgid "Show this message in the future."
+msgstr "Bu iletiyi gelecekte göster."
 
-#: gui/gamesetup/gamesetup.xml:(caption):220
+#: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
 msgstr "Gönder"
 
-#: gui/gamesetup/gamesetup.xml:(caption):237
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Cheats enabled."
 msgstr "Hileler aktif."
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):254
 msgid "Back"
 msgstr "Geri"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
-"Reset any civilizations that have been selected to the default (random)"
-msgstr "Seçili uygarlıkları varsayılana (rasgele) sıfırlayın"
+"Reset any civilizations that have been selected to the default (random)."
+msgstr "Öntanımlı olarak seçilmiş tüm uygarlıkları yenileyin (rastgele)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "Tüm takımları varsayılana sıfırlayın."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
-msgid "Pick a color."
-msgstr "Bir renk seçin."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
-msgid "Select player."
-msgstr "Oyuncu seç."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):118
-msgid "Select player's team."
-msgstr "Oyuncunun takımını seç."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):202
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Diyalog penceresinde çok oyuncu lobisini göster."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
+msgid "Multiplayer"
+msgstr "Çok Oyunculu"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
+msgid "Joining an existing game."
+msgstr "Varolan bir oyuna katıl."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
+msgid "Player Name:"
+msgstr "Kullanıcı Adı:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
+msgid "Server Hostname or IP:"
+msgstr "Sunucu adı veya IP:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
+msgid "Server Port:"
+msgstr "Sunucu Port:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
+msgid "Set up your server to host."
+msgstr "Sunucunu evsahibi olarak ayarla."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
+msgid "Server Name:"
+msgstr "Sunucu Adı:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+msgid "Use STUN to work around firewalls"
+msgstr "Güvenlik duvarları etrafında çalışmak için STUN kullanın"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+msgid "Continue"
+msgstr "Devam et"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
+msgid "Leave blank to use the default port."
+msgstr "Varsayılan bağlantı noktasını kullanmak için boş bırakın."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
-"harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "\"Zeus \\[…] yasasını belirledi: bilgelik acılar yoluyla gelir.\\[…]  Böylelikle insanoğlu iradesine hakim olmayı öğrenecektir.  \\[…] Böyle bir lütuf acımasız and şiddet doludur.\" - Eshilos (\"Oresteia\", I. 176-183)"
+"harsh and violent.\" - Aeschylus (\"Agamemnon\", 176-183)"
+msgstr "“Zeus \\ […] kanun koymuştur: bilgelik acı çekerek gelir. \\ […] Bu yüzden adamlarına karşı ılımlılık uygulamayı öğreneceklerdir. \\ […] Bu lütuf sert ve şiddetlidir.” - Aeschylus (\"Agamemnon\", 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
-"(\"Oresteia\", I. 406)"
-msgstr "\"O \\[Helen] Lilyum'a çeyizini getirdi, yıkım.\" - Eshilos (\"Oresteia\", I. 406)"
+"(\"Agamemnon\", 406)"
+msgstr "“O \\ [Helen] çeyizini Ilium'a getirdi, yıkım. - Aeschylus (\"Agamemnon\", 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -771,9 +883,9 @@ msgstr "Her af dileyiş bir zalime hizmet eder. - Ezop (\"Kurt ve Kuzu\")"
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
-"not, all the statues in the world will not preserve my memory.\" - Agesilaos"
+"not, all the statues in the world will not preserve my memory.\" - Agesilaus"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "“Asil bir şey yaptıysam, bu yeterli bir anıttır; eğer yapmazsam, dünyadaki tüm heykeller hafızamı korumaz.” - Spartalı Agesilaus II (Plutarch, \"Moralia\", XVI. \"Spartalıların Sözleri\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -786,13 +898,13 @@ msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "“Benim için ağlamayın, haksız yere acı çektiğim için katillerimden daha mutlu bir durumdayım.” - Spartalı Agis IV, infazcılarından birinin ağladığını görünce (Plutarch, \"Parallel Lives\", \"Agis\", sn. 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "\"Yalnız seks ve uyku beni ölümlü olduğumun farkına varmamı sağlıyor.\" - Büyük İskender (Plutarch, \"Paralel Yaşam\", \"İskender\", saniye 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -800,23 +912,23 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "“Lüks içinde yaşamak çok zahmetli, ama uğraşmak asildir.” [[]] Sonu ve fetihlerin konusunun bastırılmış kötülüklerinden ve kusurlarından kaçınmak olduğunu bilmiyor musunuz?- Büyük İskender (Plutarch, \"Paralel Yaşam\", \"İskender\", sn. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
-"\"Glorious are the deeds of those who undergo labour and run the risk of "
+"\"Glorious are the deeds of those who undergo labor and run the risk of "
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "“Şanlı, emek harcayan ve tehlike riski taşıyanların işleridir; cesaret dolu bir yaşam sürmek ve ölümsüz zaferin geride bırakılması ölmek çok keyifli.” - Büyük İskender, birliklerine seslendiriyor (Arrian, \"İskender'in Anabası\", 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
-"\"I for one think that to a brave man there is no end to labours except the "
-"labours themselves, provided they lead to glorious achievements.\" - "
+"\"I for one think that to a brave man there is no end to labors except the "
+"labors themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr "“Bence, cesur bir adama, şanlı başarılara öncülük etmeleri koşuluyla, işçilerin dışında, emekçiler için bir sınır olmadığını düşünüyorum.” - Büyük İskender, askerlerine hitap ediyor (Arrian, \"İskenderiye'nin Anıtı\", 5.26)"
+msgstr "“Bence cesur bir insana, emekçilerin kendileri dışında emekçilerin şerefli başarılar sağlamaları koşuluyla sonu olmadığını düşünüyorum.” - Büyük İskender, birliklerine seslendiriyor (Arrian, \"İskender'in Anabası\", 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -824,13 +936,13 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr ""
+msgstr "\"Eğer İskender olmasaydım, Sinopelu Diogenes olmak isterdim.\" - Büyük İskender, tanıştığı filozofun sadeliğinden etkilendi (Plutarch, \"Moralia\", XXII. \"Büyük İskender'in Serveti\", 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "\"En güçlülere!\" - Büyük İskender, ölüm yatağında, kimin kral olması gerektiği sorulduğunda (Arrian, \"İskender'in Anabasi\", 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -843,29 +955,29 @@ msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "“Yazılı yasalar örümceklerin ağları gibidir; yakalayacaklar, doğru, zayıf ve fakir ama zenginler ve güçlüler tarafından paramparça olacaklar”. - Anacharsis (Plutarch, \"Paralel Hayatlar\", \"Solon\", sn. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
-" covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
+" covetously.\" - Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"Agora, insanların birbirlerini aldatmaları ve cesurca davranmaları için kurulmuş bir yer.\" - Yunanistan'a seyahat eden İskitli bir filozof olan Anacharsis (Diogenes Laertius, \"Seçkin Filozofların Yaşamları ve Görüşleri\", Anarchsis, s. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "“Bu alanlara dikkat ederek değil, kendimizden, bu alanları edindik.” - Sparta'nın Anaxandridas II (Plutarch, \"Moralia\", XVI. \"Spartalıların Sözleri\", 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr ""
+msgstr "“Devletler, iyi insanları kötüden ayırt edemedikleri zaman lanetlenmiştir.” - Antistenler (Diogenes Laertius, \"Seçkin Filozofların Yaşamları ve Görüşleri\", Antisthenes, s. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
@@ -878,20 +990,20 @@ msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "\"Bana duracak bir yer ver, ben de dünyayı hareket ettireyim.\" - Arşimet, kolu kullanması üzerine (Diodorus Siculus, \"Tarih Kütüphanesi\", XXVI adlı kitabın parçaları, sn. 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "\"Düşmanlarından, arkadaşlarından değil, şehirler yüksek duvarlar ve savaş gemileri inşa etme dersini öğreniyor.\" - Aristopanlar (\"Kuşlar\")"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "“Özellikle bir filozof için, gerçeği savunmak için en yakın kişisel ilişkilerini bile feda etmek zorunludur.” - Aristoteles (\"Nicomachean Ethics\", I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
@@ -909,7 +1021,7 @@ msgstr "\"Doğaya göre insan politik bir hayvandır\" - Aristoteles (\"Politics
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "\"Hem oligark hem de tiran güvensizlikten dolayı halkı silahlarından mahrum ediyor.\" - Aristoteles (\"Politika, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
@@ -923,7 +1035,7 @@ msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "“En büyük zafer benliğin üzerinde olduğu için, kendi arzularını alt edeni düşmanlarını fethedenden cesur sayarım.” - Aristoteles (Stobaeus, \"Florilegium\", 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -934,7 +1046,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "“İskender'in kendisi Susuzluğa boğulmuş, büyük bir acı ve güçlükle yine de orduyu yaya soktu […]. Bu sırada hafif silahlı askerlerin bir kısmı \\ […] bir miktar su buldu. Bir miğfer içine attı ve onu götürdü. Onu aldı ve getirenleri övdü, hemen herkesin gözü önünde yere döktü. ” - Alexander'ın Gedrosya Çölü'ndeki yürüyüşüyle ​​ilgili arrian (\"İskender'in Anabası\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -945,14 +1057,14 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "“Mızraklarını Mithridates'in yüzüne soktu, \\ [Alexander] onu yere fırlattı. Sonra Rhoesaces \\ [bir Pers] \\ […] kılıcıyla kafasına vurdu. \\ […] Alexander onu da fırlattı zemini mızrağıyla zırhının göğsünü  deldi. Sphithridates \\ [bir Pers], Clitus \\ […] kolunu kestiği zaman kılıcını arkadan İskender'e karşı arkadan kaldırdı. ” - Granicus Savaşı hakkında Arrian (\"İskender'in Anabası\", 1.15)\n"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "“Her erkeğe soyundan gelenlere, atalarının saflarını terk etmemesi veya korkaklıktan çekilmemesi gereken askerler olduklarını hatırlatsın.” - Aspasia (Plato, \"Menexenus\", 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
@@ -967,7 +1079,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr ""
+msgstr "“On dokuzuncu yılımda, kendi inisiyatifim ve kendi harcamamla, bir tiranlığının baskısı altında olan devleti özgürleştirdiğim bir orduyu büyüttüm.” - Augustus, otobiyografisinde (\"Res Gestae Divi Augusti\", saniye 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -976,28 +1088,28 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr ""
+msgstr "\"Hem sivil hem de yabancı savaşlar, dünyaya, denizde ve karada yaptığım ve muzaffer olduğumda, affedilen bütün vatandaşları bağışladım. Emniyetle affedilen yabancı milletleri yok etmek yerine kurtarmayı tercih ettim.\" - Augustus, otobiyografisinde (\"Res Gestae Divi Augusti\", bölüm 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "“Müzakere ile benimsemiş olduğunuz yön seçin; fakat benimsemiş olduğunuzda, sıkı bir şekilde buna devam edin.” - Priene Önyargıları (Diogenes Laertius, \"Seçkin Felsefecilerin Yaşamları ve Görüşleri\", Önyargı, 5.)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "\"Kralın saçını kederden kesmesi çok aptalcaydı, sanki kellik üzüntünün ilacıymış gibi\" - Borysthenes Bionu (Cicero, \"Tusculan Tartışmaları\", III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "\"Bir servet edinmedi; servet onu satın aldı.\" - Zengin bir mutsuzluğa atıfta bulunan Borysthenes Bion'u (Diogenes Laertius, \"Seçkin Filozofların Yaşamları ve Görüşleri\", Bion, s. 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -1007,14 +1119,14 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
 "18)"
-msgstr ""
+msgstr "\"Yenilene gam\" - Brennus, Roma'yı ele geçiren Galyalı şef (Capitoline Tepesi'ndeki garnizon hariç). Camillus Veii'den gelip onu kuşattığında, 1000 kilo altın için çekilmesini istedi, ancak yanlış ağırlıklar kullanmadan ve Romalılar şikayet edince kılıcının ağırlığını skalasına eklemeden pazarlık etti (Polybius, \"Tarihler\", II. 18)."
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
 "they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
 "in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr ""
+msgstr "\"Soygun, katliam, yağma, Romalılar aldatıcı bir şekilde imparatorluğa isim veriyorlar; israf ediyorlar ve barış diyorlar.\" - Calgacus, Caledonian şefi, Mons Graupius Savaşı'ndan önceki konuşmasında (Tacitus, \"Agricola\", 30)"
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
@@ -1025,7 +1137,7 @@ msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"Tüm insanlık kadınlarını yönetir ve tüm insanlıklara hükmederiz, ama kadınlarımız bizi yönetir.\" - Yaşlı Cato (Plutarch, \"Moralia\", III. \"Romalılar Sözleri\", 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
@@ -1044,13 +1156,13 @@ msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "\"Ayrıca, Kartaca'nın imha edilmesi gerektiğini düşünüyorum.\" - Bu konuşmayla sonraki tüm konuşmaları sona erdiren Yaşlı Cato (Plutarch, \"Paralel Yaşam\", \"Yaşlı Cato\", sn. 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"Bir kral enerjik ise, emri altındakiler de aynı derecede enerjik olacaktır.\" - Chanakya (\"Arthashastra\", I. \"Disiplinle İlgili\", bölüm 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1058,37 +1170,37 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "“Kim ağır ceza verirse, insanlara karşı itici olur; hafif cezalandırmayı ödüllendiren kişi saygısız olur. Ancak hak ettiği şekilde cezalandırılan kişi saygıdeğer olur.” - Chanakya (\"Arthashastra\", I. \"Disiplin hakkında\", bölüm 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "\"Korkmadık ama kaderi bir ustura kenarında asılı kalırken Yunanistan'ı kurtarmak için hayatımızı verdik.\" - Fars Savaşı’nın düştüğüne Korint dönemi müjdesi (Plutarch, \"Moralia\", XI. \"Herodot Malice’inde\", 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
 "\"Then the blood really flowed, for the two lines were so close that shield "
 "struck against shield, and they drove their swords into each other's faces. "
 "It was impossible for the weak or cowardly to retreat; man to man they "
-"fought like in single combat.\" - Curtius Rufus about the Battle of Issos "
+"fought like in single combat.\" - Curtius Rufus about the Battle of Issus "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr ""
+msgstr "“O zaman kan gerçekten aktı, çünkü iki savaş hattı o kadar yakındı ki, kalkanın kalkana çarptı ve kılıçlar çarpıştu. Zayıf ya da korkakça geri çekilmeleri imkansızdı; ayrı ayrı dövüştelermiş gibi adam adama savaştılar .\" - Issus Savaşı ile ilgili Curtius Rufus (\"Büyük İskender'in Tarihi\", III. 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
 "\"I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
 "epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
-msgstr ""
+msgstr "“Ben Perslere imparatorluklarını kazandıran Cyrus'um. Bu yüzden bana kemiklerimi kaplayan bu dünya parçasını küçümseme.” - Büyük Cyrus'un sözleri (Plutarch, \"Parallel Lives\", \"Alexander\", sn. 69)"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
+"of countries, \\[…] 23 lands in total.\" - Darius I (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "“Ben Darius, büyük kral, kralların kralı, Perslerin kralı, ülkelerin kralı, [...] toplam 23 yurdun.” - Darius I (Behistun yazıt, sütun I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1096,9 +1208,9 @@ msgid ""
 "ears, and his tongue, and I put out one eye, and he was kept in chains at my"
 " palace entrance, and all the people saw him. Then I crucified him in "
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
-"hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
+"hung out their skins, stuffed with straw.\" - Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Phraortes yakalandı ve benim önüme getirildi. Burnunu, kulaklarını ve dilini kestim ve bir gözünü oydum, sarayın girişinde zincirler halinde tutuldu ve herkes onu gördü. Sonra çarmıha gerdim Kendisi Ecbatana'da ve en önde gelen takipçileri olan adamlar [[]] Kıçlarını doldurup, samanla doldurdum. \" - Darius I (Behistun yazıt, sütun II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1108,26 +1220,26 @@ msgstr "\"Biraz arzuyla, fakir kendini zengin edebilir.\" - Democritus (fragment
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Kişinin aşağılık biri tarafından yönetilmesi zor.\" - Demokrit (parça)"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"Physical strength is only noble in cattle, it is strength of character "
 "that is noble in men.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Fiziksel güç sadece sığırlarda asildir, erkeklerde asil olan karakterin kuvvetidir.\" - Demokrit (parça)"
 
 #: gui/text/quotes.txt:66
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
-"Phillip II of Macedon (\"Olynthiac II\", 10)"
-msgstr ""
+"Philip II of Macedon (\"Olynthiac II\", 10)"
+msgstr "“Adaletsizlik, mahkumiyet ve ihanet üzerinde kalıcı bir güç bulmak mümkün değil.” - Demosthenes, yükselen Makedon Philip II'ye karşı yaptığı birçok konuşmadan birinde (\"Olynthiac II\", 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
-msgstr ""
+msgstr "\"Teslimat, teslimat, teslimat.\" - Demosthenes, retoriğin en önemli üç unsurunun ne olduğu sorulduğunda (Cicero, \"De Oratore\", 3.213)"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1135,8 +1247,8 @@ msgid ""
 "answering, so that the whole hillside bordering the battlefield echoed back "
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
-" the Battle of Issos (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+" the Battle of Issus (\"The Library of History\", XVII., sec. 33)"
+msgstr "\"Makedonlar, önce Perslerin izleyen bir haykırış bağırarak yükselişe geçtiler, böylece savaş alanını sınırlayan tüm yamaç sesleri tekrarladı, ve ikinci kükremenin Makedon savaşı çığlığına göre daha yüksek sesle beş yüz bin kişi bir sesle bağırdı.\" - Issus Muharebesi Hakkında Diodorus Siculus (\"Tarih Kütüphanesi\", XVII., S. 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1146,7 +1258,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.\" - Diodorus Siculus,"
 " on a brave Spartan at the Battle of Pylos (\"The Library of History\", "
 "XXII., sec. 62)"
-msgstr ""
+msgstr "\"Yol kenarındaki yoluna devam eden Brasidas, oradan kendisine yaklaşan çok sayıda Atinalı ile savaştı. Ve başlangıçta, kendisine geldikleri kadar çok kişiyi savuşturdu, ama bir süre sonra, çok sayıda ok, ona saldırırken, birçok acı çekti. vücudunun önünden çok yara aldı. \" - Diodorus Siculus, Pylos Savaşı'ndaki cesur bir Spartalı (\"Tarih Kütüphanesi\", XXII., S. 62)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1155,7 +1267,7 @@ msgid ""
 "lecture-room with the words: Here is Plato's man. In consequence of which "
 "there was added to the definition: having broad nails.\" - Diogenes Laertius"
 " (\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 40)"
-msgstr ""
+msgstr "\"Platon, insanı bir hayvan olarak tanımlamıştı, kesik ve tüysüzdü ve alkışlandı. Diogenes 'in [Sinoplu] tavuğu topladı ve konferans salonuna şu kelimelerle getirdi: İşte Platon'un adamı. Bunun sonucu olarak orada eklendi. tanımına göre: geniş tırnaklara sahip olmak. \" - Diogenes Laertius (\"Seçkin Filozofların Yaşamları ve Görüşleri\", \"Diogenes\", sn. 40)"
 
 #: gui/text/quotes.txt:71
 msgid ""
@@ -1174,20 +1286,20 @@ msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "\"Parallel Lives\", \"Alexander\", sec. 14)"
-msgstr ""
+msgstr "“Evet, güneş ışığımdan biraz uzak dur.” - Sinoplu Diyojen Büyük İskender'e, herhangi bir şekilde yardım edip edemeyeceğini sordu (Plutarch, \"Paralel Yaşar\", \"Alexander\", sn. 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"The victor is not victorious if the vanquished does not consider himself "
 "so.\" - Ennius (\"Annales\", fragment 31.493)"
-msgstr ""
+msgstr "\"Eğer yenilen kendini böyle görmüyorsa, galip zafer kazanmaz.\" - Ennius (\"Annales\", bölüm 31.493)"
 
 #: gui/text/quotes.txt:75
 msgid ""
 "\"Stranger, go tell the Spartans that we lie here, obedient to their laws.\""
 " - Epitaph at Thermopylae for Leonidas and his men (Herodotus, \"The "
 "Histories\", VII. 228)"
-msgstr ""
+msgstr "\"Yabancı, gidip Spartalılara burada yattığımızı, yasalarına bağlı olduğumuzu söyle.\" - Leonidas ve adamları için Thermopylae'de Epitaph (Herodot, \"Tarihler\", VII. 228)"
 
 #: gui/text/quotes.txt:76
 msgid ""
@@ -1199,7 +1311,7 @@ msgstr "\"Bir korkak kaçar, ama cesurun seçimi tehlikelidir.\" - Euripides (\"
 msgid ""
 "\"Brave men are made bolder by ordeals, but cowards achieve nothing.\" - "
 "Euripides (\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"Cesur adamlar sıkıntılarla daha cesurlaşır, ancak korkaklar hiçbir şey yapmaz.\" - Euripides (\"Tauris'te İphigenia\")"
 
 #: gui/text/quotes.txt:78
 msgid ""
@@ -1209,43 +1321,42 @@ msgstr "\"Korkaklar savaşta sayılmazlar; oradalar, ama değiller.\" - Euripide
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "\"Şanslı, ihtiyatlıların tarafında hiç savaşmaz.\" - Euripitler (\"Pirithous\")"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
 "warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
-msgstr ""
+msgstr "\"Kalkanınla ya da onun üzerine dön.\" - Spartalı kadınların savaşçılarına vedası, korkakların kaçmak için savaşta kalkanlarını atacağına atıf yapılarak (Plutarch, \"Moralia\", XVIII. \"Spartalı Kadınların Sözleri\", 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
-"\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
-"Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
-"\"Caesar\", sec. 50)"
-msgstr "''Geldim, gördüm, fethettim\" - Gaius Julius Caesar, after routing Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. 50)"
+"\"I came, I saw, I conquered.\" - Caesar, after routing Pharnaces II of "
+"Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. "
+"50)"
+msgstr "\"Geldim gördüm yendim.\" - Sezar, ilk saldırıda Pontus'un Pharnaces II'sini yönlendirdikten sonra (Plutarch, \"Paralel Yaşamlar\", \"Sezar\", s. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
-"\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
-"Gallico\", III. 18)"
-msgstr "\"İnsanlar inanmak istediklerine inanırlar.\" - Gaius Julius Caesar (\"De Bello Gallico\", III. 18)"
+"\"Men willingly believe what they wish.\" - Caesar (\"De Bello Gallico\", "
+"III. 18)"
+msgstr "\"İnsanlar kasıtlı olarak kendi istediklerine inanırlar.\" - Sezar (\"De Bello Gallico\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
-" looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
-" sec. 11)"
-msgstr "\"Besili uzun saçlı adamdan korkmuyorum, korktuğum açık tenli ve aç olanlar.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
+" looking.\" - Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
+msgstr "\"Korktuğum doygun uzun saçlı adam değil, solgun ve aç görünendir.\" - Sezar (Plutarch, \"Paralel Hayatlar\", \"Antony\", bölüm 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
 "\"After fighting from noon almost to sunset, with victory doubtful, the "
 "Germans, on one side charged the enemy in a compact body, and drove them "
 "back; and, when they were put to flight, the archers were surrounded and cut"
-" to pieces.\" - Gaius Julius Caesar about the Battle of Alesia (\"De Bello "
-"Gallico\", VII. 80)"
-msgstr ""
+" to pieces.\" - Caesar about the Battle of Alesia (\"De Bello Gallico\", "
+"VII. 80)"
+msgstr "“Neredeyse gün batımından gün batımına kadar savaştan sonra, zafer şüpheli, Germenler, bir tarafta düşmanı sıkışık bir gövdeye yerleştirdiler ve onları geri sürdüler; ve kaçtklarında okçular kuşatıldı ve parçalara ayrıldı. \" - Alesia Savaşı hakkında Sezar (\"De Bello Gallico\", VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1254,9 +1365,9 @@ msgid ""
 "other cohorts either wounded or slain, and among them the chief centurion of"
 " the legion, Publius Sextius Baculus, a very valiant man, who was so "
 "exhausted by many and severe wounds, that he was already unable to support "
-"himself.\" - Gaius Julius Caesar about the Battle of the Sabis (\"De Bello "
-"Gallico\", II. 25)"
-msgstr ""
+"himself.\" - Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
+" 25)"
+msgstr "\"Dördüncü kohortun tamamı öldürüldü ve bayrak taşıyan öldürüldü, bayrağın kendisi kaybedildi, hemen hemen bütün diğer grupların yüzdeleri ya yaralandı ya da katledildi, aralarında lejyonun baş centurionu Publius Sextius Baculus, çok ve şiddetli yaralar tarafından çok tükenmiş olan, zaten kendisini destekleyemeyen çok yiğit bir adam. ” - Sabiler Savaşı hakkında Sezar (\"De Bello Gallico\", II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1264,29 +1375,29 @@ msgid ""
 " had fallen the men behind them stood on them and continue the fight from on"
 " top of the corpses; when these were killed the pile of bodies grew higher, "
 "while the survivors used the heap as a vantage point for throwing missiles "
-"at our men, or catching our spears and throwing them back.\" - Gaius Julius "
-"Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+"at our men, or catching our spears and throwing them back.\" - Caesar about "
+"the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
+msgstr "“Ama düşman \\ […] öyle büyük bir cesaret gösterdi ki, ön safları geride bıraktıklarında arkasındaki adamlar onların üzerinde durdu ve cesetlerin tepesinden savaşa devam etti; Kurtulanlar yığını, adamlarımıza ok atmak, mızraklarımızı yakalamak ve geri fırlatmak için bir nokta olarak kullandılar. ” - Sabiler Savaşı hakkında Sezar (\"De Bello Gallico\", II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
-"\"The die is cast.\" - Gaius Julius Caesar, when crossing the Rubicon river "
-"with his legion into Italy, a capital offense that led to his civil war "
-"against Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr ""
+"\"The die is cast.\" - Caesar, when crossing the Rubicon river with his "
+"legion into Italy, a capital offense that led to his civil war against "
+"Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
+msgstr "\"Ölüm kalıba döküldü.\" - Sezar, lejyonu ile Rubicon nehrini İtalya'ya geçerken, Pompey'e karşı iç savaşına yol açan sermaye suçu (Suetonius, \"On İki Sezar'ın Yaşamı\", 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
-"\"I'd rather be the first man here than the second man in Rome.\" - Gaius "
-"Julius Caesar, when passing through a barbarian village in the Alps "
-"(Plutarch, \"Parallel Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+"\"I'd rather be the first man here than the second man in Rome.\" - Caesar, "
+"when passing through a barbarian village in the Alps (Plutarch, \"Parallel "
+"Lives\", \"Caesar\", sec. 11)"
+msgstr "\"Burada Roma'daki ikinci adamdan çok ilk adam olmayı tercih ederim.\" - Sezar, Alpler'deki bir barbar köyünden geçerken (Plutarch, \"Parallel Lives\", \"Sezar\", s. 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
-"\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
-" \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+"\"Stop quoting laws, we carry weapons!\" - Pompey (Plutarch, \"Parallel "
+"Lives\", \"Pompey\", sec. 10)"
+msgstr "\"Yasa teklifini bırak, silah taşıyoruz!\" - Pompey (Plutarch, \"Paralel Yaşamlar\", \"Pompey\", s. 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1297,51 +1408,50 @@ msgstr "''Göze göz.\" - Hammurabi (Hammurabi's Code, sec. 196)"
 #: gui/text/quotes.txt:91
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
-"against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr ""
+"against Rome.\" - Hannibal (Polybius, \"Histories\", III. 85)"
+msgstr "“İtalyanlara karşı savaşmaya değil, İtalyanlara Roma'ya karşı yardım etmeye geldim.” - Hannibal (Polybius, \"Tarihler\", III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
 "\"Let us now end the anxiety of the Romans, who can't wait for the death of "
-"an old man.\" - Hannibal Barca's last words before his suicide, in exile "
-"with Flaminius pressuring the local ruler to hand him over (Livius, \"Ab "
-"Urbe Condita\", XXXIX. 51)"
-msgstr ""
+"an old man.\" - Hannibal's last words before his suicide, in exile with "
+"Flaminius pressuring the local ruler to hand him over (Livy, \"History of "
+"Rome\", XXXIX. 51)"
+msgstr "“Şimdi yaşlı bir adamın ölümünü bekleyemeyecek olan Romalıların kaygılarını sona erdirebilirsiniz.” - Hannibal'in intihardan önceki son sözleri, Flaminius ile yerel yöneticiyi teslim etmesi için sürgünde (Livy, \"Roma Tarihi\", XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
 "\"Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.\" -"
-" Hannibal Barca, addressing his troops (Livius, \"Ab Urbe Condita\", XXI. "
-"44)"
-msgstr ""
+" Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. 44)"
+msgstr "\"En insanlık dışı ve en kibirli millet, Romalılar\" dünyayı kendileri olarak kabul ediyorlar ve zevklerine tabi tutuyorlar. Kiminle savaşacağımız, kiminle barış içinde, onların doğru karar vermeleri gerektiğini düşünüyorlar. \" - Hannibal, birliklerine hitap ediyor (Livy, \"Roma Tarihi\", XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
-"death.\" - Hannibal Barca, addressing his troops (Livius, \"Ab Urbe "
-"Condita\", XXI. 44)"
-msgstr ""
+"death.\" - Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. "
+"44)"
+msgstr "\"Cesaretli olmalısınız ve zaferden ya da ölümden başka bir şeyin umutlarını atmalısınız.\" - Hannibal, birliklerine hitap ediyor (Livy, \"Roma Tarihi\", XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
-"men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The "
-"Refutation of all Heresies\", IX. 4)"
-msgstr ""
+"men; some slaves and some free.\" - Heraclitus (Hippolytus, \"The Refutation"
+" of all Heresies\", IX. 4)"
+msgstr "\"Savaş, her şeyin babası ve kralıdır: bazıları tanrılar, bazıları adamlar, bazıları köleler ve bazıları özgür yapar.\" - Heraclitus (Hippolytus, \"Tüm Heresilerin Çürütülmesi\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
-"\"You could not step twice into the same river.\" - Herakleitos (Plato, "
-"\"Cratylos\", 402a)"
-msgstr "\"Aynı nehre iki kez adım atamazsın.\" - Heraklitos (Plato, \"Cratylos\", 402a)"
+"\"You could not step twice into the same river.\" - Heraclitus (Plato, "
+"\"Cratylus\", 402a)"
+msgstr "“Aynı nehire iki kez adım atamazsın.” - Heraklitus (Plato, \"Cratylus\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
 "Histories\", III. 52)"
-msgstr ""
+msgstr "''Kıskanılıyor olmak acınılmaktan daha iyidir. - Herodot (\"Tarihler\", III. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1353,39 +1463,39 @@ msgstr "\"Yumuşak bölgelerde yumuşak erkekler doğar.\" - Herodot (\"Herodot 
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr ""
+msgstr "''İnsanlar arasındaki en acı şey, çok fazla bilgiye sahip olmak ama güçsüz olmaktır.” - Herodot (\"Tarihler\", IX. 16)"
 
 #: gui/text/quotes.txt:100
 msgid ""
-"\"Although he \\[Xerces] had plenty of troops he had few men.\" - Herodotus "
+"\"Although he \\[Xerxes] had plenty of troops he had few men.\" - Herodotus "
 "(\"The Histories\", VII. 210)"
-msgstr ""
+msgstr "“Her ne kadar [Xerxes] çok fazla askere sahip olsa da az sayıda adamı vardı.” - Herodot (\"Tarihler\", VII. 210)"
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
-msgstr ""
+msgstr "\"Lacedaemonians \\ [Spartalılar] unutulmaz bir savaş verdiler; uzman olduklarını ve amatörlere karşı savaştıklarını açıkça gösterdiler.\" - Herodot (\"Tarihler\", VII. 211)"
 
 #: gui/text/quotes.txt:102
 msgid ""
 "\"Being informed \\[…] that when the Barbarians discharged their arrows they"
 " obscured the light of the sun by the multitude of the arrows, he "
-"\\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, "
+"\\[Dieneces] \\[…] said that their guest \\[…] brought them very good news, "
 "for if the Medes obscured the light of the sun, the battle against them "
-"would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
+"would be in the shade and not in the sun.\" - Herodotus describing Dieneces,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "“Barbarlar oklarını boşalttıklarında okların çokluğu tarafından güneş ışığını gizlediklerinde, o \\ [Dieneces] \\ […] misafirlerinin onlara çok iyi bir haber verdiğini söyledi. Çünkü eğer Medler güneş ışığını gizleseydi, onlara karşı savaş güneş altında değil gölgede olurdu. ” - Dieneces'i tanımlayan Herodot, Thermopylae'deki en cesur Spartalı askerini tanıştırdı (Polybius, \"Tarihler\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
-"\"The judgement given to Kroisus by each of the two oracles \\[Delphi and "
+"\"The judgment given to Croesus by each of the two oracles \\[Delphi and "
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.\" - Herodotus, later mentioning that the empire "
-"Kroisos destroyed was his own (\"The Histories\", I. 53)"
-msgstr ""
+"Croesus destroyed was his own (\"The Histories\", I. 53)"
+msgstr "“İki azizin her biri tarafından Croesus'a verilen karar aynıydı: [Delphi ve Thebes]: Perslere karşı bir ordu gönderirse, büyük bir imparatorluğu mahvederdi.” - Herodot, daha sonra Croesus'un yıktığı imparatorluğun kendisine ait olduğunu söyleyerek (“Tarihler”, I. 53)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1393,9 +1503,9 @@ msgid ""
 "called for his bow, and placing an arrow on the string, shot upward into the"
 " sky, saying, as he let fly the shaft: Grant me, Zeus, to revenge myself on "
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
-"Ionian revolt caught the wrath of Darius I., the Persian king (\"The "
+"Ionian revolt caught the wrath of Darius I, the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr ""
+msgstr "“Kral Darius] Atinalıların kim olduğunu sordu ve bilgi aldı, yayını, istedi ve yayın üstüne bir ok koyarak, oku gökyüzüne doğru ateş ederek şöyle dedi: , Atinalılardan intikam almak için bana yardım et Zeus \" - Atina’nın Darius'un öfkesini kaldırdığını anlatan İyon isyanına desteğinin nasıl olduğunu anlatıyor, (\"Tarihler\", V. 105) Herodot"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1403,25 +1513,25 @@ msgid ""
 "was spread, three times to repeat to him: Master, remember the Athenians!\" "
 "- Herodotus, narrating how the Athenian support for the Ionian revolt lead "
 "to the Persian Wars (\"The Histories\", V. 105)"
-msgstr ""
+msgstr "“Kral Darius] görevlilerinden birine her gün, akşam yemeğinin ne zaman yayıldığını, üç kez tekrar etmesini istedi: Usta, Atinalıları hatırla!” - Atina’nın İyon isyanına desteğinin Pers Savaşlarına yol açtığını anlatan Herodot, (\"Tarihler\", V. 105)"
 
 #: gui/text/quotes.txt:106
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace (\"Epistles\", epistle I., 156-157)"
-msgstr ""
+msgstr "\"Fethedilen Yunanistan, vahşi fatihini esir aldı ve sanatını rustik Latium'a getirdi.\" - Horace (\"Bölümler\", I. bölüm, 156-157)"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"Anger is a momentary madness, so control your passion or it will control "
 "you.\" - Horace (\"Epistles\", epistle II., 62)"
-msgstr ""
+msgstr "“Öfke anlık bir delilik, bu yüzden tutkunu kontrol et yoksa seni kontrol edecek.” - Horace (\"Bölümler\", bölüm II, 62)"
 
 #: gui/text/quotes.txt:108
 msgid ""
-"\"It is your concern when your neighbour's wall is on fire.\" - Horace "
+"\"It is your concern when your neighbor's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr "\"Komşunun duvarı yandığında sen endişelenirsin.\" - Horace (\"Epistles\", epistle XVIII., 84)"
+msgstr "“Komşunun duvarı yanıyorsa, bu senin sorunun.” - Horace (\"Bölümler\", bölüm XVIII, 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
@@ -1431,27 +1541,27 @@ msgstr "\"Bir ülke uğruna ölmek onurlu ve güzeldir.\" - Horace (\"Odes\", II
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Ben Cyrus, dünyanın kralıyım ...\" - Yazıt (Cyrus Cylinder)"
 
 #: gui/text/quotes.txt:111
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
-"sons.\" - Kroisos, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+"sons.\" - Croesus, king of Lydia (Herodotus, \"The Histories\", I. 87)"
+msgstr "\"Barış içinde oğullar babalarını gömer, ama savaşta babalar oğullarını gömer.\" - Croesus, Lydia kralı (Herodot, \"Tarihler\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr ""
+msgstr "\"İyi bir erkekle evlen ve iyi çocuklara bak.\" - Leonidas, Thermopylae'den ayrılmadan önce, ölürse ne yapacağını isteyen karısına, (Plutarch, \"Moralia\", XVI. \"Spartalıların Sözleri\", 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr ""
+msgstr "\"Gel ve onları al!\" - Leonidas, kendisinin ve adamlarının kollarını bırakmasını isteyen Farsça haberciye (Plutarch, \"Moralia\", XVI. \"Spartalıların Sözleri\", 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1459,82 +1569,78 @@ msgid ""
 "baring their necks and throats and bidding their conquerors drain the "
 "remnant of their blood. Others were found with their heads buried in holes "
 "dug in the ground. They had apparently made these pits for themselves.\" - "
-"Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
-"inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
-"Condita\", XXII. 51)"
-msgstr ""
+"Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
+"inflicted the greatest defeat on the Romans in all their history (\"History "
+"of Rome\", XXII. 51)"
+msgstr "\n\"Bazılarının orada canlı olarak uzandığı, baldır ve tendonlarının kesildiği, boyunlarını ve boğazlarını tıkadığı ve fatihlerinin kanlarının kalanını boşalttıkları ihalesiyle keşfedildi. Diğerlerinin kafalarının toprağa açılan deliklere gömülü olduğu bulundu. kendileri için.\" - Hannibal'in bütün tarihlerinde Romalılara en büyük yenilgiyi uyguladığı Cannae Savaşı'nın ardından tanımlayan Livy (\"Roma Tarihi\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
 "\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
 "the slain rose a gory figure whose wounds had begun to throb with the chill "
-"of dawn, and was cut down by his enemies.\" - Livius, describing the "
-"aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
-"defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+"of dawn, and was cut down by his enemies.\" - Livy, describing the aftermath"
+" of the Battle of Cannae, where Hannibal inflicted the greatest defeat on "
+"the Romans in all their history (\"History of Rome\", XXII. 51)"
+msgstr "“Binlerce ve binlerce Romalı getirdiler” […]. Burada ve ölülerin ortasında, yaraları şafak soğukuyla atmaya başlayan ve düşmanları tarafından kesilen kanlı bir figür yükseldi. ” - Hannibal'in bütün tarihlerinde Romalılara en büyük yenilgiyi uyguladığı Cannae Savaşı'nın ardından tanımlayan Livy (\"Roma Tarihi\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"A city is well-fortified which has a wall of men instead of brick.\" - "
 "Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr ""
+msgstr "\"Tuğla yerine, adamlardan duvarı olan bir şehir oldukça korunaklıdır.\" - Sparta'nın Lurgurgu (Plutarch, \"Paralel Yaşamlar\", \"Lycurgus\", sn. 19)"
 
 #: gui/text/quotes.txt:117
 msgid ""
-"\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
-"Brutus, before committing suicide after losing a battle against Caesar's "
-"avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+"\"Escape, yes, but this time with my hands, not my feet.\" - Brutus, before "
+"committing suicide after losing a battle against Caesar's avengers "
+"(Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
+msgstr "\"Kaçış, evet, ama bu sefer ellerimle, ayaklarımla değil.\" - Brutus, Sezar'ın intikamcılarına karşı bir savaşı kaybettikten sonra intihar etmeden önce (Plutarch, \"Paralel Hayatlar\", \"Brutus\", s. 52)"
 
 #: gui/text/quotes.txt:118
-msgid ""
-"\"O, the times, O, the customs!\" - Marcus Tullius Cicero (\"Against "
-"Catiline\", speech I)"
-msgstr ""
+msgid "\"O, the times, O, the customs!\" - Cicero (\"Against Catiline\", I.)"
+msgstr "“Zamanlar, gelenekler!” - Cicero (\"Catiline Karşı\", I.)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
-"honor or its safety.\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+"honor or its safety.\" - Cicero (\"De Re Publica\", III., 23)"
+msgstr "\"Onurunu veya güvenliğini savunmak dışında hiçbir zaman ideal Devlet tarafından bir savaş yapılmaz.\" - Cicero (\"De Re Publica\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
-"truth.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
-msgstr ""
+"truth.\" - Cicero (\"On Duties\", I., 13)"
+msgstr "\"Bir erkeğin ilk görevi, gerçeğin peşinde koşma ve araştırmaktır\" - Cicero (\"Görevlerde\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
-"\"No one is so old as to think that he cannot live one more year.\" - Marcus"
-" Tullius Cicero (\"On Old Age\", sec. 24)"
-msgstr ""
+"\"No one is so old as to think that he cannot live one more year.\" - Cicero"
+" (\"On Old Age\", sec. 24)"
+msgstr "\n\"Hiç kimse bir yıl daha yaşayamayacağını düşünecek kadar yaşlı değildir.\" - Cicero (\"Yaşlanınca\", s. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
-"\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
-"Cicero (\"On the Laws\", III., sec. 3)"
-msgstr ""
+"\"Let the welfare of the people be the ultimate law.\" - Cicero (\"On the "
+"Laws\", III., sec. 3)"
+msgstr "“İnsanların refahı en üst düzey yasa olsun.” - Cicero (\"Yasalara İlişkin\", III., Bölüm 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
-"\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
-"(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+"\"Endless money forms the sinews of war.\" - Cicero (\"Philippics\", V., "
+"sec. 5)"
+msgstr "“Sonsuz para savaşın değişmezlerini oluşturur.” - Cicero (\"Philippics\", V., bölüm 5)"
 
 #: gui/text/quotes.txt:124
-msgid ""
-"\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
-" IV., sec. 11)"
-msgstr "\"Savaş zamanında yasalar sessizdir.\" - Marcus Tullius Cicero (\"Pro Milone\", IV., sec. 11)"
+msgid "\"Laws are silent in time of war.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
+msgstr "\"Savaş zamanında yasalar suskundur.\" - Cicero (\"Pro Milone\", IV., S. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
-"murdering someone; then they boast that they have spared him!\" - Marcus "
-"Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
-"(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+"murdering someone; then they boast that they have spared him!\" - Cicero, "
+"condemning Mark Anthony who had not killed him (yet) (\"Philippics\", II., "
+"sec. 5)"
+msgstr "“Bu, Senatörler, çetelerden gelen bir iyiliğin ne anlama geldiğidir. Birini öldürmekten kaçınırlar; ondan kurtuldukları için övünürler!” - Cicero, onu öldürmeyen Mark Anthony'yi kınadı (henüz) (\"Philippics\", II., S. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1543,13 +1649,13 @@ msgid ""
 "never rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.\" - Mark Antony, taunting Augustus who delegated his duties as naval "
 "commander (Suetonius, \"Divus Augustus\", sec. 16)"
-msgstr ""
+msgstr "“Gemileri zaten savaş yerlerindeyken filosunu gözden geçirmeye kalkmadı, ama sırtına uzandı ve gökyüzüne baktı, Marcus Agrippa'nın düşmanı kaçırana kadar hayatta olduğunu göstermek için ayağa kalkmadı” - Deniz Kuvvetleri Komutanlığı görevini atanan Augustus'a adanmış Mark Antony (Suetonius, \"Divus Augustus\", sn. 16)\n"
 
 #: gui/text/quotes.txt:127
 msgid ""
 "\"We live, not as we wish to, but as we can.\" - Menander (\"Lady of "
 "Andros\", fragment 50)"
-msgstr ""
+msgstr "\"İstediğimiz gibi değil, yapabildiğimiz gibi yaşıyoruz.\" - Menander (\"Andros Hanımı\", bölüm 50)"
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
@@ -1559,11 +1665,11 @@ msgstr "\"Koşan adam tekrar savaşabilir.\" - Menander (\"Monosticha\")"
 msgid ""
 "\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
 "fragment 4)"
-msgstr ""
+msgstr "\"Tanrıların sevdiği genç yaşta ölür.\" - Menander (\"İkili Aldatıcı\", 4. bölüm)"
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "\"Ben incir incir derim, küreğe kürek.\" - Menander (parça 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1573,7 +1679,7 @@ msgid ""
 "fortune and material advantages, they drove out the invaders and made our "
 "city what it is now.\" - Pericles (Thucydides, \"History of the "
 "Peloponnesian War\", I. 144.3-4)"
-msgstr ""
+msgstr "“En büyük ihtişam, en büyük tehlikelerden kazanıldı. Babalarımız Perslerle karşılaştığında, kaynakları bizimkilerle karşılaştırılamazdı. Aslında, sahip oldukları şeylerden bile vazgeçtiler. O zaman akıllıca ve cüretkar eylemlerle, servet ve maddi avantajlar değil, işgalcileri sürdüler ve şehrimizi şimdi olduğu gibi yaptılar. ” - Periküller (Thucydides, \"Peloponezyen Savaşı Tarihi\", I. 144.3-4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1582,7 +1688,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr ""
+msgstr "“Tartışmaya, eylem biçiminde tökezleyen bir engel olarak bakmak yerine, bunun herhangi bir akıllıca eylemin vazgeçilmez bir başlangıç ​​noktası olduğunu düşünüyoruz.” - Savaşın ilk yılında ölen Atinalılar için Cenaze Şiirinde Perikles (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1590,14 +1696,14 @@ msgid ""
 "nothing, we think he is good for nothing.\" - Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "\"History of the Peloponnesian War\", II. 40.2)"
-msgstr ""
+msgstr "“Yalnızca siyasetten habersiz bir adamın hiçbir şeye müdahale etmediğini düşünmüyoruz, hiçbir şey için iyi olmadığını düşünüyoruz.” - Savaşın ilk yılında ölen Atinalılar için Cenaze Şiirinde Perikles (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr ""
+msgstr "\"Gelecek çağlar bizi merak edecektir, çünkü bugünkü çağ bizi merak ediyor.\" - Savaşın ilk yılında ölen Atinalılar için Cenaze Şiirinde Perikles (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1607,7 +1713,7 @@ msgid ""
 "virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.2)"
-msgstr ""
+msgstr "“Atina'nın gücünün farkına vardığınızda, görevlerini bilen, savaşta şerefsizlik duygusu olduğunu bilen yiğit erkekler tarafından kazanıldığını ve eğer girişimleri başarısız olursa, vatandaşlıklarını erdemden yoksun bırakmayı tercih ettiklerini düşünün.” - Savaşın ilk yılında ölen Atinalılar için Cenaze Şiirinde Perikles (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1616,7 +1722,7 @@ msgid ""
 " that will outlast any monument.\" - Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, \"History of "
 "the Peloponnesian War\", II. 43.3)"
-msgstr ""
+msgstr "“Bütün dünya kahramanların mezarıdır ve onların erdemleri, herhangi bir anıtın dışına çıkacak aklın yazılı olmayan bir kaydında, bir epitafın onları ilan ettiği evden uzak bir yerde hatırlanır.” - Savaşın ilk yılında ölen Atinalılar için Cenaze İfade Edilmiş Periklesinde (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1624,7 +1730,7 @@ msgid ""
 "courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.4)"
-msgstr ""
+msgstr "\"Mutluluğun özgürlüğe bağlı olduğunu ve özgürlüğün cesarete bağlı olduğunu anlayın.\" - Savaşın ilk yılında ölen Atinalılar için Cenaze İfade Edilmiş Periklesinde (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 43.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
@@ -1632,14 +1738,14 @@ msgid ""
 "for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
 " in the first year of the war (Thucydides, \"History of the Peloponnesian "
 "War\", II. 45.2)"
-msgstr ""
+msgstr "“Kadınlar için en büyük zafer, ister iyi ister kötü olsun, erkekler tarafından en az konuşulmaktır.” - Savaşın ilk yılında ölen Atinalılar için Cenaze Şiirinde Perikles (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 45.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
 "politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
 " 18)"
-msgstr ""
+msgstr "\"Tüm danışmanların en bilgeliğini bekle, zaman.\" - Savaştan kaçınan temkinli bir politikacı olan Perikles (Plutarch, \"Parallel Lives\", \"Perikles\", sn. 18)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1647,40 +1753,40 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr ""
+msgstr "“İmparatorluğun şimdi bir tiranlık gibidir: almak yanlış olabilir; gitmesine izin vermek kesinlikle tehlikelidir.” - Bir vebadan sonra Atina topluluğuna hitap eden Perikles kenti zayıflatmıştı (Thucydides, \"Peloponnesian Savaşı Tarihi\", II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man fears its approach in his heart.\" - Pindar (fragment 110)"
-msgstr ""
+msgstr "\"Savaş, hiçbir deneyimi olmayanlar için tatlıdır, ama tecrübeli adam onun yüreğine gelişinden korkar.\" - Pindar (parça 110)"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr ""
+msgstr "\"Themistocles mızrak ve kalkanda dostu olan vatandaşlarını soymuş ve Atina halkını küreklere indirgemiştir.\" - Platon, Atina donanmasının bir arkadaşı yok (Plutarch, \"Parallel Lives\", \"Themistocles\", sn. 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr ""
+msgstr "\"Hiçbir konuk, bir arkadaşının evinde o kadar hoş karşılanamaz ki, üç gün sonra sıkıntı yaşamasın.\" - Plautus (\"Swaggering Soldier\", Hareket III, sahne 1, 146)"
 
 #: gui/text/quotes.txt:144
 msgid ""
 "\"You cannot eat your cake and have it too, unless you think your money is "
 "immortal.\" - Plautus (\"Trinummus\", Act II, scene 4, 12)"
-msgstr ""
+msgstr "\"Paranızın ölümsüz olmadığını düşünüyorsanız, pastanıza sahip olamaz ve yiyemezsiniz.\" - Plautus (\"Trinummus\", Bölüm II, Bölüm 4, 12)"
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr ""
+msgstr "“İskender] cesur için yenilmez bir şey olmadığını ve korkağa güvende olan hiçbir şey olmadığını düşündü.” - Plutarch (\"Paralel Yaşam\", \"Alexander\", sn. 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1690,7 +1796,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "“Biri [[]] göğüs kanadı delip kaburgalarının içine sıkışıp kaldığı o kadar kesin ve kuvvetli bir ok attı. \\ […] İskender geri döndü ve dizlerinin üzerine çöktü. \\ […] İskender en sonunda barbarı öldürdü Ancak birçok yara aldı, en sonunda boyuna bir topuzla vuruldu ve şehir duvarına yaslandı, gözleri hala düşmanlarının üzerine sabitlendi. ” - Mallian Kampanyası ile Çok Geçiş Yapma (\"Paralel Yaşam\", \"Alexander\", sn. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1699,7 +1805,7 @@ msgid ""
 "captured, and he volunteered to pay fifty.\" - Plutarch, who mentions later "
 "that Caesar got his money back and had his captors crucified (\"Parallel "
 "Lives\", \"Caesar\", sec. 2)"
-msgstr ""
+msgstr "\"Korsanlar onun için yirmi kişilik bir fidye talep ettiğinde, Sezar gülerek patladı. Bilmiyorlardı, kim yakaladıklarını ve elliyi ödemek için gönüllü olduklarını söyledi.\" - Daha sonra Sezar'ın parasını geri aldığını ve esirlerinin çarmıha gerilmesini sağladığını söyleyen Plutarch (\"Paralel Hayatlar\", \"Sezar\", saniye 2)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -1708,7 +1814,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
-msgstr ""
+msgstr "“Onlar, [Romalılar], asırların, istikrarlı ve güvenilir bir ruhun, doğal liderlerin olduğu kadar, maceracı ve cesaretli olmalarını istemiyor. Saldırıları başlatan ve savaşı açacak kadar erkek istemiyorlar. yenildiğinde ve sertçe bastırıldığında zeminlerini koruyacak ve görevlerinde ölmeye hazır olacak. ” - Polybius (\"Tarihler\", VI. 24)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -1716,7 +1822,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr ""
+msgstr "\"Roma savaş hattını kırmak zordur, çünkü her insanın hem bireysel hem de toplu olarak savaşmasına izin verir; böylece bir formasyon herhangi bir yöndee savaşabilir, bu adamlarla yüzleşmek için tehlike etrafında dönme noktasına en yakın olanlarla.\" - Polybius (\"Tarihler\", XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1725,9 +1831,9 @@ msgid ""
 "obey the helmsman, everything goes well; but if they recover \\[…] they "
 "quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
-"wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
-" constitution (\"Histories\", VI. 44)"
-msgstr ""
+"wreck their ship in harbor and close to shore.\" - Polybius on the Athenian "
+"constitution (\"Histories\", VI. 44)"
+msgstr "“Atinalılar her zaman komutansız bir geminin durumundalar. Düşmanın veya fırtınanın korkusu, mürettebatı tek bir zihni haline getiriyor ve dümençiye itaat ediyor, her şey yolunda gider; Birbirleri \\ […] ve sonuç, en geniş denizlerin ve en şiddetli fırtınaların tehlikelerinden kaçtıktan sonra, gemilerini limanda ve kıyıya yakın yerlerde mahvediyor olmalarıydı. ” - Atina anayasasına ilişkin Polybius (\"Tarihler\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1736,7 +1842,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.\""
 " - Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (\"Histories\", I. 34)"
-msgstr ""
+msgstr "\"Romalıların çoğu, fillerin muazzam ağırlıkları nedeniyle ezildi; geri kalanlar sayısız süvari tarafından saflarında vuruldu: ve kendilerini kaçarken kurtarmaya çalışan çok az kişi vardı.\" - Birinci Pön Savaşı sırasında bir Roma ordusunun yok olduğu Bagradas Muharebesinde Polybius (\"Tarihler\", I. 34)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1744,7 +1850,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr ""
+msgstr "\"Hannibal saldırı için işaret verdi ve aynı zamanda tepelerde pusuda yatan birliklere de aynı şeyi yapma emri gönderdi ve böylece her taraftan düşmana saldırı düzenledi.\" - Trasymene Gölü'ndeki bir Roma felaketinin başlangıcında Polybius (\"Tarihler\", III. 84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1754,7 +1860,7 @@ msgid ""
 "shields and flee.\" - Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
 "26)"
-msgstr ""
+msgstr "\"Falanksta, adamlar tek başlarına dönemez ve kendilerini savunamazlar: bu tribün, bu nedenle, onlara [arkadan] saldırdı ve elinden gelen kadar öldürdü; dayanamadığı sürece kalkanlarını atmak zorunda kaldılar ve kaçtılar.\" - Cynoscephalae Savaşı'ndaki Flaminius tarafından Makedon Philip'in V. V.'in yenilgisini tarif eden Polybius (\"Tarihler\", XVIII. 26)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -1765,7 +1871,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.\" - Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
 "XVIII. 32)"
-msgstr ""
+msgstr "\"Öte yandan, Roma düzeni esnektir: bir zamanlar silahlı ve sahada olan her Roman için düşmanın her yeri, zamanı ya da görünüşü için eşit derecede iyi donanımlıdır. Üstelik savaşa Ana gövdede mi yoksa ayrı yerlerde mi, yoksa tek bir yöntemde mi, yoksa tek başına mi mücadele etmesi gerektiğine karar vermeye hazırdır. \" - Polybius, Romalıların Makedon falanksını nasıl yenebileceğini açıklıyor (\"Tarihler\", XVIII. 32)"
 
 #: gui/text/quotes.txt:155
 msgid ""
@@ -1775,7 +1881,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr ""
+msgstr "\"Scipio \\ [Aeminialus], şehre baktığında \\ [Carthage] tamamen yıkılmakta ve son yıkımının tam sancılarında, düşmanları için gözyaşı döktüğünü ve açıkça ağladığını söyledi. Fark etti ki milletlerin ve otoritelerin, aynı adamlar gibi, kaderleriyle yüzleşir. ” - Polybius, Kartaca'nın imhasına tanıklık (\"Tarihler\", XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1783,31 +1889,31 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, \"Parallel Lives\", "
 "\"Pyrrhus\", sec. 21)"
-msgstr ""
+msgstr "\"Bir tane daha böyle zafer kazanırsak amacımızı kaybedeceğiz!\" - Romalıların iki katı kadar erkek kaybettiği, ancak silahlı kuvvetlerinin daha büyük bir kısmını kaybettiği Asculum Savaşı'ndan sonra Epirus Pyrrhus (Plutarch, \"Parallel Lives\", \"Pyrrhus\", sec. 21)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "\"Kendi tutkularına köle olan ve yönetilen kimse özgür olamaz.\" - Pisagor (Stobaeus, \"Florilegium\", 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Birçok kelimeyle birkaç şey söyleme, birkaç kelimeyle birçok şey söyle.\" - Pisagor (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Konuşman sessizlikten daha iyi olsun ya da sessiz ol.\" - Pisagor (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "\"Birlik küçük devletleri bile güçlendirirken, anlaşmazlık en güçlü imparatorlukları baltalıyor.\" - Sallust (\"Jugurthine Savaşı\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1815,14 +1921,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr ""
+msgstr "\"Nankör anavatan, kemiklerime bile sahip olmayacaksın!\" - Scipio Africanus mezar taşında, Hannibal'i mağlup ettikten sonra tekrar tekrar Roma Senatosu tarafından suçlanmıştı (Valerius Maximus, \"Unutulmaz işler ve sözler üzerine dokuz kitap\", 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
-"Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+"Zama (Livy, \"History of Rome\", XXX. 31)"
+msgstr "\"Bir barışa dayanamadığınız için savaşa hazırlanın.\" - Scipio Africanus, Hannibal'in Zama Muharebesi'nden önceki barış terimleri teklifine cevap vererek (Livy, \"Roma Tarihi\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1831,7 +1937,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr ""
+msgstr "\"Fakat taktik bilim, generalliğin yalnızca bir kısmıdır. Bir general, güçlerini donatarak ve adamlarını sağlama yeteneğine sahip olmalıdır. Aynı zamanda yaratıcı, çalışkan, dikkatli ve zekice durmuş ve zeki, arkadaş canlısı ve sert, açık ve ince olmalıdır.\" - Sokrates (Xenophon, \"Anı\", 3.1.6)\n"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1839,14 +1945,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr ""
+msgstr "“Şehrin ve düşmanın gücünü bilmek gerekir, böylece şehir daha güçlüyse, savaşa gitmesini önerebilir, ancak düşmandan daha güçlüyse, dikkat etmesine ikna edebilir.” - Sokrates (Xenophon, \"Anı\", 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr ""
+msgstr "“İncelenmemiş hayat yaşamaya değmez.” - Sokrates, savunmada gençleri yozlaştırmaya çalıştığı ve uygun tanrılara tapmadığı için (daha sonra ölüm cümlesinden sonra zehir içti) - Platon (\"Apoloji\", 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -1854,13 +1960,13 @@ msgid ""
 "to live. Which is better God only knows.\" - Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
-msgstr ""
+msgstr "“Kalkış saati geldi ve biz yolumuza gidiyoruz - ben ölüyorum, sen de yaşıyorsun. - Sokrates, savunmada gençleri yozlaştırmaya ve uygun tanrılara tapmamaya çalıştığında (daha sonra ölüm cezasından sonra zehir içti) - Platon (\"Apoloji\", 42a)\n"
 
 #: gui/text/quotes.txt:167
 msgid ""
 "\"Walls and ships are nothing without men living together inside them.\" - "
 "Sophocles (\"Oedipus Rex\")"
-msgstr ""
+msgstr "\"Duvarlar ve gemiler içlerinde insanlar olmadan hiçbir şeydir. - Sophocles (\"Oedipus Rex\")"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1870,24 +1976,24 @@ msgid ""
 "that the weak should be subject to the strong.\" - Speech of an Athenian "
 "embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
 "76.2)"
-msgstr ""
+msgstr "“Bize teklif edilen bir imparatorluğu kabul ettik ve en güçlü dürtülerin üçünün baskısı altında bırakmayı reddettik: korku, onur ve ilgi. Örneği belirleyen biz değildik, çünkü her zaman yasa zayıf olanların güçlülere boyun eğmesi gerektiğini söyler. \" - Sparta'daki bir Atina büyükelçiliğinin konuşması (Thucydides, \"Peloponesian Savaşı Tarihi\", I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"He could boast that he found a city of brick and left it a city of "
 "marble.\" - Suetonius, commenting on the many building projects of Augustus "
 "in Rome (\"Divus Augustus\", sec 38)"
-msgstr ""
+msgstr "“Bir tuğla kenti bulup onu bir mermer kenti olarak bıraktı.” - Suetonius, Augustus'un Roma'daki birçok bina projesi hakkında yorumda bulundu (\"Divus Augustus\", sec 38)"
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"Her şeyde ılımlılık.\" - Terence (\"Androslu Kız\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "\"Şans cesurdan yanadır.\" - Büyük bir Atinalı amiral hakkında bir oyunda Terence (\"Phormio\", 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1895,7 +2001,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr ""
+msgstr "“Lireyi nasıl ayarlayacağımı ya da arp çalacağımı bilmiyorum, ama şeref ve büyüklüğe önemsiz, küçük ve önemsiz bir şehri nasıl yetiştireceğimi biliyorum.” - Kültürel karmaşıklık eksikliğini savunan Themistocles (Plutarch, \"Parallel Lives\", \"Themistocles\", sn. 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1903,41 +2009,41 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr ""
+msgstr "\"Vur, eğer yapacaksın, ama dinle.\" - Themistocles, Salamis Muharebesi'nden önce kendisini asayla dövmekle tehdit eden Sparta filosu komutanı ile ateşli bir tartışmada (Plutarch, \"Paralel Yaşamlar\", \"Themistocles\", sn. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr ""
+msgstr "\"Atinalılar Yunanistan'ın geri kalanına hükmediyor, ben Atinalılara hükmediyorum; annen bana hükmediyor, sen de annene hükmediyorsun.\" - Themistocles, küçük oğluna şaka yapıyor (Plutarch, \"Paralel Yaşamlar\", \"Themistocles\", sn. 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr ""
+msgstr "\"Çok az topluluk gerçeği bulmak için acı çeker ve eldeki ilk hikayeyi kolayca kabul eder.\" - Thucydides (\"Mora Yarımadası Savaşı Tarihi\", I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr ""
+msgstr "\"Atina’nın gücünün büyümesi ve bunun Sparta’da yarattığı alarm savaşı kaçınılmaz hale getirdi.\" - Thucydides (\"Mora Yarımadası Savaşının Tarihi\", I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr ""
+msgstr "\"Savaş, para kadar silahla ilgili bir konu değildir.\" - Thucydides (\"Mora Yarımadası Savaşı Tarihi\", I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr ""
+msgstr "“İnsanların kendilerine iyi davrananları hor gördükleri ve taviz vermeyenlere bakmaları insan doğasının genel bir kuralıdır.” - Thucydides (\"Mora Yarımadası Savaşı Tarihi\", III. 39.5)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -1948,7 +2054,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr ""
+msgstr "“Bu, bütün bu savaşta ve Yunanlılar arasında duyduğumuz diğer tüm savaşlarda gerçekleşen en büyük eylemdi, mağdurlara karşı en görkemli ve en yıkıcı mağlubiyet oldu. Çünkü onlar tamamen ve her yerde mağlup oldular. Acılar çok fazlaydı. Ordu ve filo ve hepsi öldüler, hiçbir şey kurtarılmadı ve pek çoğu hiç eve dönmedi. Böylece Sicilya seferi sona erdi. \" - Thucydides (\"Mora Yarımadası Savaşının Tarihi\", VII. 87.6-7)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -1956,7 +2062,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr ""
+msgstr "“Dünya ilerledikçe, adalet sadece eşit olanlar arasında bir meseledir, güçlü olan ise yapabildiklerini yapar ve zayıf olan ise acı çeker.” - Teslim olmak istemeyen mağlup Melyalılara hitap eden Atinalıları anlatan Thucydides (\"Mora Yarımadası Savaşının Tarihi\", V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -1965,7 +2071,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "“Lacedaemonilılar artık peşlerinden koşamadıklarında, avcı ustaları topyekün onlara saldırdılar; ellerinde bulunan taş, ok ve dart en yakın adama fırlattılar.” - Sphacteria Muharebesinde Spartalı felaketini betimleyen Thucydides (\"Mora Yarımadası Savaşının Tarihi\", IV. 34.2)\n"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1975,7 +2081,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
 "\"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"Askerler, servet ve lüks içindeki başkalarını desteklemek için savaşır ve ölürler ve kendilerine ait tek bir tarım arazisine sahip olmadan dünyanın ustaları olarak adlandırılırlar.\" - Seferdeyken toprakları zaman zaman alınan evsizlere ve işsiz kıdemlilere yararı olan arazi reformunu savunurken Tiberius Gracchus (Plutarch, \"Paralel Yaşamlar\", \"Tiberius Gracchus\", s. 9)"
 
 #: gui/text/quotes.txt:183
 msgid ""
@@ -1985,24 +2091,24 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "“İtalya'nın vahşi hayvanlarının emekli olacak mağaraları var, ancak kanını dökülen cesur gazilerin havası ve ışığı dışında başka hiçbir şeyi kalmadı. Eşleri ve çocukları ile evsiz dolaşıyorlar.” - Seferdeyken toprakları zaman zaman alınan evsizlere ve işsiz kıdemlilere yararı olan arazi reformunu savunurken Tiberius Gracchus (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", s. 9)"
 
 #: gui/text/quotes.txt:184
 msgid ""
 "\"Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.\" - Virgil (\"Aeneid\", II. 48-49)"
-msgstr ""
+msgstr "''Ata güvenmeyin Truvalılar! Hediyeler getirseler bile Yunanlılardan korkuyorum.''  Virgil (\"Aeneid\", II. 48-49)"
 
 #: gui/text/quotes.txt:185
 msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
-msgstr ""
+msgstr "''İki seçenek için de hazırlandı.''  Virgil (\"Aeneid\", II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
 "\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "\"Homer ve Hesiod, ölümlüler arasında utanç verici olan her şeyi Tanrı'ya atfettiler: çalmak, zina etmek, birbirlerini aldatmak.\" - Xenophanes (bölüm 11)"
 
 #: gui/text/quotes.txt:187
 msgid ""
@@ -2010,13 +2116,13 @@ msgid ""
 " of art as men do, horses would paint the forms of the gods like horses, and"
 " oxen like oxen, and make their God's bodies each in their own image.\" - "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "“Eğer öküzler ve atlar ve aslanlar ellere sahipse ve erkeklerin yaptığı gibi resim yapabilir ve sanat eserleri üretebilirlerse, atlar, tanrıları atlar gibi çizerler ve öküzler öküzler gibi boyar ve Tanrı'nın bedenlerini kendi görüntülerinde yaparlardı. \" - Xenophanes (parça 15)"
 
 #: gui/text/quotes.txt:188
 msgid ""
 "\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
-msgstr ""
+msgstr "\"Etiyopyalılar tanrılarını siyahi ve kalkık burunlu yapıyorlar, Trakyalılar mavi gözleri ve kızıl saçları olduğunu söylüyorlar.\" - Xenophanes (parça 16)"
 
 #: gui/text/quotes.txt:189
 msgid ""
@@ -2024,21 +2130,21 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "“Bunlar sorulacak doğru sorular, kışın ateşin etrafında \\ […]: Sen kimsin, arkadaş? Arazin nedir? Ve Mediler \\ [Persler] geldiğinde kaç yaşındaydın?” - Büyük olasılıkla yabancı düşmanların İyonya'daki Yunan şehirlerine karşı cezai bir sefer yapılmasına atıfta bulunuyor (bölüm 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""
 "\"A prudent commander will never take risks unnecessarily, except when it is"
 " clear beforehand that he will have the advantage.\" - Xenophon (\"The "
 "Cavalry General\", 4.13)"
-msgstr ""
+msgstr "\"İhtiyatlı bir komutan, önceden avantajlı olacağı açıkça belli olmadıkça, gereksiz yere asla risk almayacaktır.\" - Xenophon (\"Süvari Generali\", 4.13)"
 
 #: gui/text/quotes.txt:191
 msgid ""
 "\"Attack the enemy where he is weakest, even if that is a long way off, "
 "since hard work is less dangerous than a struggle against superior forces.\""
 " - Xenophon (\"The Cavalry General\", sec. 4.14)"
-msgstr ""
+msgstr "“Düşmanına en zayıf olduğu yerden saldırın, bu çok uzun bir süre olsa bile, sıkı çalışma üstün güçlere karşı mücadeleden daha az tehlikeli.” - Xenophon (\"Süvari Generali\", 4.14 s)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2046,14 +2152,14 @@ msgid ""
 "small force appear large and a large one small, to appear absent when close "
 "at hand, and within striking distance when a long way off.\" - Xenophon "
 "(\"The Cavalry General\", sec. 5)"
-msgstr ""
+msgstr "\"Yaratıcı olmalı, her koşuldan yararlanmaya, küçük bir kuvveti büyük ve büyük bir görünüme kavuşturması için, eldeki yakınlarda yokken ve uzun bir süre uzaktayken vuruş mesafesi içinde olması gerekir.\" - Xenophon (\"Süvari Generali\", bölüm 5)"
 
 #: gui/text/quotes.txt:193
 msgid ""
 "\"People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.\" - Xenophon (\"The Education of "
 "Cyrus\", 1.6.22)"
-msgstr ""
+msgstr "'İnsanlar kendi amaçlarını kovalarken kendilerinden daha bilge olduğunu düşündükleri kişilere itaat ederken mutlular.'  Xenophon (\"Kıbrısın Eğitimi\", 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2062,7 +2168,7 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.\" - Xenophon (\"The Education "
 "of Cyrus\", 1.6.25)"
-msgstr ""
+msgstr "\"Yaz boyunca yaptığı seferlerde general güneşe askerlerden daha iyi tahammül edebileceğini göstermeli, kışın soğuğa daha iyi dayanabileceğini göstermeli ve daha iyi atlatabildiği tüm zorlukları. Bu onun sevilmesini sağlamak için yardımcı olacaktır.\" adamları tarafından. \" - Xenophon (\"Cyrus'un Eğitimi\", 1.6.25)"
 
 #: gui/text/quotes.txt:195
 msgid ""
@@ -2076,7 +2182,7 @@ msgid ""
 " that we are human beings! We've got to appear to them like an "
 "uncontrollable nightmare of shields, swords, battle-axes and spears!\" - "
 "Xenophon (\"The Education of Cyrus\", 4.2.22)"
-msgstr ""
+msgstr "“Onlara bir savunma düzenlemeleri için yeterli zaman vermeyelim ya da insan olduğumuzu bile tanıyalım! Onlara kalkanların, kılıçların, savaş baltalarının ve mızrakların kontrol edilemeyen bir kabusu gibi görünmeliyiz!” - Xenophon (\"Cyrus'un Eğitimi\", 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2084,7 +2190,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr ""
+msgstr "“Sanırım anlıyorsunuz,  darbeler ve ölümle peşinde koşan adamlara, yağma, şöhret, özgürlük, güç - bunların hepsi kazananlar için ödüllerdir; - Xenophon (\"Cyrus'un Eğitimi\", 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2092,7 +2198,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr ""
+msgstr "“Bunu isteyen adam, her noktada düşmana entrika kuran, kurnaz, cin fikirli, hilekar ve aldatıcı, bir haydut ve hırsız olmalı.” - Düşmana karşı en iyi avantajı elde etmek için Xenophon (\"Cyrus'un Eğitimi\", 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2100,7 +2206,7 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr ""
+msgstr "\"Adamlarım kadına, kadınlarım da adama dönüştü!\" - Artemisia’nın bir gemiye çarptığını, kendi filosunun hasar aldığını ve kendi gemisini batırdığını gören Xerxes, \"Tarihler\", VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""

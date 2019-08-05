@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_horse_chariot.xml" frequency="1" name="Chariot Horse">
+      <mesh>skeletal/horse_barb.dae</mesh>
+      <props>
+        <prop actor="props/horse/cav_blanket_kush_hero.xml" attachpoint="root"/>
+        <prop actor="props/horse/kush_crest_bronze.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_straps_head_kush_gold.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_head_pelt_kush.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/brown_alt.xml" frequency="1" name="horse-02"/>
+    <variant file="quadraped/horse/dark_chestnut_alt.xml" frequency="1" name="horse-05"/>
+    <variant file="quadraped/horse/pure_black_alt.xml" frequency="1" name="horse-06"/>
+    <variant file="quadraped/horse/fading_black_alt.xml" frequency="1" name="horse-03"/>
+    <variant file="quadraped/horse/cherrybay_alt.xml" frequency="1" name="horse-04"/>
+    <variant file="quadraped/horse/gray_alt.xml" frequency="1" name="horse-07"/>
+    <variant file="quadraped/horse/halflinger_alt.xml" frequency="1" name="horse-11"/>
+    <variant file="quadraped/horse/chestnut_02_alt.xml" frequency="1" name="horse-10"/>
+    <variant file="quadraped/horse/chestnut_01_alt.xml" frequency="1" name="horse-09"/>
+    <variant file="quadraped/horse/bay_01_alt.xml" frequency="1" name="horse-01"/>
+    <variant file="quadraped/horse/bay_02_alt.xml" frequency="1" name="horse-08"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

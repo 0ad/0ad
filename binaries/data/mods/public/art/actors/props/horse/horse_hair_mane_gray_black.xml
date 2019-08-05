@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/horse/hair_mane_01.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/props/hair_black.xml" frequency="1" name="black-01"/>
+    <variant file="quadraped/horse/props/hair_gray.xml" frequency="1" name="gray-01"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_spearman.xml" name="Spearman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_swordsman.xml"  name="Swordsman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_archer.xml" name="Archer Horse"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

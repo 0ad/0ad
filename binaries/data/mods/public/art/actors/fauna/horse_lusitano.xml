@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_fauna.xml" name="fauna horse">
+      <mesh>skeletal/horse_lusitano.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/fauna/black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/fauna/pure_black.xml" frequency="1" name="pure_black"/>
+    <variant file="quadraped/horse/fauna/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/fauna/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/fauna/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/fauna/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/fauna/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/fauna/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/fauna/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/fauna/lusitano_01.xml" frequency="1" name="lusitano-01"/>
+    <variant file="quadraped/horse/fauna/lusitano_02.xml" frequency="1" name="lusitano-02"/>
+    <variant file="quadraped/horse/fauna/brown_spotted_01.xml" frequency="1" name="Brown-Spotted-01"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

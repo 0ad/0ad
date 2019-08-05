@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,11 @@
 #include "NetFileTransfer.h"
 #include "NetHost.h"
 #include "lib/config2.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/types.h"
-#include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptTypes.h"
 
+#include <mutex>
 #include <string>
 #include <utility>
 #include <vector>
@@ -254,7 +255,9 @@ private:
 
 	static bool OnClientHandshake(void* context, CFsmEvent* event);
 	static bool OnAuthenticate(void* context, CFsmEvent* event);
-	static bool OnInGame(void* context, CFsmEvent* event);
+	static bool OnSimulationCommand(void* context, CFsmEvent* event);
+	static bool OnSyncCheck(void* context, CFsmEvent* event);
+	static bool OnEndCommandBatch(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
 	static bool OnReady(void* context, CFsmEvent* event);
 	static bool OnClearAllReady(void* context, CFsmEvent* event);
@@ -366,7 +369,7 @@ private:
 	bool RunStep();
 
 	pthread_t m_WorkerThread;
-	CMutex m_WorkerMutex;
+	std::mutex m_WorkerMutex;
 
 	// protected by m_WorkerMutex
 	bool m_Shutdown;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -372,7 +372,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 		for (int tile_x = 0; tile_x < tiles; ++tile_x)
 		{
 			// Adjust the camera to render the appropriate region
-			g_Game->GetView()->GetCamera()->SetProjectionTile(tiles, tile_x, tile_y);
+			g_Game->GetView()->GetCamera()->SetPerspectiveProjectionTile(tiles, tile_x, tile_y);
 
 			RenderLogger(false);
 			RenderGui(false);
@@ -406,7 +406,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 		SViewPort vp = { 0, 0, g_xres, g_yres };
 		g_Game->GetView()->GetCamera()->SetViewPort(vp);
 		g_Game->GetView()->SetCameraProjection();
-		g_Game->GetView()->GetCamera()->SetProjectionTile(1, 0, 0);
+		g_Game->GetView()->GetCamera()->SetPerspectiveProjectionTile(1, 0, 0);
 	}
 
 	if (tex_write(&t, filename) == INFO::OK)

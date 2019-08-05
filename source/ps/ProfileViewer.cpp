@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -531,14 +531,15 @@ namespace
 			JSAutoRequest rq(cx);
 
 			JS::RootedValue data(cx);
-			m_ScriptInterface.Eval("({})", &data);
+			m_ScriptInterface.CreateObject(&data);
 
 			const std::vector<ProfileColumn>& columns = table->GetColumns();
 
 			for (size_t r = 0; r < table->GetNumberRows(); ++r)
 			{
 				JS::RootedValue row(cx);
-				m_ScriptInterface.Eval("([])", &row);
+				m_ScriptInterface.CreateArray(&row);
+
 				m_ScriptInterface.SetProperty(data, table->GetCellText(r, 0).c_str(), row);
 
 				if (table->GetChild(r))

@@ -5,13 +5,15 @@
 		"athen": "Thólos"
 	},
 	"description": "The state or tribe would often construct a dining hall for public feasts or to receive foreign emissaries.",
-	"cost": {"food": 0, "wood": 100, "stone": 100, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 0, "wood": 100, "stone": 100, "metal": 0 },
+	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "population.png",
 	"researchTime": 40,
 	"tooltip": "Civic Centers +5 population cap bonus.",
-	"modifications": [{"value": "Cost/PopulationBonus", "add": 5}],
+	"modifications": [
+		{ "value": "Cost/PopulationBonus", "add": 5 }
+	],
 	"affects": ["CivCentre"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

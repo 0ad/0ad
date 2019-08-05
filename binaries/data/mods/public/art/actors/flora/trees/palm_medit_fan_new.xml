@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="3" name="base">
+      <textures>
+        <texture file="gaia/palm_medit_fan_1.png" name="baseTex"/>
+        <texture file="gaia/palm_palmyra_norm.png" name="normTex"/>
+        <texture file="gaia/palm_palmyra_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="1">
+      <mesh>gaia/palm_medit_fan_new_1.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/palm_medit_fan_new_2.dae</mesh>
+    </variant>
+    <variant frequency="3" name="3">
+      <mesh>gaia/palm_medit_fan_new_3.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tall_1">
+      <mesh>gaia/palm_medit_fan_new_tall_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tall_2">
+      <mesh>gaia/palm_medit_fan_new_tall_2.dae</mesh>
+    </variant>
+    <variant frequency="2" name="tall_3">
+      <mesh>gaia/palm_medit_fan_new_tall_3.dae</mesh>
+    </variant>
+    <variant frequency="2" name="tall_4">
+      <mesh>gaia/palm_medit_fan_new_tall_4.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

@@ -1,11 +1,11 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Alexander Olkhovskiy, 2015
 # Alexander Olkhovskiy, 2015-2016
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2017
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-16 20:53+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-08-01 12:51+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -257,8 +257,8 @@ msgstr "%(_player_)s, ты должен отправить мне %(_amount_)s %
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "Пока ты не предоставишь мне %(_amount_)s %(_resource_)s, о нашем союзе не может быть и речи, %(_player_)s,"
+" %(_player_)s."
+msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -523,7 +523,7 @@ msgstr[3] "%(players)s и %(lastPlayer)s победили (последние и
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
-msgstr "Последний оставшийся игрок выигрывает."
+msgstr "Последний оставшийся игрок одерживает победу."
 
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
@@ -571,7 +571,7 @@ msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceTyp
 msgid "The production queue is full."
 msgstr "Очередь заполнена."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Невозможно найти свободное место для подготовленных юнитов"
 
@@ -628,7 +628,7 @@ msgstr "Невозможно вывести гарнизон"
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 
@@ -726,7 +726,7 @@ msgstr "Захватить реликвию"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr "Нанесите противникам поражение, убив всех их юнитов и разрушив все их постройки."
+msgstr "Нанесите противникам поражение, убив всех и разрушив все строения."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -734,7 +734,7 @@ msgstr "Завоевание"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr "Нанесите противникам поражение, разрушив все их постройки."
+msgstr "Нанесите противникам поражение, разрушив все строения."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -760,8 +760,9 @@ msgstr "Цареубийство"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Первым постройте или захватите Чудо и удерживайте его в течение определенного времени. Отсчет времени будет начат заново в случае, если Чудо будет разрушено или захвачено противником, или если при условии союзной победы изменятся союзники игрока, владеющего Чудом."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -795,7 +796,7 @@ msgstr "Очень много"
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr "Смертельный бой"
+msgstr "Бой насмерть"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
@@ -855,7 +856,7 @@ msgstr "Маленькая"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Маленькие карты подходят для игры 1 на 1, так как игроки могут быстро добраться до врага, всё ещё имея немного места для расширения. "
+msgstr "Маленькие карты подходят для игры один на один, так как игроки могут быстро добраться до врага, но при этом имеют пространство для развития. "
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -906,5 +907,5 @@ msgstr "Бот Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра - стандартный 0 A.D. бот ИИ. Пожалуйста, сообщайте о проблемах в Wildfire Games (см. ссылку в главном меню).\n\nИИ имеет штраф/бонус на накопление ресурсов (скорость сбора, либо прибыль от торговли) в диапазоне от -60% для Песочницы до +60% на Очень сложном уровне (на среднем - 0%), а на простых уровнях - более медленный рост производства и строительства. Кроме того, на уровень \"Песочница\" он не захватывает новые территории и не атакует."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr ""

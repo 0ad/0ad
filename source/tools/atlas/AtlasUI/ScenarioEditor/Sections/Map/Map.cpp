@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,8 @@ enum
 	ID_MapTeams,
 	ID_MapKW_Demo,
 	ID_MapKW_Naval,
+	ID_MapKW_New,
+	ID_MapKW_Trigger,
 	ID_VC_Conquest,
 	ID_VC_ConquestUnits,
 	ID_VC_ConquestStructures,
@@ -112,8 +114,8 @@ private:
 			OnConquestChanged();
 	}
 
-	std::set<std::wstring> m_MapSettingsKeywords;
-	std::set<std::wstring> m_MapSettingsVictoryConditions;
+	std::set<std::string> m_MapSettingsKeywords;
+	std::set<std::string> m_MapSettingsVictoryConditions;
 	std::vector<wxChoice*> m_PlayerCivChoices;
 	Observable<AtObj>& m_MapSettings;
 
@@ -185,9 +187,12 @@ void MapSettingsControl::CreateWidgets()
 	sizer->AddSpacer(5);
 
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
-	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(4, 5, 5);
+	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(4, 5, 15);
 	CREATE_CHECKBOX(this, kwGridSizer, "Demo", "If checked, map will only be visible using filters in game setup", ID_MapKW_Demo);
 	CREATE_CHECKBOX(this, kwGridSizer, "Naval", "If checked, map will only be visible using filters in game setup", ID_MapKW_Naval);
+	CREATE_CHECKBOX(this, kwGridSizer, "New", "If checked, the map will appear in the list of new maps", ID_MapKW_New);
+	CREATE_CHECKBOX(this, kwGridSizer, "Trigger", "If checked, the map will appear in the list of maps with trigger scripts", ID_MapKW_Trigger);
+
 	keywordsSizer->Add(kwGridSizer);
 	sizer->Add(keywordsSizer, wxSizerFlags().Expand());
 }
@@ -203,21 +208,21 @@ void MapSettingsControl::ReadFromEngine()
 	}
 
 	// map name
-	wxDynamicCast(FindWindow(ID_MapName), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Name"]));
+	wxDynamicCast(FindWindow(ID_MapName), wxTextCtrl)->ChangeValue(wxString::FromUTF8(m_MapSettings["Name"]));
 
 	// map description
-	wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Description"]));
+	wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->ChangeValue(wxString::FromUTF8(m_MapSettings["Description"]));
 
 	// map preview
-	wxDynamicCast(FindWindow(ID_MapPreview), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Preview"]));
+	wxDynamicCast(FindWindow(ID_MapPreview), wxTextCtrl)->ChangeValue(wxString::FromUTF8(m_MapSettings["Preview"]));
 
 	// reveal map
-	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString(m_MapSettings["RevealMap"]) == L"true");
+	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString::FromUTF8(m_MapSettings["RevealMap"]) == "true");
 
 	// victory conditions
 	m_MapSettingsVictoryConditions.clear();
 	for (AtIter victoryCondition = m_MapSettings["VictoryConditions"]["item"]; victoryCondition.defined(); ++victoryCondition)
-		m_MapSettingsVictoryConditions.insert(std::wstring(victoryCondition));
+		m_MapSettingsVictoryConditions.insert(std::string(victoryCondition));
 
 	wxWindow* window;
 #define INIT_CHECKBOX(ID, mapSettings, value) \
@@ -225,25 +230,27 @@ void MapSettingsControl::ReadFromEngine()
 	if (window != nullptr) \
 		wxDynamicCast(window, wxCheckBox)->SetValue(mapSettings.count(value) != 0);
 
-	INIT_CHECKBOX(ID_VC_Conquest, m_MapSettingsVictoryConditions, L"conquest");
-	INIT_CHECKBOX(ID_VC_ConquestUnits, m_MapSettingsVictoryConditions, L"conquest_units");
-	INIT_CHECKBOX(ID_VC_ConquestStructures, m_MapSettingsVictoryConditions, L"conquest_structures");
-	INIT_CHECKBOX(ID_VC_CaptureTheRelic, m_MapSettingsVictoryConditions, L"capture_the_relic");
-	INIT_CHECKBOX(ID_VC_Wonder, m_MapSettingsVictoryConditions, L"wonder");
-	INIT_CHECKBOX(ID_VC_Regicide, m_MapSettingsVictoryConditions, L"regicide");
+	INIT_CHECKBOX(ID_VC_Conquest, m_MapSettingsVictoryConditions, "conquest");
+	INIT_CHECKBOX(ID_VC_ConquestUnits, m_MapSettingsVictoryConditions, "conquest_units");
+	INIT_CHECKBOX(ID_VC_ConquestStructures, m_MapSettingsVictoryConditions, "conquest_structures");
+	INIT_CHECKBOX(ID_VC_CaptureTheRelic, m_MapSettingsVictoryConditions, "capture_the_relic");
+	INIT_CHECKBOX(ID_VC_Wonder, m_MapSettingsVictoryConditions, "wonder");
+	INIT_CHECKBOX(ID_VC_Regicide, m_MapSettingsVictoryConditions, "regicide");
 	OnConquestChanged();
 
 	// lock teams
-	wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->SetValue(wxString(m_MapSettings["LockTeams"]) == L"true");
+	wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->SetValue(wxString::FromUTF8(m_MapSettings["LockTeams"]) == "true");
 
 	// keywords
 	{
 		m_MapSettingsKeywords.clear();
 		for (AtIter keyword = m_MapSettings["Keywords"]["item"]; keyword.defined(); ++keyword)
-			m_MapSettingsKeywords.insert(std::wstring(keyword));
+			m_MapSettingsKeywords.insert(std::string(keyword));
 
-		INIT_CHECKBOX(ID_MapKW_Demo, m_MapSettingsKeywords, L"demo");
-		INIT_CHECKBOX(ID_MapKW_Naval, m_MapSettingsKeywords, L"naval");
+		INIT_CHECKBOX(ID_MapKW_Demo, m_MapSettingsKeywords, "demo");
+		INIT_CHECKBOX(ID_MapKW_Naval, m_MapSettingsKeywords, "naval");
+		INIT_CHECKBOX(ID_MapKW_New, m_MapSettingsKeywords, "new");
+		INIT_CHECKBOX(ID_MapKW_Trigger, m_MapSettingsKeywords, "trigger");
 	}
 
 #undef INIT_CHECKBOX
@@ -276,13 +283,13 @@ void MapSettingsControl::OnConquestChanged()
 AtObj MapSettingsControl::UpdateSettingsObject()
 {
 	// map name
-	m_MapSettings.set("Name", wxDynamicCast(FindWindow(ID_MapName), wxTextCtrl)->GetValue());
+	m_MapSettings.set("Name", wxDynamicCast(FindWindow(ID_MapName), wxTextCtrl)->GetValue().utf8_str());
 
 	// map description
-	m_MapSettings.set("Description", wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->GetValue());
+	m_MapSettings.set("Description", wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->GetValue().utf8_str());
 
 	// map preview
-	m_MapSettings.set("Preview", wxDynamicCast(FindWindow(ID_MapPreview), wxTextCtrl)->GetValue());
+	m_MapSettings.set("Preview", wxDynamicCast(FindWindow(ID_MapPreview), wxTextCtrl)->GetValue().utf8_str());
 
 	// reveal map
 	m_MapSettings.setBool("RevealMap", wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->GetValue());
@@ -294,37 +301,40 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 	else \
 		m_MapSettingsVictoryConditions.erase(name);
 
-	INSERT_VICTORY_CONDITION_CHECKBOX(L"conquest", ID_VC_Conquest);
-	INSERT_VICTORY_CONDITION_CHECKBOX(L"conquest_units", ID_VC_ConquestUnits);
-	INSERT_VICTORY_CONDITION_CHECKBOX(L"conquest_structures", ID_VC_ConquestStructures);
-	INSERT_VICTORY_CONDITION_CHECKBOX(L"capture_the_relic", ID_VC_CaptureTheRelic);
-	INSERT_VICTORY_CONDITION_CHECKBOX(L"wonder", ID_VC_Wonder);
-	INSERT_VICTORY_CONDITION_CHECKBOX(L"regicide", ID_VC_Regicide);
+	INSERT_VICTORY_CONDITION_CHECKBOX("conquest", ID_VC_Conquest);
+	INSERT_VICTORY_CONDITION_CHECKBOX("conquest_units", ID_VC_ConquestUnits);
+	INSERT_VICTORY_CONDITION_CHECKBOX("conquest_structures", ID_VC_ConquestStructures);
+	INSERT_VICTORY_CONDITION_CHECKBOX("capture_the_relic", ID_VC_CaptureTheRelic);
+	INSERT_VICTORY_CONDITION_CHECKBOX("wonder", ID_VC_Wonder);
+	INSERT_VICTORY_CONDITION_CHECKBOX("regicide", ID_VC_Regicide);
 
 #undef INSERT_VICTORY_CONDITION_CHECKBOX
 
 	AtObj victoryConditions;
-	victoryConditions.set("@array", L"");
-	for (std::set<std::wstring>::iterator it = m_MapSettingsVictoryConditions.begin(); it != m_MapSettingsVictoryConditions.end(); ++it)
-		victoryConditions.add("item", it->c_str());
+	victoryConditions.set("@array", "");
+	for (const std::string& victoryCondition : m_MapSettingsVictoryConditions)
+		victoryConditions.add("item", victoryCondition.c_str());
 	m_MapSettings.set("VictoryConditions", victoryConditions);
 
 	// keywords
 	{
-		if (wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->GetValue())
-			m_MapSettingsKeywords.insert(L"demo");
-		else
-			m_MapSettingsKeywords.erase(L"demo");
+#define INSERT_KEYWORDS_CHECKBOX(name, ID) \
+		if (wxDynamicCast(FindWindow(ID), wxCheckBox)->GetValue()) \
+			m_MapSettingsKeywords.insert(name); \
+		else \
+			m_MapSettingsKeywords.erase(name);
 
-		if (wxDynamicCast(FindWindow(ID_MapKW_Naval), wxCheckBox)->GetValue())
-			m_MapSettingsKeywords.insert(L"naval");
-		else
-			m_MapSettingsKeywords.erase(L"naval");
+		INSERT_KEYWORDS_CHECKBOX("demo", ID_MapKW_Demo);
+		INSERT_KEYWORDS_CHECKBOX("naval", ID_MapKW_Naval);
+		INSERT_KEYWORDS_CHECKBOX("new", ID_MapKW_New);
+		INSERT_KEYWORDS_CHECKBOX("trigger", ID_MapKW_Trigger);
+
+#undef INSERT_KEYWORDS_CHECKBOX
 
 		AtObj keywords;
-		keywords.set("@array", L"");
-		for (std::set<std::wstring>::iterator it = m_MapSettingsKeywords.begin(); it != m_MapSettingsKeywords.end(); ++it)
-			keywords.add("item", it->c_str());
+		keywords.set("@array", "");
+		for (const std::string& keyword : m_MapSettingsKeywords)
+			keywords.add("item", keyword.c_str());
 		m_MapSettings.set("Keywords", keywords);
 	}
 
@@ -447,11 +457,7 @@ void MapSidebar::OnFirstDisplay()
 	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
 	wxChoice* sizeChoice = wxDynamicCast(FindWindow(ID_RandomSize), wxChoice);
 	for (AtIter s = sizes["Data"]["item"]; s.defined(); ++s)
-	{
-		long tiles = 0;
-		wxString(s["Tiles"]).ToLong(&tiles);
-		sizeChoice->Append(wxString(s["Name"]), (void*)(intptr_t)tiles);
-	}
+		sizeChoice->Append(wxString::FromUTF8(s["Name"]), reinterpret_cast<void*>((*s["Tiles"]).getLong()));
 	sizeChoice->SetSelection(0);
 
 	// Load the RMS script list
@@ -463,7 +469,7 @@ void MapSidebar::OnFirstDisplay()
 	for (size_t i = 0; i < scripts.size(); ++i)
 	{
 		AtObj data = AtlasObject::LoadFromJSON(scripts[i]);
-		wxString name(data["settings"]["Name"]);
+		wxString name = wxString::FromUTF8(data["settings"]["Name"]);
 		if (!name.IsEmpty())
 			scriptChoice->Append(name, new AtObjClientData(*data["settings"]));
 	}
@@ -616,7 +622,7 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	wxBusyInfo busy(_("Generating map"));
 	wxBusyCursor busyc;
 
-	wxString scriptName(settings["Script"]);
+	wxString scriptName = wxString::FromUTF8(settings["Script"]);
 
 	// Copy the old map settings, so we don't lose them if the map generation fails
 	AtObj oldSettings = settings;
@@ -627,7 +633,7 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	if (qry.status < 0)
 	{
 		// Display error message and revert to old map settings
-		wxLogError(_("Random map script '%ls' failed"), scriptName.wc_str());
+		wxLogError(_("Random map script '%s' failed"), scriptName.c_str());
 		m_MapSettingsCtrl->SetMapSettings(oldSettings);
 	}
 

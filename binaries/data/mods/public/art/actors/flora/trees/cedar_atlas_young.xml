@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <props>
+        <prop actor="flora/trees/cedar_atlas_young_deadbranches.xml" attachpoint="root"/>
+        <prop actor="props/flora/decal_pine.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <textures>
+        <texture file="gaia/cedar_atlas_1.png" name="baseTex"/>
+        <texture file="gaia/cedar_atlas_1_norm.png" name="normTex"/>
+        <texture file="gaia/cedar_atlas_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="b">
+      <textures>
+        <texture file="gaia/cedar_atlas_2.png" name="baseTex"/>
+        <texture file="gaia/cedar_atlas_2_norm.png" name="normTex"/>
+        <texture file="gaia/cedar_atlas_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/cedar_atlas_young_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/cedar_atlas_young_2.dae</mesh>
+    </variant>
+    <variant frequency="2" name="3">
+      <mesh>gaia/cedar_atlas_young_3.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

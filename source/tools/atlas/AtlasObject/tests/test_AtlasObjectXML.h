@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -141,7 +141,7 @@ public:
 		try_parse_save(
 			"<?xml version=\"1.0\" encoding=\"utf-8\"?><foo>&#xfffc;&#xfffd;&#x10000;&#x10ffff;</foo>",
 			"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-			"<foo>\xEF\xBF\xBC\xEF\xBF\xBD\xEF\xBF\xBD\xEF\xBF\xBD</foo>\n"
+			"<foo>\xEF\xBF\xBC\xEF\xBF\xBD\xF0\x90\x80\x80\xF4\x8F\xBF\xBF</foo>\n"
 		);
 	}
 

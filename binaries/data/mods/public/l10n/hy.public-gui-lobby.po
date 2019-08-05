@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Gags98 <gagspapikyan@gmail.com>, 2017
+# Vahe Avagyan <vahe-a@outlook.fr>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-17 22:43+0200\n"
-"PO-Revision-Date: 2018-10-18 03:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-11-06 16:32+0100\n"
+"PO-Revision-Date: 2019-07-27 10:49+0000\n"
+"Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +20,11 @@ msgstr ""
 
 #: gui/lobby/lobby.js:50
 msgid "Online"
-msgstr "Առցանց"
+msgstr "Գծի վրա"
 
 #: gui/lobby/lobby.js:51
 msgid "Away"
-msgstr ""
+msgstr "Բացակա"
 
 #: gui/lobby/lobby.js:52
 msgid "Busy"
@@ -31,16 +32,16 @@ msgstr "Զբաղված"
 
 #: gui/lobby/lobby.js:53
 msgid "Offline"
-msgstr ""
+msgstr "Անցանց"
 
 #: gui/lobby/lobby.js:54
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "Անհայտ"
 
 #: gui/lobby/lobby.js:58
 msgid "Moderator"
-msgstr ""
+msgstr "Մոդերատոր"
 
 #: gui/lobby/lobby.js:59
 msgid "Player"
@@ -62,12 +63,12 @@ msgstr ""
 #: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr ""
+msgstr "%(nick)s միացել է:"
 
 #: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s հեռացել է:"
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
@@ -80,7 +81,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Հիմա մոդերատոր եք:"
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
@@ -142,7 +143,7 @@ msgstr ""
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -169,42 +170,42 @@ msgstr ""
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr ""
+msgstr "Հաստատում"
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
-msgstr ""
+msgstr "Ոչ"
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
-msgstr ""
+msgstr "Այո"
 
 #: gui/lobby/lobby.js:460
 msgctxt "previous page"
 msgid "Back"
-msgstr ""
+msgstr "Գաղտնաբառ"
 
 #: gui/lobby/lobby.js:461
 msgctxt "previous page"
 msgid "Main Menu"
-msgstr ""
+msgstr "Գլխավոր մենյու"
 
 #: gui/lobby/lobby.js:530
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Ամեն"
 
 #: gui/lobby/lobby.js:535
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Ամեն"
 
 #: gui/lobby/lobby.js:539 gui/lobby/lobby.js:553
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Ամեն"
 
 #: gui/lobby/lobby.js:547
 #, javascript-format
@@ -240,7 +241,7 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Պատճառ. %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
@@ -276,12 +277,12 @@ msgstr ""
 
 #: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1524
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/lobby/lobby.js:1148
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Խաղացողներ․ %(current)s/%(total)s "
 
 #: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
@@ -318,37 +319,37 @@ msgstr ""
 #: gui/lobby/lobby.js:1444
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:1449
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s%(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:1458 gui/lobby/lobby.js:1479 gui/lobby/lobby.js:1506
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:1463 gui/lobby/lobby.js:1484 gui/lobby/lobby.js:1511
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:1473
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/lobby.js:1501
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:1502
 msgid "Private"
@@ -359,28 +360,28 @@ msgstr ""
 #: gui/lobby/lobby.js:1527
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:1532
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:1587
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:1589
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -393,12 +394,12 @@ msgstr ""
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Մուտքագրեք ձեր գաղտնաբառը"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Մուտքագրեք ձեր գաղտնաբառը"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
@@ -410,7 +411,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
@@ -422,41 +423,41 @@ msgid ""
 "allowed to register more than one account within one hour."
 msgstr ""
 
-#: gui/prelobby/common/terms/termslobby.js:7
+#: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
 msgstr ""
 
-#: gui/prelobby/common/terms/termslobby.js:8
+#: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
 msgstr ""
 
-#: gui/prelobby/common/terms/termslobby.js:16
+#: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
-msgstr ""
+msgstr "Օգտագործման պայմաններ"
 
-#: gui/prelobby/common/terms/termslobby.js:17
+#: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
 msgstr ""
 
-#: gui/prelobby/common/terms/termslobby.js:25
+#: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
 msgstr ""
 
-#: gui/prelobby/common/terms/termslobby.js:26
+#: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
 msgstr ""
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
-msgstr ""
+msgstr "Մուտք գործել"
 
 #: gui/prelobby/login/login.js:32
 msgid "Connecting…"
-msgstr ""
+msgstr "Մուտքագրում․․․"
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
-msgstr ""
+msgstr "Ստեղծել նոր հաշիվ"
 
 #: gui/prelobby/register/register.js:26
 msgid "Registering…"
@@ -489,12 +490,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):193
 msgid "Map Name"
-msgstr ""
+msgstr "Քարտեզի Անունը"
 
 #: gui/lobby/lobby_panels.xml:(heading):196
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Չափ"
 
 #: gui/lobby/lobby_panels.xml:(heading):199
 msgctxt "map"
@@ -503,7 +504,7 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(heading):202
 msgid "Players"
-msgstr ""
+msgstr "Խաղացողներ"
 
 #: gui/lobby/lobby_panels.xml:(heading):286
 msgid "Rank"
@@ -527,7 +528,7 @@ msgstr ""
 #: gui/lobby/lobby_panels.xml:(caption):64
 #: gui/lobby/lobby_panels.xml:(caption):343
 msgid "Wins:"
-msgstr ""
+msgstr "Հաղթանակներ․"
 
 #: gui/lobby/lobby_panels.xml:(caption):68
 #: gui/lobby/lobby_panels.xml:(caption):347
@@ -555,12 +556,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):132
 msgid "Map Size:"
-msgstr ""
+msgstr "Քարտեզի Չափը."
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby_panels.xml:(caption):157
 msgid "Join Game"
-msgstr ""
+msgstr "Միանալ Խաղին"
 
 #: gui/lobby/lobby_panels.xml:(caption):163
 msgid "Host Game"
@@ -572,12 +573,12 @@ msgstr ""
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
-msgstr ""
+msgstr "Ուղարկել"
 
 #: gui/lobby/lobby_panels.xml:(caption):299
 #: gui/lobby/lobby_panels.xml:(caption):361
 msgid "Back"
-msgstr ""
+msgstr "Գաղտնաբառ"
 
 #: gui/lobby/lobby_panels.xml:(caption):305
 msgid "Update"
@@ -601,11 +602,11 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr ""
+msgstr "Մասնակցային անուն."
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr ""
+msgstr "Գաղտնաբառ."
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
@@ -618,7 +619,7 @@ msgstr "Չեղարկել"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr ""
+msgstr "Ստեղծել նոր հաշիվ"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
@@ -720,7 +721,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
-"    IP addresses will not be saved for longer than two years for this "
+"    IP addresses will not be saved for longer than three years for this "
 "purpose."
 msgstr ""
 
@@ -838,7 +839,9 @@ msgid ""
 msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
-msgid "Wildfire Games obtains all personal data from the user (GDPR 14)."
+msgid ""
+"All personal data that Wildfire Games processes is obtained from the user "
+"(GDPR 14)."
 msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
@@ -884,74 +887,78 @@ msgid ""
 msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
-msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
+msgid "   To exercise any user right, please refer to this contact."
 msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
+msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
+msgstr ""
+
+#: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:57
+#: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:58
+#: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:59
+#: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:60
+#: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:61
+#: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
 "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:62
+#: gui/prelobby/common/terms/Privacy_Policy.txt:63
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:64
+#: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:65
+#: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:66
+#: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:67
+#: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:68
+#: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
 " 4. Wildfire Games informs users of the purposes, legal grounds, legitimate "
 "interests and retention periods of personal data processing at the time it "
@@ -960,33 +967,33 @@ msgid ""
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:69
+#: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:70
+#: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:71
+#: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:72
+#: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:73
+#: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
 " 9. Wildfire Games informs users of their right to access, to rectify, to "
 "erase personal data and the right to restrict, to withdraw consent to, to "
@@ -994,30 +1001,30 @@ msgid ""
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:74
+#: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:75
+#: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
-"12. Wildfire Games informs the users that to exercise their rights, users "
+"11. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:76
+#: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
-"13. Wildfire Games will not knowingly collect personal data from children "
+"12. Wildfire Games will not knowingly collect personal data from children "
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:77
+#: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
-"14. Where Wildfire Games processes sensitive personal data based on "
+"13. Where Wildfire Games processes sensitive personal data based on "
 "legitimate interests, Wildfire Games considers performing, recording and "
 "periodically reviewing Legitimate Interests Assessments and Data Protection "
 "Impact Assessments (GDPR 35) to become confident that the individual's "
@@ -1026,7 +1033,7 @@ msgid ""
 "a very good reason to."
 msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:79
+#: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
@@ -1048,7 +1055,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
-"Due to the subject matter of historic warfare, description and depcition of "
+"Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
 msgstr ""

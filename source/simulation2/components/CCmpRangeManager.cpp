@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "simulation2/components/ICmpVisibility.h"
 #include "simulation2/components/ICmpVision.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/helpers/MapEdgeTiles.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
 
@@ -2020,9 +2021,6 @@ public:
 	 */
 	inline bool LosIsOffWorld(ssize_t i, ssize_t j) const
 	{
-		// WARNING: CCmpPathfinder::UpdateGrid needs to be kept in sync with this
-		const ssize_t edgeSize = 3; // number of vertexes around the edge that will be off-world
-
 		if (m_LosCircular)
 		{
 			// With a circular map, vertex is off-world if hypot(i - size/2, j - size/2) >= size/2:
@@ -2030,7 +2028,7 @@ public:
 			ssize_t dist2 = (i - m_TerrainVerticesPerSide/2)*(i - m_TerrainVerticesPerSide/2)
 					+ (j - m_TerrainVerticesPerSide/2)*(j - m_TerrainVerticesPerSide/2);
 
-			ssize_t r = m_TerrainVerticesPerSide/2 - edgeSize + 1;
+			ssize_t r = m_TerrainVerticesPerSide / 2 - MAP_EDGE_TILES + 1;
 				// subtract a bit from the radius to ensure nice
 				// SoD blurring around the edges of the map
 
@@ -2040,8 +2038,9 @@ public:
 		{
 			// With a square map, the outermost edge of the map should be off-world,
 			// so the SoD texture blends out nicely
-
-			return (i < edgeSize || j < edgeSize || i >= m_TerrainVerticesPerSide-edgeSize || j >= m_TerrainVerticesPerSide-edgeSize);
+			return i < MAP_EDGE_TILES || j < MAP_EDGE_TILES ||
+				i >= m_TerrainVerticesPerSide - MAP_EDGE_TILES ||
+				j >= m_TerrainVerticesPerSide - MAP_EDGE_TILES;
 		}
 	}
 
@@ -2439,3 +2438,6 @@ public:
 };
 
 REGISTER_COMPONENT_TYPE(RangeManager)
+
+#undef LOS_TILES_RATIO
+#undef DEBUG_RANGE_MANAGER_BOUNDS

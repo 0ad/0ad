@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_ship_bireme">
+<Entity parent="template_unit_ship_bireme">
   <Footprint>
     <Square width="8.0" depth="28.0"/>
     <Height>10.0</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
     <SpecificName>Mankar Cirya</SpecificName>
     <Icon>units/noldor_ship_bireme.png</Icon>
   </Identity>

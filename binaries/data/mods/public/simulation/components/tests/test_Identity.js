@@ -2,12 +2,13 @@ Engine.LoadComponentScript("Identity.js");
 
 let cmpIdentity = ConstructComponent(5, "Identity", {
 	"Civ": "iber",
-	"GenericName": "Iberian Skirmisher"
+	"GenericName": "Iberian Skirmisher",
+	"Phenotype": { "_string": "male" },
 });
 
 TS_ASSERT_EQUALS(cmpIdentity.GetCiv(), "iber");
 TS_ASSERT_EQUALS(cmpIdentity.GetLang(), "greek");
-TS_ASSERT_EQUALS(cmpIdentity.GetGender(), "male");
+TS_ASSERT_EQUALS(cmpIdentity.GetPhenotype(), "male");
 TS_ASSERT_EQUALS(cmpIdentity.GetRank(), "");
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetClassesList(), []);
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetVisibleClassesList(), []);
@@ -20,7 +21,7 @@ TS_ASSERT_EQUALS(cmpIdentity.GetGenericName(), "Iberian Skirmisher");
 cmpIdentity = ConstructComponent(6, "Identity", {
 	"Civ": "iber",
 	"Lang": "iberian",
-	"Gender": "female",
+	"Phenotype":  { "_string": "female" },
 	"GenericName": "Iberian Skirmisher",
 	"SpecificName": "Lusitano Ezpatari",
 	"SelectionGroupName": "units/iber_infantry_javelinist_b",
@@ -39,7 +40,7 @@ cmpIdentity = ConstructComponent(6, "Identity", {
 
 TS_ASSERT_EQUALS(cmpIdentity.GetCiv(), "iber");
 TS_ASSERT_EQUALS(cmpIdentity.GetLang(), "iberian");
-TS_ASSERT_EQUALS(cmpIdentity.GetGender(), "female");
+TS_ASSERT_EQUALS(cmpIdentity.GetPhenotype(), "female");
 TS_ASSERT_EQUALS(cmpIdentity.GetRank(), "Basic");
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetClassesList(), ["CitizenSoldier", "Human", "Organic", "Javelin", "Basic"]);
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetVisibleClassesList(), ["Javelin"]);
@@ -50,3 +51,12 @@ TS_ASSERT_EQUALS(cmpIdentity.CanUseFormation("special/formations/skirmish"), tru
 TS_ASSERT_EQUALS(cmpIdentity.CanUseFormation("special/formations/line"), false);
 TS_ASSERT_EQUALS(cmpIdentity.GetSelectionGroupName(), "units/iber_infantry_javelinist_b");
 TS_ASSERT_EQUALS(cmpIdentity.GetGenericName(), "Iberian Skirmisher");
+
+cmpIdentity = ConstructComponent(7, "Identity", {
+	"Phenotype": { "_string": "First Second" },
+});
+TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetPossiblePhenotypes(), ["First", "Second"]);
+TS_ASSERT(["First", "Second"].indexOf(cmpIdentity.GetPhenotype()) !== -1);
+
+cmpIdentity = ConstructComponent(8, "Identity", {});
+TS_ASSERT_EQUALS(cmpIdentity.GetPhenotype(), "default");

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_tower">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Kushite Siege Tower</GenericName>
+    <SpecificName>iwn n ms</SpecificName>
+    <Icon>units/hele_siege_tower.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/hellenes/siege_tower.xml</Actor>
+  </VisualActor>
+</Entity>

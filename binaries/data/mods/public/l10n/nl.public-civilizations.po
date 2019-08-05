@@ -1,8 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Andreas I <andreasi@tutanota.com>, 2019
 # Anique van Berne <avanberne@gmail.com>, 2016
 # Bart Groeneveld, 2017
 # Bart R <bartvrijn@gmail.com>, 2017
@@ -10,6 +11,7 @@
 # BoucheDag <bouche4dag@gmail.com>, 2014
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # ClementL <lewisclement@gmail.com>, 2014
+# Freagarach . <freagarach@gmail.com>, 2019
 # Ilya <ilya.crols@gmail.com>, 2014
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Jos Arends <Tekno23@hotmail.nl>, 2014
@@ -33,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-05-18 15:43+0000\n"
-"Last-Translator: Sam Crauwels <sam.crauwels@gmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-06-01 19:58+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,8 +87,8 @@ msgid ""
 msgstr "De Grieken waren erg succesvol in de Hellenisatie van ettelijke andere gebieden. Tijdens de klassieke oudheid was Grieks de lingua franca, gesproken van Spanje tot in India."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Schepen worden 25% sneller gebouwd."
+msgid "Allied warships −25% construction time."
+msgstr "Geallieerde aanvalsschepen -25% bouwtijd."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -335,8 +337,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Keltische religie inspireerde hun moed om te vechten."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "-20% grondstof kosten voor geallieerde helers."
+msgid "Allied healers −20% resource costs."
+msgstr "Geallieerde helers kosten -20% grondstoffen."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -442,7 +444,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech…"
-msgstr ""
+msgstr "Caractacus, in de Latijnse vorm, is een variante van Karatakos, zijn echte naam, welke te zien was op vele munten. Onder deze naam werd hij herinnerd als een moedige verdediger van Britannia tegen de Romeinen na hun invasie in 43 N.C. Als zoon van koning Cunobelin van de Catuvellauni stam heeft Karatakos voor negen jaar tegen de Romeinen gevochten, met weinig succes. Zijn troepen zijn uiteindelijk naar Wales gevlucht, waar ze voor goed verslagen werden. Uiteindelijk keerde hij terug naar Noord-Britannia waar hij overgeleverd werd aan de Romeinen. Hij mocht in leven blijven van de keizer Claudius en stierf in Italië. Er zijn verhalen dat hij bekeerd werd tot het christendom wanneer zijn vrouw ook bekeerd werd, maar daarover is er geen sluitend bewijs. Het is eigenaardiger hoe hij kon verder leven na de gevangenneming door de Romeinen. In de meeste gevallen vermoordden Romeinen dergelijken mannen in het openbaar tijdens een viering. Karatakos kwam op zijn eigen vraag voor de keizer en de senaat. Wat daar gezegd is, is niet bekend, maar Tacticus wijst een bekende speech aan hem toe... "
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -452,7 +454,7 @@ msgid ""
 "as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
 "Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
 "tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aide. Kunobelinos seems to have been indifferent to the Romans. He traded "
+"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
 "with them freely, but had few qualms subjugating known Roman allies, and "
 "even sent his youngest son Adminius as a fosterling to be educated in Roman "
 "Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
@@ -580,8 +582,8 @@ msgid ""
 msgstr "Zoals het Iberische schiereiland was Noord Afrika gekend als paardenland. Ze konden tot 100.000 nieuwe ruiters per jaar opleiden. Het was ook het gebied van de inmiddels uitgestorven Noord-Afrikaanse bosolifant."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% handelsbonus op geallieerde, internationale handelsroutes."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Geallieerde markten +10% internationale bonus."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -787,8 +789,8 @@ msgid "Gauls"
 msgstr "Gallië"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% onderzoeksduur voor technologieën van geallieerden."
+msgid "Allied structures −20% technology research time."
+msgstr "Technologieën in geallieerde gebouwen -20% onderzoekstijd."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -987,10 +989,8 @@ msgid ""
 msgstr "Zoals Numidië in Noord-Afrika was ook het Iberische schiereiland gekend als een paardenstreek. De streek kon tot 100.000 nieuwe ruiters trainen per jaar."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "Burgersoldaat tirailleurs (infanterie en cavalerie) kosten 20% minder voor geallieerden."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Geallieerde burgersoldaat speerwerpers kosten -20% grondstoffen."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1154,23 +1154,23 @@ msgstr "Koesjiten "
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 msgid "The Pyramids of Meroe"
-msgstr ""
+msgstr "De Pyramides van Meroë."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 msgid ""
 "Building a Kushite pyramid increases Civic Center territory influence by "
 "+10% for each one built."
-msgstr ""
+msgstr "Het bouwen van een Koesjitische pyramide vergroot het territoriumbereik van een Beschavingscentrum met 10% per gebouwde pyramide."
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Name
 msgid "Mineral Deposits"
-msgstr ""
+msgstr "Minerale afzettingen"
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Description
 msgid ""
 "Kushite players receive a free extra Metal Mine somewhere in their home "
 "territory."
-msgstr ""
+msgstr "Koesjitische spelers ontvangen gratis een extra Metaalmijn ergens binnen hun startterritorium."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1181,17 +1181,15 @@ msgstr "Olifantenoverzicht"
 msgid ""
 "Can capture Gaia elephants and garrison them into a corral to reduce "
 "training costs for War Elephants."
-msgstr ""
+msgstr "Kan Gaia olifanten vangen en in een stal onderbrengen om de rekruteringskosten van Krijgsolifanten te verminderen."
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
 msgstr "Olifant Leveranciers"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Vermindert de kost en trainingstijd van olifanten met 20% voor alle geallieerden van Kushitische spelers."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Geallieerde olifanten kosten -20% grondstoffen en trainingstijd."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1255,23 +1253,23 @@ msgstr "Monumentale Architectuur"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+50% Levenspunten en -50% bouwtijd voor Beschavingscentra, Tempels, Piramides en Wonderen."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
-msgstr ""
+msgstr "Sta toe om elite genezers te rekruteren"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Hoogepriester van Amun"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr "Laat je priesters werken voor de Hoge priester zelf - Moge Amun hem zegenen."
+msgstr "Laat uw priesters werken voor de Hoge priester zelf - Moge Amun hem zegenen."
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
@@ -1287,7 +1285,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr ""
+msgstr "Koesjitische Afrikanen"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
@@ -1297,43 +1295,43 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[0].Name
 msgid "Temple of Amun"
-msgstr ""
+msgstr "Tempel van Amun"
 
 #: simulation/data/civs/kush.jsonStructures[0].Special
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "De Koesjiten kunnen individuele Tempels opwaarderen tot Tempels van Amun, welke Napatan Tempelwacht kampioenen kunnen rekruteren alsmede eenheden vlugger kunnen herstellen."
 
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
 msgid "History."
-msgstr ""
+msgstr "Geschiedenis."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
-msgstr ""
+msgstr "Tempel van Apedemak"
 
 #: simulation/data/civs/kush.jsonStructures[1].Special
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "De Koesjiten kunnen individuele Tempels opwaarderen tot Tempels van Apedemak, welke Meroë Tempelwacht kampioenen kunnen rekruteren alsmede eenheden vlugger kunnen herstellen."
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr ""
+msgstr "Koesjitische Piramides"
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
 "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
 "Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
 "territory effect to Civic Centers."
-msgstr ""
+msgstr "Het bouwen van een Kleine Koesjitische Pyramide geeft toegang tot de Stadsfase. Het bouwen van een Grote Koesjitische Pyramide geeft toegang tot de Grootstadsfase. Tevens geeft elke gebouwde pyramide +10% territoriumeffect aan Beschavingscentra."
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr ""
+msgstr "De Koesjititen hebben meer dan 200 pyramides gebouwd in Nubië."
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -1400,8 +1398,8 @@ msgid ""
 msgstr "De Grieken waren erg succesvol in de vergrieksing van ettelijke andere gebieden. Tijdens de klassieke oudheid was Grieks de lingua franca, gesproken van Spanje tot in India."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% verkoopprijs op de markt."
+msgid "Allies +20% barter sell prices."
+msgstr " Geallieerden +20% verkoopprijzen van grondstoffen. "
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1621,14 +1619,14 @@ msgid ""
 msgstr "Macedonië was een Grieks koninkrijk uit de oudheid.. Onder heerschappij van Alexander de Grootte nam het Macedonische leger ongeveer de volledige door hen gekende wereld over, inclusief Egypte, Perzië en delen van het Indische subcontinent. Dit zorgde voor een vermenging van de Griekse en Oosterse culturen."
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
-msgstr "Maurya's Indië"
+msgid "Mauryas"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Maurya heeft een +10% populatie maximum bonus (bijv. 330 max i.p.v. de gebruikelijke 300)."
+msgstr "Maurya heeft een +10% populatie maximum bonus (bijvoorbeeld 330 max i.p.v. de gebruikelijke 300)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1638,15 +1636,15 @@ msgstr "Keizer der Keizers."
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "De Mauryadynastie regeerde over een gebied dat dozijnen oude koninkrijken overspande. 5 miljoen vierkante kilometer in totaal. Met een bevolking van zowat 60 miljoen. De Mauryaanse regenten hielden de titel van \"keizer der keizers\" en gaven bevelen aan een leger van 600 000 infanteriesoldaten, 9000 olifanten, 8000 paardenwagens en 30 000 ruiter. Het grootste leger van die tijd."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
-msgstr "Maurya heeft toegang tot 4 types kampioenen."
+msgid "The Mauryas enjoy access to 4 champions."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -1661,8 +1659,10 @@ msgid ""
 msgstr "Kshatriya of Kashtriya, met de betekenis van krijger, is één van de vier varna's (sociale ordes) in het Hindoeïsme. Traditioneel zijn Kshatriya een militaire orde, en de leidende elite van het Vedisch-Hindoeïstische sociale systeem, bepaald door de Vedas en de wetten van Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "-50% kosten en onderzoeksduur voor geallieerde tempels en hun onderzoeken."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Geallieerde tempels kosten -50% grondstoffen en bouwtijd; tempeltechnologieën kosten -50% grondstoffen en onderzoekstijd."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1767,7 +1767,7 @@ msgstr "Olifantenstallen"
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr "Rekruteer olifantboogschutters en werkolifanten in stadsfase. In grootstadsfase kan je ook kampioen oorlogsolifanten rekruteren."
+msgstr "Rekruteer Olifantboogschutters en Werkolifanten in Stadsfase. In Grootstadsfase kunt u ook kampioen Oorlogsolifanten rekruteren."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1835,8 +1835,8 @@ msgid ""
 msgstr "De Perzen werfden een groot aantal infanteriesoldaten gedurende oorlogen. Dit kwam door de enorm grootte van het Achaemenidische rijk en de organisatie er van. In het algemeen was de Perzische infanterie goed getraind en vochten ze met vastberadenheid. De infanterie was echter niet goed in dichte gevechten. Met de uitzondering van eliteregimenten was de Perzische infanterie geen professioneel leger."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Hoger inkomen (+15%) uit handelsroutes over land voor geallieerde handelaars."
+msgid "Allied land traders +15% trade gain."
+msgstr "Geallieerde handelaren te land +15% winst."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2041,15 +2041,16 @@ msgstr "Ptolemaeïsch Egypte"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
-"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr "De Ptolemeërs krijgen het huurlingenkamp. Een soort kazerne die in neutraal gebied kan gebouwd worden, en van waaruit huurlingen kunnen gerekruteerd worden."
+msgstr "De Ptolemeërs krijgen het huurlingenkamp. Een soort Kazerne die in neutraal gebied gebouwd kan worden en van waaruit huurlingen gerekruteerd kunnen worden."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
 msgstr "Huurlingenleger"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2080,8 +2081,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Kan gaia olifanten en kamelen vangen om de rekruteringskosten van dergelijke eenheden te verminderen."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Alle geallieerde krachten krijgen automatisch een klein beetje extra voedsel."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Geallieerden +1.0 voedselbonus."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2236,18 +2237,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Moet in neutraal gebied gebouwd worden. Heeft geen invloed op het territorium. Kan gebruikt worden om huurlingen te rekruteren."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "De Grieks-Macedonische Ptolemeïsche dynastie gebruikte veel Griekse en andere buitenlandse soldaten in zijn leger. Hoofdzakelijk omdat de originele Egyptenaren niet altijd even trouw waren aan hun Ptolemeïsche heersers. Zo heeft hoog Egypte een tijd lang buiten de controle van de Ptolemeërs geleefd na een opstand. Huurlingen daarentegen waren gehard door de strijd, en hun trouwheid kon gekocht worden. Soms waren ze goedkoop, soms niet. Maar voor Egypte was dit geen probleem. Het was de rijkste van Alexanders opvolgers."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Vuurtoren"
@@ -2313,8 +2302,8 @@ msgid ""
 msgstr "Romeins burgerschap was veel waard in de klassieke oudheid. Basisrechten en privileges werden enkel gegeven aan Romeinse burgers, en niet aan veroverde volkeren. Het aanvallen van een Romeinse burger was bijna net zo erg als het aanvallen van Rome, dus zou ook volledig Rome reageren op de aanvaller."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "-20% trainingsduur voor geallieerde infanterie."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Geallieerde burgersoldaat voetsoldaten -20% trainingstijd."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2523,8 +2512,8 @@ msgid ""
 msgstr "Seleucidische krijgskunde (en die van alle opvolgers) evolueerde in de 3de en 2de eeuw V.C.. Door contact met oostelijke groepen zoals Parthië, en de continue revoluties binnen afgelegen satrapieën als Bactrië zorgden dat de Seleuciden hun leger moesten hervormen, en hun tactieken wijzigen. Vooral hun gebruik van ruiters was verouderd. De oorlogen in het westen met de Romeinen en in Galatië zorgden er ook voor dat de infanterie van het Seleucidische leger flexibeler moest worden."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Geallieerde beschavingscentra zijn 20% goedkoper."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Geallieerde Beschavingscentra kosten -20% grondstoffen."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2709,15 +2698,15 @@ msgstr "Seleukos A' Nikator"
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleukus "
+" the verge of collapse he managed to weld back together the empire Seleucus "
 "I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"Parthia were brought to heel, temporarily securing his eastern borders. He "
 "then turned his attention to mother Greece, attempting to fulfill the dreams"
 " of his fathers by invading Greece under the pretext of liberation. The "
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr "Antiochus erfde een onrustig koninkrijk aan het begin van zijn regering. Vanaf de rand van de ineenstorting slaagde hij erin het rijk terug te smeden dat Seleukus zo hard had moeten vinden. De rebelse oostelijke satrapen van Bactria en Parthia werden op de hiel gebracht, waardoor zijn oostelijke grenzen tijdelijk werden veiliggesteld. Vervolgens richtte hij zijn aandacht op moeder Griekenland, in een poging om de dromen van zijn vaders te vervullen door Griekenland binnen te vallen onder het voorwendsel van bevrijding. De Achaean League en het koninkrijk Pergamon verenigden zich samen met de Romeinen om hem te verslaan in de Slag bij Magnesia, en begroeven voor altijd de droom om Alexander's rijk te herenigen."
+msgstr "Antiochus erfde een onrustig koninkrijk aan het begin van zijn regering. Vanaf de rand van de ineenstorting slaagde hij erin het rijk terug te smeden waarvoor Seleukus zo hard had moeten vechten. De rebelse oostelijke satrapen van Bactria en Parthia werden op de hiel gebracht, waardoor zijn oostelijke grenzen tijdelijk werden veiliggesteld. Vervolgens richtte hij zijn aandacht op moeder Griekenland, in een poging om de dromen van zijn vaders te vervullen door Griekenland binnen te vallen onder het voorwendsel van bevrijding. De Achaeïsche Bond en het koninkrijk van Pergamon verenigden zich samen met de Romeinen om hem te verslaan in de Slag bij Magnesia en begroeven voor altijd de droom om Alexanders rijk te herenigen."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
@@ -2813,10 +2802,8 @@ msgid ""
 msgstr "Onder de wetten geschreven door de mythische wetgever Lygurcus, werd het instituut van de Agoge opgericht. Daar konden Spartanen getraind worden vanaf zesjarige leeftijd. Zo kreeg de Spartaanse staat zijn superieure krijgers."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Verhoog "
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Geallieerde burgersoldaat speerdragers -20% trainingstijd."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -68,8 +69,25 @@ struct SGUISetting
 {
 	SGUISetting() : m_pSetting(NULL) {}
 
+	/**
+	 * Stores the instance of the setting type holding the setting data. Can be set from XML and JS.
+	 */
 	void				*m_pSetting;
+
 	EGUISettingType		m_Type;
+
+	template<typename T>
+	void Init(IGUIObject& pObject, const CStr& Name);
+
+	/**
+	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
+	 */
+	std::function<bool(JSContext* cx, JS::HandleValue v)> m_FromJSVal;
+
+	/**
+	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
+	 */
+	std::function<void(JSContext* cx, JS::MutableHandleValue v)> m_ToJSVal;
 };
 
 /**
@@ -79,7 +97,6 @@ struct SGUISetting
 class IGUIObject
 {
 	friend class CGUI;
-	friend class CInternalCGUIAccessorBase;
 	friend class IGUIScrollBar;
 	friend class GUITooltip;
 
@@ -89,7 +106,7 @@ class IGUIObject
 	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
-	IGUIObject();
+	IGUIObject(CGUI* pGUI);
 	virtual ~IGUIObject();
 
 	/**
@@ -190,6 +207,11 @@ public:
 	virtual void UpdateCachedSize();
 
 	/**
+	 * Reset internal state of this object.
+	 */
+	virtual void ResetStates();
+
+	/**
 	 * Set a setting by string, regardless of what type it is.
 	 *
 	 * example a CRect(10,10,20,20) would be "10 10 20 20"
@@ -219,6 +241,12 @@ public:
 	 * @param pGUI GUI instance to associate the script with
 	 */
 	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
+
+	/**
+	 * Creates the JS Object representing this page upon first use.
+	 * Can be overridden by derived classes to extend it.
+	 */
+	virtual void CreateJSObject();
 
 	/**
 	 * Retrieves the JSObject representing this GUI object.
@@ -309,23 +337,13 @@ protected:
 	 */
 	virtual float GetBufferedZ() const;
 
-	void SetGUI(CGUI* const& pGUI);
-
 	/**
 	 * Set parent of this object
 	 */
 	void SetParent(IGUIObject* pParent) { m_pParent = pParent; }
 
-	/**
-	 * Reset internal state of this object
-	 */
-	virtual void ResetStates()
-	{
-		// Notify the gui that we aren't hovered anymore
-		UpdateMouseOver(NULL);
-	}
-
 public:
+
 	CGUI* GetGUI() { return m_pGUI; }
 	const CGUI* GetGUI() const { return m_pGUI; }
 
@@ -333,6 +351,11 @@ public:
 	 * Take focus!
 	 */
 	void SetFocus();
+
+	/**
+	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
+	 */
+	virtual void* GetTextOwner() { return nullptr; }
 
 protected:
 	/**
@@ -399,9 +422,9 @@ protected:
 	 * Does nothing if no script has been registered for that action.
 	 *
 	 * @param Action Name of action
-	 * @param Argument Argument to pass to action
+	 * @param paramData JS::HandleValueArray arguments to pass to the event.
 	 */
-	void ScriptEvent(const CStr& Action, JS::HandleValue Argument);
+	void ScriptEvent(const CStr& Action, JS::HandleValueArray paramData);
 
 	void SetScriptHandler(const CStr& Action, JS::HandleObject Function);
 
@@ -496,12 +519,12 @@ protected:
 	 *
 	 * @see SetupSettings()
 	 */
-	public:
+public:
 	std::map<CStr, SGUISetting>				m_Settings;
 
-private:
+protected:
 	// An object can't function stand alone
-	CGUI									*m_pGUI;
+	CGUI* const m_pGUI;
 
 	// Internal storage for registered script handlers.
 	std::map<CStr, JS::Heap<JSObject*> >	m_ScriptHandlers;
@@ -520,6 +543,7 @@ class CGUIDummyObject : public IGUIObject
 	GUI_OBJECT(CGUIDummyObject)
 
 public:
+	CGUIDummyObject(CGUI* pGUI) : IGUIObject(pGUI) {}
 
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.

@@ -16,7 +16,7 @@
     <Civ>ptol</Civ>
     <GenericName>Lighthouse</GenericName>
     <SpecificName>Pháros</SpecificName>
-    <Classes datatype="tokens">-ConquestCritical Lighthouse</Classes>
+    <Classes datatype="tokens">Lighthouse</Classes>
     <VisibleClasses datatype="tokens">-City Town</VisibleClasses>
     <Tooltip>Build along the shore to reveal the shorelines over the entire map. Very large vision range: 180 meters.</Tooltip>
     <Icon>structures/lighthouse.png</Icon>
@@ -39,7 +39,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>
       <constructed>interface/complete/building/complete_temple.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>

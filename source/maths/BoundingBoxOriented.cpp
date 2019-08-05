@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ CBoundingBoxOriented::CBoundingBoxOriented(const CBoundingBoxAligned& bound)
 	}
 	else
 	{
-		bound.GetCentre(m_Center);
+		bound.GetCenter(m_Center);
 
 		// the axes of an AABB are the world-space axes
 		m_Basis[0].X = 1.f; m_Basis[0].Y = 0.f; m_Basis[0].Z = 0.f;

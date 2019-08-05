@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base"/>
+  </group>
+  <group>
+    <variant frequency="4" name="a">
+      <textures>
+        <texture file="gaia/tree_baobab.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="b">
+      <textures>
+        <texture file="gaia/tree_baobab_thin.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_thin_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_thin_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="c">
+      <textures>
+        <texture file="gaia/tree_baobab_sparse.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_sparse_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_sparse_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/baobab_1_leaves.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/baobab_2_leaves.dae</mesh>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/baobab_3_leaves.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

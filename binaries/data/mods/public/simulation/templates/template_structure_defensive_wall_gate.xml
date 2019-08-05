@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_wall">
+  <!-- We need a Cost component, although gates cannot be built directly, as Cost/BuildTime is required to prevent instantaneous repair -->
+  <Cost>
+    <BuildTime>38</BuildTime>
+    <Resources>
+      <stone>60</stone>
+    </Resources>
+  </Cost>
+  <GarrisonHolder disable=""/>
+  <Gate>
+    <PassRange>20</PassRange>
+  </Gate>
+  <Health>
+    <Max>2500</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Classes datatype="tokens">Gates</Classes>
+    <GenericName>City Gate</GenericName>
+    <Icon>structures/gate.png</Icon>
+    <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static disable=""/>
+    <Obstructions>
+      <Right width="5" depth="5" x="10" z="0"/>
+      <Left width="5" depth="5" x="-10" z="0"/>
+      <Door width="20.0" depth="6.5" x="0" z="0"/>
+    </Obstructions>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <RallyPoint disable=""/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gate.xml</select>
+      <constructed>interface/complete/building/complete_gate.xml</constructed>
+      <gate_closing>actor/gate/stonegate_close.xml</gate_closing>
+      <gate_opening>actor/gate/stonegate_open.xml</gate_opening>
+      <gate_locked>interface/select/building/sel_gate.xml</gate_locked>
+      <gate_unlocked>interface/select/building/sel_gate.xml</gate_unlocked>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <FoundationActor>structures/fndn_9x3_wall.xml</FoundationActor>
+  </VisualActor>
+</Entity>

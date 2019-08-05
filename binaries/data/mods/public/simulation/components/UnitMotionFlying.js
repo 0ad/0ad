@@ -276,47 +276,29 @@ UnitMotionFlying.prototype.MoveToTargetRange = function(target, minRange, maxRan
 	return true;
 };
 
-UnitMotionFlying.prototype.IsInPointRange = function(x, y, minRange, maxRange)
-{
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var pos = cmpPosition.GetPosition2D();
-
-	var distFromTarget = Math.euclidDistance2D(x, y, pos.x, pos.y);
-	if (minRange <= distFromTarget && distFromTarget <= maxRange)
-		return true;
-
-	return false;
-};
-
-UnitMotionFlying.prototype.IsInTargetRange = function(target, minRange, maxRange)
-{
-	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
-	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
-		return false;
-
-	var targetPos = cmpTargetPosition.GetPosition2D();
-
-	return this.IsInPointRange(targetPos.x, targetPos.y, minRange, maxRange);
-};
-
 UnitMotionFlying.prototype.GetWalkSpeed = function()
 {
 	return +this.template.MaxSpeed;
 };
 
-UnitMotionFlying.prototype.SetSpeed = function()
+UnitMotionFlying.prototype.SetSpeedMultiplier = function()
 {
 	// ignore this, the speed is always the walk speed
 };
 
-UnitMotionFlying.prototype.GetRunSpeed = function()
+UnitMotionFlying.prototype.GetRunMultiplier = function()
 {
-	return this.GetWalkSpeed();
+	return 1;
 };
 
 UnitMotionFlying.prototype.GetCurrentSpeed = function()
 {
 	return this.speed;
+};
+
+UnitMotionFlying.prototype.GetSpeedMultiplier = function()
+{
+	return this.GetCurrentSpeed() / this.GetWalkSpeed();
 };
 
 UnitMotionFlying.prototype.GetPassabilityClassName = function()

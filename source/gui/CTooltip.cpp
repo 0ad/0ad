@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,8 @@
 
 #include <algorithm>
 
-CTooltip::CTooltip()
+CTooltip::CTooltip(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
 	// If the tooltip is an object by itself:
 	AddSetting(GUIST_float,					"buffer_zone");
@@ -30,7 +31,7 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"delay");
-	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CGUIColor,				"textcolor");
 	AddSetting(GUIST_float,					"maxwidth");
 	AddSetting(GUIST_CPos,					"offset");
 	AddSetting(GUIST_EVAlign,				"anchor");
@@ -43,6 +44,7 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_bool,					"hide_object");
 
 	// Private settings:
+	// This is set by GUITooltip
 	AddSetting(GUIST_CPos,					"_mousepos");
 
 	// Defaults
@@ -167,8 +169,8 @@ void CTooltip::Draw()
 
 	GetGUI()->DrawSprite(*sprite, 0, z, m_CachedActualSize);
 
-	CColor color;
-	GUI<CColor>::GetSetting(this, "textcolor", color);
+	CGUIColor color;
+	GUI<CGUIColor>::GetSetting(this, "textcolor", color);
 
 	DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ GUI Object Base - Text Owner
 #define INCLUDED_IGUITEXTOWNER
 
 #include "GUI.h"
+#include "gui/scripting/JSInterface_IGUITextOwner.h"
 
 /**
  * Framework for handling Output text.
@@ -44,14 +45,21 @@ GUI Object Base - Text Owner
  */
 class IGUITextOwner : virtual public IGUIObject
 {
+	friend bool JSI_IGUITextOwner::GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
+
 public:
-	IGUITextOwner();
+	IGUITextOwner(CGUI* pGUI);
 	virtual ~IGUITextOwner();
 
 	/**
 	 * Adds a text object.
 	 */
 	void AddText(SGUIText* text);
+
+	/**
+	 * Subscribe the custom JS methods.
+	 */
+	void CreateJSObject() override;
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -73,12 +81,17 @@ public:
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
-	virtual void DrawText(size_t index, const CColor& color, const CPos& pos, float z, const CRect& clipping = CRect());
+	virtual void DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping = CRect());
 
 	/**
 	 * Test if mouse position is over an icon
 	 */
 	virtual bool MouseOverIcon();
+
+	/**
+	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
+	 */
+	virtual void* GetTextOwner() override { return this; }
 
 protected:
 
@@ -101,6 +114,11 @@ protected:
 	 * Calculate the position for the text, based on the alignment.
 	 */
 	void CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUIText& Text);
+
+	/**
+	 * Calculate the size of the first generated text.
+	 */
+	CSize CalculateTextSize();
 };
 
 #endif // INCLUDED_IGUITEXTOWNER

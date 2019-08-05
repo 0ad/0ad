@@ -7,12 +7,12 @@
 		{ "value": "Looter/Resource/wood", "multiply": 1.5 },
 		{ "value": "Looter/Resource/stone", "multiply": 1.5 },
 		{ "value": "Looter/Resource/metal", "multiply": 1.5 },
-		{ "value": "Attack/Melee/Hack", "multiply": 1.1 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 1.1 },
-		{ "value": "Attack/Melee/Crush", "multiply": 1.1 },
-		{ "value": "Attack/Ranged/Hack", "multiply": 1.1 },
-		{ "value": "Attack/Ranged/Pierce", "multiply": 1.1 },
-		{ "value": "Attack/Ranged/Crush", "multiply": 1.1 }
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.1 }
 	],
 	"auraName": "Savior of Kush",
 	"auraDescription": "Own units +10% attack.\nNastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."

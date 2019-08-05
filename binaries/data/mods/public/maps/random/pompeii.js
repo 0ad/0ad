@@ -202,7 +202,7 @@ for (let dockType of dockTypes)
 				g_TileClasses.baseResource, 10))
 		],
 		0,
-		50)
+		50);
 Engine.SetProgress(55);
 
 addElements([

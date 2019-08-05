@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,10 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
-#include "GUIManager.h"
+#include "GUIutil.h"
 
+#include "gui/GUI.h"
+#include "gui/GUIManager.h"
 #include "maths/Matrix3D.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
@@ -102,26 +103,14 @@ bool __ParseString<CClientArea>(const CStrW& Value, CClientArea& Output)
 }
 
 template <>
-bool GUI<int>::ParseColor(const CStrW& Value, CColor& Output, int DefaultAlpha)
+bool GUI<int>::ParseColor(const CStrW& Value, CGUIColor& Output, int DefaultAlpha)
 {
-	// First, check our database in g_GUI for pre-defined colors
-	//  If we find anything, we'll ignore DefaultAlpha
-	// If it fails, it won't do anything with Output
-	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
-		return true;
-
 	return Output.ParseString(Value.ToUTF8(), DefaultAlpha);
 }
 
-
 template <>
-bool __ParseString<CColor>(const CStrW& Value, CColor& Output)
+bool __ParseString<CGUIColor>(const CStrW& Value, CGUIColor& Output)
 {
-	// First, check our database in g_GUI for pre-defined colors
-	// If it fails, it won't do anything with Output
-	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
-		return true;
-
 	return Output.ParseString(Value.ToUTF8());
 }
 
@@ -266,8 +255,6 @@ bool __ParseString<CGUISeries>(const CStrW& UNUSED(Value), CGUISeries& UNUSED(Ou
 	return false;
 }
 
-//--------------------------------------------------------
-
 CMatrix3D GetDefaultGuiMatrix()
 {
 	float xres = g_xres / g_GuiScale;
@@ -285,31 +272,6 @@ CMatrix3D GetDefaultGuiMatrix()
 	return m;
 }
 
-//--------------------------------------------------------
-//  Utilities implementation
-//--------------------------------------------------------
-IGUIObject* CInternalCGUIAccessorBase::GetObjectPointer(CGUI& GUIinstance, const CStr& Object)
-{
-	return GUIinstance.FindObjectByName(Object);
-}
-
-const IGUIObject* CInternalCGUIAccessorBase::GetObjectPointer(const CGUI& GUIinstance, const CStr& Object)
-{
-	return GUIinstance.FindObjectByName(Object);
-}
-
-void CInternalCGUIAccessorBase::QueryResetting(IGUIObject* pObject)
-{
-	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
-}
-
-void CInternalCGUIAccessorBase::HandleMessage(IGUIObject* pObject, SGUIMessage& message)
-{
-	pObject->HandleMessage(message);
-}
-
-
-
 #ifndef NDEBUG
 	#define TYPE(T) \
 		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
@@ -325,8 +287,6 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject* pObject, SGUIMessage& 
 	#undef TYPE
 #endif
 
-
-//--------------------------------------------------------------------
 
 template <typename T>
 PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value)
@@ -365,6 +325,24 @@ PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& V
 	return ret;
 }
 
+template <typename T>
+PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage)
+{
+	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
+		[&pObject, &Setting, &Value]() {
+			*static_cast<T*>(pObject->m_Settings[Setting].m_pSetting) = std::move(Value);
+		});
+}
+
+template <typename T>
+PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
+{
+	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
+		[&pObject, &Setting, &Value]() {
+			*static_cast<T*>(pObject->m_Settings[Setting].m_pSetting) = Value;
+		});
+}
+
 // Helper function for SetSetting
 template <typename T>
 bool IsBoolTrue(const T&)
@@ -378,7 +356,7 @@ bool IsBoolTrue<bool>(const bool& v)
 }
 
 template <typename T>
-PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
+PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage, const std::function<void()>& valueSet)
 {
 	ENSURE(pObject != NULL);
 
@@ -394,12 +372,9 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 	CheckType<T>(pObject, Setting);
 #endif
 
-	// Set value
-	*(T*)pObject->m_Settings[Setting].m_pSetting = Value;
+	valueSet();
 
-	//
 	//	Some settings needs special attention at change
-	//
 
 	// If setting was "size", we need to re-cache itself and all children
 	if (Setting == "size")
@@ -410,13 +385,13 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 	{
 		// Hiding an object requires us to reset it and all children
 		if (IsBoolTrue(Value))
-			QueryResetting(pObject);
+			RecurseObject(0, pObject, &IGUIObject::ResetStates);
 	}
 
 	if (!SkipMessage)
 	{
 		SGUIMessage msg(GUIM_SETTINGS_UPDATED, Setting);
-		HandleMessage(pObject, msg);
+		pObject->HandleMessage(msg);
 	}
 
 	return PSRETURN_OK;
@@ -426,6 +401,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 #define TYPE(T) \
 	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
 	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
+	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage);
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
@@ -437,4 +413,4 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 // and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
 // instead. (This is mainly useful to stop me accidentally using the wrong function.)
 template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance*& Value);
-template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, const CGUISpriteInstance& Value, const bool& SkipMessage);
+template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance& Value, const bool& SkipMessage);

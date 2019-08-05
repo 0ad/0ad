@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -12,13 +12,14 @@
 # SuroX <peter.surovcik@gmail.com>, 2014,2016
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2019
+# Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-07-24 22:57+0000\n"
-"Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,34 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
+msgstr "Jednotky povýšené do pokročilej triedy získajú veľa výhod: 20% extra zdravie, 1 extra pancier každého typu, 20% extra korisť, 20% extra útok pre jednotky na boj z blízka, 4m extra dostrel a lepšia presnosť pre jednotky na boj z diaľky, rýchlejší pohyb a extra rýchlosť liečenia a dosah liečiteľov."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
 msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "Dosah +10 metrov pre jednotky s lukom. Lukostrelci lepšia prestnosť a -20% doba tréningu, ale zato aj -20% zdravia."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Lukostrelecká tradícia"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Odomknuté vo fáze dediny."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -461,18 +489,6 @@ msgstr "Drevené výstuže nosníkov pre lodné trupy. +2 úrovne všetkých typ
 msgid "Reinforced hull"
 msgstr "Zosilnený trup"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Odomknuté vo fáze dediny."
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "Dlhá kopija vyrobená špeciálne pre jazdu."
@@ -703,7 +719,7 @@ msgstr "Tajné techniky opracovávania ocele dodávajú čepeliam meča krásne 
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% sečný útok per všetkých bojovníkov s mečom a palcátom."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -735,7 +751,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Jednotky povýšené do elitnej triedy získajú veľa výhod: 20% extra zdravie, 1 extra pancier každého typu, 20% extra korisť, 20% extra útok pre jednotky na boj z blízka, 4m extra dostrel a lepšia presnosť pre jednotky na boj z diaľky, rýchlejší pohyb a extra rýchlosť liečenia a dosah liečiteľov."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -832,8 +848,8 @@ msgid "Gather Training"
 msgstr "Tréning v zberaní"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "Siete zlepšujú produktivitu lovu."
+msgid "Nets improve the productivity of fishing boats."
+msgstr "Siete zlepšujú produktivitu rybárskych lodí."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -972,11 +988,11 @@ msgid "Wicker Baskets"
 msgstr "Prútené koše"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
+msgid "Units garrisoned in Barracks heal over time."
 msgstr "Jednotky ubytované v kasárňach sa časom liečia."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
+msgid "Units gain health over time while garrisoned in Barracks."
 msgstr "Jednotky sa postupne liečia zatiaľ čo sú ubytované v kasárňach."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
@@ -1069,7 +1085,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Tkáčsky stav umožnil vytvorenie jemnejšieho oblečenia pre obyvateľov. Ženy v domácnosti sa už od mladého veku učili, ako na ňom tkať, a následne pri práci s ním strávili aj prevažnú časť svojho života."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
@@ -1476,7 +1492,7 @@ msgstr "Zlepšenie presnosti striel"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Zvyšuje presnosť vrhačov šípov."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1585,7 +1601,7 @@ msgstr "Rozhľadne vydržia na neutrálnom území dvojnásobne dlhú dobu."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Rozhľadne: -50% rýchlosti úpadku teritória."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1621,7 +1637,7 @@ msgstr "Vyhliadky nadobudnú dlhší dohľad pre výskum terénu."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Rozhľadne: +50% dohľad."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1633,7 +1649,7 @@ msgstr "Zvýši sa ostražitosť nočných hliadok."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Stanov hliadky, aby si pridal každej obrannej veži jeden šíp."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1709,9 +1725,9 @@ msgstr "Pokročilé remeselníctvo"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "Rýchlosť tréningu vojakov v kasárniach sa podstatne zvýši vďaka ich trénovaniu vo väčších skupinách alebo práporoch."
+msgstr "Rýchlosť tréningu vojakov v Kasárňach sa podstatne zvýši vďaka ich trénovaniu vo väčších skupinách alebo práporoch."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1775,7 +1791,7 @@ msgid ""
 msgstr "Strážne jednotky (šampióni) sú profesionáli nesúci najlepšie zbrane a majúci najlepší tréning."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
+msgid "Unlock the ability to train Champions at the Barracks."
 msgstr "Sprístupni možnosť trénovania šampiónov v kasárniach."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
@@ -1859,11 +1875,11 @@ msgstr "Primárne zameranie obchodníkov bol obchod, okrem toho však tiež zbie
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Povoľ podplácanie jednotiek druhých hráčov pre zdieľanie toho, čo vidia."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "Špionáž"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -1904,7 +1920,7 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Najmi profesionálnych žolnierov aby bojovali v tvojej armáde."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
@@ -1946,23 +1962,6 @@ msgstr "Elitná občianska pechota"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr ""
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartáginské hradby, brány a veže majú 3x toľko zdravia čo klasické hradby, avšak stavba je 2x dlhšia a drahšia. "
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Trojité hradby"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2266,19 +2265,120 @@ msgstr "Povýši všetkých vašich italických žoldnierov na elitný stupeň. 
 msgid "Elite Italiote Mercenaries"
 msgstr "Elitní italickí žoldnieri"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
-msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Kartáginci budovali svoje mestské hradby ako tri sústredné okruhy. Tieto hradby neboli nikdy prelomené. Dokonca aj keď bolo mesto ovládnuté Rímanmi, bolo to cez mestský prístav,  a nie útokom na hradby."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Kartáginské hradby, brány a veže majú 3x toľko zdravia čo klasické hradby, avšak stavba je 2x dlhšia a drahšia. "
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Trojité hradby"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr "Keltské budovy boli väčšinou postavené z dreva so suťovými základmi."
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Keltské budovy majú o 20% menej života, ale sú o 20% lacnejšie a rýchlejšie na postavenie. "
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Drevená konštrukcia"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Gréci využívali kamenné stavby už od skorých mykénskych čias."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Všetky budovy majú o 10% viac zdravia a obsadzovacích bodov, ale tiež o 10% dlhšiu výstavbu."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Helénska architektúra"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Maurská ríša sa skladala z mnohých predtým nezávislých kráľovstiev na ploche vyše 5 miliónov kilometrov štvorcových, s počtom obyvateľov blížiacim sa k 60 miliónom. Maurskí vladári držali titul Cisárov cisárov a velili stálej armáde pozostávajúcej z 600,000 pechoty, 9000 slonov, 8000 povozov a 30,000 jazdy, čo ju robilo pravdepodobne najväčšou armádou svojich čias."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Maurovia majú o 10% vyšší populačný limit."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Cisár cisárov"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "Maurovia budovali svoje mestské hradby z dreva, v Indii sa hojne vyskytujúcej prírodnej suroviny. "
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Drevené hradby"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Peržania mohli a aj odviedli obrovské množstvo pešiakov počas vojny vzhľadom k samotnej veľkosti Achajmenskej ríše a spôsobu jej zriadenia. Vo všeobecnosti perzská pechota bola dobre trénovaná a bojovala s veľkou húževnatosťou. Avšak aj napriek tomu jej členovia boli slabí v boji nablízko. Navyše, s výnimkou elitných plukov, táto pechota nebola stálou profesionálnou silou."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Peržania majú o 10% vyšší populačný limit."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Branná povinnosť Veľkokráľa"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Sparťania síce nemali najväčšiu armádu na svete, ale napriek tomu bola najlepšia. Čo nemali v kvantite, dohnali v kvalite. Hovorilo sa, že Sparta nepotrebovala silné mestské hradby, tie totižto tvorili jej muži."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Sparťania majú o 10% menší populačný limit."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Outsideri"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2297,36 +2397,6 @@ msgstr "Boj s kopijou"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Gréci využívali kamenné stavby už od skorých mykénskych čias."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Helénska architektúra"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Sparťania síce nemali najväčšiu armádu na svete, ale napriek tomu bola najlepšia. Čo nemali v kvantite, dohnali v kvalite. Hovorilo sa, že Sparta nepotrebovala silné mestské hradby, tie totižto tvorili jej muži."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Sparťania majú o 10% menší populačný limit."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Outsideri"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2374,19 +2444,19 @@ msgstr "Aténske Dlhé múry"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+25% HP a -50% času výstavby pre Občianske Centrá, Chrámy, Pyramídy a Divy sveta."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Monumentálna architektúra"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Samotný Veľkňaz bude viesť tvojich kňazov - nech mú Amun žehná,"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
@@ -2396,78 +2466,6 @@ msgstr "Trénuje elitnú hodnosť liečiteľov."
 msgid "Divine Instruction"
 msgstr ""
 
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Maurská ríša sa skladala z mnohých predtým nezávislých kráľovstiev na ploche vyše 5 miliónov kilometrov štvorcových, s počtom obyvateľov blížiacim sa k 60 miliónom. Maurskí vladári držali titul Cisárov cisárov a velili stálej armáde pozostávajúcej z 600,000 pechoty, 9000 slonov, 8000 povozov a 30,000 jazdy, čo ju robilo pravdepodobne najväčšou armádou svojich čias."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Maurovia majú o 10% vyšší populačný limit."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Cisár cisárov"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "Indovia mali tradíciu skvelej lukostreľby a sklon k používaniu lukostrelcov v bitke vo veľkom."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr ""
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Lukostrelecká tradícia"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "Maurovia budovali svoje mestské hradby z dreva, v Indii sa hojne vyskytujúcej prírodnej suroviny. "
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Drevené hradby"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Peržania mohli a aj odviedli obrovské množstvo pešiakov počas vojny vzhľadom k samotnej veľkosti Achajmenskej ríše a spôsobu jej zriadenia. Vo všeobecnosti perzská pechota bola dobre trénovaná a bojovala s veľkou húževnatosťou. Avšak aj napriek tomu jej členovia boli slabí v boji nablízko. Navyše, s výnimkou elitných plukov, táto pechota nebola stálou profesionálnou silou."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Peržania majú o 10% vyšší populačný limit."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Branná povinnosť Veľkokráľa"
-
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
@@ -2476,7 +2474,7 @@ msgstr "Anusijská šampiónska pechota sa bude trénovať dvakrát tak rýchlo,
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anusijská šampiónska pechota -50% doba tréningu, ale zato aj -10% zdravia."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2499,12 +2497,6 @@ msgstr "Všetky perzské budovy +25% životnosti a obsadzovacích bodov, ale tie
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Perzská architektúra"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "Peržania mali tradíciu presnej lukostreľby a záľubu v masovom používaní lukostrelcov v bitke. "
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""

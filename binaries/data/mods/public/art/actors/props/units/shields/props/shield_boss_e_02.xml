@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Boss-E-2">
+      <mesh>props/shield/props/boss_e.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/spina_01.xml"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -2,15 +2,19 @@
 <Entity parent="template_unit_cavalry_ranged">
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>18.0</Pierce>
-      <Crush>0</Crush>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>18.0</Pierce>
+        <Crush>0</Crush>
+      </Damage>
       <MaxRange>28.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <ProjectileSpeed>62.5</ProjectileSpeed>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1250</RepeatTime>
-      <Spread>4.0</Spread>
+      <Projectile>
+        <Speed>62.5</Speed>
+        <Spread>4.0</Spread>
+      </Projectile>
     </Ranged>
   </Attack>
   <Cost>

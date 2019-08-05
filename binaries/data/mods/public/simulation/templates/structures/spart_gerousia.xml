@@ -18,6 +18,7 @@
   </Health>
   <Identity>
     <Civ>spart</Civ>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Spartan Senate</GenericName>
     <SpecificName>Gerontía</SpecificName>
     <Tooltip>Train heroes.</Tooltip>
@@ -41,7 +42,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_tholos.xml</select>
       <constructed>interface/complete/building/complete_tholos.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <VisualActor>

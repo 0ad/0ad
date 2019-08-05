@@ -25,7 +25,7 @@ export ARCH=${ARCH:="x86_64"}
 OSX_VERSION=`sw_vers -productVersion | grep -Eo "^\d+.\d+"`
 # Set SDK and mimimum required OS X version
 export SYSROOT=${SYSROOT:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX$OSX_VERSION.sdk"}
-export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.7"}
+export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
 
 # 0 A.D. release version, e.g. Alpha 21 is 0.0.21
 BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.X"}
@@ -211,7 +211,7 @@ PlistBuddy -c "Add :CFBundleDevelopmentRegion string English" ${INFO_PLIST}
 PlistBuddy -c "Add :CFBundleInfoDictionaryVersion string 6.0" ${INFO_PLIST}
 PlistBuddy -c "Add :CFBundleIconFile string 0ad" ${INFO_PLIST}
 PlistBuddy -c "Add :LSMinimumSystemVersion string ${BUNDLE_MIN_OSX_VERSION}" ${INFO_PLIST}
-PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © 2015 Wildfire Games" ${INFO_PLIST}
+PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © $(date +%Y) Wildfire Games" ${INFO_PLIST}
 
 # TODO: Automatically create compressed DMG with hdiutil?
 # (this is a bit complicated so I do it manually for now)

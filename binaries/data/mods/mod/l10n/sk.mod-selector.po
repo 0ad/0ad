@@ -8,12 +8,13 @@
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2018
+# Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 02:40+0000\n"
-"Last-Translator: MiroslavR <miroslavr256@gmail.com>\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2019-04-29 19:01+0000\n"
+"Last-Translator: Tom Hanax\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -237,30 +238,44 @@ msgstr "Požiadavky nesplnené: %(dep)s"
 msgid "All dependencies met"
 msgstr "Všetky závislosti splnené"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Povoliť"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Znemožni"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Nie je vybratý žiaden mod."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Zrieknutie sa zodpovednosti"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io Podmienky"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io Ochrana osobných údajov"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "OK"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Pozrieť online"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Otvor %(url)sv prehliadači."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -386,7 +401,7 @@ msgstr "Jazyk"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Odmietnuť"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -398,36 +413,36 @@ msgstr ""
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Dátum modifikácie: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "Chystáš sa pripojiť na online službu mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Táto služba poskytuje ľahký spôsob stiahnutia a nainštalovania módov, ktoré boli vytvorené komunitov, a je poskytovaná DBolical Pty Ltd, spločnosťou, ktorá prevádzkuje IndieDB a ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Služba je len pre užívateľov starších ako 13 rokov."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games sa postarala o bezpečné spojenie a preskúmala módy kvôli bezpečnostným chybám, ale nedokáže zaručiť, že je to bez rizika."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Používaním tejto služby rozumiete, že platia mod.io Podmienky používania a ochrany súkromia a Wildfire Games nie je zodpovedná za žiadnu škodu, ktorá vyplýva z používania tejto služby."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

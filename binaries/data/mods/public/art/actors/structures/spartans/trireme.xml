@@ -3,25 +3,21 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Greek Trireme">
-      <animations>
-        <animation file="mechanical/hele_ship_trireme_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/hele_ship_trireme_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/hele_ship_trireme_move.dae" name="Run" speed="8"/>
-      </animations>
-      <mesh>structural/hele_ship_trireme.dae</mesh>
+    <variant frequency="1" file="others/ships/spart_trireme_oars.xml" name="Spartan Trireme">
+      <mesh>structural/spart_ship_trireme.dae</mesh>
       <props>
+        <prop actor="props/structures/spartans/trireme_main_sail.xml" attachpoint="sail"/>
+        <prop actor="props/structures/hellenes/trireme_fore_sail.xml" attachpoint="fore_sail"/>
+        <prop actor="props/structures/spartans/trireme_blanket.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/spartans/trireme_mainsail.xml" attachpoint="sail"/>
-        <prop actor="props/structures/hellenes/trireme_foresail.xml" attachpoint="sail"/>
-        <prop actor="props/structures/hellenes/trireme_shroud.xml" attachpoint="sail"/>
       </props>
+      <textures>
+        <texture file="structural/spart_trireme.png" name="baseTex"/>
+        <texture file="structural/spart_trireme_spec.png" name="specTex"/>
+        <texture file="structural/spart_trireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/spart_trireme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="Blue Eye">
-      <textures><texture file="structural/hele_trireme_big.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

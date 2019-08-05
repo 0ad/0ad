@@ -15,6 +15,7 @@ Trigger.prototype.eventNames =
 	"Deserialized",
 	"InitGame",
 	"Interval",
+	"EntityRenamed",
 	"OwnershipChanged",
 	"PlayerCommand",
 	"PlayerDefeated",
@@ -263,6 +264,11 @@ Trigger.prototype.OnGlobalCinemaQueueEnded = function(msg)
 Trigger.prototype.OnGlobalDeserialized = function(msg)
 {
 	this.CallEvent("Deserialized", msg);
+};
+
+Trigger.prototype.OnGlobalEntityRenamed = function(msg)
+{
+	this.CallEvent("EntityRenamed", msg);
 };
 
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="iber_helmet_Elite">
+      <mesh>props/helmet/iber_helmet_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="no crest">
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Base-1">
+      <textures>
+        <texture file="props/helmet/iber_helmet_e_1.png" name="baseTex"/>
+        <texture file="props/helmet/iber_helmet_e_1_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_helmet_e_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Base-2">
+      <textures>
+        <texture file="props/helmet/iber_helmet_e_2.png" name="baseTex"/>
+        <texture file="props/helmet/iber_helmet_e_2_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_helmet_e_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

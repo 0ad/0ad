@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -11,8 +11,40 @@
         <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="slinger-quilted-1a">
       <textures>
-        <texture file="skeletal/iber_isl_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/iber_padded_slinger_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="slinger-quilted-1b">
+      <textures>
+        <texture file="skeletal/iber_padded_slinger_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="slinger-quilted-1c">
+      <textures>
+        <texture file="skeletal/iber_padded_slinger_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="slinger-quilted-2a">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/iber_padded_slinger_2_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="slinger-quilted-2b">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/iber_padded_slinger_2_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="slinger-quilted-2c">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/iber_padded_slinger_2_c.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

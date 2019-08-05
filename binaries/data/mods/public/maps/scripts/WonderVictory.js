@@ -1,7 +1,21 @@
+Trigger.prototype.WonderVictoryEntityRenamed = function(data)
+{
+	if (this.wonderVictoryMessages[data.entity] && Engine.QueryInterface(data.newentity, IID_Wonder))
+	{
+		// When an entity is renamed, we first create a new entity,
+		// which in case it is a wonder will receive a timer.
+		// However on a rename we want to use the timer from the old entity,
+		// so we need to remove the timer of the new entity.
+		this.WonderVictoryDeleteTimer(data.newentity);
+
+		this.wonderVictoryMessages[data.newentity] = this.wonderVictoryMessages[data.entity];
+		delete this.wonderVictoryMessages[data.entity];
+	}
+};
+
 Trigger.prototype.WonderVictoryOwnershipChanged = function(data)
 {
-	let cmpWonder = Engine.QueryInterface(data.entity, IID_Wonder);
-	if (!cmpWonder)
+	if (!Engine.QueryInterface(data.entity, IID_Wonder))
 		return;
 
 	this.WonderVictoryDeleteTimer(data.entity);
@@ -145,6 +159,7 @@ Trigger.prototype.WonderVictorySetWinner = function(playerID)
 
 {
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.RegisterTrigger("OnEntityRenamed", "WonderVictoryEntityRenamed", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "WonderVictoryOwnershipChanged", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnDiplomacyChanged", "WonderVictoryDiplomacyChanged", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnPlayerWon", "WonderVictoryPlayerWon", { "enabled": true });

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,16 +10,16 @@
 # MasterWord, 2015
 # LOUKAS SKOUROLIAKOS, 2015-2016
 # Markos G. <marx-kolaiti@hotmail.gr>, 2016
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2018
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2019
 # Xenophon Sp <nohponex@gmail.com>, 2015
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 # Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-25 06:43+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,6 +34,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "Οι μονάδες που προάγονται σε ανώτερη θέση κερδίζουν πολλά σε ποιότητα: 20% επιπλέον στην υγεία, 1 επιπλέον επίπεδο σε κάθε τύπο πανοπλίας, 20% επιπλέων λάφυρα, 20% επιπλέον επίθεση για τις μονάδες εκ του συστάδην, 4μ επιπλέον βεληνεκές και μεγαλύτερη ακρίβεια για τις μονάδες βολής, γρηγορότερες ταχύτητες κίνησης και επιπλέον ταχύτητα θεραπείας και βεληνεκές για τους θεραπευτές."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "+10 μέτρα βεληνεκές για τις μονάδες που χειρίζονται τόξο. Οι τοξότες έχουν καλύτερη ευστοχία και -20% στο χρόνο εκπαιδεύσεις, αλλά και -20% στην υγεία τους."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Παράδοση στην τοξοβολία"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Ξεκλειδωνεί στη Φάση Χωριό."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -462,18 +489,6 @@ msgstr "Ξύλινα δοκάρια ενίσχυσης για το κύτος. +
 msgid "Reinforced hull"
 msgstr "Ενισχυμένο κύτος"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Ξεκλειδωνεί στη Φάση Χωριό."
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "Ένα μακρύ δόρυ φτιαγμένο ειδικά για το ιππικό."
@@ -833,8 +848,8 @@ msgid "Gather Training"
 msgstr "Εκπαίδευση στα όπλα"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "Τα δίχτυα αυξάνουν την αλίευση ψαριών."
+msgid "Nets improve the productivity of fishing boats."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -973,12 +988,12 @@ msgid "Wicker Baskets"
 msgstr "Ψάθινα Καλάθια"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "Οι μονάδες φρουρών στους στρατώνες θεραπεύωνται συν τον χρονο."
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "Οι μονάδες που έχουν οχυρωθεί στους Στρατώνες θεραπεύονται συνέχεια."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Οι μονάδες πήραν θεραπεία όσο φρουρούσαν τους στρατώνες."
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "Οι μονάδες θεραπεύονται συνεχώς όσο είναι οχυρωμένες στους Στρατώνες."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1710,9 +1725,9 @@ msgstr "Προηγμένη Χειροτεχνία"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "Σημαντική αύξηση της ταχύτητας εκπαίδευσης των στρατιωτών στο στρατώνα από την κατάρτισή τους σε μεγάλες ομάδες ή τάγματα."
+msgstr ""
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1776,8 +1791,8 @@ msgid ""
 msgstr "Φρουροί (Πρωταθλητές) είναι επαγγελματίες που χειρίζονται τα καλύτερα όπλα και έχουν την καλύτερη εκπαίδευση."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "Ξεκλειδώστε τη δυνατότητα να εκπαιδεύεις πρωταθλητές στους στρατώνες."
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1947,23 +1962,6 @@ msgstr "Εκλεκτός Πολίτης-Πεζικάριος"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Πεντακοσιομέδιμνοι"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "Οι Καρχηδόνιοι κατασκεύαζαν τα τείχη της πόλης τους σε τρεις ομόκεντρους κύκλους. Αυτά τα τείχη ποτέ δεν είχαν εκπορθεί. Ακόμα και όταν η πόλη λήφθηκε από τους Ρωμαίους, ήταν μέσω του λιμανιού της πόλης, και όχι από έφοδο στα τείχη της."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Τα Καρχηδόνια τείχη, οι πύλες, και οι πύργοι του τοίχους αποκτούν 3x υγεία σε σχέση με ένα κανονικό τείχος, αλλά επίσης κοστίζουν το διπλάσιο και κατασκευάζονται σε διπλάσιο χρόνο."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Τριπλά τείχη"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2267,19 +2265,120 @@ msgstr "Προάγετε όλους τους Ιταλιάνους μισθοφό
 msgid "Elite Italiote Mercenaries"
 msgstr "Ελίτ Ιταλιωτές Μισθοφόροι"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "Οι Καρχηδόνιοι κατασκεύαζαν τα τείχη της πόλης τους σε τρεις ομόκεντρους κύκλους. Αυτά τα τείχη ποτέ δεν είχαν εκπορθεί. Ακόμα και όταν η πόλη λήφθηκε από τους Ρωμαίους, ήταν μέσω του λιμανιού της πόλης, και όχι από έφοδο στα τείχη της."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Τα Καρχηδόνια τείχη, οι πύλες, και οι πύργοι του τοίχους αποκτούν 3x υγεία σε σχέση με ένα κανονικό τείχος, αλλά επίσης κοστίζουν το διπλάσιο και κατασκευάζονται σε διπλάσιο χρόνο."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Τριπλά τείχη"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Οι κελτικές κατασκευές ήταν κυρίως κατασκευασμένες από ξύλο και με θεμέλια από λιθοτρίμματα. "
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Τα Κέλτικα κτήρια έχουν 20% λιγότερη αντοχή, αλλά είναι 20% φθηνότερα και γρηγορότερα κατά την κατασκευή."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Ξύλινη Κατασκευή"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Οι Έλληνες χρησιμοποιούσαν πέτρινες κατασκευές από νωρίς στη Μυκηναϊκή εποχή."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Όλα τα κτίσματα έχουν 10% περισσότερη αντοχή και πόντους κατάληψης, αλλά επίσης και 10% περισσότερο χρόνο αποπεράτωσης."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Ελληνική Αρχιτεκτονική"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "Η Αυτοκρατορία των Μαουρύα περιελάμβανε δεκάδες πρώην ανεξάρτητα βασίλεια σε μια έκταση 5 εκατομμυρίων τετραγωνικών χιλιομέτρων, με πληθυσμό κοντά στα 60 εκατομμύρια ανθρώπους. Οι Μαουρύα αντιβασιλείς κράτησαν τον τίτλο του Αυτοκράτορα των Αυτοκρατόρων και διοικούσαν έναν μόνιμο στρατό από 600.000 πεζικό, 9.000 ελέφαντες, 8.000 άρματα και 30.000 ιππικό, καθιστώντας αναμφισβήτητα το μεγαλύτερο στρατό της εποχής του."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Αυτοκράτορας των Αυτοκρατόρων"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Μεγάλος Αυτοκράτορας"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Τα Μαούρυα τείχη της πόλης έχουν -20% λιγότερη υγεία και -20% λιγότερο χρόνο κατασκευής."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Ξύλινα τείχη"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρώσει έναν μεγάλο αριθμό πεζικού κατά τη διάρκεια του πολέμου, λόγω του μεγάλου μεγέθους της αυτοκρατορία των Αχαιμενιδών και τον τρόπο με τον οποίο ήταν οργανωμένη. Σε γενικές γραμμές το περσικό πεζικό ήταν καλά εκπαιδευμένο και πολεμούσαν με μεγάλη επιμονή. Ωστόσο, η αλήθεια ήταν ότι το πεζικό ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "Οι Πέρσες έχουν 10% περισσότερο στο μέγιστο όριο του πληθυσμού."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Μεγάλου Βασιλέα Εισφορά"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "Οι Σπαρτιάτες δεν είχαν το μεγαλύτερο στρατό στον κόσμο, αλλά είχαν τον καλύτερο στρατό στον κόσμο για την εποχή τους. Αυτό που δεν είχαν σε ποσότητα, το αντικατέστησαν με την ποιότητα. Είχε λεχθεί ότι η Σπάρτη δεν χρειαζόταν ισχυρά τείχη για την πόλη της, γιατί οι άνδρες της ήταν τα τείχη της."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "Οι Σπαρτιάτες έχουν 10% λιγότερο στο μέγιστο του πληθυσμού."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Ασθενέστεροι"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2298,36 +2397,6 @@ msgstr "Μαχητικότητα Λογχοφόρου Πεζικάριου"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Δορατισμός"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Οι Έλληνες χρησιμοποιούσαν πέτρινες κατασκευές από νωρίς στη Μυκηναϊκή εποχή."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Όλα τα κτίσματα έχουν 10% περισσότερη αντοχή και πόντους κατάληψης, αλλά επίσης και 10% περισσότερο χρόνο αποπεράτωσης."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Ελληνική Αρχιτεκτονική"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Οι Σπαρτιάτες δεν είχαν το μεγαλύτερο στρατό στον κόσμο, αλλά είχαν τον καλύτερο στρατό στον κόσμο για την εποχή τους. Αυτό που δεν είχαν σε ποσότητα, το αντικατέστησαν με την ποιότητα. Είχε λεχθεί ότι η Σπάρτη δεν χρειαζόταν ισχυρά τείχη για την πόλη της, γιατί οι άνδρες της ήταν τα τείχη της."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Οι Σπαρτιάτες έχουν 10% λιγότερο στο μέγιστο του πληθυσμού."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Ασθενέστεροι"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2375,9 +2444,9 @@ msgstr "Αθηναϊκά Μακρά Τείχη"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% ζωή και -50% στο χρόνο κατασκευής για τα Αστικά Κέντρα, του Ναούς, τις Πυραμίδες και τα Θαύματα."
+msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2396,78 +2465,6 @@ msgstr "Εκπαίδευση θεραπευτών της τάξης των εκ�
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "Θεϊκή Καθοδήγηση"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Η Αυτοκρατορία των Μαουρύα περιελάμβανε δεκάδες πρώην ανεξάρτητα βασίλεια σε μια έκταση 5 εκατομμυρίων τετραγωνικών χιλιομέτρων, με πληθυσμό κοντά στα 60 εκατομμύρια ανθρώπους. Οι Μαουρύα αντιβασιλείς κράτησαν τον τίτλο του Αυτοκράτορα των Αυτοκρατόρων και διοικούσαν έναν μόνιμο στρατό από 600.000 πεζικό, 9.000 ελέφαντες, 8.000 άρματα και 30.000 ιππικό, καθιστώντας αναμφισβήτητα το μεγαλύτερο στρατό της εποχής του."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Οι Μαουρύα έχουν 10% περισσότερο στο μέγιστο του πληθυσμού."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Αυτοκράτορας των Αυτοκρατόρων"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Μεγάλος Αυτοκράτορας"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "Οι Ινδοί είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 μέτρα βεληνεκές για τις μονάδες που χειρίζονται τόξο. Οι τοξότες έχουν καλύτερη ευστοχία και -20% στο χρόνο εκπαιδεύσεις, αλλά και -20% στην υγεία τους."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Παράδοση στην τοξοβολία"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "Οι Μαουρύοι έχτιζαν τα τείχη της πόλης τους από ξύλο, έναν πλούσιο φυσικό πόρο της Ινδίας."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Τα Μαούρυα τείχη της πόλης έχουν -20% λιγότερη υγεία και -20% λιγότερο χρόνο κατασκευής."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Ξύλινα τείχη"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρώσει έναν μεγάλο αριθμό πεζικού κατά τη διάρκεια του πολέμου, λόγω του μεγάλου μεγέθους της αυτοκρατορία των Αχαιμενιδών και τον τρόπο με τον οποίο ήταν οργανωμένη. Σε γενικές γραμμές το περσικό πεζικό ήταν καλά εκπαιδευμένο και πολεμούσαν με μεγάλη επιμονή. Ωστόσο, η αλήθεια ήταν ότι το πεζικό ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Οι Πέρσες έχουν 10% περισσότερο στο μέγιστο όριο του πληθυσμού."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Μεγάλου Βασιλέα Εισφορά"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2500,12 +2497,6 @@ msgstr "Όλα τα περσικά κτίσματα +25% αντοχή και π�
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Περσική Αρχιτεκτονική"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "Οι Πέρσες είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""

@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-17 20:08+0000\n"
-"Last-Translator: Nerwitz Panzerfizt\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,7 @@ msgstr "Идентификаторът на играта не може да бъ
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Иницализационна грешка"
+msgstr "Инициализационна грешка"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -131,7 +131,7 @@ msgstr "Списъкът с модификации не може да бъде �
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Грешка при извличане информация"
+msgstr "Грешка при извличане"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -183,7 +183,7 @@ msgstr "Обновяване"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr "Прекъсване обновяването"
+msgstr "Спиране на обновяването"
 
 #: gui/modio/modio.js:248
 #, javascript-format
@@ -196,7 +196,7 @@ msgstr "Сваляне"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr "Прекъсване свалянето"
+msgstr "Спиране на свалянето"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
@@ -238,6 +238,14 @@ msgstr "Неизпълнена зависимост: %(dep)s"
 msgid "All dependencies met"
 msgstr "Всички зависимости са налице"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Включване"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Изключване"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Не е избрана модификация."
@@ -248,17 +256,23 @@ msgstr "Предупреждение"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr "mod.io Условия"
+msgstr "Условия на „mod.io“"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "mod.io Правила за поверителност"
+msgstr "Политика на поверителност на mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "Добре"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Преглед в Интернет"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "Отваряне на адрес %(url)s в браузъра."
@@ -329,7 +343,7 @@ msgstr "Включване/изключване"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
-msgstr "Интернет страница"
+msgstr "Уеб сайт"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
@@ -367,7 +381,7 @@ msgstr "Промяна на реда на пускане на модификац
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Избор на модификации от „Pyrogenesis“"
+msgstr "Модиф. на „Pyrogenesis“"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -375,11 +389,11 @@ msgstr "Затваряне"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Ръководство за създаване на модификации"
+msgstr "Ръководство за създаване"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr "Посети mod.io"
+msgstr "Към mod.io"
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
@@ -387,7 +401,7 @@ msgstr "Език"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr "Отказвам"
+msgstr "Отказване"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -395,22 +409,22 @@ msgstr "Приемане"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "0 A.D. Empires Ascendant mod.io Предупреждение"
+msgstr "0 A.D. Empires Ascendant – Предупреждение от „mod.io“"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "Дата на документа: 2018-10-12"
+msgstr "Последна редакция: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "На път сте да се свържете с интернет услугата mod.io"
+msgstr "На път сте да се свържете с услугата на „mod.io“."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Услугата предлага достъпен начин за изтегляне и инсталиране на потребителски създадени модификации и е собственост на DBolical Pty Ltd, компанията, ръководеща платформите IndieDB и ModDB."
+msgstr "Услугата предлага лесен начин за сваляне и инсталиране на създадени от потребителите модификации и е собственост на „DBolical Pty Ltd“ – компанията, ръководеща IndieDB и ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -421,14 +435,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games полага усилия да предоставя сигурна връзка между платформат и потребителите и преглежда модификациите за пробиви в сигурността, но не може да гарантира, че това не носи рискове."
+msgstr "Wildfire Games полага усилия да предоставя безопасна връзка между системата и потребителите и преглежда модификациите за проблеми със сигурността, но не може да гарантира, че това не носи рискове."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Използвайки услугата, вие сте наясно, че Правилата и условията на ползване и Политиката на поверителност на mod.io се прилагат и че Wildfire Games не носи отговорност за щети, нанесени в резултат на услугата."
+msgstr "Използвайки услугата, Вие сте наясно, че Правилата и условията на ползване и Политиката на поверителност на mod.io се прилагат и че Wildfire Games не носи отговорност за щети, нанесени в резултат на услугата."
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -459,4 +473,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "Услугата „mod.io“ се разработва от „DBolical“ – компанията, която стои зад „IndieDB“ и „ModDB“. Тези платформи помогнаха изключително много за популяризирането на „0 A.D.“ и множество други независими проекти! Днес „mod.io“ ни позволява да разглеждаме и сваляме всички модификации, одобрени от екипа. Натиснете „Сваляне на модификации“, за да изпробвате услугата и  инсталирате модификация!"
+msgstr "Услугата „mod.io“ се разработва от „DBolical“ – компанията, която стопанисва „IndieDB“ и „ModDB“. Тези системи помогнаха изключително много за популяризирането на „0 A.D.“ и множество други независими проекти! Днес „mod.io“ ни позволява да разглеждаме и сваляме всички модификации, одобрени от екипа. Натиснете „Сваляне на модификации“, за да изпробвате услугата и инсталирате някоя модификация!"

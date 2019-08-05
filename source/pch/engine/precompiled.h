@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,9 +23,8 @@
 
 #if HAVE_PCH
 
-// some other external libraries that are used in several places:
-// .. CStr is included very frequently, so a reasonable amount of time is
-//    saved by including it here. (~10% in a full rebuild, as of r2365)
-#include "ps/CStr.h"
+#include "SDL.h"
+#include "SDL_thread.h"
+#include "SDL_endian.h"
 
 #endif // HAVE_PCH

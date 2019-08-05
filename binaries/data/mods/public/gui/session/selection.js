@@ -19,7 +19,8 @@ function _setStatusBars(ents, enabled)
 	Engine.GuiInterfaceCall("SetStatusBars", {
 		"entities": ents,
 		"enabled": enabled,
-		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true"
+		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true",
+		"showExperience": Engine.ConfigDB_GetValue("user", "gui.session.experiencestatusbar") == "true"
 	});
 }
 
@@ -214,7 +215,7 @@ EntitySelection.prototype.update = function()
 	this.checkRenamedEntities();
 
 	let changed = false;
-	let removeOwnerChanges = !g_IsObserver && !g_DevSettings.controlAll && this.toList().length > 1;
+	let removeOwnerChanges = !g_IsObserver && !g_DeveloperOverlay.isControlAll() && this.toList().length > 1;
 
 	for (let ent in this.selected)
 	{

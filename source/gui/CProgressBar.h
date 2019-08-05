@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ class CProgressBar : public IGUIObject
 	GUI_OBJECT(CProgressBar)
 
 public:
-	CProgressBar();
+	CProgressBar(CGUI* pGUI);
 	virtual ~CProgressBar();
 
 protected:

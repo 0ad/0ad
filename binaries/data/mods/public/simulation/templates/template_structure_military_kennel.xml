@@ -27,11 +27,8 @@
   </Footprint>
   <GarrisonHolder>
     <Max>5</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Dog</List>
     <BuffHeal>1</BuffHeal>
-    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>500</Max>
@@ -60,7 +57,6 @@
   <Sound>
     <SoundGroups>
       <constructed>interface/complete/building/complete_kennel.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
       <select>interface/select/building/sel_kennel.xml</select>
     </SoundGroups>
   </Sound>
@@ -68,7 +64,6 @@
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
   <TerritoryInfluence>
-    <Root>false</Root>
     <Radius>20</Radius>
     <Weight>30000</Weight>
   </TerritoryInfluence>

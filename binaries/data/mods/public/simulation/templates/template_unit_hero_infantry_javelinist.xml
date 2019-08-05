@@ -2,17 +2,22 @@
 <Entity parent="template_unit_hero_infantry">
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>50.0</Pierce>
-      <Crush>0</Crush>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>50.0</Pierce>
+        <Crush>0</Crush>
+      </Damage>
       <MaxRange>32.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <ProjectileSpeed>62.5</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>600</PrepareTime>
       <RepeatTime>1000</RepeatTime>
-      <Spread>0.5</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <Speed>62.5</Speed>
+        <Spread>0.5</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>
   </Attack>

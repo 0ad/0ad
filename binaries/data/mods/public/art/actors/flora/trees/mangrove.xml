@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="a">
+      <props>
+        <prop actor="flora/trees/mangrove_leaves.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/mangrove_roots_1.png" name="baseTex"/>
+        <texture file="gaia/mangrove_roots_1_norm.png" name="normTex"/>
+        <texture file="gaia/mangrove_roots_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="b">
+      <props>
+        <prop actor="flora/trees/mangrove_leaves.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/mangrove_roots_2.png" name="baseTex"/>
+        <texture file="gaia/mangrove_roots_2_norm.png" name="normTex"/>
+        <texture file="gaia/mangrove_roots_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="c">
+      <props>
+        <prop actor="flora/trees/mangrove_leaves.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/mangrove_roots_3.png" name="baseTex"/>
+        <texture file="gaia/mangrove_roots_3_norm.png" name="normTex"/>
+        <texture file="gaia/mangrove_roots_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="1">
+      <mesh>gaia/mangrove_1_stilts.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/mangrove_2_stilts.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

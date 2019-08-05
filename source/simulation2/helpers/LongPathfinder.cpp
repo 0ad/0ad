@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "ps/Profile.h"
 
 #include "Geometry.h"
+#include "HierarchicalPathfinder.h"
 
 /**
  * Jump point cache.
@@ -289,7 +290,7 @@ public:
 
 	void reset(const Grid<NavcellData>* terrain, pass_class_t passClass)
 	{
-		PROFILE3("JumpPointCache reset");
+		PROFILE2("JumpPointCache reset");
 		TIMER(L"JumpPointCache reset");
 
 		m_Width = terrain->m_W;
@@ -388,7 +389,7 @@ LongPathfinder::~LongPathfinder()
 
 // Calculate heuristic cost from tile i,j to goal
 // (This ought to be an underestimate for correctness)
-PathCost LongPathfinder::CalculateHeuristic(int i, int j, int iGoal, int jGoal)
+PathCost LongPathfinder::CalculateHeuristic(int i, int j, int iGoal, int jGoal) const
 {
 	int di = abs(i - iGoal);
 	int dj = abs(j - jGoal);
@@ -397,7 +398,7 @@ PathCost LongPathfinder::CalculateHeuristic(int i, int j, int iGoal, int jGoal)
 }
 
 // Do the A* processing for a neighbour tile i,j.
-void LongPathfinder::ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg, PathfinderState& state)
+void LongPathfinder::ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg, PathfinderState& state) const
 {
 	// Reject impassable tiles
 	if (!PASSABLE(i, j))
@@ -501,7 +502,7 @@ inline bool OnTheWay(int i, int j, int di, int dj, int iGoal, int jGoal)
 }
 
 
-void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, PathfinderState& state, bool detectGoal)
+void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -543,7 +544,7 @@ void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, Pathfinder
 }
 
 // Returns the i-coordinate of the jump point if it exists, else returns i
-int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state, bool detectGoal)
+int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -579,7 +580,7 @@ int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state,
 	}
 }
 
-void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderState& state, bool detectGoal)
+void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -621,7 +622,7 @@ void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderS
 }
 
 // Returns the j-coordinate of the jump point if it exists, else returns j
-int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, bool detectGoal)
+int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, bool detectGoal) const
 {
 	if (m_UseJPSCache)
 	{
@@ -661,7 +662,7 @@ int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, 
  * We never cache diagonal jump points - they're usually so frequent that
  * a linear search is about as cheap and avoids the setup cost and memory cost.
  */
-void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, PathfinderState& state)
+void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, PathfinderState& state) const
 {
 	// 	ProcessNeighbour(i, j, i + di, j + dj, g, state);
 	// 	return;
@@ -712,13 +713,16 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 	}
 }
 
-void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path)
+void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const
 {
 	PROFILE("ComputePathJPS");
 	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
 	PathfinderState state = { 0 };
 
-	state.jpc = m_JumpPointCache[passClass].get();
+	std::map<pass_class_t, shared_ptr<JumpPointCache> >::const_iterator it = m_JumpPointCache.find(passClass);
+	if (it != m_JumpPointCache.end())
+		state.jpc = it->second.get();
+	
 	if (m_UseJPSCache && !state.jpc)
 	{
 		state.jpc = new JumpPointCache;
@@ -736,14 +740,14 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 		// The JPS pathfinder requires units to be on passable tiles
 		// (otherwise it might crash), so handle the supposedly-invalid
 		// state specially
-		m_PathfinderHier.FindNearestPassableNavcell(i0, j0, passClass);
+		hierPath.FindNearestPassableNavcell(i0, j0, passClass);
 	}
 
 	state.goal = origGoal;
 
 	// Make the goal reachable. This includes shortening the path if the goal is in a non-passable
 	// region, transforming non-point goals to reachable point goals, etc.
-	m_PathfinderHier.MakeGoalReachable(i0, j0, state.goal, passClass);
+	hierPath.MakeGoalReachable(i0, j0, state.goal, passClass);
 
 	ENSURE(state.goal.type == PathGoal::POINT);
 
@@ -905,7 +909,7 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 
 #undef PASSABLE
 
-void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0)
+void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0) const
 {
 	if (path.m_Waypoints.empty())
 		return;
@@ -989,11 +993,22 @@ void LongPathfinder::SetDebugOverlay(bool enabled)
 		SAFE_DELETE(m_DebugOverlay);
 }
 
-void LongPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
+void LongPathfinder::ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
+    pass_class_t passClass, WaypointPath& path) const
+{
+	if (!m_Grid)
+	{
+		LOGERROR("The pathfinder grid hasn't been setup yet, aborting ComputeJPSPath");
+		return;
+	}
+
+	ComputeJPSPath(hierPath, x0, z0, origGoal, passClass, path);
+}
+void LongPathfinder::ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
 	pass_class_t passClass, std::vector<CircularRegion> excludedRegions, WaypointPath& path)
 {
 	GenerateSpecialMap(passClass, excludedRegions);
-	ComputePath(x0, z0, origGoal, SPECIAL_PASS_CLASS, path);
+	ComputeJPSPath(hierPath, x0, z0, origGoal, SPECIAL_PASS_CLASS, path);
 }
 
 inline bool InRegion(u16 i, u16 j, CircularRegion region)

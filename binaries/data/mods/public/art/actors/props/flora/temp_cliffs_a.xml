@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Cliff_1">
+      <mesh>gaia/temp_cliff_a.dae</mesh>
+      <textures>
+	<texture file="gaia/temperate_cliff_a.png" name="baseTex"/>
+	<texture file="gaia/temperate_cliff_a_norm.png" name="normTex"/>
+	<texture file="gaia/temperate_cliff_a_spec.png" name="specTex"/>
+	<texture file="gaia/ao/cliff_a_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant name="Cliff_2">
+      <mesh>gaia/temp_cliff_b.dae</mesh>
+      <textures>
+        <texture file="gaia/temperate_cliff_a.png" name="baseTex"/>
+        <texture file="gaia/temperate_cliff_a_norm.png" name="normTex"/>
+        <texture file="gaia/temperate_cliff_a_spec.png" name="specTex"/>
+        <texture file="gaia/ao/cliff_b_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant name="Cliff_3">
+      <mesh>gaia/temp_cliff_c.dae</mesh>
+      <textures>
+	<texture file="gaia/temperate_cliff_a.png" name="baseTex"/>
+	<texture file="gaia/temperate_cliff_a_norm.png" name="normTex"/>
+	<texture file="gaia/temperate_cliff_a_spec.png" name="specTex"/>
+        <texture file="gaia/ao/cliff_c_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant name="Cliff_4">
+      <mesh>gaia/temp_cliff_d.dae</mesh>
+      <textures>
+	<texture file="gaia/temperate_cliff_a.png" name="baseTex"/>
+	<texture file="gaia/temperate_cliff_a_norm.png" name="normTex"/>
+	<texture file="gaia/temperate_cliff_a_spec.png" name="specTex"/>
+	<texture file="gaia/ao/cliff_d_ao.png" name="aoTex"/>
+      </textures>
+    </variant>	
+  </group>  
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

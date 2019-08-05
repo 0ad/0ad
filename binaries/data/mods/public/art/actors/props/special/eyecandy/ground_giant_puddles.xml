@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Base">
+      <decal width="80" depth="80" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="props/ground_decal_puddle_02.png" name="baseTex"/>
+        <texture file="props/ground_decal_puddle_01_norm.png" name="normTex"/>
+        <texture file="props/ground_decal_puddle_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="puddle_01">
+      <textures>
+        <texture file="props/ground_decal_puddle_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="puddle_02">
+      <textures>
+        <texture file="props/ground_decal_puddle_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>

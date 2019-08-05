@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -578,9 +578,6 @@ void CRenderer::ReloadShaders()
 #endif
 	}
 
-	if (m_LightEnv)
-		m->globalContext.Add(CStrIntern("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()), str_1);
-
 	if (m_Options.m_PreferGLSL && m_Options.m_Fog)
 		m->globalContext.Add(str_USE_FOG, str_1);
 
@@ -1135,7 +1132,9 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	camera.m_Orientation.Scale(1, -1, 1);
 	camera.m_Orientation.Translate(0, 2*wm.m_WaterHeight, 0);
 	camera.UpdateFrustum(scissor);
-	camera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight));
+	// Clip slightly above the water to improve reflections of objects on the water
+	// when the reflections are distorted.
+	camera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight + 2.0f));
 
 	SViewPort vp;
 	vp.m_Height = wm.m_RefTextureSize;
@@ -1143,10 +1142,10 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	camera.SetViewPort(vp);
-	camera.SetProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
+	camera.SetPerspectiveProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
-	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
+	camera.SetProjection(scaleMat * camera.GetProjection());
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight + 0.5f);
 	SetObliqueFrustumClipping(camera, camPlane);
@@ -1179,10 +1178,10 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	camera.SetViewPort(vp);
-	camera.SetProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
+	camera.SetPerspectiveProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
-	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
+	camera.SetProjection(scaleMat * camera.GetProjection());
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

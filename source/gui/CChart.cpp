@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,8 +16,10 @@
  */
 
 #include "precompiled.h"
+
 #include "CChart.h"
 
+#include "gui/CGUIColor.h"
 #include "graphics/ShaderManager.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
@@ -27,9 +29,10 @@
 
 #include <cmath>
 
-CChart::CChart()
+CChart::CChart(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
-	AddSetting(GUIST_CColor, "axis_color");
+	AddSetting(GUIST_CGUIColor, "axis_color");
 	AddSetting(GUIST_float, "axis_width");
 	AddSetting(GUIST_float, "buffer_zone");
 	AddSetting(GUIST_CStrW, "font");
@@ -65,7 +68,7 @@ void CChart::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CChart::DrawLine(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const
+void CChart::DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
 {
 	shader->Uniform(str_color, color);
 	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
@@ -79,7 +82,7 @@ void CChart::DrawLine(const CShaderProgramPtr& shader, const CColor& color, cons
 	glDisable(GL_LINE_SMOOTH);
 }
 
-void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const
+void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
 {
 	shader->Uniform(str_color, color);
 	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
@@ -103,8 +106,8 @@ void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 	ADD(m_CachedActualSize.left, m_CachedActualSize.top);
 	ADD(rect.left, rect.top - m_AxisWidth);
 #undef ADD
-	CColor axis_color(0.5f, 0.5f, 0.5f, 1.f);
-	GUI<CColor>::GetSetting(this, "axis_color", axis_color);
+	CGUIColor axis_color(0.5f, 0.5f, 0.5f, 1.f);
+	GUI<CGUIColor>::GetSetting(this, "axis_color", axis_color);
 	DrawTriangleStrip(shader, axis_color, vertices);
 }
 
@@ -169,7 +172,7 @@ void CChart::Draw()
 	glDepthMask(1);
 
 	for (size_t i = 0; i < m_TextPositions.size(); ++i)
-		DrawText(i, CColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i], bz + 0.5f);
+		DrawText(i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i], bz + 0.5f);
 }
 
 CRect CChart::GetChartRect() const
@@ -270,7 +273,7 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 	else if (format == L"INTEGER")
 	{
 		wchar_t buffer[64];
-		swprintf(buffer, 64, L"%d", static_cast<int>(value));
+		swprintf(buffer, 64, L"%d", std::lround(value));
 		gui_str.SetValue(buffer);
 	}
 	else if (format == L"DURATION_SHORT")
@@ -278,6 +281,12 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 		const int seconds = value;
 		wchar_t buffer[64];
 		swprintf(buffer, 64, L"%d:%02d", seconds / 60, seconds % 60);
+		gui_str.SetValue(buffer);
+	}
+	else if (format == L"PERCENTAGE")
+	{
+		wchar_t buffer[64];
+		swprintf(buffer, 64, L"%d%%", std::lround(value));
 		gui_str.SetValue(buffer);
 	}
 	else

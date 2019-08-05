@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,9 +19,11 @@
 
 #include "CButton.h"
 
+#include "gui/CGUIColor.h"
 #include "lib/ogl.h"
 
-CButton::CButton()
+CButton::CButton(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
@@ -38,10 +40,10 @@ CButton::CButton()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_disabled");
 	AddSetting(GUIST_EAlign,				"text_align");
 	AddSetting(GUIST_EVAlign,				"text_valign");
-	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_CColor,				"textcolor_over");
-	AddSetting(GUIST_CColor,				"textcolor_pressed");
-	AddSetting(GUIST_CColor,				"textcolor_disabled");
+	AddSetting(GUIST_CGUIColor,				"textcolor");
+	AddSetting(GUIST_CGUIColor,				"textcolor_over");
+	AddSetting(GUIST_CGUIColor,				"textcolor_pressed");
+	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
@@ -115,6 +117,6 @@ void CButton::Draw()
 			   *sprite_disabled,
 			   cell_id);
 
-	CColor color = ChooseColor();
+	CGUIColor color = ChooseColor();
 	DrawText(0, color, m_TextPos, bz+0.1f);
 }

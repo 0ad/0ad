@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -345,3 +345,6 @@ template<> bool ScriptInterface::FromJSVal<CVector2D>(JSContext* cx, JS::HandleV
 
 	return true;
 }
+
+#undef FAIL
+#undef WARN_IF_NOT

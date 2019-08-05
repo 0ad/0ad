@@ -941,7 +941,7 @@ g_SelectionPanels.Training = {
 			"player": data.player
 		});
 
-		let unitIds = data.unitEntStates.map(status => status.id)
+		let unitIds = data.unitEntStates.map(status => status.id);
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 			getTrainingStatus(unitIds, data.item, data.playerState);
 

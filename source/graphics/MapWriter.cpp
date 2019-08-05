@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -189,124 +189,121 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						  CPostprocManager* pPostproc,
 						  CSimulation2* pSimulation2)
 {
-	XML_Start();
-
+	XMLWriter_File xmlMapFile;
 	{
-		XML_Element("Scenario");
-		XML_Attribute("version", (int)FILE_VERSION);
+		XMLWriter_Element scenarioTag(xmlMapFile, "Scenario");
+		scenarioTag.Attribute("version", static_cast<int>(FILE_VERSION));
 
 		ENSURE(pSimulation2);
 		CSimulation2& sim = *pSimulation2;
 
 		if (!sim.GetStartupScript().empty())
 		{
-			XML_Element("Script");
-			XML_CDATA(sim.GetStartupScript().c_str());
+			XMLWriter_Element scriptTag(xmlMapFile, "Script");
+			scriptTag.Text(sim.GetStartupScript().c_str(), true);
 		}
 
 		{
-			XML_Element("Environment");
-
-			XML_Setting("SkySet", pSkyMan->GetSkySet());
+			XMLWriter_Element environmentTag(xmlMapFile, "Environment");
+			environmentTag.Setting("SkySet", pSkyMan->GetSkySet());
 			{
-				XML_Element("SunColor");
-				XML_Attribute("r", pLightEnv->m_SunColor.X); // yes, it's X/Y/Z...
-				XML_Attribute("g", pLightEnv->m_SunColor.Y);
-				XML_Attribute("b", pLightEnv->m_SunColor.Z);
+				XMLWriter_Element sunColorTag(xmlMapFile, "SunColor");
+				sunColorTag.Attribute("r", pLightEnv->m_SunColor.X); // yes, it's X/Y/Z...
+				sunColorTag.Attribute("g", pLightEnv->m_SunColor.Y);
+				sunColorTag.Attribute("b", pLightEnv->m_SunColor.Z);
 			}
 			{
-				XML_Element("SunElevation");
-				XML_Attribute("angle", pLightEnv->m_Elevation);
+				XMLWriter_Element SunElevationTag(xmlMapFile, "SunElevation");
+				SunElevationTag.Attribute("angle", pLightEnv->m_Elevation);
 			}
 			{
-				XML_Element("SunRotation");
-				XML_Attribute("angle", pLightEnv->m_Rotation);
+				XMLWriter_Element sunRotationTag(xmlMapFile, "SunRotation");
+				sunRotationTag.Attribute("angle", pLightEnv->m_Rotation);
 			}
 			{
-				XML_Element("TerrainAmbientColor");
-				XML_Attribute("r", pLightEnv->m_TerrainAmbientColor.X);
-				XML_Attribute("g", pLightEnv->m_TerrainAmbientColor.Y);
-				XML_Attribute("b", pLightEnv->m_TerrainAmbientColor.Z);
+				XMLWriter_Element terrainAmbientColorTag(xmlMapFile, "TerrainAmbientColor");
+				terrainAmbientColorTag.Attribute("r", pLightEnv->m_TerrainAmbientColor.X);
+				terrainAmbientColorTag.Attribute("g", pLightEnv->m_TerrainAmbientColor.Y);
+				terrainAmbientColorTag.Attribute("b", pLightEnv->m_TerrainAmbientColor.Z);
 			}
 			{
-				XML_Element("UnitsAmbientColor");
-				XML_Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
-				XML_Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
-				XML_Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
+				XMLWriter_Element unitsAmbientColorTag(xmlMapFile, "UnitsAmbientColor");
+				unitsAmbientColorTag.Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
+				unitsAmbientColorTag.Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
+				unitsAmbientColorTag.Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
 			}
 			{
-				XML_Element("Fog");
-				XML_Setting("FogFactor", pLightEnv->m_FogFactor);
-				XML_Setting("FogThickness", pLightEnv->m_FogMax);
+				XMLWriter_Element fogTag(xmlMapFile, "Fog");
+				fogTag.Setting("FogFactor", pLightEnv->m_FogFactor);
+				fogTag.Setting("FogThickness", pLightEnv->m_FogMax);
 				{
-					XML_Element("FogColor");
-					XML_Attribute("r", pLightEnv->m_FogColor.X);
-					XML_Attribute("g", pLightEnv->m_FogColor.Y);
-					XML_Attribute("b", pLightEnv->m_FogColor.Z);
+					XMLWriter_Element fogColorTag(xmlMapFile, "FogColor");
+					fogColorTag.Attribute("r", pLightEnv->m_FogColor.X);
+					fogColorTag.Attribute("g", pLightEnv->m_FogColor.Y);
+					fogColorTag.Attribute("b", pLightEnv->m_FogColor.Z);
 				}
 			}
 
 			{
-				XML_Element("Water");
+				XMLWriter_Element waterTag(xmlMapFile, "Water");
 				{
-					XML_Element("WaterBody");
+					XMLWriter_Element waterBodyTag(xmlMapFile, "WaterBody");
 					CmpPtr<ICmpWaterManager> cmpWaterManager(sim, SYSTEM_ENTITY);
 					ENSURE(cmpWaterManager);
-					XML_Setting("Type", pWaterMan->m_WaterType);
+					waterBodyTag.Setting("Type", pWaterMan->m_WaterType);
 					{
-						XML_Element("Color");
-						XML_Attribute("r", pWaterMan->m_WaterColor.r);
-						XML_Attribute("g", pWaterMan->m_WaterColor.g);
-						XML_Attribute("b", pWaterMan->m_WaterColor.b);
+						XMLWriter_Element colorTag(xmlMapFile, "Color");
+						colorTag.Attribute("r", pWaterMan->m_WaterColor.r);
+						colorTag.Attribute("g", pWaterMan->m_WaterColor.g);
+						colorTag.Attribute("b", pWaterMan->m_WaterColor.b);
 					}
 					{
-						XML_Element("Tint");
-						XML_Attribute("r", pWaterMan->m_WaterTint.r);
-						XML_Attribute("g", pWaterMan->m_WaterTint.g);
-						XML_Attribute("b", pWaterMan->m_WaterTint.b);
+						XMLWriter_Element tintTag(xmlMapFile, "Tint");
+						tintTag.Attribute("r", pWaterMan->m_WaterTint.r);
+						tintTag.Attribute("g", pWaterMan->m_WaterTint.g);
+						tintTag.Attribute("b", pWaterMan->m_WaterTint.b);
 					}
-					XML_Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
-					XML_Setting("Waviness", pWaterMan->m_Waviness);
-					XML_Setting("Murkiness", pWaterMan->m_Murkiness);
-					XML_Setting("WindAngle", pWaterMan->m_WindAngle);
+					waterBodyTag.Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
+					waterBodyTag.Setting("Waviness", pWaterMan->m_Waviness);
+					waterBodyTag.Setting("Murkiness", pWaterMan->m_Murkiness);
+					waterBodyTag.Setting("WindAngle", pWaterMan->m_WindAngle);
 				}
 			}
 
 			{
-				XML_Element("Postproc");
+				XMLWriter_Element postProcTag(xmlMapFile, "Postproc");
 				{
-					XML_Setting("Brightness", pLightEnv->m_Brightness);
-					XML_Setting("Contrast", pLightEnv->m_Contrast);
-					XML_Setting("Saturation", pLightEnv->m_Saturation);
-					XML_Setting("Bloom", pLightEnv->m_Bloom);
-					XML_Setting("PostEffect", pPostproc->GetPostEffect());
+					postProcTag.Setting("Brightness", pLightEnv->m_Brightness);
+					postProcTag.Setting("Contrast", pLightEnv->m_Contrast);
+					postProcTag.Setting("Saturation", pLightEnv->m_Saturation);
+					postProcTag.Setting("Bloom", pLightEnv->m_Bloom);
+					postProcTag.Setting("PostEffect", pPostproc->GetPostEffect());
 				}
 			}
 		}
 
 		{
-			XML_Element("Camera");
-
+			XMLWriter_Element cameraTag(xmlMapFile, "Camera");
 			{
-				XML_Element("Position");
+				XMLWriter_Element positionTag(xmlMapFile, "Position");
 				CVector3D pos = pCamera->m_Orientation.GetTranslation();
-				XML_Attribute("x", pos.X);
-				XML_Attribute("y", pos.Y);
-				XML_Attribute("z", pos.Z);
+				positionTag.Attribute("x", pos.X);
+				positionTag.Attribute("y", pos.Y);
+				positionTag.Attribute("z", pos.Z);
 			}
 
 			CVector3D in = pCamera->m_Orientation.GetIn();
 			// Convert to spherical coordinates
 			float rotation = atan2(in.X, in.Z);
-			float declination = atan2(sqrt(in.X*in.X + in.Z*in.Z), in.Y) - (float)M_PI/2;
+			float declination = atan2(sqrt(in.X*in.X + in.Z*in.Z), in.Y) - static_cast<float>(M_PI / 2);
 
 			{
-				XML_Element("Rotation");
-				XML_Attribute("angle", rotation);
+				XMLWriter_Element rotationTag(xmlMapFile, "Rotation");
+				rotationTag.Attribute("angle", rotation);
 			}
 			{
-				XML_Element("Declination");
-				XML_Attribute("angle", declination);
+				XMLWriter_Element declinationTag(xmlMapFile, "Declination");
+				declinationTag.Attribute("angle", declination);
 			}
 		}
 
@@ -314,14 +311,13 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			std::string settings = sim.GetMapSettingsString();
 			if (!settings.empty())
 			{
-				XML_Element("ScriptSettings");
-				XML_CDATA(("\n" + settings + "\n").c_str());
+				XMLWriter_Element scriptSettingsTag(xmlMapFile, "ScriptSettings");
+				scriptSettingsTag.Text(("\n" + settings + "\n").c_str(), true);
 			}
 		}
 
 		{
-			XML_Element("Entities");
-
+			XMLWriter_Element entitiesTag(xmlMapFile, "Entities");
 			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 			ENSURE(cmpTemplateManager);
 
@@ -336,14 +332,14 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				if (ENTITY_IS_LOCAL(ent))
 					continue;
 
-				XML_Element("Entity");
-				XML_Attribute("uid", ent);
+				XMLWriter_Element entityTag(xmlMapFile, "Entity");
+				entityTag.Attribute("uid", ent);
 
-				XML_Setting("Template", cmpTemplateManager->GetCurrentTemplateName(ent));
+				entityTag.Setting("Template", cmpTemplateManager->GetCurrentTemplateName(ent));
 
 				CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
 				if (cmpOwnership)
-					XML_Setting("Player", (int)cmpOwnership->GetOwner());
+					entityTag.Setting("Player", static_cast<int>(cmpOwnership->GetOwner()));
 
 				CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 				if (cmpPosition)
@@ -354,14 +350,14 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 					CFixedVector3D rot = cmpPosition->GetRotation();
 					{
-						XML_Element("Position");
-						XML_Attribute("x", pos.X);
-						XML_Attribute("z", pos.Z);
+						XMLWriter_Element positionTag(xmlMapFile, "Position");
+						positionTag.Attribute("x", pos.X);
+						positionTag.Attribute("z", pos.Z);
 						// TODO: height offset etc
 					}
 					{
-						XML_Element("Orientation");
-						XML_Attribute("y", rot.Y);
+						XMLWriter_Element orientationTag(xmlMapFile, "Orientation");
+						orientationTag.Attribute("y", rot.Y);
 						// TODO: X, Z maybe
 					}
 				}
@@ -379,22 +375,22 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					// Don't waste space writing the default control groups.
 					if (group != ent || group2 != INVALID_ENTITY)
 					{
-						XML_Element("Obstruction");
+						XMLWriter_Element obstructionTag(xmlMapFile, "Obstruction");
 						if (group != ent)
-							XML_Attribute("group", group);
+							obstructionTag.Attribute("group", group);
 						if (group2 != INVALID_ENTITY)
-							XML_Attribute("group2", group2);
+							obstructionTag.Attribute("group2", group2);
 					}
 				}
 
 				CmpPtr<ICmpVisual> cmpVisual(sim, ent);
 				if (cmpVisual)
 				{
-					u32 seed = cmpVisual->GetActorSeed();
-					if (seed != (u32)ent)
+					entity_id_t seed = static_cast<entity_id_t>(cmpVisual->GetActorSeed());
+					if (seed != ent)
 					{
-						XML_Element("Actor");
-						XML_Attribute("seed", seed);
+						XMLWriter_Element actorTag(xmlMapFile, "Actor");
+						actorTag.Attribute("seed",seed);
 					}
 					// TODO: variation/selection strings
 				}
@@ -407,7 +403,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		{
 			const std::map<CStrW, CCinemaPath>& paths = cmpCinemaManager->GetPaths();
 			std::map<CStrW, CCinemaPath>::const_iterator it = paths.begin();
-			XML_Element("Paths");
+			XMLWriter_Element pathsTag(xmlMapFile, "Paths");
 
 			for ( ; it != paths.end(); ++it )
 			{
@@ -416,12 +412,12 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				const std::vector<SplineData>& target_nodes = it->second.GetTargetSpline().GetAllNodes();
 				const CCinemaData* data = it->second.GetData();
 
-				XML_Element("Path");
-				XML_Attribute("name", data->m_Name);
-				XML_Attribute("timescale", timescale);
-				XML_Attribute("orientation", data->m_Orientation);
-				XML_Attribute("mode", data->m_Mode);
-				XML_Attribute("style", data->m_Style);
+				XMLWriter_Element pathTag(xmlMapFile, "Path");
+				pathTag.Attribute("name", data->m_Name);
+				pathTag.Attribute("timescale", timescale);
+				pathTag.Attribute("orientation", data->m_Orientation);
+				pathTag.Attribute("mode", data->m_Mode);
+				pathTag.Attribute("style", data->m_Style);
 
 				struct SEvent
 				{
@@ -460,23 +456,23 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				std::sort(events.begin(), events.end());
 				for (size_t i = 0; i < events.size();)
 				{
-					XML_Element("Node");
+					XMLWriter_Element nodeTag(xmlMapFile, "Node");
 					fixed deltatime = i > 0 ? (events[i].time - events[i - 1].time) : fixed::Zero();
-					XML_Attribute("deltatime", deltatime);
+					nodeTag.Attribute("deltatime", deltatime);
 					size_t j = i;
 					for (; j < events.size() && events[j].time == events[i].time; ++j)
 					{
 						// Types: Position/Rotation/Target
-						XML_Element(events[j].type);
-						XML_Attribute("x", events[j].value.X);
-						XML_Attribute("y", events[j].value.Y);
-						XML_Attribute("z", events[j].value.Z);
+						XMLWriter_Element eventTypeTag(xmlMapFile, events[j].type);
+						eventTypeTag.Attribute("x", events[j].value.X);
+						eventTypeTag.Attribute("y", events[j].value.Y);
+						eventTypeTag.Attribute("z", events[j].value.Z);
 					}
 					i = j;
 				}
 			}
 		}
 	}
-	if (!XML_StoreVFS(g_VFS, filename))
+	if (!xmlMapFile.StoreVFS(g_VFS, filename))
 		LOGERROR("Failed to write map '%s'", filename.string8());
 }

@@ -33,7 +33,7 @@
     <Civ>iber</Civ>
     <GenericName>Revered Monument</GenericName>
     <SpecificName>Gur Oroigarri</SpecificName>
-    <Classes datatype="tokens">Monument -ConquestCritical</Classes>
+    <Classes datatype="tokens">Monument</Classes>
     <Icon>structures/iberian_bull.png</Icon>
     <Tooltip>All units within vision of this monument will fight harder. Buildings in the territory of the monument do not decay.</Tooltip>
   </Identity>
@@ -51,7 +51,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_iber_monument.xml</select>
       <constructed>interface/complete/building/complete_iber_monument.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

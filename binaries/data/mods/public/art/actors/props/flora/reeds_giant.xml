@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base1"/>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/papyrus_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/papyrus_2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="5" name="a">
+      <textures>
+        <texture file="gaia/giantcane.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind_grain.xml</material>
+</actor>

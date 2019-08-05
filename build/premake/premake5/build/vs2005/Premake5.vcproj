@@ -12,6 +12,9 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
@@ -19,7 +22,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\..\bin\release"
-			IntermediateDirectory="obj\Release\Premake5"
+			IntermediateDirectory="obj\x86\Release\Premake5"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -40,7 +43,82 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MT /MP /Ox /W4 /EHsc"
+				AdditionalOptions="/MP /Ox /MT /W4 /EHsc"
+				AdditionalIncludeDirectories="..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				UsePrecompiledHeader="0"
+				ProgramDataBaseFileName=""
+				DebugInformationFormat="0"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/NOLOGO /INCREMENTAL:NO /GL"
+				AdditionalDependencies="ole32.lib ws2_32.lib advapi32.lib"
+				OutputFile="$(OutDir)\premake5.exe"
+				LinkIncremental="0"
+				GenerateManifest="false"
+				ProgramDatabaseFile=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="..\..\bin\release"
+			IntermediateDirectory="obj\x64\Release\Premake5"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP /Ox /MT /W4 /EHsc"
 				AdditionalIncludeDirectories="..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include"
 				PreprocessorDefinitions="PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
 				UsePrecompiledHeader="0"
@@ -93,7 +171,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\..\bin\debug"
-			IntermediateDirectory="obj\Debug\Premake5"
+			IntermediateDirectory="obj\x86\Debug\Premake5"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -114,7 +192,82 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MTd /MP /Z7 /W4 /EHsc"
+				AdditionalOptions="/MP /MTd /Z7 /W4 /EHsc"
+				AdditionalIncludeDirectories="..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				UsePrecompiledHeader="0"
+				ProgramDataBaseFileName=""
+				DebugInformationFormat="0"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/NOLOGO /DEBUG"
+				AdditionalDependencies="ole32.lib ws2_32.lib advapi32.lib"
+				OutputFile="$(OutDir)\premake5.exe"
+				LinkIncremental="0"
+				GenerateManifest="false"
+				ProgramDatabaseFile=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="..\..\bin\debug"
+			IntermediateDirectory="obj\x64\Debug\Premake5"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP /MTd /Z7 /W4 /EHsc"
 				AdditionalIncludeDirectories="..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include"
 				PreprocessorDefinitions="PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
 				UsePrecompiledHeader="0"
@@ -187,6 +340,58 @@
 		<Filter
 			Name="modules"
 			>
+			<Filter
+				Name="android"
+				>
+				<File
+					RelativePath="..\..\modules\android\LICENSE.txt"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\README.md"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\_manifest.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\_preload.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\android.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\vsandroid_androidproj.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\vsandroid_sln2005.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\vsandroid_vcxproj.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\android\vsandroid_vstudio.lua"
+					>
+				</File>
+				<Filter
+					Name="tests"
+					>
+					<File
+						RelativePath="..\..\modules\android\tests\_tests.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\modules\android\tests\test_android_project.lua"
+						>
+					</File>
+				</Filter>
+			</Filter>
 			<Filter
 				Name="codelite"
 				>
@@ -266,7 +471,11 @@
 						>
 					</File>
 					<File
-						RelativePath="..\..\modules\d\actions\vstudio.lua"
+						RelativePath="..\..\modules\d\actions\vcxproj.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\modules\d\actions\visuald.lua"
 						>
 					</File>
 				</Filter>
@@ -502,6 +711,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\modules\gmake2\tests\test_gmake2_buildcmds.lua"
+						>
+					</File>
+					<File
 						RelativePath="..\..\modules\gmake2\tests\test_gmake2_clang.lua"
 						>
 					</File>
@@ -522,11 +735,19 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\modules\gmake2\tests\test_gmake2_makefile.lua"
+						>
+					</File>
+					<File
 						RelativePath="..\..\modules\gmake2\tests\test_gmake2_objects.lua"
 						>
 					</File>
 					<File
 						RelativePath="..\..\modules\gmake2\tests\test_gmake2_pch.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\modules\gmake2\tests\test_gmake2_perfile_flags.lua"
 						>
 					</File>
 					<File
@@ -615,6 +836,18 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\modules\vstudio\vs2005_dotnetbase.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\vstudio\vs2005_fsproj.lua"
+					>
+				</File>
+				<File
+					RelativePath="..\..\modules\vstudio\vs2005_fsproj_user.lua"
+					>
+				</File>
+				<File
 					RelativePath="..\..\modules\vstudio\vs2005_solution.lua"
 					>
 				</File>
@@ -693,10 +926,6 @@
 						Name="cs2005"
 						>
 						<File
-							RelativePath="..\..\modules\vstudio\tests\cs2005\projectelement.lua"
-							>
-						</File>
-						<File
 							RelativePath="..\..\modules\vstudio\tests\cs2005\projectsettings.lua"
 							>
 						</File>
@@ -729,11 +958,11 @@
 							>
 						</File>
 						<File
-							RelativePath="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua"
+							RelativePath="..\..\modules\vstudio\tests\cs2005\test_no_warn.lua"
 							>
 						</File>
 						<File
-							RelativePath="..\..\modules\vstudio\tests\cs2005\test_nuget_framework_folders.lua"
+							RelativePath="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua"
 							>
 						</File>
 						<File
@@ -762,6 +991,26 @@
 						</File>
 						<File
 							RelativePath="..\..\modules\vstudio\tests\cs2005\test_user_file.lua"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="dotnet2005"
+						>
+						<File
+							RelativePath="..\..\modules\vstudio\tests\dotnet2005\projectelement.lua"
+							>
+						</File>
+						<File
+							RelativePath="..\..\modules\vstudio\tests\dotnet2005\test_nuget_framework_folders.lua"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="fs2005"
+						>
+						<File
+							RelativePath="..\..\modules\vstudio\tests\fs2005\projectsettings.lua"
 							>
 						</File>
 					</Filter>
@@ -921,15 +1170,15 @@
 							>
 						</File>
 						<File
+							RelativePath="..\..\modules\vstudio\tests\vc2010\test_fxcompile_settings.lua"
+							>
+						</File>
+						<File
 							RelativePath="..\..\modules\vstudio\tests\vc2010\test_globals.lua"
 							>
 						</File>
 						<File
 							RelativePath="..\..\modules\vstudio\tests\vc2010\test_header.lua"
-							>
-						</File>
-						<File
-							RelativePath="..\..\modules\vstudio\tests\vc2010\test_imagexex_settings.lua"
 							>
 						</File>
 						<File
@@ -954,6 +1203,10 @@
 						</File>
 						<File
 							RelativePath="..\..\modules\vstudio\tests\vc2010\test_nmake_props.lua"
+							>
+						</File>
+						<File
+							RelativePath="..\..\modules\vstudio\tests\vc2010\test_nuget_package_references.lua"
 							>
 						</File>
 						<File
@@ -1002,6 +1255,10 @@
 						</File>
 						<File
 							RelativePath="..\..\modules\vstudio\tests\vc2010\test_target_machine.lua"
+							>
+						</File>
+						<File
+							RelativePath="..\..\modules\vstudio\tests\vc2010\test_tokens.lua"
 							>
 						</File>
 						<File
@@ -1079,6 +1336,10 @@
 		<Filter
 			Name="scripts"
 			>
+			<File
+				RelativePath="..\..\scripts\changes.lua"
+				>
+			</File>
 			<File
 				RelativePath="..\..\scripts\embed.lua"
 				>
@@ -1435,6 +1696,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\host\path_isabsolute.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\host\path_join.c"
 					>
 				</File>
@@ -1782,6 +2047,10 @@
 		</File>
 		<File
 			RelativePath="..\..\LICENSE.txt"
+			>
+		</File>
+		<File
+			RelativePath="..\..\mobdebug.lua"
 			>
 		</File>
 		<File

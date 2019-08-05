@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-05-09 22:51+0000\n"
-"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
+"POT-Creation-Date: 2019-01-07 09:44+0100\n"
+"PO-Revision-Date: 2019-01-07 13:41+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,153 +22,153 @@ msgstr ""
 msgid "Long strings"
 msgstr "Teaghráin fada"
 
-#: lobby/XmppClient.cpp:787
+#: lobby/XmppClient.cpp:800
 msgid "unknown subtype (see logs)"
 msgstr "fochineál anaithnid (féach ar logaí)"
 
-#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
-#: lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
+#: lobby/XmppClient.cpp:1180
 msgid "Error"
 msgstr "Earráid"
 
-#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
+#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
 msgid "No error"
 msgstr "Gan earráid"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1102
 msgid "Player already logged in"
 msgstr "Imreoir logáilte isteach cheana féin"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
 msgstr "Toirmiscthe"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1106
 msgid "Internal server error"
 msgstr "Earráid freastalaí inmheánach"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1110
 msgid "Not allowed"
-msgstr "Ní Cheadaítear"
+msgstr "Neamhcheadaithe"
 
-#: lobby/XmppClient.cpp:1072
+#: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
-msgstr "Gan údaraithe"
+msgstr "Neamhúdaraithe"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
 msgstr "Níl faighteoir ar fáil go sealadach"
 
-#: lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1116
 msgid "Registration required"
 msgstr "Clárú ag teastáil"
 
-#: lobby/XmppClient.cpp:1081
+#: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
 msgstr "Níl seirbhís ar fáil"
 
-#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
+#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
 msgid "Unknown error"
 msgstr "Earráid anaithnid"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1145
 msgid "Stream error"
 msgstr "Earráid srutha"
 
-#: lobby/XmppClient.cpp:1107
+#: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
 msgstr "Tá leagan an srutha istigh gan tacaíocht"
 
-#: lobby/XmppClient.cpp:1108
+#: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
 msgstr "Tá an sruth dúnta ag an bhfreastalaí"
 
-#: lobby/XmppClient.cpp:1112
+#: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
 msgstr "Earráid I/O tarlaithe"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
 msgstr "Tá an ceangail diúltaithe den fhreastalaí"
 
-#: lobby/XmppClient.cpp:1115
+#: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
 msgstr "Teip réiteach den óstainm freastalaí"
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
 msgstr "Tá an córas rith as cuimhne"
 
-#: lobby/XmppClient.cpp:1118
+#: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Ní féidir le teastas an fhreastalaí a chinntiú nó níor chúr i gcríoch croitheadh láimhe an TLS go rathúil"
 
-#: lobby/XmppClient.cpp:1119
+#: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
 msgstr "Níor thairg an freastalaí an criptiú TLS atá ag teastáil"
 
-#: lobby/XmppClient.cpp:1121
+#: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Theip an fíordheimhniú. Tá an pasfhocal mícheart nó níl an cuntas ann."
 
-#: lobby/XmppClient.cpp:1122
+#: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
 msgstr "D'iarr an úsáideoir nó an córas dícheangal"
 
-#: lobby/XmppClient.cpp:1123
+#: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
 msgstr "Níl ceangal gníomhach ann"
 
-#: lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
 msgstr "Tá do chuntas cláraithe go rathúil"
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
 msgstr "Níl an fhaisnéis riachtanach ar fad curtha ar fáil"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1185
 msgid "Username already exists"
 msgstr "Ainm úsáideora ann cheana"
 
-#: ps/ModIo.cpp:244
+#: ps/ModIo.cpp:245
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Teip nuair a thosú iarratas an AD cluiche. Earráid: %s; %s."
 
-#: ps/ModIo.cpp:274
+#: ps/ModIo.cpp:275
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Teip nuair a thosú iarratas na modhnuithe. Earráid: %s; %s."
 
-#: ps/ModIo.cpp:300
+#: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Ní féidir le comhadlann modhnuithe a chrúthú: %s."
 
-#: ps/ModIo.cpp:325
+#: ps/ModIo.cpp:326
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Ní féidir le comhad sealadach a oscailt le haghaidh íoslódáil modhnaithe: %s."
 
-#: ps/ModIo.cpp:335
+#: ps/ModIo.cpp:336
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Theip an t-íoslódáil a thósú. Earráid: %s; %s."
 
-#: ps/ModIo.cpp:380
+#: ps/ModIo.cpp:381
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Teip an íoslódáil aisioncronaigh: %s, %s."
 
-#: ps/ModIo.cpp:408
+#: ps/ModIo.cpp:410
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Teip an íoslódáil. Feagra freastalaí: %s; %s."
 
-#: ps/ModIo.cpp:511
+#: ps/ModIo.cpp:513
 msgid "Mismatched filesize."
 msgstr "Méid-chomad mí-oiriúnaithe."
 
@@ -188,28 +188,13 @@ msgstr "Theip an siniú a chinntiú"
 #: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Cluiche a shábháil chun '%s'"
+msgstr "Cluiche sábháilte go '%s'"
 
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Scríobhadh an scáileán-phictúir go '%s'"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: ps/scripting/JSInterface_Debug.cpp:88
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (cruth saincheaptha)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#. dennis-ignore: *
-#: ps/scripting/JSInterface_Debug.cpp:94
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: ps/scripting/JSInterface_Debug.cpp:115
+#: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
 msgstr "cruth saincheaptha"

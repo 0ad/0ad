@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,34 +38,18 @@ public:
 	/**
 	 * Attempt to walk into range of a to a given point, or as close as possible.
 	 * The range is measured from the center of the unit.
-	 * If the unit is already in range, or cannot move anywhere at all, or if there is
-	 * some other error, then returns false.
-	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
-	 * and sends another MotionChanged after finishing moving.
+	 * If cannot move anywhere at all, or if there is some other error, then returns false.
+	 * Otherwise, returns true.
 	 * If maxRange is negative, then the maximum range is treated as infinity.
 	 */
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
-	 * Determine wether the givven point is within the given range, using the same measurement
-	 * as MoveToPointRange.
-	 */
-	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
-
-	/**
-	 * Determine whether the target is within the given range, using the same measurement
-	 * as MoveToTargetRange.
-	 */
-	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
-
-	/**
 	 * Attempt to walk into range of a given target entity, or as close as possible.
 	 * The range is measured between approximately the edges of the unit and the target, so that
 	 * maxRange=0 is not unreachably close to the target.
-	 * If the unit is already in range, or cannot move anywhere at all, or if there is
-	 * some other error, then returns false.
-	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
-	 * and sends another MotionChanged after finishing moving.
+	 * If the unit cannot move anywhere at all, or if there is some other error, then returns false.
+	 * Otherwise, returns true.
 	 * If maxRange is negative, then the maximum range is treated as infinity.
 	 */
 	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
@@ -87,29 +71,41 @@ public:
 	virtual void StopMoving() = 0;
 
 	/**
-	 * Get the current movement speed.
+	 * Get the distance travelled over the last turn.
 	 */
 	virtual fixed GetCurrentSpeed() const = 0;
 
 	/**
-	 * Set the current movement speed.
+	 * @returns true if the unit has a destination.
 	 */
-	virtual void SetSpeed(fixed speed) = 0;
+	virtual bool IsMoveRequested() const = 0;
 
 	/**
-	 * Get whether the unit is moving.
-	 */
-	virtual bool IsMoving() const = 0;
-
-	/**
-	 * Get the default speed that this unit will have when walking, in metres per second.
+	 * Get the unit template walk speed after modifications.
 	 */
 	virtual fixed GetWalkSpeed() const = 0;
 
 	/**
-	 * Get the default speed that this unit will have when running, in metres per second.
+	 * Get the unit template running (i.e. max) speed after modifications.
 	 */
-	virtual fixed GetRunSpeed() const = 0;
+	virtual fixed GetRunMultiplier() const = 0;
+
+	/**
+	 * Returns the ratio of GetSpeed() / GetWalkSpeed().
+	 */
+	virtual fixed GetSpeedMultiplier() const = 0;
+
+	/**
+	 * Set the current movement speed.
+	 * @param speed A multiplier of GetWalkSpeed().
+	 */
+	virtual void SetSpeedMultiplier(fixed multiplier) = 0;
+
+	/**
+	 * Get the speed at which the unit intends to move.
+	 * (regardless of whether the unit is moving or not right now).
+	 */
+	virtual fixed GetSpeed() const = 0;
 
 	/**
 	 * Set whether the unit will turn to face the target point after finishing moving.

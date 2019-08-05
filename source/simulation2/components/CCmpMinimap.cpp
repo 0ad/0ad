@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/MessageTypes.h"
 
-#include "ps/Shapes.h"
+#include "graphics/Color.h"
 
 class CCmpMinimap : public ICmpMinimap
 {
@@ -35,6 +35,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_PlayerColorChanged);
 		componentManager.SubscribeToMessageType(MT_MinimapPing);
 	}
 
@@ -161,6 +162,7 @@ public:
 		}
 		case MT_Deserialized:
 		case MT_OwnershipChanged:
+		case MT_PlayerColorChanged:
 		{
 			UpdateColor();
 			break;

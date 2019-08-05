@@ -1,8 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alejandro Avellaneda <aleavellaneda1@gmail.com>, 2019
 # Ancel0 <ancel0@openmailbox.org>, 2013
 # blvebird <doomsamurai@hotmail.com>, 2014
 # Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
@@ -27,6 +28,7 @@
 # jhonny fernando montoya giraldo <jhonny.antares@gmail.com>, 2018
 # Joaquín <joaquin95uru@gmail.com>, 2013
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
+# Jose Manuel <elmanytas@gmail.com>, 2019
 # Kalrish Bäakjen <kalrish.baakjen@gmail.com>, 2015
 # Lenny Hans Andreu <landreuhs@outlook.com>, 2013
 # Liam Brien, 2017
@@ -46,15 +48,16 @@
 # Sebastian David Tamayo, 2014
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
 # Swyter <Swyterzone@gmail.com>, 2013-2018
+# Tobal lópez silla <lopeztobal@gmail.com>, 2019
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
 # vega93 <arkadas_llisa@hotmail.com>, 2013,2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-10-13 13:10+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"POT-Creation-Date: 2019-04-01 10:07+0200\n"
+"PO-Revision-Date: 2019-06-04 13:21+0000\n"
+"Last-Translator: Alejandro Avellaneda <aleavellaneda1@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,8 +107,8 @@ msgid ""
 msgstr "Los griegos tuvieron bastante éxito helenizando culturas extranjeras. Durante la era helenística el griego se convirtió en la lengua franca del mundo antiguo, ampliamente difundida desde Hispania hasta la lejana India. "
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Ships construct 25% faster."
-msgstr "Los navíos se construyen un 25% más rápido."
+msgid "Allied warships −25% construction time."
+msgstr "Buque de guerra aliado - 25% del tiempo de construcción"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -354,8 +357,8 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "La religión celta y las prácticas druídicas inspiraban su espíritu guerrero."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "-20% resources cost for allies healers."
-msgstr "Reduce en un -20% el coste de todos los sanadores aliados"
+msgid "Allied healers −20% resource costs."
+msgstr "Curanderos aliados -20% del costo de los recursos."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -461,7 +464,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech…"
-msgstr "Caractacus, la forma romana, es un cambio simple de Karatakos, su nombre real, que estaba impreso en sus muchas, muchas monedas. Bajo este nombre es recordado como un feroz defensor de Gran Bretaña contra los romanos después de su invasión en el año 43 d. C. Hijo del rey Cunobelin de la confederación tribal Catuvellauni, Karatakos luchó durante nueve años contra los romanos con poco éxito, finalmente huyendo a las tribus en Gales , donde fue derrotado decisivamente. Finalmente entró en el norte de Gran Bretaña, donde fue entregado a los romanos. Llevado a Roma, Karatakos se le permitió vivir por el emperador Claudio y murió en Italia. La tradición dice que se convirtió al cristianismo cuando su esposa lo hizo, pero no se sabe nada de esto como definitivo. Probablemente sea más notable el asunto que se le permitió vivir una vez capturado. La política romana solía tener a esos hombres asesinados en exhibiciones públicas para celebrar. Karatakos fue llevado ante el Emperador y el Senado a petición suya para explicarse. Lo que dijo no se conoce con certeza, pero Tácito le aplica un famoso discurso ..."
+msgstr "Caractacus, la forma Romana, es una simple variante de Karatakos, su nombre actual, el cual fue impreso en muchas, muchas monedas. Bajo este nombre es recordado como un fiero defensor de Bretaña contra los Romanos después de su invasión en el 43 D.C. Hijo del Rey Cunobelin de la confederación tribal Catuvellauni, Karatakos luchó durante nueve años contra los romanos con pequeñas victorias, finalmente huyendo a las tribus en Gales, donde fue derrotado decisivamente. Finalmente entró en el norte de Gran Bretaña, donde fue entregado a los romanos. Llevado a Roma, el Emperador Claudio permitió a Karatakos vivir y murió en Italia. La tradición afirma que se convirtió al Cristianismo cuando su esposa lo hizo, pero no se sabe con certeza nada de esto. Probablemente más notable es el asunto que le permitiesen vivir una vez capturado. La política romana solía ser celebrar matar a tales hombres en exhibiciones públicas. Karatakos fue llevado ante el Emperador y el Senado a petición suya para defenderse. Lo que dijo no se sabe con certeza, pero Tácito le atribuye un famoso discurso ..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -471,7 +474,7 @@ msgid ""
 "as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
 "Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
 "tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aide. Kunobelinos seems to have been indifferent to the Romans. He traded "
+"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
 "with them freely, but had few qualms subjugating known Roman allies, and "
 "even sent his youngest son Adminius as a fosterling to be educated in Roman "
 "Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
@@ -496,7 +499,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr "Kunobelinos, más conocido por la forma latinizada Cunobelino, era un poderoso gobernante del territorio que ocupa la actual Colchester. Era un rey guerrero que desde Kamulodunon (o Camulodunum) conquistó a los Trinovantes, una tribu vecina, por lo cual los romanos le dieron el nombre de Rey de los Britanos. A pesar de tener a los romanos como aliados, los Trinovantes no pudieron pedir la ayuda de Roma porque fueron conquistados muy poco después del propio desastre romano en Germania. Kunobelinus murió por una enfermedad luego de haber subyugado a la gran parte de la mitad sur de Bretaña (se acuñaron sus monedas hasta la frontera de lo que hoy es Gales). Cuando murió, su hijo Togodumo lo reemplazó pero murió en batalla contra los romanos, y luego fue reemplazado por su hermano Karatakos. Es irónico que fuera su tercer hijo el que empezó la represalia contra los romanos. Kunobelinos parece haber sido indiferente a los romanos. Comerciaba libremente con ellos, pero tenía pocos escrúpulos para subyugar aliados romanos. Incluso envió a Adminius a la Galia romana para que fuera educado, lo que dio cuenta de la amistad de Adminius con los romanos. Su padre le otorgó el señorío de los Cantiaci, que habitaban en Kent, el área con mayor influencia romana y flujo comercial de Bretaña, y observó hábilmente que la amistad que trababa su hijo menor con los poderosos políticos y comerciantes romanos y galo-romanos le serviría para administrar la región. Sin embargo, sus otros hijos no tenían cariño por los romanos y cuando Kunobelinus murió, Togodumo, ahora rey, arrestó, ejecutó y expulsó a numerosos simpatizantes de los romanos, incluyendo a su propio hermano Adminius y al depuesto rey de Atrevates, Verica, quien recurrió a sus conexiones con el Imperio Romano para recuperar sus tierras. Puede que Kunobelinus haya sido uno de los grandes reyes británicos de su tiempo. Pasó de solo gobernar cuatro tribus pequeñas en una confederación, los Catuvellauni, a conquistar grandes porciones de tierra y ser reconocido como rey de Bretaña. Tan grande fue el reconocimiento que incluso las tribus de Cambria ayudaron a sus hijos contra los romanos y sus aliados britanos, y los britanos posromanos consideraron a Kunobelinus como uno de sus grandes héroes: un conquistador y unificador de reinos insignificantes, algo que los britanos posromanos o los britanos-romanos necesitaban con urgencia."
+msgstr "Kunobelinos (quizás mejor conocido por la forma latinizada de Cunobelin) fue un poderoso gobernante de los Catuvellauni. Fue mencionado por los romanos como el rey de los británicos. Sus dominios se extendieron alrededor de la ciudad de Kamulodunon (conocida como Camulodunum), el moderno Colchester. La derrota romana en la batalla del Bosque de Teutoburgo (Alemania) permitió a los Kunobelinos conquistar una tribu vecina, los Trinovantes, que eran aliados romanos y no podían recibir ayuda romana. Kunobelinos parece haber sido indiferente a los romanos. Él negoció con ellos libremente, pero tuvo pocos escrúpulos para subyugar a los aliados romanos conocidos, e incluso envió a su hijo menor, Adminio, para que lo educara en la Galia romana. Esto explicaba las amistades de Adminius entre los romanos. Adminius recibió el señorío sobre la Cantaci, que habitaba Kent, por su padre. Esta área era la principal área de influencia y comercio romanos en Gran Bretaña, y Kunobelinos observó astutamente que la amistad de su hijo menor con los poderosos políticos y comerciantes romanos y galo-romanos sería útil para administrar la región. Sus otros hijos, aunque no tenían amor por los romanos. Cuando Kunobelinos murió de la enfermedad, fue reemplazado por su hijo Togdumnos, quien arrestó, ejecutó o expulsó a numerosos simpatizantes romanos. Estos incluían a su propio hermano Adminius, y al depuesto rey de Atrebates, Verica, quien hizo un llamamiento a sus conexiones en el Imperio Romano para que los ayudara a recuperar sus tierras. Togdumnos murió en batalla con los romanos, y posteriormente fue reemplazado por su hermano, Karatakos. Es una ironía que fue su tercer hijo el que inicialmente invitó a esta represalia romana. Kunobelinos en su tiempo, sin embargo, fue posiblemente uno de los más grandes de todos los reyes británicos. Él conquistó la gran mayoría de la mitad sur de Gran Bretaña (sus monedas estaban siendo acuñadas hasta las fronteras de lo que se convertiría en Gales). Comenzó a gobernar solo sobre cuatro tribus menores en una confederación, los catuvellauni, y terminó logrando el reconocimiento como rey de Gran Bretaña. Este reconocimiento fue tan grande que las tribus de Cambria llegaron incluso para ayudar a sus hijos contra los romanos y sus aliados británicos, y los británicos posromanos sostuvieron a Kunobelinos como uno de sus grandes héroes; un conquistador y unificador de pequeños reinos, algo que los británicos posromanos o romano-británicos necesitaban con urgencia."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -539,7 +542,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr "Amiano Marcelino describió lo difícil que sería para una banda de extranjeros hacer frente a un celta si recurría a la ayuda de su esposa, pues sus mujeres son tan fuertes como ellos y podrían lloverles golpes y patadas duros cual catapulta. De Boudicca, reina de los icenos, se decía que era muy alta y de apariencia terrorífica, su voz era muy grave y una gran masa de pelo rojo recaía sobre los hombros. Vestía una túnica multicolor sobre los que una capa gruesa se ​​sujetaba con un broche. En un principio Boudicca fue una aliada romana, junto con su marido, Prasutagus, rey de los icenos. Prasutagus había sido un aliado romano antes de la opresión, respetado como sabio incluso por sus antiguos enemigos (ahora aliados de los romanos) y libre para gobernar su reino como su tradición dicta, excepto en un caso. Prasutagus, dándose cuenta de que iba a morir, acordó una voluntad con su esposa y sus subordinados, sus hijas heredarían el control físico del territorio, bajo la dirección de Boudicca hasta que fueran adultas, y el emperador de Roma tendría el dominio, la recaudación de impuestos y que se les permita solicitar ayuda militar. Gran parte de la misma situación que él ya poseía. El problema radicaba en que los romanos no reconocían herederas, y por lo tanto su mando tras la muerte de Prasutago, esa afirmación sólo era válida para el emperador del reino de los icenos. Señalaron además que era una práctica romana habitual permitir que un reino incorporado al imperio sea independiente solo la vida del rey inicial, tal como había ocurrido en Galatia. El Imperio anexionó formalmente el reino, y comenzó la extracción de duros impuestos inmediatamente, citando que Prasutagus estaba en deuda con los romanos, después de haber tomado varios préstamos durante su vida que él no había podido pagar. La queja de Boudicca sobre este tratamiento y el desafío a la voluntad de su difunto marido se encontró con la brutalidad, los soldados romanos le azotaron, y sus hijas, solo unas niñas, fueron violadas. Boudicca y sus súbditos se enfurecieron por la desgracia sufrida por ella y sus hijas. Con el gobernador romano de Gran Bretaña ocupado con los druidas en Cambria, la actual Gales, Boudicca fue capaz de atraer a más seguidores fuera de los icenos, ya que eran casi la única tribu británica desilusionada con los romanos. Boudicca y su ejército arrasaron tres ciudades, se enfrentaron a una legión romana, y pidieron a la memoria de Arminius, un alemán que había expulsado a los romanos de sus tierras, y sus antepasados ​​que habían expulsado a César cerca de un siglo antes. Boudicca fue derrotada por un gran error táctico en la Batalla de Watling Street, que lleva a gran parte de su ejercito al desastre, ya que no podían retirarse a un lugar seguro. Boudicca escapó, mató a sus hijas, y luego ella misma se suicidó, para evitar más vergüenza a manos de los romanos."
+msgstr "Amiano Marcelino describió lo difícil que sería para una banda de extranjeros hacer frente a un celta si recurría a la ayuda de su esposa, pues sus mujeres son tan fuertes como ellos y podrían llover golpes y patadas duros cual catapulta. De Boudicca, reina de los Icenos, se decía que era muy alta y de apariencia terrorífica, su voz era muy grave y una gran masa de pelo rojo recaía sobre los hombros. Vestía una túnica multicolor sobre los que una capa gruesa se ​​sujetaba con un broche. En un principio Boudicca fue una aliada romana, junto con su marido, Prasutagus, rey de los Icenos. Prasutagus había sido un aliado romano antes de la opresión, respetado como sabio incluso por sus antiguos enemigos (ahora aliados de los romanos) y libre para gobernar su reino como su tradición dicta, excepto en un caso. Prasutagus, dándose cuenta de que iba a morir, acordó una voluntad con su esposa y sus subordinados, sus hijas heredarían el control físico del territorio, bajo la dirección de Boudicca hasta que fueran adultas, y el emperador de Roma tendría el dominio, la recaudación de impuestos y que se les permita solicitar ayuda militar. Gran parte de la misma situación que él ya poseía. El problema radicaba en que los romanos no reconocían herederas, y por lo tanto su mando tras la muerte de Prasutago, esa afirmación sólo era válida para el emperador del reino de los Icenos. Señalaron además que era una práctica romana habitual permitir que un reino incorporado al imperio sea independiente solo la vida del rey inicial, tal como había ocurrido en Galatia. El Imperio anexionó formalmente el reino, y comenzó la extracción de duros impuestos inmediatamente, citando que Prasutagus estaba en deuda con los romanos, después de haber tomado varios préstamos durante su vida que él no había podido pagar. La queja de Boudicca sobre este tratamiento y el desafío a la voluntad de su difunto marido se encontró con la brutalidad, los soldados romanos le azotaron, y sus hijas, solo unas niñas, fueron violadas. Boudicca y sus súbditos se enfurecieron por la desgracia sufrida por ella y sus hijas. Con el gobernador romano de Gran Bretaña ocupado con los druidas en Cambria, la actual Gales, Boudicca fue capaz de atraer a más seguidores fuera de los Icenos, ya que eran casi la única tribu británica desilusionada con los romanos. Boudicca y su ejército arrasaron tres ciudades, se enfrentaron a una legión romana, y pidieron a la memoria de Arminius, un alemán que había expulsado a los romanos de sus tierras, y sus antepasados ​​que habían expulsado a César cerca de un siglo antes. Boudicca fue derrotada por un gran error táctico en la Batalla de Watling Street, que lleva a gran parte de su ejercito al desastre, ya que no podían retirarse a un lugar seguro. Boudicca escapó, mató a sus hijas, y luego ella misma se suicidó, para evitar más vergüenza a manos de los romanos."
 
 #: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -599,8 +602,8 @@ msgid ""
 msgstr "Al igual que la Península Ibérica, África del Norte era conocida como un país de caballos, capaz de producir hasta 100.000 nuevas monturas cada año. También fue el hogar del elefante norteafricano de bosque."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for allies' international routes."
-msgstr "Bonificación del 10% del beneficio comercial de las rutas internacionales de los aliados."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Mercados aliados - Bonus del 10% en comercio internacional"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -734,7 +737,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maharbal fue un «joven y temerario comandante de caballería» de Aníbal Barca durante la segunda Guerra Púnica. Se le atribuye el giro del ala de las legiones de Cannas resultando en una derrota en la que 30.000 de 50.000 romanos murieron, así como las contribuciones significativas a la conquista de muchas otras batallas durante la segunda Guerra Púnica. Es conocido por haber dicho, después de la batalla de Cannas, «Aníbal sabes vencer, pero no sabes sacar provecho de tus victorias»."
+msgstr "Maharbal fue un «joven y temerario comandante de caballería» de Aníbal Barca durante la segunda Guerra Púnica. Se le atribuye el giro del ala de las legiones de Cannas resultando en una derrota en la que 30.000 de 50.000 romanos murieron, así como las contribuciones significativas a la conquista de muchas otras batallas durante la segunda Guerra Púnica. Es conocido por haber dicho, después de la batalla de Cannas, 'Aníbal sabes vencer, pero no sabes sacar provecho de tus victorias'."
 
 #: simulation/data/civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
@@ -806,8 +809,8 @@ msgid "Gauls"
 msgstr "Galos"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "-10% research time for technologies of allies."
-msgstr "-10% tiempo investigación para tecnologías de aliados."
+msgid "Allied structures −20% technology research time."
+msgstr "Estructuras aliadas -20% del tiempo de construcción"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -817,7 +820,7 @@ msgstr "Sabiduría druídica"
 msgid ""
 "The Druids of the Gauls maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "Los Druidas de los Galos mantenían una religión organizada que potenciaba la tecnología de su gente incluso durante los tiempos de guerra."
+msgstr "Los Druidas de los Galos mantenían una religión organizada que potenciaba la tecnología de su gente, incluso durante los tiempos de guerra."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -865,7 +868,7 @@ msgstr "Virídovix"
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr "Una cantidad establecida de comida y metal por cada estructura destruida o capturada."
+msgstr "Una cantidad de metal y comida fija por cada estructura destruida o capturada."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
@@ -934,7 +937,7 @@ msgid ""
 "brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
 "for power in northern Britain in around 390 B.C., and were regarded as gods "
 "in old Celtic tradition."
-msgstr "Brennus es el nombre que los historiadores romanos dan al famoso líder de los galos que tomó Roma en la época de Camilo. Según Geoffrey de Monmouth, el clérigo que escribió \"Historia de los reyes de Gran Bretaña\", Brennus y su hermano Belinus invadieron la Galia y saquearon Roma en el 390 aC, \"demostrando\" que los británicos habían conquistado Roma, la más grande civilización del mundo, Antes de que Roma conquistara a los británicos. Sabemos por muchas fuentes antiguas que predican a Geoffrey que Roma fue efectivamente saqueada, pero en 387 no 390, y que el ataque fue dirigido por un hombre llamado Brennus, pero él y su horda invasora eran senones gales, no británicos. En este episodio se pueden ver varias características del método de edición de Geoffrey: modificó el Brennus histórico, creó el hermano Belinus, tomó prestada la invasión gala, pero omitió las partes donde los celtas parecían débiles o necios. Su técnica es tanto aditiva como sustractiva. Al igual que el cuento de origen troyano, la historia del saco de Roma no es pura invención; Es una reorganización creativa de los hechos disponibles, con detalles añadidos según sea necesario. En virtud de su asociación histórica, Beli y Bran a menudo se confunden con los hermanos Belinus y Brennus (los hijos de Dunvallo Molmutius) que defendían el poder en el norte de Gran Bretaña alrededor de 390 a. C. y fueron considerados como dioses en la antigua tradición celta."
+msgstr "Brennus es el nombre que los historiadores romanos le dan al famoso líder de los galos que tomaron Roma en la época de Camillus. Según Geoffrey de Monmouth, el clérigo que escribió \"Historia de los reyes de Gran Bretaña\", Brennus y su hermano Belinus invadieron a Galia y saquearon Roma en 390 a. C. \"demostrando\" que los británicos habían conquistado Roma, la civilización más grande del mundo. Antes de que Roma conquistara a los británicos. Sabemos por muchas fuentes antiguas que preceden a Geoffrey que Roma fue efectivamente saqueada, pero en 387 no 390, y que la incursión fue dirigida por un hombre llamado Brennus, pero él y su horda invasora eran senones galos, no británicos. En este episodio se pueden ver varias características del método de edición de Geoffrey: modificó el histórico Brennus, creó al hermano Belinus, tomó prestada la invasión galica, pero omitió las partes donde los celtas parecían débiles o insensatos. Su técnica es tanto aditiva como sustractiva. Al igual que el cuento de origen troyano, la historia del saqueo de Roma no es pura fabricación; es un reordenamiento creativo de los hechos disponibles, con detalles agregados según sea necesario. En virtud de su asociación histórica, Beli y Bran a menudo se confunden con los hermanos Belinus y Brennus (los hijos de Dunvallo Molmutius) que lucharon por el poder en el norte de Gran Bretaña en el año 390 aC, y fueron considerados como dioses en la antigua tradición celta."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1006,10 +1009,8 @@ msgid ""
 msgstr "Al igual que Numidia en el norte de África, la península Ibérica era conocida por ser un país de caballos, capaz de criar hasta 100.000 nuevos equinos por año."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid ""
-"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
-"allies."
-msgstr "La infantería de ciudadanos-soldado escaramuceros y los escaramuceros a caballo cuestan un -20% a los aliados."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Aliados ciudadanos-soldados jabalinistas -20% costes de recursos."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1169,27 +1170,27 @@ msgstr "Los íberos fueron un pueblo de misteriosos orígenes y lengua, con una 
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
-msgstr "Kushitas"
+msgstr "Kushites"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 msgid "The Pyramids of Meroe"
-msgstr "Las pirámides de Meroe"
+msgstr "Las Pirámides de Meroe"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 msgid ""
 "Building a Kushite pyramid increases Civic Center territory influence by "
 "+10% for each one built."
-msgstr "La construcción de una pirámide de Kushite aumenta la influencia del territorio del Centro Cívico en un 10% por cada construcción."
+msgstr "Construir una pirámide Kushite aumenta la influencia territorial del Centro Cívico con +10% por cada una conmstruida."
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Name
 msgid "Mineral Deposits"
-msgstr "Depósito de mineral"
+msgstr "Depósitos Minerales"
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Description
 msgid ""
 "Kushite players receive a free extra Metal Mine somewhere in their home "
 "territory."
-msgstr "Los jugadores kushitas reciben una mina de metal adicional en algún punto dentro de su territorio."
+msgstr "Los jugadores Kushite reciben una Mina de Metal extra gratis en cualquier parte de su territorio de inicio."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1207,10 +1208,8 @@ msgid "Elephant Suppliers"
 msgstr "Proveedores de Elefantes"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Reduce en un 20% el coste y tiempo de reclutamiento de elefantes para los aliados de los jugadores Kushitas."
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Elefantes aliados -20% de los costos de recursos y tiempo de entrenamiento."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1242,7 +1241,7 @@ msgstr "Takahatenamun"
 
 #: simulation/data/civs/kush.jsonAINames[7]
 msgid "Tantamani"
-msgstr "Tanutamani"
+msgstr "Tantamani"
 
 #: simulation/data/civs/kush.jsonAINames[8]
 msgid "Atlanersa"
@@ -1258,7 +1257,7 @@ msgstr "Malewiebamani"
 
 #: simulation/data/civs/kush.jsonAINames[11]
 msgid "Harsiotef"
-msgstr "Harsiyotef"
+msgstr "Harsiotef"
 
 #: simulation/data/civs/kush.jsonAINames[12]
 msgid "Shanakdakhete"
@@ -1266,7 +1265,7 @@ msgstr "Shanakdakhete"
 
 #: simulation/data/civs/kush.jsonAINames[13]
 msgid "Amanishakheto"
-msgstr "Amanishajeto"
+msgstr "Amanishakheto"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 msgid "Monumental Architecture"
@@ -1274,9 +1273,9 @@ msgstr "Arquitectura Monumental"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
-"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+ 50% HP y -50% de tiempo de construcción para Centros Cívicos, Templos, Pirámides y Maravillas."
+msgstr "+ 50% en PV y -50% en tiempo de construcción para centros cívicos, templos, pirámides y maravillas."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1306,7 +1305,7 @@ msgstr "Amanirenas"
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr "Africanos kushitas"
+msgstr "Kushitas africanos"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
@@ -1341,7 +1340,7 @@ msgstr "Los kushitas pueden promocionar templos individuales a Templos de Apedem
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr "Pirámides de Kushite"
+msgstr "Pirámide Kushita."
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
@@ -1409,7 +1408,7 @@ msgstr "Sintagma"
 msgid ""
 "Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
 "that proved invincible against the armies of Hellas and the East."
-msgstr "Basada en la falange oblicua tebana, la sintagma era la formación que demostró ser invencible contra otros ejércitos de la Hélade y del Este."
+msgstr "Basada en la falange oblicua tebana, la sintagma era la formación que demostró ser invencible contra otros ejércitos de la Hélade y del este."
 
 #: simulation/data/civs/mace.jsonCivBonuses[2].History
 msgid ""
@@ -1419,8 +1418,8 @@ msgid ""
 msgstr "Los Griegos tuvieron bastante éxito helenizando culturas extranjeras. Durante la era helenística el griego se convirtió en la lengua franca del mundo antiguo, ampliamente difundida desde Hispania hasta la lejana India."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+20% sell prices at market."
-msgstr "+20% en los precios de venta en el mercado."
+msgid "Allies +20% barter sell prices."
+msgstr "Aliados +20% precios de venta de trueque."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1507,7 +1506,7 @@ msgid ""
 " of the Macedonian army. His reforms created a powerful cavalry arm to his "
 "army that would prove useful to both himself and his son Alexander's "
 "conquests."
-msgstr "Cuando Filipo II llegó al trono de Macedonia comenzó una reorganización total del ejército macedonio. Sus reformas crearon un poderoso cuerpo de caballería que sería muy util para si mismo y para las conquistas de su hijo Alejandro."
+msgstr "Cuando Filipo II llegó al trono de Macedonia comenzó una reorganización total del ejército macedonio. Sus reformas crearon un poderoso cuerpo de caballería que sería muy útil para si mismo y para las conquistas de su hijo Alejandro."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1640,14 +1639,14 @@ msgid ""
 msgstr "Macedonia fue un antiguo reino griego situado en el noreste de la península griega. Bajo el liderazgo de Alejandro Magno, las fuerzas macedonias y sus aliados conquistaron la mayor parte del mundo conocido, incluyendo Egipto, Persia y partes del subcontinente indio, permitiendo la difusión de las culturas helenística y oriental durante los años venideros"
 
 #: simulation/data/civs/maur.jsonName
-msgid "Mauryans"
-msgstr "Maurianos"
+msgid "Mauryas"
+msgstr "Mauryas"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
-"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Los Maurianos tienen una bonificación +10% del límite poblaciónal (p. ej., 330 de límite en vez del normal de 300)."
+msgstr "Los Mauryas tienen un bono de límite de población de + 10% (Ejemplo: 330 población en lugar de los 300 habituales)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1657,15 +1656,15 @@ msgstr "Emperador de emperadores."
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
+"million people. The Mauryan rulers held the title Emperor of Emperors and "
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "El Imperio mauriano abarcaba decenas de reinos históricamente independientes sobre una superficie de 5.000.000 kilómetros cuadrados, con una población cercana a los 60 millones de personas. Cada rey hindú se hacía llamar «emperador de emperadores» y comandaban un ejército permanente de 600.000 infantes, 9.000 elefantes, 8.000 carros de combate y 30.000 caballeros, por lo que es sin duda el mayor ejército de su tiempo."
+msgstr "El Imperio de Mauryan abarcó docenas de reinos anteriormente independientes en un área de 5 millones de kilómetros cuadrados, con una población de cerca de 60 millones de personas. Los gobernantes mauryas tenían el título de Emperador de los emperadores y comandaban un ejército permanente de 600,000 de infantería, 9000 elefantes, 8000 carros y 30,000 de caballería, lo que lo convierte en el ejército más grande de su tiempo."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryans enjoy access to 4 champions."
-msgstr "Los maurianos disfrutan del acceso a 4 campeones."
+msgid "The Mauryas enjoy access to 4 champions."
+msgstr "Los Mauryas disfrutan de acceso a 4 campeones."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -1680,8 +1679,10 @@ msgid ""
 msgstr "Kshatriya o Kashtriya, que significa luchador, es una de las cuatro varnas (castas sociales principales) en hinduismo. Tradicionalmente la Kshatriya constituía la élite militar que regía el país, tal y como se translucía en la organización social védico-hindú mantenida por los Vedas, descritas en las leyes de Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "Templos aliados y las tecnologías de los templos -50% de coste y tiempo de investigación."
+msgid ""
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Templos aliados -50% de costos de recursos y tiempo de construcción; tecnologías de templos -50% de costos de recursos y tiempo de investigación."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1854,8 +1855,8 @@ msgid ""
 msgstr "Los persas pudieron y llevaron a cabo reclutamientos forzosos de un gran número de infantería durante la guerra debido al gran tamaño del imperio Arqueménida y a la forma en la que se instituyó. En general, la infantería persa estaba bien entrenada y luchaba con gran tenacidad, aunque se veía en desventaja en los combates cuerpo a cuerpo. Cabe destacar que con la excepción de los regimientos de élite, la infantería persa no se consideraba una fuerza profesional ni permanente."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Mayores ganancias (+15%) por rutas comerciales terrestres para los comerciantes aliados."
+msgid "Allied land traders +15% trade gain."
+msgstr "Comerciantes de tierra aliados +15% de ganancia comercial."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2060,7 +2061,7 @@ msgstr "Ptolomeos"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
-"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
 msgstr "Los Ptolomeos reciben el Campamento mercenario, un cuartel que se construye en territorio neutral y recluta soldados mercenarios"
 
@@ -2069,6 +2070,7 @@ msgid "Mercenary Army"
 msgstr "Ejército mercenario"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -2099,8 +2101,8 @@ msgid "Can capture gaia elephants and camels to reduce their training cost."
 msgstr "Captura elefantes y camellos de gaia para reducir su coste de reclutamiento."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Todos los aliados ganan automáticamente un lento goteo de comida adicional."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Aliados +1.0 tasa de goteo de alimentos."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2255,18 +2257,6 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Debe de construirse en territorio neutral. No tiene radio de efecto del territorio. Recluta todas las unidades «mercenarias»."
 
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "La dinastía greco-macedonia de Ptolomeo se basó en un gran número de mercenarios griegos y extranjeros para la mayor parte de su fuerza militar, sobre todo porque la lealtad de las unidades egipcias nativas era a menudo sospechosa. De hecho, durante un levantamiento de los nativos, el Alto Egipto se perdió para los Ptolomeos durante décadas. Los mercenarios solían ser aguerridos y su lealtad se podía comprar, a veces a un bajo precio, a menudo a un alto coste. Esto no fue de importancia, ya que Egipto bajo los Ptolomeos fue tan próspera como para llegar a considerarse el más rico de los estados sucesores de Alejandro."
-
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Faro"
@@ -2332,8 +2322,8 @@ msgid ""
 msgstr "La ciudadanía romana era altamente preciada en el mundo antiguo. Los derechos básicos y privilegios que tenían los ciudadanos romanos, eran denegados a otros pueblos conquistados. Se decía que dañar a un ciudadano romano era comparable a dañar a la misma Roma, y podía causar que cayese todo el poder de Roma sobre el infractor."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "-20% training time for allied infantry."
-msgstr "Se reduce en un -20% el tiempo de reclutamiento para la infantería aliada."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Infantería ciudadana-soldado aliada -20% de tiempo de entrenamiento."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2505,7 +2495,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "Los romanos controlaron uno de los imperios más grandes del mundo antiguo, abarcaba  desde el sur de  Escocia al desierto del Sahara. Era poblado por entre 60 millones u 80 millones de habitantes, un cuarto de la población del mundo en esa época, Roma continuó siendo uno de las naciones más poderosas durante 800 años. Los romanos fueron los supremos constructores del mundo antiguo, excelentes asediadores y tuvieron una formidable infantería y marina. "
+msgstr "Los romanos controlaron uno de los imperios más grandes del mundo antiguo, abarcaba desde el sur de Escocia al desierto del Sahara. Era poblado por entre 60 millones u 80 millones de habitantes, un cuarto de la población del mundo en esa época, Roma continuó siendo uno de las naciones más poderosas durante 800 años. Los romanos fueron los supremos constructores del mundo antiguo, excelentes asediadores y tuvieron una formidable infantería y marina."
 
 #: simulation/data/civs/sele.jsonName
 #: simulation/data/civs/sele.jsonFactions[0].Name
@@ -2542,8 +2532,8 @@ msgid ""
 msgstr "El modo de guerra seléucida, y ciertamente el sucesor, se desarrollaron en el transcurso de los siglos III y II. El contacto con advenedizos orientales como los partos y las constantes revueltas de satrapías periféricas como Bactria hicieron que los seléucidas reformaran sus fuerzas armadas y cambiaran sus tácticas, concretamente en el brazo de caballería. La guerra con los romanos occidentales y las invasiones de los gálatas también obligaron a los seléucidas a reformar sus regimientos de infantería para ser más flexibles."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Los centros cívicos aliados son un 20% más baratos."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Centros civiles aliados -20% de los costos de los recursos."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2719,7 +2709,7 @@ msgid ""
 "were the most extensive in Asia after that of Alexander. The whole region "
 "from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian "
 "Wars'."
-msgstr "Siempre al acecho de las naciones vecinas, fuerte en armas y persuasivo en el consejo, Seleuco se hizo con Mesopotamia, Armenia, la Capadocia «Seléucida», Persis, Partia, Bactria, Arabia, Tapouria, Sogdia, Arachosia, Hircania, y otros pueblos adyacentes que habían sido sometidos por Alejandro, tan lejos como el río Indo, por lo que los límites de su imperio eran los más extensos de Asia después del de Alejandro. Toda la región desde Frigia hasta el Indo estuvo sujeta a Seleuco. — Appian, «Las Guerras Sirias»."
+msgstr "Siempre al acecho de las naciones vecinas, fuerte en armas y persuasivo en el consejo, él (Seleuco) adquirió Mesopotamia, Armenia, 'Seléucida' Capadocia, Persis, Partia, Bactria, Arabia, Tapouria, Sogdia, Arachosia, Hircania, y otros pueblos adyacentes que habían sido sometidos por Alejandro, tan lejos como el río Indo, por lo que los límites de su imperio eran los más extensos de Asia después de el de Alejandro. Toda la región desde Frigia hasta el Indo estaba sujeta a Seleuco. — Appian, 'Las Guerras Sirias'."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
@@ -2728,9 +2718,9 @@ msgstr "Seleukos A' Nikator"
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleukus "
+" the verge of collapse he managed to weld back together the empire Seleucus "
 "I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"Parthia were brought to heel, temporarily securing his eastern borders. He "
 "then turned his attention to mother Greece, attempting to fulfill the dreams"
 " of his fathers by invading Greece under the pretext of liberation. The "
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
@@ -2832,10 +2822,8 @@ msgid ""
 msgstr "Bajo la constitución escrita por el mítico legislador Licurgo, se estableció la institución de la Agogé, donde los espartanos se entrenaban desde los seis años para convertirse en guerreros superiores con los que defender al estado espartano."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Aumenta la salud de los soldados ciudadanos lanceros de infantería en un 10% para los aliados de los jugadores espartanos."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Lancero de infantería aliado ciudadano-soldado +10% de Vida."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

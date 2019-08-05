@@ -1,17 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016
+# Nerwitz Panzerfizt, 2018
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
-# Любомир Василев, 2016-2018
+# Красимир Миков <krasimir_mikov@icloud.com>, 2019
+# Любомир Василев, 2016-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-05 10:40+0000\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-27 06:53+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -149,7 +151,7 @@ msgstr "Не мога да приема предложението ти да с�
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "Няма да се ти бъда съюзник, %(_player_)s, но ще обмисля възможността да бъдем неутрални."
+msgstr "Няма да ти бъда съюзник, %(_player_)s, но ще обмисля възможността да бъдем неутрални."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
@@ -237,8 +239,8 @@ msgstr "%(_player_)s, трябва да ми изпратиш %(_amount_)s %(_re
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "Ако не ми изпратиш %(_amount_)s %(_resource_)s, няма да вляза в съюз с теб, %(_player_)s,"
+" %(_player_)s."
+msgstr "Ако не ми изпратиш %(_amount_)s %(_resource_)s, няма да вляза в съюз с теб, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -545,7 +547,7 @@ msgstr "Недостатъчно ресурси — %(resourceAmount1)s %(resour
 msgid "The production queue is full."
 msgstr "Опашката за производство е пълна."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Няма свободно място за обучените единици"
 
@@ -602,7 +604,7 @@ msgstr "Неуспешно пускане от гарнизон"
 msgid "Some unit(s) can't go back to work"
 msgstr "Има единица (или единици), която не може да се върне обратно към работата си."
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Не са изпълнени технологичните изисквания на сградата."
 
@@ -734,8 +736,9 @@ msgstr "Цареубийство"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Станете първият, който ще построи чудо и ще го задържи за определено време, за да спечелите играта. Броячът на времето ще се нулира, ако чудото бъде разрушено или превзето, или ако играта е със условие за съюзническа победа – когато съюзът на притежателите му бъде променен."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Станете първият, който ще построи чудо и ще го задържи за определено време, за да спечелите играта. Броячът на времето ще се нулира, ако чудото бъде разрушено или превзето. Ако условието за съюзническа победа е включено, броячът ще се нулира също и когато съюзът на притежателите му бъде променен."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -880,5 +883,5 @@ msgstr "Петра бот"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра е изкуственият интелект по подразбиране на 0 A.D. Моля, докладвайте за проблеми на Wildfire Games (вижте връзката в главното меню).\n\nИзкуственият интелект бива затруднен или подкрепен при трупането на ресурси (скорост на събиране или коефициенти при търгуване), като разликата може да бъде от -60% за трудност „пясъчник“ до +60% за много голямата трудност (при средна трудност няма разлика, тоест 0%) и най-лесните нива имат по-ниска скорост на производство и строене. Освен това, при трудност „пясъчник“ изкуственият интелект няма да разширява територията си или да напада."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Петра е изкуственият интелект по подразбиране на 0 A.D. Моля, докладвайте за проблеми на Wildfire Games (вижте връзката в главното меню).\n\nСкоростта на събиране или коефициента при търгуване на ИИ зависи от нивото на трудност (Пясъчник: -58%, Много лесно: -44%, Лесно -25%, Средно ±0%, Трудно +25%, Много трудно +56%). Най-лесните нива имат по-ниска скорост на проучване, обучение и строене. При трудност „пясъчник“ изкуственият интелект няма да разширява територията си или да напада."

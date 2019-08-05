@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_ship_trireme">
+<Entity parent="template_unit_ship_trireme">
   <Cost>
     <BuildTime>40</BuildTime>
   </Cost>
@@ -21,9 +21,6 @@
   </Identity>
   <UnitMotion>
     <WalkSpeed op="mul">0.9</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.9</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>structures/iberians/warship.xml</Actor>

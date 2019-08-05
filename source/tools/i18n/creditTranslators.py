@@ -1,7 +1,7 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 #
-# Copyright (C) 2018 Wildfire Games.
+# Copyright (C) 2019 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,16 +18,17 @@
 # along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-This file imports the translators credits located in the public mod GUI files and
-runs through .po files to add possible new translators to it.
-It only appends new people, so it is possible to manually add names in the credits
-file and they won't be overwritten by running this script.
+This file updates the translators credits located in the public mod GUI files, using
+translators names from the .po files.
 
-Translatable strings will be extracted from the generated file, so this should be ran
-before updateTemplates.py.
+If translators change their names on Transifex, the script will remove the old names.
+TODO: It should be possible to add people in the list manually, and protect them against
+automatic deletion. This has not been needed so far. A possibility would be to add an
+optional boolean entry to the dictionary containing the name.
+
+Translatable strings will be extracted from the generated file, so this should be run
+once before updateTemplates.py.
 """
-
-from __future__ import absolute_import, division, print_function, unicode_literals
 
 import json, os, glob, re
 
@@ -69,35 +70,18 @@ poLocations = [
 
 creditsLocation = 'binaries/data/mods/public/gui/credits/texts/translators.json'
 
-# Load JSON data
-creditsFile = open(root + creditsLocation)
-JSONData = json.load(creditsFile)
-creditsFile.close()
-
 # This dictionnary will hold creditors lists for each language, indexed by code
 langsLists = {}
 
 # Create the new JSON data
 newJSONData = {'Title': 'Translators', 'Content': []}
 
-# First get the already existing lists. If they correspond with some of the credited languages,
-# add them to the new data after processing, else add them immediately.
-# NB: All of this is quite inefficient
-for element in JSONData['Content']:
-    if 'LangName' not in element or element['LangName'] not in langs.values():
-        newJSONData['Content'].append(element)
-        continue
-
-    for (langCode, langName) in langs.items():
-        if element['LangName'] == langName:
-            langsLists[langCode] = element['List']
-            break
-
-# Now actually go through the list of languages and search the .po files for people
+# Now go through the list of languages and search the .po files for people
 
 # Prepare some regexes
 commentMatch = re.compile('#.*')
-translatorMatch = re.compile('# ([\w\s]*)(?: <.*>)?, [0-9-]', re.UNICODE)
+translatorMatch = re.compile('# ([^,<]*)(?: <.*>)?, [0-9,-]{4,9}')
+deletedUsernameMatch = re.compile('[0-9a-f]{32}')
 
 # Search
 for lang in langs.keys():
@@ -110,20 +94,21 @@ for lang in langs.keys():
             poFile = open(file.replace('\\', '/'))
             reached = False
             for line in poFile:
-                line = line.decode('utf8')
                 if reached:
                     if not commentMatch.match(line):
                         break
                     m = translatorMatch.match(line)
                     if m:
-                        langsLists[lang].append(m.group(1))
+                        username = m.group(1)
+                        if not deletedUsernameMatch.match(username):
+                            langsLists[lang].append(m.group(1))
                 if line.strip() == '# Translators:':
                     reached = True
             poFile.close()
 
     # Sort and remove duplicates
     # Sorting should ignore case to have a neat credits list
-    langsLists[lang] = sorted(set(langsLists[lang]), cmp=lambda x,y: cmp(x.lower(), y.lower()))
+    langsLists[lang] = sorted(set(langsLists[lang]), key=lambda s: s.lower())
 
 # Now insert the new data into the new JSON file
 for (langCode, langList) in sorted(langsLists.items()):

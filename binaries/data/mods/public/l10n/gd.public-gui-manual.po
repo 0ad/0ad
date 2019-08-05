@@ -1,18 +1,18 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2018
+# GunChleoc, 2014-2019
 # GunChleoc, 2015
 # GunChleoc, 2015
 # Sgàire Uallas <zjwallace96@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 03:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-01-21 09:44+0100\n"
+"PO-Revision-Date: 2019-02-14 08:40+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +109,7 @@ msgstr "[font=\"sans-14\"]Gheibh thu inntrigeadh do dhà mhodh leis a’ phrìom
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
@@ -118,7 +118,7 @@ msgstr "• [font=\"sans-bold-14\"]Aon chluicheadair[font=\"sans-14\"] – cluic
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
 msgstr "• [font=\"sans-bold-14\"]Ioma-chluicheadair[font=\"sans-14\"] – cluich an aghaidh co-fharpaiseach daonna air an eadar-lìn."
 
@@ -146,20 +146,20 @@ msgstr "An toiseach, tagh dè an seòrsa de mhapa a tha thu airson cluiche:"
 
 #: gui/manual/intro.txt:32
 msgid ""
-"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
+"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
 msgstr "• [font=\"sans-bold-14\"]Mapa tuaireamach[font=\"sans-14\"] – Mapa a chaidh a chruthachadh gu fèin-obrachail le sgriobt"
 
 #: gui/manual/intro.txt:33
 msgid ""
-"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
-"map designers and with fixed civilisations"
+"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
+"map designers and with fixed civilizations"
 msgstr "• [font=\"sans-bold-14\"]Mapa cnàmh-sgeòil[font=\"sans-14\"] – Mapa a chaidh a chruthachadh le dealbhaichean mapa agus aig a bheil sìobhaltasan stèidhichte"
 
 #: gui/manual/intro.txt:34
 msgid ""
-"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
-"map designers but where the civilisations can be chosen"
+"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
+"map designers but where the civilizations can be chosen"
 msgstr "• [font=\"sans-bold-14\"]Mapa streupa[font=\"sans-14\"] – Mapa a chaidh a chruthachadh le dealbhaichean mapa agus far gabh na sìobhaltasan taghadh"
 
 #: gui/manual/intro.txt:36
@@ -186,7 +186,7 @@ msgstr "Nuair a bhios tu deiseil airson tòiseachadh, briog air a’ phutan “T
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr "[font=\"sans-bold-16\"]Grad-iuchraichean:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
@@ -227,10 +227,10 @@ msgstr "F2: Tog glacadh-sgrìn (san fhòrmat .png, thèid an t‑ionad a sheallt
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
-" displayed in the top left of the GUI after the file has been saved, and can"
-" also be seen in the console/logs if you miss it there)"
-msgstr "F2: Tog glacadh-sgrìn anabarrach mòr (6400x4800px, san fhòrmat .bmp, thèid an t‑ionad a shealltainn air oisean clì gu h‑àrd nuair a bhios am faidhle air a shàbhaladh is chì thu an t‑ionad air a’ chonsoil/sna logaichean ma chaill thu e an-sin)"
+"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
+" is displayed in the top left of the GUI after the file has been saved, and "
+"can also be seen in the console/logs if you miss it there)"
+msgstr "F2: Tog glacadh-sgrìn anabarrach mòr (6400 × 4800px, san fhòrmat .bmp, thèid an t‑ionad a shealltainn air oisean clì gu h‑àrd nuair a bhios am faidhle air a shàbhaladh is chì thu an t‑ionad air a’ chonsoil/sna logaichean ma chaill thu e an-sin)"
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -315,8 +315,8 @@ msgid ""
 msgstr "Shift +  Delete: Sguab às ana h‑aonadan no togalaichean a thagh thu gun dearbhadh"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (slais): Tagh saighdear ’na thàmh"
+msgid "/ (Slash): Select idle fighter"
+msgstr "/ (Slais): Tagh saighdear ’na thàmh"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -339,7 +339,7 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .: Tagh a h-uile obraiche a tha ’na thàmh (a’ gabhail a-steach saighdearan-dùthcha)"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
+msgid "\\ (Backslash): Select idle unit"
 msgstr "\\ (slais air ais): Tagh aonad ’na thàmh"
 
 #: gui/manual/intro.txt:78
@@ -392,7 +392,7 @@ msgstr "F5, F6, F7 is F8: Gluais an camara gu ionad comharraichte. Gearr leum ai
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
 msgstr "Z, X, C, V, B, N, M: Le togalach trèanaidh no dhà air a thaghadh. Cuir a’ chiad, an dàrna, … aonad a chì thu air a’ chiudha trèanaidh sa h‑uile togalach a thagh thu."
 
@@ -511,21 +511,20 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + briogadh deas le aonadan air an taghadh:"
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "• Ma tha an cùrsair os cionn structar caidreabhach: Rach ’nad ghearastan"
+msgid "  • If the cursor is over an allied structure: Garrison"
+msgstr "  • Ma tha an cùrsair os cionn structar caidreabhach: Rach ’nad ghearastan"
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
-msgstr "• Ma tha an cùrsair os cionn aonaid no togalaich nach eil na chaidreabhach dhut: Thoir ionnsaigh (seach glacadh no cruinneachadh)"
+"  • If the cursor is over a non-allied unit or building: Attack (instead of "
+"capture or gather)"
+msgstr "  • Ma tha an cùrsair os cionn aonaid no togalaich nach eil na chaidreabhach dhut: Thoir ionnsaigh (seach glacadh no cruinneachadh)"
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
-"along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "• Mur eil: gluasad ionnsaighe ( thèid amas air gach aonad ’s structar an nàmhad air an rathad, cleachd Ctrl + Q + briogadh deas gus nach tèid amas ach air aonadan)."
+"  • Otherwise: Attack move (by default all enemy units and structures along "
+"the way are targeted, use Ctrl + Q + Right Click to target only units)."
+msgstr "  • Mur eil: gluasad ionnsaighe ( thèid amas air gach aonad ’s structar an nàmhad air an rathad, cleachd Ctrl + Q + briogadh deas gus nach tèid amas ach air aonadan)."
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -607,7 +606,7 @@ msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A no \\[clì]: Cuairtich an camara gu deiseil"
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
 msgstr "Ctrl + D no \\[deas]: Cuairtich an camara gu tuathal"
 
 #: gui/manual/intro.txt:139
@@ -615,7 +614,7 @@ msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Cuairtich an camara gu deiseil"
 
 #: gui/manual/intro.txt:140
-msgid "E: Rotate camera anticlockwise around terrain"
+msgid "E: Rotate camera counter-clockwise around terrain"
 msgstr "E: Cuairtich an camara gu tuathail"
 
 #: gui/manual/intro.txt:141
@@ -624,7 +623,8 @@ msgstr "Shift + cuibhle na luchaige suas: Cuairtich an camara gu deiseil"
 
 #: gui/manual/intro.txt:142
 msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
+"terrain"
 msgstr "Shift + cuibhle na luchaige sìos: Cuairtich an camara gu tuathal"
 
 #: gui/manual/intro.txt:143
@@ -638,8 +638,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R: Ath-shuidhich sùm/cuairteachadh a’ chamara"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Sùm a-steach (cum sìos e airson sùm gun sgur)"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr "= no +: Sùm a-steach (cum sìos e airson sùm gun sgur)"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

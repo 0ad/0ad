@@ -14,8 +14,6 @@ var g_AttackTypes = {
 	"Capture": translate("Capture Attack:")
 };
 
-var g_DamageTypes = new DamageTypes();
-
 var g_SplashDamageTypes = {
 	"Circular": translate("Circular Splash Damage"),
 	"Linear": translate("Linear Splash Damage")
@@ -222,7 +220,7 @@ function getArmorTooltip(template)
 			Object.keys(template.armour).map(
 				dmgType => sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 					"damage": template.armour[dmgType].toFixed(1),
-					"damageType": unitFont(translateWithContext("damage type", g_DamageTypes.GetNames()[dmgType])),
+					"damageType": unitFont(translateWithContext("damage type", dmgType)),
 					"armorPercentage":
 						'[font="sans-10"]' +
 						sprintf(translate("(%(armorPercentage)s)"), {
@@ -238,11 +236,10 @@ function damageTypesToText(dmg)
 	if (!dmg)
 		return '[font="sans-12"]' + translate("(None)") + '[/font]';
 
-	return g_DamageTypes.GetTypes().filter(
-		dmgType => dmg[dmgType]).map(
+	return Object.keys(dmg).filter(dmgType => dmg[dmgType]).map(
 		dmgType => sprintf(translate("%(damage)s %(damageType)s"), {
 			"damage": dmg[dmgType].toFixed(1),
-			"damageType": unitFont(translateWithContext("damage type", g_DamageTypes.GetNames()[dmgType]))
+			"damageType": unitFont(translateWithContext("damage type", dmgType))
 		})).join(commaFont(translate(", ")));
 }
 
@@ -274,7 +271,7 @@ function getAttackTooltip(template)
 				"details":
 					type == "Capture" ?
 						template.attack.Capture.value :
-						damageTypesToText(template.attack[type]),
+						damageTypesToText(template.attack[type].damage),
 				"rate": rate
 			}));
 			continue;
@@ -284,10 +281,9 @@ function getAttackTooltip(template)
 		let maxRange = Math.round(template.attack[type].maxRange);
 		let realRange = template.attack[type].elevationAdaptedRange;
 		let relativeRange = realRange ? Math.round(realRange - maxRange) : 0;
-
 		tooltips.push(sprintf(g_RangeTooltipString[relativeRange ? "relative" : "non-relative"][minRange ? "minRange" : "no-minRange"], {
 			"attackLabel": attackLabel,
-			"damageTypes": damageTypesToText(template.attack[type]),
+			"damageTypes": damageTypesToText(template.attack[type].damage),
 			"rangeLabel": headerFont(translate("Range:")),
 			"minRange": minRange,
 			"maxRange": maxRange,
@@ -317,7 +313,7 @@ function getSplashDamageTooltip(template)
 
 		let splashDamageTooltip = sprintf(translate("%(label)s: %(value)s"), {
 			"label": headerFont(g_SplashDamageTypes[splash.shape]),
-			"value": damageTypesToText(splash)
+			"value": damageTypesToText(splash.damage)
 		});
 
 		if (g_AlwaysDisplayFriendlyFire || splash.friendlyFire)

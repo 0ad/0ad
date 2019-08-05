@@ -7,7 +7,9 @@
 	"icon": "sibylline_books.png",
 	"researchTime": 40,
 	"tooltip": "Market +10% International Bonus.",
-	"modifications": [{ "value": "Market/InternationalBonus", "add": 0.10 }],
+	"modifications": [
+		{ "value": "Market/InternationalBonus", "add": 0.1 }
+	],
 	"affects": ["Market"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

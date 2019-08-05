@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -294,10 +294,8 @@ void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
 	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
 	for (AtIter s = sizes["Data"]["item"]; s.defined(); ++s)
 	{
-		long tiles = 0;
-		wxString(s["Tiles"]).ToLong(&tiles);
-		sizeNames.Add(wxString(s["Name"]));
-		sizeTiles.push_back((size_t)tiles);
+		sizeNames.Add(wxString::FromUTF8(s["Name"]));
+		sizeTiles.push_back((*s["Tiles"]).getLong());
 	}
 
 	// TODO: set default based on current map size

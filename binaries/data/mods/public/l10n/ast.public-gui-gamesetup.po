@@ -1,15 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2018
-# enolp <enolp@softastur.org>, 2017-2018
+# David Sowa <isithere2@yahoo.com>, 2017-2019
+# enolp <enolp@softastur.org>, 2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2018-10-17 20:40+0000\n"
+"POT-Creation-Date: 2019-04-15 09:50+0200\n"
+"PO-Revision-Date: 2019-05-18 23:20+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Nengún"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "Esti xugador va quedar ensin IA."
+msgstr "Esti xugador va quedar cola IA desactivada."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -52,7 +52,7 @@ msgstr "Toi preparáu"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr "Conseñar que tas preparáu pa xugar."
+msgstr "Amosar que tas preparáu pa xugar."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -65,7 +65,7 @@ msgstr "Siguir preparáu"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr "Siguir preparáu mesmamente cuando cambien los axustes de la partida."
+msgstr "Siguir preparáu magar que cambien los axustes de la partida."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -73,21 +73,21 @@ msgstr "¡Nun toi preparáu!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr "Conseñar que nun tas preparáu pa xugar."
+msgstr "Amosar que nun tas preparáu pa xugar."
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
-msgstr "Cambiaron los axustes"
+msgstr "Los axustes de la partida cambiaron"
 
 #: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "Xunióse %(username)s"
+msgstr "%(username)s xunióse"
 
 #: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "Coló %(username)s"
+msgstr "%(username)s coló"
 
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
@@ -97,7 +97,7 @@ msgstr "Espuxóse a %(username)s"
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s ta bloquiáu"
+msgstr "%(username)s ta torgáu"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -126,7 +126,7 @@ msgstr "Mapes navales"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Los mapes u faen falta barcos p'algamar al enemigu."
+msgstr "Mapes u los barcos faen falta p'algamar al enemigu."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
@@ -135,7 +135,7 @@ msgstr "Mapes de demostranza"
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Estos mapes nun puen xugase sinón que sirven de demostranza."
+msgstr "Estos mapes nun son xugables, sinón que namái sirven de demostranza."
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
@@ -144,7 +144,7 @@ msgstr "Mapes nuevos"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Los mapes que s'estrenaron nesta versión del xuegu."
+msgstr "Mapes que s'estrenaron nesta versión del xuegu."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
@@ -153,7 +153,7 @@ msgstr "Mapes disparadores"
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Los mapes que tienen acontecimientos programaos y xenerarán unidaes."
+msgstr "Mapes que vienen con eventos programaos y aprucirarán unidaes enemigues."
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -185,7 +185,7 @@ msgstr "Tipu de mapa"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
-msgstr "Esbillar el tipu de mapa."
+msgstr "Esbillar un tipu de mapa."
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
@@ -217,7 +217,7 @@ msgstr "Bioma"
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
-msgstr "Esbilla la flora y la fauna."
+msgstr "Esbillar la flora y la fauna."
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
@@ -229,18 +229,18 @@ msgstr "Esbillar el númberu de xugadores."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr "Capacidá de población"
+msgstr "Llende de población"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
-msgstr "Esbillar la llende de población."
+msgstr "Esbillar la llende de la población."
 
 #: gui/gamesetup/gamesetup.js:592
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Avisu: Pue haber problemes de rindimientu si tolos xugadores %(players)s algamen la población de %(popCap)s."
+msgstr "Avisu: Pue haber problemes de rindimientu si tolos xugadores %(players)s algamen una población de %(popCap)s."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
@@ -249,7 +249,7 @@ msgstr "Recursos iniciales"
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "La cantidá inicial de cada recursu: %(resources)s."
+msgstr "Cantidá inicial de cada recursu: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
@@ -261,7 +261,7 @@ msgstr "Altu'l fueu"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
-msgstr "El tiempu afitáu nel que nun pue atacase."
+msgstr "Tiempu afitáu nel que nun pue atacase."
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Relic Count"
@@ -272,7 +272,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "El conxuntu de les reliquies que se xeneraron en mapa. La victoria per reliquia ye más realista con namái una reliquia o dos. Con más, cal prindar les reliquies pa recibir bonificaciones d'aura."
+msgstr "La cifra total de reliquies aprucíes en mapa. La victoria per reliquia ye más realista con namái una reliquia o dos. Con más, cal prindar les reliquies pa recibir bonificaciones nes aures."
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
@@ -280,7 +280,7 @@ msgstr "Duración de reliquies"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Los minutos fasta que'l xugador algame la victoria per reliquies."
+msgstr "Minutos fasta que'l xugador algame la victoria per reliquies."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
@@ -288,7 +288,7 @@ msgstr "Duración de maraviya"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "Los minutos fasta que'l xugador algame la victoria per maraviyes."
+msgstr "Minutos fasta que'l xugador algame la victoria per maraviyes."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
@@ -306,241 +306,318 @@ msgstr "Dificultá"
 msgid "Select the difficulty of this scenario."
 msgstr "Esbillar la dificultá d'esti escenariu."
 
-#: gui/gamesetup/gamesetup.js:772
-msgid "Chose the civilization for this player"
-msgstr "Escoyer la civilización d'esti xugador"
+#: gui/gamesetup/gamesetup.js:727
+msgid "Select player."
+msgstr "Esbillar un xugador."
 
-#: gui/gamesetup/gamesetup.js:839
+#: gui/gamesetup/gamesetup.js:762
+msgid "Select player's team."
+msgstr "Esbillar l'equipu del xugador."
+
+#: gui/gamesetup/gamesetup.js:774
+msgid "Choose the civilization for this player."
+msgstr "Escoyer la civilización d'esti xugador."
+
+#: gui/gamesetup/gamesetup.js:788
+msgid "Pick a color."
+msgstr "Escoyer una color."
+
+#: gui/gamesetup/gamesetup.js:842
 msgid "Hero Garrison"
-msgstr "Guarecimientu de los héroes"
+msgstr "Guarecimientu d'héroes"
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:843
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Activar/desactivar el guarecimientu de los héroes."
+msgstr "Activar/desactivar la capacidá de los héroes pa guarecese."
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:855
 msgid "Nomad"
 msgstr "Nómada"
 
-#: gui/gamesetup/gamesetup.js:853
+#: gui/gamesetup/gamesetup.js:856
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "En mou nómada, los xugadores entamen con namái unes poques unidaes y tienen qu'atopar un llugar afayadizu onde construyir la ciudá. Aconséyase l'altu'l fueu."
+msgstr "En mou nómada, los xugadores entamen con namái unes poques unidaes y tienen qu'atopar un sitiu afayadizu onde construyir una ciudá. Encamiéntase l'altu'l fueu."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:869
 msgid "Revealed Map"
 msgstr "Mapa descubiertu"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:869
+#: gui/gamesetup/gamesetup.js:872
 msgid "Toggle revealed map (see everything)."
 msgstr "Activar/desactivar el mapa descubiertu (velo too)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
+#: gui/gamesetup/gamesetup.js:888
 msgid "Explored Map"
 msgstr "Mapa esploráu"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:891
 msgid "Toggle explored map (see initial map)."
 msgstr "Activar/desactivar el mapa esploráu (ver el mapa inicial)."
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:902
 msgid "Disable Treasures"
-msgstr "Desactivar les ayalgues"
+msgstr "Desactivar ayalgues"
 
-#: gui/gamesetup/gamesetup.js:900
-msgid "Disable all treasures on the map."
-msgstr "Desactivar toles ayalgues del mapa."
+#: gui/gamesetup/gamesetup.js:903
+msgid "Do not add treasures to the map."
+msgstr "Nun amestar ayalgues al mapa."
 
-#: gui/gamesetup/gamesetup.js:911
+#: gui/gamesetup/gamesetup.js:914
 msgid "Disable Spies"
-msgstr "Desactivar los espíes"
+msgstr "Desactivar espíes"
 
-#: gui/gamesetup/gamesetup.js:912
+#: gui/gamesetup/gamesetup.js:915
 msgid "Disable spies during the game."
-msgstr "Desactivar los espíes demientres la partida."
+msgstr "Desactivar espíes na partida."
 
-#: gui/gamesetup/gamesetup.js:923
+#: gui/gamesetup/gamesetup.js:926
 msgid "Teams Locked"
 msgstr "Equipos fixos"
 
-#: gui/gamesetup/gamesetup.js:924
+#: gui/gamesetup/gamesetup.js:927
 msgid "Toggle locked teams."
-msgstr "Activar/desactivar los equipos fixos."
+msgstr "Activar/desactivar equipos fixos."
 
-#: gui/gamesetup/gamesetup.js:938
+#: gui/gamesetup/gamesetup.js:941
 msgid "Last Man Standing"
 msgstr "El caberu de pie"
 
-#: gui/gamesetup/gamesetup.js:939
+#: gui/gamesetup/gamesetup.js:942
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Activar/desactivar el trunfu del xugador caberu o l'alianza cabera."
+msgstr "Activar/desactivar el trunfu del caberu xugador vivu o del caberu conxuntu d'aliaos vivu."
 
-#: gui/gamesetup/gamesetup.js:952
+#: gui/gamesetup/gamesetup.js:955
 msgid "Cheats"
 msgstr "Trampes"
 
-#: gui/gamesetup/gamesetup.js:953
+#: gui/gamesetup/gamesetup.js:956
 msgid "Toggle the usability of cheats."
-msgstr "Activar/desactivar l'usu de trampes."
+msgstr "Activar/desactivar la efeutividá de trampes."
 
-#: gui/gamesetup/gamesetup.js:966
+#: gui/gamesetup/gamesetup.js:969
 msgid "Rated Game"
 msgstr "Partida clasificada"
 
-#: gui/gamesetup/gamesetup.js:967
+#: gui/gamesetup/gamesetup.js:970
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Activar/desactivar la clasificación d'esta partida."
+msgstr "Activar/desactivar la clasificación d'esta partida en marcador."
 
-#: gui/gamesetup/gamesetup.js:1000
+#: gui/gamesetup/gamesetup.js:1003
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Calca %(hotkey)s p'autocompletar los nomes de los xugadores o los axustes."
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "Primi %(hotkey)s p'autocompletar nomes de xugadores o axustes. "
 
-#: gui/gamesetup/gamesetup.js:1008
+#: gui/gamesetup/gamesetup.js:1011
 msgid "Return to the lobby."
 msgstr "Tornar a la sala."
 
-#: gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:1012
 msgid "Return to the main menu."
 msgstr "Tornar al menú principal."
 
-#: gui/gamesetup/gamesetup.js:1013
+#: gui/gamesetup/gamesetup.js:1016
 msgid "Start Game!"
 msgstr "¡Aniciar partida!"
 
-#: gui/gamesetup/gamesetup.js:1029
+#: gui/gamesetup/gamesetup.js:1032
 msgid "Start a new game with the current settings."
 msgstr "Entamar una partida nueva colos axustes actuales."
 
-#: gui/gamesetup/gamesetup.js:1030
+#: gui/gamesetup/gamesetup.js:1033
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
-"ready)"
-msgstr "Entamar una partida nueva colos axustes actuales (nun s'activa fasta que tolos xugadores tean preparaos)"
+"ready)."
+msgstr "Entamar una partida nueva colos axustes actuales (desactivao fasta que tolos xugadores tean preparaos)."
 
-#: gui/gamesetup/gamesetup.js:1042
+#: gui/gamesetup/gamesetup.js:1045
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver hestoria / Árbole d'estructures\nL'últimu abiertu va reabrise al calcar."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Historia / Árbole de construcciones\nL'últimu abiertu va reabrise en calcando."
 
-#: gui/gamesetup/gamesetup.js:1107
+#: gui/gamesetup/gamesetup.js:1110
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Configurar la IA: %(description)s."
+msgstr "Configurar IA: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1404
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Activar/desactivar la llingüeta d'axustes de %(name)s."
 
-#: gui/gamesetup/gamesetup.js:1399
+#: gui/gamesetup/gamesetup.js:1405
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'abaxo."
 
-#: gui/gamesetup/gamesetup.js:1400
+#: gui/gamesetup/gamesetup.js:1406
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'arriba."
 
-#: gui/gamesetup/gamesetup.js:1745
+#: gui/gamesetup/gamesetup.js:1754
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1756
 msgid "Pick any of the given maps at random."
-msgstr "Escoyer al debalu cualesquier mapa dau."
+msgstr "Escoyer al debalu cualesquiera de los mapes daos."
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1788
 msgctxt "biome"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1780
+#: gui/gamesetup/gamesetup.js:1789
 msgid "Pick a biome at random."
-msgstr "Escoyer un bioma al debalu."
+msgstr "Escoyer al debalu un bioma."
 
-#: gui/gamesetup/gamesetup.js:2118
+#: gui/gamesetup/gamesetup.js:2127
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2123
+#: gui/gamesetup/gamesetup.js:2132
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Desconozse"
 
-#: gui/gamesetup/gamesetup.js:2153
+#: gui/gamesetup/gamesetup.js:2162
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/gamesetup/gamesetup.js:2153
+#: gui/gamesetup/gamesetup.js:2162
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:2160
+#: gui/gamesetup/gamesetup.js:2169
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2248
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2453
+#: gui/gamesetup/gamesetup.js:2462
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2461
+#: gui/gamesetup/gamesetup.js:2470
 msgid "Unassigned"
-msgstr "Non asignáu"
+msgstr "Ensin asignar"
 
-#: gui/gamesetup/gamesetup.js:2537
+#: gui/gamesetup/gamesetup.js:2546
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2544
+#: gui/gamesetup/gamesetup.js:2553
 msgid "Unknown Player"
 msgstr "Xugador desconocíu"
 
-#: gui/gamesetup/gamesetup.js:2583
+#: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2584
+#: gui/gamesetup/gamesetup.js:2593
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2585
+#: gui/gamesetup/gamesetup.js:2594
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/loading/loading.js:48
+#: gui/gamesetup_mp/gamesetup_mp.js:55
+#, javascript-format
+msgid "%(name)s's game"
+msgstr "Partida de %(name)s"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:114
+msgid "Please enter a valid server name."
+msgstr "Introduz el nome d'un sirvidor válidu, por favor."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:121
+#, javascript-format
+msgid "Server port number must be between %(min)s and %(max)s."
+msgstr "El númberu del puertu del sirvidor tien de tar ente %(min)s y %(max)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:138
+msgid "Connecting to server..."
+msgstr "Coneutando col sirvidor..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:157
+#, javascript-format
+msgid "Net message: %(message)s"
+msgstr "Mensaxe net: %(message)s"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:221
+msgid "Registering with server..."
+msgstr "Rexistrándose en sirvidor..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:227
+msgid "Game has already started, rejoining..."
+msgstr "La partida yá ta en marcha, rexuniéndose..."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:298
+msgid "Game name already in use."
+msgstr "Nomatu yá n'usu."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:308
+msgid "Failed to host via STUN."
+msgstr "Falló al agospiase per STUN."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:322
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr "Nun se pue agospiar la partida: %(message)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
+msgid "Error"
+msgstr "Fallu"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:351
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr " Nun ye posible xunise a la partida: %(message)s."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:373
+#, javascript-format
+msgid "%(playername)s's game"
+msgstr "Partida de %(playername)s"
+
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading screen
+#: gui/loading/loading.js:33
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "Cargando «%(map)s»"
 
-#: gui/loading/loading.js:52
+#: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "Xenerando «%(map)s»"
@@ -562,6 +639,7 @@ msgid "AI Behavior:"
 msgstr "Comportamientu de la IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
 msgid "Cancel"
 msgstr "Encaboxar"
 
@@ -571,7 +649,7 @@ msgstr "Aceutar"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
-msgstr "Configuración de la partida"
+msgstr "Configuración del alcuentru"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
@@ -601,93 +679,124 @@ msgstr "Civilización"
 msgid "Team"
 msgstr "Equipu"
 
-#: gui/gamesetup/gamesetup.xml:(caption):131
-msgid "Show this message in the future"
-msgstr "Amosar esti mensax en futuru"
+#: gui/gamesetup/gamesetup.xml:(caption):125
+msgid "Show this message in the future."
+msgstr "Amosar esti mensaxe nel futuru."
 
-#: gui/gamesetup/gamesetup.xml:(caption):220
+#: gui/gamesetup/gamesetup.xml:(caption):214
 msgid "Send"
 msgstr "Unviar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):237
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Cheats enabled."
 msgstr "Activáronse les trampes."
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):254
 msgid "Back"
 msgstr "Atrás"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
-"Reset any civilizations that have been selected to the default (random)"
-msgstr "Reafitar cualesquier civilización que s'esbillare a la predeterminada (al debalu)"
+"Reset any civilizations that have been selected to the default (random)."
+msgstr "Reafitar cualquier civilización que s'esbillare al por defeutu (al debalu)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr "Reafitar tolos equipos al predetermináu."
+msgstr "Reafitar tolos equipos al por defeutu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
-msgid "Pick a color."
-msgstr "Escoyer una color."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
-msgid "Select player."
-msgstr "Esbillar un xugador."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):118
-msgid "Select player's team."
-msgstr "Esbillar l'equipu del xugador."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):202
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Amosar la sala multixugador nun ventanu de diálogu."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
+msgid "Multiplayer"
+msgstr "Multixugador"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
+msgid "Joining an existing game."
+msgstr "Xuniéndose a una partida esistente."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
+msgid "Player Name:"
+msgstr "Nome del xugador:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
+msgid "Server Hostname or IP:"
+msgstr "Nome d'agospiu o IP del sirividor:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
+msgid "Server Port:"
+msgstr "Puertu del sirvidor:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
+msgid "Set up your server to host."
+msgstr "Configura'l to sirvidor p'agospiar."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
+msgid "Server Name:"
+msgstr "Nome del sirvidor:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+msgid "Use STUN to work around firewalls"
+msgstr "Emplega STUN pa safate de tornafueos."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+msgid "Continue"
+msgstr "Siguir"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
+msgid "Leave blank to use the default port."
+msgstr "Dexa en blanco pa usar el puertu por defeutu."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
-"harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "«Zeus \\[…] fizo señorialmente que'l deprendimientu dependa del carecimientu. \\[…] Asina que'l trabayu, polos mortales remisos, llegó a templase. Daqué violenta ye la gracia de los dioses, sentaos en tronu reverendu.» - Esquilu («La Orestíada», I. 176-183)"
+"harsh and violent.\" - Aeschylus (\"Agamemnon\", 176-183)"
+msgstr "«Zeus \\[…], cumo señor, feixo que'l deprendimientu dependa del carecimientu. \\[…] Asina que'l trabachu, polos mortales ronceiros, afloxóu. Daqué gafa yía la gracia de los dieuses \\[…].» - Esquilu («Agamenón», 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
-"(\"Oresteia\", I. 406)"
-msgstr "«Traxo \\[Helena] como dote a Iliu l'acabación.» - Esquilu («La Orestíada», I. 406)"
+"(\"Agamemnon\", 406)"
+msgstr "«Traxo \\[Helena] cumo dote a Iliu l'acabación.» - Esquilu («Agamenón», 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr "«Hai, de dalguna manera, nel tiranu esta malura: nun s'enfotar n'amigu dalu.» - Esquilu («Prometéu encadenáu», 224-225)"
+msgstr "«Hai no tiranu, de dalgún modu ou outru, esti mal: nun s'esfoutar n'amigu dengún.» - Esquilu («Prometéu encadenáu», 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr "«El tiempu enséñalo too avieyando.» - Esquilu («Prometéu encadenáu», 981)"
+msgstr "«El tiempu, al pasar, enséñalo todo.» - Esquilu («Prometéu encadenáu», 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr "«De xuru nun quier paecer el meyor sinón selo.» - Esquilu («Los siete escontra Tebes», 592)"
+msgstr "«De xuru que nun quier parecer el mechor senón selu.» - Esquilu («Los siete escontra Tebes», 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr "«El babayu prósperu ye pesáu d'arrecostinar.» -Esquilu (el fragmentu 383)"
+msgstr "«El babachu adineráu yía pesáu de ḷḷevar.» -Esquilu (fragmentu 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr "«Ruega a los dioses n'esforciándote tu mesmu, que nun reces en devanéu.» - Esopu («El carreteru ya Hércules»)"
+msgstr "«A los dioses rogando y col mazu dando.» - Esopu («El carreteru y Hércules»)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr "«Val preparar güei pa los menesteres del mañana.» - Esopu («La formiga ya la cantariella»)"
+msgstr "«El llabor de mañana güei se me faga.» - Esopu («La formiga y la cantariella»)"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
@@ -697,65 +806,65 @@ msgstr "«La xunión fai la fuercia.» - Esopu («La fexe de cañes»)"
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr "«Enxamás nun confíes nel conseyu de quien ta metíu nun pilancu.» - Esopu («La raposa ya la cabra»)"
+msgstr "«De quien mira pa les botes nun t'enfotes.» - Esopu («La raposa y la cabra»)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr "«La conocencia cría'l desinterés; el tratu ablandia la rocea.» - Esopu («La raposa ya'l lleón»)"
+msgstr "«Más val un amigu que pariente nin primu.» - Esopu («La raposa y el lleón»)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr "«La soberbia pue empobinar a la ruina.» - Esopu («La xaronca ya'l güe»)"
+msgstr "«Cola fachenda que gasta, si la metieras en maíz, tenías pa comer papas ya enroscar bien la nariz.» - Esopu («La xaronca y el güe»)"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr "«Ensin priesa pero ensin posa.» - Esopu («La llebre ya la tortuga»)"
+msgstr "«Contra más priesa más vagar.» - Esopu («La llebre y la tortuga»)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr "«Val más deprender de les llaceries de los demás que de les propies.» - Esopu («El lleón, el burru ya la raposa»)"
+msgstr "«El que nun oye conseyu nun llega a vieyu.» - Esopu («El lleón, el pollín y la raposa»)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr "«Los enemigos dan la pallabra pa rompela.» - Esopu («L'ama ya'l llobu»)"
+msgstr "«La pallabra del enemigu nun val nin un rial.» - Esopu («L'ama y el llobu»)"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr "«Toa xida sirve al tiranu.» - Esopu («El llobu ya'l corderu»)"
+msgstr "«Cualquier xida sirvirá al tiranu.» - Esopu («El llobu y el corderu»)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
-"not, all the statues in the world will not preserve my memory.\" - Agesilaos"
+"not, all the statues in the world will not preserve my memory.\" - Agesilaus"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr "«Si fici daqué obra curiosa, ella ye'l recuerdu de mio; pero si nenguna, entós nun lo son nin toles estatues.» - Axesiláu II d'Esparta (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 215a)"
+msgstr "«Si to fecho daqué obra curiosa, qu'ella vos recuerde de min; si non, entós nun lo fadrán nin toles estatues.» - Axesiláu II d'Esparta (Plutarcu, «Moralia», XVI. «Dichos lacónicos», 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr "«Nun pensaben los lacedemonios entrugar cuántos son los enemigos, sinón ú tán.» - Axis II d'Esparta (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 215d)"
+msgstr "«A los lacedemonios nun se-yos atalantaba entrugar cuántos son los enemigos, sinón ú tán.» - Axis II d'Esparta (Plutarcu, «Moralia», XVI. «Dichos lacónicos», 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr "«Á hom, dexa de llorar, pos como perezo de miente illegal ya inxusta toi meyor que los executores.» - Axis IV d'Esparta en viendo llarimar a ún de los executores (Plutarcu, «Les vides paraleles», «Axis», seic. 20)"
+msgstr "«¡Ai, home, dexa de llorar! Como muerro illegal y inxustamente toi meyor que los executores.» - Axis IV d'Esparta en viendo llarimar a dalgún de los executores (Plutarcu, «Vides paraleles», «Axis», seic. 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr "«Decátome de que soi mortal dormiendo ya faciendo l'amor.» - Alexandru'l Grande (Plutarcu, «Les vides paraleles», «Alexandru», seic. 22)"
+msgstr "«Decátome de que soi mortal dormiendo y faciendo l'amor.» - Alexandru'l Grande (Plutarcu, «Vides paraleles», «Alexandru», seic. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -763,23 +872,23 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr "«Los siervos viven bien, pero los nobles trabayen. \\[...] ¿Nun sabéis que l'envís de probalecer conquistando ye nun facer lo mesmo que los vencíos?» - Alexandru'l Grande (Plutarcu, «Les vides paraleles», «Alexandru», seic. 40)"
+msgstr "«Ye de siervos vivir a lo pavo; los nobles trabayen. \\[...] ¿Nun sabéis que'l finxu de probalecer conquistando ye nun garrar les mesmes zunes que los conquistaos?» - Alexandru'l Grande (Plutarcu, «Vides paraleles», «Alexandru», seic. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
-"\"Glorious are the deeds of those who undergo labour and run the risk of "
+"\"Glorious are the deeds of those who undergo labor and run the risk of "
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr "«Son curioses les obres de los qu'esbrexen ya s'arriesguen; ya ye gocioso vivir con virtú ya morrer dexando gloria inmortal.» - Alexandru'l Grande, dirixéndose a les tropes (Arrianu, «La espedición d'Alexandru», 5.26)"
+msgstr "«Son curioses les obres d'aquellos que se ponen a trabayar y cuerren peligru; y ye prestoso vivir con virtú y morrer dexando atrás gloria inmortal.» - Alexandru'l Grande, afalando a les tropes (Arrianu, «La espedición d'Alexandru», 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
-"\"I for one think that to a brave man there is no end to labours except the "
-"labours themselves, provided they lead to glorious achievements.\" - "
+"\"I for one think that to a brave man there is no end to labors except the "
+"labors themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr "«Yo camiento que pal paisanu bien nacíu nun hai nengún fin pa los llabores, a nun ser los mesmos, siempre que lleven a obres curioses.» - Alexandru'l Grande, dirixéndose a les tropes (Arrianu, «La espedición d'Alexandru», 5.26)"
+msgstr "«Yo, pela mio parte, camiento que pal paisanu bien ñacíu nun hai dal provechu nos llabores amás de los mesmos, siempres que lleven a obres curioses.» - Alexandru'l Grande, afalando a les tropes (Arrianu, «La espedición d'Alexandru», 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -787,7 +896,7 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr "«Si nun fore Alexandru, sedría Dióxenes \\[de Sinope].» - Alexandru'l Grande, caltriáu pola llaneza del filósofu qu'alcontrare (Plutarcu, «Les obres morales», XXII. «Sobre la fortuna d'Alexandru'l Grande», 332a-b)"
+msgstr "«Si nun fore Alexandru, sedría Dióxenes \\[de Sinope].» - Alexandru'l Grande, amelláu pola llaneza del filósofu qu'alcontrare (Plutarcu, «Moralia», XXII. «Sobre la fortuna d'Alexandru'l Grande», 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -799,94 +908,94 @@ msgstr "«¡Al más fuerte!» - Alexandru'l Grande, enantes de morrer, entrugáu
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr "«Nun furto la victoria.» - Alexandru'l Grande, cuando se-y encamentó atacar de nueche a los perses (Plutarcu, «Les vides paraleles», «Alexandru», seic. 31)"
+msgstr "«Nun furto la victoria.» - Alexandru'l Grande, cuando se-y encamentó asaltar de nueche a los perses (Plutarcu, «Vides paraleles», «Alexandru», seic. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr "«Los códigos en nada nun s'estremen de les teles d'araña; sí, van suxetar a los ruinos ya los enxencles, pero van esñizase so los puxantes ya los ricos.» - Anacarsis (Plutarcu, «Les vides paraleles», «Solón», seic. 5)"
+msgstr "«Los códigos nun s'estremen un ris de teles d'araña; sí, suxetarán a los ruinos y enxencles, pero esñizaránse so los puxantes y pudientes.» - Anacarsis (Plutarcu, «Vides paraleles», «Solón», seic. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
-" covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
+" covetously.\" - Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr "«L'ágora yera'l llugar acotáu, según se dicía, pa engañase ya estafase.» - Anacarsis, un filósofu d'Escita que viaxare a Grecia (Dióxenes Laerciu, «Les vides ya sencies de los filósofos notables», «Anacarsis», seic. 5)"
+msgstr "«L'ágora yera'l llugar acotáu, según se dicía, pa engañase y estafase.» - Anacarsis, un filósofu d'Escita que viaxare a Grecia (Dióxenes Laerciu, «Les vides y sencies de los filósofos más valoraos», «Anacarsis», seic. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr "«Nun percanciemos los campos curiándolos sinón valiéndonos.» - Anaxándrides II d'Esparta (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 217a)"
+msgstr "«Nun percanciemos los campos cautivándolos, sinón valiéndomos.» - Anaxándrides II d'Esparta (Plutarcu, «Moralia», XVI. «Dichos lacónicos», 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr "«Los estaos tán perdíos siempre que nun sían pa estremar los cabales de los birrios.» - Antístenes (Dióxenes Laerciu, «Les vides ya sencies de los filósofos notables», «Antístenes», seic. 5)"
+msgstr "«Los estaos tán perdíos siempres y cuando nun sían pa estremar los cabales de los birrios.» - Antístenes (Dióxenes Laerciu, «Les vides y sencies de los filósofos más valoraos», «Antístenes», seic. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr "«La rapiega tien abondos ardiluxos; el rezcayeru ún bonu.» - Arquílocu (el fragmentu 201)"
+msgstr "«La rapiega tien munchos ardiluxos; el rezcayeru ún bonu.» - Arquílocu (fragmentu 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr "«Dame dalgún sitiu onde tar ya con esta curiosura voi mover la tierra entera.» - Arquímedes, sobre l'usu de la palanca (Diodoru Sículu, «La biblioteca histórica», los fragmentos del llibru XXVI, seic. 18)"
+msgstr "«Dame dalgún sitiu onde tar y con esta curiosura voi mover la tierra entera.» - Arquímedes, na demostranza de la palanca (Diodoru Sículu, «Biblioteca histórica», fragmentos del llibru XXVI, seic. 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr "«Les ciudaes deprendieron de los homes enemigos, non los amigos, a llabrar muralles altes ya poseyer naves llongues.» - Aristófanes («Los páxaros»)"
+msgstr "«Les ciudaes deprendieron a llevantar muralles altes y poseyer naves llongues de los enemigos, non los amigos.» - Aristófanes («Los páxaros»)"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr "«De mou universal, ye moral revisar ya considerar cómo ún se rellaciona, por muncho que cueste esame talu al que tea rexenerando, pa introducir pelos amigos formes nueves. Del mesmu mou, sedría moral que se procurare salvaguardar la verdá.» - Aristóteles («La ética a Nicómacu», I. 1096a.11)"
+msgstr "«De modu universal, yía bono reparar ya faer cuenta de con quién ún trata, por muito que cueste desamín talu al que quiera endreitase, pa garrar polos amigos formas nuevas. Del mesmu modu, sedría bono que se buscara defender la verdá.» - Aristóteles («La ética a Nicómacu», I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr "«El bienestar paez manar nel fuelgu; porque mos ocupamos pa que folguemos, ya guerriamos pa qu'algamemos la paz.» - Aristóteles («La ética a Nicómacu», X. 1177b.4)"
+msgstr "«La felicidá abuita depender de la folgueta; porque nos ocupamos pa tener vagar, ya guerriamos pa vivir en paz.» - Aristóteles («La ética a Nicómacu», X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr "«L'home ñaz como animal políticu.» - Aristóteles («La política», I. 1253a.2)"
+msgstr "«L'home naz cumo animal políticu.» - Aristóteles («La política», I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr "«Tanto la oligarquía como la tiranía comparten como fin el capital—ya, asina, solo se caltienen forciando la so guardia ya partición—nun s'esficien en xente nenguno—ya, poro, príven-y les armes—maltraten la población, espúlsenlo del llugar ya dixebren la plebe.» - Aristóteles («La política», V. 1311a.11)"
+msgstr "«L'oligarca ya'l tiranu nun se fían del pueblu ya, poro, quítan-ḷḷy las armas.» - Aristóteles («La política», V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr "«Preguntáu qué se-y enxendrare de la filosofía, \\[Aristóteles] dicía \"facer ensin obligación lo que dalgunos faen pol mieu a les regles.\"» - Aristóteles (Dióxenes Laerciu, «Les vides ya sencies de los filósofos notables», «Aristóteles», seic. 20)"
+msgstr "«Perguntáu qué deprendiera de la filosofía, dicía \"faer de bona gana lo que dalgunos faen por medrana a la ḷḷei.\"» - Aristóteles (Dióxenes Laerciu, «Les vides y sencies de los filósofos más valoraos», «Aristóteles», seic. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr "«Paezme ser más machu'l qu'apodera los rixos que'l qu'apodera los enemigos; porque ye perlluendio vencese a sigo mesmu.» - Aristóteles (Estobéu, «L'antoloxía», 223)"
+msgstr "«Quien domina los rixos abúitame más home que quien apodera los enemigos; porque cuesta muito vencese a sí mesmu.» - Aristóteles (Estobéu, «Florilegium», 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -897,7 +1006,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr "«Alexandru mesmu tenía sede. Sicasí, mal ya apenes encabezó l'exércitu a pie \\[…]. Mentanto, dalgunos de los soldaos llixeros \\[…] atoparon agua \\[…], echáronlo nun cascu ya lleváronlo al rei. Elli recibiólo ya agradeció a los que-y lo ufrieren, pero tomándolo a la vista de toos lo vertió.» - Arrianu sobre la marcha d'Alexandru pel ermu de Xedrosia («La espedición d'Alexandru», 6.26)"
+msgstr "«Alexandru mesmu apabentaba de sede, pero mal y apenes encabezaba l'exércitu a pie \\[…]. Mentanto, dalgunos de los soldaos llixeros \\[…] atoparon agua \\[…], punxeron dello nun cascu y lleváron-ylo al rei. Elli acoyólo y agradeció a los que-y lo ufrieren, pero garrándolo a la vista de toos lo vertió.» - Arrianu sobre la marcha d'Alexandru pel ermu de Xedrosia («La espedición d'Alexandru», 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -908,21 +1017,21 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr "«Caltriándo-y el rostru cola asta, \\[Alexandru] valtó a Mitrídates. Darréu Resaces \\[un persa] \\[…]-y cutió la cabeza col alfanxe. \\[…] Alexandru valtó a esti tamién, sometiéndolu cola llancia furada pela coraza en pechu. Espitrídates \\[un persa] narboliare yá enriba d'Alexandru per detrás l'alfanxe, pero antemanándolu Clitu \\[…] cortó-y l'hombru.» - Arrianu sobre la batalla del Gránicu («La espedición d'Alexandru», 1.15)"
+msgstr "«Furándo-y el rostru cola llancia, \\[Alexandru] valtó a Mitrídates. Entós Resaces \\[un persa] \\[…]-y cutió la tiesta col cutre. \\[…] Alexandru tamién lu valtó a elli, rematándolu espetándo-y l'asta pela coraza en pechu. Mentanto, Espitrídates \\[un persa] naboliare'l cutre y teníalu yá empináu sobro Alexandru per detrás, pero Clitu antemanólo \\[…] y cortó-y el brazu.» - Arrianu sobre la batalla del Gránicu («La espedición d'Alexandru», 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr "«Cal que cada home encamiente a los fíos, como na guerra, que nun dexen la filera de los antepasaos nin se retiren atrás entregándose a l'acoliadura.» - Aspasia (Platón, «Menéxenu», 246b)"
+msgstr "«Que cada padre encamiente a los ḥiyos, como ena guerra, que ñun dexen las ḥilas de los güelos ñin aḥuyan rindiéndose al mieu.» - Aspasia (Platón, «Menéxenu», 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr "«¡Quintiliu Varu, rindi les llexones!» - Augustu, n'escontarmándose trés llexones na batalla de la viesca de Teutoburgu (Suetoniu, «Augustu'l divín», seic. 23)"
+msgstr "«¡Quintiliu Varu, rindi les llexones!» - Augustu, n'escontarmándose trés llexones na batalla de la viesca de Teutoburgu (Suetoniu, «Divus Augustus», seic. 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -930,7 +1039,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr "«A los diecinueve años d'edá, por cuenta ya gastu propios, compré un exércitu, col que punxi la república en llibertá de la faición dominante que la primía.» - Augustu, según l'autobiografía de so («Les xestes d'Augustu'l divín», seic. 1)"
+msgstr "«A los diacinueve anos, por cuenta ya gastu propios, merquéi un exércitu, cono que soltéi la república de la faición gobernante que la acadigaba.» - Augustu, según la so autobiografía («Res Gestae Divi Augusti», seic. 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -939,28 +1048,28 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr "«Guerres, civiles, esternes, en tierra ya mar, en tol orbe de les tierres, llevéles alantre davezu. Vencedor, a tolos ciudadanos que vinieron pidiéndolo los perdoné. Les xentes foriates, a les que seguramente se-yos pudo esculpar, quixi más conservales qu'escaeceles.» - Augustu, según l'autobiografía de so («Les xestes d'Augustu'l divín», seic. 3)"
+msgstr "«Guerras, civiles, estranxeiras, en tierra ya mare, en todu'l orbe de las tierras, ḷḷevéilas alantre arréu. Vencedore, a tódolos ciudadanos que vinían a pidilo los perdonéi. La xente estranxeira, a la que seguramente se-ḷḷys podía perdonare, quixi masina allugala qu'esqueicela.» - Augustu, según la so autobiografía («Res Gestae Divi Augusti», seic. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr "«Repara enantes d'agarrar costumes; pero si los pañes, sigui guardándolos constantemente.» - Biante de Priene (Dióxenes Laerciu, «Les vides ya sencies de los filósofos notables», «Biante», seic. 6)"
+msgstr "«Repara bien enantes de garrar vezos; pero si los garres, guárdalos darréu.» - Biante de Priene (Dióxenes Laerciu, «Les vides y sencies de los filósofos más valoraos», «Biante», seic. 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr "«Estos males, fatísimu Eetes, añadiéstitelos a tigo mesmu.» - Bión de Borístenes (Cicerón, «Los alderiques tusculanos», III. 26)"
+msgstr "«Ai Eetes, ¡lo fetu que yes!, a ti mismu t'apaguesti estos males.» - Bión de Borístenes (Cicerón, «Los alderiques tusculanos», III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr "«Esti nun percanció los bienes, sinón los bienes a esti.» - Bión de Borístenes, en referencia a un mísere adineráu (Dióxenes Laerciu, «Les vides ya sencies de los filósofos notables», «Bión», seic. 50)"
+msgstr "«Illi nun percanció'l diniru, sinón el diniru a illi.» - Bión de Borístenes, en referencia a un camuñu adineráu (Dióxenes Laerciu, «Les vides y sencies de los filósofos más valoraos», «Bión», seic. 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -970,44 +1079,44 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
 "18)"
-msgstr "«¡Ai de los vencíos!» - Brenu, el xefe galu que s'apoderó de Roma, (sacante una guarnición de la Llomba Capitolina). N'aportando Camilu de Veis ya asediándolu, negoció la retirada por unes 1000 llibres d'oru, pero non ensin emplegar pesos falsos ya amestar a la escala la espada cuando los romanos se quexaron (Polibiu, «Hestories», II. 18)"
+msgstr "«¡Ai de los vencíos!» - Brenu, un xefe galu que tomare Roma, (sacante una tropa na Llomba Capitolina). Cuando Camilu llegó de Veis y lu asedió, apautó la so rindición por 1000 llibres d'oru, masque non ensin emplegar pesos falsos y añader a la escala'l pesu de la so espada en quexándose los romanos (Polibiu, «Hestories», II. 18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
 "they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
 "in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr "«Apandar, atarazar, arrampuñar: \\[los romanos] llámenlos del nome falsu d'imperiu; ya enriba, au faen ermu gásten-y paz.» - Calgacu, un caudiellu caledoniu nun discursu enantes de la batalla del Monte Graupiu (Tácitu, «Sobre la vida de Xuliu Agrícola», 30)"
+msgstr "«Apandar, atarazar, arrampuñar: ellos \\[los romanos] nómenlos imperiu; u faen un ermu gásten-y paz.» - Calgacu, un caudiellu caledoniu nun discursu endenantes de la batalla del Monte Graupiu (Tácitu, «Sobre la vida de Xuliu Agrícola», 30)"
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr "«Les buelgues del lladrón, como lladrón, les reconozo.» - Calímacu («Los epigrames», 43)"
+msgstr "«Les buelgues del lladrón, como lladrón, les reconozo.» - Calímacu («Los epigrames», 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr "«Dizse que los homes gobiernen les muyeres, nós a tolos homes, pero a nós les muyeres.» - Catón el Vieyu (Plutarcu, «Les obres morales», III. «El reináu ya dichos de los emperadores», 198d)"
+msgstr "«Dizse que los homes gobiernan las muyeres, nós a tódolos homes, pero a nós las muyeres.» - Catón el Vieyu (Plutarcu, «Moralia», III. «Dichos romanos», 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr "«Dicíase que'l peor gobernante yera'l que nun podía gobernase a sigo mesmu.» - Catón el Vieyu (Plutarcu, «Les obres morales», III. «El reináu ya dichos de los emperadores», 198f)"
+msgstr "«Dicíase que'l pior gobernante yera'l que nun podía gobernase a sí mesmu.» - Catón el Vieyu (Plutarcu, «Moralia», III. «Dichos romanos», 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr "«Dicíase que los cuerdos aprovechen más baxo los lluellos que los lluellos baxo los cuerdos.» - Catón el Vieyu (Plutarcu, «Les vides paraleles», «Catón el Vieyu», seic. 9)"
+msgstr "«Dicíase que los cuerdos aproveitan más so los ḷḷueḷḷos que los ḷḷueḷḷos so los cuerdos.» - Catón el Vieyu (Plutarcu, «Vides paraleles», «Catón el Vieyu», seic. 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr "«Pos tamién m'abulta que Cartagu nun ha de ser.» - Catón el Vieyu, que más sero na vida acabó cada discursu con esa afirmación (Plutarcu, «Les vides paraleles», «Catón el Vieyu», seic. 27)"
+msgstr "«Pos tamién camiento que Cartagu nun ha ser.» - Catón el Vieyu, que más sero na vida acabó cada discursu asina (Plutarcu, «Vides paraleles», «Catón el Vieyu», seic. 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -1021,37 +1130,37 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr "«Quienquiera qu'impón castigos severos se vuelve repunante a la xente; mentes quien aplica castigos llixeros se vuelve tarrecible. Pero quienquiera qu'impón el castigu como se merez se fai respetable.» - Chanakya («L'artaxastra», I. «Tocántenes a la disciplina», capítulu 4)"
+msgstr "«Quienquiera qu'imponga acadigos severos vuélvese tarrecible a la xente, mentanto quien da acadigos suaves vuélvese desdexable; pero quienquiera qu'imponga acadigos al avíu vuélvese respetable.» - Chanakya («L'artaxastra», I. «Tocántenes a la disciplina», capítulu 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr "«Teniendo tao na punta de la ñavaya asperxemos la Hélada.» - Epitafiu corintiu pa los cayíos de les guerres perses (Plutarcu, «Les obres morales», XI. «Sobre la malinidá d'Heródotu», 870e)"
+msgstr "«Teniendo tao na punta de la cuchiella asperxemos la Hélada.» - Epitafiu corintiu pa los cayíos de les guerres perses (Plutarcu, «Moralia», XI. «Sobre la malinidá d'Heródotu», 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
 "\"Then the blood really flowed, for the two lines were so close that shield "
 "struck against shield, and they drove their swords into each other's faces. "
 "It was impossible for the weak or cowardly to retreat; man to man they "
-"fought like in single combat.\" - Curtius Rufus about the Battle of Issos "
+"fought like in single combat.\" - Curtius Rufus about the Battle of Issus "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr "«Entóncenes daveres se vierte munchu sangre: pos los dos frentes cutíen, que puxaren arma escontra arma, dirixeren les puntes nes boques. Cesar nun se dexó daquella al encoyíu nin al cobarde; colos pies axuntaos, engarriándose cuasi ente singulares, na mesma buelga taben, fasta facer llugar pa sí venciendo.» - Curciu Rufu sobre la batalla d'Isu («Les hestories d'Alexandru'l Grande», III. 11.5)"
+msgstr "«Entóncenes miánica s'arrama muita sangre: porque entrambos los frentes cutían, puxando arma contra arma ya emponiendo las puntas nas bocas. Daqueḷḷa nun se deixóu afuxire nin al ḷḷerciosu nin al cobarde; taban apertaos na mesma güelga, amarrándose cuasimente en combate singular.» - Curciu Rufu sobre la batalla d'Isu («Hestories d'Alexandru'l Grande», III. 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
 "\"I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
 "epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
-msgstr "«Yo so Ciru, que percanció'l dominiu a los perses, conque nun envidies esta pequeñeza de tierra que m'envolubra'l cuerpu.» - L'epitafiu de Ciru'l Grande (Plutarcu, «Les vides paraleles», «Alexandru», seic. 69)"
+msgstr "«Yo so Ciru, que ganó l'imperiu a los perses, conque nun envidies esta pequeñeza de tierra que m'envolubra'l cuerpu.» - L'epitafiu de Ciru'l Grande (Plutarcu, «Vides paraleles», «Alexandru», seic. 69)"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
+"of countries, \\[…] 23 lands in total.\" - Darius I (Behistun inscription, "
 "column I, 1-6)"
-msgstr "«Yo so Daríu, el gran rei, el rei de reis, el rei de Persia, el rei de países, \\[…] 23 tierres en total.» - Daríu I. (La inscripción de Behistún, columna I, 1-6)"
+msgstr "«Yo so Daríu, el gran rei, el rei de reis, el rei de Persia, el rei de países, \\[…] 23 tierres en total.» - Daríu I (La inscripción de Beḥistún, columna I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1059,9 +1168,9 @@ msgid ""
 "ears, and his tongue, and I put out one eye, and he was kept in chains at my"
 " palace entrance, and all the people saw him. Then I crucified him in "
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
-"hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
+"hung out their skins, stuffed with straw.\" - Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr "«A Fraortes prindóse-y ya llevóse-y énte min. Yo corté-y la ñariz, les oreyes, ya la llingua, ya espuxé-y un güeyu, ya dexélu encadenáu a la entrada del palaciu, ya tola xente lu vio. Entós lu crucifiqué n'Ecbatana; ya a los homes que yeren los siguidores principales \\[…] esfollé-yos ya escolingué-yos el pelleyu, enlleno de paya.» - Daríu I. (La inscripción de Behistún, columna II, 32)"
+msgstr "«A Frávartix catóse-y y llevóse-y énte min. Yo corté-y la ñariz, les oreyes, la llingua y espuxé-y un güeyu; guardóse-y encadenáu a la entrada del mio palaciu; tola xente lu vio. Darréu lu crucifiqué n'Ecbatana; y a los homes que yeren los siguidores principales \\[…] esfollé-yos y escolingué-yos el pelleyu, enlleno de paya.» - Daríu I (La inscripción de Beḥistún, columna II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1071,26 +1180,26 @@ msgstr "«Queriendo poco, el probe faise ricu.» - Demócritu (fragmentu)"
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr "«Ye abegoso tar gobernáu polos peores qu'ún mesmu.» - Demócritu (fragmentu)"
+msgstr "«Cuesta tar sol gobiernu del inferior d'ún.» - Demócritu (fragmentu)"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"Physical strength is only noble in cattle, it is strength of character "
 "that is noble in men.\" - Democritus (fragment)"
-msgstr "«La pudencia del cuerpu ye curioso en ganáu, pero nel home ye curioso la fuercia del calter.» - Demócritu (fragmentu)"
+msgstr "«La pudencia del cuerpu ye guapo en ganáu, pero ye la fuercia del calter que ye guapo nel home.» - Demócritu (fragmentu)"
 
 #: gui/text/quotes.txt:66
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
-"Phillip II of Macedon (\"Olynthiac II\", 10)"
-msgstr "«Pos nun ye dable—nun lo ye—homes atenienses, pescanciase'l poder duradero malfaciendo, perxurando ya engañando.» - Demóstenes, nún de los munchos discursos sos escontra l'ascensu de Felipe II de Macedonia («La Olíntica II», 10)"
+"Philip II of Macedon (\"Olynthiac II\", 10)"
+msgstr "«Nun se pue llograr poder duradero malfaciendo, perxurando y engañando.» - Demóstenes, nún de los munchos discursos sos escontra l'ascensu de Felipe II de Macedonia («La Olíntica II», 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
-msgstr "«Dizse que, entrugáu qué debía ser la primera arte al orar, Demóstenes la dio a la execución; asina la segunda, asina la tercera.» - Cicerón, sobre Demóstenes (Cicerón, «Sobre l'orador», 3.213)"
+msgstr "«La execución; asina la segunda, asina la tercera.» - Demóstenes, entrugáu cuála yera'l primer arte de la retórica (Cicerón, «Sobre l'orador», 3.213)"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1098,8 +1207,8 @@ msgid ""
 "answering, so that the whole hillside bordering the battlefield echoed back "
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
-" the Battle of Issos (\"The Library of History\", XVII., sec. 33)"
-msgstr "«Los macedonios glayaron primero, faciendo un gritu de mal agüeru, pero resclamando los bárbaros darréu, miániques resonó tol rodiu montesu, anque la grandeza d'esti ixuxú superó l'otru esberríu, como a una voz retumbeyaron quinientos mil.» - Diodoru Sículu sobre la batalla d'Isu («La biblioteca histórica», XVII., seic. 33)"
+" the Battle of Issus (\"The Library of History\", XVII., sec. 33)"
+msgstr "«Los macedonios glayanon primero, allanciando un ixuxú de mal agüeru, pero resclamando los bárbaros darréu, miániques retrañía tol monte'l rodiu, masque'l ruxíu d'aquesi gritu apodraba l'otru esberríu, como a una voz se resonaben quinientos mil.» - Diodoru Sículu sobre la batalla d'Isu («Biblioteca histórica», XVII., seic. 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1109,7 +1218,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.\" - Diodorus Siculus,"
 " on a brave Spartan at the Battle of Pylos (\"The Library of History\", "
 "XXII., sec. 62)"
-msgstr "«Brásides, defendiéndose na pasera, rellanció d'ende l'ensame d'atenienses que converxeren nelli. Nel primer intre mató a munchos demientres lu acometíen, pero llueu, afuracáu por numberosos proyeutiles, careció mancadures enforma al frente'l cuerpu.» - Diodoru Sículu, sobre un espartanu valiente de la batalla de Pilos («La biblioteca histórica», XXII., seic. 62)"
+msgstr "«Brásides, defendiéndose na pasera, tornaba d'ende l'ensame d'atenienses que converxíen nelli; y al entamu mataba a munchos de la que lu acometíen, pero llueu, furáu por abondos proyeutiles, quedaba enforma enllagáu nel frente del cuerpu.» - Diodoru Sículu, sobre un espartanu valiente de la batalla de Pilos («La biblioteca histórica», XXII., seic. 62)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1118,39 +1227,39 @@ msgid ""
 "lecture-room with the words: Here is Plato's man. In consequence of which "
 "there was added to the definition: having broad nails.\" - Diogenes Laertius"
 " (\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 40)"
-msgstr "«Platón definió que l'home ye un animal bípedu non plumáu, lo que se recibió bien. Dióxenes \\[de Sinope], teniendo espeñao un pitón, tráxolu a la escuela ya afirmó: Esti ye l'home de Platón. D'ende qu'a la definición s'amestó: con uñes gordes.» - Dióxenes Laerciu («Les vides ya sencies de los filósofos notables», «Dióxenes», seic. 40)"
+msgstr "«Platón definiere l'home como un animal bípedu ensin plumaxe, y tevo acoyida. Dióxenes \\[de Sinope] espeñó un pitón, tráxolu a la escuela y afirmó: Velehí l'home de Platón. D'aende qu'a la definición s'amestó: con uñes gordes.» - Dióxenes Laerciu («Les vides y sencies de los filósofos más valoraos», «Dióxenes», seic. 40)"
 
 #: gui/text/quotes.txt:71
 msgid ""
 "\"I am a citizen of the world.\" - Diogenes of Sinope (Diogenes Laertius, "
 "\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 63)"
-msgstr "«Soi cosmopolita.» - Dióxenes de Sinope (Dióxenes Laerciu, «Les vides ya sencies de los filósofos notables», «Dióxenes», seic. 63)"
+msgstr "«Soi cosmopolita.» - Dióxenes de Sinope (Dióxenes Laerciu, «Les vides y sencies de los filósofos más valoraos», «Dióxenes», seic. 63)"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
-msgstr "«Alloriáu nun lo soi, anque nun tengo la mesma miente que tu.» - Dióxenes de Sinope (Estobéu, «L'antoloxía», 3.3.51)"
+msgstr "«Alloriáu nun lo soi; nun tengo la mesma miente que tu.» - Dióxenes de Sinope (Estobéu, «Florilegium», 3.3.51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "\"Parallel Lives\", \"Alexander\", sec. 14)"
-msgstr "«Escíbiate un poco del sol.» - Dióxenes de Sinope a Alexandru'l Grande, que-y entrugare si precisaba daqué (Plutarcu, «Les vides paraleles», «Alexandru», seic. 14)"
+msgstr "«Escíbiate un poco del sol.» - Dióxenes de Sinope a Alexandru'l Grande, que-y entrugare si podía aidar en dalgo (Plutarcu, «Vides paraleles», «Alexandru», seic. 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"The victor is not victorious if the vanquished does not consider himself "
 "so.\" - Ennius (\"Annales\", fragment 31.493)"
-msgstr "«El vencedor nun ye victoriosu si'l vencíu nun se ve asina.» - Eniu («Los anales», el fragmentu 31.493)"
+msgstr "«El vencedor nun sal victoriosu si'l vencíu nun se ve asina.» - Eniu («Los anales», fragmentu 31.493)"
 
 #: gui/text/quotes.txt:75
 msgid ""
 "\"Stranger, go tell the Spartans that we lie here, obedient to their laws.\""
 " - Epitaph at Thermopylae for Leonidas and his men (Herodotus, \"The "
 "Histories\", VII. 228)"
-msgstr "«Á foranu, que s'anuncie a los lacedemonios qu'equí xacemos, obedeciendo les sos pallabres.» - L'epitafu a les Termópiles pa Leónides ya los de so (Heródotu, «Les hestories», VII. 228)"
+msgstr "«Á forasteru, que s'anuncie a los lacedemonios qu'equí xacemos, obedeciendo les sos pallabres.» - L'epitafiu a les Termópiles pa Leónides y los de so (Heródotu, «Les hestories», VII. 228)"
 
 #: gui/text/quotes.txt:76
 msgid ""
@@ -1162,7 +1271,7 @@ msgstr "«Los bonos apechuguen los trabayos, pero los cobardes son nada de nada.
 msgid ""
 "\"Brave men are made bolder by ordeals, but cowards achieve nothing.\" - "
 "Euripides (\"Iphigenia in Tauris\")"
-msgstr "«Los valientes espoxiguen pelos calvarios, pero los cobardes nun consiguen nada de nada.» - Eurípides («Ifixenia en Táuride»)"
+msgstr "«Los valientes espoxiguen pelos calvarios, pero los cobardes nun llogren nada de nada.» - Eurípides («Ifixenia en Táuride»)"
 
 #: gui/text/quotes.txt:78
 msgid ""
@@ -1172,43 +1281,42 @@ msgstr "«Los cobardes nun cunten na batalla; tán ende, anque non nella.» - Eu
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr "«La fortuna llucha siempre pol bandu del prudente.» - Eurípides («Pirítou»)"
+msgstr "«La fortuna llucha siempre pol bandu del prudente.» - Eurípides («Piritou»)"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
 "warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
-msgstr "«Apurriendo al fíu l'escudu ya camentándo-y dicía: \"fíu, o con elli o enriba d'elli\".» - Despidida de les espartanes a los guerreros, suponiendo que'l cobarde diba tirar l'escudu na batalla pa fuxir (Plutarcu, «Les obres morales», XVIII. «Los dichos de les lacóniques», 241f)"
+msgstr "«Apurriendo al fíu l'escudu y camentándo-y dicía: \"fíu, o con elli o enriba d'elli\".» - Despidida de les espartanes a los guerreros, dando a entender que'l cobarde diba tirar l'escudu na amarraza pa fuxir (Plutarcu, «Moralia», XVIII. «Dichos de lacóniques», 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
-"\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
-"Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
-"\"Caesar\", sec. 50)"
-msgstr "«Vini, vi, vencí.» - Cayu Xuliu César, en derrotando a Farnaces II del Pontu nel ataque primeru (Plutarcu, «Les vides paraleles», «César», seic. 50)"
+"\"I came, I saw, I conquered.\" - Caesar, after routing Pharnaces II of "
+"Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. "
+"50)"
+msgstr "«Vini, vi, vencí.» - César, en derrotando a Farnaces II del Pontu nel ataque primeru (Plutarcu, «Vides paraleles», «César», seic. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
-"\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
-"Gallico\", III. 18)"
-msgstr "«Polo xeneral, lo que los homes quieren de bona gana creyen.» - Cayu Xuliu César («Sobre la guerra gálica», III. 16)"
+"\"Men willingly believe what they wish.\" - Caesar (\"De Bello Gallico\", "
+"III. 18)"
+msgstr "«Polo xeneral, los homes creyen de bona gana lo que quieran.» - César («Sobre la guerra gálica», III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
-" looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
-" sec. 11)"
-msgstr "«Nun amedrano a estos gordos ya pelosos, sinón a aquellos macios ya ruinos.» - Cayu Xuliu César (Plutarcu, «Les vides paraleles», «Antoniu», seic. 11)"
+" looking.\" - Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
+msgstr "«Nun tarrezo a aquestos gordos y pelosos, sinón a aquellos macios y ruinos.» - César (Plutarcu, «Vides paraleles», «Antoniu», seic. 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
 "\"After fighting from noon almost to sunset, with victory doubtful, the "
 "Germans, on one side charged the enemy in a compact body, and drove them "
 "back; and, when they were put to flight, the archers were surrounded and cut"
-" to pieces.\" - Gaius Julius Caesar about the Battle of Alesia (\"De Bello "
-"Gallico\", VII. 80)"
-msgstr "«Amarrándose dende'l meudía dicalluéu fasta la cayida del sol, cola victoria dubiosa, los xermanos, axuntando les tropes nuna parte, ficieron acometida escontra los enemigos ya futáronlos; de los que los flecheros, teniéndose puesto en fuga, queden arrodiaos ya desfechos.» - Cayu Xuliu César sobre la batalla d'Alesia («Sobre la guerra gálica», VII. 80)"
+" to pieces.\" - Caesar about the Battle of Alesia (\"De Bello Gallico\", "
+"VII. 80)"
+msgstr "«Amarrándose dende'l meudía fasta cerca del aséu, énte una victoria dubiosa, los xermanos, coles tropes axuntaes en güestes nuna parte, ficieron acometida y afutaron al enemigu; a los flecheros que punxeren en fuga arrodiáronlos y desficiéronlos.» - César sobre la batalla d'Alesia («Sobre la guerra gálica», VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1217,9 +1325,9 @@ msgid ""
 "other cohorts either wounded or slain, and among them the chief centurion of"
 " the legion, Publius Sextius Baculus, a very valiant man, who was so "
 "exhausted by many and severe wounds, that he was already unable to support "
-"himself.\" - Gaius Julius Caesar about the Battle of the Sabis (\"De Bello "
-"Gallico\", II. 25)"
-msgstr "«Tolos centuriones de la cuarta llexón cayíos ya los abanderaos desfechos, la seña perdida, ente los centuriones de les cohortes que restaben, cuasi toos o mancaos o cayíos, el primípilu, Publiu Sestiu Báculu, un home fortísimu, quedó ablayáu por munches ya graves mancadures, de mou que yá nun podía sostenese.» - Cayu Xuliu César sobre la batalla del Sabe («Sobre la guerra gálica», II. 24)"
+"himself.\" - Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
+" 25)"
+msgstr "«Tolos centuriones de la cuarta llexón taben cayíos y los abanderaos desfechos, la seña perdida; pente los centuriones de les cohortes que quedaben, cuasi toos o mancaos o cayíos, el primípilu, Publiu Sestiu Báculu, un home fortísimu, quédabase ablayáu por munches mancadures graves, asina que yá nun yera quien a sostenese.» - César sobre la batalla del Sabe («Sobre la guerra gálica», II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1227,100 +1335,99 @@ msgid ""
 " had fallen the men behind them stood on them and continue the fight from on"
 " top of the corpses; when these were killed the pile of bodies grew higher, "
 "while the survivors used the heap as a vantage point for throwing missiles "
-"at our men, or catching our spears and throwing them back.\" - Gaius Julius "
-"Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr "«Mas los enemigos \\[…] tanta virtú prestaben que, colos primeros d'ellos cayíos, los próximos echándolos los sustituyeron, anque de los cuerpos d'ellos llucharen; los cadabres que sobraben deitáronse ya embruyáronse, que del túmbanu echaren proyeutiles escontra nós ya los pilos interceutaos los remitieren.» - Cayu Xuliu César sobre la batalla del Sabe («Sobre la guerra gálica», II. 26)"
+"at our men, or catching our spears and throwing them back.\" - Caesar about "
+"the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
+msgstr "«Mas los enemigos \\[…] amosaben tanta virtú qu'en cayendo los primeros d'ellos los próximos escartándolos los sustituyíen, inda que s'engarriaren dende enriba los cuerpos; los cadabres sobrantes deitábense y atropábense, que dende'l montón llanzaren proyeutiles escontra nós y devolvieren pilos interceutaos.» - César sobre la batalla del Sabe («Sobre la guerra gálica», II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
-"\"The die is cast.\" - Gaius Julius Caesar, when crossing the Rubicon river "
-"with his legion into Italy, a capital offense that led to his civil war "
-"against Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr "«La suerte ta echada.» - Cayu Xuliu César, al cruciar el Rubicón n'Italia coles llexones, una ofiensa capital que llevó a la guerra civil escontra Pompeyu (Suetoniu, «Sobre les vides de los césares», 32)"
+"\"The die is cast.\" - Caesar, when crossing the Rubicon river with his "
+"legion into Italy, a capital offense that led to his civil war against "
+"Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
+msgstr "«La suerte ta echada.» - César, al cruciar el ríu Rubicón n'Italia cola so llexón, una ofiensa capital que llevó a la guerra civil escontra Pompeyu (Suetoniu, «Sobre les vides de los césares», 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
-"\"I'd rather be the first man here than the second man in Rome.\" - Gaius "
-"Julius Caesar, when passing through a barbarian village in the Alps "
-"(Plutarch, \"Parallel Lives\", \"Caesar\", sec. 11)"
-msgstr "«Yo quería meyor, de fechu, ser ente aquestos el primeru qu'ente los romanos el segundu.» - Cayu Xuliu César, al pasar per un pueblu bárbaru de los Alpes (Plutarcu, «Les vides paraleles», «César», seic. 11)"
+"\"I'd rather be the first man here than the second man in Rome.\" - Caesar, "
+"when passing through a barbarian village in the Alps (Plutarch, \"Parallel "
+"Lives\", \"Caesar\", sec. 11)"
+msgstr "«Quiero más ser el primeru ente aquestos que'l segundu ente los romanos.» - César, al pasar per un pueblu bárbaru de los Alpes (Plutarcu, «Vides paraleles», «César», seic. 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
-"\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
-" \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr "«¿Nun vais dexar de citanos lleis?, ¡que tamos cinxíos d'espaes!» - Cneu Pompeyu'l Grande (Plutarcu, «Les vides paraleles», «Pompeyu», seic. 10)"
+"\"Stop quoting laws, we carry weapons!\" - Pompey (Plutarch, \"Parallel "
+"Lives\", \"Pompey\", sec. 10)"
+msgstr "«¿Nun vais dexar de citanos lleis?, ¡que tamos cinxíos d'espaes!» - Pompeyu (Plutarcu, «Vides paraleles», «Pompeyu», seic. 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi (Hammurabi's Code, sec. 196)"
-msgstr "«Si un home tien espuxao'l güeyu d'un home llibre, espúxase-y un güeyu.» - Ḥamu-Rabi (El códigu de Ḥamu-Rabi, seic. 196)"
+msgstr "«Si un home tien-y robao'l güeyu a un fíu d'home, róbase-y un güeyu.» - Ḥamu-Rabi (El códigu de Ḥamu-Rabi, seic. 196)"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
-"against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr "«Nun vini pa guerriar colos ítalos, sinón p'ayudalos escontra los romanos.» - Aníbal Barca (Polibiu, «Hestories», III. 85)"
+"against Rome.\" - Hannibal (Polybius, \"Histories\", III. 85)"
+msgstr "«Nun vini pa guerriar colos ítalos, sinón p'ayudalos escontra los romanos.» - Haníbal (Polibiu, «Hestories», III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
 "\"Let us now end the anxiety of the Romans, who can't wait for the death of "
-"an old man.\" - Hannibal Barca's last words before his suicide, in exile "
-"with Flaminius pressuring the local ruler to hand him over (Livius, \"Ab "
-"Urbe Condita\", XXXIX. 51)"
-msgstr "«Llibremos de la esmolición duradora al pueblu romano, darréu qu'esperar la muerte d'un vieyu cuida llongo.» - Aníbal Barca, enantes del suicidiu, esterráu con Flaminiu, qu'apertaba al rexente llocal pa que lu entregare (Lliviu, «Desque se fundó la ciudá», XXXIX. 51)"
+"an old man.\" - Hannibal's last words before his suicide, in exile with "
+"Flaminius pressuring the local ruler to hand him over (Livy, \"History of "
+"Rome\", XXXIX. 51)"
+msgstr "«Vamos llibrar el pueblu romanu d'aprovecimientu durador, darréu qu'esperar la muerte d'un vieyu-yos paez avagar.» - Haníbal, enantes del suicidiu, esterráu con Flaminiu, qu'apertaba al rexente llocal pa que lu entregare (Liviu, «Ab Urbe Condita», XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
 "\"Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.\" -"
-" Hannibal Barca, addressing his troops (Livius, \"Ab Urbe Condita\", XXI. "
-"44)"
-msgstr "«Cruelísimo mas soberbísimo, la xente so \\[los romanos] fai too de so ya a los deleres. Con quien heba guerra, con quien paz, cuiden que lo xusto ye imponer el so mou.» - Aníbal Barca, a les tropes (Liviu, «Desque se fundó la ciudá», XXI. 44)"
+" Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. 44)"
+msgstr "«Percruel y persoberbioso, la so xente \\[los romanos] failo too de so a los deleres. Con quien heba guerra, con quien paz, cuiden que lo xusto ye imponer el so mou.» - Haníbal, a les tropes (Liviu, «Ab Urbe Condita», XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
-"death.\" - Hannibal Barca, addressing his troops (Livius, \"Ab Urbe "
-"Condita\", XXI. 44)"
-msgstr "«Tenéis de ser fuertes homes ya escoyer, toos ciertos, desprendíos del desesperu, ente la victoria o la muerte; o vencer o alcontrar la muerte, si Fortuna dulda, en combate masina qu'en fuga.» - Aníbal Barca, a les tropes (Liviu, «Desque se fundó la ciudá», XXI. 44)"
+"death.\" - Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. "
+"44)"
+msgstr "«Tenéis de ser homes fuertes y escoyer, toos ciertos, desprendíos del desesperu, ente la victoria o la muerte.» - Haníbal, a les tropes (Liviu, «Ab Urbe Condita», XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
-"men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The "
-"Refutation of all Heresies\", IX. 4)"
-msgstr "«La guerra ye'l pai de too, el rei de too: asoleyó tanto los dioses como los homes, fixo tanto los esclavos como los llibres.» - Heráclitu (Hipólitu, «El refugu de toles herexíes», IX. 4)"
+"men; some slaves and some free.\" - Heraclitus (Hippolytus, \"The Refutation"
+" of all Heresies\", IX. 4)"
+msgstr "«La guerra yía'l pai de todo, el rei de todo: feixo tanto los dieuses cumo los homes, tanto los esclavos cumo los ḷḷibres.» - Heráclitu (Hipólitu, «El rebate de toles herexíes», IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
-"\"You could not step twice into the same river.\" - Herakleitos (Plato, "
-"\"Cratylos\", 402a)"
-msgstr "«Dos vegaes nel mesmu ríu nun entraríes.» - Heráclitu (Platón, «Crátilu», 402a)"
+"\"You could not step twice into the same river.\" - Heraclitus (Plato, "
+"\"Cratylus\", 402a)"
+msgstr "«Dúas vueltas no mesmu ríu nun entrarías.» - Heráclitu (Platón, «Crátilu», 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
 "Histories\", III. 52)"
-msgstr "«Tu, que tienes deprendío cuanto meyor ye envidiase que compadecese.» - Heródotu («Les hestories», III. 52)"
+msgstr "«Tu, que tienes deprendío cuanto meyor ye vese envidiáu que compadecíu.» - Heródotu («Les hestories», III. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
 "122)"
-msgstr "«De los llugares blandios los blandios suelen enxendrase.» - Heródotu («Les hestories», IX. 122)"
+msgstr "«Nos llugares blandios los blandios suelen ñacer.» - Heródotu («Les hestories», IX. 122)"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr "«Perodiosu ye nos homes esti dolor: nun controlar un res conociendo enforma.» - Heródotu («Les hestories», IX. 16)"
+msgstr "«El dolor más amargo nos homes ye esti: saber muncho, pero nun poder nada.» - Heródotu («Les hestories», IX. 16)"
 
 #: gui/text/quotes.txt:100
 msgid ""
-"\"Although he \\[Xerces] had plenty of troops he had few men.\" - Herodotus "
+"\"Although he \\[Xerxes] had plenty of troops he had few men.\" - Herodotus "
 "(\"The Histories\", VII. 210)"
 msgstr "«Por munchos que seyan \\[los soldaos de Xerxes], pocos homes hai.» - Heródotu («Les hestories», VII. 210)"
 
@@ -1329,26 +1436,26 @@ msgid ""
 "\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
-msgstr "«Los lacedemonios \\[espartanos] lluchaben dignos de pallabra, amás de demostrar a aquellos que nun sabíen engarriase que lo persabíen.» - Heródotu («Les hestories», VII. 211)"
+msgstr "«Los lacedemonios \\[espartanos] llucharon dignos de pallabra, amás d'amosar a los que nun sabíen engarriase que lo persabíen.» - Heródotu («Les hestories», VII. 211)"
 
 #: gui/text/quotes.txt:102
 msgid ""
 "\"Being informed \\[…] that when the Barbarians discharged their arrows they"
 " obscured the light of the sun by the multitude of the arrows, he "
-"\\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, "
+"\\[Dieneces] \\[…] said that their guest \\[…] brought them very good news, "
 "for if the Medes obscured the light of the sun, the battle against them "
-"would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
+"would be in the shade and not in the sun.\" - Herodotus describing Dieneces,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr "«\\[Dieneces] deprendiere \\[…] que \"cuando los bárbaros disparen los proyeutiles atapecen el sol so la desinfinidá de les fleches; ser ye pertanta la desinfinidá d'elles.\" Non ablucáu \\[…], dixo \\[…]: \"bones son les noticies que'l foranu traquiniu anunció si, tapeciendo'l sol so la desinfinidá de los medos, la batalla escontra ellos ye a la solombra ya non al sol.\"» - Heródotu sobre Dieneces, que foi, según dicen, el más bravu de los soldaos espartanos a les Termópiles (Polibiu, «Hestories», VII. 226)"
+msgstr "«Enterándose \\[…] de que \"al disparar fleches, los bárbaros anubren el sol con desinfinidá de saetes,\" \\[Diéneces] \\[…] dixo: \"Les anuncies que traye'l collaciu \\[…] son perbones, pos anubriendo los medos el sol con desinfinidá de saetes, l'amarraza contra ellos sedrá a la solombra y non al sol.\"» - Heródotu sobre Diéneces, supuestamente'l más valiente de tolos soldaos espartanos a les Termópiles (Polibiu, «Hestories», VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
-"\"The judgement given to Kroisus by each of the two oracles \\[Delphi and "
+"\"The judgment given to Croesus by each of the two oracles \\[Delphi and "
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.\" - Herodotus, later mentioning that the empire "
-"Kroisos destroyed was his own (\"The Histories\", I. 53)"
-msgstr "«Les sencies de dambos oráculos \\[Delfos ya Tebes] coincidieron, prediciendo a Cresu: si marchare col exércitu escontra los perses, un gran imperiu lu destruyiría.» - Heródotu, que menta dempués que l'imperiu que Cresu destruyere foi'l de so. («Les hestories», I. 53)"
+"Croesus destroyed was his own (\"The Histories\", I. 53)"
+msgstr "«Les sencies de dambos dos oráculos \\[Delfos y Tebes] concasaron, prediciendo a Cresu: si marchare col exércitu escontra los perses, desfadría un gran imperiu.» - Heródotu, qu'amenta depués que l'imperiu que desfexo Cresu foi'l so. («Les hestories», I. 53)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1356,9 +1463,9 @@ msgid ""
 "called for his bow, and placing an arrow on the string, shot upward into the"
 " sky, saying, as he let fly the shaft: Grant me, Zeus, to revenge myself on "
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
-"Ionian revolt caught the wrath of Darius I., the Persian king (\"The "
+"Ionian revolt caught the wrath of Darius I, the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr "«\\[El rei Daríu] entrugó quien son los atenienses, ya en pescanciando pidió l'arcu; agarrólu ya empunxo flecha, disparóla arriba pal cielu ya dixo, llanciándola nel aire: Á Zeus, ¡déxame pagar los atenienses!» - Heródotu, que narraba cómo'l sofitu ateniense pola revuelta xonia encerrizare la venganza de Daríu I., el rei persa («Les hestories», V. 105)"
+msgstr "«\\[El rei Daríu] entrugó quién yeren los atenienses, y n'enterándose pidió l'arcu; agarrólu, empúnxo-y una flecha, tiróla p'arriba escontra'l cielu y dixo, al llanciala: Á Zeus, ¡déxame pagar los atenienses!» - Heródotu, narrando cómo'l sofitu ateniense pola revuelta xonia encerrizare la venganza de Daríu I, el rei persa («Les hestories», V. 105)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1366,40 +1473,40 @@ msgid ""
 "was spread, three times to repeat to him: Master, remember the Athenians!\" "
 "- Herodotus, narrating how the Athenian support for the Ionian revolt lead "
 "to the Persian Wars (\"The Histories\", V. 105)"
-msgstr "«\\[El rei Daríu] mandó a ún de los ayudantes dici-y tres vegaes cada día al poner la cena: Amu, ¡recuerda los atenienses!» - Heródotu, que narraba cómo'l sofitu ateniense pola revuelta xonia llevare a les guerres perses («Les hestories», V. 105)"
+msgstr "«\\[El rei Daríu] mandó a ún de los siervos dici-y tres vegaes caldía al poner la cena: Amu, ¡recuerda los atenienses!» - Heródotu, narrando cómo'l sofitu ateniense pola revuelta xonia llevare a les guerres perses («Les hestories», V. 105)"
 
 #: gui/text/quotes.txt:106
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace (\"Epistles\", epistle I., 156-157)"
-msgstr "«La Grecia catada al vencedor fieru cató ya les artes introduxo al Laciu agrariu.» - Horaciu («Les epístoles», llibru II, poema I, 156-157)"
+msgstr "«La Grecia conquistada cató al sometedor bárbaru y introduxo les sos artes al bravén de Latium.» - Horaciu («Epístoles», epístola I., 156-157)"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"Anger is a momentary madness, so control your passion or it will control "
 "you.\" - Horace (\"Epistles\", epistle II., 62)"
-msgstr "«La ira ye un raxón curtiu—rixe l'ánimu—que namás apaecer impera.» - Horaciu («Les epístoles», llibru I, poema II, 62)"
+msgstr "«La roxura ye una ramascada pasaxera; rixi l'ánimu, qu'en cuantes apaez gobierna.» - Horaciu («Epístoles», epístola II., 62)"
 
 #: gui/text/quotes.txt:108
 msgid ""
-"\"It is your concern when your neighbour's wall is on fire.\" - Horace "
+"\"It is your concern when your neighbor's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr "«Porque'l to problema se fai, la parede col próximu arde.» - Horaciu («Les epístoles», llibru I, poema XVIII, 84)"
+msgstr "«Porque se fai asuntu to; la parede del vecín ambura.» - Horaciu («Epístoles», epístola XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
 "\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
 "III., ode II., 13)"
-msgstr "«Duce ya aicionao ye pola patria morrer.» - Horaciu («Les odes», llibru III, oda II, 13)"
+msgstr "«Ye duce y honorable morrer pola patria.» - Horaciu («Odes», III., oda II., 13)"
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr "«Yo so Ciru, rei del universu…» - Inscripción (El cilindru de Ciru)"
+msgstr "«Yo so Ciru, el rei del universu…» - Inscripción (Cilindru de Ciru)"
 
 #: gui/text/quotes.txt:111
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
-"sons.\" - Kroisos, king of Lydia (Herodotus, \"The Histories\", I. 87)"
+"sons.\" - Croesus, king of Lydia (Herodotus, \"The Histories\", I. 87)"
 msgstr "«Na paz los fíos entierren a los pas, pero na guerra los pas a los fíos.» - Cresu, el rei de Lidia (Heródotu, «Les hestories», I. 87)"
 
 #: gui/text/quotes.txt:112
@@ -1407,14 +1514,14 @@ msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr "«Casa bien ya pari bien.» - Leónides, a la muyer, que-y entrugó qué facer si elli morría, enantes que colare pa les Termópiles (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 225a)"
+msgstr "«Casa bien y pari bien.» - Leónides, enantes de colar pa les Termópiles, a la muyer, que-y entrugare qué facer si elli morría (Plutarcu, «Moralia», XVI. «Dichos lacónicos», 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr "«¡Ven a percanciales!\"» - Leónides, al mensaxeru persa qu'esixó qu'elli ya los homes soltaren les armes (Plutarcu, «Les obres morales», XVI. «Los dichos lacónicos», 225d)"
+msgstr "«¡Ven a percanciales!\"» - Leónides, al mensaxeru persa qu'esixere qu'elli y los sos homes soltaren les armes (Plutarcu, «Moralia», XVI. «Dichos lacónicos», 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1422,82 +1529,78 @@ msgid ""
 "baring their necks and throats and bidding their conquerors drain the "
 "remnant of their blood. Others were found with their heads buried in holes "
 "dug in the ground. They had apparently made these pits for themselves.\" - "
-"Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
-"inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
-"Condita\", XXII. 51)"
-msgstr "«Atoparon a dalgunos que xacíen vivos, cortaos pelos fémures ya peles corves, la cerviz ya la garganta desnudaes, ya que queríen que la sangre que-yos quedaba escosare; a dalgunos atopóse-yos coles cabeces somorguiaes en tierra afuracao, los que fixeren les fuexes por sí mesmos, ya apaecía que zarraren l'espíritu anubriéndoles con tierra echao sobro les orielles.» - Liviu, sobre los resultaos de la batalla de Canes, u Aníbal inflixó a los romanos la derrota más grande de tola so hestoria («Desque se fundó la ciudá», XXII. 51)"
+"Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
+"inflicted the greatest defeat on the Romans in all their history (\"History "
+"of Rome\", XXII. 51)"
+msgstr "«Alcontranon a dalgunos que xacían vivos, cortaos polos cadriles ya las corvas, el cogorote ya'l gorgüelu esnudaos, ya arranaos por qu'escosara la sangre que-ḷḷys quedaba; a dalgunos atopóuse-ḷḷys conas tiestas metidas en tierra afuracada; feixeran las fuexas por sí mesmos, ya parecía que s'enzarraran l'espíritu anubriéndolas con tierra binada sobro las orieḷḷas.» - Liviu, sobre los resultaos de la batalla de Cannae, u Aníbal produxo la derrota romana más grande de tola so historia («Ab Urbe Condita», XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
 "\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
 "the slain rose a gory figure whose wounds had begun to throb with the chill "
-"of dawn, and was cut down by his enemies.\" - Livius, describing the "
-"aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
-"defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr "«Xacíen tantos miles de romanos \\[…]. A dalgunos, que surdíen sangronientos de metanos de la morrinaya, que s'enritaren les mancadures encoyíos pol fríu de la mañana, queden suprimíos pol enemigu.» - Liviu, sobre los resultaos de la batalla de Canes, u Aníbal inflixó a los romanos la derrota más grande de tola so hestoria («Desque se fundó la ciudá», XXII. 51)"
+"of dawn, and was cut down by his enemies.\" - Livy, describing the aftermath"
+" of the Battle of Cannae, where Hannibal inflicted the greatest defeat on "
+"the Romans in all their history (\"History of Rome\", XXII. 51)"
+msgstr "«Xacían tantos miles de romanos \\[…]. Dalgunos que xurdían sangrientos d'en mediu de la morrina ya que s'enritaran las mancaduras encochíos pol cutu de la mañana, quédanse acaḷḷentaos pol enemigu.» - Liviu, sobre los resultaos de la batalla de Cannae, u Aníbal produxo la derrota romana más grande de tola so historia («Ab Urbe Condita», XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"A city is well-fortified which has a wall of men instead of brick.\" - "
 "Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr "«Nun ta ensin muralla la ciudá que s'arrodia con homes ya non con lladriyos.» - Licurgu d'Esparta (Plutarcu, «Les vides paraleles», «Licurgu», seic. 19)"
+msgstr "«Nun ta ensin muralla la ciudá que se zarra con homes y non con lladriyos.» - Licurgu d'Esparta (Plutarcu, «Vides paraleles», «Licurgu», seic. 19)"
 
 #: gui/text/quotes.txt:117
 msgid ""
-"\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
-"Brutus, before committing suicide after losing a battle against Caesar's "
-"avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr "«De xacíu que fuxo, masque non colos pies sinón les manes.» - Marcu Xuniu Brutu, enantes de suicidase tres perder la batalla escontra los vengadores de César (Plutarcu, «Les vides paraleles», «Brutu», seic. 52)"
+"\"Escape, yes, but this time with my hands, not my feet.\" - Brutus, before "
+"committing suicide after losing a battle against Caesar's avengers "
+"(Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
+msgstr "«De xacíu que voi escapar, pero non colos pies sinón les manes.» - Brutu, enantes de suicidase en perdiendo la batalla escontra los vengadores de César (Plutarcu, «Vides paraleles», «Brutu», seic. 52)"
 
 #: gui/text/quotes.txt:118
-msgid ""
-"\"O, the times, O, the customs!\" - Marcus Tullius Cicero (\"Against "
-"Catiline\", speech I)"
-msgstr "«¡Ai, la dómina, ai, los costumes!» - Marcu Tuliu Cicerón («Escontra Catilina», discursu I)"
+msgid "\"O, the times, O, the customs!\" - Cicero (\"Against Catiline\", I.)"
+msgstr "«¡Ai, la dómina, ai, los costumes!» - Cicerón («Les catilinaries», I.)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
-"honor or its safety.\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
-msgstr "«L'Estáu ideal enxamás nun entama guerra dala que nun seya pa defender l'honor o la seguranza.» - Marcu Tuliu Cicerón («Sobre la república», III, 23)"
+"honor or its safety.\" - Cicero (\"De Re Publica\", III., 23)"
+msgstr "«L'Estáu ideal enxamás nun entama guerra dala que nun seya en defensa del honor o la seguranza.» - Cicerón («De re publica», III, 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
-"truth.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
-msgstr "«El primer deber del home ye buscar ya investigar la verdá.» - Marcu Tuliu Cicerón («Sobre los deberes», I, 13)"
+"truth.\" - Cicero (\"On Duties\", I., 13)"
+msgstr "«El primer menester del home ye buscar y pescudar la verdá.» - Cicerón («De officiis», I, 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
-"\"No one is so old as to think that he cannot live one more year.\" - Marcus"
-" Tullius Cicero (\"On Old Age\", sec. 24)"
-msgstr "«Naide ye tan vieyu que nun cuide poder vivir otru añu más.» - Marcu Tuliu Cicerón («Sobre la vieyera», seic. 24)"
+"\"No one is so old as to think that he cannot live one more year.\" - Cicero"
+" (\"On Old Age\", sec. 24)"
+msgstr "«Naide ye tan vieyu que cuide nun poder vivir otru añu más.» - Cicerón («De senectute», seic. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
-"\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
-"Cicero (\"On the Laws\", III., sec. 3)"
-msgstr "«La vida de los homes acata les ordenances supremes de la llei.» - Marcu Tuliu Cicerón («Sobre les lleis», III, seic. 3)"
+"\"Let the welfare of the people be the ultimate law.\" - Cicero (\"On the "
+"Laws\", III., sec. 3)"
+msgstr "«La vida de los homes acata les ordenances supremes de la llei.» - Cicerón («De legibus», III, seic. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
-"\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
-"(\"Philippics\", Philippica V., sec. 5)"
-msgstr "«Los tendones de la guerra, el pecuñu infinito.» - Marcu Tuliu Cicerón («Les Filípiques», Filípica V, seic. 5)"
+"\"Endless money forms the sinews of war.\" - Cicero (\"Philippics\", V., "
+"sec. 5)"
+msgstr "«Los tendones de la guerra, el pecuñu infinito.» - Cicerón («Les Filípiques», V, seic. 5)"
 
 #: gui/text/quotes.txt:124
-msgid ""
-"\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
-" IV., sec. 11)"
-msgstr "«Les lleis callen ente les armes.» - Marcu Tuliu Cicerón («Pa Milón», IV, seic. 11)"
+msgid "\"Laws are silent in time of war.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
+msgstr "«Les lleis callen ente les armes.» - Cicerón («Pro Milone», IV, seic. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
-"murdering someone; then they boast that they have spared him!\" - Marcus "
-"Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
-"(\"Philippics\", Philippica II, sec. 5)"
-msgstr "«¿Qué otru beneficiu hai de lladrones, padres conscriptos, sacante que puean alegar que perdonaren la vida a quien nun-yos la tuvieren quitao?»  - Marcu Tuliu Cicerón, condergando a Marcu Antoniu, qu'entá nun lu matare («Les Filípiques», Filípica II, seic. 5)"
+"murdering someone; then they boast that they have spared him!\" - Cicero, "
+"condemning Mark Anthony who had not killed him (yet) (\"Philippics\", II., "
+"sec. 5)"
+msgstr "«¿Qué otru beneficiu hai de lladrones, padres conscritos, sacante que puean allegar que perdonaren la vida a quien nun-yos la tuvieren quitao?»  - Cicerón, condergando a Marcu Antoniu, que (entá) nun lu matare («Les Filípiques», II, seic. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1506,7 +1609,7 @@ msgid ""
 "never rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.\" - Mark Antony, taunting Augustus who delegated his duties as naval "
 "commander (Suetonius, \"Divus Augustus\", sec. 16)"
-msgstr "«De fechu, desplegada la llinia, nin siquiera podía endilgalos colos güeyos, sinón qu'esmoñacaba en llombu, lluellu, clisáu nel cielu; nin se llevantó nin se punxo a la vista de los soldaos fasta que Marcu Agripa estornare la flota enemiga.» - Marcu Antoniu burllandose d'Augustu, que delegare les sos responsabilidaes como comandante naval (Suetoniu, «Augustu'l divín», seic. 16)"
+msgstr "«Desplegada la llinia, nin siquieramente podía velos, sinón qu'esmoñacaba en llombu, lluellu, clisáu nel cielu; nun se llevantó nin s'asomó a la vista de los soldaos fasta que Marcu Agripa estornare la flota enemiga.» - Marcu Antoniu burllándose d'Augustu, qu'endilgare les sos responsabilidaes como comandante naval (Suetoniu, «Divus Augustus», seic. 16)"
 
 #: gui/text/quotes.txt:127
 msgid ""
@@ -1516,13 +1619,13 @@ msgstr "«Vivimos, non como deseyamos, sinón como podemos.» - Menandru («La m
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr "«L'home que fuxe va lluchar otra vegada.» - Menandru («Les sencies», 45)"
+msgstr "«L'home que fuxe pue volver lluchar.» - Menandru («Sencies», 45)"
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
 "fragment 4)"
-msgstr "«Aquelli a quien los dioses quieren muerre nuevu.» - Menandru («El doble engañu», fragmentu 4)"
+msgstr "«Aquelli al que los dioses quieren muerre nuevu.» - Menandru («El doble engañu», fragmentu 4)"
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
@@ -1536,7 +1639,7 @@ msgid ""
 "fortune and material advantages, they drove out the invaders and made our "
 "city what it is now.\" - Pericles (Thucydides, \"History of the "
 "Peloponnesian War\", I. 144.3-4)"
-msgstr "«De los peligros más grandes resulta la gloria más grande, tanto pa la ciudá como pal ciudadanu. Pos al resistir a los medos los pas de nueso nun entamaben con tanto, pero, cuando escosaron los recursos, con más xixu que bona fortuna, más valor que fuercia, espuxaron a los bárbaros ya daquella p'acá avanzaron el país.» - Pericles (Tucídides, «Hestoria de la Guerra del Peloponesu», I. 144.3-4)"
+msgstr "«De los peligros más grandes resulta la gloria más grande, tanto pa la ciudá como pal ciudadanu. Pos, resistiendo a los medos, los pas de nueso nun entamaben con tanto, pero, al escosar los recursos, con más xixu que bona fortuna, más valor que fuercia, espuxaron a los bárbaros y ficieron que, daquella p'acá, floriare'l país.» - Pericles (Tucídides, «Historia de la Guerra del Peloponesu», I. 144.3-4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1545,7 +1648,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr "«Nun consideramos aldericar como una torga p'actuar, sinón masina que l'alderique debe antemanar o coincidir colos fechos.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 40.2)"
+msgstr "«Nun cuidamos qu'aldericar seya una torga p'actuar, sinón más bien qu'ello tien d'antemanar o coincidir colos fechos.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia de la Guerra del Peloponesu», II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1553,14 +1656,14 @@ msgid ""
 "nothing, we think he is good for nothing.\" - Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "\"History of the Peloponnesian War\", II. 40.2)"
-msgstr "«Somos los únicos en tener a quien nun participen un res na política por inútiles en cuenta de despreocupaos.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 40.2)"
+msgstr "«Somos los únicos que tenemos a los que nun tomen parte na política por inútiles en cuenta d'imparciales.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia de la Guerra del Peloponesu», II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr "«Vamos almirar tanto a los d'agora como a los de mañana.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria la Guerra del Peloponesu», II. 41.5)"
+msgstr "«Vamos ablucar los de mañana lo mesmo qu'ablucamos los de güei.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia la Guerra del Peloponesu», II. 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1570,7 +1673,7 @@ msgid ""
 "virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.2)"
-msgstr "«Cualesquiera pue afirmar que ye bono defender la patria d'enemigos, pero ye meyor almirar el poder de la polis caldía ya convirtise, al traviés del llabor, n'amante d'ella; ya entós, alcordase de los homes que tuvieron valor ya que supieron el so deber ya algamar honor pelos fechos; ya cuando los intentos fracasaren, nun se dignaron privar a Atenes de la so virtú, sinón que-y dexaron una contribución perguapa.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 43.2)"
+msgstr "«Cualquiera pue dicir que ye bono defender la patria d'enemigos, pero hai que remirar el poder de la polis caldía y probar l'amor por ella peles obres; y llueu, alcordase de los homes que sabíen la so obligación, teníen valor y algamaron honor colos fechos; y cuando s'esbarataben los sos entamos, nun se dignaron privar a Atenes de la so virtú, sinón que-y ficieron el sacrificiu más noble.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia de la Guerra del Peloponesu», II. 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1579,7 +1682,7 @@ msgid ""
 " that will outlast any monument.\" - Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, \"History of "
 "the Peloponnesian War\", II. 43.3)"
-msgstr "«Tola tierra ye sepultura de los homes gloriosos, ya la inscripción de les sos fazañes nun s'abelluga namái nel llar, sinón que vive, quiciabes más, per dayuri dientro la memoria non escrita de cada mente.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 43.3)"
+msgstr "«Tola tierra ye foxaca pa homes gloriosos, y la memoria de les sos xestes nun perdura namái na inscripción pel llar, sinón que vive, quiciabes más, per dayuri na alcordanza non escrita de cada alma.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia de la Guerra del Peloponesu», II. 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1587,7 +1690,7 @@ msgid ""
 "courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.4)"
-msgstr "«Agora bien, procurando eso ya percanciando que l'afortunáu ye'l llibre, pero'l llibre'l valerosu, nun vos saféis de los peligros de la guerra.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 43.4)"
+msgstr "«Pescanciando que l'afortunáu ye'l llibre, pero'l llibre'l coraxosu, nun vos saféis de los peligros de la guerra.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia de la Guerra del Peloponesu», II. 43.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
@@ -1595,14 +1698,14 @@ msgid ""
 "for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
 " in the first year of the war (Thucydides, \"History of the Peloponnesian "
 "War\", II. 45.2)"
-msgstr "«Ye grande la virtú de vosotres que nun vos degradéis ya que menos bilordios o reñes ente los homes provoquéis.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 45.2)"
+msgstr "«Ye grande la virtú de vosotres que nun vos degradéis y que menos bilordios o reñes ente los homes provoquéis.» - Pericles nel so discursu funerariu pa los atenienses que morrieren nel añu primeru de la guerra (Tucídides, «Historia de la Guerra del Peloponesu», II. 45.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
 "politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
 " 18)"
-msgstr "«Nun-y pintaría mal esperar al conseyeru más sabiu, el tiempu.» - Pericles, un políticu precavíu qu'evitó la guerra. (Plutarcu, «Les vides paraleles», «Pericles», cap. 18, seic. 2)"
+msgstr "«Pintar nun pintaría mal esperar al conseyeru más sabiu: el tiempu.» - Pericles, un políticu percuidante que se safaba de la guerra. (Plutarcu, «Vides paraleles», «Pericles», seic. 18)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1610,40 +1713,40 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr "«L'imperiu que tenéis paez una tiranía: escurque se cuida malo tenelu fecho, si bien ye peligroso dexalu.» - Pericles, dirixéndose a la xunta ateniense tres una peste afaradora (Tucídides, «Hestoria de la Guerra del Peloponesu», II. 63.3)"
+msgstr "«L'imperiu que tenéis yá paez una tiranía: escurque fore malo tenémoslu conquistao, pero de xuru que ye peligroso desdexalu.» - Pericles, dirixéndose a la xunta ateniense depués qu'una peste debilitare la ciudá (Tucídides, «Historia de la Guerra del Peloponesu», II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man fears its approach in his heart.\" - Pindar (fragment 110)"
-msgstr "«La guerra ye duce pal inespertu, pero'l corazón de cualesquier tralláu tarrez a esgaya vela inminente.» - Píndaru (fragmentu 110)"
+msgstr "«La guerra yía duce pal garuḷḷu, pero'l corazón del aguerríu atarrez muito cuando eḷḷa s'aveira.» - Píndaru (fragmentu 110)"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr "«Quitando l'asta ya l'escudu a los sos conciudadanos, Temístocles dexó al pueblu ateniense col bancu ya'l remu.» - Platón, poco amigu de l'armada ateniense (Plutarcu, «Les vides paraleles», «Temístocles», cap. 4, seic. 3)"
+msgstr "«Quitándo-yos a los sos conciudadanos la llanza y l'escudu, Temístocles dexó al pueblu ateniense col bancu y el remu.» - Platón, poco amigu de l'armada ateniense (Plutarcu, «Vides paraleles», «Temístocles», seic. 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr "«Dengún güéspede pue quedar tanto nel agospéu d'un amigu ensin tar yá odiosu, nin trés díes siguíos.» - Plautu («El soldáu fanfarrón», actu III, escena 1, 146)"
+msgstr "«Dengún güéspede pue siguir na casa d'un amigu tantu tiempu ensin volvese yá repunante, nin trés díes siguíos.» - Plautu («El soldáu fanfarrón», actu III, escena 1, 146)"
 
 #: gui/text/quotes.txt:144
 msgid ""
 "\"You cannot eat your cake and have it too, unless you think your money is "
 "immortal.\" - Plautus (\"Trinummus\", Act II, scene 4, 12)"
-msgstr "«Ello nun pue apaecete pesao si lo gastes, a menos que tu ciudes que te ye inmortal la plata.» - Plautu («Les tres monedes», actu II, escena 4, 12)"
+msgstr "«La plata nun ye a pesate si lo gastes, sacantes que cuides que ye inmortal.» - Plautu («Les tres monedes», actu II, escena 4, 12)"
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr "«\\[Alexandru] cuidaba que nada yera invencible pa los coraxosos nin seguro pa los cobardes.» - Plutarcu («Les vides paraleles», «Alexandru», seic. 58)"
+msgstr "«\\[Alexandru] cuidaba que nada yera invencible pal coraxosu nin seguro pal cobarde.» - Plutarcu («Vides paraleles», «Alexandru», seic. 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1653,7 +1756,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr "«Ún \\[…] llanció-y una flecha con tantu reflundiu ya violencia que-y furó la coraza, clavándose-y a los güesos pel pechu. \\[…] Alexandru cedió énte'l güelpe ya toró'l cuerpu, \\[…] pero finalmente mató al bárbaru. Sicasí, recibió munches mancadures. Al fin ya al cabu, aporráu nel pescuezu, apostó'l cuerpu contra la muralla, mirando a los enemigos.\" - Plutarcu sobre la campaña malia («Les vides paraleles\", «Alexandru», seic. 63)"
+msgstr "«Ún \\[…] tiró-y una flecha con tanta precisión y reflundiu qu'ella-y furó la coraza, clavando nes costielles pel pechu. \\[…] Alexandru reculó énte'l güelpe y defitóse toriáu, \\[…] pero finalmente mató al bárbaru. Sicasí, recibiere mancadures enforma. A lo último, macexáu en pescuezu, apostó contra la muralla, agüeyando los enemigos.\" - Plutarcu sobre la campaña malia («Vides paraleles\", «Alexandru», seic. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1662,7 +1765,7 @@ msgid ""
 "captured, and he volunteered to pay fifty.\" - Plutarch, who mentions later "
 "that Caesar got his money back and had his captors crucified (\"Parallel "
 "Lives\", \"Caesar\", sec. 2)"
-msgstr "«Esixendo los pirates venti talentos de rescate por él, César se rió porque nun sabíen a quien prindaren, pero comprometióse a dar cincuenta.» - Plutarcu, que menta más sero que César recobró les perres y crucificó a los captores. («Les vides paraleles», «César», seic. 2)"
+msgstr "«Al pidir los pirates venti talentos de rescate por él, César españó de risa -- pos nun sabíen a quien prindaren -- y ufrió pagar cincuenta.» - Plutarcu, qu'amenta dempués que César recobró les perres y crucificó a los prindadores. («Vides paraleles», «César», seic. 2)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -1671,7 +1774,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
-msgstr "«\\[Los romanos] quieren que los centuriones nun sían tan atrevíos ya arriesgaos como predominantes, estables ya d'un espíritu más fondu; pero non puramente d'acometer o dar batalla, sinón, apoderaos ya apertaos, de siguir firmes ya morrer sobro'l puestu.» - Polibiu («Hestories», VI. 24)"
+msgstr "«\\[Los romanos] quieren que los centuriones sían más predominantes, afitaos y arremangaos qu'atrevíos y arriesgaos; non tan solo acometedores o amarradiegos, sinón, al vese apoderaos y apertaos, constantes y resueltos a morrer sobre'l puestu.» - Polibiu («Hestories», VI. 24)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -1679,7 +1782,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr "«La llinia romana ye difícil de frañer; los homes van lluchando en tolos senes a lo llargo d'una formación, en xunto ya xebrao, colos manípulos más cercanos al peligru siempres xirando p'aú faiga falta.» - Polibiu («Hestories», XV. 15)"
+msgstr "«Cuesta frañer la llinia romana; los homes van combatiendo, en xunto y xebrao, en tolos senes a lo llargo de la formación, colos manípulos más averaos al peligru siempres torciendo p'aú faiga falta.» - Polibiu («Hestories», XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1688,9 +1791,9 @@ msgid ""
 "obey the helmsman, everything goes well; but if they recover \\[…] they "
 "quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
-"wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
-" constitution (\"Histories\", VI. 44)"
-msgstr "«El pueblu de los atenienses vien a tar siempres llexando como barcu ensin capitán. Ya naquélli, cuando, o por medrana a les mares o por cayer a cuelmu una ñube, fai comuña colos marineros ya concéntrase nel navegador, pínta-yos abondo bien; pero cuando embarca enfotao \\[…] reña ente sí \\[…], ya, poro, magar qu'escapare de les mares más grandes ya les ñubes más violentes, naufraxa davezu en puertu ya cierca de la tierra.» - Polibiu sobro la constitución de los atenienses («Hestories», VI. 44)"
+"wreck their ship in harbor and close to shore.\" - Polybius on the Athenian "
+"constitution (\"Histories\", VI. 44)"
+msgstr "«El pueblu ateniense siempres s'atopa llexando como barcu ensin capitán. Cuando los marineros d'aquel barcu faen comuña y atolenen al timoneru, yá seya por medrana a la mar o por cayer una ñube, too acaba bien; pero cuando embarquen enfotaos \\[…] reñen ente sí \\[…] y, poro, inda qu'escaparen de les foles más grandes y les torbonaes más braves, naufraguen en puertu, cerquina de la tierra.» - Polibiu sobro la constitución ateniense («Hestories», VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1699,7 +1802,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.\""
 " - Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (\"Histories\", I. 34)"
-msgstr "«A los más de los romanos espatayóse-yos so la fuercia escomanao de los elefantes; a los que restaben llancióse-yos metá onde taben sol ensame de los xinetes, pero finalmente unos pocos entainaron a fuxir.» - Polibiu sobro la batalla del Bagrades u s'escontarmó l'exércitu romanu na primer guerra púnica («Hestories», I. 34)"
+msgstr "«Los más de los romanos morrieron espatayaos sol pesu escomanao de los elefantes; los que quedaben nes files morrieron llanciaos metá sa ende sol ensame de caballería, pero finalmente unos pocos entainaron a fuxir.» - Polibiu sobro la batalla del Bagrades u s'escontarmó un exércitu romanu na primer guerra púnica («Hestories», I. 34)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1707,7 +1810,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr "«Dando la conseña ya tresmitiéndola a los de la encelada, Aníbal acometió a los enemigos dende tolos llaos al empar.» - Polibiu sobro l'entamu d'un desastre romanu pel llagu Trasimenu («Hestories», III. 84)"
+msgstr "«Dando la conseña y tresmitiéndola al empar a les tropes encelaes, Aníbal acometió de secute a los enemigos dende tolos llaos.» - Polibiu sobro l'entamu d'un desastre romanu pel llagu Trasimenu («Hestories», III. 84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1717,7 +1820,7 @@ msgid ""
 "shields and flee.\" - Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
 "26)"
-msgstr "«Ensin poder los falanxites revolvese en formación ya comprometer a cada home, esti \\[tribunu militar] echóse enriba de los sos calcaños matándolos fasta que, nun pudiendo ayudase, los macedonios tiraron les armes forciaos a fuxir.» - Polibiu, describiendo la derrota de Felipe V de Macedonia énte Flaminiu na batalla de Cinoscéfales («Hestories», XVIII. 26)"
+msgstr "«Los falanxites nun puen voltiase en formación y protexer a cada home, asina qu'esti \\[tribunu militar]-yos acutió los calcaños matándolos fasta que los macedonios, nun siendo quien a resistir, tiraron les armes forciaos a fuxir.» - Polibiu, describiendo la derrota de Felipe V de Macedonia énte Flaminiu na batalla de Cinoscéfales («Hestories», XVIII. 26)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -1728,7 +1831,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.\" - Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
 "XVIII. 32)"
-msgstr "«Pero la llexón romana ye perafechisca: porque tou romanu, una vegada desplegáu, entaína alló onde faiga falta, neto que s'afái a tou llugar, momentu ya pinta. Al endefechu, ta preparáu ya sigue en formación, yá tenga arriesgase en xunto, yá n'estayes, yá en manípulos o bien por sigo mesmu.» - Polibiu, esplicando cómo los romanos apoderaben la falanxe macedonia («Hestories», XVIII. 32)"
+msgstr "«Pero la llexón romana ye perafechisca: porque cada romanu, una vegada desplegáu, entaína alló u faiga falta, afaciéndose igual de bien a tolos sitios, ocasiones y pintes. Al endefechu, ta preparáu y sigue en formación, yá tenga d'arriesgase na fuercia principal, nun destacamentu, nun manípulu o por sigo mesmu.» - Polibiu, esplicando cómo los romanos podíen apoderar la falanxe macedonia («Hestories», XVIII. 32)"
 
 #: gui/text/quotes.txt:155
 msgid ""
@@ -1738,7 +1841,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr "«Dizse qu'Escipión \\[Emilianu], allupando la ciudá \\[Cartagu] de la que finaba dafechu na so peracabación, llarimó ya volvióse abiertamente llorosu polos enemigos. Pero púnxose cuidatible un cachu ya decatóse de que toles ciudaes, naciones ya imperios han entregar l'espíritu, neto que los homes.» - Polibiu, testigu de la destrucción de Cartagu («Hestories», XXXVIII. 22)"
+msgstr "«Escipión \\[Emilianu], allupando la ciudá \\[Cartagu] de la qu'ella morría dafechu y daba les boquiaes postreres enantes de peracabar, llarimó y volvióse abiertamente llorosu polos enemigos. Pero llueu se punxo cuidatible y decatóse de que toles ciudaes, ñaciones y imperios han entregar l'espíritu, neto que los homes.» - Polibiu, testigu de la desfechura de Cartagu («Hestories», XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1746,19 +1849,19 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, \"Parallel Lives\", "
 "\"Pyrrhus\", sec. 21)"
-msgstr "«¡Si asina vencemos a los romanos una batalla más, tamos acabaos dafechu!» - Pirru d'Epiru tres la batalla d'Ásculu, onde los romanos perdieron el doblu d'homes, pero elli perdió les más de les sos fuercies militares (Plutarcu, «Les vides paraleles», «Pirru», seic. 21)"
+msgstr "«¡Si asina vencemos a los romanos una batalla más, tamos acabaos dafechu!» - Pirru d'Epiru tres la batalla d'Ásculu, onde los romanos perdieron el doblu d'homes, pero elli perdió les más de les sos fuercies militares (Plutarcu, «Vides paraleles», «Pirru», seic. 21)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr "«Quien sirve a les pasiones ya baxo elles se suxeta llibre nun pue ser.» - Pitágores (Estobéu, «Antoloxía», XVIII, 23)"
+msgstr "«El que sirve y se suxeta a les pasiones nun pue ser llibre.» - Pitágores (Estobéu, «Florilegium», 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr "«Nun digas poques coses en munches pallabres, sinón munches coses en poques pallabres.» - Pitágores (Estobéu, «Florilexu», 24)"
+msgstr "«Nun digas poques coses en munches pallabres, sinón munches coses en poques pallabres.» - Pitágores (Estobéu, «Florilegium», 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
@@ -1778,14 +1881,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr "«¡Patria mal agradecida, nun tengas nin siquier los mios güesos!» - Escipión l'Africanu nel so epitafiu, depués de vese denunciáu darréu por delitos en senáu romanu (Valeriu Máximu, «Fechos ya dichos memorables», 5.3.2)"
+msgstr "«¡Patria desagradecida, que nun tengas nin siquier los mios güesos!» - Escipión l'Africanu nel so epitafiu, depués de denunciar darréu al vencedor d'Haníbal el senáu romanu (Valeriu Máximu, «Fechos y dichos memorables», 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
-"Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr "«Prepárate pa la guerra darréu que nun fuesti a caltener la paz.» -  Escipión l'Africanu respondiendo a los términos de la ufierta de paz d'Hanibal enantes de la batalla de Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
+"Zama (Livy, \"History of Rome\", XXX. 31)"
+msgstr "«Prepárate pa la guerra darréu que nun fuesti a caltener la paz.» -  Escipión l'Africanu respondiendo a los términos de la ufierta de paz d'Hanibal enantes de la batalla de Zama (Liviu, \"Ab Urbe Condita\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1794,7 +1897,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr "«Pero la táutica ye namái una de les munches partes del mandu militar. Porque na guerra l'estrategu tamién tien que saber apertrechar les fuercies ya aprovir los estatriotes de suministros, arriendes de ser atélite, llaboriegu, curiosu, paciente ya xagaz; tan falatible como cruel, tan francu como cuciu.» - Sócrates (Xenofonte, «Memories», 3.1.6)"
+msgstr "«Pero la táutica é ñada más una parte del mandu militar. Porque ena guerra l'estrategu tamién tien que saber armar las ḥorcias y aprovir los estatriotas de suministros, amás de ser atélite, llaboriegu, curiosu, paciente y avisáu; rellambíu y cruel, francu y sotil.» - Sócrates (Xenofonte, «Memories», 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1802,14 +1905,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr "«Ún tien que conocer tanto'l poder de la polis como'l de los adversarios, pa que, si'l de la polis ye mayor,-y encamiente facer guerra, pero si menor que'l de los adversarios, la convenza pa poner procuru.» - Sócrates (Xenofonte, «Memories», 3.6.8)"
+msgstr "«Hai que coñocer el poder de la polis y el del enemigu, pa que, si la polis e más ḥuerte que'l enemigu,-y encamiente ḥer la guerra, pero si é más débil, la convenza pa tener curiáu.» - Sócrates (Xenofonte, «Memories», 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr "«La vida ensin esaminar nun ye vidable pa naide.» - Sócrates, na so defensa cuando lu xulgaben por malvar a los rapazos ya nun adorar a los dioses afayadizos (más sero, tres la sentencia de muerte, bebería cicuta) - Platón («Apoloxía de Sócrates», 38a)"
+msgstr "«La vida sin esaminar ñun é vidable pal home.» - Sócrates, demientres la so defensa cuando lu xulgaben por malvar a los rapazos y nun adorar a los dioses correutos (más sero bebe cicuta en recibiendo la sentencia de muerte) - Platón («Apoloxía de Sócrates», 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -1817,7 +1920,7 @@ msgid ""
 "to live. Which is better God only knows.\" - Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
-msgstr "«Yá ye hora de dimos: yo a morrer, vós a vivir. ¿Qué fechu d'entrambos mos vien meyor? Nun ta nidio a denguién sacante, de xacíu, a Dios.» - Sócrates, na so defensa cuando lu xulgaben por malvar a los rapazos ya nun adorar a los dioses afayadizos (más sero, tres la sentencia de muerte, bebería cicuta) - Platón («Apoloxía de Sócrates», 42a)"
+msgstr "«Yá é hora de dimos: yo a morrer, vós a vivir. ¿Qué ḥechu d'entrambos mos vien meyor? Ñun lo sabrá ñaide, sacante Dios.» - Sócrates, demientres la so defensa cuando lu xulgaben por malvar a los rapazos y nun adorar a los dioses correutos (más sero bebe cicuta en recibiendo la sentencia de muerte) - Platón («Apoloxía de Sócrates», 42a)"
 
 #: gui/text/quotes.txt:167
 msgid ""
@@ -1833,14 +1936,14 @@ msgid ""
 "that the weak should be subject to the strong.\" - Speech of an Athenian "
 "embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
 "76.2)"
-msgstr "«Si garremos un imperiu que se mos apurría ya nun lu arrenunciemos foi por tres de los mayores motivos: l'honor, el respetu ya'l provechu. Pero, per otru llau, d'esta miente nun entamemos primeros, mas establecióse dende peronia que'l débil se suxete al poderosu.» - Discursu d'un unviáu ateniense n'Esparta (Tucídides, «Hestoria de la guerra del Peloponesu», I. 76.2)"
+msgstr "«Si tomemos un imperiu que se mos apurría y nun lu arrenunciemos fo por tres motivos fundamentales: l'honor, el respetu y el provechu. Per otru llau, nun fomos los primeros en facelo, sinón que lleva siendo normal dende peronia que'l ruin se suxete al fuerte.» - Discursu d'un unviáu ateniense n'Esparta (Tucídides, «Historia de la guerra del Peloponesu», I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"He could boast that he found a city of brick and left it a city of "
 "marble.\" - Suetonius, commenting on the many building projects of Augustus "
 "in Rome (\"Divus Augustus\", sec 38)"
-msgstr "«Pero podemos gloriallu con razón por dexar en mármole la ciudá que recibiera enlladriyada.» - Suetoniu, falando de los munchos proxectos de construcción d'Augustu en Roma («Augustu'l Divín», seic 28)"
+msgstr "«Podemos glorialu con razón por dexar en mármole la ciudá que recibiera enlladriyada.» - Suetoniu, falando de los munchos proxeutos de construcción d'Augustu en Roma («Divus Augustus», seic 38)"
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
@@ -1850,7 +1953,7 @@ msgstr "«Nada en demasía.» - Terenciu («Andria», 61)"
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr "«La fortuna axuda al fuerte.» - Terenciu nuna pieza sobro'l gran almirante ateniense («Formión», 203)"
+msgstr "«La fortuna axuda al fuerte.» - Terenciu nuna pieza sobro un gran almirante ateniense («Formión», 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1858,7 +1961,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr "«Nun sé afinar el lliriu nin remanar el salteriu, pero recibir una ciudá pequeña ya descoñocida ya perfacela notable ya grande, eso sí.» - Temístocles, en defensa de la so falta de sofisticación cultural (Plutarcu, «Les vides paraleles», «Temístocles», seic. 2)"
+msgstr "«Nun sé afinar el lliriu nin tocar el salteriu, pero tomar una ciudadaca pequeña y desconocida y facela notable y grande, eso sí.» - Temístocles, en defensa de la so falta de sofisticación cultural (Plutarcu, «Vides paraleles», «Temístocles», seic. 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1866,41 +1969,41 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr "«Cuti, pero ascucha.» - Temístocles, nun discutiniu encaloráu col comandante de la flota espartana que-y amenazó con cutilu col blagu, enanties de la batalla de Salamina (Plutarcu, «Les vides paraleles», «Temístocles», seic. 11)"
+msgstr "«Cuti, pero ascucha.» - Temístocles, nun discutiniu encaloráu col comandante de la flota espartana que-y amenazó con apurri-y un cayadazu, enanties de la batalla de Salamina (Plutarcu, «Vides paraleles», «Temístocles», seic. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr "«A los griegos-yos manden los atenienses, a los atenienses yo, a min to ma, pero a ma tu.» - Temístocles, en chancia al so ñeñu (Plutarcu, «Les vides paraleles», «Temístocles», seic. 18)"
+msgstr "«A los griegos mánden-yos los atenienses, a los atenienses mándo-y yo, a min mándame to ma, pero a to ma mándes-y tu.» - Temístocles, en chancia al so ñeñu (Plutarcu, «Vides paraleles», «Temístocles», seic. 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr "«Los cuentos d'antaño, masque rala vez confirmaos con pruebes, diéronse por fechu ensin reparos.» - Tucídides («Hestoria del guerra del Peloponesu», I. 21.3)"
+msgstr "«Los cuentos d'antaño, masque rala vez confirmaos con pruebes, diéronse por fechu ensin reparos.» - Tucídides («Historia del guerra del Peloponesu», I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr "«Camiento que'l motivu verdaderu que los llevó a la guerra, anque anubiertu nel discursu, foi que los atenienses se volvíen mayores ya metíen mieu a los lacedemonios.» - Tucídides («Hestoria de la guerra del Peloponesu», I. 23.6)"
+msgstr "«Camiento que'l verdaderu motivu que los llevó a la guerra, anque anubiertu pol discursu, foi que los atenienses se volvíen más fuertes y atarrecíen a los lacedemonios.» - Tucídides («Historia de la guerra del Peloponesu», I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr "«La guerra nun ye tanto una cuestión d'armes como de dineru.» - Tucídides («Historia de la guerra del Peloponesu», I. 83.2)"
+msgstr "«La guerra nun ye tanto una cuestión d'armes como de perres.» - Tucídides («Historia de la guerra del Peloponesu», I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr "«L'home ye predispuestu a despreciar al combayón, pero almirar al que nun cede.» - Tucídides («Hestoria de la guerra del Peloponesu», III. 39.5)"
+msgstr "«L'home ye predispuestu a despreciar al combayón y almirar al que nun cede un res.» - Tucídides («Historia de la guerra del Peloponesu», III. 39.5)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -1911,7 +2014,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr "«El fechu esi foi'l más grande de tolos acontecimientos de la guerra, pero, pa mio idea, tamién lo foi de tolos de qu'oyemos falar ente los griegos. A los vencedores-yos abultó espléndidu ya a los vencíos llaceriosu, porque, vencíos en toa riegla, ya sufriendo enforma, l'exércitu, les naves, too s'escontarmó, aniquilao dafechu, según dizse, ya de los munchos pocos tornaron a casa. Asina asocedió la espedición a Sicilia.» - Tucídides («Hestoria de la guerra del Peloponesu», VII. 87.6-7)"
+msgstr "«Esi foi'l mayor acontecimientu de tolo asocedío na guerra y, pa mio idea, de tolo que los griegos oyimos falar. A los vencedores abultó-yos gloriosu y a los vencíos una llaceria; pos, vencíos en toa regla y sufriendo enforma, l'exércitu, los barcos, too s'escontarmó, aniquilao dafechu; y de los munchos pocos tornaron a casa. Asina acabó la espedición a Sicilia.» - Tucídides («Historia de la guerra del Peloponesu», VII. 87.6-7)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -1919,7 +2022,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr "«N'asuntos humanos, la xusteza acútase pa poderes iguales, pero los fuertes llogren imponese ya los débiles agachen.» - Tucídides, describiendo como los atenienses se dirixíen a los melinos que, vencíos, se ñegaben a rindise («Hestoria de la guerra del Peloponesu», V. 89.1)"
+msgstr "«N'asuntos humanos, la xusticia acútase pa poderes iguales; los fuertes llogren imponese y los débiles agachen.» - Tucídides, describiendo como los atenienses se dirixeron a los melinos que, vencíos, se ñegaben a rindise («Historia de la guerra del Peloponesu», V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -1928,7 +2031,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr "«Asina se llanciaren proyeutiles ún al otru un cachín, pero los lacedemonios yá nun pudiendo salir aína d'ónde se-yos bombardiaba, los soldaos llixeros \\[…] cargaron en masa escontra ellos, arreflundiando morriyos, fleches ya venablos a cuantos taben de mano.» - Tucídides, describiendo'l desastre espartanu na batalla d'Esfacteria («Hestoria de la guerra del Peloponesu», IV. 34.2)"
+msgstr "«Yá nun pudiendo los lacedemonios escorrexalos d'ónde los atozaben, los tiradores \\[…] cargaron en masa escontra ellos, arreflundiando morriyos, fleches y venablos a los que taben más a tiru.» - Tucídides, describiendo'l desastre espartanu na batalla d'Esfacteria («Historia de la guerra del Peloponesu», IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1938,7 +2041,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
 "\"Tiberius Gracchus\", sec. 9)"
-msgstr "«Pol lluxu ya bayura d'otros lluchen ya muerren, llamándose señores de lo habitao, pero ensin tener nenguna llosa ermuna.» - Tiberiu Gracu, abogando pola reforma agraria en beneficiu de los veteranos vagarientos ya desemplegaos, que davezu tuvieren les sos tierres mercaes de la que taben en campaña (Plutarcu, «Les vides paraleles», «Tiberiu Gracu», seic. 9)"
+msgstr "«Lluchen y muerren por lluxu y bayura ayenos, llamándose señores del orbe habitáu, mas ensin ser dueños de nenguna llosa ermuna.» - Tiberiu Gracu, afalando una reforma agraria en beneficiu de los veteranos vagarientos y desemplegaos, que davezu tuvieren les sos tierres mercaes de la que taben en campaña (Plutarcu, «Vides paraleles», «Tiberiu Gracu», seic. 9)"
 
 #: gui/text/quotes.txt:183
 msgid ""
@@ -1948,24 +2051,24 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
-msgstr "«Los fierucos habiten Italia ya caún tien xoril onde añerar ya esmucise, pero los que lluchen ya muerren por Italia, aire ya lluz, dal cosa más con qué cuntar. Nabeyen vagamundos ya ambolantinos colos fíos ya muyeres.» - Tiberiu Gracu, abogando pola reforma agraria en beneficiu de los veteranos vagarientos ya desemplegaos, que davezu tuvieren les sos tierres mercaes de la que taben en campaña (Plutarcu, «Les vides paraleles», «Tiberiu Gracu», seic. 9)"
+msgstr "«Caún de los fierucos qu'habiten Italia tien un xoril u añerar y esmucise, pero los que lluchen y muerren por Italia, aire y lluz, nin un res más. Ellos caleyen vagamundos y abentestate colos fíos y muyeres.» - Tiberiu Gracu, afalando una reforma agraria en beneficiu de los veteranos vagarientos y desemplegaos, que davezu tuvieren les sos tierres mercaes de la que taben en campaña (Plutarcu, «Vides paraleles», «Tiberiu Gracu», seic. 9)"
 
 #: gui/text/quotes.txt:184
 msgid ""
 "\"Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.\" - Virgil (\"Aeneid\", II. 48-49)"
-msgstr "«Nun creyéi nel caballu, teucros. Seya lo que seya, tarrezo los dánaos ya'l trayer regalos.» - Virxiliu («Eneida», II. 48-49)"
+msgstr "«¡Resabiái del cabaḷḷu, teucros! Sía como quier, atarrezo a los dánaos, anque traxeran agasachos.» - Virxiliu («Eneida», II. 48-49)"
 
 #: gui/text/quotes.txt:185
 msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
-msgstr "«Preparáu pa cualesquier alternativa.» - Virxíliu («Eneida», II. 61)"
+msgstr "«Preparáu pa cualesquier alternativa.» - Virxiliu («Eneida», II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
 "\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
 "(fragment 11)"
-msgstr "«Homeru ya Hesíodu atribuyeron a los dioses tolo que ye una llaceria ya tacha ente los homes: el robar, l'adulterar ya l'engañar ún al otru.» - Xenófanes (fragmentu 11)"
+msgstr "«Homeru ya Hesíodu carganon a los dieuses toda ḷḷaceira ya inquiz ente los homes: el roubar, l'adulteriu ya l'enganar unu al outru.» - Xenófanes (fragmentu 11)"
 
 #: gui/text/quotes.txt:187
 msgid ""
@@ -1973,13 +2076,13 @@ msgid ""
 " of art as men do, horses would paint the forms of the gods like horses, and"
 " oxen like oxen, and make their God's bodies each in their own image.\" - "
 "Xenophanes (fragment 15)"
-msgstr "«Si los caballos, gües o lleones tuvieren manes ya perfixeren obres dibuxando coles manes neto que los homes, los caballos como caballos, los gües como gües, asina dibuxaríen les figures de dioses; fadríen los cuerpos según la propia física de caún.» - Xenófanes (fragmentu 15)"
+msgstr "«Se los cabaḷḷos, büeis ou ḷḷiones tuvieran manos ya perfeixeran obras d'arte según los homes, dibuxarían las formas de los dieuses asina: los cabaḷḷos cumo cabaḷḷos, los bueis cumo bueis. Fairían los cuerpos a la feitura de cadagunu.» - Xenófanes (fragmentu 15)"
 
 #: gui/text/quotes.txt:188
 msgid ""
 "\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
-msgstr "«Los etíopes dicen que los dioses son ñatos ya moros; los tracios que son de güeyu azul ya roxos.» - Xenófanes (fragmentu 16)"
+msgstr "«Los etíopes dicen que los dieuses son tatos ya mouros; los tracios que son de güeyyu azul ya roxos.» - Xenófanes (fragmentu 16)"
 
 #: gui/text/quotes.txt:189
 msgid ""
@@ -1987,21 +2090,21 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr "«Hai qu'entrugar coses como estes pel iviernu cabo'l llume \\[…]: ¿D'ónde vienes, ho? ¿Qué tiempu tienes, collaciu? ¿Cuántu teníes cuando invadieron los medos \\[los perses]?» - Xenófanes, al meyor falando de la espedición castigadora contra les ciudaes griegues en Xonia (fragmentu 17)"
+msgstr "«Hai qu'entrugar cousas cumo estas pol iviernu cou'l ḷḷume \\[…]: ¿D'ónde vienes, ho? ¿Qué tiempu tienes, amigu? ¿Cuántu tenías cuando los medos \\[los perses]?» - Xenófanes, al meyor falando d'una espedición persa p'acadigar les ciudaes griegues en Xonia (fragmentu 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""
 "\"A prudent commander will never take risks unnecessarily, except when it is"
 " clear beforehand that he will have the advantage.\" - Xenophon (\"The "
 "Cavalry General\", 4.13)"
-msgstr "«El dirixente prudente enxamás nun s'arriesga arrede, sacante cuando yá tea nidio que va cuntar cola ventaya.» - Xenofonte («L'Hipárquicu», 4.13)"
+msgstr "«El cabazaliru acordóu enxamás non s'arriesga arrémente, sacante que yá tea nidio que va cuntar cola ventaya.» - Xenofonte («Hipparchicus», 4.13)"
 
 #: gui/text/quotes.txt:191
 msgid ""
 "\"Attack the enemy where he is weakest, even if that is a long way off, "
 "since hard work is less dangerous than a struggle against superior forces.\""
 " - Xenophon (\"The Cavalry General\", sec. 4.14)"
-msgstr "«Tamién sedría prudente atacar los enemigos uquiera que tean débiles, inda que quede bien lloñe. Esforciase con rigor supón menos peligru que lluchar escontra fuercies superiores.» - Xenofonte («L'Hipárquicu», seic. 4.14)"
+msgstr "«Ataca l'inimigu u tea más débil, anque quede bien lloñe, pos rinxir tien menos riisgu que s'engardir con ḥuercies superiores.» - Xenofonte («Hipparchicus», seic. 4.14)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2009,14 +2112,14 @@ msgid ""
 "small force appear large and a large one small, to appear absent when close "
 "at hand, and within striking distance when a long way off.\" - Xenophon "
 "(\"The Cavalry General\", sec. 5)"
-msgstr "«Ha ser atélite, facer que pocos xinetes abuiten munchos ya munchos pocos, apaecer averase al alloñase ya alloñase al averase.» - Xenofonte («L'Hipárquicu», seic. 5.2)"
+msgstr "«Ha ser ocurrente, facer que pocos xinetes abulten munchos e munchos pocos, paecer averase al alloñase e alloñase al averase.» - Xenofonte («Hipparchicus», seic. 5)"
 
 #: gui/text/quotes.txt:193
 msgid ""
 "\"People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.\" - Xenophon (\"The Education of "
 "Cyrus\", 1.6.22)"
-msgstr "«La xente ta arguyoso d'obedecer al home que creyen que ye más sabiu qu'ellos na busca del so porgüeyu.» - Xenofonte («La educación de Ciru», 1.6.22)"
+msgstr "«A xente ta arguyoso d'obedecer al home que creye que ye más sobiu qu'ello na busca del so porgüiyu.» - Xenofonte («Ciropedia», 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2025,13 +2128,13 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.\" - Xenophon (\"The Education "
 "of Cyrus\", 1.6.25)"
-msgstr "«Demientres les campañes, si ye pel branu, ha rescamplar que'l xeneral s'aproveche del sol; si pel iviernu, del cutu; cuando se da xera, de los trabayos. Too esto inflúi nel ciñu de les tropes.» - Xenofonte («La Ciropedia», 1.6.25)"
+msgstr "«Mentes es campañes, si ye pel veronu, tien que rescamplar que'l xeneral s'aproveche del sol; si pel inviirnu, del fríu; cuando hai que dar xera, d'os trabayos. Too eso ganará-y el ciñu d'es tropes.» - Xenofonte («Ciropedia», 1.6.25)"
 
 #: gui/text/quotes.txt:195
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr "«Les batalles decídense más pola moral del home que pola so fuercia física.» - Xenofonte («La educación Ciriu», 3.3.20)"
+msgstr "«Es batalles decídense más pola moral d'os homes que por ḥuercia físico.» - Xenofonte («Ciropedia», 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2039,7 +2142,7 @@ msgid ""
 " that we are human beings! We've got to appear to them like an "
 "uncontrollable nightmare of shields, swords, battle-axes and spears!\" - "
 "Xenophon (\"The Education of Cyrus\", 4.2.22)"
-msgstr "«¡Nun-ys deamos vagar d'aconceyar, nin d'aperiase ventaya dala nin de reconocer en mou dalgún que somos homes, sinón avecémonos toos a venir como escudos, alfanxes, azaos ya llaceries!» - Xenofonte («La Ciropedia», 4.2.22)"
+msgstr "«¡Que non-yos deamos vagar p'arrexuntase, nin entamanar nengúa defensa, nin reconocer que somos homes! ¡Vamos toos a acutillos como escudos, cutres, azaos e llaceries!» - Xenofonte («Ciropedia», 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2047,7 +2150,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr "«Albidro que yá vos decatáis, homes, que persiguir, cutir, matar, llevar botín, ascuchar allabancies, ser llibres ya gobernar son premios que s'apurren a los vencedores. Rescampla, al aviesu, que ye tolo contrario pa los cobardes.» - Xenofonte («La Ciropedia», 7.1.13)"
+msgstr "«Albidro que yá vos dais cuenta, homes, de que persiguir, golpiar, matar, tomar botín, recibir alabances, ser llibres e gobernar son premios pa os vencedores; pa os cobardes ye, dende lluigu, tolo contrario.» - Xenofonte («Ciropedia», 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2055,7 +2158,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr "«L'home que lo deseye tien que ser lladín ya xagaz, cuciu ya mañosu, lladrón ya rapiñeru, superior al enemigu en tolos senes.» - Xenofonte sobro la meyor manera d'aventayar al enemigu («La Ciropedia», 1.6.26)"
+msgstr "«L'home que lo quier tien de ser llaín e rapusu, artiru e mañusu, lladrón e rapiñiru, superior al enemigu en toos os senes.» - Xenofonte sobro cómo meyor sacar ventaya al enemigu («Ciropedia», 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2063,7 +2166,7 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr "«¡Los homes tiénense convertío en muyeres ya les muyeres n'homes!» - Xerxes, mirando a Artemisia truñar contra una nave de la que la mayoría de la flota sufría lo contrario, inorando que'l barcu fundíu yera'l so (Herodotus, «Les Hestories», VIII. 88)"
+msgstr "«¡Los homes tiénense fecho muyeres y les muyeres homes!» - Xerxes, mirando a Artemisia truñar contra un barcu de la que la mayoría de la flota sufría lo contrario, inorando que'l barcu fundíu yera'l so (Heródotu, «Les Hestories», VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""

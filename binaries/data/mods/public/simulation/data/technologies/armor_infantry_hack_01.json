@@ -15,13 +15,15 @@
 		"gaul": "Spolas"
 	},
 	"description": "Quilted linen or leather body armor for infantrymen.",
-	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 0},
-	"requirements": {"any": [{"tech": "phase_town"},{"civ": "brit"},{"civ": "gaul"}]},
+	"cost": { "food": 0, "wood": 50, "stone": 0, "metal": 0 },
+	"requirements": { "any": [{ "tech": "phase_town" }, { "civ": "brit" }, { "civ": "gaul" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_leather.png",
 	"researchTime": 40,
 	"tooltip": "All Infantry +1 Hack Armor Level.",
-	"modifications": [{"value": "Armour/Hack", "add": 1.0}],
+	"modifications": [
+		{ "value": "Armour/Hack", "add": 1 }
+	],
 	"affects": ["Infantry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -7,9 +7,11 @@
   <Attack>
     <Capture disable=""/>
     <Ranged>
-      <Hack op="mul">1.5</Hack>
-      <Pierce op="mul">1.5</Pierce>
-      <Crush op="mul">1.5</Crush>
+      <Damage>
+        <Hack op="mul">1.5</Hack>
+        <Pierce op="mul">1.5</Pierce>
+        <Crush op="mul">1.5</Crush>
+      </Damage>
       <RepeatTime op="mul">0.75</RepeatTime>
     </Ranged>
   </Attack>
@@ -67,11 +69,8 @@
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <WalkSpeed op="mul">0.5</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.5</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/mauryans/elephantry_archer_b_m.xml</Actor>
+    <Actor>units/mauryas/elephantry_archer_b_m.xml</Actor>
   </VisualActor>
 </Entity>

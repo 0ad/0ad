@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Daniel Morgado</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2018-06-15T16:51:12</created>
+    <modified>2018-06-15T16:51:12</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Material_001-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material_001-material" name="Material_001">
+      <instance_effect url="#Material_001-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="rome_helmet_m-Geometry_001-mesh" name="rome_helmet_m-Geometry.001">
+      <mesh>
+        <source id="rome_helmet_m-Geometry_001-mesh-positions">
+          <float_array id="rome_helmet_m-Geometry_001-mesh-positions-array" count="54">0.009613811 0.01678323 0.07280206 0.01294296 0.0151394 -0.0208612 -0.008437871 4.20517e-4 -0.02143496 -0.008437871 4.20517e-4 -0.02143496 -0.01196348 0.003317058 0.07223784 0.0404644 0.01100778 0.2433062 -0.04322069 0.007941961 0.2387349 0.01431697 0.02042216 0.5718074 -0.008437871 4.20517e-4 -0.02143496 0.004191935 -0.004500031 -0.02117824 -0.01196348 0.003317058 0.07223784 7.28828e-4 -0.002309262 0.07233989 -0.04322069 0.007941961 0.2387349 0.007332503 -0.002406239 0.2382589 0.01424771 0.00900793 0.4043363 -0.02821213 0.01418209 0.4080725 0.04170519 0.015715 0.4046427 -0.02821213 0.01418209 0.4080725</float_array>
+          <technique_common>
+            <accessor source="#rome_helmet_m-Geometry_001-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_helmet_m-Geometry_001-mesh-normals">
+          <float_array id="rome_helmet_m-Geometry_001-mesh-normals-array" count="54">0.6338935 0.7695534 0.07724523 0.65182 0.7582083 0.01583921 -0.5660754 0.8236293 -0.03454804 -0.5280168 0.8479827 -0.04608434 -0.4657796 0.8846517 0.02099698 0.9735236 0.1873558 -0.1309567 -0.03473037 0.9988194 -0.03396737 0.03082412 0.04483228 0.9985189 0.9894038 0.12696 0.07043844 -0.02523934 0.9991977 -0.03109902 -0.3632413 -0.9315726 0.01510703 0.3779833 -0.9249528 0.03988885 -0.4031528 -0.9148302 -0.02352994 0.348285 -0.9373359 -0.009949207 -0.2059131 -0.9781103 0.03000038 0.1098085 -0.9939526 -6.40905e-4 -0.1232066 -0.9900172 0.06845486 0.0690034 -0.9958343 0.05960351</float_array>
+          <technique_common>
+            <accessor source="#rome_helmet_m-Geometry_001-mesh-normals-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_helmet_m-Geometry_001-mesh-map-0">
+          <float_array id="rome_helmet_m-Geometry_001-mesh-map-0-array" count="126">0.7131193 0.6987928 0.7131193 0.4722409 0.695676 0.4722409 0.695676 0.4722409 0.695676 0.6987928 0.7131193 0.6987928 0.857414 0.3226274 0.857414 0.09607636 0.816041 0.09607636 0.816041 0.09607636 0.816041 0.3226274 0.857414 0.3226274 0.878101 0.5491794 0.8677575 0.4359034 0.847071 0.4359034 0.7480063 0.4722409 0.730563 0.4722409 0.7480063 0.6987928 0.7480063 0.6987928 0.730563 0.4722409 0.730563 0.6987928 0.7131193 0.6987928 0.730563 0.6987928 0.7131193 0.4722409 0.7131193 0.4722409 0.730563 0.6987928 0.730563 0.4722409 0.940161 0.09607636 0.898788 0.09607636 0.940161 0.3226274 0.940161 0.3226274 0.898788 0.09607636 0.898788 0.3226274 0.898788 0.3226274 0.909131 0.4359034 0.940161 0.3226274 0.878101 0.5491794 0.8884445 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.898788 0.3226274 0.857414 0.09607636 0.857414 0.09607636 0.898788 0.3226274 0.898788 0.09607636 0.847071 0.4359034 0.857414 0.3226274 0.816041 0.3226274 0.909131 0.4359034 0.8884445 0.4359034 0.878101 0.5491794 0.8884445 0.4359034 0.857414 0.3226274 0.8677575 0.4359034 0.898788 0.3226274 0.8884445 0.4359034 0.909131 0.4359034 0.847071 0.4359034 0.8677575 0.4359034 0.857414 0.3226274 0.8884445 0.4359034 0.898788 0.3226274 0.857414 0.3226274</float_array>
+          <technique_common>
+            <accessor source="#rome_helmet_m-Geometry_001-mesh-map-0-array" count="63" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rome_helmet_m-Geometry_001-mesh-vertices">
+          <input semantic="POSITION" source="#rome_helmet_m-Geometry_001-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_001-material" count="21">
+          <input semantic="VERTEX" source="#rome_helmet_m-Geometry_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#rome_helmet_m-Geometry_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#rome_helmet_m-Geometry_001-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 0 0 5 5 5 6 0 0 7 4 4 8 4 4 9 6 6 10 5 5 11 7 7 12 16 8 13 15 9 14 8 10 15 9 11 16 10 12 17 10 12 18 9 11 19 11 13 20 0 0 21 11 13 22 1 1 23 1 1 24 11 13 25 9 11 26 10 12 27 11 13 28 12 14 29 12 14 30 11 13 31 13 15 32 13 15 33 17 16 34 12 14 35 7 7 36 14 17 37 16 8 38 5 5 39 13 15 40 0 0 41 0 0 42 13 15 43 11 13 44 15 9 45 5 5 46 6 6 47 17 16 48 14 17 49 7 7 50 14 17 51 5 5 52 16 8 53 13 15 54 14 17 55 17 16 56 15 9 57 16 8 58 5 5 59 14 17 60 13 15 61 5 5 62</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="rome_helmet_m_001" name="rome_helmet_m_001" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#rome_helmet_m-Geometry_001-mesh" name="rome_helmet_m_001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_001-material" target="#Material_001-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="blender">
+            <Copy_Location_constraint>
+              <type sid="type" type="int">9</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">513</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">prop-feather_right</target_id>
+            </Copy_Location_constraint>
+            <Copy_Rotation_constraint>
+              <type sid="type" type="int">8</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">529</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">prop-feather_right</target_id>
+            </Copy_Rotation_constraint>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -273,11 +273,12 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	wchar_t func[DEBUG_SYMBOL_CHARS] = {0};
 	GetExceptionLocus(ep, file, &line, func);
 
-	wchar_t message[500];
+	wchar_t message[600];
 	const wchar_t* messageFormat =
 		L"Much to our regret we must report the program has encountered an error.\r\n"
 		L"\r\n"
 		L"Please let us know at http://trac.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
+		L"You may find paths to these files at https://trac.wildfiregames.com/wiki/GameDataPaths \r\n"
 		L"\r\n"
 		L"Details: unhandled exception (%ls)\r\n";
 	swprintf_s(message, ARRAY_SIZE(message), messageFormat, description);

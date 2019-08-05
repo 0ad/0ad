@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,9 +27,27 @@
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
+template<typename T>
+void SGUISetting::Init(IGUIObject& pObject, const CStr& Name)
+{
+	m_pSetting = new T();
 
-IGUIObject::IGUIObject()
-	: m_pGUI(NULL), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
+	m_FromJSVal = [Name, &pObject](JSContext* cx, JS::HandleValue v) {
+		T value;
+		if (!ScriptInterface::FromJSVal<T>(cx, v, value))
+			return false;
+
+		GUI<T>::SetSetting(&pObject, Name, value);
+		return true;
+	};
+
+	m_ToJSVal = [Name, this](JSContext* cx, JS::MutableHandleValue v) {
+		ScriptInterface::ToJSVal<T>(cx, v, *static_cast<T*>(m_pSetting));
+	};
+}
+
+IGUIObject::IGUIObject(CGUI* pGUI)
+	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
 {
 	AddSetting(GUIST_bool,			"enabled");
 	AddSetting(GUIST_bool,			"hidden");
@@ -63,19 +81,13 @@ IGUIObject::~IGUIObject()
 			debug_warn(L"Invalid setting type");
 		}
 
-	if (m_pGUI)
+	if (!m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
 }
 
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
-void IGUIObject::SetGUI(CGUI* const& pGUI)
-{
-	if (!m_pGUI)
-		JS_AddExtraGCRootsTracer(pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
-	m_pGUI = pGUI;
-}
 
 void IGUIObject::AddChild(IGUIObject* pChild)
 {
@@ -151,7 +163,7 @@ void IGUIObject::AddSetting(const EGUISettingType& Type, const CStr& Name)
 	{
 #define TYPE(type) \
 	case GUIST_##type: \
-		m_Settings[Name].m_pSetting = new type(); \
+		m_Settings[Name].Init<type>(*this, Name);\
 		break;
 
 		// Construct the setting.
@@ -296,6 +308,12 @@ IGUIObject* IGUIObject::GetParent() const
 	return m_pParent;
 }
 
+void IGUIObject::ResetStates()
+{
+	// Notify the gui that we aren't hovered anymore
+	UpdateMouseOver(nullptr);
+}
+
 void IGUIObject::UpdateCachedSize()
 {
 	bool absolute;
@@ -428,9 +446,11 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
 {
-	// m_ScriptHandlers is only rooted after SetGUI() has been called (which sets up the GC trace callbacks),
-	// so we can't safely store objects in it if the GUI hasn't been set yet.
 	ENSURE(m_pGUI && "A GUI must be associated with the GUIObject before adding ScriptHandlers!");
+
+	if (m_ScriptHandlers.empty())
+		JS_AddExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
+
 	m_ScriptHandlers[Action] = JS::Heap<JSObject*>(Function);
 }
 
@@ -450,7 +470,7 @@ InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	std::map<CStr, JS::Heap<JSObject*>>::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -459,10 +479,12 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(cx);
-	m_pGUI->GetScriptInterface()->Eval("({})", &mouse);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse, "x", m_pGUI->m_MousePos.x, false);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse, "y", m_pGUI->m_MousePos.y, false);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse, "buttons", m_pGUI->m_MouseButtons, false);
+
+	m_pGUI->GetScriptInterface()->CreateObject(
+		&mouse,
+		"x", m_pGUI->m_MousePos.x,
+		"y", m_pGUI->m_MousePos.y,
+		"buttons", m_pGUI->m_MouseButtons);
 
 	JS::AutoValueVector paramData(cx);
 	paramData.append(mouse);
@@ -477,38 +499,38 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	}
 }
 
-void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValue Argument)
+void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValueArray paramData)
 {
-	std::map<CStr, JS::Heap<JSObject*>>::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
-	JS::AutoValueVector paramData(cx);
-	paramData.append(Argument.get());
 	JS::RootedObject obj(cx, GetJSObject());
 	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(cx);
-	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result);
-	if (!ok)
-	{
+
+	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
 		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
-	}
+}
+
+void IGUIObject::CreateJSObject()
+{
+	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
+
+	m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+	JS_SetPrivate(m_JSObject.get(), this);
 }
 
 JSObject* IGUIObject::GetJSObject()
 {
-	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 	// Cache the object when somebody first asks for it, because otherwise
-	// we end up doing far too much object allocation. TODO: Would be nice to
-	// not have these objects hang around forever using up memory, though.
+	// we end up doing far too much object allocation.
 	if (!m_JSObject.initialized())
-	{
-		m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
-		JS_SetPrivate(m_JSObject.get(), this);
-	}
+		CreateJSObject();
+
 	return m_JSObject.get();
 }
 
@@ -542,6 +564,8 @@ bool IGUIObject::IsRootObject() const
 
 void IGUIObject::TraceMember(JSTracer* trc)
 {
+	// Please ensure to adapt the Tracer enabling and disabling in accordance with the GC things traced!
+
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
 		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }

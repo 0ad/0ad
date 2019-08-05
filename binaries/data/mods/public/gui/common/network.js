@@ -62,18 +62,17 @@ function getDisconnectReason(id, wasConnected)
 {
 	switch (id)
 	{
-	case 0: return wasConnected ?
-		translateWithContext("network disconnect", "Unknown reason") :
-		translate("This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall, or anti-virus software");
-	case 1: return translate("The host has ended the game");
-	case 2: return translate("Incorrect network protocol version");
-	case 3: return translate("Game is loading, please try again later");
-	case 4: return translate("Game has already started, no observers allowed");
-	case 5: return translate("You have been kicked");
-	case 6: return translate("You have been banned");
-	case 7: return translate("Playername in use. If you were disconnected, retry in few seconds");
-	case 8: return translate("Server full");
-	case 9: return translate("Secure lobby authentication failed. Join via lobby");
+	case 0: return wasConnected ? "" :
+		translate("This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall, or anti-virus software.");
+	case 1: return translate("The host has ended the game.");
+	case 2: return translate("Incorrect network protocol version.");
+	case 3: return translate("Game is loading, please try again later.");
+	case 4: return translate("Game has already started, no observers allowed.");
+	case 5: return translate("You have been kicked.");
+	case 6: return translate("You have been banned.");
+	case 7: return translate("Playername in use. If you were disconnected, retry in few seconds.");
+	case 8: return translate("Server full.");
+	case 9: return translate("Secure lobby authentication failed. Join via lobby.");
 	default:
 		warn("Unknown disconnect-reason ID received: " + id);
 		return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });
@@ -87,15 +86,12 @@ function getDisconnectReason(id, wasConnected)
  */
 function reportDisconnect(reason, wasConnected)
 {
-	// Translation: States the reason why the client disconnected from the server.
-	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(reason, wasConnected) });
-
 	messageBox(
 		400, 200,
 		(wasConnected ?
 			translate("Lost connection to the server.") :
 			translate("Failed to connect to the server.")
-		) + "\n\n" + reasonText,
+		) + "\n\n" + getDisconnectReason(reason, wasConnected),
 		translate("Disconnected")
 	);
 }

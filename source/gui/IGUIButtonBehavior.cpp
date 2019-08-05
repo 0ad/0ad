@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,8 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-IGUIButtonBehavior::IGUIButtonBehavior() : m_Pressed(false)
+IGUIButtonBehavior::IGUIButtonBehavior(CGUI* pGUI)
+	: IGUIObject(pGUI), m_Pressed(false)
 {
 }
 
@@ -131,31 +132,31 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-CColor IGUIButtonBehavior::ChooseColor()
+CGUIColor IGUIButtonBehavior::ChooseColor()
 {
-	CColor color, color2;
+	CGUIColor color, color2;
 
 	// Yes, the object must possess these settings. They are standard
-	GUI<CColor>::GetSetting(this, "textcolor", color);
+	GUI<CGUIColor>::GetSetting(this, "textcolor", color);
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
 	if (!enabled)
 	{
-		GUI<CColor>::GetSetting(this, "textcolor_disabled", color2);
+		GUI<CGUIColor>::GetSetting(this, "textcolor_disabled", color2);
 		return GUI<>::FallBackColor(color2, color);
 	}
 	else if (m_MouseHovering)
 	{
 		if (m_Pressed)
 		{
-			GUI<CColor>::GetSetting(this, "textcolor_pressed", color2);
+			GUI<CGUIColor>::GetSetting(this, "textcolor_pressed", color2);
 			return GUI<>::FallBackColor(color2, color);
 		}
 		else
 		{
-			GUI<CColor>::GetSetting(this, "textcolor_over", color2);
+			GUI<CGUIColor>::GetSetting(this, "textcolor_over", color2);
 			return GUI<>::FallBackColor(color2, color);
 		}
 	}

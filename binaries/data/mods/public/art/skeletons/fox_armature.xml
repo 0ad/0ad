@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="fox_armature" title="fox armature">
+    <bone name="Fox_root">
+      <bone name="Fox_pelvis">
+        <bone name="Fox_spine1">
+          <bone name="Fox_spine2">
+            <bone name="Fox_Neck1">
+              <bone name="Fox_Neck2">
+                <bone name="Fox_head">
+                  <bone name="Fox_head2" />
+                  <bone name="Fox_jaw1">
+                    <bone name="Fox_jaw2" />
+                  </bone>
+                  <bone name="Fox_ear_L" />
+                  <bone name="Fox_ear_R" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Fox_FrontShoulder_L">
+            <bone name="Fox_FrontLeg1_L">
+              <bone name="Fox_FrontLeg2_L">
+                <bone name="Fox_FrontLeg3_L">
+                  <bone name="Fox_FrontToe_L" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Fox_FrontShoulder_R">
+            <bone name="Fox_FrontLeg1_R">
+              <bone name="Fox_FrontLeg2_R">
+                <bone name="Fox_FrontLeg3_R">
+                  <bone name="Fox_FrontToe_R" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Fox_belly" />
+        </bone>
+        <bone name="Fox_BackLeg1_L">
+          <bone name="Fox_BackLeg2_L">
+            <bone name="Fox_BackLeg3_L">
+              <bone name="Fox_BackToe_L" />
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Fox_Fox_BackLeg1_R">
+          <bone name="Fox_BackLeg2_R">
+            <bone name="Fox_BackLeg3_R">
+              <bone name="Fox_BackToe_R" />
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Fox_Tail1">
+          <bone name="Fox_Tail2">
+            <bone name="Fox_Tail3">
+              <bone name="Fox_Tail4" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Fox_Tail4.001" />
+    <bone name="Fox_elbow_L" />
+    <bone name="Fox_elbow_R" />
+    <bone name="Fox_knee_L" />
+    <bone name="Fox_knee_R" />
+  </standard_skeleton>
+  <skeleton target="fox_armature" title="fox armature">
+    <identifier>
+      <root>Fox_root</root>
+    </identifier>
+    <bone name="Fox_root">
+      <target>Fox_root</target>
+      <bone name="Fox_pelvis">
+        <target>Fox_pelvis</target>
+        <bone name="Fox_spine1">
+          <target>Fox_spine1</target>
+          <bone name="Fox_spine2">
+            <target>Fox_spine2</target>
+            <bone name="Fox_Neck1">
+              <target>Fox_Neck1</target>
+              <bone name="Fox_Neck2">
+                <target>Fox_Neck2</target>
+                <bone name="Fox_head">
+                  <target>Fox_head</target>
+                  <bone name="Fox_head2">
+                    <target>Fox_head2</target>
+                  </bone>
+                  <bone name="Fox_jaw1">
+                    <target>Fox_jaw1</target>
+                    <bone name="Fox_jaw2">
+                      <target>Fox_jaw2</target>
+                    </bone>
+                  </bone>
+                  <bone name="Fox_ear_L">
+                    <target>Fox_ear_L</target>
+                  </bone>
+                  <bone name="Fox_ear_R">
+                    <target>Fox_ear_R</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Fox_FrontShoulder_L">
+            <target>Fox_FrontShoulder_L</target>
+            <bone name="Fox_FrontLeg1_L">
+              <target>Fox_FrontLeg1_L</target>
+              <bone name="Fox_FrontLeg2_L">
+                <target>Fox_FrontLeg2_L</target>
+                <bone name="Fox_FrontLeg3_L">
+                  <target>Fox_FrontLeg3_L</target>
+                  <bone name="Fox_FrontToe_L">
+                    <target>Fox_FrontToe_L</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Fox_FrontShoulder_R">
+            <target>Fox_FrontShoulder_R</target>
+            <bone name="Fox_FrontLeg1_R">
+              <target>Fox_FrontLeg1_R</target>
+              <bone name="Fox_FrontLeg2_R">
+                <target>Fox_FrontLeg2_R</target>
+                <bone name="Fox_FrontLeg3_R">
+                  <target>Fox_FrontLeg3_R</target>
+                  <bone name="Fox_FrontToe_R">
+                    <target>Fox_FrontToe_R</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Fox_belly">
+            <target>Fox_belly</target>
+          </bone>
+        </bone>
+        <bone name="Fox_BackLeg1_L">
+          <target>Fox_BackLeg1_L</target>
+          <bone name="Fox_BackLeg2_L">
+            <target>Fox_BackLeg2_L</target>
+            <bone name="Fox_BackLeg3_L">
+              <target>Fox_BackLeg3_L</target>
+              <bone name="Fox_BackToe_L">
+                <target>Fox_BackToe_L</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Fox_Fox_BackLeg1_R">
+          <target>Fox_Fox_BackLeg1_R</target>
+          <bone name="Fox_BackLeg2_R">
+            <target>Fox_BackLeg2_R</target>
+            <bone name="Fox_BackLeg3_R">
+              <target>Fox_BackLeg3_R</target>
+              <bone name="Fox_BackToe_R">
+                <target>Fox_BackToe_R</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Fox_Tail1">
+          <target>Fox_Tail1</target>
+          <bone name="Fox_Tail2">
+            <target>Fox_Tail2</target>
+            <bone name="Fox_Tail3">
+              <target>Fox_Tail3</target>
+              <bone name="Fox_Tail4">
+                <target>Fox_Tail4</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Fox_Tail4.001">
+      <target>Fox_Tail4.001</target>
+    </bone>
+    <bone name="Fox_elbow_L">
+      <target>Fox_elbow_L</target>
+    </bone>
+    <bone name="Fox_elbow_R">
+      <target>Fox_elbow_R</target>
+    </bone>
+    <bone name="Fox_knee_L">
+      <target>Fox_knee_L</target>
+    </bone>
+    <bone name="Fox_knee_R">
+      <target>Fox_knee_R</target>
+    </bone>
+  </skeleton>
+</skeletons>

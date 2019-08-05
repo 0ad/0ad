@@ -17,17 +17,22 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>12.0</Pierce>
-      <Crush>0.0</Crush>
+      <Damage>
+        <Hack>0.0</Hack>
+        <Pierce>12.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
       <MaxRange>72.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
-      <Spread>1.5</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <Speed>75.0</Speed>
+        <Spread>1.5</Spread>
+        <Gravity>9.81</Gravity>
+        <LaunchPoint y="3"/>
+      </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
       <RangeOverlay>
         <LineTexture>outline_border.png</LineTexture>
@@ -115,7 +120,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_civ_center.xml</select>
       <constructed>interface/complete/building/complete_civ_center.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
       <alert_raise>interface/alarm/alarm_alert_0.xml</alert_raise>
       <alert_end>interface/alarm/alarm_alert_1.xml</alert_end>
     </SoundGroups>
@@ -129,6 +133,6 @@
     <Range>90</Range>
   </Vision>
   <VisualActor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
   </VisualActor>
 </Entity>

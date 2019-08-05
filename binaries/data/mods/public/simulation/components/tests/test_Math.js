@@ -127,7 +127,7 @@ TS_ASSERT(isPositiveZero(Math.square(0)));
 TS_ASSERT(isPositiveZero(Math.square(-0)));
 TS_ASSERT_EQUALS(Math.square(Infinity), Infinity);
 TS_ASSERT_EQUALS(Math.square(1.772979291871526e-81),3.143455569405258e-162);
-TS_ASSERT_EQUALS(Math.square(1e+155), Infinity)
+TS_ASSERT_EQUALS(Math.square(1e+155), Infinity);
 TS_ASSERT_UNEVAL_EQUALS(Math.square(1), 1);
 TS_ASSERT_UNEVAL_EQUALS(Math.square(20), 400);
 TS_ASSERT_UNEVAL_EQUALS(Math.square(300), 90000);

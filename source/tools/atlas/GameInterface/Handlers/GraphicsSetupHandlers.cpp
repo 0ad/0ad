@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -162,7 +162,7 @@ MESSAGEHANDLER(SetActorViewer)
 		// alright.)
 		// Should replace this with proper actor hot-loading system, or something.
 
-		AtlasView::GetView_Actor()->GetActorViewer().SetActor(L"", L"", -1);
+		AtlasView::GetView_Actor()->GetActorViewer().SetActor(L"", "", -1);
 		AtlasView::GetView_Actor()->GetActorViewer().UnloadObjects();
 //		vfs_reload_changed_files();
 	}

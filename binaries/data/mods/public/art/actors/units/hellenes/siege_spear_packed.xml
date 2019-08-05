@@ -4,7 +4,9 @@
   <group>
     <variant frequency="1" name="wagon hele spear">
       <animations>
-        <animation file="mechanical/wagon_two_wheel_empty_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/wagon_two_wheel_empty_idle.dae" name="Idle" id="idle1" speed="80"/>
+        <animation file="mechanical/wagon_two_wheel_empty_idle.dae" name="Idle" id="idle2" speed="80"/>
+        <animation file="mechanical/wagon_two_wheel_empty_idle.dae" name="Idle" id="idle3" speed="80"/>
         <animation file="mechanical/wagon_two_wheel_empty_move.dae" name="Walk" speed="10"/>
         <animation file="mechanical/wagon_two_wheel_empty_move.dae" name="Run" speed="10"/>
       </animations>
@@ -12,6 +14,8 @@
       <props>
         <prop actor="props/units/hele_spear_packed.xml" attachpoint="cargo"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse"/>
+        <prop actor="units/athenians/oxybeles_infantry_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="units/athenians/oxybeles_infantry_b.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="props/wooden_wagon.png" name="baseTex"/>

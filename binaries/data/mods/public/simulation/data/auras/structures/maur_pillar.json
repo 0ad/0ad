@@ -3,8 +3,7 @@
 	"radius": 75,
 	"affects": ["Trader"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.20 },
-		{ "value": "UnitMotion/Run/Speed", "multiply": 1.20 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.20 }
 	],
 	"auraName": "Edict of Ashoka",
 	"auraDescription": "+20% movement speed for traders.",

@@ -6,7 +6,7 @@
  * A mod is defined by a mod.json file, for example
  *	{
  *		"name": "0ad",
- *		"version": "0.0.23",
+ *		"version": "0.0.24",
  *		"label": "0 A.D. - Empires Ascendant",
  *		"url": "https://wildfiregames.com/",
  *		"description": "A free, open-source, historical RTS game.",
@@ -19,7 +19,7 @@
  *		"label": "Mod 2",
  *		"version": "1.1",
  *		"description": "",
- *		"dependencies": ["0ad<=0.0.23", "rote"]
+ *		"dependencies": ["0ad<=0.0.24", "rote"]
  *	}
  *
  * A mod is identified by the directory name.
@@ -367,7 +367,7 @@ function selectedMod(listObjectName)
 		otherListObject.selected = -1;
 		Engine.GetGUIObjectByName("visitWebButton").enabled = true;
 		let toggleModButton = Engine.GetGUIObjectByName("toggleModButton");
-		toggleModButton.caption = listObjectName == "modsDisabledList" ? "Enable" : "Disable";
+		toggleModButton.caption = listObjectName == "modsDisabledList" ? translate("Enable") : translate("Disable");
 		toggleModButton.enabled = true;
 		toggleModButton.onPress = listObjectName == "modsDisabledList" ? enableMod : disableMod;
 		Engine.GetGUIObjectByName("enabledModUp").enabled = listObjectName == "modsEnabledList";

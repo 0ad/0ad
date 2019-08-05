@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -166,13 +166,13 @@ void MapDialog::OnListBox(wxCommandEvent& evt)
 	else
 	{
 		wxString filePath = GetSelectedFilePath();
-		AtlasMessage::qVFSFileExists qry(filePath.wc_str());
-		qry.Post();
-		if (!filePath.IsEmpty() && qry.exists)
+		AtlasMessage::qVFSFileExists fileExistsQuery(filePath.wc_str());
+		fileExistsQuery.Post();
+		if (!filePath.IsEmpty() && fileExistsQuery.exists)
 		{
-			AtlasMessage::qVFSFileRealPath qry(filePath.wc_str());
-			qry.Post();
-			wxDynamicCast(FindWindow(ID_MapDialogFilename), wxTextCtrl)->ChangeValue(*qry.realPath);
+			AtlasMessage::qVFSFileRealPath pathQuery(filePath.wc_str());
+			pathQuery.Post();
+			wxDynamicCast(FindWindow(ID_MapDialogFilename), wxTextCtrl)->ChangeValue(*pathQuery.realPath);
 		}
 	}
 

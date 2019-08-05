@@ -1,8 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Albert F. <alb.fontquerni@gmail.com>, 2018
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc Famadas <kiski97@gmail.com>, 2015
@@ -18,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 04:09+0000\n"
+"POT-Creation-Date: 2019-04-29 10:02+0200\n"
+"PO-Revision-Date: 2019-04-29 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -46,12 +47,12 @@ msgstr "Aixafar"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Canvia a l'arbre d'estructures."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: Tancar història."
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -92,12 +93,12 @@ msgstr "%(civilization)s: la seva història"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Tecla d'accés ràpid no assignada: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "Premeu %(hotkey)s per autocompletar noms de jugador."
+msgid "Press %(hotkey)s to autocomplete player names."
+msgstr ""
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -114,14 +115,19 @@ msgstr "Fotogrames per segon: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "S'ha aturat la càrrega"
 
-#: gui/common/functions_utility.js:29
+#: gui/common/functions_utility.js:30
 msgid "Gaia"
 msgstr "Natura"
 
-#: gui/common/functions_utility.js:102
+#: gui/common/functions_utility.js:103
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleatori"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Versió: %(buildDate)s (%(revision)s)"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -137,7 +143,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:53
+#: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -151,16 +157,18 @@ msgid "DELETE"
 msgstr "ESBORRA"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
-#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
+#: gui/loadgame/load.js:173 gui/options/options.js:301
+#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Si"
 
@@ -187,28 +195,28 @@ msgstr "No hi ha cap descripció disponible."
 #: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -333,7 +341,7 @@ msgstr "Herois exposats"
 
 #: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Els herois no es poden refugiar i són vulnerables a les incursions."
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
@@ -385,7 +393,7 @@ msgstr "Si un jugador guanya, els seus aliats també. Si un grup d’aliats enca
 msgid "Ceasefire"
 msgstr "Alto el foc"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "desactivat"
 
@@ -398,11 +406,11 @@ msgstr[1] "Durant els primers %(min)s minuts, els altres jugadors es mantindran 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Mapa aleatori"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Selecciona aleatòriament un mapa de la llista."
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
@@ -435,21 +443,21 @@ msgstr ""
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Mode nòmada"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
-msgstr ""
+msgstr "Centres Cívics"
 
 #: gui/common/gamedescription.js:399
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Els jugadors comencen amb poques unitats i han de torbar un lloc adequat per a construir la seva ciutat."
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Els jugadors comencen amb un Centre Cívic."
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
@@ -520,7 +528,7 @@ msgstr "Derrotat"
 #: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -543,92 +551,82 @@ msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Mala connexió amb %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
-msgctxt "network disconnect"
-msgid "Unknown reason"
-msgstr "Motiu desconegut"
-
-#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall, or anti-virus software"
-msgstr "Això és sovint causat pel port UDP 20595 que no es reenvia al host a causa d'un tallafocs o programari antivirus"
-
-#: gui/common/network.js:68
-msgid "The host has ended the game"
-msgstr "L'amfitrió ha acabat la partida"
-
-#: gui/common/network.js:69
-msgid "Incorrect network protocol version"
-msgstr "La versió del protocol de xarxa és incorrecta"
-
-#: gui/common/network.js:70
-msgid "Game is loading, please try again later"
-msgstr "El joc està carregant. Per favor, prova-ho després."
-
-#: gui/common/network.js:71
-msgid "Game has already started, no observers allowed"
-msgstr "La partida ja ha començat, no es permeten observadors"
-
-#: gui/common/network.js:72
-msgid "You have been kicked"
-msgstr "Heu estat expulsat"
-
-#: gui/common/network.js:73
-msgid "You have been banned"
-msgstr "Heu estat blocat"
-
-#: gui/common/network.js:74
-msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Nom d’usuari en ús. Si us desconnectéssiu, torneu-ho a provar en uns moments"
-
-#: gui/common/network.js:75
-msgid "Server full"
-msgstr "El servidor està ple"
-
-#: gui/common/network.js:76
-msgid "Secure lobby authentication failed. Join via lobby"
+" by a firewall, or anti-virus software."
 msgstr ""
 
-#: gui/common/network.js:79
+#: gui/common/network.js:67
+msgid "The host has ended the game."
+msgstr ""
+
+#: gui/common/network.js:68
+msgid "Incorrect network protocol version."
+msgstr ""
+
+#: gui/common/network.js:69
+msgid "Game is loading, please try again later."
+msgstr ""
+
+#: gui/common/network.js:70
+msgid "Game has already started, no observers allowed."
+msgstr ""
+
+#: gui/common/network.js:71
+msgid "You have been kicked."
+msgstr ""
+
+#: gui/common/network.js:72
+msgid "You have been banned."
+msgstr ""
+
+#: gui/common/network.js:73
+msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgstr ""
+
+#: gui/common/network.js:74
+msgid "Server full."
+msgstr ""
+
+#: gui/common/network.js:75
+msgid "Secure lobby authentication failed. Join via lobby."
+msgstr ""
+
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valor invàlid %(id)s]"
 
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Motiu: %(reason)s."
-
-#: gui/common/network.js:96
+#: gui/common/network.js:92
 msgid "Lost connection to the server."
 msgstr "S'ha perdut la connexió amb el servidor."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:93
 msgid "Failed to connect to the server."
 msgstr "No s'ha pogut connectar al servidor."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:95
 msgid "Disconnected"
 msgstr "Desconnectat"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:103
 msgid "Only the host can kick clients!"
 msgstr "Només el amfitrió pot fer fora els clients!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:157
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Usuaris (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:83
+#: gui/common/network.js:158 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
 #: gui/common/tooltips.js:324 gui/common/tooltips.js:357
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:685
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ","
 
@@ -670,7 +668,7 @@ msgstr "Aleatori"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrat"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -770,7 +768,7 @@ msgstr "Desconegut"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Condició de victòria desconeguda"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -991,41 +989,41 @@ msgstr "Per unitat"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Nombre de reparadors:"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per augmentar la velocitat de reparació en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per augmentar la velocitat de reparació en %(second)s segons."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per finalitzar la reparació en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per finalitzar la reparació en %(second)s segons."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "Nombre de constructors:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per augmentar la velocitat de construcció en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per augmentar la velocitat de construcció en %(second)s segons."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per finalitzar la construcció en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per finalitzar la construcció en %(second)s segons."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1072,11 +1070,11 @@ msgstr "Torres: %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Cost:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1186,17 +1184,46 @@ msgstr ""
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Cliqueu per veure més informació."
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:71
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
+#: gui/loadgame/load.js:118
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Mods: %(mods)s"
+
+#: gui/loadgame/load.js:151
+#, javascript-format
+msgid ""
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"running version %(currentVersion)s."
+msgstr ""
+
+#: gui/loadgame/load.js:156
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/loadgame/load.js:163
+msgid "This savegame needs a different sequence of mods:"
+msgstr ""
+
+#: gui/loadgame/load.js:167
+msgid "Do you still want to proceed?"
+msgstr "Encara voleu continuar?"
+
+#: gui/loadgame/load.js:172 gui/options/options.js:300
+#: gui/options/options.js:350 gui/options/options.js:376
+msgid "Warning"
+msgstr "Advertència"
+
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Per defecte: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1227,11 +1254,6 @@ msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Si restabliu les opcions, s'esborrarà la configuració desada. Voleucontinuar?"
-
-#: gui/options/options.js:300 gui/options/options.js:350
-#: gui/options/options.js:376
-msgid "Warning"
-msgstr "Advertència"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
@@ -1288,111 +1310,106 @@ msgstr "D'acord"
 msgid "Read More"
 msgstr "Llegeix més"
 
-#: gui/pregame/mainmenu.js:198
-#, javascript-format
-msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Versió: %(buildDate)s (%(revision)s)"
-
-#: gui/pregame/mainmenu.js:210
+#: gui/pregame/mainmenu.js:202
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Segur que voleu sortir del 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
+#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/pregame/mainmenu.js:224
+#: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:232
+#: gui/pregame/mainmenu.js:224
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'editor d'escenaris no està disponible o no s'ha pogut carregar. Vegeu els registres del joc per a obtenir informació addicional."
 
-#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Error"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:231
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Manual"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Termes"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
 msgstr ""
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Publicacions"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "s'està connectant al servidor"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "s'està pujant (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "s'ha pujat amb èxit"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "s'ha produït un error en la pujada (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "s'ha produït un error en la pujada (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "Desactiva els informes"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "Activa els informes"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Moltes gràcies per ajudar a millorar 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:81
+#: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
 msgstr ""
 
-#: gui/pregame/userreport/userreport.js:82
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Estat: %(status)s."
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "desconegut"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "Ajudeu a millorar el 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
@@ -1402,7 +1419,7 @@ msgstr ""
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
@@ -1438,45 +1455,45 @@ msgstr ""
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:139
+#: gui/reference/viewer/viewer.js:135
 msgid "Built by:"
 msgstr ""
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:152
+#: gui/reference/viewer/viewer.js:148
 msgid "Trained by:"
 msgstr ""
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:165
+#: gui/reference/viewer/viewer.js:161
 msgid "Researched at:"
 msgstr ""
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:177
+#: gui/reference/viewer/viewer.js:173
 msgid "Builds:"
 msgstr ""
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:198
+#: gui/reference/viewer/viewer.js:194
 msgid "Researches:"
 msgstr ""
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:210
+#: gui/reference/viewer/viewer.js:206
 msgid "Trains:"
 msgstr ""
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:223
+#: gui/reference/viewer/viewer.js:219
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Millora a:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1591,8 +1608,9 @@ msgid "Unrated games"
 msgstr "Partides no classificades"
 
 #: gui/replaymenu/replay_menu.js:193
-msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Filtreu les repeticions escrivint un o més, parcials o complets noms de jugador."
+msgid ""
+"Filter replays by typing one or more, partial or complete player names."
+msgstr ""
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -1606,6 +1624,18 @@ msgstr "aaaa-MM-dd HH:mm"
 #: gui/replaymenu/replay_menu.js:330
 msgid "yyyy-MM"
 msgstr "aaaa-MM"
+
+#: gui/savegame/save.js:30
+msgid "No saved games found"
+msgstr "No s'han trobat partides desades"
+
+#: gui/savegame/save.js:64
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "La partida desada es sobreescriurà permanentment, n'esteu segur?"
+
+#: gui/savegame/save.js:65
+msgid "OVERWRITE SAVE"
+msgstr "SOBREESCRIU LA PARTIDA DESADA"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1943,6 +1973,78 @@ msgstr "Tanca"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Crèdits"
 
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Carrega una partida"
+
+#: gui/loadgame/load.xml:(caption):49
+msgid "No saved games found."
+msgstr "No s'han trobat partides guardades."
+
+#: gui/loadgame/load.xml:(caption):53 gui/locale/locale.xml:(caption):36
+#: gui/savegame/save.xml:(caption):36
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: gui/loadgame/load.xml:(caption):58
+#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/savegame/save.xml:(caption):41
+msgid "Delete"
+msgstr "Esborra"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Load"
+msgstr "Carrega"
+
+#: gui/loadgame/load.xml:(caption):75
+msgid "Filter compatible saved games"
+msgstr "Filtra partides guardades compatibles"
+
+#: gui/loadgame/load.xml:(caption):85
+msgid "Players:"
+msgstr "Jugadors:"
+
+#: gui/loadgame/load.xml:(caption):89
+msgid "Played time:"
+msgstr "Duració de la partida:"
+
+#: gui/loadgame/load.xml:(caption):93
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Tipus de mapa:"
+
+#: gui/loadgame/load.xml:(caption):97
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Mida del mapa:"
+
+#: gui/loadgame/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Victòria:"
+
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Data / Hora"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Tipus de mapa"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Nom del mapa"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Descripció"
+
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "Idioma"
@@ -1958,10 +2060,6 @@ msgstr "Idioma:"
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Configuració local:"
-
-#: gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Cancel·la"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1983,7 +2081,7 @@ msgstr "Restableix"
 msgid "Revert"
 msgstr "Reverteix"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):54 gui/savegame/save.xml:(caption):46
 msgid "Save"
 msgstr "Desa"
 
@@ -2004,8 +2102,8 @@ msgid "Unsaved changes affect this session only"
 msgstr "Els canvis no desats només afecten a aquesta sessió"
 
 #: gui/pregame/mainmenu.xml:505
-msgid "Alpha XXIII: Ken Wood"
-msgstr "Alpha XXIII: Ken Wood"
+msgid "Alpha XXIV"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:507
 msgid ""
@@ -2135,10 +2233,6 @@ msgstr "Partides"
 msgid "Campaigns"
 msgstr "Campanyes"
 
-#: gui/pregame/mainmenu.xml:(caption):189
-msgid "Load Game"
-msgstr "Carrega una partida"
-
 #: gui/pregame/mainmenu.xml:(caption):203
 #: gui/pregame/mainmenu.xml:(caption):283
 msgid "Replays"
@@ -2233,18 +2327,6 @@ msgstr "Gravacions de partides"
 msgid "Filter compatible replays"
 msgstr "Filtreu les gravacions compatibles"
 
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Tipus de mapa:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Mida del mapa:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Victòria:"
-
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Spoiler"
@@ -2252,10 +2334,6 @@ msgstr "Spoiler"
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Menú principal"
-
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Esborra"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
@@ -2270,20 +2348,10 @@ msgstr "Resum"
 msgid "Start Replay"
 msgstr "Reprodueix la gravació"
 
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Data / Hora"
-
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Jugadors"
-
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Nom del mapa"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2303,6 +2371,14 @@ msgstr "Duració"
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Reconstruïu la cache reproduïda de zero. Pot ser lent!"
+
+#: gui/savegame/save.xml:(caption):14
+msgid "Save Game"
+msgstr "Desa la partida"
+
+#: gui/savegame/save.xml:(caption):28
+msgid "Description:"
+msgstr "Descripció:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2336,8 +2412,8 @@ msgid "Type:"
 msgstr "Tipus:"
 
 #: gui/summary/summary.xml:(caption):227
-msgid "Replay"
-msgstr "Reprodueix"
+msgid "Watch Replay"
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2446,6 +2522,10 @@ msgstr "Grec"
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
 msgstr "Llatí"
+
+#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -2655,7 +2735,7 @@ msgstr "General"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Inicia el 0 A.D. en una finestra."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -2663,7 +2743,7 @@ msgstr "Mode de finestra"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Utilitza ombrejadors OpenGL 2.0 (recomanat)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2671,15 +2751,15 @@ msgstr "Prefereix GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "Activa la boira."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "Boira"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Utilitza filtres de postprocessament d'imatge (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2695,7 +2775,7 @@ msgstr "Efectes d'ombra"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Activa les ombres."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2734,7 +2814,7 @@ msgstr "Qualitat de les ombres"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Suavitza les ombres."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2742,7 +2822,7 @@ msgstr "Filtrat d'ombres"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "Mostra les siluetes de les unitats darrere els edificis."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -2750,7 +2830,7 @@ msgstr "Siluetes de les unitats"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Activa les partícules."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2778,7 +2858,7 @@ msgstr "Aigua d'alta qualitat"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Utilitza la profunditat real de l'aigua en els càlculs de la renderització."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2786,7 +2866,7 @@ msgstr "Aigua amb profunditat real"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Permet que l'aigua reflecteixi l'entorn."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
@@ -2794,7 +2874,7 @@ msgstr "Reflexos de l'aigua"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Mostra un mapa de refracció real de l'aigua i no transparència."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2802,7 +2882,7 @@ msgstr "Refracció de l'aigua"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr ""
+msgstr "Mostra ombres a l'aigua."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
@@ -2810,7 +2890,7 @@ msgstr "Ombres a l'aigua"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr ""
+msgstr "Suavitzeu el revelat de la foscor i la boira de guerra."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
@@ -2818,7 +2898,7 @@ msgstr "Suavitza la línia de visió"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "Renderitza el cel."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2862,7 +2942,7 @@ msgstr "Gràfics"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "Volum general."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2870,7 +2950,7 @@ msgstr "Volum general"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "Volum de la música del joc."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2878,7 +2958,7 @@ msgstr "Volum de la música"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "Volum del so ambient."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -2886,7 +2966,7 @@ msgstr "Volum de l'ambient"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "Volum del so de les unitats."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -2894,7 +2974,7 @@ msgstr "Volum de les accions"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "Volum dels sons de la interfície d'usuari."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
@@ -2902,11 +2982,19 @@ msgstr "Volum de l'interfície"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Rebeu una notificació de so quan algú escrigui el vostre nom."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
 msgstr "Notificació de nom"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game Setup - New Player Notification"
+msgstr ""
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -2955,11 +3043,11 @@ msgstr "Molt difícil"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Dificultat per defecte de la IA."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Dificultat per defecte de la IA"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2967,7 +3055,7 @@ msgstr "Aleatori"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrat"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2979,11 +3067,11 @@ msgstr "Defensiu"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Comportament per defecte de la IA."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Comportament per defecte de la IA"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -2997,23 +3085,32 @@ msgstr "Assigneu jugadors"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Configuració del joc"
 
 #: gui/options/options.json[4].options[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr ""
 
 #: gui/options/options.json[4].options[0].label
+msgid "TLS Encryption"
+msgstr ""
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr ""
+
+#: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
 msgstr "Historial del xat"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Mostra l'índex de mitjana de participació dels jugadors en una columna de la llista del joc."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
 msgstr "Columna de puntuacions del joc"
 
@@ -3140,64 +3237,72 @@ msgid "Rank icon above status bar"
 msgstr ""
 
 #: gui/options/options.json[5].options[11].tooltip
+msgid "Show an experience status bar above each selected unit."
+msgstr ""
+
+#: gui/options/options.json[5].options[11].label
+msgid "Experience status bar"
+msgstr ""
+
+#: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Mostra indicadors de funció detallats per a les unitats als edificis que formen unitats."
 
-#: gui/options/options.json[5].options[11].label
+#: gui/options/options.json[5].options[12].label
 msgid "Detailed Tooltips"
 msgstr "Indicadors de funció detallats"
 
-#: gui/options/options.json[5].options[12].list[0].label
+#: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
 msgstr "Sense ordres"
 
-#: gui/options/options.json[5].options[12].list[1].label
+#: gui/options/options.json[5].options[13].list[1].label
 msgid "Ascending"
 msgstr "Ascendent"
 
-#: gui/options/options.json[5].options[12].list[2].label
+#: gui/options/options.json[5].options[13].list[2].label
 msgid "Descending"
 msgstr "Descendent"
 
-#: gui/options/options.json[5].options[12].tooltip
+#: gui/options/options.json[5].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr ""
 
-#: gui/options/options.json[5].options[12].label
+#: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
 msgstr ""
 
-#: gui/options/options.json[5].options[13].tooltip
+#: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr ""
 
-#: gui/options/options.json[5].options[13].label
+#: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Self"
 msgstr ""
 
-#: gui/options/options.json[5].options[14].tooltip
+#: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr ""
 
-#: gui/options/options.json[5].options[14].label
+#: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Ally"
 msgstr ""
 
-#: gui/options/options.json[5].options[15].tooltip
+#: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr ""
 
-#: gui/options/options.json[5].options[15].label
+#: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Neutral"
 msgstr ""
 
-#: gui/options/options.json[5].options[16].tooltip
+#: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr ""
 
-#: gui/options/options.json[5].options[16].label
+#: gui/options/options.json[5].options[17].label
 msgid "Diplomacy Colors: Enemy"
 msgstr ""
 
@@ -3437,24 +3542,19 @@ msgstr "CAMPAMENT DE L'EXÈRCIT ROMÀ"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
-"- Build anywhere on the map, even in enemy territory. Good for building a "
-"secret base behind enemy lines or to consolidate gains within enemy "
-"territory."
-msgstr "- Es pot construir a qualsevol punt del mapa, fins i tot en territori enemic. Va bé per construir una base secreta darrera les línies enemigues o per consolidar les conquestes de territori enemic."
+"Buildable in neutral or enemy territory. Good for building a secret base "
+"behind enemy lines or to consolidate gains within enemy territory."
+msgstr ""
+
+#: gui/text/tips/army_camp.txt:3
+msgid "Construct siege weapons and train citizen-soldiers."
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr "- Passa a pertànyer a l'amo del territori quan està en territori no aliat"
-
-#: gui/text/tips/army_camp.txt:6
-msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Construeix maquinària de setge i recluta soldats ciutadans."
-
-#: gui/text/tips/army_camp.txt:8
 msgid ""
-"- Garrison up to 40 units to slowly heal the units and protect the army camp"
-" from attacks and decay."
-msgstr "- Refugieu-hi fins a 40 unitats per curar-les lentament, protegir el campament d'atacs i evitar que es converteixi a l'enemic."
+"Garrison units to slowly heal them and protect the army camp from attacks "
+"and decay."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3462,130 +3562,114 @@ msgstr "CASERNA"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"- Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Recluta tots els soldats ciutadans. Algunes faccions també poden desbloquejar el reclutament de campions."
+msgstr ""
+
+#: gui/text/tips/barracks.txt:3
+msgid "Research military technologies unique to each faction."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:4
-msgid "- Research military technologies unique to each faction."
-msgstr "- Investiga tecnologies militars úniques de cada facció."
-
-#: gui/text/tips/barracks.txt:6
 msgid ""
-"- Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Si es construeix aviat pot servir per reclutar soldats ciutadans mentre avanceu de fase."
+msgstr ""
 
-#: gui/text/tips/barracks.txt:8
-msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr "- Es pot construir en una base avançada per reabastir l'assalt amb tropes noves."
+#: gui/text/tips/barracks.txt:5
+msgid "Build in a forward base to resupply your assault with fresh troops."
+msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
 msgstr "ARMERIA"
 
 #: gui/text/tips/blacksmith.txt:2
-msgid "- Research structure for all factions."
-msgstr "- Estructura d'investigació per a totes les faccions."
+msgid "Research structure for all factions."
+msgstr ""
 
-#: gui/text/tips/blacksmith.txt:4
-msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Investiga millores per a les armes i l'armadura de les unitats."
-
-#: gui/text/tips/blacksmith.txt:6
-msgid ""
-"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Refugieu-hi un soldat ciutadà per investigar més ràpid (PER IMPLEMENTAR)."
+#: gui/text/tips/blacksmith.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
 msgstr "LEGIÓ SAGRADA DE CARTAGO"
 
 #: gui/text/tips/carth_sacred_band.txt:2
-msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- Llancers campions i llancers a cavall campions per a Cartago."
+msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr ""
+
+#: gui/text/tips/carth_sacred_band.txt:3
+msgid ""
+"Both are trainable from the Temple, instead of the Fortress like most other "
+"champions."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both are trainable from the Temple, instead of the Fortress like most "
-"other champions."
-msgstr "- Tots dos es poden reclutar al temple, en lloc de la fortalesa com la majoria de campions."
-
-#: gui/text/tips/carth_sacred_band.txt:6
-msgid ""
-"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
-"heavy shock against siege weapons and skirmishers."
-msgstr "- Utilitzeu els llancers com a infanteria pesada contra la cavalleria. Utilitzeu la cavalleria per contraatacar màquines de setge i infanteria lleugera."
+"Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
+" shock against siege weapons and skirmishers."
+msgstr ""
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "CATAPULTES"
 
 #: gui/text/tips/catapults.txt:2
-msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Màquines de setge a distància que són efectives contra els edificis."
+msgid "Ranged siege engines that are good against buildings."
+msgstr ""
+
+#: gui/text/tips/catapults.txt:3
+msgid "Expensive and slow."
+msgstr ""
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
-"- May upgrade to flaming projectiles for extra effectiveness against "
-"buildings and units."
-msgstr "- Poden millorar-se per llançar projectils encesos i ser més eficaces contra edificis i unitats."
-
-#: gui/text/tips/catapults.txt:6
-msgid "- Expensive and slow."
-msgstr "- Lentes i cares."
-
-#: gui/text/tips/catapults.txt:8
-msgid ""
-"- Pack up into carts for movement, and unpack into stationary engines for "
+"Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- Es transporten desmuntades en carros, i s'han de muntar per atacar des d'una posició fixa."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
 msgstr "BARCASSA DE GUERRA CELTA"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "- A medium \"trireme\"-class warship."
-msgstr "- Un vaixell de guerra mitjà de tipus trirrem."
+msgid "A medium trireme-class warship."
+msgstr ""
+
+#: gui/text/tips/celtic_war_barge.txt:3
+msgid "Available to Britons, Gauls, and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr "- Disponible per a les faccions celtes (bretons i gals)."
+msgid "Can transport up to 40 units."
+msgstr ""
 
-#: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Can transport up to 40 units across the waters."
-msgstr "- Pot transportar fins a 40 unitats per l'aigua."
-
-#: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrisoned infantry."
-msgstr "- Augmenta la potència de foc amb infanteria refugiada."
-
-#: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- No pot envestir com els altres trirrems, però té més salut i armadura."
+#: gui/text/tips/celtic_war_barge.txt:5
+msgid "Increases firepower with garrisoned infantry."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
 msgstr "CENTRES CÍVICS"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The foundation of your new colony."
+msgid "The foundation of your new colony."
+msgstr ""
+
+#: gui/text/tips/civic_centres.txt:3
+msgid "Claim large tracts of territory."
 msgstr ""
 
 #: gui/text/tips/civic_centres.txt:4
-msgid "- Claim large tracts of territory."
-msgstr "- Reclama grans extensions de territori."
+msgid "Can be built in friendly and neutral territory."
+msgstr ""
 
-#: gui/text/tips/civic_centres.txt:6
-msgid "- Can be built in friendly and neutral territory."
-msgstr "- Es pot construir a territori aliat o neutral."
-
-#: gui/text/tips/civic_centres.txt:8
+#: gui/text/tips/civic_centres.txt:5
 msgid ""
-"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
-"citizen soldiers."
+"Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
+"citizen-soldiers."
 msgstr ""
 
 #: gui/text/tips/embassies.txt:1
@@ -3593,58 +3677,58 @@ msgid "EMBASSIES"
 msgstr "AMBAIXADES"
 
 #: gui/text/tips/embassies.txt:2
-msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- \"Casernes\" especials disponibles per a la facció de Cartago."
+msgid "Special Barracks available to the Carthaginians."
+msgstr ""
+
+#: gui/text/tips/embassies.txt:3
+msgid "Train mercenaries from each of the ethnically-themed embassies."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:4
-msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Recluta mercenaris de l'ètnia de cada ambaixada."
-
-#: gui/text/tips/embassies.txt:6
 msgid ""
-"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
-"Metal cost."
-msgstr "- Els \"soldats ciutadans\" mercenaris costen metall en lloc de menjar."
+"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
+"cost."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
 msgstr "PESCA"
 
 #: gui/text/tips/fishing.txt:2
-msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Pesqueu al mar per obtenir menjar abundant."
+msgid "Fish the seas for a bountiful harvest."
+msgstr ""
+
+#: gui/text/tips/fishing.txt:3
+msgid "Fishing boats carry a large amount of food per trip."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of food per trip."
-msgstr "- Les barques de pesca poden portar una gran quantitat de menjar a cada viatge."
+msgid "Fishing is faster than gathering food on fields."
+msgstr ""
 
-#: gui/text/tips/fishing.txt:6
-msgid "- Fishing is faster than gathering food on fields."
-msgstr "- La pesca és més ràpida que l'agricultura."
-
-#: gui/text/tips/fishing.txt:8
-msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Compte! Els peixos no són un recurs infinit!"
+#: gui/text/tips/fishing.txt:5
+msgid "Careful! Fish are not an infinite resource!"
+msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "FORTALESA"
 
 #: gui/text/tips/fortress.txt:2
-msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- La fortalesa generalment és l'edifici més fort de cada facció."
+msgid "The Fortress is usually each faction's strongest building."
+msgstr ""
+
+#: gui/text/tips/fortress.txt:3
+msgid "Trains Champions, Heroes, and Siege Weapons."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Recluta unitats poderoses com campions, herois i maquinària de setge."
+msgid "Gives a population boost."
+msgstr ""
 
-#: gui/text/tips/fortress.txt:6
-msgid "- Gives a population boost."
-msgstr "- Apuja el límit de població."
-
-#: gui/text/tips/fortress.txt:8
-msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- Pot tenir soldats refugiats a dins per afegir més poder de foc a la defensa."
+#: gui/text/tips/fortress.txt:5
+msgid "Garrison soldiers inside to add more firepower to its defense."
+msgstr ""
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3652,18 +3736,17 @@ msgstr ""
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
-"- Gain an advantage on the battleground by tactically positioning your "
-"units!"
+"Gain an advantage on the battleground by tactically positioning your units!"
+msgstr ""
+
+#: gui/text/tips/freehand_position.txt:3
+msgid ""
+"Therefore select some units, press and hold the right mouse button, draw any"
+" line, then release the button."
 msgstr ""
 
 #: gui/text/tips/freehand_position.txt:4
-msgid ""
-"- Therefore select some units, press and hold the right mouse button, draw "
-"any line, then release the button."
-msgstr ""
-
-#: gui/text/tips/freehand_position.txt:6
-msgid "- Your units will now spread out on this line."
+msgid "Your units will now spread out on this line."
 msgstr ""
 
 #: gui/text/tips/gathering.txt:1
@@ -3671,25 +3754,25 @@ msgid "RESOURCE GATHERING"
 msgstr "RECOLLIDA DE RECURSOS"
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use citizen soldiers and female citizens to gather resources."
+msgid "Use citizen-soldiers and female citizens to gather resources."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:3
+msgid "Female citizens gather vegetable resources faster."
 msgstr ""
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female citizens are faster gathering vegetable resources."
+msgid "Infantry citizen-soldiers are faster gathering minerals."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:5
+msgid "Cavalry citizen-soldiers are faster gathering meat."
 msgstr ""
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
-
-#: gui/text/tips/gathering.txt:8
-msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
-
-#: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of a citizen soldier (advanced, elite), the better he"
-" fights, but the less efficient he is at gathering resources."
+"The higher the level of a citizen-soldier (advanced, elite), the better he "
+"fights, but the less efficient he is at gathering resources."
 msgstr ""
 
 #: gui/text/tips/iphicrates.txt:1
@@ -3698,310 +3781,275 @@ msgstr "IFÍCRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
-"- The Athenian general who reformed the Athenian army to be faster and more "
+"The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- El general atenès que va reformar l'exèrcit atenès per fer-lo més ràpid i maniobrable."
+msgstr ""
+
+#: gui/text/tips/iphicrates.txt:3
+msgid "Units in his formation are faster and stronger."
+msgstr ""
 
 #: gui/text/tips/iphicrates.txt:4
-msgid "- Units in his formation are faster and stronger."
-msgstr "- Les unitats en la seva formació són més ràpides i fortes."
-
-#: gui/text/tips/iphicrates.txt:6
-msgid "- Skirmishers move faster while he lives."
-msgstr "- La infanteria lleugera es mou més ràpid mentre ell visqui."
+msgid "Skirmishers move faster while he lives."
+msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
 msgstr "DESTACAMENTS"
 
 #: gui/text/tips/outposts.txt:2
-msgid "- Build in neutral territory for a large scouting range."
-msgstr "- Es poden construir en territori neutral per explorar un gran camp de visió."
+msgid "Build in neutral territory for a large scouting range."
+msgstr ""
+
+#: gui/text/tips/outposts.txt:3
+msgid "Cheap, at 80 Wood."
+msgstr ""
 
 #: gui/text/tips/outposts.txt:4
-msgid "- Cheap, at 80 Wood."
-msgstr "- Barats, a 80 de fusta."
+msgid "They construct quickly, but are weak."
+msgstr ""
 
-#: gui/text/tips/outposts.txt:6
-msgid "- They construct quickly, but are weak."
-msgstr "- Es construeixen ràpid, però són dèbils."
-
-#: gui/text/tips/outposts.txt:8
-msgid ""
-"- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "- Refugieu-hi una unitat per evitar que es converteixi en territori neutral."
+#: gui/text/tips/outposts.txt:5
+msgid "Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
 msgstr "MURS D'ESTACADA"
 
 #: gui/text/tips/palisades.txt:2
-msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Un mur ràpid i barat de fusta disponible a totes les faccions."
+msgid "A quick, cheap wooden wall available to all factions."
+msgstr ""
 
-#: gui/text/tips/palisades.txt:4
-msgid "- Most factions have access to them in Village Phase."
-msgstr "- La majoria de faccions hi poden accedir a la fase de poblat."
-
-#: gui/text/tips/palisades.txt:6
-msgid ""
-"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
-" by siege weapons."
-msgstr "- Poden ser atacats pels soldats enemics, a diferència de les muralles de la ciutat, que només poden ser atacades per maquinària de setge."
+#: gui/text/tips/palisades.txt:3
+msgid "Most factions have access to them in Village Phase."
+msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
 msgstr "PÈRICLES"
 
 #: gui/text/tips/pericles.txt:2
-msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr "- El polític atenès més prominent del segle V aC."
+msgid "The foremost Athenian politician of the 5th century BC."
+msgstr ""
+
+#: gui/text/tips/pericles.txt:3
+msgid "Buildings construct faster within his range."
+msgstr ""
 
 #: gui/text/tips/pericles.txt:4
-msgid "- Buildings construct faster within his range."
-msgstr "- Els edificis es construeixen més ràpid dins del seu camp de visió."
-
-#: gui/text/tips/pericles.txt:6
-msgid "- Temples are cheaper while he lives."
-msgstr "- Els temples són més barats mentre ell visqui."
+msgid "Temples are cheaper while he lives."
+msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
 msgstr "ARQUITECTURA PERSA"
 
 #: gui/text/tips/persian_architecture.txt:2
-msgid "- Special Technology for the Persians."
-msgstr "- Tecnologia especial per als perses."
+msgid "Special technology for the Persians."
+msgstr ""
+
+#: gui/text/tips/persian_architecture.txt:3
+msgid "All Persian buildings +25% stronger."
+msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:4
-msgid "- All Persian buildings +25% stronger."
-msgstr "- Tots els edificis perses són un 25% més resistents."
+msgid "Build time lengthened by +20% as a consequence."
+msgstr ""
 
-#: gui/text/tips/persian_architecture.txt:6
-msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- Com a conseqüència, s'allarga un 20% el temps de construcció."
-
-#: gui/text/tips/persian_architecture.txt:8
+#: gui/text/tips/persian_architecture.txt:5
 msgid ""
-"- Persians also have access to a great number of structural & defensive "
+"Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "- Els perses també tenen accés a moltes tecnologies estructurals i defensives."
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
 msgstr "PIQUERS"
 
 #: gui/text/tips/pikemen.txt:2
-msgid "- Heavily armored and slow. Low attack."
-msgstr "- Lents i amb armadura pesada. Atac feble."
+msgid "Heavily armored and slow. Low attack."
+msgstr ""
+
+#: gui/text/tips/pikemen.txt:3
+msgid ""
+"Used against cavalry or against other melee infantry to pin them in place."
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:4
-msgid ""
-"- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- Útils per impedir el moviment de la cavalleria o la infanteria cos a cos."
-
-#: gui/text/tips/pikemen.txt:6
-msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr "- Disponibles per als macedonis, els selèucides i els egipcis ptolemaics."
+msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "HEAVY WARSHIP"
-msgstr "VAIXELL DE GUERRA PESAT"
+msgid "QUINQUEREME"
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
-"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
-"and Seleucids."
-msgstr "- El vaixell de guerra estàndard més pesat. Disponible a: Roma, Cartago, Egipte ptolemaic i Imperi Selèucida."
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
+"Romans, and Seleucids."
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:3
+msgid "Transports up to 50 units."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Transports up to 50 units."
-msgstr "- Transporta fins a 50 unitats."
-
-#: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrisoned catapults."
-msgstr "- Augmenta la potència de foc amb catapultes refugiades."
-
-#: gui/text/tips/quinquereme.txt:8
-msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- Té un atac d'envestida que enfonsa els vaixells enemics (PER IMPLEMENTAR)."
+msgid "Increases firepower with garrisoned catapults."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
 msgstr "BIOMA DE LA SABANA"
 
 #: gui/text/tips/savanna_biome.txt:2
-msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- Generalment pla, amb alguns abeuradors i afloraments rocosos."
+msgid "Generally flat, with a few watering holes and rocky outcrops."
+msgstr ""
+
+#: gui/text/tips/savanna_biome.txt:3
+msgid "Chock full of herd animals for plentiful hunting."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:4
-msgid "- Chock full of herd animals for plentiful hunting."
-msgstr "- Ple a vessar d'animals de ramat per a una bona caça."
+msgid "Rich in all types of mining."
+msgstr ""
 
-#: gui/text/tips/savanna_biome.txt:6
-msgid "- Rich in all types of mining."
-msgstr "- Ric en tot tipus de mines."
-
-#: gui/text/tips/savanna_biome.txt:8
-msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- Hi ha pocs arbres, però la majoria són baobabs, que proporcionen molta fusta."
+#: gui/text/tips/savanna_biome.txt:5
+msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "TORRES DEFENSIVES"
 
 #: gui/text/tips/scout_towers.txt:2
-msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- Torres independents útils per defensar grans àrees de camp."
+msgid "Free-standing towers good for defending large areas of countryside."
+msgstr ""
+
+#: gui/text/tips/scout_towers.txt:3
+msgid ""
+"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
+"Wood and 250 Stone (because they're stronger)."
+msgstr ""
 
 #: gui/text/tips/scout_towers.txt:4
-msgid ""
-"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
-"Stone (because they're stronger)."
-msgstr "- Normalment costen 100 de fusta i 100 de pedra. Les torres defensives ibèriques costen 300 de pedra (perquè són més resistents)."
-
-#: gui/text/tips/scout_towers.txt:6
-msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Té un atac a distància que augmenta amb cada unitat refugiada."
+msgid "Has a ranged attack that increases for each garrisoned unit."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
 msgstr "ESPARTIATES"
 
 #: gui/text/tips/spartan_hoplites.txt:2
-msgid "- Strongest infantry unit in the game."
-msgstr "- La unitat d'infanteria més forta del joc."
+msgid "Strongest infantry unit in the game."
+msgstr ""
+
+#: gui/text/tips/spartan_hoplites.txt:3
+msgid "Champion Infantry available to the Spartans."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:4
-msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Infanteria campiona disponible a la facció dels espartans."
-
-#: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- Utilitzeu-los per aniquilar la cavalleria enemiga o com a força de xoc per reforçar la infanteria regular."
-
-#: gui/text/tips/spartan_hoplites.txt:8
-msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Utilitzeu la formació de Falange per obtenir una bonificació d'armadura."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
 msgstr "LLANCERS"
 
 #: gui/text/tips/spearmen.txt:2
-msgid "- The basic melee infantry for every faction in the game."
-msgstr "- La infanteria cos a cos bàsica de totes les faccions."
+msgid "The basic melee infantry for every faction in the game."
+msgstr ""
+
+#: gui/text/tips/spearmen.txt:3
+msgid "Used against cavalry for an attack bonus."
+msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
-msgid "- Used against cavalry for an attack bonus."
-msgstr "- S'usa contra la cavalleria per una bonificació d'atac."
+msgid "Decent hack attack make them good front line troops."
+msgstr ""
 
-#: gui/text/tips/spearmen.txt:6
-msgid "- Decent hack attack make them good front line troops."
-msgstr "- Tall d'atac decent la fa bona en tropes de primera línia."
-
-#: gui/text/tips/spearmen.txt:8
+#: gui/text/tips/spearmen.txt:5
 msgid ""
-"- They are countered by ranged units and swordsmen, so support your spearmen"
-" with slingers or cavalry."
-msgstr "- Els llancers són febles contra unitats a distància i soldats amb espasa, així que cal complementar-los amb foners o cavalleria."
+"They are countered by ranged units and swordsmen, so support your spearmen "
+"with slingers or cavalry."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
 msgstr "STOÀ"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special structure for Greek factions."
-msgstr "- Una estructura especial de les faccions gregues."
+msgid "A special structure for  Athenians, Macedonians, and Spartans."
+msgstr ""
+
+#: gui/text/tips/stoa.txt:3
+msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Recluta infanteria pesada i infanteria campiona amb espasa."
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Grants +10 Population."
-msgstr "- Concedeix +10 al límit de població."
+msgid "Grants +10 Population."
+msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
 msgstr "MAGATZEMS"
 
 #: gui/text/tips/storehouses.txt:2
-msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- Un punt de descàrrega barat per a tots els recursos excepte el menjar (fusta, pedra i metall)."
+msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr ""
 
-#: gui/text/tips/storehouses.txt:4
+#: gui/text/tips/storehouses.txt:3
 msgid ""
-"- Research technologies to improve the gathering capabilities of your "
+"Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Investiga tecnologies per millorar la capacitat de recollida dels ciutadans."
-
-#: gui/text/tips/syntagma.txt:1
-msgid "SYNTAGMA FORMATION"
-msgstr "FORMACIÓ SYNTAGMA"
-
-#: gui/text/tips/syntagma.txt:2
-msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Una formació per a infanteria amb pica."
-
-#: gui/text/tips/syntagma.txt:4
-msgid "- Formation is slow and cumbersome."
-msgstr "- Formació lenta i feixuga."
-
-#: gui/text/tips/syntagma.txt:6
-msgid "- Nearly invulnerable from the front."
-msgstr "- Pràcticament invulnerable des de davant."
-
-#: gui/text/tips/syntagma.txt:8
-msgid "- Vulnerable to attacks from the rear."
-msgstr "- Vulnerable a atacs per darrere."
+msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
 msgstr "TEMPLES"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure."
-msgstr "- Estructura de la fase de vila."
+msgid "Town Phase structure."
+msgstr ""
+
+#: gui/text/tips/temples.txt:3
+msgid "Recruit Healers to heal your troops on the battlefield."
+msgstr ""
 
 #: gui/text/tips/temples.txt:4
-msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- Recluta guaridors per curar les tropes al camp de batalla."
+msgid "Research healing technologies."
+msgstr ""
+
+#: gui/text/tips/temples.txt:5
+msgid "Its aura heals nearby units."
+msgstr ""
 
 #: gui/text/tips/temples.txt:6
-msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- Investiga la curació, la devoció religiosa i tecnologies culturals."
-
-#: gui/text/tips/temples.txt:8
-msgid "- Its \"aura\" heals nearby units."
-msgstr "- La seva \"aura\" cura les unitats properes."
-
-#: gui/text/tips/temples.txt:10
-msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Refugieu-hi les unitats ferides perquè es curin més ràpid."
+msgid "Garrison wounded units inside for quicker healing."
+msgstr ""
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
 msgstr "CONVERSIÓ DE TERRITORI"
 
+#: gui/text/tips/territory_decay.txt:2
+msgid ""
+"Decay happens when buildings are not connected to an allied Civil Center."
+msgstr ""
+
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "- La conversió té lloc quan un edifici no està connectat amb un centre civil aliat."
+"The decay process can be slowed down or reversed by garrisoning some units "
+"in the structure."
+msgstr ""
 
-#: gui/text/tips/territory_decay.txt:5
+#: gui/text/tips/territory_decay.txt:4
 msgid ""
-"- The decay process can be slowed down or reversed by garrisoning some units"
-" in the structure."
-msgstr "- El procés de conversió es pot alentir o revertir refugiant unitats a l'estructura."
-
-#: gui/text/tips/territory_decay.txt:7
-msgid ""
-"- When the decay is completed, the building will be given to the most "
+"When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr "- Quan la conversió es completi, l'edifici passarà a pertànyer al veí més influent."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4009,113 +4057,88 @@ msgstr "TEMÍSTOCLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
-"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Heroi atenès que va comandar els grecs en les grans batalles navals d'Artemisi i Salamina."
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:3
+msgid "All ships are built faster while he lives."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:4
-msgid "- All ships are built faster while he lives."
-msgstr "- Tots els vaixells es construeixen més ràpid mentre visqui."
-
-#: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside sails much faster."
-msgstr "- El vaixell on està embarcat navega molt més ràpid."
+msgid "The ship he is garrisoned inside sails much faster."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
 msgstr "TRIRREM"
 
 #: gui/text/tips/triremes.txt:2
-msgid "- The Medium Warship."
-msgstr "- El vaixell de guerra mitjà."
+msgid "The Medium Warship."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:3
+msgid "Good for transporting or fighting."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid ""
-"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Disponible per als romans, cartaginesos, faccions hel·lèniques i perses."
-
-#: gui/text/tips/triremes.txt:6
-msgid "- Good for transporting or fighting."
-msgstr "- Útil per al transport o la lluita."
-
-#: gui/text/tips/triremes.txt:8
-msgid "- Garrison troops aboard to increase fire power."
-msgstr "- Embarqueu-hi tropes per augmentar la potència de foc."
-
-#: gui/text/tips/triremes.txt:10
-msgid ""
-"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
-"YET)."
-msgstr "- Embarqueu-hi una catapulta a bord per aconseguir un atac de setge a llarga distància (PER IMPLEMENTAR)."
-
-#: gui/text/tips/triremes.txt:12
-msgid ""
-"- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use (NOT IMPLEMENTED YET)."
-msgstr "- Pot fer una envestida devastadora a altres vaixells, però aquesta capacitat ha de recarregar-se abans de tornar a fer-la servir (PER IMPLEMENTAR)."
+msgid "Garrison troops aboard to increase fire power."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
 msgstr "VIRIAT"
 
 #: gui/text/tips/viriato.txt:2
-msgid "- Iberian hero of the Lusitani tribe."
-msgstr "- Heroi iber de la tribu dels lusitans."
+msgid "Iberian hero of the Lusitani tribe."
+msgstr ""
+
+#: gui/text/tips/viriato.txt:3
+msgid ""
+"At least seven campaigns against the Romans during the Lusitani Wars from "
+"147 to 139 BC."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
-"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
-"147 to 139 B.C."
-msgstr "- Al menys 7 campanyes contra els romans durant les \"Guerres Lusitanes\" del 147 al 139 aC."
-
-#: gui/text/tips/viriato.txt:6
-msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Es mou ràpid i pot canviar entre espasa i javelina en flames."
-
-#: gui/text/tips/viriato.txt:8
-msgid ""
-"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
-"to ambush their opponents."
-msgstr "- La seva \"aura\" és la \"Tàctica de guerrilla\" que permet a les unitats ibèriques properes emboscar els adversaris."
+"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
+"their opponents."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
 msgstr "ELEFANTS DE GUERRA"
 
 #: gui/text/tips/war_elephants.txt:2
-msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- Descomunals bèsties de l'Àfrica i l'Índia, entrenades per a la guerra."
+msgid "Huge beasts from Africa and India, trained for war."
+msgstr ""
+
+#: gui/text/tips/war_elephants.txt:3
+msgid "High Food and Metal cost, but very powerful."
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
-"- High Food and Metal cost, but very powerful. Strongest against Structures "
-"and Cavalry."
-msgstr "- Costen molt menjar i metall, però són molt poderosos, sobretot contra les estructures i la cavalleria."
-
-#: gui/text/tips/war_elephants.txt:6
-msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Vulnerables a la infanteria lleugera."
-
-#: gui/text/tips/war_elephants.txt:8
-msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Disponibles per a l'Imperi Maurya, els egipcis ptolemaics, els selèucides i els cartaginesos."
+"Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
+"Seleucids."
+msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
 msgstr "BALENES"
 
 #: gui/text/tips/whales.txt:2
-msgid "- An oceanic resource."
-msgstr "- Un recurs oceànic."
+msgid "An oceanic resource."
+msgstr ""
+
+#: gui/text/tips/whales.txt:3
+msgid "2000 Food."
+msgstr ""
 
 #: gui/text/tips/whales.txt:4
-msgid "- 2000 Food."
-msgstr "- 2000 de menjar."
+msgid "Gatherable by Fishing Boats after the whale is killed."
+msgstr ""
 
-#: gui/text/tips/whales.txt:6
-msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- Poden ser aprofitades per les barques de pesca un cop la balena és morta."
-
-#: gui/text/tips/whales.txt:8
-msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Volten per l'oceà i fugen en ser atacades."
+#: gui/text/tips/whales.txt:5
+msgid "Roam around the oceans of the game and flee when attacked."
+msgstr ""

@@ -128,13 +128,7 @@ var g_ReplaySelectionData;
  */
 var g_PlayerAssignments;
 
-/**
- * Cache dev-mode settings that are frequently or widely used.
- */
-var g_DevSettings = {
-	"changePerspective": false,
-	"controlAll": false
-};
+var g_DeveloperOverlay;
 
 /**
  * Whether the entire UI should be hidden (useful for promotional screenshots).
@@ -276,6 +270,7 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
+	g_DeveloperOverlay = new DeveloperOverlay();
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
@@ -520,12 +515,6 @@ function updateViewedPlayerDropdown()
 	));
 }
 
-function toggleChangePerspective(enabled)
-{
-	g_DevSettings.changePerspective = enabled;
-	selectViewPlayer(g_ViewedPlayer);
-}
-
 /**
  * Change perspective tool.
  * Shown to observers or when enabling the developers option.
@@ -540,14 +529,14 @@ function selectViewPlayer(playerID)
 
 	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
 
-	if (g_IsObserver || g_DevSettings.changePerspective)
+	if (g_IsObserver || g_DeveloperOverlay.isChangePerspective())
 	{
 		if (g_ViewedPlayer != playerID)
 			clearSelection();
 		g_ViewedPlayer = playerID;
 	}
 
-	if (g_DevSettings.changePerspective)
+	if (g_DeveloperOverlay.isChangePerspective())
 	{
 		Engine.SetPlayerID(g_ViewedPlayer);
 		g_IsObserver = isPlayerObserver(g_ViewedPlayer);
@@ -587,10 +576,10 @@ function controlsPlayer(playerID)
 {
 	let playerStates = GetSimState().players;
 
-	return playerStates[Engine.GetPlayerID()] &&
+	return !!playerStates[Engine.GetPlayerID()] &&
 		playerStates[Engine.GetPlayerID()].controlsAll ||
 		Engine.GetPlayerID() == playerID &&
-		playerStates[playerID] &&
+		!!playerStates[playerID] &&
 		playerStates[playerID].state != "defeated";
 }
 
@@ -662,7 +651,7 @@ function updateTopPanel()
 	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || g_ViewedPlayer == -1;
 
 	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
-	viewPlayer.hidden = !g_IsObserver && !g_DevSettings.changePerspective;
+	viewPlayer.hidden = !g_IsObserver && !g_DeveloperOverlay.isChangePerspective();
 
 	let followPlayerLabel = Engine.GetGUIObjectByName("followPlayerLabel");
 	followPlayerLabel.hidden = Engine.GetTextWidth(followPlayerLabel.font, followPlayerLabel.caption + "  ") +
@@ -939,7 +928,6 @@ function updateGUIObjects()
 	displayPanelEntities();
 
 	updateGroups();
-	updateDebug();
 	updatePlayerDisplay();
 	updateResearchDisplay();
 	updateSelectionDetails();
@@ -956,8 +944,7 @@ function updateGUIObjects()
 	if (g_ViewedPlayer > 0)
 	{
 		let playerState = GetSimState().players[g_ViewedPlayer];
-		g_DevSettings.controlAll = playerState && playerState.controlsAll;
-		Engine.GetGUIObjectByName("devControlAll").checked = g_DevSettings.controlAll;
+		g_DeveloperOverlay.setControlAll(playerState && playerState.controlsAll);
 	}
 
 	if (!g_IsObserver)
@@ -970,6 +957,7 @@ function updateGUIObjects()
 
 	updateViewedPlayerDropdown();
 	updateDiplomacy();
+	g_DeveloperOverlay.update();
 }
 
 function onReplayFinished()
@@ -1143,7 +1131,7 @@ function updateGroups()
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); }; })(i);
 		button.onpressright = (function(i) { return function() { performGroup("breakUp", i); }; })(i);
 
-		// Chose icon of the most common template (or the most costly if it's not unique)
+		// Choose the icon of the most common template (or the most costly if it's not unique)
 		if (g_Groups.groups[i].getTotalCount() > 0)
 		{
 			let icon = GetTemplateData(GetEntityState(g_Groups.groups[i].getEntsGrouped().reduce((pre, cur) => {
@@ -1158,39 +1146,6 @@ function updateGroups()
 
 		setPanelObjectPosition(button, i, 1);
 	}
-}
-
-function updateDebug()
-{
-	let debug = Engine.GetGUIObjectByName("debugEntityState");
-
-	if (!Engine.GetGUIObjectByName("devDisplayState").checked)
-	{
-		debug.hidden = true;
-		return;
-	}
-
-	debug.hidden = false;
-
-	let conciseSimState = clone(GetSimState());
-	conciseSimState.players = "<<<omitted>>>";
-	let text = "simulation: " + uneval(conciseSimState);
-
-	let selection = g_Selection.toList();
-	if (selection.length)
-	{
-		let entState = GetEntityState(selection[0]);
-		if (entState)
-		{
-			let template = GetTemplateData(entState.template);
-			text += "\n\nentity: {\n";
-			for (let k in entState)
-				text += "  " + k + ":" + uneval(entState[k]) + "\n";
-			text += "}\n\ntemplate: " + uneval(template);
-		}
-	}
-
-	debug.caption = text.replace(/\[/g, "\\[");
 }
 
 /**
@@ -1366,7 +1321,8 @@ function recalculateStatusBarDisplay(remove = false)
 	Engine.GuiInterfaceCall("SetStatusBars", {
 		"entities": entities,
 		"enabled": g_ShowAllStatusBars && !remove,
-		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true"
+		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true",
+		"showExperience": Engine.ConfigDB_GetValue("user", "gui.session.experiencestatusbar") == "true"
 	});
 }
 
@@ -1462,23 +1418,6 @@ function playAmbient()
 	Engine.PlayAmbientSound(pickRandom(g_Ambient), true);
 }
 
-function getBuildString()
-{
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
-		"buildDate": Engine.GetBuildTimestamp(0),
-		"revision": Engine.GetBuildTimestamp(2)
-	});
-}
-
-function showTimeWarpMessageBox()
-{
-	messageBox(
-		500, 250,
-		translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
-		translate("Time warp mode")
-	);
-}
-
 /**
  * Adds the ingame time and ceasefire counter to the global FPS and
  * realtime counters shown in the top right corner.
@@ -1567,6 +1506,7 @@ function sendLobbyPlayerlistUpdate()
 
 /**
  * Send a report on the gamestatus to the lobby.
+ * Keep in sync with source/tools/XpartaMuPP/LobbyRanking.py
  */
 function reportGame()
 {

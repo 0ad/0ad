@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,6 +49,7 @@ The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 
 
 // Blur with a NxN filter, where N = g_BlurSize must be an odd number.
+// Keep it in relation to the number of impassable tiles in MAP_EDGE_TILES.
 static const size_t g_BlurSize = 7;
 
 // Alignment (in bytes) of the pixel data passed into glTexSubImage2D.
@@ -364,7 +365,7 @@ size_t CLOSTexture::GetBitmapSize(size_t w, size_t h, size_t* pitch)
 	return *pitch * (h + g_BlurSize - 1);
 }
 
-void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData, size_t w, size_t h, size_t pitch)
+void CLOSTexture::GenerateBitmap(const ICmpRangeManager::CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch)
 {
 	u8 *dataPtr = losData;
 

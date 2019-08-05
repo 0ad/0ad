@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ float JSI_GameView::CameraGetX(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	if (!g_Game || !g_Game->GetView())
 		return -1;
 
-	return g_Game->GetView()->GetCameraX();
+	return g_Game->GetView()->GetCameraPivot().X;
 }
 
 /**
@@ -88,7 +88,7 @@ float JSI_GameView::CameraGetZ(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	if (!g_Game || !g_Game->GetView())
 		return -1;
 
-	return g_Game->GetView()->GetCameraZ();
+	return g_Game->GetView()->GetCameraPivot().Z;
 }
 
 /**

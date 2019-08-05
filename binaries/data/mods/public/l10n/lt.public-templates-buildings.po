@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -7,11 +7,12 @@
 # Kristupas Kristupas <karthus.kart@gmail.com>, 2017
 # Mantas <mantaksam@gmail.com>, 2018
 # Paulius Damaška <pauldam000@gmail.com>, 2016
+# Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-05-18 16:09+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 16:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -20,57 +21,48 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: simulation/templates/template_structure_civic.xml:14
-msgid "Civic Structure"
-msgstr "Miesto struktūra"
-
 #: simulation/templates/template_structure_civic.xml:15
-msgid "Civic"
-msgstr "Miestas"
+msgid "Civic Structure"
+msgstr "Miesto pastatas"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:82
+#: simulation/templates/template_structure_civic.xml:16
+msgid "Civic"
+msgstr "Miesto"
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:85
 msgid "Civic Center"
 msgstr "Miesto centras"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:86
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "Statykite, kad gautumutėte didelį plotą teritorijų. Mokykite gyventojus."
+msgstr "Pastatykite, kad įgytumėte didelio ploto teritoriją. Renkite miestiečius. "
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:85
-#: simulation/templates/template_structure_civic_civil_centre.xml:47
+#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:50
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
-msgstr "MiestoCentras"
+msgstr "Miesto centras"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
-#: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
-msgstr "Karinė Kolonija"
+msgstr "Karinė kolonija"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:32
-msgid "Klēroukhía"
-msgstr ""
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
-msgid "Stoa"
-msgstr ""
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
 msgid "Hellenic Royal Stoa"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Recruit special units."
-msgstr ""
+msgstr "Samdyti ypatingus vienetus."
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
 #: simulation/templates/template_structure_civic_temple.xml:35
-#: simulation/templates/template_structure_defense_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:32
-#: simulation/templates/template_structure_military_blacksmith.xml:34
-#: simulation/templates/template_structure_military_embassy.xml:41
-#: simulation/templates/template_structure_military_kennel.xml:43
-#: simulation/templates/structures/cart_super_dock.xml:46
+#: simulation/templates/template_structure_military_blacksmith.xml:27
+#: simulation/templates/template_structure_military_embassy.xml:38
+#: simulation/templates/template_structure_military_kennel.xml:40
+#: simulation/templates/structures/cart_super_dock.xml:47
 #: simulation/templates/structures/gaul_tavern.xml:28
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
@@ -80,15 +72,17 @@ msgstr "Miestas"
 
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
-msgstr "Padidinkite populiacijos ribą."
+msgstr "Padidinkite populiacijos limitą."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_tower_outpost.xml:51
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
-#: simulation/templates/template_structure_military_barracks.xml:31
-#: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_barracks.xml:24
+#: simulation/templates/template_structure_military_dock.xml:28
+#: simulation/templates/template_structure_military_range.xml:24
+#: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
 msgstr "Kaimas"
@@ -103,68 +97,77 @@ msgstr "Namas"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Renkite gydytojus. Patalpinkite įgulą, kad sparčiai pagydytumėte (3 HP per sekundę). Tirkite gydymo ir religinius patobulinimus."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
 msgid "Temple"
 msgstr "Šventykla"
 
-#: simulation/templates/template_structure_defense.xml:14
+#: simulation/templates/template_structure_defensive.xml:14
 msgid "Defensive Structure"
-msgstr "Gynybinis Pastatas"
+msgstr "Gynybinis pastatas"
 
-#: simulation/templates/template_structure_defense_tower.xml:30
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
-#: simulation/templates/template_structure_defense_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_palisade.xml:21
+msgid "Wooden Wall"
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_wall.xml:17
+msgid "Wall off your town for a stout defense."
+msgstr "Sustiprinkite miesto gynybą aptverdami siena."
+
+#: simulation/templates/template_structure_defensive_tower.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "DefenseTower"
-msgstr "GinybinisBokštas"
+msgstr "Gynybinis bokštas"
 
-#: simulation/templates/template_structure_defense_tower_outpost.xml:50
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:50
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Pastatykite neutralioje arba savo teritorijoje žemėlapio žvalgybai. Neutralioje teritorijoje greitai virsta Gaja."
 
-#: simulation/templates/template_structure_defense_tower_outpost.xml:51
-#: simulation/templates/template_structure_defense_tower_outpost.xml:27
-#: simulation/templates/template_structure_defense_tower_outpost.xml:49
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:27
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:49
 msgid "Outpost"
-msgstr "Žvalgybos Bokštas"
+msgstr "Stebėjimo postas"
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 msgid "Sentry Tower"
-msgstr "Sargybinis Bokštas"
+msgstr "Sargybinis bokštas"
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
 msgid "SentryTower"
-msgstr ""
+msgstr "Sargybinis bokštas"
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr ""
+msgstr "Šaudo strėlėmis. Sustiprinkite gynybą patalpindami įgulą. Reikalinga \"mirties angų\" technologija pamatų apsaugai. Galima paversti akmeniniu bokštu."
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:58
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr ""
+msgstr "Sutvirtinti akmenimis ir paversti gynybiniu bokštu."
 
-#: simulation/templates/template_structure_defense_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "Defense Tower"
-msgstr "Gynybinis Bokštas"
+msgstr "Gynybinis bokštas"
 
-#: simulation/templates/template_structure_defense_tower_stone.xml:30
+#: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Šaudo strėlėmis. Sustiprinkite gynybą patalpindami įgulą. Reikalinga \"mirties angų\" technologija pamatų apsaugai."
 
-#: simulation/templates/template_structure_defense_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "StoneTower"
-msgstr ""
+msgstr "Akmeninis bokštas"
 
-#: simulation/templates/template_structure_defense_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -172,68 +175,59 @@ msgstr ""
 msgid "Stone Wall"
 msgstr "Akmeninė siena"
 
-#: simulation/templates/template_structure_defense_wall.xml:27
-#: simulation/templates/template_structure_defense_wallset.xml:11
-msgid "Wall off your town for a stout defense."
-msgstr ""
-
-#: simulation/templates/template_structure_defense_wall_gate.xml:14
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
 msgstr "Miesto vartai"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:16
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr ""
+msgstr "Leisti praėjimą. Galite užrakinti."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:42
+#: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
-msgstr "Ilgi sienų segmentai gali būti pakeisti į vartus."
+msgstr "Ilgi sienų segmentai gali būti pakeisti vartais."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:48
+#: simulation/templates/template_structure_defensive_wall_long.xml:49
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Suteikia galimybę praeiti pro įtvirtinimus."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
-msgstr "Sieninis Bokštelis"
+msgstr "Sienos bokštelis"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:60
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "Šaudo strėlėmis. Patalpinkite įgulą, kad apsaugotumėte miesto sienas nuo užpuolikų."
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
-msgid "City Wall"
-msgstr "Miesto siena"
+#: simulation/templates/template_structure_economic.xml:14
+msgid "Economic Structure"
+msgstr "Ūkinis pastatas"
 
 #: simulation/templates/template_structure_economic.xml:15
-msgid "Economic Structure"
-msgstr "Ekonomikos Struktūra"
-
-#: simulation/templates/template_structure_economic.xml:16
-#: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
-msgstr "Ekonomika"
+msgstr "Ūkinis"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:32
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "Maisto surinkimo vieta. Tirkite maisto rinkimo patobulinimus."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 msgid "Farmstead"
-msgstr "Ūkinis"
+msgstr "Ūkio sodyba"
 
 #: simulation/templates/template_structure_economic_market.xml:31
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "Parenkite pirklius ir prekiaukite su kitomis turgavietėmis. Mainikaukite ištekliais. Tirkite prekybos ir mainų patobulinimus."
 
 #: simulation/templates/template_structure_economic_market.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
-#: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_dock.xml:28
 msgid "Market"
 msgstr "Turgus"
 
@@ -241,147 +235,150 @@ msgstr "Turgus"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "Medienos, akmens ir metalo išteklių surinkimo vieta. Tirkite šių resursų rinkimo patobulinimus."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:31
 msgid "Storehouse"
 msgstr "Sandėlis"
 
-#: simulation/templates/template_structure_military.xml:14
+#: simulation/templates/template_structure_military.xml:24
 msgid "Military Structure"
-msgstr "Karinis Pastatas"
+msgstr "Karinis pastatas"
 
-#: simulation/templates/template_structure_military.xml:15
+#: simulation/templates/template_structure_military.xml:25
 msgid "Military"
-msgstr "Kariuomenė"
+msgstr "Karinis"
 
-#: simulation/templates/template_structure_military_barracks.xml:30
+#: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Renkite miestiečius-karius. Tirkite rengimo patobulinimus."
 
-#: simulation/templates/template_structure_military_barracks.xml:31
-#: simulation/templates/template_structure_military_barracks.xml:29
+#: simulation/templates/template_structure_military_barracks.xml:24
+#: simulation/templates/template_structure_military_barracks.xml:22
 msgid "Barracks"
 msgstr "Kareivinės"
 
-#: simulation/templates/template_structure_military_barracks_range.xml:7
-msgid "Archery Range"
-msgstr ""
-
-#: simulation/templates/template_structure_military_barracks_range.xml:8
-msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr ""
-
-#: simulation/templates/template_structure_military_barracks_stables.xml:7
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "Stables"
-msgstr "Arklidė"
-
-#: simulation/templates/template_structure_military_barracks_stables.xml:8
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr ""
-
-#: simulation/templates/template_structure_military_blacksmith.xml:33
+#: simulation/templates/template_structure_military_blacksmith.xml:26
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "Tirkite ginkluotės ir šarvų patobulinimus."
 
-#: simulation/templates/template_structure_military_blacksmith.xml:34
-#: simulation/templates/template_structure_military_blacksmith.xml:30
+#: simulation/templates/template_structure_military_blacksmith.xml:27
+#: simulation/templates/template_structure_military_blacksmith.xml:23
 msgid "Blacksmith"
 msgstr "Kalvė"
 
-#: simulation/templates/template_structure_military_dock.xml:25
+#: simulation/templates/template_structure_military_dock.xml:26
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "Pastatykite ant kranto laivų statybai ir jūrinei prekybai. Tirkite jūrinius patobulinimus."
 
-#: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_military_dock.xml:24
+#: simulation/templates/template_structure_military_dock.xml:28
+#: simulation/templates/template_structure_military_dock.xml:25
 msgid "Dock"
-msgstr "Uostas"
+msgstr "Prieplauka"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:32
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Elephant Stables"
 msgstr "Dramblių tvartas"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:35
+#: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "Train elephant units."
-msgstr "Treniruoti dramblius."
+msgstr "Rengti dramblius"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:36
-#: simulation/templates/template_structure_military_fortress.xml:72
-#: simulation/templates/template_structure_military_workshop.xml:36
+#: simulation/templates/template_structure_military_elephant_stables.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
-#: simulation/templates/template_structure_wonder.xml:52
+#: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Miestas"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:36
-msgid "ElephantStables"
+#: simulation/templates/template_structure_military_elephant_stables.xml:30
+msgid "ElephantStable"
 msgstr ""
 
-#: simulation/templates/template_structure_military_embassy.xml:41
-#: simulation/templates/template_structure_military_embassy.xml:42
+#: simulation/templates/template_structure_military_embassy.xml:38
+#: simulation/templates/template_structure_military_embassy.xml:39
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
 msgstr "Ambasada"
 
-#: simulation/templates/template_structure_military_fortress.xml:36
-#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:39
+#: simulation/templates/template_structure_military_fortress.xml:70
 msgid "Fortress"
 msgstr "Tvirtovė"
 
-#: simulation/templates/template_structure_military_fortress.xml:70
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Renkite herojus, čempionus ir apgulties ginklus. Tirkite apgulties ginklų patobulinimus."
+
+#: simulation/templates/template_structure_military_kennel.xml:38
+msgid "Kennel"
+msgstr "Šunidė"
 
 #: simulation/templates/template_structure_military_kennel.xml:41
-#: simulation/templates/structures/brit_kennel.xml:5
-msgid "Kennel"
-msgstr ""
-
-#: simulation/templates/template_structure_military_kennel.xml:44
 msgid "Train war dogs."
+msgstr "Veiskite kovinius šunis."
+
+#: simulation/templates/template_structure_military_range.xml:22
+msgid "Practice Range"
 msgstr ""
 
-#: simulation/templates/template_structure_military_workshop.xml:32
-msgid "Siege Workshop"
-msgstr "Apgulties Dirbtuvės"
+#: simulation/templates/template_structure_military_range.xml:23
+msgid "Train citizen-soldier ranged infantry. Research training improvements."
+msgstr "Renkite miestiečių-karių šaulius pėstininkus. Tirkite rengimo patobulinimus."
 
-#: simulation/templates/template_structure_military_workshop.xml:35
+#: simulation/templates/template_structure_military_range.xml:24
+msgid "Range"
+msgstr ""
+
+#: simulation/templates/template_structure_military_stable.xml:25
+msgid "Train citizen-soldier cavalry. Research training improvements."
+msgstr "Renkite miestiečių-karių kavaleriją. Tirkite rengimo patobulinimus."
+
+#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:22
+msgid "Stable"
+msgstr ""
+
+#: simulation/templates/template_structure_military_workshop.xml:25
+msgid "Siege Workshop"
+msgstr "Apgulties dirbtuvės"
+
+#: simulation/templates/template_structure_military_workshop.xml:28
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
-msgstr ""
+msgstr "Konstruokite apgulties ginklus priešo pastatų naikinimui. Tirkite apgulties ginklų efektyvumo patobulinimus."
 
-#: simulation/templates/template_structure_military_workshop.xml:36
+#: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
-msgstr ""
+msgstr "Dirbtuvės"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr ""
+msgstr "Išteklių pastatas"
 
-#: simulation/templates/template_structure_resource.xml:19
+#: simulation/templates/template_structure_resource.xml:18
 msgid "Resource"
-msgstr "Ištekliai"
+msgstr "Išteklių"
 
 #: simulation/templates/template_structure_resource_corral.xml:19
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "Auginkite gyvūnus maistui. Įdarbinkite naminius gyvūnus ir gaukite nedidelį maisto įplaukos priedą (kol kas neįgyvendinta)."
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 #: simulation/templates/template_structure_resource_corral.xml:18
 msgid "Corral"
-msgstr ""
+msgstr "Aptvaras"
 
 #: simulation/templates/template_structure_resource_field.xml:27
 #: simulation/templates/template_structure_resource_field.xml:26
@@ -389,59 +386,49 @@ msgid "Field"
 msgstr "Laukas"
 
 #: simulation/templates/template_structure_resource_field.xml:28
-msgid "Harvest vegetables for food. Max gatherers: 5."
+msgid ""
+"Harvest grain for food. Each subsequent gatherer works less efficiently."
 msgstr ""
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
-msgstr "Specialus Pastatas"
+msgstr "Išskirtinis statinys"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Tai specialus, konkrečios civilizacijos unikalus pastatas."
+msgstr "Tai yra išskirtinis, unikalus civilizacijos statinys"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
 msgstr "Biblioteka"
 
-#: simulation/templates/template_structure_special_library.xml:19
+#: simulation/templates/template_structure_special_library.xml:18
 msgid "Research special technologies."
-msgstr ""
+msgstr "Tirkite išskirtines technologijas."
 
-#: simulation/templates/template_structure_special_rotarymill.xml:23
+#: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
-msgstr ""
-
-#: simulation/templates/template_structure_special_rotarymill.xml:25
-msgid "Melonas"
-msgstr ""
+msgstr "Sukamasis malūnas"
 
 #: simulation/templates/template_structure_special_theatron.xml:25
 msgid "Greek Theater"
 msgstr "Graikų teatras"
 
-#: simulation/templates/template_structure_special_theatron.xml:26
-msgid "Théātron"
-msgstr ""
-
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:52
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Atneškite savo civilizacijai šlovę ir papildykite dideliais traktais šios žemės savo imperijai."
+msgstr "Suteikite savo civilizacijai šlovę ir papildykite savo imperiją dideliu žemės plotu."
 
-#: simulation/templates/template_structure_wonder.xml:52
-#: simulation/templates/template_structure_wonder.xml:50
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:51
 msgid "Wonder"
 msgstr "Stebuklas"
 
 #: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/athen_stable.xml:12
 #: simulation/templates/structures/mace_barracks.xml:18
-#: simulation/templates/structures/mace_stable.xml:12
 #: simulation/templates/structures/spart_barracks.xml:18
-#: simulation/templates/structures/spart_range.xml:12
-#: simulation/templates/structures/spart_stable.xml:12
+#: simulation/templates/structures/spart_range.xml:5
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Stratēgeîon"
 msgstr ""
@@ -496,19 +483,19 @@ msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Konstruokite apgulties ginklus. Sustiprinkite gynybą patalpindami įgulą."
 
-#: simulation/templates/structures/athen_gymnasion.xml:23
+#: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
 msgstr "Gimnazija"
 
-#: simulation/templates/structures/athen_gymnasion.xml:24
+#: simulation/templates/structures/athen_gymnasion.xml:25
 msgid "Gymnásion"
 msgstr ""
 
-#: simulation/templates/structures/athen_gymnasion.xml:25
+#: simulation/templates/structures/athen_gymnasion.xml:26
 msgid "Train champion units."
-msgstr "Apmokykite čempionus."
+msgstr "Renkite čempionus."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -527,7 +514,7 @@ msgstr ""
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Graikų pasipriešinimas"
+msgstr "Graikų stebėjimo postas"
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
@@ -535,17 +522,31 @@ msgstr "Graikų pasipriešinimas"
 msgid "Prophylakḗ"
 msgstr ""
 
-#: simulation/templates/structures/athen_prytaneion.xml:24
+#: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Council Chamber"
 msgstr "Tarybos rūmai"
 
-#: simulation/templates/structures/athen_prytaneion.xml:25
+#: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Prytaneîon"
 msgstr ""
 
-#: simulation/templates/structures/athen_prytaneion.xml:26
+#: simulation/templates/structures/athen_prytaneion.xml:27
 msgid "Train heroes. Research special technologies."
-msgstr "Mokykite herojus. Ištirkite specialias technologijas."
+msgstr "Renkite herojus. Tirkite išskirtines technologijas."
+
+#: simulation/templates/structures/athen_royal_stoa.xml:5
+#: simulation/templates/structures/mace_royal_stoa.xml:5
+#: simulation/templates/structures/spart_royal_stoa.xml:12
+msgid "Stoá"
+msgstr ""
+
+#: simulation/templates/structures/athen_stable.xml:9
+#: simulation/templates/structures/mace_stable.xml:9
+#: simulation/templates/structures/ptol_stable.xml:9
+#: simulation/templates/structures/sele_stable.xml:9
+#: simulation/templates/structures/spart_stable.xml:9
+msgid "Hippṓn"
+msgstr ""
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
@@ -556,6 +557,12 @@ msgstr ""
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
+msgstr ""
+
+#: simulation/templates/structures/athen_theatron.xml:5
+#: simulation/templates/structures/mace_theatron.xml:5
+#: simulation/templates/structures/spart_theatron.xml:5
+msgid "Théātron"
 msgstr ""
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
@@ -605,7 +612,7 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Atneškite savo civilizacijai šlovę ir papildykite dideliais traktais šios žemės savo imperijai. Išgydykite Garisonus jiems esant ekstremaliam kiekiui."
+msgstr "Suteikite savo civilizacijai šlovę ir papildykite savo imperiją dideliu žemės plotu. Patalpinkite įgulą norėdami itin sparčiai pagydyti."
 
 #: simulation/templates/structures/baby_defense_tower.xml:5
 #: simulation/templates/structures/pers_defense_tower.xml:5
@@ -614,90 +621,114 @@ msgid "Pāyaud"
 msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
-#: simulation/templates/structures/gaul_barracks.xml:15
-msgid "Gwersyllty"
+msgid "Coriosessa"
 msgstr ""
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
-msgid "Amoridas"
+msgid "Gobanion"
 msgstr ""
 
 #: simulation/templates/structures/brit_civil_centre.xml:12
-#: simulation/templates/structures/gaul_civil_centre.xml:9
-msgid "Caer"
+msgid "Tigernotreba"
 msgstr ""
 
 #: simulation/templates/structures/brit_corral.xml:8
 #: simulation/templates/structures/gaul_corral.xml:8
-msgid "Cavalidos"
+msgid "Cagion"
 msgstr ""
 
 #: simulation/templates/structures/brit_crannog.xml:12
 msgid "Island Settlement"
-msgstr "Salinė Gyvenvietė"
+msgstr "Salos gyvenvietė"
 
 #: simulation/templates/structures/brit_crannog.xml:16
 msgid "Increase population limit and defend waterways."
-msgstr "Padidinkite populiacijos ribas ir saugokite vandens kelius."
+msgstr "Padidinkite populiacijos limitą ir apginkite vandens kelius."
 
 #: simulation/templates/structures/brit_crannog.xml:17
-#: simulation/templates/structures/brit_dock.xml:15
-#: simulation/templates/structures/gaul_dock.xml:15
-msgid "Crannóc"
+msgid "Cranogion"
 msgstr ""
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
+#: simulation/templates/structures/brit_sentry_tower.xml:5
 #: simulation/templates/structures/brit_wall_tower.xml:11
 #: simulation/templates/structures/gaul_defense_tower.xml:9
+#: simulation/templates/structures/gaul_sentry_tower.xml:5
 #: simulation/templates/structures/gaul_wall_tower.xml:11
-msgid "Tyrau"
+msgid "Uxelon"
+msgstr ""
+
+#: simulation/templates/structures/brit_dock.xml:15
+#: simulation/templates/structures/gaul_dock.xml:15
+msgid "Counos"
 msgstr ""
 
 #: simulation/templates/structures/brit_farmstead.xml:14
 #: simulation/templates/structures/gaul_farmstead.xml:11
-msgid "Ffermdy"
+msgid "Buta"
 msgstr ""
 
 #: simulation/templates/structures/brit_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
-msgid "Varmo"
+msgid "Olca"
 msgstr ""
 
 #: simulation/templates/structures/brit_fortress.xml:15
-msgid "Brythonic Broch"
+#: simulation/templates/structures/gaul_fortress.xml:8
+msgid "Dunon"
 msgstr ""
 
 #: simulation/templates/structures/brit_fortress.xml:16
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Apmokykite Britoninius herojus ir čempionus. Pastatykite apgulties taranus."
+msgstr "Renkite britų herojus ir čempionus. Konstruokite apgulties taranus."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:5
-msgid "Annedd"
+msgid "Tegia"
+msgstr ""
+
+#: simulation/templates/structures/brit_kennel.xml:5
+msgid "Cunattegia"
 msgstr ""
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
-msgid "Marchnaty"
+msgid "Magos"
 msgstr ""
 
 #: simulation/templates/structures/brit_outpost.xml:5
-msgid "Brythonic Outpost"
-msgstr "Bretonų Žvalgybos Bokštas"
+#: simulation/templates/structures/gaul_outpost.xml:5
+msgid "Antosolicon"
+msgstr ""
+
+#: simulation/templates/structures/brit_range.xml:5
+#: simulation/templates/structures/gaul_range.xml:8
+msgid "Budinadon"
+msgstr ""
+
+#: simulation/templates/structures/brit_rotarymill.xml:5
+msgid "Melonas"
+msgstr ""
+
+#: simulation/templates/structures/brit_stable.xml:9
+#: simulation/templates/structures/gaul_stable.xml:9
+msgid "Eposton"
+msgstr ""
 
 #: simulation/templates/structures/brit_storehouse.xml:11
 #: simulation/templates/structures/gaul_storehouse.xml:11
-msgid "Ystordy"
+msgid "Capanon"
 msgstr ""
 
 #: simulation/templates/structures/brit_temple.xml:18
 #: simulation/templates/structures/gaul_temple.xml:18
-msgid "Addoldy"
+msgid "Nemeton"
 msgstr ""
 
 #: simulation/templates/structures/brit_wall_gate.xml:9
-msgid "Dor"
+#: simulation/templates/structures/gaul_wall_gate.xml:9
+msgid "Duoricos"
 msgstr ""
 
 #: simulation/templates/structures/brit_wall_long.xml:29
@@ -708,22 +739,27 @@ msgstr ""
 #: simulation/templates/structures/gaul_wall_medium.xml:23
 #: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
-msgid "Gwarchglawdd"
+msgid "Rate"
 msgstr ""
 
 #: simulation/templates/structures/brit_wall_tower.xml:12
 #: simulation/templates/structures/gaul_wall_tower.xml:12
 msgid "Does not shoot or garrison."
-msgstr ""
+msgstr "Nešaudo ir netalpina įgulos."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
 msgid "Stonehenge"
 msgstr "Stounhendžas"
 
+#: simulation/templates/structures/brit_workshop.xml:8
+#: simulation/templates/structures/gaul_workshop.xml:5
+msgid "Miletucerdon"
+msgstr ""
+
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
-msgstr ""
+msgstr "Gyvenamasis pastatas"
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -733,7 +769,7 @@ msgstr ""
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr ""
+msgstr "Renkite Šiaurės Afrikos miestiečius karius. Tirkite Šiaurės Afrikos karių patobulinimus."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -750,7 +786,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr "Komercinis Uostas"
+msgstr "Komercinis uostas"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
@@ -760,39 +796,39 @@ msgstr ""
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr ""
+msgstr "Konstruokite žvejybinius ir prekybinius laivus."
 
 #: simulation/templates/structures/cart_elephant_stables.xml:5
 msgid "Carthaginian Elephant Stables"
-msgstr ""
+msgstr "Kartaginiečių dramblių tvartas"
 
 #: simulation/templates/structures/cart_embassy.xml:21
 msgid "Hire mercenaries."
-msgstr ""
+msgstr "Samdykite samdinius."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:19
 msgid "Celtic Embassy"
-msgstr "Keltų Ambasada"
+msgstr "Keltų ambasada"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Samdykite keltų samdinius. Tirkite šių samdinių patobulinimus."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:12
 msgid "Iberian Embassy"
-msgstr "Iberų Ambasada"
+msgstr "Iberų ambasada"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Samdykite iberų samdinius. Tirkite šių samdinių patobulinimus."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:19
 msgid "Italian Embassy"
-msgstr "Italų Ambasada"
+msgstr "Italų ambasada"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Samdykite italų samdinius. Tirkite šių samdinių patobulinimus."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -804,7 +840,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr ""
+msgstr "Blokhausas"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
@@ -820,7 +856,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr "Kartaginiečių Žvalgybos Bokštas"
+msgstr "Kartaginiečių stebėjimo postas"
 
 #: simulation/templates/structures/cart_s_wall_long.xml:6
 #: simulation/templates/structures/cart_s_wall_medium.xml:6
@@ -828,27 +864,27 @@ msgstr "Kartaginiečių Žvalgybos Bokštas"
 #: simulation/templates/structures/cart_s_wall_tower.xml:6
 #: simulation/templates/structures/cart_wallset_short.xml:5
 msgid "Low Wall"
-msgstr "Žema Siena"
+msgstr "Žema siena"
 
 #: simulation/templates/structures/cart_storehouse.xml:8
 msgid "Maḥṣabah"
 msgstr ""
 
-#: simulation/templates/structures/cart_super_dock.xml:44
+#: simulation/templates/structures/cart_super_dock.xml:45
 msgid "Naval Shipyard"
 msgstr "Karinių laivų statykla"
 
-#: simulation/templates/structures/cart_super_dock.xml:45
+#: simulation/templates/structures/cart_super_dock.xml:46
 msgid "Cothon"
 msgstr ""
 
-#: simulation/templates/structures/cart_super_dock.xml:46
-msgid "Shipyard"
-msgstr "Laivų Statykla"
-
 #: simulation/templates/structures/cart_super_dock.xml:47
+msgid "Shipyard"
+msgstr "Laivų statykla"
+
+#: simulation/templates/structures/cart_super_dock.xml:48
 msgid "Construct and repair mighty warships."
-msgstr "Konstruoti ir taisyti galingus karo laivus."
+msgstr "Konstruokite ir taisykite galingus karo laivus."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -858,11 +894,11 @@ msgstr ""
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Renkite dvasininkes karių gydymui. Renkite Šventojo būrio pikemanus. Patalpinkite įgulą, norėdami greitai pagydyti."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "Aukojimo šventykla"
 
 #: simulation/templates/structures/cart_tophet.xml:23
 msgid "Tophet"
@@ -870,7 +906,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "Ruoškite gydytojus ir Šventojo būrio kavaleriją."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -888,19 +924,23 @@ msgstr ""
 
 #: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
+msgstr "Baal Hamono šventykla"
+
+#: simulation/templates/structures/gaul_barracks.xml:15
+msgid "Coriosedlon"
 msgstr ""
 
-#: simulation/templates/structures/gaul_fortress.xml:8
-msgid "Gallic Dun"
+#: simulation/templates/structures/gaul_civil_centre.xml:9
+msgid "Lissos"
 msgstr ""
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Ruošti galų herojus ir čempionus. Konstruoti apgulties taranus."
+msgstr "Renkite galų herojus ir čempionus. Konstruokite apgulties taranus."
 
-#: simulation/templates/structures/gaul_outpost.xml:5
-msgid "Gallic Outpost"
-msgstr "Galų Žvalgybos Bokštas"
+#: simulation/templates/structures/gaul_rotarymill.xml:5
+msgid "Brauon"
+msgstr ""
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -912,10 +952,14 @@ msgstr ""
 
 #: simulation/templates/structures/gaul_tavern.xml:25
 msgid "Recruit Naked Fanatics."
-msgstr "Samdyti Nuogus Fanatikus."
+msgstr "Samdyti nuogus fanatikus."
 
-#: simulation/templates/structures/gaul_wall_gate.xml:9
-msgid "Duro"
+#: simulation/templates/structures/gaul_theatron.xml:6
+msgid "Assembly of Princes"
+msgstr ""
+
+#: simulation/templates/structures/gaul_theatron.xml:7
+msgid "Remogantion"
 msgstr ""
 
 #: simulation/templates/structures/iber_barracks.xml:11
@@ -965,11 +1009,11 @@ msgstr ""
 
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
-msgstr "Paminklas"
+msgstr "Monumentas"
 
 #: simulation/templates/structures/iber_monument.xml:34
 msgid "Revered Monument"
-msgstr ""
+msgstr "Iškilus monumentas"
 
 #: simulation/templates/structures/iber_monument.xml:35
 msgid "Gur Oroigarri"
@@ -979,11 +1023,11 @@ msgstr ""
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr ""
+msgstr "Visi vienetai kaunasi smarkiau būdami šalia šio monumento. Monumento teritorijoje esantys pastatai nenyksta."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr "Iberijos Žvalgybos Bokštas"
+msgstr "Iberų stebėjimo postas"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -1019,11 +1063,11 @@ msgstr ""
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
 msgid "Blemmye Camp"
-msgstr ""
+msgstr "Blemijų stovykla"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Train Blemmye Desert Raiders."
-msgstr ""
+msgstr "Renkite blemijų dykumų plėšikus."
 
 #: simulation/templates/structures/kush_civil_centre.xml:9
 msgid "Pr-nsw"
@@ -1042,7 +1086,7 @@ msgid "Mryt"
 msgstr ""
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
-msgid "Kushite Elephant Stables"
+msgid "Ỉ﻿ḥ Abu"
 msgstr ""
 
 #: simulation/templates/structures/kush_farmstead.xml:9
@@ -1068,11 +1112,11 @@ msgstr ""
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
 msgid "Nuba Village"
-msgstr ""
+msgstr "Nubų kaimas"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr ""
+msgstr "Renkite nubų kovotojus kūjais ir nubų medžiotojus."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1080,7 +1124,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
-msgstr ""
+msgstr "Kušitų piramidė"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
@@ -1091,22 +1135,22 @@ msgstr ""
 #: simulation/templates/structures/kush_pyramid_large.xml:31
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 msgid "Pyramid"
-msgstr ""
+msgstr "Piramidė"
 
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 msgid "Large Pyramid"
-msgstr ""
+msgstr "Didelė piramidė"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:27
 msgid "Small Pyramid"
-msgstr ""
+msgstr "Maža piramidė"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:28
 msgid "mr"
 msgstr ""
 
-#: simulation/templates/structures/kush_range.xml:9
-msgid "Kushite Archery Range"
+#: simulation/templates/structures/kush_range.xml:8
+msgid "Pr-Pdt"
 msgstr ""
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
@@ -1115,14 +1159,14 @@ msgstr ""
 
 #: simulation/templates/structures/kush_shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "Šventykla"
 
 #: simulation/templates/structures/kush_shrine.xml:13
 msgid "ḥwt-nṯr"
 msgstr ""
 
 #: simulation/templates/structures/kush_stable.xml:9
-msgid "Kushite Cavalry Stable"
+msgid "Ỉḥ Ssmt"
 msgstr ""
 
 #: simulation/templates/structures/kush_storehouse.xml:5
@@ -1131,7 +1175,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
-msgstr ""
+msgstr "Apedemako šventykla"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-‘Iprmk"
@@ -1141,11 +1185,11 @@ msgstr ""
 msgid ""
 "Train priests to heal your troops. Train Meroitic Temple Guards. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Renkite dvasininkus karių gydymui. Renkite merojų šventyklos sargybinius. Patalpinkite įgulą, kad greitai pagydytumėte."
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
-msgstr ""
+msgstr "Didžioji Amono šventykla"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-‘Imn"
@@ -1155,7 +1199,7 @@ msgstr ""
 msgid ""
 "Train priests to heal your troops. Train Napatan Temple Guards and research "
 "unique technologies. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Renkite dvasininkus karių gydymui. Renkite Napatos šventyklos sargybinius ir tirkite unikalias technologijas. Patalpinkite įgulą, kad greitai pagydytumėte."
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "’ryt"
@@ -1177,7 +1221,7 @@ msgid "Mnw nht"
 msgstr ""
 
 #: simulation/templates/structures/kush_workshop.xml:5
-msgid "Kushite Siege Workshop"
+msgid "Pr-ỉwn n ms﻿"
 msgstr ""
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
@@ -1191,7 +1235,7 @@ msgstr ""
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Renkite čempionus ir herojus. Sustiprinkite gynybą patalpindami kareivių įgulą."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1249,7 +1293,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
-msgstr "Treniruoti herojus ir chempionus."
+msgstr "Rengti herojus ir čempionus."
 
 #: simulation/templates/structures/maur_house.xml:8
 msgid "Griham"
@@ -1263,7 +1307,7 @@ msgstr ""
 msgid "Uparaksana"
 msgstr ""
 
-#: simulation/templates/structures/maur_palace.xml:12
+#: simulation/templates/structures/maur_palace.xml:13
 msgid "Harmya"
 msgstr ""
 
@@ -1273,7 +1317,7 @@ msgstr "Stulpas"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
-msgstr "Ashoko Įsakymų Stulpas"
+msgstr "Ašokos ediktų stulpas"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:35
 msgid "Śāsana Stambha Aśokā"
@@ -1283,7 +1327,7 @@ msgstr ""
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Garsusis Ašokos stulpas. Paspartina pirklių eiseną. Monumento teritorijoje esantys pastatai nenyksta."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1310,16 +1354,16 @@ msgstr ""
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
-msgstr ""
+msgstr "Didžioji stūpa"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "Samdinių stovykla"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "Egiptiečių samdinių stovykla"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
@@ -1327,12 +1371,12 @@ msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "Užimkite šį pastatą norėdami rengti samdinius iš helenistinio Egipto."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
 msgid "Persian Palace"
-msgstr "Persų Rūmai"
+msgstr "Persų rūmai"
 
 #: simulation/templates/structures/pers_apadana.xml:30
 msgid "Apadana"
@@ -1342,11 +1386,11 @@ msgstr ""
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "Duoklė: Gaukite nedideles maisto, medienos, akmens ir metalo išteklių įplaukas. Renkite persų herojus ir jų \"nemirtinguosius\" sargybinius."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "Daugiabutis"
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1354,7 +1398,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-infantry units."
-msgstr ""
+msgstr "Verbuoti miestiečius-pėstininkus"
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1362,7 +1406,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
-msgstr "Provincinis Gubernatorius"
+msgstr "Provincinis gubernatorius"
 
 #: simulation/templates/structures/pers_civil_centre.xml:9
 msgid "Xšaçapāvan"
@@ -1378,7 +1422,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_elephant_stables.xml:5
 msgid "Persian Elephant Stables"
-msgstr ""
+msgstr "Persų dramblių tvartas"
 
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
@@ -1394,19 +1438,19 @@ msgstr ""
 
 #: simulation/templates/structures/pers_fortress.xml:6
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:28
-msgid "Persian Hall"
-msgstr "Persų salė"
+msgstr "Renkite čempionų kavaleriją ir konstruokite apgulties taranus."
 
 #: simulation/templates/structures/pers_hall.xml:29
+msgid "Persian Hall"
+msgstr "Persų rotušė"
+
+#: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarthi Visadahyu"
 msgstr ""
 
-#: simulation/templates/structures/pers_hall.xml:31
+#: simulation/templates/structures/pers_hall.xml:32
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "Treniruoti Karo Dramblius ir Kardakes samdinius"
+msgstr "Rengti karo dramblius ir kardakų samdinius"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1415,21 +1459,21 @@ msgstr ""
 #: simulation/templates/structures/pers_house_b.xml:15
 #: simulation/templates/structures/pers_inn.xml:15
 msgid "Inn"
-msgstr ""
+msgstr "Užeiga"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "Persian Special Building"
-msgstr "Persų Specialus Pastatas"
+msgstr "Persų išskirtinis pastatas"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:31
 msgid "Ishtar Gate of Babylon"
-msgstr "Babylono Ishtaro Vartai"
+msgstr "Babilono Ištarės vartai"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:32
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Padidina gretimų pastatų lojalumo regeneraciją, apsunkinant jų užėmimą."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1439,17 +1483,9 @@ msgstr ""
 msgid "Didebani"
 msgstr ""
 
-#: simulation/templates/structures/pers_stables.xml:18
-msgid "Cavalry Stables"
-msgstr "Kavalerijos Arklidės"
-
-#: simulation/templates/structures/pers_stables.xml:19
+#: simulation/templates/structures/pers_stable.xml:15
 msgid "Paraspa"
 msgstr ""
-
-#: simulation/templates/structures/pers_stables.xml:21
-msgid "Train citizen-cavalry units."
-msgstr "Treniruoti civilių-kavalerija."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1476,11 +1512,11 @@ msgstr ""
 
 #: simulation/templates/structures/pers_warehouse.xml:12
 msgid "Warehouse"
-msgstr ""
+msgstr "Sandėlis"
 
 #: simulation/templates/structures/pers_wonder.xml:9
 msgid "Hanging Gardens of Babylon"
-msgstr ""
+msgstr "Kabantieji Babilono sodai"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1490,7 +1526,7 @@ msgstr ""
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Renkite Egipto ir Artimųjų Rytų miestiečius-karius. Tirkite rengimo patobulinimus."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:9
 msgid "pr-'a"
@@ -1510,7 +1546,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 msgid "Ptolemaic Elephant Stables"
-msgstr ""
+msgstr "Ptolemėjo dramblių tvartas"
 
 #: simulation/templates/structures/ptol_farmstead.xml:17
 msgid "pr-n-t"
@@ -1528,7 +1564,7 @@ msgstr ""
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Padidina populiacijos limitą. Kadangi yra pastatyti iš purvo plytų, egiptiečių namai nieko nekainuoja bei yra labai netvirti."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1542,7 +1578,7 @@ msgstr ""
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "Pastatykite pakrantėje, kad atidengtumėte viso žemėlapio pakrantę. Labai didelis matymo nuotolis: 180 metrų."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1550,7 +1586,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr "Samdinių Stovykla"
+msgstr "Samdinių stovykla"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
@@ -1558,20 +1594,21 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:32
 msgid ""
-"Cheap barracks-like structure that is buildable in neutral territory, but "
+"Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:10
-msgid "Klēroukhia"
+#: simulation/templates/structures/ptol_military_colony.xml:9
+#: simulation/templates/structures/sele_military_colony.xml:9
+msgid "Klēroukhía"
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:11
+#: simulation/templates/structures/ptol_military_colony.xml:10
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Ptolemėjo pastatas, panašus į kitų civilizacijų miesto centrus. Mažiau patvarus ir suteikiantis mažiau teritorinės įtakos, bet pigesnis ir greičiau pastatomas. Renkite įvairių tautybių naujakurius-karius."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1598,33 +1635,33 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
-msgstr "Edfu Šventykla"
+msgstr "Edfu šventykla"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
-msgstr "Triumfo Arka"
+msgstr "Triumfo arka"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr ""
+msgstr "Išskirtinis Romos imperijos statinys"
 
-#: simulation/templates/structures/rome_army_camp.xml:42
+#: simulation/templates/structures/rome_army_camp.xml:45
 msgid "ArmyCamp"
-msgstr ""
+msgstr "Kariuomenės stovykla"
 
-#: simulation/templates/structures/rome_army_camp.xml:75
+#: simulation/templates/structures/rome_army_camp.xml:78
 msgid "Entrenched Army Camp"
-msgstr ""
+msgstr "Įtvirtinta kariuomenės stovykla"
 
-#: simulation/templates/structures/rome_army_camp.xml:76
+#: simulation/templates/structures/rome_army_camp.xml:79
 msgid "Castrum Vallum"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:79
+#: simulation/templates/structures/rome_army_camp.xml:82
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Statykite neutralioje ar priešo teritorijoje. Konstruokite apgulties ginklus bei renkite miestiečius-karius. Iš lėto gydykite įgulą."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1652,7 +1689,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_farmstead.xml:8
 msgid "Villa"
-msgstr ""
+msgstr "Vila"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1676,7 +1713,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
-msgstr "Apgulties Sienos Vartai"
+msgstr "Apgulties sienos vartai"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
@@ -1687,7 +1724,7 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr "Apgulties Siena"
+msgstr "Apgulties siena"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
@@ -1700,11 +1737,11 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr ""
+msgstr "Palisadas iš medžio ir velėnos. Gali būti pastatytas priešo ar neutralioje teritorijoje."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr ""
+msgstr "Apgulties sienos bokštas"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
@@ -1720,7 +1757,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
-msgstr "Marso Šventykla"
+msgstr "Marso šventykla"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
@@ -1728,7 +1765,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
-msgstr "Vestos Šventykla"
+msgstr "Vestos šventykla"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedes Vestae"
@@ -1736,7 +1773,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
-msgstr ""
+msgstr "Palapinė"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
@@ -1744,7 +1781,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Laikinas prieglobstis kariams"
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
@@ -1787,7 +1824,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr ""
+msgstr "Seliukidų dramblių tvartas"
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
@@ -1801,7 +1838,7 @@ msgstr ""
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Konstruokite apgulties ginklus ir renkite čempionus. Sustiprinkite gynybą patalpindami įgulą."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1811,12 +1848,12 @@ msgstr ""
 msgid "Empórion"
 msgstr ""
 
-#: simulation/templates/structures/sele_military_colony.xml:9
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Seliukidų pastatas, panašus į kitų civilizacijų miesto centrus. Mažiau patvarus ir suteikiantis mažiau teritorinės įtakos, bet pigesnis ir greičiau pastatomas. Renkite įvairių tautybių naujakurius-karius."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1828,7 +1865,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "Apolono šventykla"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1837,34 +1874,34 @@ msgstr ""
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
-
-#: simulation/templates/structures/spart_gerousia.xml:21
-msgid "Spartan Senate"
-msgstr "Spartiečių Senatas"
+msgstr "Konstruokite apgulties ginklus. Sustiprinkite gynybą patalpindami iki 20 karių įgulą."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
+msgid "Spartan Senate"
+msgstr "Spartiečių senatas"
+
+#: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Gerontía"
 msgstr ""
 
-#: simulation/templates/structures/spart_gerousia.xml:23
+#: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train heroes."
-msgstr "Treniruoti herojus."
-
-#: simulation/templates/structures/spart_syssiton.xml:24
-msgid "Military Mess Hall"
-msgstr "Karinė Valgykla"
+msgstr "Rengti herojus."
 
 #: simulation/templates/structures/spart_syssiton.xml:25
+msgid "Military Mess Hall"
+msgstr "Karių valgykla"
+
+#: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Syssítion"
 msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "Renkite spartiečių herojus ir čempionus hoplitus."
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Suteikite savo civilizacijai šlovę ir papildykite savo imperiją dideliu žemės plotu. Patalpinkite įgulą norėdami sparčiai pagydyti."

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,6 +25,8 @@
 
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/winit.h"
+
+#include <sstream>
 
 WINIT_REGISTER_EARLY_INIT(wversion_Init);
 

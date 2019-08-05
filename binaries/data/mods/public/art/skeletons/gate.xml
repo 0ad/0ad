@@ -1,26 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
 <skeletons>
-	<standard_skeleton title="Gate Skeleton" id="gate">
-		<bone name="origin">
-			<bone name="door_right">
-				<bone name="lock_right"></bone>
-			</bone>
-			<bone name="door_left">
-				<bone name="lock_left"></bone>
-			</bone>
-		</bone>
-	</standard_skeleton>
-
-	<skeleton title="Gate Skeleton" target="gate"> 
-		<identifier> 
-			<root>gate</root> 
-		</identifier> 
-		<bone name="origin"><target>origin</target>
-			<bone name="door_right"><target>door_right</target>
-				<bone name="lock_right"><target>lock_right</target></bone>
-			</bone>
-			<bone name="door_left"><target>door_left</target>
-				<bone name="lock_left"><target>lock_left</target></bone>
-			</bone>
-		</bone>
-	</skeleton>
+  <standard_skeleton id="gate" title="Gate Skeleton">
+    <bone name="origin">
+      <bone name="door_left">
+        <bone name="lock_left" />
+      </bone>
+      <bone name="door_right">
+        <bone name="lock_right" />
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="gate" title="Gate Skeleton">
+    <identifier>
+      <root>gate</root>
+    </identifier>
+    <bone name="origin">
+      <target>origin</target>
+      <bone name="door_left">
+        <target>door_left</target>
+        <bone name="lock_left">
+          <target>lock_left</target>
+        </bone>
+      </bone>
+      <bone name="door_right">
+        <target>door_right</target>
+        <bone name="lock_right">
+          <target>lock_right</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
 </skeletons>

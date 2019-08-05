@@ -2,40 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
-      <mesh>skeletal/horse.dae</mesh>
+    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
+      <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="units/athenians/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
-        <prop actor="props/horse/cav_rein_javelin.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="horse texture black">
-      <textures>
-        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="horse texture brown">
-      <textures>
-        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="4" name="horse texture chestnut">
-      <textures>
-        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="3" name="horse texture dun">
-      <textures>
-        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="horse texture white">
-      <textures>
-        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -48,5 +33,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

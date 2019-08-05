@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,6 +16,8 @@
  */
 
 #include "precompiled.h"
+
+#include <boost/algorithm/string.hpp>
 
 #include "ActorEditor.h"
 
@@ -123,10 +125,10 @@ AtObj ActorEditor::FreezeData()
 	AtObj actor (m_ActorEditorListCtrl->FreezeData());
 
 	if (m_CastShadows->IsChecked())
-		actor.set("castshadow", L"");
+		actor.set("castshadow", "");
 
 	if (m_Float->IsChecked())
-		actor.set("float", L"");
+		actor.set("float", "");
 
 	if (m_Material->GetValue().length())
 		actor.set("material", m_Material->GetValue());
@@ -142,7 +144,7 @@ static AtObj ConvertToLatestFormat(AtObj in)
 	{
 		// 'Importing' a new blank file. Fill it in with default values:
 		AtObj actor;
-		actor.add("@version", L"1");
+		actor.add("@version", "1");
 		in.add("actor", actor);
 	}
 
@@ -155,12 +157,7 @@ static AtObj ConvertToLatestFormat(AtObj in)
 		version = -1;
 	}
 	else if (in["actor"].defined())
-	{
-		if (in["actor"]["@version"].defined())
-			wxString(in["actor"]["@version"]).ToLong(&version);
-		else
-			version = 0;
-	}
+		version = (in["actor"]["@version"].defined()) ? (*in["actor"]["@version"]).getLong() : 0;
 	else
 	{
 		wxLogError(_("Failed to determine actor file format version"));
@@ -175,47 +172,44 @@ static AtObj ConvertToLatestFormat(AtObj in)
 		AtObj actor;
 
 		// Handle the global actor properties
-		if (wxString(in["Object"]["Properties"]["@autoflatten"]) == _T("1"))
-			actor.add("autoflatten", L"");
+		if (in["Object"]["Properties"]["@autoflatten"] == "1")
+			actor.add("autoflatten", "");
 
-		if (wxString(in["Object"]["Properties"]["@castshadows"]) == _T("1"))
-			actor.add("castshadow", L"");
+		if (in["Object"]["Properties"]["@castshadows"] == "1")
+			actor.add("castshadow", "");
 
 		// Things to strip leading strings (for converting filenames, since the
 		// new format doesn't store the entire path)
 		#define THING1(out,outname, in,inname, prefix) \
-			wxASSERT( wxString(in["Object"][inname]).StartsWith(_T(prefix)) ); \
-			out.add(outname, wxString(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()))
+			wxASSERT( wxString::FromUTF8(in["Object"][inname]).StartsWith(_T(prefix)) ); \
+			out.add(outname, wxString::FromUTF8(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()))
 		#define THING2(out,outname, in,inname, prefix) \
-			wxASSERT( wxString(in[inname]).StartsWith(_T(prefix)) ); \
-			out.add(outname, wxString(in[inname]).Mid(wxString(_T(prefix)).Length()))
+			wxASSERT( wxString::FromUTF8(in[inname]).StartsWith(_T(prefix)) ); \
+			out.add(outname, wxString::FromUTF8(in[inname]).Mid(wxString(_T(prefix)).Length()))
 
-		if (wxString(in["Object"]["Material"]).Len())
+		if (wxString::FromUTF8(in["Object"]["Material"]).Len())
 		{
 			THING1(actor,"material", in,"Material", "art/materials/");
 		}
 
 		// Create a single variant to contain all the old data
 		AtObj var;
-		var.add("@name", L"Base");
-		var.add("@frequency", L"100"); // 100 == default frequency
+		var.add("@name", "Base");
+		var.add("@frequency", "100"); // 100 == default frequency
 
 		THING1(var,"mesh",    in,"ModelName",   "art/meshes/");
 
 		// XXX
-		if (wxString(in["Object"]["TextureName"]).StartsWith(_T("art/textures/ui/session/portraits/ui_portrait_sheet_civ_")))
-		{
-			var.add("texture", L"temp/" + wxString(in["Object"]["TextureName"]).Mid(strlen("art/textures/ui/session/portraits/")));
-		}
+		std::string textureName(in["Object"]["TextureName"]);
+		if (boost::algorithm::starts_with(textureName, "art/textures/ui/session/portraits/ui_portrait_sheet_civ_"))
+			var.add("texture", ("temp/" + textureName.substr(strlen("art/textures/ui/session/portraits/"))).c_str());
 		else
-		{
 			THING1(var,"texture", in,"TextureName", "art/textures/skins/");
-		}
 
 		AtObj anims;
 		for (AtIter animit = in["Object"]["Animations"]["Animation"]; animit.defined(); ++animit)
 		{
-			if (wcslen(animit["@file"]))
+			if (strlen(animit["@file"]))
 			{
 				AtObj anim;
 				anim.add("@name", animit["@name"]);
@@ -245,7 +239,7 @@ static AtObj ConvertToLatestFormat(AtObj in)
 		#undef THING1
 		#undef THING2
 
-		actor.set("@version", L"1");
+		actor.set("@version", "1");
 		in = AtObj();
 		in.set("actor", actor);
 	}
@@ -295,7 +289,7 @@ static AtObj ConvertToLatestFormat(AtObj in)
 			actor.add("group", grp);
 		}
 
-		actor.set("@version", L"1");
+		actor.set("@version", "1");
 		in.set("actor", actor);
 	}
 	else if (version == 1)
@@ -333,13 +327,13 @@ AtObj ActorEditor::ExportData()
 	// Export the group/variant/etc data
 	AtObj actor (m_ActorEditorListCtrl->ExportData());
 
-	actor.set("@version", L"1");
+	actor.set("@version", "1");
 
 	if (m_CastShadows->IsChecked())
-		actor.set("castshadow", L"");
+		actor.set("castshadow", "");
 
 	if (m_Float->IsChecked())
-		actor.set("float", L"");
+		actor.set("float", "");
 
 	if (m_Material->GetValue().length())
 		actor.set("material", m_Material->GetValue());

@@ -7,11 +7,11 @@ Armour.prototype.Schema =
 		"<Pierce>0.0</Pierce>" +
 		"<Crush>5.0</Crush>" +
 	"</a:example>" +
-	DamageTypes.BuildSchema("damage protection") +
+	BuildDamageTypesSchema("damage protection") +
 	"<optional>" +
 		"<element name='Foundation' a:help='Armour given to building foundations'>" +
 			"<interleave>" +
-				DamageTypes.BuildSchema("damage protection") +
+				BuildDamageTypesSchema("damage protection") +
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
@@ -59,9 +59,9 @@ Armour.prototype.TakeDamage = function(strengths, multiplier = 1)
 
 Armour.prototype.GetArmourStrengths = function()
 {
-	// Work out the armour values with technology effects
-	var applyMods = (type, foundation) => {
-		var strength;
+	// Work out the armour values with technology effects.
+	let applyMods = (type, foundation) => {
+		let strength;
 		if (foundation)
 		{
 			strength = +this.template.Foundation[type];
@@ -73,11 +73,12 @@ Armour.prototype.GetArmourStrengths = function()
 		return ApplyValueModificationsToEntity("Armour/" + type, strength, this.entity);
 	};
 
-	var foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
+	let foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
 
 	let ret = {};
-	for (let damageType of DamageTypes.GetTypes())
-		ret[damageType] = applyMods(damageType, foundation);
+	for (let damageType in this.template)
+		if (damageType != "Foundation")
+			ret[damageType] = applyMods(damageType, foundation);
 
 	return ret;
 };

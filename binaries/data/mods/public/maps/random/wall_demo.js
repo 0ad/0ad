@@ -32,7 +32,7 @@ var g_Map = new RandomMap(0, "grass1");
  *
  *   This argument is optional, and each function has a different default value.
  *
- * - The next argument is a string denoting the style of the wall. These are derived from the names of wallsets defined in 0ad: for example "athen_wallset_stone" becomes "athen_stone", and "rome_wallset_seige" becomes "rome_seige". (A full list can be found stored as the keys of the global constant g_WallStyles.) This argument is optional, and if not set, the civ's basic stone wallset will be used.
+ * - The next argument is a string denoting the style of the wall. These are derived from the names of wallsets defined in 0ad: for example "athen_wallset_stone" becomes "athen_stone", and "rome_wallset_siege" becomes "rome_siege". (A full list can be found stored as the keys of the global constant g_WallStyles.) This argument is optional, and if not set, the civ's basic stone wallset will be used.
  *
  * - The next argument is the player-id of the player that is to own the wall. This argument is optional, and defaults to 0 (gaia).
  *

@@ -229,7 +229,7 @@ function determineAction(x, y, fromMinimap)
 		return entState && entState.player == g_ViewedPlayer;
 	});
 
-	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
+	if (!g_DeveloperOverlay.isControlAll() && !allOwnedByPlayer)
 		return undefined;
 
 	var target = undefined;
@@ -796,7 +796,7 @@ function handleInputAfterGui(ev)
 		ev.hotkey = null;
 
 	// Handle the time-warp testing features, restricted to single-player
-	if (!g_IsNetworked && Engine.GetGUIObjectByName("devTimeWarp").checked)
+	if (!g_IsNetworked && g_DeveloperOverlay.isTimeWarpEnabled())
 	{
 		if (ev.type == "hotkeydown" && ev.hotkey == "session.timewarp.fastforward")
 			Engine.SetSimRate(20.0);
@@ -1130,35 +1130,9 @@ function doAction(action, ev)
 	if (!controlsPlayer(g_ViewedPlayer))
 		return false;
 
-	// If shift is down, add the order to the unit's order queue instead
-	// of running it immediately
-	var orderone = Engine.HotkeyIsPressed("session.orderone");
-	var queued = Engine.HotkeyIsPressed("session.queue");
-	var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-
-	if (g_UnitActions[action.type] && g_UnitActions[action.type].execute)
-	{
-		let selection = g_Selection.toList();
-		if (orderone)
-		{
-			// pick the first unit that can do this order.
-			let unit = selection.find(entity =>
-				["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
-					g_UnitActions[action.type][method] &&
-					g_UnitActions[action.type][method](action.target || undefined, [entity])
-				));
-			if (unit)
-			{
-				selection = [unit];
-				g_Selection.removeList(selection);
-			}
-		}
-		return g_UnitActions[action.type].execute(target, action, selection, queued);
-	}
-
-	error("Invalid action.type " + action.type);
-	return false;
+	return handleUnitAction(Engine.GetTerrainAtScreenPoint(ev.x, ev.y), action);
 }
+
 
 function positionUnitsFreehandSelectionMouseMove(ev)
 {
@@ -1177,7 +1151,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	inputState = INPUT_NORMAL;
 	let inputLine = g_FreehandSelection_InputLine;
 	g_FreehandSelection_InputLine = [];
-	if (!ev.button == SDL_BUTTON_RIGHT)
+	if (ev.button != SDL_BUTTON_RIGHT)
 		return true;
 
 	let lengthOfLine = 0;
@@ -1213,7 +1187,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	}
 
 	// Rounding errors can lead to missing or too many points.
-	entityDistribution.slice(0, selection.length);
+	entityDistribution = entityDistribution.slice(0, selection.length);
 	entityDistribution = entityDistribution.concat(new Array(selection.length - entityDistribution.length).fill(inputLine[inputLine.length - 1]));
 
 	if (Vector2D.from3D(GetEntityState(selection[0]).position).distanceTo(entityDistribution[0]) +
@@ -1251,18 +1225,40 @@ function handleMinimapEvent(target)
 	if (inputState != INPUT_NORMAL)
 		return false;
 
-	var fromMinimap = true;
-	var action = determineAction(undefined, undefined, fromMinimap);
+	let action = determineAction(undefined, undefined, true);
 	if (!action)
 		return false;
 
-	var selection = g_Selection.toList();
+	return handleUnitAction(target, action);
+}
 
-	var queued = Engine.HotkeyIsPressed("session.queue");
-	if (g_UnitActions[action.type] && g_UnitActions[action.type].execute)
-		return g_UnitActions[action.type].execute(target, action, selection, queued);
-	error("Invalid action.type " + action.type);
-	return false;
+function handleUnitAction(target, action)
+{
+	if (!g_UnitActions[action.type] || !g_UnitActions[action.type].execute)
+	{
+		error("Invalid action.type " + action.type);
+		return false;
+	}
+
+	let selection = g_Selection.toList();
+	if (Engine.HotkeyIsPressed("session.orderone"))
+	{
+		// Pick the first unit that can do this order.
+		let unit = selection.find(entity =>
+			["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
+				g_UnitActions[action.type][method] &&
+				g_UnitActions[action.type][method](action.target || undefined, [entity])
+			));
+		if (unit)
+		{
+			selection = [unit];
+			g_Selection.removeList(selection);
+		}
+	}
+
+	// If the session.queue hotkey is down, add the order to the unit's order queue instead
+	// of running it immediately
+	return g_UnitActions[action.type].execute(target, action, selection, Engine.HotkeyIsPressed("session.queue"));
 }
 
 function getEntityLimitAndCount(playerState, entType)
@@ -1337,10 +1333,14 @@ var g_BatchSize = getDefaultBatchTrainingSize();
 
 function OnTrainMouseWheel(dir)
 {
-	if (Engine.HotkeyIsPressed("session.batchtrain"))
-		g_BatchSize += dir / Engine.ConfigDB_GetValue("user", "gui.session.scrollbatchratio");
+	if (!Engine.HotkeyIsPressed("session.batchtrain"))
+		return;
+
+	g_BatchSize += dir / Engine.ConfigDB_GetValue("user", "gui.session.scrollbatchratio");
 	if (g_BatchSize < 1 || !Number.isFinite(g_BatchSize))
 		g_BatchSize = 1;
+
+	updateSelectionDetails();
 }
 
 function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)

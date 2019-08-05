@@ -4,7 +4,6 @@
     <Max>10</Max>
   </Health>
   <Identity>
-    <Civ>gaia</Civ>
     <GenericName>Peacock</GenericName>
     <SpecificName>Pavo cristatus</SpecificName>
     <Icon>gaia/fauna_peacock.png</Icon>
@@ -33,9 +32,6 @@
   </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.3</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.3</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/peacock.xml</Actor>

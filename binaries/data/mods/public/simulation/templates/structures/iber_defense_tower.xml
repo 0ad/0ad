@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_tower_stone">
+<Entity parent="template_structure_defensive_tower_stone">
   <Attack>
     <Ranged>
       <MinRange>12.0</MinRange>
@@ -42,6 +42,6 @@
   </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/iberians/scout_tower.xml</Actor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

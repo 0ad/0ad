@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ TYPE(bool)
 TYPE(int)
 TYPE(uint)
 TYPE(float)
-TYPE(CColor)
+TYPE(CGUIColor)
 TYPE(CClientArea)
 TYPE(CGUIString)
 #ifndef GUITYPE_IGNORE_CGUISpriteInstance

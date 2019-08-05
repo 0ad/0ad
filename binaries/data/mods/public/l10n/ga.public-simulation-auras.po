@@ -1,16 +1,16 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Brian Mac Giolla Mhuire <brian@oireas.com>, 2018
+# Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019
 # fake name <concannh@tcd.ie>, 2018
 # Coinneach Donáll Mac Ocslaigh <coinneachoxley@gmail.com>, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-08-09 02:02+0000\n"
+"POT-Creation-Date: 2019-04-01 10:10+0200\n"
+"PO-Revision-Date: 2019-04-12 15:48+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Deisigh longa atá i ngarastún ag 10 AS sa tsoicind."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
-msgstr "Beannú na Déithe"
+msgstr "Beannachtaí na nDéithe"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
@@ -37,7 +37,7 @@ msgstr "Cneasaigh aonaid ag 3 AS sa tsoicind."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr "Creideamh Láidir"
+msgstr "Díograis Creidimh"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
@@ -76,7 +76,7 @@ msgstr "Sagartacht Chumhachtach"
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr "Sagartacht Amun a neartú agus tionchar a imirt ar do thionchar monarc.\n-5% sláinte do laochra in aghaidh an teampall a tógadh."
+msgstr "Neartaigh an tSagartacht Amúin agus tionchar do rí a laghdú.\n-5% sláinte do laochra le gach teampall togtha."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -137,7 +137,7 @@ msgstr "Tá +3 armúr agus fís níos airde ag saighdiúirí ar bhallaí."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
-msgstr "Siombail Mór"
+msgstr "Siombail Gaiscíochta"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
@@ -155,7 +155,7 @@ msgstr "Méadú breise ar an teorainn daonra le 40 in aghaidh la gach iontas at�
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr "Deisiúcháin ar Cheardlanna"
+msgstr "Deisiúcháin Ceardlanna"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
@@ -166,60 +166,56 @@ msgid "Delian League"
 msgstr "Conradh na Déalois"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Ships construct 25% faster."
-msgstr "Tógáil long 25% níos tapúla."
+msgid "Allied warships −25% construction time."
+msgstr "Am tógála -25% do longa cogaidh na gcomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "Draoithe"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allies get -20% resource cost to train healers."
-msgstr "Costas acmhainne -20% do chomhghuaillithe chun cneasaithe a traenáil."
+msgid "Allied healers −20% resource costs."
+msgstr "Costas acmhainne -20% do chneasaithe na gcomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Máistrí Trádála"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "Bónas 10% ar brabús trádála do bhealaigh idirnáisiúnta na gcomhghuaillithe."
+msgid "Allied markets +10% international trade bonus."
+msgstr "Bónas trádála idirnáisiúnta +10% as margaidh chomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
 msgstr "Eagnaíocht Draíochta"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "-20% research time for technologies of allies."
-msgstr "Am taighde -20% do théicneolaíochtaí na gcomhghuallaithe."
+msgid "Allied structures −20% technology research time."
+msgstr "Am taighde teicneolaíochta -20% do shruchtúir chomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Tuarastalta"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
-"Iberian players"
-msgstr "Laghdú an chostais do scirmiseoirí míle-saoránacha le 20% ar thaobh comhghuaillithe d'imreoirí Ibéaracha."
+msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgstr "Costas acmhainne -20% do ghaithleannaigh míle-shaoránacha na gcomhghuaillithe."
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "Soláthraithe Eilifintí"
 
-#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
-msgid ""
-"Reduces the cost and train time for elephants with 20% for allies of Kushite"
-" players."
-msgstr "Laghdú an chostais agus am traenála d'eilifintí le 20% ar thaobh comhghuaillithe d'imreoirí Núibiacha."
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
+msgid "Allied elephants −20% resource costs and training time."
+msgstr "Am traenála agus costas acmhainne -20% d'eilifintí comhghuaillithe."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
 msgstr "Airgeadra Caighdeánaithe"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "+20% sell prices at market."
-msgstr "Praghas díola +20% sa mhargadh."
+msgid "Allies +20% barter sell prices."
+msgstr "Praghais dhíolta babhtála +20% do chomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -227,51 +223,49 @@ msgstr "Tacaíocht Chreidimh d'Aisióca"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "Costas -50% do theampaill comhghuaillí agus téicneolaíochtaí teampaill, in am agus in achmainn."
+"Allied temples −50% resource costs and building time; temple technologies "
+"−50% resource costs and research time."
+msgstr "Costas acmhainne agus am tógála -50% do theampaill chomhghuaillithe; am taighde agus costas acmhainne -50% do theicneolaíochtaí teampaill."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "Bóthar na Ríthe"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Ardú ioncaim (+15%) don bhealaigh tradála talún ar son trádálaithe comhghuaillí."
+msgid "Allied land traders +15% trade gain."
+msgstr "Brabús trádála +15% do thrádálaí talaimh na gcomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Gráinseach na Mheánmhara"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Faigh gach aon chomhghuaillí mallshil ioncaim bhia."
+msgid "Allies +1.0 food trickle rate."
+msgstr "Ráta silte bia +1.0 do chomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "Coinscríobhacht"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "Am traenála -20% do choisithe míle-saoránacha."
+msgid "Allied citizen-soldier infantry −20% training time."
+msgstr "Am traenála -20% do choisí míle-shaoránach na gcomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Teitreacathair Shiriach"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid ""
-"Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr "Laghdú an chostais d'ionaid sibhialta le 20% ar thaobh comhghuaillithe d'imreoirí Séileucaideacha."
+msgid "Allied civil centers −20% resource costs."
+msgstr "Costas acmhainne -20% d'ionaid chathartha na gcomhghuaillithe."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
 msgstr "Conradh na Péalopoinéise"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid ""
-"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
-" of Spartan players."
-msgstr "Méadú na sláinte do cois-sleádóirí míle-saoránacha le 10% ar thaobh comhghuaillithe d'imreoirí Spartacha."
+msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgstr "Sláinte +10% do choisí míle-shaoránach na gcomhghuaillithe."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -388,8 +382,8 @@ msgstr "Teampall i Naqa"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for nearby temples."
+"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 heal rate for units garrisoned in nearby temples."
 msgstr "Mar atá i ngach cultúr eile, bhí slí mhór ag an gcreideamh san Impireacht Méróé. Thóg Sianacdaichéto an Teampaill sa 160 R.C. mar siombail mhór don shofaisticiúilteacht de chuid Méróé.\nRáta cneasaithe i ngarastún +1 do theampaill in aice láimhe."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
@@ -398,9 +392,9 @@ msgstr "Creachnóir na gCathracha"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
-"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr "I rith an Chéad Cogadh Macadónach, chreach Pilib agus a shaighdiúirí ar Thermum, ionad creidimh agus polaitíochta in Aetolia.\nBia agus adhmad +5 do gach aonad namhaid maraithe, nó foirgneamh scriosta."
+msgstr "I rith an Chéad Cogadh Macadónach, chreach Pilib agus a shaighdiúirí ar Thermum, ionad creidimh agus polaitíochta in Aetolia. \nBia agus adhmad +5 do gach aonad namhaid maraithe, nó foirgneamh scriosta."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -488,7 +482,7 @@ msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
-"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
 msgstr "D'éirigh le hAintióchus, mac Selecus Nicator, an impireacht a choinneáil - cúram gríobhach. Lena linn sin, bhunaigh sé teampaill agus bhain sé úsáid as eilifintí chun buach ar na Gallaigh agus iad ag ionradh.\n-10% costas le haghaidh Eilifintí Cogaidh."
 
@@ -542,8 +536,8 @@ msgid "+15% build and repair rate for workers."
 msgstr "Ráta tógála agus deisithe +15% d'oibrithe."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple to Athena"
-msgstr "Teampall le Aitéiné"
+msgid "Temple of Athena Nike"
+msgstr "Teampall le Aitéiné Nícéa"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -725,12 +719,12 @@ msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
 msgstr "Costas agus am tógála -20% do theampaill Apedemak agus a nGardái Teampaill Méróé."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaugther of the Faithful"
+msgid "Slaughter of the Faithful"
 msgstr "Sléacht na gCreidmheach"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healrate reduced by 50%."
-msgstr "Laghdú ráta chneasaithe 50% do naimhde."
+msgid "Enemy healers −50% healing rate."
+msgstr "Ráta cneasaithe -50% do chneasaí naimhde."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -811,8 +805,8 @@ msgstr "Múinteoir"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time while he is "
-"garrisoned in it."
+"Empower a building with -20% cost and -50% research time for technologies "
+"while he is garrisoned in it."
 msgstr "Nuair atá an laoch i ngarastún, tá an foirgneamh cumasaithe le costas -20% agus am taighde -50%."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName

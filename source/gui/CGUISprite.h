@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,8 +44,8 @@ A GUI Sprite
 struct SGUIImageEffects
 {
 	SGUIImageEffects() : m_Greyscale(false) {}
-	CColor m_AddColor;
-	CColor m_SolidColor;
+	CGUIColor m_AddColor;
+	CGUIColor m_SolidColor;
 	bool m_Greyscale;
 };
 
@@ -109,8 +109,8 @@ public:
 	SGUIImageEffects* m_Effects;
 
 	// Color
-	CColor			m_BackColor;
-	CColor			m_BorderColor;
+	CGUIColor m_BackColor;
+	CGUIColor m_BorderColor;
 
 	// 0 or 1 pixel border is the only option
 	bool			m_Border;
@@ -157,15 +157,19 @@ public:
 // calculations between draw calls.
 class CGUISpriteInstance
 {
+	NONCOPYABLE(CGUISpriteInstance);
+
 public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
-	CGUISpriteInstance(const CGUISpriteInstance& Sprite);
-	CGUISpriteInstance& operator=(const CStr& SpriteName);
-	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const;
-	void Invalidate();
+
+	CGUISpriteInstance(CGUISpriteInstance&&) = default;
+	CGUISpriteInstance& operator=(CGUISpriteInstance&&) = default;
+
+	void Draw(const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const;
 	bool IsEmpty() const;
-	const CStr& GetName() { return m_SpriteName; }
+	const CStr& GetName() const { return m_SpriteName; }
+	void SetName(const CStr& SpriteName);
 
 private:
 	CStr m_SpriteName;

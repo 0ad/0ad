@@ -2,7 +2,9 @@
 <Entity parent="units/rome_legionnaire_imperial">
   <Attack>
     <Melee>
-      <Hack>20</Hack>
+      <Damage>
+        <Hack>20</Hack>
+      </Damage>
     </Melee>
   </Attack>
   <Health>

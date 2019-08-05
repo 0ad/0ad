@@ -404,7 +404,7 @@ m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player
 	{
 		response = "acceptWithTribute";
 		requiredTribute = gameState.ai.HQ.pickMostNeededResources(gameState)[0];
-		requiredTribute.wanted = Math.max(1000, gameState.getOwnUnits().length * requestType === "ally" ? 10 : 5);
+		requiredTribute.wanted = Math.max(1000, gameState.getOwnUnits().length * (requestType === "ally" ? 10 : 5));
 		this.receivedDiplomacyRequests.set(player, {
 			"status": "waitingForTribute",
 			"wanted": requiredTribute.wanted,

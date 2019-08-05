@@ -1,18 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# abuyop <abuyop@gmail.com>, 2017
+# abuyop <abuyop@gmail.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-01-29 09:05+0100\n"
-"PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: abuyop <abuyop@gmail.com>, 2017\n"
+"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"PO-Revision-Date: 2017-06-04 12:59+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>, 2019\n"
 "Language-Team: Malay (https://www.transifex.com/wildfire-games/teams/17418/ms/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -163,16 +164,13 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
-"'II' icon (you have to wait for the outpost to be built first). This will "
+"II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
-"Pilih Pusat Sivik sekali lagi dan maju ke Fasa Pekan dengan mengklik pada "
-"ikon 'II' (anda perlu tunggu sehingga kota kara selesai dibina terlebih "
-"dahulu). Ini membolehkan bangunan Fasa Pekan dibina."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
-"While waiting for the phasing up, you may reaffect your idle workers to "
+"While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
 "Sementara menunggu perubahan fasa selesai, anda boleh arah semula pekerja "
@@ -242,10 +240,10 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
-"barracks."
+"Barracks."
 msgstr ""
 "Sementara menunggu perubahan fasa selesai, anda boleh latih lebih ramai "
-"askar di berek."
+"askar di dalam Berek."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -264,7 +262,7 @@ msgid ""
 msgstr ""
 "Hentikan semua askar anda daripada mengumpul sumber dan arah sekumpulan "
 "kecil daripadanya mencari Pusat Sivik Musuh yang berada di dalam peta. "
-"Setelah lokasi pihak musuh dikenalpasti, kerahkan jentera pengepung dan "
+"Setelah lokasi pihak musuh dikenalpasti, kerahkan senjata pengepung dan "
 "semua askar yang selebihnya memusnahkannya.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
@@ -278,14 +276,10 @@ msgstr "Pihak musuh sudah kalah. Semua tugasan tutorial kini telah selesai."
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
 "This tutorial will teach the basics of developing your economy. Typically, "
-"you will start with a Civic Center and a couple units in 'Village Phase' and"
-" ultimately, your goal will be to develop and expand your empire, often by "
-"evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"you will start with a Civic Center and a couple units in Village Phase and "
+"ultimately, your goal will be to develop and expand your empire, often by "
+"evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"Tutorial ini melatih asas pembangunan ekonomi anda. Kebiasaannya, anda akan "
-"bermula dengan satu Pusat Sivik dan sepasang unit dalam 'Fasa Kampung' dan "
-"seterusnya, matlamat anda adalah membangunkan dan mengembangkan empayar "
-"anda, iaitu berubah ke 'Fasa Pekan' dan 'Fasa Bandar'.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -349,16 +343,10 @@ msgstr ""
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
-"technologies. Hover the cursor over the 'II' icon. The tooltip will tell us "
-"that advancing to 'Town Phase' requires both more constructed structures as "
+"technologies. Hover the cursor over the II icon. The tooltip will tell us "
+"that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
-"Bahagian baris teratas butang mengandungi potret unit yang boleh dilatih di "
-"dalam bangunan manakala bahagian paling bawah baris pertama atau kedua "
-"membolehkan teknologi yang boleh dikaji. Letak penuding tetikus di atas ikon"
-" 'II'. Tip alatan akan memberitahu untuk melanjutkan tamadun ke 'Fasa Pekan'"
-" memerlukan kedua-dua bangunan dibina dan juga lebih banyak sumber Makanan "
-"serta Kayu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -472,26 +460,18 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
-"First, let's set a rally-point. Setting a rally point on a building that can"
+"First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
 "Wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"Mula-mula, tetapkan dahulu titk bolak-balik. Penetapan titik bolak-balik "
-"pada sesebuah bangunan yang melatih unit akan tentukan tugas secara "
-"automatik kepada unit baharu tersebut seusai latihan tamat. Kita perlu "
-"mengerah unit baharu dilatih untuk mengumpul Kayu di bahagian hutan di "
-"selatan Pusat Sivik. Untuk membuatnya, pilih Pusat Sivik dengan mengklik "
-"padanya kemudian klik-kanan pada pokok yang dikehendaki.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
-"Rally-Points are indicated by a small flag at the end of the blue line."
+"Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
-"Titik bolak-balik ditunjukkan dengan satu bendera kecil dipenghujung garisan"
-" biru."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -503,11 +483,9 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
-"Now that the rally-point is set, we can produce additional units and they "
+"Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
-"Sekarang titik bolak-balik telah ditetapkan, kita boleh wujudkan unit "
-"tambahan dan mereka akan melakukan kerja yang diarahkan secara automatik.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -635,14 +613,10 @@ msgstr "Tahan shift dan klik pada ikon Rakyat Perempuan."
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally-point of the Civic Center away from gathering Wood."
+"remove the current rally point of the Civic Center away from gathering Wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
-"the flag icon indicating the rally-point is crossed out)."
+"the flag icon indicating the rally point is crossed out)."
 msgstr ""
-"Sementara itu, kita dapati bilangan pekerja adalah memadai untuk mengumpul "
-"Kayu. Oleh itu buang titik bolak-balik semasa Pusat Sivik daripada mengumpul"
-" Kayu. Maka, klik-kanan pada Pusat Sivik bila ia dipilih (dan ikon bendera "
-"yang menunjukkan titik bolak-balik akan terbatal)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -795,8 +769,8 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is constructed, the builders will automatically start "
-"gathering it.\n"
+"When the field is ready, the builders will automatically start gathering "
+"it.\n"
 msgstr ""
 "Bila ladang telah dibina, pembina akan mula mengumpulnya secara automatik.\n"
 
@@ -816,16 +790,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally-point on a field by "
+"gatherers, select the Civic Center and setup a rally point on a field by "
 "right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally-point will help building it, while they will gather it when "
+"sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
-"Sebuah ladang boleh diusahakan seramai lima orang petani, Untuk menambah "
-"lagi bilangan mereka, pilih Pusat Sivik dan tentukan titik bolak-balik pada "
-"ladang tersebut dengan mengklik-kanan padanya. Jika ladang tersebut masih "
-"lagi dibangunkan, pekerja baharu tersebut akan bantu membinanya, selepas itu"
-" mereka akan mula mengumpul setelah selesai."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -871,57 +840,46 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
-"We should start preparing to phase up into 'Town Phase', which will unlock "
+"We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
-"over the 'Town Phase' icon to see what is still needed.\n"
+"over the Town Phase icon to see what is still needed.\n"
 msgstr ""
-"Kita patut mula bersedia untuk beralih ke 'Fasa Pekan', yang mana akan "
-"membuka lebih banyak unit dan bangunan. Pilih Pusat Sivik dan letak penuding"
-" tetikus di atas ikon 'Fasa Pekan' untuk mengetahui keperluannya.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
-"in case of attack, so let's build barracks.\n"
+"in case of attack, so let's build Barracks.\n"
 msgstr ""
 "Kita kini mempunyai sumber yang mencukupi, tetapi masih kekurangan satu "
 "struktur. Walaupun ini adalah tutorial ekonomi, ia berguna untuk persediaan "
-"pertahanan jika ada serangan. Oleh itu, mari bina berek.\n"
+"pertahanan jika ada serangan. Oleh itu, mari bina Berek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
-"Select four of your soldiers and ask them to build a barracks: as before, "
-"start selecting the soldiers, click on the barracks icon in the production "
+"Select four of your soldiers and ask them to build a Barracks: as before, "
+"start selecting the soldiers, click on the Barracks icon in the production "
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
-"Pilih empat orang askar anda dan arah mereka membina berek; sebelum itu, "
+"Pilih empat orang askar anda dan arah mereka membina Berek; sebelum itu, "
 "mula memilih askar, klik pada ikon berek dalam panel pembinaan dan letak "
 "tapak berek tidak jauh dari Pusat Sivik anda yang mahu dibina."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
-"Let's wait for the barracks to be built. As this construction is lengthy, "
+"Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
-"Center and set up a rally-point on the barracks foundation by right-clicking"
-" on it (you should see a hammer icon), and then produce two more builders by"
-" clicking on the hoplite icon twice."
+"Center and set up a rally point on the Barracks foundation by right-clicking"
+" on it (you should see a hammer icon). Then produce two more builders by "
+"clicking on the hoplite icon twice."
 msgstr ""
-"Tunggu sebentar sehingga berek selesai dibina. Oleh kerana pembinaannya "
-"mengambil sedikit masa, anda boleh tambah lagi dua orang askar supaya "
-"pembinaan lebih pantas. Untuk membuatnya, pilih Pusat Sivik dan tentukan "
-"titik bolak-balik ke tapak pembinaan berek dengan mengklik-kanan padanya "
-"(satu ikon tukul muncul), kemudian hasilkan lagi dua orang jurubina dengan "
-"mengklik pada ikon hoplite sebanyak dua kali."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
-"You should now be able to research 'Town Phase'. Select the Civic Center and"
-" click on the technology icon.\n"
+"You should now be able to research Town Phase. Select the Civic Center and "
+"click on the technology icon.\n"
 msgstr ""
-"Anda sepatutnya boleh mengkaji 'Fasa Pekan'. Pilih Pusat Sivik dan klik pada"
-" ikon teknologi.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""

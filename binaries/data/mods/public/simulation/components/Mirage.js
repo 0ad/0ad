@@ -24,6 +24,7 @@ Mirage.prototype.Init = function()
 	this.hitpoints = null;
 	this.repairable = null;
 	this.unhealable = null;
+	this.injured = null;
 
 	this.capturePoints = [];
 	this.maxCapturePoints = 0;
@@ -73,7 +74,7 @@ Mirage.prototype.CopyIdentity = function(cmpIdentity)
 	this.classesList = clone(cmpIdentity.GetClassesList());
 };
 
-Mirage.prototype.GetClassesList = function() { return this.classesList };
+Mirage.prototype.GetClassesList = function() { return this.classesList; };
 
 // Foundation data
 
@@ -104,12 +105,14 @@ Mirage.prototype.CopyHealth = function(cmpHealth)
 	this.maxHitpoints = cmpHealth.GetMaxHitpoints();
 	this.hitpoints = cmpHealth.GetHitpoints();
 	this.repairable = cmpHealth.IsRepairable();
+	this.injured = cmpHealth.IsInjured();
 	this.unhealable = cmpHealth.IsUnhealable();
 };
 
 Mirage.prototype.GetMaxHitpoints = function() { return this.maxHitpoints; };
 Mirage.prototype.GetHitpoints = function() { return this.hitpoints; };
 Mirage.prototype.IsRepairable = function() { return this.repairable; };
+Mirage.prototype.IsInjured = function() { return this.injured; };
 Mirage.prototype.IsUnhealable = function() { return this.unhealable; };
 
 // Capture data
@@ -208,6 +211,7 @@ Mirage.prototype.UpdateTraders = function(msg)
 
 Mirage.prototype.OnVisibilityChanged = function(msg)
 {
+	// Mirages get VIS_HIDDEN when the original entity becomes VIS_VISIBLE.
 	if (msg.player != this.player || msg.newVisibility != VIS_HIDDEN)
 		return;
 

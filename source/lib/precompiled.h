@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -101,5 +101,11 @@ using std::shared_ptr;
 // but will cause a complete rebuild if they change.
 
 #include "lib/pch/pch_stdlib.h"
+
+// These two files are included (directly or indirectly) by about half of the .cpp files.
+// Changing these thus forces recompilation of most of the project regardless,
+// and putting them in the precompiled header cuts a large amount of time even even on incremental builds.
+#include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 #endif // #if CONFIG_ENABLE_PCH && HAVE_PCH

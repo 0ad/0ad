@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -756,8 +756,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	if (WaterMgr->m_WaterRefraction)
 		m->fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
-	if (WaterMgr->m_WaterReflection)
-		m->fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
 
 	m->fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
 	m->fancyWaterShader->BindTexture(str_losMap, losTexture.GetTextureSmooth());
@@ -767,12 +765,13 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
 	//TODO: bind only what's needed
-	if (WaterMgr->m_WaterReflection)
+	if (WaterMgr->m_WaterRefraction || WaterMgr->m_WaterReflection)
 	{
+		m->fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
 		// TODO: check that this rotates in the right direction.
 		CMatrix3D skyBoxRotation;
 		skyBoxRotation.SetIdentity();
-		skyBoxRotation.RotateY(M_PI - 0.3f + lightEnv.GetRotation());
+		skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
 		m->fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
 	}
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());

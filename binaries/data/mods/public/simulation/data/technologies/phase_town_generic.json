@@ -14,9 +14,9 @@
 	"researchTime": 30,
 	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by +30%. Citizen soldiers max health increased by +20%. All structures +7 garrisoned regeneration rate.",
 	"modifications": [
-		{ "value": "TerritoryInfluence/Radius", "multiply": 1.30, "affects": "CivCentre" },
+		{ "value": "TerritoryInfluence/Radius", "multiply": 1.3, "affects": "CivCentre" },
 		{ "value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier" },
-		{ "value": "Capturable/GarrisonRegenRate", "add": 7.0, "affects": "Structure" }
+		{ "value": "Capturable/GarrisonRegenRate", "add": 7, "affects": "Structure" }
 	],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

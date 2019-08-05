@@ -489,7 +489,7 @@ TriggerHelper.BalancedTemplateComposition = function(templateBalancing, totalCou
 				Math.min(remainder, Math.round(templateBalancingFrequencies[i].frequency / templateBalancingFrequencySum * totalCount)));
 
 	if (remainder != 0)
-		warn("Could not chose as many templates as intended, remaining " + remainder + ", chosen: " + uneval(results));
+		warn("Could not choose as many templates as intended, remaining " + remainder + ", chosen: " + uneval(results));
 
 	return results;
 };

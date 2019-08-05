@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <props>
+        <prop actor="flora/trees/cedar_atlas_deadbranches.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <textures>
+        <texture file="gaia/cedar_atlas_dead.png" name="baseTex"/>
+        <texture file="gaia/cedar_atlas_dead_norm.png" name="normTex"/>
+        <texture file="gaia/cedar_atlas_dead_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/cedar_atlas_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/cedar_atlas_2.dae</mesh>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/cedar_atlas_3.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,42 +24,41 @@ class TestXmlWriter : public CxxTest::TestSuite
 public:
 	void test1()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Root");
+			XMLWriter_Element rootTag(testFile, "Root");
 			{
-				XML_Comment("Comment test.");
-				XML_Comment("Comment test again.");
+				testFile.Comment("Comment test.");
+				testFile.Comment("Comment test again.");
 				{
-					XML_Element("a");
-					XML_Attribute("one", 1);
-					XML_Attribute("two", "TWO");
-					XML_Text("b");
-					XML_Text(" (etc)");
+					XMLWriter_Element testTag1(testFile, "a");
+					testTag1.Attribute("one", 1);
+					testTag1.Attribute("two", "TWO");
+					testTag1.Text("b", false);
+					testTag1.Text(" (etc)", false);
 				}
 				{
-					XML_Element("c");
-					XML_Text("d");
+					XMLWriter_Element testTag2(testFile, "c");
+					testTag2.Text("d", false);
 				}
-				XML_Setting("c2", "d2");
+				rootTag.Setting("c2", "d2");
 				{
-					XML_Element("e");
+					XMLWriter_Element testTag3(testFile, "e");
 					{
 						{
-							XML_Element("f");
-							XML_Text("g");
+							XMLWriter_Element testTag4(testFile, "f");
+							testTag4.Text("g", false);
 						}
 						{
-							XML_Element("h");
+							XMLWriter_Element testTag5(testFile, "h");
 						}
 						{
-							XML_Element("i");
-							XML_Attribute("j", 1.23);
+							XMLWriter_Element testTag6(testFile, "i");
+							testTag6.Attribute("j", 1.23);
 							{
-								XML_Element("k");
-								XML_Attribute("l", 2.34);
-								XML_Text("m");
+								XMLWriter_Element testTag7(testFile, "k");
+								testTag7.Attribute("l", 2.34);
+								testTag7.Text("m", false);
 							}
 						}
 					}
@@ -67,7 +66,7 @@ public:
 			}
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"\n"
@@ -85,25 +84,24 @@ public:
 			"\t\t</i>\n"
 			"\t</e>\n"
 			"</Root>"
-			);
+		);
 	}
 
 	void test_basic()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
+			XMLWriter_Element testTag1(testFile, "Test");
 			{
-				XML_Element("example");
+				XMLWriter_Element testTag2(testFile, "example");
 				{
-					XML_Element("content");
-					XML_Text("text");
+					XMLWriter_Element testTag3(testFile, "content");
+					testTag3.Text("text", false);
 				}
 			}
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"\n"
@@ -112,133 +110,126 @@ public:
 			"\t\t<content>text</content>\n"
 			"\t</example>\n"
 			"</Test>"
-			);
+		);
 	}
 
 	void test_nonpretty()
 	{
-		XML_Start();
-		XML_SetPrettyPrint(false);
-
+		XMLWriter_File testFile;
+		testFile.SetPrettyPrint(false);
 		{
-			XML_Element("Test");
+			XMLWriter_Element testTag1(testFile, "Test");
 			{
-				XML_Element("example");
+				XMLWriter_Element testTag2(testFile, "example");
 				{
-					XML_Element("content");
-					XML_Text("text");
+					XMLWriter_Element testTag3(testFile, "content");
+					testTag3.Text("text", false);
 				}
 			}
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"<Test><example><content>text</content></example></Test>"
-			);
+		);
 	}
 
 	void test_text()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
-			XML_Text("a");
-			XML_Text("b");
+			XMLWriter_Element rootTag(testFile, "Test");
+			rootTag.Text("a", false);
+			rootTag.Text("b", false);
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"\n"
 			"<Test>ab</Test>"
-			);
+		);
 	}
 
 
 	void test_utf8()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
+			XMLWriter_Element rootTag(testFile, "Test");
 			{
 				const wchar_t text[] = { 0x0251, 0 };
-				XML_Text(text);
+				rootTag.Text(text, false);
 			}
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test>\xC9\x91</Test>"
-			);
+		);
 	}
 
 	void test_attr_escape()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
-			XML_Attribute("example", "abc > ]]> < & \"\" ");
+			XMLWriter_Element rootTag(testFile, "Test");
+			rootTag.Attribute("example", "abc > ]]> < & \"\" ");
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test example=\"abc > ]]> &lt; &amp; &quot;&quot; \"/>"
-			);
+		);
 	}
 
 	void test_chardata_escape()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
-			XML_Text("abc > ]]> < & \"\" ");
+			XMLWriter_Element rootTag(testFile, "Test");
+			rootTag.Text("abc > ]]> < & \"\" ", false);
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test>abc > ]]&gt; &lt; &amp; \"\" </Test>"
-			);
+		);
 	}
 
 	void test_cdata_escape()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
-			XML_CDATA("abc > ]]> < & \"\" ");
+			XMLWriter_Element rootTag(testFile, "Test");
+			rootTag.Text("abc > ]]> < & \"\" ", true);
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test><![CDATA[abc > ]]>]]&gt;<![CDATA[ < & \"\" ]]></Test>"
-			);
+		);
 	}
 
 	void test_comment_escape()
 	{
-		XML_Start();
-
+		XMLWriter_File testFile;
 		{
-			XML_Element("Test");
-			XML_Comment("test - -- --- ---- test");
+			XMLWriter_Element rootTag(testFile, "Test");
+			testFile.Comment("test - -- --- ---- test");
 		}
 
-		CStr output = XML_GetOutput();
+		CStr output = testFile.GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test>\n"
 			"\t<!-- test - \xE2\x80\x90\xE2\x80\x90 \xE2\x80\x90\xE2\x80\x90- \xE2\x80\x90\xE2\x80\x90\xE2\x80\x90\xE2\x80\x90 test -->\n"
 			"</Test>"
-			);
+		);
 	}
 };

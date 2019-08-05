@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
  */
 struct COListColumn
 {
-  CColor m_TextColor;
+  CGUIColor m_TextColor;
   CStr m_Id;
   float m_Width;
   CStrW m_Heading;
@@ -45,7 +45,7 @@ class COList : public CList
 	GUI_OBJECT(COList)
 
 public:
-	COList();
+	COList(CGUI* pGUI);
 
 protected:
 	void SetupText();
@@ -68,6 +68,7 @@ protected:
 private:
 	// Width of space available for columns
 	float m_TotalAvailableColumnWidth;
+	float m_HeadingHeight;
 };
 
 #endif // INCLUDED_COLIST

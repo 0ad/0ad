@@ -2,10 +2,12 @@
 <Entity parent="template_unit_fauna_hunt_aggressive">
   <Attack>
     <Melee>
-      <Hack>12.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
+      <Damage>
+        <Hack>12.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>0.0</Crush>
+      </Damage>
+      <MaxRange>1.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
@@ -14,7 +16,6 @@
     <Height>3.5</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
     <GenericName>Wild Boar</GenericName>
     <SpecificName>Sus scrofa</SpecificName>
     <Icon>gaia/fauna_boar.png</Icon>

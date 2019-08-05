@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -283,8 +283,8 @@ public:
 		CDebugSerializer serialize(script, stream);
 		serialize.NumberI32("x", 16, -16, 16);
 		serialize.NumberI32("x", -16, -16, 16);
-		TS_ASSERT_THROWS(serialize.NumberI32("x", 17, -16, 16), PSERROR_Serialize_OutOfBounds);
-		TS_ASSERT_THROWS(serialize.NumberI32("x", -17, -16, 16), PSERROR_Serialize_OutOfBounds);
+		TS_ASSERT_THROWS(serialize.NumberI32("x", 99, -16, 16), const PSERROR_Serialize_OutOfBounds&);
+		TS_ASSERT_THROWS(serialize.NumberI32("x", -17, -16, 16), const PSERROR_Serialize_OutOfBounds&);
 	}
 
 	// TODO: test exceptions more thoroughly
@@ -766,7 +766,7 @@ public:
 		TestLogger logger;
 
 		TS_ASSERT(script.Eval("([1, 2, function () { }])", &obj));
-		TS_ASSERT_THROWS(serialize.ScriptVal("script", &obj), PSERROR_Serialize_InvalidScriptValue);
+		TS_ASSERT_THROWS(serialize.ScriptVal("script", &obj), const PSERROR_Serialize_InvalidScriptValue&);
 	}
 
 	void test_script_splice()

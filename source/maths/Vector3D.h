@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,10 @@ class CVector3D
 		float X, Y, Z;
 
 	public:
+		// Returns maximum/minimum possible position stored in the CVector3D.
+		static CVector3D Max();
+		static CVector3D Min();
+
 		CVector3D() : X(0.0f), Y(0.0f), Z(0.0f) {}
 		CVector3D(float x, float y, float z) : X(x), Y(y), Z(z) {}
 		CVector3D(const CFixedVector3D& v);

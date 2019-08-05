@@ -1,19 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Thadah D. Denyse <juchuf@gmail.com>, 2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2018
+# Gontzal M. Pujana <juchuf@gmail.com>, 2016
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
-# Osoitz <oelkoro@gmail.com>, 2015
-# Thadah D. Denyse <juchuf@gmail.com>, 2016
+# Osoitz <oelkoro@gmail.com>, 2015,2019
+# Gontzal M. Pujana <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 17:59+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-30 01:32+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -238,8 +238,8 @@ msgstr "%(_player_)s, Bidal iezadazu  %(_amount_)s %(_resource_)s en zerga zure 
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "%(_amount_)s %(_resource_)s bidali arte ez dut onartuko zure kidetza eskaintza.%(_player_)s,"
+" %(_player_)s."
+msgstr "%(_amount_)s%(_resource_)s niri bidali ezean, ez da aliantza bat eratuko, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -546,7 +546,7 @@ msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s, %(reso
 msgid "The production queue is full."
 msgstr "Produkzio ilara beterik dago"
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Erreklutatutako unitateak ea daukate agertzeko nahikoa toki"
 
@@ -603,7 +603,7 @@ msgstr "Ezin izan dira unitateak azaleratu"
 msgid "Some unit(s) can't go back to work"
 msgstr "Unitateren bat(zu)ek ezin izan du(te) lanera itzuli"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Oraindik ez dira bete eraikinaren baldintza teknologikoak."
 
@@ -735,8 +735,9 @@ msgstr "Errege-hilketa"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Izan zaitez lehena Miragarri bat atzeman edo eraikitzen eta denbora batez mantendu jokoa irabazteko. Denbora neurgailua berrekingo da Miragarria suntsitzean edo atzematean edo aliatuen garaipen batean nagusien aliantzak aldatzen direnean."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Izan zaitez lehena Mirari bat eraiki edo atzematen eta gorde ezazu denbora bartez jokoa irabazteko. Denbora neurgailua Miraria puskatu edo atzematean berrabiaraziko da. Aliatuen garaipen modua aktibatuta badago, denbora neurgailua berrabiaraziko da jabearen aliantzak aldatzen direnean."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -881,5 +882,5 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra 0 A.D.ren berezko bota da. Mesedez, arazoak Wildfire Games-i jakinaraazi (esteka menu nagusian dago).\n\nAA-k baliabideak pilatzean sari/zigorra du (bai biltzearen ratioagatik bai merkataritza lortzeagatik) eta hau doa %60- Sandbox-entzako hasi eta %60+ oso zailerako arte (erdia %0) eta maila errazenek ekoizpen eta eraikuntza tasa motelagoa dute.  Gainera, Sandbox mailan ez da hedatzen ez erasotzen."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra 0 A.D.ren berezko bota da. Mesedez, arazoak Wildfire Games-i jakinarazi (esteka menu nagusian dago).\n\n\nAA baliabideak biltzeko tasa eta merkataritzaren irabazia zailtasunaren arabera doa (Sandbox −%58, Oso Erraza −%44, Erraza−%25, Ertaina ± %0, Zaila + %25, Oso Zaila +% 56). Maila errazenak ikerketa, trebatze eta eraikitze tasa motelagoa dute. Horrez gain, Sandbox maila ez da zabaltzen ez eta eraso egin ere."

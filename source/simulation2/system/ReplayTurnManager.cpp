@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,12 +76,29 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	ENSURE(m_Simulation2.ComputeStateHash(hash, quickHash));
 	hash = Hexify(hash);
 
-	if (hash != expectedHash)
-	{
-		m_HasSyncError = true;
-		LOGERROR("Replay out of sync on turn %d", turn);
-		g_GUI->SendEventToAll("ReplayOutOfSync");
-	}
+	if (hash == expectedHash)
+		return;
+
+	m_HasSyncError = true;
+	LOGERROR("Replay out of sync on turn %d", turn);
+
+	const ScriptInterface& scriptInterface = m_Simulation2.GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::AutoValueVector paramData(cx);
+
+	paramData.append(JS::NumberValue(turn));
+
+	JS::RootedValue hashVal(cx);
+	scriptInterface.ToJSVal(cx, &hashVal, hash);
+	paramData.append(hashVal);
+
+	JS::RootedValue expectedHashVal(cx);
+	scriptInterface.ToJSVal(cx, &expectedHashVal, expectedHash);
+	paramData.append(expectedHashVal);
+
+	g_GUI->SendEventToAll("ReplayOutOfSync", paramData);
 }
 
 void CReplayTurnManager::DoTurn(u32 turn)

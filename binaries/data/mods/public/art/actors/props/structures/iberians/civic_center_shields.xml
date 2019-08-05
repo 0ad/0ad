@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Civic Center Shields">
+      <mesh>props/iber_civic_center_shields.dae</mesh>
+      <textures>
+        <texture file="props/iber_prop_shields.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

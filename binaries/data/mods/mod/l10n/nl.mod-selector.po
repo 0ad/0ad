@@ -3,8 +3,9 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# bb jansen <b.jansen5@students.uu.nl>, 2018
+# bb <b.jansen5@students.uu.nl>, 2018
 # Dig Dug <digdug3@zonnet.nl>, 2018
+# Freagarach . <freagarach@gmail.com>, 2019
 # Marijn Billiet <marijnbilliet@gmail.com>, 2018
 # Michiel <mvdijk@mivadi.com>, 2014
 # niektb <niektb95@gmail.com>, 2014,2016
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 02:40+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2019-04-14 13:13+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,6 +240,14 @@ msgstr "Afhankelijkheid niet voldaan: %(dep)s"
 msgid "All dependencies met"
 msgstr "Aan alle afhankelijkheden zijn voldaan"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Activeer"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Schakel uit"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Er is geen modificatie geselecteerd."
@@ -249,20 +258,26 @@ msgstr ""
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io Gebruikersvoorwaarden"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io Privacybeleid"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "OK"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Bekijk online"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Open %(url)s in uw webbrowser."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -388,7 +403,7 @@ msgstr "Taal"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Weiger"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -400,29 +415,29 @@ msgstr ""
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Dokument Datum: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "U staat op het punt om te verbinden met de mod.io online service."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Deze service biedt een gemakkelijke manier om door de gemeenschap gemaakte modificaties te downloaden en te installeren. Dit wordt u aangeboden door DBolical Pty Ltd, het bedrijf achter IndieDB en ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Deze service is voor gebruikers ouder dan 13 jaar."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games heeft maatregelen genomen om de verbinding beveiligd te maken en heeft de modificaties geïnspecteerd op beveiligingslekken, doch kan niet garanderen dat er geen enkel risico aan het gebruik verbonden is."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
@@ -445,7 +460,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Om een mod te installeren, open het bestand met 0 A.D. (door middel van dubbelklikken op het bestand en het te laten openen door het spel of door \"pyrogenesis file.pyromod\" te starten met de command prompt). De mod komt dan beschikbaar in het mod selectie scherm. De mod kan naar believen aan en uitgezet worden. Je kunt een mod, indien noodzakelijk, handmatig verwijderen via de verkenner. (Zie: https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Om een mod te installeren, open het bestand met 0 A.D. (door middel van dubbelklikken op het bestand en het te laten openen door het spel of door \"pyrogenesis file.pyromod\" te starten met de command prompt). De mod komt dan beschikbaar in het mod selectie scherm. De mod kan naar believen aan en uitgezet worden. U kunt een mod, indien noodzakelijk, handmatig verwijderen via de verkenner. (Zie: https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""

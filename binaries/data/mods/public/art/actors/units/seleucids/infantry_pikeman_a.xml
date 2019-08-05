@@ -8,7 +8,28 @@
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/sele_bronzeshield_a.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/helmets/sele_chalkaspides_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet-Thracian-01">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_b1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-02">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_s1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-03">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_b1_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-04">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_s1_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

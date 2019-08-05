@@ -5,8 +5,8 @@
     <Height>3.5</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Giraffe (Juvenile)</SpecificName>
+    <GenericName>Juvenile Giraffe</GenericName>
+    <SpecificName>Giraffa camelopardalis</SpecificName>
     <Icon>gaia/fauna_giraffe.png</Icon>
   </Identity>
   <Position>
@@ -21,9 +21,6 @@
   </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.6</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.6</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/giraffe_baby.xml</Actor>

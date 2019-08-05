@@ -2,21 +2,28 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <mesh>structural/found_1x1.dae</mesh>
-      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/special/eyecandy/delimitator.xml" attachpoint="Delimitator001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/delimitator.xml" attachpoint="Delimitator002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/delimitator.xml" attachpoint="Delimitator003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/delimitator.xml" attachpoint="Delimitator004" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant>
+    <variant frequency="1" name="Idle"/>
+    <variant name="scaffold">
       <props>
+        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator001" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator002" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator003" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator004" maxheight="20" minheight="-20"/>		
       </props>
     </variant>
   </group>
-  
+  <material>default.xml</material>
 </actor>

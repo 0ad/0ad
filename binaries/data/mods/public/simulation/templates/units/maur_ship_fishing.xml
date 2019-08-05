@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_ship_fishing">
+<Entity parent="template_unit_ship_fishing">
   <Footprint>
     <Square width="7.0" depth="17.0"/>
     <Height>4.0</Height>
@@ -11,6 +11,6 @@
     <Icon>units/maur_ship_fishing.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/mauryans/fishing_ship.xml</Actor>
+    <Actor>structures/mauryas/fishing_ship.xml</Actor>
   </VisualActor>
 </Entity>

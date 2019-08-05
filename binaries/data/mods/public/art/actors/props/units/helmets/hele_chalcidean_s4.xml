@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Chalcidean-04">
+      <mesh>props/helmet/hele_chalcidean_d.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/chalcidean_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Silver-04">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_04_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_chalcidean_04_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_chalcidean_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,8 @@
 
 #include "GUI.h"
 
-IGUIScrollBarOwner::IGUIScrollBarOwner()
+IGUIScrollBarOwner::IGUIScrollBarOwner(CGUI* pGUI)
+	: IGUIObject(pGUI)
 {
 }
 
@@ -40,26 +41,15 @@ void IGUIScrollBarOwner::ResetStates()
 void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
 {
 	scrollbar->SetHostObject(this);
-	scrollbar->SetGUI(GetGUI());
 	m_ScrollBars.push_back(scrollbar);
 }
 
 const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
 	if (!GetGUI())
-	{
-		// TODO Gee: Output in log
 		return NULL;
-	}
 
-	std::map<CStr, SGUIScrollBarStyle>::const_iterator it = GetGUI()->m_ScrollBarStyles.find(style);
-	if (it == GetGUI()->m_ScrollBarStyles.end())
-	{
-		// TODO Gee: Output in log
-		return NULL;
-	}
-
- 	return &it->second;
+	return GetGUI()->GetScrollBarStyle(style);
 }
 
 void IGUIScrollBarOwner::HandleMessage(SGUIMessage& msg)

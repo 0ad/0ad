@@ -16,7 +16,6 @@
   </Health>
   <Identity>
     <GenericName>Flaming Pig</GenericName>
-    <SpecificName>Sus scrofa domesticus igne</SpecificName>
     <Icon>units/flaming_pig.png</Icon>
   </Identity>
   <ResourceSupply disable=""/>
@@ -30,9 +29,6 @@
   </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">3.5</WalkSpeed>
-    <Run>
-      <Speed op="mul">3.5</Speed>
-    </Run>
   </UnitMotion>
   <Upgrade disable=""/>
   <VisualActor>

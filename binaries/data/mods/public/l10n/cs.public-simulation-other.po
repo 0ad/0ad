@@ -1,11 +1,11 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
-# Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
-# J D <jonas.dyba@gmail.com>, 2016
+# Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
+# Wesalius <jonas.dyba@gmail.com>, 2016
 # fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-28 20:31+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-24 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -243,8 +243,8 @@ msgstr "%(_player_)s, musíš mi poslat tribut (projev úcty, vlastně vazalskou
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "Dokud mi nepošleš %(_amount_)s %(_resource_)s, tak spojenectví utvořeno nebude, %(_player_)s,"
+" %(_player_)s."
+msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -349,19 +349,19 @@ msgstr "%(_player_)s, chtěl bych požádat o smlouvu o neutralitě mezi našimi
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s, bylo by to k našemu společnému prospěchu, pokud bychom vyjednali smlouvu o neutralitě. Stanu se vůči tobě neutrálním, pokud uděláš totéž."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, rozhodl jsem se zrušit svoji nabídku dohody o neutralitě."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s, protože jste neodpověděli na mou žádost o mír mezi námi, zrušil jsem svou nabídku."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
@@ -502,10 +502,10 @@ msgstr "Můžete zaútočit nyní!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)szvítězil (poslední hráč naživu)."
+msgstr[1] "%(lastPlayer)svyhráli (poslední hráč naživu)."
+msgstr[2] "%(lastPlayer)svyhrálo (poslední hráči naživu)."
+msgstr[3] "%(players)sa%(lastPlayer)s zvítězili (poslední hráči naživu)."
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
@@ -557,7 +557,7 @@ msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAm
 msgid "The production queue is full."
 msgstr "Výrobní řada je plná."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Nelze najít místo na vytváření cvičených jednotek"
 
@@ -614,7 +614,7 @@ msgstr "Nelze vyložit jednotky"
 msgid "Some unit(s) can't go back to work"
 msgstr "Některé jednotky nemohou jít zpět do práce"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požadavky na postavení budovy nejsou splněny."
 
@@ -746,7 +746,8 @@ msgstr "Královrah"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
@@ -841,13 +842,13 @@ msgstr "Malá"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Malé mapy jsou vhodné pro zápasy 1v1 (jeden na jednoho), jelikož se hráči mohou dostat rychle k nepříteli, zatímco mají stále prostor k rozšíření."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Středně velké mapy poskytují dostatek místa pro dva hráče, ale vejde se na ně dokonce i osm hráčů."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -857,7 +858,7 @@ msgstr "Normální"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Toto je dokonalá velikost mapy pro 4 až 8 hráčů, protože existuje dostatek prostoru pro rozšíření, zatímco sousedi jsou rychle dosažitelní."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -867,7 +868,7 @@ msgstr "Velká"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "Velká velikost mapy se doporučuje, když velké části mapy jsou pokryté vodou nebo nepřístupnými horami."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -878,7 +879,7 @@ msgstr "Velmi velká"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Velmi velké mapy se nedoporučují, protože trvá velmi dlouho, než se dostanete k nepříteli a výkon hry se může snížit."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -892,5 +893,5 @@ msgstr "UI Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr ""

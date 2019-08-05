@@ -48,7 +48,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>
       <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryDecay>
@@ -57,6 +56,6 @@
   <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/mercenaries/camp_egyptian.xml</Actor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+    <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
   </VisualActor>
 </Entity>

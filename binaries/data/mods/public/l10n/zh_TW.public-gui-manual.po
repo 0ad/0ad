@@ -1,19 +1,20 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Yuan <daan0014119@gmail.com>, 2017
-# Jeff Huang <s8321414@gmail.com>, 2014-2017
-# Jerry Shen <jerry82422@gmail.com>, 2018
+# Jeff Huang <s8321414@gmail.com>, 2014-2018
+# JerryShen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # 張峻瑜 <a728728728@gmail.com>, 2018
+# 旭誠 張 <tea55688@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 21:38+0000\n"
-"Last-Translator: 張峻瑜 <a728728728@gmail.com>\n"
+"POT-Creation-Date: 2019-01-21 09:44+0100\n"
+"PO-Revision-Date: 2019-01-21 16:03+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,18 +111,18 @@ msgstr "[font=\"sans-14\"]在主選單可以選擇兩種遊戲模式："
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]單人遊戲[font=\"sans-14\"] — 進行一個沙盒遊戲或是與一個或多個電腦對手對抗。電腦對手的 AI 仍在開發中，所以可能不會使用一些最新的特性，若您無法與人類玩家進行遊戲，您仍可以試著與目前的電腦玩家對抗。"
+msgstr ""
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]多人遊戲[font=\"sans-14\"] — 與人類玩家透過網際網路一同進行遊戲。"
+msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -147,21 +148,21 @@ msgstr "首先，選取您要遊玩的地圖類型："
 
 #: gui/manual/intro.txt:32
 msgid ""
-"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
+"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]隨機地圖[font=\"sans-14\"] — 由指令稿自動建立的地圖"
+msgstr ""
 
 #: gui/manual/intro.txt:33
 msgid ""
-"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
-"map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]劇情地圖[font=\"sans-14\"] — 由地圖設計者建立且有著固定文明的地圖"
+"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
+"map designers and with fixed civilizations"
+msgstr ""
 
 #: gui/manual/intro.txt:34
 msgid ""
-"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
-"map designers but where the civilisations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]小規模戰鬥地圖[font=\"sans-14\"] — 由地圖設計者建立，但可選取文明的地圖"
+"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
+"map designers but where the civilizations can be chosen"
+msgstr ""
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -228,10 +229,10 @@ msgstr "F2：拍螢幕截圖（儲存為 .png 格式，儲存後，位置會顯�
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
-" displayed in the top left of the GUI after the file has been saved, and can"
-" also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2：拍螢幕截圖 (儲存為 6400px*4800px，.bmp 格式，儲存後，位置會顯示在圖形介面的左上方，如果你漏掉它，你也可以在主控臺/log裡看到)"
+"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
+" is displayed in the top left of the GUI after the file has been saved, and "
+"can also be seen in the console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
@@ -316,8 +317,8 @@ msgid ""
 msgstr "Shift + Delete：不詢問確認就銷毀目前選定的單位／建築物"
 
 #: gui/manual/intro.txt:71
-msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ （斜線）：選取發呆的戰士"
+msgid "/ (Slash): Select idle fighter"
+msgstr "/（斜線）選取閒置戰士"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
@@ -340,8 +341,8 @@ msgid "Alt + .: Select all idle workers (including citizen soldiers)"
 msgstr "Alt + .：選中發呆的工人（包括公民兵）"
 
 #: gui/manual/intro.txt:77
-msgid "\\ (BackSlash): Select idle unit"
-msgstr "\\ (反斜鍵): 選取發呆單位"
+msgid "\\ (Backslash): Select idle unit"
+msgstr "\\（反斜線）選取閒置單位"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -393,9 +394,9 @@ msgstr "F5、F6、F7 及 F8：移動視野到已標記的位置。如果視野�
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
 "unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: 在訓練單位的建築物被選取時，對所有被選取的訓練單位建築物加入第一個、第二個、......單位顯示到訓練隊列中。"
+msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -462,7 +463,7 @@ msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr ""
+msgstr "Alt + 滑鼠右鍵點選：命令一個目前選取的單位移動／建造／採集等行動並取消選取它。用於快速調度有特定任務的單位。"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -512,21 +513,20 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + 右鍵點擊 單位選定時: "
 
 #: gui/manual/intro.txt:115
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- 若游標在盟軍建築物上：駐軍"
+msgid "  • If the cursor is over an allied structure: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
-msgstr "- 若游標在非盟軍的建築物上：攻擊（而不是捕獲或收集）"
+"  • If the cursor is over a non-allied unit or building: Attack (instead of "
+"capture or gather)"
+msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
-"    - Otherwise: Attack move (by default all enemy units and structures "
-"along the way are targeted, use Ctrl + Q + Right Click to target only "
-"units). "
-msgstr "- 除此之外：攻擊移動（預設會將移動路線上所有的敵方單位及建築物作為目標，利用 Ctrl + Q + 右鍵點擊來僅將單位作為目標）。"
+"  • Otherwise: Attack move (by default all enemy units and structures along "
+"the way are targeted, use Ctrl + Q + Right Click to target only units)."
+msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -545,7 +545,7 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Shift + W：切換線框模式（按一下以讓線框覆蓋層疊在紋理模型上，按兩下以取得用紋理上色的線框，按三下以回到一般紋理模式）"
 
 #: gui/manual/intro.txt:123
 msgid ""
@@ -564,7 +564,7 @@ msgstr "Alt + X: 切換外交顏色"
 #: gui/manual/intro.txt:126
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C：切換選定防禦建築的攻擊範圍可見與否"
 
 #: gui/manual/intro.txt:127
 msgid ""
@@ -608,16 +608,16 @@ msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A 或 \\[左方向鍵]：順時針繞地形旋轉視野"
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D 或 \\[右方向鍵]：逆時針繞地形旋轉視野"
+msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q：將視角繞地形順時針旋轉"
 
 #: gui/manual/intro.txt:140
-msgid "E: Rotate camera anticlockwise around terrain"
-msgstr "E: 逆時針繞地形"
+msgid "E: Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -625,8 +625,9 @@ msgstr "Shift + 滾輪向上轉: 將視角繞地形順時針旋轉"
 
 #: gui/manual/intro.txt:142
 msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Shift + 滾輪向下轉: 逆時針繞地形"
+"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -639,8 +640,8 @@ msgid "R: Reset camera zoom/orientation"
 msgstr "R：重置視野縮放/方向"
 
 #: gui/manual/intro.txt:145
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+：放大（持續按著可以連續縮放）"
+msgid "= or +: Zoom in (keep pressed for continuous zoom)"
+msgstr "= 或 +：放大（按住以持續）"
 
 #: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"

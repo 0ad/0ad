@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -284,7 +284,9 @@ public:
 
 	virtual void handleSessionAction(gloox::Jingle::Action action, gloox::Jingle::Session* session, const gloox::Jingle::Session::Jingle* jingle)
 	{
-		m_Wrapped->handleSessionAction(action, new glooxwrapper::Jingle::Session(session, false), new glooxwrapper::Jingle::Session::Jingle(jingle, false));
+		glooxwrapper::Jingle::Session wrapped_session(session, false);
+		glooxwrapper::Jingle::Session::Jingle wrapped_jingle(jingle, false);
+		m_Wrapped->handleSessionAction(action, &wrapped_session, &wrapped_jingle);
 	}
 
 	virtual void handleSessionActionError(gloox::Jingle::Action UNUSED(action), gloox::Jingle::Session* UNUSED(session), const gloox::Error* UNUSED(error))
@@ -806,14 +808,6 @@ glooxwrapper::Jingle::Content::Content()
 	m_Owned = true;
 }
 
-const glooxwrapper::Jingle::PluginList glooxwrapper::Jingle::Session::Jingle::plugins() const
-{
-	glooxwrapper::Jingle::PluginList pluginListWrapper;
-	for (const gloox::Jingle::Plugin* const& plugin : m_Wrapped->plugins())
-		pluginListWrapper.push_back(new glooxwrapper::Jingle::Plugin(const_cast<gloox::Jingle::Plugin*>(plugin), false));
-	return pluginListWrapper;
-}
-
 glooxwrapper::Jingle::ICEUDP::Candidate glooxwrapper::Jingle::Session::Jingle::getCandidate() const
 {
 	const gloox::Jingle::Content* content = static_cast<const gloox::Jingle::Content*>(m_Wrapped->plugins().front());
@@ -830,9 +824,9 @@ glooxwrapper::Jingle::ICEUDP::Candidate glooxwrapper::Jingle::Session::Jingle::g
 
 bool glooxwrapper::Jingle::Session::sessionInitiate(char* ipStr, u16 port)
 {
-	gloox::Jingle::ICEUDP::CandidateList* candidateList = new gloox::Jingle::ICEUDP::CandidateList();
+	gloox::Jingle::ICEUDP::CandidateList candidateList;
 
-	candidateList->push_back(gloox::Jingle::ICEUDP::Candidate
+	candidateList.push_back(gloox::Jingle::ICEUDP::Candidate
 	{
 		"1", // component_id,
 		"1", // foundation
@@ -848,9 +842,10 @@ bool glooxwrapper::Jingle::Session::sessionInitiate(char* ipStr, u16 port)
 		gloox::Jingle::ICEUDP::ServerReflexive
 	});
 
-	gloox::Jingle::PluginList* pluginList = new gloox::Jingle::PluginList();
-	pluginList->push_back(new gloox::Jingle::ICEUDP(/*local_pwd*/"", /*local_ufrag*/"", *candidateList));
-	return m_Wrapped->sessionInitiate(new gloox::Jingle::Content(std::string("game-data"), *pluginList));
+	gloox::Jingle::PluginList pluginList;
+	pluginList.push_back(new gloox::Jingle::ICEUDP(/*local_pwd*/"", /*local_ufrag*/"", candidateList));
+	// This is safe as gloox will free Content which will free the ICEUDP object
+	return m_Wrapped->sessionInitiate(new gloox::Jingle::Content(std::string("game-data"), pluginList));
 }
 
 glooxwrapper::Jingle::ICEUDP::ICEUDP(glooxwrapper::Jingle::ICEUDP::CandidateList& candidates)

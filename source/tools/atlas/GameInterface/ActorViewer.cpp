@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ public:
 
 	entity_id_t Entity;
 	CStrW CurrentUnitID;
-	CStrW CurrentUnitAnim;
+	CStr CurrentUnitAnim;
 	float CurrentSpeed;
 	bool WalkEnabled;
 	bool GroundEnabled;
@@ -328,7 +328,7 @@ void ActorViewer::UnloadObjects()
 	m.ObjectManager.UnloadObjects();
 }
 
-void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_t playerID)
+void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t playerID)
 {
 	bool needsAnimReload = false;
 
@@ -376,7 +376,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_
 
 	if (needsAnimReload)
 	{
-		CStr anim = animation.ToUTF8().LowerCase();
+		CStr anim = animation.LowerCase();
 
 		// Emulate the typical simulation animation behaviour
 		float speed;
@@ -395,7 +395,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_
 		{
 			CmpPtr<ICmpUnitMotion> cmpUnitMotion(m.Simulation2, m.Entity);
 			if (cmpUnitMotion)
-				speed = cmpUnitMotion->GetRunSpeed().ToFloat();
+				speed = cmpUnitMotion->GetWalkSpeed().ToFloat() * cmpUnitMotion->GetRunMultiplier().ToFloat();
 			else
 				speed = 12.f; // typical unit speed
 
@@ -450,8 +450,8 @@ void ActorViewer::SetEnabled(bool enabled)
 		m.OldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
 
-		m.OldSky = g_Renderer.GetSkyManager()->m_RenderSky;
-		g_Renderer.GetSkyManager()->m_RenderSky = false;
+		m.OldSky = g_Renderer.GetSkyManager()->GetRenderSky();
+		g_Renderer.GetSkyManager()->SetRenderSky(false);
 
 		m.OldWater = g_Renderer.GetWaterManager()->m_RenderWater;
 		g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
@@ -460,7 +460,7 @@ void ActorViewer::SetEnabled(bool enabled)
 	{
 		// Restore the old renderer state
 		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.OldShadows);
-		g_Renderer.GetSkyManager()->m_RenderSky = m.OldSky;
+		g_Renderer.GetSkyManager()->SetRenderSky(m.OldSky);
 		g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
 	}
 }
@@ -511,7 +511,7 @@ void ActorViewer::Render()
 	CVector3D centre;
 	CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 	if (cmpVisual)
-		cmpVisual->GetBounds().GetCentre(centre);
+		cmpVisual->GetBounds().GetCenter(centre);
 	else
 		centre.Y = 0.f;
 	centre.X = centre.Z = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-16 10:19+0000\n"
+"POT-Creation-Date: 2018-12-31 09:46+0100\n"
+"PO-Revision-Date: 2018-12-31 15:46+0000\n"
 "Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -237,6 +237,14 @@ msgstr "Dalc'hidigezhioù am-dizhet: %(dep)s"
 msgid "All dependencies met"
 msgstr "An holl dalc'hiadigezh bet kejet outo"
 
+#: gui/modmod/modmod.js:370
+msgid "Enable"
+msgstr "Gweredekaat"
+
+#: gui/modmod/modmod.js:370
+msgid "Disable"
+msgstr "Diweredekaat"
+
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "N'eus bet diuzet mod ebet."
@@ -257,7 +265,13 @@ msgstr "Politikerezh Prevezded mod.io"
 msgid "OK"
 msgstr "Mat eo"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Gwelet enlinenn"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "Digeriñ %(url)s er merdeer."
@@ -394,7 +408,7 @@ msgstr "Degemer"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "Kemennad gouzaviñ mod.io 0 A.D. Impalaerelezhioù o c'henel"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
@@ -420,14 +434,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games en deus diwallet ouzh surentez ar c'hevreadur hag adwelet en deus ar modoù e-keñver perzhioù fall o surentez. Koulskoude ne c'hall ket gwarantiñ ne vefe arvar ebet ganto."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "En ur implijout ar servij e komprenit emaoc'h dindan Termenoù an Implij ha Politikerezh Prevezded mod.io ha ne c'hall ket bezañ kiriek Wildfire Games ken evit forzh peseurt gaouad o tont eus ar servij-mañ."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

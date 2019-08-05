@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/main_sail_base.xml" name="Bireme Sail">
+      <mesh>props/hele_bireme_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/spart_sail_01.xml" name="scorpion"/>
+    <variant frequency="100" file="others/ships/spart_sail_02.xml" name="chair"/>
+    <variant frequency="100" file="others/ships/spart_sail_03.xml" name="aegis"/>
+    <variant frequency="100" file="others/ships/spart_sail_04.xml" name="face"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

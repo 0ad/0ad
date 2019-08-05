@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <textures>
+        <texture file="gaia/tree_baobab_dead.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_dead_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_dead_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>gaia/baobab_1_branches.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/baobab_2_branches.dae</mesh>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/baobab_3_branches.dae</mesh>
+    </variant>
+    <variant frequency="1" name="d1">
+      <mesh>gaia/baobab_1_branches_dead.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

@@ -21,6 +21,7 @@
     <Civ>rome</Civ>
     <SpecificName>Triumphal Arch</SpecificName>
     <Tooltip>Special Imperial Roman building.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <Icon>structures/arch.png</Icon>
   </Identity>
   <Obstruction>
@@ -32,7 +33,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_theater.xml</select>
       <constructed>interface/complete/building/complete_theatre.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
@@ -40,6 +40,6 @@
   </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/romans/triumphal_arch.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_5x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

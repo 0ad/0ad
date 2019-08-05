@@ -1,15 +1,17 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Bart Groeneveld, 2017
-# bb jansen <b.jansen5@students.uu.nl>, 2018
+# bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Freagarach . <freagarach@gmail.com>, 2019
+# Jan Jasper de Kroon <jajadekroon@gmail.com>, 2019
 # Marijn Billiet <marijnbilliet@gmail.com>, 2018
-# Mark Martines <mark-martines@hotmail.com>, 2017
+# 477f07d437f0da0e33ec4ecd7b8e2b62, 2017
 # Michiel <mvdijk@mivadi.com>, 2014
 # niektb <niektb95@gmail.com>, 2014-2015
 # TheBuG <Ruben.bilo@gmail.com>, 2014
@@ -19,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-25 09:54+0000\n"
-"Last-Translator: bb jansen <b.jansen5@students.uu.nl>\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 15:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,6 +38,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "Eenheden gepromoveerd naar de geavanceerde klasse krijgen extra kwaliteiten: +20% gezondheid, +1 niveau van alle pantsertypes, 20% extra oorlogsbuit, +20% aanval voor mêlee eenheden, +4m extra bereik en +5% precisie voor afstandseenheden, extra snelheid, genezingskracht en bereik voor helers. "
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr ""
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "+10 meter bereik, -20% rekruteertijd en betere precisie voor boogschutters, maar ook -20% gezondheid."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Boogschutterstraditie"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Beschikbaar in dorpsfase."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -205,7 +234,7 @@ msgstr "Beschikbaar in grootstadsfase."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Rust je ruiters uit met extra pantser. Alle ruiters +1 slagpantser."
+msgstr "Rust uw ruiters uit met extra pantser. Alle ruiters +1 slagpantser."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -464,18 +493,6 @@ msgstr "Houten versterkingen voor scheepsrompen. +2 pantser voor alle types."
 msgid "Reinforced hull"
 msgstr "Versterkte scheepsromp"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Beschikbaar in dorpsfase."
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "Een lange speer speciaal voor cavalerie."
@@ -483,7 +500,7 @@ msgstr "Een lange speer speciaal voor cavalerie."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Rust je mêleeruiters uit met betere wapens. Mêleecavalerie +2 slagkracht."
+msgstr "Rust uw mêleeruiters uit met betere wapens. Mêleecavalerie +2 slagkracht."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -548,7 +565,7 @@ msgstr "Vervang bronzen wapens door ijzeren."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Rust je mêleeruiters uit met betere wapens. Mêleecavalerie +20% sterkere aanval."
+msgstr "Rust uw mêleeruiters uit met betere wapens. Mêleecavalerie +20% sterkere aanval."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -571,7 +588,7 @@ msgstr "Training voor afstandscavalerie"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Rust je afstandsruiters uit met betere wapens. afstandscavelerie +20% sterker."
+msgstr "Rust uw afstandsruiters uit met betere wapens. afstandscavelerie +20% sterker."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -684,7 +701,7 @@ msgstr "De wil om te vechten is cruciaal voor de overwinning."
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "Inspireer jouw troepen met een hoger inkomen. Alle land -en zeemachten +25% aanval."
+msgstr "Inspireer uw troepen met een hoger inkomen. Alle land -en zeemachten +25% aanval."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -835,8 +852,8 @@ msgid "Gather Training"
 msgstr "Verzameloefeningen"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "Netten verhogen de productiviteit van je vissers."
+msgid "Nets improve the productivity of fishing boats."
+msgstr "Netten verbeteren de productiviteit van vissersboten."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -883,7 +900,7 @@ msgstr "Verhoog snelheid van de werkers in de steenmijnen."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "Verkrijg slaven om je werkers stenen te helpen mijnen. +15% extra mijnsnelheid in steenmijnen."
+msgstr "Verkrijg slaven om uw werkers stenen te helpen mijnen. +15% Extra mijnsnelheid in steenmijnen."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -956,7 +973,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "Rust je werkkrachten uit met behulpzame werktuigen. +15% verzamelsnelheid voor metaal."
+msgstr "Rust uw werkkrachten uit met behulpzame werktuigen. +15% Verzamelsnelheid voor metaal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -968,19 +985,19 @@ msgstr "Manden voor het foerageren"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Geef mandjes aan je verzamelaars. +50% fruit verzamelsnelheid. "
+msgstr "Geef mandjes aan uw verzamelaars. +50% fruit verzamelsnelheid. "
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
 msgstr "Rieten mand"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
-msgstr "Eenheden die zich in een kazerne bevinden genezen na verloop van tijd."
+msgid "Units garrisoned in Barracks heal over time."
+msgstr "Eenheden die in de Kazerne verblijven genezen na verloop van tijd."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Eenheden worden langzaam geheeld als ze in barakken verblijven."
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "Eenheden worden in de loop van de tijd gezonder terwijl ze in de Kazerne verblijven."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1084,7 +1101,7 @@ msgstr "Het weefgetouw"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr "Activeer automatische genezing voor je eenheden."
+msgstr "Activeer automatische genezing voor uw eenheden."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -1295,7 +1312,7 @@ msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en meer e
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Vereist 5 dorpsgebouwen (uitgezonderd palissades en velden)."
+msgstr "Vereist 5 Dorpsgebouwen (uitgezonderd Palissades en Akkers)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1427,7 +1444,7 @@ msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
 " the fulcrum action of the throwing arm mid-throw, increasing speed and "
 "range of the javelin."
-msgstr "Het speerkoord vergroot de afstand waarover je kracht kan uitoefenen op de speer tijdens de worp. Zo wordt de werpafstand maar ook de precisie vergroot."
+msgstr "Het speerkoord vergroot de afstand waarover men kracht kan uitoefenen op de speer tijdens de worp. Zo wordt de werpafstand, maar ook de precisie, vergroot."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
@@ -1544,11 +1561,11 @@ msgstr "Cavalerie Snelheidstraining"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr "Huur een netwerk van informanten om over je volk te waken."
+msgstr "Huur een netwerk van informanten om over uw volk te waken."
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr "Maak je eenheden 50% duurder voor omkoperij."
+msgstr "Maak uw eenheden 50% duurder voor omkoperij."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
@@ -1712,9 +1729,9 @@ msgstr "Geavanceerde Handvaardigheid"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "Verbeter de rekruteersnelheid van soldaten bij de kazerne fors door hen in grote groepen of bataljons tegelijk te rekruteren."
+msgstr "Verhoog de trainingssnelheid van soldaten in de Kazerne aanzienlijk door ze in grote series of bataljons te trainen."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1778,8 +1795,8 @@ msgid ""
 msgstr "Wachters (kampioenen) zijn professionele vechters met de beste wapens en de beste training."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
-msgstr "Rekruteer kampioenen in de kazerne."
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr "Ontgrendel de mogelijkheid om Kampioenen te rekruteren in de Kazerne."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1847,7 +1864,7 @@ msgstr "Door te handelen en te reizen ontdekten de mensen de wereld achter de gr
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr "Zie wat je alliantie ziet, blader door hun samenvatting en check hun bronnen en bevolkingslimiet in het bovenpaneel."
+msgstr "Zie wat uw alliantie ziet, blader door hun samenvatting en check hun bronnen en bevolkingslimiet in het bovenpaneel."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1871,14 +1888,14 @@ msgstr "Spionage"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Promoveer al je burgersoldaat ruiters naar de geavanceerde rang."
+msgstr "Promoveer al uw burgersoldaat ruiters naar de geavanceerde rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Promoveer al je burgersoldaat ruiters naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun burgertaak (vlees verzamelen) met 25%. Na deze promotie kan je verder promoveren tot elite rang."
+msgstr "Promoveer al uw burgersoldaat ruiters naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar veranderd hun vlees verzamelingssnelheid met -25%. Na deze promotie kan je verder promoveren tot elite rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -1886,14 +1903,14 @@ msgstr "Geavanceerde burgercavalerie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Promoveer al je infanterie burgersoldaten naar geavanceerde rang."
+msgstr "Promoveer al uw infanterie burgersoldaten naar geavanceerde rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Promoveer al je infanterie burgersoldaten naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan je verder promoveren tot elite rang."
+msgstr "Promoveer al uw infanterie burgersoldaten naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan u verder promoveren tot elite rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
@@ -1907,7 +1924,7 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr "Huur professionele huurlingen om in je leger te vechten."
+msgstr "Huur professionele huurlingen om in uw leger te vechten."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
@@ -1923,7 +1940,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Promoveer al je burgersoldaat ruiters tot elite rang. Dit verhoogt hun militaire kracht, maar verminderd hun burgertaken (vlees verzamelen) met 25%."
+msgstr "Promoveer al uw burgersoldaat ruiters tot elite rang. Dit verhoogt hun militaire kracht, maar veranderd hun vlees verzamelingssnelheid met -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1931,14 +1948,14 @@ msgstr "Elite burgercavalerie"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Promoveer je infanterie burgersoldaten tot elite rang."
+msgstr "Promoveer uw infanterie burgersoldaten tot Elite rang."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "Promoveer al je infanterie burgersoldaten tot elite rang. Dit verhoogt hun militaire kracht, maar verminderd de snelheid van hun burgertaken met 25%."
+msgstr "Promoveer al uw infanterie burgersoldaten tot Elite rang. Dit verhoogt hun militaire kracht, maar verminderd de snelheid van hun burgertaken met 25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
@@ -1949,23 +1966,6 @@ msgstr "Elite burgerinfanterie"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "De Carthagers bouwden hun stadsmuren in drie concentrische banen. Deze muren waren nooit doorbroken. Zelf wanneer de stad werd ingenomen door de Romeinen was dat via de haven en niet door hun muren te bestormen."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Carthaagse muren, poorten en muurtorens zijn 3x sterker dan gewone muren, maar kosten ook tweemaal zoveel en duren twee keer langer om te bouwen."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Driedubbele muren"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2118,7 +2118,7 @@ msgstr "Rekruteertijd van Keltische huurlingen wordt gereduceerd."
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Allieer jezelf met Kelten om de rekruteertijd voor Keltische huurlingen met 20% te verminderen."
+msgstr "Allieer uzelf met Keltische steden om de rekruteertijd voor Keltische huurlingen met 20% te verminderen."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -2183,14 +2183,14 @@ msgstr "Italiaanse hegemonie"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Promoveer al je Keltische huurlingen naar geavanceerde rang."
+msgstr "Promoveer al uw Keltische huurlingen naar geavanceerde rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Promoveer al je Keltische huurlingen naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan je verder promoveren tot elite rang."
+msgstr "Promoveer al uw Keltische huurlingen naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan u verder promoveren tot Elite rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2198,14 +2198,14 @@ msgstr "Geavanceerde Keltische huurlingen"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Promoveer al je Iberische huurlingen naar geavanceerde rang."
+msgstr "Promoveer al uw Iberische huurlingen naar geavanceerde rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Promoveer al je Iberische huurlingen naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan je verder promoveren tot elite rang."
+msgstr "Promoveer al uw Iberische huurlingen naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan u verder promoveren tot elite rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2213,14 +2213,14 @@ msgstr "Geavanceerde Iberische huurlingen"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Promoveer al je Italiaanse huurlingen naar geavanceerde rang."
+msgstr "Promoveer al uw Italiaanse huurlingen naar geavanceerde rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Promoveer al je Italiaanse huurlingen naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan je verder promoveren tot elite rang."
+msgstr "Promoveer al uw Italiaanse huurlingen naar geavanceerde rang. Dit verhoogt hun militaire kracht, maar verminderd hun snelheid om burgertaken uit te voeren met 25%. Na deze promotie kan u verder promoveren tot elite rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2228,13 +2228,13 @@ msgstr "Geavanceerde Italiaanse huurlingen"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr "Promoveer je Keltische huurlingen tot elite rang."
+msgstr "Promoveer uw Keltische huurlingen tot Elite rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Promoveer al je Keltische huurlingen tot elite rang. Dit verhoogt hun militaire kracht, maar verminderd de snelheid van hun burgertaken met 25%."
+msgstr "Promoveer al uw Keltische huurlingen tot elite rang. Dit verhoogt hun militaire kracht, maar verminderd de snelheid van hun burgertaken met 25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2242,13 +2242,13 @@ msgstr "Elite Keltische huurlingen"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Promoveer je Iberische huurlingen tot elite rang."
+msgstr "Promoveer uw Iberische huurlingen tot elite rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Promoveer al je Iberische huurlingen tot elite rang. Dit verhoogt hun militaire kracht, maar verminderd de snelheid van hun burgertaken met 25%."
+msgstr "Promoveer al uw Iberische huurlingen tot elite rang. Dit verhoogt hun militaire kracht, maar verminderd de snelheid van hun burgertaken met 25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2256,32 +2256,133 @@ msgstr "Elite Iberische huurlingen"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Promoveer je Italiaanse huurlingen tot elite rang."
+msgstr "Promoveer uw Italiaanse huurlingen tot elite rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Promoveer al je Italiaanse huurlingen tot de elite rang. "
+msgstr "Promoveer al uw Italiaanse huurlingen tot de elite rang. "
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
 msgstr "Elite Italische huurlingen"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "De Carthagers bouwden hun stadsmuren in drie concentrische banen. Deze muren waren nooit doorbroken. Zelf wanneer de stad werd ingenomen door de Romeinen was dat via de haven en niet door hun muren te bestormen."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "Carthaagse muren, poorten en muurtorens zijn 3x sterker dan gewone muren, maar kosten ook tweemaal zoveel en duren twee keer langer om te bouwen."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Driedubbele muren"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "Keltische gebouwen waren grotendeels gemaakt uit hout met steengruis als fundering."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "Keltische gebouwen zijn 20% minder sterk, maar zijn ook 20% goedkoper en sneller te bouwen."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Houten constructie"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "De Grieken gebruikten al steen voor de constructie van gebouwen sinds de vroege Mycenische tijd."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Alle structuren zijn 10% sterker en hebben 10% meer overwinningspunten, maar de bouw duurt ook 10% langer."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Hellenistische architectuur"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "De Mauryadynastie regeerde over een gebied dat dozijnen oude koninkrijken overspande. 5 miljoen vierkante kilometer in totaal. Met een bevolking van zowat 60 miljoen. De Mauryaanse regenten hielden de titel van \"keizer der keizers\" en gaven bevelen aan een leger van 600 000 infanteriesoldaten, 9000 olifanten, 8000 paardenwagens en 30 000 ruiter. Het grootste leger van die tijd."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "Mauryas heeft een 10% hogere maximale bevolkingslimiet."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "Keizer der Keizers"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "De Mauryas bouwden hun stadsmuren uit hout, een overvloedige natuurlijke hulpbron in India."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Mauryaanse stadsmuren zijn 20% minder sterk en de bouw duurt 20% minder lang."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Houten schutting"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "De Perzen werfden een groot aantal infanteriesoldaten gedurende oorlogen. Dit kwam door de enorm grootte van het Achaemenidische rijk en de organisatie er van. In het algemeen was de Perzische infanterie goed getraind en vochten ze met vastberadenheid. De infanterie was echter niet goed in dichte gevechten. Met de uitzondering van eliteregimenten was de Perzische infanterie geen professioneel leger."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "De bevolkingslimiet van Perzen is 10% hoger."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "De werving van de koning"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "De Spartanen hadden niet het grootste leger, maar wel het beste voor hun tijd. Wat ze misten in kwantiteit trokken ze weer recht in kwaliteit. Er werd gezegd dat Sparta geen stadsmuren nodig had, aangezien hun mannen zo sterk als muren waren."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "De bevolkingslimiet van Spartanen is 10% lager. "
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "Underdogs"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2300,36 +2401,6 @@ msgstr "Infanterie speervechten."
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "De Grieken gebruikten al steen voor de constructie van gebouwen sinds de vroege Mycenische tijd."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Alle structuren zijn 10% sterker en hebben 10% meer overwinningspunten, maar de bouw duurt ook 10% langer."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Hellenistische architectuur"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "De Spartanen hadden niet het grootste leger, maar wel het beste voor hun tijd. Wat ze misten in kwantiteit trokken ze weer recht in kwaliteit. Er werd gezegd dat Sparta geen stadsmuren nodig had, aangezien hun mannen zo sterk als muren waren."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "De bevolkingslimiet van Spartanen is 10% lager. "
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Underdogs"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2377,9 +2448,9 @@ msgstr "Atheense lange muren"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25 Leven en -50% bouwtijd voor beschavingscentra, tempels, piramides en wonderen."
+msgstr "+25% Levenspunten en -50% bouwtijd voor Beschavingscentra, Tempels, Piramides en Wonderen."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2398,78 +2469,6 @@ msgstr "Train elite genezers."
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "Goddelijke Instructie"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "De Mauryadynastie regeerde over een gebied dat dozijnen oude koninkrijken overspande. 5 miljoen vierkante kilometer in totaal. Met een bevolking van zowat 60 miljoen. De Mauryaanse regenten hielden de titel van \"keizer der keizers\" en gaven bevelen aan een leger van 600 000 infanteriesoldaten, 9000 olifanten, 8000 paardenwagens en 30 000 ruiter. Het grootste leger van die tijd."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "De bevolkingslimiet van Mauryanen is 10% hoger."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Keizer der Keizers"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "De Indiërs hadden een traditie van boogschutters, en gebruikten ze massaal tijdens een veldslag."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 meter bereik, -20% rekruteertijd en betere precisie voor boogschutters, maar ook -20% gezondheid."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Boogschutterstraditie"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "De Mauryanen bouwden hun stadsmuren met hout, een overvloedige natuurlijke grondstof in India."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Mauryaanse stadsmuren zijn 20% minder sterk en de bouw duurt 20% minder lang."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Houten schutting"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "De Perzen werfden een groot aantal infanteriesoldaten gedurende oorlogen. Dit kwam door de enorm grootte van het Achaemenidische rijk en de organisatie er van. In het algemeen was de Perzische infanterie goed getraind en vochten ze met vastberadenheid. De infanterie was echter niet goed in dichte gevechten. Met de uitzondering van eliteregimenten was de Perzische infanterie geen professioneel leger."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "De bevolkingslimiet van Perzen is 10% hoger."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "De werving van de koning"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2502,12 +2501,6 @@ msgstr "Alle Perzische gebouwen +25% gezondheid en veroveringspunten, maar ook +
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Perzische architectuur"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "De Perzen hadden een traditie van boogschutters, en gebruikten ze massaal in veldslagen."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""

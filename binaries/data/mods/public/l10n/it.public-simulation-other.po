@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-25 20:20+0000\n"
-"Last-Translator: mattia_b89 <mattia.b89@gmail.com>\n"
+"POT-Creation-Date: 2019-05-24 09:43+0200\n"
+"PO-Revision-Date: 2019-05-24 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,8 +252,8 @@ msgstr "%(_player_)s, devi inviarmi un tributo di %(_amount_)s %(_resource_)s pr
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
-" %(_player_)s,"
-msgstr "Se non mi invierai %(_amount_)s %(_resource_)s, non vi sarà alcuna alleanza, %(_player_)s,"
+" %(_player_)s."
+msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -560,7 +560,7 @@ msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourc
 msgid "The production queue is full."
 msgstr "La coda di produzione è piena."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
 msgstr "Non c'è spazio libero per posizionare le unità addestrate"
 
@@ -617,7 +617,7 @@ msgstr "Impossibile rilasciare la(le) unità dalla guarnigione."
 msgid "Some unit(s) can't go back to work"
 msgstr "(Una o) più unità non possono tornare a lavoro"
 
-#: simulation/helpers/Commands.js:1114
+#: simulation/helpers/Commands.js:1112
 msgid "The building's technology requirements are not met."
 msgstr "Le tecnologie richieste per l'edificio non sono state sviluppate. "
 
@@ -749,8 +749,9 @@ msgstr "Regicidio"
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
-"captured or in allied victory when the owners alliances change."
-msgstr "Sii il primo a costruire o catturare una Meraviglia e conservala per un certo periodo di tempo per vincere la partita. Il cronometro sarà azzerato una volta che la Meraviglia è distrutta o catturata oppure in vittoria alleata nel caso di cambiamento di alleanze del possessore."
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -895,5 +896,5 @@ msgstr "Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra è L'I.A. predefinita di 0 A.D..  Si prega di segnalare eventuali problemi a Wildfire Games (vedi link nel menu principale).\n\nL'intelligenza artificiale ha un bonus/malus sull'accumulo di scorte di risorse (sia al tasso di raccolta che al guadagno commerciale) che varia da -50% a livello Sandbox a + 60% per Molto Difficile (a difficoltà Media 0%).  Inoltre, a livello Sandbox non si espande né attacca."
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr ""

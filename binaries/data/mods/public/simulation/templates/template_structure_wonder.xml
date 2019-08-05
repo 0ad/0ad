@@ -47,6 +47,7 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
+    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Wonder</GenericName>
     <Tooltip>Bring glory to your civilization and add large tracts of land to your empire.</Tooltip>
     <VisibleClasses datatype="tokens">City Wonder</VisibleClasses>
@@ -82,7 +83,6 @@
     <SoundGroups>
       <select>interface/select/building/sel_wonder.xml</select>
       <constructed>interface/complete/building/complete_wonder.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <StatusBars>
@@ -99,7 +99,7 @@
     <Range>72</Range>
   </Vision>
   <VisualActor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_9x9.xml</FoundationActor>
   </VisualActor>
   <Wonder/>
 </Entity>

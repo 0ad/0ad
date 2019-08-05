@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,12 +21,37 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 
+#include "simulation2/system/Entity.h"
 #include "simulation2/system/ParamNode.h"
 #include "graphics/Terrain.h"
 #include "Grid.h"
 #include "PathGoal.h"
 
 typedef u16 pass_class_t;
+
+struct LongPathRequest
+{
+	u32 ticket;
+	entity_pos_t x0;
+	entity_pos_t z0;
+	PathGoal goal;
+	pass_class_t passClass;
+	entity_id_t notify;
+};
+
+struct ShortPathRequest
+{
+	u32 ticket;
+	entity_pos_t x0;
+	entity_pos_t z0;
+	entity_pos_t clearance;
+	entity_pos_t range;
+	PathGoal goal;
+	pass_class_t passClass;
+	bool avoidMovingUnits;
+	entity_id_t group;
+	entity_id_t notify;
+};
 
 struct Waypoint
 {
@@ -122,15 +147,6 @@ namespace Pathfinding
 	const fixed NAVCELL_SIZE = fixed::FromInt((int)TERRAIN_TILE_SIZE) / Pathfinding::NAVCELLS_PER_TILE;
 	const int NAVCELL_SIZE_INT = 1;
 	const int NAVCELL_SIZE_LOG2 = 0;
-
-	/**
-	 * For extending the goal outwards/inwards a little bit
-	 * NOTE: keep next to the definition of NAVCELL_SIZE to avoid init order problems
-	 *	between translation units.
-	 * TODO: figure out whether this is actually needed. It was added back in r8751 (in 2010) for unclear reasons
-	 * and it does not seem to really improve behavior today
-	 */
-	const entity_pos_t GOAL_DELTA = NAVCELL_SIZE/8;
 
 	/**
 	 * To make sure the long-range pathfinder is more strict than the short-range one,

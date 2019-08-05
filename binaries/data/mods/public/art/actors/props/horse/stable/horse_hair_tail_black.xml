@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_horse_stable.xml" name="Stable Horse">
+      <mesh>props/horse/hair_tail_01.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/props/hair_black.xml" frequency="1" name="black-01"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 
 #include "CText.h"
 
-#include "CGUIScrollBarVertical.h"
-#include "GUI.h"
-
+#include "gui/CGUIScrollBarVertical.h"
+#include "gui/GUI.h"
 #include "lib/ogl.h"
 
-CText::CText()
+CText::CText(CGUI* pGUI)
+	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
@@ -38,8 +38,8 @@ CText::CText()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_EAlign,				"text_align");
 	AddSetting(GUIST_EVAlign,				"text_valign");
-	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_CColor,				"textcolor_disabled");
+	AddSetting(GUIST_CGUIColor,				"textcolor");
+	AddSetting(GUIST_CGUIColor,				"textcolor_disabled");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
@@ -52,7 +52,7 @@ CText::CText()
 	GUI<bool>::SetSetting(this, "clip", true);
 
 	// Add scroll-bar
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
+	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
 	bar->SetRightAligned(true);
 	AddScrollBar(bar);
 
@@ -66,10 +66,8 @@ CText::~CText()
 
 void CText::SetupText()
 {
-	if (!GetGUI())
+	if (m_GeneratedTexts.empty())
 		return;
-
-	ENSURE(m_GeneratedTexts.size()>=1);
 
 	CStrW font;
 	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
@@ -237,8 +235,8 @@ void CText::Draw()
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
-	CColor color;
-	GUI<CColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled", color);
+	CGUIColor color;
+	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled", color);
 
 	if (scrollbar)
 		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);

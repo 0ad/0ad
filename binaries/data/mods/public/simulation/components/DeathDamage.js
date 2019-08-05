@@ -24,14 +24,18 @@ DeathDamage.prototype.Schema =
 		"<Shape>Circular</Shape>" +
 		"<Range>20</Range>" +
 		"<FriendlyFire>false</FriendlyFire>" +
-		"<Hack>0.0</Hack>" +
-		"<Pierce>10.0</Pierce>" +
-		"<Crush>50.0</Crush>" +
+		"<Damage>" +
+			"<Hack>0.0</Hack>" +
+			"<Pierce>10.0</Pierce>" +
+			"<Crush>50.0</Crush>" +
+		"</Damage>" +
 	"</a:example>" +
 	"<element name='Shape' a:help='Shape of the splash damage, can be circular'><text/></element>" +
 	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-	DamageTypes.BuildSchema("damage strength") +
+	"<element name='Damage'>" +
+		BuildDamageTypesSchema("damage strength") +
+	"</element>" +
 	DeathDamage.prototype.bonusesSchema;
 
 DeathDamage.prototype.Init = function()
@@ -44,10 +48,10 @@ DeathDamage.prototype.GetDeathDamageStrengths = function()
 {
 	// Work out the damage values with technology effects
 	let applyMods = damageType =>
-		ApplyValueModificationsToEntity("DeathDamage/" + damageType, +(this.template[damageType] || 0), this.entity);
+		ApplyValueModificationsToEntity("DeathDamage/Damage/" + damageType, +(this.template.Damage[damageType] || 0), this.entity);
 
 	let ret = {};
-	for (let damageType of DamageTypes.GetTypes())
+	for (let damageType in this.template.Damage)
 		ret[damageType] = applyMods(damageType);
 
 	return ret;
@@ -75,7 +79,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 
 	let radius = ApplyValueModificationsToEntity("DeathDamage/Range", +this.template.Range, this.entity);
 
-	cmpDamage.CauseSplashDamage({
+	cmpDamage.CauseDamageOverArea({
 		"attacker": this.entity,
 		"origin": pos,
 		"radius": radius,

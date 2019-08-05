@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,6 @@
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
-/**** GUISize ****/
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
 	nullptr, nullptr,
@@ -33,7 +32,7 @@ JSClass JSI_GUISize::JSI_class = {
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] =
 {
-	JS_FS("toString", JSI_GUISize::toString, 0, 0),
+	JS_FN("toString", JSI_GUISize::toString, 0, 0),
 	JS_FS_END
 };
 
@@ -57,7 +56,7 @@ bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	else if (args.length() == 4)
 	{
-		JS::RootedValue zero(cx, JSVAL_ZERO);
+		JS::RootedValue zero(cx, JS::NumberValue(0));
 		JS_SetProperty(cx, obj, "left",		args[0]);
 		JS_SetProperty(cx, obj, "top",		args[1]);
 		JS_SetProperty(cx, obj, "right",	args[2]);
@@ -69,7 +68,7 @@ bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	else
 	{
-		JS::RootedValue zero(cx, JSVAL_ZERO);
+		JS::RootedValue zero(cx, JS::NumberValue(0));
 		JS_SetProperty(cx, obj, "left",		zero);
 		JS_SetProperty(cx, obj, "top",		zero);
 		JS_SetProperty(cx, obj, "right",	zero);
@@ -119,149 +118,14 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	catch (PSERROR_Scripting_ConversionFailed&)
 	{
-		rec.rval().setString(JS_NewStringCopyZ(cx, "<Error converting value to numbers>"));
+		ScriptInterface::ToJSVal(cx, rec.rval(), std::string("<Error converting value to numbers>"));
 		return true;
 	}
-
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer.c_str()));
+	ScriptInterface::ToJSVal(cx, rec.rval(), buffer);
 	return true;
 }
 
-
-/**** GUIColor ****/
-
-
-JSClass JSI_GUIColor::JSI_class = {
-	"GUIColor", 0,
-	nullptr, nullptr,
-	nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_GUIColor::construct, nullptr
-};
-
-JSFunctionSpec JSI_GUIColor::JSI_methods[] =
-{
-	JS_FS("toString", JSI_GUIColor::toString, 0, 0),
-	JS_FS_END
-};
-
-bool JSI_GUIColor::construct(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JSAutoRequest rq(cx);
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
-
-	if (args.length() == 4)
-	{
-		JS_SetProperty(cx, obj, "r", args[0]);
-		JS_SetProperty(cx, obj, "g", args[1]);
-		JS_SetProperty(cx, obj, "b", args[2]);
-		JS_SetProperty(cx, obj, "a", args[3]);
-	}
-	else
-	{
-		// Nice magenta:
-		JS::RootedValue c(cx, JS::NumberValue(1.0));
-		JS_SetProperty(cx, obj, "r", c);
-		JS_SetProperty(cx, obj, "b", c);
-		JS_SetProperty(cx, obj, "a", c);
-		c = JS::NumberValue(0.0);
-		JS_SetProperty(cx, obj, "g", c);
-	}
-
-	args.rval().setObject(*obj);
-	return true;
-}
-
-bool JSI_GUIColor::toString(JSContext* cx, uint argc, JS::Value* vp)
-{
-	UNUSED2(argc);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	double r, g, b, a;
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	pScriptInterface->GetProperty(rec.thisv(), "r", r);
-	pScriptInterface->GetProperty(rec.thisv(), "g", g);
-	pScriptInterface->GetProperty(rec.thisv(), "b", b);
-	pScriptInterface->GetProperty(rec.thisv(), "a", a);
-	char buffer[256];
-	// Convert to integers, to be compatible with the GUI's string SetSetting
-	snprintf(buffer, 256, "%d %d %d %d",
-		(int)(255.0 * r),
-		(int)(255.0 * g),
-		(int)(255.0 * b),
-		(int)(255.0 * a));
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
-	return true;
-}
-
-/**** GUIMouse ****/
-
-
-JSClass JSI_GUIMouse::JSI_class = {
-	"GUIMouse", 0,
-	nullptr, nullptr,
-	nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_GUIMouse::construct, nullptr
-};
-
-JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
-{
-	JS_FS("toString", JSI_GUIMouse::toString, 0, 0),
-	JS_FS_END
-};
-
-bool JSI_GUIMouse::construct(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JSAutoRequest rq(cx);
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIMouse"));
-
-	if (args.length() == 3)
-	{
-		JS_SetProperty(cx, obj, "x", args[0]);
-		JS_SetProperty(cx, obj, "y", args[1]);
-		JS_SetProperty(cx, obj, "buttons", args[2]);
-	}
-	else
-	{
-		JS::RootedValue zero (cx, JS::NumberValue(0));
-		JS_SetProperty(cx, obj, "x", zero);
-		JS_SetProperty(cx, obj, "y", zero);
-		JS_SetProperty(cx, obj, "buttons", zero);
-	}
-
-	args.rval().setObject(*obj);
-	return true;
-}
-
-bool JSI_GUIMouse::toString(JSContext* cx, uint argc, JS::Value* vp)
-{
-	UNUSED2(argc);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	i32 x, y, buttons;
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	pScriptInterface->GetProperty(rec.thisv(), "x", x);
-	pScriptInterface->GetProperty(rec.thisv(), "y", y);
-	pScriptInterface->GetProperty(rec.thisv(), "buttons", buttons);
-
-	char buffer[256];
-	snprintf(buffer, 256, "%d %d %d", x, y, buttons);
-	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
-	return true;
-}
-
-
-// Initialise all the types at once:
 void JSI_GUITypes::init(ScriptInterface& scriptInterface)
 {
 	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, nullptr,  JSI_GUISize::JSI_methods,  NULL, NULL);
-	scriptInterface.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, nullptr, JSI_GUIColor::JSI_methods, NULL, NULL);
-	scriptInterface.DefineCustomObjectType(&JSI_GUIMouse::JSI_class, JSI_GUIMouse::construct, 1, nullptr, JSI_GUIMouse::JSI_methods, NULL, NULL);
 }

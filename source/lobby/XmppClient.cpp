@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,9 +100,9 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 
 	// Optionally join without a TLS certificate, so a local server can be tested  quickly.
 	// Security risks from malicious JS mods can be mitigated if this option and also the hostname and login are shielded from JS access.
-	bool require_tls = true;
-	CFG_GET_VAL("lobby.require_tls", require_tls);
-	m_client->setTls(require_tls ? gloox::TLSRequired : gloox::TLSOptional);
+	bool tls = true;
+	CFG_GET_VAL("lobby.tls", tls);
+	m_client->setTls(tls ? gloox::TLSRequired : gloox::TLSDisabled);
 
 	// Disable use of the SASL PLAIN mechanism, to prevent leaking credentials
 	// if the server doesn't list any supported SASL mechanism or the response
@@ -160,6 +160,7 @@ XmppClient::~XmppClient()
 	DbgXMPP("XmppClient destroyed");
 	delete m_registration;
 	delete m_mucRoom;
+	delete m_sessionManager;
 
 	// Workaround for memory leak in gloox 1.0/1.0.1
 	m_client->removePresenceExtension(gloox::ExtCaps);
@@ -502,18 +503,21 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.Eval("([])", ret);
+	scriptInterface.CreateArray(ret);
+	int j = 0;
 
-	// Convert the internal data structure to a Javascript object.
 	for (const std::pair<std::string, std::vector<std::string> >& p : m_PlayerMap)
 	{
 		JS::RootedValue player(cx);
-		scriptInterface.Eval("({})", &player);
-		scriptInterface.SetProperty(player, "name", wstring_from_utf8(p.first));
-		scriptInterface.SetProperty(player, "presence", wstring_from_utf8(p.second[0]));
-		scriptInterface.SetProperty(player, "rating", wstring_from_utf8(p.second[1]));
-		scriptInterface.SetProperty(player, "role", wstring_from_utf8(p.second[2]));
-		scriptInterface.CallFunctionVoid(ret, "push", player);
+
+		scriptInterface.CreateObject(
+			&player,
+			"name", wstring_from_utf8(p.first),
+			"presence", wstring_from_utf8(p.second[0]),
+			"rating", wstring_from_utf8(p.second[1]),
+			"role", wstring_from_utf8(p.second[2]));
+
+		scriptInterface.SetPropertyInt(ret, j++, player);
 	}
 }
 
@@ -527,19 +531,22 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.Eval("([])", ret);
+	scriptInterface.CreateArray(ret);
+	int j = 0;
+
 	const char* stats[] = { "name", "ip", "port", "stunIP", "stunPort", "hostUsername", "state",
 		"nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType",
 		"victoryCondition", "startTime", "mods" };
+
 	for(const glooxwrapper::Tag* const& t : m_GameList)
 	{
 		JS::RootedValue game(cx);
-		scriptInterface.Eval("({})", &game);
+		scriptInterface.CreateObject(&game);
 
 		for (size_t i = 0; i < ARRAY_SIZE(stats); ++i)
 			scriptInterface.SetProperty(game, stats[i], wstring_from_utf8(t->findAttribute(stats[i]).to_string()));
 
-		scriptInterface.CallFunctionVoid(ret, "push", game);
+		scriptInterface.SetPropertyInt(ret, j++, game);
 	}
 }
 
@@ -553,17 +560,20 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.Eval("([])", ret);
+	scriptInterface.CreateArray(ret);
+	int j = 0;
+
 	const char* attributes[] = { "name", "rank", "rating" };
+
 	for(const glooxwrapper::Tag* const& t : m_BoardList)
 	{
 		JS::RootedValue board(cx);
-		scriptInterface.Eval("({})", &board);
+		scriptInterface.CreateObject(&board);
 
 		for (size_t i = 0; i < ARRAY_SIZE(attributes); ++i)
 			scriptInterface.SetProperty(board, attributes[i], wstring_from_utf8(t->findAttribute(attributes[i]).to_string()));
 
-		scriptInterface.CallFunctionVoid(ret, "push", board);
+		scriptInterface.SetPropertyInt(ret, j++, board);
 	}
 }
 
@@ -577,17 +587,20 @@ void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::Mutab
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.Eval("([])", ret);
+	scriptInterface.CreateArray(ret);
+	int j = 0;
+
 	const char* stats[] = { "player", "rating", "totalGamesPlayed", "highestRating", "wins", "losses", "rank" };
+
 	for (const glooxwrapper::Tag* const& t : m_Profile)
 	{
 		JS::RootedValue profile(cx);
-		scriptInterface.Eval("({})", &profile);
+		scriptInterface.CreateObject(&profile);
 
 		for (size_t i = 0; i < ARRAY_SIZE(stats); ++i)
 			scriptInterface.SetProperty(profile, stats[i], wstring_from_utf8(t->findAttribute(stats[i]).to_string()));
 
-		scriptInterface.CallFunctionVoid(ret, "push", profile);
+		scriptInterface.SetPropertyInt(ret, j++, profile);
 	}
 }
 
@@ -620,16 +633,22 @@ JS::Value XmppClient::GuiMessageToJSVal(const ScriptInterface& scriptInterface, 
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue ret(cx);
-	scriptInterface.Eval("({})", &ret);
-	scriptInterface.SetProperty(ret, "type", wstring_from_utf8(message.type));
+
+	scriptInterface.CreateObject(
+		&ret,
+		"type", wstring_from_utf8(message.type),
+		"time", static_cast<double>(message.time),
+		"historic", historic);
+
 	if (!message.level.empty())
 		scriptInterface.SetProperty(ret, "level", wstring_from_utf8(message.level));
+
 	if (!message.property1_name.empty())
 		scriptInterface.SetProperty(ret, message.property1_name.c_str(), wstring_from_utf8(message.property1_value));
+
 	if (!message.property2_name.empty())
 		scriptInterface.SetProperty(ret, message.property2_name.c_str(), wstring_from_utf8(message.property2_value));
-	scriptInterface.SetProperty(ret, "time", (double)message.time);
-	scriptInterface.SetProperty(ret, "historic", historic);
+
 	return ret;
 }
 
@@ -652,15 +671,17 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	JS::RootedObject ret(cx, JS_NewArrayObject(cx, 0));
 
-	uint32_t i = 0;
+	JS::RootedValue ret(cx);
+	scriptInterface.CreateArray(&ret);
+
+	int j = 0;
 	for (const GUIMessage& message : m_HistoricGuiMessages)
 	{
 		JS::RootedValue msg(cx, GuiMessageToJSVal(scriptInterface, message, true));
-		JS_SetElement(cx, ret, i++, msg);
+		scriptInterface.SetPropertyInt(ret, j++, msg);
 	}
-	return JS::ObjectValue(*ret);
+	return ret;
 }
 
 /**
@@ -789,6 +810,8 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 
 			if (g_NetServer)
 				g_NetServer->OnLobbyAuth(iq.from().username(), lobbyAuth->m_Token.to_string());
+			else
+				LOGERROR("Received lobby authentication request, but not hosting currently!");
 		}
 	}
 	else if (iq.subtype() == gloox::IQ::Error)
@@ -848,7 +871,7 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 	}
 	else
 	{
-		/* During the initialization process, we recieve join messages for everyone
+		/* During the initialization process, we receive join messages for everyone
 		 * currently in the room. We don't want to display these, so we filter them
 		 * out. We will always be the last to join during initialization.
 		 */
@@ -1221,6 +1244,12 @@ void XmppClient::handleSessionInitiation(const glooxwrapper::Jingle::Session::Ji
 	if (candidate.ip.empty())
 	{
 		LOGERROR("Failed to retrieve Jingle candidate");
+		return;
+	}
+
+	if (!g_NetServer)
+	{
+		LOGERROR("Received STUN connection request, but not hosting currently!");
 		return;
 	}
 

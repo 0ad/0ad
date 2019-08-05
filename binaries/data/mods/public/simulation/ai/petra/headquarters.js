@@ -521,12 +521,12 @@ m.HQ.prototype.checkEvents = function(gameState, events)
 			}
 			if (decayToGaia)
 				continue;
-			let ratioMax = 0.70 + randFloat(0., 0.1);
+			let ratioMax = 0.7 + randFloat(0, 0.1);
 			for (let evt of events.Attacked)
 			{
 				if (ent.id() != evt.target)
 					continue;
-				ratioMax = 0.85 + randFloat(0., 0.1);
+				ratioMax = 0.85 + randFloat(0, 0.1);
 				break;
 			}
 			if (captureRatio > ratioMax)
@@ -776,13 +776,13 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 		{
 			if (param[0] == "strength")
 			{
-				aValue += m.getMaxStrength(a[1]) * param[1];
-				bValue += m.getMaxStrength(b[1]) * param[1];
+				aValue += m.getMaxStrength(a[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance) * param[1];
+				bValue += m.getMaxStrength(b[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance) * param[1];
 			}
 			else if (param[0] == "siegeStrength")
 			{
-				aValue += m.getMaxStrength(a[1], "Structure") * param[1];
-				bValue += m.getMaxStrength(b[1], "Structure") * param[1];
+				aValue += m.getMaxStrength(a[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance, "Structure") * param[1];
+				bValue += m.getMaxStrength(b[1], gameState.ai.Config.debug, gameState.ai.Config.DamageTypeImportance, "Structure") * param[1];
 			}
 			else if (param[0] == "speed")
 			{
@@ -932,7 +932,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 };
 
 /**
- * Returns the best position to build a new Civil Centre
+ * Returns the best position to build a new Civil Center
  * Whose primary function would be to reach new resources of type "resource".
  */
 m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, proximity, fromStrategic)
@@ -1132,7 +1132,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 };
 
 /**
- * Returns the best position to build a new Civil Centre
+ * Returns the best position to build a new Civil Center
  * Whose primary function would be to assure territorial continuity with our allies
  */
 m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
@@ -1922,12 +1922,10 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	let barracksTemplate = this.canBuild(gameState, "structures/{civ}_barracks") ? "structures/{civ}_barracks" : undefined;
 
 	let rangeTemplate = this.canBuild(gameState, "structures/{civ}_range") ? "structures/{civ}_range" : undefined;
-	let numRanges = gameState.getOwnEntitiesByClass("Archery", true).length;
-	numBarracks -= numRanges;
+	let numRanges = gameState.getOwnEntitiesByClass("Range", true).length;
 
-	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stables") ? "structures/{civ}_stables" :
-	                     this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
-	let numStables = gameState.getOwnEntitiesByClass("Stables", true).length;
+	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
+	let numStables = gameState.getOwnEntitiesByClass("Stable", true).length;
 
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
 	    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)
@@ -1985,7 +1983,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.currentPhase < 3)
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}_elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStables", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}_elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStable", true).hasEntities())
 	{
 		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_elephant_stables", { "militaryBase": true }));
 		return;
@@ -2060,7 +2058,7 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 };
 
 /**
- * train with highest priority ranged infantry in the nearest civil centre from a given set of positions
+ * train with highest priority ranged infantry in the nearest civil center from a given set of positions
  * and garrison them there for defense
  */
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
@@ -2436,7 +2434,7 @@ m.HQ.prototype.resetBaseCache = function()
 
 /**
  * Count gatherers returning resources in the number of gatherers of resourceSupplies
- * to prevent the AI always reaffecting idle workers to these resourceSupplies (specially in naval maps).
+ * to prevent the AI always reassigning idle workers to these resourceSupplies (specially in naval maps).
  */
 m.HQ.prototype.assignGatherers = function()
 {

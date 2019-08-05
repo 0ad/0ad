@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_herd_domestic">
+<Entity parent="template_unit_fauna_hunt_skittish">
   <Footprint replace="">
     <Square width="2.1" depth="4.2"/>
     <Height>2.0</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Muskox</SpecificName>
+    <GenericName>Muskox</GenericName>
+    <SpecificName>Ovibos moschatus</SpecificName>
     <Icon>gaia/fauna_muskox.png</Icon>
   </Identity>
   <Position>

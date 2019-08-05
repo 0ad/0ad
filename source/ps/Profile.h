@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,9 @@
 #include <vector>
 
 #include "lib/adts/ring_buf.h"
+#include "lib/posix/posix_pthread.h"
 #include "ps/Profiler2.h"
 #include "ps/Singleton.h"
-#include "ps/ThreadUtil.h"
 
 #include <boost/flyweight.hpp>
 #include <boost/flyweight/key_value.hpp>
@@ -65,36 +65,6 @@ typedef boost::flyweight<
 class CProfileNode
 {
 	NONCOPYABLE(CProfileNode);
-
-	friend class CProfileManager;
-	friend class CProfileNodeTable;
-
-	const char* name;
-
-	int calls_frame_current;
-	int calls_turn_current;
-	RingBuf<int, PROFILE_AMORTIZE_FRAMES> calls_per_frame;
-	RingBuf<int, PROFILE_AMORTIZE_TURNS> calls_per_turn;
-
-	double time_frame_current;
-	double time_turn_current;
-	RingBuf<double, PROFILE_AMORTIZE_FRAMES> time_per_frame;
-	RingBuf<double, PROFILE_AMORTIZE_TURNS> time_per_turn;
-
-	long mallocs_frame_current;
-	long mallocs_turn_current;
-	RingBuf<long, PROFILE_AMORTIZE_FRAMES> mallocs_per_frame;
-	RingBuf<long, PROFILE_AMORTIZE_TURNS> mallocs_per_turn;
-
-	double start;
-	long start_mallocs;
-	int recursion;
-
-	CProfileNode* parent;
-	std::vector<CProfileNode*> children;
-	std::vector<CProfileNode*> script_children;
-	CProfileNodeTable* display_table;
-
 public:
 	typedef std::vector<CProfileNode*>::iterator profile_iterator;
 	typedef std::vector<CProfileNode*>::const_iterator const_profile_iterator;
@@ -132,17 +102,40 @@ public:
 	void Call();
 	// Leaves the node. Returns true if the node has actually been left
 	bool Return();
+
+private:
+	friend class CProfileManager;
+	friend class CProfileNodeTable;
+
+	const char* name;
+
+	int calls_frame_current;
+	int calls_turn_current;
+	RingBuf<int, PROFILE_AMORTIZE_FRAMES> calls_per_frame;
+	RingBuf<int, PROFILE_AMORTIZE_TURNS> calls_per_turn;
+
+	double time_frame_current;
+	double time_turn_current;
+	RingBuf<double, PROFILE_AMORTIZE_FRAMES> time_per_frame;
+	RingBuf<double, PROFILE_AMORTIZE_TURNS> time_per_turn;
+
+	long mallocs_frame_current;
+	long mallocs_turn_current;
+	RingBuf<long, PROFILE_AMORTIZE_FRAMES> mallocs_per_frame;
+	RingBuf<long, PROFILE_AMORTIZE_TURNS> mallocs_per_turn;
+
+	double start;
+	long start_mallocs;
+	int recursion;
+
+	CProfileNode* parent;
+	std::vector<CProfileNode*> children;
+	std::vector<CProfileNode*> script_children;
+	CProfileNodeTable* display_table;
 };
 
 class CProfileManager : public Singleton<CProfileManager>
 {
-	CProfileNode* root;
-	CProfileNode* current;
-
-	bool needs_structural_reset;
-
-	void PerformStructuralReset();
-
 public:
 	CProfileManager();
 	~CProfileManager();
@@ -166,6 +159,14 @@ public:
 
 	inline const CProfileNode* GetCurrent() { return( current ); }
 	inline const CProfileNode* GetRoot() { return( root ); }
+
+private:
+	CProfileNode* root;
+	CProfileNode* current;
+
+	bool needs_structural_reset;
+
+	void PerformStructuralReset();
 };
 
 #define g_Profiler CProfileManager::GetSingleton()
@@ -173,45 +174,8 @@ public:
 class CProfileSample
 {
 public:
-	CProfileSample(const char* name)
-	{
-		if (CProfileManager::IsInitialised())
-		{
-			// The profiler is only safe to use on the main thread
-			ENSURE(ThreadUtil::IsMainThread());
-
-			g_Profiler.Start(name);
-		}
-	}
-	~CProfileSample()
-	{
-		if (CProfileManager::IsInitialised())
-			g_Profiler.Stop();
-	}
-};
-
-class CProfileSampleScript
-{
-public:
-	CProfileSampleScript( const char* name )
-	{
-		if (CProfileManager::IsInitialised())
-		{
-			// The profiler is only safe to use on the main thread,
-			// but scripts get run on other threads too so we need to
-			// conditionally enable the profiler.
-			// (This usually only gets used in debug mode so performance
-			// doesn't matter much.)
-			if (ThreadUtil::IsMainThread())
-				g_Profiler.StartScript( name );
-		}
-	}
-	~CProfileSampleScript()
-	{
-		if (CProfileManager::IsInitialised())
-			if (ThreadUtil::IsMainThread())
-				g_Profiler.Stop();
-	}
+	CProfileSample(const char* name);
+	~CProfileSample();
 };
 
 // Put a PROFILE("xyz") block at the start of all code to be profiled.

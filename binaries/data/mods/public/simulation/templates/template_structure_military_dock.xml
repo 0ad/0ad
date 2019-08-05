@@ -16,6 +16,7 @@
     <Square width="18.0" depth="18.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder disable=""/>
   <Health>
     <Max>2500</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
@@ -70,10 +71,10 @@
     <SoundGroups>
       <select>interface/select/building/sel_dock.xml</select>
       <constructed>interface/complete/building/complete_dock.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
+  <TerritoryInfluence disable=""/>
   <Vision>
     <Range>40</Range>
   </Vision>

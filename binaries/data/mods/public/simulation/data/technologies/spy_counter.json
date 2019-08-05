@@ -7,6 +7,8 @@
 	"icon": "vial_poison.png",
 	"researchTime": 60,
 	"tooltip": "Make your units 50% more expensive to bribe.",
-	"modifications": [{ "value": "Player/SpyCostMultiplier", "multiply": 1.5 }],
+	"modifications": [
+		{ "value": "Player/SpyCostMultiplier", "multiply": 1.5 }
+	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

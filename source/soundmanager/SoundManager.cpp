@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ public:
 	bool Shutdown()
 	{
 		{
-			CScopeLock lock(m_WorkerMutex);
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
 
 			m_Shutdown = true;
 
@@ -83,13 +83,13 @@ public:
 
 	void addItem(ISoundItem* anItem)
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		m_Items->push_back(anItem);
 	}
 
 	void CleanupItems()
 	{
-		CScopeLock lock(m_DeadItemsMutex);
+		std::lock_guard<std::mutex> lock(m_DeadItemsMutex);
 		AL_CHECK;
 		ItemsList::iterator deadItems = m_DeadItems->begin();
 		while (deadItems != m_DeadItems->end())
@@ -126,7 +126,7 @@ private:
 				pauseTime = 50;
 
 			{
-				CScopeLock workerLock(m_WorkerMutex);
+				std::lock_guard<std::mutex> workerLock(m_WorkerMutex);
 
 				ItemsList::iterator lstr = m_Items->begin();
 				ItemsList* nextItemList = new ItemsList;
@@ -143,7 +143,7 @@ private:
 					}
 					else
 					{
-						CScopeLock deadItemsLock(m_DeadItemsMutex);
+						std::lock_guard<std::mutex> deadItemsLock(m_DeadItemsMutex);
 						m_DeadItems->push_back(*lstr);
 					}
 					++lstr;
@@ -162,15 +162,15 @@ private:
 
 	bool GetShutdown()
 	{
-		CScopeLock lock(m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
 		return m_Shutdown;
 	}
 
 private:
 	// Thread-related members:
 	pthread_t m_WorkerThread;
-	CMutex m_WorkerMutex;
-	CMutex m_DeadItemsMutex;
+	std::mutex m_WorkerMutex;
+	std::mutex m_DeadItemsMutex;
 
 	// Shared by main thread and worker thread:
 	// These variables are all protected by a mutexes
@@ -360,7 +360,7 @@ Status CSoundManager::AlcInit()
 
 bool CSoundManager::InDistress()
 {
-	CScopeLock lock(m_DistressMutex);
+	std::lock_guard<std::mutex> lock(m_DistressMutex);
 
 	if (m_DistressTime == 0)
 		return false;
@@ -377,7 +377,7 @@ bool CSoundManager::InDistress()
 
 void CSoundManager::SetDistressThroughShortage()
 {
-	CScopeLock lock(m_DistressMutex);
+	std::lock_guard<std::mutex> lock(m_DistressMutex);
 
 // Going into distress for normal reasons
 
@@ -386,7 +386,7 @@ void CSoundManager::SetDistressThroughShortage()
 
 void CSoundManager::SetDistressThroughError()
 {
-	CScopeLock lock(m_DistressMutex);
+	std::lock_guard<std::mutex> lock(m_DistressMutex);
 
 // Going into distress due to unknown error
 

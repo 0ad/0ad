@@ -140,12 +140,6 @@ function chatMenuButton()
 	openChat();
 }
 
-function diplomacyMenuButton()
-{
-	closeOpenDialogs();
-	openDiplomacy();
-}
-
 function pauseMenuButton()
 {
 	togglePause();
@@ -563,7 +557,7 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 {
 	let button = Engine.GetGUIObjectByName("diplomacySpyRequest[" + (i - 1) + "]");
 	let template = GetTemplateData("special/spy");
-	button.hidden = hidden || !template || GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
+	button.hidden = hidden || !template || !!GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
 	if (button.hidden)
 		return;
 
@@ -873,7 +867,7 @@ function updateBarterButtons()
 	Engine.GetGUIObjectByName("barterHelp").hidden = !canBarter;
 
 	if (canBarter)
-		g_ResourceData.GetCodes().forEach((resCode, i) => { barterUpdateCommon(resCode, i, "barter", g_ViewedPlayer) });
+		g_ResourceData.GetCodes().forEach((resCode, i) => { barterUpdateCommon(resCode, i, "barter", g_ViewedPlayer); });
 }
 
 function getIdleLandTradersText(traderNumber)
@@ -1233,31 +1227,6 @@ function openManual()
 		"url": "https://trac.wildfiregames.com/wiki/0adManual",
 		"callback": "resumeGame"
 	});
-}
-
-function toggleDeveloperOverlay()
-{
-	if (!g_GameAttributes.settings.CheatsEnabled && !g_IsReplay)
-		return;
-
-	let devCommands = Engine.GetGUIObjectByName("devCommands");
-	devCommands.hidden = !devCommands.hidden;
-
-	let message = devCommands.hidden ?
-		markForTranslation("The Developer Overlay was closed.") :
-		markForTranslation("The Developer Overlay was opened.");
-
-	// Only players can send the simulation chat command
-	if (Engine.GetPlayerID() == -1)
-		submitChatDirectly(message);
-	else
-		Engine.PostNetworkCommand({
-			"type": "aichat",
-			"message": message,
-			"translateMessage": true,
-			"translateParameters": [],
-			"parameters": {}
-		});
 }
 
 function closeOpenDialogs()

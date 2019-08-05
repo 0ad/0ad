@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "simulation2/helpers/MapEdgeTiles.h"
 
 #include <string>
 #include <vector>
@@ -70,7 +71,7 @@ CMapGeneratorWorker::~CMapGeneratorWorker()
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
 {
-	CScopeLock lock(m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 
 	// Set progress to positive value
 	m_Progress = 1;
@@ -100,9 +101,11 @@ void* CMapGeneratorWorker::RunThread(void *data)
 	if (!self->Run() || self->m_Progress > 0)
 	{
 		// Don't leave progress in an unknown state, if generator failed, set it to -1
-		CScopeLock lock(self->m_WorkerMutex);
+		std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
 		self->m_Progress = -1;
 	}
+
+	SAFE_DELETE(self->m_ScriptInterface);
 
 	// At this point the random map scripts are done running, so the thread has no further purpose
 	//	and can die. The data will be stored in m_MapData already if successful, or m_Progress
@@ -113,15 +116,6 @@ void* CMapGeneratorWorker::RunThread(void *data)
 
 bool CMapGeneratorWorker::Run()
 {
-	// We must destroy the ScriptInterface in the same thread because the JSAPI requires that!
-	// Also we must not be in a request when calling the ScriptInterface destructor, so the autoFree object
-	// must be instantiated before the request (destructors are called in reverse order of instantiation)
-	struct AutoFree {
-		AutoFree(ScriptInterface* p) : m_p(p) {}
-		~AutoFree() { SAFE_DELETE(m_p); }
-		ScriptInterface* m_p;
-	} autoFree(m_ScriptInterface);
-
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
@@ -130,21 +124,7 @@ bool CMapGeneratorWorker::Run()
 	// Replace RNG with a seeded deterministic function
 	m_ScriptInterface->ReplaceNondeterministicRNG(m_MapGenRNG);
 
-	// Functions for RMS
-	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
-	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
-	m_ScriptInterface->RegisterFunction<JS::Value, std::wstring, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
-	m_ScriptInterface->RegisterFunction<JS::Value, std::string, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
-	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
-	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
-	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
-	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
-	m_ScriptInterface->RegisterFunction<int, CMapGeneratorWorker::GetTerrainTileSize>("GetTerrainTileSize");
-
-	// Globalscripts may use VFS script functions
-	m_ScriptInterface->LoadGlobalScripts();
+	RegisterScriptFunctions();
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
@@ -188,19 +168,58 @@ bool CMapGeneratorWorker::Run()
 	return true;
 }
 
+void CMapGeneratorWorker::RegisterScriptFunctions()
+{
+	// VFS
+	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
+
+	// Globalscripts may use VFS script functions
+	m_ScriptInterface->LoadGlobalScripts();
+
+	// File loading
+	m_ScriptInterface->RegisterFunction<bool, VfsPath, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
+	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
+	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
+
+	// Progression and profiling
+	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
+	m_ScriptInterface->RegisterFunction<double, CMapGeneratorWorker::GetMicroseconds>("GetMicroseconds");
+	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
+
+	// Template functions
+	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
+	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
+
+	// Engine constants
+
+	// Length of one tile of the terrain grid in metres.
+	// Useful to transform footprint sizes to the tilegrid coordinate system.
+	m_ScriptInterface->SetGlobal("TERRAIN_TILE_SIZE", static_cast<int>(TERRAIN_TILE_SIZE));
+
+	// Number of impassable tiles at the map border
+	m_ScriptInterface->SetGlobal("MAP_BORDER_WIDTH", static_cast<int>(MAP_EDGE_TILES));
+}
+
 int CMapGeneratorWorker::GetProgress()
 {
-	CScopeLock lock(m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_Progress;
+}
+
+double CMapGeneratorWorker::GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return JS_Now();
 }
 
 shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
 {
-	CScopeLock lock(m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_MapData;
 }
 
-bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
+bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& name)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	return self->LoadScripts(name);
@@ -211,7 +230,7 @@ void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 
 	// Copy results
-	CScopeLock lock(self->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
 	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data);
 	self->m_Progress = 0;
 }
@@ -221,7 +240,7 @@ void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, in
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 
 	// Copy data
-	CScopeLock lock(self->m_WorkerMutex);
+	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
 
 	if (progress >= self->m_Progress)
 		self->m_Progress = progress;
@@ -257,12 +276,7 @@ std::vector<std::string> CMapGeneratorWorker::FindActorTemplates(ScriptInterface
 	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, ACTOR_TEMPLATES);
 }
 
-int CMapGeneratorWorker::GetTerrainTileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return TERRAIN_TILE_SIZE;
-}
-
-bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
+bool CMapGeneratorWorker::LoadScripts(const VfsPath& libraryName)
 {
 	// Ignore libraries that are already loaded
 	if (m_LoadedLibraries.find(libraryName) != m_LoadedLibraries.end())
@@ -271,7 +285,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	// Mark this as loaded, to prevent it recursively loading itself
 	m_LoadedLibraries.insert(libraryName);
 
-	VfsPath path = L"maps/random/" + libraryName + L"/";
+	VfsPath path = VfsPath(L"maps/random/") / libraryName / VfsPath();
 	VfsPaths pathnames;
 
 	// Load all scripts in mapgen directory
@@ -300,12 +314,12 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	return true;
 }
 
-JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& vfsPath)
+JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
 {
 	std::vector<u16> heightmap;
-	if (LoadHeightmapImageVfs(vfsPath, heightmap) != INFO::OK)
+	if (LoadHeightmapImageVfs(filename, heightmap) != INFO::OK)
 	{
-		LOGERROR("Could not load heightmap file '%s'", utf8_from_wstring(vfsPath).c_str());
+		LOGERROR("Could not load heightmap file '%s'", filename.string8());
 		return JS::UndefinedValue();
 	}
 
@@ -318,16 +332,30 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 }
 
 // See CMapReader::UnpackTerrain, CMapReader::ParseTerrain for the reordering
-JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const std::string& filename)
+JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
 {
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	JSContext* cx = self->m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
 	if (!VfsFileExists(filename))
-		throw PSERROR_File_OpenFailed();
+	{
+		self->m_ScriptInterface->ReportError(
+			("Terrain file \"" +  filename.string8() +  "\" does not exist!").c_str());
+
+		return JS::UndefinedValue();
+	}
 
 	CFileUnpacker unpacker;
 	unpacker.Read(filename, "PSMP");
 
 	if (unpacker.GetVersion() < CMapIO::FILE_READ_VERSION)
-		throw PSERROR_File_InvalidVersion();
+	{
+		self->m_ScriptInterface->ReportError(
+			("Could not load terrain file \"" +  filename.string8() +  "\" too old version!").c_str());
+
+		return JS::UndefinedValue();
+	}
 
 	// unpack size
 	ssize_t patchesPerSide = (ssize_t)unpacker.UnpackSize();
@@ -370,14 +398,13 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 		}
 	}
 
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue returnValue(cx);
-	self->m_ScriptInterface->Eval("({})", &returnValue);
-	self->m_ScriptInterface->SetProperty(returnValue, "height", heightmap);
-	self->m_ScriptInterface->SetProperty(returnValue, "textureNames", textureNames);
-	self->m_ScriptInterface->SetProperty(returnValue, "textureIDs", textureIDs);
+
+	self->m_ScriptInterface->CreateObject(
+		&returnValue,
+		"height", heightmap,
+		"textureNames", textureNames,
+		"textureIDs", textureIDs);
 
 	return returnValue;
 }

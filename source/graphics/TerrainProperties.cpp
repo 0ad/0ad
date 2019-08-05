@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,11 +23,11 @@
 
 #include <boost/tokenizer.hpp>
 
-#include "TerrainTextureManager.h"
+#include "graphics/Color.h"
+#include "graphics/TerrainTextureManager.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Shapes.h"
 #include "ps/XML/XeroXMB.h"
 #include "ps/XML/Xeromyces.h"
 

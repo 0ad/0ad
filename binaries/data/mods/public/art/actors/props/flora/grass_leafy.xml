@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="a">
+      <mesh>gaia/grass_summer.dae</mesh>
+    </variant>
+    <variant frequency="1" name="b">
+      <mesh>gaia/grass_summer_b.dae</mesh>
+    </variant>
+    <variant frequency="2" name="c">
+      <mesh>gaia/grass_leafy_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <textures>
+        <texture file="gaia/grass_leafy.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind_grain.xml</material>
+</actor>

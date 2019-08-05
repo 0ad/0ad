@@ -34,6 +34,8 @@
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wcpu.h"
+
+#include <map>
 #include <Psapi.h>
 
 #if ARCH_X86_X64

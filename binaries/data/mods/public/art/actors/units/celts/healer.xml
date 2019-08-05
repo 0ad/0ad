@@ -1,26 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant file="biped/base_healer_male.xml">
-      <mesh>skeletal/new/m_dress_sleeves.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_celt_su3.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/celt_helmet_mistletoe.xml" attachpoint="helmet"/>
         <prop actor="props/units/staff.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/druid.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_L"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="healer-outfit-1">
       <textures>
-        <texture file="skeletal/celt_healer_1.dds" name="baseTex"/>
+        <texture file="skeletal/celt_druid_1.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="healer-outfit-2">
       <textures>
-        <texture file="skeletal/celt_healer_2.dds" name="baseTex"/>
+        <texture file="skeletal/celt_druid_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="healer-outfit-3">
+      <textures>
+        <texture file="skeletal/celt_druid_3.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="healer-outfit-4">
+      <textures>
+        <texture file="skeletal/celt_druid_4.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -28,11 +38,7 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/druid.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

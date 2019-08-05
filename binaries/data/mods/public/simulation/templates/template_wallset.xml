@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Abstract entity to serve as a bare-minimum dummy constructable entity to initiate wall placement.
+     Defines the set of actual entities that are part of the same wall construction system (i.e., towers,
+     gates, wall segments of various length, etc.) using the WallSet component (to be overridden by child
+     templates). -->
+<Entity>
+  <Identity>
+    <Civ>gaia</Civ>
+    <Icon>structures/wall.png</Icon>
+    <Classes datatype="tokens">StoneWall</Classes>
+    <GenericName>City Wall</GenericName>
+    <Tooltip>Wall off your town for a stout defense.</Tooltip>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Undeletable>true</Undeletable>
+  </Identity>
+  <WallSet>
+    <MaxTowerOverlap>0.85</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+  <Visibility>
+    <RetainInFog>false</RetainInFog>
+    <AlwaysVisible>false</AlwaysVisible>
+    <Corpse>false</Corpse>
+    <Preview>false</Preview>
+  </Visibility>
+</Entity>

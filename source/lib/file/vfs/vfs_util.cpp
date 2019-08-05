@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -43,7 +43,6 @@ Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter,
 	std::vector<CFileInfo> files;
 	RETURN_STATUS_IF_ERR(fs->GetDirectoryEntries(path, &files, 0));
 
-	pathnames.clear();
 	pathnames.reserve(files.size());
 
 	for(size_t i = 0; i < files.size(); i++)

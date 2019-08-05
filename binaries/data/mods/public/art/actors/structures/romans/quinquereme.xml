@@ -3,31 +3,23 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="mechanical/rome_qui_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/rome_qui_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/rome_qui_move.dae" name="Run" speed="8"/>
-      </animations>
-      <mesh>structural/rome_qui.dae</mesh>
+    <variant frequency="1" file="others/ships/rome_quinquereme_oars.xml" name="Rome Quinquereme">
+      <mesh>structural/rome_ship_quinquereme.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/romans/quinquereme_main_sail.xml" attachpoint="main_sail"/>
+        <prop actor="props/structures/romans/rome_bridge_base.xml" attachpoint="bridge"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/rome_qui.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/rome_quinquereme.png" name="baseTex"/>
+        <texture file="structural/rome_quinquereme_spec.png" name="specTex"/>
+        <texture file="structural/rome_quinquereme_norm.png" name="normTex"/>
+        <texture file="structural/ao/rome_quinquereme.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="sail">
-      <props>
-        <prop actor="props/structures/romans/quinquereme_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/quinquereme_mast.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="0" name="no-sail">
-      <props>
-        <prop actor="props/structures/romans/quinquereme_props.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="others/ships/rome_quinquereme_shields.xml" name="Roman Quinquereme Shields"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

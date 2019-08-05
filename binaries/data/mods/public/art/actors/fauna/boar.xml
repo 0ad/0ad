@@ -2,21 +2,26 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Mesh">
+    <variant frequency="100" name="Boar">
       <animations>
-        <animation file="quadraped/boar_idle_01.dae" name="Idle" speed="15"/>
-        <animation file="quadraped/boar_idle_02.dae" name="Idle" speed="60"/>
-        <animation file="quadraped/boar_attack.dae" name="attack_melee" speed="120"/>
-        <animation file="quadraped/boar_walk.dae" name="Walk" speed="25"/>
-        <animation file="quadraped/boar_run.dae" name="Run" speed="8"/>
-        <animation file="quadraped/boar_death.dae" name="Death" speed="75"/>
+        <animation file="quadraped/animal_boar_idle_02.dae" name="Idle" speed="10"/>
+        <animation file="quadraped/animal_boar_attack_01.dae" name="attack_melee" speed="120"/>
+        <animation file="quadraped/animal_boar_walk_01.dae" name="Walk" speed="10"/>
+        <animation file="quadraped/animal_boar_run_01.dae" name="Run" speed="8"/>
+        <animation file="quadraped/animal_boar_death_01.dae" name="Death" speed="50"/>
       </animations>
-      <mesh>skeletal/boar.dae</mesh>
+      <mesh>skeletal/animal_boar.dae</mesh>
+      <textures>
+        <texture file="skeletal/animal_boar_01.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="texture">
-      <textures><texture file="skeletal/animal_boar.dds" name="baseTex"/></textures>
+    <variant frequency="100" name="normal"/>
+    <variant frequency="0" name="feeding">
+      <animations>
+        <animation file="quadraped/animal_boar_idle_01.dae" name="Idle" speed="10"/>
+      </animations>
     </variant>
   </group>
   <group>
@@ -27,4 +32,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>

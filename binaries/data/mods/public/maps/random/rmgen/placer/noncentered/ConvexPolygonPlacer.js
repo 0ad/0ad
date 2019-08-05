@@ -5,7 +5,7 @@ function ConvexPolygonPlacer(points, failFraction = 0)
 {
 	this.polygonVertices = this.getConvexHull(points.map(point => point.clone().round()));
 	this.failFraction = failFraction;
-};
+}
 
 ConvexPolygonPlacer.prototype.place = function(constraint)
 {

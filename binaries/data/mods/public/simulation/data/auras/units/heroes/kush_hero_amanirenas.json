@@ -3,12 +3,12 @@
 	"radius": 60,
 	"affects": ["Champion"],
 	"modifications": [
-		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
-		{ "value": "Attack/Melee/Crush", "multiply": 1.2 },
-		{ "value": "Attack/Ranged/Hack", "multiply": 1.2 },
-		{ "value": "Attack/Ranged/Pierce", "multiply": 1.2 },
-		{ "value": "Attack/Ranged/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 },
 		{ "value": "Attack/Capture/Value", "add": 2 }
 	],
 	"auraName": "Warrior Queen",

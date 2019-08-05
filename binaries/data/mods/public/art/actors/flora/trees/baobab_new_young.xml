@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <props>
+        <prop actor="flora/trees/baobab_new_young_branches.xml" attachpoint="root"/>
+        <prop actor="flora/trees/baobab_new_young_leaves.xml" attachpoint="root"/>
+        <prop actor="particle/falling_leaf_dry_a.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/tree_baobab_trunk.png" name="baseTex"/>
+        <texture file="gaia/tree_baobab_trunk_norm.png" name="normTex"/>
+        <texture file="gaia/tree_baobab_trunk_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="1">
+      <mesh>gaia/baobab_young_1_trunk.dae</mesh>
+    </variant>
+    <variant frequency="3" name="2">
+      <mesh>gaia/baobab_young_2_trunk.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

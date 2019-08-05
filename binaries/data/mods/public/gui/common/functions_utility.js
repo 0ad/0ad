@@ -4,7 +4,8 @@
  * And store the timestamp of last interaction for each notification.
  */
 var g_SoundNotifications = {
-	"nick": { "soundfile": "audio/interface/ui/chat_alert.ogg", "threshold": 3000 }
+	"nick": { "soundfile": "audio/interface/ui/chat_alert.ogg", "threshold": 3000 },
+	"gamesetup.join": { "soundfile": "audio/interface/ui/gamesetup_join.ogg", "threshold": 0 }
 };
 
 /**
@@ -223,4 +224,12 @@ function hideRemaining(parentName, start = 0)
 
 	for (let i = start; i < objects.length; ++i)
 		objects[i].hidden = true;
+}
+
+function getBuildString()
+{
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
+		"buildDate": Engine.GetBuildDate(),
+		"revision": Engine.GetBuildRevision()
+	});
 }

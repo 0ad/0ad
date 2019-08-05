@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_entity_full">
+<Entity>
+  <AIProxy/>
   <Armour>
     <Hack>1</Hack>
     <Pierce>1</Pierce>
@@ -56,8 +57,9 @@
     <Unhealable>true</Unhealable>
   </Health>
   <Identity>
+    <Civ>gaia</Civ>
     <GenericName>Structure</GenericName>
-    <Classes datatype="tokens">Structure ConquestCritical</Classes>
+    <Classes datatype="tokens">Structure</Classes>
     <Undeletable>false</Undeletable>
   </Identity>
   <Loot>
@@ -67,6 +69,7 @@
     <stone>0</stone>
     <metal>0</metal>
   </Loot>
+  <Looter/>
   <Minimap>
     <Type>structure</Type>
   </Minimap>
@@ -81,6 +84,14 @@
     <DeleteUponConstruction>false</DeleteUponConstruction>
   </Obstruction>
   <OverlayRenderer/>
+  <Ownership/>
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+    <FloatDepth>0.0</FloatDepth>
+    <TurnRate>6.0</TurnRate>
+  </Position>
   <ProductionQueue>
     <TechCostMultiplier>
       <food>1.0</food>
@@ -130,6 +141,7 @@
     <BarHeight>0.6</BarHeight>
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
+  <StatusEffectsReceiver/>
   <TerritoryDecay>
     <DecayRate>20</DecayRate>
   </TerritoryDecay>

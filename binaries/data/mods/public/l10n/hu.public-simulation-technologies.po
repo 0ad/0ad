@@ -1,10 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2018
-# Balázs Úr <urbalazs@gmail.com>, 2015-2017
+# Balázs Meskó <meskobalazs@gmail.com>, 2015-2019
+# Balázs Úr, 2015-2017
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
 # Boross Péter <borosspet@web.de>, 2015
@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-11 17:50+0000\n"
+"POT-Creation-Date: 2019-06-03 09:57+0200\n"
+"PO-Revision-Date: 2019-06-03 18:34+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,33 @@ msgid ""
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
 msgstr "A fejlett osztályra képzett egységek a következő bónuszokat kapják: 20% további életerő, 1 további páncélszint minden típusból, 20% további zsákmány, 20%-kal nagyobb támadás a közelharci egységeknek, 4 m további hatótávolság és jobb pontosság a távolsági egységeknek, gyorsabb mozgási sebesség és további gyógyítási sebesség és hatótáv a gyógyítóknak."
+
+#: simulation/data/technologies/archery_tradition.jsondescription
+msgid ""
+"The Indian and Iranian peoples had a tradition of fine archery and a "
+"penchant for using massed archers in battle."
+msgstr "Az indiaiak és irániak nagy íjászhagyománnyal rendelkeztek és előszeretettel vetették be nagy tömegben az íjászokat a csatában."
+
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "+10 méter hatótávolság az íjászegységeknek. Az íjászegységek pontosabbak és 20%-kal gyorsabban kerülnek kiképzésre, de 20%-kal kevesebb életerejük lesz."
+
+#: simulation/data/technologies/archery_tradition.jsongenericName
+msgid "Archery Tradition"
+msgstr "Íjászhagyomány"
+
+#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase."
+msgstr "Falusi szakasztól érhető el."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -464,18 +491,6 @@ msgstr "Fából készült erősítő gerendák a hajótestekhez. +2 szint minden
 msgid "Reinforced hull"
 msgstr "Megerősített hajótest"
 
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Falusi szakasztól érhető el."
-
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
 msgstr "Egy hosszú lándzsa kifejezetten a lovasságnak készítve."
@@ -835,8 +850,8 @@ msgid "Gather Training"
 msgstr "Begyűjtési kiképzés"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the fishing productivity."
-msgstr "A hálók növelik a halászat termelékenységét."
+msgid "Nets improve the productivity of fishing boats."
+msgstr "A hálók növelik a halászcsónakok termelékenységét."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -975,11 +990,11 @@ msgid "Wicker Baskets"
 msgstr "Vesszőkosarak"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in barracks heal over time."
+msgid "Units garrisoned in Barracks heal over time."
 msgstr "A laktanyákba beszállásolt egységek gyógyulnak az idő múlásával."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in barracks."
+msgid "Units gain health over time while garrisoned in Barracks."
 msgstr "Az egységek gyógyulnak az idő múlásával, mialatt laktanyákba vannak beszállásolva."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
@@ -1712,7 +1727,7 @@ msgstr "Fejlett kézműves ipar"
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
-"Significantly increase training speed of soldiers at the barracks by "
+"Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
 msgstr "Jelentősen növeli a katonák kiképzési sebességét a laktanyákban azáltal, hogy nagy csoportokban vagy zászlóaljakban képzi ki őket."
 
@@ -1778,7 +1793,7 @@ msgid ""
 msgstr "Az őr egységek (bajnokok) hivatásos katonák akik a legjobb fegyvereket forgatják és a legjobb kiképzéssel rendelkeznek."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the barracks."
+msgid "Unlock the ability to train Champions at the Barracks."
 msgstr "Elérhetővé teszi a bajnokok gyártását a laktanyákban."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
@@ -1949,23 +1964,6 @@ msgstr "Elit gyalogos polgár"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "A karthágóiak a városfalaikat három koncentrikus körben építették. Ezeket a falakat sosem törték át. Amikor a rómaiak elfoglalták a várost, akkor is a város kikötőjén keresztül tették, és nem a falak ostromával."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
-msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "A karthágói falak, kapuk és tornyok háromszor olyan ellenállóak, mint a hagyományos falak, de kétszer annyiba kerülnek, és kétszer olyan sok idő alatt épülnek fel."
-
-#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Hármas falak"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2269,19 +2267,120 @@ msgstr "Minden italióta zsoldos előléptetése elit rangra. Ez növeli a harci
 msgid "Elite Italiote Mercenaries"
 msgstr "Elit italióta zsoldosok"
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "A karthágóiak a városfalaikat három koncentrikus körben építették. Ezeket a falakat sosem törték át. Amikor a rómaiak elfoglalták a várost, akkor is a város kikötőjén keresztül tették, és nem a falak ostromával."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid ""
+"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
+"wall, but also cost twice as much and take twice as long to build."
+msgstr "A karthágói falak, kapuk és tornyok háromszor olyan ellenállóak, mint a hagyományos falak, de kétszer annyiba kerülnek, és kétszer olyan sok idő alatt épülnek fel."
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "Hármas falak"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr "A kelta épületek többnyire fából készültek, terméskő alapokra."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
 msgstr "A kelta épületeknek 20%-kal kevesebb életerejük van, de 20%-kal olcsóbbak, és gyorsabban épülnek."
 
-#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
 msgstr "Faépületek"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "A görögök kőépítményeket használtak a korai mükénei időktől."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "Minden épületnek 10%-kal több életerő és foglalási pontja van, de 10%-kal hosszabb az építési idő is."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "Görög építészet"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "A Maurja birodalom több tucat, előzőleg független királyságot fogott össze mintegy 5 millió négyzetkilométernyi területen, közel 60 millió fős lakossággal. A Maurja uralkódok címe a császárok császára volt és egy hatalmas állandó seregnek parancsoltak. A 600.000 fős gyalogság, 9000 elefánt, 8000 harci szekér és 30.000 fős lovasság kétség kívül a kor legnagyobb hadserege volt."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas have a 10% higher maximum population limit."
+msgstr "A maurjáknak 10%-kal nagyobb a maximális népességkorlátja."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "A császárok császára"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr "A maurják a városfalaikat fából építették, amely bőséges nyersanyag volt Indiában."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "A maurja városfalaknak -20%-kal kevesebb az életerejük, és -20%-kal kevesebb idő alatt épülnek fel."
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "Fa falak"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, az Óperzsa birodalom puszta méretéből és a felépítéséből adódóan. Általánosságban a perzsa gyalogság jól képzett volt és nagy kitartással harcolt. Viszont a gyalogság gyenge volt a kézitusában és a közelharcban. Emellett az elit csapatokat leszámítva, a perzsa gyalogság nem egy állandó, hivatásos haderő volt."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "A perzsáknak 10%-kal nagyobb a maximális népességkorlátja."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "Nagy király sorozása"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "A spártaiak hadserege nem a legnagyobb, de az akkori világ legjobbja volt. Ami mennyiségben hiányzott, azt minőséggel kompenzálták. Azt mondták, hogy Spártának nincs szüksége erős városfalakra, mert az emberek maguk a fal."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans have 10% less maximum population."
+msgstr "A spártaiknak 10%-kal kisebb a maximális népességkorlátja."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "A gyengébb fél"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -2300,36 +2399,6 @@ msgstr "Gyalogsági lándzsás harc"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismós"
 msgstr "Doratismós"
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "A görögök kőépítményeket használtak a korai mükénei időktől."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
-msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Minden épületnek 10%-kal több életerő és foglalási pontja van, de 10%-kal hosszabb az építési idő is."
-
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "Görög építészet"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "A spártaiak hadserege nem a legnagyobb, de az akkori világ legjobbja volt. Ami mennyiségben hiányzott, azt minőséggel kompenzálták. Azt mondták, hogy Spártának nincs szüksége erős városfalakra, mert az emberek maguk a fal."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "A spártaiknak 10%-kal kisebb a maximális népességkorlátja."
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "A gyengébb fél"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2377,7 +2446,7 @@ msgstr "Athéni hosszú falak"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
 msgstr "+25% életerő és -50% építési idő a városházáknak, templomoknak, piramisoknak és csodáknak."
 
@@ -2398,78 +2467,6 @@ msgstr "Elit rangú gyógyítók kiképzése."
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
 msgstr "Isteni utasítás"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "A Maurja birodalom több tucat, előzőleg független királyságot fogott össze mintegy 5 millió négyzetkilométernyi területen, közel 60 millió fős lakossággal. A Maurja uralkódok címe a császárok császára volt és egy hatalmas állandó seregnek parancsoltak. A 600.000 fős gyalogság, 9000 elefánt, 8000 harci szekér és 30.000 fős lovasság kétség kívül a kor legnagyobb hadserege volt."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
-msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "A maurjáknak 10%-kal nagyobb a maximális népességkorlátja."
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "A császárok császára"
-
-#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
-msgid ""
-"The Indians had a tradition of fine archery and a penchant for using massed "
-"archers in battle."
-msgstr "Az indiaiak nagy íjászhagyománnyal rendelkeztek és előszeretettel vetették be nagy tömegben az íjászokat a csatában."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
-#: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
-msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 méter hatótávolság az íjászegységeknek. Az íjászegységek pontosabbak és 20%-kal gyorsabban kerülnek kiképzésre, de 20%-kal kevesebb életerejük lesz."
-
-#: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
-#: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Íjászhagyomány"
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsondescription
-msgid ""
-"The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India."
-msgstr "A maurják a városfalaikat fából építették, amely bőséges nyersanyag volt Indiában."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "A maurja városfalaknak -20%-kal kevesebb az életerejük, és -20%-kal kevesebb idő alatt épülnek fel."
-
-#: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Fa falak"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, az Óperzsa birodalom puszta méretéből és a felépítéséből adódóan. Általánosságban a perzsa gyalogság jól képzett volt és nagy kitartással harcolt. Viszont a gyalogság gyenge volt a kézitusában és a közelharcban. Emellett az elit csapatokat leszámítva, a perzsa gyalogság nem egy állandó, hivatásos haderő volt."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "A perzsáknak 10%-kal nagyobb a maximális népességkorlátja."
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Nagy király sorozása"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2502,12 +2499,6 @@ msgstr "Minden perzsa épületnek +25% életerő és foglalási pont, de +20% é
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
 msgstr "Perzsa építészet"
-
-#: simulation/data/technologies/persians/special_archery_tradition.jsondescription
-msgid ""
-"The Persians had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "A perzsák nagy íjászhagyománnyal rendelkeztek, és előszeretettel használtak íjászokat tömegesen a csatában."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""

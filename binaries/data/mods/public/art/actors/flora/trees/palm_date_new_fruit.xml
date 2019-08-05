@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="3" name="base">
+      <props>
+        <prop actor="props/flora/decal_palms_patch.xml" attachpoint="root"/>
+        <prop actor="props/flora/decal_dates.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/palm_date_new_norm.png" name="normTex"/>
+        <texture file="gaia/palm_date_new_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="a">
+      <textures>
+        <texture file="gaia/palm_date_new_3_fruiting.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="1">
+      <mesh>gaia/palm_date_new_fruit_1.dae</mesh>
+    </variant>
+    <variant frequency="3" name="2">
+      <mesh>gaia/palm_date_new_fruit_2.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

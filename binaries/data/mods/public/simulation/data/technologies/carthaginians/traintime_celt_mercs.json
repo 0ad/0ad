@@ -2,13 +2,15 @@
 	"pair": "carthaginians/pair_celt_mercs_1",
 	"genericName": "Celtic Alliance",
 	"description": "Celtic mercenaries have their train time decreased.",
-	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 100},
-	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
+	"cost": { "food": 0, "wood": 100, "stone": 0, "metal": 100 },
+	"requirements": { "all": [{ "tech": "phase_town" }, { "civ": "cart" }] },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
 	"tooltip": "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries.",
-	"modifications": [{"value": "Cost/BuildTime", "multiply": 0.8}],
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+	],
 	"affects": ["Celt Mercenary"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

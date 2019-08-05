@@ -7,9 +7,11 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>25.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>20.0</Crush>
+      <Damage>
+        <Hack>25.0</Hack>
+        <Pierce>10.0</Pierce>
+        <Crush>20.0</Crush>
+      </Damage>
       <MaxRange>6.0</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
@@ -23,7 +25,6 @@
     </Melee>
   </Attack>
   <Identity>
-    <Civ>gaia</Civ>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
   </Identity>
   <Loot>
@@ -53,11 +54,5 @@
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <WalkSpeed op="mul">0.5</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.5</Speed>
-    </Run>
   </UnitMotion>
-  <VisualActor>
-    <Actor>fauna/elephant_african_forest.xml</Actor>
-  </VisualActor>
 </Entity>

@@ -5,8 +5,8 @@
     <Height>1.5</Height>
   </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Sheep</SpecificName>
+    <GenericName>Sheep</GenericName>
+    <SpecificName>Ovis aries</SpecificName>
     <Icon>gaia/fauna_sheep.png</Icon>
   </Identity>
   <Position>
@@ -25,9 +25,6 @@
   </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.45</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.45</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/sheep3.xml</Actor>

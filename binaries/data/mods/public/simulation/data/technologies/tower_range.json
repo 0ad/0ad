@@ -1,16 +1,16 @@
 {
-  "genericName": "Arrow Shooters",
-  "description": "Arrow shooters increase the maximum range of the fire arrows.",
-  "cost": { "food": 0, "wood": 500, "stone": 0, "metal": 250 },
-  "requirements": { "tech": "phase_town" },
-  "requirementsTooltip": "Unlocked in Town Phase.",
-  "icon": "arrow.png",
-  "researchTime": 40,
-  "tooltip": "Increases defensive towers' maximum range by 8 meters.",
-  "modifications": [
-    { "value": "Attack/Ranged/MaxRange", "add": 8 },
-    { "value": "Vision/Range","add": 8 }
-  ],
-  "affects": ["DefenseTower"],
-  "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+	"genericName": "Arrow Shooters",
+	"description": "Arrow shooters increase the maximum range of the fire arrows.",
+	"cost": { "food": 0, "wood": 500, "stone": 0, "metal": 250 },
+	"requirements": { "tech": "phase_town" },
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "arrow.png",
+	"researchTime": 40,
+	"tooltip": "Increases defensive towers' maximum range by 8 meters.",
+	"modifications": [
+		{ "value": "Attack/Ranged/MaxRange", "add": 8 },
+		{ "value": "Vision/Range","add": 8 }
+	],
+	"affects": ["DefenseTower"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

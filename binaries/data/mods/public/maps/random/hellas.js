@@ -293,7 +293,7 @@ placeDocks(
 	heightShoreline,
 	[avoidClasses(clDock, 50), new StaticConstraint(avoidClasses(clPlayer, 30, clCliffs, 8))],
 	0,
-	50)
+	50);
 Engine.SetProgress(65);
 
 let [forestTrees, stragglerTrees] = getTreeCounts(600, 4000, 0.7);

@@ -180,15 +180,15 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	}
 });
 
-cmpEntityLimits.ChangeCount("Champion", 1)
-TS_ASSERT(cmpEntityLimits.AllowedToReplace(100, "templateA"))
-TS_ASSERT(!cmpEntityLimits.AllowedToReplace(101, "templateA"))
-cmpEntityLimits.ChangeCount("Champion", -1)
+cmpEntityLimits.ChangeCount("Champion", 1);
+TS_ASSERT(cmpEntityLimits.AllowedToReplace(100, "templateA"));
+TS_ASSERT(!cmpEntityLimits.AllowedToReplace(101, "templateA"));
+cmpEntityLimits.ChangeCount("Champion", -1);
 
-cmpEntityLimits.ChangeCount("Tower", 5)
-TS_ASSERT(!cmpEntityLimits.AllowedToReplace(102, "templateD"))
-TS_ASSERT(cmpEntityLimits.AllowedToReplace(103, "templateD"))
-cmpEntityLimits.ChangeCount("Tower", -5)
+cmpEntityLimits.ChangeCount("Tower", 5);
+TS_ASSERT(!cmpEntityLimits.AllowedToReplace(102, "templateD"));
+TS_ASSERT(cmpEntityLimits.AllowedToReplace(103, "templateD"));
+cmpEntityLimits.ChangeCount("Tower", -5);
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 

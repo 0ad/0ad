@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,6 +80,7 @@ that of Atlas depending on commandline parameters.
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 #include "rlinterface/RLInterface.cpp"
+#include "soundmanager/ISoundManager.h"
 
 #if OS_UNIX
 #include <unistd.h> // geteuid
@@ -408,16 +409,19 @@ static void Frame()
 	g_Console->Update(realTimeSinceLastFrame);
 	ogl_WarnIfError();
 
-	// We do not have to render an inactive fullscreen frame, because it can
-	// lead to errors for some graphic card families.
-	if (!g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen()))
+	if (g_SoundManager)
+		g_SoundManager->IdleTask();
+
+	if (ShouldRender())
 	{
 		Render();
 
-		PROFILE3("swap buffers");
-		SDL_GL_SwapWindow(g_VideoMode.GetWindow());
+		{
+			PROFILE3("swap buffers");
+			SDL_GL_SwapWindow(g_VideoMode.GetWindow());
+			ogl_WarnIfError();
+		}
 	}
-	ogl_WarnIfError();
 
 	g_Profiler.Frame();
 
@@ -473,6 +477,7 @@ static std::unique_ptr<RLInterface> StartRLInterface(CmdLineArgs args)
 
 static void* RunRenderLoop(std::unique_ptr<RLInterface>& service)
 {
+    // TODO: Update this according to the changes in the main loop
 	g_Profiler2.RecordFrameStart();
 	PROFILE2("frame");
 	g_Profiler2.IncrementFrameNumber();

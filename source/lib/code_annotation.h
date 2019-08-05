@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Wildfire Games.
+/* Copyright (c) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -216,7 +216,7 @@ switch(x % 2)
  */
 #define NONCOPYABLE(className) \
 	className(const className&) = delete; \
-	const className& operator=(const className&) = delete
+	className& operator=(const className&) = delete
 
 #if ICC_VERSION
 # define ASSUME_ALIGNED(ptr, multiple) __assume_aligned(ptr, multiple)

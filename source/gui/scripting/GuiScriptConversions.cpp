@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,12 +17,15 @@
 
 #include "precompiled.h"
 
-#include "scriptinterface/ScriptConversions.h"
-
+#include "gui/CGUIColor.h"
+#include "gui/CGUIList.h"
+#include "gui/CGUISeries.h"
+#include "gui/GUIbase.h"
 #include "gui/IGUIObject.h"
 #include "lib/external_libraries/libsdl.h"
-#include "ps/Hotkey.h"
 #include "maths/Vector2D.h"
+#include "ps/Hotkey.h"
+#include "scriptinterface/ScriptConversions.h"
 
 #define SET(obj, name, value) STMT(JS::RootedValue v_(cx); AssignOrToJSVal(cx, &v_, (value)); JS_SetProperty(cx, obj, (name), v_))
 	// ignore JS_SetProperty return value, because errors should be impossible
@@ -132,14 +135,227 @@ template<> void ScriptInterface::ToJSVal<CGUIString>(JSContext* cx, JS::MutableH
 template<> bool ScriptInterface::FromJSVal<CGUIString>(JSContext* cx, JS::HandleValue v, CGUIString& out)
 {
 	std::wstring val;
-	if (!ScriptInterface::FromJSVal(cx, v, val))
+	if (!FromJSVal(cx, v, val))
 		return false;
 	out.SetValue(val);
 	return true;
 }
 
-// define some vectors
 JSVAL_VECTOR(CVector2D)
 JSVAL_VECTOR(std::vector<CVector2D>)
 JSVAL_VECTOR(CGUIString)
 
+template<> void ScriptInterface::ToJSVal<CGUIColor>(JSContext* cx, JS::MutableHandleValue ret, const CGUIColor& val)
+{
+	ToJSVal<CColor>(cx, ret, val);
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleValue v, CGUIColor& out)
+{
+	if (v.isString())
+	{
+		CStr name;
+		if (!FromJSVal(cx, v, name))
+			return false;
+
+		if (!out.ParseString(name))
+		{
+			JS_ReportError(cx, "Invalid color '%s'", name.c_str());
+			return false;
+		}
+		return true;
+	}
+
+	// Parse as object
+	return FromJSVal<CColor>(cx, v, out);
+}
+
+template<> void ScriptInterface::ToJSVal<CSize>(JSContext* cx, JS::MutableHandleValue ret, const CSize& val)
+{
+	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "width", val.cx, "height", val.cy);
+}
+
+template<> bool ScriptInterface::FromJSVal<CSize>(JSContext* cx, JS::HandleValue v, CSize& out)
+{
+	if (!v.isObject())
+	{
+		JS_ReportError(cx, "CSize value must be an object!");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "width", out.cx))
+	{
+		JS_ReportError(cx, "Failed to get CSize.cx property");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "height", out.cy))
+	{
+		JS_ReportError(cx, "Failed to get CSize.cy property");
+		return false;
+	}
+
+	return true;
+}
+
+template<> void ScriptInterface::ToJSVal<CPos>(JSContext* cx, JS::MutableHandleValue ret, const CPos& val)
+{
+	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "x", val.x, "y", val.y);
+}
+
+template<> bool ScriptInterface::FromJSVal<CPos>(JSContext* cx, JS::HandleValue v, CPos& out)
+{
+	if (!v.isObject())
+	{
+		JS_ReportError(cx, "CPos value must be an object!");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "x", out.x))
+	{
+		JS_ReportError(cx, "Failed to get CPos.x property");
+		return false;
+	}
+
+	if (!FromJSProperty(cx, v, "y", out.y))
+	{
+		JS_ReportError(cx, "Failed to get CPos.y property");
+		return false;
+	}
+
+	return true;
+}
+
+template<> void ScriptInterface::ToJSVal<CClientArea>(JSContext* cx, JS::MutableHandleValue ret, const CClientArea& val)
+{
+	val.ToJSVal(cx, ret);
+}
+
+template<> bool ScriptInterface::FromJSVal<CClientArea>(JSContext* cx, JS::HandleValue v, CClientArea& out)
+{
+	return out.FromJSVal(cx, v);
+}
+
+template<> void ScriptInterface::ToJSVal<CGUIList>(JSContext* cx, JS::MutableHandleValue ret, const CGUIList& val)
+{
+	ToJSVal(cx, ret, val.m_Items);
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUIList>(JSContext* cx, JS::HandleValue v, CGUIList& out)
+{
+	return FromJSVal(cx, v, out.m_Items);
+}
+
+template<> void ScriptInterface::ToJSVal<CGUISeries>(JSContext* cx, JS::MutableHandleValue ret, const CGUISeries& val)
+{
+	ToJSVal(cx, ret, val.m_Series);
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUISeries>(JSContext* cx, JS::HandleValue v, CGUISeries& out)
+{
+	return FromJSVal(cx, v, out.m_Series);
+}
+
+template<> void ScriptInterface::ToJSVal<EVAlign>(JSContext* cx, JS::MutableHandleValue ret, const EVAlign& val)
+{
+	std::string word;
+	switch (val)
+	{
+	case EVAlign_Top:
+		word = "top";
+		break;
+
+	case EVAlign_Bottom:
+		word = "bottom";
+		break;
+
+	case EVAlign_Center:
+		word = "center";
+		break;
+
+	default:
+		word = "error";
+		JS_ReportError(cx, "Invalid EVAlign");
+		break;
+	}
+	ToJSVal(cx, ret, word);
+}
+
+template<> bool ScriptInterface::FromJSVal<EVAlign>(JSContext* cx, JS::HandleValue v, EVAlign& out)
+{
+	std::string word;
+	FromJSVal(cx, v, word);
+
+	if (word == "top")
+		out = EVAlign_Top;
+	else if (word == "bottom")
+		out = EVAlign_Bottom;
+	else if (word == "center")
+		out = EVAlign_Center;
+	else
+	{
+		out = EVAlign_Top;
+		JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
+		return false;
+	}
+	return true;
+}
+
+template<> void ScriptInterface::ToJSVal<EAlign>(JSContext* cx, JS::MutableHandleValue ret, const EAlign& val)
+{
+	std::string word;
+	switch (val)
+	{
+	case EAlign_Left:
+		word = "left";
+		break;
+	case EAlign_Right:
+		word = "right";
+		break;
+	case EAlign_Center:
+		word = "center";
+		break;
+	default:
+		word = "error";
+		JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
+		break;
+	}
+	ToJSVal(cx, ret, word);
+}
+
+template<> bool ScriptInterface::FromJSVal<EAlign>(JSContext* cx, JS::HandleValue v, EAlign& out)
+{
+	std::string word;
+	FromJSVal(cx, v, word);
+
+	if (word == "left")
+		out = EAlign_Left;
+	else if (word == "right")
+		out = EAlign_Right;
+	else if (word == "center")
+		out = EAlign_Center;
+	else
+	{
+		out = EAlign_Left;
+		JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
+		return false;
+	}
+	return true;
+}
+
+template<> void ScriptInterface::ToJSVal<CGUISpriteInstance>(JSContext* cx, JS::MutableHandleValue ret, const CGUISpriteInstance& val)
+{
+	ToJSVal(cx, ret, val.GetName());
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUISpriteInstance>(JSContext* cx, JS::HandleValue v, CGUISpriteInstance& out)
+{
+	std::string name;
+	if (!FromJSVal(cx, v, name))
+		return false;
+
+	out.SetName(name);
+	return true;
+}
+
+#undef SET

@@ -26,13 +26,12 @@ let cmpUnitMotionFlying = ConstructComponent(entity, "UnitMotionFlying", {
 	"PassabilityClass": "unrestricted"
 });
 
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetWalkSpeed(), 1.0);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunSpeed(), 1.0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunMultiplier(), 1);
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
-
-cmpUnitMotionFlying.SetSpeed(2.0);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetWalkSpeed(), 1.0);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunSpeed(), 1.0);
+cmpUnitMotionFlying.SetSpeedMultiplier(2);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetRunMultiplier(), 1);
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
 
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetPassabilityClassName(), "unrestricted");
@@ -53,10 +52,6 @@ AddMock(target, IID_Position, {
 	"IsInWorld": () => true,
 	"GetPosition2D": () => { return { "x": 100, "y": 200 }; }
 });
-
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.IsInTargetRange(target, 10, 112), true);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.IsInTargetRange(target, 50, 111), false);
-TS_ASSERT_EQUALS(cmpUnitMotionFlying.IsInTargetRange(target, 112, 200), false);
 
 AddMock(entity, IID_GarrisonHolder, {
 	"AllowGarrisoning": () => {}
@@ -81,6 +76,7 @@ AddMock(entity, IID_WaterManager, {
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
 cmpUnitMotionFlying.OnUpdate({ "turnLength": 500 });
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 0);
 
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.MoveToTargetRange(target, 0, 10), true);
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.MoveToPointRange(100, 200, 0, 20), true);
@@ -100,6 +96,7 @@ TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0.75);
 TS_ASSERT_EQUALS(height, 55);
 cmpUnitMotionFlying.OnUpdate({ "turnLength": 500 });
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 1);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetSpeedMultiplier(), 1);
 TS_ASSERT_EQUALS(height, 105);
 
 // Fly

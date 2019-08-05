@@ -43,10 +43,12 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 	});
 
 	let cmpAttack = ConstructComponent(attacker, "Attack", {
-		"Melee" : {
-			"Hack": 11,
-			"Pierce": 5,
-			"Crush": 0,
+		"Melee": {
+			"Damage": {
+				"Hack": 11,
+				"Pierce": 5,
+				"Crush": 0
+			},
 			"MinRange": 3,
 			"MaxRange": 5,
 			"PreferredClasses": {
@@ -63,30 +65,36 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				}
 			}
 		},
-		"Ranged" : {
-			"Hack": 0,
-			"Pierce": 10,
-			"Crush": 0,
+		"Ranged": {
+			"Damage": {
+				"Hack": 0,
+				"Pierce": 10,
+				"Crush": 0
+			},
 			"MinRange": 10,
 			"MaxRange": 80,
 			"PrepareTime": 300,
 			"RepeatTime": 500,
-			"ProjectileSpeed": 50,
-			"Gravity": 9.81,
-			"Spread": 2.5,
+			"Projectile": {
+				"Speed": 10,
+				"Spread": 2,
+				"Gravity": 1
+			},
 			"PreferredClasses": {
 				"_string": "Archer"
 			},
 			"RestrictedClasses": {
 				"_string": "Elephant"
 			},
-			"Splash" : {
+			"Splash": {
 				"Shape": "Circular",
 				"Range": 10,
 				"FriendlyFire": "false",
-				"Hack": 0.0,
-				"Pierce": 15.0,
-				"Crush": 35.0,
+				"Damage": {
+					"Hack": 0.0,
+					"Pierce": 15.0,
+					"Crush": 35.0
+				},
 				"Bonuses": {
 					"BonusCav": {
 						"Classes": "Cavalry",
@@ -95,7 +103,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				}
 			}
 		},
-		"Capture" : {
+		"Capture": {
 			"Value": 8,
 			"MaxRange": 10,
 		},
@@ -126,7 +134,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 }
 
 // Validate template getter functions
-attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
+attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(), ["Melee", "Ranged", "Capture"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes([]), ["Melee", "Ranged", "Capture"]);
@@ -149,7 +157,7 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 		"Pierce": 10,
 		"Crush": 0
 	});
-	
+
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged.Splash"), {
 		"Hack": 0.0,
 		"Pierce": 15.0,
@@ -167,9 +175,11 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), {
-		"Hack": 0,
-		"Pierce": 15,
-		"Crush": 35,
+		"damage": {
+			"Hack": 0,
+			"Pierce": 15,
+			"Crush": 35,
+		},
 		"friendlyFire": false,
 		"shape": "Circular"
 	});
@@ -182,12 +192,12 @@ for (let className of ["Infantry", "Cavalry"])
 
 		TS_ASSERT(cmpAttack.GetBonusTemplate("Capture") === null);
 
-		let getAttackBonus = (t, e) => GetDamageBonus(e, cmpAttack.GetBonusTemplate(t));
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Melee", defender), className == "Cavalry" ? 2 : 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Ranged", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Ranged.Splash", defender), className == "Cavalry" ? 3 : 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Capture", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Slaughter", defender), 1);
+		let getAttackBonus = (s, t, e) => GetDamageBonus(s, e, t, cmpAttack.GetBonusTemplate(t));
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Melee", defender), className == "Cavalry" ? 2 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged.Splash", defender), className == "Cavalry" ? 3 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Capture", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Slaughter", defender), 1);
 	});
 
 // CanAttack rejects elephant attack due to RestrictedClasses
@@ -195,7 +205,7 @@ attackComponentTest("Elephant", true, (attacker, cmpAttack, defender) => {
 	TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender), false);
 });
 
-function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
+function testGetBestAttackAgainst(defenderClass, bestAttack, bestAllyAttack, isBuilding = false)
 {
 	attackComponentTest(defenderClass, true, (attacker, cmpAttack, defender) => {
 
@@ -249,21 +259,16 @@ function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 		if (!isBuilding)
 			allowCapturing.push(false);
 
-		let attack;
-		if (defenderClass == "Domestic")
-			attack = "Slaughter";
-		else if (defenderClass == "Structure")
-			attack = "Capture";
-
 		for (let ac of allowCapturing)
-			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAttack);
+			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAllyAttack);
 	});
 }
 
-testGetBestAttackAgainst("FemaleCitizen", "Melee");
-testGetBestAttackAgainst("Archer", "Ranged");
-testGetBestAttackAgainst("Domestic", "Slaughter");
-testGetBestAttackAgainst("Structure", "Capture", true);
+testGetBestAttackAgainst("FemaleCitizen", "Melee", undefined);
+testGetBestAttackAgainst("Archer", "Ranged", undefined);
+testGetBestAttackAgainst("Domestic", "Slaughter", "Slaughter");
+testGetBestAttackAgainst("Structure", "Capture", "Capture", true);
+testGetBestAttackAgainst("Structure", "Ranged", undefined, false);
 
 function testPredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity)
 {
