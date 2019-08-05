@@ -471,16 +471,16 @@ static void MainControllerShutdown()
 
 static std::unique_ptr<RLInterface> StartRLInterface(CmdLineArgs args)
 {
-    std::cout << "Starting RL Interface..." << std::endl;
-    std::string server_address("0.0.0.0:50051");
-    if (!args.Get("rpc-server").empty())
-    {
-        server_address = args.Get("rpc-server");
-    }
+	std::cout << "Starting RL Interface..." << std::endl;
+	std::string server_address("0.0.0.0:50051");
+	if (!args.Get("rpc-server").empty())
+	{
+		server_address = args.Get("rpc-server");
+	}
 
-    std::unique_ptr<RLInterface> service(new RLInterface);
-    service.get()->Listen(server_address);
-    return service;
+	std::unique_ptr<RLInterface> service(new RLInterface);
+	service.get()->Listen(server_address);
+	return service;
 }
 
 // moved into a helper function to ensure args is destroyed before
@@ -624,7 +624,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run the game
 	int flags = INIT_MODS;
 
-    if (args.Has("rpc-server")) {
+	if (args.Has("rpc-server")) {
 		while (!Init(args, flags))
 		{
 			flags &= ~INIT_MODS;
@@ -648,30 +648,30 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		if (isNonVisual)
 		{
 			InitNonVisual(args);
-            std::unique_ptr<RLInterface> service = StartRLInterface(args);
+			std::unique_ptr<RLInterface> service = StartRLInterface(args);
 			while (g_Shutdown == ShutdownType::None)
-            {
-                service.get()->ApplyEvents();
-            }
-            QuitEngine();
+			{
+				service.get()->ApplyEvents();
+			}
+			QuitEngine();
 		}
 		else
 		{
 			InitGraphics(args, 0, installedMods);
 			MainControllerInit();
-            std::unique_ptr<RLInterface> service = StartRLInterface(args);
+			std::unique_ptr<RLInterface> service = StartRLInterface(args);
 			while (g_Shutdown == ShutdownType::None)
-            {
-                Frame(true, service.get());
-            }
+			{
+				Frame(true, service.get());
+			}
 		}
 
 		Shutdown(0);
 		MainControllerShutdown();
 		CXeromyces::Terminate();
 
-        return;
-    }
+		return;
+	}
 
 	do
 	{
@@ -745,8 +745,8 @@ extern "C" int main(int argc, char* argv[])
 				  << "WARNING: Attempted to run the game with root permission!\n"
 				  << "This is not allowed because it can alter home directory \n"
 				  << "permissions and opens your system to vulnerabilities.   \n"
-				  << "(You received this message because you were either      \n"
-				  <<"  logged in as root or used e.g. the 'sudo' command.)    \n"
+				  << "(You received this message because you were either	  \n"
+				  <<"  logged in as root or used e.g. the 'sudo' command.)	  \n"
 				  << "********************************************************\n\n";
 		return EXIT_FAILURE;
 	}

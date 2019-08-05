@@ -25,171 +25,171 @@
 
 GameConfig GameConfig::from (const CmdLineArgs& args)
 {
-    CStr autoStartName = args.Get("autostart");
-    Path mapPath = Path(autoStartName);
-    std::wstring mapName = mapPath.Filename().string();
+	CStr autoStartName = args.Get("autostart");
+	Path mapPath = Path(autoStartName);
+	std::wstring mapName = mapPath.Filename().string();
 
-    std::wstring mapDirectory = mapPath.Parent().Filename().string();
-    std::wstring mapType;
-    if (mapDirectory == L"scenarios")
-    {
-        mapType = L"scenario";
-    }
-    else if (mapDirectory == L"skirmishes")
-    {
-        mapType = L"skirmish";
-    }
+	std::wstring mapDirectory = mapPath.Parent().Filename().string();
+	std::wstring mapType;
+	if (mapDirectory == L"scenarios")
+	{
+		mapType = L"scenario";
+	}
+	else if (mapDirectory == L"skirmishes")
+	{
+		mapType = L"skirmish";
+	}
 
-    struct GameConfig config(mapType, mapName);
+	struct GameConfig config(mapType, mapName);
 
-    config.nonVisual = args.Has("autostart-nonvisual");
-    if (args.Has("autostart-size"))
-    {
-        config.size = args.Get("autostart-size").ToUInt();
-    }
+	config.nonVisual = args.Has("autostart-nonvisual");
+	if (args.Has("autostart-size"))
+	{
+		config.size = args.Get("autostart-size").ToUInt();
+	}
 
-    if (args.Has("autostart-players"))
-    {
-        config.numPlayers = args.Get("autostart-players").ToUInt();
-    }
+	if (args.Has("autostart-players"))
+	{
+		config.numPlayers = args.Get("autostart-players").ToUInt();
+	}
 
-    // map type
-    if (args.Has("autostart-seed"))
-    {
-        CStr seedArg = args.Get("autostart-seed");
-        if (seedArg == "-1")
-            config.seed = rand();
-        else
-            config.seed = seedArg.ToULong();
-    }
+	// map type
+	if (args.Has("autostart-seed"))
+	{
+		CStr seedArg = args.Get("autostart-seed");
+		if (seedArg == "-1")
+			config.seed = rand();
+		else
+			config.seed = seedArg.ToULong();
+	}
 
-    // Set seed for AIs
-    if (args.Has("autostart-aiseed"))
-    {
-        CStr seedArg = args.Get("autostart-aiseed");
-        if (seedArg == "-1")
-            config.aiseed = rand();
-        else
-            config.aiseed = seedArg.ToULong();
-    }
+	// Set seed for AIs
+	if (args.Has("autostart-aiseed"))
+	{
+		CStr seedArg = args.Get("autostart-aiseed");
+		if (seedArg == "-1")
+			config.aiseed = rand();
+		else
+			config.aiseed = seedArg.ToULong();
+	}
 
-    {
-        std::vector<CStr> civArgs = args.GetMultiple("autostart-team");
-        for (size_t i = 0; i < civArgs.size(); ++i)
-        {
-            int playerID = civArgs[i].BeforeFirst(":").ToInt();
-            int teamID = civArgs[i].AfterFirst(":").ToInt() - 1;
-            config.teams.push_back(std::make_tuple(playerID, teamID));
-        }
-    }
+	{
+		std::vector<CStr> civArgs = args.GetMultiple("autostart-team");
+		for (size_t i = 0; i < civArgs.size(); ++i)
+		{
+			int playerID = civArgs[i].BeforeFirst(":").ToInt();
+			int teamID = civArgs[i].AfterFirst(":").ToInt() - 1;
+			config.teams.push_back(std::make_tuple(playerID, teamID));
+		}
+	}
 
-    if (args.Has("autostart-ceasefire"))
-        config.ceasefire = args.Get("autostart-ceasefire").ToInt();
+	if (args.Has("autostart-ceasefire"))
+		config.ceasefire = args.Get("autostart-ceasefire").ToInt();
 
-    if (args.Has("autostart-ai"))
-    {
-        std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
-        for (size_t i = 0; i < aiArgs.size(); ++i)
-        {
-            int playerID = aiArgs[i].BeforeFirst(":").ToInt();
-            CStr name = aiArgs[i].AfterFirst(":");
-            config.ai.push_back(std::make_tuple(playerID, name));
-        }
-    }
+	if (args.Has("autostart-ai"))
+	{
+		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
+		for (size_t i = 0; i < aiArgs.size(); ++i)
+		{
+			int playerID = aiArgs[i].BeforeFirst(":").ToInt();
+			CStr name = aiArgs[i].AfterFirst(":");
+			config.ai.push_back(std::make_tuple(playerID, name));
+		}
+	}
 
-    // Set AI difficulty
-    if (args.Has("autostart-aidiff"))
-    {
-        std::vector<CStr> civArgs = args.GetMultiple("autostart-aidiff");
-        for (size_t i = 0; i < civArgs.size(); ++i)
-        {
-            int playerID = civArgs[i].BeforeFirst(":").ToInt();
-            int difficulty = civArgs[i].AfterFirst(":").ToInt();
-            config.difficulties.push_back(std::make_tuple(playerID, difficulty));
-        }
-    }
+	// Set AI difficulty
+	if (args.Has("autostart-aidiff"))
+	{
+		std::vector<CStr> civArgs = args.GetMultiple("autostart-aidiff");
+		for (size_t i = 0; i < civArgs.size(); ++i)
+		{
+			int playerID = civArgs[i].BeforeFirst(":").ToInt();
+			int difficulty = civArgs[i].AfterFirst(":").ToInt();
+			config.difficulties.push_back(std::make_tuple(playerID, difficulty));
+		}
+	}
 
-    // Set player data for Civs
-    if (args.Has("autostart-civ"))
-    {
-        std::vector<CStr> civArgs = args.GetMultiple("autostart-civ");
-        for (size_t i = 0; i < civArgs.size(); ++i)
-        {
-            int playerID = civArgs[i].BeforeFirst(":").ToInt();
-            CStr name = civArgs[i].AfterFirst(":");
-            config.civs.push_back(std::make_tuple(playerID, name));
-        }
-    }
+	// Set player data for Civs
+	if (args.Has("autostart-civ"))
+	{
+		std::vector<CStr> civArgs = args.GetMultiple("autostart-civ");
+		for (size_t i = 0; i < civArgs.size(); ++i)
+		{
+			int playerID = civArgs[i].BeforeFirst(":").ToInt();
+			CStr name = civArgs[i].AfterFirst(":");
+			config.civs.push_back(std::make_tuple(playerID, name));
+		}
+	}
 
-    if (args.Has("autostart-playername"))
-        config.username = args.Get("autostart-playername").FromUTF8();
+	if (args.Has("autostart-playername"))
+		config.username = args.Get("autostart-playername").FromUTF8();
 
-    // Add additional scripts to the TriggerScripts property
-    if (args.Has("autostart-victory"))
-    {
-        config.victoryConditions = std::vector<std::string>();
-        std::vector<CStr> vicArgs = args.GetMultiple("autostart-victory");
-        for (size_t i = 0; i < vicArgs.size(); ++i)
-        {
-            config.victoryConditions.push_back(vicArgs[i]);
-        }
-    }
+	// Add additional scripts to the TriggerScripts property
+	if (args.Has("autostart-victory"))
+	{
+		config.victoryConditions = std::vector<std::string>();
+		std::vector<CStr> vicArgs = args.GetMultiple("autostart-victory");
+		for (size_t i = 0; i < vicArgs.size(); ++i)
+		{
+			config.victoryConditions.push_back(vicArgs[i]);
+		}
+	}
 
-    if (args.Has("autostart-wonderduration"))
-        config.wonderDuration = args.Get("autostart-wonderduration").ToInt();
+	if (args.Has("autostart-wonderduration"))
+		config.wonderDuration = args.Get("autostart-wonderduration").ToInt();
 
-    if (args.Has("autostart-relicduration"))
-        config.relicDuration = args.Get("autostart-relicduration").ToInt();
+	if (args.Has("autostart-relicduration"))
+		config.relicDuration = args.Get("autostart-relicduration").ToInt();
 
-    if (args.Has("autostart-reliccount"))
-        config.relicCount = args.Get("autostart-reliccount").ToInt();
+	if (args.Has("autostart-reliccount"))
+		config.relicCount = args.Get("autostart-reliccount").ToInt();
 
-    
-    if (args.Has("autostart-host"))
-    {
-        config.setNetworkHost();
-        if (args.Has("autostart-host-players"))
-            config.maxPlayersToHost = args.Get("autostart-host-players").ToUInt();
-    }
-    else if (args.Has("autostart-client"))
-    {
-        CStr ip = args.Get("autostart-client");
-        if (ip.empty())
-            ip = "127.0.0.1";
+	
+	if (args.Has("autostart-host"))
+	{
+		config.setNetworkHost();
+		if (args.Has("autostart-host-players"))
+			config.maxPlayersToHost = args.Get("autostart-host-players").ToUInt();
+	}
+	else if (args.Has("autostart-client"))
+	{
+		CStr ip = args.Get("autostart-client");
+		if (ip.empty())
+			ip = "127.0.0.1";
 
-        config.setNetworkClient();
-    }
-    else if (args.Has("autostart-player"))
-    {
-        config.playerID = args.Get("autostart-player").ToInt();
-    }
-    return config;
+		config.setNetworkClient();
+	}
+	else if (args.Has("autostart-player"))
+	{
+		config.playerID = args.Get("autostart-player").ToInt();
+	}
+	return config;
 }
 
 GameConfig GameConfig::from (const ScenarioConfig& msg)
 {
-    const std::wstring mapType = wstring_from_utf8(msg.type());
-    const std::wstring mapName = wstring_from_utf8(msg.name());
-    GameConfig config(mapType, mapName);
+	const std::wstring mapType = wstring_from_utf8(msg.type());
+	const std::wstring mapName = wstring_from_utf8(msg.name());
+	GameConfig config(mapType, mapName);
 
-    config.seed = msg.seed() || rand();
-    config.aiseed = msg.aiseed() || rand();
+	config.seed = msg.seed() || rand();
+	config.aiseed = msg.aiseed() || rand();
 
-    if (msg.gamespeed())
-        config.gameSpeed = msg.gamespeed();
-    
-    for (int i = 0; i < msg.players_size(); i++)
-    {
-        int playerID = msg.players(i).id();
-        CStr name = msg.players(i).type();
-        int difficulty = msg.players(i).difficulty() || 3;
+	if (msg.gamespeed())
+		config.gameSpeed = msg.gamespeed();
+	
+	for (int i = 0; i < msg.players_size(); i++)
+	{
+		int playerID = msg.players(i).id();
+		CStr name = msg.players(i).type();
+		int difficulty = msg.players(i).difficulty() || 3;
 
-        config.ai.push_back(std::make_tuple(playerID, name));
-        config.difficulties.push_back(std::make_tuple(playerID, difficulty));
-    }
+		config.ai.push_back(std::make_tuple(playerID, name));
+		config.difficulties.push_back(std::make_tuple(playerID, difficulty));
+	}
 
-    config.saveReplay = msg.savereplay();
-    return config;
+	config.saveReplay = msg.savereplay();
+	return config;
 }
 
 /**
@@ -214,7 +214,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 
 	if (INFO::OK != loadResult)
 	{
-        // TODO: Throw error
+		// TODO: Throw error
 		LOGERROR("LoadSettingsOfScenarioMap: Unable to load map file '%s'", mapPath.string8());
 		throw PSERROR_Game_World_MapLoadFailed("Unable to load map file, check the path for typos.");
 	}
@@ -255,7 +255,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 	// of map types and folders is hard-coded, but benefits are:
 	// - No need to pass the map type via command line separately
 	// - Prevents mixing up of scenarios and skirmish maps to some degree
-    CStr fullName = utf8_from_wstring(this->getFullName());
+	CStr fullName = utf8_from_wstring(this->getFullName());
 	std::wstring mapDirectory = this->getMapDirectory();
 
 	if (this->type == L"random")
@@ -287,7 +287,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 
 			// We could load player_defaults.json here, but that would complicate the logic
 			// even more and autostart is only intended for developers anyway
-            // FIXME: enable setting the civilizations
+			// FIXME: enable setting the civilizations
 			scriptInterface.CreateObject(&player, "Civ", std::string("athen"));
 			scriptInterface.SetPropertyInt(playerData, i, player);
 		}
@@ -324,110 +324,110 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 
 	// Set player data for AIs
 	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }
-	//		            or = { PlayerData: [ null, { AI: ... }, ... ] } when gaia set
+	//					or = { PlayerData: [ null, { AI: ... }, ... ] } when gaia set
 	int offset = 1;
 	JS::RootedValue player(cx);
 	if (scriptInterface.GetPropertyInt(playerData, 0, &player) && player.isNull())
 		offset = 0;
 
 	// Set teams
-    std::vector<std::tuple<int, int>> civArgs = this->teams;
-    for (size_t i = 0; i < this->teams.size(); ++i)
-    {
-        int playerID = std::get<0>(this->teams[i]);
-        int teamID = std::get<1>(this->teams[i]);
+	std::vector<std::tuple<int, int>> civArgs = this->teams;
+	for (size_t i = 0; i < this->teams.size(); ++i)
+	{
+		int playerID = std::get<0>(this->teams[i]);
+		int teamID = std::get<1>(this->teams[i]);
 
-        // Instead of overwriting existing player data, modify the array
-        JS::RootedValue player(cx);
-        if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-        {
-            if (mapDirectory == L"skirmishes")
-            {
-                // playerID is certainly bigger than this map player number
-                LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
-                continue;
-            }
-            scriptInterface.CreateObject(&player);
-        }
+		// Instead of overwriting existing player data, modify the array
+		JS::RootedValue player(cx);
+		if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+		{
+			if (mapDirectory == L"skirmishes")
+			{
+				// playerID is certainly bigger than this map player number
+				LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
+				continue;
+			}
+			scriptInterface.CreateObject(&player);
+		}
 
-        scriptInterface.SetProperty(player, "Team", teamID);
-        scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+		scriptInterface.SetProperty(player, "Team", teamID);
+		scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
 	}
 
 	scriptInterface.SetProperty(settings, "Ceasefire", this->ceasefire);
 
-    for (size_t i = 0; i < this->ai.size(); ++i)
-    {
-        int playerID = std::get<0>(this->ai[i]);
-        CStr name = std::get<1>(this->ai[i]);
+	for (size_t i = 0; i < this->ai.size(); ++i)
+	{
+		int playerID = std::get<0>(this->ai[i]);
+		CStr name = std::get<1>(this->ai[i]);
 
-        // Instead of overwriting existing player data, modify the array
-        JS::RootedValue player(cx);
-        if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-        {
-            if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
-            {
-                // playerID is certainly bigger than this map player number
-                LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
-                continue;
-            }
-            scriptInterface.CreateObject(&player);
-        }
+		// Instead of overwriting existing player data, modify the array
+		JS::RootedValue player(cx);
+		if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+		{
+			if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
+			{
+				// playerID is certainly bigger than this map player number
+				LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
+				continue;
+			}
+			scriptInterface.CreateObject(&player);
+		}
 
-        scriptInterface.SetProperty(player, "AI", std::string(name));
-        scriptInterface.SetProperty(player, "AIDiff", 3);
-        scriptInterface.SetProperty(player, "AIBehavior", std::string("balanced"));
-        scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-    }
+		scriptInterface.SetProperty(player, "AI", std::string(name));
+		scriptInterface.SetProperty(player, "AIDiff", 3);
+		scriptInterface.SetProperty(player, "AIBehavior", std::string("balanced"));
+		scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+	}
 	// Set AI difficulty
-    for (size_t i = 0; i < this->difficulties.size(); ++i)
-    {
-        int playerID = std::get<0>(this->difficulties[i]);
-        int difficulty = std::get<1>(this->difficulties[i]);
+	for (size_t i = 0; i < this->difficulties.size(); ++i)
+	{
+		int playerID = std::get<0>(this->difficulties[i]);
+		int difficulty = std::get<1>(this->difficulties[i]);
 
-        // Instead of overwriting existing player data, modify the array
-        JS::RootedValue player(cx);
-        if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-        {
-            if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
-            {
-                // playerID is certainly bigger than this map player number
-                LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
-                continue;
-            }
-            scriptInterface.CreateObject(&player);
-        }
+		// Instead of overwriting existing player data, modify the array
+		JS::RootedValue player(cx);
+		if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+		{
+			if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
+			{
+				// playerID is certainly bigger than this map player number
+				LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
+				continue;
+			}
+			scriptInterface.CreateObject(&player);
+		}
 
-        scriptInterface.SetProperty(player, "AIDiff", difficulty);
-        scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-    }
+		scriptInterface.SetProperty(player, "AIDiff", difficulty);
+		scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+	}
 	// Set player data for Civs
-    if (this->type != L"scenario")
-    {
-        for (size_t i = 0; i < this->civs.size(); ++i)
-        {
-            int playerID = std::get<0>(this->civs[i]);
-            CStr name = std::get<1>(this->civs[i]);
+	if (this->type != L"scenario")
+	{
+		for (size_t i = 0; i < this->civs.size(); ++i)
+		{
+			int playerID = std::get<0>(this->civs[i]);
+			CStr name = std::get<1>(this->civs[i]);
 
-            // Instead of overwriting existing player data, modify the array
-            JS::RootedValue player(cx);
-            if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
-            {
-                if (mapDirectory == L"skirmishes")
-                {
-                    // playerID is certainly bigger than this map player number
-                    LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
-                    continue;
-                }
-                scriptInterface.CreateObject(&player);
-            }
+			// Instead of overwriting existing player data, modify the array
+			JS::RootedValue player(cx);
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+			{
+				if (mapDirectory == L"skirmishes")
+				{
+					// playerID is certainly bigger than this map player number
+					LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
+					continue;
+				}
+				scriptInterface.CreateObject(&player);
+			}
 
-            scriptInterface.SetProperty(player, "Civ", std::string(name));
-            scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
-        }
-    }
-    else if (this->civs.size() > 0)
-        LOGWARNING("Autostart: Option 'autostart-civ' is invalid for scenarios");
+			scriptInterface.SetProperty(player, "Civ", std::string(name));
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+		}
+	}
+	else if (this->civs.size() > 0)
+		LOGWARNING("Autostart: Option 'autostart-civ' is invalid for scenarios");
 
 	// Add player data to map settings
 	scriptInterface.SetProperty(settings, "PlayerData", playerData);
@@ -455,10 +455,10 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 	}
 
 	std::vector<CStr> victoryConditions;
-    for (size_t i = 0; i < this->victoryConditions.size(); ++i)
-    {
-        victoryConditions.push_back(this->victoryConditions[i]);
-    }
+	for (size_t i = 0; i < this->victoryConditions.size(); ++i)
+	{
+		victoryConditions.push_back(this->victoryConditions[i]);
+	}
 
 	if (victoryConditions.size() == 1 && victoryConditions[0] == "endless")
 		victoryConditions.clear();
@@ -482,7 +482,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 		}
 		else
 		{
-            // FIXME: Change this
+			// FIXME: Change this
 			LOGERROR("Autostart: Error reading victory script '%s'", utf8_from_wstring(scriptPath));
 			throw PSERROR_Game_World_MapLoadFailed("Error reading victory script.\nCheck application log for details.");
 		}
@@ -495,7 +495,7 @@ JS::MutableHandleValue GameConfig::toJSValue (const ScriptInterface& scriptInter
 	scriptInterface.SetProperty(settings, "RelicDuration", this->relicDuration);
 	scriptInterface.SetProperty(settings, "RelicCount", this->relicCount);
 
-    // TODO: Can I print it??
+	// TODO: Can I print it??
 	return &attrs;
 }
 

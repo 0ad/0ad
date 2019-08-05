@@ -31,7 +31,7 @@ public:
 	void OnSimulationMessage(CSimulationMessage* msg) override;
 
 	void PostCommand(JS::HandleValue data) override;
-    void PostCommand(int playerid, JS::HandleValue data);
+	void PostCommand(int playerid, JS::HandleValue data);
 
 protected:
 	void NotifyFinishedOwnCommands(u32 turn) override;

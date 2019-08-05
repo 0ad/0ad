@@ -85,7 +85,7 @@ public:
 	CGame(bool disableGraphics = false, bool replayLog = true);
 	~CGame();
 
-    static CGame* fromConfig(GameConfig config, bool disableGraphics = false, bool replayLog = true);
+	static CGame* fromConfig(GameConfig config, bool disableGraphics = false, bool replayLog = true);
 	/**
 	 * the game is paused and no updates will be performed if true.
 	 **/

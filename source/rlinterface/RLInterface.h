@@ -48,31 +48,31 @@ using boost::fibers::buffered_channel;
 
 enum GameMessageType { Reset, Commands };
 struct GameMessage {
-    GameMessageType type;
-    std::queue<std::tuple<int, std::string>> data;
+	GameMessageType type;
+	std::queue<std::tuple<int, std::string>> data;
 };
 extern void EndGame();
 
 class RLInterface final : public RLAPI::Service
 {
 
-    public:
+	public:
 
-        grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override;
-        grpc::Status Reset(ServerContext* context, const ResetRequest* req, Observation* obs) override;
-        grpc::Status GetTemplates(ServerContext* context, const GetTemplateRequest* req, Templates* res) override;
+		grpc::Status Step(ServerContext* context, const Actions* commands, Observation* obs) override;
+		grpc::Status Reset(ServerContext* context, const ResetRequest* req, Observation* obs) override;
+		grpc::Status GetTemplates(ServerContext* context, const GetTemplateRequest* req, Templates* res) override;
 
-        void Listen(std::string server_address);
-        void ApplyEvents();  // Apply RPC messages to the game engine
-        std::string GetGameState();
+		void Listen(std::string server_address);
+		void ApplyEvents();  // Apply RPC messages to the game engine
+		std::string GetGameState();
 
-    private:
-        std::unique_ptr<grpc::Server> m_Server;
-        unsigned int m_Turn = 0;
-        std::mutex m_lock;
-        buffered_channel<GameMessage> m_GameMessages{2};
-        unbuffered_channel<std::string> m_GameStates;
-        bool m_NeedsGameState = false;
-        GameConfig m_GameConfig = GameConfig(L"scenario", L"Arcadia");
+	private:
+		std::unique_ptr<grpc::Server> m_Server;
+		unsigned int m_Turn = 0;
+		std::mutex m_lock;
+		buffered_channel<GameMessage> m_GameMessages{2};
+		unbuffered_channel<std::string> m_GameStates;
+		bool m_NeedsGameState = false;
+		GameConfig m_GameConfig = GameConfig(L"scenario", L"Arcadia");
 };
 #endif // INCLUDED_RLINTERFACE

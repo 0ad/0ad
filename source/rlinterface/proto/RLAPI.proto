@@ -17,68 +17,68 @@
 syntax = "proto3";
 
 service RLAPI {
-    rpc Step(Actions) returns (Observation) {}
-    rpc Reset(ResetRequest) returns (Observation) {}
-    rpc GetTemplates(GetTemplateRequest) returns (Templates) {}
+	rpc Step(Actions) returns (Observation) {}
+	rpc Reset(ResetRequest) returns (Observation) {}
+	rpc GetTemplates(GetTemplateRequest) returns (Templates) {}
 }
 
 message GetTemplateRequest {
-    repeated string names = 1;
+	repeated string names = 1;
 }
 
 message Templates {
-    repeated Template templates = 1;
+	repeated Template templates = 1;
 }
 
 message Template {
-    string name = 1;
-    string content = 2;
+	string name = 1;
+	string content = 2;
 }
 
 message Actions {
-    repeated Action actions = 1;
+	repeated Action actions = 1;
 }
 
 message Action {
-    int32 playerID = 1;
-    string content = 2;
+	int32 playerID = 1;
+	string content = 2;
 }
 
 message Observation {
-    string content = 1;
+	string content = 1;
 }
 
 message ResetRequest {
-    ScenarioConfig scenario = 1;
+	ScenarioConfig scenario = 1;
 }
 
 message AIPlayer {
-    int32 id = 1;
-    string type = 2;
-    uint32 difficulty = 3;
+	int32 id = 1;
+	string type = 2;
+	uint32 difficulty = 3;
 }
 
 message ScenarioConfig {
-    string type = 1;  // REQUIRED (but `required` is no longer allowed...)
-    string name = 2;  // REQUIRED (but `required` is no longer allowed...)
-    string username = 3;
-    int32 playerID = 4;
-    uint32 size = 5;
-    uint32 numPlayers = 6;
+	string type = 1;  // REQUIRED (but `required` is no longer allowed...)
+	string name = 2;  // REQUIRED (but `required` is no longer allowed...)
+	string username = 3;
+	int32 playerID = 4;
+	uint32 size = 5;
+	uint32 numPlayers = 6;
 	uint32 seed = 7;
 	uint32 aiseed = 8;
-    float gameSpeed = 9;
-    repeated AIPlayer players = 10;
-    bool saveReplay = 11;
-    //std::vector<std::tuple<int, int>> teams;
-    //int32 ceasefire;
-    //std::vector<std::tuple<int, int>> difficulties;
-    //std::vector<std::tuple<int, std::string>> civs;
-    //std::vector<std::string> victoryConditions;
-    //int32 wonderDuration;
-    //int32 relicDuration;
-    //int32 relicCount;
-    //int32 maxPlayersToHost;
-    //NetworkGameType netGameType;
-    //string hostAddress;
+	float gameSpeed = 9;
+	repeated AIPlayer players = 10;
+	bool saveReplay = 11;
+	//std::vector<std::tuple<int, int>> teams;
+	//int32 ceasefire;
+	//std::vector<std::tuple<int, int>> difficulties;
+	//std::vector<std::tuple<int, std::string>> civs;
+	//std::vector<std::string> victoryConditions;
+	//int32 wonderDuration;
+	//int32 relicDuration;
+	//int32 relicCount;
+	//int32 maxPlayersToHost;
+	//NetworkGameType netGameType;
+	//string hostAddress;
 }
