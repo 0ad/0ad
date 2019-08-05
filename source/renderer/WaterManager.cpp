@@ -40,6 +40,7 @@
 
 #include "renderer/WaterManager.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
@@ -318,7 +319,8 @@ int WaterManager::LoadWaterTextures()
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Reflection framebuffer object incomplete: 0x%04X", status);
-		g_Renderer.m_Options.m_WaterReflection = false;
+		g_RenderingOptions.SetWaterReflection(false);
+		UpdateQuality();
 	}
 
 	m_RefractionFbo = 0;
@@ -333,7 +335,8 @@ int WaterManager::LoadWaterTextures()
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Refraction framebuffer object incomplete: 0x%04X", status);
-		g_Renderer.m_Options.m_WaterRefraction = false;
+		g_RenderingOptions.SetWaterRefraction(false);
+		UpdateQuality();
 	}
 
 	pglGenFramebuffersEXT(1, &m_FancyEffectsFBO);
@@ -348,7 +351,8 @@ int WaterManager::LoadWaterTextures()
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Fancy Effects framebuffer object incomplete: 0x%04X", status);
-		g_Renderer.m_Options.m_WaterRefraction = false;
+		g_RenderingOptions.SetWaterRefraction(false);
+		UpdateQuality();
 	}
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, currentFbo);
@@ -1125,34 +1129,34 @@ void WaterManager::SetMapSize(size_t size)
 // This will set the bools properly
 void WaterManager::UpdateQuality()
 {
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATEREFFECTS) != m_WaterEffects)
+	if (g_RenderingOptions.GetWaterEffects() != m_WaterEffects)
 	{
-		m_WaterEffects = g_Renderer.GetOptionBool(CRenderer::OPT_WATEREFFECTS);
+		m_WaterEffects = g_RenderingOptions.GetWaterEffects();
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS) != m_WaterFancyEffects) {
-		m_WaterFancyEffects = g_Renderer.GetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS);
+	if (g_RenderingOptions.GetWaterFancyEffects() != m_WaterFancyEffects) {
+		m_WaterFancyEffects = g_RenderingOptions.GetWaterFancyEffects();
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREALDEPTH) != m_WaterRealDepth) {
-		m_WaterRealDepth = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREALDEPTH);
+	if (g_RenderingOptions.GetWaterRealDepth() != m_WaterRealDepth) {
+		m_WaterRealDepth = g_RenderingOptions.GetWaterRealDepth();
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFRACTION) != m_WaterRefraction) {
-		m_WaterRefraction = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFRACTION);
+	if (g_RenderingOptions.GetWaterRefraction() != m_WaterRefraction) {
+		m_WaterRefraction = g_RenderingOptions.GetWaterRefraction();
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFLECTION) != m_WaterReflection) {
-		m_WaterReflection = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFLECTION);
+	if (g_RenderingOptions.GetWaterReflection() != m_WaterReflection) {
+		m_WaterReflection = g_RenderingOptions.GetWaterReflection();
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWSONWATER) != m_WaterShadows) {
-		m_WaterShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWSONWATER);
+	if (g_RenderingOptions.GetWaterShadows() != m_WaterShadows) {
+		m_WaterShadows = g_RenderingOptions.GetWaterShadows();
 		m_NeedsReloading = true;
 	}
 }
 
 bool WaterManager::WillRenderFancyWater()
 {
-	return m_RenderWater && m_WaterEffects && g_Renderer.GetCapabilities().m_PrettyWater;
+	return m_RenderWater && g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
 }

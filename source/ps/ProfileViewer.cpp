@@ -22,22 +22,22 @@
 
 #include "precompiled.h"
 
-#include <ctime>
-#include <algorithm>
-
 #include "ProfileViewer.h"
 
 #include "graphics/FontMetrics.h"
-#include "gui/GUIutil.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
+#include "gui/GUIMatrix.h"
+#include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
-#include "lib/external_libraries/libsdl.h"
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
+
+#include <algorithm>
+#include <ctime>
 
 extern int g_xres, g_yres;
 

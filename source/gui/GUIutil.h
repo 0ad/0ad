@@ -41,7 +41,6 @@ GUI util
 
 class CClientArea;
 class CGUIString;
-class CMatrix3D;
 template<typename T> class GUI;
 
 class IGUISetting
@@ -108,9 +107,6 @@ private:
 
 template <typename T>
 bool __ParseString(const CStrW& Value, T& tOutput);
-
-// Model-view-projection matrix with (0,0) in top-left of screen
-CMatrix3D GetDefaultGuiMatrix();
 
 struct SGUIMessage;
 

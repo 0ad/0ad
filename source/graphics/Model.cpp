@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@
 #include "lib/sysdep/rtl.h"
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
-#include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
 
@@ -362,12 +362,12 @@ void CModel::ValidatePosition()
 	// per-vertex work is a single matrix*vec multiplication.
 	// For GPU skinning, we try to minimise CPU work by doing most computation
 	// in the vertex shader instead.
-	// Using g_Renderer.m_Options to detect CPU vs GPU is a bit hacky,
+	// Using g_RenderingOptions to detect CPU vs GPU is a bit hacky,
 	// and this doesn't allow the setting to change at runtime, but there isn't
 	// an obvious cleaner way to determine what data needs to be computed,
 	// and GPU skinning is a rarely-used experimental feature anyway.
-	bool worldSpaceBoneMatrices = !g_Renderer.m_Options.m_GPUSkinning;
-	bool computeBlendMatrices = !g_Renderer.m_Options.m_GPUSkinning;
+	bool worldSpaceBoneMatrices = !g_RenderingOptions.GetGPUSkinning();
+	bool computeBlendMatrices = !g_RenderingOptions.GetGPUSkinning();
 
 	if (m_BoneMatrices && worldSpaceBoneMatrices)
 	{

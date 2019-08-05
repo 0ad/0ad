@@ -21,8 +21,8 @@
 #include "gui/GUI.h"
 #include "renderer/VertexArray.h"
 
-
 class CCamera;
+class CMatrix3D;
 class CTerrain;
 
 class CMiniMap : public IGUIObject

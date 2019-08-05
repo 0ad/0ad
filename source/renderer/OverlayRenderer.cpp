@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -419,7 +419,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	glDepthMask(0);
 
 	const char* shaderName;
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 		shaderName = "arb/overlayline";
 	else
 		shaderName = "fixed:overlayline";
@@ -503,7 +503,7 @@ void OverlayRenderer::RenderQuadOverlays()
 	glDepthMask(0);
 
 	const char* shaderName;
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 		shaderName = "arb/overlayline";
 	else
 		shaderName = "fixed:overlayline";
@@ -600,7 +600,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
 
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 	{
 		tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
 		tech->BeginPass();
@@ -609,7 +609,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 
 	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
 
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
 	else
 		glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, &uvs);
@@ -618,7 +618,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	{
 		SOverlaySprite* sprite = m->sprites[i];
 
-		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 			shader->BindTexture(str_baseTex, sprite->m_Texture);
 		else
 			sprite->m_Texture->Bind();
@@ -632,7 +632,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 			shader->VertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
 		else
 			glVertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
@@ -643,7 +643,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 		g_Renderer.GetStats().m_OverlayTris += 2;
 	}
 
-	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 		tech->EndPass();
 
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -723,7 +723,7 @@ void OverlayRenderer::RenderSphereOverlays()
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderSphereOverlays for GLES
 #else
-	if (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER)
+	if (g_RenderingOptions.GetRenderPath() != RenderPath::SHADER)
 		return;
 
 	if (m->spheres.empty())

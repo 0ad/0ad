@@ -39,6 +39,8 @@ CProfiler2 g_Profiler2;
 // A human-recognisable pattern (for debugging) followed by random bytes (for uniqueness)
 const u8 CProfiler2::RESYNC_MAGIC[8] = {0x11, 0x22, 0x33, 0x44, 0xf4, 0x93, 0xbe, 0x15};
 
+thread_local CProfiler2::ThreadStorage* CProfiler2::m_CurrentStorage = nullptr;
+
 CProfiler2::CProfiler2() :
 	m_Initialised(false), m_FrameNumber(0), m_MgContext(NULL), m_GPU(NULL)
 {
@@ -148,8 +150,6 @@ static void* MgCallback(mg_event event, struct mg_connection *conn, const struct
 void CProfiler2::Initialise()
 {
 	ENSURE(!m_Initialised);
-	int err = pthread_key_create(&m_TLS, &CProfiler2::TLSDtor);
-	ENSURE(err == 0);
 	m_Initialised = true;
 
 	RegisterCurrentThread("main");
@@ -235,11 +235,6 @@ void CProfiler2::Shutdown()
 	// the destructor is not called for the main thread
 	// we have to call it manually to avoid memory leaks
 	ENSURE(ThreadUtil::IsMainThread());
-	void * dataptr = pthread_getspecific(m_TLS);
-	TLSDtor(dataptr);
-
-	int err = pthread_key_delete(m_TLS);
-	ENSURE(err == 0);
 	m_Initialised = false;
 }
 
@@ -267,44 +262,30 @@ void CProfiler2::RecordGPURegionLeave(const char* id)
 		m_GPU->RegionLeave(id);
 }
 
-/**
- * Called by pthreads when a registered thread is destroyed.
- */
-void CProfiler2::TLSDtor(void* data)
-{
-	ThreadStorage* storage = (ThreadStorage*)data;
-
-	storage->GetProfiler().RemoveThreadStorage(storage);
-
-	delete (ThreadStorage*)data;
-}
-
 void CProfiler2::RegisterCurrentThread(const std::string& name)
 {
 	ENSURE(m_Initialised);
 
-	ENSURE(pthread_getspecific(m_TLS) == NULL); // mustn't register a thread more than once
+	// Must not register a thread more than once.
+	ENSURE(m_CurrentStorage == nullptr);
 
-	ThreadStorage* storage = new ThreadStorage(*this, name);
-	int err = pthread_setspecific(m_TLS, storage);
-	ENSURE(err == 0);
+	m_CurrentStorage = new ThreadStorage(*this, name);
+	AddThreadStorage(m_CurrentStorage);
 
 	RecordSyncMarker();
 	RecordEvent("thread start");
-
-	AddThreadStorage(storage);
 }
 
 void CProfiler2::AddThreadStorage(ThreadStorage* storage)
 {
 	std::lock_guard<std::mutex> lock(m_Mutex);
-	m_Threads.push_back(storage);
+	m_Threads.push_back(std::unique_ptr<ThreadStorage>(storage));
 }
 
 void CProfiler2::RemoveThreadStorage(ThreadStorage* storage)
 {
 	std::lock_guard<std::mutex> lock(m_Mutex);
-	m_Threads.erase(std::find(m_Threads.begin(), m_Threads.end(), storage));
+	m_Threads.erase(std::find_if(m_Threads.begin(), m_Threads.end(), [storage](const std::unique_ptr<ThreadStorage>& s) { return s.get() == storage; }));
 }
 
 CProfiler2::ThreadStorage::ThreadStorage(CProfiler2& profiler, const std::string& name) :
@@ -727,11 +708,13 @@ void CProfiler2::ConstructJSONOverview(std::ostream& stream)
 	std::lock_guard<std::mutex> lock(m_Mutex);
 
 	stream << "{\"threads\":[";
-	for (size_t i = 0; i < m_Threads.size(); ++i)
+	bool first_time = true;
+	for (std::unique_ptr<ThreadStorage>& storage : m_Threads)
 	{
-		if (i != 0)
+		if (!first_time)
 			stream << ",";
-		stream << "{\"name\":\"" << CStr(m_Threads[i]->GetName()).EscapeToPrintableASCII() << "\"}";
+		stream << "{\"name\":\"" << CStr(storage->GetName()).EscapeToPrintableASCII() << "\"}";
+		first_time = false;
 	}
 	stream << "]}";
 }
@@ -904,23 +887,17 @@ const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::s
 
 		std::lock_guard<std::mutex> lock(m_Mutex); // lock against changes to m_Threads or deletions of ThreadStorage
 
-		ThreadStorage* storage = NULL;
-		for (size_t i = 0; i < m_Threads.size(); ++i)
-		{
-			if (m_Threads[i]->GetName() == thread)
-			{
-				storage = m_Threads[i];
-				break;
-			}
-		}
+		auto it = std::find_if(m_Threads.begin(), m_Threads.end(), [&thread](std::unique_ptr<ThreadStorage>& storage) {
+			return storage->GetName() == thread;
+		});
 
-		if (!storage)
+		if (it == m_Threads.end())
 			return "cannot find named thread";
 
 		stream << "{\"events\":[\n";
 
 		stream << "[\n";
-		buffer = storage->GetBuffer();
+		buffer = (*it)->GetBuffer();
 	}
 
 	BufferVisitor_Dump visitor(stream);
@@ -937,22 +914,17 @@ void CProfiler2::SaveToFile()
 	std::ofstream stream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	ENSURE(stream.good());
 
-	std::vector<ThreadStorage*> threads;
-
-	{
-		std::lock_guard<std::mutex> lock(m_Mutex);
-		threads = m_Threads;
-	}
-
 	stream << "profileDataCB({\"threads\": [\n";
-	for (size_t i = 0; i < threads.size(); ++i)
+	bool first_time = true;
+	for (std::unique_ptr<ThreadStorage>& storage : m_Threads)
 	{
-		if (i != 0)
+		if (!first_time)
 			stream << ",\n";
-		stream << "{\"name\":\"" << CStr(threads[i]->GetName()).EscapeToPrintableASCII() << "\",\n";
+		stream << "{\"name\":\"" << CStr(storage->GetName()).EscapeToPrintableASCII() << "\",\n";
 		stream << "\"data\": ";
-		ConstructJSONResponse(stream, threads[i]->GetName());
+		ConstructJSONResponse(stream, storage->GetName());
 		stream << "\n}";
+		first_time = false;
 	}
 	stream << "\n]});\n";
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 #include "ps/Filesystem.h"
 #include "ps/PreprocessorWrapper.h"
 #include "ps/XML/Xeromyces.h"
-#include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 
 #include <sstream>
 
@@ -79,7 +79,7 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	#undef EL
 
 	CPreprocessorWrapper preprocessor;
-	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_Renderer.m_Options.m_ForceAlphaTest ? "1" : "0");
+	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_RenderingOptions.GetForceAlphaTest() ? "1" : "0");
 	CMaterial material;
 	material.AddStaticUniform("qualityLevel", CVector4D(qualityLevel, 0, 0, 0));
 

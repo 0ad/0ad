@@ -595,41 +595,43 @@ static void InitRenderer()
 	// create renderer
 	new CRenderer;
 
+	g_RenderingOptions.ReadConfig();
+
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
 	// and init them in the ConfigDB when needed
-	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO, g_NoGLVBO);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
+	g_RenderingOptions.SetNoVBO(g_NoGLVBO);
+	g_RenderingOptions.SetShadows(g_Shadows);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadows", g_Shadows);
 
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATEREFFECTS, g_WaterEffects);
+	g_RenderingOptions.SetWaterEffects(g_WaterEffects);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "watereffects", g_WaterEffects);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS, g_WaterFancyEffects);
+	g_RenderingOptions.SetWaterFancyEffects(g_WaterFancyEffects);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterfancyeffects", g_WaterFancyEffects);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREALDEPTH, g_WaterRealDepth);
+	g_RenderingOptions.SetWaterRealDepth(g_WaterRealDepth);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterrealdepth", g_WaterRealDepth);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREFLECTION, g_WaterReflection);
+	g_RenderingOptions.SetWaterReflection(g_WaterReflection);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterreflection", g_WaterReflection);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREFRACTION, g_WaterRefraction);
+	g_RenderingOptions.SetWaterRefraction(g_WaterRefraction);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterrefraction", g_WaterRefraction);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWSONWATER, g_WaterShadows);
+	g_RenderingOptions.SetWaterShadows(g_WaterShadows);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "watershadows", g_WaterShadows);
 
-	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
+	g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(g_RenderPath));
+	g_RenderingOptions.SetShadowPCF(g_ShadowPCF);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadowpcf", g_ShadowPCF);
-	g_Renderer.SetOptionBool(CRenderer::OPT_PARTICLES, g_Particles);
+	g_RenderingOptions.SetParticles(g_Particles);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "particles", g_Particles);
-	g_Renderer.SetOptionBool(CRenderer::OPT_FOG, g_Fog);
+	g_RenderingOptions.SetFog(g_Fog);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "fog", g_Fog);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SILHOUETTES, g_Silhouettes);
+	g_RenderingOptions.SetSilhouettes(g_Silhouettes);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "silhouettes", g_Silhouettes);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHOWSKY, g_ShowSky);
+	g_RenderingOptions.SetShowSky(g_ShowSky);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "showsky", g_ShowSky);
-	g_Renderer.SetOptionBool(CRenderer::OPT_PREFERGLSL, g_PreferGLSL);
+	g_RenderingOptions.SetPreferGLSL(g_PreferGLSL);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "preferglsl", g_PreferGLSL);
-	g_Renderer.SetOptionBool(CRenderer::OPT_POSTPROC, g_PostProc);
+	g_RenderingOptions.SetPostProc(g_PostProc);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "postproc", g_PostProc);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SMOOTHLOS, g_SmoothLOS);
+	g_RenderingOptions.SetSmoothLOS(g_SmoothLOS);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "smoothlos", g_SmoothLOS);
 
 	// create terrain related stuff

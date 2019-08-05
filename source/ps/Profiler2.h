@@ -78,6 +78,9 @@
 #ifndef INCLUDED_PROFILER2
 #define INCLUDED_PROFILER2
 
+#include <map>
+#include <thread>
+
 #include "lib/timer.h"
 #include "ps/ThreadUtil.h"
 
@@ -436,13 +439,10 @@ public:
 private:
 	void InitialiseGPU();
 
-	static void TLSDtor(void* data);
-
 	ThreadStorage& GetThreadStorage()
 	{
-		ThreadStorage* storage = (ThreadStorage*)pthread_getspecific(m_TLS);
-		ASSERT(storage);
-		return *storage;
+		ENSURE(m_CurrentStorage);
+		return *m_CurrentStorage;
 	}
 
 	bool m_Initialised;
@@ -451,12 +451,12 @@ private:
 
 	mg_context* m_MgContext;
 
-	pthread_key_t m_TLS;
-
 	CProfiler2GPU* m_GPU;
 
 	std::mutex m_Mutex;
-	std::vector<ThreadStorage*> m_Threads; // thread-safe; protected by m_Mutex
+
+	static thread_local ThreadStorage* m_CurrentStorage;
+	std::vector<std::unique_ptr<ThreadStorage>> m_Threads; // thread-safe; protected by m_Mutex
 };
 
 extern CProfiler2 g_Profiler2;

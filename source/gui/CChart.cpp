@@ -20,6 +20,7 @@
 #include "CChart.h"
 
 #include "gui/CGUIColor.h"
+#include "gui/GUIMatrix.h"
 #include "graphics/ShaderManager.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"

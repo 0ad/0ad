@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,24 +21,24 @@
 
 #include "precompiled.h"
 
-#include "gui/GUIutil.h"
-#include "lib/bits.h"
-#include "lib/ogl.h"
-#include "ps/CLogger.h"
-#include "ps/ConfigDB.h"
-#include "ps/Profile.h"
+#include "ShadowMap.h"
 
 #include "graphics/LightEnv.h"
+#include "graphics/Camera.h"
+#include "graphics/Frustum.h"
 #include "graphics/ShaderManager.h"
-
+#include "gui/GUIMatrix.h"
+#include "lib/bits.h"
+#include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
-
+#include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
+#include "ps/Profile.h"
 #include "renderer/Renderer.h"
-#include "renderer/ShadowMap.h"
-
+#include "renderer/RenderingOptions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ShadowMap implementation
@@ -439,7 +439,7 @@ void ShadowMapInternals::CreateTexture()
 		Width, Height, formatname);
 
 
-	if (g_Renderer.m_Options.m_ShadowAlphaFix)
+	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		glGenTextures(1, &DummyTexture);
 		g_Renderer.BindTexture(0, DummyTexture);
@@ -498,7 +498,7 @@ void ShadowMapInternals::CreateTexture()
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
 
-	if (g_Renderer.m_Options.m_ShadowAlphaFix)
+	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
 	}
@@ -526,7 +526,7 @@ void ShadowMapInternals::CreateTexture()
 		LOGWARNING("Framebuffer object incomplete: 0x%04X", status);
 
 		// Disable shadow rendering (but let the user try again if they want)
-		g_Renderer.m_Options.m_Shadows = false;
+		g_RenderingOptions.SetShadows(false);
 	}
 }
 
