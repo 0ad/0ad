@@ -28,41 +28,6 @@
 
 class TestTex : public CxxTest::TestSuite
 {
-	void generate_encode_decode_compare(size_t w, size_t h, size_t flags, size_t bpp, const OsPath& extension)
-	{
-		// generate test data
-		const size_t size = w*h*bpp/8;
-		shared_ptr<u8> img(new u8[size], ArrayDeleter());
-		std::generate(img.get(), img.get()+size, rand);
-
-		// create the DynArray that will be wrapped in a Tex Object
-		DynArray da;
-
-		// Once the Tex created here goes out of scope, the DynArray should be freed
-		{
-			// wrap in Tex
-			Tex t;
-			TS_ASSERT_OK(t.wrap(w, h, bpp, flags, img, 0));
-
-			// encode to file format
-			TS_ASSERT_OK(t.encode(extension, &da));
-			memset(&t, 0, sizeof(t));
-
-			// decode from file format
-			shared_ptr<u8> ptr = DummySharedPtr(da.base);
-			TS_ASSERT_OK(t.decode(ptr, da.cur_size));
-
-			// make sure pixel format gets converted completely to plain
-			TS_ASSERT_OK(t.transform_to(0));
-
-			// compare img
-			TS_ASSERT_SAME_DATA(t.get_data(), img.get(), size);
-		}
-
-		// cleanup
-		TS_ASSERT_OK(da_free(&da));
-	}
-
 public:
 	// have mipmaps be created for a test image; check resulting size and pixels
 	void test_mipmap_create()
