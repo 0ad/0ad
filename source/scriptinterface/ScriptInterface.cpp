@@ -83,6 +83,8 @@ JSClass global_class = {
 
 void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 {
+	JSAutoRequest rq(cx);
+
 	std::stringstream msg;
 	bool isWarning = JSREPORT_IS_WARNING(report->flags);
 	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
@@ -98,29 +100,16 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 	JS::RootedValue excn(cx);
 	if (JS_GetPendingException(cx, &excn) && excn.isObject())
 	{
+		JS::RootedValue stackVal(cx);
 		JS::RootedObject excnObj(cx, &excn.toObject());
-		// TODO: this violates the docs ("The error reporter callback must not reenter the JSAPI.")
+		JS_GetProperty(cx, excnObj, "stack", &stackVal);
 
-		// Hide the exception from EvaluateScript
-		JSExceptionState* excnState = JS_SaveExceptionState(cx);
-		JS_ClearPendingException(cx);
+		std::string stackText;
+		ScriptInterface::FromJSVal(cx, stackVal, stackText);
 
-		JS::RootedValue rval(cx);
-		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
-		JS::CompileOptions opts(cx);
-		if (JS::Evaluate(cx, excnObj, opts.setFileAndLine("(eval)", 1), dumpStack, ARRAY_SIZE(dumpStack)-1, &rval))
-		{
-			std::string stackTrace;
-			if (ScriptInterface::FromJSVal(cx, rval, stackTrace))
-				msg << "\n" << stackTrace;
-
-			JS_RestoreExceptionState(cx, excnState);
-		}
-		else
-		{
-			// Error got replaced by new exception from EvaluateScript
-			JS_DropExceptionState(cx, excnState);
-		}
+		std::istringstream stream(stackText);
+		for (std::string line; std::getline(stream, line);)
+			msg << "\n  " << line;
 	}
 
 	if (isWarning)
