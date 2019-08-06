@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,17 +46,30 @@ ModIo* g_ModIo = nullptr;
 struct DownloadCallbackData
 {
 	DownloadCallbackData()
-		: fp(nullptr), md5()
+		: fp(nullptr), md5(), hash_state(nullptr)
 	{
 	}
+
 	DownloadCallbackData(FILE* _fp)
 		: fp(_fp), md5()
 	{
-		crypto_generichash_init(&hash_state, NULL, 0U, crypto_generichash_BYTES_MAX);
+		hash_state = static_cast<crypto_generichash_state*>(
+			sodium_malloc(crypto_generichash_statebytes()));
+
+		ENSURE(hash_state);
+
+		crypto_generichash_init(hash_state, nullptr, 0U, crypto_generichash_BYTES_MAX);
 	}
+
+	~DownloadCallbackData()
+	{
+		if (hash_state)
+			sodium_free(hash_state);
+	}
+
 	FILE* fp;
 	MD5 md5;
-	crypto_generichash_state hash_state;
+	crypto_generichash_state* hash_state;
 };
 
 ModIo::ModIo()
@@ -159,8 +172,11 @@ size_t ModIo::DownloadCallback(void* buffer, size_t size, size_t nmemb, void* us
 	// but we do not want to have a possibly valid hash in that case.
 	size_t written = len*size;
 
-	data->md5.Update((const u8*)buffer, written);
-	crypto_generichash_update(&data->hash_state, (const u8*)buffer, written);
+	data->md5.Update(static_cast<const u8*>(buffer), written);
+
+	ENSURE(data->hash_state);
+
+	crypto_generichash_update(data->hash_state, static_cast<const u8*>(buffer), written);
 
 	return written;
 }
@@ -190,9 +206,9 @@ CURLMcode ModIo::SetupRequest(const std::string& url, bool fileDownload)
 
 		// Set IO callbacks
 		curl_easy_setopt(m_Curl, CURLOPT_WRITEFUNCTION, DownloadCallback);
-		curl_easy_setopt(m_Curl, CURLOPT_WRITEDATA, (void*)m_CallbackData);
+		curl_easy_setopt(m_Curl, CURLOPT_WRITEDATA, static_cast<void*>(m_CallbackData));
 		curl_easy_setopt(m_Curl, CURLOPT_XFERINFOFUNCTION, DownloadProgressCallback);
-		curl_easy_setopt(m_Curl, CURLOPT_XFERINFODATA, (void*)&m_DownloadProgressData);
+		curl_easy_setopt(m_Curl, CURLOPT_XFERINFODATA, static_cast<void*>(&m_DownloadProgressData));
 
 		// Initialize the progress counter
 		m_DownloadProgressData.progress = 0;
@@ -540,7 +556,8 @@ bool ModIo::VerifyDownloadedFile(std::string& err)
 	// by Wildfire Games. And has not been tampered with by the API provider, or the CDN.
 
 	unsigned char hash_fin[crypto_generichash_BYTES_MAX] = {};
-	if (crypto_generichash_final(&m_CallbackData->hash_state, hash_fin, sizeof hash_fin) != 0)
+	ENSURE(m_CallbackData->hash_state);
+	if (crypto_generichash_final(m_CallbackData->hash_state, hash_fin, sizeof hash_fin) != 0)
 	{
 		err = g_L10n.Translate("Failed to compute final hash.");
 		return false;
