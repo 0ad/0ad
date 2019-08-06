@@ -784,7 +784,7 @@ function toggleBuddy()
 
 	updateToggleBuddy();
 
-	saveSettingAndWriteToUserConfig("lobby.buddies", g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter);
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.buddies", g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter, "config/user.cfg");
 
 	updatePlayerList();
 	updateGameList();

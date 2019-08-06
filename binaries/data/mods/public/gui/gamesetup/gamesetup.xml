@@ -125,7 +125,7 @@
 					<translatableAttribute id="caption">Show this message in the future.</translatableAttribute>
 				</object>
 				<object name="displaySPTips" size="8 100%-30 28 100%-8" type="checkbox" style="ModernTickBox">
-					<action on="Press">saveSettingAndWriteToUserConfig("gui.gamesetup.enabletips", String(this.checked));</action>
+					<action on="Press">Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.gamesetup.enabletips", String(this.checked), "config/user.cfg");</action>
 				</object>
 			</object>
 

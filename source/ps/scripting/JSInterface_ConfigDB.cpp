@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -140,6 +140,12 @@ bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivat
 	return g_ConfigDB.WriteValueToFile(cfgNs, name, value, path);
 }
 
+void JSI_ConfigDB::CreateAndWriteValueToFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+{
+	CreateValue(pCxPrivate, cfgNsString, name, value);
+	WriteValueToFile(pCxPrivate, cfgNsString, name, value, path);
+}
+
 bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
@@ -168,6 +174,7 @@ void JSI_ConfigDB::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 	scriptInterface.RegisterFunction<bool, std::wstring, std::string, &JSI_ConfigDB::RemoveValue>("ConfigDB_RemoveValue");
 	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::WriteFile>("ConfigDB_WriteFile");
 	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, Path, &JSI_ConfigDB::WriteValueToFile>("ConfigDB_WriteValueToFile");
+	scriptInterface.RegisterFunction<void, std::wstring, std::string, std::string, Path, &JSI_ConfigDB::CreateAndWriteValueToFile>("ConfigDB_CreateAndWriteValueToFile");
 	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::SetFile>("ConfigDB_SetFile");
 	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_ConfigDB::Reload>("ConfigDB_Reload");
 }
