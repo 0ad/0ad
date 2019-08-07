@@ -36,6 +36,12 @@
 
 CProfiler2 g_Profiler2;
 
+const size_t CProfiler2::MAX_ATTRIBUTE_LENGTH = 256;
+
+// TODO: what's a good size?
+const size_t CProfiler2::BUFFER_SIZE = 4 * 1024 * 1024;
+const size_t CProfiler2::HOLD_BUFFER_SIZE = 128 * 1024;
+
 // A human-recognisable pattern (for debugging) followed by random bytes (for uniqueness)
 const u8 CProfiler2::RESYNC_MAGIC[8] = {0x11, 0x22, 0x33, 0x44, 0xf4, 0x93, 0xbe, 0x15};
 

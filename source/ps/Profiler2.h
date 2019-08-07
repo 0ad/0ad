@@ -112,7 +112,7 @@ public:
 		ITEM_ATTRIBUTE = 5, // arbitrary string associated with current region, or latest event (if the previous item was an event)
 	};
 
-	static const size_t MAX_ATTRIBUTE_LENGTH = 256; // includes null terminator, which isn't stored
+	static const size_t MAX_ATTRIBUTE_LENGTH; // includes null terminator, which isn't stored
 
 	/// An arbitrary number to help resyncing with the item stream when parsing.
 	static const u8 RESYNC_MAGIC[8];
@@ -127,10 +127,9 @@ public:
 	};
 
 private:
-	// TODO: what's a good size?
 	// TODO: different threads might want different sizes
-	static const size_t BUFFER_SIZE = 4*1024*1024;
-	static const size_t HOLD_BUFFER_SIZE = 128 * 1024;
+	static const size_t BUFFER_SIZE;
+	static const size_t HOLD_BUFFER_SIZE;
 
 	/**
 	 * Class instantiated in every registered thread.
