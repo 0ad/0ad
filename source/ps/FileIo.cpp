@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ CFilePacker::CFilePacker(u32 version, const char magic[4])
 	// put header in our data array.
 	// (its payloadSize_le will be updated on every Pack*() call)
 	FileHeader header;
-	strncpy(header.magic, magic, 4);	// not 0-terminated => no _s
+	std::copy(magic, magic + 4, header.magic);
 	write_le32(&header.version_le, version);
 	write_le32(&header.payloadSize_le, 0);
 	m_writeBuffer.Append(&header, sizeof(FileHeader));
