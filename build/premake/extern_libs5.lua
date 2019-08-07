@@ -533,9 +533,9 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if _OPTIONS["with-system-mozjs38"] then
+			if _OPTIONS["with-system-mozjs45"] then
 				if not _OPTIONS["android"] then
-					pkgconfig.add_includes("mozjs-38")
+					pkgconfig.add_includes("mozjs-45")
 				end
 			else
 				if os.istarget("windows") then
@@ -553,31 +553,25 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if _OPTIONS["with-system-mozjs38"] then
+			if _OPTIONS["with-system-mozjs45"] then
 				if _OPTIONS["android"] then
-					links { "mozjs-38" }
+					links { "mozjs-45" }
 				else
-					pkgconfig.add_links("nspr")
-					pkgconfig.add_links("mozjs-38")
+					pkgconfig.add_links("mozjs-45")
 				end
 			else
-				if os.istarget("macosx") then
-					add_default_lib_paths("nspr")
-					links { "nspr4", "plc4", "plds4" }
-				end
-
 				filter { "Debug", "action:vs2013" }
-					links { "mozjs38-ps-debug-vc120" }
+					links { "mozjs45-ps-debug-vc120" }
 				filter { "Release", "action:vs2013" }
-					links { "mozjs38-ps-release-vc120" }
+					links { "mozjs45-ps-release-vc120" }
 				filter { "Debug", "action:vs2015" }
-					links { "mozjs38-ps-debug-vc140" }
+					links { "mozjs45-ps-debug-vc140" }
 				filter { "Release", "action:vs2015" }
-					links { "mozjs38-ps-release-vc140" }
+					links { "mozjs45-ps-release-vc140" }
 				filter { "Debug", "action:not vs*" }
-					links { "mozjs38-ps-debug" }
+					links { "mozjs45-ps-debug" }
 				filter { "Release", "action:not vs*" }
-					links { "mozjs38-ps-release" }
+					links { "mozjs45-ps-release" }
 				filter { }
 				add_source_lib_paths("spidermonkey")
 			end

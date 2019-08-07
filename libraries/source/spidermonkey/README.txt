@@ -1,7 +1,7 @@
 Important notice:
 -----------------
 This version of SpiderMonkey comes from
-https://people.mozilla.org/~sstangl/mozjs-38.2.1.rc0.tar.bz2
+https://ftp.mozilla.org/pub/spidermonkey/releases/45.0.2/mozjs-45.0.2.tar.bz2
 
 The game must be compiled with precisely this version since SpiderMonkey 
 does not guarantee API stability and may have behavioural changes that 
@@ -18,13 +18,7 @@ crashes at runtime!
 
 Building on Linux:
 ------------------
-To build SpiderMonkey for use in 0 A.D. on Linux, you need libnspr4-dev, which
-should be installed from the distribution's package management system.
-As an alternative you can build nspr yourself, but we don't provide a guide for
-that here. When you have nspr, just run build.sh.
-
-NSPR is available here:
-https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/
+To build SpiderMonkey for use in 0 A.D. on Linux, just run build.sh.
 
 
 Building on Mac OS X:
@@ -41,10 +35,10 @@ Setting up the build environment:
 1. Get https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Windows_Prerequisites#MozillaBuild
 
 Building NSPR:
-1. Get nspr. We are using nspr-4.12 which is the newest version at the moment.
+1. Get nspr. We are using nspr-4.12 which was the newest version when SM45.0.2 was out.
    Newer versions should probably work too.
    Download link: https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/
-2. Run mozillabuild (start-shell-msvc2013.bat) as administrator
+2. Run mozillabuild (start-shell-msvc2015.bat) as administrator
 3. Extract nspr to libraries/source/spidermonkey
    tar -xzvf nspr-4.12.tar.gz
    cd nspr-4.12
@@ -56,6 +50,6 @@ Building NSPR:
 
 Building SpiderMonkey:
 1. Adjust the absolute paths to nspr in the build.sh file to match your environment.
-2. Run mozillabuild (start-shell-msvc2013.bat) as administrator and run ./build.sh.
+2. Run mozillabuild (start-shell-msvc2015.bat) as administrator and run ./build.sh.
 
 

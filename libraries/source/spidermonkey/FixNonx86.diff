@@ -1,0 +1,206 @@
+diff --git a/js/src/gc/Memory.cpp b/js/src/gc/Memory.cpp
+--- a/js/src/gc/Memory.cpp
++++ b/js/src/gc/Memory.cpp
+@@ -430,17 +430,17 @@ InitMemorySubsystem()
+     if (pageSize == 0)
+         pageSize = allocGranularity = size_t(sysconf(_SC_PAGESIZE));
+ }
+ 
+ static inline void*
+ MapMemoryAt(void* desired, size_t length, int prot = PROT_READ | PROT_WRITE,
+             int flags = MAP_PRIVATE | MAP_ANON, int fd = -1, off_t offset = 0)
+ {
+-#if defined(__ia64__) || (defined(__sparc64__) && defined(__NetBSD__))
++#if defined(__ia64__) || (defined(__sparc64__) && defined(__NetBSD__)) || defined(__aarch64__)
+     MOZ_ASSERT(0xffff800000000000ULL & (uintptr_t(desired) + length - 1) == 0);
+ #endif
+     void* region = mmap(desired, length, prot, flags, fd, offset);
+     if (region == MAP_FAILED)
+         return nullptr;
+     /*
+      * mmap treats the given address as a hint unless the MAP_FIXED flag is
+      * used (which isn't usually what you want, as this overrides existing
+@@ -480,16 +480,51 @@ MapMemory(size_t length, int prot = PROT
+      * as out of memory.
+      */
+     if ((uintptr_t(region) + (length - 1)) & 0xffff800000000000) {
+         if (munmap(region, length))
+             MOZ_ASSERT(errno == ENOMEM);
+         return nullptr;
+     }
+     return region;
++#elif defined(__aarch64__)
++   /*
++    * There might be similar virtual address issue on arm64 which depends on
++    * hardware and kernel configurations. But the work around is slightly
++    * different due to the different mmap behavior.
++    *
++    * TODO: Merge with the above code block if this implementation works for
++    * ia64 and sparc64.
++    */
++    const uintptr_t start = UINT64_C(0x0000070000000000);
++    const uintptr_t end   = UINT64_C(0x0000800000000000);
++    const uintptr_t step  = js::gc::ChunkSize;
++   /*
++    * Optimization options if there are too many retries in practice:
++    * 1. Examine /proc/self/maps to find an available address. This file is
++    *    not always available, however. In addition, even if we examine
++    *    /proc/self/maps, we may still need to retry several times due to
++    *    racing with other threads.
++    * 2. Use a global/static variable with lock to track the addresses we have
++    *    allocated or tried.
++    */
++    uintptr_t hint;
++    void* region = MAP_FAILED;
++    for (hint = start; region == MAP_FAILED && hint + length <= end; hint += step) {
++        region = mmap((void*)hint, length, prot, flags, fd, offset);
++        if (region != MAP_FAILED) {
++            if ((uintptr_t(region) + (length - 1)) & 0xffff800000000000) {
++                if (munmap(region, length)) {
++                    MOZ_ASSERT(errno == ENOMEM);
++                }
++                region = MAP_FAILED;
++            }
++        }
++    }
++    return region == MAP_FAILED ? nullptr : region;
+ #else
+     void* region = MozTaggedAnonymousMmap(nullptr, length, prot, flags, fd, offset, "js-gc-heap");
+     if (region == MAP_FAILED)
+         return nullptr;
+     return region;
+ #endif
+ }
+ 
+diff --git a/js/src/jsapi-tests/testGCAllocator.cpp b/js/src/jsapi-tests/testGCAllocator.cpp
+--- a/js/src/jsapi-tests/testGCAllocator.cpp
++++ b/js/src/jsapi-tests/testGCAllocator.cpp
+@@ -307,48 +307,72 @@ void* mapMemoryAt(void* desired, size_t 
+ void* mapMemory(size_t length) { return nullptr; }
+ void unmapPages(void* p, size_t size) { }
+ 
+ #elif defined(XP_UNIX)
+ 
+ void*
+ mapMemoryAt(void* desired, size_t length)
+ {
+-#if defined(__ia64__) || (defined(__sparc64__) && defined(__NetBSD__))
++#if defined(__ia64__) || (defined(__sparc64__) && defined(__NetBSD__)) || defined(__aarch64__)
+     MOZ_RELEASE_ASSERT(0xffff800000000000ULL & (uintptr_t(desired) + length - 1) == 0);
+ #endif
+     void* region = mmap(desired, length, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
+     if (region == MAP_FAILED)
+         return nullptr;
+     if (region != desired) {
+         if (munmap(region, length))
+             MOZ_RELEASE_ASSERT(errno == ENOMEM);
+         return nullptr;
+     }
+     return region;
+ }
+ 
+ void*
+ mapMemory(size_t length)
+ {
+-    void* hint = nullptr;
++    int prot = PROT_READ | PROT_WRITE;
++    int flags = MAP_PRIVATE | MAP_ANON;
++    int fd = -1;
++    off_t offset = 0;
++    // The test code must be aligned with the implementation in gc/Memory.cpp.
+ #if defined(__ia64__) || (defined(__sparc64__) && defined(__NetBSD__))
+-    hint = (void*)0x0000070000000000ULL;
+-#endif
+-    void* region = mmap(hint, length, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
++    void* region = mmap((void*)0x0000070000000000, length, prot, flags, fd, offset);
+     if (region == MAP_FAILED)
+         return nullptr;
+-#if defined(__ia64__) || (defined(__sparc64__) && defined(__NetBSD__))
+-    if ((uintptr_t(region) + (length - 1)) & 0xffff800000000000ULL) {
++    if ((uintptr_t(region) + (length - 1)) & 0xffff800000000000) {
+         if (munmap(region, length))
+             MOZ_RELEASE_ASSERT(errno == ENOMEM);
+         return nullptr;
+     }
++    return region;
++#elif defined(__aarch64__)
++    const uintptr_t start = UINT64_C(0x0000070000000000);
++    const uintptr_t end   = UINT64_C(0x0000800000000000);
++    const uintptr_t step  = js::gc::ChunkSize;
++    uintptr_t hint;
++    void* region = MAP_FAILED;
++    for (hint = start; region == MAP_FAILED && hint + length <= end; hint += step) {
++        region = mmap((void*)hint, length, prot, flags, fd, offset);
++        if (region != MAP_FAILED) {
++            if ((uintptr_t(region) + (length - 1)) & 0xffff800000000000) {
++                if (munmap(region, length)) {
++                    MOZ_RELEASE_ASSERT(errno == ENOMEM);
++                }
++                region = MAP_FAILED;
++            }
++        }
++    }
++    return region == MAP_FAILED ? nullptr : region;
++#else
++    void* region = mmap(nullptr, length, prot, flags, fd, offset);
++    if (region == MAP_FAILED)
++        return nullptr;
++    return region;
+ #endif
+-    return region;
+ }
+ 
+ void
+ unmapPages(void* p, size_t size)
+ {
+     if (munmap(p, size))
+         MOZ_RELEASE_ASSERT(errno == ENOMEM);
+ }
+
+diff --git a/js/src/jit/AtomicOperations.h b/js/src/jit/AtomicOperations.h
+index 8606a18..60af775 100644
+--- a/js/src/jit/AtomicOperations.h
++++ b/js/src/jit/AtomicOperations.h
+@@ -302,7 +302,9 @@ AtomicOperations::isLockfree(int32_t size)
+ # include "jit/mips-shared/AtomicOperations-mips-shared.h"
+ #elif defined(__ppc64__) || defined(__PPC64_)       \
+     || defined(__ppc64le__) || defined(__PPC64LE__) \
+-    || defined(__ppc__) || defined(__PPC__)
++    || defined(__ppc__) || defined(__PPC__) \
++    || defined(__aarch64__) || defined(__arm__) \
++    || defined(__s390x__) || defined(__mips__)
+ # include "jit/none/AtomicOperations-ppc.h"
+ #elif defined(JS_CODEGEN_NONE)
+ # include "jit/none/AtomicOperations-none.h"
+
+diff --git a/js/src/tests/js1_5/Array/regress-157652.js b/js/src/tests/js1_5/Array/regress-157652.js
+index 0bdba8f..9d77802 100644
+--- a/js/src/tests/js1_5/Array/regress-157652.js
++++ b/js/src/tests/js1_5/Array/regress-157652.js
+@@ -1,4 +1,4 @@
+-// |reftest| skip-if(xulRuntime.XPCOMABI.match(/x86_64/)||Android) -- No test results
++// |reftest| skip-if(xulRuntime.XPCOMABI.match(/x86_64|aarch64|ppc64|ppc64le|s390x/)||Android) -- No test results
+ /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+diff --git a/js/src/tests/js1_5/Array/regress-330812.js b/js/src/tests/js1_5/Array/regress-330812.js
+index 3a39297..c48f4c8 100644
+--- a/js/src/tests/js1_5/Array/regress-330812.js
++++ b/js/src/tests/js1_5/Array/regress-330812.js
+@@ -1,4 +1,4 @@
+-// |reftest| skip-if(xulRuntime.XPCOMABI.match(/x86_64/)||Android) -- No test results
++// |reftest| skip-if(xulRuntime.XPCOMABI.match(/x86_64|aarch64|ppc64|ppc64le|s390x/)||Android) -- No test results
+ /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+diff --git a/js/src/tests/js1_5/Regress/regress-422348.js b/js/src/tests/js1_5/Regress/regress-422348.js
+index f2443c2..7ae83f4 100644
+--- a/js/src/tests/js1_5/Regress/regress-422348.js
++++ b/js/src/tests/js1_5/Regress/regress-422348.js
+@@ -1,4 +1,4 @@
+-// |reftest| skip-if(xulRuntime.XPCOMABI.match(/x86_64/)) -- On 64-bit, takes forever rather than throwing
++// |reftest| skip-if(xulRuntime.XPCOMABI.match(/x86_64|aarch64|ppc64|ppc64le|s390x/)) -- On 64-bit, takes forever rather than throwing
+ /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+

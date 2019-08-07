@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,7 +99,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		}
 
 		// Arrays are special cases of Object
-		if (JS_IsArrayObject(cx, obj))
+		bool isArray;
+		if (JS_IsArrayObject(cx, obj, &isArray) && isArray)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
 			// TODO: probably should have a more efficient storage format
@@ -119,9 +120,10 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			m_Serializer.NumberU32_Unbounded("byte offset", JS_GetTypedArrayByteOffset(obj));
 			m_Serializer.NumberU32_Unbounded("length", JS_GetTypedArrayLength(obj));
 
+			bool sharedMemory;
 			// Now handle its array buffer
 			// this may be a backref, since ArrayBuffers can be shared by multiple views
-			JS::RootedValue bufferVal(cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(cx, obj)));
+			JS::RootedValue bufferVal(cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(cx, obj, &sharedMemory)));
 			HandleScriptVal(bufferVal);
 			break;
 		}
@@ -136,7 +138,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			u32 length = JS_GetArrayBufferByteLength(obj);
 			m_Serializer.NumberU32_Unbounded("buffer length", length);
 			JS::AutoCheckCannotGC nogc;
-			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, nogc), length);
+			bool sharedMemory;
+			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, &sharedMemory, nogc), length);
 			break;
 		}
 		else
@@ -145,11 +148,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			const JSClass* jsclass = JS_GetClass(obj);
 			if (!jsclass)
 				throw PSERROR_Serialize_ScriptError("JS_GetClass failed");
-// TODO: Remove this workaround for upstream API breakage when updating SpiderMonkey
-// See https://bugzilla.mozilla.org/show_bug.cgi?id=1236373
-#define JSCLASS_CACHED_PROTO_WIDTH js::JSCLASS_CACHED_PROTO_WIDTH
+
 			JSProtoKey protokey = JSCLASS_CACHED_PROTO_KEY(jsclass);
-#undef JSCLASS_CACHED_PROTO_WIDTH
 
 			if (protokey == JSProto_Object)
 			{
@@ -302,8 +302,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		}
 
 		// Find all properties (ordered by insertion time)
-		JS::AutoIdArray ida (cx, JS_Enumerate(cx, obj));
-		if (!ida)
+		JS::Rooted<JS::IdVector> ida(cx, JS::IdVector(cx));
+		if (!JS_Enumerate(cx, obj, &ida))
 			throw PSERROR_Serialize_ScriptError("JS_Enumerate failed");
 
 		m_Serializer.NumberU32_Unbounded("num props", (u32)ida.length());

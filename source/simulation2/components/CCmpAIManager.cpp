@@ -562,8 +562,9 @@ public:
 			ENSURE(JS_GetArrayLength(cx, dataObj, &length));
 			u32 nbytes = (u32)(length * sizeof(NavcellData));
 
+			bool sharedMemory;
 			JS::AutoCheckCannotGC nogc;
-			memcpy((void*)JS_GetUint16ArrayData(dataObj, nogc), m_PassabilityMap.m_Data, nbytes);
+			memcpy((void*)JS_GetUint16ArrayData(dataObj, &sharedMemory, nogc), m_PassabilityMap.m_Data, nbytes);
 		}
 	}
 
@@ -591,8 +592,9 @@ public:
 			ENSURE(JS_GetArrayLength(cx, dataObj, &length));
 			u32 nbytes = (u32)(length * sizeof(u8));
 
+			bool sharedMemory;
 			JS::AutoCheckCannotGC nogc;
-			memcpy((void*)JS_GetUint8ArrayData(dataObj, nogc), m_TerritoryMap.m_Data, nbytes);
+			memcpy((void*)JS_GetUint8ArrayData(dataObj, &sharedMemory, nogc), m_TerritoryMap.m_Data, nbytes);
 		}
 	}
 

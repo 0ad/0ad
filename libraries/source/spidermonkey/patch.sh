@@ -2,45 +2,23 @@
 # Apply patches if needed
 # This script gets called from build-osx-libs.sh and build.sh.
 
-# Fix the version specification code which used PYTHON before it was set.
-# The second patch is required to not add autoconf as a dependency.
-patch -p1 < ../FixVersionDetection.diff
-patch -p1 < ../FixVersionDetectionConfigure.diff
+# Remove the unnecessary NSPR dependency.
+# Will be included in SM52.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1379539
+patch -p1 < ../RemoveNSPRDependency.diff
 
 # Fix the path to the moz.build file in the zlib module
 patch -p1 < ../FixZLibMozBuild.diff
 
-# === Fix the SM38 tracelogger ===
+# === Fix the SM45 tracelogger ===
 # This patch is a squashed version of several patches that were adapted
 # to fix failing hunks.
 #
 # Applied in the following order, they are:
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1223767
-#    Assertion failure: i < size_, at js/src/vm/TraceLoggingTypes.h:210
-#    Also fix stop-information to make reduce.py work correctly.
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1227914
-#    Limit the memory tracelogger can take.
-#    This causes tracelogger to flush data to the disk regularly and prevents out of
-#    memory issues if a lot of data gets logged.
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1155618
-#    Fix tracelogger destructor that touches possibly uninitialised hash table.
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1223636
-#    Don't treat extraTextId as containing only extra ids.
-#    This fixes an assertion failure: id == nextTextId at js/src/vm/TraceLoggingGraph.cpp
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1227028
-#    Fix when to keep the payload of a TraceLogger event.
-#    This fixes an assertion failure: textId < uint32_t(1 << 31) at js/src/vm/TraceLoggingGraph.h
 # * https://bugzilla.mozilla.org/show_bug.cgi?id=1266649
 #    Handle failing to add to pointermap gracefully.
 # * https://bugzilla.mozilla.org/show_bug.cgi?id=1280648
 #    Don't cache based on pointers to movable GC things.
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1224123
-#    Fix the use of LastEntryId in tracelogger.h.
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1231170
-#    Use size in debugger instead of the current id to track last logged item.
-# * https://bugzilla.mozilla.org/show_bug.cgi?id=1221844
-#    Move TraceLogger_Invalidation to LOG_ITEM.
-#    Add some debug checks to logTimestamp.
 # * https://bugzilla.mozilla.org/show_bug.cgi?id=1255766
 #    Also mark resizing of memory.
 # * https://bugzilla.mozilla.org/show_bug.cgi?id=1259403
@@ -51,5 +29,25 @@ patch -p1  < ../FixTracelogger.diff
 
 # Patch embedded python psutil to work with FreeBSD 12 after revision 315662
 # Based on: https://svnweb.freebsd.org/ports/head/sysutils/py-psutil121/files/patch-_psutil_bsd.c?revision=436575&view=markup
-# Related: https://bugzilla.mozilla.org/show_bug.cgi?id=1238983
+# psutil will be upgraded in SM60: https://bugzilla.mozilla.org/show_bug.cgi?id=1436857
 patch -p0 < ../FixpsutilFreeBSD.diff
+
+# Patch some parts of the code to support extra processor architectures
+# Includes https://bugzilla.mozilla.org/show_bug.cgi?id=1143022 and https://bugzilla.mozilla.org/show_bug.cgi?id=1277742
+patch -p1 < ../FixNonx86.diff
+
+# Always link mozglue into the shared library when building standalone.
+# Will be included in SM60. Custom version of the patch for SM45, which doesn't have the same build system.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1176787
+patch -p1 < ../FixMozglueStatic.diff
+
+# JSPropertyDescriptor is not public in SM45.
+# Will be fixed in SM52.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1316079
+patch -p1 < ../ExportJSPropertyDescriptor.diff
+
+# When trying to link pyrogenesis, js::oom::GetThreadType() and js::ReportOutOfMemory()
+# are marked as unresolved symbols.
+# Will be included in SM52.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1379538
+patch -p1 < ../FixLinking.diff
