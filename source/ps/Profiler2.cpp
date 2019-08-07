@@ -422,8 +422,10 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 	const char* regionName;
 	std::set<std::string> topLevelArgs;
 
-	typedef std::tuple<const char*, double, std::set<std::string> > infoPerType;
-	std::unordered_map<std::string, infoPerType> timeByType;
+	using infoPerType = std::tuple<const char*, double, std::set<std::string> >;
+	using timeByTypeMap = std::unordered_map<std::string, infoPerType>;
+
+	timeByTypeMap timeByType;
 	std::vector<double> last_time_stack;
 	std::vector<const char*> last_names;
 
@@ -513,7 +515,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 			double time = (double)item_time - last_time_stack.back();
 
 			std::string name = std::string(item_name);
-			auto TimeForType = timeByType.find(name);
+			timeByTypeMap::iterator TimeForType = timeByType.find(name);
 			if (TimeForType == timeByType.end())
 			{
 				// keep reference to the original char pointer to make sure we don't break things down the line
@@ -543,11 +545,11 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 			readPos += sizeof(len);
 
 			char message[CProfiler2::MAX_ATTRIBUTE_LENGTH] = {0};
-			memcpy(&message[0], buffer + readPos, len);
+			memcpy(&message[0], buffer + readPos, std::min(size_t(len), CProfiler2::MAX_ATTRIBUTE_LENGTH));
 			CStr mess = CStr((const char*)message, len);
 			if (!last_names.empty())
 			{
-				auto it = timeByType.find(std::string(last_names.back()));
+				timeByTypeMap::iterator it = timeByType.find(std::string(last_names.back()));
 				if (it == timeByType.end())
 					topLevelArgs.insert(mess);
 				else
@@ -577,7 +579,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 		curTime += 0.000001;
 	}
 	// sub-events, aggregated
-	for (auto& type : timeByType)
+	for (const std::pair<std::string, infoPerType>& type : timeByType)
 	{
 		CProfiler2::SItem_dt_id item = { (float)curTime, std::get<0>(type.second) };
 		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
@@ -585,12 +587,12 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 		writePos += sizeof(item) + 1;
 
 		// write relevant attributes if present
-		for (const auto& attrib : std::get<2>(type.second))
+		for (const std::string& attrib : std::get<2>(type.second))
 		{
 			buffer[writePos] = (u8)CProfiler2::ITEM_ATTRIBUTE;
 			writePos++;
 			std::string basic = attrib;
-			auto time_attrib = time_per_attribute.find(attrib);
+			std::map<std::string, double>::iterator time_attrib = time_per_attribute.find(attrib);
 			if (time_attrib != time_per_attribute.end())
 				basic += " " + CStr::FromInt(1000000*time_attrib->second) + "us";
 
@@ -887,9 +889,10 @@ const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::s
 
 		std::lock_guard<std::mutex> lock(m_Mutex); // lock against changes to m_Threads or deletions of ThreadStorage
 
-		auto it = std::find_if(m_Threads.begin(), m_Threads.end(), [&thread](std::unique_ptr<ThreadStorage>& storage) {
-			return storage->GetName() == thread;
-		});
+		std::vector<std::unique_ptr<ThreadStorage>>::iterator it =
+			std::find_if(m_Threads.begin(), m_Threads.end(), [&thread](std::unique_ptr<ThreadStorage>& storage) {
+				return storage->GetName() == thread;
+			});
 
 		if (it == m_Threads.end())
 			return "cannot find named thread";
