@@ -39,8 +39,6 @@ NETTLE_VERSION="nettle-3.5.1"
 # NOTE: remember to also update LIB_URL below when changing version
 GNUTLS_VERSION="gnutls-3.6.8"
 GLOOX_VERSION="gloox-1.0.22"
-# NSPR is necessary for threadsafe Spidermonkey
-NSPR_VERSION="4.15"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
 ICU_VERSION="icu4c-59_1"
@@ -49,7 +47,7 @@ MINIUPNPC_VERSION="miniupnpc-2.0.20180222"
 SODIUM_VERSION="libsodium-1.0.16"
 # --------------------------------------------------------------
 # Bundled with the game:
-# * SpiderMonkey 38
+# * SpiderMonkey 45
 # * NVTT
 # * FCollada
 # --------------------------------------------------------------
@@ -751,41 +749,6 @@ fi
 popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "Building NSPR..."
-
-LIB_VERSION="${NSPR_VERSION}"
-LIB_ARCHIVE="nspr-$LIB_VERSION.tar.gz"
-LIB_DIRECTORY="nspr-$LIB_VERSION"
-LIB_URL="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v$LIB_VERSION/src/"
-
-mkdir -p nspr
-pushd nspr > /dev/null
-
-NSPR_DIR="$(pwd)"
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
-then
-  rm -f .already-built
-  download_lib $LIB_URL $LIB_ARCHIVE
-
-  rm -rf $LIB_DIRECTORY bin include lib share
-  tar -xf $LIB_ARCHIVE
-  pushd $LIB_DIRECTORY/nspr
-
-  (CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" \
-    ./configure --prefix="$NSPR_DIR" \
-        --enable-64bit \
-    && make ${JOBS} && make install) || die "NSPR build failed"
-  popd
-  # TODO: how can we not build the dylibs?
-  rm -f lib/*.dylib
-  touch .already-built
-else
-  already_built
-fi
-popd > /dev/null
-
-# --------------------------------------------------------------
 echo -e "Building ICU..."
 
 LIB_VERSION="${ICU_VERSION}"
@@ -940,9 +903,9 @@ popd > /dev/null
 # be customized, so we build and install them from bundled sources
 # --------------------------------------------------------------------
 echo -e "Building Spidermonkey..."
-LIB_VERSION="mozjs-38.2.1"
-LIB_ARCHIVE="$LIB_VERSION.rc0.tar.bz2"
-LIB_DIRECTORY="mozjs-38.0.0"
+LIB_VERSION="mozjs-45.0.2"
+LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
+LIB_DIRECTORY="mozjs-45.0.2"
 
 pushd ../source/spidermonkey/ > /dev/null
 
@@ -963,20 +926,17 @@ then
   popd
 
   pushd $LIB_DIRECTORY/js/src
-  # We want separate debug/release versions of the library, so change their install name in the Makefile
-  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1'\''mozjs38-ps-debug'\''/' moz.build
 
   CONF_OPTS="--target=$ARCH-apple-darwin
     --prefix=${INSTALL_DIR}
-    --with-system-nspr
-    --with-nspr-prefix=${NSPR_DIR}
+    --enable-posix-nspr-emulation
     --with-system-zlib=${ZLIB_DIR}
     --disable-tests
-    --disable-shared-js"
+    --disable-shared-js
+    --disable-jemalloc
+    --without-intl-api"
   # Change the default location where the tracelogger should store its output, which is /tmp/ on OSX.
   TLCXXFLAGS='-DTRACE_LOG_DIR="\"../../source/tools/tracelogger/\""'
-  # Uncomment this line for 32-bit 10.5 cross compile:
-  #CONF_OPTS="$CONF_OPTS --target=i386-apple-darwin9.0.0"
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
     CONF_OPTS="$CONF_OPTS --enable-macos-target=$MIN_OSX_VERSION"
   fi
@@ -984,6 +944,8 @@ then
     CONF_OPTS="$CONF_OPTS --with-macosx-sdk=$SYSROOT"
   fi
 
+  # We want separate debug/release versions of the library, so change their install name in the Makefile
+  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1'\''mozjs45-ps-debug'\''/' moz.build
   mkdir -p build-debug
   pushd build-debug
   (CC="clang" CXX="clang++" CXXFLAGS="${TLCXXFLAGS}" AR=ar CROSS_COMPILE=1 \
@@ -996,11 +958,11 @@ then
   # js-config.h is different for debug and release builds, so we need different include directories for both
   mkdir -p $INCLUDE_DIR_DEBUG
   cp -R -L dist/include/* $INCLUDE_DIR_DEBUG/
-  cp dist/lib/*.a $INSTALL_DIR/lib
+  cp dist/sdk/lib/*.a $INSTALL_DIR/lib
   popd
   mv moz.build.bak moz.build
 
-  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1'\''mozjs38-ps-release'\''/' moz.build
+  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1'\''mozjs45-ps-release'\''/' moz.build
   mkdir -p build-release
   pushd build-release
   (CC="clang" CXX="clang++" CXXFLAGS="${TLCXXFLAGS}" AR=ar CROSS_COMPILE=1 \
@@ -1010,7 +972,8 @@ then
   # js-config.h is different for debug and release builds, so we need different include directories for both
   mkdir -p $INCLUDE_DIR_RELEASE
   cp -R -L dist/include/* $INCLUDE_DIR_RELEASE/
-  cp dist/lib/*.a $INSTALL_DIR/lib
+  cp dist/sdk/lib/*.a $INSTALL_DIR/lib
+  cp js/src/*.a $INSTALL_DIR/lib
   popd
   mv moz.build.bak moz.build
   

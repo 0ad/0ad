@@ -124,28 +124,28 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	return false;
 }
 
-bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp)
+bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result)
 {
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, obj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
-		return false;
+		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
 	JSAutoRequest rq(cx);
 	JS::RootedValue idval(cx);
 	if (!JS_IdToValue(cx, id, &idval))
-		return false;
+		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
 	std::string propName;
 	if (!ScriptInterface::FromJSVal(cx, idval, propName))
-		return false;
+		return result.fail(JSMSG_UNDEFINED_PROP);
 
 	if (propName == "name")
 	{
 		std::string value;
 		if (!ScriptInterface::FromJSVal(cx, vp, value))
-			return false;
+			return result.fail(JSMSG_UNDEFINED_PROP);
 		e->SetName(value);
-		return true;
+		return result.succeed();
 	}
 
 	JS::RootedObject vpObj(cx);
@@ -158,20 +158,20 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		if (vp.isPrimitive() || vp.isNull() || !JS_ObjectIsFunction(cx, &vp.toObject()))
 		{
 			JS_ReportError(cx, "on- event-handlers must be functions");
-			return false;
+			return result.fail(JSMSG_NOT_FUNCTION);
 		}
 
 		CStr eventName(CStr(propName.substr(2)).LowerCase());
 		e->SetScriptHandler(eventName, vpObj);
 
-		return true;
+		return result.succeed();
 	}
 
 	if (e->SettingExists(propName))
-		return e->m_Settings[propName]->FromJSVal(cx, vp);
+		return e->m_Settings[propName]->FromJSVal(cx, vp) ? result.succeed() : result.fail(JSMSG_TYPE_ERR_BAD_ARGS);
 
 	JS_ReportError(cx, "Property '%s' does not exist!", propName.c_str());
-	return false;
+	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 
 void JSI_IGUIObject::init(ScriptInterface& scriptInterface)

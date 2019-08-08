@@ -21,6 +21,23 @@
 #include "nsTraceRefcnt.h"
 #endif
 
+#if defined(MOZ_CRASHREPORTER) && defined(MOZILLA_INTERNAL_API) && \
+    !defined(MOZILLA_EXTERNAL_LINKAGE) && defined(__cplusplus)
+namespace CrashReporter {
+// This declaration is present here as well as in nsExceptionHandler.h
+// nsExceptionHandler.h is not directly included in this file as it includes
+// windows.h, which can cause problems when it is imported into some files due
+// to the number of macros defined.
+// XXX If you change this definition - also change the definition in
+// nsExceptionHandler.h
+void AnnotateMozCrashReason(const char* aReason);
+} // namespace CrashReporter
+
+#  define MOZ_CRASH_ANNOTATE(...) CrashReporter::AnnotateMozCrashReason("" __VA_ARGS__)
+#else
+#  define MOZ_CRASH_ANNOTATE(...) do { /* nothing */ } while (0)
+#endif
+
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -141,7 +158,7 @@ MOZ_ReportAssertionFailure(const char* aStr, const char* aFilename, int aLine)
                       aStr, aFilename, aLine);
 #else
   fprintf(stderr, "Assertion failure: %s, at %s:%d\n", aStr, aFilename, aLine);
-#ifdef MOZ_DUMP_ASSERTION_STACK
+#if defined (MOZ_DUMP_ASSERTION_STACK) && !defined(MOZILLA_XPCOMRT_API)
   nsTraceRefcnt::WalkTheStack(stderr);
 #endif
   fflush(stderr);
@@ -157,7 +174,7 @@ MOZ_ReportCrash(const char* aStr, const char* aFilename, int aLine)
                       "Hit MOZ_CRASH(%s) at %s:%d\n", aStr, aFilename, aLine);
 #else
   fprintf(stderr, "Hit MOZ_CRASH(%s) at %s:%d\n", aStr, aFilename, aLine);
-#ifdef MOZ_DUMP_ASSERTION_STACK
+#if defined(MOZ_DUMP_ASSERTION_STACK) && !defined(MOZILLA_XPCOMRT_API)
   nsTraceRefcnt::WalkTheStack(stderr);
 #endif
   fflush(stderr);
@@ -249,11 +266,16 @@ __declspec(noreturn) __inline void MOZ_NoReturn() {}
  * corrupted.
  */
 #ifndef DEBUG
-#  define MOZ_CRASH(...) MOZ_REALLY_CRASH()
+#  define MOZ_CRASH(...) \
+     do { \
+       MOZ_CRASH_ANNOTATE("MOZ_CRASH(" __VA_ARGS__ ")"); \
+       MOZ_REALLY_CRASH(); \
+     } while (0)
 #else
 #  define MOZ_CRASH(...) \
      do { \
        MOZ_ReportCrash("" __VA_ARGS__, __FILE__, __LINE__); \
+       MOZ_CRASH_ANNOTATE("MOZ_CRASH(" __VA_ARGS__ ")"); \
        MOZ_REALLY_CRASH(); \
      } while (0)
 #endif
@@ -314,18 +336,6 @@ namespace mozilla {
 namespace detail {
 
 template<typename T>
-struct IsFunction
-{
-  static const bool value = false;
-};
-
-template<typename R, typename... A>
-struct IsFunction<R(A...)>
-{
-  static const bool value = true;
-};
-
-template<typename T>
 struct AssertionConditionType
 {
   typedef typename RemoveReference<T>::Type ValueT;
@@ -360,6 +370,7 @@ struct AssertionConditionType
     MOZ_VALIDATE_ASSERT_CONDITION_TYPE(expr); \
     if (MOZ_UNLIKELY(!(expr))) { \
       MOZ_ReportAssertionFailure(#expr, __FILE__, __LINE__); \
+      MOZ_CRASH_ANNOTATE("MOZ_RELEASE_ASSERT(" #expr ")"); \
       MOZ_REALLY_CRASH(); \
     } \
   } while (0)
@@ -369,6 +380,7 @@ struct AssertionConditionType
     MOZ_VALIDATE_ASSERT_CONDITION_TYPE(expr); \
     if (MOZ_UNLIKELY(!(expr))) { \
       MOZ_ReportAssertionFailure(#expr " (" explain ")", __FILE__, __LINE__); \
+      MOZ_CRASH_ANNOTATE("MOZ_RELEASE_ASSERT(" #expr ") (" explain ")"); \
       MOZ_REALLY_CRASH(); \
     } \
   } while (0)
@@ -494,10 +506,21 @@ struct AssertionConditionType
 #  define MOZ_ALWAYS_TRUE(expr)      MOZ_ASSERT((expr))
 #  define MOZ_ALWAYS_FALSE(expr)     MOZ_ASSERT(!(expr))
 #else
-#  define MOZ_ALWAYS_TRUE(expr)      ((void)(expr))
-#  define MOZ_ALWAYS_FALSE(expr)     ((void)(expr))
+#  define MOZ_ALWAYS_TRUE(expr) \
+  do { \
+    if ( ( expr ) ) {                       \
+      /* Silence MOZ_WARN_UNUSED_RESULT. */ \
+    } \
+  } while (0)
+#  define MOZ_ALWAYS_FALSE(expr) \
+  do { \
+    if ( ( expr ) ) {                       \
+      /* Silence MOZ_WARN_UNUSED_RESULT. */ \
+    } \
+  } while (0)
 #endif
 
 #undef MOZ_DUMP_ASSERTION_STACK
+#undef MOZ_CRASH_CRASHREPORT
 
 #endif /* mozilla_Assertions_h */

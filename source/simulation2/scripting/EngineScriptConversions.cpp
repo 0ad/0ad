@@ -241,7 +241,8 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 	// Copy the array data and then remove the no-GC check to allow further changes to the JS data
 	{
 		JS::AutoCheckCannotGC nogc;
-		memcpy((void*)JS_GetUint8ArrayData(objArr, nogc), val.m_Data, nbytes);
+		bool sharedMemory;
+		memcpy((void*)JS_GetUint8ArrayData(objArr, &sharedMemory, nogc), val.m_Data, nbytes);
 	}
 
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
@@ -267,7 +268,8 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	// Copy the array data and then remove the no-GC check to allow further changes to the JS data
 	{
 		JS::AutoCheckCannotGC nogc;
-		memcpy((void*)JS_GetUint16ArrayData(objArr, nogc), val.m_Data, nbytes);
+		bool sharedMemory;
+		memcpy((void*)JS_GetUint16ArrayData(objArr, &sharedMemory, nogc), val.m_Data, nbytes);
 	}
 
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
@@ -291,7 +293,8 @@ template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleVa
 
 	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, &v.toObject());
-	if (!JS_IsArrayObject(cx, obj))
+	bool isArray;
+	if (!JS_IsArrayObject(cx, obj, &isArray) || !isArray)
 		FAIL("Argument must be an array");
 
 	u32 numberOfNodes = 0;

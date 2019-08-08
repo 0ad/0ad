@@ -86,7 +86,8 @@ bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::Mut
 	if (scriptInterface.ParseJSON(cacheStr, &cachedReplays))
 	{
 		cachedReplaysObject.set(&cachedReplays.toObject());
-		if (JS_IsArrayObject(cx, cachedReplaysObject))
+		bool isArray;
+		if (JS_IsArrayObject(cx, cachedReplaysObject, &isArray) && isArray)
 			return true;
 	}
 

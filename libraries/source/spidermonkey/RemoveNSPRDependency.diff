@@ -1,0 +1,51 @@
+
+# HG changeset patch
+# User Philip Chimento <philip.chimento@gmail.com>
+# Date 1501017350 25200
+# Node ID 5d95b2833b30582ab3df4e28373d749ddbf7c04e
+# Parent  c24e6fc9f689aeb32de0bf7916b1d0098d4a2bb9
+Bug 1379539 - Remove unnecessary NSPR dependency. r=glandium, a=jcristau
+
+diff --git a/build/autoconf/nspr-build.m4 b/build/autoconf/nspr-build.m4
+index 970e1e7..66d96b1 100644
+--- a/build/autoconf/nspr-build.m4
++++ b/build/autoconf/nspr-build.m4
+@@ -167,11 +167,8 @@ fi
+ 
+ AC_SUBST_LIST(NSPR_CFLAGS)
+ 
+-NSPR_PKGCONF_CHECK="nspr"
++PKGCONF_REQUIRES_PRIVATE="Requires.private: nspr"
+ if test -n "$MOZ_NATIVE_NSPR"; then
+-    # piggy back on $MOZ_NATIVE_NSPR to set a variable for the nspr check for js.pc
+-    NSPR_PKGCONF_CHECK="nspr >= $NSPR_MINVER"
+-
+     _SAVE_CFLAGS=$CFLAGS
+     CFLAGS="$CFLAGS $NSPR_CFLAGS"
+     AC_TRY_COMPILE([#include "prlog.h"],
+@@ -181,8 +178,12 @@ if test -n "$MOZ_NATIVE_NSPR"; then
+                 ,
+                 AC_MSG_ERROR([system NSPR does not support PR_STATIC_ASSERT]))
+     CFLAGS=$_SAVE_CFLAGS
++    # piggy back on $MOZ_NATIVE_NSPR to set a variable for the nspr check for js.pc
++    PKGCONF_REQUIRES_PRIVATE="Requires.private: nspr >= $NSPR_MINVER"
++elif test -n "$JS_POSIX_NSPR"; then
++    PKGCONF_REQUIRES_PRIVATE=
+ fi
+-AC_SUBST(NSPR_PKGCONF_CHECK)
++AC_SUBST([PKGCONF_REQUIRES_PRIVATE])
+ 
+ fi # _IS_OUTER_CONFIGURE
+ 
+diff --git a/js/src/js.pc.in b/js/src/js.pc.in
+index 1efea33..2eae393 100644
+--- a/js/src/js.pc.in
++++ b/js/src/js.pc.in
+@@ -6,6 +6,6 @@ includedir=@includedir@
+ Name: SpiderMonkey @MOZILLA_VERSION@
+ Description: The Mozilla library for JavaScript
+ Version: @MOZILLA_VERSION@
+-Requires.private: @NSPR_PKGCONF_CHECK@
++@PKGCONF_REQUIRES_PRIVATE@
+ Libs: -L${libdir} -l@JS_LIBRARY_NAME@
+ Cflags: -include ${includedir}/@JS_LIBRARY_NAME@/js/RequiredDefines.h -I${includedir}/@JS_LIBRARY_NAME@

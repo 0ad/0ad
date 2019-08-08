@@ -53,7 +53,7 @@
 /* #undef JS_PUNBOX64 */
 
 /* MOZILLA JSAPI version number components */
-#define MOZJS_MAJOR_VERSION 38
-#define MOZJS_MINOR_VERSION 3
+#define MOZJS_MAJOR_VERSION 45
+#define MOZJS_MINOR_VERSION 0
 
 #endif /* js_config_h */

@@ -1,0 +1,26 @@
+diff --git a/js/src/jsapi.h b/js/src/jsapi.h
+index 29406243..2370457f 100644
+--- a/js/src/jsapi.h
++++ b/js/src/jsapi.h
+@@ -2399,7 +2399,7 @@ JS_FreezeObject(JSContext* cx, JS::Handle<JSObject*> obj);
+ 
+ /*** Property descriptors ************************************************************************/
+ 
+-struct JSPropertyDescriptor : public JS::Traceable {
++struct JS_PUBLIC_API(JSPropertyDescriptor) : public JS::Traceable {
+     JSObject* obj;
+     unsigned attrs;
+     JSGetterOp getter;
+diff --git a/js/src/jspubtd.h b/js/src/jspubtd.h
+index ba592525..3c185527 100644
+--- a/js/src/jspubtd.h
++++ b/js/src/jspubtd.h
+@@ -97,7 +97,7 @@ struct JSFunctionSpec;
+ struct JSLocaleCallbacks;
+ struct JSObjectMap;
+ struct JSPrincipals;
+-struct JSPropertyDescriptor;
++struct JS_PUBLIC_API(JSPropertyDescriptor);
+ struct JSPropertyName;
+ struct JSPropertySpec;
+ struct JSRuntime;
