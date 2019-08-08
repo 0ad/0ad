@@ -864,7 +864,7 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 
 	JS::CompileOptions options(m->m_cx);
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
-	options.setIsRunOnce(true);
+	options.setIsRunOnce(false);
 
 	JS::RootedFunction func(m->m_cx);
 	JS::AutoObjectVector emptyScopeChain(m->m_cx);

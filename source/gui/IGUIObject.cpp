@@ -346,7 +346,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 	JS::CompileOptions options(cx);
 	options.setFileAndLine(CodeName.c_str(), 0);
-	options.setIsRunOnce(true);
+	options.setIsRunOnce(false);
 
 	JS::RootedFunction func(cx);
 	JS::AutoObjectVector emptyScopeChain(cx);
