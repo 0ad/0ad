@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-08-01 14:42+0000\n"
+"PO-Revision-Date: 2019-08-07 16:12+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -137,11 +137,11 @@ msgstr "Примечание"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr "Установить ваш статус как \"отошёл\"."
+msgstr "Установить статус «отошёл»."
 
 #: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
-msgstr "Установить ваш статус как \"онлайн\"."
+msgstr "Установить статус «в игре»."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -287,7 +287,7 @@ msgstr "Н/Д"
 #: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "Игрок \"%(nick)s\" не найден."
+msgstr "Игрок «%(nick)s» не найден."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1143
@@ -757,7 +757,7 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Wildfire Games не будет использовать логи IP-адресов для иных целей, в частности, для маркетинга, не будет разглашать IP-адреса третьим лицам и будет стирать их, если они не актуальны для указанных целей."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
@@ -783,7 +783,7 @@ msgstr "В сетевой комнате есть общедоступный ч�
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr ""
+msgstr "Wildfire Games хранит лог публичных сообщений чата и времени присутствия в игре для достижения следующих целей:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
@@ -845,7 +845,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Безопасность обработки:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
@@ -856,7 +856,7 @@ msgstr ""
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr ""
+msgstr "Личные данные защищены от непроизвольной потери при шифрованном резервировании в течение дополнительного времени (Общий регламент по защите данных (ЕС) 30.1.g, 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid ""
@@ -873,7 +873,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Правовая база для обработки:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""

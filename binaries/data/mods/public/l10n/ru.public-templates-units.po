@@ -8,6 +8,7 @@
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Alex <yanebotan@ngs.ru>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2019
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
@@ -46,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-31 09:43+0200\n"
-"PO-Revision-Date: 2019-05-31 16:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-08-05 14:53+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -224,7 +225,7 @@ msgstr "Чемпион"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
-msgstr "Чемпион-конник"
+msgstr "Элитный всадник"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:29
 msgid "Champion Cavalry Archer."
@@ -1732,7 +1733,7 @@ msgstr "Мегас Александрос"
 
 #: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr "Бонус \"Героебой\": +20% дополнительного урона против вражеских героев."
+msgstr "Бонус «Героебой»: +20% дополнительного урона вражеским героям."
 
 #: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Crateros"
@@ -1905,7 +1906,7 @@ msgstr "Асока Деванамприя"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr "Особенность героя: \"Надписи Ашоки\" - колонны с надписями можно строить во время жизни Ашоки."
+msgstr "Особенность героя: «надписи Ашоки» — колонны с надписями можно строить при жизни Ашоки."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:9
 msgid "Acharya Chanakya"
@@ -2039,7 +2040,7 @@ msgstr "Артаксеркс II"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:12
 msgid "Babylonian Scythed Chariot"
-msgstr "Вавилонская колесница с косами"
+msgstr "Вавилонская серпоносная колесница"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:13
 msgid "Babiruviya Ratha"
@@ -2304,7 +2305,7 @@ msgstr "Клеопатра VII Филопатор"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:9
 msgid "Ptolemy I \"Savior\""
-msgstr "Птолемей I \"Спаситель\""
+msgstr "Птолемей I Сотер «Спаситель»"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:10
 msgid "Ptolemaios A' Soter"
@@ -2312,7 +2313,7 @@ msgstr "Птолемаиос Протос Сотер"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:8
 msgid "Ptolemy IV \"Father Loving\""
-msgstr "Птолемей IV \"Любящий отца\""
+msgstr "Птолемей IV Филопатор «Любящий отца»"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:9
 msgid "Ptolemaios D' Philopator"
@@ -2601,7 +2602,7 @@ msgstr "Селеукидон катафрактос"
 
 #: simulation/templates/units/sele_champion_chariot.xml:11
 msgid "Scythed Chariot"
-msgstr "Колесница с косами"
+msgstr "Серпоносная колесница"
 
 #: simulation/templates/units/sele_champion_chariot.xml:12
 msgid "Drepanèphoros"
@@ -2625,7 +2626,7 @@ msgstr "Фалангитес аргираспис"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Romanized Heavy Swordsman"
-msgstr " Романизированный тяжёлый мечник"
+msgstr "Романизированный тяжёлый мечник"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:7
 msgid "Thorakitès Rhomaïkós"
@@ -2633,7 +2634,7 @@ msgstr "Торакитес ромаикос"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:9
 msgid "Antiochus III \"The Great\""
-msgstr "Антиох III \"Великий\""
+msgstr "Антиох III Великий"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:10
 msgid "Antiokhos G' Mégās"
@@ -2641,7 +2642,7 @@ msgstr "Антиохос Тритос Мегас"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:9
 msgid "Antiochus IV \"The Righteous\""
-msgstr "Антиох IV \"Праведный\""
+msgstr "Антиох IV Эпифан «Славный»"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
 msgid "Antiokhos D' Epiphanes"
@@ -2649,7 +2650,7 @@ msgstr "Антиохос Тетратос Эпифанес"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:9
 msgid "Seleucus I \"The Victor\""
-msgstr "Селевк I \"Победитель\""
+msgstr "Селевк I Никатор «Победитель»"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:10
 msgid "Seleukos A' Nikator"
