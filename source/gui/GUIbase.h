@@ -148,6 +148,10 @@ typedef std::vector<IGUIObject*> vector_pObjects;
 //  you use them in text owned by different objects... Such as CText.
 struct SGUIIcon
 {
+	// This struct represents an immutable type, so ensure to avoid copying the strings.
+	NONCOPYABLE(SGUIIcon);
+	MOVABLE(SGUIIcon);
+
 	SGUIIcon() : m_CellID(0) {}
 
 	// Sprite name of icon

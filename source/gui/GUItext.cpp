@@ -124,9 +124,9 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				SGUIText::SSpriteCall SpriteCall;
 
 				// Get Icon from icon database in pGUI
-				SGUIIcon icon = pGUI->GetIcon(path);
+				const SGUIIcon& icon = pGUI->GetIcon(path);
 
-				CSize size = icon.m_Size;
+				const CSize& size = icon.m_Size;
 
 				// append width, and make maximum height the height.
 				Feedback.m_Size.cx += size.cx;

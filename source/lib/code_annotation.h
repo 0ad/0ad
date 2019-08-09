@@ -218,6 +218,14 @@ switch(x % 2)
 	className(const className&) = delete; \
 	className& operator=(const className&) = delete
 
+/**
+ * Indicates that move semantics can be used, so that a NONCOPYABLE class can still be assigned by taking over the reference to the value.
+ * Make sure to use the macro with the necessary access modifier.
+ */
+#define MOVABLE(className) \
+	className(className&&) = default; \
+	className& operator=(className&&) = default
+
 #if ICC_VERSION
 # define ASSUME_ALIGNED(ptr, multiple) __assume_aligned(ptr, multiple)
 #else
