@@ -26,15 +26,9 @@
  */
 struct CGUIColor : CColor
 {
-	CGUIColor()
-	{
-		CColor();
-	}
+	CGUIColor() : CColor() {}
 
-	CGUIColor(float r, float g, float b, float a)
-	{
-		CColor(r, g, b, a);
-	}
+	CGUIColor(float r, float g, float b, float a) : CColor(r, g, b, a) {}
 
 	bool ParseString(const CStr& value, int defaultAlpha = 255)
 	{
