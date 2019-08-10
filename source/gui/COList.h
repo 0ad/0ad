@@ -25,11 +25,15 @@
  */
 struct COListColumn
 {
-  CGUIColor m_TextColor;
-  CStr m_Id;
-  float m_Width;
-  CStrW m_Heading;
+	// Avoid copying the strings.
+	NONCOPYABLE(COListColumn);
+	MOVABLE(COListColumn);
+	COListColumn() = default;
 
+	CGUIColor m_TextColor;
+	CStr m_Id;
+	float m_Width;
+	CStrW m_Heading;
 };
 
 /**

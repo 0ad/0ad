@@ -160,6 +160,8 @@ struct SGUIScrollBarStyle
 class IGUIScrollBar
 {
 public:
+	NONCOPYABLE(IGUIScrollBar);
+
 	IGUIScrollBar(CGUI* pGUI);
 	virtual ~IGUIScrollBar();
 

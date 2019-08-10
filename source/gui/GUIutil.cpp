@@ -388,22 +388,21 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 }
 
 // Instantiate templated functions:
+// These functions avoid copies by working with a pointer and move semantics.
 #define TYPE(T) \
 	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
-	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
-	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage); \
 	template class CGUISetting<T>; \
 
-#define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
-#undef GUITYPE_IGNORE_CGUISpriteInstance
 #undef TYPE
 
-// Don't instantiate GetSetting<CGUISpriteInstance> - this will cause linker errors if
-// you attempt to retrieve a sprite using GetSetting, since that copies the sprite
-// and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
-// instead. (This is mainly useful to stop me accidentally using the wrong function.)
-template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance*& Value);
-template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance& Value, const bool& SkipMessage);
-template class CGUISetting<CGUISpriteInstance>;
+// Copying functions - discouraged except for primitives.
+#define TYPE(T) \
+	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
+	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage); \
+
+#define GUITYPE_IGNORE_NONCOPYABLE
+#include "GUItypes.h"
+#undef GUITYPE_IGNORE_NONCOPYABLE
+#undef TYPE

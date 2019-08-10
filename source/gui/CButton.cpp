@@ -68,12 +68,12 @@ void CButton::SetupText()
 		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
 		font = L"default";
 
-	CGUIString caption;
-	GUI<CGUIString>::GetSetting(this, "caption", caption);
+	CGUIString* caption = nullptr;
+	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
 
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 }

@@ -96,7 +96,7 @@ void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::St
 {
 	// Push the page prior to loading its contents, because that may push
 	// another GUI page on init which should be pushed on top of this new page.
-	m_PageStack.emplace_back(SGUIPage(pageName, initData));
+	m_PageStack.emplace_back(pageName, initData);
 	m_PageStack.back().LoadPage(m_ScriptRuntime);
 	ResetCursor();
 }

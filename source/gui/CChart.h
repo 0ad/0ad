@@ -27,6 +27,11 @@
 
 struct CChartData
 {
+	// Avoid copying the container.
+	NONCOPYABLE(CChartData);
+	MOVABLE(CChartData);
+	CChartData() = default;
+
 	CGUIColor m_Color;
 	std::vector<CVector2D> m_Points;
 };

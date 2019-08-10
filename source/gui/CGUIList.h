@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,12 @@ class CGUIList
 public: // struct:ish (but for consistency I call it _C_GUIList, and
 		//  for the same reason it is a class, so that confusion doesn't
 		//  appear when forward declaring.
+
+	// Avoid copying the vector.
+	NONCOPYABLE(CGUIList);
+	MOVABLE(CGUIList);
+	CGUIList() = default;
+
 	/**
 	 * List of items (as text), the post-processed result is stored in
 	 *  the IGUITextOwner structure of this class.

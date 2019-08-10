@@ -165,7 +165,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				TextCall.m_pSpriteCall = &Feedback.m_SpriteCalls.back();
 
 				// Add text call
-				Feedback.m_TextCalls.push_back(TextCall);
+				Feedback.m_TextCalls.emplace_back(std::move(TextCall));
 
 				break;
 			}
@@ -227,7 +227,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				Feedback.m_NewLine = true;
 
 			// Add text-chunk
-			Feedback.m_TextCalls.push_back(TextCall);
+			Feedback.m_TextCalls.emplace_back(std::move(TextCall));
 		}
 	}
 }

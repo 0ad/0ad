@@ -60,6 +60,8 @@ class IGUIObject
 	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
+	NONCOPYABLE(IGUIObject);
+
 	IGUIObject(CGUI* pGUI);
 	virtual ~IGUIObject();
 

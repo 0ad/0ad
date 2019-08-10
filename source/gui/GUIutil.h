@@ -46,7 +46,10 @@ template<typename T> class GUI;
 class IGUISetting
 {
 public:
-	virtual ~IGUISetting() {};
+	NONCOPYABLE(IGUISetting);
+
+	IGUISetting() = default;
+	virtual ~IGUISetting() = default;
 
 	/**
 	 * Parses the given string and assigns to the setting value. Used for parsing XML attributes.
@@ -70,6 +73,8 @@ class CGUISetting : public IGUISetting
 	friend class GUI<T>;
 
 public:
+	NONCOPYABLE(CGUISetting);
+
 	CGUISetting(IGUIObject& pObject, const CStr& Name);
 
 	/**
@@ -125,6 +130,7 @@ class GUI
 	friend class IGUIObject;
 
 public:
+	NONCOPYABLE(GUI);
 
 	// Like GetSetting (below), but doesn't make a copy of the value
 	// (so it can be modified later)

@@ -488,6 +488,8 @@ const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
 {
+	// Only primitve members, so move assignments are the same as copy assignments.
+
 	float m_YFrom,			// The image's starting location in Y
 		  m_YTo,			// The image's end location in Y
 		  m_Indentation;	// The image width in other words
@@ -602,8 +604,8 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 					// Check if image is the lowest thing.
 					Text.m_Size.cy = std::max(Text.m_Size.cy, Image.m_YTo);
 
-					Images[j].push_back(Image);
-					Text.m_SpriteCalls.push_back(std::move(SpriteCall));
+					Images[j].emplace_back(Image);
+					Text.m_SpriteCalls.emplace_back(std::move(SpriteCall));
 				}
 			}
 		}

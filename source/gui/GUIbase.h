@@ -95,6 +95,9 @@ enum EGUIMessageType
  */
 struct SGUIMessage
 {
+	// This should be passed as a const reference or pointer.
+	NONCOPYABLE(SGUIMessage);
+
 	SGUIMessage(EGUIMessageType _type) : type(_type), skipped(false) {}
 	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value), skipped(false) {}
 
@@ -173,6 +176,8 @@ struct SGUIIcon
 class CClientArea
 {
 public:
+	// COPYABLE, since there are only primitives involved, making move and copy identical,
+	// and since some temporaries cannot be avoided.
 	CClientArea();
 	CClientArea(const CStr& Value);
 	CClientArea(const CRect& pixel, const CRect& percent);

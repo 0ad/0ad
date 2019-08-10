@@ -148,6 +148,8 @@ public:
 private:
 	struct SGUIPage
 	{
+		// COPYABLE, because event handlers may invalidate page stack iterators by open or close pages,
+		// and event handlers need to be called for the entire stack.
 		SGUIPage(const CStrW& pageName, const shared_ptr<ScriptInterface::StructuredClone> initData);
 		void LoadPage(shared_ptr<ScriptRuntime> scriptRuntime);
 

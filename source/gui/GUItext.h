@@ -60,6 +60,10 @@ struct SGUIText
 	 */
 	struct SSpriteCall
 	{
+		// The CGUISpriteInstance makes this uncopyable to avoid invalidating its draw cache
+		NONCOPYABLE(SSpriteCall);
+		MOVABLE(SSpriteCall);
+
 		SSpriteCall() : m_CellID(0) {}
 
 		/**
@@ -90,6 +94,9 @@ struct SGUIText
 	 */
 	struct STextCall
 	{
+		NONCOPYABLE(STextCall);
+		MOVABLE(STextCall);
+
 		STextCall() :
 			m_UseCustomColor(false),
 			m_Bold(false), m_Italic(false), m_Underlined(false),
@@ -248,6 +255,11 @@ public:
 	 */
 	struct SFeedback
 	{
+		// Avoid copying the vector and list containers.
+		NONCOPYABLE(SFeedback);
+		MOVABLE(SFeedback);
+		SFeedback() = default;
+
 		// Constants
 		static const int Left = 0;
 		static const int Right = 1;

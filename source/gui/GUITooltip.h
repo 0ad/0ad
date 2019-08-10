@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@ class CGUI;
 class GUITooltip
 {
 public:
+	NONCOPYABLE(GUITooltip);
+
 	GUITooltip();
 	void Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI);
 
