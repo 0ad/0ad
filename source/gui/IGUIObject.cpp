@@ -70,11 +70,6 @@ void IGUIObject::AddChild(IGUIObject* pChild)
 
 	m_Children.push_back(pChild);
 
-	// If this (not the child) object is already attached
-	//  to a CGUI, it pGUI pointer will be non-null.
-	//  This will mean we'll have to check if we're using
-	//  names already used.
-	if (pChild->GetGUI())
 	{
 		try
 		{
@@ -135,23 +130,12 @@ void IGUIObject::AddSetting(const CStr& Name)
 
 bool IGUIObject::MouseOver()
 {
-	if (!GetGUI())
-		throw PSERROR_GUI_OperationNeedsGUIObject();
-
-	return m_CachedActualSize.PointInside(GetMousePos());
+	return m_CachedActualSize.PointInside(m_pGUI->GetMousePos());
 }
 
 bool IGUIObject::MouseOverIcon()
 {
 	return false;
-}
-
-CPos IGUIObject::GetMousePos() const
-{
-	if (GetGUI())
-		return GetGUI()->m_MousePos;
-
-	return CPos();
 }
 
 void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
@@ -269,17 +253,12 @@ void IGUIObject::UpdateCachedSize()
 	}
 }
 
-void IGUIObject::LoadStyle(CGUI& GUIinstance, const CStr& StyleName)
+void IGUIObject::LoadStyle(CGUI& pGUI, const CStr& StyleName)
 {
-	// Fetch style
-	if (GUIinstance.m_Styles.count(StyleName) == 1)
-	{
-		LoadStyle(GUIinstance.m_Styles[StyleName]);
-	}
+	if (pGUI.HasStyle(StyleName))
+		LoadStyle(pGUI.GetStyle(StyleName));
 	else
-	{
 		debug_warn(L"IGUIObject::LoadStyle failed");
-	}
 }
 
 void IGUIObject::LoadStyle(const SGUIStyle& Style)
@@ -325,9 +304,6 @@ float IGUIObject::GetBufferedZ() const
 
 void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI)
 {
-	if(!GetGUI())
-		throw PSERROR_GUI_OperationNeedsGUIObject();
-
 	JSContext* cx = pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue globalVal(cx, pGUI->GetGlobalObject());
@@ -396,11 +372,13 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(cx);
 
+	const CPos& mousePos = m_pGUI->GetMousePos();
+
 	m_pGUI->GetScriptInterface()->CreateObject(
 		&mouse,
-		"x", m_pGUI->m_MousePos.x,
-		"y", m_pGUI->m_MousePos.y,
-		"buttons", m_pGUI->m_MouseButtons);
+		"x", mousePos.x,
+		"y", mousePos.y,
+		"buttons", m_pGUI->GetMouseButtons());
 
 	JS::AutoValueVector paramData(cx);
 	paramData.append(mouse);
@@ -465,17 +443,17 @@ CStr IGUIObject::GetPresentableName() const
 
 void IGUIObject::SetFocus()
 {
-	GetGUI()->m_FocusedObject = this;
+	m_pGUI->SetFocusedObject(this);
 }
 
 bool IGUIObject::IsFocused() const
 {
-	return GetGUI()->m_FocusedObject == this;
+	return m_pGUI->GetFocusedObject() == this;
 }
 
 bool IGUIObject::IsRootObject() const
 {
-	return GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject;
+	return m_pParent == m_pGUI->GetBaseObject();
 }
 
 void IGUIObject::TraceMember(JSTracer* trc)

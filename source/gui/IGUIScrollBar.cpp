@@ -96,7 +96,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 	{
 		// TODO Gee: Optimizations needed!
 
-		CPos mouse = m_pHostObject->GetMousePos();
+		const CPos& mouse = m_pGUI->GetMousePos();
 
 		// If bar is being dragged
 		if (m_BarPressed)
@@ -123,7 +123,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 		if (!m_pHostObject)
 			break;
 
-		CPos mouse = m_pHostObject->GetMousePos();
+		const CPos& mouse = m_pGUI->GetMousePos();
 
 		// if bar is pressed
 		if (GetBarRect().PointInside(mouse))

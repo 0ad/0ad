@@ -97,7 +97,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 			       tag.m_TagType == TextChunk::Tag::TAG_ICON);
 
 			const std::string& path = utf8_from_wstring(tag.m_TagValue);
-			if (!pGUI->IconExists(path))
+			if (!pGUI->HasIcon(path))
 			{
 				if (pObject)
 					LOGERROR("Trying to use an icon, imgleft or imgright-tag with an undefined icon (\"%s\").", path.c_str());

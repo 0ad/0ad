@@ -192,7 +192,7 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 bool CMiniMap::MouseOver()
 {
 	// Get the mouse position.
-	CPos mousePos = GetMousePos();
+	const CPos& mousePos = m_pGUI->GetMousePos();
 	// Get the position of the center of the minimap.
 	CPos minimapCenter = CPos(m_CachedActualSize.left + m_CachedActualSize.GetWidth() / 2.0, m_CachedActualSize.bottom - m_CachedActualSize.GetHeight() / 2.0);
 	// Take the magnitude of the difference of the mouse position and minimap center.
@@ -208,7 +208,7 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
 {
 	// Determine X and Z according to proportion of mouse position and minimap
 
-	CPos mousePos = GetMousePos();
+	const CPos& mousePos = m_pGUI->GetMousePos();
 
 	float px = (mousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth();
 	float py = (m_CachedActualSize.bottom - mousePos.y) / m_CachedActualSize.GetHeight();

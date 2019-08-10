@@ -116,9 +116,6 @@ void CChart::Draw()
 {
 	PROFILE3("render chart");
 
-	if (!GetGUI())
-		return;
-
 	if (m_Series.empty())
 		return;
 
@@ -210,9 +207,6 @@ void CChart::UpdateSeries()
 
 void CChart::SetupText()
 {
-	if (!GetGUI())
-		return;
-
 	for (SGUIText* t : m_GeneratedTexts)
 		delete t;
 	m_GeneratedTexts.clear();

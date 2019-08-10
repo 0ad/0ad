@@ -41,9 +41,6 @@ COList::COList(CGUI* pGUI)
 
 void COList::SetupText()
 {
-	if (!GetGUI())
-		return;
-
 	CGUIList* pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
@@ -154,7 +151,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 		if (!sortable)
 			return;
 
-		CPos mouse = GetMousePos();
+		const CPos& mouse = m_pGUI->GetMousePos();
 		if (!m_CachedActualSize.PointInside(mouse))
 			return;
 
@@ -320,9 +317,6 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 
 	if (scrollbar)
 		IGUIScrollBarOwner::Draw();
-
-	if (!GetGUI())
-		return;
 
 	CRect rect = GetListRect();
 

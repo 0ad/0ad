@@ -198,9 +198,6 @@ void CText::Draw()
 		// Draw scrollbar
 		IGUIScrollBarOwner::Draw();
 
-	if (!GetGUI())
-		return;
-
 	CGUISpriteInstance* sprite;
 	int cell_id;
 	bool clip;
@@ -251,7 +248,7 @@ bool CText::MouseOverIcon()
 		for (const SGUIText::SSpriteCall& spritecall : guitext->m_SpriteCalls)
 		{
 			// Check mouse over sprite
-			if (!spritecall.m_Area.PointInside(GetMousePos() - m_CachedActualSize.TopLeft()))
+			if (!spritecall.m_Area.PointInside(m_pGUI->GetMousePos() - m_CachedActualSize.TopLeft()))
 				continue;
 
 			// If tooltip exists, set the property

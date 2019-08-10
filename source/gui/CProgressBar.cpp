@@ -64,9 +64,6 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 
 void CProgressBar::Draw()
 {
-	if (!GetGUI())
-		return;
-
 	float bz = GetBufferedZ();
 
 	CGUISpriteInstance* sprite_background;
