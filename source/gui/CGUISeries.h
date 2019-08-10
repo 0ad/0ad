@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,13 +19,15 @@
 #ifndef INCLUDED_CGUISERIES
 #define INCLUDED_CGUISERIES
 
-#include "GUItext.h"
 #include "maths/Vector2D.h"
-
 
 class CGUISeries
 {
 public:
+	NONCOPYABLE(CGUISeries);
+	MOVABLE(CGUISeries);
+	CGUISeries() = default;
+
 	std::vector<std::vector<CVector2D>> m_Series;
 };
 

@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-08-04 16:15+0000\n"
+"PO-Revision-Date: 2019-08-07 16:16+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/functions_utility_loadsave.js:53 gui/savegame/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr "\"%(label)s\""
+msgstr "«%(label)s»"
 
 #: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -1361,7 +1361,7 @@ msgstr "%(warning)s Похоже Вы используете графику бе
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:121
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Пожалуйста, нажмите на кнопку \"Подробнее\" для получения дополнительной информации или \"OK\" для продолжения."
+msgstr "Пожалуйста, нажмите на кнопку «Подробнее» для получения дополнительной информации или «OK» для продолжения."
 
 #: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
@@ -3059,7 +3059,7 @@ msgstr "Именное уведомление"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Получать звуковые уведомления, когда новый игрок присоединяется к созданию игры."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
@@ -3307,11 +3307,11 @@ msgstr "Значок ранга над строкой состояния"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Показавать опыт каждого выбранного юнита."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Показатель опыта"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3765,7 +3765,7 @@ msgstr "РЫБОЛОВСТВО"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Рыбачьте в море для богатого улова."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -3785,7 +3785,7 @@ msgstr "КРЕПОСТЬ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "Крепость обычно является самым мощным зданием фракции."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3872,7 +3872,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
-msgstr ""
+msgstr "Недорого, 80 единиц древесины."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
@@ -3880,7 +3880,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "Займите юнитом для предотвращения разрушения на нейтральной территории."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3904,7 +3904,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
-msgstr ""
+msgstr "Строения возводятся быстрее в поле его зрения."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -3924,7 +3924,7 @@ msgstr "Все постройки персов прочнее на +25%."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr "Как следствие, время строительства увеличивается на +20%."
+msgstr "Как следствие, время строительства увеличивается на 20%."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -3985,7 +3985,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Лес, как правило, редкий, но состоит из высокоурожайных баобабов."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -4033,7 +4033,7 @@ msgstr ""
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Используется против конницы для усиления атаки."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
@@ -4089,7 +4089,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Исследуйте технологии исцеления."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
@@ -4106,7 +4106,7 @@ msgstr "РАСПАД ТЕРРИТОРИИ"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Строения разрушаются, если они оторваны от своего городского Центра."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4132,7 +4132,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Все корабли строятся быстрее при его жизни."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
@@ -4148,7 +4148,7 @@ msgstr "Средний боевой корабль"
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Хорошо подходит для транспортировки и боя."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
@@ -4166,7 +4166,7 @@ msgstr ""
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Не менее семи кампаний против римлян в ходе Лузитанской войны с 147 до 139 до н.э. "
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
@@ -4206,7 +4206,7 @@ msgstr "2000 пищи."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Собирается рыбацкими лодками после забоя кита."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."

@@ -316,6 +316,7 @@ void CMiniMap::DrawViewRect(CMatrix3D transform)
 
 struct MinimapUnitVertex
 {
+	// This struct is copyable for convenience and because to move is to copy for primitives.
 	u8 r, g, b, a;
 	float x, y;
 };

@@ -30,7 +30,7 @@ void CGUISprite::AddImage(SGUIImage* image)
 	m_Images.push_back(image);
 }
 
-void CGUISpriteInstance::Draw(const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const
+void CGUISpriteInstance::Draw(const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const
 {
 	if (m_CachedSize != Size || m_CachedCellID != CellID)
 	{

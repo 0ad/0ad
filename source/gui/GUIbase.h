@@ -95,6 +95,9 @@ enum EGUIMessageType
  */
 struct SGUIMessage
 {
+	// This should be passed as a const reference or pointer.
+	NONCOPYABLE(SGUIMessage);
+
 	SGUIMessage(EGUIMessageType _type) : type(_type), skipped(false) {}
 	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value), skipped(false) {}
 
@@ -148,6 +151,10 @@ typedef std::vector<IGUIObject*> vector_pObjects;
 //  you use them in text owned by different objects... Such as CText.
 struct SGUIIcon
 {
+	// This struct represents an immutable type, so ensure to avoid copying the strings.
+	NONCOPYABLE(SGUIIcon);
+	MOVABLE(SGUIIcon);
+
 	SGUIIcon() : m_CellID(0) {}
 
 	// Sprite name of icon
@@ -169,6 +176,8 @@ struct SGUIIcon
 class CClientArea
 {
 public:
+	// COPYABLE, since there are only primitives involved, making move and copy identical,
+	// and since some temporaries cannot be avoided.
 	CClientArea();
 	CClientArea(const CStr& Value);
 	CClientArea(const CRect& pixel, const CRect& percent);

@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-08-05 04:26+0000\n"
+"PO-Revision-Date: 2019-08-09 05:39+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1502,23 +1502,23 @@ msgstr "노포의 명중률"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr ""
+msgstr "공성 무기에 필요한 금속 자원을 줄어듭니다."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
-msgstr ""
+msgstr "공성 무기의 금속 비용이 20% 줄어듭니다."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
-msgstr ""
+msgstr "금속 세공사"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege weapons cost less wood"
-msgstr ""
+msgstr "공성 무기의 목재 비용이 줄어듭니다."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege weapons cost 20% less wood"
-msgstr ""
+msgstr "공성 무기의 목재 비용이 20% 줄어듭니다."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1526,11 +1526,11 @@ msgstr "포병 교관"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr ""
+msgstr "거치식 공성 병기의 조립과 해체가 빨라집니다."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "거치식 공성 무기의 조립과 해체 시간이 -25% 느려집니다."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1538,20 +1538,20 @@ msgstr "공병"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
-msgstr ""
+msgstr "빠르게 잘 달리는 말(준마)를 기릅니다.."
 
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr ""
+msgstr "기마의 이동 속도가 +10% 빨라집니다."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "기마 기름"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr ""
+msgstr "기마가 더 빨리 달리도록 훈련합니다."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
@@ -1559,7 +1559,7 @@ msgstr "기병대 속도 훈련"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr ""
+msgstr "사람들을 감시하기 위해 정보 제공 조직을 소집합니다."
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
@@ -1647,11 +1647,11 @@ msgstr "전서구"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
-msgstr ""
+msgstr "야간 경계 경비를 강화합니다."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "방어 탑에 주둔하여 발사하는 화살이 1개 더 늘어납니다."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1671,23 +1671,23 @@ msgstr "간호"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
-msgstr ""
+msgstr "국제 교역 수익을 개선합니다."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Market +10% International Bonus."
-msgstr ""
+msgstr "시장의 국제 보너스가 +10% 증가합니다."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
-msgstr ""
+msgstr "통상 조약"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr ""
+msgstr "상인의 방어력을 높입니다."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr ""
+msgstr "상인의 타격 및 관통 장갑차 수준을 +2 높입니다."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1697,16 +1697,16 @@ msgstr "무역 호송대"
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr ""
+msgstr "상인의 이동 속도가 빨라져 점차 교역 수입을 늘립니다."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr ""
+msgstr "상인의 이동 속도가 +25% 빨라지고 신속하게 교역 수입을 늘립니다."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "수공예의 발전은 교역 이익을 향상시킵니다."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
@@ -1729,7 +1729,7 @@ msgstr "고급 수공예"
 msgid ""
 "Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr ""
+msgstr "병영에서 군인을 큰 규모로 일괄 양성하여 속도를 대폭 향상합니다."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1745,12 +1745,12 @@ msgstr "징병제"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr ""
+msgstr "전쟁시에 기병을 소집하여 왕의 군대를 보강하는데 도움이 됩니다."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr ""
+msgstr "모든 기병의 양성 시간이 -20% 단축되지만 체력은 -10 줄어듭니다. 징병을 연구가능하게 합니다."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1762,12 +1762,12 @@ msgstr "기병 소집"
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr ""
+msgstr "전쟁시에 보병을 소집하여 왕의 군대를 보강하는 데 도움이 됩니다."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr ""
+msgstr "모든 보병의 양성 시간을 -10% 단축하지만 체력은 -5 감소합니다. 징병을 연구 가능하게 합니다."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -1776,29 +1776,29 @@ msgstr "보병대 징수"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr ""
+msgstr "항구에서 선박의 일괄 건조 속도를 크게 향상 시킵니다."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr ""
+msgstr "항구에서 일괄 건조 속도가 증가합니다."
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
-msgstr ""
+msgstr "조선 기술자"
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr ""
+msgstr "호위 유닛(대표 전사)은 최고의 무기를 휘두르며 최고의 훈련을 받는 전문가입니다."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the Barracks."
-msgstr ""
+msgstr "병영에서 대표 전사 유닛을 양성 하기위한 능력을 풉니다."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr ""
+msgstr "대표 전사 유닛을 풉니다."
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
@@ -1812,11 +1812,11 @@ msgstr "레기오 코호로스"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr ""
+msgstr "여성의 다산을 축하하는 여성만 참석하는 축제입니다."
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr ""
+msgstr "집에서 여자들을 양성할 수 있는 능력을 풉니다."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -1830,18 +1830,18 @@ msgstr "테스모포리아"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
-msgstr ""
+msgstr "보나 데아"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "교역의 확대는 해외 소매 상인들과 그 가족이 영구적으로 뿌리 내리는 데 이어 이들 국가의 부(ehsms 재산)를 착취 할 수 있습니다."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr ""
+msgstr "동맹의 회수 시설을 사용할 수 있습니다."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1856,13 +1856,13 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "교역과 여행을 통해 사람들은 그들의 영지 경계를 넘어 탐험하고, 그들의 발견을 공유하고 기억하기 위해 지도를 그렸습니다."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "동맹국이 무엇을 보고 있는지 확인하고, 요약을 탐색한 후 상단 판에서 해당 자원과 인구 수를 확인하십시오."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1872,12 +1872,12 @@ msgstr "지도제작"
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
-msgstr ""
+msgstr "상인의 가장 큰 목적은 교역이지만 그들이 들른 나라에 대한 정보 수집도 합니다."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "시야를 공유받기 위해 다른 선수의 유닛에게 뇌물을 줄 수 있습니다."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -1886,14 +1886,14 @@ msgstr "첩자"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr ""
+msgstr "모든 시민 군인 기병을 상위 계급으로 진급합니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr ""
+msgstr "모든 시민 군인 기병을 상위 계급으로 진급합니다. 이것은 그들의 군사력을 증가 시키지만, 고기 수집률은 -25% 감소합니다. 정예 시민 기병의 기술 연구를 풉니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -1901,14 +1901,14 @@ msgstr "고급 시민 기병"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr ""
+msgstr "모든 시민 군인 보병을 상급 계급으로 진급합니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr ""
+msgstr "모든 시민 군인의 보병을 상급 계급으로 진급합니다. 이렇게 하면 군사력은 향상되지만 자원의 수집률은 -25% 감소합니다. 정예 시민 보병의 기술 연구을 풉니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
@@ -1918,27 +1918,27 @@ msgstr "고급 시민 보병"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
-msgstr ""
+msgstr "제우기타이"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "군대에서 싸우는 전문 용병을 고용합니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "용병은 상급 계급으로 진급되지만 양성 시간은 +20% 필요합니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "전쟁의 전문성"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr ""
+msgstr "모든 시민 군인 기병을 정예 계급으로 진급합니다. 이것은 그들의 군사력을 증가시키지만, 고기 수집률은 -25% 더 떨어집니다."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1946,14 +1946,14 @@ msgstr "정예 시민 기병"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr ""
+msgstr "모든 시민 군인 보병을 정예 계급으로 진급합니다."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr ""
+msgstr "모든 시민 군인 보병을 정예 계급으로 진급합니다. 이것은 그들의 군사력을 증가시키지만 그들의 자원 수집률은 -25% 더 감소합니다."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
@@ -1968,13 +1968,13 @@ msgstr "펜타코시오메딤노이"
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "켈트 용병의 금속 비용이 감소합니다."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsontooltip
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "켈트족 용병 대장을 고용하고 켈트족 용병 금속 비용을 -20 줄입니다."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
@@ -1984,7 +1984,7 @@ msgstr "켈트 용병 함장??"
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "갈리아 용병 장군을 고용하고 켈트 용병의 금속 비용을 -20 줄일 수 있습니다."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
@@ -1993,13 +1993,13 @@ msgstr "갈리아 용병 장군 EHSMS 대장"
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "이베리아 용병을 고용할때 금속 비용이 감소합니다."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsontooltip
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr ""
+msgstr "루시타니아 용병 대장을 고용하여 이베리아 용병들의 금속 비용을 -20 감소합니다."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
@@ -2009,7 +2009,7 @@ msgstr "루시타니아 용병 함장??"
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr ""
+msgstr "이켈트이베리아 용병 장군을 고용하여 이베리아 용병의 금속 비용을 -20 줄일 수 있습니다."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
@@ -2018,13 +2018,13 @@ msgstr "켈트이베리아 용병 장군"
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "이탈리아 용병의 금속 비용이 감소합니다."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr ""
+msgstr "이탈리아 용병의 금속 비용 -20을 줄이기 위해 이탈리아 용병 대장을 고용합니다."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
@@ -2034,7 +2034,7 @@ msgstr "이탈리아 용병 함장??"
 msgid ""
 "Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr ""
+msgstr "이탈리아 용병의 금속의 비용을 -20 절감하기 위해 이탈리아 용병 장군을 고용합니다."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
@@ -2074,7 +2074,7 @@ msgstr "카르타고는 많은 교역소를 식민지로 설립하고 마침내�
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr ""
+msgstr "카르타고는 식민지였습니다. 시민 회관, 사원, 주택의 짓는 시간이 -25% 감소합니다."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -2089,7 +2089,7 @@ msgstr "고대 세계에서 그들이가는 곳에 또한 가고자하는 곳 �
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "카르타고인은 탐험가였습니다. 모든 상인과 선박의 시야가 +25% 증가합니다."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"

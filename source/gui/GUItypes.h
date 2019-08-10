@@ -25,20 +25,23 @@ places, and to make it much easier to add a new type). Just do
 to handle every possible type.
 */
 
+#ifndef GUITYPE_IGNORE_COPYABLE
 TYPE(bool)
 TYPE(i32)
 TYPE(u32)
 TYPE(float)
 TYPE(CGUIColor)
-TYPE(CClientArea)
-TYPE(CGUIString)
-#ifndef GUITYPE_IGNORE_CGUISpriteInstance
-TYPE(CGUISpriteInstance)
-#endif
 TYPE(CStr)
 TYPE(CStrW)
 TYPE(EAlign)
 TYPE(EVAlign)
 TYPE(CPos)
+#endif
+
+#ifndef GUITYPE_IGNORE_NONCOPYABLE
+TYPE(CClientArea)
 TYPE(CGUIList)
 TYPE(CGUISeries)
+TYPE(CGUISpriteInstance)
+TYPE(CGUIString)
+#endif

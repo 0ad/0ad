@@ -32,14 +32,6 @@ struct SGUIImage;
 
 namespace GUIRenderer
 {
-	class IGLState
-	{
-	public:
-		virtual ~IGLState() {};
-		virtual void Set(const CTexturePtr& tex) = 0;
-		virtual void Unset() = 0;
-	};
-
 	struct SDrawCall
 	{
 		SDrawCall(const SGUIImage* image) : m_Image(image) {}
@@ -79,7 +71,7 @@ namespace GUIRenderer
 
 namespace GUIRenderer
 {
-	void UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites);
+	void UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites);
 
 	void Draw(DrawCalls& Calls, float Z);
 }

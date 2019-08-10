@@ -157,16 +157,14 @@ public:
 // calculations between draw calls.
 class CGUISpriteInstance
 {
-	NONCOPYABLE(CGUISpriteInstance);
-
 public:
+	NONCOPYABLE(CGUISpriteInstance);
+	MOVABLE(CGUISpriteInstance);
+
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	CGUISpriteInstance(CGUISpriteInstance&&) = default;
-	CGUISpriteInstance& operator=(CGUISpriteInstance&&) = default;
-
-	void Draw(const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const;
+	void Draw(const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
 	bool IsEmpty() const;
 	const CStr& GetName() const { return m_SpriteName; }
 	void SetName(const CStr& SpriteName);

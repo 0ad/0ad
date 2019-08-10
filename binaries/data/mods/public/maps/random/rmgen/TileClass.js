@@ -126,7 +126,7 @@ TileClass.prototype.countInRadius = function(position, radius, returnMembers)
 			let dy = iy - position.y;
 
 			let xMin = Math.max(Math.floor(position.x - radius), 0);
-			let xMax = Math.max(Math.ceil(position.x + radius), this.size - 1);
+			let xMax = Math.min(Math.ceil(position.x + radius), this.size - 1);
 
 			for (let ix = xMin; ix <= xMax; ++ix)
 			{

@@ -75,9 +75,10 @@ void CText::SetupText()
 		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
 		font = L"default";
 
-	CGUIString caption;
+	CGUIString* caption = nullptr;
+	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
+
 	bool scrollbar;
-	GUI<CGUIString>::GetSetting(this, "caption", caption);
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
 	float width = m_CachedActualSize.GetWidth();
@@ -88,7 +89,7 @@ void CText::SetupText()
 
     float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, buffer_zone, this);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, width, buffer_zone, this);
 
 	if (!scrollbar)
 		CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);

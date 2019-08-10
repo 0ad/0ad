@@ -80,12 +80,12 @@ void CCheckBox::SetupText()
 	float square_side;
 	GUI<float>::GetSetting(this, "square_side", square_side);
 
-	CGUIString caption;
-	GUI<CGUIString>::GetSetting(this, "caption", caption);
+	CGUIString* caption = nullptr;
+	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth()-square_side, 0.f, this);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, m_CachedActualSize.GetWidth()-square_side, 0.f, this);
 }
 
 void CCheckBox::HandleMessage(SGUIMessage& Message)

@@ -49,6 +49,11 @@ A GUI ScrollBar
  */
 struct SGUIScrollBarStyle
 {
+	// CGUISpriteInstance makes this NONCOPYABLE implicitly, make it explicit
+	NONCOPYABLE(SGUIScrollBarStyle);
+	MOVABLE(SGUIScrollBarStyle);
+	SGUIScrollBarStyle() = default;
+
 	//--------------------------------------------------------
 	/** @name General Settings */
 	//--------------------------------------------------------
@@ -155,6 +160,8 @@ struct SGUIScrollBarStyle
 class IGUIScrollBar
 {
 public:
+	NONCOPYABLE(IGUIScrollBar);
+
 	IGUIScrollBar(CGUI* pGUI);
 	virtual ~IGUIScrollBar();
 

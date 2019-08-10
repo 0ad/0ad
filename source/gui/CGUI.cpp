@@ -383,7 +383,7 @@ void CGUI::Destroy()
 	}
 	m_pAllObjects.clear();
 
-	for (const std::pair<CStr, CGUISprite*>& p : m_Sprites)
+	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
 		delete p.second;
 	m_Sprites.clear();
 	m_Icons.clear();
@@ -478,7 +478,7 @@ void CGUI::SetFocusedObject(IGUIObject* pObject)
 
 const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
 {
-	std::map<CStr, SGUIScrollBarStyle>::const_iterator it = m_ScrollBarStyles.find(style);
+	std::map<CStr, const SGUIScrollBarStyle>::const_iterator it = m_ScrollBarStyles.find(style);
 	if (it == m_ScrollBarStyles.end())
 		return nullptr;
 
@@ -488,6 +488,8 @@ const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
 {
+	// Only primitve members, so move assignments are the same as copy assignments.
+
 	float m_YFrom,			// The image's starting location in Y
 		  m_YTo,			// The image's end location in Y
 		  m_Indentation;	// The image width in other words
@@ -594,16 +596,16 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 						_y = y;
 
 					// Get Size from Icon database
-					SGUIIcon icon = GetIcon(imgname);
+					const SGUIIcon& icon = GetIcon(imgname);
 
-					CSize size = icon.m_Size;
+					const CSize& size = icon.m_Size;
 					Image.SetupSpriteCall((j == CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_SpriteName, BufferZone, icon.m_CellID);
 
 					// Check if image is the lowest thing.
 					Text.m_Size.cy = std::max(Text.m_Size.cy, Image.m_YTo);
 
-					Images[j].push_back(Image);
-					Text.m_SpriteCalls.push_back(std::move(SpriteCall));
+					Images[j].emplace_back(Image);
+					Text.m_SpriteCalls.emplace_back(std::move(SpriteCall));
 				}
 			}
 		}
@@ -1423,7 +1425,8 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 
 	delete effects;
 
-	m_Sprites[name] = Sprite;
+	m_Sprites.erase(name);
+	m_Sprites.emplace(name, Sprite);
 }
 
 void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite& parent)
@@ -1595,10 +1598,11 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "name")
 			name = attr.Value;
 		else
-			style.m_SettingsDefaults[attr_name] = attr.Value.FromUTF8();
+			style.m_SettingsDefaults.emplace(attr_name, attr.Value.FromUTF8());
 	}
 
-	m_Styles[name] = style;
+	m_Styles.erase(name);
+	m_Styles.emplace(name, std::move(style));
 }
 
 void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
@@ -1680,7 +1684,8 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
-	m_ScrollBarStyles[name] = std::move(scrollbar);
+	m_ScrollBarStyles.erase(name);
+	m_ScrollBarStyles.emplace(name, std::move(scrollbar));
 }
 
 void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
@@ -1720,7 +1725,8 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
 	}
 
-	m_Icons[name] = icon;
+	m_Icons.erase(name);
+	m_Icons.emplace(name, std::move(icon));
 }
 
 void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)

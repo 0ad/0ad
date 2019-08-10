@@ -42,6 +42,11 @@ extern const double SELECT_DBLCLICK_RATE;
  */
 struct SGUIStyle
 {
+	// Take advantage of moving the entire map instead and avoiding unintended copies.
+	NONCOPYABLE(SGUIStyle);
+	MOVABLE(SGUIStyle);
+	SGUIStyle() = default;
+
 	std::map<CStr, CStrW> m_SettingsDefaults;
 };
 
@@ -235,9 +240,9 @@ public:
 	bool IconExists(const CStr& str) const { return (m_Icons.count(str) != 0); }
 
 	/**
-	 * Get Icon (a copy, can never be changed)
+	 * Get Icon (a const reference, can never be changed)
 	 */
-	SGUIIcon GetIcon(const CStr& str) const { return m_Icons.find(str)->second; }
+	const SGUIIcon& GetIcon(const CStr& str) const { return m_Icons.find(str)->second; }
 
 	/**
 	 * Get pre-defined color (if it exists)
@@ -628,19 +633,21 @@ private:
 
 	//--------------------------------------------------------
 	//	Databases
+	//	These are loaded from XML files and marked as noncopyable and const to
+	//	rule out unintentional modification and copy, especially during Draw calls.
 	//--------------------------------------------------------
 
 	// Sprites
-	std::map<CStr, CGUISprite*> m_Sprites;
+	std::map<CStr, const CGUISprite*> m_Sprites;
 
 	// Styles
-	std::map<CStr, SGUIStyle> m_Styles;
+	std::map<CStr, const SGUIStyle> m_Styles;
 
 	// Scroll-bar styles
-	std::map<CStr, SGUIScrollBarStyle> m_ScrollBarStyles;
+	std::map<CStr, const SGUIScrollBarStyle> m_ScrollBarStyles;
 
 	// Icons
-	std::map<CStr, SGUIIcon> m_Icons;
+	std::map<CStr, const SGUIIcon> m_Icons;
 };
 
 #endif // INCLUDED_CGUI

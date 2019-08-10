@@ -59,7 +59,7 @@ DrawCalls& DrawCalls::operator=(const DrawCalls&)
 }
 
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites)
+void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -74,7 +74,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 		return;
 
 
-	std::map<CStr, CGUISprite*>::iterator it(Sprites.find(SpriteName));
+	std::map<CStr, const CGUISprite*>::iterator it(Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
 		/*

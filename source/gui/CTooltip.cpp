@@ -75,13 +75,13 @@ void CTooltip::SetupText()
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
-	CGUIString caption;
-	GUI<CGUIString>::GetSetting(this, "caption", caption);
+	CGUIString* caption = nullptr;
+	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
 
 	float max_width = 0.f;
 	GUI<float>::GetSetting(this, "maxwidth", max_width);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, max_width, buffer_zone, this);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, max_width, buffer_zone, this);
 
 
 	// Position the tooltip relative to the mouse:

@@ -297,20 +297,18 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			}
 		}
 
-		m_Columns.push_back(column);
-
 		AddSetting<CGUIList>("list_" + column.m_Id);
 		AddSetting<bool>("hidden_" + column.m_Id);
 		GUI<bool>::SetSetting(this, "hidden_" + column.m_Id, hidden);
+
+		m_Columns.emplace_back(std::move(column));
 
 		SetupText();
 
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+
+	return false;
 }
 
 void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor)
