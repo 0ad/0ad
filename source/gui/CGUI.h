@@ -72,8 +72,6 @@ class CGUI
 {
 	NONCOPYABLE(CGUI);
 
-	friend class IGUIObject;
-
 private:
 	// Private typedefs
 	using ConstructObjectFunction = IGUIObject* (*)(CGUI*);
@@ -162,13 +160,17 @@ public:
 	void LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths);
 
 	/**
+	 * Return the object which is an ancestor of every other GUI object.
+	 */
+	IGUIObject* GetBaseObject() const { return m_BaseObject; };
+
+	/**
 	 * Checks if object exists and return true or false accordingly
 	 *
 	 * @param Name String name of object
 	 * @return true if object exists
 	 */
 	bool ObjectExists(const CStr& Name) const;
-
 
 	/**
 	 * Returns the GUI object with the desired name, or NULL
@@ -183,6 +185,16 @@ public:
 	 * Returns the GUI object under the mouse, or NULL if none.
 	 */
 	IGUIObject* FindObjectUnderMouse() const;
+
+	/**
+	 * Returns the current screen coordinates of the cursor.
+	 */
+	const CPos& GetMousePos() const { return m_MousePos; };
+
+	/**
+	 * Returns the currently pressed mouse buttons.
+	 */
+	const unsigned int& GetMouseButtons() { return m_MouseButtons; };
 
 	const SGUIScrollBarStyle* GetScrollBarStyle(const CStr& style) const;
 
@@ -233,16 +245,25 @@ public:
 	 */
 	SGUIText GenerateText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone, const IGUIObject* pObject = NULL);
 
-
 	/**
 	 * Check if an icon exists
 	 */
-	bool IconExists(const CStr& str) const { return (m_Icons.count(str) != 0); }
+	bool HasIcon(const CStr& name) const { return (m_Icons.count(name) != 0); }
 
 	/**
 	 * Get Icon (a const reference, can never be changed)
 	 */
-	const SGUIIcon& GetIcon(const CStr& str) const { return m_Icons.find(str)->second; }
+	const SGUIIcon& GetIcon(const CStr& name) const { return m_Icons.at(name); }
+
+	/**
+	 * Check if a style exists
+	 */
+	bool HasStyle(const CStr& name) const { return (m_Styles.count(name) != 0); }
+
+	/**
+	 * Get Style if it exists, otherwise throws an exception.
+	 */
+	const SGUIStyle& GetStyle(const CStr& name) const { return m_Styles.at(name); }
 
 	/**
 	 * Get pre-defined color (if it exists)
@@ -252,8 +273,6 @@ public:
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 	JS::Value GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
-
-private:
 
 	/**
 	 * Updates the object pointers, needs to be called each
@@ -266,6 +285,7 @@ private:
 	 */
 	void UpdateObjects();
 
+private:
 	/**
 	 * Adds an object to the GUI's object database
 	 * Private, since you can only add objects through
@@ -286,12 +306,12 @@ private:
 	 */
 	IGUIObject* ConstructObject(const CStr& str);
 
+public:
 	/**
 	 * Get Focused Object.
 	 */
 	IGUIObject* GetFocusedObject() { return m_FocusedObject; }
 
-public:
 	/**
 	 * Change focus to new object.
 	 * Will send LOST_FOCUS/GOT_FOCUS messages as appropriate.

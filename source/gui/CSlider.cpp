@@ -83,7 +83,7 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	}
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		m_Mouse = GetMousePos();
+		m_Mouse = m_pGUI->GetMousePos();
 		m_IsPressed = true;
 
 		IncrementallyChangeValue((m_Mouse.x - GetButtonRect().CenterPoint().x) * GetSliderRatio());
@@ -100,8 +100,8 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 			m_IsPressed = false;
 		if (m_IsPressed)
 		{
-			float difference = float(GetMousePos().x - m_Mouse.x) * GetSliderRatio();
-			m_Mouse = GetMousePos();
+			float difference = float(m_pGUI->GetMousePos().x - m_Mouse.x) * GetSliderRatio();
+			m_Mouse = m_pGUI->GetMousePos();
 			IncrementallyChangeValue(difference);
 		}
 		break;
@@ -113,9 +113,6 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 
 void CSlider::Draw()
 {
-	if (!GetGUI())
-		return;
-
 	CGUISpriteInstance* sprite;
 	CGUISpriteInstance* sprite_button;
 	int cell_id;

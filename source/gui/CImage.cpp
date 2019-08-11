@@ -38,9 +38,6 @@ CImage::~CImage()
 
 void CImage::Draw()
 {
-	if (!GetGUI())
-		return;
-
 	float bz = GetBufferedZ();
 
 	CGUISpriteInstance* sprite;

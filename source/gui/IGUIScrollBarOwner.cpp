@@ -46,9 +46,6 @@ void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
 
 const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
-	if (!GetGUI())
-		return NULL;
-
 	return GetGUI()->GetScrollBarStyle(style);
 }
 

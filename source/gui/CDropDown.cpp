@@ -103,7 +103,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		if (!m_Open)
 			break;
 
-		CPos mouse = GetMousePos();
+		CPos mouse = m_pGUI->GetMousePos();
 
 		if (!GetListRect().PointInside(mouse))
 			break;
@@ -205,7 +205,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		}
 		else
 		{
-			CPos mouse = GetMousePos();
+			const CPos& mouse = m_pGUI->GetMousePos();
 
 			// If the regular area is pressed, then abort, and close.
 			if (m_CachedActualSize.PointInside(mouse))
@@ -460,24 +460,18 @@ CRect CDropDown::GetListRect() const
 
 bool CDropDown::MouseOver()
 {
-	if(!GetGUI())
-		throw PSERROR_GUI_OperationNeedsGUIObject();
-
 	if (m_Open)
 	{
 		CRect rect(m_CachedActualSize.left, std::min(m_CachedActualSize.top, GetListRect().top),
 		           m_CachedActualSize.right, std::max(m_CachedActualSize.bottom, GetListRect().bottom));
-		return rect.PointInside(GetMousePos());
+		return rect.PointInside(m_pGUI->GetMousePos());
 	}
 	else
-		return m_CachedActualSize.PointInside(GetMousePos());
+		return m_CachedActualSize.PointInside(m_pGUI->GetMousePos());
 }
 
 void CDropDown::Draw()
 {
-	if (!GetGUI())
-		return;
-
 	float bz = GetBufferedZ();
 
 	float dropdown_size, button_width;

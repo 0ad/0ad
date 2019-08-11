@@ -166,9 +166,6 @@ CGUIColor IGUIButtonBehavior::ChooseColor()
 
 void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id)
 {
-	if (!GetGUI())
-		return;
-
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 

@@ -71,9 +71,6 @@ CList::~CList()
 
 void CList::SetupText()
 {
-	if (!GetGUI())
-		return;
-
 	m_Modified = true;
 	CGUIList* pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
@@ -538,8 +535,8 @@ int CList::GetHoveredItem()
 	if (scrollbar)
 		scroll = GetScrollBar(0).GetPos();
 
-	CRect rect = GetListRect();
-	CPos mouse = GetMousePos();
+	const CRect& rect = GetListRect();
+	CPos mouse = m_pGUI->GetMousePos();
 	mouse.y += scroll;
 
 	// Mouse is over scrollbar

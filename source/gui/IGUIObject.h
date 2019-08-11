@@ -264,7 +264,7 @@ protected:
 	 * @param GUIinstance Reference to the GUI
 	 * @param StyleName Style by name
 	 */
-	void LoadStyle(CGUI& GUIinstance, const CStr& StyleName);
+	void LoadStyle(CGUI& pGUI, const CStr& StyleName);
 
 	/**
 	 * Loads a style.
@@ -318,11 +318,6 @@ protected:
 	 * @return Pointer to parent
 	 */
 	IGUIObject* GetParent() const;
-
-	/**
-	 * Get Mouse from CGUI.
-	 */
-	CPos GetMousePos() const;
 
 	/**
 	 * Handle additional children to the \<object\>-tag. In IGUIObject, this function does

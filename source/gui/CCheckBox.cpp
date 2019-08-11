@@ -66,9 +66,6 @@ CCheckBox::~CCheckBox()
 
 void CCheckBox::SetupText()
 {
-	if (!GetGUI())
-		return;
-
 	ENSURE(m_GeneratedTexts.size() == 1);
 
 	CStrW font;

@@ -912,7 +912,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		// Check if we're selecting the scrollbar
 		if (GetScrollBar(0).GetStyle() && multiline)
 		{
-			if (GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
+			if (m_pGUI->GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
 				break;
 		}
 
@@ -1177,9 +1177,6 @@ void CInput::Draw()
 
 	if (scrollbar && multiline)
 		IGUIScrollBarOwner::Draw();
-
-	if (!GetGUI())
-		return;
 
 	CStrW font_name_w;
 	CGUIColor color, color_selected;
@@ -1907,7 +1904,7 @@ int CInput::GetMouseHoveringTextPosition() const
 
 	std::list<SRow>::const_iterator current = m_CharacterPositions.begin();
 
-	CPos mouse = GetMousePos();
+	CPos mouse = m_pGUI->GetMousePos();
 
 	if (multiline)
 	{

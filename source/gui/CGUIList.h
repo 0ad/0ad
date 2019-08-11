@@ -15,11 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef INCLUDED_CGUILIST
 #define INCLUDED_CGUILIST
 
-#include "GUItext.h"
+#include "gui/CGUIString.h"
 
 class CGUIList
 {

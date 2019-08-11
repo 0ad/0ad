@@ -63,9 +63,6 @@ CTooltip::~CTooltip()
 
 void CTooltip::SetupText()
 {
-	if (!GetGUI())
-		return;
-
 	ENSURE(m_GeneratedTexts.size() == 1);
 
 	CStrW font;
@@ -92,7 +89,7 @@ void CTooltip::SetupText()
 
 	GUI<bool>::GetSetting(this, "independent", independent);
 	if (independent)
-		mousepos = GetMousePos();
+		mousepos = m_pGUI->GetMousePos();
 	else
 		GUI<CPos>::GetSetting(this, "_mousepos", mousepos);
 
@@ -151,9 +148,6 @@ void CTooltip::HandleMessage(SGUIMessage& Message)
 
 void CTooltip::Draw()
 {
-	if (!GetGUI())
-		return;
-
 	float z = 900.f; // TODO: Find a nicer way of putting the tooltip on top of everything else
 
 	CGUISpriteInstance* sprite;

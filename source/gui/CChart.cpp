@@ -20,6 +20,7 @@
 #include "CChart.h"
 
 #include "gui/CGUIColor.h"
+#include "gui/CGUIString.h"
 #include "gui/GUIMatrix.h"
 #include "graphics/ShaderManager.h"
 #include "i18n/L10n.h"
@@ -116,9 +117,6 @@ void CChart::Draw()
 {
 	PROFILE3("render chart");
 
-	if (!GetGUI())
-		return;
-
 	if (m_Series.empty())
 		return;
 
@@ -210,9 +208,6 @@ void CChart::UpdateSeries()
 
 void CChart::SetupText()
 {
-	if (!GetGUI())
-		return;
-
 	for (SGUIText* t : m_GeneratedTexts)
 		delete t;
 	m_GeneratedTexts.clear();
