@@ -23,6 +23,7 @@
 
 #include "TextureManager.h"
 
+#include <mutex>
 #include <thread>
 
 class MD5;

@@ -27,16 +27,18 @@
 #include "precompiled.h"
 #include "lib/timer.h"
 
-#include <sstream>	// std::stringstream
-#include <numeric>
-#include <cmath>
 #include <cfloat>
+#include <cmath>
 #include <cstdarg>
+#include <mutex>
+#include <numeric>
+#include <sstream>	// std::stringstream
 
 #include "lib/module_init.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
-# include "lib/sysdep/cpu.h"
+#include "lib/sysdep/cpu.h"
+
 #if OS_WIN
 # include "lib/sysdep/os/win/whrt/whrt.h"
 #endif

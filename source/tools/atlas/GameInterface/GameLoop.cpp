@@ -17,8 +17,6 @@
 
 #include "precompiled.h"
 
-#include <thread>
-
 #include "GameLoop.h"
 
 #include "MessagePasserImpl.h"
@@ -44,6 +42,8 @@
 #include "renderer/Renderer.h"
 
 using namespace AtlasMessage;
+
+#include <thread>
 
 
 namespace AtlasMessage

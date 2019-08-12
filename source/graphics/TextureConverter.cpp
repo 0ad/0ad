@@ -286,8 +286,6 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 
 	// Set up the worker thread:
 
-	int ret;
-
 	// Use SDL semaphores since OS X doesn't implement sem_init
 	m_WorkerSem = SDL_CreateSemaphore(0);
 	ENSURE(m_WorkerSem);
