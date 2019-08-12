@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-05-27 02:00+0000\n"
+"PO-Revision-Date: 2019-08-10 15:31+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -364,7 +364,7 @@ msgstr "외교"
 
 #: gui/common/gamedescription.js:311
 msgid "Players can make alliances and declare war on allies."
-msgstr "선수는 동맹을 맺고 동맹국과 전쟁선포를 할 수 있습니다."
+msgstr "선수는 동맹을 맺고 동맹국과 전쟁선포할 수 있습니다."
 
 #: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
@@ -1303,7 +1303,7 @@ msgstr "확인"
 
 #: gui/pregame/mainmenu.js:216
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "0 A.D.를 종료하고 시나리오 편집기를 열려시겠습니까?"
+msgstr "0 A.D.를 종료하고 시나리오 편집기를 여시겠습니까?"
 
 #: gui/pregame/mainmenu.js:224
 msgid ""
@@ -1319,7 +1319,7 @@ msgstr "오류"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr "함께 놀기 앞마당을 시작하여 공개적으로 볼 수있는 놀이에 참여하고 다른 선수와 대화 할 수 있습니다. \\[제작사에 의해 사용 불가]"
+msgstr "함께 놀기 앞마당을 시작하여 공개적으로 볼 수있는 놀이에 참여하고 다른 선수와 대화할 수 있습니다. \\[제작사에 의해 사용 불가]"
 
 #: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
@@ -1342,7 +1342,7 @@ msgstr "간행물"
 #: gui/pregame/userreport/userreport.js:28
 #: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
-msgstr "서버 연결중"
+msgstr "서버에 연결중 입니다"
 
 #: gui/pregame/userreport/userreport.js:30
 #, javascript-format
@@ -1484,7 +1484,7 @@ msgstr "이 다시보기는 다른 순서의 수정판(MOD)가 필요합니다."
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr "이 다시보기는 당신의 놀이 판과 맞지 않아 실행할수 없습니다!"
+msgstr "이 다시보기는 당신의 놀이 판과 맞지 않아 실행할 수 없습니다!"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
@@ -1502,7 +1502,7 @@ msgstr "호환되지않는 다시보기"
 
 #: gui/replaymenu/replay_actions.js:117
 msgid "No summary data available."
-msgstr "사용할 수있는 요약 자료가 없습니다."
+msgstr "사용할 수 있는 요약 자료가 없습니다."
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
@@ -2604,7 +2604,7 @@ msgstr "선수이름 (혼자 놀기)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "함께 놀기 경기 (앞마당 제외)에서 어떻게 대처해야하는지."
+msgstr "함께 놀기 경기에서 어떻게 다뤄지고 싶은가요 (앞마당에서는 안됩니다)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
@@ -2955,11 +2955,11 @@ msgstr "행동 음량"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr "UI 소리 음량을 조정합니다. or 음량 조절 UI"
+msgstr "UI 소리를 조정합니다."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr "UI 음량 ehsms 양 ehsms 볼륨 UI"
+msgstr "UI 소리 조정"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -2996,7 +2996,7 @@ msgstr "설정 판밀어넣기 사용"
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr "다른 놀이를 주최할 때 빠르게 다시 사용할수 있도록 경기 설정을 저장하고 복원합니다."
+msgstr "다른 놀이를 주최할 때 빠르게 다시 사용할 수 있도록 경기 설정을 저장하고 복원합니다."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -3617,15 +3617,15 @@ msgstr "켈트 전투 상륙함(번역확인??)"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr "중형 삼단 노선급 군함입니다."
+msgstr "중형 3단 노선급 군함입니다."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr "영국인, 가울스, 이베리아인이 이용할 수 있습니다."
+msgstr "영국인, 가울, 이베리아인이 이용할 수 있습니다."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr "최대 40기의 유닛을 운반 할 수 있습니다."
+msgstr "최대 40기의 유닛을 운반할 수 있습니다."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
@@ -3651,7 +3651,7 @@ msgstr "동맹 영토나 중립지에 지을 수 있습니다."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Train citizens: female citizens, infantry citizen-soldiers, and cavalry citizen-soldiers."
+msgstr "시민 양성: 여성 시민, 보병 시민 군인, 기병 시민 군인."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3863,7 +3863,7 @@ msgstr "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr "오단 노선"
+msgstr "5단 노선"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -4052,7 +4052,7 @@ msgstr "The ship he is garrisoned inside sails much faster."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr "삼단노선"
+msgstr "3단 노선"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
