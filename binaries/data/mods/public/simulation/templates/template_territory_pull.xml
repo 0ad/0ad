@@ -25,11 +25,12 @@
   <TerritoryDecay>
     <DecayRate>5</DecayRate>
   </TerritoryDecay>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>32</Radius>
-    <Weight>30000</Weight>
-  </TerritoryInfluence>
+  <Visibility>
+    <AlwaysVisible>false</AlwaysVisible>
+    <Corpse>false</Corpse>
+    <Preview>false</Preview>
+    <RetainInFog>false</RetainInFog>
+  </Visibility>
   <VisualActor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>true</SilhouetteOccluder>
