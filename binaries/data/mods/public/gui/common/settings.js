@@ -425,6 +425,6 @@ function translatePopulationCapacity(population)
  */
 function translateVictoryCondition(victoryConditionName)
 {
-	let victoryCondition = g_Settings.VictoryConditions.find(victoryCondition => victoryCondition.Name == victoryConditionName);
+	let victoryCondition = g_Settings.VictoryConditions.find(condition => condition.Name == victoryConditionName);
 	return victoryCondition ? victoryCondition.Title : translate("Unknown Victory Condition");
 }

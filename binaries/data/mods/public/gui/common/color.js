@@ -92,7 +92,11 @@ function rgbToHsl(r, g, b)
 	let h, s, l = (max + min) / 2;
 
 	if (max == min)
-		h = s = 0; // achromatic
+	{
+		// achromatic
+		h = 0;
+		s = 0;
+	}
 	else
 	{
 		let d = max - min;
@@ -108,7 +112,11 @@ function rgbToHsl(r, g, b)
 		case b:
 			h = (r - g) / d + 4;
 			break;
+		default:
+			error("rgbToHsl could not determine maximum!");
+			break;
 		}
+
 		h /= 6;
 	}
 
@@ -144,8 +152,14 @@ function hslToRgb(h, s, l)
 	[h, s, l] = [h, s, l].map(clampColorValue);
 	let r, g, b;
 	if (s == 0)
-		r = g = b = l; // achromatic
-	else {
+	{
+		// achromatic
+		b = l;
+		r = l;
+		g = l;
+	}
+	else
+	{
 		let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
 		let p = 2 * l - q;
 		r = hue2rgb(p, q, h + 1/3);
