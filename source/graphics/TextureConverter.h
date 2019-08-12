@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,10 +19,11 @@
 #define INCLUDED_TEXTURECONVERTER
 
 #include "lib/file/vfs/vfs.h"
-#include "lib/posix/posix_pthread.h"
 #include "lib/external_libraries/libsdl.h"
 
 #include "TextureManager.h"
+
+#include <thread>
 
 class MD5;
 
@@ -199,13 +200,13 @@ public:
 	bool IsBusy();
 
 private:
-	static void* RunThread(void* data);
+	static void RunThread(CTextureConverter* data);
 
 	PIVFS m_VFS;
 	bool m_HighQuality;
 
-	pthread_t m_WorkerThread;
-	pthread_mutex_t m_WorkerMutex;
+	std::thread m_WorkerThread;
+	std::mutex m_WorkerMutex;
 	SDL_sem* m_WorkerSem;
 
 	struct ConversionRequest;

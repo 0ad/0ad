@@ -28,6 +28,7 @@
 #include <mutex>
 #include <set>
 #include <string>
+#include <thread>
 
 class CMapGeneratorWorker;
 
@@ -179,7 +180,7 @@ private:
 	/**
 	 * Perform map generation in an independent thread.
 	 */
-	static void* RunThread(void* data);
+	static void* RunThread(CMapGeneratorWorker* self);
 
 	/**
 	 * Perform the map generation.
@@ -229,7 +230,7 @@ private:
 	/**
 	 * Holds the mapgeneration thread identifier.
 	 */
-	pthread_t m_WorkerThread;
+	std::thread m_WorkerThread;
 
 	/**
 	 * Avoids thread synchronization issues.

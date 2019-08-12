@@ -30,11 +30,11 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
-#include "ps/ThreadUtil.h"
 
 #include <fstream>
 #include <mutex>
 #include <string>
+#include <thread>
 
 #define DEBUG_UPLOADS 0
 
@@ -143,8 +143,7 @@ public:
 		m_WorkerSem = SDL_CreateSemaphore(0);
 		ENSURE(m_WorkerSem);
 
-		int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-		ENSURE(ret == 0);
+		m_WorkerThread = std::thread(RunThread, this);
 	}
 
 	~CUserReporterWorker()
@@ -191,7 +190,7 @@ public:
 
 		// Wait for it to shut down cleanly
 		// TODO: should have a timeout in case of network hangs
-		pthread_join(m_WorkerThread, NULL);
+		m_WorkerThread.join();
 
 		return true;
 	}
@@ -236,14 +235,12 @@ public:
 	}
 
 private:
-	static void* RunThread(void* data)
+	static void RunThread(CUserReporterWorker* data)
 	{
 		debug_SetThreadName("CUserReportWorker");
 		g_Profiler2.RegisterCurrentThread("userreport");
 
-		static_cast<CUserReporterWorker*>(data)->Run();
-
-		return NULL;
+		data->Run();
 	}
 
 	void Run()
@@ -489,7 +486,7 @@ private:
 
 private:
 	// Thread-related members:
-	pthread_t m_WorkerThread;
+	std::thread m_WorkerThread;
 	std::mutex m_WorkerMutex;
 	SDL_sem* m_WorkerSem;
 

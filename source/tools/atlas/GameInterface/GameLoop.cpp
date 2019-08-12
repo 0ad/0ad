@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,6 +16,8 @@
  */
 
 #include "precompiled.h"
+
+#include <thread>
 
 #include "GameLoop.h"
 
@@ -37,6 +39,7 @@
 #include "ps/DllLoader.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "ps/ThreadUtil.h"
 #include "ps/GameSetup/Paths.h"
 #include "renderer/Renderer.h"
 
@@ -98,7 +101,7 @@ static void RendererIncrementalLoad()
 	while (more && timer_Time() - startTime < maxTime);
 }
 
-static void* RunEngine(void* data)
+static void RunEngine(const CmdLineArgs& args)
 {
 	debug_SetThreadName("engine_thread");
 
@@ -106,8 +109,6 @@ static void* RunEngine(void* data)
 	ThreadUtil::SetMainThread();
 
 	g_Profiler2.RegisterCurrentThread("atlasmain");
-
-	const CmdLineArgs args = *reinterpret_cast<const CmdLineArgs*>(data);
 
 	MessagePasserImpl* msgPasser = (MessagePasserImpl*)AtlasMessage::g_MessagePasser;
 
@@ -267,8 +268,6 @@ static void* RunEngine(void* data)
 			SDL_Delay(0);
 		}
 	}
-
-	return NULL;
 }
 
 bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
@@ -309,15 +308,14 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	Atlas_SetConfigDirectory(paths.Config().string().c_str());
 
 	// Run the engine loop in a new thread
-	pthread_t engineThread;
-	pthread_create(&engineThread, NULL, RunEngine, reinterpret_cast<void*>(const_cast<CmdLineArgs*>(&args)));
+	std::thread engineThread = std::thread(RunEngine, std::ref(args));
 
 	// Start Atlas UI on main thread
 	// (required for wxOSX/Cocoa compatibility - see http://trac.wildfiregames.com/ticket/500)
 	Atlas_StartWindow(L"ScenarioEditor");
 
 	// Wait for the engine to exit
-	pthread_join(engineThread, NULL);
+	engineThread.join();
 
 	// TODO: delete all remaining messages, to avoid memory leak warnings
 
