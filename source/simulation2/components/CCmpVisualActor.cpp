@@ -274,7 +274,6 @@ public:
 		SerializeCommon(deserialize);
 
 		InitModel();
-		SelectAnimation("idle");
 
 		// If we serialized a different seed or different actor, reload actor
 		if (oldSeed != GetActorSeed() || m_BaseActorName != m_ActorName)
