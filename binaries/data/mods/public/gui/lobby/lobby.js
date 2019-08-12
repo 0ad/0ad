@@ -1408,6 +1408,12 @@ function addChatMessage(msg)
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
+function clearChatMessages()
+{
+	g_ChatMessages.length = 0;
+	Engine.GetGUIObjectByName("chatText").caption = "";
+}
+
 /**
  * Splits given input into command and argument.
  */
