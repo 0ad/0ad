@@ -5,6 +5,7 @@
 	size="100%-194 4 100%-166 32"
 	style="iconButton"
 	tooltip_style="sessionToolTip"
+	hotkey="session.gui.objectives.toggle"
 >
 	<object
 		size="3 3 100%-3 100%-3"
@@ -12,7 +13,6 @@
 		sprite="stretched:session/icons/objectives.png"
 		ghost="true"
 	/>
-	<translatableAttribute id="tooltip">Objectives</translatableAttribute>
 	<action on="Press">
 		toggleObjectives();
 	</action>

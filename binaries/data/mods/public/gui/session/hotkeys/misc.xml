@@ -24,10 +24,6 @@
 		<action on="Press">toggleMenu();</action>
 	</object>
 
-	<object hotkey="session.gui.barter.toggle">
-		<action on="Press">toggleTrade();</action>
-	</object>
-
 	<object hotkey="session.gui.tutorial.toggle">
 		<action on="Press">toggleTutorial();</action>
 	</object>
