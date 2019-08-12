@@ -2015,7 +2015,10 @@ function onTick()
  */
 function handleNetMessages()
 {
-	while (g_IsNetworked)
+	if (!g_IsNetworked)
+		return;
+
+	while (true)
 	{
 		let message = Engine.PollNetworkClient();
 		if (!message)
