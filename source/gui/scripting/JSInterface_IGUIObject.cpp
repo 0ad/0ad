@@ -52,7 +52,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	JSAutoRequest rq(cx);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, obj, &JSI_IGUIObject::JSI_class, NULL);
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
 	if (!e)
 		return false;
 
@@ -126,7 +126,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result)
 {
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, obj, &JSI_IGUIObject::JSI_class, NULL);
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
 	if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
@@ -179,63 +179,50 @@ void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 	scriptInterface.DefineCustomObjectType(&JSI_class, nullptr, 1, nullptr, JSI_methods, nullptr, nullptr);
 }
 
-bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
+bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
+	// No JSAutoRequest needed for these calls
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
 		return false;
 
-	ScriptInterface::ToJSVal(cx, rec.rval(), "[GUIObject: " + e->GetName() + "]");
+	ScriptInterface::ToJSVal(cx, args.rval(), "[GUIObject: " + e->GetName() + "]");
 	return true;
 }
 
-bool JSI_IGUIObject::focus(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
+bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
+	// No JSAutoRequest needed for these calls
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
 		return false;
 
 	e->GetGUI()->SetFocusedObject(e);
-
-	rec.rval().setUndefined();
+	args.rval().setUndefined();
 	return true;
 }
 
-bool JSI_IGUIObject::blur(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
+bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-
-	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
+	// No JSAutoRequest needed for these calls
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
 		return false;
 
 	e->GetGUI()->SetFocusedObject(NULL);
-
-	rec.rval().setUndefined();
+	args.rval().setUndefined();
 	return true;
 }
 
-bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
+bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 
-	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
 		return false;
 
@@ -258,6 +245,6 @@ bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), JS::Value
 		return false;
 	}
 
-	rec.rval().set(objVal);
+	args.rval().set(objVal);
 	return true;
 }

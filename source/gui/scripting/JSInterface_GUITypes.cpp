@@ -94,8 +94,8 @@ CStr ToPercentString(double pix, double per)
 
 bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
-	UNUSED2(argc);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
+	// JSAutoRequest not needed for the calls below
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	CStr buffer;
 
 	try
@@ -103,8 +103,8 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 		double val, valr;
 #define SIDE(side) \
-	pScriptInterface->GetProperty(rec.thisv(), #side, val); \
-	pScriptInterface->GetProperty(rec.thisv(), "r"#side, valr); \
+	pScriptInterface->GetProperty(args.thisv(), #side, val); \
+	pScriptInterface->GetProperty(args.thisv(), "r"#side, valr); \
 	buffer += ToPercentString(val, valr);
 
 		SIDE(left);
@@ -118,10 +118,10 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	}
 	catch (PSERROR_Scripting_ConversionFailed&)
 	{
-		ScriptInterface::ToJSVal(cx, rec.rval(), std::string("<Error converting value to numbers>"));
+		ScriptInterface::ToJSVal(cx, args.rval(), std::string("<Error converting value to numbers>"));
 		return true;
 	}
-	ScriptInterface::ToJSVal(cx, rec.rval(), buffer);
+	ScriptInterface::ToJSVal(cx, args.rval(), buffer);
 	return true;
 }
 
