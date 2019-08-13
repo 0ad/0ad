@@ -359,7 +359,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 
 	// TODO: Clipping?
 
-	Sprite.Draw(Rect, CellID, m_Sprites, Z);
+	Sprite.Draw(this, Rect, CellID, m_Sprites, Z);
 }
 
 void CGUI::Destroy()
@@ -1450,7 +1450,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "size")
 		{
 			CClientArea ca;
-			if (!GUI<CClientArea>::ParseString(attr_value, ca))
+			if (!GUI<CClientArea>::ParseString(this, attr_value, ca))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_Size = ca;
@@ -1458,7 +1458,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "texture_size")
 		{
 			CClientArea ca;
-			if (!GUI<CClientArea>::ParseString(attr_value, ca))
+			if (!GUI<CClientArea>::ParseString(this, attr_value, ca))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_TextureSize = ca;
@@ -1466,7 +1466,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "real_texture_placement")
 		{
 			CRect rect;
-			if (!GUI<CRect>::ParseString(attr_value, rect))
+			if (!GUI<CRect>::ParseString(this, attr_value, rect))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_TexturePlacementInFile = rect;
@@ -1474,7 +1474,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "cell_size")
 		{
 			CSize size;
-			if (!GUI<CSize>::ParseString(attr_value, size))
+			if (!GUI<CSize>::ParseString(this, attr_value, size))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_CellSize = size;
@@ -1482,7 +1482,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "fixed_h_aspect_ratio")
 		{
 			float val;
-			if (!GUI<float>::ParseString(attr_value, val))
+			if (!GUI<float>::ParseString(this, attr_value, val))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_FixedHAspectRatio = val;
@@ -1490,7 +1490,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "round_coordinates")
 		{
 			bool b;
-			if (!GUI<bool>::ParseString(attr_value, b))
+			if (!GUI<bool>::ParseString(this, attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_RoundCoordinates = b;
@@ -1509,7 +1509,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "z_level")
 		{
 			float z_level;
-			if (!GUI<float>::ParseString(attr_value, z_level))
+			if (!GUI<float>::ParseString(this, attr_value, z_level))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_DeltaZ = z_level/100.f;
@@ -1517,7 +1517,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "backcolor")
 		{
 			CGUIColor color;
-			if (!GUI<CGUIColor>::ParseString(attr_value, color))
+			if (!GUI<CGUIColor>::ParseString(this, attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_BackColor = color;
@@ -1525,7 +1525,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "bordercolor")
 		{
 			CGUIColor color;
-			if (!GUI<CGUIColor>::ParseString(attr_value, color))
+			if (!GUI<CGUIColor>::ParseString(this, attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_BorderColor = color;
@@ -1533,7 +1533,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "border")
 		{
 			bool b;
-			if (!GUI<bool>::ParseString(attr_value, b))
+			if (!GUI<bool>::ParseString(this, attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_Border = b;
@@ -1572,7 +1572,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		if (attr_name == "add_color")
 		{
 			CGUIColor color;
-			if (!color.ParseString(attr.Value, 0))
+			if (!color.ParseString(this, attr.Value, 0))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr.Value);
 			else effects.m_AddColor = color;
 		}
@@ -1628,7 +1628,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "show_edge_buttons")
 		{
 			bool b;
-			if (!GUI<bool>::ParseString(attr_value.FromUTF8(), b))
+			if (!GUI<bool>::ParseString(this, attr_value.FromUTF8(), b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_UseEdgeButtons = b;
@@ -1636,7 +1636,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "width")
 		{
 			float f;
-			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
+			if (!GUI<float>::ParseString(this, attr_value.FromUTF8(), f))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_Width = f;
@@ -1644,7 +1644,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "minimum_bar_size")
 		{
 			float f;
-			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
+			if (!GUI<float>::ParseString(this, attr_value.FromUTF8(), f))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_MinimumBarSize = f;
@@ -1652,7 +1652,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "maximum_bar_size")
 		{
 			float f;
-			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
+			if (!GUI<float>::ParseString(this, attr_value.FromUTF8(), f))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_MaximumBarSize = f;
@@ -1707,7 +1707,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "size")
 		{
 			CSize size;
-			if (!GUI<CSize>::ParseString(attr_value.FromUTF8(), size))
+			if (!GUI<CSize>::ParseString(this, attr_value.FromUTF8(), size))
 				LOGERROR("Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
 			else
 				icon.m_Size = size;
@@ -1715,7 +1715,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "cell_id")
 		{
 			int cell_id;
-			if (!GUI<int>::ParseString(attr_value.FromUTF8(), cell_id))
+			if (!GUI<int>::ParseString(this, attr_value.FromUTF8(), cell_id))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
 			else
 				icon.m_CellID = cell_id;
@@ -1759,7 +1759,7 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 		return;
 
 	// Try setting color to value
-	if (!color.ParseString(value))
+	if (!color.ParseString(this, value))
 	{
 		LOGERROR("GUI: Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
 		return;

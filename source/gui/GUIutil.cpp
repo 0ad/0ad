@@ -34,10 +34,33 @@ bool CGUISetting<T>::FromString(const CStrW& Value, const bool& SkipMessage)
 {
 	T settingValue;
 
-	if (!GUI<T>::ParseString(Value, settingValue))
+	if (!GUI<T>::ParseString(m_pObject.GetGUI(), Value, settingValue))
 		return false;
 
 	GUI<T>::SetSetting(&m_pObject, m_Name, settingValue, SkipMessage);
+	return true;
+};
+
+template<>
+bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value)
+{
+	CGUIColor settingValue;
+	if (Value.isString())
+	{
+		CStr name;
+		if (!ScriptInterface::FromJSVal(cx, Value, name))
+			return false;
+
+		if (!settingValue.ParseString(m_pObject.GetGUI(), name))
+		{
+			JS_ReportError(cx, "Invalid color '%s'", name.c_str());
+			return false;
+		}
+	}
+	else if (!ScriptInterface::FromJSVal<CColor>(cx, Value, settingValue))
+		return false;
+
+	GUI<CGUIColor>::SetSetting(&m_pObject, m_Name, settingValue);
 	return true;
 };
 
@@ -59,7 +82,7 @@ void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
 };
 
 template <>
-bool __ParseString<bool>(const CStrW& Value, bool& Output)
+bool __ParseString<bool>(const CGUI* UNUSED(pGUI), const CStrW& Value, bool& Output)
 {
 	if (Value == L"true")
 		Output = true;
@@ -72,28 +95,28 @@ bool __ParseString<bool>(const CStrW& Value, bool& Output)
 }
 
 template <>
-bool __ParseString<int>(const CStrW& Value, int& Output)
+bool __ParseString<int>(const CGUI* UNUSED(pGUI), const CStrW& Value, int& Output)
 {
 	Output = Value.ToInt();
 	return true;
 }
 
 template <>
-bool __ParseString<u32>(const CStrW& Value, u32& Output)
+bool __ParseString<u32>(const CGUI* UNUSED(pGUI), const CStrW& Value, u32& Output)
 {
 	Output = Value.ToUInt();
 	return true;
 }
 
 template <>
-bool __ParseString<float>(const CStrW& Value, float& Output)
+bool __ParseString<float>(const CGUI* UNUSED(pGUI), const CStrW& Value, float& Output)
 {
 	Output = Value.ToFloat();
 	return true;
 }
 
 template <>
-bool __ParseString<CRect>(const CStrW& Value, CRect& Output)
+bool __ParseString<CRect>(const CGUI* UNUSED(pGUI), const CStrW& Value, CRect& Output)
 {
 	const unsigned int NUM_COORDS = 4;
 	float coords[NUM_COORDS];
@@ -128,19 +151,19 @@ bool __ParseString<CRect>(const CStrW& Value, CRect& Output)
 }
 
 template <>
-bool __ParseString<CClientArea>(const CStrW& Value, CClientArea& Output)
+bool __ParseString<CClientArea>(const CGUI* UNUSED(pGUI), const CStrW& Value, CClientArea& Output)
 {
 	return Output.SetClientArea(Value.ToUTF8());
 }
 
 template <>
-bool __ParseString<CGUIColor>(const CStrW& Value, CGUIColor& Output)
+bool __ParseString<CGUIColor>(const CGUI* pGUI, const CStrW& Value, CGUIColor& Output)
 {
-	return Output.ParseString(Value.ToUTF8());
+	return Output.ParseString(pGUI, Value.ToUTF8());
 }
 
 template <>
-bool __ParseString<CSize>(const CStrW& Value, CSize& Output)
+bool __ParseString<CSize>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSize& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
@@ -175,7 +198,7 @@ bool __ParseString<CSize>(const CStrW& Value, CSize& Output)
 }
 
 template <>
-bool __ParseString<CPos>(const CStrW& Value, CPos& Output)
+bool __ParseString<CPos>(const CGUI* UNUSED(pGUI), const CStrW& Value, CPos& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
@@ -210,7 +233,7 @@ bool __ParseString<CPos>(const CStrW& Value, CPos& Output)
 }
 
 template <>
-bool __ParseString<EAlign>(const CStrW& Value, EAlign& Output)
+bool __ParseString<EAlign>(const CGUI* UNUSED(pGUI), const CStrW& Value, EAlign& Output)
 {
 	if (Value == L"left")
 		Output = EAlign_Left;
@@ -225,7 +248,7 @@ bool __ParseString<EAlign>(const CStrW& Value, EAlign& Output)
 }
 
 template <>
-bool __ParseString<EVAlign>(const CStrW& Value, EVAlign& Output)
+bool __ParseString<EVAlign>(const CGUI* UNUSED(pGUI), const CStrW& Value, EVAlign& Output)
 {
 	if (Value == L"top")
 		Output = EVAlign_Top;
@@ -240,42 +263,41 @@ bool __ParseString<EVAlign>(const CStrW& Value, EVAlign& Output)
 }
 
 template <>
-bool __ParseString<CGUIString>(const CStrW& Value, CGUIString& Output)
+bool __ParseString<CGUIString>(const CGUI* UNUSED(pGUI), const CStrW& Value, CGUIString& Output)
 {
 	Output.SetValue(Value);
 	return true;
 }
 
 template <>
-bool __ParseString<CStr>(const CStrW& Value, CStr& Output)
+bool __ParseString<CStr>(const CGUI* UNUSED(pGUI), const CStrW& Value, CStr& Output)
 {
-	// Do very little.
 	Output = Value.ToUTF8();
 	return true;
 }
 
 template <>
-bool __ParseString<CStrW>(const CStrW& Value, CStrW& Output)
+bool __ParseString<CStrW>(const CGUI* UNUSED(pGUI), const CStrW& Value, CStrW& Output)
 {
 	Output = Value;
 	return true;
 }
 
 template <>
-bool __ParseString<CGUISpriteInstance>(const CStrW& Value, CGUISpriteInstance& Output)
+bool __ParseString<CGUISpriteInstance>(const CGUI* UNUSED(pGUI), const CStrW& Value, CGUISpriteInstance& Output)
 {
 	Output = CGUISpriteInstance(Value.ToUTF8());
 	return true;
 }
 
 template <>
-bool __ParseString<CGUIList>(const CStrW& UNUSED(Value), CGUIList& UNUSED(Output))
+bool __ParseString<CGUIList>(const CGUI* UNUSED(pGUI), const CStrW& UNUSED(Value), CGUIList& UNUSED(Output))
 {
 	return false;
 }
 
 template <>
-bool __ParseString<CGUISeries>(const CStrW& UNUSED(Value), CGUISeries& UNUSED(Output))
+bool __ParseString<CGUISeries>(const CGUI* UNUSED(pGUI), const CStrW& UNUSED(Value), CGUISeries& UNUSED(Output))
 {
 	return false;
 }

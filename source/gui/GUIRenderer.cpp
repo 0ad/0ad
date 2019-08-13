@@ -59,7 +59,7 @@ DrawCalls& DrawCalls::operator=(const DrawCalls&)
 }
 
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites)
+void GUIRenderer::UpdateDrawCallCache(const CGUI* pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -144,7 +144,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 			CGUIColor color;
 
 			// Check color is valid
-			if (!GUI<CGUIColor>::ParseString(value, color))
+			if (!GUI<CGUIColor>::ParseString(pGUI, value, color))
 			{
 				LOGERROR("GUI: Error parsing sprite 'color' (\"%s\")", utf8_from_wstring(value));
 				return;

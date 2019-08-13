@@ -150,25 +150,10 @@ template<> void ScriptInterface::ToJSVal<CGUIColor>(JSContext* cx, JS::MutableHa
 	ToJSVal<CColor>(cx, ret, val);
 }
 
-template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleValue v, CGUIColor& out)
-{
-	if (v.isString())
-	{
-		CStr name;
-		if (!FromJSVal(cx, v, name))
-			return false;
-
-		if (!out.ParseString(name))
-		{
-			JS_ReportError(cx, "Invalid color '%s'", name.c_str());
-			return false;
-		}
-		return true;
-	}
-
-	// Parse as object
-	return FromJSVal<CColor>(cx, v, out);
-}
+/**
+ * The color depends on the predefined color database stored in the current GUI page.
+ */
+template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleValue v, CGUIColor& out) = delete;
 
 template<> void ScriptInterface::ToJSVal<CSize>(JSContext* cx, JS::MutableHandleValue ret, const CSize& val)
 {

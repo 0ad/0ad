@@ -231,7 +231,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			if (attr_name == "color")
 			{
 				CGUIColor color;
-				if (!GUI<CGUIColor>::ParseString(attr_value.FromUTF8(), color))
+				if (!GUI<CGUIColor>::ParseString(m_pGUI, attr_value.FromUTF8(), color))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 				else
 					column.m_TextColor = color;
@@ -242,13 +242,13 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			}
 			else if (attr_name == "hidden")
 			{
-				if (!GUI<bool>::ParseString(attr_value.FromUTF8(), hidden))
+				if (!GUI<bool>::ParseString(m_pGUI, attr_value.FromUTF8(), hidden))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else if (attr_name == "width")
 			{
 				float width;
-				if (!GUI<float>::ParseString(attr_value.FromUTF8(), width))
+				if (!GUI<float>::ParseString(m_pGUI, attr_value.FromUTF8(), width))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 				else
 				{

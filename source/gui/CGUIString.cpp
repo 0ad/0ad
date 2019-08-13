@@ -144,7 +144,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 						// Displace the sprite
 						CSize displacement;
 						// Parse the value
-						if (!GUI<CSize>::ParseString(tagAttrib.value, displacement))
+						if (!GUI<CSize>::ParseString(pGUI, tagAttrib.value, displacement))
 							LOGERROR("Error parsing 'displace' value for tag [ICON]");
 						else
 							SpriteCall.m_Area += displacement;
@@ -190,7 +190,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				case TextChunk::Tag::TAG_COLOR:
 					TextCall.m_UseCustomColor = true;
 
-					if (!GUI<CGUIColor>::ParseString(tag.m_TagValue, TextCall.m_Color) && pObject)
+					if (!GUI<CGUIColor>::ParseString(pGUI, tag.m_TagValue, TextCall.m_Color) && pObject)
 						LOGERROR("Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
 					break;
 				case TextChunk::Tag::TAG_FONT:

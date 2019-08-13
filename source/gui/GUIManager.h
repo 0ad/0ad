@@ -103,11 +103,6 @@ public:
 	InReaction HandleEvent(const SDL_Event_* ev);
 
 	/**
-	 * See CGUI::GetPreDefinedColor; applies to the currently active page.
-	 */
-	bool GetPreDefinedColor(const CStr& name, CGUIColor& output) const;
-
-	/**
 	 * See CGUI::SendEventToAll; applies to the currently active page.
 	 */
 	void SendEventToAll(const CStr& eventName) const;

@@ -111,7 +111,7 @@ private:
 };
 
 template <typename T>
-bool __ParseString(const CStrW& Value, T& tOutput);
+bool __ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput);
 
 struct SGUIMessage;
 
@@ -206,9 +206,9 @@ public:
 	 *
 	 * @see __ParseString()
 	 */
-	static bool ParseString(const CStrW& Value, T& tOutput)
+	static bool ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput)
 	{
-		return __ParseString<T>(Value, tOutput);
+		return __ParseString<T>(pGUI, Value, tOutput);
 	}
 
 private:

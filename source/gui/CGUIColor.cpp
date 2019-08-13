@@ -15,31 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_GUICOLOR
-#define INCLUDED_GUICOLOR
+#include "precompiled.h"
 
-#include "graphics/Color.h"
+#include "CGUIColor.h"
 #include "ps/CStr.h"
+#include "gui/CGUI.h"
 
-class CGUI;
-
-/**
- * Same as the CColor class, but this one can also parse colors predefined in the GUI page (such as "yellow").
- */
-struct CGUIColor : CColor
+bool CGUIColor::ParseString(const CGUI* pGUI, const CStr& value, int defaultAlpha)
 {
-	CGUIColor() : CColor() {}
-
-	CGUIColor(float r, float g, float b, float a) : CColor(r, g, b, a) {}
-
-	/**
-	 * Load color depending on current GUI page.
-	 */
-	bool ParseString(const CGUI* pGUI, const CStr& value, int defaultAlpha = 255);
-
-	/**
-	 * Ensure that all users check for predefined colors.
-	 */
-	bool ParseString(const CStr& value, int defaultAlpha = 255) = delete;
-};
-#endif // INCLUDED_GUICOLOR
+	return (pGUI != nullptr && pGUI->GetPreDefinedColor(value, *this)) || CColor::ParseString(value, defaultAlpha);
+}
