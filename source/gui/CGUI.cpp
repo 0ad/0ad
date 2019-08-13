@@ -1568,13 +1568,12 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
-		CStrW attr_value(attr.Value.FromUTF8());
 
 		if (attr_name == "add_color")
 		{
 			CGUIColor color;
-			if (!GUI<int>::ParseColor(attr_value, color, 0))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
+			if (!color.ParseString(attr.Value, 0))
+				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr.Value);
 			else effects.m_AddColor = color;
 		}
 		else if (attr_name == "grayscale")

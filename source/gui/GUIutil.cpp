@@ -134,12 +134,6 @@ bool __ParseString<CClientArea>(const CStrW& Value, CClientArea& Output)
 }
 
 template <>
-bool GUI<int>::ParseColor(const CStrW& Value, CGUIColor& Output, int DefaultAlpha)
-{
-	return Output.ParseString(Value.ToUTF8(), DefaultAlpha);
-}
-
-template <>
 bool __ParseString<CGUIColor>(const CStrW& Value, CGUIColor& Output)
 {
 	return Output.ParseString(Value.ToUTF8());

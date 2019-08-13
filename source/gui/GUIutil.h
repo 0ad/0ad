@@ -211,8 +211,6 @@ public:
 		return __ParseString<T>(Value, tOutput);
 	}
 
-	static bool ParseColor(const CStrW& Value, CGUIColor& tOutput, int DefaultAlpha);
-
 private:
 
 	/**
