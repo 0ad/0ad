@@ -71,6 +71,15 @@ public:
 
 	void assert_blank(HierarchicalPathfinder& hierPath)
 	{
+		// test that the map has the same global region everywhere
+		HierarchicalPathfinder::GlobalRegionID globalRegionID = hierPath.GetGlobalRegion(35, 23, PASS_1);
+		for (size_t i = 0; i < mapSize; ++i)
+			for (size_t j = 0; j < mapSize; ++j)
+			{
+				TS_ASSERT(globalRegionID == hierPath.GetGlobalRegion(i, j, PASS_1));
+				TS_ASSERT(hierPath.GetGlobalRegion(i, j, PASS_2) == 0);
+			}
+
 		u16 i = 89;
 		u16 j = 34;
 		hierPath.FindNearestPassableNavcell(i, j, PASS_1);
@@ -125,8 +134,25 @@ public:
 
 		hierPath.Update(&grid, dirtyGrid);
 
+		// Global region: check we are now split in two.
+		TS_ASSERT(hierPath.GetGlobalRegion(50, 50, PASS_1) != hierPath.GetGlobalRegion(150, 50, PASS_1));
 		for (size_t j = 0; j < mapSize; ++j)
+		{
 			TS_ASSERT(hierPath.Get(125, j, PASS_1).r == 0);
+			TS_ASSERT(hierPath.GetGlobalRegion(125, j, PASS_1) == 0);
+		}
+		for (size_t i = 0; i < 125; ++i)
+			for (size_t j = 0; j < mapSize; ++j)
+			{
+				TS_ASSERT(hierPath.GetGlobalRegion(50, 50, PASS_1) == hierPath.GetGlobalRegion(i, j, PASS_1));
+				TS_ASSERT(hierPath.GetGlobalRegion(i, j, PASS_2) == 0);
+			}
+		for (size_t i = 126; i < mapSize; ++i)
+			for (size_t j = 0; j < mapSize; ++j)
+			{
+				TS_ASSERT(hierPath.GetGlobalRegion(150, 50, PASS_1) == hierPath.GetGlobalRegion(i, j, PASS_1));
+				TS_ASSERT(hierPath.GetGlobalRegion(i, j, PASS_2) == 0);
+			}
 
 		// number of connected regions: 3 in the middle (both sides), 2 in the corners.
 		TS_ASSERT(hierPath.m_Edges[PASS_1][hierPath.Get(120, 120, PASS_1)].size() == 3);
@@ -213,6 +239,8 @@ public:
 		}
 		hierPath.Update(&grid, dirtyGrid);
 
+		TS_ASSERT(hierPath.GetGlobalRegion(120, 120, PASS_1) != hierPath.GetGlobalRegion(150, 50, PASS_1));
+
 		reachables.clear();
 		hierPath.FindReachableRegions(hierPath.Get(170, 120, PASS_1), reachables, PASS_1);
 		TS_ASSERT(reachables.size() == 9);
@@ -233,6 +261,7 @@ public:
 		}
 		hierPath.Update(&grid, dirtyGrid);
 
+		TS_ASSERT(hierPath.GetGlobalRegion(120, 120, PASS_1) == hierPath.GetGlobalRegion(150, 50, PASS_1));
 		reachables.clear();
 		hierPath.FindReachableRegions(hierPath.Get(170, 120, PASS_1), reachables, PASS_1);
 		TS_ASSERT(reachables.size() == 9);

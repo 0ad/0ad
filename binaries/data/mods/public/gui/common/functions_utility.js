@@ -75,7 +75,11 @@ function stringifiedTeamListToPlayerData(stringifiedTeamList)
 	{
 		teamList = JSON.parse(unescapeText(stringifiedTeamList));
 	}
-	catch (e) {}
+	catch (e)
+	{
+		// Ignore invalid input from remote users
+		return [];
+	}
 
 	let playerData = [];
 
@@ -153,20 +157,6 @@ function autoCompleteNick(guiObject, playernames)
 
 	guiObject.caption = newText + text.substring(bufferPosition);
 	guiObject.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);
-}
-
-function clearChatMessages()
-{
-	g_ChatMessages.length = 0;
-	Engine.GetGUIObjectByName("chatText").caption = "";
-
-	try
-	{
-		for (let timer of g_ChatTimers)
-			clearTimeout(timer);
-		g_ChatTimers.length = 0;
-	}
-	catch (e) {}
 }
 
 /**

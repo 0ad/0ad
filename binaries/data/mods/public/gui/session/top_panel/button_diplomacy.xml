@@ -4,13 +4,11 @@
 	size="100%-254 4 100%-226 32"
 	style="iconButton"
 	tooltip_style="sessionToolTip"
+	hotkey="session.gui.diplomacy.toggle"
 >
-		<translatableAttribute id="tooltip">Diplomacy</translatableAttribute>
 	<!-- TODO make the button less ugly -->
 	<object size="0 0 100% 100%" name="diplomacyButtonImage" type="image" sprite="stretched:session/icons/diplomacy.png" ghost="true"/>
 	<action on="Press">
 		toggleDiplomacy();
 	</action>
 </object>
-
-

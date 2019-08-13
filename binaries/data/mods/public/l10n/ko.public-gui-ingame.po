@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-24 09:42+0200\n"
-"PO-Revision-Date: 2019-06-26 04:24+0000\n"
+"PO-Revision-Date: 2019-08-10 15:30+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -301,7 +301,7 @@ msgstr[0] "%(numberOfLandTraders)s 명의 보부상이 쉬고 있습니다."
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "%(numberGarrisoned)s 명이 무역선에 타고 있습니다."
+msgstr[0] "%(numberGarrisoned)s 명이 교역선에 타고 있습니다."
 
 #: gui/session/menu.js:941
 #, javascript-format
@@ -311,17 +311,17 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "%(numberGarrisoned)s 명의 보부상들이 무역선에 타고 있습니다."
+msgstr[0] "%(numberGarrisoned)s 명의 보부상들이 교역선에 타고 있습니다."
 
 #: gui/session/menu.js:969
 msgid "There are no merchant ships."
-msgstr "무역선이 한대도 없습니다."
+msgstr "교역선이 한대도 없습니다."
 
 #: gui/session/menu.js:976
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "%(numberTrading)s 채의 무역선이 거래중입니다"
+msgstr[0] "%(numberTrading)s 채의 교역선이 거래중입니다"
 
 #: gui/session/menu.js:986
 #, javascript-format
@@ -333,7 +333,7 @@ msgstr[0] "%(numberOfShipTraders)s 명 쉬고 있음"
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s 채의 무역선이 쉬고 있음"
+msgstr[0] "%(numberOfShipTraders)s 채의 교역선이 쉬고 있음"
 
 #: gui/session/menu.js:1214
 msgid "Resume"
@@ -614,7 +614,7 @@ msgstr "%(filepath)s 에 현재상태를 덤프 중"
 
 #: gui/session/messages.js:725 gui/session/messages.js:736
 msgid "Out of Sync"
-msgstr "동기화 할 수 없음"
+msgstr "동기화할 수 없음"
 
 #: gui/session/messages.js:733
 msgid "Out-Of-Sync error!"
@@ -922,7 +922,7 @@ msgstr "갱신 취소"
 
 #: gui/session/selection_panels.js:1091
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr "이미 갱신 하고 있으므로, 또 갱신 할 수 없습니다."
+msgstr "이미 갱신 하고 있으므로, 또 갱신할 수 없습니다."
 
 #: gui/session/selection_panels_helpers.js:56
 msgctxt "stance"
@@ -1160,23 +1160,23 @@ msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
-msgstr "원산지 무역 시장."
+msgstr "원산지 교역 시장."
 
 #: gui/session/unit_actions.js:566
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr "목적지 무역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
+msgstr "목적지 교역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
 
 #: gui/session/unit_actions.js:570
 msgid "Destination trade market."
-msgstr "목적지 무역 시장."
+msgstr "목적지 교역 시장."
 
 #: gui/session/unit_actions.js:577
 msgid "Right-click to set as origin trade market"
-msgstr "원산지 무역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
+msgstr "원산지 교역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
 
 #: gui/session/unit_actions.js:584
 msgid "Right-click to set as destination trade market."
-msgstr "목적지 무역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
+msgstr "목적지 교역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
 
 #: gui/session/unit_actions.js:637 gui/session/unit_actions.js:852
 #, javascript-format
@@ -1437,7 +1437,7 @@ msgstr "시장이 없습니다"
 
 #: gui/session/trade_window.xml:(caption):66
 msgid "Trade"
-msgstr "무역"
+msgstr "교역"
 
 #: gui/session/trade_window.xml:(caption):74
 msgid "Goods:"

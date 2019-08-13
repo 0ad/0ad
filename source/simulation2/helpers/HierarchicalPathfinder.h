@@ -35,11 +35,14 @@
  * Each region is a vertex in the hierarchical pathfinder's graph.
  * When two regions in adjacent chunks are connected by passable navcells,
  * the graph contains an edge between the corresponding two vertexes.
- * (There will never be an edge between two regions in the same chunk.)
+ * By design, there can never be an edge between two regions in the same chunk.
  *
- * Since regions are typically fairly large, it is possible to determine
- * connectivity between any two navcells by mapping them onto their appropriate
- * region and then doing a relatively small graph search.
+ * Those fixed-size chunks are used to efficiently compute "global regions" by effectively flood-filling.
+ * Those can then be used to immediately determine if two reachables points are connected.
+ *
+ * The main use of this class is to convert an arbitrary PathGoal to a reachable navcell.
+ * This happens in MakeGoalReachable.
+ *
  */
 
 #ifdef TEST
@@ -57,6 +60,8 @@ class HierarchicalPathfinder
 	friend class TestHierarchicalPathfinder;
 #endif
 public:
+	typedef u32 GlobalRegionID;
+
 	struct RegionID
 	{
 		u8 ci, cj; // chunk ID
@@ -97,6 +102,9 @@ public:
 	void Update(Grid<NavcellData>* grid, const Grid<u8>& dirtinessGrid);
 
 	RegionID Get(u16 i, u16 j, pass_class_t passClass) const;
+
+	GlobalRegionID GetGlobalRegion(u16 i, u16 j, pass_class_t passClass) const;
+	GlobalRegionID GetGlobalRegion(RegionID region, pass_class_t passClass) const;
 
 	/**
 	 * Updates @p goal so that it's guaranteed to be reachable from the navcell
@@ -169,9 +177,13 @@ private:
 	void RecomputeAllEdges(pass_class_t passClass, EdgesMap& edges);
 	void UpdateEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
 
+	void UpdateGlobalRegions(const std::map<pass_class_t, std::vector<RegionID> >& needNewGlobalRegionMap);
+
 	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass) const;
 
 	void FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass) const;
+
+	void FindGoalRegions(u16 gi, u16 gj, const PathGoal& goal, std::set<RegionID>& regions, pass_class_t passClass) const;
 
 	/**
 	 * Updates @p iGoal and @p jGoal to the navcell that is the nearest to the
@@ -192,6 +204,9 @@ private:
 	std::map<pass_class_t, std::vector<Chunk> > m_Chunks;
 
 	std::map<pass_class_t, EdgesMap> m_Edges;
+
+	std::map<pass_class_t, std::map<RegionID, GlobalRegionID> > m_GlobalRegions;
+	GlobalRegionID m_NextGlobalRegionID;
 
 	// Passability classes for which grids will be updated when calling Update
 	std::map<std::string, pass_class_t> m_PassClassMasks;

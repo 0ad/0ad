@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,16 +27,18 @@
 #include "precompiled.h"
 #include "lib/timer.h"
 
-#include <sstream>	// std::stringstream
-#include <numeric>
-#include <cmath>
 #include <cfloat>
+#include <cmath>
 #include <cstdarg>
+#include <mutex>
+#include <numeric>
+#include <sstream>	// std::stringstream
 
 #include "lib/module_init.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
-# include "lib/sysdep/cpu.h"
+#include "lib/sysdep/cpu.h"
+
 #if OS_WIN
 # include "lib/sysdep/os/win/whrt/whrt.h"
 #endif
@@ -82,16 +84,15 @@ void timer_LatchStartTime()
 #endif
 }
 
-static pthread_mutex_t ensure_monotonic_mutex = PTHREAD_MUTEX_INITIALIZER;
+static std::mutex ensure_monotonic_mutex;
 // NB: does not guarantee strict monotonicity - callers must avoid
 // dividing by the difference of two equal times.
 static void EnsureMonotonic(double& newTime)
 {
-	pthread_mutex_lock(&ensure_monotonic_mutex);
+	std::lock_guard<std::mutex> lock(ensure_monotonic_mutex);
 	static double maxTime;
 	maxTime = std::max(maxTime, newTime);
 	newTime = maxTime;
-	pthread_mutex_unlock(&ensure_monotonic_mutex);
 }
 
 

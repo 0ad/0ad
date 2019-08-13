@@ -66,7 +66,7 @@ CMapGeneratorWorker::CMapGeneratorWorker()
 CMapGeneratorWorker::~CMapGeneratorWorker()
 {
 	// Wait for thread to end
-	pthread_join(m_WorkerThread, NULL);
+	m_WorkerThread.join();
 }
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
@@ -79,16 +79,13 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 	m_Settings = settings;
 
 	// Launch the worker thread
-	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-	ENSURE(ret == 0);
+	m_WorkerThread = std::thread(RunThread, this);
 }
 
-void* CMapGeneratorWorker::RunThread(void *data)
+void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 {
 	debug_SetThreadName("MapGenerator");
 	g_Profiler2.RegisterCurrentThread("MapGenerator");
-
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(data);
 
 	shared_ptr<ScriptRuntime> mapgenRuntime = ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE);
 

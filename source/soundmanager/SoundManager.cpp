@@ -32,6 +32,8 @@
 #include "ps/Profiler2.h"
 #include "ps/XML/Xeromyces.h"
 
+#include <thread>
+
 ISoundManager* g_SoundManager = NULL;
 
 #define SOURCE_NUM 64
@@ -49,8 +51,7 @@ public:
 		m_DeadItems = new ItemsList;
 		m_Shutdown = false;
 
-		int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-		ENSURE(ret == 0);
+		m_WorkerThread = std::thread(RunThread, this);
 	}
 
 	~CSoundManagerWorker()
@@ -76,7 +77,7 @@ public:
 
 		}
 
-		pthread_join(m_WorkerThread, NULL);
+		m_WorkerThread.join();
 
 		return true;
 	}
@@ -103,14 +104,12 @@ public:
 	}
 
 private:
-	static void* RunThread(void* data)
+	static void RunThread(CSoundManagerWorker* data)
 	{
 		debug_SetThreadName("CSoundManagerWorker");
 		g_Profiler2.RegisterCurrentThread("soundmanager");
 
-		static_cast<CSoundManagerWorker*>(data)->Run();
-
-		return NULL;
+		data->Run();
 	}
 
 	void Run()
@@ -168,7 +167,7 @@ private:
 
 private:
 	// Thread-related members:
-	pthread_t m_WorkerThread;
+	std::thread m_WorkerThread;
 	std::mutex m_WorkerMutex;
 	std::mutex m_DeadItemsMutex;
 

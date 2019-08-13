@@ -135,24 +135,39 @@ sub add_entities
         if ($f !~ /^template_/)
         {
             push @roots, $path;
-            if ($ent->{Entity}{VisualActor})
+            if ($ent->{Entity}{VisualActor} and $ent->{Entity}{VisualActor}{Actor})
             {
-                push @deps, [ $path, "art/actors/" . $ent->{Entity}{VisualActor}{Actor}{' content'} ] if $ent->{Entity}{VisualActor}{Actor};
+                my $phenotypes = $ent->{Entity}{Identity}{Phenotype}{' content'} || "default";
+                my @phenotypes = split /\s/,$phenotypes;
+
+                for my $phenotype (@phenotypes)
+                {
+                    # See simulation2/components/CCmpVisualActor.cpp and Identity.js for explanation.
+                    my $actorPath = $ent->{Entity}{VisualActor}{Actor}{' content'};
+                    $actorPath =~ s/{phenotype}/$phenotype/g;
+                    push @deps, [ $path, "art/actors/" . $actorPath ];
+                }
+
                 push @deps, [ $path, "art/actors/" . $ent->{Entity}{VisualActor}{FoundationActor}{' content'} ] if $ent->{Entity}{VisualActor}{FoundationActor};
             }
 
             if ($ent->{Entity}{Sound})
             {
-                my $gender = $ent->{Entity}{Identity}{Gender}{' content'} || "male";
+                my $phenotypes = $ent->{Entity}{Identity}{Phenotype}{' content'} || "default";
                 my $lang = $ent->{Entity}{Identity}{Lang}{' content'} || "greek";
 
-                for (grep ref($_), values %{$ent->{Entity}{Sound}{SoundGroups}})
+                my @phenotypes = split /\s/,$phenotypes;
+
+                for my $phenotype (@phenotypes)
                 {
-                    # see simulation/components/Sound.js and Identity.js for explanation
-                    my $soundPath = $_->{' content'};
-                    $soundPath =~ s/{gender}/$gender/g;
-                    $soundPath =~ s/{lang}/$lang/g;
-                    push @deps, [ $path, "audio/" . $soundPath ];
+                    for (grep ref($_), values %{$ent->{Entity}{Sound}{SoundGroups}})
+                    {
+                        # see simulation/components/Sound.js and Identity.js for explanation
+                        my $soundPath = $_->{' content'};
+                        $soundPath =~ s/{phenotype}/$phenotype/g;
+                        $soundPath =~ s/{lang}/$lang/g;
+                        push @deps, [ $path, "audio/" . $soundPath ];
+                    }
                 }
             }
 

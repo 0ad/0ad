@@ -2015,7 +2015,10 @@ function onTick()
  */
 function handleNetMessages()
 {
-	while (g_IsNetworked)
+	if (!g_IsNetworked)
+		return;
+
+	while (true)
 	{
 		let message = Engine.PollNetworkClient();
 		if (!message)
@@ -2599,6 +2602,12 @@ function addChatMessage(msg)
 	g_ChatMessages.push(text);
 
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+}
+
+function clearChatMessages()
+{
+	g_ChatMessages.length = 0;
+	Engine.GetGUIObjectByName("chatText").caption = "";
 }
 
 function resetCivilizations()

@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-08-09 05:39+0000\n"
+"PO-Revision-Date: 2019-08-10 15:34+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -438,7 +438,7 @@ msgstr "알렉산더 대왕의 군대에서 유명한 '은 방패' 연대처럼 
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "대표전사의 관통공격에 대한 방어력 수준이 +2 증가하지만, 금속 비용이 +10증가합니다."
+msgstr "대표전사의 관통 갑옷 수준이 +2 증가하지만, 금속 비용이 +10증가합니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -1202,7 +1202,7 @@ msgstr "창 전투 vs. 소규모 접전"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "보병 타격 아머 vs. 창병 관통 아머"
+msgstr "보병 타격 아머 vs. 창병 관통 갑옷"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1687,12 +1687,12 @@ msgstr "상인의 방어력을 높입니다."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "상인의 타격 및 관통 장갑차 수준을 +2 높입니다."
+msgstr "상인의 타격 및 관통 갑옷 수준을 +2 높입니다."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
 msgid "Trade Convoys"
-msgstr "무역 호송대"
+msgstr "교역 호송대"
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
@@ -1837,7 +1837,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr "교역의 확대는 해외 소매 상인들과 그 가족이 영구적으로 뿌리 내리는 데 이어 이들 국가의 부(ehsms 재산)를 착취 할 수 있습니다."
+msgstr "교역의 확대는 해외 소매 상인들과 그 가족이 영구적으로 뿌리 내리는 데 이어 이들 국가의 재산(부)를 착취 할 수 있습니다."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -2068,7 +2068,7 @@ msgstr "이탈리아 용병 비용 대 고용 시간 #2"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "카르타고는 많은 교역소를 식민지로 설립하고 마침내는 북아프리카에만 300 개 이상의 도시와 마을을 지배하기에 이르렀습니다."
+msgstr "카르타고는 많은 교역소를 식민지로 설립하고 마침내는 북아프리카에만 3백곳 이상의 도시와 마을을 지배하기에 이르렀습니다."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
@@ -2085,7 +2085,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "고대 세계에서 그들이가는 곳에 또한 가고자하는 곳 모두 카르타고 이상의 상인은 모릅니다. 카르타고 상인은 어디든지 교역 나갑니다.??"
+msgstr "고대 세계에서 그들이가는 곳에 또한 가고자하는 곳 모두 카르타고 이상의 상인은 모릅니다. 카르타고 상인은 어디든지 교역 나갑니다. (번역확인??)"
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
@@ -2098,11 +2098,11 @@ msgstr "탐험"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr ""
+msgstr "조선소의 선박 일괄 건조 속도가 크게 향상합니다."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "조선소의 일괄 건조 속도 보너스(?)가 올라갑니다."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
@@ -2111,12 +2111,12 @@ msgstr "페니키아 해군 건축가"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr ""
+msgstr "켈트 용병의 훈련 시간을 줄입니다."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "켈트 마을과 동맹을 맺으면 켈트 용병의 모집 시간이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -2125,7 +2125,7 @@ msgstr "켈트 연합"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "갈리아의 부족을 정복하면 켈트족 용병의 모집 시간이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
@@ -2134,12 +2134,12 @@ msgstr "갈리아 패권"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr ""
+msgstr "이베리아 용병의 양성 시간을 줄입니다."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
 "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "이베리아 마을과 동맹을 맺으면 이베리아 용병의 모집 시간이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
@@ -2148,7 +2148,7 @@ msgstr "이베리아 연합"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "히스패니아 마을을 정복하면 이베리아 용병의 모집 시간이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -2157,13 +2157,13 @@ msgstr "이베리아 패권"
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their train time decreased."
-msgstr ""
+msgstr "이탈리아 용병의 양성 시간이 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
 msgid ""
 "Ally with Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "이탈리오테 마을과 동맹을 맺으면 이탈리아 용병의 모집 시간이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
@@ -2173,7 +2173,7 @@ msgstr "이탈리아 연합"
 msgid ""
 "Subjugate Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "이탈리오테 마을을 정복하면 이탈리아 용병의 모집 시간이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
@@ -2181,14 +2181,14 @@ msgstr "아탈리아 패권"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr ""
+msgstr "모든 켈트 용병을 상급 계급으로 진급합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr ""
+msgstr "모든 켈트 용병을 상급 계급으로 진급합니다. 이렇게 하면 군사력은 향상 되지만 자원 수집률은 -25% 감소합니다. 정예 켈트 용병의 기술을 풉니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2196,14 +2196,14 @@ msgstr "켈트 고급 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr ""
+msgstr "모든 이베리아 용병을 상급 계급으로 진급합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr ""
+msgstr "모든 이베리아 용병을 상급 계급으로 진급합니다. 이렇게 하면 군사력은 향상 되지만 자원 수집률은 -25% 감소합니다. 정예 이베리아 용병의 기술을 풉니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2211,14 +2211,14 @@ msgstr "이베리아 고급 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr ""
+msgstr "모든 이탈리오테 용병을 상급 계급으로 진급합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr ""
+msgstr "모든 이탈리오테 용병을 상급 계급으로 진급합니다. 이렇게 하면 군사력은 향상 되지만 자원 수집률은 -25% 감소합니다. 정예 이탈리오테 용병의 기술을 풉니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2226,13 +2226,13 @@ msgstr "이탈리아 고급 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr ""
+msgstr "모든 켈트 용병을 정예 계급으로 진급합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "모든 켈트 용병을 정예 계급으로 진급합니다. 이렇게 하면 군사력은 향상 되지만 자원 수집률은 -25% 감소합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2240,13 +2240,13 @@ msgstr "이탈리아 켈트 용병"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr ""
+msgstr "모든 이베리아 용병을 정예 계급으로 진급합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "모든 이베리아 용병을 정예 계급으로 진급합니다. 이렇게 하면 군사력은 향상 되지만 자원 수집률은 -25% 감소합니다."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2272,13 +2272,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "카르타고는 삼중의 성벽을 쌓았습니다. 이 벽은 절때로 뚫리지 않았습니다. 이 도시는 로마에게 점령 당했을때도 성벽을 습격해서가아니라 도시의 항구를 통해서 점령되었습니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "카르타고의 벽, 관문, 망루는 보통 벽의 3배의 내구력을 가지고 있지만,  짓는데 시간과 비용이 2배가 됩니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2286,13 +2286,13 @@ msgstr "삼중 방벽"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "켈트의 건축물은 대부분 목조 건물 잔해를 기초로 사용했습니다."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "켈트 건물은 체력이 -20% 낮아지지만 짓는 비용은 20% 저렴하고 짓는 속도는 빨라집니다."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2300,17 +2300,17 @@ msgstr "목조 건축"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "그리스는 미케네 문명 초기부터 석조 건설을 이용했습니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "모든 건축물은 내구성과 점령 포인트가 +10% 증가하지만 건설 시간은 +10% 더 걸립니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
-msgstr ""
+msgstr "그리스 건축"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -2320,11 +2320,11 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr ""
+msgstr "마우리야 제국은 수십개의 독립 왕국이 일찍이 있었던 5백만 평방 킬로미터의 지역과 인구는 6천만명에 가까운 인구를 가지고 있었습니다. 마우리아 왕조의 통치자는 황제 속의 황제 칭호를 갖고 이끈 상비군은 6십만 보병, 9천마리의 코끼리, 8천대의 전차,  3만의 기병을 지휘하여 아마도 당대 최대 규모의 군대로 만들었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas have a 10% higher maximum population limit."
-msgstr ""
+msgstr "마우리야의 최대 인구 한도는 10% 더 높습니다."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2338,7 +2338,7 @@ msgstr "차크라바르티 삼라트"
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr ""
+msgstr "마우리야는 인도의 풍부한 천연 자원인 나무로 도시 벽을 지었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
@@ -2360,7 +2360,7 @@ msgstr "페르시아는 전시에 대규모 보병의 소집을 아케메네스 
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "페르시아는 최대 인구가 10% 더 높습니다."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2372,11 +2372,11 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr ""
+msgstr "스파르타의 육군은 당시 세계 최대는 아니었지만 세계 최강이었습니다. 그들은 양보다 질을 추구했습니다. 스파르타에는 튼튼한 성벽은 필요하지 않다고 합니다.  왜냐면 사람이 곳 성벽이라고 했기때문입니다."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr ""
+msgstr "스파르타는 최대 인구가 10% 적습니다."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
@@ -2384,7 +2384,7 @@ msgstr "약체??"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "전투 창술 훈련은 창 보병 유닛의 공격력을 강화합니다."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2392,7 +2392,7 @@ msgstr "창병의 타격 공격력을 +2 상승합니다."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr ""
+msgstr "보병 전투 창술"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
@@ -2418,11 +2418,11 @@ msgstr "아고게"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "아테네의 3단 노선은 해병(에피바테스 아테나이코스)과 크레탄 용병 궁수(톡쏘테스 크레티코스)를 양성할 수 있습니다."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "아테네의 3단 노선은 해병대와 크레탄 용병 궁수를 양성할 수 있습니다."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -2438,17 +2438,17 @@ msgstr "아테네의 장성은 만만찮은 테미스토클레스의 후원하�
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
-msgstr ""
+msgstr "중립 지역에 석벽(돌담)을 쌓습니다."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr ""
+msgstr "아테네 장벽"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "시민 회관, 신전, 피라미드, 불가사의에대해 내구력(HP)이 +25% 증가하고 건축시간이 -50%  감소합니다."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2462,21 +2462,21 @@ msgstr "제사장들에게 직접 고승의 가르침을 받습니다. 아문에
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "정예 계급 치료사를 양성합니다."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr ""
+msgstr "신성한 명령"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "아누쉬야 대표 전사 보병 양성 속도가 2배 빠르지만 최대 체력이 약간 줄어듭니다."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "아누쉬야 대표 전사 보병의 양성 시간이 -50% 줄어들지만 또한 체력도 -10% 감소합니다."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2488,13 +2488,13 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "페르시아는 1677마일에 달하는 훌륭한 왕의 길을 사르디스에서 수사까지 건설했습니다. 또한 다리우스 대왕과 크세르 크세스는 웅장한 페르세폴리스도 건설했습니다. 키루스 대왕은 엑바타나를 크게 개량해, 옛 엘람의 수도 수사를 실질적으로 '재건'했습니다."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr ""
+msgstr "모든 페르시아의 건축물은 내구성과 점령 포인트가 +25% 증가하지만, 건설 시간이 +20% 늘어납니다."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2513,21 +2513,21 @@ msgstr "초기 아케메네스 통치자들은 페르시아를 바다 지배하�
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr ""
+msgstr "페니키아의 3단 노선은 기병 부대를 양성할 수 있습니다."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr ""
+msgstr "말 수송"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "마구간에서 일괄 대량으로 양성하여 기병 훈련 속도를 대폭 향상시킵니다.(번역확인??)"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "마구간에서 대량 양성의 속도가 올라갑니다."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2541,21 +2541,21 @@ msgstr "보병 징병제"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "모든 기병의 훈련 시간은 -20% 단축하지만, 체력은 -5% 줄어듭니다. 기병 징병을 풉니다."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "모든 보병의 양성 시간은 -20% 줄어듭니다, 또한 체력도 -5% 줄어듭니다. 보병 징병을 풉니다."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr ""
+msgstr "로마는 병참(전쟁 물류)의 달인이었습니다."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr ""
+msgstr "참호가있는 군영과 포위 벽의 부패의 진행이 50% 느려집니다. (번역확인??)"
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2567,11 +2567,11 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr ""
+msgstr "시빌라의 예언집 또는 '리브리 시빌리니'는 신탁을 정리한것으로 그리스어의 여섯 걸음 주자로 기록되어 로마의 마지막 왕 타르퀴니우스 슈퍼버스가 시빌에서 구입하여 공화국과 제국의 역사를 통해 심각한 위기때마다 참조되었습니다. (번역확인??)"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "모든 부대의 시야가 +25% 늘어납니다."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
@@ -2594,7 +2594,7 @@ msgstr "알렉산더를 시작으로 헬레니즘의 군주들은 그들의 제�
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "시민 회관의 내구력과 점령 포인트가 +100% 증가하고,  화살의 양이 2배가 됩니다."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2604,11 +2604,11 @@ msgstr "헬레니즘 메트로폴리스"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr ""
+msgstr "대규모 일괄 또는 대대 단위로 양성하여 요새에서 대표전사와 공성 무기의 양성 속도를 크게 향상합니다. (번역확인??)"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "요새에서의 일괄 양성의 속도가 더 빨라집니다."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -2619,7 +2619,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr ""
+msgstr "지금은 멸종된 니시아 품종의 말은 고대의 가장 크고 강력한 말의 한 계통이었습니다. 셀레우코스와 페르시아에게 많은 관심을 받았는데 말과 사람이 점차 무거운 갑옷을 입게 될 수 있기때문이었습니다. (번역확인??)"
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -2639,7 +2639,7 @@ msgstr "셀레우시드의 개혁 육군"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr ""
+msgstr "로마식 중장기 검사와 셀레우코스 중장왕조 중장기병(번역확인??)을 풉니다."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -2651,7 +2651,7 @@ msgstr "셀레우시드의 전통적 육군"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "은방패를 가진 장창병과 낫 전차를 풉니다."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -2661,13 +2661,13 @@ msgstr "전통적 군대"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "실버 방패 부대 즉 아르기라스피다이 는 마케도니아 군의 정예 중장 보병 부대였습니다."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr ""
+msgstr "방패지기 대표 전사 보병을 은방패 부대로 진급 하면 내구력과 장갑이 올라갑니다."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

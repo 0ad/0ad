@@ -4,9 +4,9 @@
 	size="100%-224 4 100%-196 32"
 	style="iconButton"
 	tooltip_style="sessionToolTip"
+	hotkey="session.gui.barter.toggle"
 >
 	<object size="0 0 100% 100%" name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
-	<translatableAttribute id="tooltip">Barter &amp; Trade</translatableAttribute>
 	<action on="Press">
 		toggleTrade();
 	</action>

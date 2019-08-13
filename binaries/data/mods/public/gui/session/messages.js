@@ -941,6 +941,17 @@ function addChatMessage(msg)
 	updateChatHistory();
 }
 
+function clearChatMessages()
+{
+	g_ChatMessages.length = 0;
+	Engine.GetGUIObjectByName("chatText").caption = "";
+
+	for (let timer of g_ChatTimers)
+		clearTimeout(timer);
+
+	g_ChatTimers.length = 0;
+}
+
 /**
  * Called when the timer has run out for the oldest chatmessage or when the message limit is reached.
  */

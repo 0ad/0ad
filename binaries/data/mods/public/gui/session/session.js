@@ -439,6 +439,14 @@ function updateHotkeyTooltips()
 		colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
 		translate("Toggle Diplomacy Colors");
 
+	Engine.GetGUIObjectByName("diplomacyButton").tooltip =
+		colorizeHotkey("%(hotkey)s" + " ", "session.gui.diplomacy.toggle") +
+		translate("Diplomacy");
+
+	Engine.GetGUIObjectByName("tradeButton").tooltip =
+		colorizeHotkey("%(hotkey)s" + " ", "session.gui.barter.toggle") +
+		translate("Barter & Trade");
+
 	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
 		translate("Select one type of goods you want to modify by clicking on it, and then use the arrows of the other types to modify their shares. You can also press %(hotkey)s while selecting one type of goods to bring its share to 100%%."),
 		"session.fulltradeswap");
@@ -449,6 +457,10 @@ function updateHotkeyTooltips()
 			"hotkey": colorizeHotkey("%(hotkey)s", "session.massbarter"),
 			"multiplier": g_BarterMultiplier
 		});
+
+	Engine.GetGUIObjectByName("objectivesButton").tooltip =
+		colorizeHotkey("%(hotkey)s" + " ", "session.gui.objectives.toggle") +
+		translate("Objectives");
 }
 
 function initPanelEntities()

@@ -43,7 +43,9 @@ function placeTabButtons(categoriesData, buttonHeight, spacing, onPress, onSelec
 		size.bottom = size.top + buttonHeight;
 		button.size = size;
 		button.tooltip = categoriesData[category].tooltip || "";
-		button.onPress = (category => function() { onPress(category); })(+category);
+
+		let categoryNum = +category;
+		button.onPress = () => { onPress(categoryNum); };
 
 		Engine.GetGUIObjectByName("tabButtonText[" + category + "]").caption = categoriesData[category].label;
 	}

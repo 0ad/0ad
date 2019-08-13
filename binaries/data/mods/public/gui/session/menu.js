@@ -140,11 +140,6 @@ function chatMenuButton()
 	openChat();
 }
 
-function pauseMenuButton()
-{
-	togglePause();
-}
-
 function resignMenuButton()
 {
 	closeOpenDialogs();
