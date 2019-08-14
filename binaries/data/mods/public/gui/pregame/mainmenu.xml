@@ -90,11 +90,7 @@
 					<translatableAttribute id="tooltip">Open the 0 A.D. Game Manual.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						Engine.PushGuiPage("page_manual.xml", {
-							"page": "manual/intro",
-							"title": getManual(),
-							"url": "https://trac.wildfiregames.com/wiki/0adManual"
-						});
+						Engine.PushGuiPage("page_manual.xml");
 					</action>
 				</object>
 

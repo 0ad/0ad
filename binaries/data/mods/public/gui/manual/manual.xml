@@ -10,7 +10,7 @@
 
 	<object type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
 		<object name="title" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
-			<translatableAttribute id="caption">Information</translatableAttribute>
+			<translatableAttribute id="caption">Manual</translatableAttribute>
 		</object>
 
 		<object type="image" sprite="ModernFade" size="20 20 100%-20 100%-58">
@@ -21,8 +21,9 @@
 			<translatableAttribute id="caption">Close</translatableAttribute>
 			<action on="Press">closeManual();</action>
 		</object>
-		<object name="url" type="button" style="ModernButtonRed" size="100%-214 100%-52 100%-24 100%-24" hidden="true">
+		<object name="url" type="button" style="ModernButtonRed" size="100%-214 100%-52 100%-24 100%-24">
 			<translatableAttribute id="caption">View Online</translatableAttribute>
+			<action on="Press">openURL("https://trac.wildfiregames.com/wiki/0adManual");</action>
 		</object>
 	</object>
 

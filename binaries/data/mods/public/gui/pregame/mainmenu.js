@@ -230,8 +230,3 @@ function getLobbyDisabledByBuild()
 {
 	return translate("Launch the multiplayer lobby to join and host publicly visible games and chat with other players. \\[DISABLED BY BUILD]");
 }
-
-function getManual()
-{
-	return translate("Manual");
-}
