@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -132,9 +132,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
-		JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp)); \
-		if (ScriptInterface::GetClass(thisObj) != CLS) return false; \
-		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(thisObj)); \
+		TC* c = ScriptInterface::GetPrivate<TC>(cx, args, CLS); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
@@ -152,9 +150,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
-		JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp)); \
-		if (ScriptInterface::GetClass(thisObj) != CLS) return false; \
-		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(thisObj)); \
+		TC* c = ScriptInterface::GetPrivate<TC>(cx, args, CLS); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \

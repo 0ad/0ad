@@ -33,27 +33,23 @@ void JSI_IGUITextOwner::RegisterScriptFunctions(JSContext* cx, JS::HandleObject 
 	JS_DefineFunctions(cx, obj, JSI_methods);
 }
 
-bool JSI_IGUITextOwner::GetTextSize(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
+bool JSI_IGUITextOwner::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-	JS::RootedObject thisObj(cx, &rec.thisv().toObject());
-
-	IGUIObject* obj = static_cast<IGUIObject*>(JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, nullptr));
+	// No JSAutoRequest needed for these calls
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	IGUIObject* obj = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!obj)
-	{
-		JS_ReportError(cx, "This is not an IGUIObject!");
 		return false;
-	}
 
 	// Avoid dynamic_cast for performance reasons
 	IGUITextOwner* objText = static_cast<IGUITextOwner*>(obj->GetTextOwner());
 	if (!objText)
 	{
+		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "This IGUIObject is not an IGUITextOwner!");
 		return false;
 	}
 
-	ScriptInterface::ToJSVal(cx, rec.rval(), objText->CalculateTextSize());
+	ScriptInterface::ToJSVal(cx, args.rval(), objText->CalculateTextSize());
 	return true;
 }

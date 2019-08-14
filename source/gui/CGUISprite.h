@@ -164,7 +164,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
+	void Draw(const CGUI* pGUI, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
 	bool IsEmpty() const;
 	const CStr& GetName() const { return m_SpriteName; }
 	void SetName(const CStr& SpriteName);

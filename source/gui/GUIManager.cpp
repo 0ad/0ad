@@ -350,12 +350,6 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	return IN_PASS;
 }
 
-
-bool CGUIManager::GetPreDefinedColor(const CStr& name, CGUIColor& output) const
-{
-	return top()->GetPreDefinedColor(name, output);
-}
-
 void CGUIManager::SendEventToAll(const CStr& eventName) const
 {
 	top()->SendEventToAll(eventName);

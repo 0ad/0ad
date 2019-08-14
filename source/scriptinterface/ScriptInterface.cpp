@@ -252,15 +252,15 @@ bool ProfileStart(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
-bool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), JS::Value* vp)
+bool ProfileStop(JSContext* UNUSED(cx), uint argc, JS::Value* vp)
 {
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 		g_Profiler.Stop();
 
 	g_Profiler2.RecordRegionLeave();
 
-	rec.rval().setUndefined();
+	args.rval().setUndefined();
 	return true;
 }
 
@@ -308,14 +308,14 @@ static double generate_uniform_real(boost::rand48& rng, double min, double max)
 	}
 }
 
-bool Math_random(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
+bool Math_random(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	double r;
 	if (!ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->MathRandom(r))
 		return false;
 
-	rec.rval().setNumber(r);
+	args.rval().setNumber(r);
 	return true;
 }
 
@@ -1102,17 +1102,6 @@ bool ScriptInterface::IsExceptionPending(JSContext* cx)
 {
 	JSAutoRequest rq(cx);
 	return JS_IsExceptionPending(cx) ? true : false;
-}
-
-const JSClass* ScriptInterface::GetClass(JS::HandleObject obj)
-{
-	return JS_GetClass(obj);
-}
-
-void* ScriptInterface::GetPrivate(JS::HandleObject obj)
-{
-	// TODO: use JS_GetInstancePrivate
-	return JS_GetPrivate(obj);
 }
 
 JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const

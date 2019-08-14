@@ -337,6 +337,39 @@ public:
 	void ReadStructuredClone(const shared_ptr<StructuredClone>& ptr, JS::MutableHandleValue ret) const;
 
 	/**
+	 * Retrieve the private data field of a JSObject that is an instance of the given JSClass.
+	 */
+	template <typename T>
+	static T* GetPrivate(JSContext* cx, JS::HandleObject thisobj, JSClass* jsClass)
+	{
+		JSAutoRequest rq(cx);
+		T* value = static_cast<T*>(JS_GetInstancePrivate(cx, thisobj, jsClass, nullptr));
+		if (value == nullptr && !JS_IsExceptionPending(cx))
+			JS_ReportError(cx, "Private data of the given object is null!");
+		return value;
+	}
+
+	/**
+	 * Retrieve the private data field of a JS Object that is an instance of the given JSClass.
+	 * If an error occurs, GetPrivate will report it with the according stack.
+	 */
+	template <typename T>
+	static T* GetPrivate(JSContext* cx, JS::CallArgs& callArgs, JSClass* jsClass)
+	{
+		JSAutoRequest rq(cx);
+		if (!callArgs.thisv().isObject())
+		{
+			JS_ReportError(cx, "Cannot retrieve private JS class data because from a non-object value!");
+			return nullptr;
+		}
+		JS::RootedObject thisObj(cx, &callArgs.thisv().toObject());
+		T* value = static_cast<T*>(JS_GetInstancePrivate(cx, thisObj, jsClass, &callArgs));
+		if (value == nullptr && !JS_IsExceptionPending(cx))
+			JS_ReportError(cx, "Private data of the given object is null!");
+		return value;
+	}
+
+	/**
 	 * Converts |a| if needed and assigns it to |handle|.
 	 * This is meant for use in other templates where we want to use the same code for JS::RootedValue&/JS::HandleValue and
 	 * other types. Note that functions are meant to take JS::HandleValue instead of JS::RootedValue&, but this implicit
@@ -380,8 +413,6 @@ private:
 	bool GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const;
 	bool GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue value) const;
 	static bool IsExceptionPending(JSContext* cx);
-	static const JSClass* GetClass(JS::HandleObject obj);
-	static void* GetPrivate(JS::HandleObject obj);
 
 	struct CustomType
 	{
