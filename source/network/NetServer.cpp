@@ -156,7 +156,7 @@ CNetServerWorker::~CNetServerWorker()
 		}
 
 		// Wait for it to shut down cleanly
-		pthread_join(m_WorkerThread, NULL);
+		m_WorkerThread.join();
 	}
 
 	// Clean up resources
@@ -200,20 +200,18 @@ bool CNetServerWorker::SetupConnection(const u16 port)
 	m_State = SERVER_STATE_PREGAME;
 
 	// Launch the worker thread
-	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-	ENSURE(ret == 0);
+	m_WorkerThread = std::thread(RunThread, this);
 
 #if CONFIG2_MINIUPNPC
 	// Launch the UPnP thread
-	ret = pthread_create(&m_UPnPThread, NULL, &SetupUPnP, NULL);
-	ENSURE(ret == 0);
+	m_UPnPThread = std::thread(SetupUPnP);
 #endif
 
 	return true;
 }
 
 #if CONFIG2_MINIUPNPC
-void* CNetServerWorker::SetupUPnP(void*)
+void CNetServerWorker::SetupUPnP()
 {
 	// Values we want to set.
 	char psPort[6];
@@ -260,7 +258,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	else
 	{
 		LOGMESSAGE("Net server: upnpDiscover failed and no working cached URL.");
-		return NULL;
+		return;
 	}
 
 	switch (ret)
@@ -286,7 +284,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
 		LOGMESSAGE("Net server: GetExternalIPAddress failed with code %d (%s)", ret, strupnperror(ret));
-		return NULL;
+		return;
 	}
 	LOGMESSAGE("Net server: ExternalIPAddress = %s", externalIPAddress);
 
@@ -297,7 +295,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	{
 		LOGMESSAGE("Net server: AddPortMapping(%s, %s, %s) failed with code %d (%s)",
 			   psPort, psPort, internalIPAddress, ret, strupnperror(ret));
-		return NULL;
+		return;
 	}
 
 	// Check that the port was actually forwarded.
@@ -313,7 +311,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
 		LOGMESSAGE("Net server: GetSpecificPortMappingEntry() failed with code %d (%s)", ret, strupnperror(ret));
-		return NULL;
+		return;
 	}
 
 	LOGMESSAGE("Net server: External %s:%s %s is redirected to internal %s:%s (duration=%s)",
@@ -329,8 +327,6 @@ void* CNetServerWorker::SetupUPnP(void*)
 		FreeUPNPUrls(&urls);
 
 	freeUPNPDevlist(devlist);
-
-	return NULL;
 }
 #endif // CONFIG2_MINIUPNPC
 
@@ -360,13 +356,11 @@ bool CNetServerWorker::Broadcast(const CNetMessage* message, const std::vector<N
 	return ok;
 }
 
-void* CNetServerWorker::RunThread(void* data)
+void CNetServerWorker::RunThread(CNetServerWorker* data)
 {
 	debug_SetThreadName("NetServer");
 
-	static_cast<CNetServerWorker*>(data)->Run();
-
-	return NULL;
+	data->Run();
 }
 
 void CNetServerWorker::Run()

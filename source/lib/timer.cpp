@@ -35,7 +35,6 @@
 #include <sstream>	// std::stringstream
 
 #include "lib/module_init.h"
-#include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
 #include "lib/sysdep/cpu.h"
 

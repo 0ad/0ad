@@ -21,7 +21,6 @@
 #include "NetFileTransfer.h"
 #include "NetHost.h"
 #include "lib/config2.h"
-#include "lib/posix/posix_pthread.h"
 #include "lib/types.h"
 #include "scriptinterface/ScriptTypes.h"
 
@@ -29,6 +28,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <thread>
 
 class CNetServerSession;
 class CNetServerTurnManager;
@@ -360,15 +360,15 @@ private:
 	/**
 	 * Try to find a UPnP root on the network and setup port forwarding.
 	 */
-	static void* SetupUPnP(void*);
-	pthread_t m_UPnPThread;
+	static void SetupUPnP();
+	std::thread m_UPnPThread;
 #endif
 
-	static void* RunThread(void* data);
+	static void RunThread(CNetServerWorker* data);
 	void Run();
 	bool RunStep();
 
-	pthread_t m_WorkerThread;
+	std::thread m_WorkerThread;
 	std::mutex m_WorkerMutex;
 
 	// protected by m_WorkerMutex

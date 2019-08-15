@@ -73,7 +73,6 @@ need only be renamed (e.g. _open, _stat).
 //#include "lib/posix/posix_dlfcn.h"
 //#include "lib/posix/posix_filesystem.h"
 //#include "lib/posix/posix_mman.h"
-//#include "lib/posix/posix_pthread.h"
 //#include "lib/posix/posix_time.h"
 //#include "lib/posix/posix_utsname.h"
 

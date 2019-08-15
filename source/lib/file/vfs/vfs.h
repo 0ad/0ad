@@ -78,7 +78,7 @@ enum VfsMountFlags
 };
 
 // (member functions are thread-safe after the instance has been
-// constructed - each acquires a pthread mutex.)
+// constructed - each acquires a mutex.)
 struct IVFS
 {
 	virtual ~IVFS() {}
