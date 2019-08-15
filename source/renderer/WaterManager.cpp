@@ -1045,8 +1045,8 @@ void WaterManager::RecomputeWindStrength()
 
 	struct SWindPoint {
 		SWindPoint(size_t x, size_t y, float strength) : X(x), Y(y), windStrength(strength) {}
-		size_t X;
-		size_t Y;
+		ssize_t X;
+		ssize_t Y;
 		float windStrength;
 	};
 
@@ -1128,7 +1128,7 @@ void WaterManager::RecomputeWindStrength()
 				point.X += movement[step].first;
 				point.Y += movement[step].second;
 
-				if (point.X < 0 || point.X >= m_MapSize || point.Y < 0 || point.Y >= m_MapSize)
+				if (point.X < 0 || point.X >= static_cast<ssize_t>(m_MapSize) || point.Y < 0 || point.Y >= static_cast<ssize_t>(m_MapSize))
 				{
 					onMap = false;
 					break;
