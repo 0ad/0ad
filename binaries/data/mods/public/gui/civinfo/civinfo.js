@@ -98,7 +98,7 @@ function switchToStrucTreePage()
 	Engine.PushGuiPage("page_structree.xml", { "civ": g_SelectedCiv, "callback": g_Callback });
 }
 
-function close()
+function closePage()
 {
 	if (g_Callback)
 		Engine.PopGuiPageCB({ "civ": g_SelectedCiv, "page": "page_civinfo.xml" });

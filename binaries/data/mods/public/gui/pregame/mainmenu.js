@@ -97,10 +97,17 @@ function onTick()
 
 		if (Engine.ConfigDB_GetValue("user", "gui.splashscreen.enable") === "true" ||
 		    Engine.ConfigDB_GetValue("user", "gui.splashscreen.version") < Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"))
-			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", "callback": "SplashScreenClosedCallback" });
+			ShowSplashScreen();
 		else
 			ShowRenderPathMessage();
 	}
+}
+
+function ShowSplashScreen()
+{
+	Engine.PushGuiPage("page_splashscreen.xml", {
+		"callback": "ShowRenderPathMessage"
+	});
 }
 
 function ShowRenderPathMessage()
@@ -123,11 +130,6 @@ function ShowRenderPathMessage()
 			[translate("OK"), translate("Read More")],
 			[ null, function() { Engine.OpenURL("https://www.wildfiregames.com/forum/index.php?showtopic=16734"); } ]
 		);
-}
-
-function SplashScreenClosedCallback()
-{
-	ShowRenderPathMessage();
 }
 
 /**

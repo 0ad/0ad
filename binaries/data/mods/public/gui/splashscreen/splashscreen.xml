@@ -9,6 +9,7 @@
 	<object type="image" z="0" sprite="ModernFade"/>
 
 	<object type="image" style="ModernDialog" size="50%-274 50%-200 50%+274 50%+200">
+
 		<object type="text" style="ModernLabelText" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Welcome!</translatableAttribute>
 		</object>
@@ -19,19 +20,16 @@
 			</object>
 			<object name="displaySplashScreen" size="8 100%-30 22 100%-8" type="checkbox" style="ModernTickBox"/>
 		</object>
+
 		<object type="button" style="ModernButtonRed" size="50%+5 100%-45 100%-18 100%-17">
 			<translatableAttribute id="caption">Known Issues (web)</translatableAttribute>
-			<action on="Press"><![CDATA[
-				openURL("https://www.wildfiregames.com/forum/index.php?showtopic=15796");
-			]]></action>
+			<action on="Press">openURL("https://www.wildfiregames.com/forum/index.php?showtopic=15796");</action>
 		</object>
+
 		<object name="btnOK" type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">OK</translatableAttribute>
-			<action on="Press"><![CDATA[
-			Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.splashscreen.enable", String(Engine.GetGUIObjectByName("displaySplashScreen").checked), "config/user.cfg");
-			Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.splashscreen.version", Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"), "config/user.cfg");
-			Engine.PopGuiPageCB();
-			]]></action>
+			<action on="Press">closePage();</action>
 		</object>
+
 	</object>
 </objects>
