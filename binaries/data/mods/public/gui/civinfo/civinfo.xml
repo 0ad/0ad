@@ -6,9 +6,7 @@
 	<script directory="gui/civinfo/"/>
 
 	<object	hotkey="civinfo">
-		<action on="Press">
-			close();
-		</action>
+		<action on="Press">closePage();</action>
 	</object>
 
 	<!-- Add a translucent black background to fade out the menu page -->
@@ -135,9 +133,7 @@
 			hotkey="cancel"
 		>
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">
-				close();
-			</action>
+			<action on="Press">closePage();</action>
 		</object>
 
 	</object>

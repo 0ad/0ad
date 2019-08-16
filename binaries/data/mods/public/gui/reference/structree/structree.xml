@@ -7,7 +7,7 @@
 
 	<object	hotkey="structree">
 		<action on="Press">
-			close();
+			closePage();
 		</action>
 	</object>
 
@@ -135,9 +135,7 @@
 			hotkey="cancel"
 		>
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">
-				close();
-			</action>
+			<action on="Press">closePage();</action>
 		</object>
 	</object>
 </objects>
