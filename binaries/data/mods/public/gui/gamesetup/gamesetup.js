@@ -22,7 +22,7 @@ const g_CivData = loadCivData(false, false);
  * Store civilization code and page (structree or history) opened in civilization info.
  */
 var g_CivInfo = {
-	"code": "",
+	"civ": "",
 	"page": "page_civinfo.xml"
 };
 
@@ -1047,10 +1047,10 @@ var g_MiscControls = {
 				"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
 			}),
 		"onPress": () => function() {
-			Engine.PushGuiPage(g_CivInfo.page, {
-				"civ": g_CivInfo.code,
-				"callback": "storeCivInfoPage"
-			});
+			Engine.PushGuiPage(
+				g_CivInfo.page,
+				{ "civ": g_CivInfo.civ },
+				storeCivInfoPage);
 		}
 	},
 	"civResetButton": {
@@ -2423,30 +2423,26 @@ function openAIConfig(playerSlot)
 {
 	g_LastViewedAIPlayer = playerSlot;
 
-	Engine.PushGuiPage("page_aiconfig.xml", {
-		"callback": "AIConfigCallback",
-		"playerSlot": playerSlot,
-		"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
-		"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
-		"behavior": g_GameAttributes.settings.PlayerData[playerSlot].AIBehavior
-	});
-}
+	Engine.PushGuiPage(
+		"page_aiconfig.xml",
+		{
+			"playerSlot": playerSlot,
+			"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
+			"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
+			"behavior": g_GameAttributes.settings.PlayerData[playerSlot].AIBehavior
+		},
+		ai => {
+			g_LastViewedAIPlayer = -1;
 
-/**
- * Called after closing the dialog.
- */
-function AIConfigCallback(ai)
-{
-	g_LastViewedAIPlayer = -1;
+			if (!ai.save || !g_IsController)
+				return;
 
-	if (!ai.save || !g_IsController)
-		return;
+			g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
+			g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
+			g_GameAttributes.settings.PlayerData[ai.playerSlot].AIBehavior = ai.behavior;
 
-	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
-	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
-	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIBehavior = ai.behavior;
-
-	updateGameAttributes();
+			updateGameAttributes();
+		});
 }
 
 function reloadPlayerAssignmentChoices()
@@ -2775,6 +2771,11 @@ function updateAutocompleteEntries()
 
 function storeCivInfoPage(data)
 {
-	g_CivInfo.code = data.civ;
-	g_CivInfo.page = data.page;
+	if (data.nextPage)
+		Engine.PushGuiPage(
+			data.nextPage,
+			{ "civ": data.civ },
+			storeCivInfoPage);
+	else
+		g_CivInfo = data;
 }

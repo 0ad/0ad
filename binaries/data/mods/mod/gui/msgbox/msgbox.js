@@ -28,22 +28,15 @@ function init(data)
 	let mbButton = [];
 	captions.forEach((caption, i) => {
 		mbButton[i] = Engine.GetGUIObjectByName("mbButton" + (i + 1));
-
-		let action = function()
-		{
-			if (data.callback)
-				Engine.PopGuiPageCB(i);
-			else
-				Engine.PopGuiPage();
-		};
-
 		mbButton[i].caption = caption;
-		mbButton[i].onPress = action;
 		mbButton[i].hidden = false;
+		mbButton[i].onPress = () => {
+			Engine.PopGuiPage(i);
+		};
 
 		// Convention: Cancel is the first button
 		if (i == 0)
-			mbCancelHotkey.onPress = action;
+			mbCancelHotkey.onPress = mbButton[i].onPress;
 	});
 
 	// Distribute buttons horizontally

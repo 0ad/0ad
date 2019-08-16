@@ -89,19 +89,24 @@ void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptIn
 
 	m_PageStack.clear();
 
-	PushPage(pageName, initDataClone);
+	PushPage(pageName, initDataClone, JS::UndefinedHandleValue);
 }
 
-void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::StructuredClone> initData)
+void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::StructuredClone> initData, JS::HandleValue callbackFunction)
 {
+	// Store the callback handler in the current GUI page before opening the new one
+	if (!m_PageStack.empty() && !callbackFunction.isUndefined())
+		m_PageStack.back().SetCallbackFunction(*m_ScriptInterface, callbackFunction);
+
 	// Push the page prior to loading its contents, because that may push
 	// another GUI page on init which should be pushed on top of this new page.
 	m_PageStack.emplace_back(pageName, initData);
 	m_PageStack.back().LoadPage(m_ScriptRuntime);
+
 	ResetCursor();
 }
 
-void CGUIManager::PopPage()
+void CGUIManager::PopPage(shared_ptr<ScriptInterface::StructuredClone> args)
 {
 	if (m_PageStack.size() < 2)
 	{
@@ -110,58 +115,11 @@ void CGUIManager::PopPage()
 	}
 
 	m_PageStack.pop_back();
-}
-
-void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
-{
-	shared_ptr<ScriptInterface::StructuredClone> initDataClone = m_PageStack.back().initData;
-	PopPage();
-
-	shared_ptr<ScriptInterface> scriptInterface = m_PageStack.back().gui->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue initDataVal(cx);
-	if (!initDataClone)
-	{
-		LOGERROR("Called PopPageCB when initData (which should contain the callback function name) isn't set!");
-		return;
-	}
-
-	scriptInterface->ReadStructuredClone(initDataClone, &initDataVal);
-
-	if (!scriptInterface->HasProperty(initDataVal, "callback"))
-	{
-		LOGERROR("Called PopPageCB when the callback function name isn't set!");
-		return;
-	}
-
-	std::string callback;
-	if (!scriptInterface->GetProperty(initDataVal, "callback", callback))
-	{
-		LOGERROR("Failed to get the callback property as a string from initData in PopPageCB!");
-		return;
-	}
-
-	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
-	if (!scriptInterface->HasProperty(global, callback.c_str()))
-	{
-		LOGERROR("The specified callback function %s does not exist in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
-		return;
-	}
-
-	JS::RootedValue argVal(cx);
-	if (args)
-		scriptInterface->ReadStructuredClone(args, &argVal);
-	if (!scriptInterface->CallFunctionVoid(global, callback.c_str(), argVal))
-	{
-		LOGERROR("Failed to call the callback function %s in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
-		return;
-	}
+	m_PageStack.back().PerformCallbackFunction(args);
 }
 
 CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const shared_ptr<ScriptInterface::StructuredClone> initData)
-	: name(pageName), initData(initData), inputs(), gui()
+	: name(pageName), initData(initData), inputs(), gui(), callbackFunction()
 {
 }
 
@@ -254,6 +212,52 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	if (scriptInterface->HasProperty(global, "init") &&
 	    !scriptInterface->CallFunctionVoid(global, "init", initDataVal, hotloadDataVal))
 		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(name));
+}
+
+void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface, JS::HandleValue callbackFunc)
+{
+	if (!callbackFunc.isObject())
+	{
+		LOGERROR("Given callback handler is not an object!");
+		return;
+	}
+
+	// Does not require JSAutoRequest
+	if (!JS_ObjectIsFunction(scriptInterface.GetContext(), &callbackFunc.toObject()))
+	{
+		LOGERROR("Given callback handler is not a function!");
+		return;
+	}
+
+	callbackFunction = std::make_shared<JS::PersistentRootedValue>(scriptInterface.GetJSRuntime(), callbackFunc);
+}
+
+void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::StructuredClone> args)
+{
+	if (!callbackFunction)
+		return;
+
+	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
+	JSContext* cx = scriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedObject globalObj(cx, &scriptInterface->GetGlobalObject().toObject());
+
+	JS::RootedValue funcVal(cx, *callbackFunction);
+
+	// Delete the callback function, so that it is not called again
+	callbackFunction.reset();
+
+	JS::RootedValue argVal(cx);
+	if (args)
+		scriptInterface->ReadStructuredClone(args, &argVal);
+
+	JS::AutoValueVector paramData(cx);
+	paramData.append(argVal);
+
+	JS::RootedValue result(cx);
+
+	JS_CallFunctionValue(cx, globalObj, funcVal, paramData, &result);
 }
 
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)

@@ -7,24 +7,29 @@ function initTerms(terms)
 
 function openTerms(page)
 {
-	Engine.PushGuiPage("page_termsdialog.xml", {
-		"file": g_Terms[page].file,
-		"title": g_Terms[page].title,
-		"sprintf": g_Terms[page].sprintf,
-		"urlButtons": g_Terms[page].urlButtons || [],
-		"termsURL": g_Terms[page].termsURL || undefined,
-		"page": page,
-		"callback": "acceptTerms"
-	});
-}
+	Engine.PushGuiPage(
+		"page_termsdialog.xml",
+		{
+			"file": g_Terms[page].file,
+			"title": g_Terms[page].title,
+			"sprintf": g_Terms[page].sprintf,
+			"urlButtons": g_Terms[page].urlButtons || [],
+			"termsURL": g_Terms[page].termsURL || undefined,
+			"page": page
+		},
+		data => {
+			g_Terms[data.page].accepted = data.accepted;
 
-function acceptTerms(data)
-{
-	g_Terms[data.page].accepted = data.accepted;
-	Engine.ConfigDB_CreateAndWriteValueToFile("user", g_Terms[data.page].config, data.accepted ? getTermsHash(data.page) : "0", "config/user.cfg");
+			Engine.ConfigDB_CreateAndWriteValueToFile(
+				"user",
+				g_Terms[data.page].config,
+				data.accepted ? getTermsHash(data.page) : "0",
+				"config/user.cfg");
 
-	if (g_Terms[data.page].callback)
-		g_Terms[data.page].callback(data);
+			if (g_Terms[data.page].callback)
+				g_Terms[data.page].callback(data);
+		}
+	);
 }
 
 function checkTerms()

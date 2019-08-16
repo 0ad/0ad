@@ -29,7 +29,7 @@ var g_IdleTraderTextColor = "orange";
  * Store civilization code and page (structree or history) opened in civilization info.
  */
 var g_CivInfo = {
-	"code": "",
+	"civ": "",
 	"page": "page_structree.xml"
 };
 
@@ -225,10 +225,10 @@ function openSave()
 	closeOpenDialogs();
 	pauseGame();
 
-	Engine.PushGuiPage("page_savegame.xml", {
-		"savedGameData": getSavedGameData(),
-		"callback": "resumeGame"
-	});
+	Engine.PushGuiPage(
+		"page_savegame.xml",
+		{ "savedGameData": getSavedGameData() },
+		resumeGame);
 }
 
 function openOptions()
@@ -236,18 +236,16 @@ function openOptions()
 	closeOpenDialogs();
 	pauseGame();
 
-	Engine.PushGuiPage("page_options.xml", {
-		"callback": "optionsPageClosed"
-	});
-}
+	Engine.PushGuiPage(
+		"page_options.xml",
+		{},
+		callbackFunctionNames => {
+			for (let functionName of callbackFunctionNames)
+				if (global[functionName])
+					global[functionName]();
 
-function optionsPageClosed(data)
-{
-	for (let callback of data)
-		if (global[callback])
-			global[callback]();
-
-	resumeGame();
+			resumeGame();
+		});
 }
 
 function openChat(command = "")
@@ -1090,41 +1088,51 @@ function openGameSummary()
 	pauseGame();
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-	Engine.PushGuiPage("page_summary.xml", {
-		"sim": {
-			"mapSettings": g_GameAttributes.settings,
-			"playerStates": extendedSimState.players.filter((state, player) =>
-				g_IsObserver || player == 0 || player == g_ViewedPlayer ||
-				extendedSimState.players[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]),
-			"timeElapsed": extendedSimState.timeElapsed
+	Engine.PushGuiPage(
+		"page_summary.xml",
+		{
+			"sim": {
+				"mapSettings": g_GameAttributes.settings,
+				"playerStates": extendedSimState.players.filter((state, player) =>
+					g_IsObserver || player == 0 || player == g_ViewedPlayer ||
+					extendedSimState.players[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]),
+				"timeElapsed": extendedSimState.timeElapsed
+			},
+			"gui": {
+				"dialog": true,
+				"isInGame": true
+			},
+			"selectedData": g_SummarySelectedData
 		},
-		"gui": {
-			"dialog": true,
-			"isInGame": true
-		},
-		"selectedData": g_SummarySelectedData,
-		"callback": "resumeGameAndSaveSummarySelectedData"
-	});
+		resumeGameAndSaveSummarySelectedData);
 }
 
-function openStrucTree()
+function openStrucTree(page)
 {
 	closeOpenDialogs();
 	pauseGame();
 
-	// TODO add info about researched techs and unlocked entities
-
-	Engine.PushGuiPage(g_CivInfo.page, {
-		"civ": g_CivInfo.code || g_Players[g_ViewedPlayer].civ,
-		"callback": "storeCivInfoPage"
-	});
+	Engine.PushGuiPage(
+		page,
+		{
+			"civ": g_CivInfo.civ || g_Players[g_ViewedPlayer].civ
+			// TODO add info about researched techs and unlocked entities
+		},
+		storeCivInfoPage);
 }
 
 function storeCivInfoPage(data)
 {
-	g_CivInfo.code = data.civ;
-	g_CivInfo.page = data.page;
-	resumeGame();
+	if (data.nextPage)
+		Engine.PushGuiPage(
+			data.nextPage,
+			{ "civ": data.civ },
+			storeCivInfoPage);
+	else
+	{
+		g_CivInfo = data;
+		resumeGame();
+	}
 }
 
 /**

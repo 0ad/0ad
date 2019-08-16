@@ -80,7 +80,7 @@ function reallySaveGame(name, desc, nameIsPrefix)
 
 function closeSave()
 {
-	Engine.PopGuiPageCB(0);
+	Engine.PopGuiPage();
 }
 
 // HACK: Engine.SaveGame* expects this function to be defined on the current page.

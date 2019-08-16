@@ -443,7 +443,7 @@ function continueButton()
 		"charts": g_SelectedChart
 	};
 	if (g_GameData.gui.isInGame)
-		Engine.PopGuiPageCB({
+		Engine.PopGuiPage({
 			"explicitResume": 0,
 			"summarySelectedData": summarySelectedData
 		});

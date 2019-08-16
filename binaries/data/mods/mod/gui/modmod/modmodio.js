@@ -26,7 +26,5 @@ function downloadModsButton()
 function openModIo(data)
 {
 	if (data.accepted)
-		Engine.PushGuiPage("page_modio.xml", {
-			"callback": "initMods"
-		});
+		Engine.PushGuiPage("page_modio.xml", {}, initMods);
 }

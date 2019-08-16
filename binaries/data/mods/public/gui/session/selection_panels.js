@@ -1143,11 +1143,13 @@ function showTemplateDetails(templateName, civCode)
 {
 	pauseGame();
 
-	Engine.PushGuiPage("page_viewer.xml", {
-		"templateName": templateName,
-		"callback": "resumeGame",
-		"civ": civCode
-	});
+	Engine.PushGuiPage(
+		"page_viewer.xml",
+		{
+			"templateName": templateName,
+			"civ": civCode
+		},
+		resumeGame);
 }
 
 /**

@@ -1,13 +1,4 @@
 var g_SelectedCiv = "gaia";
-var g_CallbackSet = false;
-
-function closePage()
-{
-	if (g_CallbackSet)
-		Engine.PopGuiPageCB(0);
-	else
-		Engine.PopGuiPage();
-}
 
 /**
  * Compile lists of templates buildable/trainable/researchable of a given civ.

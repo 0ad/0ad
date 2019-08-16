@@ -3,11 +3,6 @@
  */
 const g_CivData = loadCivData(true, false);
 
-/**
- * Callback function name on closing gui via Engine.PopGuiPage().
- */
-var g_Callback = "";
-
 var g_SelectedCiv = "";
 
 /**
@@ -15,9 +10,6 @@ var g_SelectedCiv = "";
  */
 function init(data = {})
 {
-	if (data.callback)
-		g_Callback = data.callback;
-
 	var civList = Object.keys(g_CivData).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
 	var civSelection = Engine.GetGUIObjectByName("civSelection");
 
@@ -94,16 +86,12 @@ function subHeading(obj)
 
 function switchToStrucTreePage()
 {
-	Engine.PopGuiPage();
-	Engine.PushGuiPage("page_structree.xml", { "civ": g_SelectedCiv, "callback": g_Callback });
+	Engine.PopGuiPage({ "civ": g_SelectedCiv, "nextPage": "page_structree.xml" });
 }
 
 function closePage()
 {
-	if (g_Callback)
-		Engine.PopGuiPageCB({ "civ": g_SelectedCiv, "page": "page_civinfo.xml" });
-	else
-		Engine.PopGuiPage();
+	Engine.PopGuiPage({ "civ": g_SelectedCiv, "page": "page_civinfo.xml" });
 }
 
 /**

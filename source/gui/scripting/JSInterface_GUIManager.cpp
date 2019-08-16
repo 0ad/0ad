@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,9 +27,9 @@
 
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
-void JSI_GUIManager::PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
+void JSI_GUIManager::PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
 {
-	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData));
+	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData), callbackFunction);
 }
 
 void JSI_GUIManager::SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
@@ -37,14 +37,9 @@ void JSI_GUIManager::SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const
 	g_GUI->SwitchPage(name, pCxPrivate->pScriptInterface, initData);
 }
 
-void JSI_GUIManager::PopGuiPage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_GUIManager::PopGuiPage(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
 {
-	g_GUI->PopPage();
-}
-
-void JSI_GUIManager::PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
-{
-	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
+	g_GUI->PopPage(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
 JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
@@ -82,10 +77,9 @@ CParamNode JSI_GUIManager::GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPri
 
 void JSI_GUIManager::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &PushGuiPage>("PushGuiPage");
+	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, JS::HandleValue, &PushGuiPage>("PushGuiPage");
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SwitchGuiPage>("SwitchGuiPage");
-	scriptInterface.RegisterFunction<void, &PopGuiPage>("PopGuiPage");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, &PopGuiPageCB>("PopGuiPageCB");
+	scriptInterface.RegisterFunction<void, JS::HandleValue, &PopGuiPage>("PopGuiPage");
 	scriptInterface.RegisterFunction<JS::Value, std::string, &GetGUIObjectByName>("GetGUIObjectByName");
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<void, &ResetCursor>("ResetCursor");

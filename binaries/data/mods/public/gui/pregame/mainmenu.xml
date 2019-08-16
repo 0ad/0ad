@@ -118,10 +118,7 @@
 					hotkey="structree"
 				>
 					<translatableAttribute id="caption">Structure Tree</translatableAttribute>
-					<action on="Press">
-						closeMenu();
-						Engine.PushGuiPage("page_structree.xml", {});
-					</action>
+					<action on="Press">openStrucTree("page_structree.xml");</action>
 				</object>
 
 				<!-- HISTORY BUTTON -->
@@ -134,10 +131,7 @@
 					hotkey="civinfo"
 				>
 					<translatableAttribute id="caption">History</translatableAttribute>
-					<action on="Press">
-						closeMenu();
-						Engine.PushGuiPage("page_civinfo.xml");
-					</action>
+					<action on="Press">openStrucTree("page_civinfo.xml");</action>
 				</object>
 
 			</object>

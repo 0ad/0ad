@@ -82,7 +82,7 @@ function initLanguageSelection()
 
 function closeTerms(accepted)
 {
-	Engine.PopGuiPageCB({
+	Engine.PopGuiPage({
 		"page": g_TermsPage,
 		"accepted": accepted
 	});

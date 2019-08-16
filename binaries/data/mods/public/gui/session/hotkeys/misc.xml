@@ -33,15 +33,11 @@
 	</object>
 
 	<object	hotkey="civinfo">
-		<action on="Press">
-			Engine.PushGuiPage("page_civinfo.xml", { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
-		</action>
+		<action on="Press">openStrucTree("page_civinfo.xml");</action>
 	</object>
 
 	<object	hotkey="structree">
-		<action on="Press">
-			Engine.PushGuiPage("page_structree.xml", { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
-		</action>
+		<action on="Press">openStrucTree("page_structree.xml");</action>
 	</object>
 
 	<object hotkey="silhouettes">

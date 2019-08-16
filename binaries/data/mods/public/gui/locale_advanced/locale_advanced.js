@@ -114,5 +114,5 @@ function autoDetectLocale()
 function applySelectedLocale()
 {
 	var resultingLocaleText = Engine.GetGUIObjectByName("resultingLocale");
-	Engine.PopGuiPageCB(resultingLocaleText.caption);
+	Engine.PopGuiPage(resultingLocaleText.caption);
 }

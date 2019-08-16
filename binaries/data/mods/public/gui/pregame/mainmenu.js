@@ -105,9 +105,7 @@ function onTick()
 
 function ShowSplashScreen()
 {
-	Engine.PushGuiPage("page_splashscreen.xml", {
-		"callback": "ShowRenderPathMessage"
-	});
+	Engine.PushGuiPage("page_splashscreen.xml", {}, ShowRenderPathMessage);
 }
 
 function ShowRenderPathMessage()
@@ -231,4 +229,16 @@ function pressedScenarioEditorButton()
 function getLobbyDisabledByBuild()
 {
 	return translate("Launch the multiplayer lobby to join and host publicly visible games and chat with other players. \\[DISABLED BY BUILD]");
+}
+
+function openStrucTree(page)
+{
+	closeMenu();
+	Engine.PushGuiPage(page, {}, storeCivInfoPage);
+}
+
+function storeCivInfoPage(data)
+{
+	if (data.nextPage)
+		Engine.PushGuiPage(data.nextPage, { "civ": data.civ }, storeCivInfoPage);
 }
