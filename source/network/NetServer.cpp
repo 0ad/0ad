@@ -159,6 +159,11 @@ CNetServerWorker::~CNetServerWorker()
 		m_WorkerThread.join();
 	}
 
+#if CONFIG2_MINIUPNPC
+	if (m_UPnPThread.joinable())
+		m_UPnPThread.detach();
+#endif
+
 	// Clean up resources
 
 	delete m_Stats;
