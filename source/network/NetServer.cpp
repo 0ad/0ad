@@ -226,14 +226,26 @@ void CNetServerWorker::SetupUPnP()
 	const char* protocall = "UDP";
 	char internalIPAddress[64];
 	char externalIPAddress[40];
+
 	// Variables to hold the values that actually get set.
 	char intClient[40];
 	char intPort[6];
 	char duration[16];
+
 	// Intermediate variables.
+	bool allocatedUrls = false;
 	struct UPNPUrls urls;
 	struct IGDdatas data;
 	struct UPNPDev* devlist = NULL;
+
+	// Make sure everything is properly freed.
+	std::function<void()> freeUPnP = [&allocatedUrls, &urls, &devlist]()
+	{
+		if (allocatedUrls)
+			FreeUPNPUrls(&urls);
+		freeUPNPDevlist(devlist);
+		// IGDdatas does not need to be freed according to UPNP_GetIGDFromUrl
+	};
 
 	// Cached root descriptor URL.
 	std::string rootDescURL;
@@ -242,7 +254,6 @@ void CNetServerWorker::SetupUPnP()
 		LOGMESSAGE("Net server: attempting to use cached root descriptor URL: %s", rootDescURL.c_str());
 
 	int ret = 0;
-	bool allocatedUrls = false;
 
 	// Try a cached URL first
 	if (!rootDescURL.empty() && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
@@ -263,6 +274,7 @@ void CNetServerWorker::SetupUPnP()
 	else
 	{
 		LOGMESSAGE("Net server: upnpDiscover failed and no working cached URL.");
+		freeUPnP();
 		return;
 	}
 
@@ -289,6 +301,7 @@ void CNetServerWorker::SetupUPnP()
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
 		LOGMESSAGE("Net server: GetExternalIPAddress failed with code %d (%s)", ret, strupnperror(ret));
+		freeUPnP();
 		return;
 	}
 	LOGMESSAGE("Net server: ExternalIPAddress = %s", externalIPAddress);
@@ -300,6 +313,7 @@ void CNetServerWorker::SetupUPnP()
 	{
 		LOGMESSAGE("Net server: AddPortMapping(%s, %s, %s) failed with code %d (%s)",
 			   psPort, psPort, internalIPAddress, ret, strupnperror(ret));
+		freeUPnP();
 		return;
 	}
 
@@ -316,6 +330,7 @@ void CNetServerWorker::SetupUPnP()
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
 		LOGMESSAGE("Net server: GetSpecificPortMappingEntry() failed with code %d (%s)", ret, strupnperror(ret));
+		freeUPnP();
 		return;
 	}
 
@@ -327,11 +342,7 @@ void CNetServerWorker::SetupUPnP()
 	g_ConfigDB.WriteValueToFile(CFG_USER, "network.upnprootdescurl", urls.controlURL);
 	LOGMESSAGE("Net server: cached UPnP root descriptor URL as %s", urls.controlURL);
 
-	// Make sure everything is properly freed.
-	if (allocatedUrls)
-		FreeUPNPUrls(&urls);
-
-	freeUPNPDevlist(devlist);
+	freeUPnP();
 }
 #endif // CONFIG2_MINIUPNPC
 
