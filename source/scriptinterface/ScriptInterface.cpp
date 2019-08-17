@@ -567,13 +567,13 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	return ok;
 }
 
-bool ScriptInterface::CreateObject(JS::MutableHandleValue objectValue) const
+bool ScriptInterface::CreateObject_(JS::MutableHandleObject object) const
 {
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
+	// JSAutoRequest is the responsibility of the caller
 
-	objectValue.setObjectOrNull(JS_NewPlainObject(cx));
-	if (!objectValue.isObject())
+	object.set(JS_NewPlainObject(GetContext()));
+
+	if (!object)
 		throw PSERROR_Scripting_CreateObjectFailed();
 
 	return true;

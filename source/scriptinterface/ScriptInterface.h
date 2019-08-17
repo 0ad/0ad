@@ -132,24 +132,21 @@ public:
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
 	/**
-	 * Sets the given value to a new plain JS::Object. Can throw an exception in case of running out of memory.
-	 */
-	bool CreateObject(JS::MutableHandleValue objectValue) const;
-
-	/**
 	 * Sets the given value to a new plain JS::Object, converts the arguments to JS::Values and sets them as properties.
 	 * Can throw an exception.
 	 */
-	template<typename T, typename... Args>
-	bool CreateObject(JS::MutableHandleValue objectValue, const char* propertyName, const T& propertyValue, Args const&... args) const
+	template<typename... Args>
+	bool CreateObject(JS::MutableHandleValue objectValue, Args const&... args) const
 	{
-		return CreateObject(objectValue, args...) && SetProperty(objectValue, propertyName, propertyValue);
-	}
+		JSContext* cx = GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedObject obj(cx);
 
-	template<typename T, typename... Args>
-	bool CreateObject(JS::MutableHandleValue objectValue, const wchar_t* propertyName, const T& propertyValue, Args const&... args) const
-	{
-		return CreateObject(objectValue, args...) && SetProperty(objectValue, propertyName, propertyValue);
+		if (!CreateObject_(&obj, args...))
+			return false;
+
+		objectValue.setObject(*obj);
+		return true;
 	}
 
 	/**
@@ -402,6 +399,22 @@ public:
 	static T AssignOrFromJSVal(JSContext* cx, const JS::HandleValue& val, bool& ret);
 
 private:
+
+	/**
+	 * Careful, the CreateObject_ helpers avoid creation of the JSAutoRequest!
+	 */
+	bool CreateObject_(JS::MutableHandleObject obj) const;
+
+	template<typename T, typename... Args>
+	bool CreateObject_(JS::MutableHandleObject obj, const char* propertyName, const T& propertyValue, Args const&... args) const
+	{
+		// JSAutoRequest is the responsibility of the caller
+		JSContext* cx = GetContext();
+		JS::RootedValue val(cx);
+		AssignOrToJSVal(cx, &val, propertyValue);
+
+		return CreateObject_(obj, args...) && JS_DefineProperty(cx, obj, propertyName, val, JSPROP_ENUMERATE);
+	}
 
 	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const;
 	bool Eval_(const char* code, JS::MutableHandleValue ret) const;
