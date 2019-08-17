@@ -10,5 +10,5 @@ function closePage()
 {
 	Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.splashscreen.enable", String(Engine.GetGUIObjectByName("displaySplashScreen").checked), "config/user.cfg");
 	Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.splashscreen.version", Engine.GetFileMTime(g_SplashScreenFile), "config/user.cfg");
-	Engine.PopGuiPageCB();
+	Engine.PopGuiPage();
 }

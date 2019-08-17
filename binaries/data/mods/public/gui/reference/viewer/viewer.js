@@ -47,9 +47,6 @@ var g_RankIconPath = "session/icons/ranks/";
  * @param {object} data - Contains the civCode and the name of the template to display.
  * @param {string} data.templateName
  * @param {string} [data.civ]
- * @param {*} [data.callback] - If set and loosely equivalent to true, a callback is
- *                              assumed to be setup ready be called by the Engine upon
- *                              closure of this page.
  */
 function init(data)
 {
@@ -59,9 +56,6 @@ function init(data)
 		closePage();
 		return;
 	}
-
-	if (data.callback)
-		g_CallbackSet = true;
 
 	let templateName = removeFiltersFromTemplateName(data.templateName);
 	let isTech = techDataExists(templateName);

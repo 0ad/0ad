@@ -17,13 +17,15 @@
 
 #include "precompiled.h"
 
-#include <algorithm>
+#include "CGUIString.h"
 
+#include "graphics/FontMetrics.h"
 #include "gui/GUI.h"
 #include "lib/utf8.h"
-#include "graphics/FontMetrics.h"
 #include "ps/CLogger.h"
 
+#include <algorithm>
+#include <array>
 
 // List of word delimiter bounds
 // The list contains ranges of word delimiters. The odd indexed chars are the start
@@ -118,10 +120,10 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				//  to the icon, this is to be able to iterate
 				//  through the text-calls without having to
 				//  complex the structure virtually for nothing more.
-				SGUIText::STextCall TextCall;
+				CGUIText::STextCall TextCall;
 
 				// Also add it to the sprites being rendered.
-				SGUIText::SSpriteCall SpriteCall;
+				CGUIText::SSpriteCall SpriteCall;
 
 				// Get Icon from icon database in pGUI
 				const SGUIIcon& icon = pGUI->GetIcon(path);
@@ -174,7 +176,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 		}
 		else if (_to > _from && !Feedback.m_NewLine)
 		{
-			SGUIText::STextCall TextCall;
+			CGUIText::STextCall TextCall;
 
 			// Set defaults
 			TextCall.m_Font = DefaultFont;

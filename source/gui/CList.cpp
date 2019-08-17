@@ -82,8 +82,6 @@ void CList::SetupText()
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
 	//  continuously, or even often, so it'll probably be okay.
-	for (SGUIText* const& t : m_GeneratedTexts)
-		delete t;
 	m_GeneratedTexts.clear();
 
 	CStrW font;
@@ -108,23 +106,20 @@ void CList::SetupText()
 
 	for (size_t i = 0; i < pList->m_Items.size(); ++i)
 	{
-		// Create a new SGUIText. Later on, input it using AddText()
-		SGUIText* text = new SGUIText();
+		CGUIText* text;
 
 		if (!pList->m_Items[i].GetOriginalString().empty())
-			*text = GetGUI()->GenerateText(pList->m_Items[i], font, width, buffer_zone, this);
+			text = &AddText(pList->m_Items[i], font, width, buffer_zone, this);
 		else
 		{
 			// Minimum height of a space character of the current font size
 			CGUIString align_string;
 			align_string.SetValue(L" ");
-			*text = GetGUI()->GenerateText(align_string, font, width, buffer_zone, this);
+			text = &AddText(align_string, font, width, buffer_zone, this);
 		}
 
 		m_ItemsYPositions[i] = buffered_y;
-		buffered_y += text->m_Size.cy;
-
-		AddText(text);
+		buffered_y += text->GetSize().cy;
 	}
 
 	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;

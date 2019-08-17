@@ -9,20 +9,12 @@ var g_BuildList = {};
 var g_TrainList = {};
 
 /**
- * Callback function name on closing gui via Engine.PopGuiPage().
- */
-var g_Callback = "";
-
-/**
  * Initialize the page
  *
  * @param {object} data - Parameters passed from the code that calls this page into existence.
  */
 function init(data = {})
 {
-	if (data.callback)
-		g_Callback = data.callback;
-
 	let civList = Object.keys(g_CivData).map(civ => ({
 		"name": g_CivData[civ].Name,
 		"code": civ,
@@ -52,16 +44,12 @@ function init(data = {})
 
 function switchToCivInfoPage()
 {
-	Engine.PopGuiPage();
-	Engine.PushGuiPage("page_civinfo.xml", { "civ": g_SelectedCiv, "callback": g_Callback });
+	Engine.PopGuiPage({ "civ": g_SelectedCiv, "nextPage": "page_civinfo.xml" });
 }
 
 function closePage()
 {
-	if (g_Callback)
-		Engine.PopGuiPageCB({ "civ": g_SelectedCiv, "page": "page_structree.xml" });
-	else
-		Engine.PopGuiPage();
+	Engine.PopGuiPage({ "civ": g_SelectedCiv, "page": "page_structree.xml" });
 }
 
 /**

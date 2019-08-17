@@ -35,7 +35,7 @@
 			hotkey="cancel"
 		>
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">closePage();</action>
+			<action on="Press">Engine.PopGuiPage();</action>
 		</object>
 	</object>
 

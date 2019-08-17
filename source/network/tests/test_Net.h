@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ public:
 	{
 		TS_ASSERT(server.SetupConnection(PS_DEFAULT_PORT));
 		for (size_t j = 0; j < clients.size(); ++j)
-			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1", PS_DEFAULT_PORT));
+			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1", PS_DEFAULT_PORT, nullptr));
 
 		for (size_t i = 0; ; ++i)
 		{
@@ -275,7 +275,7 @@ public:
 		client2B.SetUserName(L"bob");
 		clients.push_back(&client2B);
 
-		TS_ASSERT(client2B.SetupConnection("127.0.0.1", PS_DEFAULT_PORT));
+		TS_ASSERT(client2B.SetupConnection("127.0.0.1", PS_DEFAULT_PORT, nullptr));
 
 		for (size_t i = 0; ; ++i)
 		{

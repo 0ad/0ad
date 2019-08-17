@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,7 +58,7 @@ public:
 	virtual JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface) = 0;
 	virtual JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface) = 0;
 	virtual void SendMUCMessage(const std::string& message) = 0;
-	virtual void SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, const std::string& hostJID) = 0;
+	virtual void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID) = 0;
 };
 
 extern IXmppClient *g_XmppClient;

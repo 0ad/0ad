@@ -69,10 +69,7 @@ function checkBehavior()
 function returnAI(save = true)
 {
 	let idx = Engine.GetGUIObjectByName("aiSelection").selected;
-
-	// Pop the page before calling the callback, so the callback runs
-	// in the parent GUI page's context
-	Engine.PopGuiPageCB({
+	Engine.PopGuiPage({
 		"save": save,
 		"id": g_AIDescriptions[idx].id,
 		"name": g_AIDescriptions[idx].data.name,

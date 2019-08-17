@@ -14,13 +14,16 @@
 		</object>
 
 		<object type="image" sprite="ModernFade" size="20 20 100%-20 100%-58">
-			<object name="mainText" type="text" style="ModernTextPanel"/>
+			<object name="mainText" type="text" style="ModernTextPanel">
+				<action on="Load">this.caption = Engine.TranslateLines(Engine.ReadFile("gui/manual/intro.txt"));</action>
+			</object>
 		</object>
 
 		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-408 100%-52 100%-218 100%-24" hotkey="cancel">
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">closeManual();</action>
+			<action on="Press">Engine.PopGuiPage();</action>
 		</object>
+
 		<object name="url" type="button" style="ModernButtonRed" size="100%-214 100%-52 100%-24 100%-24">
 			<translatableAttribute id="caption">View Online</translatableAttribute>
 			<action on="Press">openURL("https://trac.wildfiregames.com/wiki/0adManual");</action>

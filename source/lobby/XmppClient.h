@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ public:
 	void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
-	void SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, const std::string& hostJID);
+	void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID);
 
 protected:
 	/* Xmpp handlers */
@@ -127,8 +127,8 @@ protected:
 	virtual void handleMessage(const glooxwrapper::Message& msg, glooxwrapper::MessageSession* session);
 
 	/* Session Handler */
-	virtual void handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session* UNUSED(session), const glooxwrapper::Jingle::Session::Jingle* jingle);
-	virtual void handleSessionInitiation(const glooxwrapper::Jingle::Session::Jingle* jingle);
+	virtual void handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle);
+	virtual void handleSessionInitiation(glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle);
 
 	// Helpers
 	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;

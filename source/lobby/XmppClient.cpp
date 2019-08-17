@@ -1217,29 +1217,27 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 #undef CASE
 }
 
-void XmppClient::SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, const std::string& hostJIDStr)
+void XmppClient::SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJIDStr)
 {
-	ENSURE(stunEndpoint);
-
 	char ipStr[256] = "(error)";
 	ENetAddress addr;
-	addr.host = ntohl(stunEndpoint->ip);
+	addr.host = ntohl(stunEndpoint.ip);
 	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
 
 	glooxwrapper::JID hostJID(hostJIDStr);
 	glooxwrapper::Jingle::Session session = m_sessionManager->createSession(hostJID);
-	session.sessionInitiate(ipStr, stunEndpoint->port);
+	session.sessionInitiate(ipStr, stunEndpoint.port);
 }
 
-void XmppClient::handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session* UNUSED(session), const glooxwrapper::Jingle::Session::Jingle* jingle)
+void XmppClient::handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle)
 {
 	if (action == gloox::Jingle::SessionInitiate)
-		handleSessionInitiation(jingle);
+		handleSessionInitiation(session, jingle);
 }
 
-void XmppClient::handleSessionInitiation(const glooxwrapper::Jingle::Session::Jingle* jingle)
+void XmppClient::handleSessionInitiation(glooxwrapper::Jingle::Session& UNUSED(session), const glooxwrapper::Jingle::Session::Jingle& jingle)
 {
-	glooxwrapper::Jingle::ICEUDP::Candidate candidate = jingle->getCandidate();
+	glooxwrapper::Jingle::ICEUDP::Candidate candidate = jingle.getCandidate();
 
 	if (candidate.ip.empty())
 	{

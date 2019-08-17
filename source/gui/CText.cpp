@@ -57,7 +57,7 @@ CText::CText(CGUI* pGUI)
 	AddScrollBar(bar);
 
 	// Add text
-	AddText(new SGUIText());
+	AddText();
 }
 
 CText::~CText()
@@ -89,10 +89,10 @@ void CText::SetupText()
 
     float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, width, buffer_zone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, width, buffer_zone, this);
 
 	if (!scrollbar)
-		CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
+		CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 
 	// Setup scrollbar
 	if (scrollbar)
@@ -109,7 +109,7 @@ void CText::SetupText()
 		if (scroll_bottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
 			bottom = true;
 
-		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0]->m_Size.cy);
+		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0].GetSize().cy);
 		GetScrollBar(0).SetScrollSpace(m_CachedActualSize.GetHeight());
 
 		GetScrollBar(0).SetX(m_CachedActualSize.right);
@@ -244,8 +244,8 @@ void CText::Draw()
 
 bool CText::MouseOverIcon()
 {
-	for (SGUIText* const& guitext : m_GeneratedTexts)
-		for (const SGUIText::SSpriteCall& spritecall : guitext->m_SpriteCalls)
+	for (const CGUIText& guitext : m_GeneratedTexts)
+		for (const CGUIText::SSpriteCall& spritecall : guitext.GetSpriteCalls())
 		{
 			// Check mouse over sprite
 			if (!spritecall.m_Area.PointInside(m_pGUI->GetMousePos() - m_CachedActualSize.TopLeft()))

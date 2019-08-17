@@ -4,12 +4,7 @@
 var g_Options;
 
 /**
- * Remember whether to unpause running singleplayer games.
- */
-var g_HasCallback;
-
-/**
- * Functions to call after closing the page.
+ * Names of session functions to be called after closing the page.
  */
 var g_CloseCallbacks;
 
@@ -170,8 +165,7 @@ var g_OptionType = {
 
 function init(data, hotloadData)
 {
-	g_CloseCallbacks = new Set();
-	g_HasCallback = hotloadData && hotloadData.callback || data && data.callback;
+	g_CloseCallbacks = hotloadData ? hotloadData.closeCallbacks : new Set();
 	g_TabCategorySelected = hotloadData ? hotloadData.tabCategorySelected : 0;
 
 	g_Options = Engine.ReadJSONFile("gui/options/options.json");
@@ -190,7 +184,7 @@ function getHotloadData()
 {
 	return {
 		"tabCategorySelected": g_TabCategorySelected,
-		"callback": g_HasCallback
+		"closeCallbacks": g_CloseCallbacks
 	};
 }
 
@@ -382,8 +376,5 @@ function closePage()
 
 function closePageWithoutConfirmation()
 {
-	if (g_HasCallback)
-		Engine.PopGuiPageCB(g_CloseCallbacks);
-	else
-		Engine.PopGuiPage();
+	Engine.PopGuiPage(g_CloseCallbacks);
 }

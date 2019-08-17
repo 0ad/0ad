@@ -1,186 +1,216 @@
+<?xml version='1.0' encoding='utf-8'?>
 <skeletons>
-	<standard_skeleton title="Standard biped" id="biped">
-		<bone name="root">
-			<bone name="pelvis">
-				<bone name="spine">
-					<bone name="spine1">
-						<bone name="neck">
-							<bone name="head">
-								<bone name="DUMMY_headnub"/> <!-- kept for binary compatibility with PSA files -->
-								<bone name="l_clavicle">
-									<bone name="l_upperarm">
-										<bone name="l_forearm">
-											<bone name="l_hand">
-												<bone name="DUMMY_l_finger0">
-													<bone name="DUMMY_l_finger0nub"/>
-												</bone>
-											</bone>
-										</bone>
-									</bone>
-								</bone>
-								<bone name="r_clavicle">
-									<bone name="r_upperarm">
-										<bone name="r_forearm">
-											<bone name="r_hand">
-												<bone name="DUMMY_r_finger0">
-													<bone name="DUMMY_r_finger0nub"/>
-												</bone>
-											</bone>
-										</bone>
-									</bone>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-					<bone name="l_thigh">
-						<bone name="l_calf">
-							<bone name="l_foot">
-								<bone name="DUMMY_l_toe0">
-									<bone name="DUMMY_l_toe0nub"/>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-					<bone name="r_thigh">
-						<bone name="r_calf">
-							<bone name="r_foot">
-								<bone name="DUMMY_r_toe0">
-									<bone name="DUMMY_r_toe0nub"/>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-				</bone>
-			</bone>
-		</bone>
-	</standard_skeleton>
-
-	<skeleton title="3ds Max biped" target="biped">
-		<identifier>
-			<root>Bip01</root>
-		</identifier>
-		<bone name="Bip01"><target>root</target>
-			<bone name="Bip01_Pelvis"><target>pelvis</target>
-				<bone name="Bip01_Spine"><target>spine</target>
-					<bone name="Bip01_Spine1"><target>spine1</target>
-						<bone name="Bip01_Neck"><target>neck</target>
-							<bone name="Bip01_Head"><target>head</target>
-								<bone name="Bip01_HeadNub"/>
-								<bone name="Bip01_L_Clavicle"><target>l_clavicle</target>
-									<bone name="Bip01_L_UpperArm"><target>l_upperarm</target>
-										<bone name="Bip01_L_Forearm"><target>l_forearm</target>
-											<bone name="Bip01_L_Hand"><target>l_hand</target>
-												<bone name="Bip01_L_Finger0">
-													<bone name="Bip01_L_Finger0Nub"/>
-												</bone>
-											</bone>
-										</bone>
-									</bone>
-								</bone>
-								<bone name="Bip01_R_Clavicle"><target>r_clavicle</target>
-									<bone name="Bip01_R_UpperArm"><target>r_upperarm</target>
-										<bone name="Bip01_R_Forearm"><target>r_forearm</target>
-											<bone name="Bip01_R_Hand"><target>r_hand</target>
-												<bone name="Bip01_R_Finger0">
-													<bone name="Bip01_R_Finger0Nub"/>
-												</bone>
-											</bone>
-										</bone>
-									</bone>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-					<bone name="Bip01_L_Thigh"><target>l_thigh</target>
-						<bone name="Bip01_L_Calf"><target>l_calf</target>
-							<bone name="Bip01_L_Foot"><target>l_foot</target>
-								<bone name="Bip01_L_Toe0">
-									<bone name="Bip01_L_Toe0Nub"/>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-					<bone name="Bip01_R_Thigh"><target>r_thigh</target>
-						<bone name="Bip01_R_Calf"><target>r_calf</target>
-							<bone name="Bip01_R_Foot"><target>r_foot</target>
-								<bone name="Bip01_R_Toe0">
-									<bone name="Bip01_R_Toe0Nub"/>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-				</bone>
-			</bone>
-		</bone>
-	</skeleton>
-
-	<skeleton title="XSI biped" target="biped">
-		<identifier>
-			<root>Biped_GlobalSRT</root>
-		</identifier>
-		<bone name="Biped_GlobalSRT">
-			<target>root</target>
-			<bone name="Biped_Spine01">
-				<target>pelvis</target>
-				<bone name="Biped_Spine02">
-					<target>spine</target>
-					<bone name="Biped_Spine03">
-						<target>spine1</target>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Biped_Lshoulder">
-				<target>l_clavicle</target>
-			</bone>
-			<bone name="Biped_Lbicept">
-				<target>l_upperarm</target>
-				<bone name="Biped_Lforearm">
-					<target>l_forearm</target>
-				</bone>
-			</bone>
-			<bone name="Biped_Rshoulder">
-				<target>r_clavicle</target>
-			</bone>
-			<bone name="Biped_Rbicept">
-				<target>r_upperarm</target>
-				<bone name="Biped_Rforearm">
-					<target>r_forearm</target>
-				</bone>
-			</bone>
-			<bone name="Biped_neck">
-				<target>neck</target>
-				<bone name="Biped_head">
-					<target>head</target>
-				</bone>
-			</bone>
-			<bone name="Biped_Lthigh">
-				<target>l_thigh</target>
-				<bone name="Biped_Lshin">
-					<target>l_calf</target>
-				</bone>
-			</bone>
-			<bone name="Biped_Rthigh">
-				<target>r_thigh</target>
-				<bone name="Biped_Rshin">
-					<target>r_calf</target>
-				</bone>
-			</bone>
-			<bone name="Biped_Lhand">
-				<target>l_hand</target>
-				<bone name="Biped_Lfingers"/>
-			</bone>
-			<bone name="Biped_Lfoot">
-				<target>l_foot</target>
-				<bone name="Biped_Ltoe"/>
-			</bone>
-			<bone name="Biped_Rhand">
-				<target>r_hand</target>
-				<bone name="Biped_Rfingers"/>
-			</bone>
-			<bone name="Biped_Rfoot">
-				<target>r_foot</target>
-				<bone name="Biped_Rtoe"/>
-			</bone>
-		</bone>
-	</skeleton>
+  <standard_skeleton id="Biped" title="Biped">
+    <bone name="hip">
+      <bone name="spine">
+        <bone name="spine1">
+          <bone name="chest">
+            <bone name="shoulder_L">
+              <bone name="arm_L">
+                <bone name="forearm_L">
+                  <bone name="hand_L">
+                    <bone name="finger_L">
+                      <bone name="fingertip_L" />
+                    </bone>
+                    <bone name="shield" />
+                    <bone name="weapon_bow" />
+                    <bone name="ammo" />
+                    <bone name="weapon_L" />
+                  </bone>
+                  <bone name="shield_arm" />
+                </bone>
+              </bone>
+            </bone>
+            <bone name="neck">
+              <bone name="head">
+                <bone name="helmet" />
+              </bone>
+              <bone name="neck_guard" />
+            </bone>
+            <bone name="shoulder_R">
+              <bone name="arm_R">
+                <bone name="forearm_R">
+                  <bone name="hand_R">
+                    <bone name="finger_R">
+                      <bone name="fingertip_R" />
+                    </bone>
+                    <bone name="weapon_R" />
+                    <bone name="projectile" />
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="cape1">
+              <bone name="cape2">
+                <bone name="cape3" />
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="thigh_L">
+        <bone name="leg_L">
+          <bone name="foot_L" />
+        </bone>
+      </bone>
+      <bone name="thigh_R">
+        <bone name="leg_R">
+          <bone name="foot_R" />
+        </bone>
+      </bone>
+      <bone name="sheath_01_R" />
+      <bone name="sheath_01_L" />
+      <bone name="sheath_02_R" />
+      <bone name="sheath_02_L" />
+      <bone name="quiver_R" />
+      <bone name="quiver_L" />
+    </bone>
+    <bone name="knee_L" />
+    <bone name="knee_R" />
+    <bone name="elbow_L" />
+    <bone name="elbow_R" />
+  </standard_skeleton>
+  <skeleton target="Biped" title="Biped">
+    <identifier>
+      <root>hip</root>
+    </identifier>
+    <bone name="hip">
+      <target>hip</target>
+      <bone name="spine">
+        <target>spine</target>
+        <bone name="spine1">
+          <target>spine1</target>
+          <bone name="chest">
+            <target>chest</target>
+            <bone name="shoulder_L">
+              <target>shoulder_L</target>
+              <bone name="arm_L">
+                <target>arm_L</target>
+                <bone name="forearm_L">
+                  <target>forearm_L</target>
+                  <bone name="hand_L">
+                    <target>hand_L</target>
+                    <bone name="finger_L">
+                      <target>finger_L</target>
+                      <bone name="fingertip_L">
+                        <target>fingertip_L</target>
+                      </bone>
+                    </bone>
+                    <bone name="shield">
+                      <target>shield</target>
+                    </bone>
+                    <bone name="weapon_bow">
+                      <target>weapon_bow</target>
+                    </bone>
+                    <bone name="ammo">
+                      <target>ammo</target>
+                    </bone>
+                    <bone name="weapon_L">
+                      <target>weapon_L</target>
+                    </bone>
+                  </bone>
+                  <bone name="shield_arm">
+                    <target>shield_arm</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="neck">
+              <target>neck</target>
+              <bone name="head">
+                <target>head</target>
+                <bone name="helmet">
+                  <target>helmet</target>
+                </bone>
+              </bone>
+              <bone name="neck_guard">
+                <target>neck_guard</target>
+              </bone>
+            </bone>
+            <bone name="shoulder_R">
+              <target>shoulder_R</target>
+              <bone name="arm_R">
+                <target>arm_R</target>
+                <bone name="forearm_R">
+                  <target>forearm_R</target>
+                  <bone name="hand_R">
+                    <target>hand_R</target>
+                    <bone name="finger_R">
+                      <target>finger_R</target>
+                      <bone name="fingertip_R">
+                        <target>fingertip_R</target>
+                      </bone>
+                    </bone>
+                    <bone name="weapon_R">
+                      <target>weapon_R</target>
+                    </bone>
+                    <bone name="projectile">
+                      <target>projectile</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="cape1">
+              <target>cape1</target>
+              <bone name="cape2">
+                <target>cape2</target>
+                <bone name="cape3">
+                  <target>cape3</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="thigh_L">
+        <target>thigh_L</target>
+        <bone name="leg_L">
+          <target>leg_L</target>
+          <bone name="foot_L">
+            <target>foot_L</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="thigh_R">
+        <target>thigh_R</target>
+        <bone name="leg_R">
+          <target>leg_R</target>
+          <bone name="foot_R">
+            <target>foot_R</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="sheath_01_R">
+        <target>sheath_01_R</target>
+      </bone>
+      <bone name="sheath_01_L">
+        <target>sheath_01_L</target>
+      </bone>
+      <bone name="sheath_02_R">
+        <target>sheath_02_R</target>
+      </bone>
+      <bone name="sheath_02_L">
+        <target>sheath_02_L</target>
+      </bone>
+      <bone name="quiver_R">
+        <target>quiver_R</target>
+      </bone>
+      <bone name="quiver_L">
+        <target>quiver_L</target>
+      </bone>
+    </bone>
+    <bone name="knee_L">
+      <target>knee_L</target>
+    </bone>
+    <bone name="knee_R">
+      <target>knee_R</target>
+    </bone>
+    <bone name="elbow_L">
+      <target>elbow_L</target>
+    </bone>
+    <bone name="elbow_R">
+      <target>elbow_R</target>
+    </bone>
+  </skeleton>
 </skeletons>

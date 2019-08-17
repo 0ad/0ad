@@ -268,9 +268,9 @@ function cancelRequest()
 	hideDialog();
 }
 
-function closePage(data)
+function closePage()
 {
-	Engine.PopGuiPageCB(undefined);
+	Engine.PopGuiPage();
 }
 
 function showErrorMessageBox(caption, title, buttonCaptions, buttonActions)

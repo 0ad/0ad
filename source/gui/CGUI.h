@@ -53,9 +53,8 @@ struct SGUIStyle
 class JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
 class IGUIObject;
 class CGUISpriteInstance;
-struct SGUIText;
 struct CGUIColor;
-struct SGUIText;
+class CGUIText;
 struct SGUIIcon;
 class CGUIString;
 class CGUISprite;
@@ -123,17 +122,6 @@ public:
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
 	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
-
-	/**
-	 * Draw a SGUIText object
-	 *
-	 * @param Text Text object.
-	 * @param DefaultColor Color used if no tag applied.
-	 * @param pos position
-	 * @param z z value.
-	 * @param clipping
-	 */
-	void DrawText(SGUIText& Text, const CGUIColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping);
 
 	/**
 	 * Clean up, call this to clean up all memory allocated
@@ -225,25 +213,6 @@ public:
 	 * @see IGUIObject#UpdateCachedSize()
 	 */
 	void UpdateResolution();
-
-	/**
-	 * Generate a SGUIText object from the inputted string.
-	 * The function will break down the string and its
-	 * tags to calculate exactly which rendering queries
-	 * will be sent to the Renderer. Also, horizontal alignment
-	 * is taken into acount in this method but NOT vertical alignment.
-	 *
-	 * Done through the CGUI since it can communicate with
-	 *
-	 * @param Text Text to generate SGUIText object from
-	 * @param Font Default font, notice both Default color and default font
-	 *		  can be changed by tags.
-	 * @param Width Width, 0 if no word-wrapping.
-	 * @param BufferZone space between text and edge, and space between text and images.
-	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
-	 *		  and we need to be able to output which object the error occurred in to aid the user.
-	 */
-	SGUIText GenerateText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone, const IGUIObject* pObject = NULL);
 
 	/**
 	 * Check if an icon exists

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostLobbyName);
 
-	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort))
+	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort, nullptr))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
@@ -104,15 +104,14 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const
 			return;
 		}
 
-		StunClient::StunEndpoint* stunEndpoint = StunClient::FindStunEndpointJoin(enetClient);
-		if (!stunEndpoint)
+		StunClient::StunEndpoint stunEndpoint;
+		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint))
 		{
 			pCxPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
 			return;
 		}
 
 		g_XmppClient->SendStunEndpointToHost(stunEndpoint, hostJID);
-		delete stunEndpoint;
 
 		SDL_Delay(1000);
 	}
@@ -123,7 +122,7 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const
 	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
 
 	if (g_XmppClient && useSTUN)
-		StunClient::SendHolePunchingMessages(enetClient, serverAddress.c_str(), serverPort);
+		StunClient::SendHolePunchingMessages(*enetClient, serverAddress, serverPort);
 
 	if (!g_NetClient->SetupConnection(serverAddress, serverPort, enetClient))
 	{

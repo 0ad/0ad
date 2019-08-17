@@ -49,8 +49,6 @@ void COList::SetupText()
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
 	//  continuously, or even often, so it'll probably be okay.
-	for (SGUIText* const& t : m_GeneratedTexts)
-		delete t;
 	m_GeneratedTexts.clear();
 
 	CStrW font;
@@ -78,12 +76,11 @@ void COList::SetupText()
 		if (column.m_Width > 0 && column.m_Width < 1)
 			width *= m_TotalAvailableColumnWidth;
 
-		SGUIText* text = new SGUIText();
 		CGUIString gui_string;
 		gui_string.SetValue(column.m_Heading);
-		*text = GetGUI()->GenerateText(gui_string, font, width, buffer_zone, this);
-		AddText(text);
-		m_HeadingHeight = std::max(m_HeadingHeight, text->m_Size.cy + COLUMN_SHIFT.y);
+
+		const CGUIText& text = AddText(gui_string, font, width, buffer_zone, this);
+		m_HeadingHeight = std::max(m_HeadingHeight, text.GetSize().cy + COLUMN_SHIFT.y);
 	}
 
 	// Generate texts
@@ -101,18 +98,17 @@ void COList::SetupText()
 
 			CGUIList* pList_c;
 			GUI<CGUIList>::GetSettingPointer(this, "list_" + column.m_Id, pList_c);
-			SGUIText* text = new SGUIText();
+			CGUIText* text;
 			if (!pList_c->m_Items[i].GetOriginalString().empty())
-				*text = GetGUI()->GenerateText(pList_c->m_Items[i], font, width, buffer_zone, this);
+				text = &AddText(pList_c->m_Items[i], font, width, buffer_zone, this);
 			else
 			{
 				// Minimum height of a space character of the current font size
 				CGUIString align_string;
 				align_string.SetValue(L" ");
-				*text = GetGUI()->GenerateText(align_string, font, width, buffer_zone, this);
+				text = &AddText(align_string, font, width, buffer_zone, this);
 			}
-			shift = std::max(shift, text->m_Size.cy);
-			AddText(text);
+			shift = std::max(shift, text->GetSize().cy);
 		}
 		buffered_y += shift;
 	}

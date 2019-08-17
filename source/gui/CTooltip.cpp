@@ -54,7 +54,7 @@ CTooltip::CTooltip(CGUI* pGUI)
 
 	// Set up a blank piece of text, to be replaced with a more
 	// interesting message later
-	AddText(new SGUIText());
+	AddText();
 }
 
 CTooltip::~CTooltip()
@@ -78,8 +78,7 @@ void CTooltip::SetupText()
 	float max_width = 0.f;
 	GUI<float>::GetSetting(this, "maxwidth", max_width);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, max_width, buffer_zone, this);
-
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, max_width, buffer_zone, this);
 
 	// Position the tooltip relative to the mouse:
 
@@ -96,8 +95,8 @@ void CTooltip::SetupText()
 	GUI<CPos>::GetSetting(this, "offset", offset);
 	GUI<EVAlign>::GetSetting(this, "anchor", anchor);
 
-	float textwidth = m_GeneratedTexts[0]->m_Size.cx;
-	float textheight = m_GeneratedTexts[0]->m_Size.cy;
+	float textwidth = m_GeneratedTexts[0].GetSize().cx;
+	float textheight = m_GeneratedTexts[0].GetSize().cy;
 
 	CClientArea size;
 	size.pixel.left = mousepos.x + offset.x;

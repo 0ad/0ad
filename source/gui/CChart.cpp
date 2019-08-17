@@ -208,8 +208,6 @@ void CChart::UpdateSeries()
 
 void CChart::SetupText()
 {
-	for (SGUIText* t : m_GeneratedTexts)
-		delete t;
 	m_GeneratedTexts.clear();
 	m_TextPositions.clear();
 
@@ -290,10 +288,8 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 		LOGERROR("Unsupported chart format: " + format.EscapeToPrintableASCII());
 		return CSize();
 	}
-	SGUIText* text = new SGUIText();
-	*text = GetGUI()->GenerateText(gui_str, font, 0, buffer_zone, this);
-	AddText(text);
-	return text->m_Size;
+
+	return AddText(gui_str, font, 0, buffer_zone, this).GetSize();
 }
 
 void CChart::UpdateBounds()
