@@ -100,7 +100,7 @@ function confirmSetup()
 		let joinServer = Engine.GetGUIObjectByName("joinServer").caption;
 		let joinPort = Engine.GetGUIObjectByName("joinPort").caption;
 
-		if (startJoin(joinPlayerName, joinServer, getValidPort(joinPort), false))
+		if (startJoin(joinPlayerName, joinServer, getValidPort(joinPort), false, ""))
 			switchSetupPage("pageConnecting");
 	}
 	else if (!Engine.GetGUIObjectByName("pageHost").hidden)
@@ -337,7 +337,7 @@ function startHost(playername, servername, port)
 /**
  * Connects via STUN if the hostJID is given.
  */
-function startJoin(playername, ip, port, useSTUN, hostJID = "")
+function startJoin(playername, ip, port, useSTUN, hostJID)
 {
 	try
 	{

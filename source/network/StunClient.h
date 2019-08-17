@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * Copyright (C) 2013-2016 SuperTuxKart-Team.
  * This file is part of 0 A.D.
  *
@@ -21,6 +21,8 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
+#include <string>
+
 typedef struct _ENetHost ENetHost;
 
 namespace StunClient
@@ -31,13 +33,13 @@ struct StunEndpoint {
 	u16 port;
 };
 
-void SendStunRequest(ENetHost* transactionHost, u32 targetIp, u16 targetPort);
+void SendStunRequest(ENetHost& transactionHost, u32 targetIp, u16 targetPort);
 
 JS::Value FindStunEndpointHost(const ScriptInterface& scriptInterface, int port);
 
-StunEndpoint* FindStunEndpointJoin(ENetHost* transactionHost);
+bool FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint);
 
-void SendHolePunchingMessages(ENetHost* enetClient, const char* serverAddress, u16 serverPort);
+void SendHolePunchingMessages(ENetHost& enetClient, const std::string& serverAddress, u16 serverPort);
 
 }
 

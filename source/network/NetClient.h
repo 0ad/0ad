@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -107,7 +107,7 @@ public:
 	 * @param server IP address or host name to connect to
 	 * @return true on success, false on connection failure
 	 */
-	bool SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient = NULL);
+	bool SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient);
 
 	/**
 	 * Destroy the connection to the server.

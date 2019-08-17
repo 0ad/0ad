@@ -129,10 +129,8 @@ bool GetFromBuffer(const std::vector<u8>& buffer, u32& offset, T& result)
  * The request is sent through transactionHost, from which the answer
  * will be retrieved by ReceiveStunResponse and interpreted by ParseStunResponse.
  */
-bool CreateStunRequest(ENetHost* transactionHost)
+bool CreateStunRequest(ENetHost& transactionHost)
 {
-	ENSURE(transactionHost);
-
 	CStr server_name;
 	CFG_GET_VAL("lobby.stun.server", server_name);
 	CFG_GET_VAL("lobby.stun.port", m_StunServerPort);
@@ -161,7 +159,7 @@ bool CreateStunRequest(ENetHost* transactionHost)
 	ENSURE(res);
 
 	// Documentation says it points to "one or more addrinfo structures"
-	sockaddr_in* current_interface = (sockaddr_in*)(res->ai_addr);
+	sockaddr_in* current_interface = reinterpret_cast<sockaddr_in*>(res->ai_addr);
 	m_StunServerIP = ntohl(current_interface->sin_addr.s_addr);
 
 	StunClient::SendStunRequest(transactionHost, m_StunServerIP, m_StunServerPort);
@@ -170,7 +168,7 @@ bool CreateStunRequest(ENetHost* transactionHost)
 	return true;
 }
 
-void StunClient::SendStunRequest(ENetHost* transactionHost, u32 targetIp, u16 targetPort)
+void StunClient::SendStunRequest(ENetHost& transactionHost, u32 targetIp, u16 targetPort)
 {
 	std::vector<u8> buffer;
 	AddUInt16(buffer, m_MethodTypeBinding);
@@ -192,16 +190,20 @@ void StunClient::SendStunRequest(ENetHost* transactionHost, u32 targetIp, u16 ta
 	to.sin_port = htons(targetPort);
 	to.sin_addr.s_addr = htonl(targetIp);
 
-	sendto(transactionHost->socket, (char*)(buffer.data()), (int)buffer.size(), 0, (sockaddr*)&to, to_len);
+	sendto(
+		transactionHost.socket,
+		reinterpret_cast<char*>(buffer.data()),
+		static_cast<int>(buffer.size()),
+		0,
+		reinterpret_cast<sockaddr*>(&to),
+		to_len);
 }
 
 /**
  * Gets the response from the STUN server and checks it for its validity.
  */
-bool ReceiveStunResponse(ENetHost* transactionHost, std::vector<u8>& buffer)
+bool ReceiveStunResponse(ENetHost& transactionHost, std::vector<u8>& buffer)
 {
-	ENSURE(transactionHost);
-
 	// TransportAddress sender;
 	const int LEN = 2048;
 	char input_buffer[LEN];
@@ -211,7 +213,7 @@ bool ReceiveStunResponse(ENetHost* transactionHost, std::vector<u8>& buffer)
 	sockaddr_in addr;
 	socklen_t from_len = sizeof(addr);
 
-	int len = recvfrom(transactionHost->socket, input_buffer, LEN, 0, (sockaddr*)(&addr), &from_len);
+	int len = recvfrom(transactionHost.socket, input_buffer, LEN, 0, reinterpret_cast<sockaddr*>(&addr), &from_len);
 
 	int delay = 200;
 	CFG_GET_VAL("lobby.stun.delay", delay);
@@ -221,7 +223,7 @@ bool ReceiveStunResponse(ENetHost* transactionHost, std::vector<u8>& buffer)
 	for (int count = 0; len < 0 && (count < max_tries || max_tries == -1); ++count)
 	{
 		usleep(delay * 1000);
-		len = recvfrom(transactionHost->socket, input_buffer, LEN, 0, (sockaddr*)(&addr), &from_len);
+		len = recvfrom(transactionHost.socket, input_buffer, LEN, 0, reinterpret_cast<sockaddr*>(&addr), &from_len);
 	}
 
 	if (len < 0)
@@ -230,7 +232,7 @@ bool ReceiveStunResponse(ENetHost* transactionHost, std::vector<u8>& buffer)
 		return false;
 	}
 
-	u32 sender_ip = ntohl((u32)(addr.sin_addr.s_addr));
+	u32 sender_ip = ntohl(static_cast<u32>(addr.sin_addr.s_addr));
 	u16 sender_port = ntohs(addr.sin_port);
 
 	if (sender_ip != m_StunServerIP)
@@ -246,7 +248,7 @@ bool ReceiveStunResponse(ENetHost* transactionHost, std::vector<u8>& buffer)
 
 	// Convert to network string.
 	buffer.resize(len);
-	memcpy(buffer.data(), (u8*)input_buffer, len);
+	memcpy(buffer.data(), reinterpret_cast<u8*>(input_buffer), len);
 
 	return true;
 }
@@ -357,7 +359,7 @@ bool ParseStunResponse(const std::vector<u8>& buffer)
 	return true;
 }
 
-bool STUNRequestAndResponse(ENetHost* transactionHost)
+bool STUNRequestAndResponse(ENetHost& transactionHost)
 {
 	if (!CreateStunRequest(transactionHost))
 		return false;
@@ -369,7 +371,7 @@ bool STUNRequestAndResponse(ENetHost* transactionHost)
 
 JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterface, int port)
 {
-	ENetAddress hostAddr{ENET_HOST_ANY, (u16)port};
+	ENetAddress hostAddr{ENET_HOST_ANY, static_cast<u16>(port)};
 	ENetHost* transactionHost = enet_host_create(&hostAddr, 1, 1, 0, 0);
 	if (!transactionHost)
 	{
@@ -377,7 +379,7 @@ JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterfac
 		return JS::UndefinedValue();
 	}
 
-	bool success = STUNRequestAndResponse(transactionHost);
+	bool success = STUNRequestAndResponse(*transactionHost);
 	enet_host_destroy(transactionHost);
 	if (!success)
 		return JS::UndefinedValue();
@@ -396,12 +398,10 @@ JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterfac
 	return stunEndpoint;
 }
 
-StunClient::StunEndpoint* StunClient::FindStunEndpointJoin(ENetHost* transactionHost)
+bool StunClient::FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint)
 {
-	ENSURE(transactionHost);
-
 	if (!STUNRequestAndResponse(transactionHost))
-		return nullptr;
+		return false;
 
 	// Convert m_IP to string
 	char ipStr[256] = "(error)";
@@ -409,15 +409,18 @@ StunClient::StunEndpoint* StunClient::FindStunEndpointJoin(ENetHost* transaction
 	addr.host = ntohl(m_IP);
 	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
 
-	return new StunEndpoint({ m_IP, m_Port });
+	stunEndpoint.ip = m_IP;
+	stunEndpoint.port = m_Port;
+
+	return true;
 }
 
-void StunClient::SendHolePunchingMessages(ENetHost* enetClient, const char* serverAddress, u16 serverPort)
+void StunClient::SendHolePunchingMessages(ENetHost& enetClient, const std::string& serverAddress, u16 serverPort)
 {
 	// Convert ip string to int64
 	ENetAddress addr;
 	addr.port = serverPort;
-	enet_address_set_host(&addr, serverAddress);
+	enet_address_set_host(&addr, serverAddress.c_str());
 
 	int delay = 200;
 	CFG_GET_VAL("lobby.stun.delay", delay);
