@@ -999,7 +999,8 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	if (m_Sprites.find(name) != m_Sprites.end())
 		LOGWARNING("GUI sprite name '%s' used more than once; first definition will be discarded", name.c_str());
 
-	SGUIImageEffects* effects = NULL;
+	// shared_ptr to link the effect to every sprite, faster than copy.
+	std::shared_ptr<SGUIImageEffects> effects;
 
 	for (XMBElement child : Element.GetChildNodes())
 	{
@@ -1013,7 +1014,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 				LOGERROR("GUI <sprite> must not have more than one <effect>");
 			else
 			{
-				effects = new SGUIImageEffects;
+				effects = std::make_shared<SGUIImageEffects>();
 				Xeromyces_ReadEffects(child, pFile, *effects);
 			}
 		}
@@ -1026,9 +1027,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	if (effects)
 		for (SGUIImage* const& img : Sprite->m_Images)
 			if (!img->m_Effects)
-				img->m_Effects = new SGUIImageEffects(*effects); // do a copy just so it can be deleted correctly later
-
-	delete effects;
+				img->m_Effects = effects;
 
 	m_Sprites.erase(name);
 	m_Sprites.emplace(name, Sprite);
@@ -1157,7 +1156,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				LOGERROR("GUI <image> must not have more than one <effect>");
 			else
 			{
-				Image->m_Effects = new SGUIImageEffects;
+				Image->m_Effects = std::make_shared<SGUIImageEffects>();
 				Xeromyces_ReadEffects(child, pFile, *Image->m_Effects);
 			}
 		}
