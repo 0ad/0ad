@@ -57,7 +57,7 @@ CCheckBox::CCheckBox(CGUI* pGUI)
 	AddSetting<CStrW>("tooltip");
 	AddSetting<CStr>("tooltip_style");
 
-	AddText(new SGUIText());
+	AddText();
 }
 
 CCheckBox::~CCheckBox()
@@ -82,7 +82,7 @@ void CCheckBox::SetupText()
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, m_CachedActualSize.GetWidth()-square_side, 0.f, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, m_CachedActualSize.GetWidth() - square_side, 0.f, this);
 }
 
 void CCheckBox::HandleMessage(SGUIMessage& Message)

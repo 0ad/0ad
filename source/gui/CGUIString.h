@@ -15,26 +15,16 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * GUI text, handles text stuff
- *
- * --Overview--
- * Mainly contains struct SGUIText and friends.
- * Actual text processing is made in CGUI::GenerateText()
- *
- * --More info--
- * Check GUI.h
- *
- */
-
 #ifndef INCLUDED_CGUISTRING
 #define INCLUDED_CGUISTRING
 
-#include <list>
-
 #include "gui/CGUISprite.h"
-#include "gui/GUItext.h"
+#include "gui/CGUIText.h"
 #include "ps/CStrIntern.h"
+
+#include <array>
+#include <list>
+#include <vector>
 
 class CGUI;
 
@@ -43,9 +33,9 @@ class CGUI;
  * the tags and builds up a list of all text that will
  * be different when outputted.
  *
- * The difference between CGUIString and SGUIText is that
+ * The difference between CGUIString and CGUIText is that
  * CGUIString is a string-class that parses the tags
- * when the value is set. The SGUIText is just a container
+ * when the value is set. The CGUIText is just a container
  * which stores the positions and settings of all text-calls
  * that will have to be made to the Renderer.
  */
@@ -147,14 +137,15 @@ public:
 		/**
 		 * Image stacks, for left and right floating images.
 		 */
-		std::vector<CStr> m_Images[2]; // left and right
+		std::array<std::vector<CStr>, 2> m_Images; // left and right
 
 		/**
 		 * Text and Sprite Calls.
 		 */
-		std::vector<SGUIText::STextCall> m_TextCalls;
-		std::list<SGUIText::SSpriteCall> m_SpriteCalls; // list for consistent mem addresses
-														//  so that we can point to elements.
+		std::vector<CGUIText::STextCall> m_TextCalls;
+
+		// list for consistent mem addresses so that we can point to elements.
+		std::list<CGUIText::SSpriteCall> m_SpriteCalls;
 
 		/**
 		 * Width and Height *feedback*

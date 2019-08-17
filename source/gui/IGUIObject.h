@@ -25,9 +25,9 @@
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
 
-#include "GUIbase.h"
-#include "GUItext.h"
+#include "IGUIObject.h"
 
+#include "gui/GUIbase.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"

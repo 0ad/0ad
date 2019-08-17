@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,20 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Inclusion file
-
---Overview--
-
-	Include this file and it will include the whole GUI.
-
---More info--
-
-	Check TDD for GUI Engine Documentation
-
-*/
-
-
 #ifndef INCLUDED_GUI
 #define INCLUDED_GUI
 
@@ -41,8 +27,8 @@ GUI Inclusion file
 
 #include "CGUIList.h"
 #include "CGUISeries.h"
+#include "CGUIText.h"
 #include "GUIbase.h"
-#include "GUItext.h"
 #include "GUIutil.h"
 #include "IGUIButtonBehavior.h"
 #include "IGUIObject.h"

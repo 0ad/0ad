@@ -22,6 +22,8 @@
 #include "gui/GUI.h"
 #include "gui/scripting/JSInterface_IGUITextOwner.h"
 
+#include <math.h>
+
 IGUITextOwner::IGUITextOwner(CGUI* pGUI)
 	: IGUIObject(pGUI), m_GeneratedTextsValid(false)
 {
@@ -29,8 +31,6 @@ IGUITextOwner::IGUITextOwner(CGUI* pGUI)
 
 IGUITextOwner::~IGUITextOwner()
 {
-	for (SGUIText* const& t : m_GeneratedTexts)
-		delete t;
 }
 
 void IGUITextOwner::CreateJSObject()
@@ -41,9 +41,17 @@ void IGUITextOwner::CreateJSObject()
 		GetGUI()->GetScriptInterface()->GetContext(), m_JSObject);
 }
 
-void IGUITextOwner::AddText(SGUIText* text)
+CGUIText& IGUITextOwner::AddText()
 {
-	m_GeneratedTexts.push_back(text);
+	m_GeneratedTexts.emplace_back();
+	return m_GeneratedTexts.back();
+}
+
+CGUIText& IGUITextOwner::AddText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone, const IGUIObject* pObject)
+{
+	// Avoids a move constructor
+	m_GeneratedTexts.emplace_back(m_pGUI, Text, Font, Width, BufferZone, pObject);
+	return m_GeneratedTexts.back();
 }
 
 void IGUITextOwner::HandleMessage(SGUIMessage& Message)
@@ -90,11 +98,10 @@ void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& p
 
 	ENSURE(index < m_GeneratedTexts.size() && "Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
 
-	if (GetGUI())
-		GetGUI()->DrawText(*m_GeneratedTexts[index], color, pos, z, clipping);
+	m_GeneratedTexts.at(index).Draw(m_pGUI, color, pos, z, clipping);
 }
 
-void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUIText& Text)
+void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUIText& Text)
 {
 	EVAlign valign;
 	GUI<EVAlign>::GetSetting(this, "text_valign", valign);
@@ -110,10 +117,10 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUITex
 		break;
 	case EVAlign_Center:
 		// Round to integer pixel values, else the fonts look awful
-		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.m_Size.cy/2.f);
+		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.GetSize().cy / 2.f);
 		break;
 	case EVAlign_Bottom:
-		TextPos.y = ObjSize.bottom - Text.m_Size.cy;
+		TextPos.y = ObjSize.bottom - Text.GetSize().cy;
 		break;
 	default:
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");
@@ -133,7 +140,7 @@ CSize IGUITextOwner::CalculateTextSize()
 		return CSize();
 
 	// GUI Object types that use multiple texts may override this function.
-	return m_GeneratedTexts[0]->m_Size;
+	return m_GeneratedTexts[0].GetSize();
 }
 
 bool IGUITextOwner::MouseOverIcon()

@@ -47,8 +47,7 @@ CButton::CButton(CGUI* pGUI)
 	AddSetting<CStrW>("tooltip");
 	AddSetting<CStr>("tooltip_style");
 
-	// Add text
-	AddText(new SGUIText());
+	AddText();
 }
 
 CButton::~CButton()
@@ -70,9 +69,10 @@ void CButton::SetupText()
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(*caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
 
-	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
+
+	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 }
 
 void CButton::HandleMessage(SGUIMessage& Message)
