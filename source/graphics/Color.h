@@ -44,6 +44,14 @@ struct CColor
 	CColor(float cr, float cg, float cb, float ca) : r(cr), g(cg), b(cb), a(ca) {}
 
 	/**
+	 * Returns whether this has been set to a valid color.
+	 */
+	operator bool() const
+	{
+		return r >= 0 && g >= 0 && b >= 0 && a >= 0;
+	}
+
+	/**
 	 * Try to parse @p Value as a color. Returns true on success, false otherwise.
 	 * @param value Should be "r g b" or "r g b a" where each value is an integer in [0,255].
 	 * @param defaultAlpha The alpha value that is used if the format of @p Value is "r g b".

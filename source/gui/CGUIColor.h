@@ -33,6 +33,16 @@ struct CGUIColor : CColor
 	CGUIColor(float r, float g, float b, float a) : CColor(r, g, b, a) {}
 
 	/**
+	 * Returns this color if it has been set, otherwise the given fallback color.
+	 */
+	const CGUIColor& operator||(const CGUIColor& fallback) const
+	{
+		if (*this)
+			return *this;
+		return fallback;
+	}
+
+	/**
 	 * Load color depending on current GUI page.
 	 */
 	bool ParseString(const CGUI* pGUI, const CStr& value, int defaultAlpha = 255);

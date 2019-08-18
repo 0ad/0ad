@@ -493,7 +493,7 @@ void CDropDown::Draw()
 	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled", color);
 
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, enabled ? "sprite" : "sprite_disabled", sprite);
-	GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 
 	if (button_width > 0.f)
 	{
@@ -503,20 +503,20 @@ void CDropDown::Draw()
 		if (!enabled)
 		{
 			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_disabled", sprite2_second);
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(*sprite2_second, *sprite2), cell_id, bz+0.05f, rect);
+			m_pGUI->DrawSprite(*sprite2_second || *sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else if (m_Open)
 		{
 			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_pressed", sprite2_second);
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(*sprite2_second, *sprite2), cell_id, bz+0.05f, rect);
+			m_pGUI->DrawSprite(*sprite2_second || *sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else if (m_MouseHovering)
 		{
 			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_over", sprite2_second);
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(*sprite2_second, *sprite2), cell_id, bz+0.05f, rect);
+			m_pGUI->DrawSprite(*sprite2_second || *sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else
-			GetGUI()->DrawSprite(*sprite2, cell_id, bz+0.05f, rect);
+			m_pGUI->DrawSprite(*sprite2, cell_id, bz + 0.05f, rect);
 	}
 
 	if (selected != -1) // TODO: Maybe check validity completely?

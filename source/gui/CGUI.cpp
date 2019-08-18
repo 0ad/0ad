@@ -353,7 +353,7 @@ void CGUI::Draw()
 void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
 {
 	// If the sprite doesn't exist (name == ""), don't bother drawing anything
-	if (Sprite.IsEmpty())
+	if (!Sprite)
 		return;
 
 	// TODO: Clipping?
