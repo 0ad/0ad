@@ -41,6 +41,8 @@ A GUI Sprite
 
 #include "lib/res/graphics/ogl_tex.h"
 
+#include <memory>
+
 struct SGUIImageEffects
 {
 	SGUIImageEffects() : m_Greyscale(false) {}
@@ -59,13 +61,8 @@ struct SGUIImage
 public:
 	SGUIImage() :
 		m_FixedHAspectRatio(0.f), m_RoundCoordinates(true), m_WrapMode(GL_REPEAT),
-		m_Effects(NULL), m_Border(false), m_DeltaZ(0.f)
+		m_Effects(), m_Border(false), m_DeltaZ(0.f)
 	{
-	}
-
-	~SGUIImage()
-	{
-		delete m_Effects;
 	}
 
 	// Filename of the texture
@@ -106,7 +103,7 @@ public:
 	GLint			m_WrapMode;
 
 	// Visual effects (e.g. color modulation)
-	SGUIImageEffects* m_Effects;
+	std::shared_ptr<SGUIImageEffects> m_Effects;
 
 	// Color
 	CGUIColor m_BackColor;

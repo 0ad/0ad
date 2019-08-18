@@ -106,7 +106,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI* pGUI, DrawCalls& Calls, const 
 			// Allow grayscale images for disabled portraits
 			if (SpriteName.Find("grayscale:") != -1)
 			{
-				Image->m_Effects = new SGUIImageEffects;
+				Image->m_Effects = std::make_shared<SGUIImageEffects>();
 				Image->m_Effects->m_Greyscale = true;
 			}
 
@@ -158,7 +158,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI* pGUI, DrawCalls& Calls, const 
 			if (SpriteName.Find("textureAsMask:") != -1)
 			{
 				Image->m_TextureName = TextureName;
-				Image->m_Effects = new SGUIImageEffects;
+				Image->m_Effects = std::make_shared<SGUIImageEffects>();
 				Image->m_Effects->m_SolidColor = color;
 			}
 			else
