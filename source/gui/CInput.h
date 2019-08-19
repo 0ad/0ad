@@ -68,12 +68,12 @@ protected:
 	/**
 	* Handle events manually to catch keys which change the text.
 	*/
-	virtual void ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption);
+	virtual void ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW& pCaption);
 
 	/**
 	* Handle events manually to catch keys which don't change the text.
 	*/
-	virtual void ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption);
+	virtual void ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW& pCaption);
 
 	/**
 	 * Handle hotkey events (called by ManuallyHandleEvent)

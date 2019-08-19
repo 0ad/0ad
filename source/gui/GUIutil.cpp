@@ -326,6 +326,18 @@ PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Settin
 }
 
 template <typename T>
+bool GUI<T>::HasSetting(const IGUIObject* pObject, const CStr& Setting)
+{
+	return pObject->m_Settings.count(Setting) != 0;
+}
+
+template <typename T>
+T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting)
+{
+	return static_cast<CGUISetting<T>* >(pObject->m_Settings.at(Setting))->m_pSetting;
+}
+
+template <typename T>
 PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value)
 {
 	T* v = NULL;
@@ -406,6 +418,8 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 // Instantiate templated functions:
 // These functions avoid copies by working with a pointer and move semantics.
 #define TYPE(T) \
+	template bool GUI<T>::HasSetting(const IGUIObject* pObject, const CStr& Setting); \
+	template T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting); \
 	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
 	template class CGUISetting<T>; \

@@ -64,13 +64,12 @@ void CButton::SetupText()
 		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
 		font = L"default";
 
-	CGUIString* caption = nullptr;
-	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
+	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
 
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 }
@@ -86,10 +85,6 @@ void CButton::Draw()
 {
 	float bz = GetBufferedZ();
 
-	CGUISpriteInstance* sprite;
-	CGUISpriteInstance* sprite_over;
-	CGUISpriteInstance* sprite_pressed;
-	CGUISpriteInstance* sprite_disabled;
 	int cell_id;
 
 	// Statically initialise some strings, so we don't have to do
@@ -100,19 +95,14 @@ void CButton::Draw()
 	static const CStr strSpriteDisabled("sprite_disabled");
 	static const CStr strCellId("cell_id");
 
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSprite, sprite);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpriteOver, sprite_over);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpritePressed, sprite_pressed);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpriteDisabled, sprite_disabled);
+	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, strSprite);
+	CGUISpriteInstance& sprite_over = GUI<CGUISpriteInstance>::GetSetting(this, strSpriteOver);
+	CGUISpriteInstance& sprite_pressed = GUI<CGUISpriteInstance>::GetSetting(this, strSpritePressed);
+	CGUISpriteInstance& sprite_disabled = GUI<CGUISpriteInstance>::GetSetting(this, strSpriteDisabled);
+
 	GUI<int>::GetSetting(this, strCellId, cell_id);
 
-	DrawButton(m_CachedActualSize,
-			   bz,
-			   *sprite,
-			   *sprite_over,
-			   *sprite_pressed,
-			   *sprite_disabled,
-			   cell_id);
+	DrawButton(m_CachedActualSize, bz, sprite, sprite_over, sprite_pressed, sprite_disabled, cell_id);
 
 	CGUIColor color = ChooseColor();
 	DrawText(0, color, m_TextPos, bz+0.1f);

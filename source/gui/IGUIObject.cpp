@@ -222,16 +222,15 @@ void IGUIObject::UpdateCachedSize()
 	float aspectratio = 0.f;
 	GUI<float>::GetSetting(this, "aspectratio", aspectratio);
 
-	CClientArea* ca;
-	GUI<CClientArea>::GetSettingPointer(this, "size", ca);
+	const CClientArea& ca = GUI<CClientArea>::GetSetting(this, "size");
 
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
 	if (absolute == false && m_pParent && !IsRootObject())
-		m_CachedActualSize = ca->GetClientArea(m_pParent->m_CachedActualSize);
+		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
 	else
-		m_CachedActualSize = ca->GetClientArea(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
+		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
 
 	// In a few cases, GUI objects have to resize to fill the screen
 	// but maintain a constant aspect ratio.

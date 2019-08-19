@@ -41,10 +41,8 @@ COList::COList(CGUI* pGUI)
 
 void COList::SetupText()
 {
-	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-
-	m_ItemsYPositions.resize(pList->m_Items.size() + 1);
+	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+	m_ItemsYPositions.resize(pList.m_Items.size() + 1);
 
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
@@ -86,7 +84,7 @@ void COList::SetupText()
 	// Generate texts
 	float buffered_y = 0.f;
 
-	for (size_t i = 0; i < pList->m_Items.size(); ++i)
+	for (size_t i = 0; i < pList.m_Items.size(); ++i)
 	{
 		m_ItemsYPositions[i] = buffered_y;
 		float shift = 0.0f;
@@ -96,11 +94,10 @@ void COList::SetupText()
 			if (column.m_Width > 0 && column.m_Width < 1)
 				width *= m_TotalAvailableColumnWidth;
 
-			CGUIList* pList_c;
-			GUI<CGUIList>::GetSettingPointer(this, "list_" + column.m_Id, pList_c);
+			CGUIList& pList_c = GUI<CGUIList>::GetSetting(this, "list_" + column.m_Id);
 			CGUIText* text;
-			if (!pList_c->m_Items[i].GetOriginalString().empty())
-				text = &AddText(pList_c->m_Items[i], font, width, buffer_zone, this);
+			if (!pList_c.m_Items[i].GetOriginalString().empty())
+				text = &AddText(pList_c.m_Items[i], font, width, buffer_zone, this);
 			else
 			{
 				// Minimum height of a space character of the current font size
@@ -113,7 +110,7 @@ void COList::SetupText()
 		buffered_y += shift;
 	}
 
-	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;
+	m_ItemsYPositions[pList.m_Items.size()] = buffered_y;
 
 	if (scrollbar)
 	{
@@ -316,17 +313,13 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 
 	CRect rect = GetListRect();
 
-	CGUISpriteInstance* sprite = NULL;
-	CGUISpriteInstance* sprite_selectarea = NULL;
+	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, _sprite);
+	CGUISpriteInstance& sprite_selectarea = GUI<CGUISpriteInstance>::GetSetting(this, _sprite_selected);
+
 	int cell_id;
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite, sprite);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite_selected, sprite_selectarea);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
-	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-
-	GetGUI()->DrawSprite(*sprite, cell_id, bz, rect);
+	m_pGUI->DrawSprite(sprite, cell_id, bz, rect);
 
 	float scroll = 0.f;
 	if (scrollbar)
@@ -362,16 +355,15 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			}
 
 			// Draw item selection
-			GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect_sel);
+			m_pGUI->DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect_sel);
 		}
 	}
 
 	// Draw line above column header
-	CGUISpriteInstance* sprite_heading = NULL;
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_heading", sprite_heading);
+	CGUISpriteInstance& sprite_heading = GUI<CGUISpriteInstance>::GetSetting(this, "sprite_heading");
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
 									m_CachedActualSize.top + m_HeadingHeight);
-	GetGUI()->DrawSprite(*sprite_heading, cell_id, bz, rect_head);
+	m_pGUI->DrawSprite(sprite_heading, cell_id, bz, rect_head);
 
 	// Draw column headers
 	bool sortable;
@@ -404,21 +396,22 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		// Draw sort arrows in colum header
 		if (sortable)
 		{
-			CGUISpriteInstance* sprite;
+			CStr spriteName;
 			if (selectedColumn == m_Columns[col].m_Id)
 			{
 				if (selectedColumnOrder == 0)
 					LOGERROR("selected_column_order must not be 0");
 
 				if (selectedColumnOrder != -1)
-					GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_asc", sprite);
+					spriteName = "sprite_asc";
 				else
-					GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite);
+					spriteName = "sprite_desc";
 			}
 			else
-				GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite);
+				spriteName = "sprite_not_sorted";
 
-			GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
+			CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, spriteName);
+			m_pGUI->DrawSprite(sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text
@@ -427,8 +420,9 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	}
 
 	// Draw list items for each column
+	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
 	const size_t objectsCount = m_Columns.size();
-	for (size_t i = 0; i < pList->m_Items.size(); ++i)
+	for (size_t i = 0; i < pList.m_Items.size(); ++i)
 	{
 		if (m_ItemsYPositions[i+1] - scroll < 0 ||
 			m_ItemsYPositions[i] - scroll > rect.GetHeight())

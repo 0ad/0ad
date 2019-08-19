@@ -72,13 +72,12 @@ void CTooltip::SetupText()
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
-	CGUIString* caption = nullptr;
-	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
+	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
 
 	float max_width = 0.f;
 	GUI<float>::GetSetting(this, "maxwidth", max_width);
 
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, max_width, buffer_zone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, max_width, buffer_zone, this);
 
 	// Position the tooltip relative to the mouse:
 
@@ -149,8 +148,7 @@ void CTooltip::Draw()
 {
 	float z = 900.f; // TODO: Find a nicer way of putting the tooltip on top of everything else
 
-	CGUISpriteInstance* sprite;
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
 
 	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
 	// we need to call it now *before* we do the rest of the drawing
@@ -160,7 +158,7 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
-	GetGUI()->DrawSprite(*sprite, 0, z, m_CachedActualSize);
+	m_pGUI->DrawSprite(sprite, 0, z, m_CachedActualSize);
 
 	CGUIColor color;
 	GUI<CGUIColor>::GetSetting(this, "textcolor", color);

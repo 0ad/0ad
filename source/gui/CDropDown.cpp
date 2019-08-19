@@ -109,9 +109,8 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			break;
 
 		bool scrollbar;
-		CGUIList* pList;
+		const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-		GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 		float scroll = 0.f;
 		if (scrollbar)
 			scroll = GetScrollBar(0).GetPos();
@@ -119,7 +118,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		CRect rect = GetListRect();
 		mouse.y += scroll;
 		int set = -1;
-		for (int i = 0; i < (int)pList->m_Items.size(); ++i)
+		for (int i = 0; i < static_cast<int>(pList.m_Items.size()); ++i)
 		{
 			if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
 				mouse.y < rect.top + m_ItemsYPositions[i+1] &&
@@ -185,9 +184,8 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 		if (!m_Open)
 		{
-			CGUIList* pList;
-			GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-			if (pList->m_Items.empty())
+			const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+			if (pList.m_Items.empty())
 				return;
 
 			m_Open = true;
@@ -343,20 +341,19 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 
 				m_TimeOfLastInput = timer_Time();
 
-				CGUIList* pList;
-				GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+				const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
 				// let's look for the closest element
 				// basically it's alphabetic order and "as many letters as we can get".
 				int closest = -1;
 				int bestIndex = -1;
 				int difference = 1250;
-				for (int i = 0; i < (int)pList->m_Items.size(); ++i)
+				for (int i = 0; i < static_cast<int>(pList.m_Items.size()); ++i)
 				{
 					int indexOfDifference = 0;
 					int diff = 0;
 					for (size_t j = 0; j < m_InputBuffer.length(); ++j)
 					{
-						diff = std::abs((int)(pList->m_Items[i].GetRawString().LowerCase()[j]) - (int)m_InputBuffer[j]);
+						diff = std::abs(static_cast<int>(pList.m_Items[i].GetRawString().LowerCase()[j]) - static_cast<int>(m_InputBuffer[j]));
 						if (diff == 0)
 							indexOfDifference = j+1;
 						else
@@ -478,22 +475,20 @@ void CDropDown::Draw()
 	GUI<float>::GetSetting(this, "dropdown_size", dropdown_size);
 	GUI<float>::GetSetting(this, "button_width", button_width);
 
-	CGUISpriteInstance* sprite;
-	CGUISpriteInstance* sprite2;
-	CGUISpriteInstance* sprite2_second;
 	int cell_id, selected = 0;
 	CGUIColor color;
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite2);
+	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, enabled ? "sprite" : "sprite_disabled");
+	CGUISpriteInstance& sprite2 = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2");
+
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 	GUI<int>::GetSetting(this, "selected", selected);
 	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled", color);
 
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, enabled ? "sprite" : "sprite_disabled", sprite);
-	m_pGUI->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
 	if (button_width > 0.f)
 	{
@@ -502,21 +497,21 @@ void CDropDown::Draw()
 
 		if (!enabled)
 		{
-			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_disabled", sprite2_second);
-			m_pGUI->DrawSprite(*sprite2_second || *sprite2, cell_id, bz + 0.05f, rect);
+			CGUISpriteInstance& sprite2_second = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_disabled");
+			m_pGUI->DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else if (m_Open)
 		{
-			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_pressed", sprite2_second);
-			m_pGUI->DrawSprite(*sprite2_second || *sprite2, cell_id, bz + 0.05f, rect);
+			CGUISpriteInstance& sprite2_second = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_pressed");
+			m_pGUI->DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else if (m_MouseHovering)
 		{
-			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_over", sprite2_second);
-			m_pGUI->DrawSprite(*sprite2_second || *sprite2, cell_id, bz + 0.05f, rect);
+			CGUISpriteInstance& sprite2_second = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_over");
+			m_pGUI->DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else
-			m_pGUI->DrawSprite(*sprite2, cell_id, bz + 0.05f, rect);
+			m_pGUI->DrawSprite(sprite2, cell_id, bz + 0.05f, rect);
 	}
 
 	if (selected != -1) // TODO: Maybe check validity completely?
@@ -528,21 +523,19 @@ void CDropDown::Draw()
 		DrawText(selected, color, pos, bz+0.1f, cliparea);
 	}
 
-	bool* scrollbar = NULL;
-	bool old;
-	GUI<bool>::GetSettingPointer(this, "scrollbar", scrollbar);
-
-	old = *scrollbar;
+	// Disable scrollbar during drawing without sending a setting-changed message
+	bool& scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
+	bool old = scrollbar;
 
 	if (m_Open)
 	{
 		if (m_HideScrollBar)
-			*scrollbar = false;
+			scrollbar = false;
 
 		DrawList(m_ElementHighlight, "sprite_list", "sprite_selectarea", "textcolor");
 
 		if (m_HideScrollBar)
-			*scrollbar = old;
+			scrollbar = old;
 	}
 }
 

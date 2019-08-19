@@ -77,12 +77,11 @@ void CCheckBox::SetupText()
 	float square_side;
 	GUI<float>::GetSetting(this, "square_side", square_side);
 
-	CGUIString* caption = nullptr;
-	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
+	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, m_CachedActualSize.GetWidth() - square_side, 0.f, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, m_CachedActualSize.GetWidth() - square_side, 0.f, this);
 }
 
 void CCheckBox::HandleMessage(SGUIMessage& Message)
@@ -111,37 +110,22 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 
 void CCheckBox::Draw()
 {
-	float bz = GetBufferedZ();
-	bool checked;
-	int cell_id;
-	CGUISpriteInstance* sprite;
-	CGUISpriteInstance* sprite_over;
-	CGUISpriteInstance* sprite_pressed;
-	CGUISpriteInstance* sprite_disabled;
-
-	GUI<bool>::GetSetting(this, "checked", checked);
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
-
-	if (checked)
-	{
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_over", sprite_over);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_pressed", sprite_pressed);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_disabled", sprite_disabled);
-	}
+	if (GUI<bool>::GetSetting(this, "checked"))
+		DrawButton(
+			m_CachedActualSize,
+			GetBufferedZ(),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2"),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_over"),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_pressed"),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_disabled"),
+			GUI<int>::GetSetting(this, "cell_id"));
 	else
-	{
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_over", sprite_over);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_pressed", sprite_pressed);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_disabled", sprite_disabled);
-	}
-
-	DrawButton(m_CachedActualSize,
-			   bz,
-			   *sprite,
-			   *sprite_over,
-			   *sprite_pressed,
-			   *sprite_disabled,
-			   cell_id);
+		DrawButton(
+			m_CachedActualSize,
+			GetBufferedZ(),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite"),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite_over"),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite_pressed"),
+			GUI<CGUISpriteInstance>::GetSetting(this, "sprite_disabled"),
+			GUI<int>::GetSetting(this, "cell_id"));
 }

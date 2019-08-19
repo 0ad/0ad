@@ -72,12 +72,11 @@ CList::~CList()
 void CList::SetupText()
 {
 	m_Modified = true;
-	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
 
 	//ENSURE(m_GeneratedTexts.size()>=1);
 
-	m_ItemsYPositions.resize(pList->m_Items.size()+1);
+	m_ItemsYPositions.resize(pList.m_Items.size() + 1);
 
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
@@ -104,12 +103,12 @@ void CList::SetupText()
 	// Generate texts
 	float buffered_y = 0.f;
 
-	for (size_t i = 0; i < pList->m_Items.size(); ++i)
+	for (size_t i = 0; i < pList.m_Items.size(); ++i)
 	{
 		CGUIText* text;
 
-		if (!pList->m_Items[i].GetOriginalString().empty())
-			text = &AddText(pList->m_Items[i], font, width, buffer_zone, this);
+		if (!pList.m_Items[i].GetOriginalString().empty())
+			text = &AddText(pList.m_Items[i], font, width, buffer_zone, this);
 		else
 		{
 			// Minimum height of a space character of the current font size
@@ -122,7 +121,7 @@ void CList::SetupText()
 		buffered_y += text->GetSize().cy;
 	}
 
-	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;
+	m_ItemsYPositions[pList.m_Items.size()] = buffered_y;
 
 	// Setup scrollbar
 	if (scrollbar)
@@ -330,17 +329,11 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 	{
 		CRect rect = GetListRect();
 
-		CGUISpriteInstance* sprite = NULL;
-		CGUISpriteInstance* sprite_selectarea = NULL;
-		int cell_id;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite, sprite);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite_selected, sprite_selectarea);
-		GUI<int>::GetSetting(this, "cell_id", cell_id);
+		CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, _sprite);
+		CGUISpriteInstance& sprite_selectarea = GUI<CGUISpriteInstance>::GetSetting(this, _sprite_selected);
 
-		CGUIList* pList;
-		GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-
-		GetGUI()->DrawSprite(*sprite, cell_id, bz, rect);
+		const int cell_id = GUI<int>::GetSetting(this, "cell_id");
+		m_pGUI->DrawSprite(sprite, cell_id, bz, rect);
 
 		float scroll = 0.f;
 		if (scrollbar)
@@ -372,14 +365,16 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 						rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 				}
 
-				GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect_sel);
+				m_pGUI->DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect_sel);
 			}
 		}
 
 		CGUIColor color;
 		GUI<CGUIColor>::GetSetting(this, _textcolor, color);
 
-		for (size_t i = 0; i < pList->m_Items.size(); ++i)
+		const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+
+		for (size_t i = 0; i < pList.m_Items.size(); ++i)
 		{
 			if (m_ItemsYPositions[i+1] - scroll < 0 ||
 				m_ItemsYPositions[i] - scroll > rect.GetHeight())
@@ -406,18 +401,17 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 
 void CList::AddItem(const CStrW& str, const CStrW& data)
 {
-	CGUIList* pList;
-	CGUIList* pListData;
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-	GUI<CGUIList>::GetSettingPointer(this, "list_data", pListData);
-
 	CGUIString gui_string;
 	gui_string.SetValue(str);
-	pList->m_Items.push_back(gui_string);
+
+	// Do not send a settings-changed message
+	CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+	pList.m_Items.push_back(gui_string);
 
 	CGUIString data_string;
 	data_string.SetValue(data);
-	pListData->m_Items.push_back(data_string);
+	CGUIList& pListData = GUI<CGUIList>::GetSetting(this, "list_data");
+	pListData.m_Items.push_back(data_string);
 
 	// TODO Temp
 	SetupText();
@@ -438,13 +432,11 @@ bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 
 void CList::SelectNextElement()
 {
-	int selected;
-	GUI<int>::GetSetting(this, "selected", selected);
+	int selected = GUI<int>::GetSetting(this, "selected");
 
-	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
 
-	if (selected != (int)pList->m_Items.size()-1)
+	if (selected != static_cast<int>(pList.m_Items.size()) - 1)
 	{
 		++selected;
 		GUI<int>::SetSetting(this, "selected", selected);
@@ -457,8 +449,7 @@ void CList::SelectNextElement()
 
 void CList::SelectPrevElement()
 {
-	int selected;
-	GUI<int>::GetSetting(this, "selected", selected);
+	int selected = GUI<int>::GetSetting(this, "selected");
 
 	if (selected > 0)
 	{
@@ -473,38 +464,29 @@ void CList::SelectPrevElement()
 
 void CList::SelectFirstElement()
 {
-	int selected;
-	GUI<int>::GetSetting(this, "selected", selected);
-
-	if (selected >= 0)
+	if (GUI<int>::GetSetting(this, "selected") >= 0)
 		GUI<int>::SetSetting(this, "selected", 0);
 }
 
 void CList::SelectLastElement()
 {
-	int selected;
-	GUI<int>::GetSetting(this, "selected", selected);
+	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+	const int index = static_cast<int>(pList.m_Items.size()) - 1;
 
-	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-
-	if (selected != (int)pList->m_Items.size()-1)
-		GUI<int>::SetSetting(this, "selected", (int)pList->m_Items.size()-1);
+	if (GUI<int>::GetSetting(this, "selected") != index)
+		GUI<int>::SetSetting(this, "selected", index);
 }
 
 void CList::UpdateAutoScroll()
 {
-	int selected;
-	bool scrollbar;
-	float scroll;
-	GUI<int>::GetSetting(this, "selected", selected);
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const int selected = GUI<int>::GetSetting(this, "selected");
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	// No scrollbar, no scrolling (at least it's not made to work properly).
-	if (!scrollbar || selected < 0 || (std::size_t) selected >= m_ItemsYPositions.size())
+	if (!scrollbar || selected < 0 || static_cast<std::size_t>(selected) >= m_ItemsYPositions.size())
 		return;
 
-	scroll = GetScrollBar(0).GetPos();
+	float scroll = GetScrollBar(0).GetPos();
 
 	// Check upper boundary
 	if (m_ItemsYPositions[selected] < scroll)
@@ -522,13 +504,8 @@ void CList::UpdateAutoScroll()
 
 int CList::GetHoveredItem()
 {
-	bool scrollbar;
-	CGUIList* pList;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-	float scroll = 0.f;
-	if (scrollbar)
-		scroll = GetScrollBar(0).GetPos();
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
+	const float scroll = scrollbar ? GetScrollBar(0).GetPos() : 0.f;
 
 	const CRect& rect = GetListRect();
 	CPos mouse = m_pGUI->GetMousePos();
@@ -540,7 +517,8 @@ int CList::GetHoveredItem()
 	    mouse.x <= GetScrollBar(0).GetOuterRect().right)
 		return -1;
 
-	for (size_t i = 0; i < pList->m_Items.size(); ++i)
+	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+	for (size_t i = 0; i < pList.m_Items.size(); ++i)
 		if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
 		    mouse.y < rect.top + m_ItemsYPositions[i + 1])
 			return i;

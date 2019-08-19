@@ -132,12 +132,27 @@ class GUI
 public:
 	NONCOPYABLE(GUI);
 
+	/**
+	 * Determines whether a setting with the given name is registered.
+	 * This function may be used as a safeguard for GetSetting.
+	 */
+	static bool HasSetting(const IGUIObject* pObject, const CStr& Setting);
+
+	/**
+	 * Get a mutable reference to the setting.
+	 * If no such setting exists, an exception of type std::out_of_range is thrown.
+	 *
+	 * If the value is modified, there is no GUIM_SETTINGS_UPDATED message sent.
+	 * SetSetting should be used to modify the value if there is a use for the message.
+	 */
+	static T& GetSetting(const IGUIObject* pObject, const CStr& Setting);
+
 	// Like GetSetting (below), but doesn't make a copy of the value
 	// (so it can be modified later)
 	static PSRETURN GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value);
 
 	/**
-	 * Retrieves a setting by name from object pointer
+	 * Copy-assigns the current setting value to the given reference.
 	 *
 	 * @param pObject Object pointer
 	 * @param Setting Setting by name
@@ -147,10 +162,6 @@ public:
 
 	/**
 	 * Sets a value by name using a real datatype as input.
-	 *
-	 * This is the official way of setting a setting, no other
-	 *  way should only cautiously be used!
-	 *
 	 * This variant will use the move-assignment.
 	 *
 	 * @param pObject Object pointer

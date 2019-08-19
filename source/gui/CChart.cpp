@@ -184,22 +184,19 @@ CRect CChart::GetChartRect() const
 
 void CChart::UpdateSeries()
 {
-	CGUISeries* pSeries;
-	GUI<CGUISeries>::GetSettingPointer(this, "series", pSeries);
-
-	CGUIList* pSeriesColor;
-	GUI<CGUIList>::GetSettingPointer(this, "series_color", pSeriesColor);
+	const CGUISeries& pSeries = GUI<CGUISeries>::GetSetting(this, "series");
+	const CGUIList& pSeriesColor = GUI<CGUIList>::GetSetting(this, "series_color");
 
 	m_Series.clear();
-	m_Series.resize(pSeries->m_Series.size());
-	for (size_t i = 0; i < pSeries->m_Series.size(); ++i)
+	m_Series.resize(pSeries.m_Series.size());
+	for (size_t i = 0; i < pSeries.m_Series.size(); ++i)
 	{
 		CChartData& data = m_Series[i];
 
-		if (i < pSeriesColor->m_Items.size() && !data.m_Color.ParseString(m_pGUI, pSeriesColor->m_Items[i].GetOriginalString().ToUTF8(), 0))
-			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(pSeriesColor->m_Items[i].GetOriginalString()));
+		if (i < pSeriesColor.m_Items.size() && !data.m_Color.ParseString(m_pGUI, pSeriesColor.m_Items[i].GetOriginalString().ToUTF8(), 0))
+			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(pSeriesColor.m_Items[i].GetOriginalString()));
 
-		data.m_Points = pSeries->m_Series[i];
+		data.m_Points = pSeries.m_Series[i];
 	}
 	UpdateBounds();
 
