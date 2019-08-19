@@ -166,34 +166,6 @@ public:
 	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage = false);
 
 	/**
-	 * This will return the value of the first sprite if it's not null,
-	 * if it is null, it will return the value of the second sprite, if
-	 * that one is null, then null it is.
-	 *
-	 * @param prim Primary sprite that should be used
-	 * @param sec Secondary sprite if Primary should fail
-	 * @return Resulting string
-	 */
-	static const CGUISpriteInstance& FallBackSprite(const CGUISpriteInstance& prim, const CGUISpriteInstance& sec)
-	{
-		return (prim.IsEmpty() ? sec : prim);
-	}
-
-	/**
-	 * Same principle as FallBackSprite
-	 *
-	 * @param prim Primary color that should be used
-	 * @param sec Secondary color if Primary should fail
-	 * @return Resulting color
-	 * @see FallBackSprite
-	 */
-	static CGUIColor FallBackColor(const CGUIColor& prim, const CGUIColor& sec)
-	{
-		// CGUIColor() == null.
-		return ((prim!=CGUIColor())?(prim):(sec));
-	}
-
-	/**
 	 * Sets a value by setting and object name using a real
 	 * datatype as input.
 	 *

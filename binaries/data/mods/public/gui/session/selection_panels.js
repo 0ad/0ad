@@ -1061,12 +1061,12 @@ g_SelectionPanels.Upgrade = {
 		{
 			let tooltips = [];
 			if (data.item.tooltip)
-				tooltips.push(sprintf(translate("Upgrade into a %(name)s. %(tooltip)s"), {
+				tooltips.push(sprintf(translate("Upgrade to %(name)s. %(tooltip)s"), {
 					"name": template.name.generic,
 					"tooltip": translate(data.item.tooltip)
 				}));
 			else
-				tooltips.push(sprintf(translate("Upgrade into a %(name)s."), {
+				tooltips.push(sprintf(translate("Upgrade to %(name)s."), {
 					"name": template.name.generic
 				}));
 

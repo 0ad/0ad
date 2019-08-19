@@ -41,11 +41,6 @@ void CGUISpriteInstance::Draw(const CGUI* pGUI, const CRect& Size, int CellID, s
 	GUIRenderer::Draw(m_DrawCallCache, Z);
 }
 
-bool CGUISpriteInstance::IsEmpty() const
-{
-	return m_SpriteName.empty();
-}
-
 // Plus a load of constructors / assignment operators, which don't copy the
 // DrawCall cache (to avoid losing track of who has allocated various bits
 // of data):

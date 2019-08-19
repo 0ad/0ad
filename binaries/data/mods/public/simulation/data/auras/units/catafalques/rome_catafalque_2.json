@@ -1,11 +1,11 @@
 {
 	"type": "global",
-	"affects": ["Human", "Mechanical"],
+	"affects": ["Human", "Siege"],
 	"modifications": [
 		{ "value": "Armour/Pierce", "add": 1 },
 		{ "value": "Armour/Hack", "add": 1 },
 		{ "value": "Armour/Crush", "add": 1 }
 	],
 	"auraName": "Founder and Defender of the Republic",
-	"auraDescription": "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n+1 armor for all units and siege engines."
+	"auraDescription": "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\nHumans and Siege Engines +1 armor."
 }

@@ -2,15 +2,14 @@
 	"type": "global",
 	"affects": ["Soldier"],
 	"modifications": [
-		{ "value": "Promotion/RequiredXp", "multiply": 0.75 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.05 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.05 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.05 },
 		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.05 },
 		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.05 },
-		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.05 }
-
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.05 },
+		{ "value": "Promotion/RequiredXp", "multiply": 0.75 }
 	],
 	"auraName": "Ambush Slaughter",
-	"auraDescription": "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\nSoldiers require 25% less experience to promote and gain a 5% attack bonus."
+	"auraDescription": "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\nSoldiers +5% melee and ranged attack damage and −25% promotion experience."
 }

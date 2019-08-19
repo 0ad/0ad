@@ -145,19 +145,19 @@ CGUIColor IGUIButtonBehavior::ChooseColor()
 	if (!enabled)
 	{
 		GUI<CGUIColor>::GetSetting(this, "textcolor_disabled", color2);
-		return GUI<>::FallBackColor(color2, color);
+		return color2 || color;
 	}
 	else if (m_MouseHovering)
 	{
 		if (m_Pressed)
 		{
 			GUI<CGUIColor>::GetSetting(this, "textcolor_pressed", color2);
-			return GUI<>::FallBackColor(color2, color);
+			return color2 || color;
 		}
 		else
 		{
 			GUI<CGUIColor>::GetSetting(this, "textcolor_over", color2);
-			return GUI<>::FallBackColor(color2, color);
+			return color2 || color;
 		}
 	}
 	else
@@ -170,14 +170,14 @@ void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, CGUISprit
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
 	if (!enabled)
-		GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_disabled, sprite), cell_id, z, rect);
+		m_pGUI->DrawSprite(sprite_disabled || sprite, cell_id, z, rect);
 	else if (m_MouseHovering)
 	{
 		if (m_Pressed)
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_pressed, sprite), cell_id, z, rect);
+			m_pGUI->DrawSprite(sprite_pressed || sprite, cell_id, z, rect);
 		else
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_over, sprite), cell_id, z, rect);
+			m_pGUI->DrawSprite(sprite_over || sprite, cell_id, z, rect);
 	}
 	else
-		GetGUI()->DrawSprite(sprite, cell_id, z, rect);
+		m_pGUI->DrawSprite(sprite, cell_id, z, rect);
 }

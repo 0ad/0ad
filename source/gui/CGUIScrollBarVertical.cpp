@@ -57,11 +57,11 @@ void CGUIScrollBarVertical::Draw()
 		return;
 	}
 
-	if (GetGUI() && IsVisible())
+	if (IsVisible())
 	{
 		CRect outline = GetOuterRect();
 
-		GetGUI()->DrawSprite(
+		m_pGUI->DrawSprite(
 			GetStyle()->m_SpriteBackVertical,
 			0,
 			m_Z+0.1f,
@@ -81,9 +81,9 @@ void CGUIScrollBarVertical::Draw()
 			if (m_ButtonMinusHovered)
 			{
 				if (m_ButtonMinusPressed)
-					button_top = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopPressed, GetStyle()->m_SpriteButtonTop);
+					button_top = &(GetStyle()->m_SpriteButtonTopPressed || GetStyle()->m_SpriteButtonTop);
 				else
-					button_top = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopOver, GetStyle()->m_SpriteButtonTop);
+					button_top = &(GetStyle()->m_SpriteButtonTopOver || GetStyle()->m_SpriteButtonTop);
 			}
 			else
 				button_top = &GetStyle()->m_SpriteButtonTop;
@@ -91,14 +91,14 @@ void CGUIScrollBarVertical::Draw()
 			if (m_ButtonPlusHovered)
 			{
 				if (m_ButtonPlusPressed)
-					button_bottom = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomPressed, GetStyle()->m_SpriteButtonBottom);
+					button_bottom = &(GetStyle()->m_SpriteButtonBottomPressed || GetStyle()->m_SpriteButtonBottom);
 				else
-					button_bottom = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomOver, GetStyle()->m_SpriteButtonBottom);
+					button_bottom = &(GetStyle()->m_SpriteButtonBottomOver || GetStyle()->m_SpriteButtonBottom);
 			}
 			else
 				button_bottom = &GetStyle()->m_SpriteButtonBottom;
 
-			GetGUI()->DrawSprite(
+			m_pGUI->DrawSprite(
 				*button_top,
 				0,
 				m_Z+0.2f,
@@ -110,7 +110,7 @@ void CGUIScrollBarVertical::Draw()
 				)
 			);
 
-			GetGUI()->DrawSprite(
+			m_pGUI->DrawSprite(
 				*button_bottom,
 				0,
 				m_Z+0.2f,
@@ -123,7 +123,7 @@ void CGUIScrollBarVertical::Draw()
 			);
 		}
 
-		GetGUI()->DrawSprite(
+		m_pGUI->DrawSprite(
 			GetStyle()->m_SpriteBarVertical,
 			0,
 			m_Z + 0.2f,

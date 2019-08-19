@@ -162,8 +162,31 @@ public:
 	CGUISpriteInstance(const CStr& SpriteName);
 
 	void Draw(const CGUI* pGUI, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
-	bool IsEmpty() const;
+
+	/**
+	 * Whether this Sprite has no texture name set.
+	 */
+	operator bool() const { return !m_SpriteName.empty(); };
+
+	/**
+	 * Returns this spirte if it has been set, otherwise the given fallback sprite.
+	 */
+	const CGUISpriteInstance& operator||(const CGUISpriteInstance& fallback) const
+	{
+		if (*this)
+			return *this;
+		return fallback;
+	}
+
+	/**
+	 * Returns the sprite texture name.
+	 */
 	const CStr& GetName() const { return m_SpriteName; }
+
+	/**
+	 * Changes the texture name.
+	 * Use as rarely as possible, because it clears the draw cache.
+	 */
 	void SetName(const CStr& SpriteName);
 
 private:
