@@ -110,9 +110,6 @@ private:
 	T m_pSetting;
 };
 
-template <typename T>
-bool __ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput);
-
 struct SGUIMessage;
 
 /**
@@ -180,19 +177,11 @@ public:
 	 * Sets a value by setting and object name using a real
 	 * datatype as input.
 	 *
-	 * This is just a wrapper for __ParseString() which really
-	 * works the magic.
-	 *
 	 * @param Value The value in string form, like "0 0 100% 100%"
 	 * @param tOutput Parsed value of type T
 	 * @return True at success.
-	 *
-	 * @see __ParseString()
 	 */
-	static bool ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput)
-	{
-		return __ParseString<T>(pGUI, Value, tOutput);
-	}
+	static bool ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput);
 
 private:
 
