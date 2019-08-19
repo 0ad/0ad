@@ -365,18 +365,6 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& V
 		});
 }
 
-// Helper function for SetSetting
-template <typename T>
-bool IsBoolTrue(const T&)
-{
-	return false;
-}
-template <>
-bool IsBoolTrue<bool>(const bool& v)
-{
-	return v;
-}
-
 template <typename T>
 PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage, const std::function<void()>& valueSet)
 {
@@ -402,8 +390,7 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 	else if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
-		if (IsBoolTrue(Value))
-			RecurseObject(0, pObject, &IGUIObject::ResetStates);
+		RecurseObject(0, pObject, &IGUIObject::ResetStates);
 	}
 
 	if (!SkipMessage)
