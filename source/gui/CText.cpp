@@ -230,13 +230,12 @@ void CText::Draw()
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
-	CGUIColor color;
-	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled", color);
+	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled");
 
 	if (scrollbar)
-		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
+		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz + 0.1f, cliparea);
 	else
-		DrawText(0, color, m_TextPos, bz+0.1f, cliparea);
+		DrawText(0, color, m_TextPos, bz + 0.1f, cliparea);
 }
 
 bool CText::MouseOverIcon()

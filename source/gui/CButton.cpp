@@ -104,6 +104,5 @@ void CButton::Draw()
 
 	DrawButton(m_CachedActualSize, bz, sprite, sprite_over, sprite_pressed, sprite_disabled, cell_id);
 
-	CGUIColor color = ChooseColor();
-	DrawText(0, color, m_TextPos, bz+0.1f);
+	DrawText(0, ChooseColor(), m_TextPos, bz + 0.1f);
 }

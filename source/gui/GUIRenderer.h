@@ -53,8 +53,8 @@ namespace GUIRenderer
 		CRect m_Vertices;
 		float m_DeltaZ;
 
-		CGUIColor m_BorderColor; // == CGUIColor() for no border
-		CGUIColor m_BackColor;
+		CGUIColor* m_BorderColor; // == nullptr for no border
+		CGUIColor* m_BackColor;
 	};
 
 	class DrawCalls : public std::vector<SDrawCall>

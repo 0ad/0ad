@@ -452,9 +452,7 @@ void CGUIText::Draw(CGUI* pGUI, const CGUIColor& DefaultColor, const CPos& pos, 
 		if (tc.m_pSpriteCall)
 			continue;
 
-		CGUIColor color = tc.m_UseCustomColor ? tc.m_Color : DefaultColor;
-
-		textRenderer.Color(color);
+		textRenderer.Color(tc.m_UseCustomColor ? tc.m_Color : DefaultColor);
 		textRenderer.Font(tc.m_Font);
 		textRenderer.Put(floorf(pos.x + tc.m_Pos.x), floorf(pos.y + tc.m_Pos.y), &tc.m_String);
 	}

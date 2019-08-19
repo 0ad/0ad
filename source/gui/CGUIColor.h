@@ -28,6 +28,12 @@ class CGUI;
  */
 struct CGUIColor : CColor
 {
+	// Take advantage of compiler warnings if unintentionally copying this
+	NONCOPYABLE(CGUIColor);
+
+	// Defines move semantics so that the structs using the class can use it.
+	MOVABLE(CGUIColor);
+
 	CGUIColor() : CColor() {}
 
 	CGUIColor(float r, float g, float b, float a) : CColor(r, g, b, a) {}

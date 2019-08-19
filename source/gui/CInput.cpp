@@ -1176,10 +1176,9 @@ void CInput::Draw()
 		IGUIScrollBarOwner::Draw();
 
 	CStrW font_name_w;
-	CGUIColor color, color_selected;
 	GUI<CStrW>::GetSetting(this, "font", font_name_w);
-	GUI<CGUIColor>::GetSetting(this, "textcolor", color);
-	GUI<CGUIColor>::GetSetting(this, "textcolor_selected", color_selected);
+	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, "textcolor");
+	const CGUIColor& color_selected = GUI<CGUIColor>::GetSetting(this, "textcolor_selected");
 	CStrIntern font_name(font_name_w.ToUTF8());
 
 	const CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");

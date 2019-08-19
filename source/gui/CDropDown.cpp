@@ -476,7 +476,6 @@ void CDropDown::Draw()
 	GUI<float>::GetSetting(this, "button_width", button_width);
 
 	int cell_id, selected = 0;
-	CGUIColor color;
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
@@ -486,7 +485,6 @@ void CDropDown::Draw()
 
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 	GUI<int>::GetSetting(this, "selected", selected);
-	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled", color);
 
 	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
@@ -518,6 +516,8 @@ void CDropDown::Draw()
 	{
 		CRect cliparea(m_CachedActualSize.left, m_CachedActualSize.top,
 					   m_CachedActualSize.right-button_width, m_CachedActualSize.bottom);
+
+		const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled");
 
 		CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
 		DrawText(selected, color, pos, bz+0.1f, cliparea);

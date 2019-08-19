@@ -92,6 +92,9 @@ void ColorActivateFastImpl()
 	}
 }
 
+/**
+ * Important: This function does not modify the value if parsing fails.
+ */
 bool CColor::ParseString(const CStr8& value, int defaultAlpha)
 {
 	const size_t NUM_VALS = 4;

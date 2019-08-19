@@ -369,10 +369,8 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 			}
 		}
 
-		CGUIColor color;
-		GUI<CGUIColor>::GetSetting(this, _textcolor, color);
-
 		const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+		const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, _textcolor);
 
 		for (size_t i = 0; i < pList.m_Items.size(); ++i)
 		{
@@ -394,7 +392,7 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 					cliparea.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			DrawText(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz+0.1f, cliparea);
+			DrawText(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz + 0.1f, cliparea);
 		}
 	}
 }

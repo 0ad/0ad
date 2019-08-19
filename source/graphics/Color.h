@@ -53,6 +53,7 @@ struct CColor
 
 	/**
 	 * Try to parse @p Value as a color. Returns true on success, false otherwise.
+	 * Leaves the color unchanged if it failed.
 	 * @param value Should be "r g b" or "r g b a" where each value is an integer in [0,255].
 	 * @param defaultAlpha The alpha value that is used if the format of @p Value is "r g b".
 	 */

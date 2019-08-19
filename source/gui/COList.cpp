@@ -223,11 +223,8 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 			if (attr_name == "color")
 			{
-				CGUIColor color;
-				if (!GUI<CGUIColor>::ParseString(m_pGUI, attr_value.FromUTF8(), color))
+				if (!GUI<CGUIColor>::ParseString(m_pGUI, attr_value.FromUTF8(), column.m_TextColor))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-				else
-					column.m_TextColor = color;
 			}
 			else if (attr_name == "id")
 			{
@@ -375,8 +372,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	int selectedColumnOrder;
 	GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
 
-	CGUIColor color;
-	GUI<CGUIColor>::GetSetting(this, _textcolor, color);
+	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, _textcolor);
 
 	float xpos = 0;
 	for (size_t col = 0; col < m_Columns.size(); ++col)

@@ -82,7 +82,7 @@ public:
 	 *		textcolor_pressed	-- pressed
 	 *		textcolor_over		-- hovered
 	 */
-	CGUIColor ChooseColor();
+	const CGUIColor& ChooseColor();
 
 
 protected:

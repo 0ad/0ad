@@ -108,9 +108,7 @@ void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 	ADD(m_CachedActualSize.left, m_CachedActualSize.top);
 	ADD(rect.left, rect.top - m_AxisWidth);
 #undef ADD
-	CGUIColor axis_color(0.5f, 0.5f, 0.5f, 1.f);
-	GUI<CGUIColor>::GetSetting(this, "axis_color", axis_color);
-	DrawTriangleStrip(shader, axis_color, vertices);
+	DrawTriangleStrip(shader, GUI<CGUIColor>::GetSetting(this, "axis_color"), vertices);
 }
 
 void CChart::Draw()

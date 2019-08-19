@@ -160,8 +160,6 @@ void CTooltip::Draw()
 
 	m_pGUI->DrawSprite(sprite, 0, z, m_CachedActualSize);
 
-	CGUIColor color;
-	GUI<CGUIColor>::GetSetting(this, "textcolor", color);
-
+	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, "textcolor");
 	DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
 }

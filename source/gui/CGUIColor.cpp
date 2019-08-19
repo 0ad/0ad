@@ -23,5 +23,17 @@
 
 bool CGUIColor::ParseString(const CGUI* pGUI, const CStr& value, int defaultAlpha)
 {
-	return (pGUI != nullptr && pGUI->GetPreDefinedColor(value, *this)) || CColor::ParseString(value, defaultAlpha);
+	if (pGUI != nullptr && pGUI->HasPreDefinedColor(value))
+	{
+		const CGUIColor& color = pGUI->GetPreDefinedColor(value);
+
+		// Explicit copy assignment
+		r = color.r;
+		g = color.g;
+		b = color.b;
+		a = color.a;
+		return true;
+	}
+
+	return CColor::ParseString(value, defaultAlpha);
 }
