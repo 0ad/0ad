@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Sheath-Falcata">
+      <mesh>props/weapons/sheath_falcata.dae</mesh>
+      <textures>
+        <texture file="props/sheaths/falcata_norm.png" name="normTex"/>
+        <texture file="props/sheaths/falcata_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Red">
+      <textures>
+        <texture file="props/sheaths/falcata_red.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Black">
+      <textures>
+        <texture file="props/sheaths/falcata_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="White">
+      <textures>
+        <texture file="props/sheaths/falcata_white.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Blue">
+      <textures>
+        <texture file="props/sheaths/falcata_blue.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -10,7 +10,7 @@
         <prop actor="props/units/shields/ptol_thureos_basic.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/capes/javelinist.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/javelinist_fast.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -44,7 +44,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher.xml"/>
+    <variant file="biped/base_skirmisher_fast.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>

@@ -16,6 +16,18 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_06_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_08_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="rome-chainmail-old">
       <textures>
         <texture file="skeletal/rome_isw_a.dds" name="baseTex"/>

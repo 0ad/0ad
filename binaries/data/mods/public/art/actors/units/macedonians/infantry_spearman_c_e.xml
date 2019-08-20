@@ -7,8 +7,34 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/mace_argyraspides.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/aspis_mace_argyraspides.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/hoplite_fast.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_07_silver_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_07_silver_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_12_silver_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_12_silver_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_01_silver_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_01_silver_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_02_silver_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_02_silver_r.xml" attachpoint="leg_R"/>
       </props>
     </variant>
   </group>
@@ -103,9 +129,12 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_hoplite_fast.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_hoplite.xml"/>
+    <variant file="biped/formations/phalanx_front.xml"/>
+    <variant file="biped/formations/phalanx_mid.xml"/>
+    <variant file="biped/formations/phalanx_back.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

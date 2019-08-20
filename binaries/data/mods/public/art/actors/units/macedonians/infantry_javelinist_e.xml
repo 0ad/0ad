@@ -7,10 +7,30 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
-        <prop actor="props/units/shields/hele_pelta_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/pelta_mace_elite.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/capes/javelinist.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_11_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_07_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_09_bronze_r.xml" attachpoint="leg_R"/>
       </props>
     </variant>
   </group>
@@ -75,7 +95,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher.xml"/>
+    <variant file="biped/base_skirmisher_shieldarm.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -84,7 +104,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_javelinist.xml"/>
+    <variant file="biped/attack_ranged_javelinist_shieldarm.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>

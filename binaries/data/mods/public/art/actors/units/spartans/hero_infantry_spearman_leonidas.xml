@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_xerxes.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/aspis_leonidas.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/helmets/hele_corinthian_leonidas.xml" attachpoint="helmet"/>
         <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
       </props>
@@ -17,9 +17,32 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_11_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-04">
+      <props>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_hoplite.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_hoplite.xml"/>
+    <variant file="biped/formations/phalanx_front.xml"/>
+    <variant file="biped/formations/phalanx_mid.xml"/>
+    <variant file="biped/formations/phalanx_back.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

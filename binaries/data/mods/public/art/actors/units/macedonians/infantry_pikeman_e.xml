@@ -6,12 +6,34 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/mace_pez_elite.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/pelte_mace_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
         <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-04">
+      <props>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
     </variant>
   </group>
   <group>
@@ -114,9 +136,6 @@
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
-  </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
@@ -130,6 +149,12 @@
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/formations/syntagma_front.xml"/>
+    <variant file="biped/formations/syntagma_01.xml"/>
+    <variant file="biped/formations/syntagma_02.xml"/>
+    <variant file="biped/formations/syntagma_03.xml"/>
+    <variant file="biped/formations/syntagma_04.xml"/>
+    <variant file="biped/formations/syntagma_back.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>
