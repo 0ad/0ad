@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_ranged">
   <animations>
-    <animation event="0.35" file="biped/new/bow_attack_a.dae" load="0.75" name="attack_ranged" speed="200"/>
+    <animation event="0.35" file="biped/infantry/archer/attack_ranged.dae" load="0.75" name="attack_ranged" speed="200"/>
   </animations>
   <props>
     <prop actor="" attachpoint="weapon_R"/>

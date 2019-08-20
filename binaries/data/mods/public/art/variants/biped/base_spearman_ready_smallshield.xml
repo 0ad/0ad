@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/new/spear_shieldsmall_idle_ready.dae" name="Idle" id="idle1" speed="30"/>
-    <animation file="biped/new/spear_shieldsmall_idle_ready.dae" name="Idle" id="idle2" speed="31"/>
-    <animation file="biped/new/spear_shieldsmall_idle_ready.dae" name="Idle" id="idle3" speed="32"/>
-    <animation file="biped/new/spear_shieldsmall_walk_ready.dae" name="Walk" id="walk1" speed="30"/>
-    <animation file="biped/new/spear_shieldsmall_walk_ready.dae" name="Walk" id="walk2" speed="28"/>
-    <animation file="biped/new/spear_run_ready.dae" name="Run" id="run1" speed="4"/>
-    <animation file="biped/new/spear_run_ready.dae" name="Run" id="run2" speed="5"/>
-    <animation file="biped/new/spear_run_ready.dae" name="Run" id="run3" speed="6"/>
-	<animation event="0.5" file="biped/new/spear_shieldsmall_attack_a.dae" name="Attack_melee" id="attack1" speed="30"/>
-    <animation event="0.5" file="biped/new/sword_shield_attack_b.dae" name="Attack_melee" id="attack2" speed="30"/>
-	<animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
+    <animation file="biped/infantry/spearman/idle_ready_shieldsmall.dae" name="Idle" id="idle1" speed="30"/>
+    <animation file="biped/infantry/spearman/idle_ready_shieldsmall.dae" name="Idle" id="idle2" speed="31"/>
+    <animation file="biped/infantry/spearman/idle_ready_shieldsmall.dae" name="Idle" id="idle3" speed="32"/>
+    <animation file="biped/infantry/spearman/walk_ready_shieldsmall.dae" name="Walk" id="walk1" speed="30"/>
+    <animation file="biped/infantry/spearman/walk_ready_shieldsmall.dae" name="Walk" id="walk2" speed="28"/>
+    <animation file="biped/infantry/spearman/run_ready_shieldsmall.dae" name="Run" id="run1" speed="4"/>
+    <animation file="biped/infantry/spearman/run_ready_shieldsmall.dae" name="Run" id="run2" speed="5"/>
+    <animation file="biped/infantry/spearman/run_ready_shieldsmall.dae" name="Run" id="run3" speed="6"/>
+    <animation event="0.5" file="biped/infantry/spearman/attack_melee_a.dae" name="Attack_melee" id="attack1" speed="30"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shield_b.dae" name="Attack_melee" id="attack2" speed="100"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
   </animations>
 </variant>

@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_ranged">
   <animations>
-    <animation event=".61" file="biped/new/lithobolos_attack_b.dae" load="0.24" name="attack_ranged" speed="250"/>
+    <animation event="0.61" file="biped/infantry/siege_operators/lithobolos_attack_b.dae" load="0.24" name="attack_ranged" speed="250"/>
   </animations>
   <props>
     <prop actor="" attachpoint="weapon_R"/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_meat">
   <animations>
-    <animation file="biped/new/male_carry_meat.dae" name="Walk" speed="20"/>
-    <animation file="biped/new/male_carry_meat_idle.dae" name="Idle" speed="20"/>
-    <animation file="biped/new/male_carry_meat.dae" name="Run" speed="20"/>
+    <animation file="biped/gatherer/idle_carry_meat_m.dae" name="Idle" speed="20"/>
+    <animation file="biped/gatherer/carry_meat_m.dae" name="Walk" speed="20"/>
+    <animation file="biped/gatherer/carry_meat_m.dae" name="Run" speed="20"/>
   </animations>
   <props>
     <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>

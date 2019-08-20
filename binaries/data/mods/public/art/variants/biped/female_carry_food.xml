@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_food">
   <animations>
-    <animation file="biped/new/fem_carry_grain_idle.dae" name="Idle" speed="25"/>
-    <animation file="biped/new/fem_carry_grain.dae" name="Walk" speed="25"/>
-    <animation file="biped/new/fem_carry_grain.dae" name="Run" speed="25"/>
+    <animation file="biped/gatherer/idle_carry_grain_f.dae" name="Idle" speed="25"/>
+    <animation file="biped/gatherer/carry_grain_f.dae" name="Walk" speed="25"/>
+    <animation file="biped/gatherer/carry_grain_f.dae" name="Run" speed="25"/>
   </animations>
   <props>
     <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>

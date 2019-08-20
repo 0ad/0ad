@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_melee">
   <animations>
-    <animation event="0.5" file="biped/new/sword_shieldarm_attack_a.dae" name="attack_melee" speed="120"/>
-    <animation event="0.5" file="biped/new/sword_shieldarm_attack_b.dae" name="attack_melee" speed="100"/>
-    <animation event="0.5" file="biped/new/sword_shieldarm_attack_c.dae" name="attack_melee" speed="80"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_a.dae" name="attack_melee" id="attack1" speed="100"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_b.dae" name="attack_melee" id="attack2" speed="100"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_c.dae" name="attack_melee" id="attack3" speed="100"/>
   </animations>
 </variant>

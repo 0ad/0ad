@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="anti_cavalry_back" frequency="0">
   <animations>
-    <animation file="biped/new/anti_cavalry_back_attack.dae" name="Attack" speed="30"/>
-    <animation file="biped/new/anti_cavalry_back_idle.dae" name="Idle" speed="100"/>
-    <animation file="biped/new/spear_walk_relax.dae" name="Walk" id="walk1" speed="30"/>
-    <animation file="biped/new/spear_walk_relax.dae" name="Walk" id="walk2" speed="32"/>
+    <animation file="biped/formations/anti_cavalry/back_attack.dae" name="Attack" speed="30"/>
+    <animation file="biped/formations/anti_cavalry/back_idle.dae" name="Idle" speed="50"/>
+    <animation file="biped/infantry/spearman/walk_relax.dae" name="Walk" id="walk1" speed="30"/>
+    <animation file="biped/infantry/spearman/walk_relax.dae" name="Walk" id="walk2" speed="32"/>
   </animations>
 </variant>

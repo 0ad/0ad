@@ -1,18 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/new/pike_idle_relax.dae" name="Idle" speed="30"/>
-    <animation file="biped/new/pike_walk_relax_b.dae" name="Walk" speed="30"/>
-    <animation file="biped/new/pike_jog_relax.dae" name="run" speed="10"/>
-    <animation file="biped/new/pike_idle_ready.dae" name="syntagma_front_idle" speed="30"/>
-    <animation file="biped/new/pike_walk_ready.dae" name="syntagma_front_walk" speed="30"/>
-    <animation file="biped/new/pike_run_ready.dae" name="syntagma_front_run" speed="10"/>
-    <animation file="biped/new/pike_idle_relax.dae" name="syntagma_med_idle" speed="30"/>
-    <animation file="biped/new/pike_walk_syntagma.dae" name="syntagma_med_walk" speed="30"/>
-    <animation file="biped/new/pike_run_ready.dae" name="syntagma_med_run" speed="10"/> 
-    <animation file="biped/new/pike_idle_relax.dae" name="syntagma_back_idle" speed="30"/>
-    <animation file="biped/new/pike_walk_relax.dae" name="syntagma_back_walk" speed="30"/>
-    <animation file="biped/new/pike_jog_relax.dae" name="syntagma_back_run" speed="10"/>
-	<animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
-    <animation event="0.5" file="biped/new/pike_attack_a.dae" name="attack_melee" id="attack1" speed="10"/>
+    <animation file="biped/infantry/pikeman/idle_relax.dae" name="Idle" speed="30"/>
+    <animation file="biped/infantry/pikeman/walk_relax.dae" name="Walk" speed="30"/>
+    <animation file="biped/infantry/pikeman/jog_relax.dae" name="run" speed="10"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
+    <animation event="0.5" file="biped/infantry/pikeman/attack_melee.dae" name="attack_melee" id="attack1" speed="10"/>
   </animations>
 </variant>

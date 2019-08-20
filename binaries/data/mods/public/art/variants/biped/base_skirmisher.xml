@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/new/javelin_idle_ready.dae" name="Idle" id="idle1" speed="70"/>
-    <animation file="biped/new/javelin_idle_ready.dae" name="Idle" id="idle2" speed="65"/>
-    <animation file="biped/new/javelin_idle_ready.dae" name="Idle" id="idle3" speed="60"/>
-    <animation file="biped/new/javelin_shield_jog_relax.dae" name="Walk" id="walk1" speed="15"/>
-    <animation file="biped/new/javelin_shield_jog_relax.dae" name="Walk" id="walk2" speed="16"/>
-    <animation file="biped/new/javelin_shield_jog_relax.dae" name="Walk" id="walk3" speed="17"/>
-    <animation file="biped/new/javelin_shield_run_relax.dae" name="Run" id="run1" speed="10"/>
-    <animation file="biped/new/javelin_shield_run_relax.dae" name="Run" id="run2" speed="11"/>
-    <animation file="biped/new/javelin_shield_run_relax.dae" name="Run" id="run3" speed="12"/>
-    <animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
+    <animation file="biped/infantry/javelinist/idle_ready.dae" name="Idle" id="idle1" speed="70"/>
+    <animation file="biped/infantry/javelinist/idle_ready.dae" name="Idle" id="idle2" speed="65"/>
+    <animation file="biped/infantry/javelinist/idle_ready.dae" name="Idle" id="idle3" speed="60"/>
+    <animation file="biped/infantry/javelinist/jog_relax_shield.dae" name="Walk" id="walk1" speed="15"/>
+    <animation file="biped/infantry/javelinist/jog_relax_shield.dae" name="Walk" id="walk2" speed="16"/>
+    <animation file="biped/infantry/javelinist/jog_relax_shield.dae" name="Walk" id="walk3" speed="17"/>
+    <animation file="biped/infantry/javelinist/run_relax_shield.dae" name="Run" id="run1" speed="10"/>
+    <animation file="biped/infantry/javelinist/run_relax_shield.dae" name="Run" id="run2" speed="11"/>
+    <animation file="biped/infantry/javelinist/run_relax_shield.dae" name="Run" id="run3" speed="12"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
   </animations>
 </variant>

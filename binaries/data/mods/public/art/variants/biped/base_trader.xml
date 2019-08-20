@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/new/healer_idle_relax_female.dae" name="Idle" id="idle1" speed="30"/>
-    <animation file="biped/new/healer_idle_relax_female.dae" name="Idle" id="idle2" speed="31"/>
-    <animation file="biped/new/healer_idle_relax_female.dae" name="Idle" id="idle3" speed="32"/>
-    <animation file="biped/new/trader_walk_relax.dae" name="Walk" id="walk1" speed="25"/>
-    <animation file="biped/new/trader_walk_relax.dae" name="Walk" id="walk2" speed="23"/>
-    <animation file="biped/new/trader_jog_relax.dae" name="Run" id="run1" speed="10"/>
-    <animation file="biped/new/trader_jog_relax.dae" name="Run" id="run2" speed="11"/>
-    <animation file="biped/new/trader_jog_relax.dae" name="Run" id="run3" speed="12"/>
+    <animation file="biped/citizen/idle_relax_h_f.dae" name="Idle" id="idle1" speed="30"/>
+    <animation file="biped/citizen/idle_relax_h_f.dae" name="Idle" id="idle2" speed="31"/>
+    <animation file="biped/citizen/idle_relax_h_f.dae" name="Idle" id="idle3" speed="32"/>
+    <animation file="biped/citizen/walk_relax_t.dae" name="Walk" id="walk1" speed="25"/>
+    <animation file="biped/citizen/walk_relax_t.dae" name="Walk" id="walk2" speed="23"/>
+    <animation file="biped/citizen/jog_t.dae" name="Run" id="run1" speed="10"/>
+    <animation file="biped/citizen/jog_t.dae" name="Run" id="run2" speed="11"/>
+    <animation file="biped/citizen/jog_t.dae" name="Run" id="run3" speed="12"/>
   </animations>
 </variant>

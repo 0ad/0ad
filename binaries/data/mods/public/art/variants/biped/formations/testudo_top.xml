@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="testudo_top" frequency="0">
   <animations>
-    <animation file="biped/new/testudo_top_shield_idle.dae" name="Idle" speed="100"/>
-    <animation file="biped/new/testudo_top_shield_walk.dae" name="Walk" id="testwalk1" speed="15"/>
-    <animation file="biped/new/testudo_top_shield_walk.dae" name="Walk" id="testwalk2" speed="16"/>
-    <animation file="biped/new/testudo_top_shield_walk.dae" name="Walk" id="testwalk3" speed="17"/>
+    <animation file="biped/formations/testudo/top_idle.dae" name="Idle" speed="100"/>
+    <animation file="biped/formations/testudo/top_walk.dae" name="Walk" id="testwalk1" speed="15"/>
+    <animation file="biped/formations/testudo/top_walk.dae" name="Walk" id="testwalk2" speed="16"/>
+    <animation file="biped/formations/testudo/top_walk.dae" name="Walk" id="testwalk3" speed="17"/>
   </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+  </props>
 </variant>

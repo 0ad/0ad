@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="gather_fruit">
   <animations>
-    <animation file="biped/new/fem_gather_fruit.dae" name="gather_fruit" speed="100"/>
+    <animation file="biped/gatherer/gather_fruit_f.dae" name="gather_fruit" speed="100"/>
   </animations>
   <props>
     <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
