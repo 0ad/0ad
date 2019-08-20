@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/handgrip_leather_01.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/pelta_a_cow_01.xml" name="Pelta-Cow-A-01"/>
+    <variant file="shields/pelta_a_cow_02.xml" name="Pelta-Cow-A-02"/>
+    <variant file="shields/pelta_a_cow_03.xml" name="Pelta-Cow-A-03"/>
+    <variant file="shields/pelta_b_cow_01.xml" name="Pelta-Cow-B-01"/>
+    <variant file="shields/pelta_b_cow_02.xml" name="Pelta-Cow-B-02"/>
+    <variant file="shields/pelta_b_cow_03.xml" name="Pelta-Cow-B-03"/>
+    <variant file="shields/pelta_c_cow_01.xml" name="Pelta-Cow-C-01"/>
+    <variant file="shields/pelta_c_cow_02.xml" name="Pelta-Cow-C-02"/>
+    <variant file="shields/pelta_c_cow_03.xml" name="Pelta-Cow-C-03"/>
+    <variant file="shields/pelta_d_cow_01.xml" name="Pelta-Cow-D-01"/>
+    <variant file="shields/pelta_d_cow_02.xml" name="Pelta-Cow-D-02"/>
+    <variant file="shields/pelta_d_cow_03.xml" name="Pelta-Cow-D-03"/>
+    <variant file="shields/pelta_e_cow_01.xml" name="Pelta-Cow-E-01"/>
+    <variant file="shields/pelta_e_cow_02.xml" name="Pelta-Cow-E-02"/>
+    <variant file="shields/pelta_e_cow_03.xml" name="Pelta-Cow-E-03"/>
+    <variant file="shields/pelta_a_wicker_01.xml" name="Pelta-Wicker-A-01"/>
+    <variant file="shields/pelta_a_wicker_02.xml" name="Pelta-Wicker-A-02"/>
+    <variant file="shields/pelta_a_wicker_03.xml" name="Pelta-Wicker-A-03"/>
+    <variant file="shields/pelta_b_wicker_01.xml" name="Pelta-Wicker-B-01"/>
+    <variant file="shields/pelta_b_wicker_02.xml" name="Pelta-Wicker-B-02"/>
+    <variant file="shields/pelta_b_wicker_03.xml" name="Pelta-Wicker-B-03"/>
+    <variant file="shields/pelta_c_wicker_01.xml" name="Pelta-Wicker-C-01"/>
+    <variant file="shields/pelta_c_wicker_02.xml" name="Pelta-Wicker-C-02"/>
+    <variant file="shields/pelta_c_wicker_03.xml" name="Pelta-Wicker-C-03"/>
+    <variant file="shields/pelta_d_wicker_01.xml" name="Pelta-Wicker-D-01"/>
+    <variant file="shields/pelta_d_wicker_02.xml" name="Pelta-Wicker-D-02"/>
+    <variant file="shields/pelta_d_wicker_03.xml" name="Pelta-Wicker-D-03"/>
+    <variant file="shields/pelta_e_wicker_01.xml" name="Pelta-Wicker-E-01"/>
+    <variant file="shields/pelta_e_wicker_02.xml" name="Pelta-Wicker-E-02"/>
+    <variant file="shields/pelta_e_wicker_03.xml" name="Pelta-Wicker-E-03"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

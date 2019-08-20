@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.75 commit date:2019-07-29, commit time:14:47, hash:f6cb5f54494e</authoring_tool>
+    </contributor>
+    <created>2019-08-19T14:10:39</created>
+    <modified>2019-08-19T14:10:39</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Render_Handgrip-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Render_Handgrip-material" name="Render_Handgrip">
+      <instance_effect url="#Render_Handgrip-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cubo_011-mesh" name="Cubo.011">
+      <mesh>
+        <source id="Cubo_011-mesh-positions">
+          <float_array id="Cubo_011-mesh-positions-array" count="72">0.08288323 0.003867685 -0.1538025 0.08288323 0.003867685 0.07861369 -0.08288317 0.003867685 -0.1538025 0.1362524 0.2587609 -0.1188244 0.1362524 0.2607659 0.06558078 0.1123782 0.1964308 0.1096031 -0.08897113 0.0410186 0.1127567 -0.1123782 0.1132119 0.1096031 0.08897119 0.0908637 -0.1678951 0.1123782 0.1829208 -0.1628468 0.1496509 0.2873206 -0.06844985 0.1496509 0.2873206 0.009328365 0.08897119 0.106904 0.1127567 -0.1362524 0.1598676 0.06558078 -0.1496509 0.1765004 0.009328365 -0.1496509 0.1765004 -0.06844985 -0.1362524 0.1578625 -0.1188244 -0.1123782 0.09970188 -0.1628468 -0.08897113 0.02497822 -0.1678951 0.1450504 0.003867685 -0.3375944 -0.08288317 0.003867685 0.07861369 0.1450504 0.003867805 0.2624056 -0.1450504 0.003867685 0.2624056 -0.1450505 0.003867685 -0.3375944</float_array>
+          <technique_common>
+            <accessor source="#Cubo_011-mesh-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cubo_011-mesh-normals">
+          <float_array id="Cubo_011-mesh-normals-array" count="63">-0.00701934 -0.03082424 -0.9995002 0.1295549 0.5647619 -0.8150212 0.09103763 -0.2459207 -0.9650053 0.008331716 -0.1135926 0.9934925 0.1609272 0.5617959 0.8114727 0 0.6677516 0.7443842 -0.1671527 0.4514376 0.8765068 0.1273568 -0.344013 0.9302878 -0.3010124 0.8130052 0.4984116 -0.127815 0.3452349 0.9297721 -0.3424268 0.9248576 0.1654757 -0.2885271 0.7793041 0.5562708 -0.3417509 0.9230754 -0.1764604 -0.3432835 0.9271217 0.1503391 -0.2871576 0.7755911 -0.562138 -0.3403521 0.9192131 -0.1980097 -0.1144154 0.3090651 -0.9441334 -0.2711338 0.7322812 -0.6247005 -0.1488139 0.4019135 -0.9035043 0 1 0 0 0.7106078 -0.7035884</float_array>
+          <technique_common>
+            <accessor source="#Cubo_011-mesh-normals-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cubo_011-mesh-map-0">
+          <float_array id="Cubo_011-mesh-map-0-array" count="132">0.4102631 0.4022376 0.4915199 0.3802542 0.4943984 0.4022375 0.4102632 0.5987934 0.4915199 0.6207767 0.4131417 0.6207767 0.3991957 0.5719199 0.4943984 0.5987934 0.4102632 0.5987934 0.3879075 0.5408612 0.505466 0.5719199 0.3991957 0.5719199 0.3879075 0.5408612 0.5230893 0.5151047 0.5167542 0.5408612 0.3815724 0.4859263 0.5230893 0.5151047 0.3815724 0.5151047 0.3879075 0.4601697 0.5230893 0.4859262 0.3815724 0.4859263 0.3879075 0.4601697 0.5054659 0.429111 0.5167542 0.4601697 0.4102631 0.4022376 0.5054659 0.429111 0.3991957 0.4291111 0.4915199 0.3802542 0.3837476 0.2933531 0.5209141 0.2933531 0.5209141 0.7076779 0.4131417 0.6207767 0.4915199 0.6207767 0.4102631 0.4022376 0.4131417 0.3802542 0.4915199 0.3802542 0.4102632 0.5987934 0.4943984 0.5987934 0.4915199 0.6207767 0.3991957 0.5719199 0.505466 0.5719199 0.4943984 0.5987934 0.3879075 0.5408612 0.5167542 0.5408612 0.505466 0.5719199 0.3879075 0.5408612 0.3815724 0.5151047 0.5230893 0.5151047 0.3815724 0.4859263 0.5230893 0.4859262 0.5230893 0.5151047 0.3879075 0.4601697 0.5167542 0.4601697 0.5230893 0.4859262 0.3879075 0.4601697 0.3991957 0.4291111 0.5054659 0.429111 0.4102631 0.4022376 0.4943984 0.4022375 0.5054659 0.429111 0.4915199 0.3802542 0.4131417 0.3802542 0.3837476 0.2933531 0.5209141 0.7076779 0.3837476 0.7076779 0.4131417 0.6207767</float_array>
+          <technique_common>
+            <accessor source="#Cubo_011-mesh-map-0-array" count="66" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cubo_011-mesh-vertices">
+          <input semantic="POSITION" source="#Cubo_011-mesh-positions"/>
+        </vertices>
+        <triangles material="Render_Handgrip-material" count="22">
+          <input semantic="VERTEX" source="#Cubo_011-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cubo_011-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cubo_011-mesh-map-0" offset="2" set="0"/>
+          <p>8 0 0 2 1 1 18 2 2 12 3 3 20 4 4 1 5 5 5 6 6 6 7 7 12 3 8 4 8 9 7 9 10 5 6 11 4 8 12 14 10 13 13 11 14 10 12 15 14 10 16 11 13 17 3 14 18 15 15 19 10 12 20 3 14 21 17 16 22 16 17 23 8 0 24 17 16 25 9 18 26 2 1 27 19 19 28 23 19 29 22 19 30 1 5 31 20 4 32 8 0 33 0 20 34 2 1 35 12 3 36 6 7 37 20 4 38 5 6 39 7 9 40 6 7 41 4 8 42 13 11 43 7 9 44 4 8 45 11 13 46 14 10 47 10 12 48 15 15 49 14 10 50 3 14 51 16 17 52 15 15 53 3 14 54 9 18 55 17 16 56 8 0 57 18 2 58 17 16 59 2 1 60 0 20 61 19 19 62 22 19 63 21 19 64 1 5 65</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Handgrip" name="Handgrip" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cubo_011-mesh" name="Handgrip">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Render_Handgrip-material" target="#Render_Handgrip-material">
+                <bind_vertex_input semantic="Cubo_007-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

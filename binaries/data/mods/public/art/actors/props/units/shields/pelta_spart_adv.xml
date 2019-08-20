@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/handgrip_leather_01.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/pelta_d_wicker_lambda_01.xml" name="Pelta-Spartan-A-01"/>
+    <variant file="shields/pelta_d_wicker_lambda_02.xml" name="Pelta-Spartan-A-02"/>
+    <variant file="shields/pelta_d_wicker_lambda_03.xml" name="Pelta-Spartan-A-03"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
