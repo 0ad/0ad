@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="shields/spart_aspis_lambda_05.xml" name="Spart-ISP-H-05"/>
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_purple_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
+        <prop actor="props/units/shields/hele_aspis_cape.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

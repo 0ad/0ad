@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/aspis_02_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_02.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_01.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Player-Color-01">
+      <textures>
+        <texture file="props/shield/aspis_cart_adv_01.png" name="baseTex"/>
+        <texture file="props/shield/aspis_02_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Player-Color-02">
+      <textures>
+        <texture file="props/shield/aspis_cart_adv_02.png" name="baseTex"/>
+        <texture file="props/shield/aspis_02_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Player-Color-03">
+      <textures>
+        <texture file="props/shield/aspis_cart_adv_03.png" name="baseTex"/>
+        <texture file="props/shield/aspis_cart_basic_02_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_cart_basic_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Player-Color-04">
+      <textures>
+        <texture file="props/shield/aspis_cart_adv_04.png" name="baseTex"/>
+        <texture file="props/shield/aspis_cart_elite_01_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_cart_elite_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Player-Color-05">
+      <textures>
+        <texture file="props/shield/aspis_cart_adv_05.png" name="baseTex"/>
+        <texture file="props/shield/aspis_02_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
