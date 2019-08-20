@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,21 +17,19 @@
 
 #include "precompiled.h"
 
-#include "lib/ogl.h"
-#include "maths/MathUtil.h"
-
-#include "gui/GUIutil.h"
-#include "lib/bits.h"
-#include "ps/CLogger.h"
-#include "ps/Filesystem.h"
-#include "ps/Game.h"
-#include "ps/World.h"
+#include "renderer/PostprocManager.h"
 
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
-
-#include "renderer/PostprocManager.h"
+#include "gui/GUIutil.h"
+#include "lib/bits.h"
+#include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 #include "renderer/Renderer.h"
 
 #if !CONFIG2_GLES
