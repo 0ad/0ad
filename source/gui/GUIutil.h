@@ -16,17 +16,8 @@
  */
 
 /*
-GUI util
-
---Overview--
-
 	Contains help class GUI<>, which gives us templated
 	 parameter to all functions within GUI.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_GUIUTIL
@@ -189,7 +180,7 @@ private:
 	 * Changes the value of the setting by calling the valueSet functon that performs either a copy or move assignment.
 	 * Updates some internal data depending on the setting changed.
 	 */
-	static PSRETURN SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage, const std::function<void()>& valueSet);
+	static PSRETURN SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const bool& SkipMessage, const std::function<void()>& valueSet);
 
 	// templated typedef of function pointer
 	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T& arg);
