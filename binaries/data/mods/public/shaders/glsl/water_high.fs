@@ -340,7 +340,9 @@ void main()
 	color += specular;
 #endif
 
+#if USE_FOG
 	color = get_fog(color);
+#endif
 
 #if USE_FANCY_EFFECTS
 	vec4 FoamEffects = texture2D(waterEffectsTexOther, gl_FragCoord.xy / screenSize);
