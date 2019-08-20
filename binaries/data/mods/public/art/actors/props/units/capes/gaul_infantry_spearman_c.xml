@@ -52,7 +52,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_spearman_relax_fast.xml"/>
+    <variant file="biped/base_gaul_fanatic.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -73,12 +73,7 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant name="Death">
-      <animations>
-        <animation file="biped/new/death_a.dae" id="death1" name="Death" speed="60"/>
-        <animation file="biped/new/death_b.dae" id="death2" name="Death" speed="60"/>
-      </animations>
-    </variant>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
