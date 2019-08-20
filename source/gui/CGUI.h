@@ -235,10 +235,14 @@ public:
 	const SGUIStyle& GetStyle(const CStr& name) const { return m_Styles.at(name); }
 
 	/**
-	 * Get pre-defined color (if it exists)
-	 * Returns false if it fails.
+	 * Check if a predefined color of that name exists.
 	 */
-	bool GetPreDefinedColor(const CStr& name, CGUIColor& Output) const;
+	bool HasPreDefinedColor(const CStr& name) const { return (m_PreDefinedColors.count(name) != 0); }
+
+	/**
+	 * Resolve the predefined color if it exists, otherwise throws an exception.
+	 */
+	const CGUIColor& GetPreDefinedColor(const CStr& name) const { return m_PreDefinedColors.at(name); }
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 	JS::Value GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
@@ -560,14 +564,6 @@ private:
 	// Tooltip
 	GUITooltip m_Tooltip;
 
-	/**
-	 * This is a bank of custom colors, it is simply a look up table that
-	 * will return a color object when someone inputs the name of that
-	 * color. Of course the colors have to be declared in XML, there are
-	 * no hard-coded values.
-	 */
-	std::map<CStr, CGUIColor> m_PreDefinedColors;
-
 	//@}
 	//--------------------------------------------------------
 	/** @name Objects */
@@ -625,6 +621,9 @@ private:
 	//	These are loaded from XML files and marked as noncopyable and const to
 	//	rule out unintentional modification and copy, especially during Draw calls.
 	//--------------------------------------------------------
+
+	// Colors
+	std::map<CStr, const CGUIColor> m_PreDefinedColors;
 
 	// Sprites
 	std::map<CStr, const CGUISprite*> m_Sprites;

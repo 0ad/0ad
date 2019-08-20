@@ -484,16 +484,6 @@ const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
  	return &it->second;
 }
 
-bool CGUI::GetPreDefinedColor(const CStr& name, CGUIColor& Output) const
-{
-	std::map<CStr, CGUIColor>::const_iterator cit = m_PreDefinedColors.find(name);
-	if (cit == m_PreDefinedColors.end())
-		return false;
-
-	Output = cit->second;
-	return true;
-}
-
 /**
  * @callgraph
  */
@@ -1120,19 +1110,13 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else if (attr_name == "backcolor")
 		{
-			CGUIColor color;
-			if (!GUI<CGUIColor>::ParseString(this, attr_value, color))
+			if (!GUI<CGUIColor>::ParseString(this, attr_value, Image->m_BackColor))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_BackColor = color;
 		}
 		else if (attr_name == "bordercolor")
 		{
-			CGUIColor color;
-			if (!GUI<CGUIColor>::ParseString(this, attr_value, color))
+			if (!GUI<CGUIColor>::ParseString(this, attr_value, Image->m_BorderColor))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_BorderColor = color;
 		}
 		else if (attr_name == "border")
 		{
@@ -1175,10 +1159,8 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 
 		if (attr_name == "add_color")
 		{
-			CGUIColor color;
-			if (!color.ParseString(this, attr.Value, 0))
+			if (!effects.m_AddColor.ParseString(this, attr.Value, 0))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr.Value);
-			else effects.m_AddColor = color;
 		}
 		else if (attr_name == "grayscale")
 			effects.m_Greyscale = true;
@@ -1353,8 +1335,6 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 {
 	XMBAttributeList attributes = Element.GetAttributes();
-
-	CGUIColor color;
 	CStr name = attributes.GetNamedItem(pFile->GetAttributeID("name"));
 
 	// Try parsing value
@@ -1362,12 +1342,15 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 	if (value.empty())
 		return;
 
-	// Try setting color to value
-	if (!color.ParseString(this, value))
+	CColor color;
+	if (color.ParseString(value))
 	{
-		LOGERROR("GUI: Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
-		return;
+		m_PreDefinedColors.erase(name);
+		m_PreDefinedColors.emplace(
+			std::piecewise_construct,
+			std::forward_as_tuple(name),
+			std::forward_as_tuple(color.r, color.g, color.b, color.a));
 	}
-
-	m_PreDefinedColors[name] = color;
+	else
+		LOGERROR("GUI: Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
 }

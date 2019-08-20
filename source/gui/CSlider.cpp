@@ -113,19 +113,18 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 
 void CSlider::Draw()
 {
-	CGUISpriteInstance* sprite;
-	CGUISpriteInstance* sprite_button;
+	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite_bar");
+	CGUISpriteInstance& sprite_button = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
+
 	int cell_id;
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_bar", sprite);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite_button);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 	CRect slider_line(m_CachedActualSize);
 	slider_line.left += m_ButtonSide / 2.0f;
 	slider_line.right -= m_ButtonSide / 2.0f;
 	float bz = GetBufferedZ();
-	GetGUI()->DrawSprite(*sprite, cell_id, bz, slider_line);
-	GetGUI()->DrawSprite(*sprite_button, cell_id, bz, GetButtonRect());
+	m_pGUI->DrawSprite(sprite, cell_id, bz, slider_line);
+	m_pGUI->DrawSprite(sprite_button, cell_id, bz, GetButtonRect());
 }
 
 void CSlider::UpdateValue()

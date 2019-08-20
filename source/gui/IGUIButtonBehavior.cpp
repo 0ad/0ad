@@ -132,36 +132,26 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-CGUIColor IGUIButtonBehavior::ChooseColor()
+const CGUIColor& IGUIButtonBehavior::ChooseColor()
 {
-	CGUIColor color, color2;
-
 	// Yes, the object must possess these settings. They are standard
-	GUI<CGUIColor>::GetSetting(this, "textcolor", color);
+	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, "textcolor");
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
 	if (!enabled)
-	{
-		GUI<CGUIColor>::GetSetting(this, "textcolor_disabled", color2);
-		return color2 || color;
-	}
-	else if (m_MouseHovering)
+		return GUI<CGUIColor>::GetSetting(this, "textcolor_disabled") || color;
+
+	if (m_MouseHovering)
 	{
 		if (m_Pressed)
-		{
-			GUI<CGUIColor>::GetSetting(this, "textcolor_pressed", color2);
-			return color2 || color;
-		}
+			return GUI<CGUIColor>::GetSetting(this, "textcolor_pressed") || color;
 		else
-		{
-			GUI<CGUIColor>::GetSetting(this, "textcolor_over", color2);
-			return color2 || color;
-		}
+			return GUI<CGUIColor>::GetSetting(this, "textcolor_over") || color;
 	}
-	else
-		return color;
+
+	return color;
 }
 
 void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id)

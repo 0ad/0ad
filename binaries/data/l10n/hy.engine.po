@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-07-21 10:17+0000\n"
+"PO-Revision-Date: 2019-08-18 15:04+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Խաղացողն արդեն մուտք է գործել"
 
 #: lobby/XmppClient.cpp:1104
 msgid "Forbidden"
-msgstr "Անթույլատրելի"
+msgstr "Արգելվում"
 
 #: lobby/XmppClient.cpp:1106
 msgid "Internal server error"
@@ -49,19 +49,19 @@ msgstr "Ներքին սերվերի սխալ"
 
 #: lobby/XmppClient.cpp:1110
 msgid "Not allowed"
-msgstr "Ոչ թույլատրված"
+msgstr "Անթույլատրելի"
 
 #: lobby/XmppClient.cpp:1111
 msgid "Not authorized"
-msgstr "Ոչ հաստատված"
+msgstr "չլիազորված"
 
 #: lobby/XmppClient.cpp:1114
 msgid "Recipient temporarily unavailable"
-msgstr "Ստացողը ժամանակավորապես անհասանելի է"
+msgstr "Ասցեատերը ժամանակավորապես անհասանելի է"
 
 #: lobby/XmppClient.cpp:1116
 msgid "Registration required"
-msgstr "Անհրաժեշտ է գրանցում"
+msgstr "Գրանցումը անհրաժեշտ է"
 
 #: lobby/XmppClient.cpp:1120
 msgid "Service unavailable"
@@ -73,23 +73,23 @@ msgstr "Անհայտ սխալ"
 
 #: lobby/XmppClient.cpp:1145
 msgid "Stream error"
-msgstr "Հոսքի սխալ"
+msgstr "\"Stream\"-ի սխալ"
 
 #: lobby/XmppClient.cpp:1146
 msgid "The incoming stream version is unsupported"
-msgstr "Ժամանող հոսքի տարբերակը չի ապահովվում"
+msgstr "Ժամանող \"stream\"-ի տարբերակը չի ապահովվում"
 
 #: lobby/XmppClient.cpp:1147
 msgid "The stream has been closed by the server"
-msgstr "Հոսքը փակվել է սերվերի կողմից"
+msgstr "\"Stream\"-ը արգելափակվել է \"server\"-ի կողմից"
 
 #: lobby/XmppClient.cpp:1151
 msgid "An I/O error occurred"
-msgstr "Ներմուծման/արտածման սխալ"
+msgstr " նկատվել է Մուտքի/Ելքի սխալմունք"
 
 #: lobby/XmppClient.cpp:1153
 msgid "The connection was refused by the server"
-msgstr "Կապը չեղարկվել է սերվերի կողմից"
+msgstr "Կապը չեղարկվել է \"server\"-ի կողմից"
 
 #: lobby/XmppClient.cpp:1154
 msgid "Resolving the server's hostname failed"
@@ -97,25 +97,25 @@ msgstr "Սերվերի անվանման ստացումը չհաջողվեց"
 
 #: lobby/XmppClient.cpp:1155
 msgid "This system is out of memory"
-msgstr "Համակարգն ազատ հիշողություն չունի"
+msgstr "Համակարգն ազատ հիշողության տեղ չունի"
 
 #: lobby/XmppClient.cpp:1157
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Սերվերի վկայականն անհնար է հաստատել կամ TLS միացումը չի հաջողվել"
+msgstr "\"Server\"-ի վկայականն անհնար է հաստատել կամ \"TLS\" միացումը չի հաջողվել"
 
 #: lobby/XmppClient.cpp:1158
 msgid "The server did not offer required TLS encryption"
-msgstr "Սերվերը չառաջարկեց անհրաժեշտ TLS կոդավորումը"
+msgstr "\"Server\"-ը \"TLS\"-ի անհրաժեշտ կոդավորումը չի առաքվել"
 
 #: lobby/XmppClient.cpp:1160
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Նույնականացման ձախողում։ Սխալ մասնակցային անուն կամ գաղտնաբառ սխալ էր"
+msgstr "Նույնականացումը ձախողվել է։ Սխալ գաղտնաբառ կամ մասնակցային անուն սխալ էր"
 
 #: lobby/XmppClient.cpp:1161
 msgid "The user or system requested a disconnect"
-msgstr "Օգտատերը կամ սերվերը պահանջել են անջատում"
+msgstr "Օգտատերը կամ \"server\"-ը պահանջում են անջատում"
 
 #: lobby/XmppClient.cpp:1162
 msgid "There is no active connection"
@@ -123,7 +123,7 @@ msgstr "Ակտիվ կապ չկա"
 
 #: lobby/XmppClient.cpp:1183
 msgid "Your account has been successfully registered"
-msgstr "Ձեր հաշիվը հաջողությամբ ստեղծվեց"
+msgstr "Ձեր հաշիվը հաջողությամբ գրանցվել է"
 
 #: lobby/XmppClient.cpp:1184
 msgid "Not all necessary information provided"
@@ -146,7 +146,7 @@ msgstr "Ձախողում մոդի ID-ի հարցման ժամանակ։ Սխալ
 #: ps/ModIo.cpp:301
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Չհաջողվեց ստեղծել մոդի հասցեագիրք․ %s"
+msgstr "Չհաջողվեց ստեղծել ձևի տխտապանակը․ %s"
 
 #: ps/ModIo.cpp:326
 #, c-format
@@ -188,7 +188,7 @@ msgstr "Ձախողվեց ստորագրության հաստատումը"
 #: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Խաղը պահպանվեց '%s'-ում"
+msgstr "Խաղը կպահպանվի '%s'-ում"
 
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format

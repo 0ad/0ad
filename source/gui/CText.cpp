@@ -75,9 +75,6 @@ void CText::SetupText()
 		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
 		font = L"default";
 
-	CGUIString* caption = nullptr;
-	GUI<CGUIString>::GetSettingPointer(this, "caption", caption);
-
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
@@ -86,10 +83,10 @@ void CText::SetupText()
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
+	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
+	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
 
-    float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, *caption, font, width, buffer_zone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, width, buffer_zone, this);
 
 	if (!scrollbar)
 		CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
@@ -198,14 +195,14 @@ void CText::Draw()
 		// Draw scrollbar
 		IGUIScrollBarOwner::Draw();
 
-	CGUISpriteInstance* sprite;
+	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
+
 	int cell_id;
 	bool clip;
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 	GUI<bool>::GetSetting(this, "clip", clip);
 
-	GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (scrollbar)
@@ -233,13 +230,12 @@ void CText::Draw()
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
-	CGUIColor color;
-	GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled", color);
+	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled");
 
 	if (scrollbar)
-		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
+		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz + 0.1f, cliparea);
 	else
-		DrawText(0, color, m_TextPos, bz+0.1f, cliparea);
+		DrawText(0, color, m_TextPos, bz + 0.1f, cliparea);
 }
 
 bool CText::MouseOverIcon()
