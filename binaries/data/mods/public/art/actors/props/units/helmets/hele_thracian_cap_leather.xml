@@ -2,8 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="thracian-01">
-      <mesh>props/helmet/hele_thracian_cap_a.dae</mesh>
+    <variant>
       <textures>
         <texture file="props/helmet/hele_thracian_cap_01_norm.png" name="normTex"/>
         <texture file="props/helmet/hele_thracian_cap_01_spec.png" name="specTex"/>
@@ -21,10 +20,13 @@
         <texture file="props/helmet/hele_thracian_cap_01_leather_brown.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Player-Color">
-      <textures>
-        <texture file="props/helmet/hele_thracian_cap_01_leather_player.png" name="baseTex"/>
-      </textures>
+  </group>
+  <group>
+    <variant frequency="1" name="Cap-01">
+      <mesh>props/helmet/hele_thracian_cap_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cap-02">
+      <mesh>props/helmet/hele_thracian_cap_a.dae</mesh>
     </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
