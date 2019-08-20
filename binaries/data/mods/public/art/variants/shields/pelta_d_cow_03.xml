@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="shields/pelta_d_base.xml" name="Pelta">
+  <textures>
+    <texture file="props/shield/pelta_cow_skin_03.png" name="baseTex"/>
+  </textures>
+  <props>
+    <prop actor="props/units/shields/pelta_d_back_wicker.xml" attachpoint="root"/>
+  </props>
+</variant>
