@@ -390,7 +390,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	}
 }
 
-void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValueArray paramData)
+void IGUIObject::ScriptEvent(const CStr& Action, const JS::HandleValueArray& paramData)
 {
 	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
@@ -423,6 +423,20 @@ JSObject* IGUIObject::GetJSObject()
 		CreateJSObject();
 
 	return m_JSObject.get();
+}
+
+bool IGUIObject::IsHidden()
+{
+	// Statically initialise some strings, so we don't have to do
+	// lots of allocation every time this function is called
+	static const CStr strHidden("hidden");
+	return GUI<bool>::GetSetting(this, strHidden);
+}
+
+bool IGUIObject::IsHiddenOrGhost()
+{
+	static const CStr strGhost("ghost");
+	return IsHidden() || GUI<bool>::GetSetting(this, strGhost);
 }
 
 CStr IGUIObject::GetPresentableName() const

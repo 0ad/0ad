@@ -27,6 +27,7 @@
 
 #include "IGUIObject.h"
 
+#include "gui/CGUI.h"
 #include "gui/GUIbase.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "lib/input.h" // just for IN_PASS
@@ -37,10 +38,10 @@
 #include <vector>
 
 struct SGUIStyle;
-class CGUI;
-
 class JSObject;
 class IGUISetting;
+
+template <typename T> class GUI;
 
 ERROR_TYPE(GUI, UnableToParse);
 
@@ -128,16 +129,10 @@ public:
 	 */
 	void AddChild(IGUIObject* pChild);
 
-	//@}
-	//--------------------------------------------------------
-	/** @name Iterate
-	 * Used to iterate over all children of this object.
+	/**
+	 * Return all child objects of the current object.
 	 */
-	//--------------------------------------------------------
-	//@{
-
-	vector_pObjects::iterator begin() { return m_Children.begin(); }
-	vector_pObjects::iterator end() { return m_Children.end(); }
+	std::vector<IGUIObject*>& GetChildren() { return m_Children; }
 
 	//@}
 	//--------------------------------------------------------
@@ -152,6 +147,16 @@ public:
 	 * @return True if settings exist.
 	 */
 	bool SettingExists(const CStr& Setting) const;
+
+	/**
+	 * Returns whether this is object is set to be hidden.
+	 */
+	bool IsHidden();
+
+	/**
+	 * Returns whether this object is set to be hidden or ghost.
+	 */
+	bool IsHiddenOrGhost();
 
 	/**
 	 * All sizes are relative to resolution, and the calculation
@@ -234,6 +239,26 @@ public:
 	 * @param Message GUI Message
 	 */
 	virtual void HandleMessage(SGUIMessage& UNUSED(Message)) {}
+
+	/**
+	 * Calls an IGUIObject member function recursively on this object and its children.
+	 * Aborts recursion at IGUIObjects that have the isRestricted function return true.
+	 * The arguments of the callback function must be references.
+	*/
+	template<typename... Args>
+	void RecurseObject(bool(IGUIObject::*isRestricted)(), void(IGUIObject::*callbackFunction)(Args... args), Args&&... args)
+	{
+		if (this != m_pGUI.GetBaseObject())
+		{
+			if (isRestricted && (this->*isRestricted)())
+				return;
+
+			(this->*callbackFunction)(args...);
+		}
+
+		for (IGUIObject* const& obj : m_Children)
+			obj->RecurseObject(isRestricted, callbackFunction, args...);
+	}
 
 protected:
 	/**
@@ -364,7 +389,7 @@ protected:
 	 * @param Action Name of action
 	 * @param paramData JS::HandleValueArray arguments to pass to the event.
 	 */
-	void ScriptEvent(const CStr& Action, JS::HandleValueArray paramData);
+	void ScriptEvent(const CStr& Action, const JS::HandleValueArray& paramData);
 
 	void SetScriptHandler(const CStr& Action, JS::HandleObject Function);
 

@@ -35,7 +35,7 @@ void CRadioButton::HandleMessage(SGUIMessage& Message)
 	switch (Message.type)
 	{
 	case GUIM_PRESSED:
-		for (IGUIObject* const& obj : *GetParent())
+		for (IGUIObject* const& obj : GetParent()->GetChildren())
 		{
 			// Notice, if you use other objects within the parent object that has got
 			//  the setting "checked", it too will change. Hence NO OTHER OBJECTS THAN

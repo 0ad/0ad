@@ -125,20 +125,6 @@ struct SGUIMessage
 	bool skipped;
 };
 
-/**
- * Recurse restrictions, when we recurse, if an object
- * is hidden for instance, you might want it to skip
- * the children also
- * Notice these are flags! and we don't really need one
- * for no restrictions, because then you'll just enter 0
- */
-enum
-{
-	GUIRR_HIDDEN		= 0x00000001,
-	GUIRR_DISABLED		= 0x00000010,
-	GUIRR_GHOST			= 0x00000100
-};
-
 // Text alignments
 enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
 enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };

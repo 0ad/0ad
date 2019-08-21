@@ -164,12 +164,12 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 	// If setting was "size", we need to re-cache itself and all children
 	if (Setting == "size")
 	{
-		RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
+		pObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
 	}
 	else if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
-		RecurseObject(0, pObject, &IGUIObject::ResetStates);
+		pObject->RecurseObject(nullptr, &IGUIObject::ResetStates);
 	}
 
 	if (!SkipMessage)

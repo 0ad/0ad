@@ -92,7 +92,7 @@ protected:
 	virtual void ResetStates()
 	{
 		// Notify the gui that we aren't hovered anymore
-		UpdateMouseOver(NULL);
+		UpdateMouseOver(nullptr);
 		m_Pressed = false;
 		m_PressedRight = false;
 	}
