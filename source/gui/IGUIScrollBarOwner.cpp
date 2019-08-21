@@ -19,7 +19,7 @@
 
 #include "GUI.h"
 
-IGUIScrollBarOwner::IGUIScrollBarOwner(CGUI* pGUI)
+IGUIScrollBarOwner::IGUIScrollBarOwner(CGUI& pGUI)
 	: IGUIObject(pGUI)
 {
 }
@@ -46,7 +46,7 @@ void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
 
 const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
-	return GetGUI()->GetScrollBarStyle(style);
+	return m_pGUI.GetScrollBarStyle(style);
 }
 
 void IGUIScrollBarOwner::HandleMessage(SGUIMessage& msg)

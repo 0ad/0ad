@@ -73,7 +73,7 @@ class CGUI
 
 private:
 	// Private typedefs
-	using ConstructObjectFunction = IGUIObject* (*)(CGUI*);
+	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
 
 public:
 	CGUI(const shared_ptr<ScriptRuntime>& runtime);

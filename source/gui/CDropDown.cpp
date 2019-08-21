@@ -26,7 +26,7 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-CDropDown::CDropDown(CGUI* pGUI)
+CDropDown::CDropDown(CGUI& pGUI)
 	: CList(pGUI), IGUIObject(pGUI),
 	  m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
 {
@@ -103,7 +103,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		if (!m_Open)
 			break;
 
-		CPos mouse = m_pGUI->GetMousePos();
+		CPos mouse = m_pGUI.GetMousePos();
 
 		if (!GetListRect().PointInside(mouse))
 			break;
@@ -203,7 +203,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		}
 		else
 		{
-			const CPos& mouse = m_pGUI->GetMousePos();
+			const CPos& mouse = m_pGUI.GetMousePos();
 
 			// If the regular area is pressed, then abort, and close.
 			if (m_CachedActualSize.PointInside(mouse))
@@ -461,10 +461,10 @@ bool CDropDown::MouseOver()
 	{
 		CRect rect(m_CachedActualSize.left, std::min(m_CachedActualSize.top, GetListRect().top),
 		           m_CachedActualSize.right, std::max(m_CachedActualSize.bottom, GetListRect().bottom));
-		return rect.PointInside(m_pGUI->GetMousePos());
+		return rect.PointInside(m_pGUI.GetMousePos());
 	}
 	else
-		return m_CachedActualSize.PointInside(m_pGUI->GetMousePos());
+		return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
 }
 
 void CDropDown::Draw()
@@ -486,7 +486,7 @@ void CDropDown::Draw()
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 	GUI<int>::GetSetting(this, "selected", selected);
 
-	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
 	if (button_width > 0.f)
 	{
@@ -496,20 +496,20 @@ void CDropDown::Draw()
 		if (!enabled)
 		{
 			CGUISpriteInstance& sprite2_second = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_disabled");
-			m_pGUI->DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else if (m_Open)
 		{
 			CGUISpriteInstance& sprite2_second = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_pressed");
-			m_pGUI->DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else if (m_MouseHovering)
 		{
 			CGUISpriteInstance& sprite2_second = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_over");
-			m_pGUI->DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(sprite2_second || sprite2, cell_id, bz + 0.05f, rect);
 		}
 		else
-			m_pGUI->DrawSprite(sprite2, cell_id, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(sprite2, cell_id, bz + 0.05f, rect);
 	}
 
 	if (selected != -1) // TODO: Maybe check validity completely?

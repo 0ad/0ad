@@ -30,12 +30,12 @@ public:
 	NONCOPYABLE(GUITooltip);
 
 	GUITooltip();
-	void Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI);
+	void Update(IGUIObject* Nearest, const CPos& MousePos, CGUI& GUI);
 
 private:
 
-	void ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI* gui);
-	void HideTooltip(const CStr& style, CGUI* gui);
+	void ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI& pGUI);
+	void HideTooltip(const CStr& style, CGUI& pGUI);
 	bool GetTooltip(IGUIObject* obj, CStr& style);
 
 	int m_State;

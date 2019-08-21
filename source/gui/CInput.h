@@ -38,7 +38,7 @@ protected: // forwards
 	struct SRow;
 
 public:
-	CInput(CGUI* pGUI);
+	CInput(CGUI& pGUI);
 	virtual ~CInput();
 
 	/**

@@ -49,7 +49,7 @@ class IGUIObject;
 // Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
 public:																	\
-	static IGUIObject* ConstructObject(CGUI* pGUI)					\
+	static IGUIObject* ConstructObject(CGUI& pGUI)					\
 		{ return new obj(pGUI); }
 
 

@@ -21,11 +21,11 @@
 #include "ps/CStr.h"
 #include "gui/CGUI.h"
 
-bool CGUIColor::ParseString(const CGUI* pGUI, const CStr& value, int defaultAlpha)
+bool CGUIColor::ParseString(const CGUI& pGUI, const CStr& value, int defaultAlpha)
 {
-	if (pGUI != nullptr && pGUI->HasPreDefinedColor(value))
+	if (pGUI.HasPreDefinedColor(value))
 	{
-		const CGUIColor& color = pGUI->GetPreDefinedColor(value);
+		const CGUIColor& color = pGUI.GetPreDefinedColor(value);
 
 		// Explicit copy assignment
 		r = color.r;

@@ -30,7 +30,7 @@ class CProgressBar : public IGUIObject
 	GUI_OBJECT(CProgressBar)
 
 public:
-	CProgressBar(CGUI* pGUI);
+	CProgressBar(CGUI& pGUI);
 	virtual ~CProgressBar();
 
 protected:

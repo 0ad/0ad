@@ -32,7 +32,7 @@ class CRadioButton : public CCheckBox
 	GUI_OBJECT(CRadioButton)
 
 public:
-	CRadioButton(CGUI* pGUI);
+	CRadioButton(CGUI& pGUI);
 
 	/**
 	 * @see IGUIObject#HandleMessage()

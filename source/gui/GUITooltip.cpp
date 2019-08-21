@@ -113,14 +113,14 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 	return false;
 }
 
-void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI* gui)
+void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI& pGUI)
 {
 	ENSURE(obj);
 
 	if (style.empty())
 		return;
 
-	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
+	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 	if (!tooltipobj)
 	{
 		LOGERROR("Cannot find tooltip named '%s'", style.c_str());
@@ -133,7 +133,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK &&
 	    !usedObjectName.empty())
 	{
-		usedobj = gui->FindObjectByName(usedObjectName);
+		usedobj = pGUI.FindObjectByName(usedObjectName);
 		if (!usedobj)
 		{
 			LOGERROR("Cannot find object named '%s' used by tooltip '%s'", usedObjectName.c_str(), style.c_str());
@@ -161,12 +161,12 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 	usedobj->HandleMessage(msg);
 }
 
-void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
+void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 {
 	if (style.empty())
 		return;
 
-	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
+	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 	if (!tooltipobj)
 	{
 		LOGERROR("Cannot find tooltip named '%s'", style.c_str());
@@ -177,7 +177,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK &&
 	    !usedObjectName.empty())
 	{
-		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
+		IGUIObject* usedobj = pGUI.FindObjectByName(usedObjectName);
 		if (!usedobj)
 		{
 			LOGERROR("Cannot find object named '%s' used by tooltip '%s'", usedObjectName.c_str(), style.c_str());
@@ -198,11 +198,11 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		GUI<bool>::SetSetting(tooltipobj, "hidden", true);
 }
 
-static int GetTooltipDelay(const CStr& style, CGUI* gui)
+static int GetTooltipDelay(const CStr& style, CGUI& pGUI)
 {
 	int delay = 500; // default value (in msec)
 
-	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
+	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 	if (!tooltipobj)
 	{
 		LOGERROR("Cannot find tooltip object named '%s'", style.c_str());
@@ -212,7 +212,7 @@ static int GetTooltipDelay(const CStr& style, CGUI* gui)
 	return delay;
 }
 
-void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI)
+void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI& GUI)
 {
 	// Called once per frame, so efficiency isn't vital
 	double now = timer_Time();

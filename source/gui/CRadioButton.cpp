@@ -21,7 +21,7 @@
 
 #include "GUI.h"
 
-CRadioButton::CRadioButton(CGUI* pGUI)
+CRadioButton::CRadioButton(CGUI& pGUI)
 	: CCheckBox(pGUI), IGUIObject(pGUI)
 {
 }

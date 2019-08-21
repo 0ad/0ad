@@ -28,7 +28,7 @@
  * TODO: Since there is no call to DrawText, the checkbox won't render any text.
  * Thus the font, caption, textcolor and other settings have no effect.
  */
-CCheckBox::CCheckBox(CGUI* pGUI)
+CCheckBox::CCheckBox(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIButtonBehavior(pGUI)
 {
 	AddSetting<float>("buffer_zone");

@@ -37,7 +37,7 @@ class CImage : public IGUIObject
 	GUI_OBJECT(CImage)
 
 public:
-	CImage(CGUI* pGUI);
+	CImage(CGUI& pGUI);
 	virtual ~CImage();
 
 protected:

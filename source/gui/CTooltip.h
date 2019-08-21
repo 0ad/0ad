@@ -28,7 +28,7 @@ class CTooltip : public IGUITextOwner
 	GUI_OBJECT(CTooltip)
 
 public:
-	CTooltip(CGUI* pGUI);
+	CTooltip(CGUI& pGUI);
 	virtual ~CTooltip();
 
 protected:

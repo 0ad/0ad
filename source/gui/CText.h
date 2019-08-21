@@ -30,7 +30,7 @@ class CText : public IGUIScrollBarOwner, public IGUITextOwner
 	GUI_OBJECT(CText)
 
 public:
-	CText(CGUI* pGUI);
+	CText(CGUI& pGUI);
 	virtual ~CText();
 
 	/**

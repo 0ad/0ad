@@ -51,7 +51,7 @@ struct CGUIColor : CColor
 	/**
 	 * Load color depending on current GUI page.
 	 */
-	bool ParseString(const CGUI* pGUI, const CStr& value, int defaultAlpha = 255);
+	bool ParseString(const CGUI& pGUI, const CStr& value, int defaultAlpha = 255);
 
 	/**
 	 * Ensure that all users check for predefined colors.

@@ -62,7 +62,7 @@ class IGUIObject
 public:
 	NONCOPYABLE(IGUIObject);
 
-	IGUIObject(CGUI* pGUI);
+	IGUIObject(CGUI& pGUI);
 	virtual ~IGUIObject();
 
 	/**
@@ -185,7 +185,7 @@ public:
 	 * @param Code Javascript code to execute when the action occurs
 	 * @param pGUI GUI instance to associate the script with
 	 */
-	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
+	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI& pGUI);
 
 	/**
 	 * Creates the JS Object representing this page upon first use.
@@ -289,8 +289,8 @@ protected:
 
 public:
 
-	CGUI* GetGUI() { return m_pGUI; }
-	const CGUI* GetGUI() const { return m_pGUI; }
+	CGUI& GetGUI() { return m_pGUI; }
+	const CGUI& GetGUI() const { return m_pGUI; }
 
 	/**
 	 * Take focus!
@@ -457,7 +457,7 @@ public:
 
 protected:
 	// An object can't function stand alone
-	CGUI* const m_pGUI;
+	CGUI& m_pGUI;
 
 	// Internal storage for registered script handlers.
 	std::map<CStr, JS::Heap<JSObject*> >	m_ScriptHandlers;
@@ -476,7 +476,7 @@ class CGUIDummyObject : public IGUIObject
 	GUI_OBJECT(CGUIDummyObject)
 
 public:
-	CGUIDummyObject(CGUI* pGUI) : IGUIObject(pGUI) {}
+	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}
 
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.

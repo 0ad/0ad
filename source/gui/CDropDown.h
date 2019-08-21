@@ -50,7 +50,7 @@ class CDropDown : public CList
 	GUI_OBJECT(CDropDown)
 
 public:
-	CDropDown(CGUI* pGUI);
+	CDropDown(CGUI& pGUI);
 	virtual ~CDropDown();
 
 //	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }

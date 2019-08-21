@@ -261,7 +261,7 @@ void CGUI::TickObjects()
 	GUI<CStr>::RecurseObject(0, m_BaseObject,
 							&IGUIObject::ScriptEvent, action);
 
-	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, this);
+	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, *this);
 }
 
 void CGUI::SendEventToAll(const CStr& EventName)
@@ -290,7 +290,7 @@ CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
 
-       m_BaseObject = new CGUIDummyObject(this);
+       m_BaseObject = new CGUIDummyObject(*this);
 }
 
 CGUI::~CGUI()
@@ -304,7 +304,7 @@ CGUI::~CGUI()
 IGUIObject* CGUI::ConstructObject(const CStr& str)
 {
 	if (m_ObjectTypes.count(str) > 0)
-		return (*m_ObjectTypes[str])(this);
+		return (*m_ObjectTypes[str])(*this);
 
 	// Error reporting will be handled with the nullptr return.
 	return nullptr;
@@ -358,7 +358,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 
 	// TODO: Clipping?
 
-	Sprite.Draw(this, Rect, CellID, m_Sprites, Z);
+	Sprite.Draw(*this, Rect, CellID, m_Sprites, Z);
 }
 
 void CGUI::Destroy()
@@ -740,7 +740,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 
-			object->RegisterScriptHandler(action.LowerCase(), code, this);
+			object->RegisterScriptHandler(action.LowerCase(), code, *this);
 		}
 		else if (element_name == elmt_repeat)
 		{
@@ -1159,7 +1159,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 
 		if (attr_name == "add_color")
 		{
-			if (!effects.m_AddColor.ParseString(this, attr.Value, 0))
+			if (!effects.m_AddColor.ParseString(*this, attr.Value, 0))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr.Value);
 		}
 		else if (attr_name == "grayscale")
@@ -1316,7 +1316,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 {
-	IGUIObject* object = new CTooltip(this);
+	IGUIObject* object = new CTooltip(*this);
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{

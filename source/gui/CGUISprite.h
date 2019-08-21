@@ -146,7 +146,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(const CGUI* pGUI, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
+	void Draw(CGUI& pGUI, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
 
 	/**
 	 * Whether this Sprite has no texture name set.

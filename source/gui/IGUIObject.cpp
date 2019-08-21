@@ -27,7 +27,7 @@
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
-IGUIObject::IGUIObject(CGUI* pGUI)
+IGUIObject::IGUIObject(CGUI& pGUI)
 	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
 {
 	AddSetting<bool>("enabled");
@@ -55,7 +55,7 @@ IGUIObject::~IGUIObject()
 		delete p.second;
 
 	if (!m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
 }
 
 //-------------------------------------------------------------------
@@ -76,7 +76,7 @@ void IGUIObject::AddChild(IGUIObject* pChild)
 			// Atomic function, if it fails it won't
 			//  have changed anything
 			//UpdateObjects();
-			pChild->GetGUI()->UpdateObjects();
+			pChild->GetGUI().UpdateObjects();
 		}
 		catch (PSERROR_GUI&)
 		{
@@ -130,7 +130,7 @@ void IGUIObject::AddSetting(const CStr& Name)
 
 bool IGUIObject::MouseOver()
 {
-	return m_CachedActualSize.PointInside(m_pGUI->GetMousePos());
+	return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
 }
 
 bool IGUIObject::MouseOverIcon()
@@ -301,11 +301,11 @@ float IGUIObject::GetBufferedZ() const
 	}
 }
 
-void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI)
+void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI& pGUI)
 {
-	JSContext* cx = pGUI->GetScriptInterface()->GetContext();
+	JSContext* cx = pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
-	JS::RootedValue globalVal(cx, pGUI->GetGlobalObject());
+	JS::RootedValue globalVal(cx, pGUI.GetGlobalObject());
 	JS::RootedObject globalObj(cx, &globalVal.toObject());
 
 	const int paramCount = 1;
@@ -337,10 +337,8 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
 {
-	ENSURE(m_pGUI && "A GUI must be associated with the GUIObject before adding ScriptHandlers!");
-
 	if (m_ScriptHandlers.empty())
-		JS_AddExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
 
 	m_ScriptHandlers[Action] = JS::Heap<JSObject*>(Function);
 }
@@ -365,19 +363,19 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	if (it == m_ScriptHandlers.end())
 		return;
 
-	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(cx);
 
-	const CPos& mousePos = m_pGUI->GetMousePos();
+	const CPos& mousePos = m_pGUI.GetMousePos();
 
-	m_pGUI->GetScriptInterface()->CreateObject(
+	m_pGUI.GetScriptInterface()->CreateObject(
 		&mouse,
 		"x", mousePos.x,
 		"y", mousePos.y,
-		"buttons", m_pGUI->GetMouseButtons());
+		"buttons", m_pGUI.GetMouseButtons());
 
 	JS::AutoValueVector paramData(cx);
 	paramData.append(mouse);
@@ -398,7 +396,7 @@ void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValueArray paramData)
 	if (it == m_ScriptHandlers.end())
 		return;
 
-	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, GetJSObject());
 	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
@@ -410,10 +408,10 @@ void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValueArray paramData)
 
 void IGUIObject::CreateJSObject()
 {
-	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 
-	m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);
 }
 
@@ -442,17 +440,17 @@ CStr IGUIObject::GetPresentableName() const
 
 void IGUIObject::SetFocus()
 {
-	m_pGUI->SetFocusedObject(this);
+	m_pGUI.SetFocusedObject(this);
 }
 
 bool IGUIObject::IsFocused() const
 {
-	return m_pGUI->GetFocusedObject() == this;
+	return m_pGUI.GetFocusedObject() == this;
 }
 
 bool IGUIObject::IsRootObject() const
 {
-	return m_pParent == m_pGUI->GetBaseObject();
+	return m_pParent == m_pGUI.GetBaseObject();
 }
 
 void IGUIObject::TraceMember(JSTracer* trc)

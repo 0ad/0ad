@@ -34,7 +34,7 @@ bool CGUISetting<T>::FromString(const CStrW& Value, const bool& SkipMessage)
 {
 	T settingValue;
 
-	if (!GUI<T>::ParseString(m_pObject.GetGUI(), Value, settingValue))
+	if (!GUI<T>::ParseString(&m_pObject.GetGUI(), Value, settingValue))
 		return false;
 
 	GUI<T>::SetSetting(&m_pObject, m_Name, settingValue, SkipMessage);

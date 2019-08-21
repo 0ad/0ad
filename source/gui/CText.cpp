@@ -23,7 +23,7 @@
 #include "gui/GUI.h"
 #include "lib/ogl.h"
 
-CText::CText(CGUI* pGUI)
+CText::CText(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting<float>("buffer_zone");
@@ -202,7 +202,7 @@ void CText::Draw()
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 	GUI<bool>::GetSetting(this, "clip", clip);
 
-	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (scrollbar)
@@ -244,7 +244,7 @@ bool CText::MouseOverIcon()
 		for (const CGUIText::SSpriteCall& spritecall : guitext.GetSpriteCalls())
 		{
 			// Check mouse over sprite
-			if (!spritecall.m_Area.PointInside(m_pGUI->GetMousePos() - m_CachedActualSize.TopLeft()))
+			if (!spritecall.m_Area.PointInside(m_pGUI.GetMousePos() - m_CachedActualSize.TopLeft()))
 				continue;
 
 			// If tooltip exists, set the property

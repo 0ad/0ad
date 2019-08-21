@@ -24,7 +24,7 @@
 #include "ps/CLogger.h"
 
 
-CGUIScrollBarVertical::CGUIScrollBarVertical(CGUI* pGUI)
+CGUIScrollBarVertical::CGUIScrollBarVertical(CGUI& pGUI)
  : IGUIScrollBar(pGUI)
 {
 }
@@ -61,7 +61,7 @@ void CGUIScrollBarVertical::Draw()
 	{
 		CRect outline = GetOuterRect();
 
-		m_pGUI->DrawSprite(
+		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBackVertical,
 			0,
 			m_Z+0.1f,
@@ -98,7 +98,7 @@ void CGUIScrollBarVertical::Draw()
 			else
 				button_bottom = &GetStyle()->m_SpriteButtonBottom;
 
-			m_pGUI->DrawSprite(
+			m_pGUI.DrawSprite(
 				*button_top,
 				0,
 				m_Z+0.2f,
@@ -110,7 +110,7 @@ void CGUIScrollBarVertical::Draw()
 				)
 			);
 
-			m_pGUI->DrawSprite(
+			m_pGUI.DrawSprite(
 				*button_bottom,
 				0,
 				m_Z+0.2f,
@@ -123,7 +123,7 @@ void CGUIScrollBarVertical::Draw()
 			);
 		}
 
-		m_pGUI->DrawSprite(
+		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBarVertical,
 			0,
 			m_Z + 0.2f,

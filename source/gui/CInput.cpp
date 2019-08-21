@@ -39,7 +39,7 @@
 
 extern int g_yres;
 
-CInput::CInput(CGUI* pGUI)
+CInput::CInput(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI),
 	m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
 	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_ComposingText(false),
@@ -910,7 +910,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		// Check if we're selecting the scrollbar
 		if (GetScrollBar(0).GetStyle() && multiline)
 		{
-			if (m_pGUI->GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
+			if (m_pGUI.GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
 				break;
 		}
 
@@ -1197,7 +1197,7 @@ void CInput::Draw()
 	int cell_id;
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
-	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (scrollbar && multiline)
@@ -1386,7 +1386,7 @@ void CInput::Draw()
 							rect.right = m_CachedActualSize.right;
 					}
 
-					m_pGUI->DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect);
+					m_pGUI.DrawSprite(sprite_selectarea, cell_id, bz + 0.05f, rect);
 				}
 
 				if (i < (int)it->m_ListOfX.size())
@@ -1892,7 +1892,7 @@ int CInput::GetMouseHoveringTextPosition() const
 
 	std::list<SRow>::const_iterator current = m_CharacterPositions.begin();
 
-	CPos mouse = m_pGUI->GetMousePos();
+	CPos mouse = m_pGUI.GetMousePos();
 
 	if (multiline)
 	{

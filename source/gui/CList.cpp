@@ -27,7 +27,7 @@
 #include "soundmanager/ISoundManager.h"
 
 
-CList::CList(CGUI* pGUI)
+CList::CList(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIScrollBarOwner(pGUI),
 	  m_Modified(false), m_PrevSelectedItem(-1), m_LastItemClickTime(0)
 {
@@ -325,7 +325,6 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 	if (scrollbar)
 		IGUIScrollBarOwner::Draw();
 
-	if (GetGUI())
 	{
 		CRect rect = GetListRect();
 
@@ -333,7 +332,7 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 		CGUISpriteInstance& sprite_selectarea = GUI<CGUISpriteInstance>::GetSetting(this, _sprite_selected);
 
 		const int cell_id = GUI<int>::GetSetting(this, "cell_id");
-		m_pGUI->DrawSprite(sprite, cell_id, bz, rect);
+		m_pGUI.DrawSprite(sprite, cell_id, bz, rect);
 
 		float scroll = 0.f;
 		if (scrollbar)
@@ -365,7 +364,7 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 						rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 				}
 
-				m_pGUI->DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect_sel);
+				m_pGUI.DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect_sel);
 			}
 		}
 
@@ -506,7 +505,7 @@ int CList::GetHoveredItem()
 	const float scroll = scrollbar ? GetScrollBar(0).GetPos() : 0.f;
 
 	const CRect& rect = GetListRect();
-	CPos mouse = m_pGUI->GetMousePos();
+	CPos mouse = m_pGUI.GetMousePos();
 	mouse.y += scroll;
 
 	// Mouse is over scrollbar

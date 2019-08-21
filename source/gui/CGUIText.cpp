@@ -58,7 +58,7 @@ void SGenerateTextImage::SetupSpriteCall(
 	m_Indentation = Size.cx + BufferZone * 2;
 }
 
-CGUIText::CGUIText(const CGUI* pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject)
+CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject)
 {
 	if (string.m_Words.empty())
 		return;
@@ -113,7 +113,7 @@ CGUIText::CGUIText(const CGUI* pGUI, const CGUIString& string, const CStrW& Font
 
 // Loop through our images queues, to see if images have been added.
 void CGUIText::SetupSpriteCalls(
-	const CGUI* pGUI,
+	const CGUI& pGUI,
 	const std::array<std::vector<CStr>, 2>& FeedbackImages,
 	const float y,
 	const float Width,
@@ -142,7 +142,7 @@ void CGUIText::SetupSpriteCalls(
 			else
 				_y = y;
 
-			const SGUIIcon& icon = pGUI->GetIcon(imgname);
+			const SGUIIcon& icon = pGUI.GetIcon(imgname);
 			Image.SetupSpriteCall(j == CGUIString::SFeedback::Left, SpriteCall, Width, _y, icon.m_Size, icon.m_SpriteName, BufferZone, icon.m_CellID);
 
 			// Check if image is the lowest thing.
@@ -161,7 +161,7 @@ void CGUIText::SetupSpriteCalls(
 //  if all characters processed, will actually be involved
 //  in that line.
 void CGUIText::ComputeLineSize(
-	const CGUI* pGUI,
+	const CGUI& pGUI,
 	const CGUIString& string,
 	const CStrIntern& Font,
 	const bool FirstLine,
@@ -210,7 +210,7 @@ void CGUIText::ComputeLineSize(
 }
 
 bool CGUIText::ProcessLine(
-	const CGUI* pGUI,
+	const CGUI& pGUI,
 	const CGUIString& string,
 	const CStrIntern& Font,
 	const IGUIObject* pObject,
@@ -335,7 +335,7 @@ float CGUIText::GetLineOffset(
 }
 
 bool CGUIText::AssembleCalls(
-	const CGUI* pGUI,
+	const CGUI& pGUI,
 	const CGUIString& string,
 	const CStrIntern& Font,
 	const IGUIObject* pObject,
@@ -425,7 +425,7 @@ bool CGUIText::AssembleCalls(
 	return done;
 }
 
-void CGUIText::Draw(CGUI* pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const
+void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -460,7 +460,7 @@ void CGUIText::Draw(CGUI* pGUI, const CGUIColor& DefaultColor, const CPos& pos, 
 	textRenderer.Render();
 
 	for (const SSpriteCall& sc : m_SpriteCalls)
-		pGUI->DrawSprite(sc.m_Sprite, sc.m_CellID, z, sc.m_Area + pos);
+		pGUI.DrawSprite(sc.m_Sprite, sc.m_CellID, z, sc.m_Area + pos);
 
 	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);

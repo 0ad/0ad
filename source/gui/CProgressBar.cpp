@@ -22,7 +22,7 @@
 
 #include "lib/ogl.h"
 
-CProgressBar::CProgressBar(CGUI* pGUI)
+CProgressBar::CProgressBar(CGUI& pGUI)
 	: IGUIObject(pGUI)
 {
 	AddSetting<CGUISpriteInstance>("sprite_background");
@@ -73,10 +73,10 @@ void CProgressBar::Draw()
 	float value = 0;
 	GUI<float>::GetSetting(this, "caption", value);
 
-	m_pGUI->DrawSprite(sprite_background, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite_background, cell_id, bz, m_CachedActualSize);
 
 	// Get size of bar (notice it is drawn slightly closer, to appear above the background)
 	CRect bar_size(m_CachedActualSize.left, m_CachedActualSize.top,
 				   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(value/100.f), m_CachedActualSize.bottom);
-	m_pGUI->DrawSprite(sprite_bar, cell_id, bz+0.01f, bar_size);
+	m_pGUI.DrawSprite(sprite_bar, cell_id, bz+0.01f, bar_size);
 }

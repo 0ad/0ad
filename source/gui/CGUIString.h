@@ -193,7 +193,7 @@ public:
 	 *		  to make several GenerateTextCall in different phases,
 	 *		  it avoids duplicates.
 	 */
-	void GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject = NULL) const;
+	void GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject = NULL) const;
 
 	/**
 	 * Words

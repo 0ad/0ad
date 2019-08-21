@@ -165,12 +165,12 @@ public:
 	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
 	 *		  and we need to be able to output which object the error occurred in to aid the user.
 	 */
-	CGUIText(const CGUI* pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject = nullptr);
+	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject = nullptr);
 
 	/**
 	 * Draw this CGUIText object
 	 */
-	void Draw(CGUI* pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const;
+	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const;
 
 	const CSize& GetSize() const { return m_Size; }
 
@@ -180,7 +180,7 @@ public:
 
 	// Helper functions of the constructor
 	bool ProcessLine(
-		const CGUI* pGUI,
+		const CGUI& pGUI,
 		const CGUIString& string,
 		const CStrIntern& Font,
 		const IGUIObject* pObject,
@@ -196,7 +196,7 @@ public:
 		int& from);
 
 	void SetupSpriteCalls(
-		const CGUI* pGUI,
+		const CGUI& pGUI,
 		const std::array<std::vector<CStr>, 2>& FeedbackImages,
 		const float y,
 		const float Width,
@@ -220,7 +220,7 @@ public:
 		float& width_range_to) const;
 
 	void ComputeLineSize(
-		const CGUI* pGUI,
+		const CGUI& pGUI,
 		const CGUIString& string,
 		const CStrIntern& Font,
 		const bool FirstLine,
@@ -232,7 +232,7 @@ public:
 		CSize& line_size) const;
 
 	bool AssembleCalls(
-		const CGUI* pGUI,
+		const CGUI& pGUI,
 		const CGUIString& string,
 		const CStrIntern& Font,
 		const IGUIObject* pObject,

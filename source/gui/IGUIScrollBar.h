@@ -162,7 +162,7 @@ class IGUIScrollBar
 public:
 	NONCOPYABLE(IGUIScrollBar);
 
-	IGUIScrollBar(CGUI* pGUI);
+	IGUIScrollBar(CGUI& pGUI);
 	virtual ~IGUIScrollBar();
 
 public:
@@ -246,12 +246,6 @@ public:
 	 * @param pOwner Pointer to host object.
 	 */
 	void SetHostObject(IGUIScrollBarOwner* pOwner) { m_pHostObject = pOwner; }
-
-	/**
-	 * Get GUI pointer
-	 * @return CGUI pointer
-	 */
-	CGUI* GetGUI() const;
 
 	/**
 	 * Set Width
@@ -402,7 +396,7 @@ protected:
 	/**
 	 * Reference to CGUI object, these cannot work stand-alone
 	 */
-	CGUI *m_pGUI;
+	CGUI& m_pGUI;
 
 	/**
 	 * Mouse position when bar was pressed
