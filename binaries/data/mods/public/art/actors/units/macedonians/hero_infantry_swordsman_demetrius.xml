@@ -8,8 +8,10 @@
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/hele_demetrius.xml" attachpoint="helmet"/>
-        <prop actor="props/units/shields/mace_aspis_demetrius.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/aspis_mace_h_02.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
       </props>
       <textures>
         <texture file="skeletal/hele_demetrius.dds" name="baseTex"/>

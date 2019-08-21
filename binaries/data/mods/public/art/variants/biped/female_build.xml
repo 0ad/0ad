@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="Build">
   <animations>
-    <animation event="0.75" file="biped/new/build.dae" name="Build" speed="70"/>
+    <animation event="0.75" file="biped/citizen/build.dae" name="Build" speed="70"/>
   </animations>
   <props>
     <prop attachpoint="weapon_L"/>
-	<prop actor="props/units/tools/mallet.xml" attachpoint="weapon_R"/>
+    <prop actor="props/units/tools/mallet.xml" attachpoint="weapon_R"/>
   </props>
 </variant>

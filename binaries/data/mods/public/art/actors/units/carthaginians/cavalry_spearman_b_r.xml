@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kart_round_isp_basic.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/aspis_kart_b.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
@@ -61,7 +61,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield_reverse.xml"/>
+    <variant file="biped/base_cavalry_spearman_relax_shield_aspis_reverse.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

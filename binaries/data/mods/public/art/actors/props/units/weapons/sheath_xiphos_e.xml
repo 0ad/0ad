@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Sheath-xiphos">
+      <mesh>props/weapons/sheath_xiphos.dae</mesh>
+      <textures>
+        <texture file="props/sheaths/xiphos_norm.png" name="normTex"/>
+        <texture file="props/sheaths/xiphos_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Red">
+      <textures>
+        <texture file="props/sheaths/xiphos_red.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Black">
+      <textures>
+        <texture file="props/sheaths/xiphos_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brown">
+      <textures>
+        <texture file="props/sheaths/xiphos_brown.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Blue">
+      <textures>
+        <texture file="props/sheaths/xiphos_blue.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

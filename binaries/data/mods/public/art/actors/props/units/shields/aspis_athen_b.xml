@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_01.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/athen_aspis_basic_01.xml" name="Athen-ISP-B-01"/>
+    <variant frequency="1" file="shields/athen_aspis_basic_02.xml" name="Athen-ISP-B-02"/>
+    <variant frequency="1" file="shields/athen_aspis_basic_03.xml" name="Athen-ISP-B-03"/>
+    <variant frequency="1" file="shields/athen_aspis_basic_04.xml" name="Athen-ISP-B-04"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_melee">
   <animations>
-	<animation event="0.5" file="biped/new/hoplite_attack_a.dae" name="Attack_melee" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_a.dae" name="Attack_melee" id="attack1" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_b.dae" name="Attack_melee" id="attack2" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_c.dae" name="Attack_melee" id="attack3" speed="30"/>
   </animations>
 </variant>

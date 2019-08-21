@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_stone">
   <animations>
-    <animation file="biped/new/fem_carry_ore_idle.dae" name="Idle" speed="25"/>
-    <animation file="biped/new/fem_carry_ore.dae" name="Walk" speed="25"/>
-    <animation file="biped/new/fem_carry_ore.dae" name="Run" speed="25"/>
+    <animation file="biped/gatherer/idle_carry_ore_f.dae" name="Idle" speed="25"/>
+    <animation file="biped/gatherer/carry_ore_f.dae" name="Walk" speed="25"/>
+    <animation file="biped/gatherer/carry_ore_f.dae" name="Run" speed="25"/>
   </animations>
   <props>
     <prop actor="props/units/shuttle_stone.xml" attachpoint="weapon_R"/>

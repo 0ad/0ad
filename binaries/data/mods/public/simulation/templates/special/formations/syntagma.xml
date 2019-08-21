@@ -6,16 +6,21 @@
     <DisabledTooltip>Requires at least 16 Infantry Pikemen.</DisabledTooltip>
     <SortingClasses>Hero Champion Elite Advanced Basic</SortingClasses>
     <FormationName>Syntagma</FormationName>
-    <UnitSeparationWidthMultiplier>0.65</UnitSeparationWidthMultiplier>
-    <UnitSeparationDepthMultiplier>0.75</UnitSeparationDepthMultiplier>
+    <FormationShape>square</FormationShape>
+    <UnitSeparationWidthMultiplier>0.86</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.55</UnitSeparationDepthMultiplier>
     <WidthDepthRatio>1</WidthDepthRatio>
+    <ShiftRows>true</ShiftRows>
     <MinColumns>4</MinColumns>
     <MaxColumns>8</MaxColumns>
-    <MaxRows>8</MaxRows>
+    <MaxRows>9</MaxRows>
     <Animations>
       1..2,1..-1: syntagma_front;
-      3..4,1..-1: syntagma_center;
-      5..8,1..-1: syntagma_back
+      3..3,1..-1: syntagma_01;
+      4..4,1..-1: syntagma_02;
+      5..5,1..-1: syntagma_03;
+      6..6,1..-1: syntagma_04;
+      7...-1,1..-1: syntagma_back
     </Animations>  
     <Sloppyness>0.15</Sloppyness>
   </Formation>

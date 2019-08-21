@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_melee">
   <animations>
-    <animation event="0.5" file="biped/new/sword_shield_attack_b.dae" name="attack_melee" speed="100"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shield_b.dae" name="attack_melee" speed="100"/>
   </animations>
   <props>
     <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>

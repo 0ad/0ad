@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/spart_aspis_csp_01.xml" name="Spart-ISP-C-01"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_02.xml" name="Spart-ISP-C-02"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_03.xml" name="Spart-ISP-C-03"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_04.xml" name="Spart-ISP-C-04"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_05.xml" name="Spart-ISP-C-05"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_06.xml" name="Spart-ISP-C-06"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_07.xml" name="Spart-ISP-C-07"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_08.xml" name="Spart-ISP-C-08"/>
+    <variant frequency="1" file="shields/spart_aspis_csp_09.xml" name="Spart-ISP-C-09"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

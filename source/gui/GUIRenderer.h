@@ -27,6 +27,7 @@
 
 #include <vector>
 
+class CGUISprite;
 struct SGUIImageEffects;
 struct SGUIImage;
 
@@ -65,12 +66,7 @@ namespace GUIRenderer
 		DrawCalls(const DrawCalls&);
 		DrawCalls& operator=(const DrawCalls&);
 	};
-}
 
-#include "gui/CGUISprite.h"
-
-namespace GUIRenderer
-{
 	void UpdateDrawCallCache(const CGUI* pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites);
 
 	void Draw(DrawCalls& Calls, float Z);

@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_slaughter">
-  <animations>
-	<animation event="0.5" file="biped/new/slaughter.dae" name="attack_slaughter" speed="100"/>
-  </animations>
-  <props>
-	<prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
-	<prop attachpoint="weapon_L"/>
-	<prop attachpoint="shield"/>
-	<prop attachpoint="shield_arm"/>
-  </props>
+	<animations>
+		<animation event="0.5" file="biped/gatherer/slaughter.dae" name="attack_slaughter" speed="100"/>
+	</animations>
+	<props>
+		<prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
+		<prop attachpoint="weapon_L"/>
+		<prop attachpoint="shield"/>
+		<prop attachpoint="shield_arm"/>
+	</props>
 </variant>

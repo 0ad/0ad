@@ -129,7 +129,7 @@ PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& V
 template <typename T>
 PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage)
 {
-	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
+	return SetSettingWrap(pObject, Setting, SkipMessage,
 		[&pObject, &Setting, &Value]() {
 			static_cast<CGUISetting<T>* >(pObject->m_Settings[Setting])->m_pSetting = std::move(Value);
 		});
@@ -138,14 +138,14 @@ PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, 
 template <typename T>
 PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
 {
-	return SetSettingWrap(pObject, Setting, Value, SkipMessage,
+	return SetSettingWrap(pObject, Setting, SkipMessage,
 		[&pObject, &Setting, &Value]() {
 			static_cast<CGUISetting<T>* >(pObject->m_Settings[Setting])->m_pSetting = Value;
 		});
 }
 
 template <typename T>
-PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage, const std::function<void()>& valueSet)
+PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const bool& SkipMessage, const std::function<void()>& valueSet)
 {
 	ENSURE(pObject != NULL);
 

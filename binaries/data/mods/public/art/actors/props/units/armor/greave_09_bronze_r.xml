@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/armor/greave_08_r.dae</mesh>
+      <textures>
+        <texture file="props/armor/greave_09_bronze.png" name="baseTex"/>
+        <texture file="props/armor/greave_09_norm.png" name="normTex"/>
+        <texture file="props/armor/greave_09_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="shields/pelta_a_base.xml" name="Pelta">
+  <textures>
+    <texture file="props/shield/pelta_thra_face_01.png" name="baseTex"/>
+    <texture file="props/shield/pelta_a_norm_02.png" name="normTex"/>
+  </textures>
+  <props>
+    <prop actor="props/units/shields/pelta_a_back_player_color.xml" attachpoint="root"/>
+  </props>
+</variant>

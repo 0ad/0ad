@@ -989,7 +989,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	if (m_Sprites.find(name) != m_Sprites.end())
 		LOGWARNING("GUI sprite name '%s' used more than once; first definition will be discarded", name.c_str());
 
-	// shared_ptr to link the effect to every sprite, faster than copy.
+	// shared_ptr to link the effect to every image, faster than copy.
 	std::shared_ptr<SGUIImageEffects> effects;
 
 	for (XMBElement child : Element.GetChildNodes())

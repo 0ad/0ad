@@ -8,13 +8,14 @@
     <UnitSeparationWidthMultiplier>0.6</UnitSeparationWidthMultiplier>
     <UnitSeparationDepthMultiplier>0.6</UnitSeparationDepthMultiplier>
     <WidthDepthRatio>4</WidthDepthRatio>
+    <ShiftRows>true</ShiftRows>
     <MinColumns>5</MinColumns>
     <MaxColumns>20</MaxColumns>
     <MaxRows>8</MaxRows>
     <Animations>
-      1..2,1..-1: phalanx_front;
-      3..4,1..-1: phalanx_center;
-      5..6,1..-1: phalanx_back
+      1..1,1..-1: phalanx_front;
+      2..2,1..-1: phalanx_mid;
+      3..-1,1..-1: phalanx_back
     </Animations>
   </Formation>
   <FormationAttack>

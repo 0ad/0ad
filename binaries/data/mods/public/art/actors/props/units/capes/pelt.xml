@@ -22,7 +22,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher.xml"/>
+    <variant file="biped/base_skirmisher_shieldarm.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -32,7 +32,7 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/attack_ranged_javelinist.xml"/>
+    <variant file="biped/attack_ranged_javelinist_shieldarm.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
     <variant file="biped/gather_grain.xml"/>

@@ -5,9 +5,11 @@
     <variant file="biped/pikeman_base.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/hele_round_spartiate_pike.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/aspis_spart_p.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/armor/greave_03_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_03_bronze_l.xml" attachpoint="leg_L"/>
       </props>
     </variant>
   </group>

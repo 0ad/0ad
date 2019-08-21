@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/aspis_01_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_purple_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_01.xml" attachpoint="handgrip"/>
+      </props>
+      <textures>
+        <texture file="props/shield/aspis_pers_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_pers_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Kardakes-01">
+      <textures>
+        <texture file="props/shield/aspis_pers_kardakes_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Kardakes-02">
+      <textures>
+        <texture file="props/shield/aspis_pers_kardakes_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

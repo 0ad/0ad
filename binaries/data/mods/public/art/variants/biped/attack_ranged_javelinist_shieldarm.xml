@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="attack_ranged">
+  <animations>
+    <animation event="0.50" file="biped/infantry/javelinist/attack_ranged_shieldarm.dae" load="0.75" name="attack_ranged" speed="100"/>
+  </animations>
+  <props>
+    <prop attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-weapon_R"/>
+    <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+  </props>
+</variant>

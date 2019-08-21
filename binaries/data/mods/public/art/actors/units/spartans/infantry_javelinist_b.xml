@@ -6,7 +6,7 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/spart_pelta_basic.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/pelta_spart_basic.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/capes/pelt.xml" attachpoint="root"/>
@@ -17,7 +17,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher.xml"/>
+    <variant file="biped/base_skirmisher_shieldarm.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -26,7 +26,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_javelinist.xml"/>
+    <variant file="biped/attack_ranged_javelinist_shieldarm.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>

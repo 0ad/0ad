@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/infantry/hoplite/idle_relax.dae" name="Idle" id="idle1" speed="30"/>
+    <animation file="biped/infantry/hoplite/idle_relax.dae" name="Idle" id="idle2" speed="31"/>
+    <animation file="biped/infantry/hoplite/idle_relax.dae" name="Idle" id="idle3" speed="32"/>
+    <animation file="biped/infantry/hoplite/jog_relax.dae" name="Walk" id="walk1" speed="10"/>
+    <animation file="biped/infantry/hoplite/jog_relax.dae" name="Walk" id="walk2" speed="12"/>
+    <animation file="biped/infantry/hoplite/run_relax.dae" name="Run" id="run1" speed="4"/>
+    <animation file="biped/infantry/hoplite/run_relax.dae" name="Run" id="run2" speed="4"/>
+    <animation file="biped/infantry/hoplite/run_relax.dae" name="Run" id="run3" speed="4"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_a.dae" name="phalanx_attack" id="phalattack1" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_a.dae" name="Attack_melee" id="attack1" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_b.dae" name="Attack_melee" id="attack2" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_c.dae" name="Attack_melee" id="attack3" speed="30"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
+    <animation file="biped/infantry/capturing_a.dae" name="attack_capture" speed="100"/>
+  </animations>
+</variant>

@@ -8,7 +8,8 @@
     <FormationName>Testudo</FormationName>
     <FormationShape>square</FormationShape>
     <UnitSeparationWidthMultiplier>0.50</UnitSeparationWidthMultiplier>
-    <UnitSeparationDepthMultiplier>0.50</UnitSeparationDepthMultiplier>
+    <UnitSeparationDepthMultiplier>0.35</UnitSeparationDepthMultiplier>
+    <SortingOrder>fillFromTheSides</SortingOrder>
     <WidthDepthRatio>0.8</WidthDepthRatio>
     <MinColumns>8</MinColumns>
     <MaxColumns>8</MaxColumns>
@@ -16,9 +17,51 @@
       1..1,2..7: testudo_front;
       1..1,1..1: testudo_front_left;
       1..1,8..8: testudo_front_right;
-      2..-1,8..8: testudo_right;
-      2..-1,2..-1: testudo_top;
-      2..-1,1..1: testudo_left
+      2..2,2..7: testudo_top;
+      2..2,8..8: testudo_right;
+      2..2,1..1: testudo_left;
+      3..3,1..1: testudo_top;
+      3..3,8..8: testudo_top;
+      3..3,2..7: testudo_front;
+      4..4,8..8: testudo_right;
+      4..4,2..7: testudo_top;
+      4..4,1..1: testudo_left;
+      5..5,1..1: testudo_top;
+      5..5,8..8: testudo_top;
+      5..5,2..7: testudo_front;
+      6..6,8..8: testudo_right;
+      6..6,2..7: testudo_top;
+      6..6,1..1: testudo_left;
+      7..7,1..1: testudo_top;
+      7..7,8..8: testudo_top;
+      7..7,2..7: testudo_front;
+      8..8,8..8: testudo_right;
+      8..8,2..7: testudo_top;
+      8..8,1..1: testudo_left;
+      9..9,1..1: testudo_top;
+      9..9,8..8: testudo_top;
+      9..9,2..7: testudo_front;
+      10..10,8..8: testudo_right;
+      10..10,2..7: testudo_top;
+      10..10,1..1: testudo_left;
+      11..11,1..1: testudo_top;
+      11..11,8..8: testudo_top;
+      11..11,2..7: testudo_front;
+      12..12,8..8: testudo_right;
+      12..12,2..7: testudo_top;
+      12..12,1..1: testudo_left;
+      13..13,1..1: testudo_top;
+      13..13,8..8: testudo_top;
+      13..13,2..7: testudo_front;
+      14..14,8..8: testudo_right;
+      14..14,2..7: testudo_top;
+      14..14,1..1: testudo_left:
+      15..15,1..1: testudo_top;
+      15..15,8..8: testudo_top;
+      15..15,2..7: testudo_front;
+      16..16,8..8: testudo_right;
+      16..16,2..7: testudo_top;
+      16..16,1..1: testudo_left
     </Animations>
     <SpeedMultiplier>0.25</SpeedMultiplier>
   </Formation>

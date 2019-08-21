@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_metal">
   <animations>
-    <animation file="biped/new/male_carry_ore.dae" name="Walk" speed="20"/>
-    <animation file="biped/new/male_carry_ore_idle.dae" name="Idle" speed="20"/>
-    <animation file="biped/new/male_carry_ore.dae" name="Run" speed="20"/>
+    <animation file="biped/gatherer/idle_carry_ore_m.dae" name="Idle" speed="20"/>
+    <animation file="biped/gatherer/carry_ore_m.dae" name="Walk" speed="20"/>
+    <animation file="biped/gatherer/carry_ore_m.dae" name="Run" speed="20"/>
   </animations>
   <props>
     <prop actor="props/units/shuttle_metal.xml" attachpoint="weapon_R"/>

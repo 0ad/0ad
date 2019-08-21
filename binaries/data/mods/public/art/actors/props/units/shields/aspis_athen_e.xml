@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_01.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/athen_aspis_elite_01.xml" name="Athen-ISP-E-01"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_02.xml" name="Athen-ISP-E-02"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_03.xml" name="Athen-ISP-E-03"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_04.xml" name="Athen-ISP-E-04"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_05.xml" name="Athen-ISP-E-05"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_06.xml" name="Athen-ISP-E-06"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_07.xml" name="Athen-ISP-E-07"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_08.xml" name="Athen-ISP-E-08"/>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

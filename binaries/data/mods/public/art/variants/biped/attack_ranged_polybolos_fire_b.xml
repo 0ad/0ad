@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_ranged">
   <animations>
-    <animation event=".6" file="biped/new/polybolos_attack_b.dae" load=".0" name="attack_ranged" speed="250"/>
+    <animation event="0.6" file="biped/infantry/siege_operators/polybolos_attack_b.dae" load="0.0" name="attack_ranged" speed="250"/>
   </animations>
   <props>
     <prop actor="" attachpoint="weapon_R"/>

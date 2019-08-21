@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/shield/pelta_base_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/props/handgrip_leather_01.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/pelta_thra_elite_01.xml" name="Pelta-Thracian-01"/>
+    <variant file="shields/pelta_thra_elite_02.xml" name="Pelta-Thracian-02"/>
+    <variant file="shields/pelta_thra_elite_03.xml" name="Pelta-Thracian-03"/>
+    <variant file="shields/pelta_thra_elite_04.xml" name="Pelta-Thracian-04"/>
+    <variant file="shields/pelta_thra_elite_05.xml" name="Pelta-Thracian-05"/>
+    <variant file="shields/pelta_thra_elite_06.xml" name="Pelta-Thracian-06"/>
+    <variant file="shields/pelta_thra_elite_07.xml" name="Pelta-Thracian-07"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Mesh-01">
+      <mesh>props/shield/pelta_front_a.dae</mesh>
+      <textures>
+        <texture file="props/shield/pelta_a_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/pelta_a_back_player_color.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mesh-02">
+      <mesh>props/shield/pelta_front_b.dae</mesh>
+      <textures>
+        <texture file="props/shield/pelta_b_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/pelta_b_back_player_color.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mesh-03">
+      <mesh>props/shield/pelta_front_c.dae</mesh>
+      <textures>
+        <texture file="props/shield/pelta_c_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/pelta_c_back_player_color.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mesh-04">
+      <mesh>props/shield/pelta_front_d.dae</mesh>
+      <textures>
+        <texture file="props/shield/pelta_d_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/pelta_d_back_player_color.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Mesh-05">
+      <mesh>props/shield/pelta_front_e.dae</mesh>
+      <textures>
+        <texture file="props/shield/pelta_e_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/pelta_e_back_player_color.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

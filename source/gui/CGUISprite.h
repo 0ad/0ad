@@ -16,22 +16,8 @@
  */
 
 /*
-A GUI Sprite
-
---Overview--
-
 	A GUI Sprite, which is actually a collage of several
 	sprites.
-
---Usage--
-
-	Used internally and declared in XML files, read documentations
-	on how.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_CGUISPRITE
@@ -39,6 +25,7 @@ A GUI Sprite
 
 #include "GUIbase.h"
 
+#include "gui/GUIRenderer.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 #include <memory>
@@ -147,8 +134,6 @@ public:
 	std::vector<SGUIImage*> m_Images;
 };
 
-#include "GUIRenderer.h"
-
 // An instance of a sprite, usually stored in IGUIObjects - basically a string
 // giving the sprite's name, but with some extra data to cache rendering
 // calculations between draw calls.
@@ -169,7 +154,7 @@ public:
 	operator bool() const { return !m_SpriteName.empty(); };
 
 	/**
-	 * Returns this spirte if it has been set, otherwise the given fallback sprite.
+	 * Returns this sprite if it has been set, otherwise the given fallback sprite.
 	 */
 	const CGUISpriteInstance& operator||(const CGUISpriteInstance& fallback) const
 	{
