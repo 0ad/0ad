@@ -51,6 +51,7 @@ class CCamera
 		const CMatrix3D& GetProjection() const { return m_ProjMat; }
 		CMatrix3D GetViewProjection() const { return m_ProjMat * m_Orientation.GetInverse(); }
 		void SetProjection(const CMatrix3D& matrix) { m_ProjMat = matrix; }
+		void SetProjectionFromCamera(const CCamera& camera);
 		void SetPerspectiveProjection(float nearp, float farp, float fov);
 		void SetPerspectiveProjectionTile(int tiles, int tile_x, int tile_y);
 

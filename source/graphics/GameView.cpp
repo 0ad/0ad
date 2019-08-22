@@ -362,7 +362,7 @@ CGameView::CGameView(CGame *pGame):
 	vp.m_Height = g_yres;
 	m->ViewCamera.SetViewPort(vp);
 
-	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	SetCameraProjection();
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 
@@ -380,7 +380,7 @@ CGameView::~CGameView()
 void CGameView::SetViewport(const SViewPort& vp)
 {
 	m->ViewCamera.SetViewPort(vp);
-	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	SetCameraProjection();
 }
 
 CObjectManager& CGameView::GetObjectManager()
@@ -884,7 +884,7 @@ void CGameView::Update(const float deltaRealTime)
 	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
 
 	// Update the camera matrix
-	m->ViewCamera.SetPerspectiveProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
+	SetCameraProjection();
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 }
@@ -910,13 +910,13 @@ float CGameView::GetCameraZoom() const
 	return m->Zoom.GetValue();
 }
 
-void CGameView::SetCamera(CVector3D Pos, float RotX, float RotY, float zoom)
+void CGameView::SetCamera(const CVector3D& pos, float rotX, float rotY, float zoom)
 {
-	m->PosX.SetValue(Pos.X);
-	m->PosY.SetValue(Pos.Y);
-	m->PosZ.SetValue(Pos.Z);
-	m->RotateX.SetValue(RotX);
-	m->RotateY.SetValue(RotY);
+	m->PosX.SetValue(pos.X);
+	m->PosY.SetValue(pos.Y);
+	m->PosZ.SetValue(pos.Z);
+	m->RotateX.SetValue(rotX);
+	m->RotateY.SetValue(rotY);
 	m->Zoom.SetValue(zoom);
 
 	FocusHeight(m, false);
@@ -1011,11 +1011,6 @@ float CGameView::GetNear() const
 float CGameView::GetFar() const
 {
 	return m->ViewFar;
-}
-
-float CGameView::GetFOV() const
-{
-	return m->ViewFOV;
 }
 
 void CGameView::SetCameraProjection()

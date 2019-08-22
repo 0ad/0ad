@@ -63,9 +63,8 @@ public:
 	float GetCameraZoom() const;
 	float GetNear() const;
 	float GetFar() const;
-	float GetFOV() const;
 
-	void SetCamera(CVector3D Pos, float RotX, float RotY, float Zoom);
+	void SetCamera(const CVector3D& pos, float rotX, float rotY, float zoom);
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
 	void CameraFollow(entity_id_t entity, bool firstPerson);

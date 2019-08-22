@@ -35,9 +35,10 @@
 #include "renderer/WaterManager.h"
 
 CCamera::CCamera()
+	: m_NearPlane(0.0f), m_FarPlane(0.0f), m_FOV(0.0f)
 {
-	// set viewport to something anything should handle, but should be initialised
-	// to window size before use
+	// Set viewport to something anything should handle, but should be initialised
+	// to window size before use.
 	m_ViewPort.m_X = 0;
 	m_ViewPort.m_Y = 0;
 	m_ViewPort.m_Width = 800;
@@ -45,6 +46,14 @@ CCamera::CCamera()
 }
 
 CCamera::~CCamera() = default;
+
+void CCamera::SetProjectionFromCamera(const CCamera& camera)
+{
+	m_NearPlane = camera.m_NearPlane;
+	m_FarPlane = camera.m_FarPlane;
+	m_FOV = camera.m_FOV;
+	m_ProjMat = camera.m_ProjMat;
+}
 
 void CCamera::SetPerspectiveProjection(float nearp, float farp, float fov)
 {
