@@ -189,7 +189,7 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-bool CMiniMap::MouseOver()
+bool CMiniMap::IsMouseOver() const
 {
 	// Get the mouse position.
 	const CPos& mousePos = m_pGUI.GetMousePos();
@@ -204,7 +204,7 @@ bool CMiniMap::MouseOver()
 		return false;
 }
 
-void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
+void CMiniMap::GetMouseWorldCoordinates(float& x, float& z) const
 {
 	// Determine X and Z according to proportion of mouse position and minimap
 
@@ -230,7 +230,7 @@ void CMiniMap::SetCameraPos()
 	g_Game->GetView()->MoveCameraTarget(target);
 }
 
-float CMiniMap::GetAngle()
+float CMiniMap::GetAngle() const
 {
 	CVector3D cameraIn = m_Camera->m_Orientation.GetIn();
 	return -atan2(cameraIn.X, cameraIn.Z);
@@ -255,7 +255,7 @@ void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 
 // This sets up and draws the rectangle on the minimap
 //  which represents the view of the camera in the world.
-void CMiniMap::DrawViewRect(CMatrix3D transform)
+void CMiniMap::DrawViewRect(CMatrix3D transform) const
 {
 	// Compute the camera frustum intersected with a fixed-height plane.
 	// Use the water height as a fixed base height, which should be the lowest we can go
@@ -339,7 +339,7 @@ static void inline addVertex(const MinimapUnitVertex& v,
 }
 
 
-void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z)
+void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z) const
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
 	// Scale square maps to fit in circular minimap area

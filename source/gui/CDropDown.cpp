@@ -434,7 +434,7 @@ CRect CDropDown::GetListRect() const
 	return m_CachedListRect;
 }
 
-bool CDropDown::MouseOver()
+bool CDropDown::IsMouseOver() const
 {
 	if (m_Open)
 	{

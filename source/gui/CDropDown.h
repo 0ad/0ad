@@ -73,7 +73,7 @@ public:
 	// This is one of the few classes we actually need to redefine this function
 	//  this is because the size of the control changes whether it is open
 	//  or closed.
-	virtual bool MouseOver();
+	virtual bool IsMouseOver() const;
 
 	virtual float GetBufferedZ() const;
 

@@ -96,7 +96,7 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	}
 	case GUIM_MOUSE_MOTION:
 	{
-		if (!MouseOver())
+		if (!IsMouseOver())
 			m_IsPressed = false;
 		if (m_IsPressed)
 		{
@@ -133,7 +133,7 @@ void CSlider::UpdateValue()
 	ScriptEvent("valuechange");
 }
 
-CRect CSlider::GetButtonRect()
+CRect CSlider::GetButtonRect() const
 {
 	float ratio = m_MaxValue > m_MinValue ? (m_Value - m_MinValue) / (m_MaxValue - m_MinValue) : 0.0f;
 	float x = m_CachedActualSize.left + ratio * (m_CachedActualSize.GetWidth() - m_ButtonSide);

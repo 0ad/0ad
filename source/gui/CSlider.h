@@ -43,7 +43,7 @@ protected:
 	 */
 	void UpdateValue();
 
-	CRect GetButtonRect();
+	CRect GetButtonRect() const;
 
 	/**
 	 * @return ratio between the value of the slider and its actual size in the GUI

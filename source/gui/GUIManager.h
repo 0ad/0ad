@@ -116,7 +116,7 @@ public:
 	/**
 	 * See CGUI::Draw; applies to @em all loaded pages.
 	 */
-	void Draw();
+	void Draw() const;
 
 	/**
 	 * See CGUI::UpdateResolution; applies to @em all loaded pages.

@@ -78,7 +78,7 @@ public:
 	 *
 	 * @return true if mouse is hovering
 	 */
-	virtual bool MouseOver();
+	virtual bool IsMouseOver() const;
 
 	/**
 	 * Test if mouse position is over an icon
@@ -132,7 +132,7 @@ public:
 	/**
 	 * Return all child objects of the current object.
 	 */
-	std::vector<IGUIObject*>& GetChildren() { return m_Children; }
+	const std::vector<IGUIObject*>& GetChildren() const { return m_Children; }
 
 	//@}
 	//--------------------------------------------------------
@@ -151,12 +151,12 @@ public:
 	/**
 	 * Returns whether this is object is set to be hidden.
 	 */
-	bool IsHidden();
+	bool IsHidden() const;
 
 	/**
 	 * Returns whether this object is set to be hidden or ghost.
 	 */
-	bool IsHiddenOrGhost();
+	bool IsHiddenOrGhost() const;
 
 	/**
 	 * All sizes are relative to resolution, and the calculation
@@ -246,7 +246,7 @@ public:
 	 * The arguments of the callback function must be references.
 	*/
 	template<typename... Args>
-	void RecurseObject(bool(IGUIObject::*isRestricted)(), void(IGUIObject::*callbackFunction)(Args... args), Args&&... args)
+	void RecurseObject(bool(IGUIObject::*isRestricted)() const, void(IGUIObject::*callbackFunction)(Args... args), Args&&... args)
 	{
 		if (this != m_pGUI.GetBaseObject())
 		{
@@ -471,7 +471,7 @@ protected:
 
 	// More variables
 
-	// Is mouse hovering the object? used with the function MouseOver()
+	// Is mouse hovering the object? used with the function IsMouseOver()
 	bool									m_MouseHovering;
 
 	/**
@@ -510,7 +510,7 @@ public:
 
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.
-	virtual bool MouseOver() { return false; }
+	virtual bool IsMouseOver() const { return false; }
 };
 
 #endif // INCLUDED_IGUIOBJECT
