@@ -1,4 +1,4 @@
-Engine.RegisterInterface("DamageReceiver");
+Engine.RegisterInterface("Resistance");
 
 /**
  * Message of the form { "entity": entity, "invulnerability": true/false }

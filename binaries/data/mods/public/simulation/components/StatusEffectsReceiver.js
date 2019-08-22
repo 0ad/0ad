@@ -5,13 +5,18 @@ StatusEffectsReceiver.prototype.Init = function()
 	this.activeStatusEffects = {};
 };
 
-StatusEffectsReceiver.prototype.InflictEffects = function(statusEffects)
+// Called by attacking effects.
+StatusEffectsReceiver.prototype.GiveStatus = function(effectData, attacker, attackerOwner, bonusMultiplier)
 {
-	for (let effect in statusEffects)
-		this.InflictEffect(effect, statusEffects[effect]);
+	for (let effect in effectData)
+		this.AddStatus(effect, effectData[effect]);
+
+	// TODO: implement loot / resistance.
+
+	return { "inflictedStatuses": Object.keys(effectData) };
 };
 
-StatusEffectsReceiver.prototype.InflictEffect = function(statusName, data)
+StatusEffectsReceiver.prototype.AddStatus = function(statusName, data)
 {
 	if (this.activeStatusEffects[statusName])
 		return;
@@ -28,7 +33,7 @@ StatusEffectsReceiver.prototype.InflictEffect = function(statusName, data)
 	status.timer = cmpTimer.SetInterval(this.entity, IID_StatusEffectsReceiver, "ExecuteEffect", 0, +status.interval, statusName);
 };
 
-StatusEffectsReceiver.prototype.RemoveEffect = function(statusName) {
+StatusEffectsReceiver.prototype.RemoveStatus = function(statusName) {
 	if (!this.activeStatusEffects[statusName])
 		return;
 
@@ -51,19 +56,10 @@ StatusEffectsReceiver.prototype.ExecuteEffect = function(statusName, lateness)
 	else
 		status.timeElapsed += status.interval + lateness;
 
-	let cmpDamage = Engine.QueryInterface(SYSTEM_ENTITY, IID_Damage);
-
-	cmpDamage.CauseDamage({
-		"strengths": { [statusName]: status.damage },
-		"target": this.entity,
-		"attacker": -1,
-		"multiplier": 1,
-		"type": statusName,
-		"attackerOwner": -1
-	});
+	Attacking.HandleAttackEffects(statusName, { "Damage": { [statusName]: status.damage } }, this.entity, -1, -1);
 
 	if (status.timeElapsed >= status.duration)
-		this.RemoveEffect(statusName);
+		this.RemoveStatus(statusName);
 };
 
 Engine.RegisterComponentType(IID_StatusEffectsReceiver, "StatusEffectsReceiver", StatusEffectsReceiver);

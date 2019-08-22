@@ -1,5 +1,5 @@
 Engine.LoadHelperScript("DamageBonus.js");
-Engine.LoadHelperScript("DamageTypes.js");
+Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
@@ -104,7 +104,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 			}
 		},
 		"Capture": {
-			"Value": 8,
+			"Capture": 8,
 			"MaxRange": 10,
 		},
 		"Slaughter": {}
@@ -150,18 +150,28 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetPreferredClasses("Melee"), ["FemaleCitizen"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetRestrictedClasses("Melee"), ["Elephant", "Archer"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetFullAttackRange(), { "min": 0, "max": 80 });
-	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Capture"), { "value": 8 });
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackEffectsData("Capture"), { "Capture": 8 });
 
-	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged"), {
-		"Hack": 0,
-		"Pierce": 10,
-		"Crush": 0
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackEffectsData("Ranged"), {
+		"Damage": {
+			"Hack": 0,
+			"Pierce": 10,
+			"Crush": 0
+		}
 	});
 
-	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged.Splash"), {
-		"Hack": 0.0,
-		"Pierce": 15.0,
-		"Crush": 35.0
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackEffectsData("Ranged", true), {
+		"Damage": {
+			"Hack": 0.0,
+			"Pierce": 15.0,
+			"Crush": 35.0
+		},
+		"Bonuses": {
+			"BonusCav": {
+				"Classes": "Cavalry",
+				"Multiplier": 3
+			}
+		}
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetTimers("Ranged"), {
@@ -175,10 +185,18 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), {
-		"damage": {
-			"Hack": 0,
-			"Pierce": 15,
-			"Crush": 35,
+		"attackData": {
+			"Damage": {
+				"Hack": 0,
+				"Pierce": 15,
+				"Crush": 35,
+			},
+			"Bonuses": {
+				"BonusCav": {
+					"Classes": "Cavalry",
+					"Multiplier": 3
+				}
+			}
 		},
 		"friendlyFire": false,
 		"shape": "Circular"
@@ -188,14 +206,14 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 for (let className of ["Infantry", "Cavalry"])
 	attackComponentTest(className, true, (attacker, cmpAttack, defender) => {
 
-		TS_ASSERT_EQUALS(cmpAttack.GetBonusTemplate("Melee").BonusCav.Multiplier, 2);
+		TS_ASSERT_EQUALS(cmpAttack.GetAttackEffectsData("Melee").Bonuses.BonusCav.Multiplier, 2);
 
-		TS_ASSERT(cmpAttack.GetBonusTemplate("Capture") === null);
+		TS_ASSERT_EQUALS(cmpAttack.GetAttackEffectsData("Capture").Bonuses || null, null);
 
-		let getAttackBonus = (s, t, e) => GetDamageBonus(s, e, t, cmpAttack.GetBonusTemplate(t));
+		let getAttackBonus = (s, t, e, splash) => GetAttackBonus(s, e, t, cmpAttack.GetAttackEffectsData(t, splash).Bonuses || null);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Melee", defender), className == "Cavalry" ? 2 : 1);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged.Splash", defender), className == "Cavalry" ? 3 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged", defender, true), className == "Cavalry" ? 3 : 1);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Capture", defender), 1);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Slaughter", defender), 1);
 	});

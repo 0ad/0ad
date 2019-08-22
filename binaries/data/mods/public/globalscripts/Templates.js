@@ -170,6 +170,22 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 				ret.armour[damageType] = getEntityValue("Armour/" + damageType);
 	}
 
+	let getAttackEffects = (temp, path) => {
+		let effects = {};
+		if (temp.Capture)
+			effects.Capture = getEntityValue(path + "/Capture");
+
+		if (temp.Damage)
+		{
+			effects.Damage = {};
+			for (let damageType in temp.Damage)
+				effects.Damage[damageType] = getEntityValue(path + "/Damage/" + damageType);
+		}
+
+		// TODO: status effects
+		return effects;
+	};
+
 	if (template.Attack)
 	{
 		ret.attack = {};
@@ -179,25 +195,18 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 				return getEntityValue("Attack/" + type + "/" + stat);
 			};
 
-			if (type == "Capture")
-				ret.attack.Capture = {
-					"value": getAttackStat("Value")
-				};
-			else
-			{
-				ret.attack[type] = {
-					"minRange": getAttackStat("MinRange"),
-					"maxRange": getAttackStat("MaxRange"),
-					"elevationBonus": getAttackStat("ElevationBonus"),
-					"damage": {}
-				};
-				for (let damageType in template.Attack[type].Damage)
-					ret.attack[type].damage[damageType] = getAttackStat("Damage/" + damageType);
+			ret.attack[type] = {
+				"minRange": getAttackStat("MinRange"),
+				"maxRange": getAttackStat("MaxRange"),
+				"elevationBonus": getAttackStat("ElevationBonus"),
+			};
 
-				ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
-					(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
-			}
+			ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
+				(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
+
 			ret.attack[type].repeatTime = getAttackStat("RepeatTime");
+
+			Object.assign(ret.attack[type], getAttackEffects(template.Attack[type], "Attack/" + type));
 
 			if (template.Attack[type].Splash)
 			{
@@ -205,10 +214,8 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 					// true if undefined
 					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false",
 					"shape": template.Attack[type].Splash.Shape,
-					"damage": {}
 				};
-				for (let damageType in template.Attack[type].Splash.Damage)
-					ret.attack[type].splash.damage[damageType] = getAttackStat("Splash/Damage/" + damageType);
+				Object.assign(ret.attack[type].splash, getAttackEffects(template.Attack[type].Splash, "Attack/" + type + "/Splash"));
 			}
 		}
 	}
@@ -217,10 +224,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 	{
 		ret.deathDamage = {
 			"friendlyFire": template.DeathDamage.FriendlyFire != "false",
-			"damage": {}
 		};
-		for (let damageType in template.DeathDamage.Damage)
-			ret.deathDamage.damage[damageType] = getEntityValue("DeathDamage/Damage/" + damageType);
+
+		Object.assign(ret.deathDamage, getAttackEffects(template.DeathDamage, "DeathDamage"));
 	}
 
 	if (template.Auras && auraTemplates)

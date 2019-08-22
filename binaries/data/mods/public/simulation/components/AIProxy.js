@@ -260,9 +260,9 @@ AIProxy.prototype.GetFullRepresentation = function()
 		ret.hitpoints = cmpHealth.GetHitpoints();
 	}
 
-	let cmpDamageReceiver = Engine.QueryInterface(this.entity, IID_DamageReceiver);
-	if (cmpDamageReceiver)
-		ret.invulnerability = cmpDamageReceiver.IsInvulnerable();
+	let cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
+	if (cmpResistance)
+		ret.invulnerability = cmpResistance.IsInvulnerable();
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership)

@@ -246,7 +246,7 @@ m.Template = m.Class({
 		if (!this.get("Attack/Capture"))
 			return undefined;
 
-		return +this.get("Attack/Capture/Value") || 0;
+		return +this.get("Attack/Capture/Capture") || 0;
 	},
 
 	"attackTimes": function(type) {

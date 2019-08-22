@@ -131,7 +131,7 @@ BuildingAI.prototype.SetupRangeQuery = function()
 	var range = cmpAttack.GetRange(attackType);
 	this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
 			this.entity, range.min, range.max, range.elevationBonus,
-			enemies, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
+			enemies, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
 };

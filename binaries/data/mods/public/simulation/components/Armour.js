@@ -1,5 +1,15 @@
 function Armour() {}
 
+Armour.prototype.DamageResistanceSchema = "" +
+	"<oneOrMore>" +
+		"<element a:help='Resistance against any number of damage types'>" +
+			"<anyName>" +
+				"<except><name>Foundation</name></except>" +
+			"</anyName>" +
+			"<ref name='nonNegativeDecimal' />" +
+		"</element>" +
+	"</oneOrMore>";
+
 Armour.prototype.Schema =
 	"<a:help>Controls the damage resistance of the unit.</a:help>" +
 	"<a:example>" +
@@ -7,12 +17,10 @@ Armour.prototype.Schema =
 		"<Pierce>0.0</Pierce>" +
 		"<Crush>5.0</Crush>" +
 	"</a:example>" +
-	BuildDamageTypesSchema("damage protection") +
+	Armour.prototype.DamageResistanceSchema +
 	"<optional>" +
 		"<element name='Foundation' a:help='Armour given to building foundations'>" +
-			"<interleave>" +
-				BuildDamageTypesSchema("damage protection") +
-			"</interleave>" +
+			Armour.prototype.DamageResistanceSchema +
 		"</element>" +
 	"</optional>";
 
@@ -32,32 +40,7 @@ Armour.prototype.SetInvulnerability = function(invulnerability)
 	Engine.PostMessage(this.entity, MT_InvulnerabilityChanged, { "entity": this.entity, "invulnerability": invulnerability });
 };
 
-/**
- * Take damage according to the entity's armor.
- * @param {Object} strengths - { "hack": number, "pierce": number, "crush": number } or something like that.
- * @param {number} multiplier - the damage multiplier.
- * Returns object of the form { "killed": false, "change": -12 }.
- */
-Armour.prototype.TakeDamage = function(strengths, multiplier = 1)
-{
-	if (this.invulnerable)
-		return { "killed": false, "change": 0 };
-
-	// Adjust damage values based on armour; exponential armour: damage = attack * 0.9^armour
-	var armourStrengths = this.GetArmourStrengths();
-
-	// Total is sum of individual damages
-	// Don't bother rounding, since HP is no longer integral.
-	var total = 0;
-	for (let type in strengths)
-		total += strengths[type] * multiplier * Math.pow(0.9, armourStrengths[type] || 0);
-
-	// Reduce health
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	return cmpHealth.Reduce(total);
-};
-
-Armour.prototype.GetArmourStrengths = function()
+Armour.prototype.GetArmourStrengths = function(effectType)
 {
 	// Work out the armour values with technology effects.
 	let applyMods = (type, foundation) => {
@@ -70,12 +53,16 @@ Armour.prototype.GetArmourStrengths = function()
 		else
 			strength = +this.template[type];
 
-		return ApplyValueModificationsToEntity("Armour/" + type, strength, this.entity);
+		return ApplyValueModificationsToEntity("Armour/" + effectType + "/" + type, strength, this.entity);
 	};
 
 	let foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
 
 	let ret = {};
+
+	if (effectType != "Damage")
+		return ret;
+
 	for (let damageType in this.template)
 		if (damageType != "Foundation")
 			ret[damageType] = applyMods(damageType, foundation);
@@ -83,4 +70,4 @@ Armour.prototype.GetArmourStrengths = function()
 	return ret;
 };
 
-Engine.RegisterComponentType(IID_DamageReceiver, "Armour", Armour);
+Engine.RegisterComponentType(IID_Resistance, "Armour", Armour);

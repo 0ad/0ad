@@ -37,7 +37,6 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 
 	let allTargets;
 
-	let cmpDamage = Engine.QueryInterface(SYSTEM_ENTITY, IID_Damage);
 	let players = new Array(TriggerHelper.GetNumberOfPlayers()).fill(0).map((v, i) => i + 1);
 
 	for (let spawnPoint in attackers)
@@ -52,7 +51,7 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 			continue;
 
 		// The returned entities are sorted by RangeManager already
-		let targets = cmpDamage.EntitiesNearPoint(attackerPos, 200, players).filter(ent => {
+		let targets = Attack.EntitiesNearPoint(attackerPos, 200, players).filter(ent => {
 			let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 			return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClasses);
 		});

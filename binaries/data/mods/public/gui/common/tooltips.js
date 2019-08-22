@@ -270,8 +270,8 @@ function getAttackTooltip(template)
 				"attackLabel": attackLabel,
 				"details":
 					type == "Capture" ?
-						template.attack.Capture.value :
-						damageTypesToText(template.attack[type].damage),
+						template.attack.Capture.Capture :
+						damageTypesToText(template.attack[type].Damage),
 				"rate": rate
 			}));
 			continue;
@@ -283,7 +283,7 @@ function getAttackTooltip(template)
 		let relativeRange = realRange ? Math.round(realRange - maxRange) : 0;
 		tooltips.push(sprintf(g_RangeTooltipString[relativeRange ? "relative" : "non-relative"][minRange ? "minRange" : "no-minRange"], {
 			"attackLabel": attackLabel,
-			"damageTypes": damageTypesToText(template.attack[type].damage),
+			"damageTypes": damageTypesToText(template.attack[type].Damage),
 			"rangeLabel": headerFont(translate("Range:")),
 			"minRange": minRange,
 			"maxRange": maxRange,
@@ -313,7 +313,7 @@ function getSplashDamageTooltip(template)
 
 		let splashDamageTooltip = sprintf(translate("%(label)s: %(value)s"), {
 			"label": headerFont(g_SplashDamageTypes[splash.shape]),
-			"value": damageTypesToText(splash.damage)
+			"value": damageTypesToText(splash.Damage)
 		});
 
 		if (g_AlwaysDisplayFriendlyFire || splash.friendlyFire)
