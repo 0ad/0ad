@@ -48,7 +48,7 @@ A GUI ScrollBar
 class CGUIScrollBarVertical : public IGUIScrollBar
 {
 public:
-	CGUIScrollBarVertical(CGUI* pGUI);
+	CGUIScrollBarVertical(CGUI& pGUI);
 	virtual ~CGUIScrollBarVertical();
 
 public:

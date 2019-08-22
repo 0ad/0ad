@@ -31,7 +31,7 @@
 
 #include <cmath>
 
-CChart::CChart(CGUI* pGUI)
+CChart::CChart(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting<CGUIColor>("axis_color");

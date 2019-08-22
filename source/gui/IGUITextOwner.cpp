@@ -24,7 +24,7 @@
 
 #include <math.h>
 
-IGUITextOwner::IGUITextOwner(CGUI* pGUI)
+IGUITextOwner::IGUITextOwner(CGUI& pGUI)
 	: IGUIObject(pGUI), m_GeneratedTextsValid(false)
 {
 }
@@ -38,7 +38,7 @@ void IGUITextOwner::CreateJSObject()
 	IGUIObject::CreateJSObject();
 
 	JSI_IGUITextOwner::RegisterScriptFunctions(
-		GetGUI()->GetScriptInterface()->GetContext(), m_JSObject);
+		m_pGUI.GetScriptInterface()->GetContext(), m_JSObject);
 }
 
 CGUIText& IGUITextOwner::AddText()

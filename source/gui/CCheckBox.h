@@ -32,7 +32,7 @@ class CCheckBox : public IGUIButtonBehavior, public IGUITextOwner
 	GUI_OBJECT(CCheckBox)
 
 public:
-	CCheckBox(CGUI* pGUI);
+	CCheckBox(CGUI& pGUI);
 	virtual ~CCheckBox();
 
 	/**

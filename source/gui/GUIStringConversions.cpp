@@ -103,7 +103,7 @@ bool GUI<CClientArea>::ParseString(const CGUI* UNUSED(pGUI), const CStrW& Value,
 template <>
 bool GUI<CGUIColor>::ParseString(const CGUI* pGUI, const CStrW& Value, CGUIColor& Output)
 {
-	return Output.ParseString(pGUI, Value.ToUTF8());
+	return Output.ParseString(*pGUI, Value.ToUTF8());
 }
 
 template <>

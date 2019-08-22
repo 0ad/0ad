@@ -34,7 +34,7 @@ class CList : public IGUIScrollBarOwner, public IGUITextOwner
 	GUI_OBJECT(CList)
 
 public:
-	CList(CGUI* pGUI);
+	CList(CGUI& pGUI);
 	virtual ~CList();
 
 	/**

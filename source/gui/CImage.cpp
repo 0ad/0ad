@@ -23,7 +23,7 @@
 
 #include "lib/ogl.h"
 
-CImage::CImage(CGUI* pGUI)
+CImage::CImage(CGUI& pGUI)
 	: IGUIObject(pGUI)
 {
 	AddSetting<CGUISpriteInstance>("sprite");
@@ -44,5 +44,5 @@ void CImage::Draw()
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
-	m_pGUI->DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 }

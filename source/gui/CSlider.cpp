@@ -21,7 +21,7 @@
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
 
-CSlider::CSlider(CGUI* pGUI)
+CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI), m_IsPressed(false), m_ButtonSide(0)
 {
 	AddSetting<float>("value");
@@ -83,7 +83,7 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	}
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		m_Mouse = m_pGUI->GetMousePos();
+		m_Mouse = m_pGUI.GetMousePos();
 		m_IsPressed = true;
 
 		IncrementallyChangeValue((m_Mouse.x - GetButtonRect().CenterPoint().x) * GetSliderRatio());
@@ -100,8 +100,8 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 			m_IsPressed = false;
 		if (m_IsPressed)
 		{
-			float difference = float(m_pGUI->GetMousePos().x - m_Mouse.x) * GetSliderRatio();
-			m_Mouse = m_pGUI->GetMousePos();
+			float difference = float(m_pGUI.GetMousePos().x - m_Mouse.x) * GetSliderRatio();
+			m_Mouse = m_pGUI.GetMousePos();
 			IncrementallyChangeValue(difference);
 		}
 		break;
@@ -123,8 +123,8 @@ void CSlider::Draw()
 	slider_line.left += m_ButtonSide / 2.0f;
 	slider_line.right -= m_ButtonSide / 2.0f;
 	float bz = GetBufferedZ();
-	m_pGUI->DrawSprite(sprite, cell_id, bz, slider_line);
-	m_pGUI->DrawSprite(sprite_button, cell_id, bz, GetButtonRect());
+	m_pGUI.DrawSprite(sprite, cell_id, bz, slider_line);
+	m_pGUI.DrawSprite(sprite_button, cell_id, bz, GetButtonRect());
 }
 
 void CSlider::UpdateValue()

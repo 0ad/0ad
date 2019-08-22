@@ -4,8 +4,8 @@
   <group>
     <variant frequency="100" name="Onager operator">
       <animations>
-        <animation file="biped/new/onager_idle_b.dae" name="Idle" speed="100"/>
-        <animation event="0.145" file="biped/new/onager_attack_b.dae" load="0.05" name="attack_ranged" speed="100"/>
+        <animation file="biped/infantry/siege_operators/onager_idle_b.dae" name="Idle" speed="100"/>
+        <animation event="0.145" file="biped/infantry/siege_operators/onager_attack_b.dae" load="0.05" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>

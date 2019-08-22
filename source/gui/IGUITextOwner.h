@@ -48,7 +48,7 @@ class IGUITextOwner : virtual public IGUIObject
 	friend bool JSI_IGUITextOwner::GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
-	IGUITextOwner(CGUI* pGUI);
+	IGUITextOwner(CGUI& pGUI);
 	virtual ~IGUITextOwner();
 
 	/**

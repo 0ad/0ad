@@ -35,7 +35,7 @@ class IGUIScrollBarOwner : virtual public IGUIObject
 	friend class IGUIScrollBar;
 
 public:
-	IGUIScrollBarOwner(CGUI* pGUI);
+	IGUIScrollBarOwner(CGUI& pGUI);
 	virtual ~IGUIScrollBarOwner();
 
 	virtual void Draw();

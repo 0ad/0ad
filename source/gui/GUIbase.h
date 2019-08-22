@@ -49,7 +49,7 @@ class IGUIObject;
 // Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
 public:																	\
-	static IGUIObject* ConstructObject(CGUI* pGUI)					\
+	static IGUIObject* ConstructObject(CGUI& pGUI)					\
 		{ return new obj(pGUI); }
 
 
@@ -123,20 +123,6 @@ struct SGUIMessage
 	 * Flag that specifies if object skipped handling the event
 	 */
 	bool skipped;
-};
-
-/**
- * Recurse restrictions, when we recurse, if an object
- * is hidden for instance, you might want it to skip
- * the children also
- * Notice these are flags! and we don't really need one
- * for no restrictions, because then you'll just enter 0
- */
-enum
-{
-	GUIRR_HIDDEN		= 0x00000001,
-	GUIRR_DISABLED		= 0x00000010,
-	GUIRR_GHOST			= 0x00000100
 };
 
 // Text alignments

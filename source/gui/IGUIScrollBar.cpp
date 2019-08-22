@@ -20,7 +20,7 @@
 #include "GUI.h"
 #include "maths/MathUtil.h"
 
-IGUIScrollBar::IGUIScrollBar(CGUI* pGUI)
+IGUIScrollBar::IGUIScrollBar(CGUI& pGUI)
 								: m_pGUI(pGUI),
 								 m_pStyle(NULL),
 								 m_X(300.f), m_Y(300.f),
@@ -71,14 +71,6 @@ const SGUIScrollBarStyle* IGUIScrollBar::GetStyle() const
 	return m_pHostObject->GetScrollBarStyle(m_ScrollBarStyle);
 }
 
-CGUI* IGUIScrollBar::GetGUI() const
-{
-	if (!m_pHostObject)
-		return NULL;
-
-	return m_pHostObject->GetGUI();
-}
-
 void IGUIScrollBar::UpdatePosBoundaries()
 {
 	if (m_Pos < 0.f ||
@@ -96,7 +88,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 	{
 		// TODO Gee: Optimizations needed!
 
-		const CPos& mouse = m_pGUI->GetMousePos();
+		const CPos& mouse = m_pGUI.GetMousePos();
 
 		// If bar is being dragged
 		if (m_BarPressed)
@@ -123,7 +115,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 		if (!m_pHostObject)
 			break;
 
-		const CPos& mouse = m_pGUI->GetMousePos();
+		const CPos& mouse = m_pGUI.GetMousePos();
 
 		// if bar is pressed
 		if (GetBarRect().PointInside(mouse))

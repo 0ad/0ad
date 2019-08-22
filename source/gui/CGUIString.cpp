@@ -49,7 +49,7 @@ void CGUIString::SFeedback::Reset()
 	m_NewLine = false;
 }
 
-void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject) const
+void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject) const
 {
 	// Reset width and height, because they will be determined with incrementation
 	//  or comparisons.
@@ -99,7 +99,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 			       tag.m_TagType == TextChunk::Tag::TAG_ICON);
 
 			const std::string& path = utf8_from_wstring(tag.m_TagValue);
-			if (!pGUI->HasIcon(path))
+			if (!pGUI.HasIcon(path))
 			{
 				if (pObject)
 					LOGERROR("Trying to use an icon, imgleft or imgright-tag with an undefined icon (\"%s\").", path.c_str());
@@ -126,7 +126,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				CGUIText::SSpriteCall SpriteCall;
 
 				// Get Icon from icon database in pGUI
-				const SGUIIcon& icon = pGUI->GetIcon(path);
+				const SGUIIcon& icon = pGUI.GetIcon(path);
 
 				const CSize& size = icon.m_Size;
 
@@ -146,7 +146,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 						// Displace the sprite
 						CSize displacement;
 						// Parse the value
-						if (!GUI<CSize>::ParseString(pGUI, tagAttrib.value, displacement))
+						if (!GUI<CSize>::ParseString(&pGUI, tagAttrib.value, displacement))
 							LOGERROR("Error parsing 'displace' value for tag [ICON]");
 						else
 							SpriteCall.m_Area += displacement;
@@ -192,7 +192,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 				case TextChunk::Tag::TAG_COLOR:
 					TextCall.m_UseCustomColor = true;
 
-					if (!GUI<CGUIColor>::ParseString(pGUI, tag.m_TagValue, TextCall.m_Color) && pObject)
+					if (!GUI<CGUIColor>::ParseString(&pGUI, tag.m_TagValue, TextCall.m_Color) && pObject)
 						LOGERROR("Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
 					break;
 				case TextChunk::Tag::TAG_FONT:

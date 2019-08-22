@@ -73,7 +73,7 @@ class CGUI
 
 private:
 	// Private typedefs
-	using ConstructObjectFunction = IGUIObject* (*)(CGUI*);
+	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
 
 public:
 	CGUI(const shared_ptr<ScriptRuntime>& runtime);
@@ -103,7 +103,7 @@ public:
 	 * @param EventName String representation of event name
 	 * @param paramData JS::HandleValueArray storing the arguments passed to the event handler.
 	 */
-	void SendEventToAll(const CStr& EventName, JS::HandleValueArray paramData);
+	void SendEventToAll(const CStr& EventName, const JS::HandleValueArray& paramData);
 
 	/**
 	 * Displays the whole GUI

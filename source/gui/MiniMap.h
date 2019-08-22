@@ -29,7 +29,7 @@ class CMiniMap : public IGUIObject
 {
 	GUI_OBJECT(CMiniMap)
 public:
-	CMiniMap(CGUI* pGUI);
+	CMiniMap(CGUI& pGUI);
 	virtual ~CMiniMap();
 protected:
 	virtual void Draw();

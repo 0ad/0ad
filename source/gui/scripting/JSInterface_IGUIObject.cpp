@@ -199,7 +199,7 @@ bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
 	if (!e)
 		return false;
 
-	e->GetGUI()->SetFocusedObject(e);
+	e->GetGUI().SetFocusedObject(e);
 	args.rval().setUndefined();
 	return true;
 }
@@ -212,7 +212,7 @@ bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
 	if (!e)
 		return false;
 
-	e->GetGUI()->SetFocusedObject(NULL);
+	e->GetGUI().SetFocusedObject(nullptr);
 	args.rval().setUndefined();
 	return true;
 }

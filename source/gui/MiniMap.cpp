@@ -64,7 +64,7 @@ static unsigned int ScaleColor(unsigned int color, float x)
 	return (0xff000000 | b | g<<8 | r<<16);
 }
 
-CMiniMap::CMiniMap(CGUI* pGUI) :
+CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
 	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
 	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW),
@@ -192,7 +192,7 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 bool CMiniMap::MouseOver()
 {
 	// Get the mouse position.
-	const CPos& mousePos = m_pGUI->GetMousePos();
+	const CPos& mousePos = m_pGUI.GetMousePos();
 	// Get the position of the center of the minimap.
 	CPos minimapCenter = CPos(m_CachedActualSize.left + m_CachedActualSize.GetWidth() / 2.0, m_CachedActualSize.bottom - m_CachedActualSize.GetHeight() / 2.0);
 	// Take the magnitude of the difference of the mouse position and minimap center.
@@ -208,7 +208,7 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
 {
 	// Determine X and Z according to proportion of mouse position and minimap
 
-	const CPos& mousePos = m_pGUI->GetMousePos();
+	const CPos& mousePos = m_pGUI.GetMousePos();
 
 	float px = (mousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth();
 	float py = (m_CachedActualSize.bottom - mousePos.y) / m_CachedActualSize.GetHeight();
@@ -384,7 +384,7 @@ void CMiniMap::Draw()
 
 	// The terrain isn't actually initialized until the map is loaded, which
 	// happens when the game is started, so abort until then.
-	if (!(GetGUI() && g_Game && g_Game->IsGameStarted()))
+	if (!g_Game || !g_Game->IsGameStarted())
 		return;
 
 	CSimulation2* sim = g_Game->GetSimulation2();

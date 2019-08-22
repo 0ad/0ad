@@ -22,7 +22,7 @@
 
 #include <algorithm>
 
-CTooltip::CTooltip(CGUI* pGUI)
+CTooltip::CTooltip(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI)
 {
 	// If the tooltip is an object by itself:
@@ -87,7 +87,7 @@ void CTooltip::SetupText()
 
 	GUI<bool>::GetSetting(this, "independent", independent);
 	if (independent)
-		mousepos = m_pGUI->GetMousePos();
+		mousepos = m_pGUI.GetMousePos();
 	else
 		GUI<CPos>::GetSetting(this, "_mousepos", mousepos);
 
@@ -158,7 +158,7 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
-	m_pGUI->DrawSprite(sprite, 0, z, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, 0, z, m_CachedActualSize);
 
 	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, "textcolor");
 	DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);

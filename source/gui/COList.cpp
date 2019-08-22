@@ -27,7 +27,7 @@
 const float SORT_SPRITE_DIM = 16.0f;
 const CPos COLUMN_SHIFT = CPos(0, 4);
 
-COList::COList(CGUI* pGUI)
+COList::COList(CGUI& pGUI)
 	: CList(pGUI), IGUIObject(pGUI)
 {
 	AddSetting<CGUISpriteInstance>("sprite_heading");
@@ -144,7 +144,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 		if (!sortable)
 			return;
 
-		const CPos& mouse = m_pGUI->GetMousePos();
+		const CPos& mouse = m_pGUI.GetMousePos();
 		if (!m_CachedActualSize.PointInside(mouse))
 			return;
 
@@ -223,7 +223,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 			if (attr_name == "color")
 			{
-				if (!GUI<CGUIColor>::ParseString(m_pGUI, attr_value.FromUTF8(), column.m_TextColor))
+				if (!GUI<CGUIColor>::ParseString(&m_pGUI, attr_value.FromUTF8(), column.m_TextColor))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else if (attr_name == "id")
@@ -232,13 +232,13 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			}
 			else if (attr_name == "hidden")
 			{
-				if (!GUI<bool>::ParseString(m_pGUI, attr_value.FromUTF8(), hidden))
+				if (!GUI<bool>::ParseString(&m_pGUI, attr_value.FromUTF8(), hidden))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else if (attr_name == "width")
 			{
 				float width;
-				if (!GUI<float>::ParseString(m_pGUI, attr_value.FromUTF8(), width))
+				if (!GUI<float>::ParseString(&m_pGUI, attr_value.FromUTF8(), width))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 				else
 				{
@@ -316,7 +316,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	int cell_id;
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
-	m_pGUI->DrawSprite(sprite, cell_id, bz, rect);
+	m_pGUI.DrawSprite(sprite, cell_id, bz, rect);
 
 	float scroll = 0.f;
 	if (scrollbar)
@@ -352,7 +352,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			}
 
 			// Draw item selection
-			m_pGUI->DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect_sel);
+			m_pGUI.DrawSprite(sprite_selectarea, cell_id, bz+0.05f, rect_sel);
 		}
 	}
 
@@ -360,7 +360,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	CGUISpriteInstance& sprite_heading = GUI<CGUISpriteInstance>::GetSetting(this, "sprite_heading");
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
 									m_CachedActualSize.top + m_HeadingHeight);
-	m_pGUI->DrawSprite(sprite_heading, cell_id, bz, rect_head);
+	m_pGUI.DrawSprite(sprite_heading, cell_id, bz, rect_head);
 
 	// Draw column headers
 	bool sortable;
@@ -407,7 +407,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 				spriteName = "sprite_not_sorted";
 
 			CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, spriteName);
-			m_pGUI->DrawSprite(sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
+			m_pGUI.DrawSprite(sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text

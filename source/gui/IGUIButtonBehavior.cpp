@@ -22,7 +22,7 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-IGUIButtonBehavior::IGUIButtonBehavior(CGUI* pGUI)
+IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	: IGUIObject(pGUI), m_Pressed(false)
 {
 }
@@ -160,14 +160,14 @@ void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, CGUISprit
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
 	if (!enabled)
-		m_pGUI->DrawSprite(sprite_disabled || sprite, cell_id, z, rect);
+		m_pGUI.DrawSprite(sprite_disabled || sprite, cell_id, z, rect);
 	else if (m_MouseHovering)
 	{
 		if (m_Pressed)
-			m_pGUI->DrawSprite(sprite_pressed || sprite, cell_id, z, rect);
+			m_pGUI.DrawSprite(sprite_pressed || sprite, cell_id, z, rect);
 		else
-			m_pGUI->DrawSprite(sprite_over || sprite, cell_id, z, rect);
+			m_pGUI.DrawSprite(sprite_over || sprite, cell_id, z, rect);
 	}
 	else
-		m_pGUI->DrawSprite(sprite, cell_id, z, rect);
+		m_pGUI.DrawSprite(sprite, cell_id, z, rect);
 }

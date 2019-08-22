@@ -22,7 +22,7 @@
 #include "gui/CGUIColor.h"
 #include "lib/ogl.h"
 
-CButton::CButton(CGUI* pGUI)
+CButton::CButton(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI), IGUITextOwner(pGUI)
 {
 	AddSetting<float>("buffer_zone");
