@@ -24,7 +24,6 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
-#include "soundmanager/ISoundManager.h"
 
 CDropDown::CDropDown(CGUI& pGUI)
 	: CList(pGUI), IGUIObject(pGUI),
@@ -144,12 +143,8 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 	{
 		bool enabled;
 		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (!enabled)
-			break;
-
-		CStrW soundPath;
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		if (enabled)
+			PlaySound("sound_enter");
 		break;
 	}
 
@@ -159,12 +154,8 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 		bool enabled;
 		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (!enabled)
-			break;
-
-		CStrW soundPath;
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		if (enabled)
+			PlaySound("sound_leave");
 		break;
 	}
 
@@ -176,9 +167,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 		if (!enabled)
 		{
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			PlaySound("sound_disabled");
 			break;
 		}
 
@@ -195,10 +184,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			// Start at the position of the selected item, if possible.
 			GetScrollBar(0).SetPos(m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] - 60);
 
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_opened", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-
+			PlaySound("sound_opened");
 			return; // overshadow
 		}
 		else
@@ -210,11 +196,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			{
 				m_Open = false;
 				GetScrollBar(0).SetZ(GetBufferedZ());
-
-				CStrW soundPath;
-				if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_closed", soundPath) == PSRETURN_OK && !soundPath.empty())
-					g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-
+				PlaySound("sound_closed");
 				return; // overshadow
 			}
 
@@ -269,11 +251,8 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 	case GUIM_LOST_FOCUS:
 	{
 		if (m_Open)
-		{
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_closed", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-		}
+			PlaySound("sound_closed");
+
 		m_Open = false;
 		break;
 	}

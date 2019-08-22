@@ -21,11 +21,11 @@
 
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
-
 #include "ps/GameSetup/Config.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "soundmanager/ISoundManager.h"
 
 IGUIObject::IGUIObject(CGUI& pGUI)
 	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
@@ -437,6 +437,17 @@ bool IGUIObject::IsHiddenOrGhost()
 {
 	static const CStr strGhost("ghost");
 	return IsHidden() || GUI<bool>::GetSetting(this, strGhost);
+}
+
+void IGUIObject::PlaySound(const CStr& settingName) const
+{
+	if (!g_SoundManager)
+		return;
+
+	const CStrW& soundPath = GUI<CStrW>::GetSetting(this, settingName);
+
+	if (!soundPath.empty())
+		g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 }
 
 CStr IGUIObject::GetPresentableName() const

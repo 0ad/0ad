@@ -403,6 +403,11 @@ protected:
 	 */
 	void UpdateMouseOver(IGUIObject* const& pMouseOver);
 
+	/**
+	 * Retrieves the configured sound filename from the given setting name and plays that once.
+	 */
+	void PlaySound(const CStr& settingName) const;
+
 	//@}
 private:
 	//--------------------------------------------------------
