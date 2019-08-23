@@ -48,11 +48,7 @@ void COList::SetupText()
 	//  continuously, or even often, so it'll probably be okay.
 	m_GeneratedTexts.clear();
 
-	CStrW font;
-	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
-		// Use the default if none is specified
-		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
-		font = L"default";
+	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
 
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);

@@ -209,9 +209,7 @@ void CChart::SetupText()
 	if (m_Series.empty())
 		return;
 
-	CStrW font;
-	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
-		font = L"default";
+	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);

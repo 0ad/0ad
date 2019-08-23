@@ -68,16 +68,11 @@ void CCheckBox::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	CStrW font;
-	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
-		// Use the default if none is specified
-		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
-		font = L"default";
-
 	float square_side;
 	GUI<float>::GetSetting(this, "square_side", square_side);
 
 	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
+	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);

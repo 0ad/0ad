@@ -69,12 +69,6 @@ void CText::SetupText()
 	if (m_GeneratedTexts.empty())
 		return;
 
-	CStrW font;
-	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
-		// Use the default if none is specified
-		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
-		font = L"default";
-
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
@@ -84,6 +78,7 @@ void CText::SetupText()
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
 	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
+	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
 	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
 
 	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, width, buffer_zone, this);
