@@ -152,7 +152,7 @@ Trigger.prototype.InitStartingUnits = function()
 	{
 		this.playerCivicCenter[playerID] = TriggerHelper.GetPlayerEntitiesByClass(playerID, "CivilCentre")[0];
 		this.treasureFemale[playerID] = TriggerHelper.GetPlayerEntitiesByClass(playerID, "FemaleCitizen")[0];
-		Engine.QueryInterface(this.treasureFemale[playerID], IID_DamageReceiver).SetInvulnerability(true);
+		Engine.QueryInterface(this.treasureFemale[playerID], IID_Resistance).SetInvulnerability(true);
 	}
 };
 

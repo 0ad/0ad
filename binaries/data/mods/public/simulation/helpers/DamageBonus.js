@@ -6,7 +6,7 @@
  * @param {Object} template - The bonus' template.
  * @return {number} - The source entity's attack bonus against the specified target.
  */
-function GetDamageBonus(source, target, type, template)
+function GetAttackBonus(source, target, type, template)
 {
 	let attackBonus = 1;
 
@@ -28,4 +28,4 @@ function GetDamageBonus(source, target, type, template)
 	return attackBonus;
 }
 
-Engine.RegisterGlobal("GetDamageBonus", GetDamageBonus);
+Engine.RegisterGlobal("GetAttackBonus", GetAttackBonus);

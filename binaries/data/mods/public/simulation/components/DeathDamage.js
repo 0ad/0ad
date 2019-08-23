@@ -33,10 +33,7 @@ DeathDamage.prototype.Schema =
 	"<element name='Shape' a:help='Shape of the splash damage, can be circular'><text/></element>" +
 	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-	"<element name='Damage'>" +
-		BuildDamageTypesSchema("damage strength") +
-	"</element>" +
-	DeathDamage.prototype.bonusesSchema;
+	Attacking.BuildAttackEffectsSchema();
 
 DeathDamage.prototype.Init = function()
 {
@@ -44,22 +41,9 @@ DeathDamage.prototype.Init = function()
 
 DeathDamage.prototype.Serialize = null; // we have no dynamic state to save
 
-DeathDamage.prototype.GetDeathDamageStrengths = function()
+DeathDamage.prototype.GetDeathDamageEffects = function()
 {
-	// Work out the damage values with technology effects
-	let applyMods = damageType =>
-		ApplyValueModificationsToEntity("DeathDamage/Damage/" + damageType, +(this.template.Damage[damageType] || 0), this.entity);
-
-	let ret = {};
-	for (let damageType in this.template.Damage)
-		ret[damageType] = applyMods(damageType);
-
-	return ret;
-};
-
-DeathDamage.prototype.GetBonusTemplate = function()
-{
-	return this.template.Bonuses || null;
+	return Attacking.GetAttackEffectsData("DeathDamage", this.template, this.entity);
 };
 
 DeathDamage.prototype.CauseDeathDamage = function()
@@ -74,21 +58,19 @@ DeathDamage.prototype.CauseDeathDamage = function()
 	if (owner == INVALID_PLAYER)
 		warn("Unit causing death damage does not have any owner.");
 
-	let cmpDamage = Engine.QueryInterface(SYSTEM_ENTITY, IID_Damage);
-	let playersToDamage = cmpDamage.GetPlayersToDamage(owner, this.template.FriendlyFire);
+	let playersToDamage = Attacking.GetPlayersToDamage(owner, this.template.FriendlyFire);
 
 	let radius = ApplyValueModificationsToEntity("DeathDamage/Range", +this.template.Range, this.entity);
 
-	cmpDamage.CauseDamageOverArea({
+	Attacking.CauseDamageOverArea({
+		"type": "Death",
+		"attackData": this.GetDeathDamageEffects(),
 		"attacker": this.entity,
+		"attackerOwner": owner,
 		"origin": pos,
 		"radius": radius,
 		"shape": this.template.Shape,
-		"strengths": this.GetDeathDamageStrengths(),
-		"splashBonus": this.GetBonusTemplate(),
 		"playersToDamage": playersToDamage,
-		"type": "Death",
-		"attackerOwner": owner
 	});
 };
 

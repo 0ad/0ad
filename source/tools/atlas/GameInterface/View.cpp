@@ -226,8 +226,7 @@ void AtlasViewGame::Render()
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
 	camera.SetViewPort(vp);
-	CGameView* gameView = g_Game->GetView();
-	camera.SetPerspectiveProjection(gameView->GetNear(), gameView->GetFar(), gameView->GetFOV());
+	camera.SetProjectionFromCamera(*g_Game->GetView()->GetCamera());
 	camera.UpdateFrustum();
 
 	::Render();

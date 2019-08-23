@@ -75,6 +75,20 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		}
 	}
 
+	let cmpPromotion = Engine.QueryInterface(oldEnt, IID_Promotion);
+	let cmpNewPromotion = Engine.QueryInterface(newEnt, IID_Promotion);
+	if (cmpPromotion && cmpNewPromotion)
+		cmpNewPromotion.IncreaseXp(cmpPromotion.GetCurrentXp());
+
+	let cmpResGatherer = Engine.QueryInterface(oldEnt, IID_ResourceGatherer);
+	let cmpNewResGatherer = Engine.QueryInterface(newEnt, IID_ResourceGatherer);
+	if (cmpResGatherer && cmpNewResGatherer)
+	{
+		let carriedResources = cmpResGatherer.GetCarryingStatus();
+		cmpNewResGatherer.GiveResources(carriedResources);
+	}
+
+
 	// Maintain the list of guards
 	let cmpGuard = Engine.QueryInterface(oldEnt, IID_Guard);
 	let cmpNewGuard = Engine.QueryInterface(newEnt, IID_Guard);

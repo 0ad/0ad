@@ -24,8 +24,6 @@
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
-#include "soundmanager/ISoundManager.h"
-
 
 CList::CList(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIScrollBarOwner(pGUI),
@@ -187,9 +185,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 		if (!enabled)
 		{
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			PlaySound("sound_disabled");
 			break;
 		}
 
@@ -198,10 +194,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 			break;
 		GUI<int>::SetSetting(this, "selected", hovered);
 		UpdateAutoScroll();
-
-		CStrW soundPath;
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		PlaySound("sound_selected");
 
 		if (timer_Time() - m_LastItemClickTime < SELECT_DBLCLICK_RATE && hovered == m_PrevSelectedItem)
 			this->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, "mouseleftdoubleclickitem");
@@ -437,10 +430,7 @@ void CList::SelectNextElement()
 	{
 		++selected;
 		GUI<int>::SetSetting(this, "selected", selected);
-
-		CStrW soundPath;
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		PlaySound("sound_selected");
 	}
 }
 
@@ -452,10 +442,7 @@ void CList::SelectPrevElement()
 	{
 		--selected;
 		GUI<int>::SetSetting(this, "selected", selected);
-
-		CStrW soundPath;
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		PlaySound("sound_selected");
 	}
 }
 

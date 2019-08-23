@@ -389,12 +389,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		for (let type of types)
 		{
 			ret.attack[type] = {};
-			if (type == "Capture")
-				ret.attack[type] = cmpAttack.GetAttackStrengths(type);
-			else
-				ret.attack[type].damage = cmpAttack.GetAttackStrengths(type);
+
+			Object.assign(ret.attack[type], cmpAttack.GetAttackEffectsData(type));
 
 			ret.attack[type].splash = cmpAttack.GetSplashDamage(type);
+			if (ret.attack[type].splash)
+				Object.assign(ret.attack[type].splash, cmpAttack.GetAttackEffectsData(type, true));
 
 			let range = cmpAttack.GetRange(type);
 			ret.attack[type].minRange = range.min;
@@ -432,9 +432,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		}
 	}
 
-	let cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);
+	let cmpArmour = Engine.QueryInterface(ent, IID_Resistance);
 	if (cmpArmour)
-		ret.armour = cmpArmour.GetArmourStrengths();
+		ret.armour = cmpArmour.GetArmourStrengths("Damage");
 
 	let cmpBuildingAI = Engine.QueryInterface(ent, IID_BuildingAI);
 	if (cmpBuildingAI)

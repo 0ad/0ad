@@ -379,7 +379,7 @@ void CGUIManager::TickObjects()
 		p.gui->TickObjects();
 }
 
-void CGUIManager::Draw()
+void CGUIManager::Draw() const
 {
 	PROFILE3_GPU("gui");
 

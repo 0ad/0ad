@@ -178,8 +178,33 @@ Health.prototype.Kill = function()
 };
 
 /**
+ * Take damage according to the entity's resistance.
+ * @param {Object} strengths - { "hack": number, "pierce": number, "crush": number } or something like that.
+ * @param {number} bonusMultiplier - the damage multiplier.
+ * Returns object of the form { "killed": false, "change": -12 }.
+ */
+Health.prototype.TakeDamage = function(effectData, attacker, attackerOwner, bonusMultiplier)
+{
+	let cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
+
+	if (cmpResistance && cmpResistance.IsInvulnerable())
+		return { "killed": false };
+
+	let total = Attacking.GetTotalAttackEffects(effectData, "Damage", cmpResistance) * bonusMultiplier;
+
+	// Reduce health
+	let change = this.Reduce(total);
+
+	let cmpLoot = Engine.QueryInterface(this.entity, IID_Loot);
+	if (cmpLoot && cmpLoot.GetXp() > 0 && change.HPchange < 0)
+		change.xp = cmpLoot.GetXp() * -change.HPchange / this.GetMaxHitpoints();
+
+	return change;
+};
+
+/**
  * @param {number} amount - The amount of hitpoints to substract. Kills the entity if required.
- * @return {{killed:boolean, change:number}} -  Number of health points lost and whether the entity was killed.
+ * @return {{killed:boolean, HPchange:number}} -  Number of health points lost and whether the entity was killed.
  */
 Health.prototype.Reduce = function(amount)
 {
@@ -188,7 +213,7 @@ Health.prototype.Reduce = function(amount)
 	// might get called multiple times)
 	// Likewise if the amount is 0.
 	if (!amount || !this.hitpoints)
-		return { "killed": false, "change": 0 };
+		return { "killed": false, "HPchange": 0 };
 
 	// Before changing the value, activate Fogging if necessary to hide changes
 	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
@@ -202,7 +227,7 @@ Health.prototype.Reduce = function(amount)
 		this.hitpoints = 0;
 		this.RegisterHealthChanged(oldHitpoints);
 		this.HandleDeath();
-		return { "killed": true, "change": -oldHitpoints };
+		return { "killed": true, "HPchange": -oldHitpoints };
 	}
 
 	// If we are not marked as injured, do it now
@@ -215,7 +240,7 @@ Health.prototype.Reduce = function(amount)
 
 	this.hitpoints -= amount;
 	this.RegisterHealthChanged(oldHitpoints);
-	return { "killed": false, "change": this.hitpoints - oldHitpoints };
+	return { "killed": false, "HPchange": this.hitpoints - oldHitpoints };
 };
 
 /**

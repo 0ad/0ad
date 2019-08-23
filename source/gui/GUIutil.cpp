@@ -169,7 +169,8 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 	else if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
-		pObject->RecurseObject(nullptr, &IGUIObject::ResetStates);
+		if (GUI<bool>::GetSetting(pObject, Setting))
+			pObject->RecurseObject(nullptr, &IGUIObject::ResetStates);
 	}
 
 	if (!SkipMessage)

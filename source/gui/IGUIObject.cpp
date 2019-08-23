@@ -21,11 +21,11 @@
 
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
-
 #include "ps/GameSetup/Config.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "soundmanager/ISoundManager.h"
 
 IGUIObject::IGUIObject(CGUI& pGUI)
 	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
@@ -128,7 +128,7 @@ void IGUIObject::AddSetting(const CStr& Name)
 	m_Settings[Name] = new CGUISetting<T>(*this, Name);
 }
 
-bool IGUIObject::MouseOver()
+bool IGUIObject::IsMouseOver() const
 {
 	return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
 }
@@ -177,7 +177,7 @@ PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const b
 
 void IGUIObject::ChooseMouseOverAndClosest(IGUIObject*& pObject)
 {
-	if (!MouseOver())
+	if (!IsMouseOver())
 		return;
 
 	// Check if we've got competition at all
@@ -425,7 +425,7 @@ JSObject* IGUIObject::GetJSObject()
 	return m_JSObject.get();
 }
 
-bool IGUIObject::IsHidden()
+bool IGUIObject::IsHidden() const
 {
 	// Statically initialise some strings, so we don't have to do
 	// lots of allocation every time this function is called
@@ -433,10 +433,21 @@ bool IGUIObject::IsHidden()
 	return GUI<bool>::GetSetting(this, strHidden);
 }
 
-bool IGUIObject::IsHiddenOrGhost()
+bool IGUIObject::IsHiddenOrGhost() const
 {
 	static const CStr strGhost("ghost");
 	return IsHidden() || GUI<bool>::GetSetting(this, strGhost);
+}
+
+void IGUIObject::PlaySound(const CStr& settingName) const
+{
+	if (!g_SoundManager)
+		return;
+
+	const CStrW& soundPath = GUI<CStrW>::GetSetting(this, settingName);
+
+	if (!soundPath.empty())
+		g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 }
 
 CStr IGUIObject::GetPresentableName() const

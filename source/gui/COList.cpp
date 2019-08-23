@@ -22,7 +22,6 @@
 #include "gui/CGUIColor.h"
 #include "i18n/L10n.h"
 #include "ps/CLogger.h"
-#include "soundmanager/ISoundManager.h"
 
 const float SORT_SPRITE_DIM = 16.0f;
 const CPos COLUMN_SHIFT = CPos(0, 4);
@@ -181,10 +180,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 				GUI<int>::SetSetting(this, "selected_column_order", selectedColumnOrder);
 				ScriptEvent("selectioncolumnchange");
 
-				CStrW soundPath;
-				if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
-					g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-
+				PlaySound("sound_selected");
 				return;
 			}
 			xpos += width;

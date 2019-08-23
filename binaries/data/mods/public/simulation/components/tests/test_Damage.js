@@ -1,13 +1,13 @@
 Engine.LoadHelperScript("DamageBonus.js");
-Engine.LoadHelperScript("DamageTypes.js");
+Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/AttackDetection.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
-Engine.LoadComponentScript("interfaces/Damage.js");
-Engine.LoadComponentScript("interfaces/DamageReceiver.js");
+Engine.LoadComponentScript("interfaces/DelayedDamage.js");
+Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Loot.js");
 Engine.LoadComponentScript("interfaces/Player.js");
@@ -16,22 +16,24 @@ Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("Attack.js");
-Engine.LoadComponentScript("Damage.js");
+Engine.LoadComponentScript("DelayedDamage.js");
 Engine.LoadComponentScript("Timer.js");
 
 function Test_Generic()
 {
 	ResetState();
 
-	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 	let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
-	cmpTimer.OnUpdate({ turnLength: 1 });
+	cmpTimer.OnUpdate({ "turnLength": 1 });
 	let attacker = 11;
 	let atkPlayerEntity = 1;
 	let attackerOwner = 6;
 	let cmpAttack = ConstructComponent(attacker, "Attack",
 		{
 			"Ranged": {
+				"Damage": {
+					"Crush": 5,
+				},
 				"MaxRange": 50,
 				"MinRange": 0,
 				"Delay": 0,
@@ -51,19 +53,19 @@ function Test_Generic()
 	let type = "Melee";
 	let damageTaken = false;
 
-	cmpAttack.GetAttackStrengths = attackType => ({ "hack": 0, "pierce": 0, "crush": damage });
+	cmpAttack.GetAttackStrengths = attackType => ({ "Hack": 0, "Pierce": 0, "Crush": damage });
 
 	let data = {
-		"attacker": attacker,
-		"target": target,
 		"type": "Melee",
-		"strengths": { "hack": 0, "pierce": 0, "crush": damage },
-		"multiplier": 1.0,
+		"attackData": {
+			"Damage": { "Hack": 0, "Pierce": 0, "Crush": damage },
+		},
+		"target": target,
+		"attacker": attacker,
 		"attackerOwner": attackerOwner,
 		"position": targetPos,
-		"isSplash": false,
 		"projectileId": 9,
-		"direction": new Vector3D(1,0,0)
+		"direction": new Vector3D(1, 0, 0)
 	};
 
 	AddMock(atkPlayerEntity, IID_Player, {
@@ -87,15 +89,22 @@ function Test_Generic()
 		"IsInWorld": () => true,
 	});
 
-	AddMock(target, IID_Health, {});
+	AddMock(target, IID_Health, {
+		"TakeDamage": (effectData, __, ___, bonusMultiplier) => {
+			damageTaken = true;
+			return { "killed": false, "HPchange": -bonusMultiplier * effectData.Crush };
+		},
+	});
 
-	AddMock(target, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => { damageTaken = true; return { "killed": false, "change": -multiplier * strengths.crush }; },
+	AddMock(SYSTEM_ENTITY, IID_DelayedDamage, {
+		"MissileHit": () => {
+			damageTaken = true;
+		},
 	});
 
 	Engine.PostMessage = function(ent, iid, message)
 	{
-		TS_ASSERT_UNEVAL_EQUALS({ "attacker": attacker, "target": target, "type": type, "damage": damage, "attackerOwner": attackerOwner }, message);
+		TS_ASSERT_UNEVAL_EQUALS({ "type": type, "target": target, "attacker": attacker, "attackerOwner": attackerOwner, "damage": damage, "capture": 0, "statusEffects": [] }, message);
 	};
 
 	AddMock(target, IID_Footprint, {
@@ -114,16 +123,17 @@ function Test_Generic()
 
 	function TestDamage()
 	{
-		cmpTimer.OnUpdate({ turnLength: 1 });
+		cmpTimer.OnUpdate({ "turnLength": 1 });
 		TS_ASSERT(damageTaken);
 		damageTaken = false;
 	}
 
-	cmpDamage.CauseDamage(data);
+	Attacking.HandleAttackEffects(data.type, data.attackData, data.target, data.attacker, data.attackerOwner);
 	TestDamage();
 
-	type = data.type = "Ranged";
-	cmpDamage.CauseDamage(data);
+	data.type = "Ranged";
+	type = data.type;
+	Attacking.HandleAttackEffects(data.type, data.attackData, data.target, data.attacker, data.attackerOwner);
 	TestDamage();
 
 	// Check for damage still being dealt if the attacker dies
@@ -135,8 +145,8 @@ function Test_Generic()
 	AddMock(atkPlayerEntity, IID_Player, {
 		"GetEnemies": () => [2, 3]
 	});
-	TS_ASSERT_UNEVAL_EQUALS(cmpDamage.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
-	TS_ASSERT_UNEVAL_EQUALS(cmpDamage.GetPlayersToDamage(atkPlayerEntity, false), [2, 3]);
+	TS_ASSERT_UNEVAL_EQUALS(Attacking.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
+	TS_ASSERT_UNEVAL_EQUALS(Attacking.GetPlayersToDamage(atkPlayerEntity, false), [2, 3]);
 }
 
 Test_Generic();
@@ -152,25 +162,23 @@ function TestLinearSplashDamage()
 	const origin = new Vector2D(0, 0);
 
 	let data = {
+		"type": "Ranged",
+		"attackData": { "Damage": { "Hack": 100, "Pierce": 0, "Crush": 0 } },
 		"attacker": attacker,
+		"attackerOwner": attackerOwner,
 		"origin": origin,
 		"radius": 10,
 		"shape": "Linear",
-		"strengths": { "hack" : 100, "pierce" : 0, "crush": 0 },
 		"direction": new Vector3D(1, 747, 0),
 		"playersToDamage": [2],
-		"type": "Ranged",
-		"attackerOwner": attackerOwner
 	};
 
-	let fallOff = function(x,y)
+	let fallOff = function(x, y)
 	{
 		return (1 - x * x / (data.radius * data.radius)) * (1 - 25 * y * y / (data.radius * data.radius));
 	};
 
 	let hitEnts = new Set();
-
-	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [60, 61, 62],
@@ -188,31 +196,31 @@ function TestLinearSplashDamage()
 		"GetPosition2D": () => new Vector2D(5, 2),
 	});
 
-	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(60, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(60);
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(2.2, -0.4));
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(2.2, -0.4));
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(61, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(0, 0));
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(0, 0));
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(62, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(62, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(62);
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 0);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 0);
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	cmpDamage.CauseDamageOverArea(data);
+	Attacking.CauseDamageOverArea(data);
 	TS_ASSERT(hitEnts.has(60));
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT(hitEnts.has(62));
@@ -220,15 +228,15 @@ function TestLinearSplashDamage()
 
 	data.direction = new Vector3D(0.6, 747, 0.8);
 
-	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(60, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(60);
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(1, 2));
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(1, 2));
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	cmpDamage.CauseDamageOverArea(data);
+	Attacking.CauseDamageOverArea(data);
 	TS_ASSERT(hitEnts.has(60));
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT(hitEnts.has(62));
@@ -248,8 +256,6 @@ function TestCircularSplashDamage()
 	{
 		return 1 - r * r / (radius * radius);
 	};
-
-	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [60, 61, 62, 64],
@@ -276,49 +282,49 @@ function TestCircularSplashDamage()
 		"GetPosition2D": () => new Vector2D(9, -4),
 	});
 
-	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(0));
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+	AddMock(60, IID_Resistance, {
+		"TakeDamage": (effectData, __, ___, mult) => {
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(0));
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(5));
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+	AddMock(61, IID_Resistance, {
+		"TakeDamage": (effectData, __, ___, mult) => {
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(5));
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(62, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(1));
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+	AddMock(62, IID_Resistance, {
+		"TakeDamage": (effectData, __, ___, mult) => {
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(1));
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(63, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(63, IID_Resistance, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT(false);
 		}
 	});
 
-	AddMock(64, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 0);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+	AddMock(64, IID_Resistance, {
+		"TakeDamage": (effectData, __, ___, mult) => {
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 0);
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	cmpDamage.CauseDamageOverArea({
+	Attacking.CauseDamageOverArea({
+		"type": "Ranged",
+		"attackData": { "Damage": { "Hack": 100, "Pierce": 0, "Crush": 0 } },
 		"attacker": 50,
+		"attackerOwner": 1,
 		"origin": new Vector2D(3, 4),
 		"radius": radius,
 		"shape": "Circular",
-		"strengths": { "hack" : 100, "pierce" : 0, "crush": 0 },
 		"playersToDamage": [2],
-		"type": "Ranged",
-		"attackerOwner": 1
 	});
 }
 
@@ -329,7 +335,7 @@ function Test_MissileHit()
 	ResetState();
 	Engine.PostMessage = (ent, iid, message) => {};
 
-	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
+	let cmpDelayedDamage = ConstructComponent(SYSTEM_ENTITY, "DelayedDamage");
 
 	let target = 60;
 	let targetOwner = 1;
@@ -344,15 +350,13 @@ function Test_MissileHit()
 
 	let data = {
 		"type": "Ranged",
-		"attacker": 70,
+		"attackData": { "Damage": { "Hack": 0, "Pierce": 100, "Crush": 0 } },
 		"target": 60,
-		"strengths": { "hack": 0, "pierce": 100, "crush": 0 },
+		"attacker": 70,
+		"attackerOwner": 1,
 		"position": targetPos,
 		"direction": new Vector3D(1, 0, 0),
 		"projectileId": 9,
-		"bonus": undefined,
-		"isSplash": false,
-		"attackerOwner": 1
 	};
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -372,13 +376,11 @@ function Test_MissileHit()
 		"IsInWorld": () => true,
 	});
 
-	AddMock(60, IID_Health, {});
-
-	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(60, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(60);
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100);
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -400,7 +402,7 @@ function Test_MissileHit()
 		"GetEnemies": () => [2]
 	});
 
-	cmpDamage.MissileHit(data, 0);
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(60));
 	hitEnts.clear();
 
@@ -413,10 +415,10 @@ function Test_MissileHit()
 		"IsInWorld": () => true,
 	});
 
-	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
+	AddMock(60, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(false);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -431,13 +433,11 @@ function Test_MissileHit()
 		"IsInWorld": () => true,
 	});
 
-	AddMock(61, IID_Health, {});
-
-	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100);
+	AddMock(61, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100);
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -445,28 +445,27 @@ function Test_MissileHit()
 		"GetShape": () => ({ "type": "circle", "radius": 20 }),
 	});
 
-	cmpDamage.MissileHit(data, 0);
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	hitEnts.clear();
 
 	// Add a splash damage.
-
-	data.friendlyFire = false;
-	data.radius = 10;
-	data.shape = "Circular";
-	data.isSplash = true;
-	data.splashStrengths = { "hack": 0, "pierce": 0, "crush": 200 };
+	data.splash = {};
+	data.splash.friendlyFire = false;
+	data.splash.radius = 10;
+	data.splash.shape = "Circular";
+	data.splash.attackData = { "Damage": { "Hack": 0, "Pierce": 0, "Crush": 200 } };
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [61, 62]
 	});
 
 	let dealtDamage = 0;
-	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			dealtDamage += multiplier * (strengths.hack + strengths.pierce + strengths.crush);
+	AddMock(61, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			dealtDamage += mult * (effectData.Hack + effectData.Pierce + effectData.Crush);
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -477,13 +476,11 @@ function Test_MissileHit()
 		"IsInWorld": () => true,
 	});
 
-	AddMock(62, IID_Health, {});
-
-	AddMock(62, IID_DamageReceiver, {
-		"TakeDamage": (strengths, multiplier) => {
-			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 200 * 0.75);
+	AddMock(62, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(62);
-			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
+			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 200 * 0.75);
+			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -491,7 +488,7 @@ function Test_MissileHit()
 		"GetShape": () => ({ "type": "circle", "radius": 20 }),
 	});
 
-	cmpDamage.MissileHit(data, 0);
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 200);
 	dealtDamage = 0;
@@ -512,36 +509,36 @@ function Test_MissileHit()
 		"HasClass": cl => cl == "Cavalry"
 	});
 
-	data.bonus = bonus;
-	cmpDamage.MissileHit(data, 0);
+	data.attackData.Bonuses = bonus;
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 400 * 100 + 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
-	data.splashBonus = splashBonus;
-	cmpDamage.MissileHit(data, 0);
+	data.splash.attackData.Bonuses = splashBonus;
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 400 * 100 + 10000 * 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
-	data.bonus = undefined;
-	cmpDamage.MissileHit(data, 0);
+	data.attackData.Bonuses = undefined;
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
-	data.bonus = null;
-	cmpDamage.MissileHit(data, 0);
+	data.attackData.Bonuses = null;
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
-	data.bonus = {};
-	cmpDamage.MissileHit(data, 0);
+	data.attackData.Bonuses = {};
+	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;

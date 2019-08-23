@@ -2958,8 +2958,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		"CHEERING": {
 			"enter": function() {
 				// Unit is invulnerable while cheering
-				var cmpDamageReceiver = Engine.QueryInterface(this.entity, IID_DamageReceiver);
-				cmpDamageReceiver.SetInvulnerability(true);
+				var cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
+				cmpResistance.SetInvulnerability(true);
 				this.SelectAnimation("promotion");
 				this.StartTimer(2800, 2800);
 				return false;
@@ -2968,8 +2968,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			"leave": function() {
 				this.StopTimer();
 				this.ResetAnimation();
-				var cmpDamageReceiver = Engine.QueryInterface(this.entity, IID_DamageReceiver);
-				cmpDamageReceiver.SetInvulnerability(false);
+				var cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
+				cmpResistance.SetInvulnerability(false);
 			},
 
 			"Timer": function(msg) {
@@ -3466,7 +3466,7 @@ UnitAI.prototype.SetupRangeQuery = function(enable = true)
 	var players = cmpPlayer.GetEnemies();
 	var range = this.GetQueryRange(IID_Attack);
 
-	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
+	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	if (enable)
 		cmpRangeManager.EnableActiveQuery(this.losRangeQuery);

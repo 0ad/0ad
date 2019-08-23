@@ -1,8 +1,7 @@
 Engine.LoadHelperScript("DamageBonus.js");
-Engine.LoadHelperScript("DamageTypes.js");
+Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
-Engine.LoadComponentScript("interfaces/Damage.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("DeathDamage.js");
@@ -28,10 +27,12 @@ let template = {
 	}
 };
 
-let modifiedDamage = {
-	"Hack": 0.0,
-	"Pierce": 215.0,
-	"Crush": 35.0
+let effects = {
+	"Damage": {
+		"Hack": 0.0,
+		"Pierce": 215.0,
+		"Crush": 35.0
+	}
 };
 
 let cmpDeathDamage = ConstructComponent(deadEnt, "DeathDamage", template);
@@ -40,21 +41,18 @@ let playersToDamage = [2, 3, 7];
 let pos = new Vector2D(3, 4.2);
 
 let result = {
+	"type": "Death",
+	"attackData": effects,
 	"attacker": deadEnt,
+	"attackerOwner": player,
 	"origin": pos,
 	"radius": template.Range,
 	"shape": template.Shape,
-	"strengths": modifiedDamage,
-	"splashBonus": null,
-	"playersToDamage": playersToDamage,
-	"type": "Death",
-	"attackerOwner": player
+	"playersToDamage": playersToDamage
 };
 
-AddMock(SYSTEM_ENTITY, IID_Damage, {
-	"CauseDamageOverArea": data => TS_ASSERT_UNEVAL_EQUALS(data, result),
-	"GetPlayersToDamage": (owner, friendlyFire) => playersToDamage
-});
+Attacking.CauseDamageOverArea = data => TS_ASSERT_UNEVAL_EQUALS(data, result);
+Attacking.GetPlayersToDamage = () => playersToDamage;
 
 AddMock(deadEnt, IID_Position, {
 	"GetPosition2D": () => pos,
@@ -65,13 +63,13 @@ AddMock(deadEnt, IID_Ownership, {
 	"GetOwner": () => player
 });
 
-TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageStrengths(), modifiedDamage);
+TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageEffects(), effects);
 cmpDeathDamage.CauseDeathDamage();
 
 // Test splash damage bonus
-let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 3 } };
-template.Bonuses = splashBonus;
+effects.Bonuses = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 3 } };
+template.Bonuses = effects.Bonuses;
 cmpDeathDamage = ConstructComponent(deadEnt, "DeathDamage", template);
-result.splashBonus = splashBonus;
-TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageStrengths(), modifiedDamage);
+result.attackData.Bonuses = effects.Bonuses;
+TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageEffects(), effects);
 cmpDeathDamage.CauseDeathDamage();

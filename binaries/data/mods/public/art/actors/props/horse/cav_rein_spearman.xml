@@ -4,9 +4,11 @@
   <group>
     <variant>
       <mesh>props/horse/rein_01.dae</mesh>
-      <textures>
-        <texture file="props/horse/peytral_iron.png" name="baseTex"/>
-      </textures>
+  <textures>
+    <texture file="props/horse/head_straps.png" name="baseTex"/>
+    <texture file="props/horse/head_straps_norm.png" name="normTex"/>
+    <texture file="props/horse/head_straps_spec.png" name="specTex"/>
+  </textures>
     </variant>
   </group>
   <group>
@@ -24,5 +26,5 @@
   <group>
     <variant file="quadraped/base_horse_archer.xml" name="Archer Horse"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

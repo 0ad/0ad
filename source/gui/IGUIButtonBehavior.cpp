@@ -20,7 +20,6 @@
 #include "GUI.h"
 
 #include "ps/CLogger.h"
-#include "soundmanager/ISoundManager.h"
 
 IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	: IGUIObject(pGUI), m_Pressed(false)
@@ -40,19 +39,13 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	switch (Message.type)
 	{
 	case GUIM_MOUSE_ENTER:
-		if (!enabled)
-			break;
-
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		if (enabled)
+			PlaySound("sound_enter");
 		break;
 
 	case GUIM_MOUSE_LEAVE:
-		if (!enabled)
-			break;
-
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		if (enabled)
+			PlaySound("sound_leave");
 		break;
 
 	case GUIM_MOUSE_DBLCLICK_LEFT:
@@ -67,14 +60,11 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	case GUIM_MOUSE_PRESS_LEFT:
 		if (!enabled)
 		{
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			PlaySound("sound_disabled");
 			break;
 		}
 
-		// Button was clicked
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		PlaySound("sound_pressed");
 		SendEvent(GUIM_PRESSED, "press");
 		m_Pressed = true;
 		break;
@@ -91,14 +81,12 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	case GUIM_MOUSE_PRESS_RIGHT:
 		if (!enabled)
 		{
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			PlaySound("sound_disabled");
 			break;
 		}
 
 		// Button was right-clicked
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		PlaySound("sound_pressed");
 		SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
 		m_PressedRight = true;
 		break;
@@ -110,8 +98,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 		if (m_PressedRight)
 		{
 			m_PressedRight = false;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			PlaySound("sound_released");
 		}
 		break;
 
@@ -122,8 +109,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 		if (m_Pressed)
 		{
 			m_Pressed = false;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			PlaySound("sound_released");
 		}
 		break;
 
