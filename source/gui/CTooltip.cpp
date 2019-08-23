@@ -65,31 +65,20 @@ void CTooltip::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-
 	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
 	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
-
-	float max_width = 0.f;
-	GUI<float>::GetSetting(this, "maxwidth", max_width);
+	const float max_width = GUI<float>::GetSetting(this, "maxwidth");
+	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
 
 	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, max_width, buffer_zone, this);
 
 	// Position the tooltip relative to the mouse:
 
-	CPos mousepos, offset;
-	EVAlign anchor;
-	bool independent;
+	const CPos& mousepos = GUI<bool>::GetSetting(this, "independent") ?
+		m_pGUI.GetMousePos() :
+		GUI<CPos>::GetSetting(this, "_mousepos");
 
-	GUI<bool>::GetSetting(this, "independent", independent);
-	if (independent)
-		mousepos = m_pGUI.GetMousePos();
-	else
-		GUI<CPos>::GetSetting(this, "_mousepos", mousepos);
-
-	GUI<CPos>::GetSetting(this, "offset", offset);
-	GUI<EVAlign>::GetSetting(this, "anchor", anchor);
+	const CPos& offset = GUI<CPos>::GetSetting(this, "offset");
 
 	float textwidth = m_GeneratedTexts[0].GetSize().cx;
 	float textheight = m_GeneratedTexts[0].GetSize().cy;
@@ -97,7 +86,8 @@ void CTooltip::SetupText()
 	CClientArea size;
 	size.pixel.left = mousepos.x + offset.x;
 	size.pixel.right = size.pixel.left + textwidth;
-	switch (anchor)
+
+	switch (GUI<EVAlign>::GetSetting(this, "anchor"))
 	{
 	case EVAlign_Top:
 		size.pixel.top = mousepos.y + offset.y;

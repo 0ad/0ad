@@ -58,18 +58,13 @@ void CButton::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	CStrW font;
-	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
-		// Use the default if none is specified
-		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
-		font = L"default";
-
-	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
-
-	float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
+	m_GeneratedTexts[0] = CGUIText(
+		m_pGUI,
+		GUI<CGUIString>::GetSetting(this, "caption"),
+		GUI<CStrW>::GetSetting(this, "font"),
+		m_CachedActualSize.GetWidth(),
+		GUI<float>::GetSetting(this, "buffer_zone"),
+		this);
 
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 }
@@ -83,9 +78,7 @@ void CButton::HandleMessage(SGUIMessage& Message)
 
 void CButton::Draw()
 {
-	float bz = GetBufferedZ();
-
-	int cell_id;
+	const float bz = GetBufferedZ();
 
 	// Statically initialise some strings, so we don't have to do
 	// lots of allocation every time this function is called
@@ -100,7 +93,7 @@ void CButton::Draw()
 	CGUISpriteInstance& sprite_pressed = GUI<CGUISpriteInstance>::GetSetting(this, strSpritePressed);
 	CGUISpriteInstance& sprite_disabled = GUI<CGUISpriteInstance>::GetSetting(this, strSpriteDisabled);
 
-	GUI<int>::GetSetting(this, strCellId, cell_id);
+	const int cell_id = GUI<int>::GetSetting(this, strCellId);
 
 	DrawButton(m_CachedActualSize, bz, sprite, sprite_over, sprite_pressed, sprite_disabled, cell_id);
 

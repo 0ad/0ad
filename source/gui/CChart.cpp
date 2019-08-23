@@ -44,9 +44,9 @@ CChart::CChart(CGUI& pGUI)
 	AddSetting<CGUISeries>("series");
 	AddSetting<EAlign>("text_align");
 
-	GUI<float>::GetSetting(this, "axis_width", m_AxisWidth);
-	GUI<CStrW>::GetSetting(this, "format_x", m_FormatX);
-	GUI<CStrW>::GetSetting(this, "format_y", m_FormatY);
+	m_AxisWidth = GUI<float>::GetSetting(this, "axis_width");
+	m_FormatX = GUI<CStrW>::GetSetting(this, "format_x");
+	m_FormatY = GUI<CStrW>::GetSetting(this, "format_y");
 }
 
 CChart::~CChart()
@@ -60,9 +60,9 @@ void CChart::HandleMessage(SGUIMessage& Message)
 	{
 	case GUIM_SETTINGS_UPDATED:
 	{
-		GUI<float>::GetSetting(this, "axis_width", m_AxisWidth);
-		GUI<CStrW>::GetSetting(this, "format_x", m_FormatX);
-		GUI<CStrW>::GetSetting(this, "format_y", m_FormatY);
+		m_AxisWidth = GUI<float>::GetSetting(this, "axis_width");
+		m_FormatX = GUI<CStrW>::GetSetting(this, "format_x");
+		m_FormatY = GUI<CStrW>::GetSetting(this, "format_y");
 
 		UpdateSeries();
 		break;
@@ -210,12 +210,10 @@ void CChart::SetupText()
 		return;
 
 	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
-
-	float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
 
 	// Add Y-axis
-	GUI<CStrW>::GetSetting(this, "format_y", m_FormatY);
+	m_FormatY = GUI<CStrW>::GetSetting(this, "format_y");
 	const float height = GetChartRect().GetHeight();
 	// TODO: split values depend on the format;
 	if (m_EqualY)
@@ -232,7 +230,7 @@ void CChart::SetupText()
 		}
 
 	// Add X-axis
-	GUI<CStrW>::GetSetting(this, "format_x", m_FormatX);
+	m_FormatX = GUI<CStrW>::GetSetting(this, "format_x");
 	const float width = GetChartRect().GetWidth();
 	if (m_EqualX)
 	{

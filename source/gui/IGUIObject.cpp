@@ -216,18 +216,13 @@ void IGUIObject::ResetStates()
 
 void IGUIObject::UpdateCachedSize()
 {
-	bool absolute;
-	GUI<bool>::GetSetting(this, "absolute", absolute);
-
-	float aspectratio = 0.f;
-	GUI<float>::GetSetting(this, "aspectratio", aspectratio);
-
 	const CClientArea& ca = GUI<CClientArea>::GetSetting(this, "size");
+	const float aspectratio = GUI<float>::GetSetting(this, "aspectratio");
 
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
-	if (absolute == false && m_pParent && !IsRootObject())
+	if (!GUI<bool>::GetSetting(this, "absolute") && m_pParent && !IsRootObject())
 		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
 	else
 		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
@@ -279,15 +274,11 @@ void IGUIObject::LoadStyle(const SGUIStyle& Style)
 
 float IGUIObject::GetBufferedZ() const
 {
-	bool absolute;
-	GUI<bool>::GetSetting(this, "absolute", absolute);
+	const float Z = GUI<float>::GetSetting(this, "z");
 
-	float Z;
-	GUI<float>::GetSetting(this, "z", Z);
-
-	if (absolute)
+	if (GUI<bool>::GetSetting(this, "absolute"))
 		return Z;
-	else
+
 	{
 		if (GetParent())
 			return GetParent()->GetBufferedZ() + Z;

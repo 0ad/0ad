@@ -103,14 +103,11 @@ void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& p
 
 void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUIText& Text)
 {
-	EVAlign valign;
-	GUI<EVAlign>::GetSetting(this, "text_valign", valign);
-
 	// The horizontal Alignment is now computed in GenerateText in order to not have to
 	// loop through all of the TextCall objects again.
 	TextPos.x = ObjSize.left;
 
-	switch (valign)
+	switch (GUI<EVAlign>::GetSetting(this, "text_valign"))
 	{
 	case EVAlign_Top:
 		TextPos.y = ObjSize.top;

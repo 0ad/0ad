@@ -83,16 +83,14 @@ void CList::SetupText()
 
 	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
 
-	bool scrollbar;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	float width = GetListRect().GetWidth();
 	// remove scrollbar if applicable
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
 
 	// Generate texts
 	float buffered_y = 0.f;
@@ -148,11 +146,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		{
 			// TODO: Check range
 
-			bool auto_scroll;
-
-			GUI<bool>::GetSetting(this, "auto_scroll", auto_scroll);
-
-			if (auto_scroll)
+			if (GUI<bool>::GetSetting(this, "auto_scroll"))
 				UpdateAutoScroll();
 
 			// TODO only works if lower-case, shouldn't it be made case sensitive instead?
@@ -165,11 +159,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		// Update scrollbar
 		if (Message.value == "scrollbar_style")
 		{
-			CStr scrollbar_style;
-			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
-
-			GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
-
+			GetScrollBar(0).SetScrollBarStyle(GUI<CStr>::GetSetting(this, Message.value));
 			SetupText();
 		}
 
@@ -177,9 +167,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (!enabled)
+		if (!GUI<bool>::GetSetting(this, "enabled"))
 		{
 			PlaySound("sound_disabled");
 			break;
@@ -204,9 +192,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_MOUSE_LEAVE:
 	{
-		int hoveredSetting = -1;
-		GUI<int>::GetSetting(this, "hovered", hoveredSetting);
-		if (hoveredSetting == -1)
+		if (GUI<int>::GetSetting(this, "hovered") == -1)
 			break;
 
 		GUI<int>::SetSetting(this, "hovered", -1);
@@ -216,11 +202,8 @@ void CList::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_MOUSE_OVER:
 	{
-		int hoveredSetting = -1;
-		GUI<int>::GetSetting(this, "hovered", hoveredSetting);
-
 		int hovered = GetHoveredItem();
-		if (hovered == hoveredSetting)
+		if (hovered == GUI<int>::GetSetting(this, "hovered"))
 			break;
 
 		GUI<int>::SetSetting(this, "hovered", hovered);
@@ -230,9 +213,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_LOAD:
 	{
-		CStr scrollbar_style;
-		GUI<CStr>::GetSetting(this, "scrollbar_style", scrollbar_style);
-		GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
+		GetScrollBar(0).SetScrollBarStyle(GUI<CStr>::GetSetting(this, "scrollbar_style"));
 		break;
 	}
 
@@ -297,10 +278,7 @@ InReaction CList::ManuallyHandleEvent(const SDL_Event_* ev)
 
 void CList::Draw()
 {
-	int selected;
-	GUI<int>::GetSetting(this, "selected", selected);
-
-	DrawList(selected, "sprite", "sprite_selectarea", "textcolor");
+	DrawList(GUI<int>::GetSetting(this, "selected"), "sprite", "sprite_selectarea", "textcolor");
 }
 
 void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor)
@@ -308,8 +286,7 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 	float bz = GetBufferedZ();
 
 	// First call draw on ScrollBarOwner
-	bool scrollbar;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	if (scrollbar)
 		IGUIScrollBarOwner::Draw();

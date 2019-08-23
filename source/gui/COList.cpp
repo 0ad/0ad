@@ -49,17 +49,14 @@ void COList::SetupText()
 	m_GeneratedTexts.clear();
 
 	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
-
-	bool scrollbar;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	m_TotalAvailableColumnWidth = GetListRect().GetWidth();
 	// remove scrollbar if applicable
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		m_TotalAvailableColumnWidth -= GetScrollBar(0).GetStyle()->m_Width;
 
-	float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
 
 	m_HeadingHeight = SORT_SPRITE_DIM; // At least the size of the sorting sprite
 
@@ -134,26 +131,21 @@ void COList::HandleMessage(SGUIMessage& Message)
 	// If somebody clicks on the column heading
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		bool sortable;
-		GUI<bool>::GetSetting(this, "sortable", sortable);
-		if (!sortable)
+		if (!GUI<bool>::GetSetting(this, "sortable"))
 			return;
 
 		const CPos& mouse = m_pGUI.GetMousePos();
 		if (!m_CachedActualSize.PointInside(mouse))
 			return;
 
-		CStr selectedColumn;
-		GUI<CStr>::GetSetting(this, "selected_column", selectedColumn);
-		int selectedColumnOrder;
-		GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
+		// Copies, so that these settings are only modfied via SetSettings later.
+		CStr selectedColumn = GUI<CStr>::GetSetting(this, "selected_column");
+		int selectedColumnOrder = GUI<int>::GetSetting(this, "selected_column_order");
 
 		float xpos = 0;
 		for (const COListColumn& column : m_Columns)
 		{
-			bool hidden = false;
-			GUI<bool>::GetSetting(this, "hidden_" + column.m_Id, hidden);
-			if (hidden)
+			if (GUI<bool>::GetSetting(this, "hidden_" + column.m_Id))
 				continue;
 
 			float width = column.m_Width;
@@ -172,10 +164,11 @@ void COList::HandleMessage(SGUIMessage& Message)
 				}
 				else
 					selectedColumnOrder = -selectedColumnOrder;
-				GUI<CStr>::SetSetting(this, "selected_column", column.m_Id);
-				GUI<int>::SetSetting(this, "selected_column_order", selectedColumnOrder);
-				ScriptEvent("selectioncolumnchange");
 
+				GUI<CStr>::SetSetting(this, "selected_column", selectedColumn);
+				GUI<int>::SetSetting(this, "selected_column_order", selectedColumnOrder);
+
+				ScriptEvent("selectioncolumnchange");
 				PlaySound("sound_selected");
 				return;
 			}
@@ -292,10 +285,8 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor)
 {
-	float bz = GetBufferedZ();
-
-	bool scrollbar;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const float bz = GetBufferedZ();
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	if (scrollbar)
 		IGUIScrollBarOwner::Draw();
@@ -305,8 +296,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, _sprite);
 	CGUISpriteInstance& sprite_selectarea = GUI<CGUISpriteInstance>::GetSetting(this, _sprite_selected);
 
-	int cell_id;
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
+	const int cell_id = GUI<int>::GetSetting(this, "cell_id");
 
 	m_pGUI.DrawSprite(sprite, cell_id, bz, rect);
 
@@ -355,23 +345,15 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	m_pGUI.DrawSprite(sprite_heading, cell_id, bz, rect_head);
 
 	// Draw column headers
-	bool sortable;
-	GUI<bool>::GetSetting(this, "sortable", sortable);
-
-	CStr selectedColumn;
-	GUI<CStr>::GetSetting(this, "selected_column", selectedColumn);
-
-	int selectedColumnOrder;
-	GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
-
+	const bool sortable = GUI<bool>::GetSetting(this, "sortable");
+	const CStr& selectedColumn = GUI<CStr>::GetSetting(this, "selected_column");
+	const int selectedColumnOrder = GUI<int>::GetSetting(this, "selected_column_order");
 	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, _textcolor);
 
 	float xpos = 0;
 	for (size_t col = 0; col < m_Columns.size(); ++col)
 	{
-		bool hidden = false;
-		GUI<bool>::GetSetting(this, "hidden_" + m_Columns[col].m_Id, hidden);
-		if (hidden)
+		if (GUI<bool>::GetSetting(this, "hidden_" + m_Columns[col].m_Id))
 			continue;
 
 		// Check if it's a decimal value, and if so, assume relative positioning.
@@ -436,9 +418,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		xpos = 0;
 		for (size_t col = 0; col < objectsCount; ++col)
 		{
-			bool hidden = false;
-			GUI<bool>::GetSetting(this, "hidden_" + m_Columns[col].m_Id, hidden);
-			if (hidden)
+			if (GUI<bool>::GetSetting(this, "hidden_" + m_Columns[col].m_Id))
 				continue;
 
 			// Determine text position and width

@@ -864,10 +864,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (!ManuallySetZ)
 	{
 		// Set it automatically to 10 plus its parents
-		bool absolute;
-		GUI<bool>::GetSetting(object, "absolute", absolute);
-
-		if (absolute)
+		if (GUI<bool>::GetSetting(object, "absolute"))
 			// If the object is absolute, we'll have to get the parent's Z buffered,
 			// and add to that!
 			GUI<float>::SetSetting(object, "z", pParent->GetBufferedZ() + 10.f, true);

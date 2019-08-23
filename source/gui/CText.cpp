@@ -69,8 +69,7 @@ void CText::SetupText()
 	if (m_GeneratedTexts.empty())
 		return;
 
-	bool scrollbar;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	float width = m_CachedActualSize.GetWidth();
 	// remove scrollbar if applicable
@@ -89,9 +88,8 @@ void CText::SetupText()
 	// Setup scrollbar
 	if (scrollbar)
 	{
-		bool scroll_top = false, scroll_bottom = false;
-		GUI<bool>::GetSetting(this, "scroll_bottom", scroll_bottom);
-		GUI<bool>::GetSetting(this, "scroll_top", scroll_top);
+		const bool scroll_bottom = GUI<bool>::GetSetting(this, "scroll_bottom");
+		const bool scroll_top = GUI<bool>::GetSetting(this, "scroll_top");
 
 		// If we are currently scrolled to the bottom of the text,
 		// then add more lines of text, update the scrollbar so we
@@ -130,11 +128,7 @@ void CText::HandleMessage(SGUIMessage& Message)
 		// Update scrollbar
 		if (Message.value == "scrollbar_style")
 		{
-			CStr scrollbar_style;
-			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
-
-			GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
-
+			GetScrollBar(0).SetScrollBarStyle(GUI<CStr>::GetSetting(this, Message.value));
 			SetupText();
 		}
 
@@ -164,10 +158,7 @@ void CText::HandleMessage(SGUIMessage& Message)
 		GetScrollBar(0).SetY(m_CachedActualSize.top);
 		GetScrollBar(0).SetZ(GetBufferedZ());
 		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
-
-		CStr scrollbar_style;
-		GUI<CStr>::GetSetting(this, "scrollbar_style", scrollbar_style);
-		GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
+		GetScrollBar(0).SetScrollBarStyle(GUI<CStr>::GetSetting(this, "scrollbar_style"));
 		break;
 	}
 
@@ -182,20 +173,14 @@ void CText::Draw()
 {
 	float bz = GetBufferedZ();
 
-	// First call draw on ScrollBarOwner
-	bool scrollbar;
-	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
 
 	if (scrollbar)
-		// Draw scrollbar
 		IGUIScrollBarOwner::Draw();
 
 	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
-
-	int cell_id;
-	bool clip;
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
-	GUI<bool>::GetSetting(this, "clip", clip);
+	const int cell_id = GUI<int>::GetSetting(this, "cell_id");
+	const bool clip = GUI<bool>::GetSetting(this, "clip");
 
 	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
@@ -222,9 +207,7 @@ void CText::Draw()
 		}
 	}
 
-	bool enabled;
-	GUI<bool>::GetSetting(this, "enabled", enabled);
-
+	const bool enabled = GUI<bool>::GetSetting(this, "enabled");
 	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, enabled ? "textcolor" : "textcolor_disabled");
 
 	if (scrollbar)
