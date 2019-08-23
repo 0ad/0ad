@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2019-08-07 16:12+0000\n"
+"PO-Revision-Date: 2019-08-22 15:06+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgstr "Команды чата:"
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr "%(command)s - %(description)s"
+msgstr "%(command)s — %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -396,7 +396,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:1587
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr "-"
+msgstr "—"
 
 #: gui/lobby/lobby.js:1589
 #, javascript-format
@@ -668,17 +668,17 @@ msgstr "[font=\"sans-bold-14\"]Дата документа:[/font] 2018-10-16"
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Персональные данные, обрабатываемые Wildfire Games, и цели их обработки:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Имя игрока[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "Игрок идентифицируется по имени, которое он выбирает во время регистрации."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -850,7 +850,7 @@ msgstr "[font=\"sans-bold-14\"]Безопасность обработки:[/fon
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
 "The transmission of personal data is secured using TLS encryption (GDPR 32)."
-msgstr ""
+msgstr "Передача персональных данных осуществляется с использованием шифрования TLS (Общий регламент по защите данных (ЕС) 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:43
 msgid ""
@@ -862,14 +862,14 @@ msgstr "Личные данные защищены от непроизвольн
 msgid ""
 "All personal data that Wildfire Games processes is obtained from the user "
 "(GDPR 14)."
-msgstr ""
+msgstr "Все персональные данные, обрабатываемые Wildfire Games, получены от пользователя (Общий регламент по защите данных (ЕС) 14)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
 "Wildfire Games reserves the right to delete any service data (including "
 "personal data) at any time, except where a user has objected to the erasure "
 "of his or her personal data for performance of a legal claim."
-msgstr ""
+msgstr "Wildfire Games оставляет за собой право удалять любые служебные данные (включая персональные данные) в любое время, за исключением случаев, когда пользователь возражает против удаления своих персональных данных для судебных нужд."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
@@ -908,7 +908,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "   To exercise any user right, please refer to this contact."
-msgstr ""
+msgstr "Чтобы воспользоваться любым правом пользователя, пожалуйста, обратитесь по этому адресу."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
@@ -953,11 +953,11 @@ msgstr ""
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr ""
+msgstr "На явно необоснованные или чрезмерные просьбы не рассматриваются или наказуемы (Общий регламент по защите данных (ЕС) 12.4, 12.5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Обязательства, взятые на себя Wildfire Games:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
@@ -976,7 +976,7 @@ msgstr ""
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr ""
+msgstr " 3. Wildfire Games обрабатывает персональные данные законным, справедливым и прозрачным образом (Общий регламент по защите данных (ЕС) 5.1.a, 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
@@ -1040,7 +1040,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr ""
+msgstr "12. Wildfire Games не будет сознательно собирать личные данные у детей младше 13 лет (Закон о защите конфиденциальности детей в интернете (США). Если вы считаете, что Wildfire Games получила какие-либо персональные данные ребенка до 13 лет, пожалуйста, свяжитесь с Wildfire Games."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
@@ -1057,7 +1057,7 @@ msgstr ""
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr ""
+msgstr "Для получения дополнительной информации о Политике конфиденциальности Wildfire Games посетите https://trac.wildfiregames.com/wiki/UserDataProtection"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
@@ -1145,7 +1145,7 @@ msgstr ""
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr ""
+msgstr "Если некоторые условия будут признаны незаконными или не имеющими исковой силы иным образом, остальные условия все равно будут применяться («делимость»)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
@@ -1223,4 +1223,4 @@ msgstr ""
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
-msgstr ""
+msgstr "Если модератор посчитает, что ваше поведение не соответствует этим правилам, ваша учетная запись может быть ограничена, заблокирована или удалена."
