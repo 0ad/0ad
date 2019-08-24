@@ -674,16 +674,20 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 	this.UpdateGarrisonFlag();
 };
 
+/**
+ * Whether an entity is ejectable.
+ * @param {number} entity - The entity-ID to be tested.
+ * @return {boolean} - Whether the entity is ejectable.
+ */
 GarrisonHolder.prototype.IsEjectable = function(entity)
 {
 	if (!this.entities.find(ent => ent == entity))
 		return false;
 
 	let ejectableClasses = this.template.EjectClassesOnDestroy._string;
-	ejectableClasses = ejectableClasses ? ejectableClasses.split(/\s+/) : [];
 	let entityClasses = Engine.QueryInterface(entity, IID_Identity).GetClassesList();
 
-	return ejectableClasses.some(ejectableClass => entityClasses.indexOf(ejectableClass) != -1);
+	return MatchesClassList(entityClasses, ejectableClasses);
 };
 
 /**

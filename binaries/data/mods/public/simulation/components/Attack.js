@@ -347,6 +347,12 @@ Attack.prototype.GetAttackEffectsData = function(type, splash)
 	return Attacking.GetAttackEffectsData("Attack/" + type + splash ? "/Splash" : "", tp, this.entity);
 };
 
+/**
+ * Find the best attack against a target.
+ * @param {number} target - The entity-ID of the target.
+ * @param {boolean} allowCapture - Whether capturing is allowed.
+ * @return {string} - The preferred attack type.
+ */
 Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
 	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
@@ -361,11 +367,8 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	if (!cmpIdentity)
 		return undefined;
 
-	let targetClasses = cmpIdentity.GetClassesList();
-	let isTargetClass = className => targetClasses.indexOf(className) != -1;
-
 	// Always slaughter domestic animals instead of using a normal attack
-	if (isTargetClass("Domestic") && this.template.Slaughter)
+	if (this.template.Slaughter && cmpIdentity.HasClass("Domestic"))
 		return "Slaughter";
 
 	let types = this.GetAttackTypes().filter(type => this.CanAttack(target, [type]));
@@ -379,7 +382,8 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		types.splice(captureIndex, 1);
 	}
 
-	let isPreferred = className => this.GetPreferredClasses(className).some(isTargetClass);
+	let targetClasses = cmpIdentity.GetClassesList();
+	let isPreferred = attackType => MatchesClassList(targetClasses, this.GetPreferredClasses(attackType));
 
 	return types.sort((a, b) =>
 		(types.indexOf(a) + (isPreferred(a) ? types.length : 0)) -

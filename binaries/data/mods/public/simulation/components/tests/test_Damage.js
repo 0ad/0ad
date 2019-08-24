@@ -505,7 +505,7 @@ function Test_MissileHit()
 	let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 10000 } };
 
 	AddMock(61, IID_Identity, {
-		"HasClass": cl => cl == "Cavalry"
+		"GetClassesList": () => ["Cavalry"]
 	});
 
 	data.attackData.Bonuses = bonus;
