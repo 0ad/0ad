@@ -341,8 +341,7 @@ public:
 			if (m_TextureConverter.Poll(textureOut, dest, ok))
 				return ok;
 
-			// Spin-loop is dumb but it works okay for now
-			SDL_Delay(0);
+			std::this_thread::sleep_for(std::chrono::microseconds(1));
 		}
 	}
 

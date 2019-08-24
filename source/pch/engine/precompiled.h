@@ -24,7 +24,6 @@
 #if HAVE_PCH
 
 #include "SDL.h"
-#include "SDL_thread.h"
 #include "SDL_endian.h"
 
 #endif // HAVE_PCH
