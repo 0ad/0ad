@@ -266,7 +266,7 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
 
 	let cmpAura = Engine.QueryInterface(entity, IID_Auras);
 	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.ApplyGarrisonBonus(this.entity);
+		cmpAura.ApplyGarrisonAura(this.entity);
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [entity], "removed": [] });
 	return true;
@@ -336,7 +336,7 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 
 	let cmpEntAura = Engine.QueryInterface(entity, IID_Auras);
 	if (cmpEntAura && cmpEntAura.HasGarrisonAura())
-		cmpEntAura.RemoveGarrisonBonus(this.entity);
+		cmpEntAura.RemoveGarrisonAura(this.entity);
 
 	cmpEntPosition.JumpTo(pos.x, pos.z);
 	cmpEntPosition.SetHeightOffset(0);

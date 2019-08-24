@@ -1,11 +1,12 @@
+Engine.LoadHelperScript("MultiKeyMap.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/RangeOverlayManager.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("Auras.js");
-Engine.LoadComponentScript("AuraManager.js");
+Engine.LoadComponentScript("ModifiersManager.js");
 
 var playerID = [0, 1, 2];
 var playerEnt = [10, 11, 12];
@@ -89,7 +90,9 @@ function testAuras(name, test_function)
 			"GetOwner": () => playerID[1]
 		});
 
-	ConstructComponent(SYSTEM_ENTITY, "AuraManager", {});
+	let cmpModifiersManager = ConstructComponent(SYSTEM_ENTITY, "ModifiersManager", {});
+	cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: playerID[1], from: -1, to: playerEnt[1] });
+	cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: playerID[2], from: -1, to: playerEnt[2] });
 	let cmpAuras = ConstructComponent(sourceEnt, "Auras", { "_string": name });
 	test_function(name, cmpAuras);
 }
@@ -125,17 +128,17 @@ testAuras("garrisonedUnits", (name, cmpAuras) => {
 
 testAuras("garrison", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(cmpAuras.HasGarrisonAura(), true);
-	cmpAuras.ApplyGarrisonBonus(targetEnt);
+	cmpAuras.ApplyGarrisonAura(targetEnt);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
-	cmpAuras.RemoveGarrisonBonus(targetEnt);
+	cmpAuras.RemoveGarrisonAura(targetEnt);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
 });
 
 testAuras("formation", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(cmpAuras.HasFormationAura(), true);
-	cmpAuras.ApplyFormationBonus([targetEnt]);
+	cmpAuras.ApplyFormationAura([targetEnt]);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
-	cmpAuras.RemoveFormationBonus([targetEnt]);
+	cmpAuras.RemoveFormationAura([targetEnt]);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
 });
 

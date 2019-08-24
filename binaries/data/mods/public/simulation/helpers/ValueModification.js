@@ -3,29 +3,21 @@
 function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 {
 	let value = current_value;
-	// entity can be an owned entity or a player entity.
-	let cmpTechnologyManager = Engine.QueryInterface(entity, IID_Player) ?
-		Engine.QueryInterface(entity, IID_TechnologyManager) : QueryOwnerInterface(entity, IID_TechnologyManager);
-	if (cmpTechnologyManager)
-		value = cmpTechnologyManager.ApplyModifications(tech_type, current_value, entity);
 
-	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
-	if (!cmpAuraManager)
-		return value;
-	return cmpAuraManager.ApplyModifications(tech_type, value, entity);
+	// entity can be an owned entity or a player entity.
+	let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
+	if (cmpModifiersManager)
+		value = cmpModifiersManager.ApplyModifiers(tech_type, current_value, entity);
+	return value;
 }
 
 function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, template)
 {
 	let value = current_value;
-	let cmpTechnologyManager = QueryPlayerIDInterface(playerID, IID_TechnologyManager);
-	if (cmpTechnologyManager)
-		value = cmpTechnologyManager.ApplyModificationsTemplate(tech_type, current_value, template);
-
-	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
-	if (!cmpAuraManager)
-		return value;
-	return cmpAuraManager.ApplyTemplateModifications(tech_type, value, playerID, template);
+	let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
+	if (cmpModifiersManager)
+		value = cmpModifiersManager.ApplyTemplateModifiers(tech_type, current_value, template, playerID);
+	return value;
 }
 
 Engine.RegisterGlobal("ApplyValueModificationsToEntity", ApplyValueModificationsToEntity);

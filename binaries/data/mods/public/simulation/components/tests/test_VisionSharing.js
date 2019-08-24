@@ -3,7 +3,7 @@ Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadHelperScript("Commands.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/VisionSharing.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
@@ -118,7 +118,10 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 
 AddMock(14, IID_TechnologyManager, {
 	"CanProduce": entity => false,
-	"ApplyModificationsTemplate": (valueName, curValue, template) => curValue
+});
+
+AddMock(14, IID_ModifiersManager, {
+	"ApplyTemplateModifiers": (valueName, curValue) => curValue
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 2, 5]));
@@ -127,8 +130,12 @@ TS_ASSERT_EQUALS(cmpVisionSharing.spyId, 20);
 
 AddMock(14, IID_TechnologyManager, {
 	"CanProduce": entity => entity == "special/spy",
-	"ApplyModificationsTemplate": (valueName, curValue, template) => curValue
 });
+
+AddMock(14, IID_ModifiersManager, {
+	"ApplyTemplateModifiers": (valueName, curValue) => curValue
+});
+
 AddMock(14, IID_Player, {
 	"GetSpyCostMultiplier": () => 1,
 	"TrySubtractResources": costs => false

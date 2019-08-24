@@ -13,8 +13,7 @@ Resources = {
 		return "<interleave>" + schema + "</interleave>";
 	}
 };
-Engine.LoadComponentScript("interfaces/AuraManager.js"); // Provides `IID_AuraManager`, tested for in helpers/ValueModification.js.
-Engine.LoadComponentScript("interfaces/TechnologyManager.js"); // Provides `IID_TechnologyManager`, used below.
+Engine.LoadComponentScript("interfaces/ModifiersManager.js"); // Provides `IID_ModifiersManager`, used below.
 Engine.LoadComponentScript("interfaces/Timer.js"); // Provides `IID_Timer`, used below.
 
 // What we're testing:
@@ -89,26 +88,30 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 	"CancelTimer": () => {} // Called in components/Upgrade.js::CancelUpgrade().
 });
 
+AddMock(SYSTEM_ENTITY, IID_ModifiersManager, {
+	"ApplyTemplateModifiers": (valueName, curValue, template, player) => {
+		// Called in helpers/ValueModification.js::ApplyValueModificationsToTemplate()
+		// as part of Tests T2 and T5 below.
+		let mods = isResearched ? templateTechModifications.with : templateTechModifications.without;
+
+		if (mods[valueName])
+			return GetTechModifiedProperty(mods[valueName], GetIdentityClasses(template.Identity), curValue);
+		return curValue;
+	},
+	"ApplyModifiers": (valueName, curValue, ent) => {
+		// Called in helpers/ValueModification.js::ApplyValueModificationsToEntity()
+		// as part of Tests T3, T6 and T7 below.
+		let mods = isResearched ? entityTechModifications.with : entityTechModifications.without;
+		return mods[valueName][ent].newValue;
+	}
+});
+
 // Init Player:
 AddMock(10, IID_Player, {
 	"AddResources": () => {}, // Called in components/Upgrade.js::CancelUpgrade().
 	"GetPlayerID": () => playerID, // Called in helpers/Player.js::QueryOwnerInterface() (and several times below).
 	"GetTimeMultiplier": () => 1.0, // Called in components/Upgrade.js::GetUpgradeTime().
 	"TrySubtractResources": () => true // Called in components/Upgrade.js::Upgrade().
-});
-AddMock(10, IID_TechnologyManager, {
-	"ApplyModificationsTemplate": (valueName, curValue, template) => {
-		// Called in helpers/ValueModification.js::ApplyValueModificationsToTemplate()
-		// as part of Tests T2 and T5 below.
-		let mods = isResearched ? templateTechModifications.with : templateTechModifications.without;
-		return GetTechModifiedProperty(mods, GetIdentityClasses(template.Identity), valueName, curValue);
-	},
-	"ApplyModifications": (valueName, curValue, ent) => {
-		// Called in helpers/ValueModification.js::ApplyValueModificationsToEntity()
-		// as part of Tests T3, T6 and T7 below.
-		let mods = isResearched ? entityTechModifications.with : entityTechModifications.without;
-		return mods[valueName][ent].newValue;
-	}
 });
 
 // Create an entity with an Upgrade component:

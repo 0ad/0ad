@@ -15,9 +15,8 @@ Resources = {
 };
 
 Engine.LoadHelperScript("ValueModification.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/Player.js");
-Engine.LoadComponentScript("interfaces/TechnologyManager.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("Player.js");
 
 var cmpPlayer = ConstructComponent(10, "Player", {

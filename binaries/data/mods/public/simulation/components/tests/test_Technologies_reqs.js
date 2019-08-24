@@ -55,14 +55,14 @@ template.requirements = { "all": [{ "tech": "tech_A" }, { "entity": { "class": "
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "athen"), [{ "techs": ["tech_A"], "entities": [{ "class": "class_B", "number": 5, "check": "count" }] }]);
 
 // Multiple `civ`s
-template.requirements = { "all": [{ "civ": "civ_A"}, { "civ": "civ_B"}, { "civ": "civ_C"}] };
+template.requirements = { "all": [{ "civ": "civ_A" }, { "civ": "civ_B" }, { "civ": "civ_C" }] };
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_A"), []);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_B"), []);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_C"), []);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_D"), false);
 
 // Multiple `notciv`s
-template.requirements = { "all": [{ "notciv": "civ_A"}, { "notciv": "civ_B"}, { "notciv": "civ_C"}] };
+template.requirements = { "all": [{ "notciv": "civ_A" }, { "notciv": "civ_B" }, { "notciv": "civ_C" }] };
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_A"), false);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_B"), false);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civ_C"), false);

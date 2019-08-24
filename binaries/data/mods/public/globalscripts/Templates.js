@@ -128,8 +128,8 @@ function GetModifiedTemplateDataValue(template, value_path, mod_key, player, mod
 
 	if (player)
 		current_value = ApplyValueModificationsToTemplate(mod_key, current_value, player, template);
-	else if (modifiers)
-		current_value = GetTechModifiedProperty(modifiers, GetIdentityClasses(template.Identity), mod_key, current_value);
+	else if (modifiers && modifiers[mod_key])
+		current_value = GetTechModifiedProperty(modifiers[mod_key], GetIdentityClasses(template.Identity), current_value);
 
 	// Using .toFixed() to get around spidermonkey's treatment of numbers (3 * 1.1 = 3.3000000000000003 for instance).
 	return +current_value.toFixed(8);

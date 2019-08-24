@@ -1,11 +1,10 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
-Engine.LoadComponentScript("interfaces/TechnologyManager.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/TerritoryDecay.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("Capturable.js");

@@ -185,6 +185,31 @@ function GetPlayerTemplateName(civ)
 }
 
 /**
+ * @param id An entity's ID
+ * @returns The entity ID of the owner player (not his player ID) or ent if ent is a player entity.
+ */
+function QueryOwnerEntityID(ent)
+{
+	let cmpPlayer = Engine.QueryInterface(ent, IID_Player);
+	if (cmpPlayer)
+		return ent;
+
+	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	if (!cmpOwnership)
+		return null;
+
+	let owner = cmpOwnership.GetOwner();
+	if (owner == INVALID_PLAYER)
+		return null;
+
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return null;
+
+	return cmpPlayerManager.GetPlayerByID(owner);
+}
+
+/**
  * Similar to Engine.QueryInterface but applies to the player entity
  * that owns the given entity.
  * iid is typically IID_Player.
@@ -326,6 +351,7 @@ function IsOwnedByHelper(player, target, check)
 }
 
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
+Engine.RegisterGlobal("QueryOwnerEntityID", QueryOwnerEntityID);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
 Engine.RegisterGlobal("QueryMiragedInterface", QueryMiragedInterface);

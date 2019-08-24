@@ -3,21 +3,6 @@ function TechnologyManager() {}
 TechnologyManager.prototype.Schema =
 	"<empty/>";
 
-TechnologyManager.prototype.Serialize = function()
-{
-	// The modifications cache will be affected by property reads from the GUI and other places so we shouldn't
-	// serialize it.
-
-	var ret = {};
-	for (var i in this)
-	{
-		if (this.hasOwnProperty(i))
-			ret[i] = this[i];
-	}
-	ret.modificationCache = {};
-	return ret;
-};
-
 TechnologyManager.prototype.Init = function()
 {
 	// Holds names of technologies that have been researched.
@@ -28,16 +13,6 @@ TechnologyManager.prototype.Init = function()
 
 	// Holds technologies which are being researched currently (non-queued).
 	this.researchStarted = new Set();
-
-	// This stores the modifications to unit stats from researched technologies
-	// Example data: {"ResourceGatherer/Rates/food.grain": [
-	//                     {"multiply": 1.15, "affects": ["FemaleCitizen", "Infantry Sword"]},
-	//                     {"add": 2}
-	//                 ]}
-	this.modifications = {};
-	this.modificationCache = {}; // Caches the values after technologies have been applied
-	                             // e.g. { "Attack/Melee/Damage/Hack" : {5: {"origValue": 8, "newValue": 10}, 7: {"origValue": 9, "newValue": 12}, ...}, ...}
-	                             // where 5 and 7 are entity id's
 
 	this.classCounts = {}; // stores the number of entities of each Class
 	this.typeCountsByClass = {}; // stores the number of entities of each type for each class i.e.
@@ -204,31 +179,6 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 				this.typeCountsByClass[cls][template] += 1;
 			}
 		}
-
-		// Newly created entity, check if any researched techs might apply
-		// (only do this for new entities because even if an entity is converted or captured,
-		//	we want it to maintain whatever technologies previously applied)
-		if (msg.from == INVALID_PLAYER)
-		{
-			var modifiedComponents = {};
-			for (var name in this.modifications)
-			{
-				// We only need to find one one tech per component for a match
-				var modifications = this.modifications[name];
-				var component = name.split("/")[0];
-				for (let modif of modifications)
- 					if (DoesModificationApply(modif, classes))
-					{
-						if (!modifiedComponents[component])
-							modifiedComponents[component] = [];
-						modifiedComponents[component].push(name);
-					}
-			}
-
-			// Send mesage(s) to the entity so it knows about researched techs
-			for (var component in modifiedComponents)
-				Engine.PostMessage(msg.entity, MT_ValueModification, { "entities": [msg.entity], "component": component, "valueNames": modifiedComponents[component] });
-		}
 	}
 	if (msg.from == playerID)
 	{
@@ -254,8 +204,6 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 				}
 			}
 		}
-
-		this.clearModificationCache(msg.entity);
 	}
 };
 
@@ -266,23 +214,16 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 	var modifiedComponents = {};
 	this.researchedTechs.add(tech);
+
 	// store the modifications in an easy to access structure
 	let template = TechnologyTemplates.Get(tech);
 	if (template.modifications)
 	{
+		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
 		let derivedModifiers = DeriveModificationsFromTech(template);
 		for (let modifierPath in derivedModifiers)
-		{
-			if (!this.modifications[modifierPath])
-				this.modifications[modifierPath] = [];
-			this.modifications[modifierPath] = this.modifications[modifierPath].concat(derivedModifiers[modifierPath]);
-
-			let component = modifierPath.split("/")[0];
-			if (!modifiedComponents[component])
-				modifiedComponents[component] = [];
-			modifiedComponents[component].push(modifierPath);
-			this.modificationCache[modifierPath] = {};
-		}
+			for (let modifier of derivedModifiers[modifierPath])
+				cmpModifiersManager.AddModifier(modifierPath, "tech/" + tech, modifier, this.entity);
 	}
 
 	if (template.replaces && template.replaces.length > 0)
@@ -323,62 +264,6 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 	// always send research finished message
 	Engine.PostMessage(this.entity, MT_ResearchFinished, {"player": playerID, "tech": tech});
-
-	for (var component in modifiedComponents)
-	{
-		Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": playerID, "component": component, "valueNames": modifiedComponents[component]});
-		Engine.BroadcastMessage(MT_ValueModification, { "entities": ents, "component": component, "valueNames": modifiedComponents[component]});
-	}
-
-	if (tech.startsWith("phase") && !template.autoResearch)
-	{
-		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGUIInterface.PushNotification({
-			"type": "phase",
-			"players": [playerID],
-			"phaseName": tech,
-			"phaseState": "completed"
-		});
-	}
-};
-
-// Clears the cached data for an entity from the modifications cache
-TechnologyManager.prototype.clearModificationCache = function(ent)
-{
-	for (var valueName in this.modificationCache)
-		delete this.modificationCache[valueName][ent];
-};
-
-// Caching layer in front of ApplyModificationsWorker
-//	Note: be careful with the type of curValue, if it should be a numerical
-//		value and is derived from template data, you must convert the string
-//		from the template to a number using the + operator, before calling
-//		this function!
-TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, ent)
-{
-	if (!this.modificationCache[valueName])
-		this.modificationCache[valueName] = {};
-
-	if (!this.modificationCache[valueName][ent] || this.modificationCache[valueName][ent].origValue != curValue)
-	{
-		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity)
-			return curValue;
-		this.modificationCache[valueName][ent] = {
-			"origValue": curValue,
-			"newValue": GetTechModifiedProperty(this.modifications, cmpIdentity.GetClassesList(), valueName, curValue)
-		};
-	}
-
-	return this.modificationCache[valueName][ent].newValue;
-};
-
-// Alternative version of ApplyModifications, applies to templates instead of entities
-TechnologyManager.prototype.ApplyModificationsTemplate = function(valueName, curValue, template)
-{
-	if (!template || !template.Identity)
-		return curValue;
-	return GetTechModifiedProperty(this.modifications, GetIdentityClasses(template.Identity), valueName, curValue);
 };
 
 /**
