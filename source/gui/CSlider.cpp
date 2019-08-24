@@ -32,10 +32,11 @@ CSlider::CSlider(CGUI& pGUI)
 	AddSetting<CGUISpriteInstance>("sprite_bar");
 	AddSetting<float>("button_width");
 
-	GUI<float>::GetSetting(this, "value", m_Value);
-	GUI<float>::GetSetting(this, "min_value", m_MinValue);
-	GUI<float>::GetSetting(this, "max_value", m_MaxValue);
-	GUI<float>::GetSetting(this, "button_width", m_ButtonSide);
+	m_Value = GUI<float>::GetSetting(this, "value");
+	m_MinValue = GUI<float>::GetSetting(this, "min_value");
+	m_MaxValue = GUI<float>::GetSetting(this, "max_value");
+	m_ButtonSide = GUI<float>::GetSetting(this, "button_width");
+
 	m_Value = Clamp(m_Value, m_MinValue, m_MaxValue);
 }
 
@@ -60,10 +61,11 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	{
 	case GUIM_SETTINGS_UPDATED:
 	{
-		GUI<float>::GetSetting(this, "value", m_Value);
-		GUI<float>::GetSetting(this, "min_value", m_MinValue);
-		GUI<float>::GetSetting(this, "max_value", m_MaxValue);
-		GUI<float>::GetSetting(this, "button_width", m_ButtonSide);
+		m_Value = GUI<float>::GetSetting(this, "value");
+		m_MinValue = GUI<float>::GetSetting(this, "min_value");
+		m_MaxValue = GUI<float>::GetSetting(this, "max_value");
+		m_ButtonSide = GUI<float>::GetSetting(this, "button_width");
+
 		m_Value = Clamp(m_Value, m_MinValue, m_MaxValue);
 		break;
 	}
@@ -115,9 +117,7 @@ void CSlider::Draw()
 {
 	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite_bar");
 	CGUISpriteInstance& sprite_button = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
-
-	int cell_id;
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
+	const int cell_id = GUI<int>::GetSetting(this, "cell_id");
 
 	CRect slider_line(m_CachedActualSize);
 	slider_line.left += m_ButtonSide / 2.0f;

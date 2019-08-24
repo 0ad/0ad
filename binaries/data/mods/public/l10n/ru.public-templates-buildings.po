@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-08-06 16:10+0000\n"
+"PO-Revision-Date: 2019-08-22 12:39+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -283,7 +283,7 @@ msgstr "Военное"
 
 #: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Позволяет обучать горожан-солдат и исследовать технологии военной подготовки. "
+msgstr "Позволяет обучать воинов-граждан и исследовать улучшения военной подготовки. "
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -363,7 +363,7 @@ msgstr "Практическая дальность"
 
 #: simulation/templates/template_structure_military_range.xml:23
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Позволяет обучать горожан-солдат с дистанционной атакой и исследовать технологии военной подготовки."
+msgstr "Позволяет обучать воинов-граждан с метательным оружием и исследовать улучшения военной подготовки. "
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
@@ -371,7 +371,7 @@ msgstr "Дальность"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Позволяет обучать горожан-солдат с верховой ездой и исследовать технологии военной подготовки."
+msgstr "Позволяет обучать всадников-граждан и исследовать улучшения военной подготовки. "
 
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -419,7 +419,7 @@ msgstr "Поле"
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr ""
+msgstr "Собирайте зерно для производства пищи. Каждый дополнительный сборщик работает менее эффективно, чем предыдущие."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
@@ -514,7 +514,7 @@ msgstr "Эпитейхизма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Позволяет строить осадные орудия. Позволяет разместить гарнизон для усиления защиты. "
+msgstr "Позволяет строить осадные орудия. Внутри можно разместить воинов для надёжной защиты."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -800,7 +800,7 @@ msgstr "Маханет"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Позволяет обучать североафриканских горожан-солдат и исследовать улучшения для североафриканских юнитов."
+msgstr "Позволяет обучать североафриканских воинов-граждан и исследовать улучшения для североафриканских юнитов."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -987,7 +987,7 @@ msgstr "Добавляет +10 к пределу населения и позв�
 
 #: simulation/templates/structures/gaul_theatron.xml:6
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "Собрание вождей"
 
 #: simulation/templates/structures/gaul_theatron.xml:7
 msgid "Remogantion"
@@ -1266,7 +1266,7 @@ msgstr "Тейхисма"
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "Позволяет обучать чемпионов и героев. Позволяет разместить гарнизон для усиления защиты. "
+msgstr "Позволяет обучать чемпионов и героев. Внутри можно разместить воинов для надёжной защиты."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1557,7 +1557,7 @@ msgstr "хут-эн-меш"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr "Позволяет обучать Египетских и ближневосточных горожан-солдат. А также исследовать технологии тренировок. "
+msgstr "Позволяет обучать египетских и ближневосточных воинов-граждан и исследовать улучшения военной подготовки."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:9
 msgid "pr-'a"
@@ -1692,7 +1692,7 @@ msgstr "Каструм Валлум"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Может быть возведено в любом месте карты, в том числе и на вражеской территории. Позволяет строить осадные орудия и обучать горожан-солдат. Размещенные внутри юниты медленно восстанавливают здоровье."
+msgstr "Может быть возведено на нейтральной или вражеской территории. Позволяет строить осадные орудия и обучать воинов-граждан. Размещенные внутри юниты медленно восстанавливают здоровье."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1812,7 +1812,7 @@ msgstr "Табернакулум"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr "Временный приют для солдат. Бонус +5 к пределу населения."
+msgstr "Временное укрытие для воинов."
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
@@ -1869,7 +1869,7 @@ msgstr "Фрурион"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr "Позволяет строить осадные орудия и обучать чемпионов. Внутри может быть размещен гарнизон для усиления защиты."
+msgstr "Позволяет строить осадные орудия и обучать чемпионов. Внутри можно разместить воинов для надёжной защиты."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1905,7 +1905,7 @@ msgstr "Тейхизма"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Позволяет строить осадные орудия. Внутри может быть размещено до 20-ти юнитов для усиления защиты. "
+msgstr "Позволяет строить осадные орудия. Внутри можно разместить до 20-ти воинов для надёжной защиты."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"

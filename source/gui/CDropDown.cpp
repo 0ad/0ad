@@ -107,12 +107,9 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		if (!GetListRect().PointInside(mouse))
 			break;
 
-		bool scrollbar;
 		const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
-		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-		float scroll = 0.f;
-		if (scrollbar)
-			scroll = GetScrollBar(0).GetPos();
+		const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
+		const float scroll = scrollbar ? GetScrollBar(0).GetPos() : 0.f;
 
 		CRect rect = GetListRect();
 		mouse.y += scroll;
@@ -141,20 +138,16 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_MOUSE_ENTER:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (enabled)
+		if (GUI<bool>::GetSetting(this, "enabled"))
 			PlaySound("sound_enter");
 		break;
 	}
 
 	case GUIM_MOUSE_LEAVE:
 	{
-		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+		m_ElementHighlight = GUI<int>::GetSetting(this, "selected");
 
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (enabled)
+		if (GUI<bool>::GetSetting(this, "enabled"))
 			PlaySound("sound_leave");
 		break;
 	}
@@ -163,9 +156,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 	// a mouse click to open the dropdown, also the coordinates are changed.
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (!enabled)
+		if (!GUI<bool>::GetSetting(this, "enabled"))
 		{
 			PlaySound("sound_disabled");
 			break;
@@ -179,7 +170,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 			m_Open = true;
 			GetScrollBar(0).SetZ(GetBufferedZ());
-			GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+			m_ElementHighlight = GUI<int>::GetSetting(this, "selected");
 
 			// Start at the position of the selected item, if possible.
 			GetScrollBar(0).SetPos(m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] - 60);
@@ -214,14 +205,12 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_MOUSE_WHEEL_DOWN:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-
 		// Don't switch elements by scrolling when open, causes a confusing interaction between this and the scrollbar.
-		if (m_Open || !enabled)
+		if (m_Open || !GUI<bool>::GetSetting(this, "enabled"))
 			break;
 
-		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+		m_ElementHighlight = GUI<int>::GetSetting(this, "selected");
+
 		if (m_ElementHighlight + 1 >= (int)m_ItemsYPositions.size() - 1)
 			break;
 
@@ -232,14 +221,11 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 	case GUIM_MOUSE_WHEEL_UP:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-
 		// Don't switch elements by scrolling when open, causes a confusing interaction between this and the scrollbar.
-		if (m_Open || !enabled)
+		if (m_Open || !GUI<bool>::GetSetting(this, "enabled"))
 			break;
 
-		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+		m_ElementHighlight = GUI<int>::GetSetting(this, "selected");
 		if (m_ElementHighlight - 1 < 0)
 			break;
 
@@ -362,7 +348,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 		result = IN_HANDLED;
 
 	if (update_highlight)
-		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+		m_ElementHighlight = GUI<int>::GetSetting(this, "selected");
 
 	return result;
 }
@@ -371,12 +357,11 @@ void CDropDown::SetupListRect()
 {
 	extern int g_yres;
 	extern float g_GuiScale;
-	float size, buffer, yres;
-	yres = g_yres / g_GuiScale;
-	u32 minimumVisibleItems;
-	GUI<float>::GetSetting(this, "dropdown_size", size);
-	GUI<float>::GetSetting(this, "dropdown_buffer", buffer);
-	GUI<u32>::GetSetting(this, "minimum_visible_items", minimumVisibleItems);
+	const float yres = g_yres / g_GuiScale;
+
+	const float size = GUI<float>::GetSetting(this, "dropdown_size");
+	const float buffer = GUI<float>::GetSetting(this, "dropdown_buffer");
+	const u32 minimumVisibleItems = GUI<u32>::GetSetting(this, "minimum_visible_items");
 
 	if (m_ItemsYPositions.empty())
 	{
@@ -448,22 +433,13 @@ bool CDropDown::IsMouseOver() const
 
 void CDropDown::Draw()
 {
-	float bz = GetBufferedZ();
-
-	float dropdown_size, button_width;
-	GUI<float>::GetSetting(this, "dropdown_size", dropdown_size);
-	GUI<float>::GetSetting(this, "button_width", button_width);
-
-	int cell_id, selected = 0;
-
-	bool enabled;
-	GUI<bool>::GetSetting(this, "enabled", enabled);
-
+	const float bz = GetBufferedZ();
+	const float button_width = GUI<float>::GetSetting(this, "button_width");
+	const bool enabled = GUI<bool>::GetSetting(this, "enabled");
+	const int cell_id = GUI<int>::GetSetting(this, "cell_id");
+	const int selected = GUI<int>::GetSetting(this, "selected");
 	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, enabled ? "sprite" : "sprite_disabled");
 	CGUISpriteInstance& sprite2 = GUI<CGUISpriteInstance>::GetSetting(this, "sprite2");
-
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
-	GUI<int>::GetSetting(this, "selected", selected);
 
 	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 

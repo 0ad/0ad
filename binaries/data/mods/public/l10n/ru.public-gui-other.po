@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-08-07 16:16+0000\n"
+"PO-Revision-Date: 2019-08-22 14:59+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "%(hotkey)s: Закрыть историю."
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s - Особенности"
+msgstr "%(civilization)s — Особенности"
 
 #: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
@@ -129,7 +129,7 @@ msgstr "Неназначенная горячая клавиша: %(hotkeyName)s
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для автодополнения имён игроков."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -167,7 +167,7 @@ msgstr "dd.MM.yyyy HH:mm:ss"
 #: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr "%(dateString)s %(map)s - %(description)s"
+msgstr "%(dateString)s %(map)s — %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:23
 #, javascript-format
@@ -621,7 +621,7 @@ msgstr "Вас заблокировали."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Имя игрока уже используется. Если вы потеряли соединение, переподключитесь через несколько секунд."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -840,7 +840,7 @@ msgstr "Линейный урон"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s - %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s — %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -858,7 +858,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relative
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s — %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -1414,7 +1414,7 @@ msgstr "Условия"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr "Пожалуйста, прочтите и примите Условия использования UserReporter."
+msgstr "Пожалуйста, прочтите и примите Условия использования загрузчика Пользовательского отчёта."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -1506,7 +1506,7 @@ msgstr "∞"
 #: gui/reference/common/load.js:193
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr "%(health_min)s - %(health_max)s"
+msgstr "%(health_min)s — %(health_max)s"
 
 #: gui/reference/structree/structree.js:49
 #, javascript-format
@@ -1679,7 +1679,7 @@ msgstr "Не рейтинговые игры"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Отфильтровать повторы набором одного или более частичных или полных имен игроков. "
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -2010,7 +2010,7 @@ msgstr "Прошло времени в игре: %(time)s"
 #: gui/summary/summary.js:513
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr "%(mapName)s - %(mapType)s"
+msgstr "%(mapName)s — %(mapType)s"
 
 #: gui/summary/summary.js:525
 #, javascript-format
@@ -3063,7 +3063,7 @@ msgstr "Получать звуковые уведомления, когда н�
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr "Установка игры - Уведомление нового пользователя"
+msgstr "Установка игры — уведомление о новом игроке"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3613,17 +3613,17 @@ msgstr "РИМСКИЙ ВОЕННЫЙ ЛАГЕРЬ"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Строится на нейтральной или вражеской территории. Годится для создания тайного лагеря в тылу врага или для закрепления на его территории. "
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr "Стройте осадные орудия и обучайте горожан-солдат. "
+msgstr "Стройте осадные орудия и обучайте воинов-граждан. "
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Разместите юниты внутри для медленного восстановления их здоровья и для защиты военного лагеря от нападений и разрушения."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3633,7 +3633,7 @@ msgstr "БАРАКИ"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Позволяет обучать воинов-граждан. Для некоторых фракций открывает также обучение чемпионов."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3643,11 +3643,11 @@ msgstr "Исследуйте военные технологии уникаль�
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Постройте как можно раньше для обучения воинов-граждан пока ваше поселение развивается."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Стройте в передовой части лагеря для поддержки вашего наступления свежим пополнением."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3655,11 +3655,11 @@ msgstr "КУЗНЕЦ"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Здание для исследования технологий у всех цивилизаций."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Исследуйте улучшения вооружения и брони для ваших юнитов. "
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3667,19 +3667,19 @@ msgstr "КАРФАГЕНСКИЙ СВЯЩЕННЫЙ ОТРЯД"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Копейщики-чемпионы и конные копейщики-чемпионы Карфагена."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Обучение обоих проходит в храме, а не в крепости, как у большинства других чемпионов."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Используйте копейщиков как тяжёлую пехоту против конницы. Используйте конницу как ударную силу против застрельщиков и осадных орудий."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3691,13 +3691,13 @@ msgstr "Дальнобойные осадные орудия, эффективн
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Дорогостоящие и медленные."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Собирайте в походное положение для передвижение и разворачивайте для стрельбы!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3729,7 +3729,7 @@ msgstr "Основа вашей новой колонии."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Удерживает большие участки территории."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -3739,7 +3739,7 @@ msgstr "Может быть построен на нейтральной и со
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Обучайте граждан: женщин, воинов-граждан и всадников-граждан."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3747,17 +3747,17 @@ msgstr "ПОСОЛЬСТВА"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Особые казармы доступны карфагенянам."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Обучайте наёмников в каждом из традиционно оформленных посольств."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Наёмный воин-гражданин имеет такую же стоимость, но в металле вместо пищи."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3769,15 +3769,15 @@ msgstr "Рыбачьте в море для богатого улова."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Рыбацкие лодки привозят большое количество пищи за раз."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Рыбалка быстрее, чем сбор пищи на полях."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Будьте внимательны! Рыба не бесконечный ресурс!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3789,15 +3789,15 @@ msgstr "Крепость обычно является самым мощным �
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Обучайте чемпионов, героев и стройте осадные орудия."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Даёт прирост населения."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Разместите воинов внутри для усиления огневой мощи при его обороне."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3806,17 +3806,17 @@ msgstr "ПРОИЗВОЛЬНАЯ ПОЗИЦИЯ"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Получите преимущество на поле боя, грамотно размещая свои войска! "
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Поэтому выберите нескольких юнитов, нажмите и удерживайте правую кнопку мыши, начертите линию и отпустите кнопку."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Теперь ваши юниты выстроятся по этой линии."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3824,7 +3824,7 @@ msgstr "СБОР РЕСУРСОВ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Используйте воинов-граждан и женщин для сбора ресурсов."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
@@ -3832,17 +3832,17 @@ msgstr "Женщины собирают овощи быстрее."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Пешие воины-граждане быстрее добывают минералы."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Всадники-граждане быстрее добывают мясо."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Чем выше уровень воинов-граждан (улучшенный, элитный), тем лучше они сражаются, но хуже добывают ресурсы."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3852,7 +3852,7 @@ msgstr "ИФИКРАТ"
 msgid ""
 "The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "Афинский полководец, реформировавший армию и сделавший её быстрее и манёвреннее."
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
@@ -3860,7 +3860,7 @@ msgstr "Войны в его построении становятся быст�
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Застрельщики передвигаются быстрее при его жизни."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3868,7 +3868,7 @@ msgstr "ЗАСТАВЫ"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "Строится на нейтральной территории для лучшего обзора."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
@@ -3876,7 +3876,7 @@ msgstr "Недорого, 80 единиц древесины."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Они строятся быстро, но слабы."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
@@ -3888,11 +3888,11 @@ msgstr "ЧАСТОКОЛ"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Быстровозводимая, дешёвая деревянная стена, доступная всем цивилизациям."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "Большая часть цивилизаций имеют к ним доступ на этапе деревни."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3900,7 +3900,7 @@ msgstr "ПЕРИКЛ"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Выдающийся афинский политический деятель 5 века до н.э."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
@@ -3930,7 +3930,7 @@ msgstr "Как следствие, время строительства уве�
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Персы также имеют доступ к большому количеству строительных и оборонительных технологий."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3938,16 +3938,16 @@ msgstr "ПИКИНЁРЫ"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Тяжелобронированные и медленные. Слабое вооружение."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Применяется против конницы или против пехоты ближнего боя для сдерживания."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Доступны кушитам, македонянам, птолемеям и селевкидам."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -3957,7 +3957,7 @@ msgstr "КВИНКВИРЕМА"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Самый тяжёлый боевой корабль. Доступен карфагенянам, птолемеям, римлянам и селиквидам."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -3973,15 +3973,15 @@ msgstr "БИОМ САВАННЫ"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "В основном плоская, с несколькими водопоями и скалистыми образованиями."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Полна тучными стадами для обильной охоты."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Изобилует всеми видами месторождений."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
@@ -3993,17 +3993,17 @@ msgstr "ЗАЩИТНЫЕ БАШНИ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "Отдельно стоящие башни хороши для обороны больших участков местности."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Обычная стоимость строительства 100 древесины и 100 камня. Но иберийские защитные башни стоят 50 древесины и 250 камня (т.к. они крепче)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Атакует на расстоянии, которое увеличивается с каждым размещённым внутри юнитом."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -4015,13 +4015,13 @@ msgstr "Самый сильный пеший юнит в игре."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Элитные пехотинцы доступны спартанцам."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Используйте их для истребления вражеской конницы или в качестве ударной силы для поддержки обычной пехоты."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -4029,7 +4029,7 @@ msgstr "КОПЕЙЩИКИ"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Основной тип пехоты ближнего боя у всех цивилизаций."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
@@ -4037,13 +4037,13 @@ msgstr "Используется против конницы для усилен
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Достойный рубящий урон делает их хорошей линейной пехотой."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Им противостоят воины с метательным оружием и мечники, поэтому поддерживайте своих копейщиков пращниками или конницей."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -4051,15 +4051,15 @@ msgstr "СТОА"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Специальное здание афинян, македонян и спартанцев."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Позволяет тренировать тяжёлых застрельщиков и пеших мечников-чемпионов."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "+10 к пределу населения."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4073,7 +4073,7 @@ msgstr "Дешёвое место разгрузки несъедобных ре
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Исследуйте технологии, увеличивающие производительность сбора ресурсов вашими гражданами."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4081,11 +4081,11 @@ msgstr "ХРАМЫ"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Здание этапа небольшого города."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Нанимайте целителей, чтобы лечить ваши войска на поле боя."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -4093,11 +4093,11 @@ msgstr "Исследуйте технологии исцеления."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Его аура исцеляет близких юнитов."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Разместите раненых юнитов внутри для их ускоренного исцеления."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4112,13 +4112,13 @@ msgstr "Строения разрушаются, если они оторван�
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Процесс разрушения можно замедлить или обратить вспять, если разместить внутри нескольких юнитов."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Когда распад завершается, здание переходит к наиболее влиятельному соседу."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4128,7 +4128,7 @@ msgstr "ФЕМИСТОКЛ"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Афинский герой, командовавший греками в морских сражениях при Артемисии и Саламине."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
@@ -4152,7 +4152,7 @@ msgstr "Хорошо подходит для транспортировки и �
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Разместите воинов на борту, чтобы увеличить огневую мощь."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4160,7 +4160,7 @@ msgstr "ВИРИАТ"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "Иберийский герой племени лузитанов."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
@@ -4172,7 +4172,7 @@ msgstr "Не менее семи кампаний против римлян в �
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Обладает аурой партизанской тактики, позволяющей близким иберийским юнитам устраивать засады на врагов."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4184,13 +4184,13 @@ msgstr "Огромные звери из Африки и Индии, обуче�
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Высокая стоимость в пище и металле, но также огромная мощь."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Доступны карфагенянам, кушитам, маурьям, персам, птолемеям и селевкидам."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4210,4 +4210,4 @@ msgstr "Собирается рыбацкими лодками после заб
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Странствует по океанам игры и уплывает, если атакован."

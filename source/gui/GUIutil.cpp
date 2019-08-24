@@ -117,16 +117,6 @@ T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting)
 }
 
 template <typename T>
-PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value)
-{
-	T* v = NULL;
-	PSRETURN ret = GetSettingPointer(pObject, Setting, v);
-	if (ret == PSRETURN_OK)
-		Value = *v;
-	return ret;
-}
-
-template <typename T>
 PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage)
 {
 	return SetSettingWrap(pObject, Setting, SkipMessage,
@@ -196,7 +186,6 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 
 // Copying functions - discouraged except for primitives.
 #define TYPE(T) \
-	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage); \
 
 #define GUITYPE_IGNORE_NONCOPYABLE

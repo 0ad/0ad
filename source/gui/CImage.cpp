@@ -38,11 +38,9 @@ CImage::~CImage()
 
 void CImage::Draw()
 {
-	float bz = GetBufferedZ();
-
-	int cell_id;
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
-
-	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
-	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite"),
+		GUI<int>::GetSetting(this, "cell_id"),
+		GetBufferedZ(),
+		m_CachedActualSize);
 }

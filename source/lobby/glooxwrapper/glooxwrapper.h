@@ -637,7 +637,11 @@ namespace glooxwrapper
 				bool m_Owned;
 			public:
 				Jingle(const gloox::Jingle::Session::Jingle* wrapped, bool owned) : m_Wrapped(wrapped), m_Owned(owned) {}
-
+				~Jingle()
+				{
+					if (m_Owned)
+						delete m_Wrapped;
+				}
 				ICEUDP::Candidate getCandidate() const;
 			};
 

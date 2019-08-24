@@ -65,7 +65,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-06-24 09:42+0200\n"
-"PO-Revision-Date: 2019-08-04 07:54+0000\n"
+"PO-Revision-Date: 2019-08-22 13:16+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -123,7 +123,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Заметка: режим искривления времени - это опция для разработчиков, не предназначенная для длительного использования. Неправильное использование данной опции может стать причиной переполнения памяти или краха."
+msgstr "Заметка: режим искривления времени — это опция для разработчиков, не предназначенная для длительного использования. Неправильное использование данной опции может стать причиной переполнения памяти или выключения игры."
 
 #: gui/session/developer_overlay.js:92
 msgid "Time warp mode"
@@ -796,7 +796,7 @@ msgstr "<%(user)s>"
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr "%(genericName)s — Запаковано"
+msgstr "%(genericName)s — Свёрнуто"
 
 #: gui/session/selection_details.js:84
 #, javascript-format
@@ -940,19 +940,19 @@ msgstr "Открыть ворота"
 
 #: gui/session/selection_panels.js:472
 msgid "Pack"
-msgstr "Собрать"
+msgstr "Свернуть"
 
 #: gui/session/selection_panels.js:480
 msgid "Unpack"
-msgstr "Разобрать"
+msgstr "Развернуть"
 
 #: gui/session/selection_panels.js:488
 msgid "Cancel Packing"
-msgstr "Отменить сбор"
+msgstr "Отменить сворачивание"
 
 #: gui/session/selection_panels.js:496
 msgid "Cancel Unpacking"
-msgstr "Отменить разбор"
+msgstr "Отменить разворачивание"
 
 #: gui/session/selection_panels.js:583
 msgid "Insufficient population capacity:"

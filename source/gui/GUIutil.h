@@ -135,18 +135,7 @@ public:
 	 */
 	static T& GetSetting(const IGUIObject* pObject, const CStr& Setting);
 
-	// Like GetSetting (below), but doesn't make a copy of the value
-	// (so it can be modified later)
 	static PSRETURN GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value);
-
-	/**
-	 * Copy-assigns the current setting value to the given reference.
-	 *
-	 * @param pObject Object pointer
-	 * @param Setting Setting by name
-	 * @param Value Stores value here, note type T!
-	 */
-	static PSRETURN GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value);
 
 	/**
 	 * Sets a value by name using a real datatype as input.

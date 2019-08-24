@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-08-04 12:23+0000\n"
+"PO-Revision-Date: 2019-08-22 12:10+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -221,7 +221,7 @@ msgstr "Я принимаю твоё предложение о союзниче�
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr "Союз между нами - хорошая идея, %(_player_)s."
+msgstr "Союз между нами — хорошая идея, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
@@ -543,21 +543,21 @@ msgstr "%(category)s лимит в количестве %(limit)s достигн
 #: simulation/components/Player.js:352
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr "Не хватает ресурса - %(resourceAmount1)s %(resourceType1)s"
+msgstr "Не хватает ресурса — %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr "Не хватает ресурсов — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr "Не хватает ресурсов — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:358
 #, javascript-format
@@ -565,7 +565,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr "Не хватает ресурсов — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
@@ -586,11 +586,11 @@ msgstr "Вам нужно выбрать здание, тренирующее ю
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
-msgstr "(Обман - управлять всеми юнитами)"
+msgstr "(Чит — управлять всеми юнитами)"
 
 #: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
-msgstr "(Обман - открыть всю карту)"
+msgstr "(Чит — открыть всю карту)"
 
 #: simulation/helpers/Commands.js:466
 #, javascript-format
@@ -599,7 +599,7 @@ msgstr "%(player)s сдался."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
-msgstr "(Обман - помогать юнитам)"
+msgstr "(Чит — улучшать юниты)"
 
 #: simulation/helpers/Commands.js:722
 msgid ""
@@ -762,7 +762,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "Первым постройте или захватите Чудо и удерживайте его в течение определенного времени для победы. Отсчет времени будет обнулён, если Чудо будет разрушено или захвачено, или если при включённом режиме союзной победы изменится состав союзников."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -872,7 +872,7 @@ msgstr "Обычная"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "Это идеальный размер для 4 - 8 игроков потому, что здесь много места для расширения, и, в то же время, соседи быстро доступны. "
+msgstr "Это идеальный размер для 4-8 игроков потому, что здесь много места для расширения, и, в то же время, соседи быстро доступны. "
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -908,4 +908,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra — стандартный ИИ-бот в игре 0 A.D. Пожалуйста, сообщайте о проблемах в Wildfire Games (см. ссылку в главном меню).\n\nСкорость сбора ресурсов ботом и его прибыль от торговли зависят от уровня сложности (песочница -58%, очень лёгкий -44%, лёгкий -25%, средний ±0%, сложный +25%, очень сложный +56%). Самые лёгкие уровни также медленнее ведут исследования, обучение и строительство. Кроме того, бот уровня «песочница» не ведёт экспансию и не нападает."

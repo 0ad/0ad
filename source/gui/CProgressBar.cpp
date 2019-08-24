@@ -48,12 +48,10 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
 		if (Message.value == CStr("caption"))
 		{
-			float value;
-			GUI<float>::GetSetting(this, "caption", value);
+			const float value = GUI<float>::GetSetting(this, "caption");
 			if (value > 100.f)
 				GUI<float>::SetSetting(this, "caption", 100.f);
-			else
-			if (value < 0.f)
+			else if (value < 0.f)
 				GUI<float>::SetSetting(this, "caption", 0.f);
 		}
 		break;
@@ -70,8 +68,7 @@ void CProgressBar::Draw()
 	float bz = GetBufferedZ();
 
 	int cell_id = 0;
-	float value = 0;
-	GUI<float>::GetSetting(this, "caption", value);
+	const float value = GUI<float>::GetSetting(this, "caption");
 
 	m_pGUI.DrawSprite(sprite_background, cell_id, bz, m_CachedActualSize);
 

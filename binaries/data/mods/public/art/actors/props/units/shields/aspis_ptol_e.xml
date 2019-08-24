@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Red-01">
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_red_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Purple-01">
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_purple_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/mace_aspis_h_01_bronze.xml" name="Mace-H-01"/>
+    <variant frequency="1" file="shields/mace_aspis_h_02_bronze.xml" name="Mace-H-02"/>
+    <variant frequency="1" file="shields/mace_aspis_02_bronze_a.xml" name="Mace-ISP-C-02"/>
+    <variant frequency="1" file="shields/mace_aspis_03_bronze_a.xml" name="Mace-ISP-C-04"/>
+    <variant frequency="1" file="shields/mace_aspis_04_bronze_a.xml" name="Mace-ISP-C-06"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
