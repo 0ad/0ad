@@ -28,13 +28,20 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/pikeman_base.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>
         <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
       </props>
     </variant>
+    <variant file="biped/formations/syntagma_front.xml"/>
+    <variant file="biped/formations/syntagma_01.xml"/>
+    <variant file="biped/formations/syntagma_02.xml"/>
+    <variant file="biped/formations/syntagma_03.xml"/>
+    <variant file="biped/formations/syntagma_04.xml"/>
+    <variant file="biped/formations/syntagma_back.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
