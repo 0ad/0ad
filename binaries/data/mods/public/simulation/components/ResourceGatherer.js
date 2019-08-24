@@ -40,8 +40,6 @@ ResourceGatherer.prototype.Init = function()
 
 	// The last exact type gathered, so we can render appropriate props
 	this.lastCarriedType = undefined; // { generic, specific }
-
-	this.RecalculateGatherRatesAndCapacities();
 };
 
 /**
