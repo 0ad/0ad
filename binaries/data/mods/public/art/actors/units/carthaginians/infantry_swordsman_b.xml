@@ -2,35 +2,61 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+    <variant file="biped/base_swordsman_shield_relax.xml">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spatha.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/celt_scutum_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/capes/swordsman_shield_relax_celt.xml" attachpoint="root"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/samn_scutum_basic.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Pants-1">
+    <variant frequency="1" name="Samnite-Attic-01">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_b1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Attic-02">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Attic-03">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_b3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Samnite-Attic-03">
+      <props>
+        <prop actor="props/units/helmets/hele_attic_b4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Rome-Montefortino-01">
+      <props>
+        <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Tunic-1">
       <textures>
-        <texture file="skeletal/celt_ijv_a_01.dds" name="baseTex"/>
+        <texture file="skeletal/kart_csp_b_1.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Pants-2">
+    <variant frequency="1" name="Tunic-2">
       <textures>
-        <texture file="skeletal/celt_ijv_a_02.dds" name="baseTex"/>
+        <texture file="skeletal/kart_csp_b_2.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Pants-3">
+    <variant frequency="1" name="Tunic-3">
       <textures>
-        <texture file="skeletal/celt_ijv_a_03.dds" name="baseTex"/>
+        <texture file="skeletal/kart_csp_b_3.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Pants-4">
+    <variant frequency="1" name="Tunic-4">
       <textures>
-        <texture file="skeletal/celt_ijv_a_04.dds" name="baseTex"/>
+        <texture file="skeletal/kart_csp_b_4.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -56,11 +82,7 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/swordsman_shield_relax_celt.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
