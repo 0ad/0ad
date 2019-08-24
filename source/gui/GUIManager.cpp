@@ -320,7 +320,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	// to capture all mouse events until a mouseup after dragging).
 	// So we call two separate handler functions:
 
-	bool handled;
+	bool handled = false;
 
 	{
 		PROFILE("handleInputBeforeGui");
