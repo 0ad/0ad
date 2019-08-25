@@ -20,9 +20,8 @@ function GetAttackBonus(source, target, type, template)
 		let bonus = template[key];
 		if (bonus.Civ && bonus.Civ !== cmpIdentity.GetCiv())
 			continue;
-		if (bonus.Classes && bonus.Classes.split(/\s+/).some(cls => !cmpIdentity.HasClass(cls)))
-			continue;
-		attackBonus *= ApplyValueModificationsToEntity("Attack/" + type + "/Bonuses/" + key + "/Multiplier", +bonus.Multiplier, source);
+		if (!bonus.Classes || MatchesClassList(cmpIdentity.GetClassesList(), bonus.Classes))
+			attackBonus *= ApplyValueModificationsToEntity("Attack/" + type + "/Bonuses/" + key + "/Multiplier", +bonus.Multiplier, source);
 	}
 
 	return attackBonus;

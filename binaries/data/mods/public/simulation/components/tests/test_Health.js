@@ -1,5 +1,4 @@
-Engine.LoadComponentScript("interfaces/TechnologyManager.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 

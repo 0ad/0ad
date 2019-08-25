@@ -1,9 +1,8 @@
 Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("ValueModification.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");
-Engine.LoadComponentScript("interfaces/TechnologyManager.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("DeathDamage.js");
 
 let deadEnt = 60;

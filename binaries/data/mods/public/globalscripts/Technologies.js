@@ -9,17 +9,13 @@
  * Returns modified property value modified by the applicable tech
  * modifications.
  *
- * @param currentTechModifications Object with mapping of property names to
- * modification arrays, retrieved from the intended player's TechnologyManager.
- * @param classes Array contianing the class list of the template.
- * @param propertyName String encoding the name of the value.
- * @param propertyValue Number storing the original value. Can also be
+ * @param currentTechModifications array of modificiations
+ * @param classes Array containing the class list of the template.
+ * @param originalValue Number storing the original value. Can also be
  * non-numberic, but then only "replace" techs can be supported.
  */
-function GetTechModifiedProperty(currentTechModifications, classes, propertyName, propertyValue)
+function GetTechModifiedProperty(modifications, classes, originalValue)
 {
-	let modifications = currentTechModifications[propertyName] || [];
-
 	let multiply = 1;
 	let add = 0;
 
@@ -34,13 +30,13 @@ function GetTechModifiedProperty(currentTechModifications, classes, propertyName
 		else if (modification.add)
 			add += modification.add;
 		else
-			warn("GetTechModifiedProperty: modification format not recognised (modifying " + propertyName + "): " + uneval(modification));
+			warn("GetTechModifiedProperty: modification format not recognised : " + uneval(modification));
 	}
 
 	// Note, some components pass non-numeric values (for which only the "replace" modification makes sense)
-	if (typeof propertyValue == "number")
-		return propertyValue * multiply + add;
-	return propertyValue;
+	if (typeof originalValue == "number")
+		return originalValue * multiply + add;
+	return originalValue;
 }
 
 /**

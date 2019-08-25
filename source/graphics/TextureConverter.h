@@ -19,10 +19,10 @@
 #define INCLUDED_TEXTURECONVERTER
 
 #include "lib/file/vfs/vfs.h"
-#include "lib/external_libraries/libsdl.h"
 
 #include "TextureManager.h"
 
+#include <condition_variable>
 #include <mutex>
 #include <thread>
 
@@ -208,7 +208,7 @@ private:
 
 	std::thread m_WorkerThread;
 	std::mutex m_WorkerMutex;
-	SDL_sem* m_WorkerSem;
+	std::condition_variable m_WorkerCV;
 
 	struct ConversionRequest;
 	struct ConversionResult;

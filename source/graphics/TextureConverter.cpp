@@ -284,12 +284,6 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 	ENSURE(nvtt::version() >= NVTT_VERSION);
 #endif
 
-	// Set up the worker thread:
-
-	// Use SDL semaphores since OS X doesn't implement sem_init
-	m_WorkerSem = SDL_CreateSemaphore(0);
-	ENSURE(m_WorkerSem);
-
 	m_WorkerThread = std::thread(RunThread, this);
 
 	// Maybe we should share some centralised pool of worker threads?
@@ -304,14 +298,19 @@ CTextureConverter::~CTextureConverter()
 		m_Shutdown = true;
 	}
 
-	// Wake it up so it sees the notification
-	SDL_SemPost(m_WorkerSem);
+	while (true)
+	{
+		// Wake the thread up so that it shutdowns.
+		// If we send the message once, there is a chance it will be missed,
+		// so keep sending until shtudown becomes false again, indicating that the thread has shut down.
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
+		m_WorkerCV.notify_all();
+		if (!m_Shutdown)
+			break;
+	}
 
 	// Wait for it to shut down cleanly
 	m_WorkerThread.join();
-
-	// Clean up resources
-	SDL_DestroySemaphore(m_WorkerSem);
 }
 
 bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath& src, const VfsPath& dest, const Settings& settings)
@@ -463,7 +462,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	}
 
 	// Wake up the worker thread
-	SDL_SemPost(m_WorkerSem);
+	m_WorkerCV.notify_all();
 
 	return true;
 
@@ -527,9 +526,7 @@ bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 bool CTextureConverter::IsBusy()
 {
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
-	bool busy = !m_RequestQueue.empty();
-
-	return busy;
+	return !m_RequestQueue.empty();
 }
 
 void CTextureConverter::RunThread(CTextureConverter* textureConverter)
@@ -540,15 +537,22 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 #if CONFIG2_NVTT
 
 	// Wait until the main thread wakes us up
-	while (SDL_SemWait(textureConverter->m_WorkerSem) == 0)
+	while (true)
 	{
+		// We may have several textures in the incoming queue, process them all before going back to sleep.
+		if (!textureConverter->IsBusy()) {
+			std::unique_lock<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
+			// Use the no-condition variant because spurious wake-ups don't matter that much here.
+			textureConverter->m_WorkerCV.wait(wait_lock);
+		}
+
 		g_Profiler2.RecordSyncMarker();
 		PROFILE2_EVENT("wakeup");
 
 		shared_ptr<ConversionRequest> request;
 
 		{
-			std::lock_guard<std::mutex> lock(textureConverter->m_WorkerMutex);
+			std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
 			if (textureConverter->m_Shutdown)
 				break;
 			// If we weren't woken up for shutdown, we must have been woken up for
@@ -588,9 +592,11 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 			result->output.buffer[80] &= ~0x40; // DDPF_RGB in DDS_PIXELFORMAT.dwFlags
 
 		// Push the result onto the queue
-		std::lock_guard<std::mutex> lock(textureConverter->m_WorkerMutex);
+		std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
 		textureConverter->m_ResultQueue.push_back(result);
 	}
 
+	std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
+	textureConverter->m_Shutdown = false;
 #endif
 }

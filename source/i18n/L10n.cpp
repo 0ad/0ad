@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -386,10 +386,11 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate milliseconds, con
 	if (U_FAILURE(status))
 		LOGERROR("Error creating SimpleDateFormat: %s", u_errorName(status));
 
-	const icu::TimeZone* timeZone = useLocalTimezone ? icu::TimeZone::createDefault() : icu::TimeZone::getGMT() ;
-
 	status = U_ZERO_ERROR;
-	icu::Calendar* calendar = icu::Calendar::createInstance(*timeZone, currentLocale, status);
+	icu::Calendar* calendar = useLocalTimezone ?
+		icu::Calendar::createInstance(currentLocale, status) :
+		icu::Calendar::createInstance(*icu::TimeZone::getGMT(), currentLocale, status);
+
 	if (U_FAILURE(status))
 		LOGERROR("Error creating calendar: %s", u_errorName(status));
 

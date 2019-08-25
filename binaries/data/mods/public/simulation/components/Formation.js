@@ -294,7 +294,7 @@ Formation.prototype.SetMembers = function(ents)
 		if (cmpAuras && cmpAuras.HasFormationAura())
 		{
 			this.formationMembersWithAura.push(ent);
-			cmpAuras.ApplyFormationBonus(ents);
+			cmpAuras.ApplyFormationAura(ents);
 		}
 	}
 
@@ -326,11 +326,11 @@ Formation.prototype.RemoveMembers = function(ents)
 	for (var ent of this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-		cmpAuras.RemoveFormationBonus(ents);
+		cmpAuras.RemoveFormationAura(ents);
 
 		// the unit with the aura is also removed from the formation
 		if (ents.indexOf(ent) !== -1)
-			cmpAuras.RemoveFormationBonus(this.members);
+			cmpAuras.RemoveFormationAura(this.members);
 	}
 
 	this.formationMembersWithAura = this.formationMembersWithAura.filter(function(e) { return ents.indexOf(e) == -1; });
@@ -359,7 +359,7 @@ Formation.prototype.AddMembers = function(ents)
 	for (let ent of this.formationMembersWithAura)
 	{
 		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-		cmpAuras.ApplyFormationBonus(ents);
+		cmpAuras.ApplyFormationAura(ents);
 	}
 
 	this.members = this.members.concat(ents);
@@ -373,7 +373,7 @@ Formation.prototype.AddMembers = function(ents)
 		if (cmpAuras && cmpAuras.HasFormationAura())
 		{
 			this.formationMembersWithAura.push(ent);
-			cmpAuras.ApplyFormationBonus(this.members);
+			cmpAuras.ApplyFormationAura(this.members);
 		}
 	}
 
@@ -413,7 +413,7 @@ Formation.prototype.Disband = function()
 	for (var ent of this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-		cmpAuras.RemoveFormationBonus(this.members);
+		cmpAuras.RemoveFormationAura(this.members);
 	}
 
 
