@@ -53,7 +53,7 @@ Armour.prototype.GetArmourStrengths = function(effectType)
 		else
 			strength = +this.template[type];
 
-		return ApplyValueModificationsToEntity("Armour/" + effectType + "/" + type, strength, this.entity);
+		return ApplyValueModificationsToEntity("Armour/" + type, strength, this.entity);
 	};
 
 	let foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
