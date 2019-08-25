@@ -1,12 +1,12 @@
 {
 	"genericName": "Military Engineers",
-	"description": "Immobile siege weapons are assembled and disassembled faster",
+	"description": "Immobile siege engines are assembled and disassembled faster.",
 	"cost": { "food": 200, "wood": 0, "stone": 0, "metal": 100 },
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "military_engineers.png",
 	"researchTime": 40,
-	"tooltip": "-25% pack and unpack time for immobile siege weapons.",
+	"tooltip": "Siege Engines −25% pack and unpack time.",
 	"modifications": [
 		{ "value": "Pack/Time", "multiply": 0.75 }
 	],

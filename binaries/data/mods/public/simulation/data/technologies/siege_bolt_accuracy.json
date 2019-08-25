@@ -1,6 +1,6 @@
 {
 	"genericName": "Bolt Accuracy",
-	"description": "Improvement to projectile accuracy",
+	"description": "Improvement to projectile accuracy.",
 	"cost": { "food": 0, "wood": 250, "stone": 0, "metal": 250 },
 	"requirements": {
 		"all": [
@@ -16,7 +16,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "accuracy_bolt.png",
 	"researchTime": 40,
-	"tooltip": "Bolt shooter increased accuracy.",
+	"tooltip": "Bolt Shooters −20% ranged attack spread.",
 	"modifications": [
 		{ "value": "Attack/Ranged/Spread", "multiply": 0.8 }
 	],
