@@ -23,15 +23,11 @@
 #ifndef INCLUDED_GUIUTIL
 #define INCLUDED_GUIUTIL
 
-#include "gui/CGUI.h"
-#include "gui/CGUISprite.h"
-#include "gui/GUIbase.h"
 #include "gui/IGUIObject.h"
 
 #include <functional>
 
-class CClientArea;
-class CGUIString;
+class CGUI;
 template<typename T> class GUI;
 
 class IGUISetting
@@ -101,41 +97,25 @@ private:
 	T m_pSetting;
 };
 
-struct SGUIMessage;
-
 /**
  * Includes static functions that needs one template
  * argument.
- *
- * int is only to please functions that doesn't even use T
- * and are only within this class because it's convenient
  */
-template <typename T=int>
+template <typename T>
 class GUI
 {
-	// Private functions further ahead
-	friend class CGUI;
-	friend class IGUIObject;
-
 public:
 	NONCOPYABLE(GUI);
 
 	/**
-	 * Determines whether a setting with the given name is registered.
-	 * This function may be used as a safeguard for GetSetting.
-	 */
-	static bool HasSetting(const IGUIObject* pObject, const CStr& Setting);
-
-	/**
 	 * Get a mutable reference to the setting.
 	 * If no such setting exists, an exception of type std::out_of_range is thrown.
+	 * Use SettingExists if a safeguard is needed.
 	 *
 	 * If the value is modified, there is no GUIM_SETTINGS_UPDATED message sent.
 	 * SetSetting should be used to modify the value if there is a use for the message.
 	 */
 	static T& GetSetting(const IGUIObject* pObject, const CStr& Setting);
-
-	static PSRETURN GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value);
 
 	/**
 	 * Sets a value by name using a real datatype as input.

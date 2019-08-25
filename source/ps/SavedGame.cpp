@@ -20,7 +20,6 @@
 #include "SavedGame.h"
 
 #include "graphics/GameView.h"
-#include "gui/GUIManager.h"
 #include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/archive_zip.h"

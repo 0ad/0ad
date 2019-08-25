@@ -19,7 +19,6 @@
 
 #include "VisualReplay.h"
 #include "graphics/GameView.h"
-#include "gui/GUIManager.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/utf8.h"

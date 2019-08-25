@@ -37,7 +37,6 @@
 #include "graphics/TerrainTextureManager.h"
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
-#include "gui/scripting/ScriptFunctions.h"
 #include "i18n/L10n.h"
 #include "maths/MathUtil.h"
 #include "network/NetServer.h"

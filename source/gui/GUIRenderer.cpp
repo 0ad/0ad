@@ -22,6 +22,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "gui/CGUIColor.h"
+#include "gui/CGUISprite.h"
 #include "gui/GUIutil.h"
 #include "gui/GUIMatrix.h"
 #include "i18n/L10n.h"

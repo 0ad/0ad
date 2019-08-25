@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,10 +24,6 @@
 
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
-#include "gui/CGUI.h"
-#include "gui/GUIutil.h"
-#include "gui/GUIManager.h"
-#include "gui/IGUIObject.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
