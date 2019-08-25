@@ -57,7 +57,7 @@ namespace
 			g_Game = NULL;
 		}
 
-		g_Game = new CGame(false, false);
+		g_Game = new CGame(false);
 
 		// Default to player 1 for playtesting
 		g_Game->SetPlayerID(1);

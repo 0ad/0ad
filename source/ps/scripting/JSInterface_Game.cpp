@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue
 	ENSURE(!g_NetClient);
 	ENSURE(!g_Game);
 
-	g_Game = new CGame();
+	g_Game = new CGame(true);
 
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();

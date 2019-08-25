@@ -696,17 +696,15 @@ static void ShutdownSDL()
 
 void EndGame()
 {
-	const bool nonVisual = g_Game && g_Game->IsGraphicsDisabled();
-
 	if (g_Game && g_Game->IsGameStarted() && !g_Game->IsVisualReplay() &&
-	    g_AtlasGameLoop && !g_AtlasGameLoop->running && !nonVisual)
+	    g_AtlasGameLoop && !g_AtlasGameLoop->running && CRenderer::IsInitialised())
 		VisualReplay::SaveReplayMetadata(g_GUI->GetActiveGUI()->GetScriptInterface().get());
 
 	SAFE_DELETE(g_NetClient);
 	SAFE_DELETE(g_NetServer);
 	SAFE_DELETE(g_Game);
 
-	if (!nonVisual)
+	if (CRenderer::IsInitialised())
 	{
 		ISoundManager::CloseGame();
 		g_Renderer.ResetState();
@@ -715,7 +713,7 @@ void EndGame()
 
 void Shutdown(int flags)
 {
-	const bool nonVisual = g_Game && g_Game->IsGraphicsDisabled();
+	const bool hasRenderer = CRenderer::IsInitialised();
 
 	if ((flags & SHUTDOWN_FROM_CONFIG))
 		goto from_config;
@@ -732,11 +730,10 @@ void Shutdown(int flags)
 	delete &g_TexMan;
 	TIMER_END(L"shutdown TexMan");
 
-	// destroy renderer if it was initialised
-	if (!nonVisual)
+	if (hasRenderer)
 	{
 		TIMER_BEGIN(L"shutdown Renderer");
-		delete &g_Renderer;
+		g_Renderer.~CRenderer();
 		g_VBMan.Shutdown();
 		TIMER_END(L"shutdown Renderer");
 	}
@@ -750,7 +747,7 @@ void Shutdown(int flags)
 	ShutdownSDL();
 	TIMER_END(L"shutdown SDL");
 
-	if (!nonVisual)
+	if (hasRenderer)
 		g_VideoMode.Shutdown();
 
 	TIMER_BEGIN(L"shutdown UserReporter");
@@ -1259,8 +1256,7 @@ bool Autostart(const CmdLineArgs& args)
 	if (autoStartName.empty())
 		return false;
 
-	const bool nonVisual = args.Has("autostart-nonvisual");
-	g_Game = new CGame(nonVisual, !args.Has("autostart-disable-replay"));
+	g_Game = new CGame(!args.Has("autostart-disable-replay"));
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
@@ -1532,7 +1528,7 @@ bool Autostart(const CmdLineArgs& args)
 		FromJSVal_vector(cx, triggerScripts, triggerScriptsVector);
 	}
 
-	if (nonVisual)
+	if (!CRenderer::IsInitialised())
 	{
 		CStr nonVisualScript = "scripts/NonVisualTrigger.js";
 		triggerScriptsVector.push_back(nonVisualScript.FromUTF8());
@@ -1626,14 +1622,16 @@ bool Autostart(const CmdLineArgs& args)
 
 		g_Game->StartGame(&attrs, "");
 
-		if (nonVisual)
+		if (CRenderer::IsInitialised())
+		{
+			InitPsAutostart(false, attrs);
+		}
+		else
 		{
 			// TODO: Non progressive load can fail - need a decent way to handle this
 			LDR_NonprogressiveLoad();
 			ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
 		}
-		else
-			InitPsAutostart(false, attrs);
 	}
 
 	return true;
@@ -1644,7 +1642,7 @@ bool AutostartVisualReplay(const std::string& replayFile)
 	if (!FileExists(OsPath(replayFile)))
 		return false;
 
-	g_Game = new CGame(false, false);
+	g_Game = new CGame(false);
 	g_Game->SetPlayerID(-1);
 	g_Game->StartVisualReplay(replayFile);
 

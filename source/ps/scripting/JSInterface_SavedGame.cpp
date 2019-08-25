@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 	if (err < 0)
 		return JS::UndefinedValue();
 
-	g_Game = new CGame();
+	g_Game = new CGame(true);
 
 	{
 		CSimulation2* sim = g_Game->GetSimulation2();

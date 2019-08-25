@@ -65,7 +65,7 @@ bool VisualReplay::StartVisualReplay(const OsPath& directory)
 	if (!FileExists(replayFile))
 		return false;
 
-	g_Game = new CGame(false, false);
+	g_Game = new CGame(false);
 	return g_Game->StartVisualReplay(replayFile);
 }
 
