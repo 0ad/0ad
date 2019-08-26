@@ -70,11 +70,11 @@
   </Health>
   <Identity>
     <GenericName>Fortress</GenericName>
-    <Tooltip>Train heroes, champions, and siege weapons. Research siege weapon improvements.</Tooltip>
     <Classes datatype="tokens">Defensive Fortress GarrisonFortress</Classes>
     <VisibleClasses datatype="tokens">City</VisibleClasses>
     <Icon>structures/fortress.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <Tooltip>Train Heroes and Champions, construct Siege Engines, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Loot>
     <xp>100</xp>

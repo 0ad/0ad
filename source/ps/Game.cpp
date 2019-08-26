@@ -63,10 +63,10 @@ CGame *g_Game=NULL;
  * Constructor
  *
  **/
-CGame::CGame(bool disableGraphics, bool replayLog):
+CGame::CGame(bool replayLog):
 	m_World(new CWorld(this)),
 	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptRuntime, m_World->GetTerrain())),
-	m_GameView(disableGraphics ? NULL : new CGameView(this)),
+	m_GameView(CRenderer::IsInitialised() ? new CGameView(this) : nullptr),
 	m_GameStarted(false),
 	m_Paused(false),
 	m_SimRate(1.0f),

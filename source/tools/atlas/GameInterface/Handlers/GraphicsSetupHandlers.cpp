@@ -25,7 +25,6 @@
 
 #include "graphics/GameView.h"
 #include "graphics/ObjectManager.h"
-#include "gui/GUIManager.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"

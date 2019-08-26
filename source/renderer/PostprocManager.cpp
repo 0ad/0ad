@@ -22,7 +22,6 @@
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
-#include "gui/GUIutil.h"
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"

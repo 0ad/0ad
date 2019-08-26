@@ -183,7 +183,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 
 	Mod::CacheEnabledModVersions(g_ScriptRuntime);
 
-	g_Game = new CGame(true, false);
+	g_Game = new CGame(false);
 	if (serializationtest)
 		g_Game->GetSimulation2()->EnableSerializationTest();
 	if (rejointestturn > 0)

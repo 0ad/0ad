@@ -144,9 +144,9 @@ public:
 
 		std::vector<CNetClient*> clients;
 
-		CGame client1Game(true);
-		CGame client2Game(true);
-		CGame client3Game(true);
+		CGame client1Game(false);
+		CGame client2Game(false);
+		CGame client3Game(false);
 
 		CNetServer server;
 
@@ -209,9 +209,9 @@ public:
 
 		std::vector<CNetClient*> clients;
 
-		CGame client1Game(true);
-		CGame client2Game(true);
-		CGame client3Game(true);
+		CGame client1Game(false);
+		CGame client2Game(false);
+		CGame client3Game(false);
 
 		CNetServer server;
 
@@ -270,7 +270,7 @@ public:
 
 		debug_printf("==== Connecting client 2B\n");
 
-		CGame client2BGame(true);
+		CGame client2BGame(false);
 		CNetClient client2B(&client2BGame, false);
 		client2B.SetUserName(L"bob");
 		clients.push_back(&client2B);

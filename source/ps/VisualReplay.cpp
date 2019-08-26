@@ -19,7 +19,6 @@
 
 #include "VisualReplay.h"
 #include "graphics/GameView.h"
-#include "gui/GUIManager.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/utf8.h"
@@ -66,7 +65,7 @@ bool VisualReplay::StartVisualReplay(const OsPath& directory)
 	if (!FileExists(replayFile))
 		return false;
 
-	g_Game = new CGame(false, false);
+	g_Game = new CGame(false);
 	return g_Game->StartVisualReplay(replayFile);
 }
 

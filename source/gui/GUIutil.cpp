@@ -20,7 +20,6 @@
 #include "GUIutil.h"
 
 #include "gui/GUI.h"
-#include "gui/GUIManager.h"
 #include "ps/CLogger.h"
 
 template<typename T>
@@ -80,35 +79,6 @@ void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
 {
 	ScriptInterface::ToJSVal<T>(cx, Value, m_pSetting);
 };
-
-template <typename T>
-PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value)
-{
-	ENSURE(pObject != NULL);
-
-	std::map<CStr, IGUISetting*>::const_iterator it = pObject->m_Settings.find(Setting);
-	if (it == pObject->m_Settings.end())
-	{
-		LOGWARNING("setting %s was not found on object %s",
-			Setting.c_str(),
-			pObject->GetPresentableName().c_str());
-		return PSRETURN_GUI_InvalidSetting;
-	}
-
-	if (it->second == nullptr)
-		return PSRETURN_GUI_InvalidSetting;
-
-	// Get value
-	Value = &(static_cast<CGUISetting<T>* >(it->second)->m_pSetting);
-
-	return PSRETURN_OK;
-}
-
-template <typename T>
-bool GUI<T>::HasSetting(const IGUIObject* pObject, const CStr& Setting)
-{
-	return pObject->m_Settings.count(Setting) != 0;
-}
 
 template <typename T>
 T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting)
@@ -173,11 +143,9 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 }
 
 // Instantiate templated functions:
-// These functions avoid copies by working with a pointer and move semantics.
+// These functions avoid copies by working with a reference and move semantics.
 #define TYPE(T) \
-	template bool GUI<T>::HasSetting(const IGUIObject* pObject, const CStr& Setting); \
 	template T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting); \
-	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
 	template class CGUISetting<T>; \
 

@@ -20,7 +20,6 @@
 #include "NetClientTurnManager.h"
 #include "NetClient.h"
 
-#include "gui/GUIManager.h"
 #include "ps/CLogger.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"

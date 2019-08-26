@@ -66,7 +66,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const
 		return;
 	}
 
-	g_Game = new CGame();
+	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game, true);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostLobbyName);
@@ -116,7 +116,7 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const
 		SDL_Delay(1000);
 	}
 
-	g_Game = new CGame();
+	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game, false);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
