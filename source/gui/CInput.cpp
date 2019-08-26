@@ -82,7 +82,7 @@ void CInput::UpdateBufferPositionSetting()
 
 void CInput::ClearComposedText()
 {
-	CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+	CStrW& pCaption = GetSetting<CStrW>("caption");
 	pCaption.erase(m_iInsertPos, m_iComposedLength);
 	m_iBufferPos = m_iInsertPos;
 	UpdateBufferPositionSetting();
@@ -111,7 +111,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			return IN_PASS;
 
 		// Text has been committed, either single key presses or through an IME
-		CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+		CStrW& pCaption = GetSetting<CStrW>("caption");
 		std::wstring text = wstring_from_utf8(ev->ev.text.text);
 
 		m_WantedX = 0.0f;
@@ -148,7 +148,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 		// Text is being composed with an IME
 		// TODO: indicate this by e.g. underlining the uncommitted text
-		CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+		CStrW& pCaption = GetSetting<CStrW>("caption");
 		const char* rawText = ev->ev.edit.text;
 		int rawLength = strlen(rawText);
 		std::wstring wtext = wstring_from_utf8(rawText);
@@ -199,7 +199,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
-		CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+		CStrW& pCaption = GetSetting<CStrW>("caption");
 		SDL_Keycode keyCode = ev->ev.key.keysym.sym;
 
 		ManuallyImmutableHandleKeyDownEvent(keyCode, pCaption);
@@ -287,7 +287,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW&
 	{
 		// 'Return' should do a Press event for single liners (e.g. submitting forms)
 		//  otherwise a '\n' character will be added.
-		if (!GUI<bool>::GetSetting(this, "multiline"))
+		if (!GetSetting<bool>("multiline"))
 		{
 			SendEvent(GUIM_PRESSED, "press");
 			break;
@@ -304,7 +304,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW&
 			return;
 
 		// check max length
-		const int max_length = GUI<int>::GetSetting(this, "max_length");
+		const int max_length = GetSetting<i32>("max_length");
 		if (max_length != 0 && static_cast<int>(pCaption.length()) >= max_length)
 			break;
 
@@ -568,7 +568,7 @@ void CInput::ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStr
 
 InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 {
-	CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+	CStrW& pCaption = GetSetting<CStrW>("caption");
 
 	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
@@ -838,7 +838,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 	{
 		// Update scroll-bar
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
-		if (GUI<bool>::GetSetting(this, "scrollbar") &&
+		if (GetSetting<bool>("scrollbar") &&
 			(Message.value == CStr("size") ||
 			 Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
@@ -852,12 +852,12 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		// Update scrollbar
 		if (Message.value == CStr("scrollbar_style"))
 		{
-			GetScrollBar(0).SetScrollBarStyle(GUI<CStr>::GetSetting(this, Message.value));
+			GetScrollBar(0).SetScrollBarStyle(GetSetting<CStr>(Message.value));
 		}
 
 		if (Message.value == CStr("buffer_position"))
 		{
-			m_iBufferPos = GUI<int>::GetSetting(this, Message.value);
+			m_iBufferPos = GetSetting<i32>(Message.value);
 			m_iBufferPos_Tail = -1; // position change resets selection
 		}
 
@@ -874,7 +874,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 		if (Message.value == CStr("multiline"))
 		{
-			if (!GUI<bool>::GetSetting(this, "multiline"))
+			if (!GetSetting<bool>("multiline"))
 				GetScrollBar(0).SetLength(0.f);
 			else
 				GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
@@ -885,15 +885,15 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		UpdateAutoScroll();
 
 		if (Message.value == CStr("readonly"))
-			m_Readonly = GUI<bool>::GetSetting(this, "readonly");
+			m_Readonly = GetSetting<bool>("readonly");
 
 		break;
 	}
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
 		// Check if we're selecting the scrollbar
-		if (GUI<bool>::GetSetting(this, "scrollbar") &&
-		    GUI<bool>::GetSetting(this, "multiline") &&
+		if (GetSetting<bool>("scrollbar") &&
+		    GetSetting<bool>("multiline") &&
 		    GetScrollBar(0).GetStyle())
 		{
 			if (m_pGUI.GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
@@ -926,7 +926,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		if (m_ComposingText)
 			break;
 
-		const CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+		const CStrW& pCaption = GetSetting<CStrW>("caption");
 
 		if (pCaption.empty())
 			break;
@@ -1059,12 +1059,12 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		GetScrollBar(0).SetY(m_CachedActualSize.top);
 		GetScrollBar(0).SetZ(GetBufferedZ());
 		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
-		GetScrollBar(0).SetScrollBarStyle(GUI<CStr>::GetSetting(this, "scrollbar_style"));
+		GetScrollBar(0).SetScrollBarStyle(GetSetting<CStr>("scrollbar_style"));
 
 		UpdateText();
 		UpdateAutoScroll();
 
-		m_Readonly = GUI<bool>::GetSetting(this, "readonly");
+		m_Readonly = GetSetting<bool>("readonly");
 		break;
 	}
 	case GUIM_GOT_FOCUS:
@@ -1116,7 +1116,7 @@ void CInput::UpdateCachedSize()
 
 	IGUIObject::UpdateCachedSize();
 
-	if (GUI<bool>::GetSetting(this, "scrollbar"))
+	if (GetSetting<bool>("scrollbar"))
 	{
 		GetScrollBar(0).SetX(m_CachedActualSize.right);
 		GetScrollBar(0).SetY(m_CachedActualSize.top);
@@ -1144,33 +1144,33 @@ void CInput::Draw()
 		m_CursorVisState = true;
 
 	// First call draw on ScrollBarOwner
-	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
-	const bool multiline = GUI<bool>::GetSetting(this, "multiline");
-	const bool mask = GUI<bool>::GetSetting(this, "mask");
+	const bool scrollbar = GetSetting<bool>("scrollbar");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
+	const bool multiline = GetSetting<bool>("multiline");
+	const bool mask = GetSetting<bool>("mask");
 
 	if (scrollbar && multiline)
 		IGUIScrollBarOwner::Draw();
 
-	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, "textcolor");
-	const CGUIColor& color_selected = GUI<CGUIColor>::GetSetting(this, "textcolor_selected");
+	const CGUIColor& color = GetSetting<CGUIColor>("textcolor");
+	const CGUIColor& color_selected = GetSetting<CGUIColor>("textcolor_selected");
 
-	CStrIntern font_name(GUI<CStrW>::GetSetting(this, "font").ToUTF8());
+	CStrIntern font_name(GetSetting<CStrW>("font").ToUTF8());
 
-	const CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+	const CStrW& pCaption = GetSetting<CStrW>("caption");
 	wchar_t mask_char = L'*';
 	if (mask)
 	{
-		const CStrW& maskStr = GUI<CStrW>::GetSetting(this, "mask_char");
+		const CStrW& maskStr = GetSetting<CStrW>("mask_char");
 
 		if (maskStr.length() > 0)
 			mask_char = maskStr[0];
 	}
 
-	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
-	CGUISpriteInstance& sprite_selectarea = GUI<CGUISpriteInstance>::GetSetting(this, "sprite_selectarea");
+	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>("sprite");
+	CGUISpriteInstance& sprite_selectarea = GetSetting<CGUISpriteInstance>("sprite_selectarea");
 
-	const int cell_id = GUI<int>::GetSetting(this, "cell_id");
+	const int cell_id = GetSetting<i32>("cell_id");
 
 	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
 
@@ -1490,16 +1490,16 @@ void CInput::Draw()
 
 void CInput::UpdateText(int from, int to_before, int to_after)
 {
-	const CStrW& caption = GUI<CStrW>::GetSetting(this, "caption");
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
-	const bool multiline = GUI<bool>::GetSetting(this, "multiline");
-	const bool mask = GUI<bool>::GetSetting(this, "mask");
-	CStrIntern font_name(GUI<CStrW>::GetSetting(this, "font").ToUTF8());
+	const CStrW& caption = GetSetting<CStrW>("caption");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
+	const bool multiline = GetSetting<bool>("multiline");
+	const bool mask = GetSetting<bool>("mask");
+	CStrIntern font_name(GetSetting<CStrW>("font").ToUTF8());
 
 	wchar_t mask_char = L'*';
 	if (mask)
 	{
-		const CStrW& maskStr = GUI<CStrW>::GetSetting(this, "mask_char");
+		const CStrW& maskStr = GetSetting<CStrW>("mask_char");
 		if (maskStr.length() > 0)
 			mask_char = maskStr[0];
 	}
@@ -1836,7 +1836,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	// add the final row (even if empty)
 	m_CharacterPositions.insert(current_line, row);
 
-	if (GUI<bool>::GetSetting(this, "scrollbar"))
+	if (GetSetting<bool>("scrollbar"))
 	{
 		GetScrollBar(0).SetScrollRange(m_CharacterPositions.size() * font.GetLineSpacing() + buffer_zone*2.f);
 		GetScrollBar(0).SetScrollSpace(m_CachedActualSize.GetHeight());
@@ -1848,8 +1848,8 @@ int CInput::GetMouseHoveringTextPosition() const
 	if (m_CharacterPositions.empty())
 		return 0;
 
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
-	const bool multiline = GUI<bool>::GetSetting(this, "multiline");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
+	const bool multiline = GetSetting<bool>("multiline");
 
 	// Return position
 	int retPosition;
@@ -1861,12 +1861,12 @@ int CInput::GetMouseHoveringTextPosition() const
 	if (multiline)
 	{
 		float scroll = 0.f;
-		if (GUI<bool>::GetSetting(this, "scrollbar"))
+		if (GetSetting<bool>("scrollbar"))
 			scroll = GetScrollBarPos(0);
 
 		// Now get the height of the font.
 						// TODO: Get the real font
-		CFontMetrics font(CStrIntern(GUI<CStrW>::GetSetting(this, "font").ToUTF8()));
+		CFontMetrics font(CStrIntern(GetSetting<CStrW>("font").ToUTF8()));
 		float spacing = (float)font.GetLineSpacing();
 
 		// Change mouse position relative to text.
@@ -1943,7 +1943,7 @@ int CInput::GetXTextPosition(const std::list<SRow>::const_iterator& current, con
 
 void CInput::DeleteCurSelection()
 {
-	CStrW& pCaption = GUI<CStrW>::GetSetting(this, "caption");
+	CStrW& pCaption = GetSetting<CStrW>("caption");
 
 	int virtualFrom;
 	int virtualTo;
@@ -1979,9 +1979,9 @@ bool CInput::SelectingText() const
 
 float CInput::GetTextAreaWidth()
 {
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
 
-	if (GUI<bool>::GetSetting(this, "scrollbar") && GetScrollBar(0).GetStyle())
+	if (GetSetting<bool>("scrollbar") && GetScrollBar(0).GetStyle())
 		return m_CachedActualSize.GetWidth() - buffer_zone*2.f - GetScrollBar(0).GetStyle()->m_Width;
 	else
 		return m_CachedActualSize.GetWidth() - buffer_zone*2.f;
@@ -1989,19 +1989,19 @@ float CInput::GetTextAreaWidth()
 
 void CInput::UpdateAutoScroll()
 {
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
 
 	// Autoscrolling up and down
-	if (GUI<bool>::GetSetting(this, "multiline"))
+	if (GetSetting<bool>("multiline"))
 	{
-		if (!GUI<bool>::GetSetting(this, "scrollbar"))
+		if (!GetSetting<bool>("scrollbar"))
 			return;
 
 		const float scroll = GetScrollBar(0).GetPos();
 
 		// Now get the height of the font.
 						// TODO: Get the real font
-		CFontMetrics font(CStrIntern(GUI<CStrW>::GetSetting(this, "font").ToUTF8()));
+		CFontMetrics font(CStrIntern(GetSetting<CStrW>("font").ToUTF8()));
 		float spacing = (float)font.GetLineSpacing();
 		//float height = font.GetHeight();
 

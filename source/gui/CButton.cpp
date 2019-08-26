@@ -60,10 +60,10 @@ void CButton::SetupText()
 
 	m_GeneratedTexts[0] = CGUIText(
 		m_pGUI,
-		GUI<CGUIString>::GetSetting(this, "caption"),
-		GUI<CStrW>::GetSetting(this, "font"),
+		GetSetting<CGUIString>("caption"),
+		GetSetting<CStrW>("font"),
 		m_CachedActualSize.GetWidth(),
-		GUI<float>::GetSetting(this, "buffer_zone"),
+		GetSetting<float>("buffer_zone"),
 		this);
 
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
@@ -88,12 +88,12 @@ void CButton::Draw()
 	static const CStr strSpriteDisabled("sprite_disabled");
 	static const CStr strCellId("cell_id");
 
-	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, strSprite);
-	CGUISpriteInstance& sprite_over = GUI<CGUISpriteInstance>::GetSetting(this, strSpriteOver);
-	CGUISpriteInstance& sprite_pressed = GUI<CGUISpriteInstance>::GetSetting(this, strSpritePressed);
-	CGUISpriteInstance& sprite_disabled = GUI<CGUISpriteInstance>::GetSetting(this, strSpriteDisabled);
+	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>(strSprite);
+	CGUISpriteInstance& sprite_over = GetSetting<CGUISpriteInstance>(strSpriteOver);
+	CGUISpriteInstance& sprite_pressed = GetSetting<CGUISpriteInstance>(strSpritePressed);
+	CGUISpriteInstance& sprite_disabled = GetSetting<CGUISpriteInstance>(strSpriteDisabled);
 
-	const int cell_id = GUI<int>::GetSetting(this, strCellId);
+	const i32 cell_id = GetSetting<i32>(strCellId);
 
 	DrawButton(m_CachedActualSize, bz, sprite, sprite_over, sprite_pressed, sprite_disabled, cell_id);
 

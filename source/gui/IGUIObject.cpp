@@ -128,6 +128,23 @@ void IGUIObject::AddSetting(const CStr& Name)
 	m_Settings[Name] = new CGUISetting<T>(*this, Name);
 }
 
+bool IGUIObject::SettingExists(const CStr& Setting) const
+{
+	return m_Settings.count(Setting) == 1;
+}
+
+template <typename T>
+T& IGUIObject::GetSetting(const CStr& Setting)
+{
+	return static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting;
+}
+
+template <typename T>
+const T& IGUIObject::GetSetting(const CStr& Setting) const
+{
+	return static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting;
+}
+
 bool IGUIObject::IsMouseOver() const
 {
 	return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
@@ -157,11 +174,6 @@ void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 			SendEvent(GUIM_MOUSE_LEAVE, "mouseleave");
 		}
 	}
-}
-
-bool IGUIObject::SettingExists(const CStr& Setting) const
-{
-	return m_Settings.count(Setting) == 1;
 }
 
 PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage)
@@ -216,13 +228,13 @@ void IGUIObject::ResetStates()
 
 void IGUIObject::UpdateCachedSize()
 {
-	const CClientArea& ca = GUI<CClientArea>::GetSetting(this, "size");
-	const float aspectratio = GUI<float>::GetSetting(this, "aspectratio");
+	const CClientArea& ca = GetSetting<CClientArea>("size");
+	const float aspectratio = GetSetting<float>("aspectratio");
 
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
-	if (!GUI<bool>::GetSetting(this, "absolute") && m_pParent && !IsRootObject())
+	if (!GetSetting<bool>("absolute") && m_pParent && !IsRootObject())
 		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
 	else
 		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
@@ -274,9 +286,9 @@ void IGUIObject::LoadStyle(const SGUIStyle& Style)
 
 float IGUIObject::GetBufferedZ() const
 {
-	const float Z = GUI<float>::GetSetting(this, "z");
+	const float Z = GetSetting<float>("z");
 
-	if (GUI<bool>::GetSetting(this, "absolute"))
+	if (GetSetting<bool>("absolute"))
 		return Z;
 
 	{
@@ -421,13 +433,13 @@ bool IGUIObject::IsHidden() const
 	// Statically initialise some strings, so we don't have to do
 	// lots of allocation every time this function is called
 	static const CStr strHidden("hidden");
-	return GUI<bool>::GetSetting(this, strHidden);
+	return GetSetting<bool>(strHidden);
 }
 
 bool IGUIObject::IsHiddenOrGhost() const
 {
 	static const CStr strGhost("ghost");
-	return IsHidden() || GUI<bool>::GetSetting(this, strGhost);
+	return IsHidden() || GetSetting<bool>(strGhost);
 }
 
 void IGUIObject::PlaySound(const CStr& settingName) const
@@ -435,7 +447,7 @@ void IGUIObject::PlaySound(const CStr& settingName) const
 	if (!g_SoundManager)
 		return;
 
-	const CStrW& soundPath = GUI<CStrW>::GetSetting(this, settingName);
+	const CStrW& soundPath = GetSetting<CStrW>(settingName);
 
 	if (!soundPath.empty())
 		g_SoundManager->PlayAsUI(soundPath.c_str(), false);
@@ -478,6 +490,11 @@ void IGUIObject::TraceMember(JSTracer* trc)
 }
 
 // Instantiate templated functions:
-#define TYPE(T) template void IGUIObject::AddSetting<T>(const CStr& Name);
-#include "GUItypes.h"
+#define TYPE(T) \
+	template void IGUIObject::AddSetting<T>(const CStr& Name); \
+	template T& IGUIObject::GetSetting<T>(const CStr& Setting); \
+	template const T& IGUIObject::GetSetting<T>(const CStr& Setting) const; \
+
+#include "gui/GUItypes.h"
+
 #undef TYPE

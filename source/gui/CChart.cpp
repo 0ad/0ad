@@ -44,9 +44,9 @@ CChart::CChart(CGUI& pGUI)
 	AddSetting<CGUISeries>("series");
 	AddSetting<EAlign>("text_align");
 
-	m_AxisWidth = GUI<float>::GetSetting(this, "axis_width");
-	m_FormatX = GUI<CStrW>::GetSetting(this, "format_x");
-	m_FormatY = GUI<CStrW>::GetSetting(this, "format_y");
+	m_AxisWidth = GetSetting<float>("axis_width");
+	m_FormatX = GetSetting<CStrW>("format_x");
+	m_FormatY = GetSetting<CStrW>("format_y");
 }
 
 CChart::~CChart()
@@ -60,9 +60,9 @@ void CChart::HandleMessage(SGUIMessage& Message)
 	{
 	case GUIM_SETTINGS_UPDATED:
 	{
-		m_AxisWidth = GUI<float>::GetSetting(this, "axis_width");
-		m_FormatX = GUI<CStrW>::GetSetting(this, "format_x");
-		m_FormatY = GUI<CStrW>::GetSetting(this, "format_y");
+		m_AxisWidth = GetSetting<float>("axis_width");
+		m_FormatX = GetSetting<CStrW>("format_x");
+		m_FormatY = GetSetting<CStrW>("format_y");
 
 		UpdateSeries();
 		break;
@@ -108,7 +108,7 @@ void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 	ADD(m_CachedActualSize.left, m_CachedActualSize.top);
 	ADD(rect.left, rect.top - m_AxisWidth);
 #undef ADD
-	DrawTriangleStrip(shader, GUI<CGUIColor>::GetSetting(this, "axis_color"), vertices);
+	DrawTriangleStrip(shader, GetSetting<CGUIColor>("axis_color"), vertices);
 }
 
 void CChart::Draw()
@@ -182,8 +182,8 @@ CRect CChart::GetChartRect() const
 
 void CChart::UpdateSeries()
 {
-	const CGUISeries& pSeries = GUI<CGUISeries>::GetSetting(this, "series");
-	const CGUIList& pSeriesColor = GUI<CGUIList>::GetSetting(this, "series_color");
+	const CGUISeries& pSeries = GetSetting<CGUISeries>("series");
+	const CGUIList& pSeriesColor = GetSetting<CGUIList>("series_color");
 
 	m_Series.clear();
 	m_Series.resize(pSeries.m_Series.size());
@@ -209,11 +209,11 @@ void CChart::SetupText()
 	if (m_Series.empty())
 		return;
 
-	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
+	const CStrW& font = GetSetting<CStrW>("font");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
 
 	// Add Y-axis
-	m_FormatY = GUI<CStrW>::GetSetting(this, "format_y");
+	m_FormatY = GetSetting<CStrW>("format_y");
 	const float height = GetChartRect().GetHeight();
 	// TODO: split values depend on the format;
 	if (m_EqualY)
@@ -230,7 +230,7 @@ void CChart::SetupText()
 		}
 
 	// Add X-axis
-	m_FormatX = GUI<CStrW>::GetSetting(this, "format_x");
+	m_FormatX = GetSetting<CStrW>("format_x");
 	const float width = GetChartRect().GetWidth();
 	if (m_EqualX)
 	{

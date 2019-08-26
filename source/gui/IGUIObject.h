@@ -149,6 +149,17 @@ public:
 	bool SettingExists(const CStr& Setting) const;
 
 	/**
+	 * Get a mutable reference to the setting.
+	 * If no such setting exists, an exception of type std::out_of_range is thrown.
+	 * If the value is modified, there is no GUIM_SETTINGS_UPDATED message sent.
+	 */
+	template <typename T>
+	T& GetSetting(const CStr& Setting);
+
+	template <typename T>
+	const T& GetSetting(const CStr& Setting) const;
+
+	/**
 	 * Returns whether this is object is set to be hidden.
 	 */
 	bool IsHidden() const;

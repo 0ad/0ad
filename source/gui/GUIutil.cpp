@@ -81,12 +81,6 @@ void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
 };
 
 template <typename T>
-T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting)
-{
-	return static_cast<CGUISetting<T>* >(pObject->m_Settings.at(Setting))->m_pSetting;
-}
-
-template <typename T>
 PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage)
 {
 	return SetSettingWrap(pObject, Setting, SkipMessage,
@@ -129,7 +123,7 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 	else if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
-		if (GUI<bool>::GetSetting(pObject, Setting))
+		if (pObject->GetSetting<bool>(Setting))
 			pObject->RecurseObject(nullptr, &IGUIObject::ResetStates);
 	}
 
@@ -145,7 +139,6 @@ PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const 
 // Instantiate templated functions:
 // These functions avoid copies by working with a reference and move semantics.
 #define TYPE(T) \
-	template T& GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting); \
 	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
 	template class CGUISetting<T>; \
 

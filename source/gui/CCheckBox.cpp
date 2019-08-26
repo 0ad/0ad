@@ -70,10 +70,10 @@ void CCheckBox::SetupText()
 
 	m_GeneratedTexts[0] = CGUIText(
 		m_pGUI,
-		GUI<CGUIString>::GetSetting(this, "caption"),
-		GUI<CStrW>::GetSetting(this, "font"),
-		m_CachedActualSize.GetWidth() - GUI<float>::GetSetting(this, "square_side"),
-		GUI<float>::GetSetting(this, "buffer_zone"),
+		GetSetting<CGUIString>("caption"),
+		GetSetting<CStrW>("font"),
+		m_CachedActualSize.GetWidth() - GetSetting<float>("square_side"),
+		GetSetting<float>("buffer_zone"),
 		this);
 }
 
@@ -88,7 +88,7 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 	case GUIM_PRESSED:
 	{
 		// Switch to opposite.
-		GUI<bool>::SetSetting(this, "checked", !GUI<bool>::GetSetting(this, "checked"));
+		GUI<bool>::SetSetting(this, "checked", !GetSetting<bool>("checked"));
 		break;
 	}
 
@@ -99,22 +99,22 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 
 void CCheckBox::Draw()
 {
-	if (GUI<bool>::GetSetting(this, "checked"))
+	if (GetSetting<bool>("checked"))
 		DrawButton(
 			m_CachedActualSize,
 			GetBufferedZ(),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2"),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_over"),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_pressed"),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite2_disabled"),
-			GUI<int>::GetSetting(this, "cell_id"));
+			GetSetting<CGUISpriteInstance>("sprite2"),
+			GetSetting<CGUISpriteInstance>("sprite2_over"),
+			GetSetting<CGUISpriteInstance>("sprite2_pressed"),
+			GetSetting<CGUISpriteInstance>("sprite2_disabled"),
+			GetSetting<i32>("cell_id"));
 	else
 		DrawButton(
 			m_CachedActualSize,
 			GetBufferedZ(),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite"),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite_over"),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite_pressed"),
-			GUI<CGUISpriteInstance>::GetSetting(this, "sprite_disabled"),
-			GUI<int>::GetSetting(this, "cell_id"));
+			GetSetting<CGUISpriteInstance>("sprite"),
+			GetSetting<CGUISpriteInstance>("sprite_over"),
+			GetSetting<CGUISpriteInstance>("sprite_pressed"),
+			GetSetting<CGUISpriteInstance>("sprite_disabled"),
+			GetSetting<i32>("cell_id"));
 }

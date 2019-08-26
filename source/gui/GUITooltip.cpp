@@ -87,8 +87,8 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 {
 	if (obj && obj->SettingExists("_icon_tooltip_style") && obj->MouseOverIcon())
 	{
-		style = GUI<CStr>::GetSetting(obj, "_icon_tooltip_style");
-		if (!GUI<CStrW>::GetSetting(obj, "_icon_tooltip").empty())
+		style = obj->GetSetting<CStr>("_icon_tooltip_style");
+		if (!obj->GetSetting<CStrW>("_icon_tooltip").empty())
 		{
 			if (style.empty())
 				style = "default";
@@ -99,8 +99,8 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 
 	if (obj && obj->SettingExists("tooltip_style"))
 	{
-		style = GUI<CStr>::GetSetting(obj, "tooltip_style");
-		if (!GUI<CStrW>::GetSetting(obj, "tooltip").empty())
+		style = obj->GetSetting<CStr>("tooltip_style");
+		if (!obj->GetSetting<CStrW>("tooltip").empty())
 		{
 			if (style.empty())
 				style = "default";
@@ -128,7 +128,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 
 	IGUIObject* usedobj = tooltipobj; // object actually used to display the tooltip in
 
-	const CStr& usedObjectName = GUI<CStr>::GetSetting(tooltipobj, "use_object");
+	const CStr& usedObjectName = tooltipobj->GetSetting<CStr>("use_object");
 	if (!usedObjectName.empty())
 	{
 		usedobj = pGUI.FindObjectByName(usedObjectName);
@@ -143,7 +143,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 
 	GUI<bool>::SetSetting(usedobj, "hidden", false);
 
-	const CStrW& text = GUI<CStrW>::GetSetting(obj, m_IsIconTooltip ? "_icon_tooltip" : "tooltip");
+       const CStrW& text = obj->GetSetting<CStrW>(m_IsIconTooltip ? "_icon_tooltip" : "tooltip");
 
 	if (usedobj->SetSetting("caption", text) != PSRETURN_OK)
 		debug_warn(L"Failed to set tooltip caption");
@@ -164,7 +164,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 		return;
 	}
 
-	const CStr& usedObjectName = GUI<CStr>::GetSetting(tooltipobj, "use_object");
+	const CStr& usedObjectName = tooltipobj->GetSetting<CStr>("use_object");
 	if (!usedObjectName.empty())
 	{
 		IGUIObject* usedobj = pGUI.FindObjectByName(usedObjectName);
@@ -178,14 +178,14 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 		SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
 		usedobj->HandleMessage(msg);
 
-		if (GUI<bool>::GetSetting(tooltipobj, "hide_object"))
+               if (tooltipobj->GetSetting<bool>("hide_object"))
 			GUI<bool>::SetSetting(usedobj, "hidden", true);
 	}
 	else
 		GUI<bool>::SetSetting(tooltipobj, "hidden", true);
 }
 
-static int GetTooltipDelay(const CStr& style, CGUI& pGUI)
+static i32 GetTooltipDelay(const CStr& style, CGUI& pGUI)
 {
 	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 
@@ -195,7 +195,7 @@ static int GetTooltipDelay(const CStr& style, CGUI& pGUI)
 		return 500;
 	}
 
-	return GUI<int>::GetSetting(tooltipobj, "delay");
+	return tooltipobj->GetSetting<i32>("delay");
 }
 
 void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI& GUI)
