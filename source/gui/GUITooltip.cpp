@@ -143,13 +143,10 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 
 	GUI<bool>::SetSetting(usedobj, "hidden", false);
 
-       const CStrW& text = obj->GetSetting<CStrW>(m_IsIconTooltip ? "_icon_tooltip" : "tooltip");
+	const CStrW& text = obj->GetSetting<CStrW>(m_IsIconTooltip ? "_icon_tooltip" : "tooltip");
 
 	if (usedobj->SetSetting("caption", text) != PSRETURN_OK)
 		debug_warn(L"Failed to set tooltip caption");
-
-	SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
-	usedobj->HandleMessage(msg);
 }
 
 void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
@@ -175,10 +172,8 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 		}
 
 		usedobj->SetSetting("caption", L"");
-		SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
-		usedobj->HandleMessage(msg);
 
-               if (tooltipobj->GetSetting<bool>("hide_object"))
+		if (tooltipobj->GetSetting<bool>("hide_object"))
 			GUI<bool>::SetSetting(usedobj, "hidden", true);
 	}
 	else
