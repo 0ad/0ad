@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-08-16 09:29+0000\n"
-"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1577,10 +1577,10 @@ msgstr "Léiríonn an léarscáil seo athchruthú na cathrach ársa Napata. [col
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "Troideann 4 imreoir ar feadh talaimh ollmhóir Deilte na Níle. Tosaíonn gach cathair os cionn acrapaile mhóire, ach tá achmainní ganna anseo, agus teastaíonn ar na himreoirí a n-obair acmhainne a mhéadú sna talaimh ina dtimpeall.\n\nDeir scabhtaí go bhfuil fo-aibhneacha in aice láimhe agus go bhfuil siad tanaí agus intrasnaithe ar áth, agus beidh siad amháin mar bhaic bheaga in aghaidh le haon namhaid."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2103,11 +2103,7 @@ msgstr "Taispeáint Long"
 msgid "Base Temperate Map"
 msgstr "Léarscáil Bunúsach Measartha"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Triail Comhtháthaithe Gluaiseachta na nAonad"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2115,12 +2111,16 @@ msgid ""
 "and weird pathing."
 msgstr "Tá dearadh ar an léarscáil seo chun bunghluaiseachta na n-aonad a thriail. Tá unitAi, unitMotion is ceannródaithe ábhartha eile sa mheasc. Mar seo, tá cineáil difriúla gluaiseachta comhtháthaithe sa léarscáil. Cuardaigh ar rudaí mar aonaid ghafa, drochbheochana, agus bótharacht aisteach."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Triail Comhtháthaithe Gluaiseachta na nAonad"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Tosaíonn gach imreoir ar bharr ardchláir mhóir, murach sin tugtar acrapail uirthi.\n\nSan oirthear tá cuan mór le dieseanna iascaireachta go leor. San iarthar tá cúlchríoch chrua le hacrapail neamhéilithe ina ceannas ar an ngleann thíos."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2385,8 +2385,8 @@ msgstr "Abhainn na Gaimbia (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Tá nasc talún mar theorainn ar oileán lena shaibhreas in acmhainní sa Mheánmhuir. Is féidir leis na himreoirí an lár a dul chuig trí stráice caol talún nó trína mbád."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2406,10 +2406,10 @@ msgstr "Ósais Óir (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Amsíonn dhá fhaicsean iadsan féin ina suí ar bharr ardchláir mhóir craigigh, nó a dtugtar acrapailí uirthi.\n\nScabhtáil ar feadh na talún do thaiscí saora a aimsiú agus achmhainní nua a fháil."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2417,10 +2417,10 @@ msgstr "Acrapail na Gréige (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Aimsíonn trí fhaicsean iadsan féin ina suí ar bharr ardchláir mhóir craigigh, nó a dtugtar acrapailí uathu, ach tá an ceithriú acrapail i bhfad as na cinn eile trí fho-abhainn.\n\nScabhtáil ar feadh na talún do thaiscí saora a aimsiú agus acmhainní nua a fháil."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2655,8 +2655,8 @@ msgstr "Bóthar Measartha (2)"
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Tá sruthanna caola so-áthach i rith tríd an mhachaire Teasálach. Tá spás mór le mórmhéadú a dhéanamh, agus tosaíonn gach imreoir go sábháilte os cionn acrapaile mhóir."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2664,10 +2664,10 @@ msgstr "Machairí Teasálacha (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Amsíonn dhá fhaicsean iadsan féin ina suí ar bharr ardchláir mhóir craigigh, nó a dtugtar acrapailí uirthi.\n\nScabhtáil ar feadh na talún do thaiscí saora a aimsiú agus achmhainní nua a fháil."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

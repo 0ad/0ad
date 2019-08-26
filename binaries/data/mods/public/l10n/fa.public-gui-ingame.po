@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-24 09:42+0200\n"
-"PO-Revision-Date: 2019-06-24 14:22+0000\n"
+"POT-Creation-Date: 2019-08-23 07:08+0000\n"
+"PO-Revision-Date: 2019-08-23 14:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -126,182 +126,182 @@ msgstr[1] "میانگین شعاع حمله : %(range)s متر"
 msgid "Cannot build wall here!"
 msgstr "ساخت دیوار در اینجا امکان پذیر نیست!"
 
-#: gui/session/menu.js:161
+#: gui/session/menu.js:150
 msgid "Are you sure you want to resign?"
 msgstr "آیا مطمئن هستید که می‌خواهید تسلیم شوید؟"
 
-#: gui/session/menu.js:162 gui/session/menu.js:194 gui/session/menu.js:205
+#: gui/session/menu.js:151 gui/session/menu.js:183 gui/session/menu.js:194
 msgid "Confirmation"
 msgstr "تایید"
 
-#: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
+#: gui/session/session.js:908 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "خیر"
 
-#: gui/session/menu.js:163 gui/session/menu.js:195 gui/session/menu.js:228
-#: gui/session/session.js:896 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
+#: gui/session/session.js:908 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "بله"
 
-#: gui/session/menu.js:175
+#: gui/session/menu.js:164
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "آیا مطمئن هستید که می خواهید خارج شوید؟ خروج شما باعث قطع ارتباط سایر بازیکن ها می شود."
 
-#: gui/session/menu.js:179 gui/session/menu.js:183
+#: gui/session/menu.js:168 gui/session/menu.js:172
 msgid "Are you sure you want to quit?"
 msgstr "آیا مطمئن هستید که می‌خواهید خارج شوید؟"
 
-#: gui/session/menu.js:204
+#: gui/session/menu.js:193
 msgid "Do you want to resign or will you return soon?"
 msgstr "آیا تسلیم می شوید یا بزودی برمی گردید؟"
 
-#: gui/session/menu.js:206
+#: gui/session/menu.js:195
 msgid "I will return"
 msgstr "باز خواهم گشت"
 
-#: gui/session/menu.js:206
+#: gui/session/menu.js:195
 msgid "I resign"
 msgstr "من تسلیم می شوم"
 
-#: gui/session/menu.js:226
+#: gui/session/menu.js:215
 msgid "Destroy everything currently selected?"
 msgstr "هر چیزی که انتخاب شده را نابود می کنید؟"
 
-#: gui/session/menu.js:227
+#: gui/session/menu.js:216
 msgid "Delete"
 msgstr "حذف"
 
-#: gui/session/menu.js:356
+#: gui/session/menu.js:343
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/session/menu.js:433
+#: gui/session/menu.js:420
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
 msgstr "زمان باقی مانده از آتش بس : %(time)s"
 
-#: gui/session/menu.js:460
+#: gui/session/menu.js:447
 msgctxt "team"
 msgid "None"
 msgstr "هیچ"
 
-#: gui/session/menu.js:465 gui/session/messages.js:175
+#: gui/session/menu.js:452 gui/session/messages.js:175
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "متحد"
 
-#: gui/session/menu.js:466 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:453 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "بی طرف"
 
-#: gui/session/menu.js:466 gui/session/messages.js:176
+#: gui/session/menu.js:453 gui/session/messages.js:176
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "دشمن"
 
-#: gui/session/menu.js:479
+#: gui/session/menu.js:466
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:556
+#: gui/session/menu.js:543
 msgid "Request your allies to attack this enemy"
 msgstr "از متحدان خود بخواهید به این دشمن حمله کنند"
 
-#: gui/session/menu.js:573
+#: gui/session/menu.js:560
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
 msgstr "رشوه دادن به یک نیرو از این بازیکن برای به اشتراک گذاشتن چشم انداز آن در مدت زمانی محدود"
 
-#: gui/session/menu.js:605
+#: gui/session/menu.js:592
 msgid "A failed bribe will cost you:"
 msgstr "یک رشوه نا موفق همراه هزینه برای شما:"
 
-#: gui/session/menu.js:786
+#: gui/session/menu.js:773
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "خرید %(resource)s"
 
-#: gui/session/menu.js:787
+#: gui/session/menu.js:774
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "فروش %(resource)s"
 
-#: gui/session/menu.js:888
+#: gui/session/menu.js:875
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s و %(garrisonedString)s."
 
-#: gui/session/menu.js:889
+#: gui/session/menu.js:876
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s، %(garrisonedString)s و %(inactiveString)s."
 
-#: gui/session/menu.js:892 gui/session/menu.js:965
+#: gui/session/menu.js:879 gui/session/menu.js:952
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:893 gui/session/menu.js:964
+#: gui/session/menu.js:880 gui/session/menu.js:951
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s و  %(inactiveString)s "
 
-#: gui/session/menu.js:898
+#: gui/session/menu.js:885
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s"
 
-#: gui/session/menu.js:899
+#: gui/session/menu.js:886
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s و %(inactiveString)s "
 
-#: gui/session/menu.js:902 gui/session/menu.js:968
+#: gui/session/menu.js:889 gui/session/menu.js:955
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "%(inactiveString)s وجود دارد."
 msgstr[1] "%(inactiveString)s وجود دارد."
 
-#: gui/session/menu.js:903
+#: gui/session/menu.js:890
 msgid "There are no land traders."
 msgstr "هیچ تاجر زمینی وجود ندارد."
 
-#: gui/session/menu.js:911
+#: gui/session/menu.js:898
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s تاجر زمینی درحال تجارت هستند"
 msgstr[1] "%(numberTrading)s تاجر زمینی درحال تجارت هستند"
 
-#: gui/session/menu.js:921
+#: gui/session/menu.js:908
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s غیر فعال"
 msgstr[1] "%(numberOfLandTraders)s غیر فعال"
 
-#: gui/session/menu.js:926
+#: gui/session/menu.js:913
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s تاجر زمینی غیرفعال هستند."
 msgstr[1] "%(numberOfLandTraders)s تاجر زمینی غیرفعال هستند."
 
-#: gui/session/menu.js:936
+#: gui/session/menu.js:923
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s نفر در کشتی تجاری قرار دارند"
 msgstr[1] "%(numberGarrisoned)s نفر در کشتی تجاری قرار دارند"
 
-#: gui/session/menu.js:941
+#: gui/session/menu.js:928
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -312,54 +312,50 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s نفر در کشتی تجاری قرار دارند."
 msgstr[1] "%(numberGarrisoned)s نفر در کشتی تجاری قرار دارند."
 
-#: gui/session/menu.js:969
+#: gui/session/menu.js:956
 msgid "There are no merchant ships."
 msgstr "هیچ کشتی تجاری وجود ندارد."
 
-#: gui/session/menu.js:976
+#: gui/session/menu.js:963
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s کشتی تجاری وجود دارد."
 msgstr[1] "%(numberTrading)s کشتی تجاری وجود دارد."
 
-#: gui/session/menu.js:986
+#: gui/session/menu.js:973
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s غیرفعال است"
 msgstr[1] "%(numberOfShipTraders)s غیرفعال است"
 
-#: gui/session/menu.js:991
+#: gui/session/menu.js:978
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s کشتی تاجران غیرفعال است"
 msgstr[1] "%(numberOfShipTraders)s کشتی تاجران غیرفعال است"
 
-#: gui/session/menu.js:1214
+#: gui/session/menu.js:1211
 msgid "Resume"
 msgstr "ادامه"
 
-#: gui/session/menu.js:1214 gui/session/menu.xml:(caption):87
+#: gui/session/menu.js:1211 gui/session/menu.xml:(caption):87
 msgid "Pause"
 msgstr "توقف بازی"
 
-#: gui/session/menu.js:1218
+#: gui/session/menu.js:1215
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "بازی متوقف شد توسط %(players)s"
 
-#: gui/session/menu.js:1219 gui/session/messages.js:698
+#: gui/session/menu.js:1216 gui/session/messages.js:698
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr "،"
 
-#: gui/session/menu.js:1232 gui/session/menu.xml:(caption):17
-msgid "Manual"
-msgstr "صفحه راهنما"
-
-#: gui/session/menu.js:1249
+#: gui/session/menu.js:1243
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -449,7 +445,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "تیم"
 
-#: gui/session/messages.js:177 gui/session/session.js:513
+#: gui/session/messages.js:177 gui/session/session.js:525
 msgid "Observer"
 msgstr "ناظر"
 
@@ -566,7 +562,7 @@ msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr "،"
 
-#: gui/session/messages.js:693
+#: gui/session/messages.js:693 gui/session/messages.js:733
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr "خطای Out-Of-Sync بر روی دور %(turn)s."
@@ -614,110 +610,106 @@ msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr "خارج کردن وضعیت فعلی در %(filepath)s"
 
-#: gui/session/messages.js:725 gui/session/messages.js:736
+#: gui/session/messages.js:725 gui/session/messages.js:738
 msgid "Out of Sync"
 msgstr "Out of Sync"
 
-#: gui/session/messages.js:733
-msgid "Out-Of-Sync error!"
-msgstr "خطای Out of Sync!"
-
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:735
+#: gui/session/messages.js:737
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr "حالت بازی فعلی با حالت بازی اصلی متفاوت است."
 
-#: gui/session/messages.js:799
+#: gui/session/messages.js:801
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "همه"
 
-#: gui/session/messages.js:807
+#: gui/session/messages.js:809
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "هم پیمان ها"
 
-#: gui/session/messages.js:811
+#: gui/session/messages.js:813
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "دشمنان"
 
-#: gui/session/messages.js:817
+#: gui/session/messages.js:819
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "ناظران"
 
-#: gui/session/messages.js:846 gui/session/selection_details.js:79
+#: gui/session/messages.js:848 gui/session/selection_details.js:79
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "/ [OFFLINE] %(player)s"
 
-#: gui/session/messages.js:927
+#: gui/session/messages.js:929
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:928
+#: gui/session/messages.js:930
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:972
+#: gui/session/messages.js:985
 msgid "Unknown Player"
 msgstr "بازیکن ناشناخته"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:997
+#: gui/session/messages.js:1010
 msgid ", "
 msgstr "،"
 
-#: gui/session/messages.js:1029
+#: gui/session/messages.js:1042
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s برای شما %(amounts)s فرستاده است."
 
-#: gui/session/messages.js:1031
+#: gui/session/messages.js:1044
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "شما ارسال کردید به %(player2)s %(amounts)s"
 
-#: gui/session/messages.js:1036
+#: gui/session/messages.js:1049
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s ارسال کرد به %(player2)s %(amounts)s"
 
-#: gui/session/messages.js:1056
+#: gui/session/messages.js:1069
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s مبادله کرد %(amountsBought)s در ازای %(amountsSold)s"
 
-#: gui/session/messages.js:1069
+#: gui/session/messages.js:1082
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "حیوانات شما مورد حمله %(attacker)s قرار گرفتند!"
 
-#: gui/session/messages.js:1070
+#: gui/session/messages.js:1083
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "شما توسط %(attacker)s مورد حمله قرار گرفته اید!"
 
-#: gui/session/messages.js:1087
+#: gui/session/messages.js:1100
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s ارتقا یافت به %(phaseName)s"
 
-#: gui/session/messages.js:1089
+#: gui/session/messages.js:1102
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "بازیکن %(player)s از ارتقای %(phaseName)s خارج شد."
 
-#: gui/session/messages.js:1092
+#: gui/session/messages.js:1105
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s رسید به %(phaseName)s"
 
-#: gui/session/messages.js:1144
+#: gui/session/messages.js:1157
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -779,7 +771,7 @@ msgid "Gain: %(gain)s"
 msgstr "بدست آورد: %(gain)s"
 
 #: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1285
+#: gui/session/selection_panels.js:596 gui/session/session.js:1302
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -911,13 +903,13 @@ msgstr "،"
 
 #: gui/session/selection_panels.js:1064
 #, javascript-format
-msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr "بروزرسانی در یک %(name)s، %(tooltip)s"
+msgid "Upgrade to %(name)s. %(tooltip)s"
+msgstr ""
 
 #: gui/session/selection_panels.js:1069
 #, javascript-format
-msgid "Upgrade into a %(name)s."
-msgstr "ارتقاء به %(name)s."
+msgid "Upgrade to %(name)s."
+msgstr ""
 
 #: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
@@ -1052,7 +1044,15 @@ msgstr "کارگر بیکار پیدا کن"
 msgid "Toggle Diplomacy Colors"
 msgstr "تغییر رنگهای دیپلماسی"
 
-#: gui/session/session.js:443
+#: gui/session/session.js:444 gui/session/diplomacy_window.xml:(caption):10
+msgid "Diplomacy"
+msgstr "دیپلماسی"
+
+#: gui/session/session.js:448 gui/session/unit_actions.js:1255
+msgid "Barter & Trade"
+msgstr "تهاتر & معامله"
+
+#: gui/session/session.js:451
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1060,7 +1060,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "انتخاب یک نوع از کالا هایی که می خواهید اصلاح کنید با کلید کردن بر روی آن، و سپس استفاده از فلش های سایر کالاها برای اصلاح سهم آنها. شما همچنین می توانید کلید %(hotkey)s را فشار دهید در زمانی که در حال انتخاب یک نوع از کالا ها هستید تا سهم آنها را به 100%% برسانید"
 
-#: gui/session/session.js:447
+#: gui/session/session.js:455
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1069,7 +1069,11 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "شروع با انتخاب منابعی که قصد دارید به فروش برسانید، از سطر بالا. برای هر بار که کلید پایین انتخاب می شود، %(quantity)s از منبع بالا در ازای مقداری که در پایین مشخص شده است به فروش می رسد. اگر کلید %(hotkey)s را فشار دهید و نگه دارید بصورت موقت مقدار معامله را به میزان %(multiplier)s چند برابر می کنید. "
 
-#: gui/session/session.js:643
+#: gui/session/session.js:463 gui/session/objectives_window.xml:(caption):15
+msgid "Objectives"
+msgstr "اهداف"
+
+#: gui/session/session.js:655
 #, javascript-format
 msgid ""
 "%(civ)s\n"
@@ -1077,86 +1081,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: دیدن تاریخچه / ساختار درختی\nآخرین موردی که باز شد اگر کلید کنید باز خواهد شد."
 
-#: gui/session/session.js:888
+#: gui/session/session.js:900
 msgid "Do you want to quit?"
 msgstr "آیا می‌خواهید خارج شوید؟"
 
-#: gui/session/session.js:894
+#: gui/session/session.js:906
 msgid "VICTORIOUS!"
 msgstr "پیروزی!"
 
-#: gui/session/session.js:895
+#: gui/session/session.js:907
 msgid "DEFEATED!"
 msgstr "شکست!"
 
-#: gui/session/session.js:896
+#: gui/session/session.js:908
 msgid "OK"
 msgstr "باشه"
 
-#: gui/session/session.js:969
+#: gui/session/session.js:986
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "ریپلی به پایان رسید. آیا میخواهید خارج شوید؟"
 
-#: gui/session/session.js:970
+#: gui/session/session.js:987
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "تائید"
 
-#: gui/session/session.js:971
+#: gui/session/session.js:988
 msgctxt "replayFinished"
 msgid "No"
 msgstr "نه"
 
-#: gui/session/session.js:971
+#: gui/session/session.js:988
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "آری"
 
-#: gui/session/session.js:1166
+#: gui/session/session.js:1183
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1173
+#: gui/session/session.js:1190
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1196
+#: gui/session/session.js:1213
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s برای تغییر سفارش."
 
-#: gui/session/session.js:1198
+#: gui/session/session.js:1215
 msgid "Unordered"
 msgstr "بی نظم"
 
-#: gui/session/session.js:1198
+#: gui/session/session.js:1215
 msgid "Descending"
 msgstr "نزولی"
 
-#: gui/session/session.js:1198
+#: gui/session/session.js:1215
 msgid "Ascending"
 msgstr "صعودی"
 
-#: gui/session/session.js:1224
+#: gui/session/session.js:1241
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1225
+#: gui/session/session.js:1242
 msgid "Population (current / limit)"
 msgstr "جمعیت (کنونی / سقف مجاز)"
 
-#: gui/session/session.js:1226
+#: gui/session/session.js:1243
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "بیشترین جمعیت: %(popCap)s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1434
+#: gui/session/session.js:1451
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (x%(speed)s)"
@@ -1240,11 +1244,6 @@ msgstr "فرمان دادن به نیروهای انتخاب شده برای م�
 msgid "Remove guard"
 msgstr "برداشتن محافظ"
 
-#: gui/session/unit_actions.js:1255
-#: gui/session/top_panel/button_trade.xml:(tooltip):9
-msgid "Barter & Trade"
-msgstr "تهاتر & معامله"
-
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
 msgstr "گشت"
@@ -1320,11 +1319,6 @@ msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "انتخاب آدرس گیرنده چت"
 
-#: gui/session/diplomacy_window.xml:(caption):10
-#: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
-msgid "Diplomacy"
-msgstr "دیپلماسی"
-
 #: gui/session/diplomacy_window.xml:(caption):15
 msgid "Name"
 msgstr "نام"
@@ -1359,6 +1353,10 @@ msgstr "خراج"
 msgid "Close"
 msgstr "بستن"
 
+#: gui/session/menu.xml:(caption):17
+msgid "Manual"
+msgstr "صفحه راهنما"
+
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
 msgstr "گفتگو"
@@ -1390,11 +1388,6 @@ msgstr "خروج"
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "نشان دادن لابی چند نفره در یک Dialog window"
-
-#: gui/session/objectives_window.xml:(caption):15
-#: gui/session/top_panel/button_objectives.xml:(tooltip):15
-msgid "Objectives"
-msgstr "اهداف"
 
 #: gui/session/session.xml:(caption):66
 msgid "Game Paused"

@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-08-21 14:07+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-25 13:40+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -647,6 +647,10 @@ msgstr "Пихта"
 msgid "Fir Sapling"
 msgstr "Саженцы пихты"
 
+#: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
+msgid "Prickly Juniper"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "Мангровый лес"
@@ -1082,8 +1086,8 @@ msgstr "Шпион"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "At least 16 melee infantry units required."
-msgstr "Требуются не менее 16-ти пехотинцев ближнего боя."
+msgid "Requires at least 16 Melee Infantry."
+msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1094,8 +1098,8 @@ msgid "Battle Line"
 msgstr "Линия фронта"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "At least 4 units required."
-msgstr "Необходимо не менее 4 юнитов."
+msgid "Requires at least 4 Soldiers or Siege engines."
+msgstr "Требует не менее 4 воинов или осадных орудий."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1110,8 +1114,8 @@ msgid "Column Open"
 msgstr "Колонна открыта"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "At least 8 units required."
-msgstr "Необходимо не менее 8 юнитов."
+msgid "Requires at least 8 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1130,8 +1134,8 @@ msgid "None"
 msgstr "Нет"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "At least 10 hoplite infantry required."
-msgstr "Необходимо не менее 10 гоплитов."
+msgid "Requires at least 10 Infantry Hoplites."
+msgstr "Требует не менее 10 пеших гоплитов."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1142,16 +1146,16 @@ msgid "Scatter"
 msgstr "Рассредоточить"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed."
-msgstr "Допускаются только юниты с метательным оружием."
+msgid "Requires a Ranged Soldier."
+msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Схватка"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "At least 16 pike infantry units required."
-msgstr "Требуются не менее 16-ти пеших пикенёров."
+msgid "Requires at least 16 Infantry Pikemen."
+msgstr "Требует не менее 16 пеших пикинёров."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1162,8 +1166,8 @@ msgid "Testudo"
 msgstr "Черепаха"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "At least 6 cavalry units required."
-msgstr "Необходимо не менее 6 конных юнитов."
+msgid "Requires at least 6 Cavalry."
+msgstr "Требует не менее 6 всадников."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

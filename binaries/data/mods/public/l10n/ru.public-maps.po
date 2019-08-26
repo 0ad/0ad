@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-08-22 12:25+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1594,10 +1594,10 @@ msgstr "Эта карта представляет собой реконстру
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 игрока выясняют отношения в широкой дельте Нила. Каждый город начинает в уютном гнёздышке на большом акрополе, но недостаток ресурсов заставляет каждого игрока расширять добычу на прилежащие земли.\n\nРазведка доложила, что поблизости расположены неглубокие рукава Нила которые можно перейти вброд в различных местах, поэтому барьер между враждующими сторонами незначительный."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2120,11 +2120,7 @@ msgstr "Корабли Демо"
 msgid "Base Temperate Map"
 msgstr "Основная карта умеренного климата"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Интеграционное тестирование перемещения юнитов"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2132,12 +2128,16 @@ msgid ""
 "and weird pathing."
 msgstr "Данная карта разработана для тестирования основных сценариев перемещения юнитов. Она будет включать unitAI, unitMotion, а также соответствующие алгоритмы поиска пути и таким образом может быть использована в качестве карты для интеграционного тестирования. Обращайте внимание на такие явления, как застопорившиеся юниты, неправильная анимация и движение по неадекватной траектории."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Интеграционное тестирование перемещения юнитов"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Каждый игрок начинает игру на большом плоском плато, известном также как акрополь. \n\n \nК востоку лежит большая бухта с промысловыми возможностями. На западе изрезанные внутренние районы с незанятым акрополем, господствующим над долиной внизу."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2402,8 +2402,8 @@ msgstr "Река Гамбия (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Кольцо земли граничит с богатым ресурсами островом в Средиземном море. Игроки могут получить доступ к центру через узкую полосу земли или используя лодку."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2423,10 +2423,10 @@ msgstr "Золотой Оазис (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Две фракции оказались на вершине крупных каменистых плато или акрополях.\n\nРазведайте земли, чтобы найти свободные сокровища для обеспечения новых ресурсов."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2434,10 +2434,10 @@ msgstr "Греческий Акрополь (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Три фракции оказались на вершине крупных каменистых плато или акрополей, тогда как четвертая отделена от своих врагов разветвлением реки.\n\nРазведайте земли, чтобы найти свободные сокровища и обеспечить себя новыми ресурсами."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2672,8 +2672,8 @@ msgstr "Дорога в умеренном климате (2)"
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Холмистая Фессалийская равнина разрезана узкими ручьями, легко преодолеваемыми вброд. Широкие открытые пространства  доступны для масштабной экспансии игроков, начинающих игру на вершинах больших акрополей. "
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2681,10 +2681,10 @@ msgstr "Фессалийская равнина (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Четыре фракции осели на вершине крупных каменистых плато, или акрополей. \n\nРазведайте земли в поисках сокровищ и новых ресурсов."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

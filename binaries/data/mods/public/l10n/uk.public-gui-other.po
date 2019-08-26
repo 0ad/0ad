@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-29 10:02+0200\n"
-"PO-Revision-Date: 2019-04-30 13:49+0000\n"
+"POT-Creation-Date: 2019-08-23 07:08+0000\n"
+"PO-Revision-Date: 2019-08-25 20:05+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -27,37 +27,22 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: globalscripts/DamageTypes.js:6
-msgctxt "damage type"
-msgid "Hack"
-msgstr "Рубати"
-
-#: globalscripts/DamageTypes.js:7
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "Колющий"
-
-#: globalscripts/DamageTypes.js:8
-msgctxt "damage type"
-msgid "Crush"
-msgstr "Руйнування"
-
-#: gui/civinfo/civinfo.js:28
+#: gui/civinfo/civinfo.js:20
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
 msgstr "%(hotkey)s: Перемикнутися на Дерево Технологій."
 
-#: gui/civinfo/civinfo.js:29
+#: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close History."
 msgstr "%(hotkey)s: Закрити історію."
 
-#: gui/civinfo/civinfo.js:124
+#: gui/civinfo/civinfo.js:112
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s особливості гри"
 
-#: gui/civinfo/civinfo.js:127
+#: gui/civinfo/civinfo.js:115
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Бонус Цивілізації"
@@ -65,7 +50,7 @@ msgstr[1] "Бонуси Цивілізації"
 msgstr[2] "Бонусів Цивілізації"
 msgstr[3] "Бонусів Цивілізації"
 
-#: gui/civinfo/civinfo.js:132
+#: gui/civinfo/civinfo.js:120
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Бонус команди"
@@ -73,11 +58,11 @@ msgstr[1] "Бонусм команди"
 msgstr[2] "Бонусів команди"
 msgstr[3] "Бонусів команди"
 
-#: gui/civinfo/civinfo.js:139
+#: gui/civinfo/civinfo.js:127
 msgid "Special Technologies"
 msgstr "Спеціальні технології"
 
-#: gui/civinfo/civinfo.js:145
+#: gui/civinfo/civinfo.js:133
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Особлива будівля"
@@ -85,26 +70,26 @@ msgstr[1] "Особливі будівлі"
 msgstr[2] "Особливих будівель"
 msgstr[3] "Особливих будівель"
 
-#: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:140 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Герої"
 
-#: gui/civinfo/civinfo.js:162
+#: gui/civinfo/civinfo.js:150
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Історія %(civilization)s"
 
-#: gui/common/color.js:164
+#: gui/common/color.js:178
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
 msgstr "Непризначена гаряча клавіша: %(hotkeyName)s"
 
-#: gui/common/color.js:179
+#: gui/common/color.js:193
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
 msgstr "Натисніть %(hotkey)s для автоматичного доповнення імені користувача."
 
-#: gui/common/color.js:181
+#: gui/common/color.js:195
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Таб"
@@ -119,16 +104,16 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Завантаження відмінено"
 
-#: gui/common/functions_utility.js:30
+#: gui/common/functions_utility.js:21
 msgid "Gaia"
 msgstr "Гея"
 
-#: gui/common/functions_utility.js:103
+#: gui/common/functions_utility.js:98
 msgctxt "map selection"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/common/functions_utility.js:231
+#: gui/common/functions_utility.js:212
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версія: %(buildDate)s (%(revision)s)"
@@ -160,17 +145,17 @@ msgstr "Збережена гра буде видалена назавжди, В
 msgid "DELETE"
 msgstr "Видалити"
 
-#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/loadgame/load.js:173 gui/options/options.js:301
-#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:321
+#: gui/loadgame/load.js:173 gui/options/options.js:295
+#: gui/options/options.js:345 gui/options/options.js:371
 #: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Ні"
 
-#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
-#: gui/loadgame/load.js:173 gui/options/options.js:301
-#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:321
+#: gui/loadgame/load.js:173 gui/options/options.js:295
+#: gui/options/options.js:345 gui/options/options.js:371
 #: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
@@ -510,11 +495,11 @@ msgstr "Досліджена мапа"
 msgid "Cheats"
 msgstr "Чіти"
 
-#: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
-#: gui/common/tooltips.js:219 gui/common/tooltips.js:260
-#: gui/common/tooltips.js:395 gui/common/tooltips.js:417
-#: gui/common/tooltips.js:501 gui/common/tooltips.js:522
-#: gui/common/tooltips.js:820
+#: gui/common/gamedescription.js:444 gui/common/tooltips.js:162
+#: gui/common/tooltips.js:217 gui/common/tooltips.js:257
+#: gui/common/tooltips.js:391 gui/common/tooltips.js:413
+#: gui/common/tooltips.js:497 gui/common/tooltips.js:518
+#: gui/common/tooltips.js:816
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -632,11 +617,11 @@ msgstr "Лише хост може викинути клієнтів!"
 msgid "Users (%(num)s): %(users)s"
 msgstr "Користувачі (%(num)s): %(users)s"
 
-#: gui/common/network.js:158 gui/common/tooltips.js:83
-#: gui/common/tooltips.js:232 gui/common/tooltips.js:246
-#: gui/common/tooltips.js:324 gui/common/tooltips.js:357
-#: gui/common/tooltips.js:390 gui/common/tooltips.js:685
-#: gui/common/tooltips.js:719 gui/common/tooltips.js:785
+#: gui/common/network.js:158 gui/common/tooltips.js:81
+#: gui/common/tooltips.js:230 gui/common/tooltips.js:243
+#: gui/common/tooltips.js:320 gui/common/tooltips.js:353
+#: gui/common/tooltips.js:386 gui/common/tooltips.js:681
+#: gui/common/tooltips.js:715 gui/common/tooltips.js:781
 #: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
 #: gui/replaymenu/replay_menu.js:272
 msgid ", "
@@ -798,17 +783,17 @@ msgstr "атака дальнього бою:"
 msgid "Capture Attack:"
 msgstr "Атака захоплення:"
 
-#: gui/common/tooltips.js:20
+#: gui/common/tooltips.js:18
 msgid "Circular Splash Damage"
 msgstr "Кругове ушкодження"
 
-#: gui/common/tooltips.js:21
+#: gui/common/tooltips.js:19
 msgid "Linear Splash Damage"
 msgstr "Лінійне ушкодження"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
-#: gui/common/tooltips.js:27
+#: gui/common/tooltips.js:25
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
@@ -817,7 +802,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s - %(maxRang
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
-#: gui/common/tooltips.js:29
+#: gui/common/tooltips.js:27
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
@@ -826,7 +811,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relative
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
-#: gui/common/tooltips.js:33
+#: gui/common/tooltips.js:31
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
@@ -835,24 +820,24 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s - %(maxRang
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
-#: gui/common/tooltips.js:35
+#: gui/common/tooltips.js:33
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
-#: gui/common/tooltips.js:72
+#: gui/common/tooltips.js:70
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/common/tooltips.js:81
+#: gui/common/tooltips.js:79
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s і %(lastAmount)s"
 
-#: gui/common/tooltips.js:110
+#: gui/common/tooltips.js:108
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
@@ -861,8 +846,8 @@ msgstr[1] "%(time)s %(second)s"
 msgstr[2] "%(time)s %(second)s"
 msgstr[3] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:112 gui/common/tooltips.js:353
-#: gui/common/tooltips.js:717
+#: gui/common/tooltips.js:110 gui/common/tooltips.js:349
+#: gui/common/tooltips.js:713
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
@@ -870,16 +855,16 @@ msgstr[1] "секунди"
 msgstr[2] "секунд"
 msgstr[3] "секунд"
 
-#: gui/common/tooltips.js:165 gui/common/tooltips.js:176
+#: gui/common/tooltips.js:163 gui/common/tooltips.js:174
 msgid "Health:"
 msgstr "Здоров'я:"
 
-#: gui/common/tooltips.js:175
+#: gui/common/tooltips.js:173
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
 msgstr "%(healthLabel)s %(current)s / %(max)s"
 
-#: gui/common/tooltips.js:193
+#: gui/common/tooltips.js:191
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
@@ -888,7 +873,7 @@ msgstr[1] "%(arrowcount)s %(arrows)s"
 msgstr[2] "%(arrowcount)s %(arrows)s"
 msgstr[3] "%(arrowcount)s %(arrows)s"
 
-#: gui/common/tooltips.js:195
+#: gui/common/tooltips.js:193
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "стріла"
@@ -896,69 +881,69 @@ msgstr[1] "стріли"
 msgstr[2] "стріл"
 msgstr[3] "стріл"
 
-#: gui/common/tooltips.js:198
+#: gui/common/tooltips.js:196
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/common/tooltips.js:209
+#: gui/common/tooltips.js:207
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/common/tooltips.js:220
+#: gui/common/tooltips.js:218
 msgid "Armor:"
 msgstr "Броня:"
 
-#: gui/common/tooltips.js:223
+#: gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/common/tooltips.js:228
+#: gui/common/tooltips.js:226
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/common/tooltips.js:239
+#: gui/common/tooltips.js:237
 msgid "(None)"
 msgstr "(Нема)"
 
-#: gui/common/tooltips.js:243
+#: gui/common/tooltips.js:240
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:264
+#: gui/common/tooltips.js:261
 msgid "Interval:"
 msgstr "Проміжок:"
 
-#: gui/common/tooltips.js:265 gui/common/tooltips.js:715
+#: gui/common/tooltips.js:262 gui/common/tooltips.js:711
 msgid "Rate:"
 msgstr "Коефіцієнт:"
 
-#: gui/common/tooltips.js:272
+#: gui/common/tooltips.js:269
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:291 gui/common/tooltips.js:710
+#: gui/common/tooltips.js:287 gui/common/tooltips.js:706
 msgid "Range:"
 msgstr "Радіус:"
 
-#: gui/common/tooltips.js:294
+#: gui/common/tooltips.js:290
 #, javascript-format
 msgid "+%(number)s"
 msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
-#: gui/common/tooltips.js:298
+#: gui/common/tooltips.js:294
 msgid "meters"
 msgstr "метрів"
 
-#: gui/common/tooltips.js:299 gui/common/tooltips.js:712
-#: gui/common/tooltips.js:742
+#: gui/common/tooltips.js:295 gui/common/tooltips.js:708
+#: gui/common/tooltips.js:738
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "метр"
@@ -966,58 +951,58 @@ msgstr[1] "метри"
 msgstr[2] "метрів"
 msgstr[3] "метрів"
 
-#: gui/common/tooltips.js:318 gui/common/tooltips.js:376
-#: gui/common/tooltips.js:381 gui/common/tooltips.js:386
+#: gui/common/tooltips.js:314 gui/common/tooltips.js:372
+#: gui/common/tooltips.js:377 gui/common/tooltips.js:382
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:324
+#: gui/common/tooltips.js:320
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Дружній вогонь: %(enabled)s"
 
-#: gui/common/tooltips.js:341
+#: gui/common/tooltips.js:337
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
 msgstr "%(label)s: %(garrisonLimit)s"
 
-#: gui/common/tooltips.js:342
+#: gui/common/tooltips.js:338
 msgid "Garrison Limit"
 msgstr "Ліміт гарнізону"
 
-#: gui/common/tooltips.js:349
+#: gui/common/tooltips.js:345
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:350 gui/common/tooltips.js:704
+#: gui/common/tooltips.js:346 gui/common/tooltips.js:700
 msgid "Heal:"
 msgstr "Лікування:"
 
-#: gui/common/tooltips.js:352
+#: gui/common/tooltips.js:348
 msgid "Health"
 msgstr "Здоров'я"
 
-#: gui/common/tooltips.js:377
+#: gui/common/tooltips.js:373
 msgid "Projectile Limit"
 msgstr "Ліміт боєприпасів"
 
-#: gui/common/tooltips.js:382
+#: gui/common/tooltips.js:378
 msgctxt "projectiles"
 msgid "Default"
 msgstr "За замовчуванням"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:383
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "На одиницю"
 
-#: gui/common/tooltips.js:396
+#: gui/common/tooltips.js:392
 msgid "Number of repairers:"
 msgstr "Кількість ремонтників:"
 
-#: gui/common/tooltips.js:402
+#: gui/common/tooltips.js:398
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
@@ -1027,7 +1012,7 @@ msgstr[1] "Додайте ще працівника для пришвидшен�
 msgstr[2] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунд."
 msgstr[3] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунд."
 
-#: gui/common/tooltips.js:409
+#: gui/common/tooltips.js:405
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
@@ -1036,11 +1021,11 @@ msgstr[1] "Додайте ще працівника для закінчення 
 msgstr[2] "Додайте ще працівника для закінчення ремонту через %(second)s секунд."
 msgstr[3] "Додайте ще працівника для закінчення ремонту через %(second)s секунд."
 
-#: gui/common/tooltips.js:418
+#: gui/common/tooltips.js:414
 msgid "Number of builders:"
 msgstr "Кількість будівельників:"
 
-#: gui/common/tooltips.js:424
+#: gui/common/tooltips.js:420
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
@@ -1050,7 +1035,7 @@ msgstr[1] "Додайте іншого працівника, щоб приско
 msgstr[2] "Додайте іншого працівника, щоб прискорити будівництво на %(second)s секунд."
 msgstr[3] "Додайте іншого працівника, щоб прискорити будівництво на %(second)s секунд."
 
-#: gui/common/tooltips.js:431
+#: gui/common/tooltips.js:427
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
@@ -1059,99 +1044,99 @@ msgstr[1] "Додайте працівника, щоб закінчити поб
 msgstr[2] "Додайте працівника, щоб закінчити побудову за %(second)s секунд."
 msgstr[3] "Додайте працівника, щоб закінчити побудову за %(second)s секунд."
 
-#: gui/common/tooltips.js:466 gui/common/tooltips.js:657
+#: gui/common/tooltips.js:462 gui/common/tooltips.js:653
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:502
+#: gui/common/tooltips.js:498
 msgid "Gather Rates:"
 msgstr "Коефіцієнт збору:"
 
-#: gui/common/tooltips.js:505 gui/common/tooltips.js:527
+#: gui/common/tooltips.js:501 gui/common/tooltips.js:523
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:523
+#: gui/common/tooltips.js:519
 msgid "Resource Trickle:"
 msgstr "Потік ресурсів:"
 
-#: gui/common/tooltips.js:524
+#: gui/common/tooltips.js:520
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:576
+#: gui/common/tooltips.js:572
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s з %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:605
+#: gui/common/tooltips.js:601
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Мури: %(costs)s"
 
-#: gui/common/tooltips.js:606
+#: gui/common/tooltips.js:602
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Башти: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:614
+#: gui/common/tooltips.js:610
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:615
+#: gui/common/tooltips.js:611
 msgid "Cost:"
 msgstr "Вартість:"
 
-#: gui/common/tooltips.js:628
+#: gui/common/tooltips.js:624
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Потрібно %(technology)s"
 
-#: gui/common/tooltips.js:640
+#: gui/common/tooltips.js:636
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:641
+#: gui/common/tooltips.js:637
 msgid "Population Bonus:"
 msgstr "Приріст населення:"
 
-#: gui/common/tooltips.js:662
+#: gui/common/tooltips.js:658
 msgid "Insufficient resources:"
 msgstr "Не вистачає ресурсів:"
 
-#: gui/common/tooltips.js:678
+#: gui/common/tooltips.js:674
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:679
+#: gui/common/tooltips.js:675
 msgid "Speed:"
 msgstr "Швидкість:"
 
-#: gui/common/tooltips.js:681 gui/common/tooltips.js:686
+#: gui/common/tooltips.js:677 gui/common/tooltips.js:682
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:683
+#: gui/common/tooltips.js:679
 msgid "Walk"
 msgstr "Хода"
 
-#: gui/common/tooltips.js:688
+#: gui/common/tooltips.js:684
 msgid "Run"
 msgstr "Біг"
 
-#: gui/common/tooltips.js:703 gui/common/tooltips.js:709
-#: gui/common/tooltips.js:714 gui/common/tooltips.js:739
+#: gui/common/tooltips.js:699 gui/common/tooltips.js:705
+#: gui/common/tooltips.js:710 gui/common/tooltips.js:735
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1162,7 +1147,7 @@ msgstr[3] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:703
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
@@ -1170,57 +1155,57 @@ msgstr[1] "HP"
 msgstr[2] "HP"
 msgstr[3] "HP"
 
-#: gui/common/tooltips.js:731
+#: gui/common/tooltips.js:727
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:732
+#: gui/common/tooltips.js:728
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:740
+#: gui/common/tooltips.js:736
 msgctxt "aura"
 msgid "Range:"
 msgstr "Радіус:"
 
-#: gui/common/tooltips.js:757
+#: gui/common/tooltips.js:753
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:769
+#: gui/common/tooltips.js:765
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:784
+#: gui/common/tooltips.js:780
 msgid "Classes:"
 msgstr "Класи:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:811
+#: gui/common/tooltips.js:807
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:821
+#: gui/common/tooltips.js:817
 msgid "Loot:"
 msgstr "Здобич:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:829
+#: gui/common/tooltips.js:825
 msgid "Right-click to view more information."
 msgstr "Натисніть ПКМ, щоб переглянути більше інформації."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:835
+#: gui/common/tooltips.js:831
 msgid "Click to view more information."
 msgstr "Натисніть, щоб переглянути більше інформації."
 
@@ -1253,51 +1238,51 @@ msgstr "Ця збережена гра потребує різний набір 
 msgid "Do you still want to proceed?"
 msgstr "Ви все ще хочете продовжити?"
 
-#: gui/loadgame/load.js:172 gui/options/options.js:300
-#: gui/options/options.js:350 gui/options/options.js:376
+#: gui/loadgame/load.js:172 gui/options/options.js:294
+#: gui/options/options.js:344 gui/options/options.js:370
 msgid "Warning"
 msgstr "Увага"
 
-#: gui/options/options.js:100
+#: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
 msgstr "За замовчуванням: %(value)s"
 
-#: gui/options/options.js:126
+#: gui/options/options.js:121
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr "Мін: %(min)s, Макс: %(max)s"
 
-#: gui/options/options.js:128
+#: gui/options/options.js:123
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr "Мін: %(min)s"
 
-#: gui/options/options.js:130
+#: gui/options/options.js:125
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Макс: %(max)s"
 
-#: gui/options/options.js:163
+#: gui/options/options.js:158
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Значення:  %(val)s (мінімальне:  %(min)s, максимальне:  %(max)s)"
 
-#: gui/options/options.js:299
+#: gui/options/options.js:293
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Скидання параметрів призведе до видалення збережених налаштувань. Ви хочете продовжити?"
 
-#: gui/options/options.js:349
+#: gui/options/options.js:343
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Деякі значення параметрів недійсні! Ви справді хочете зберегти їх?"
 
-#: gui/options/options.js:375
+#: gui/options/options.js:369
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У вас є незбережені зміни, ви дійсно хочете закрити це вікно?"
 
@@ -1319,7 +1304,7 @@ msgid ""
 "games and chat with other players."
 msgstr "%(hotkey)s: Запустіть багатокористувацьке лоббі для початку або приєднання до публічних ігор і спілкування з іншими гравцями."
 
-#: gui/pregame/mainmenu.js:113
+#: gui/pregame/mainmenu.js:118
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1332,19 +1317,19 @@ msgstr "%(warning)sСхоже, що ви використовуєте графі
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:126
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Тицьніть \"Більше\" для додаткової інформації або \"ОК\", щоб продовжити."
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:127
 msgid "WARNING!"
 msgstr "УВАГА!"
 
-#: gui/pregame/mainmenu.js:123 gui/splashscreen/splashscreen.xml:(caption):29
+#: gui/pregame/mainmenu.js:128 gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "ОК"
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:128
 msgid "Read More"
 msgstr "Детальніше"
 
@@ -1375,10 +1360,6 @@ msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "Запустіть багатокористувацьке лоббі для початку або приєднання до публічних ігор і спілкування з іншими гравцями. \\ [ВИМКНЕНО В ЗБІРЦІ]"
-
-#: gui/pregame/mainmenu.js:236 gui/pregame/mainmenu.xml:(caption):89
-msgid "Manual"
-msgstr "Посібник"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1476,60 +1457,60 @@ msgstr "Запас ресурсів:"
 msgid "∞"
 msgstr "∞"
 
-#: gui/reference/common/load.js:193
+#: gui/reference/common/load.js:192
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s до %(health_max)s"
 
-#: gui/reference/structree/structree.js:49
+#: gui/reference/structree/structree.js:41
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
 msgstr "%(hotkey)s: Переключитися на Історію."
 
-#: gui/reference/structree/structree.js:50
+#: gui/reference/structree/structree.js:42
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Закрити Дерево Структури."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:135
+#: gui/reference/viewer/viewer.js:129
 msgid "Built by:"
 msgstr "Побудовано:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:148
+#: gui/reference/viewer/viewer.js:142
 msgid "Trained by:"
 msgstr "Навчається за допомогою:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:161
+#: gui/reference/viewer/viewer.js:155
 msgid "Researched at:"
 msgstr "Досліджується за допомогою:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:173
+#: gui/reference/viewer/viewer.js:167
 msgid "Builds:"
 msgstr "Для побудови:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:194
+#: gui/reference/viewer/viewer.js:188
 msgid "Researches:"
 msgstr "Дослідження:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:206
+#: gui/reference/viewer/viewer.js:200
 msgid "Trains:"
 msgstr "Для тренування:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:219
+#: gui/reference/viewer/viewer.js:213
 msgid "Upgradable to:"
 msgstr "Для покращення:"
 
@@ -1625,11 +1606,11 @@ msgstr "%(min)s - %(max)s хв"
 msgid "Single- and multiplayer"
 msgstr "Одно- та багатокористувацький режим"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):411
 msgid "Single Player"
 msgstr "Один гравець"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):426
 msgid "Multiplayer"
 msgstr "Багато гравців"
 
@@ -1990,21 +1971,21 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Перемикає лоббі багатокористувацького режиму в діалогове вікно."
 
-#: gui/civinfo/civinfo.xml:(caption):20
+#: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilizations"
 msgstr "Цивілізації"
 
-#: gui/civinfo/civinfo.xml:(caption):32
+#: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
 msgstr "Вибір цивілізацій"
 
-#: gui/civinfo/civinfo.xml:(caption):125
-#: gui/pregame/mainmenu.xml:(caption):124
+#: gui/civinfo/civinfo.xml:(caption):123
+#: gui/pregame/mainmenu.xml:(caption):120
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
 msgstr "Дерево Структури"
 
-#: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
+#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
 #: gui/reference/structree/structree.xml:(caption):137
 #: gui/reference/viewer/viewer.xml:(caption):37
@@ -2015,7 +1996,7 @@ msgstr "Закрити"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Подяка"
 
-#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):189
+#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):179
 msgid "Load Game"
 msgstr "Завантажити гру"
 
@@ -2087,7 +2068,7 @@ msgctxt "replay"
 msgid "Description"
 msgstr "Опис"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):315
 msgid "Language"
 msgstr "Мова"
 
@@ -2143,211 +2124,215 @@ msgstr "Зберегти зміни"
 msgid "Unsaved changes affect this session only"
 msgstr "Незбережені зміни дійсні лише під час поточної сесії"
 
-#: gui/pregame/mainmenu.xml:505
+#: gui/pregame/mainmenu.xml:492
 msgid "Alpha XXIV"
 msgstr "АЛЬФА XXIV"
 
-#: gui/pregame/mainmenu.xml:507
+#: gui/pregame/mainmenu.xml:494
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "УВАГА: Гра ще не завершена. Більшість функцій ще не додано."
 
+#: gui/pregame/mainmenu.xml:(caption):89
+msgid "Manual"
+msgstr "Посібник"
+
+#: gui/pregame/mainmenu.xml:(caption):104
+msgid "Tutorial"
+msgstr "Навчальна Кампанія"
+
+#: gui/pregame/mainmenu.xml:(caption):133
+#: gui/reference/structree/structree.xml:(caption):126
+msgid "History"
+msgstr "Історія"
+
+#: gui/pregame/mainmenu.xml:(caption):152
+msgid "Matches"
+msgstr "Бій"
+
+#: gui/pregame/mainmenu.xml:(caption):166
+msgid "Campaigns"
+msgstr "Кампанії"
+
+#: gui/pregame/mainmenu.xml:(caption):193
+#: gui/pregame/mainmenu.xml:(caption):273
+msgid "Replays"
+msgstr "Повтори"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):221
+msgid "Join Game"
+msgstr "Приєднатися до гри"
+
+#: gui/pregame/mainmenu.xml:(caption):235
+msgid "Host Game"
+msgstr "Сервер"
+
+#: gui/pregame/mainmenu.xml:(caption):251
+msgid "Game Lobby"
+msgstr "Ігровий чат"
+
+#: gui/pregame/mainmenu.xml:(caption):301
+msgid "Options"
+msgstr "Опції"
+
+#: gui/pregame/mainmenu.xml:(caption):329
+msgid "Mod Selection"
+msgstr "Вибір доступних модів"
+
+#: gui/pregame/mainmenu.xml:(caption):341
+msgid "Welcome Screen"
+msgstr "Екран Привітання"
+
+#: gui/pregame/mainmenu.xml:(caption):396
+msgid "Learn to Play"
+msgstr "Навчіться грати"
+
+#: gui/pregame/mainmenu.xml:(caption):441
+msgid "Settings"
+msgstr "Опції"
+
+#: gui/pregame/mainmenu.xml:(caption):456
+msgid "Scenario Editor"
+msgstr "Редактор Сценаріїв"
+
+#: gui/pregame/mainmenu.xml:(caption):470
+msgid "Exit"
+msgstr "Вихід"
+
+#: gui/pregame/mainmenu.xml:(caption):504
+msgid "Website"
+msgstr "Web-сайт"
+
+#: gui/pregame/mainmenu.xml:(caption):516
+msgid "Chat"
+msgstr "Чат"
+
+#: gui/pregame/mainmenu.xml:(caption):528
+msgid "Report a Bug"
+msgstr "Повідомити про помилку"
+
+#: gui/pregame/mainmenu.xml:(caption):540
+msgid "Translate the Game"
+msgstr "Перекласти Гру"
+
+#: gui/pregame/mainmenu.xml:(caption):552
+msgid "Donate"
+msgstr "Пожертвувати"
+
+#: gui/pregame/mainmenu.xml:(caption):564
+msgid "Credits"
+msgstr "Подяки"
+
+#: gui/pregame/mainmenu.xml:(caption):593
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
 #: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Відкрити ігровий посібник 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):109
+#: gui/pregame/mainmenu.xml:(tooltip):105
 msgid "Start the economic tutorial."
 msgstr "Розпочніть економічну навчальну кампанію."
 
-#: gui/pregame/mainmenu.xml:(tooltip):163
+#: gui/pregame/mainmenu.xml:(tooltip):153
 msgid "Click here to start a new single player game."
 msgstr "Натисніть тут для початку нової гри"
 
-#: gui/pregame/mainmenu.xml:(tooltip):177
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Відродіть історію за допомогою історичних військових кампаній. \\[ЩЕ НЕ РЕАЛІЗОВАНО]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):190
+#: gui/pregame/mainmenu.xml:(tooltip):180
 msgid "Click here to load a saved game."
 msgstr "Клацніть тут, щоб завантажити збережену гру"
 
-#: gui/pregame/mainmenu.xml:(tooltip):204
-#: gui/pregame/mainmenu.xml:(tooltip):284
+#: gui/pregame/mainmenu.xml:(tooltip):194
+#: gui/pregame/mainmenu.xml:(tooltip):274
 msgid "Playback previous games."
 msgstr "Відтворення попередніх ігор."
 
-#: gui/pregame/mainmenu.xml:(tooltip):232
+#: gui/pregame/mainmenu.xml:(tooltip):222
 msgid "Joining an existing multiplayer game."
 msgstr "Приєднатися до існуючої гри"
 
-#: gui/pregame/mainmenu.xml:(tooltip):246
+#: gui/pregame/mainmenu.xml:(tooltip):236
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Сервер мультиплеєра.\\n\\nПотребує відкритого 20595 порту."
 
-#: gui/pregame/mainmenu.xml:(tooltip):312
+#: gui/pregame/mainmenu.xml:(tooltip):302
 msgid "Adjust game settings."
 msgstr "Налаштування параметрів гри."
 
-#: gui/pregame/mainmenu.xml:(tooltip):326
+#: gui/pregame/mainmenu.xml:(tooltip):316
 msgid "Choose the language of the game."
 msgstr "Вибрати мову гри"
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):330
 msgid "Select and download mods for the game."
 msgstr "Виберіть та завантажте моди для гри."
 
-#: gui/pregame/mainmenu.xml:(tooltip):352
+#: gui/pregame/mainmenu.xml:(tooltip):342
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Показати екран вітання. Скористайтесь, якщо Ви сховали його помилково."
 
-#: gui/pregame/mainmenu.xml:(tooltip):410
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Дізнайтеся, як грати, почніть із посібника, відкривайте дерева технологій, та історію колишніх цивілізацій"
 
-#: gui/pregame/mainmenu.xml:(tooltip):425
+#: gui/pregame/mainmenu.xml:(tooltip):412
 msgid "Challenge the computer player to a single player match."
 msgstr "Виклик комп'ютеру в одиночному поєдинку."
 
-#: gui/pregame/mainmenu.xml:(tooltip):440
+#: gui/pregame/mainmenu.xml:(tooltip):427
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Бій проти одного і більше реальних гравців в мультиплеєрі"
 
-#: gui/pregame/mainmenu.xml:(tooltip):455
+#: gui/pregame/mainmenu.xml:(tooltip):442
 msgid "Game options and mod selection."
 msgstr "Ігрові опції та вибір модів."
 
-#: gui/pregame/mainmenu.xml:(tooltip):470
+#: gui/pregame/mainmenu.xml:(tooltip):457
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Відкрити Редактор Сценаріїв у новому вікні. Ви можете запустити його більш надійно, запустивши гру в командному рядку з аргументом \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):484
+#: gui/pregame/mainmenu.xml:(tooltip):471
 msgid "Exits the game."
 msgstr "Вихід з гри."
 
-#: gui/pregame/mainmenu.xml:(tooltip):518
+#: gui/pregame/mainmenu.xml:(tooltip):505
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Тицніть, щоб відкрити play0ad.com у вашому браузері."
 
-#: gui/pregame/mainmenu.xml:(tooltip):530
+#: gui/pregame/mainmenu.xml:(tooltip):517
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Тицьніть, щоб відкрити IRC чат у вашому браузері. (#0ad на webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):542
+#: gui/pregame/mainmenu.xml:(tooltip):529
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Натисніть, щоб відвідати 0 A.D. Простежити баг, падіння сервісу чи помилку."
 
-#: gui/pregame/mainmenu.xml:(tooltip):554
+#: gui/pregame/mainmenu.xml:(tooltip):541
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Клацніть щоб відкрити сайт 0 A.D. для перекладу сторінки у вашому браузері."
 
-#: gui/pregame/mainmenu.xml:(tooltip):566
+#: gui/pregame/mainmenu.xml:(tooltip):553
 msgid "Help with the project expenses by donating."
 msgstr "Допомогти з витратами на проект пожертвуванням."
 
-#: gui/pregame/mainmenu.xml:(tooltip):578
+#: gui/pregame/mainmenu.xml:(tooltip):565
 msgid "Click to see the 0 A.D. credits."
 msgstr "Клацніть щоб переглянути подяки 0 A.D."
-
-#: gui/pregame/mainmenu.xml:(caption):108
-msgid "Tutorial"
-msgstr "Навчальна Кампанія"
-
-#: gui/pregame/mainmenu.xml:(caption):140
-#: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Історія"
-
-#: gui/pregame/mainmenu.xml:(caption):162
-msgid "Matches"
-msgstr "Бій"
-
-#: gui/pregame/mainmenu.xml:(caption):176
-msgid "Campaigns"
-msgstr "Кампанії"
-
-#: gui/pregame/mainmenu.xml:(caption):203
-#: gui/pregame/mainmenu.xml:(caption):283
-msgid "Replays"
-msgstr "Повтори"
-
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):231
-msgid "Join Game"
-msgstr "Приєднатися до гри"
-
-#: gui/pregame/mainmenu.xml:(caption):245
-msgid "Host Game"
-msgstr "Сервер"
-
-#: gui/pregame/mainmenu.xml:(caption):261
-msgid "Game Lobby"
-msgstr "Ігровий чат"
-
-#: gui/pregame/mainmenu.xml:(caption):311
-msgid "Options"
-msgstr "Опції"
-
-#: gui/pregame/mainmenu.xml:(caption):339
-msgid "Mod Selection"
-msgstr "Вибір доступних модів"
-
-#: gui/pregame/mainmenu.xml:(caption):351
-msgid "Welcome Screen"
-msgstr "Екран Привітання"
-
-#: gui/pregame/mainmenu.xml:(caption):409
-msgid "Learn to Play"
-msgstr "Навчіться грати"
-
-#: gui/pregame/mainmenu.xml:(caption):454
-msgid "Settings"
-msgstr "Опції"
-
-#: gui/pregame/mainmenu.xml:(caption):469
-msgid "Scenario Editor"
-msgstr "Редактор Сценаріїв"
-
-#: gui/pregame/mainmenu.xml:(caption):483
-msgid "Exit"
-msgstr "Вихід"
-
-#: gui/pregame/mainmenu.xml:(caption):517
-msgid "Website"
-msgstr "Web-сайт"
-
-#: gui/pregame/mainmenu.xml:(caption):529
-msgid "Chat"
-msgstr "Чат"
-
-#: gui/pregame/mainmenu.xml:(caption):541
-msgid "Report a Bug"
-msgstr "Повідомити про помилку"
-
-#: gui/pregame/mainmenu.xml:(caption):553
-msgid "Translate the Game"
-msgstr "Перекласти Гру"
-
-#: gui/pregame/mainmenu.xml:(caption):565
-msgid "Donate"
-msgstr "Пожертвувати"
-
-#: gui/pregame/mainmenu.xml:(caption):577
-msgid "Credits"
-msgstr "Подяки"
-
-#: gui/pregame/mainmenu.xml:(caption):606
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
@@ -2422,15 +2407,15 @@ msgstr "Зберегти гру"
 msgid "Description:"
 msgstr "Опис:"
 
-#: gui/splashscreen/splashscreen.xml:(caption):13
+#: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
 msgstr "Вітаємо!"
 
-#: gui/splashscreen/splashscreen.xml:(caption):18
+#: gui/splashscreen/splashscreen.xml:(caption):19
 msgid "Show this message in the future"
 msgstr "Показувати це повідомлення у майбутньому"
 
-#: gui/splashscreen/splashscreen.xml:(caption):23
+#: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
 msgstr "Відомі проблеми (Web)"
 
@@ -3889,21 +3874,21 @@ msgstr "Перська архітектура"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Спеціальна технологія у персів."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Усі перські будівлі на +25% міцніші."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Час будівництва збільшується +20%, як наслідок."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Перси також мають доступ до великої кількості будівельних та захисних технологій."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3911,30 +3896,30 @@ msgstr "ПІКІНЕРИ"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Важкоозброєні та повільні. Повільно атакують."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Використовується проти кавалерії або іншої піхоти ближнього бою."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Доступно для: Кушитів, Македонців, Птолемеїв та Селевкідів."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr ""
+msgstr "Квінквірема"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Найважчий стандартний бойовий корабель. Доступний для: Карфагенян, Птолемеїв, Римлян та Селевкідів."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "Перевозить до 50 юнітів."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
@@ -3984,17 +3969,17 @@ msgstr "Спартіати"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "Найсильніша піхотна одиниця у всій грі."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Чемпіон піхоти доступний у фракції Спарти."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Використовуйте їх, щоб знищувати ворожу кавалерію або як ударну силу для підтримки вашої звичайної піхоти."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -4002,15 +3987,15 @@ msgstr "КОПЕЙЩИКИ"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Базова піхота ближнього бою у кожній фракції гри."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Використовується для бонусу атаки проти кавалерії."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Гідна ударна атака робить їх хорошими загонами для передньої лінії."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-30 10:07+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1572,10 +1572,10 @@ msgstr "Mapa honek Napata antzinako hiria berreraikitzen erakusten du. [color=\"
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 jokalari aurrez-aurre Niloren Delta zabalean. Hiri bakoitza akropoli handi batekin hasiko da, baino baliabideak urriak dira, jokalari bakoitza bere baliabide biltegia inguruko lurraldetara zabaltzera behartuz.\n\nEsploratzaileek Niloko adarren sakonera ez dela oso handia eta toki askoetatik gurutzatzeko erraza dela esaten digute, hori dela eta babes ahula eskainiko dute etsaien fakzioen aurrean."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2098,11 +2098,7 @@ msgstr "Itsas Adibidea"
 msgid "Base Temperate Map"
 msgstr "Oinarrizko Mapa Epela"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Unitateen mugimenduaren integrazio proba"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2110,12 +2106,16 @@ msgid ""
 "and weird pathing."
 msgstr "mapa hau unitateen mugimenduaren oinarrizko kaus batzuk probatzeko diseinatu da. unitAI, unitMotion eta dagozkien bide bilatze algoritmoak barne-hartzen ditu eta integratutako probarako mapa gisa balio du. Bilatu blokatutako unitateak, animazio okerrak, eta ibilbide bereziak."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Unitateen mugimenduaren integrazio proba"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Jokalari bakoitza partida lautada baten gainetik hasiko da, akropoli bezala ere ezagutua.\n\nEkialdean arrantzarako aukera ematen duen badia bat dago. Mendebaldean inguru babestu malkartsu bat dago bertan jaberik gabeko akropoli bat duena, harana azpian hartzen duena. "
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2380,8 +2380,8 @@ msgstr "Gambia Erreka (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Lur eraztun batek baliabidez aberats den uharte batekin muga egiten du Mediterraneoan. Jokalariak erdira iritsi daitezke lur pasabide estu batez edo itsasontziz."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2401,10 +2401,10 @@ msgstr "Urrezko Oasia (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Bi talde lautada harritsu handi eta altuetan, edo akropoli, igota daude.\n\nLurrak esploratu altxorrak aurkitzeko eta baliabide iturri berriak ziurtatzeko."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2412,10 +2412,10 @@ msgstr "Akropoli Grekoa (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Hiru talde lautada harritsu handi eta altuak, edo akropoli, ematen duten segurtasunean igota daude.\n\nBide batez laugarren talde bat errekako adar batez etsaitik banandurik dago.\n\nLurrak esploratu hobari altxorrak aurkitzeko eta baliabide gehigarriak eskuratzeko."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2650,8 +2650,8 @@ msgstr "Bide epela (2)"
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Tesaliako lautada ondulatua erraz pasa daitezkeen errekastoz beterik dago. Zabalguneek neurrigabeko esploratzea ahalbidetzen dute, bitartean jokalari bakoitzak partida akropoli handi baten ziurtasunetik hasiko du."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2659,10 +2659,10 @@ msgstr "Tesaliako Lautadak (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Lau talde lautada harritsu handi eta altuetan, edo akropoli, igota daude.\n\nLurrak esploratu altxorrak aurkitzeko eta baliabide iturri berriak ziurtatzeko."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

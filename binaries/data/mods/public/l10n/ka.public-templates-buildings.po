@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-06-03 16:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 14:48+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,16 +25,16 @@ msgstr "სამოქალაქო შენობა"
 msgid "Civic"
 msgstr "სამოქალაქო"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:85
+#: simulation/templates/template_structure_civic_civil_centre.xml:87
 msgid "Civic Center"
 msgstr "სამოქალაქო ცენტრი"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:86
+#: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
-#: simulation/templates/template_structure_civic_civil_centre.xml:50
+#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:52
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "სამოქალაქო ცენტრი"
@@ -53,7 +53,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
 #: simulation/templates/template_structure_civic_temple.xml:35
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:27
 #: simulation/templates/template_structure_military_embassy.xml:38
@@ -71,8 +71,8 @@ msgid "Increase the population limit."
 msgstr "გაზარდე მოსახლეობის ზღვარი."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:53
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_military_barracks.xml:24
@@ -113,53 +113,53 @@ msgstr "ხის კედელი"
 msgid "Wall off your town for a stout defense."
 msgstr "კედელი შენი ქალაქის კარგად დასაცავად."
 
-#: simulation/templates/template_structure_defensive_tower.xml:33
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower.xml:35
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
 msgstr "თავდაცვის კოშკი"
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:50
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr ""
 
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:53
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:27
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:49
 msgid "Outpost"
 msgstr "საგუშაგო"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "Sentry Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:58
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Defense Tower"
 msgstr "თავდაცვის კოშკი"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:30
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
 msgstr ""
 
@@ -189,11 +189,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
+#: simulation/templates/template_structure_defensive_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "კედლის კოშკი"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:52
+#: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "ისვრის ისრებს. ქალაქის კედლის თავდამსხმელებისგან დასაცავად გარნიზონში ხალხი ჩააყენე."
 
@@ -284,7 +284,7 @@ msgid "Train elephant units."
 msgstr "გაწვრთენი სპილოები."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:75
 #: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:53
@@ -303,12 +303,12 @@ msgstr ""
 msgid "Embassy"
 msgstr "საელჩო"
 
-#: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:70
+#: simulation/templates/template_structure_military_fortress.xml:41
+#: simulation/templates/template_structure_military_fortress.xml:72
 msgid "Fortress"
 msgstr "ციხე-სიმაგრე"
 
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
@@ -425,7 +425,6 @@ msgstr "საოცრება"
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 #: simulation/templates/structures/spart_range.xml:5
-#: simulation/templates/structures/spart_workshop.xml:5
 msgid "Stratēgeîon"
 msgstr "Stratēgeîon"
 
@@ -536,11 +535,11 @@ msgstr "გაწვრთენი გმირები. გამოიკვ
 msgid "Stoá"
 msgstr ""
 
-#: simulation/templates/structures/athen_stable.xml:9
-#: simulation/templates/structures/mace_stable.xml:9
-#: simulation/templates/structures/ptol_stable.xml:9
-#: simulation/templates/structures/sele_stable.xml:9
-#: simulation/templates/structures/spart_stable.xml:9
+#: simulation/templates/structures/athen_stable.xml:5
+#: simulation/templates/structures/mace_stable.xml:5
+#: simulation/templates/structures/ptol_stable.xml:5
+#: simulation/templates/structures/sele_stable.xml:5
+#: simulation/templates/structures/spart_stable.xml:5
 msgid "Hippṓn"
 msgstr ""
 
@@ -608,6 +607,14 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
+msgstr ""
+
+#: simulation/templates/structures/athen_workshop.xml:5
+#: simulation/templates/structures/mace_workshop.xml:5
+#: simulation/templates/structures/ptol_workshop.xml:5
+#: simulation/templates/structures/sele_workshop.xml:5
+#: simulation/templates/structures/spart_workshop.xml:5
+msgid "Hoplothēkē"
 msgstr ""
 
 #: simulation/templates/structures/baby_defense_tower.xml:5
@@ -707,8 +714,8 @@ msgstr ""
 msgid "Melonas"
 msgstr ""
 
-#: simulation/templates/structures/brit_stable.xml:9
-#: simulation/templates/structures/gaul_stable.xml:9
+#: simulation/templates/structures/brit_stable.xml:5
+#: simulation/templates/structures/gaul_stable.xml:5
 msgid "Eposton"
 msgstr ""
 
@@ -748,7 +755,7 @@ msgstr "არ ისვრის, არც გარნიზონში ი�
 msgid "Stonehenge"
 msgstr ""
 
-#: simulation/templates/structures/brit_workshop.xml:8
+#: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
 msgid "Miletucerdon"
 msgstr ""
@@ -1243,10 +1250,6 @@ msgstr ""
 msgid "Asklēpieîon"
 msgstr ""
 
-#: simulation/templates/structures/mace_workshop.xml:11
-msgid "Synergeîon Poliorkētṓn"
-msgstr ""
-
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
 msgstr ""
@@ -1370,12 +1373,11 @@ msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "შეიპყარი ეს შენობა, რომ გაწვრთნა მოჯამაგირეები ელინისტური ეგვიპტიდან."
 
 #: simulation/templates/structures/pers_apadana.xml:29
-#: simulation/templates/structures/pers_tacara.xml:26
-msgid "Persian Palace"
-msgstr "სპარსული სასახლე"
+msgid "Throne Hall"
+msgstr ""
 
 #: simulation/templates/structures/pers_apadana.xml:30
-msgid "Apadana"
+msgid "Apadāna"
 msgstr ""
 
 #: simulation/templates/structures/pers_apadana.xml:33
@@ -1393,8 +1395,8 @@ msgid "Padgan"
 msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:6
-msgid "Levy citizen-infantry units."
-msgstr "გადაახდევინე მოქალაქე-ქვეით ჯარს."
+msgid "Levy citizen-soldier infantry."
+msgstr ""
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1416,10 +1418,6 @@ msgstr "Gaiāšta"
 msgid "Nāvašta"
 msgstr "Nāvašta"
 
-#: simulation/templates/structures/pers_elephant_stables.xml:5
-msgid "Persian Elephant Stables"
-msgstr ""
-
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
 msgstr "Kaštašta"
@@ -1437,11 +1435,11 @@ msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "გაწვრთენი გალავანი ცხენოსნები და ააგე საალყე გამრღვევები."
 
 #: simulation/templates/structures/pers_hall.xml:29
-msgid "Persian Hall"
+msgid "Gate of All Nations"
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:30
-msgid "Duvarthi Visadahyu"
+msgid "Duvarθi Visadahyu"
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:32
@@ -1487,16 +1485,20 @@ msgstr ""
 msgid "Asiyah"
 msgstr ""
 
+#: simulation/templates/structures/pers_tacara.xml:26
+msgid "Palace"
+msgstr "სასახლე"
+
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
 msgstr ""
 
 #: simulation/templates/structures/pers_temple.xml:12
-msgid "Ayadana"
+msgid "Āyadanam"
 msgstr ""
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
-msgid "Duvitaparnam"
+msgid "Duvarθiš"
 msgstr ""
 
 #: simulation/templates/structures/pers_wall_long.xml:29
@@ -1638,22 +1640,22 @@ msgid "Triumphal Arch"
 msgstr "ტრიუმფალური თაღი"
 
 #: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "განსაკუთრებული იმპერიული რომაული შენობა."
+msgid "Arcus Triumphālis"
+msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:45
+#: simulation/templates/structures/rome_army_camp.xml:47
 msgid "ArmyCamp"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:78
-msgid "Entrenched Army Camp"
-msgstr "ჩასანგრებული სამხედრო ბანაკი"
-
-#: simulation/templates/structures/rome_army_camp.xml:79
-msgid "Castrum Vallum"
+#: simulation/templates/structures/rome_army_camp.xml:80
+msgid "Army Camp"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:82
+#: simulation/templates/structures/rome_army_camp.xml:81
+msgid "Castra"
+msgstr ""
+
+#: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
@@ -1664,7 +1666,7 @@ msgid "Castrum"
 msgstr ""
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
-msgid "Armamentarium"
+msgid "Armāmentārium"
 msgstr ""
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
@@ -1676,7 +1678,7 @@ msgid "Saeptum"
 msgstr ""
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
-msgid "Turris Lignea"
+msgid "Turris Laterīcia"
 msgstr ""
 
 #: simulation/templates/structures/rome_dock.xml:12
@@ -1684,7 +1686,7 @@ msgid "Portus"
 msgstr ""
 
 #: simulation/templates/structures/rome_farmstead.xml:8
-msgid "Villa"
+msgid "Vīlla"
 msgstr ""
 
 #: simulation/templates/structures/rome_field.xml:5
@@ -1700,11 +1702,15 @@ msgid "Domus"
 msgstr ""
 
 #: simulation/templates/structures/rome_market.xml:12
-msgid "Mercatus"
+msgid "Mercātus"
 msgstr ""
 
 #: simulation/templates/structures/rome_outpost.xml:5
-msgid "Vigilarium"
+msgid "Vigilārium"
+msgstr ""
+
+#: simulation/templates/structures/rome_sentry_tower.xml:5
+msgid "Turris Līgnea"
 msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
@@ -1712,7 +1718,7 @@ msgid "Siege Wall Gate"
 msgstr "საალყე კედლის ჭიშკარი"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
-msgid "Porta Circummunitionis"
+msgid "Porta Circummūnītiōnis"
 msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
@@ -1725,7 +1731,8 @@ msgstr "საალყე კედელი"
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
-msgid "Murus Circummunitionis"
+#: simulation/templates/structures/rome_wallset_siege.xml:6
+msgid "Mūrus Circummūnītiōnis"
 msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:55
@@ -1740,15 +1747,19 @@ msgid "Siege Wall Tower"
 msgstr "საალყე კედლის კოშკი"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
-msgid "Turris Circummunitionis"
+msgid "Turris Circummūnītiōnis"
+msgstr ""
+
+#: simulation/templates/structures/rome_stable.xml:5
+msgid "Equīle"
 msgstr ""
 
 #: simulation/templates/structures/rome_storehouse.xml:8
-msgid "Receptaculum"
+msgid "Receptāculum"
 msgstr ""
 
 #: simulation/templates/structures/rome_temple.xml:9
-msgid "Aedes"
+msgid "Aedēs"
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
@@ -1756,7 +1767,7 @@ msgid "Temple of Mars"
 msgstr "მარსის ტაძარი"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
-msgid "Aedes Martis"
+msgid "Aedēs Mārtiālis"
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
@@ -1764,7 +1775,7 @@ msgid "Temple of Vesta"
 msgstr "ვესტას ტაძარი"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
-msgid "Aedes Vestae"
+msgid "Aedēs Vestālis"
 msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:29
@@ -1794,12 +1805,12 @@ msgstr ""
 msgid "Turris Lapidea"
 msgstr ""
 
-#: simulation/templates/structures/rome_wallset_siege.xml:6
-msgid "Murus Latericius"
+#: simulation/templates/structures/rome_wonder.xml:15
+msgid "Aedēs Iovis Optimi Maximi"
 msgstr ""
 
-#: simulation/templates/structures/rome_wonder.xml:15
-msgid "Aedes Iovis Optimi Maximi"
+#: simulation/templates/structures/rome_workshop.xml:5
+msgid "Ballistārium"
 msgstr ""
 
 #: simulation/templates/structures/sele_barracks.xml:18

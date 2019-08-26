@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-08-14 21:12+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1571,10 +1571,10 @@ msgstr "Esti mapa amuesa una reconstrucción de l'antigua ciudá de Napata. [col
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 xugadores faen pica pol delta descomanáu del Nilu. Cada ciudá entama añerada nun tesu, pero resquilen recursos, forciando los xugadores a buscalos na redolada.\n\nLos batedores dicen que los brazos averaos del Nilu son someros y vadiables en más d'un sitiu, asina que nun supondrán gran entueyu pa faiciones enemigues. "
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2097,11 +2097,7 @@ msgstr "Demo de barcos"
 msgid "Base Temperate Map"
 msgstr "Mapa de base templáu"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Prueba d'intregración del movimientu d'unidaes"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2109,12 +2105,16 @@ msgid ""
 "and weird pathing."
 msgstr "Esti mapa ta diseñáu pa probar dalgunos casos básicos de movimientu d'unidaes. Lleva arreyaos «unitAI», «unitMotion» y los aldadorios venceyaos, asina que val como un mapa de prueba integráu. Ta sollerte a coses como unidaes allancaes, animaciones incorreutes y esviaciones rares."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Prueba d'intregración del movimientu d'unidaes"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Cada xugador entama l'alcuentru na picorota d'una ciudá, esto ye, l'acrópolis.\n\nAl este hai una gran badea con pexe. Al oeste, nel trespaís argañosu, queda ensin reclamar una collada que domina la playa embaxo."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2379,8 +2379,8 @@ msgstr "Ríu Gambia (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Un aniellu de tierra llenda con una islla bayurosa de recursos nel Mediterraneu. Los xugadores puen aportar al centru per una fazuca de tierra o per barcu."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2400,10 +2400,10 @@ msgstr "Oasis d'oru (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Dos faiciones atópense seguramente allugaes na cucuruta d'una ciudá, o acrópolis.\n\nBati'l tarrén pa dar con ayalgues y percanciar nuevos recursos.  "
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2411,10 +2411,10 @@ msgstr "Acrópolis griegu (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Tres faiciones atópense seguramente allugaes na cucuruta d'una ciudá, o acrópolis, mentanto que la cuarta ta estremada de les rivales por un brazu fluvial.\n\nBati'l tarrén pa dar con ayalgues y percanciar nuevos recursos."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2649,8 +2649,8 @@ msgstr "Calzada templada (2)"
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "La llanada ondulada de Tesalia traviésenla regueraxos, fáciles d'envayar. Les ralaes permiten bien d'espardimientu, y cada xugador entama seguru nun gran tesón."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2658,10 +2658,10 @@ msgstr "Llanada de Tesalia (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Cuatro faiciones atópense seguramente allugaes na cucuruta d'una ciudá, o acrópolis.\n\nBati'l tarrén pa dar con ayalgues y percanciar nuevos recursos. "
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

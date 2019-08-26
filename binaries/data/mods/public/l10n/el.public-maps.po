@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-07-21 20:30+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1585,10 +1585,10 @@ msgstr "Αυτός ο χάρτης παρουσιάζει μια ανακατα�
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 παίκτες αναμετρούνται στο τεράστιο Δέλτα του Νείλου. Κάθε πόλη ξεκινά να φωλιάζει στην κορυφή μια μεγάλης ακρόπολης, αλλά οι πόροι είναι περιορισμένοι, αναγκάζοντας κάθε παίκτη να επεκτείνει τις δραστηριότητές του στους πόρους των γύρων περιοχών.\n\nΙχνηλάτες αναφέρουν ότι οι κοντινές διακλαδώσεις του ποταμού Νείλου είναι ρηχές και διαβατές σε πολλές μεριές, έτσι αποτελούν μόνο ένα μικρό εμπόδιο μεταξύ των φατριών του εχθρού."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2111,11 +2111,7 @@ msgstr "Επίδειξη Πλοίων"
 msgid "Base Temperate Map"
 msgstr "Βασικός Μέτριος Χάρτης"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr ""
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2123,12 +2119,16 @@ msgid ""
 "and weird pathing."
 msgstr ""
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr ""
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Κάθε παίκτης ξεκινά το παιχνίδι επάνω ένα μεγάλο επίπεδο οροπέδιο, αλλιώς γνωστό ως ακρόπολη.\n\nΣτα ανατολικά βρίσκεται ένας μεγάλο κόλπος με αλιευτικές δυνατότητες. Προς τη Δύση βρίσκετε μια πετρώδης ενδοχώρα με μία αδιεκδίκητη ακρόπολη που δεσπόζει στην κοιλάδα από κάτω της."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2393,8 +2393,8 @@ msgstr "Ποταμός Γκάμπια (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Ένα δαχτυλίδι από χερσαία σύνορα ενός πλούσιου σε πόρους νησί της Μεσογείου. Οι παίκτες μπορούν να έχουν πρόσβαση στο κέντρο μέσο μιας στενής λωρίδας γης ή μέσω σκάφους."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2414,10 +2414,10 @@ msgstr "Χρυσή Όαση (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Δύο φατρίες θα βρεθούν σκαρφαλωμένες με ασφάλεια στην κορυφή μεγάλων βραχώδη οροπεδίων, ή ακροπόλεις.\n\nΕξερευνήστε τα εδάφη για να βρείτε δωρεάν θησαυρούς για την εξασφάλιση νέων πόρων."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2425,10 +2425,10 @@ msgstr "Ελληνική Ακρόπολις (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Τρεις φατρίες θα βρεθούν σκαρφαλωμένες με ασφάλεια στην κορυφή μεγάλων βραχώδη οροπεδίων, ή ακροπόλεις, ενώ η τέταρτη διαχωρίζεται από τους εχθρούς της από μία διακλάδωση του ποταμιού\n\nΕξερευνήστε τα εδάφη για να βρείτε δωρεάν θησαυρούς για την εξασφάλιση νέων πόρων."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2663,8 +2663,8 @@ msgstr ""
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Ο κυματιστός Θεσσαλικός κάμπος διασχίζεται από στενά ρεύματα, εύκολα στο να διασχιστούν. Ορθάνοιχτες περιοχές επιτρέπουν την μαζική επέκταση, ενώ κάθε παίκτης ξεκινάει τον αγώνα ασφαλής επάνω σε μια μεγάλη ακρόπολη."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2672,10 +2672,10 @@ msgstr "Θεσσαλικοί Κάμποι (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Τέσσερις φατρίες θα βρεθούν σκαρφαλωμένες με ασφάλεια στην κορυφή μεγάλων βραχώδη οροπεδίων, ή ακροπόλεις.\n\nΕξερευνήστε τα εδάφη για να βρείτε δωρεάν θησαυρούς για την εξασφάλιση νέων πόρων."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

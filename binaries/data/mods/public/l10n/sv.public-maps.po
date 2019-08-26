@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-30 12:47+0000\n"
-"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1577,10 +1577,10 @@ msgstr "Den här kartan visar en rekonstruktion av den antika staden Napata. [co
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 spelare kämpar om stora Nildeltat. Varje stad börjar inbäddad ovanpå en stor Akropolis men resurserna är knappa och tvingar varje spelare att expandera sin verksamhet i de omgivande trakterna.\n\nScouter säger att nära Nilegrenar är grunda vid flera platser så de fungerar bara som en liten barriär mellan fientliga fraktioner."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2103,11 +2103,7 @@ msgstr "Fartygs Demo"
 msgid "Base Temperate Map"
 msgstr "Tempererad Baskarta"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Enhets rörelse integrations test"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2115,12 +2111,16 @@ msgid ""
 "and weird pathing."
 msgstr "Denna karta är utformad för att testa några grundläggande enheters rörelseförmåga. Den kommer att involvera unitAI, unitMotion och relevanta stigfinnare och därmed fungera som en integrerad testkarta. Leta efter saker som fastnade enheter, felaktiga animationer och konstiga sökvägar."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Enhets rörelse integrations test"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Varje spelare startar matchen uppe på en stor platt platå, även kallad en Akropolis.\n\nI öster ligger en stor bukt med fiskemöjligheter. Till väst är ojämnt inland med en ledig Akropolis med makt över dalen nedanför."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2385,8 +2385,8 @@ msgstr "Gambiafloden (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "En rik Medelhavsö omringad av land. Spelare kan nå mitten via en smal remsa land eller med skepp."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2406,10 +2406,10 @@ msgstr "Guld Oasen (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Två fraktioner befinner sig säkert uppe på stora steniga platåer, även kallade för Akropolis.\n\nUpptäck områden runtomkring för att hitta skatter och för att säkra nya resurser."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2417,10 +2417,10 @@ msgstr "Grekisk Akropolis (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Tre fraktioner befinner sig säkert uppe på stora steniga platåer, även kallade för Akropolis, medans den fjärde separeras från fienderna av en flod.\n\nUpptäck områden runtomkring för att hitta skatter och för att säkra nya resurser."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2655,8 +2655,8 @@ msgstr "Tempererade vägbanan (2)"
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Den rullande Thessaliska slätten genomkorsas av smala bäckar som är lätta att korsa. Varje spelare startar matchen säkert ovanpå en stor Akropolis, medans vidderna möjliggör massiv expansion."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2664,10 +2664,10 @@ msgstr "Thessaliska Slätter (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Fyra fraktioner befinner sig säkert uppe på stora steniga platåer, även kallade för Akropolis.\n\nUpptäck områden runtomkring för att hitta skatter och för att säkra nya resurser."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
