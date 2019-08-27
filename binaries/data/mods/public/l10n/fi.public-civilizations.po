@@ -5,8 +5,8 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015
 # Ildradil <piggmatias@gmail.com>, 2013
-# Max, 2016
-# Max, 2015
+# Max Ihalempia, 2016
+# Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015-2016
 # Petri, 2014
@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-01 10:07+0200\n"
-"PO-Revision-Date: 2019-04-01 16:10+0000\n"
+"POT-Creation-Date: 2019-08-23 07:08+0000\n"
+"PO-Revision-Date: 2019-08-23 15:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgid ""
 msgstr "Kreikkalaiset olivat erittäin onnistuneet vaikuttamaan  kielellisesti eri ulkomaalaisiin. Kreikka oli yleiskieli Hellenistisellä kaudella antiikin maailmassa ja jota puhuttiin yleisesti Espanjasta Intiaan saakka."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Allied warships −25% construction time."
+msgid "Allied Warships −25% construction time."
 msgstr ""
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
@@ -319,7 +319,7 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Kelttiläinen uskonto ja druidismi inspiroi heidän sotaista ajattelutapaa."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "Allied healers −20% resource costs."
+msgid "Allied Healers −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
@@ -564,7 +564,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "Allied markets +10% international trade bonus."
+msgid "Allied Markets +10% international trade bonus."
 msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
@@ -771,7 +771,7 @@ msgid "Gauls"
 msgstr "Gallit"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Allied structures −20% technology research time."
+msgid "Allied Structures −20% technology research time."
 msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
@@ -971,7 +971,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgid "Allied Citizen-Soldier Javelinists −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
@@ -980,10 +980,10 @@ msgstr "Saripeko"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].History
 msgid ""
-"The Iberians were long known to provide mercenary soldiers to other nations "
-"to serve as auxiliaries to their armies in foreign wars. Carthage is the "
-"most well known example, and we have evidence of them serving in such a "
-"capacity in Aquitania."
+"The Iberians were long known to provide mercenaries to other nations to "
+"serve as auxiliaries to their armies in foreign wars. Carthage is the most "
+"well known example, and we have evidence of them serving in such a capacity "
+"in Aquitania."
 msgstr ""
 
 #: simulation/data/civs/iber.jsonAINames[0]
@@ -1170,7 +1170,7 @@ msgid "Elephant Suppliers"
 msgstr ""
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid "Allied elephants −20% resource costs and training time."
+msgid "Allied Elephants −20% resource costs and training time."
 msgstr ""
 
 #: simulation/data/civs/kush.jsonAINames[0]
@@ -1642,7 +1642,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
-"Allied temples −50% resource costs and building time; temple technologies "
+"Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
 msgstr ""
 
@@ -1817,7 +1817,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Allied land traders +15% trade gain."
+msgid "Allied Land Traders +15% trade gain."
 msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
@@ -1883,8 +1883,8 @@ msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
-msgid "Phoenician triremes gain the unique ability to train cavalry units."
-msgstr "Foinikian kolmisoudut saavat uniikin kyvyn kouluttaa ratsuyksiköitä."
+msgid "Phoenician triremes gain the unique ability to train cavalry."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
@@ -2024,7 +2024,7 @@ msgstr "Ptolemaius"
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
-"neutral territory and trains mercenary soldiers."
+"neutral territory and trains mercenaries."
 msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
@@ -2216,8 +2216,8 @@ msgstr "Stratópedo Misthophóron"
 #: simulation/data/civs/ptol.jsonStructures[1].Special
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
-"Trains all 'mercenary' units."
-msgstr "Täytyy rakentaa neutraalille alueelle. Ei aluesädevaikutusta. Värvää kaikki palkkasoturit."
+"Trains mercenaries."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2284,7 +2284,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldier infantry −20% training time."
+msgid "Allied Citizen-Soldier Infantry −20% training time."
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
@@ -2494,7 +2494,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied civil centers −20% resource costs."
+msgid "Allied Civil Centers −20% resource costs."
 msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
@@ -2716,8 +2716,8 @@ msgid ""
 msgstr "Makedonialais-Kreikkalainen dynastia, joka hallitsi itäistä osaa Aleksanteri Suuren entisestä imperiumista."
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
-msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "Kouluttaa kaikki ratsuyksiköitä paitsi kansalaisrastuväkeä."
+msgid "Trains all cavalry except citizen-soldier cavalry."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2784,7 +2784,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgid "Allied Citizen-Soldier Infantry Spearmen +10% health."
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name

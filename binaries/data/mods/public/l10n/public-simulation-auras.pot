@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-23 07:09+0000\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-26 07:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +17,7 @@ msgid "Dockyard Repairs"
 msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.json:auraDescription
-msgid "Repairs garrisoned ship at 10 HP per second."
+msgid "Garrisoned Ships +10 health regeneration rate."
 msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.json:auraName
@@ -25,7 +25,7 @@ msgid "Blessing of the Gods"
 msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.json:auraDescription
-msgid "Heals units at 3 HP per second."
+msgid "Humans +3 health regeneration rate."
 msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.json:auraName
@@ -33,7 +33,7 @@ msgid "Religious Fervor"
 msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.json:auraDescription
-msgid "+20% attack damage for soldiers."
+msgid "Soldiers +20% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_economic.json:auraName
@@ -41,7 +41,7 @@ msgid "Patriotism"
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_economic.json:auraDescription
-msgid "Workers +15% gather rates near pyramids."
+msgid "Workers +15% gather speed."
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.json:auraName
@@ -49,7 +49,7 @@ msgid "Exhortative Presence"
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.json:auraDescription
-msgid "Soldiers near Large Pyramids +10% attack."
+msgid "Soldiers +10% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_territory.json:auraName
@@ -57,8 +57,7 @@ msgid "Meroitic Pyramids"
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_territory.json:auraDescription
-msgid ""
-"Civic Centers +10% territory influence as long as a Pyramid stands built."
+msgid "Civic Centers +10% territory influence radius."
 msgstr ""
 
 #: simulation/data/auras/structures/kush_temple_amun.json:auraName
@@ -66,9 +65,7 @@ msgid "Powerful Priesthood"
 msgstr ""
 
 #: simulation/data/auras/structures/kush_temple_amun.json:auraDescription
-msgid ""
-"Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
-"-5% health for heroes per temple built."
+msgid "Heroes −5% health."
 msgstr ""
 
 #: simulation/data/auras/structures/library.json:auraName
@@ -76,8 +73,7 @@ msgid "Power of Knowledge"
 msgstr ""
 
 #: simulation/data/auras/structures/library.json:auraDescription
-msgid ""
-"Reduce the cost and research time of technologies by 10% per library owned."
+msgid "Structures −10% technology resource costs and research time."
 msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.json:auraName
@@ -85,7 +81,7 @@ msgid "Loyalty"
 msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.json:auraDescription
-msgid "+50% garrisoned loyalty regeneration rate for structures."
+msgid "Structures +50% capture points garrison regeneration rate."
 msgstr ""
 
 #: simulation/data/auras/structures/maur_pillar.json:auraName
@@ -93,7 +89,7 @@ msgid "Edict of Ashoka"
 msgstr ""
 
 #: simulation/data/auras/structures/maur_pillar.json:auraDescription
-msgid "+20% movement speed for traders."
+msgid "Traders +20% movement speed."
 msgstr ""
 
 #: simulation/data/auras/structures/rotary_mill.json:auraName
@@ -101,7 +97,7 @@ msgid "Farming bonus"
 msgstr ""
 
 #: simulation/data/auras/structures/rotary_mill.json:auraDescription
-msgid "+25% gather rate for workers in the grainfields."
+msgid "Workers +25% grain gather rate."
 msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.json:auraName
@@ -109,7 +105,7 @@ msgid "Medical Treatment"
 msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.json:auraDescription
-msgid "Heals nearby units at 1 HP per second."
+msgid "Humans +1 health regeneration rate."
 msgstr ""
 
 #: simulation/data/auras/structures/theatron.json:auraName
@@ -117,7 +113,7 @@ msgid "Hellenization"
 msgstr ""
 
 #: simulation/data/auras/structures/theatron.json:auraDescription
-msgid "Increase territory influence by 20% per theatron owned."
+msgid "Structures +20% territory influence radius."
 msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.json:auraName
@@ -125,7 +121,7 @@ msgid "Wall Protection"
 msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.json:auraDescription
-msgid "Soldiers on walls have +3 armor and higher vision."
+msgid "Garrisoned Soldiers +3 armor and +20 vision range."
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.json:auraName
@@ -133,7 +129,7 @@ msgid "Symbol of Greatness"
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.json:auraDescription
-msgid "Increase the population limit by 10 per wonder owned."
+msgid "+10 maximum population limit."
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.json:auraName
@@ -142,8 +138,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.json:auraDescription
 msgid ""
-"Further increase the population limit by 40 per wonder owned (requires "
-"\"Glorious Expansion\" tech)."
+"+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr ""
 
 #: simulation/data/auras/structures/workshop_repair.json:auraName
@@ -151,7 +146,7 @@ msgid "Workshop Repairs"
 msgstr ""
 
 #: simulation/data/auras/structures/workshop_repair.json:auraDescription
-msgid "Repairs garrisoned siege units at 3 HP per second."
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraName
@@ -265,7 +260,7 @@ msgid "Inspiration"
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.json:auraDescription
-msgid "+10% build rate and gather rate for citizen soldiers."
+msgid "Citizen Soldiers +10% build rate and gather speed."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.json:auraName

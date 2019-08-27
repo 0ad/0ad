@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-21 14:51+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -1567,10 +1567,10 @@ msgstr "Peta ini memaparkan pembinaan semula bandar purba Napata. [color=\"red\"
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 orang pemain berada disekitar Delta Nil yang luas. Setiap bandar bermula di atas tanah akropolis yang besar tetapi dengan sumber yang terhad, memaksa setiap pemain meluaskan operasi sumber mereka ke kawasan sekitar mereka.\n\nPeninjau memberitahu terdapat cabang-cabang sungai Nil yang cetak dan boleh dilalui, oleh itu boleh menjadi penghalang kecil diantara puak-puak musuh."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2093,11 +2093,7 @@ msgstr "Demo Kapal"
 msgid "Base Temperate Map"
 msgstr "Peta Tapak Moderat"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr ""
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2105,12 +2101,16 @@ msgid ""
 "and weird pathing."
 msgstr ""
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr ""
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Setiap pemain bermula diatas dataran rata yang luas, yang dikenali sebagai acropolis.\n\nDi sebelah Timur terdapat teluk besar yang mengandungi banyak peluang perikanan. Di sebelah barat merupakan kawasan pendalaman tanpa dimiliki oleh sesiapa berada di lembah di bawah."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2375,8 +2375,8 @@ msgstr "Sungai Gambia (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Tanah yang bersempadan sebuah pulau yang kaya dengan sumber di Mediterranean. Pemain boleh menuju ke pulau tersebut melalui laluan tanah sempit atau dengan menaiki bot."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2396,10 +2396,10 @@ msgstr "Oasis Emas (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Dua puak mendapati mereka berada diatas penara berbatu yang luas, atau acropolis.\n\nJelajah tanah ini untuk menemui khazanah dan menguasai sumber baharu."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2407,10 +2407,10 @@ msgstr "Acropolis Yunani (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Tiga puak mendapati mereka berada diatas penara berbatu yang luas, atau acropolis, dimana yang keempat diasing jauh dengan pihak musuh kerana halangan cabang-cabang sungai.\n\nJelajah tanah ini untuk menemui khazanah dan menguasai sumber baharu."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2645,8 +2645,8 @@ msgstr ""
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Dataran Thessalia yang beralun adalah terdiri daripada sungai-sungai yang sempit dan boleh dilalui. Terdapat kawasan terbuka luas untuk pembangunan besar-besaran, manakala setiap pemain dapat sampai ke puncak akropolis yang dikehendaki."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2654,10 +2654,10 @@ msgstr "Dataran Thessalia (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Empat puak perlu sampai ke puncak penara berbatu, atau akropolis.\n\nTinjau kawasan tersebut untuk mencari khazanah dan memperoleh sumber baharu."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

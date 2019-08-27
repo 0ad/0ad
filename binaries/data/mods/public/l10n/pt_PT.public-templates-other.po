@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-07-01 14:08+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -640,6 +640,10 @@ msgstr "Abeto"
 msgid "Fir Sapling"
 msgstr "Rebento de pinheiro"
 
+#: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
+msgid "Prickly Juniper"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "Manguezal"
@@ -1075,8 +1079,8 @@ msgstr "Espião"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "At least 16 melee infantry units required."
-msgstr "Requer pelo menos 16 unidades de infantaria de combate corpo-a-corpo."
+msgid "Requires at least 16 Melee Infantry."
+msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1087,8 +1091,8 @@ msgid "Battle Line"
 msgstr "Linha de Batalha"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "At least 4 units required."
-msgstr "Requer pelo menos 4 unidades."
+msgid "Requires at least 4 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1103,8 +1107,8 @@ msgid "Column Open"
 msgstr "Coluna aberta"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "At least 8 units required."
-msgstr "Requer pelo menos 8 unidades."
+msgid "Requires at least 8 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1123,8 +1127,8 @@ msgid "None"
 msgstr "Nenhuma"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "At least 10 hoplite infantry required."
-msgstr "Requer pelo menos 10 unidades de infantaria Hoplita."
+msgid "Requires at least 10 Infantry Hoplites."
+msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1135,16 +1139,16 @@ msgid "Scatter"
 msgstr "Espalhados"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed."
-msgstr "Apenas são permitidas as unidades de combate à distância."
+msgid "Requires a Ranged Soldier."
+msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Escaramuça"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "At least 16 pike infantry units required."
-msgstr "Requer pelo menos 16 unidades de infantaria piqueira."
+msgid "Requires at least 16 Infantry Pikemen."
+msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1155,8 +1159,8 @@ msgid "Testudo"
 msgstr "Tartaruga"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "At least 6 cavalry units required."
-msgstr "Requer pelo menos 6 unidades de cavalaria."
+msgid "Requires at least 6 Cavalry."
+msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

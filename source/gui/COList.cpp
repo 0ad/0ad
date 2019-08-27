@@ -40,7 +40,7 @@ COList::COList(CGUI& pGUI)
 
 void COList::SetupText()
 {
-	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+	const CGUIList& pList = GetSetting<CGUIList>("list");
 	m_ItemsYPositions.resize(pList.m_Items.size() + 1);
 
 	// Delete all generated texts. Some could probably be saved,
@@ -48,15 +48,15 @@ void COList::SetupText()
 	//  continuously, or even often, so it'll probably be okay.
 	m_GeneratedTexts.clear();
 
-	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
-	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
+	const CStrW& font = GetSetting<CStrW>("font");
+	const bool scrollbar = GetSetting<bool>("scrollbar");
 
 	m_TotalAvailableColumnWidth = GetListRect().GetWidth();
 	// remove scrollbar if applicable
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		m_TotalAvailableColumnWidth -= GetScrollBar(0).GetStyle()->m_Width;
 
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
 
 	m_HeadingHeight = SORT_SPRITE_DIM; // At least the size of the sorting sprite
 
@@ -86,7 +86,7 @@ void COList::SetupText()
 			if (column.m_Width > 0 && column.m_Width < 1)
 				width *= m_TotalAvailableColumnWidth;
 
-			CGUIList& pList_c = GUI<CGUIList>::GetSetting(this, "list_" + column.m_Id);
+			CGUIList& pList_c = GetSetting<CGUIList>("list_" + column.m_Id);
 			CGUIText* text;
 			if (!pList_c.m_Items[i].GetOriginalString().empty())
 				text = &AddText(pList_c.m_Items[i], font, width, buffer_zone, this);
@@ -131,7 +131,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 	// If somebody clicks on the column heading
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		if (!GUI<bool>::GetSetting(this, "sortable"))
+		if (!GetSetting<bool>("sortable"))
 			return;
 
 		const CPos& mouse = m_pGUI.GetMousePos();
@@ -139,13 +139,13 @@ void COList::HandleMessage(SGUIMessage& Message)
 			return;
 
 		// Copies, so that these settings are only modfied via SetSettings later.
-		CStr selectedColumn = GUI<CStr>::GetSetting(this, "selected_column");
-		int selectedColumnOrder = GUI<int>::GetSetting(this, "selected_column_order");
+		CStr selectedColumn = GetSetting<CStr>("selected_column");
+		int selectedColumnOrder = GetSetting<i32>("selected_column_order");
 
 		float xpos = 0;
 		for (const COListColumn& column : m_Columns)
 		{
-			if (GUI<bool>::GetSetting(this, "hidden_" + column.m_Id))
+			if (GetSetting<bool>("hidden_" + column.m_Id))
 				continue;
 
 			float width = column.m_Width;
@@ -286,17 +286,17 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor)
 {
 	const float bz = GetBufferedZ();
-	const bool scrollbar = GUI<bool>::GetSetting(this, "scrollbar");
+	const bool scrollbar = GetSetting<bool>("scrollbar");
 
 	if (scrollbar)
 		IGUIScrollBarOwner::Draw();
 
 	CRect rect = GetListRect();
 
-	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, _sprite);
-	CGUISpriteInstance& sprite_selectarea = GUI<CGUISpriteInstance>::GetSetting(this, _sprite_selected);
+	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>(_sprite);
+	CGUISpriteInstance& sprite_selectarea = GetSetting<CGUISpriteInstance>(_sprite_selected);
 
-	const int cell_id = GUI<int>::GetSetting(this, "cell_id");
+	const int cell_id = GetSetting<i32>("cell_id");
 
 	m_pGUI.DrawSprite(sprite, cell_id, bz, rect);
 
@@ -339,21 +339,21 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	}
 
 	// Draw line above column header
-	CGUISpriteInstance& sprite_heading = GUI<CGUISpriteInstance>::GetSetting(this, "sprite_heading");
+	CGUISpriteInstance& sprite_heading = GetSetting<CGUISpriteInstance>("sprite_heading");
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
 									m_CachedActualSize.top + m_HeadingHeight);
 	m_pGUI.DrawSprite(sprite_heading, cell_id, bz, rect_head);
 
 	// Draw column headers
-	const bool sortable = GUI<bool>::GetSetting(this, "sortable");
-	const CStr& selectedColumn = GUI<CStr>::GetSetting(this, "selected_column");
-	const int selectedColumnOrder = GUI<int>::GetSetting(this, "selected_column_order");
-	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, _textcolor);
+	const bool sortable = GetSetting<bool>("sortable");
+	const CStr& selectedColumn = GetSetting<CStr>("selected_column");
+	const int selectedColumnOrder = GetSetting<i32>("selected_column_order");
+	const CGUIColor& color = GetSetting<CGUIColor>(_textcolor);
 
 	float xpos = 0;
 	for (size_t col = 0; col < m_Columns.size(); ++col)
 	{
-		if (GUI<bool>::GetSetting(this, "hidden_" + m_Columns[col].m_Id))
+		if (GetSetting<bool>("hidden_" + m_Columns[col].m_Id))
 			continue;
 
 		// Check if it's a decimal value, and if so, assume relative positioning.
@@ -380,7 +380,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			else
 				spriteName = "sprite_not_sorted";
 
-			CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, spriteName);
+			CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>(spriteName);
 			m_pGUI.DrawSprite(sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
 		}
 
@@ -390,7 +390,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	}
 
 	// Draw list items for each column
-	const CGUIList& pList = GUI<CGUIList>::GetSetting(this, "list");
+	const CGUIList& pList = GetSetting<CGUIList>("list");
 	const size_t objectsCount = m_Columns.size();
 	for (size_t i = 0; i < pList.m_Items.size(); ++i)
 	{
@@ -418,7 +418,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		xpos = 0;
 		for (size_t col = 0; col < objectsCount; ++col)
 		{
-			if (GUI<bool>::GetSetting(this, "hidden_" + m_Columns[col].m_Id))
+			if (GetSetting<bool>("hidden_" + m_Columns[col].m_Id))
 				continue;
 
 			// Determine text position and width

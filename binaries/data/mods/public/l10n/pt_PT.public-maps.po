@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-07-19 18:18+0000\n"
-"Last-Translator: Diogo Soares <diogo.afonso511@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1579,10 +1579,10 @@ msgstr "Este mapa mostra a reconstrução da antiga cidade de Napata. [color=\"r
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 jogadores enfrentam-se no vasto delta do Nilo. Cada povoação começa no topo de uma grande acrópole onde os recursos são escassos, o que obriga os jogadores a explorarem o mapa em busca de locais mais ricos.\n\nNestas redondezas, os braços do rio Nilo são pouco profundos e facilmente atravessáveis em vários locais, portanto não constituem uma barreira fiável contra fações inimigas."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2105,11 +2105,7 @@ msgstr "Demonstração de Embarcações"
 msgid "Base Temperate Map"
 msgstr "Mapa Temperado de Base"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Teste de integração do movimento de unidades"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2117,12 +2113,16 @@ msgid ""
 "and weird pathing."
 msgstr "Este mapa foi concebido para testar alguns casos de movimento de unidades. Implica unitAI, unitMotion e os caminhos relevantes, atuando por isso como um mapa de testes integrado. Procura por unidades bloqueadas, animações erradas e caminhos estranhos."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Teste de integração do movimento de unidades"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Cada jogador inicia a partida num grande planalto, conhecido como acrópole.\n\nA leste encontra-se uma grande baía com oportunidades de pesca. A oeste encontra-se uma região interior acidentada, com uma acrópole sobre um vale por reivindicar."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2387,8 +2387,8 @@ msgstr "Rio Gâmbia (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Um anel de terra confina-se com uma ilha rica em recursos no Mediterrâneo. Os jogadores podem alcançar o centro por uma via terrestre estreita ou por via marítima."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2408,10 +2408,10 @@ msgstr "Oásis de Ouro (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Duas civilizações encontram-se em planaltos rochosos ou acrópoles.\n\nExplora o mapa para procurar tesouros e assegurar novos recursos."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2419,10 +2419,10 @@ msgstr "Acrópole (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Três frações encontram-se no topo de planaltos rochosos ou acrópoles, a quarta está separada dos seus inimigos pelo braço de um rio.\n\nExplora o território para encontrar tesouros e assegurar novos recursos."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2657,8 +2657,8 @@ msgstr ""
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "A planície da Tessália é atravessada por caminhos estreitos e facilmente ultrapassados. Os espaços abertos permitem uma expansão massiça enquanto que cada jogador começa no topo de uma larga e segura acrópole."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2666,10 +2666,10 @@ msgstr "Planícies Tessálias (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Quatro fações encontram-se empoleiradas com segurança no topo de planaltos rochosos ou acrópoles.\n\nExplora o território para encontrar tesouros e assegurar novos recursos."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

@@ -5,9 +5,9 @@
 # Translators:
 # AceLan Kao <acelan@gmail.com>, 2018
 # DanSnow <dododavid006@gmail.com>, 2014
-# Hsu Karinsu <m80126colin@gmail.com>, 2018
+# Karinsu Hsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
-# Jeff Huang <s8321414@gmail.com>, 2014-2017
+# 黃柏諺 <s8321414@gmail.com>, 2014-2017
 # Jonathan Chin <888jonathan@gmail.com>, 2017
 # Mysterelee <8161525@qq.com>, 2014
 # neil000 <neil200063@gmail.com>, 2017
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-03 09:57+0200\n"
-"PO-Revision-Date: 2019-06-03 16:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 14:48+0000\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,16 +36,16 @@ msgstr "市政建築"
 msgid "Civic"
 msgstr "市鎮"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:85
+#: simulation/templates/template_structure_civic_civil_centre.xml:87
 msgid "Civic Center"
 msgstr "城鎮中心"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:86
+#: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "建造以擴大領土範圍，訓練公民。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
-#: simulation/templates/template_structure_civic_civil_centre.xml:50
+#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:52
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "城鎮中心"
@@ -64,7 +64,7 @@ msgstr "招募特殊單位。"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
 #: simulation/templates/template_structure_civic_temple.xml:35
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:27
 #: simulation/templates/template_structure_military_embassy.xml:38
@@ -82,8 +82,8 @@ msgid "Increase the population limit."
 msgstr "增加人口上限。"
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:53
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_military_barracks.xml:24
@@ -124,53 +124,53 @@ msgstr "木牆"
 msgid "Wall off your town for a stout defense."
 msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
 
-#: simulation/templates/template_structure_defensive_tower.xml:33
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower.xml:35
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
 msgstr "防禦塔"
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:50
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "建造於中立地帶或自己領土上以偵查該地圖區域。在中立地帶上，佔領值會緩慢地轉換為大地之母。"
 
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:53
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:27
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:49
 msgid "Outpost"
 msgstr "前哨站"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "Sentry Tower"
 msgstr "哨站"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:36
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr "哨站"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
 msgstr "射出箭矢。駐防以提供額外的防禦力。需要城垛射孔科技以保護其塔底。可升級成石製塔樓。"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:58
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "以石頭強化並升級至防禦塔。"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Defense Tower"
 msgstr "防禦塔"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:30
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
 msgstr "射出箭矢。駐防以提供額外的防禦力。需要城垛射孔科技以保護其塔底。"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
 msgstr "石製塔樓"
 
@@ -200,11 +200,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "這將會讓您的單位繞著防禦工事走。"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
+#: simulation/templates/template_structure_defensive_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "城牆塔樓"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:52
+#: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "射出箭矢。在城牆中駐軍以對抗攻擊者。"
 
@@ -295,7 +295,7 @@ msgid "Train elephant units."
 msgstr "訓練大象單位。"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:75
 #: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:53
@@ -314,12 +314,12 @@ msgstr ""
 msgid "Embassy"
 msgstr "大使館"
 
-#: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:70
+#: simulation/templates/template_structure_military_fortress.xml:41
+#: simulation/templates/template_structure_military_fortress.xml:72
 msgid "Fortress"
 msgstr "堡壘"
 
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
@@ -436,7 +436,6 @@ msgstr "奇觀"
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 #: simulation/templates/structures/spart_range.xml:5
-#: simulation/templates/structures/spart_workshop.xml:5
 msgid "Stratēgeîon"
 msgstr "十將軍會議室"
 
@@ -547,11 +546,11 @@ msgstr "訓練英雄。研究特殊科技。"
 msgid "Stoá"
 msgstr ""
 
-#: simulation/templates/structures/athen_stable.xml:9
-#: simulation/templates/structures/mace_stable.xml:9
-#: simulation/templates/structures/ptol_stable.xml:9
-#: simulation/templates/structures/sele_stable.xml:9
-#: simulation/templates/structures/spart_stable.xml:9
+#: simulation/templates/structures/athen_stable.xml:5
+#: simulation/templates/structures/mace_stable.xml:5
+#: simulation/templates/structures/ptol_stable.xml:5
+#: simulation/templates/structures/sele_stable.xml:5
+#: simulation/templates/structures/spart_stable.xml:5
 msgid "Hippṓn"
 msgstr ""
 
@@ -620,6 +619,14 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
 msgstr "將榮耀歸於您的文明，並在您的帝國裡加入大片的土地。可駐守最多30個單位以極快的速度治療他們。"
+
+#: simulation/templates/structures/athen_workshop.xml:5
+#: simulation/templates/structures/mace_workshop.xml:5
+#: simulation/templates/structures/ptol_workshop.xml:5
+#: simulation/templates/structures/sele_workshop.xml:5
+#: simulation/templates/structures/spart_workshop.xml:5
+msgid "Hoplothēkē"
+msgstr ""
 
 #: simulation/templates/structures/baby_defense_tower.xml:5
 #: simulation/templates/structures/pers_defense_tower.xml:5
@@ -718,8 +725,8 @@ msgstr ""
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_stable.xml:9
-#: simulation/templates/structures/gaul_stable.xml:9
+#: simulation/templates/structures/brit_stable.xml:5
+#: simulation/templates/structures/gaul_stable.xml:5
 msgid "Eposton"
 msgstr ""
 
@@ -759,7 +766,7 @@ msgstr "無法攻擊或駐軍。"
 msgid "Stonehenge"
 msgstr "巨石陣"
 
-#: simulation/templates/structures/brit_workshop.xml:8
+#: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
 msgid "Miletucerdon"
 msgstr ""
@@ -1254,10 +1261,6 @@ msgstr "Bibliothḗkē"
 msgid "Asklēpieîon"
 msgstr "Asklēpieîon"
 
-#: simulation/templates/structures/mace_workshop.xml:11
-msgid "Synergeîon Poliorkētṓn"
-msgstr "Synergeîon Poliorkētṓn"
-
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
 msgstr "Sainyavasa"
@@ -1381,13 +1384,12 @@ msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "占領這個建築物以訓練來自希臘化埃及的傭兵。"
 
 #: simulation/templates/structures/pers_apadana.xml:29
-#: simulation/templates/structures/pers_tacara.xml:26
-msgid "Persian Palace"
-msgstr "波斯宮殿"
+msgid "Throne Hall"
+msgstr ""
 
 #: simulation/templates/structures/pers_apadana.xml:30
-msgid "Apadana"
-msgstr "阿帕達納"
+msgid "Apadāna"
+msgstr ""
 
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
@@ -1404,8 +1406,8 @@ msgid "Padgan"
 msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
-msgid "Levy citizen-infantry units."
-msgstr "徵召公民步兵單位。"
+msgid "Levy citizen-soldier infantry."
+msgstr ""
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1427,10 +1429,6 @@ msgstr "Gaiāšta"
 msgid "Nāvašta"
 msgstr "Nāvašta"
 
-#: simulation/templates/structures/pers_elephant_stables.xml:5
-msgid "Persian Elephant Stables"
-msgstr "波斯象棚"
-
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
 msgstr "Kaštašta"
@@ -1448,12 +1446,12 @@ msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "訓練精英騎兵並建造攻城槌。"
 
 #: simulation/templates/structures/pers_hall.xml:29
-msgid "Persian Hall"
-msgstr "波斯大廳"
+msgid "Gate of All Nations"
+msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:30
-msgid "Duvarthi Visadahyu"
-msgstr "Duvarthi Visadahyu"
+msgid "Duvarθi Visadahyu"
+msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:32
 msgid "Train War Elephants and Kardakes mercenaries."
@@ -1498,17 +1496,21 @@ msgstr "Paraspa"
 msgid "Asiyah"
 msgstr "阿西葉"
 
+#: simulation/templates/structures/pers_tacara.xml:26
+msgid "Palace"
+msgstr "宮殿"
+
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
 msgstr "Taçara"
 
 #: simulation/templates/structures/pers_temple.xml:12
-msgid "Ayadana"
-msgstr "Ayadana"
+msgid "Āyadanam"
+msgstr ""
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
-msgid "Duvitaparnam"
-msgstr "Duvitaparnam"
+msgid "Duvarθiš"
+msgstr ""
 
 #: simulation/templates/structures/pers_wall_long.xml:29
 #: simulation/templates/structures/pers_wall_medium.xml:23
@@ -1649,22 +1651,22 @@ msgid "Triumphal Arch"
 msgstr "凱旋門"
 
 #: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "特殊的羅馬帝國建築。"
+msgid "Arcus Triumphālis"
+msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:45
+#: simulation/templates/structures/rome_army_camp.xml:47
 msgid "ArmyCamp"
 msgstr "軍營"
 
-#: simulation/templates/structures/rome_army_camp.xml:78
-msgid "Entrenched Army Camp"
-msgstr "加固型軍營"
+#: simulation/templates/structures/rome_army_camp.xml:80
+msgid "Army Camp"
+msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:79
-msgid "Castrum Vallum"
-msgstr "先鋒營寨"
+#: simulation/templates/structures/rome_army_camp.xml:81
+msgid "Castra"
+msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:82
+#: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
@@ -1675,8 +1677,8 @@ msgid "Castrum"
 msgstr "營地"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
-msgid "Armamentarium"
-msgstr "醫療器械"
+msgid "Armāmentārium"
+msgstr ""
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
@@ -1687,16 +1689,16 @@ msgid "Saeptum"
 msgstr "Saeptum"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
-msgid "Turris Lignea"
-msgstr "Turris Lignea"
+msgid "Turris Laterīcia"
+msgstr ""
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
 msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:8
-msgid "Villa"
-msgstr "別墅"
+msgid "Vīlla"
+msgstr ""
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1711,20 +1713,24 @@ msgid "Domus"
 msgstr "Domus"
 
 #: simulation/templates/structures/rome_market.xml:12
-msgid "Mercatus"
-msgstr "Mercatus"
+msgid "Mercātus"
+msgstr ""
 
 #: simulation/templates/structures/rome_outpost.xml:5
-msgid "Vigilarium"
-msgstr "Vigilarium"
+msgid "Vigilārium"
+msgstr ""
+
+#: simulation/templates/structures/rome_sentry_tower.xml:5
+msgid "Turris Līgnea"
+msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "城門"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
-msgid "Porta Circummunitionis"
-msgstr "Porta Circummunitionis"
+msgid "Porta Circummūnītiōnis"
+msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
@@ -1736,8 +1742,9 @@ msgstr "圍牆"
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
-msgid "Murus Circummunitionis"
-msgstr "Murus Circummunitionis"
+#: simulation/templates/structures/rome_wallset_siege.xml:6
+msgid "Mūrus Circummūnītiōnis"
+msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:55
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
@@ -1751,32 +1758,36 @@ msgid "Siege Wall Tower"
 msgstr "牆塔"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
-msgid "Turris Circummunitionis"
-msgstr "Turris Circummunitionis"
+msgid "Turris Circummūnītiōnis"
+msgstr ""
+
+#: simulation/templates/structures/rome_stable.xml:5
+msgid "Equīle"
+msgstr ""
 
 #: simulation/templates/structures/rome_storehouse.xml:8
-msgid "Receptaculum"
-msgstr "Receptaculum"
+msgid "Receptāculum"
+msgstr ""
 
 #: simulation/templates/structures/rome_temple.xml:9
-msgid "Aedes"
-msgstr "Aedes"
+msgid "Aedēs"
+msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
 msgstr "戰神馬爾斯神廟"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
-msgid "Aedes Martis"
-msgstr "Aedes Martis"
+msgid "Aedēs Mārtiālis"
+msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
 msgstr "灶神維斯塔神廟"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
-msgid "Aedes Vestae"
-msgstr "Aedes Vestae"
+msgid "Aedēs Vestālis"
+msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1805,13 +1816,13 @@ msgstr "Moenia"
 msgid "Turris Lapidea"
 msgstr "Turris Lapidea"
 
-#: simulation/templates/structures/rome_wallset_siege.xml:6
-msgid "Murus Latericius"
-msgstr "磚牆"
-
 #: simulation/templates/structures/rome_wonder.xml:15
-msgid "Aedes Iovis Optimi Maximi"
-msgstr "Aedes Iovis Optimi Maximi"
+msgid "Aedēs Iovis Optimi Maximi"
+msgstr ""
+
+#: simulation/templates/structures/rome_workshop.xml:5
+msgid "Ballistārium"
+msgstr ""
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"

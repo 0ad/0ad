@@ -80,7 +80,7 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& Font
 	// to run through the TextCalls a second time in the CalculateTextPosition method again
 	EAlign align = EAlign_Left;
 	if (pObject->SettingExists("text_align"))
-		align = GUI<EAlign>::GetSetting(pObject, "text_align");
+		align = pObject->GetSetting<EAlign>("text_align");
 
 	// Go through string word by word
 	for (int i = 0; i < static_cast<int>(string.m_Words.size()) - 1; ++i)

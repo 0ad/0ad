@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-01 10:10+0200\n"
-"PO-Revision-Date: 2019-04-01 18:04+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 18:47+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -166,7 +166,7 @@ msgid "Delian League"
 msgstr "הליגה האטית-דלית\n "
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Allied warships −25% construction time."
+msgid "Allied Warships −25% construction time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
@@ -174,7 +174,7 @@ msgid "Druids"
 msgstr "דרואידים"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allied healers −20% resource costs."
+msgid "Allied Healers −20% resource costs."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
@@ -182,7 +182,7 @@ msgid "Trademasters"
 msgstr "Trademasters"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "Allied markets +10% international trade bonus."
+msgid "Allied Markets +10% international trade bonus."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
@@ -190,7 +190,7 @@ msgid "Druidic Wisdom"
 msgstr "חוכמה דרוידית"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
-msgid "Allied structures −20% technology research time."
+msgid "Allied Structures −20% technology research time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
@@ -198,7 +198,7 @@ msgid "Saripeko"
 msgstr "סרפיקו "
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied citizen-soldier javelinists −20% resource costs."
+msgid "Allied Citizen-Soldier Javelinists −20% resource costs."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
@@ -206,7 +206,7 @@ msgid "Elephant Suppliers"
 msgstr "הספקים פיל"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
-msgid "Allied elephants −20% resource costs and training time."
+msgid "Allied Elephants −20% resource costs and training time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
@@ -223,7 +223,7 @@ msgstr "תמיכה דתית של אשוקה"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied temples −50% resource costs and building time; temple technologies "
+"Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
 msgstr ""
 
@@ -232,7 +232,7 @@ msgid "The Royal Road"
 msgstr "הדרך המלכותית /"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Allied land traders +15% trade gain."
+msgid "Allied Land Traders +15% trade gain."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
@@ -248,7 +248,7 @@ msgid "Conscription"
 msgstr "גִיוּס חוֹבָה"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied citizen-soldier infantry −20% training time."
+msgid "Allied Citizen-Soldier Infantry −20% training time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
@@ -256,7 +256,7 @@ msgid "Syrian Tetrapolis"
 msgstr "טטריפוליס הסורית"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid "Allied civil centers −20% resource costs."
+msgid "Allied Civil Centers −20% resource costs."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
@@ -264,7 +264,7 @@ msgid "Peloponnesian League"
 msgstr "ליגה פלופונסית"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Allied citizen-soldier infantry spearmen +10% health."
+msgid "Allied Citizen-Soldier Infantry Spearmen +10% health."
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
@@ -282,8 +282,8 @@ msgstr "רפורמות כלכליות"
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
-"+15% gather rate for workers."
-msgstr "סולון הנהיג מספר רפורמות כלכליות המעודדות מסחר וחקלאות. \\ N + 15% לאסוף את שיעור העובדים."
+"Workers +15% gather speed."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -292,8 +292,8 @@ msgstr "הון כלכלי"
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
-"-10% cost for economic technologies."
-msgstr "סולון הביא מערכת חדשה של משקולות ואמצעים, אבות היו מעודדים למצוא עסקאות עבור בניהם. \\ N -10% עלות עבור טכנולוגיות כלכליות."
+"Economic technologies −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -303,8 +303,8 @@ msgstr "טקטיקות גרילה"
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
-"+15% movement speed and vision range for all soldiers."
-msgstr "כשראה הגנה מתוחכמת כדי להיות חסר תועלת נגד הצבא הרומי, Cassivlaunus נקטו טקטיקות הגרילה. זה היה מועסק אחר כך גם על ידי מושלים אחרים. \\ N + 15% מהירות התנועה טווח הראייה עבור כל החיילים."
+"Soldiers +15% movement speed and +15% vision range."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -313,8 +313,8 @@ msgstr "התנצלות"
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
-"+20% attack range for skirmisher javelins."
-msgstr "Cassivellaunus פרסו מתנגדי המהיר כדי להטריד חיילים רומאים ואדירים. \\ N + 20% טווח ההתקפה עבור javelins מתנגש."
+"Javelinists +20% attack range."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -323,8 +323,8 @@ msgstr "מפקד חיל הפרשים הכבד"
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
-"+1 armor, +10% health for melee cavalry."
-msgstr "מנהיג הפרשים הכבדים של קרתאג'ין בטרביה ובקאנה, שם הוטל על המטען המשולש שלו השפעות הרסניות על האויב. \\ N + 1 שריון, + 10% בריאות לחיל-פרשים."
+"Melee Cavalry +1 armor and +10% health."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -333,8 +333,8 @@ msgstr "אמבוש שחיטה"
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
-"Soldiers require 25% less experience to promote and gain a 5% attack bonus."
-msgstr "נלחם עם הרומאים, Ambiorix הבין את חוסר התוחלת של לוחמה פתוחה במקום נקטו טקטיקות מארב. הגאלים למדו במהירות היכן ומתי לבצע התקפות פתע. \\ NSoldiers דורשים 25% פחות ניסיון כדי לקדם ולקבל בונוס התקפה של 5%."
+"Soldiers +5% melee and ranged attack damage and −25% promotion experience."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -343,8 +343,8 @@ msgstr "מחווה לרומא"
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
-"-10% farming rate."
-msgstr "כשהצבא הרומי לא היה מסוגל לספק מזון, נאלצו השבטים הגאליים לוותר על חלק מהיבול שכבר היה דל. את Ebeones תחת Ambiorix היו מסרבים לעשות זאת, ולכן קיסר שלחה כוחות לקחת אותם בכוח. \\ N-10% שיעור החקלאות."
+"Workers −10% grain gather rate."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -353,8 +353,8 @@ msgstr "מפקד חרב"
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
-"-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr "יחד עם אחיו אינדיביל, פקד מנדוניוס את המתגייסים ואת שכירי החרב האיבריאניים שהשתתפו במלחמות הפוניות. \\ N-25% עלות המתכת עבור כל שכירי החרב האזרחים-חיילים."
+"Allied Citizen-Soldier Mercenaries −25% metal cost."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -363,8 +363,8 @@ msgstr "שומר החיים /"
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
-"+10% health for all soldiers."
-msgstr "בעקבות נפילת האינדיב בקרב, הובילה מנדוניוס את הניצולים למקום מבטחים. \\ N + 10% בריאות לכל החיילים."
+"Soldiers +10% health."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
@@ -373,8 +373,8 @@ msgstr "המלכה הראשונה של נוביה"
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
-"Awe: All enemy female citizens -15% gather rate."
-msgstr "פסק הדין עם כוח מלא של האימפריה Meroë וגם משחק תפקיד משמעותי הדת המרואית, Shanakdakheto ייצג את כוחו של קוש, משהו לא להילקח בקלילות. \\ N: כל אזרחות האויב 15% לאסוף שיעור."
+"Enemy Female Citizens −15% gather speed."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -382,8 +382,8 @@ msgstr "בית המקדש בנאקה"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
-"As in all cultures, religion played a significant part in the Meroë Empire. Shanakdakheto had the Temple built around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 heal rate for units garrisoned in nearby temples."
+"As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
+"Temples +1 garrison heal rate."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
@@ -393,7 +393,7 @@ msgstr "שובר ערים"
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
-"+5 food and wood for every enemy unit killed or structure destroyed."
+"Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
@@ -403,8 +403,8 @@ msgstr "מאוחד של האימפריה"
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
-"+20% territory influence."
-msgstr "בנו של צ'אנדרגופטה מאוריה, בינדוסרה חיברה את האימפריה, ויצרה מדינה יציבה לבנו אשוקה לרשת. \\ N + 20% משפיעים על שטח."
+"Structures +20% territory influence radius."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -413,8 +413,8 @@ msgstr "Vamba Moriyar"
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraDescription
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
-"+15% unit capture rate."
-msgstr "Bindusara הוא אמר כי יש כבשו אדמות מדרום האימפריה. \\ N + 15% שיעור ללכוד יחידה."
+"Soldiers +15% capture attack strength."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -423,8 +423,8 @@ msgstr "בונה גדול"
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
-"+5% health and -10% resource cost for all buildings."
-msgstr "לאורך שלטונו, הרבה של עושר Artaxerxes הוצא על בניית פרויקטים. הוא שיחזר את ארמון דריוס הראשון בסוסה ושחזר את העיר העתיקה של אקבטנה. \\ N + 5% בריאות ו -10% עלות המשאבים עבור כל המבנים."
+"Structures −10% resource costs and +5% health."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -433,8 +433,8 @@ msgstr "הספרן הגדול"
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
-"-10% resource cost for all technologies."
-msgstr "בהמשך עבודתו של קודמיהם על הספרייה הגדולה באלכסנדריה, הוא תפס כל ספר שהובא לעיר, ובכך השאיר לעמו כמות עצומה של חוכמה מאוגדת. \\ N-10% עלות המשאבים עבור כל הטכנולוגיות."
+"Structure technologies −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -443,8 +443,8 @@ msgstr "נוקם של לוקרישיה"
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
-"Female citizens cost 20% less and work 10% faster."
-msgstr "לאחר אונס של לוקרישיה על ידי בנו של המלך Tarquinius סופרבוס ואת ההתאבדות שלאחר מכן, ברוטוס הבטיח לנקום אותה להפיל את המלוכה. \\ N האשה האזרחים עלות 20% פחות לעבוד 10% מהר יותר."
+"Female Citizens −20% food cost and +10% gather speed."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -453,8 +453,8 @@ msgstr "מייסד ומגן הרפובליקה"
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"+1 armor for all units and siege engines."
-msgstr "ברוטוס היה אחד מדמויות המפתח בהפלת המלוכה וביסוס הרפובליקה הרומית. מאוחר יותר, כקונסול הוא הוביל צבא רומי לניצחון נגד המלך האטרוסקי טרקוויניוס שביקש לכבוש מחדש את כס המלוכה. \\ N + 1 שריון לכל היחידות ומכוניות המצור."
+"Humans and Siege Engines +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -463,8 +463,8 @@ msgstr "מייסד מקדש אזידה"
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
-"-10% resource cost for temples and temple technologies."
-msgstr "אנטיוכוס הנחתי את היסוד של בית המקדש אזידה ב בורסיפה. \\ N -10% עלות המשאבים עבור מקדשים וטכנולוגיות המקדש."
+"Temples −10% resource costs; Temple technologies −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -473,8 +473,8 @@ msgstr "עלייה"
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraDescription
 msgid ""
 "Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
-"+5% maximum population."
-msgstr "אנטיוכוס עודד את העלייה היוונית לממלכתו והקים ערים חדשות רבות באסיה הקטנה כדי לשמש כמשקל נגד לגאולים. \\ N + 5% אוכלוסיה מקסימלית."
+"+5% maximum population limit."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
@@ -483,7 +483,7 @@ msgstr "Basileus Megas"
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
-"-10% cost for War Elephants."
+"Champion Elephants −10% resource costs."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
@@ -494,12 +494,12 @@ msgstr "ליקורגן רפורמות צבאיות"
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
-"-10% resource cost for citizen spear infantry."
-msgstr "Lycurgus הנהיג מספר רפורמות צבאיות, ובכך נאמנות מלאה ובלתי מחולקת ספרטה מאזרחיה יושמה תחת צורתו של הממשלה. \\ N -10% עלות המשאב עבור חיל הרגלים אזרח החנית."
+"Citizen-Soldier Infantry Spearmen −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
-msgid "-5% resource cost for spear infantry champions."
-msgstr "-5% עלות המשאבים עבור אלופי חיל הרגלים."
+msgid "Champion Infantry Spearmen −5% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -508,8 +508,8 @@ msgstr "מטילי ברזל"
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
-"+15% metal gather rate for workers."
-msgstr "כדי לתמוך עוד בשוויון, Lycurgus אסר על שימוש בזהב וכסף, מציגה מטבע ברזל חדש שנקרא pelanors. \\ N + 15% איסוף מתכת עבור העובדים."
+"Workers +15% metal gather rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -818,8 +818,8 @@ msgid "Forefront Leader"
 msgstr "מנהיג Forefront"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
-msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr "+ 20% התקפה + 1 ללכוד עבור חיל פרשים."
+msgid "+20% attack and +1 capture for cavalry."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"

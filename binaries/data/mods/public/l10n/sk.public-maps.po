@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-21 14:51+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -1586,10 +1586,10 @@ msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 hráči súperia o širokú deltu Nílu. Na začiatku leží každé mesto na vrchole veľkej akropoly, ktorá však neposkytuje dostatok prírodných zdrojov, čo núti hráčov vykonávať ťažbu aj v okolitých územiach.\n\nPrieskumníci hlásia, že blízke vetvy Nílu sú na mnohých miestach plytké a vhodné na prebrodenie, a teda predstavujú len nepatrnú prekážku medzi znepriatelenými frakciami."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2112,11 +2112,7 @@ msgstr "Ukážka lodí"
 msgid "Base Temperate Map"
 msgstr "Základná mapa mierneho podnebia"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr ""
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2124,12 +2120,16 @@ msgid ""
 "and weird pathing."
 msgstr ""
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr ""
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Každý hráč začína na vrchole veľkej plošiny, tiež nazývanej akropola.\n\nNa východe leží veľký záliv, ktorý ponúka príležitosti na lov rýb. Na západe sa rozprestiera drsná krajina s neobsadenou akropolou so širokým rozhľadom na údolie popod ňou."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2394,8 +2394,8 @@ msgstr "Rieka Gambia (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Prstenec zeme hraničí s bohatým ostrovom v Stredomorí. Hráči sa do stredu dostanú po úzkom páse pevniny alebo člnmi."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2415,10 +2415,10 @@ msgstr "Zlatá oáza (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Dve frakcie sa bezpečne ocitli na vrchole veľkých skalnatých plošín či akropol.\n\nPreskúmaním krajiny nájdite poklady a zabezpečte ťažbu nových prírodných zdrojov."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2426,10 +2426,10 @@ msgstr "Grécka akropola (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Tri frakcie sa bezpečne ocitli na vrchole veľkých skalnatých plošín akropol, zatiaľ čo štvrtá je oddelená od nepriateľov riečnym ramenom.\n\nPreskúmaj krajinu aby si našiel poklady a zabezpečil si nové zdroje."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2664,8 +2664,8 @@ msgstr ""
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Zvlnená tesálska pláň, cez ktorú pretekajú úzke, plytké potoky. Široké priestranstvo umožňuje masívnu expanziu, zatiaľ čo každý hráč začína v bezpečí na vrchole veľkej akropoly."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2673,10 +2673,10 @@ msgstr "Tesálske pláne (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Štyri frakcie sa bezpečne ocitli na vrchole veľkých skalnatých plošín či akropol.\n\nPreskúmaním krajiny nájdite poklady a zabezpečte ťažbu nových prírodných zdrojov."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

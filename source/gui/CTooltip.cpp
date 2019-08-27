@@ -65,20 +65,20 @@ void CTooltip::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	const CGUIString& caption = GUI<CGUIString>::GetSetting(this, "caption");
-	const CStrW& font = GUI<CStrW>::GetSetting(this, "font");
-	const float max_width = GUI<float>::GetSetting(this, "maxwidth");
-	const float buffer_zone = GUI<float>::GetSetting(this, "buffer_zone");
+	const CGUIString& caption = GetSetting<CGUIString>("caption");
+	const CStrW& font = GetSetting<CStrW>("font");
+	const float max_width = GetSetting<float>("maxwidth");
+	const float buffer_zone = GetSetting<float>("buffer_zone");
 
 	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, max_width, buffer_zone, this);
 
 	// Position the tooltip relative to the mouse:
 
-	const CPos& mousepos = GUI<bool>::GetSetting(this, "independent") ?
+	const CPos& mousepos = GetSetting<bool>("independent") ?
 		m_pGUI.GetMousePos() :
-		GUI<CPos>::GetSetting(this, "_mousepos");
+		GetSetting<CPos>("_mousepos");
 
-	const CPos& offset = GUI<CPos>::GetSetting(this, "offset");
+	const CPos& offset = GetSetting<CPos>("offset");
 
 	float textwidth = m_GeneratedTexts[0].GetSize().cx;
 	float textheight = m_GeneratedTexts[0].GetSize().cy;
@@ -87,7 +87,7 @@ void CTooltip::SetupText()
 	size.pixel.left = mousepos.x + offset.x;
 	size.pixel.right = size.pixel.left + textwidth;
 
-	switch (GUI<EVAlign>::GetSetting(this, "anchor"))
+	switch (GetSetting<EVAlign>("anchor"))
 	{
 	case EVAlign_Top:
 		size.pixel.top = mousepos.y + offset.y;
@@ -135,7 +135,7 @@ void CTooltip::Draw()
 {
 	float z = 900.f; // TODO: Find a nicer way of putting the tooltip on top of everything else
 
-	CGUISpriteInstance& sprite = GUI<CGUISpriteInstance>::GetSetting(this, "sprite");
+	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>("sprite");
 
 	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
 	// we need to call it now *before* we do the rest of the drawing
@@ -147,6 +147,6 @@ void CTooltip::Draw()
 
 	m_pGUI.DrawSprite(sprite, 0, z, m_CachedActualSize);
 
-	const CGUIColor& color = GUI<CGUIColor>::GetSetting(this, "textcolor");
+	const CGUIColor& color = GetSetting<CGUIColor>("textcolor");
 	DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
 }

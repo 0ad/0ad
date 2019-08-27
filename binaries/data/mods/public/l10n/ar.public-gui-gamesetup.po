@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-04-15 09:50+0200\n"
-"PO-Revision-Date: 2019-04-16 03:33+0000\n"
+"POT-Creation-Date: 2019-08-23 07:08+0000\n"
+"PO-Revision-Date: 2019-08-23 16:03+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -499,64 +499,64 @@ msgstr "عشوائي"
 msgid "Pick a biome at random."
 msgstr "إختر حياة حيوية عشوائياً."
 
-#: gui/gamesetup/gamesetup.js:2127
+#: gui/gamesetup/gamesetup.js:2130
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2132
+#: gui/gamesetup/gamesetup.js:2135
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "مجهول"
 
-#: gui/gamesetup/gamesetup.js:2162
+#: gui/gamesetup/gamesetup.js:2165
 msgid "Yes"
 msgstr "نعم"
 
-#: gui/gamesetup/gamesetup.js:2162
+#: gui/gamesetup/gamesetup.js:2165
 msgid "No"
 msgstr "لا"
 
-#: gui/gamesetup/gamesetup.js:2169
+#: gui/gamesetup/gamesetup.js:2172
 #, javascript-format
 msgid "%(setting)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2257
+#: gui/gamesetup/gamesetup.js:2260
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2462
+#: gui/gamesetup/gamesetup.js:2461
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "الذّكاء الاصطناعيّ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2470
+#: gui/gamesetup/gamesetup.js:2469
 msgid "Unassigned"
 msgstr "غير معيّن"
 
-#: gui/gamesetup/gamesetup.js:2546
+#: gui/gamesetup/gamesetup.js:2545
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2553
+#: gui/gamesetup/gamesetup.js:2552
 msgid "Unknown Player"
 msgstr "لاعب مجهول"
 
-#: gui/gamesetup/gamesetup.js:2592
+#: gui/gamesetup/gamesetup.js:2591
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2593
+#: gui/gamesetup/gamesetup.js:2592
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2594
+#: gui/gamesetup/gamesetup.js:2593
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -660,64 +660,64 @@ msgstr "ألغِ"
 msgid "OK"
 msgstr "حسنًا"
 
-#: gui/gamesetup/gamesetup.xml:(caption):28
+#: gui/gamesetup/gamesetup.xml:(caption):24
 msgid "Match Setup"
 msgstr "إعداد المبارزة"
 
-#: gui/gamesetup/gamesetup.xml:(caption):34
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading"
 msgstr "يحمّل"
 
-#: gui/gamesetup/gamesetup.xml:(caption):38
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
 msgstr "يحمّل بيانات الخريطة، رجاءً انتظر…"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
 msgstr "اسم اللاعب"
 
-#: gui/gamesetup/gamesetup.xml:(caption):62
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Color"
 msgstr "اللون"
 
-#: gui/gamesetup/gamesetup.xml:(caption):66
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Player Placement"
 msgstr "موضع اللاعب"
 
-#: gui/gamesetup/gamesetup.xml:(caption):70
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Civilization"
 msgstr "الحضارة"
 
-#: gui/gamesetup/gamesetup.xml:(caption):87
+#: gui/gamesetup/gamesetup.xml:(caption):83
 msgid "Team"
 msgstr "الفريق"
 
-#: gui/gamesetup/gamesetup.xml:(caption):125
+#: gui/gamesetup/gamesetup.xml:(caption):121
 msgid "Show this message in the future."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):214
+#: gui/gamesetup/gamesetup.xml:(caption):210
 msgid "Send"
 msgstr "أرسل"
 
-#: gui/gamesetup/gamesetup.xml:(caption):231
+#: gui/gamesetup/gamesetup.xml:(caption):227
 msgid "Cheats enabled."
 msgstr "الغشّ مفعّل."
 
-#: gui/gamesetup/gamesetup.xml:(caption):254
+#: gui/gamesetup/gamesetup.xml:(caption):250
 msgid "Back"
 msgstr "عُد"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):82
+#: gui/gamesetup/gamesetup.xml:(tooltip):78
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):97
+#: gui/gamesetup/gamesetup.xml:(tooltip):93
 msgid "Reset all teams to the default."
 msgstr "صفّر كلّ الفِرق إلى الافتراضيّات."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):196
+#: gui/gamesetup/gamesetup.xml:(tooltip):192
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "اعرض ردهة اللاعبين في نافذة حواريّ."
 
@@ -766,1423 +766,1426 @@ msgstr "أتركها فارغة لكي تستعمل المنفذ الافترا�
 
 #: gui/text/quotes.txt:1
 msgid ""
-"\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
+"“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
-"harsh and violent.\" - Aeschylus (\"Agamemnon\", 176-183)"
+"harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
 msgstr ""
 
 #: gui/text/quotes.txt:2
 msgid ""
-"\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
-"(\"Agamemnon\", 406)"
+"“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
+"(“Agamemnon”, 406)"
 msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid ""
-"\"In every tyrant's heart there springs in the end this poison, that he "
-"cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
+"“In every tyrant's heart there springs in the end this poison, that he "
+"cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
 msgstr ""
 
 #: gui/text/quotes.txt:4
 msgid ""
-"\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
-"Bound\", 981)"
-msgstr "”الوقت وهو يكبُر يعلّم كلّ شيء.“ - إسخيلوس (”برومثيوس في الأغلال“، ٩٨١)"
+"“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
+"Bound”, 981)"
+msgstr ""
 
 #: gui/text/quotes.txt:5
 msgid ""
-"\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
-"Against Thebes\", 592)"
+"“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
+"Against Thebes”, 592)"
 msgstr ""
 
 #: gui/text/quotes.txt:6
-msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr "”الجاهل الناجح هو عبء جسيم.“ - إسخيلوس (جزء ٣٨٣)"
+msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
+msgstr ""
 
 #: gui/text/quotes.txt:7
 msgid ""
-"\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
-"Wagoner\")"
-msgstr "”تساعد الآلهة من يساعدون أنفسهم“. إيسوب (”هرقل وواغونر“)"
+"“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
+"Wagoner”)"
+msgstr ""
 
 #: gui/text/quotes.txt:8
 msgid ""
-"\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
-" Ant and the Grasshopper\")"
-msgstr "”من الاقتصاد تجهيز اليوم لمتطلّبات الغدّ.“ - إيسوب (”النملة والجندب“)"
+"“It is thrifty to prepare today for the wants of tomorrow.” \\n— Aesop (“The"
+" Ant and the Grasshopper”)"
+msgstr ""
 
 #: gui/text/quotes.txt:9
-msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr "”الاتّحاد يعطي القوّة“. - إيسوب (”حزمة العصيّ“)"
+msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
+msgstr ""
 
 #: gui/text/quotes.txt:10
 msgid ""
-"\"Never trust advice from a man in the throes of his own difficulty.\" - "
-"Aesop (\"The Fox and the Goat\")"
+"“Never trust advice from a man in the throes of his own difficulty.” \\n— "
+"Aesop (“The Fox and the Goat”)"
 msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid ""
-"\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
-"(\"The Fox and the Lion\")"
-msgstr "”الأُلفة تولّد الاحتقار. التّعارف يخفّف الأحكام المسبقة.“ - إيسوب (”الثّعلب والأسد“)"
+"“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
+"(“The Fox and the Lion”)"
+msgstr ""
 
 #: gui/text/quotes.txt:12
 msgid ""
-"\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
-"Ox\")"
-msgstr "”يؤدّي الغرور إلى تدمير الذّات.“ - إيسوب (”الضفدع والثّور“)"
+"“Self-conceit may lead to self-destruction.” \\n— Aesop (“The Frog and the "
+"Ox”)"
+msgstr ""
 
 #: gui/text/quotes.txt:13
-msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr "”ببطء وثبات تفوز في السّباق.“ - إيسوب (”الأرنب والسلحفاة“)"
+msgid ""
+"“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
+msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid ""
-"\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
-"(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr "”أن تكون حكيمًا من مصائب غيرك خيرٌ من مصائبك.“ - إيسوب (”صيد الأسد والحمار والثّعلب“)"
+"“Better be wise by the misfortunes of others than by your own.” \\n— Aesop "
+"(“The Lion, the Ass, and the Fox Hunting”)"
+msgstr ""
 
 #: gui/text/quotes.txt:15
 msgid ""
-"\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
-"Wolf\")"
-msgstr "”وعود الأعداء لم تكن إلّا لتُنقض.“ - إيسوب (”الممرّضة والثّعلب“)"
+"“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
+"Wolf”)"
+msgstr ""
 
 #: gui/text/quotes.txt:16
-msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr "”أيَّ عذر سيخدم الطّاغية.“ - إيسوب (”الثّعلب والحَمل“)"
+msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
+msgstr ""
 
 #: gui/text/quotes.txt:17
 msgid ""
-"\"If I have done anything noble, that is a sufficient memorial; if I have "
-"not, all the statues in the world will not preserve my memory.\" - Agesilaus"
-" II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
+"“If I have done anything noble, that is a sufficient memorial; if I have "
+"not, all the statues in the world will not preserve my memory.” \\n— "
+"Agesilaus II of Sparta (Plutarch, “Moralia”, XVI. “Sayings of Spartans”, "
+"215a)"
 msgstr ""
 
 #: gui/text/quotes.txt:18
 msgid ""
-"\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
-"Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr "لا يسأل الإسبرطيّون عن عددهم \\[أي الأعداء]، بل مكانهم.“ - أجيس الثاني من إسبرطة (فلوطرخس، ”موراليا“، السادس عشر. ”أحاديث الإسبرطيّون“، ٢١٥د)"
+"“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
+"Sparta (Plutarch, “Moralia”, XVI. “Sayings of Spartans”, 215d)"
+msgstr ""
 
 #: gui/text/quotes.txt:19
 msgid ""
-"\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
-" murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
-"(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr "”النُّواح ليس عليّ، فمعاناتي ليست إلّا ظلمًا، أنا في موقف أسعد من قاتليّ.“ أجيس السّادس من إسبرطة وهو يرى أحد جلّاديه يبكي (فلوطرخس، ”الحياة الموازية“، ”أجيس“، قسم ٢٠)"
+"“Weep not for me, as I suffer unjustly, I am in a happier situation than my "
+"murderers.” \\n— Agis IV of Sparta upon seeing one of his executioners cry "
+"(Plutarch, “Parallel Lives”, “Agis”, sec. 20)"
+msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid ""
-"\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
-"Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr "”الجنس والنّوم فحسب يجعلانني مدركٌ بأنّي من بني البشر.“ - الإسكندر الأكبر (فلوطرخس، ”الحياة الموازية“، ”الإسكندر“، قسم ٢٢)"
+"“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
+" Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
+msgstr ""
 
 #: gui/text/quotes.txt:21
 msgid ""
-"\"It is very servile to live in luxury, but very royal to toil. \\[…] Don't "
+"“It is very servile to live in luxury, but very royal to toil. \\[…] Don't "
 "you know that the end and object of conquest is to avoid the vices and "
-"infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
-"Lives\", \"Alexander\", sec. 40)"
+"infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
+"Lives”, “Alexander”, sec. 40)"
 msgstr ""
 
 #: gui/text/quotes.txt:22
 msgid ""
-"\"Glorious are the deeds of those who undergo labor and run the risk of "
+"“Glorious are the deeds of those who undergo labor and run the risk of "
 "danger; and it is delightful to live a life of valor and to die leaving "
-"behind immortal glory.\" - Alexander the Great, addressing his troops "
-"(Arrian, \"The Anabasis of Alexander\", 5.26)"
+"behind immortal glory.” \\n— Alexander the Great, addressing his troops "
+"(Arrian, “The Anabasis of Alexander”, 5.26)"
 msgstr ""
 
 #: gui/text/quotes.txt:23
 msgid ""
-"\"I for one think that to a brave man there is no end to labors except the "
-"labors themselves, provided they lead to glorious achievements.\" - "
-"Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
-"Alexander\", 5.26)"
+"“I for one think that to a brave man there is no end to labors except the "
+"labors themselves, provided they lead to glorious achievements.” \\n— "
+"Alexander the Great, addressing his troops (Arrian, “The Anabasis of "
+"Alexander”, 5.26)"
 msgstr ""
 
 #: gui/text/quotes.txt:24
 msgid ""
-"\"If I were not Alexander, I should wish to be Diogenes \\[of Sinope].\" - "
+"“If I were not Alexander, I should wish to be Diogenes \\[of Sinope].” \\n— "
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
-"met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
-"Great\", 332a-b)"
+"met (Plutarch, “Moralia”, XXII. “On the Fortunes of Alexander the Great”, "
+"332a–b)"
 msgstr ""
 
 #: gui/text/quotes.txt:25
 msgid ""
-"\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
-"who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
+"“To the strongest!” \\n— Alexander the Great, on his death bed, when asked "
+"who should succeed him as king (Arrian, “The Anabasis of Alexander”, 7.26)"
 msgstr ""
 
 #: gui/text/quotes.txt:26
 msgid ""
-"\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
-"the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr "”لست بسارق للنّصر.“ - الإسكندر الأكبر عندما اقتُرح عليه مهاجمة الفُرس ليلًا (فلوطرخس، ”الحياة الموازية“، ”الإسكندر“، قسم ٣١)"
+"“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
+"the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
+msgstr ""
 
 #: gui/text/quotes.txt:27
 msgid ""
-"\"Written laws are like spiders' webs; they will catch, it is true, the weak"
-" and poor, but will be torn in pieces by the rich and powerful.\" - "
-"Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr "”القوانين المكتوبة تشبه شبكة العنكبوت، فهي ستطال (وهذا صحيح) الضعيف والفقير، ولكنها ستُمزّق إربا إن طالت الغنيّ والقويّ.“ - Anacharsis (فلوطرخس، ”الحياة الموازية“، ”سولون“، الفصل الخامس)"
+"“Written laws are like spiders' webs; they will catch, it is true, the weak "
+"and poor, but will be torn in pieces by the rich and powerful.” \\n— "
+"Anacharsis (Plutarch, “Parallel Lives”, “Solon”, sec. 5)"
+msgstr ""
 
 #: gui/text/quotes.txt:28
 msgid ""
-"\"The agora is an established place for men to cheat one another, and behave"
-" covetously.\" - Anacharsis, a Scythian philosopher who traveled to Greece "
-"(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
+"“The agora is an established place for men to cheat one another, and behave "
+"covetously.” \\n— Anacharsis, a Scythian philosopher who traveled to Greece "
+"(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "Anarchsis, sec. 5)"
 msgstr ""
 
 #: gui/text/quotes.txt:29
 msgid ""
-"\"It was not by taking care of the fields, but of ourselves, that we "
-"acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
-" XVI. \"Sayings of Spartans\", 217a)"
+"“It was not by taking care of the fields, but of ourselves, that we acquired"
+" those fields.” \\n— Anaxandridas II of Sparta (Plutarch, “Moralia”, XVI. "
+"“Sayings of Spartans”, 217a)"
 msgstr ""
 
 #: gui/text/quotes.txt:30
 msgid ""
-"\"States are doomed when they are unable to distinguish good men from bad.\""
-" - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
-"Philosophers\", Antisthenes, sec. 5)"
+"“States are doomed when they are unable to distinguish good men from bad.” "
+"\\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent "
+"Philosophers”, Antisthenes, sec. 5)"
 msgstr ""
 
 #: gui/text/quotes.txt:31
 msgid ""
-"\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
+"“The fox knows many tricks; the hedgehog one good one.” \\n— Archilochus "
 "(fragment 201)"
-msgstr "”يعرف الثعلب العديد من الحيل، بينما يعرف القنفذ واحدة جيدة فحسب.“ - أرخيلوخوس (جزء ٢٠١)"
+msgstr ""
 
 #: gui/text/quotes.txt:32
 msgid ""
-"\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
-"his usage of the lever (Diodorus Siculus, \"The Library of History\", "
+"“Give me a place to stand, and I shall move the world.” \\n— Archimedes, on "
+"his usage of the lever (Diodorus Siculus, “The Library of History”, "
 "fragments of book XXVI, sec. 18)"
 msgstr ""
 
 #: gui/text/quotes.txt:33
 msgid ""
-"\"It is from their foes, not their friends, that cities learn the lesson of "
-"building high walls and ships of war.\" - Aristophanes (\"Birds\")"
+"“It is from their foes, not their friends, that cities learn the lesson of "
+"building high walls and ships of war.” \\n— Aristophanes (“Birds”)"
 msgstr ""
 
 #: gui/text/quotes.txt:34
 msgid ""
-"\"It is obligatory, especially for a philosopher, to sacrifice even one's "
-"closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
-"Ethics\", I. 1096a.11)"
+"“It is obligatory, especially for a philosopher, to sacrifice even one's "
+"closest personal ties in defense of the truth.” \\n— Aristotle (“Nicomachean"
+" Ethics”, I. 1096a.11)"
 msgstr ""
 
 #: gui/text/quotes.txt:35
 msgid ""
-"\"Happiness depends on leisure; for we are busy to have leisure, and make "
-"war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
+"“Happiness depends on leisure; for we are busy to have leisure, and make war"
+" to live in peace.” \\n— Aristotle (“Nicomachean Ethics”, X. 1177b.4)"
 msgstr ""
 
 #: gui/text/quotes.txt:36
 msgid ""
-"\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
+"“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr "”الإنسان بطبيعته حيوان سياسيّ.“ - أرسطو (”السّياسات“، العاشر. ١٢٥٣a٫٢)"
+msgstr ""
 
 #: gui/text/quotes.txt:37
 msgid ""
-"\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
-"of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
+"“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
+" their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
 msgstr ""
 
 #: gui/text/quotes.txt:38
 msgid ""
-"\"I have gained this by philosophy: that I do without being commanded what "
-"others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
-" Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
+"“I have gained this by philosophy: that I do without being commanded what "
+"others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
+"“The Lives and Opinions of Eminent Philosophers”, Aristotle, sec. 20)"
 msgstr ""
 
 #: gui/text/quotes.txt:39
 msgid ""
-"\"I count him braver who overcomes his desires than him who conquers his "
-"enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
-"\"Florilegium\", 223)"
-msgstr "”أعتبرُ الإنسان الذي يتغلّب على رغباته أكثر شجاعةً منه الذي يتغلّب على أعدائه، إذ أنّ النّصر الحقيقيّ هو على الذّات.“ - أرسطو (ستوبايوس، ”Florilegium“، ٢٢٣)"
+"“I count him braver who overcomes his desires than him who conquers his "
+"enemies, for the hardest victory is over the self.” \\n— Aristotle "
+"(Stobaeus, “Florilegium”, 223)"
+msgstr ""
 
 #: gui/text/quotes.txt:40
 msgid ""
-"\"Alexander himself, plagued by thirst, with great pain and difficulty "
+"“Alexander himself, plagued by thirst, with great pain and difficulty "
 "nevertheless led the army on foot \\[…]. At this time a few of the light-"
 "armed soldiers \\[…] found some water \\[…], poured the water into a helmet "
 "and carried it to him. He took it, and commending the men who brought it, "
-"immediately poured it upon the ground in the sight of all.\" - Arrian about "
-"Alexander's march through the Gedrosian desert (\"The Anabasis of "
-"Alexander\", 6.26)"
+"immediately poured it upon the ground in the sight of all.” \\n— Arrian "
+"about Alexander's march through the Gedrosian desert (“The Anabasis of "
+"Alexander”, 6.26)"
 msgstr ""
 
 #: gui/text/quotes.txt:41
 msgid ""
-"\"Thrusting his spear into Mithridates' face, he \\[Alexander] hurled him to"
-" the ground. Then Rhoesaces \\[a Persian] \\[…] struck him on the head with "
+"“Thrusting his spear into Mithridates' face, he \\[Alexander] hurled him to "
+"the ground. Then Rhoesaces \\[a Persian] \\[…] struck him on the head with "
 "his sword. \\[…] Alexander hurled him too to the ground, piercing with his "
 "lance through his breastplate into his chest. Sphithridates \\[a Persian] "
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
-" cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
-"Anabasis of Alexander\", 1.15)"
+" cut his arm off.” \\n— Arrian about the Battle of the Granicus (“The "
+"Anabasis of Alexander”, 1.15)"
 msgstr ""
 
 #: gui/text/quotes.txt:42
 msgid ""
-"\"Let every man remind their descendants that they also are soldiers who "
-"must not desert the ranks of their ancestors, or retreat out of cowardice.\""
-" - Aspasia (Plato, \"Menexenus\", 246b)"
+"“Let every man remind their descendants that they also are soldiers who must"
+" not desert the ranks of their ancestors, or retreat out of cowardice.” \\n—"
+" Aspasia (Plato, “Menexenus”, 246b)"
 msgstr ""
 
 #: gui/text/quotes.txt:43
 msgid ""
-"\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
+"“Quintilius Varus, give me back my legions!” \\n— Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
-"\"Divus Augustus\", sec. 23)"
+"“Divus Augustus”, sec. 23)"
 msgstr ""
 
 #: gui/text/quotes.txt:44
 msgid ""
-"\"In my nineteenth year, on my own initiative and at my own expense, I "
-"raised an army with which I liberated the state, which was oppressed by the "
-"tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
-"Augusti\", sec. 1)"
+"“In my nineteenth year, on my own initiative and at my own expense, I raised"
+" an army with which I liberated the state, which was oppressed by the "
+"tyranny of a faction.” \\n— Augustus, in his autobiography (“Res Gestae Divi"
+" Augusti”, sec. 1)"
 msgstr ""
 
 #: gui/text/quotes.txt:45
 msgid ""
-"\"Wars, both civil and foreign, I waged throughout the world, on sea and "
+"“Wars, both civil and foreign, I waged throughout the world, on sea and "
 "land, and when victorious I spared all citizens who sued for pardon. The "
 "foreign nations which could with safety be pardoned I preferred to save "
-"rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
-"Divi Augusti\", sec. 3)"
+"rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
+"Divi Augusti”, sec. 3)"
 msgstr ""
 
 #: gui/text/quotes.txt:46
 msgid ""
-"\"Choose the course which you adopt with deliberation; but when you have "
-"adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
-" Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
+"“Choose the course which you adopt with deliberation; but when you have "
+"adopted it, then persevere in it with firmness.” \\n— Bias of Priene "
+"(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, Bias, "
+"sec. 5)"
 msgstr ""
 
 #: gui/text/quotes.txt:47
 msgid ""
-"\"How stupid it was for the king to tear out his hair in grief, as if "
-"baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
-" Disputations\", III. 26)"
+"“How stupid it was for the king to tear out his hair in grief, as if "
+"baldness were a cure for sorrow.” \\n— Bion of Borysthenes (Cicero, "
+"“Tusculan Disputations”, III. 26)"
 msgstr ""
 
 #: gui/text/quotes.txt:48
 msgid ""
-"\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
-"Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
-"and Opinions of Eminent Philosophers\", Bion, sec. 50)"
+"“He has not acquired a fortune; the fortune has acquired him.” \\n— Bion of "
+"Borysthenes, referring to a wealthy miser (Diogenes Laertius, “The Lives and"
+" Opinions of Eminent Philosophers”, Bion, sec. 50)"
 msgstr ""
 
 #: gui/text/quotes.txt:49
 msgid ""
-"\"Woe to the Defeated!\" - Brennus, Gaulish chieftain who had seized Rome "
+"“Woe to the Defeated!” \\n— Brennus, Gaulish chieftain who had seized Rome "
 "(with the exception of a garrison on Capitoline Hill). When Camillus arrived"
 " from Veii and besieged him, he negotiated his withdrawal for 1000 pounds of"
 " gold, but not without using false weights and adding the weight of his "
-"sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
+"sword on the scale when the Romans complained (Polybius, “Histories”, II. "
 "18)"
 msgstr ""
 
 #: gui/text/quotes.txt:50
 msgid ""
-"\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
-"they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
-"in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr "”السّرقة، المذابح، النّهب. هؤلاء (أي الرّومان) يسمّونها إمبراطوريّة زيفًا، فهم يصنعون أرض خراب ويسمّون ذلك سلام.“ - Calgacus، Caledonian chieftain في كلمة قبل معركة Mons Graupius (Tacitus، ”Agricola“، ٣٠)"
+"“Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
+"they make a wasteland and call it peace.” \\n— Calgacus, Caledonian "
+"chieftain in a speech before the Battle of Mons Graupius (Tacitus, "
+"“Agricola”, 30)"
+msgstr ""
 
 #: gui/text/quotes.txt:51
-msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr "”عيّن لصًّا ليصطد لصًّا.“ - كاليماخوس (”إبيغراما“، ٤٤)"
+msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
+msgstr ""
 
 #: gui/text/quotes.txt:52
 msgid ""
-"\"All mankind rules its women, and we rule all mankind, but our women rule "
-"us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
+"“All mankind rules its women, and we rule all mankind, but our women rule "
+"us.” \\n— Cato the Elder (Plutarch, “Moralia”, III. “Sayings of Romans”, "
 "198e)"
 msgstr ""
 
 #: gui/text/quotes.txt:53
 msgid ""
-"\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
-"(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr "”أسوأ الحكّام هو ذاك الذي لا يستطيع حكم نفسه.“ - كاتو الأكبر (فلوطرخس، ”موراليا“، الثالث. ”أحاديث الروم“، ١٩٨و)"
+"“The worst ruler is one who cannot rule himself.” \\n— Cato the Elder "
+"(Plutarch, “Moralia”, III. “Sayings of Romans”, 198f)"
+msgstr ""
 
 #: gui/text/quotes.txt:54
 msgid ""
-"\"Wise men learn more from fools than fools from the wise.\" - Cato the "
-"Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr "”يتعلّم الحكماء من الحمقى أكثر مما يتعلم الحمقى من الحكماء.“ كاتو الأكبر (فلوطرخس، ”الحياة الموازية“، ”كاتو الأكبر“، قسم ٩)"
+"“Wise men learn more from fools than fools from the wise.” \\n— Cato the "
+"Elder (Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 9)"
+msgstr ""
 
 #: gui/text/quotes.txt:55
 msgid ""
-"\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
+"“Moreover, I consider that Carthage should be destroyed.” \\n— Cato the "
 "Elder, who ended all speeches in his later life with this statement "
-"(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
+"(Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 27)"
 msgstr ""
 
 #: gui/text/quotes.txt:56
 msgid ""
-"\"If a king is energetic, his subjects will be equally energetic.\" - "
-"Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
+"“If a king is energetic, his subjects will be equally energetic.” \\n— "
+"Chanakya (“Arthashastra”, I. “Concerning Discipline”, chapter 19)"
 msgstr ""
 
 #: gui/text/quotes.txt:57
 msgid ""
-"\"Whoever imposes severe punishment becomes repulsive to the people; while "
-"he who awards mild punishment becomes contemptible. But whoever imposes "
-"punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
-"I. \"Concerning Discipline\", chapter 4)"
+"“Whoever imposes severe punishment becomes repulsive to the people; while he"
+" who awards mild punishment becomes contemptible. But whoever imposes "
+"punishment as deserved becomes respectable.” \\n— Chanakya (“Arthashastra”, "
+"I. “Concerning Discipline”, chapter 4)"
 msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid ""
-"\"We did not flinch but gave our lives to save Greece when her fate hung on "
-"a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
-"(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
+"“We did not flinch but gave our lives to save Greece when her fate hung on a"
+" razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
+"(Plutarch, “Moralia”, XI. “On the Malice of Herodotus”, 870e)"
 msgstr ""
 
 #: gui/text/quotes.txt:59
 msgid ""
-"\"Then the blood really flowed, for the two lines were so close that shield "
+"“Then the blood really flowed, for the two lines were so close that shield "
 "struck against shield, and they drove their swords into each other's faces. "
 "It was impossible for the weak or cowardly to retreat; man to man they "
-"fought like in single combat.\" - Curtius Rufus about the Battle of Issus "
-"(\"Histories of Alexander the Great\", III. 11.5)"
+"fought like in single combat.” \\n— Curtius Rufus about the Battle of Issus "
+"(“Histories of Alexander the Great”, III. 11.5)"
 msgstr ""
 
 #: gui/text/quotes.txt:60
 msgid ""
-"\"I am Cyrus, who won for the Persians their empire. Therefore do not "
-"begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
-"epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
+"“I am Cyrus, who won for the Persians their empire. Therefore do not "
+"begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
+"epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
 msgstr ""
 
 #: gui/text/quotes.txt:61
 msgid ""
-"\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[…] 23 lands in total.\" - Darius I (Behistun inscription, "
-"column I, 1-6)"
+"“I am Darius, the great king, king of kings, the king of Persia, the king of"
+" countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
+"column I, 1–6)"
 msgstr ""
 
 #: gui/text/quotes.txt:62
 msgid ""
-"\"Phraortes was captured and brought before me. I cut off his nose, his "
-"ears, and his tongue, and I put out one eye, and he was kept in chains at my"
-" palace entrance, and all the people saw him. Then I crucified him in "
+"“Phraortes was captured and brought before me. I cut off his nose, his ears,"
+" and his tongue, and I put out one eye, and he was kept in chains at my "
+"palace entrance, and all the people saw him. Then I crucified him in "
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
-"hung out their skins, stuffed with straw.\" - Darius I (Behistun "
+"hung out their skins, stuffed with straw.” \\n— Darius I (Behistun "
 "inscription, column II, 32)"
 msgstr ""
 
 #: gui/text/quotes.txt:63
 msgid ""
-"\"By desiring little, a poor man makes himself rich.\" - Democritus "
+"“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
 msgstr ""
 
 #: gui/text/quotes.txt:64
-msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
+msgid ""
+"“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
 msgstr ""
 
 #: gui/text/quotes.txt:65
 msgid ""
-"\"Physical strength is only noble in cattle, it is strength of character "
-"that is noble in men.\" - Democritus (fragment)"
+"“Physical strength is only noble in cattle, it is strength of character that"
+" is noble in men.” \\n— Democritus (fragment)"
 msgstr ""
 
 #: gui/text/quotes.txt:66
 msgid ""
-"\"It is not possible to found a lasting power upon injustice, perjury, and "
-"treachery.\" - Demosthenes, in one of his many speeches against the rising "
-"Philip II of Macedon (\"Olynthiac II\", 10)"
+"“It is not possible to found a lasting power upon injustice, perjury, and "
+"treachery.” \\n— Demosthenes, in one of his many speeches against the rising"
+" Philip II of Macedon (“Olynthiac II”, 10)"
 msgstr ""
 
 #: gui/text/quotes.txt:67
 msgid ""
-"\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
-"three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
+"“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
+"three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
 msgstr ""
 
 #: gui/text/quotes.txt:68
 msgid ""
-"\"The Macedonians first raised an unearthly shout followed by the Persians "
+"“The Macedonians first raised an unearthly shout followed by the Persians "
 "answering, so that the whole hillside bordering the battlefield echoed back "
 "the sound, and that second roar was louder than the Macedonian war cry as "
-"five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
-" the Battle of Issus (\"The Library of History\", XVII., sec. 33)"
+"five hundred thousand men shouted with one voice.” \\n— Diodorus Siculus "
+"about the Battle of Issus (“The Library of History”, XVII., sec. 33)"
 msgstr ""
 
 #: gui/text/quotes.txt:69
 msgid ""
-"\"Brasidas, taking his stand on the gangway, fought off from there the "
+"“Brasidas, taking his stand on the gangway, fought off from there the "
 "multitude of Athenians who converged upon him. And at the outset he slew "
 "many as they came at him, but after a while, as numerous missiles assailed "
-"him, he suffered many wounds on the front of his body.\" - Diodorus Siculus,"
-" on a brave Spartan at the Battle of Pylos (\"The Library of History\", "
-"XXII., sec. 62)"
+"him, he suffered many wounds on the front of his body.” \\n— Diodorus "
+"Siculus, on a brave Spartan at the Battle of Pylos (“The Library of "
+"History”, XXII., sec. 62)"
 msgstr ""
 
 #: gui/text/quotes.txt:70
 msgid ""
-"\"Plato had defined man as an animal, biped and featherless, and was "
+"“Plato had defined man as an animal, biped and featherless, and was "
 "applauded. Diogenes \\[of Sinope] plucked a fowl and brought it into the "
 "lecture-room with the words: Here is Plato's man. In consequence of which "
-"there was added to the definition: having broad nails.\" - Diogenes Laertius"
-" (\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 40)"
+"there was added to the definition: having broad nails.” \\n— Diogenes "
+"Laertius (“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec."
+" 40)"
 msgstr ""
 
 #: gui/text/quotes.txt:71
 msgid ""
-"\"I am a citizen of the world.\" - Diogenes of Sinope (Diogenes Laertius, "
-"\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 63)"
+"“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
+"“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
 msgstr ""
 
 #: gui/text/quotes.txt:72
 msgid ""
-"\"It is not that I am mad, it is only that my head is different from "
-"yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
+"“It is not that I am mad, it is only that my head is different from yours.” "
+"\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
 msgstr ""
 
 #: gui/text/quotes.txt:73
 msgid ""
-"\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
+"“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
-"\"Parallel Lives\", \"Alexander\", sec. 14)"
+"“Parallel Lives”, “Alexander”, sec. 14)"
 msgstr ""
 
 #: gui/text/quotes.txt:74
 msgid ""
-"\"The victor is not victorious if the vanquished does not consider himself "
-"so.\" - Ennius (\"Annales\", fragment 31.493)"
+"“The victor is not victorious if the vanquished does not consider himself "
+"so.” \\n— Ennius (“Annales”, fragment 31.493)"
 msgstr ""
 
 #: gui/text/quotes.txt:75
 msgid ""
-"\"Stranger, go tell the Spartans that we lie here, obedient to their laws.\""
-" - Epitaph at Thermopylae for Leonidas and his men (Herodotus, \"The "
-"Histories\", VII. 228)"
+"“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
+"\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
+"Histories”, VII. 228)"
 msgstr ""
 
 #: gui/text/quotes.txt:76
 msgid ""
-"\"A coward turns away, but a brave man's choice is danger.\" - Euripides "
-"(\"Iphigenia in Tauris\")"
+"“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
+"(“Iphigenia in Tauris”)"
 msgstr ""
 
 #: gui/text/quotes.txt:77
 msgid ""
-"\"Brave men are made bolder by ordeals, but cowards achieve nothing.\" - "
-"Euripides (\"Iphigenia in Tauris\")"
+"“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
+"Euripides (“Iphigenia in Tauris”)"
 msgstr ""
 
 #: gui/text/quotes.txt:78
 msgid ""
-"\"Cowards do not count in battle; they are there, but not in it.\" - "
-"Euripides (\"Meleager\")"
+"“Cowards do not count in battle; they are there, but not in it.” \\n— "
+"Euripides (“Meleager”)"
 msgstr ""
 
 #: gui/text/quotes.txt:79
-msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
+msgid ""
+"“Chance fights ever on the side of the prudent.” \\n— Euripides "
+"(“Pirithous”)"
 msgstr ""
 
 #: gui/text/quotes.txt:80
 msgid ""
-"\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
-"warriors, implying that cowards would throw away their shield in battle to "
-"flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
+"“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
+" warriors, implying that cowards would throw away their shield in battle to "
+"flee (Plutarch, “Moralia”, XVIII. “Sayings of Spartan Women”, 241f)"
 msgstr ""
 
 #: gui/text/quotes.txt:81
 msgid ""
-"\"I came, I saw, I conquered.\" - Caesar, after routing Pharnaces II of "
-"Pontus in the first assault (Plutarch, \"Parallel Lives\", \"Caesar\", sec. "
-"50)"
+"“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
+"Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
 msgstr ""
 
 #: gui/text/quotes.txt:82
 msgid ""
-"\"Men willingly believe what they wish.\" - Caesar (\"De Bello Gallico\", "
+"“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
 msgstr ""
 
 #: gui/text/quotes.txt:83
 msgid ""
-"\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
-" looking.\" - Caesar (Plutarch, \"Parallel Lives\", \"Antony\", sec. 11)"
+"“It is not the well-fed long-haired man I fear, but the pale and the hungry "
+"looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
 msgstr ""
 
 #: gui/text/quotes.txt:84
 msgid ""
-"\"After fighting from noon almost to sunset, with victory doubtful, the "
+"“After fighting from noon almost to sunset, with victory doubtful, the "
 "Germans, on one side charged the enemy in a compact body, and drove them "
 "back; and, when they were put to flight, the archers were surrounded and cut"
-" to pieces.\" - Caesar about the Battle of Alesia (\"De Bello Gallico\", "
+" to pieces.” \\n— Caesar about the Battle of Alesia (“De Bello Gallico”, "
 "VII. 80)"
 msgstr ""
 
 #: gui/text/quotes.txt:85
 msgid ""
-"\"All the centurions of the fourth cohort were slain, and the standard-"
-"bearer killed, the standard itself lost, almost all the centurions of the "
-"other cohorts either wounded or slain, and among them the chief centurion of"
-" the legion, Publius Sextius Baculus, a very valiant man, who was so "
-"exhausted by many and severe wounds, that he was already unable to support "
-"himself.\" - Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
-" 25)"
+"“All the centurions of the fourth cohort were slain, and the standard-bearer"
+" killed, the standard itself lost, almost all the centurions of the other "
+"cohorts either wounded or slain, and among them the chief centurion of the "
+"legion, Publius Sextius Baculus, a very valiant man, who was so exhausted by"
+" many and severe wounds, that he was already unable to support himself.” "
+"\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
 msgstr ""
 
 #: gui/text/quotes.txt:86
 msgid ""
-"\"But the enemy \\[…] displayed such great courage, that when the front rank"
-" had fallen the men behind them stood on them and continue the fight from on"
-" top of the corpses; when these were killed the pile of bodies grew higher, "
+"“But the enemy \\[…] displayed such great courage, that when the front rank "
+"had fallen the men behind them stood on them and continue the fight from on "
+"top of the corpses; when these were killed the pile of bodies grew higher, "
 "while the survivors used the heap as a vantage point for throwing missiles "
-"at our men, or catching our spears and throwing them back.\" - Caesar about "
-"the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
+"at our men, or catching our spears and throwing them back.” \\n— Caesar "
+"about the Battle of the Sabis (“De Bello Gallico”, II. 27)"
 msgstr ""
 
 #: gui/text/quotes.txt:87
 msgid ""
-"\"The die is cast.\" - Caesar, when crossing the Rubicon river with his "
+"“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
-"Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
+"Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
 msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid ""
-"\"I'd rather be the first man here than the second man in Rome.\" - Caesar, "
-"when passing through a barbarian village in the Alps (Plutarch, \"Parallel "
-"Lives\", \"Caesar\", sec. 11)"
+"“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
+" when passing through a barbarian village in the Alps (Plutarch, “Parallel "
+"Lives”, “Caesar”, sec. 11)"
 msgstr ""
 
 #: gui/text/quotes.txt:89
 msgid ""
-"\"Stop quoting laws, we carry weapons!\" - Pompey (Plutarch, \"Parallel "
-"Lives\", \"Pompey\", sec. 10)"
+"“Stop quoting laws, we carry weapons!” \\n— Pompey (Plutarch, “Parallel "
+"Lives”, “Pompey”, sec. 10)"
 msgstr ""
 
 #: gui/text/quotes.txt:90
 msgid ""
-"\"If a man put out the eye of another man, his eye shall be put out.\" - "
+"“If a man put out the eye of another man, his eye shall be put out.” \\n— "
 "Hammurabi (Hammurabi's Code, sec. 196)"
 msgstr ""
 
 #: gui/text/quotes.txt:91
 msgid ""
-"\"I have come not to make war on the Italians, but to aid the Italians "
-"against Rome.\" - Hannibal (Polybius, \"Histories\", III. 85)"
+"“I have come not to make war on the Italians, but to aid the Italians "
+"against Rome.” \\n— Hannibal (Polybius, “Histories”, III. 85)"
 msgstr ""
 
 #: gui/text/quotes.txt:92
 msgid ""
-"\"Let us now end the anxiety of the Romans, who can't wait for the death of "
-"an old man.\" - Hannibal's last words before his suicide, in exile with "
-"Flaminius pressuring the local ruler to hand him over (Livy, \"History of "
-"Rome\", XXXIX. 51)"
+"“Let us now end the anxiety of the Romans, who can't wait for the death of "
+"an old man.” \\n— Hannibal's last words before his suicide, in exile with "
+"Flaminius pressuring the local ruler to hand him over (Livy, “History of "
+"Rome”, XXXIX. 51)"
 msgstr ""
 
 #: gui/text/quotes.txt:93
 msgid ""
-"\"Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
+"“Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
 "world as theirs and subject to their pleasure. With whom we are to be at "
-"war, with whom at peace, they think it right that they should determine.\" -"
-" Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. 44)"
+"war, with whom at peace, they think it right that they should determine.” "
+"\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr ""
 
 #: gui/text/quotes.txt:94
 msgid ""
-"\"You must be brave and discard all hopes of anything but victory or "
-"death.\" - Hannibal, addressing his troops (Livy, \"History of Rome\", XXI. "
-"44)"
+"“You must be brave and discard all hopes of anything but victory or death.” "
+"\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr ""
 
 #: gui/text/quotes.txt:95
 msgid ""
-"\"War is the father and king of all things: some he has made gods, and some "
-"men; some slaves and some free.\" - Heraclitus (Hippolytus, \"The Refutation"
-" of all Heresies\", IX. 4)"
+"“War is the father and king of all things: some he has made gods, and some "
+"men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
+"Refutation of all Heresies”, IX. 4)"
 msgstr ""
 
 #: gui/text/quotes.txt:96
 msgid ""
-"\"You could not step twice into the same river.\" - Heraclitus (Plato, "
-"\"Cratylus\", 402a)"
+"“You could not step twice into the same river.” \\n— Heraclitus (Plato, "
+"“Cratylus”, 402a)"
 msgstr ""
 
 #: gui/text/quotes.txt:97
 msgid ""
-"\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
-"Histories\", III. 52)"
+"“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
+"Histories”, III. 52)"
 msgstr ""
 
 #: gui/text/quotes.txt:98
 msgid ""
-"\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
+"“In soft regions are born soft men.” \\n— Herodotus (“The Histories”, IX. "
 "122)"
 msgstr ""
 
 #: gui/text/quotes.txt:99
 msgid ""
-"\"This is the bitterest pain among men, to have much knowledge but no "
-"power.\" - Herodotus (\"The Histories\", IX. 16)"
+"“This is the bitterest pain among men, to have much knowledge but no power.”"
+" \\n— Herodotus (“The Histories”, IX. 16)"
 msgstr ""
 
 #: gui/text/quotes.txt:100
 msgid ""
-"\"Although he \\[Xerxes] had plenty of troops he had few men.\" - Herodotus "
-"(\"The Histories\", VII. 210)"
+"“Although he \\[Xerxes] had plenty of troops he had few men.” \\n— Herodotus"
+" (“The Histories”, VII. 210)"
 msgstr ""
 
 #: gui/text/quotes.txt:101
 msgid ""
-"\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
+"“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
-"amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
+"amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
 msgstr ""
 
 #: gui/text/quotes.txt:102
 msgid ""
-"\"Being informed \\[…] that when the Barbarians discharged their arrows they"
-" obscured the light of the sun by the multitude of the arrows, he "
+"“Being informed \\[…] that when the Barbarians discharged their arrows they "
+"obscured the light of the sun by the multitude of the arrows, he "
 "\\[Dieneces] \\[…] said that their guest \\[…] brought them very good news, "
 "for if the Medes obscured the light of the sun, the battle against them "
-"would be in the shade and not in the sun.\" - Herodotus describing Dieneces,"
-" reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
-"\"Histories\", VII. 226)"
+"would be in the shade and not in the sun.” \\n— Herodotus describing "
+"Dieneces, reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
+"“Histories”, VII. 226)"
 msgstr ""
 
 #: gui/text/quotes.txt:103
 msgid ""
-"\"The judgment given to Croesus by each of the two oracles \\[Delphi and "
+"“The judgment given to Croesus by each of the two oracles \\[Delphi and "
 "Thebes] was the same: If he sent an army against the Persians, he would "
-"destroy a great empire.\" - Herodotus, later mentioning that the empire "
-"Croesus destroyed was his own (\"The Histories\", I. 53)"
+"destroy a great empire.” \\n— Herodotus, later mentioning that the empire "
+"Croesus destroyed was his own (“The Histories”, I. 53)"
 msgstr ""
 
 #: gui/text/quotes.txt:104
 msgid ""
-"\"He \\[King Darius] asked who the Athenians were, and, being informed, "
+"“He \\[King Darius] asked who the Athenians were, and, being informed, "
 "called for his bow, and placing an arrow on the string, shot upward into the"
 " sky, saying, as he let fly the shaft: Grant me, Zeus, to revenge myself on "
-"the Athenians!\" - Herodotus, narrating how the Athenian support for the "
-"Ionian revolt caught the wrath of Darius I, the Persian king (\"The "
-"Histories\", V. 105)"
+"the Athenians!” \\n— Herodotus, narrating how the Athenian support for the "
+"Ionian revolt caught the wrath of Darius I, the Persian king (“The "
+"Histories”, V. 105)"
 msgstr ""
 
 #: gui/text/quotes.txt:105
 msgid ""
-"\"He \\[King Darius] asked one of his servants every day, when his dinner "
-"was spread, three times to repeat to him: Master, remember the Athenians!\" "
-"- Herodotus, narrating how the Athenian support for the Ionian revolt lead "
-"to the Persian Wars (\"The Histories\", V. 105)"
+"“He \\[King Darius] asked one of his servants every day, when his dinner was"
+" spread, three times to repeat to him: Master, remember the Athenians!” \\n—"
+" Herodotus, narrating how the Athenian support for the Ionian revolt lead to"
+" the Persian Wars (“The Histories”, V. 105)"
 msgstr ""
 
 #: gui/text/quotes.txt:106
 msgid ""
-"\"Conquered Greece took captive her savage conqueror and brought her arts "
-"into rustic Latium.\" - Horace (\"Epistles\", epistle I., 156-157)"
+"“Conquered Greece took captive her savage conqueror and brought her arts "
+"into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
 msgstr ""
 
 #: gui/text/quotes.txt:107
 msgid ""
-"\"Anger is a momentary madness, so control your passion or it will control "
-"you.\" - Horace (\"Epistles\", epistle II., 62)"
+"“Anger is a momentary madness, so control your passion or it will control "
+"you.” \\n— Horace (“Epistles”, epistle II., 62)"
 msgstr ""
 
 #: gui/text/quotes.txt:108
 msgid ""
-"\"It is your concern when your neighbor's wall is on fire.\" - Horace "
-"(\"Epistles\", epistle XVIII., 84)"
+"“It is your concern when your neighbor's wall is on fire.” \\n— Horace "
+"(“Epistles”, epistle XVIII., 84)"
 msgstr ""
 
 #: gui/text/quotes.txt:109
 msgid ""
-"\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
+"“It is sweet and honorable to die for one's country.” \\n— Horace (“Odes”, "
 "III., ode II., 13)"
 msgstr ""
 
 #: gui/text/quotes.txt:110
-msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
+msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
 msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid ""
-"\"In peace the sons bury their fathers, but in war the fathers bury their "
-"sons.\" - Croesus, king of Lydia (Herodotus, \"The Histories\", I. 87)"
+"“In peace the sons bury their fathers, but in war the fathers bury their "
+"sons.” \\n— Croesus, king of Lydia (Herodotus, “The Histories”, I. 87)"
 msgstr ""
 
 #: gui/text/quotes.txt:112
 msgid ""
-"\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
+"“Marry a good man, and bear good children.” \\n— Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
-"\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr "”تزوّجي برجل جيد وانجبي أولاد جيّدين.“ - ليونيداس لزوجته التي سألته ما ستفعل إن مات، ذلك قبل أن يرحل نحو ترموبيل (فلوطرخس، ”موراليا“، ”أحاديث الإسبرطيّون“، ٢٢٥أ)"
+"“Moralia”, XVI. “Sayings of Spartans”, 225a)"
+msgstr ""
 
 #: gui/text/quotes.txt:113
 msgid ""
-"\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
-"that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
-"\"Sayings of Spartans\", 225c)"
-msgstr "”تعال وخذها!“ - ليونيداس لمرسال الفرس الذي طالبه ورجاله بترك أسلحتهم (فلوطرخس، ”موراليا“، ”أحاديث الإسبرطيّون“، ٢٢٥ج‍)"
+"“Come and get them!” \\n— Leonidas, to the Persian messenger who demanded "
+"that he and his men lay down their arms (Plutarch, “Moralia”, XVI. “Sayings "
+"of Spartans”, 225c)"
+msgstr ""
 
 #: gui/text/quotes.txt:114
 msgid ""
-"\"Some were discovered lying there alive, with thighs and tendons slashed, "
+"“Some were discovered lying there alive, with thighs and tendons slashed, "
 "baring their necks and throats and bidding their conquerors drain the "
 "remnant of their blood. Others were found with their heads buried in holes "
-"dug in the ground. They had apparently made these pits for themselves.\" - "
-"Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
-"inflicted the greatest defeat on the Romans in all their history (\"History "
-"of Rome\", XXII. 51)"
+"dug in the ground. They had apparently made these pits for themselves.” \\n—"
+" Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
+"inflicted the greatest defeat on the Romans in all their history (“History "
+"of Rome”, XXII. 51)"
 msgstr ""
 
 #: gui/text/quotes.txt:115
 msgid ""
-"\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
+"“There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
 "the slain rose a gory figure whose wounds had begun to throb with the chill "
-"of dawn, and was cut down by his enemies.\" - Livy, describing the aftermath"
-" of the Battle of Cannae, where Hannibal inflicted the greatest defeat on "
-"the Romans in all their history (\"History of Rome\", XXII. 51)"
+"of dawn, and was cut down by his enemies.” \\n— Livy, describing the "
+"aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
+"defeat on the Romans in all their history (“History of Rome”, XXII. 51)"
 msgstr ""
 
 #: gui/text/quotes.txt:116
 msgid ""
-"\"A city is well-fortified which has a wall of men instead of brick.\" - "
-"Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr "”المدينة المحصّنة جيّدًا هي تلك التي يحيطها سور من الرجال بدل الطوب.“ - ليكرجوس أسبرطة (فلوطرخس، ”الحياة الموازية“، ”ليكرجوس“، قسم ١٩)"
+"“A city is well-fortified which has a wall of men instead of brick.” \\n— "
+"Lycurgus of Sparta (Plutarch, “Parallel Lives”, “Lycurgus”, sec. 19)"
+msgstr ""
 
 #: gui/text/quotes.txt:117
 msgid ""
-"\"Escape, yes, but this time with my hands, not my feet.\" - Brutus, before "
-"committing suicide after losing a battle against Caesar's avengers "
-"(Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
+"“Escape, yes, but this time with my hands, not my feet.” \\n— Brutus, before"
+" committing suicide after losing a battle against Caesar's avengers "
+"(Plutarch, “Parallel Lives”, “Brutus”, sec. 52)"
 msgstr ""
 
 #: gui/text/quotes.txt:118
-msgid "\"O, the times, O, the customs!\" - Cicero (\"Against Catiline\", I.)"
+msgid "“O, the times, O, the customs!” \\n— Cicero (“Against Catiline”, I.)"
 msgstr ""
 
 #: gui/text/quotes.txt:119
 msgid ""
-"\"A war is never undertaken by the ideal State, except in defense of its "
-"honor or its safety.\" - Cicero (\"De Re Publica\", III., 23)"
+"“A war is never undertaken by the ideal State, except in defense of its "
+"honor or its safety.” \\n— Cicero (“De Re Publica”, III., 23)"
 msgstr ""
 
 #: gui/text/quotes.txt:120
 msgid ""
-"\"The first duty of a man is the seeking after and the investigation of "
-"truth.\" - Cicero (\"On Duties\", I., 13)"
+"“The first duty of a man is the seeking after and the investigation of "
+"truth.” \\n— Cicero (“On Duties”, I., 13)"
 msgstr ""
 
 #: gui/text/quotes.txt:121
 msgid ""
-"\"No one is so old as to think that he cannot live one more year.\" - Cicero"
-" (\"On Old Age\", sec. 24)"
+"“No one is so old as to think that he cannot live one more year.” \\n— "
+"Cicero (“On Old Age”, sec. 24)"
 msgstr ""
 
 #: gui/text/quotes.txt:122
 msgid ""
-"\"Let the welfare of the people be the ultimate law.\" - Cicero (\"On the "
-"Laws\", III., sec. 3)"
+"“Let the welfare of the people be the ultimate law.” \\n— Cicero (“On the "
+"Laws”, III., sec. 3)"
 msgstr ""
 
 #: gui/text/quotes.txt:123
 msgid ""
-"\"Endless money forms the sinews of war.\" - Cicero (\"Philippics\", V., "
-"sec. 5)"
+"“Endless money forms the sinews of war.” \\n— Cicero (“Philippics”, V., sec."
+" 5)"
 msgstr ""
 
 #: gui/text/quotes.txt:124
-msgid "\"Laws are silent in time of war.\" - Cicero (\"Pro Milone\", IV., sec. 11)"
+msgid ""
+"“Laws are silent in time of war.” \\n— Cicero (“Pro Milone”, IV., sec. 11)"
 msgstr ""
 
 #: gui/text/quotes.txt:125
 msgid ""
-"\"That, Senators, is what a favour from gangs amounts to. They refrain from "
-"murdering someone; then they boast that they have spared him!\" - Cicero, "
-"condemning Mark Anthony who had not killed him (yet) (\"Philippics\", II., "
+"“That, Senators, is what a favour from gangs amounts to. They refrain from "
+"murdering someone; then they boast that they have spared him!” \\n— Cicero, "
+"condemning Mark Anthony who had not killed him (yet) (“Philippics”, II., "
 "sec. 5)"
 msgstr ""
 
 #: gui/text/quotes.txt:126
 msgid ""
-"\"He did not even stand up to review his fleet when the ships were already "
-"at their fighting stations, but lay on his back and gazed up at the sky, "
-"never rising to show that he was alive until Marcus Agrippa had routed the "
-"enemy.\" - Mark Antony, taunting Augustus who delegated his duties as naval "
-"commander (Suetonius, \"Divus Augustus\", sec. 16)"
+"“He did not even stand up to review his fleet when the ships were already at"
+" their fighting stations, but lay on his back and gazed up at the sky, never"
+" rising to show that he was alive until Marcus Agrippa had routed the "
+"enemy.” \\n— Mark Antony, taunting Augustus who delegated his duties as "
+"naval commander (Suetonius, “Divus Augustus”, sec. 16)"
 msgstr ""
 
 #: gui/text/quotes.txt:127
 msgid ""
-"\"We live, not as we wish to, but as we can.\" - Menander (\"Lady of "
-"Andros\", fragment 50)"
-msgstr "”نعيش ليس كما نريد بل كما نستطيع.“ - ميناندر (”Lady of Andros“، جزء ٥٠)"
+"“We live, not as we wish to, but as we can.” \\n— Menander (“Lady of "
+"Andros”, fragment 50)"
+msgstr ""
 
 #: gui/text/quotes.txt:128
-msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr "”الرجل الذي يهرب قد يحارب ثانيةً.“ - ميناندر (”Monosticha“)"
+msgid "“The man who runs may fight again.” \\n— Menander (“Monosticha”)"
+msgstr ""
 
 #: gui/text/quotes.txt:129
 msgid ""
-"\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
+"“Whom the Gods love dies young.” \\n— Menander (“The Double Deceiver”, "
 "fragment 4)"
-msgstr "”أولئك الذين تحبّهم الآلهة يُتوفّون وهم صغار.“ - ميناندر (”Deceiver“، جزء ٤)"
+msgstr ""
 
 #: gui/text/quotes.txt:130
-msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
+msgid "“I call a fig a fig, a spade a spade.” \\n— Menander (fragment 545 K)"
 msgstr ""
 
 #: gui/text/quotes.txt:131
 msgid ""
-"\"The greatest glory is won from the greatest dangers. When our fathers "
-"faced the Persians their resources could not compare to ours. In fact, they "
-"gave up even what they had. Then by wise counsels and daring deeds, not "
-"fortune and material advantages, they drove out the invaders and made our "
-"city what it is now.\" - Pericles (Thucydides, \"History of the "
-"Peloponnesian War\", I. 144.3-4)"
+"“The greatest glory is won from the greatest dangers. When our fathers faced"
+" the Persians their resources could not compare to ours. In fact, they gave "
+"up even what they had. Then by wise counsels and daring deeds, not fortune "
+"and material advantages, they drove out the invaders and made our city what "
+"it is now.” \\n— Pericles (Thucydides, “History of the Peloponnesian War”, "
+"I. 144.3–4)"
 msgstr ""
 
 #: gui/text/quotes.txt:132
 msgid ""
-"\"Instead of looking on discussion as a stumbling block in the way of "
-"action, we think it an indispensable preliminary to any wise action at "
-"all.\" - Pericles in his Funeral Oration for Athenians that died in the "
-"first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
-" 40.2)"
+"“Instead of looking on discussion as a stumbling block in the way of action,"
+" we think it an indispensable preliminary to any wise action at all.” \\n— "
+"Pericles in his Funeral Oration for Athenians that died in the first year of"
+" the war (Thucydides, “History of the Peloponnesian War”, II. 40.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:133
 msgid ""
-"\"We alone do not think that a man ignorant of politics interferes with "
-"nothing, we think he is good for nothing.\" - Pericles in his Funeral "
+"“We alone do not think that a man ignorant of politics interferes with "
+"nothing, we think he is good for nothing.” \\n— Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
-"\"History of the Peloponnesian War\", II. 40.2)"
+"“History of the Peloponnesian War”, II. 40.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:134
 msgid ""
-"\"Future ages will wonder at us, as the present age wonders at us now.\" - "
+"“Future ages will wonder at us, as the present age wonders at us now.” \\n— "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
-" the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr "”ستستغرب الأجيال القادمة منّا، تمامًا كما تستغرب الأجيال الآن.“ - بيريكليس في خطاب التأبين للأثينيّين الذين تُوفّوا في السنة الأولى من الحرب (ثوسيديديس، ”تاريخ الحرب البولوبونيسية“، الثاني ٤١٫٥)"
+" the war (Thucydides, “History of the Peloponnesian War”, II. 41.5)"
+msgstr ""
 
 #: gui/text/quotes.txt:135
 msgid ""
-"\"When you realise the power of Athens, consider it was won by valiant men "
+"“When you realise the power of Athens, consider it was won by valiant men "
 "who knew their duty, had a sense of dishonor in fight and, if their "
 "enterprises failed, would rather give their lives than lack in civic "
-"virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
-"first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
-" 43.2)"
+"virtue.” \\n— Pericles in his Funeral Oration for Athenians that died in the"
+" first year of the war (Thucydides, “History of the Peloponnesian War”, II. "
+"43.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:136
 msgid ""
-"\"To heroes all earth is their tomb, and their virtues are remembered far "
+"“To heroes all earth is their tomb, and their virtues are remembered far "
 "from home where an epitaph declares them, in an unwritten record of the mind"
-" that will outlast any monument.\" - Pericles in his Funeral Oration for "
-"Athenians that died in the first year of the war (Thucydides, \"History of "
-"the Peloponnesian War\", II. 43.3)"
+" that will outlast any monument.” \\n— Pericles in his Funeral Oration for "
+"Athenians that died in the first year of the war (Thucydides, “History of "
+"the Peloponnesian War”, II. 43.3)"
 msgstr ""
 
 #: gui/text/quotes.txt:137
 msgid ""
-"\"Understand that happiness depends on freedom, and freedom depends on "
-"courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
-"first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
-" 43.4)"
-msgstr "”اعلموا أنّ السعادة أساسها الحرية، والحرية أساسها الشجاعة.“ - بيريكليس في خطاب التأبين للأثينيّين الذين تُوفّوا في السنة الأولى من الحرب (ثوسيديديس، ”تاريخ الحرب البولوبونيسية“، الثاني ٤٣٫٤)"
+"“Understand that happiness depends on freedom, and freedom depends on "
+"courage.” \\n— Pericles in his Funeral Oration for Athenians that died in "
+"the first year of the war (Thucydides, “History of the Peloponnesian War”, "
+"II. 43.4)"
+msgstr ""
 
 #: gui/text/quotes.txt:138
 msgid ""
-"\"The greatest glory for women is to be least talked about by men, whether "
-"for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
-" in the first year of the war (Thucydides, \"History of the Peloponnesian "
-"War\", II. 45.2)"
-msgstr "”أفضل ما تتمجّد به النساء هو أن كلام الرجال عنها شحيح، أكان كلاما خيّرًا أم لا.“ - بيريكليس في خطاب التأبين للأثينيّين الذين تُوفّوا في السنة الأولى من الحرب (ثوسيديديس، ”تاريخ الحرب البولوبونيسية“، الثاني ٤١٫٢)"
+"“The greatest glory for women is to be least talked about by men, whether "
+"for good or ill.” \\n— Pericles in his Funeral Oration for Athenians that "
+"died in the first year of the war (Thucydides, “History of the Peloponnesian"
+" War”, II. 45.2)"
+msgstr ""
 
 #: gui/text/quotes.txt:139
 msgid ""
-"\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
-"politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
-" 18)"
-msgstr "”انتظر أكثر المستشارين حكمة، الوقت.“ - بيريكليس، سياسي حذر تجنّب الحرب (فلوطرخس، ”الحياة الموازية“، ”بيريكليس“، قسم ١٨)"
+"“Wait for the wisest of all counsellors, time.” \\n— Pericles, a cautious "
+"politician who avoided war (Plutarch, “Parallel Lives”, “Pericles”, sec. 18)"
+msgstr ""
 
 #: gui/text/quotes.txt:140
 msgid ""
-"\"Your empire is now like a tyranny: it may have been wrong to take it; it "
-"is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
-"assembly after a plague had weakened the city (Thucydides, \"History of the "
-"Peloponnesian War\", II. 63.3)"
+"“Your empire is now like a tyranny: it may have been wrong to take it; it is"
+" certainly dangerous to let it go.” \\n— Pericles, addressing the Athenian "
+"assembly after a plague had weakened the city (Thucydides, “History of the "
+"Peloponnesian War”, II. 63.3)"
 msgstr ""
 
 #: gui/text/quotes.txt:141
 msgid ""
-"\"War is sweet to those who have no experience of it, but the experienced "
-"man fears its approach in his heart.\" - Pindar (fragment 110)"
+"“War is sweet to those who have no experience of it, but the experienced man"
+" fears its approach in his heart.” \\n— Pindar (fragment 110)"
 msgstr ""
 
 #: gui/text/quotes.txt:142
 msgid ""
-"\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
-"the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
-"the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
+"“Themistocles robbed his fellow citizens of spear and shield, and degraded "
+"the people of Athens to the rowing-pad and the oar.” \\n— Plato, no friend "
+"of the Athenian navy (Plutarch, “Parallel Lives”, “Themistocles”, sec. 3)"
 msgstr ""
 
 #: gui/text/quotes.txt:143
 msgid ""
-"\"No guest is so welcome in a friend's house that he will not become a "
-"nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
+"“No guest is so welcome in a friend's house that he will not become a "
+"nuisance after three days.” \\n— Plautus (“The Swaggering Soldier”, Act III,"
 " scene 1, 146)"
 msgstr ""
 
 #: gui/text/quotes.txt:144
 msgid ""
-"\"You cannot eat your cake and have it too, unless you think your money is "
-"immortal.\" - Plautus (\"Trinummus\", Act II, scene 4, 12)"
-msgstr "”محال أن تأكل كعكتك وتبقيها لك في ذات الوقت، إلا إن كنت تظن أن مالك سيخلُد.“ - بلاوتوس (”Trinummus“، الجولة الثانية، مشهد ٤، ١٢)"
+"“You cannot eat your cake and have it too, unless you think your money is "
+"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
+msgstr ""
 
 #: gui/text/quotes.txt:145
 msgid ""
-"\"He \\[Alexander] thought nothing invincible for the courageous, and "
-"nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
-"\"Alexander\", sec. 58)"
+"“He \\[Alexander] thought nothing invincible for the courageous, and nothing"
+" secure for the cowardly.” \\n— Plutarch (“Parallel Lives”, “Alexander”, "
+"sec. 58)"
 msgstr ""
 
 #: gui/text/quotes.txt:146
 msgid ""
-"\"One \\[…] shot an arrow at him with such accuracy and force that it "
-"pierced his breastplate and got stuck in his ribs. \\[…] Alexander recoiled "
-"and sank to his knees. \\[…] At last Alexander killed the barbarian. But he "
+"“One \\[…] shot an arrow at him with such accuracy and force that it pierced"
+" his breastplate and got stuck in his ribs. \\[…] Alexander recoiled and "
+"sank to his knees. \\[…] At last Alexander killed the barbarian. But he "
 "received many wounds, at last was struck on the neck with a mace, and leaned"
-" against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
-"about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
+" against the city wall, his eyes still fixed upon his foes.” \\n— Plutarch "
+"about the Mallian Campaign (“Parallel Lives”, “Alexander”, sec. 63)"
 msgstr ""
 
 #: gui/text/quotes.txt:147
 msgid ""
-"\"When the pirates demanded a ransom of twenty talents for him, Caesar burst"
-" out laughing. They did not know, he said, who it was that they had "
-"captured, and he volunteered to pay fifty.\" - Plutarch, who mentions later "
-"that Caesar got his money back and had his captors crucified (\"Parallel "
-"Lives\", \"Caesar\", sec. 2)"
+"“When the pirates demanded a ransom of twenty talents for him, Caesar burst "
+"out laughing. They did not know, he said, who it was that they had captured,"
+" and he volunteered to pay fifty.” \\n— Plutarch, who mentions later that "
+"Caesar got his money back and had his captors crucified (“Parallel Lives”, "
+"“Caesar”, sec. 2)"
 msgstr ""
 
 #: gui/text/quotes.txt:148
 msgid ""
-"\"They \\[the Romans] want the centurions not so much to be adventurous and "
+"“They \\[the Romans] want the centurions not so much to be adventurous and "
 "daredevils, as to be natural leaders, of a steady and reliable spirit. They "
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
-"ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
+"ready to die at their posts.” \\n— Polybius (“Histories”, VI. 24)"
 msgstr ""
 
 #: gui/text/quotes.txt:149
 msgid ""
-"\"The Roman battle line is hard to break, since it allows every man to fight"
-" both individually and collectively; so that a formation can fight in any "
+"“The Roman battle line is hard to break, since it allows every man to fight "
+"both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
-"to face it.\" - Polybius (\"Histories\", XV. 15)"
+"to face it.” \\n— Polybius (“Histories”, XV. 15)"
 msgstr ""
 
 #: gui/text/quotes.txt:150
 msgid ""
-"\"The Athenian people are always in the position of a ship without a "
+"“The Athenian people are always in the position of a ship without a "
 "commander. Fear of the enemy or a storm make the crew be of one mind and "
 "obey the helmsman, everything goes well; but if they recover \\[…] they "
 "quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
-"wreck their ship in harbor and close to shore.\" - Polybius on the Athenian "
-"constitution (\"Histories\", VI. 44)"
+"wreck their ship in harbor and close to shore.” \\n— Polybius on the "
+"Athenian constitution (“Histories”, VI. 44)"
 msgstr ""
 
 #: gui/text/quotes.txt:151
 msgid ""
-"\"Most of the Romans were trampled to death by the enormous weight of the "
+"“Most of the Romans were trampled to death by the enormous weight of the "
 "elephants; the rest were shot down in their ranks by the numerous cavalry: "
-"and there were only a very few who attempted to save themselves by flight.\""
-" - Polybius on the Battle of Bagradas where a Roman army was annihilated "
-"during the First Punic War (\"Histories\", I. 34)"
+"and there were only a very few who attempted to save themselves by flight.” "
+"\\n— Polybius on the Battle of Bagradas where a Roman army was annihilated "
+"during the First Punic War (“Histories”, I. 34)"
 msgstr ""
 
 #: gui/text/quotes.txt:152
 msgid ""
-"\"Hannibal gave the signal for attack; and at the same time sent orders to "
+"“Hannibal gave the signal for attack; and at the same time sent orders to "
 "the troops lying in ambush on the hills to do the same, and thus delivered "
-"an assault upon the enemy at every point at once.\" - Polybius on the "
-"beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
+"an assault upon the enemy at every point at once.” \\n— Polybius on the "
+"beginning of a Roman disaster at the Trasymene Lake (“Histories”, III. 84)"
 msgstr ""
 
 #: gui/text/quotes.txt:153
 msgid ""
-"\"In the phalanx, the men cannot turn around singly and defend themselves: "
+"“In the phalanx, the men cannot turn around singly and defend themselves: "
 "this tribune, therefore, charged them \\[from behind] and killed all he "
 "could get at; until, unable to resist, they were forced to throw away their "
-"shields and flee.\" - Polybius, describing the defeat of Philip V. of "
-"Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
-"26)"
+"shields and flee.” \\n— Polybius, describing the defeat of Philip V. of "
+"Macedon by Flaminius in the Battle of Cynoscephalae (“Histories”, XVIII. 26)"
 msgstr ""
 
 #: gui/text/quotes.txt:154
 msgid ""
-"\"The Roman order on the other hand is flexible: for every Roman, once armed"
-" and on the field, is equally well equipped for every place, time, or "
+"“The Roman order on the other hand is flexible: for every Roman, once armed "
+"and on the field, is equally well equipped for every place, time, or "
 "appearance of the enemy. He is, moreover, quite ready and needs to make no "
 "change, whether he is required to fight in the main body, or in a "
-"detachment, or in a single maniple, or even by himself.\" - Polybius, "
-"explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
+"detachment, or in a single maniple, or even by himself.” \\n— Polybius, "
+"explaining how the Romans can defeat the Macedonian phalanx (“Histories”, "
 "XVIII. 32)"
 msgstr ""
 
 #: gui/text/quotes.txt:155
 msgid ""
-"\"Scipio \\[Aeminialus], when he looked upon the city \\[Carthage] as it was"
-" utterly perishing and in the last throes of its complete destruction, is "
+"“Scipio \\[Aemilianus], when he looked upon the city \\[Carthage] as it was "
+"utterly perishing and in the last throes of its complete destruction, is "
 "said to have shed tears and wept openly for his enemies. And realized that "
-"all cities, nations, and authorities must, like men, meet their doom.\" - "
-"Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
-" 22)"
+"all cities, nations, and authorities must, like men, meet their doom.” \\n— "
+"Polybius, eyewitness to the destruction of Carthage (“Histories”, XXXVIII. "
+"22)"
 msgstr ""
 
 #: gui/text/quotes.txt:156
 msgid ""
-"\"One more such victory and the cause is lost!\" - Pyrrhus of Epirus after "
+"“One more such victory and the cause is lost!” \\n— Pyrrhus of Epirus after "
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
-"lost a greater share of his armed forces (Plutarch, \"Parallel Lives\", "
-"\"Pyrrhus\", sec. 21)"
+"lost a greater share of his armed forces (Plutarch, “Parallel Lives”, "
+"“Pyrrhus”, sec. 21)"
 msgstr ""
 
 #: gui/text/quotes.txt:157
 msgid ""
-"\"None can be free who is a slave to, and ruled by, his passions.\" - "
-"Pythagoras (Stobaeus, \"Florilegium\", 18)"
+"“None can be free who is a slave to, and ruled by, his passions.” \\n— "
+"Pythagoras (Stobaeus, “Florilegium”, 18)"
 msgstr ""
 
 #: gui/text/quotes.txt:158
 msgid ""
-"\"Do not say few things in many words, but many things in few words.\" - "
-"Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr "”لا تقل القليل بكلمات كثيرة، بل الكثير بكلمات قليلة.“ - Pythagoras (Stobaeus، ”Florilegium“، ٢٤)"
+"“Do not say few things in many words, but many things in few words.” \\n— "
+"Pythagoras (Stobaeus, “Florilegium”, 24)"
+msgstr ""
 
 #: gui/text/quotes.txt:159
 msgid ""
-"\"Let your speech be better than silence, or be silent.\" - Pythagoras "
-"(Stobaeus, \"Florilegium\", 24)"
+"“Let your speech be better than silence, or be silent.” \\n— Pythagoras "
+"(Stobaeus, “Florilegium”, 24)"
 msgstr ""
 
 #: gui/text/quotes.txt:160
 msgid ""
-"\"Unity strengthens even small states, while discord undermines the "
-"mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
+"“Unity strengthens even small states, while discord undermines the mightiest"
+" empires.” \\n— Sallust (“The Jugurthine War”, 10.6)"
 msgstr ""
 
 #: gui/text/quotes.txt:161
 msgid ""
-"\"Ungrateful fatherland, you will not even have my bones!\" - Scipio "
+"“Ungrateful fatherland, you will not even have my bones!” \\n— Scipio "
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
-"accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
-"memorable deeds and sayings\", 5.3.2)"
+"accused of crimes by the Roman Senate (Valerius Maximus, “Nine books on "
+"memorable deeds and sayings”, 5.3.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:162
 msgid ""
-"\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
-"Africanus, replying to Hannibal's offer of peace terms before the Battle of "
-"Zama (Livy, \"History of Rome\", XXX. 31)"
+"“Prepare for war, since you have been unable to endure a peace.” \\n— Scipio"
+" Africanus, replying to Hannibal's offer of peace terms before the Battle of"
+" Zama (Livy, “History of Rome”, XXX. 31)"
 msgstr ""
 
 #: gui/text/quotes.txt:163
 msgid ""
-"\"But tactical science is only one part of generalship. A general must be "
+"“But tactical science is only one part of generalship. A general must be "
 "capable of equipping his forces and providing for his men. He must also be "
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
-" fierce, straightforward and subtle.\" - Socrates (Xenophon, "
-"\"Memorabilia\", 3.1.6)"
+" fierce, straightforward and subtle.” \\n— Socrates (Xenophon, "
+"“Memorabilia”, 3.1.6)"
 msgstr ""
 
 #: gui/text/quotes.txt:164
 msgid ""
-"\"It is necessary to know the strength of the city and of the enemy, so "
-"that, if the city is stronger, one may recommend her to go to war, but if "
-"weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
-"\"Memorabilia\", 3.6.9)"
+"“It is necessary to know the strength of the city and of the enemy, so that,"
+" if the city is stronger, one may recommend her to go to war, but if weaker "
+"than the enemy, may persuade her to beware.” \\n— Socrates (Xenophon, "
+"“Memorabilia”, 3.6.9)"
 msgstr ""
 
 #: gui/text/quotes.txt:165
 msgid ""
-"\"The unexamined life is not worth living.\" - Socrates, in his defense when"
-" trialled for corrupting the youth and not worshipping the proper gods (he "
-"later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
+"“The unexamined life is not worth living.” Socrates, in his defense when "
+"trialled for corrupting the youth and not worshipping the proper gods (he "
+"later drank hemlock after the death sentence) \\n— Plato (“Apology”, 38a)"
 msgstr ""
 
 #: gui/text/quotes.txt:166
 msgid ""
-"\"The hour of departure has arrived, and we go our ways - I to die, and you "
-"to live. Which is better God only knows.\" - Socrates, in his defense when "
+"“The hour of departure has arrived, and we go our ways – I to die, and you "
+"to live. Which is better God only knows.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
-"later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
+"later drank hemlock after the death sentence) \\n— Plato (“Apology”, 42a)"
 msgstr ""
 
 #: gui/text/quotes.txt:167
 msgid ""
-"\"Walls and ships are nothing without men living together inside them.\" - "
-"Sophocles (\"Oedipus Rex\")"
+"“Walls and ships are nothing without men living together inside them.” \\n— "
+"Sophocles (“Oedipus Rex”)"
 msgstr ""
 
 #: gui/text/quotes.txt:168
 msgid ""
-"\"We accepted an empire that was offered to us and refused to give it up "
+"“We accepted an empire that was offered to us and refused to give it up "
 "under the pressure of three of the strongest motives: fear, honor and "
 "interest. It was not we who set the example, for it has always been the law "
-"that the weak should be subject to the strong.\" - Speech of an Athenian "
-"embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
-"76.2)"
+"that the weak should be subject to the strong.” \\n— Speech of an Athenian "
+"embassy in Sparta (Thucydides, “History of the Peloponnesian War”, I. 76.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:169
 msgid ""
-"\"He could boast that he found a city of brick and left it a city of "
-"marble.\" - Suetonius, commenting on the many building projects of Augustus "
-"in Rome (\"Divus Augustus\", sec 38)"
+"“He could boast that he found a city of brick and left it a city of marble.”"
+" \\n— Suetonius, commenting on the many building projects of Augustus in "
+"Rome (“Divus Augustus”, sec 38)"
 msgstr ""
 
 #: gui/text/quotes.txt:170
-msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
+msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
 msgstr ""
 
 #: gui/text/quotes.txt:171
 msgid ""
-"\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
-"admiral (\"Phormio\", 203)"
+"“Fortune favors the bold.” \\n— Terence in a play about a great Athenian "
+"admiral (“Phormio”, 203)"
 msgstr ""
 
 #: gui/text/quotes.txt:172
 msgid ""
-"\"I do not know how to tune the lyre or play the harp, but I do know how to "
-"raise a city that was small and unimportant to glory and greatness.\" - "
+"“I do not know how to tune the lyre or play the harp, but I do know how to "
+"raise a city that was small and unimportant to glory and greatness.” \\n— "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
-"\"Parallel Lives\", \"Themistocles\", sec. 2)"
+"“Parallel Lives”, “Themistocles”, sec. 2)"
 msgstr ""
 
 #: gui/text/quotes.txt:173
 msgid ""
-"\"Strike, if you will, but listen.\" - Themistocles, in a heated discussion "
-"with the Spartan fleet commander who threatened to beat him with his staff, "
-"before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
-"\"Themistocles\", sec. 11)"
+"“Strike, if you will, but listen.” \\n— Themistocles, in a heated discussion"
+" with the Spartan fleet commander who threatened to beat him with his staff,"
+" before the Battle of Salamis (Plutarch, “Parallel Lives”, “Themistocles”, "
+"sec. 11)"
 msgstr ""
 
 #: gui/text/quotes.txt:174
 msgid ""
-"\"The Athenians command the rest of Greece, I command the Athenians; your "
-"mother commands me, and you command your mother.\" - Themistocles, jokingly "
-"to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
+"“The Athenians command the rest of Greece, I command the Athenians; your "
+"mother commands me, and you command your mother.” \\n— Themistocles, "
+"jokingly to his infant son (Plutarch, “Parallel Lives”, “Themistocles”, sec."
+" 18)"
 msgstr ""
 
 #: gui/text/quotes.txt:175
 msgid ""
-"\"So little pains does the mob take in finding out the truth, accepting "
-"readily the first story at hand.\" - Thucydides (\"History of the "
-"Peloponnesian War\", I. 21.3)"
+"“So little pains does the mob take in finding out the truth, accepting "
+"readily the first story at hand.” \\n— Thucydides (“History of the "
+"Peloponnesian War”, I. 21.3)"
 msgstr ""
 
 #: gui/text/quotes.txt:176
 msgid ""
-"\"The growth of the power of Athens, and the alarm which this caused in "
-"Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
-"War\", I. 23.6)"
+"“The growth of the power of Athens, and the alarm which this caused in "
+"Sparta, made war inevitable.” \\n— Thucydides (“History of the Peloponnesian"
+" War”, I. 23.6)"
 msgstr ""
 
 #: gui/text/quotes.txt:177
 msgid ""
-"\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
-" of the Peloponnesian War\", I. 83.2)"
+"“War is a matter not so much of arms as of money.” \\n— Thucydides (“History"
+" of the Peloponnesian War”, I. 83.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:178
 msgid ""
-"\"It is a general rule of human nature that people despise those who treat "
-"them well, and look up to those who make no concessions.\" - Thucydides "
-"(\"History of the Peloponnesian War\", III. 39.5)"
+"“It is a general rule of human nature that people despise those who treat "
+"them well, and look up to those who make no concessions.” \\n— Thucydides "
+"(“History of the Peloponnesian War”, III. 39.5)"
 msgstr ""
 
 #: gui/text/quotes.txt:179
 msgid ""
-"\"This was the greatest action that happened in all this war, and all others"
-" that we have heard of amongst the Greeks, being to the victors most "
-"glorious and most calamitous to the vanquished. For they were utterly and at"
-" all points defeated, and their sufferings were many. Army and fleet and all"
-" they ever had perished, nothing was saved and few of so many ever returned "
-"home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
-"Peloponnesian War\", VII. 87.6-7)"
+"“This was the greatest action that happened in all this war, and all others "
+"that we have heard of amongst the Greeks, being to the victors most glorious"
+" and most calamitous to the vanquished. For they were utterly and at all "
+"points defeated, and their sufferings were many. Army and fleet and all they"
+" ever had perished, nothing was saved and few of so many ever returned home."
+" Thus ended the Sicilian expedition.” \\n— Thucydides (“History of the "
+"Peloponnesian War”, VII. 87.6–7)"
 msgstr ""
 
 #: gui/text/quotes.txt:180
 msgid ""
-"\"As the world goes, justice is only a matter between equals, while the "
-"strong do what they can and the weak suffer what they must.\" - Thucydides, "
-"describing Athenians addressing the defeated Melians who are unwilling to "
-"surrender (\"History of the Peloponnesian War\", V. 89.1)"
+"“As the world goes, justice is only a matter between equals, while the "
+"strong do what they can and the weak suffer what they must.” \\n— "
+"Thucydides, describing Athenians addressing the defeated Melians who are "
+"unwilling to surrender (“History of the Peloponnesian War”, V. 89.1)"
 msgstr ""
 
 #: gui/text/quotes.txt:181
 msgid ""
-"\"When the Lacedaemonians were no longer able to run after them, the "
+"“When the Lacedaemonians were no longer able to run after them, the "
 "skirmishers \\[…] all charged them at once, casting stones, arrows, and "
-"darts to the closest man at hand.\" - Thucydides, describing the Spartan "
-"disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
+"darts to the closest man at hand.” \\n— Thucydides, describing the Spartan "
+"disaster at the Battle of Sphacteria (“History of the Peloponnesian War”, "
 "IV. 34.2)"
 msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
-"\"The soldiers fight and die to support others in wealth and luxury and they"
-" are called masters of the world without owning a single piece of farmland "
-"of their own.\" - Tiberius Gracchus, advocating for land reform to the "
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
 "benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
-"\"Tiberius Gracchus\", sec. 9)"
+"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
+"Gracchus”, sec. 9)"
 msgstr ""
 
 #: gui/text/quotes.txt:183
 msgid ""
-"\"The wild beasts of Italy have their caves to retire to, but the brave "
+"“The wild beasts of Italy have their caves to retire to, but the brave "
 "veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.\" - "
+"light. They wander around homeless with their wives and children.” \\n— "
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
+"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
 msgstr ""
 
 #: gui/text/quotes.txt:184
 msgid ""
-"\"Do not trust the horse, Trojans! I fear the Greeks even when they bring "
-"gifts.\" - Virgil (\"Aeneid\", II. 48-49)"
+"“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
+"gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
 msgstr ""
 
 #: gui/text/quotes.txt:185
-msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
+msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"
 msgstr ""
 
 #: gui/text/quotes.txt:186
 msgid ""
-"\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
-"among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
+"“Homer and Hesiod ascribed to their Gods all things that are a disgrace "
+"among mortals: stealing, adultery, deceiving one another.” \\n— Xenophanes "
 "(fragment 11)"
 msgstr ""
 
 #: gui/text/quotes.txt:187
 msgid ""
-"\"If oxen and horses and lions had hands, and could paint, and produce works"
-" of art as men do, horses would paint the forms of the gods like horses, and"
-" oxen like oxen, and make their God's bodies each in their own image.\" - "
+"“If oxen and horses and lions had hands, and could paint, and produce works "
+"of art as men do, horses would paint the forms of the gods like horses, and "
+"oxen like oxen, and make their God's bodies each in their own image.” \\n— "
 "Xenophanes (fragment 15)"
 msgstr ""
 
 #: gui/text/quotes.txt:188
 msgid ""
-"\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
-"theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
+"“The Ethiopians make their gods black and snub-nosed, the Thracians say "
+"theirs have blue eyes and red hair.” \\n— Xenophanes (fragment 16)"
 msgstr ""
 
 #: gui/text/quotes.txt:189
 msgid ""
-"\"These are the right questions to ask, in winter around the fire \\[…]: Who"
-" are you, friend? What is your land? And how old were you when the Medes "
-"\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
-" against Greek cities in Ionia (fragment 17)"
+"“These are the right questions to ask, in winter around the fire \\[…]: Who "
+"are you, friend? What is your land? And how old were you when the Medes "
+"\\[Persians] came?” \\n— Xenophanes, likely referring to a punitive "
+"expedition against Greek cities in Ionia (fragment 17)"
 msgstr ""
 
 #: gui/text/quotes.txt:190
 msgid ""
-"\"A prudent commander will never take risks unnecessarily, except when it is"
-" clear beforehand that he will have the advantage.\" - Xenophon (\"The "
-"Cavalry General\", 4.13)"
+"“A prudent commander will never take risks unnecessarily, except when it is "
+"clear beforehand that he will have the advantage.” \\n— Xenophon (“The "
+"Cavalry General”, 4.13)"
 msgstr ""
 
 #: gui/text/quotes.txt:191
 msgid ""
-"\"Attack the enemy where he is weakest, even if that is a long way off, "
-"since hard work is less dangerous than a struggle against superior forces.\""
-" - Xenophon (\"The Cavalry General\", sec. 4.14)"
+"“Attack the enemy where he is weakest, even if that is a long way off, since"
+" hard work is less dangerous than a struggle against superior forces.” \\n— "
+"Xenophon (“The Cavalry General”, sec. 4.14)"
 msgstr ""
 
 #: gui/text/quotes.txt:192
 msgid ""
-"\"He should be inventive, ready to exploit all circumstances, to make a "
-"small force appear large and a large one small, to appear absent when close "
-"at hand, and within striking distance when a long way off.\" - Xenophon "
-"(\"The Cavalry General\", sec. 5)"
+"“He should be inventive, ready to exploit all circumstances, to make a small"
+" force appear large and a large one small, to appear absent when close at "
+"hand, and within striking distance when a long way off.” \\n— Xenophon (“The"
+" Cavalry General”, sec. 5)"
 msgstr ""
 
 #: gui/text/quotes.txt:193
 msgid ""
-"\"People are glad to obey the man whom they believe to be wiser than "
-"themselves in pursuing their interests.\" - Xenophon (\"The Education of "
-"Cyrus\", 1.6.22)"
+"“People are glad to obey the man whom they believe to be wiser than "
+"themselves in pursuing their interests.” \\n— Xenophon (“The Education of "
+"Cyrus”, 1.6.22)"
 msgstr ""
 
 #: gui/text/quotes.txt:194
 msgid ""
-"\"In his campaigns during summer the general must show that he can endure "
-"the sun better than the soldiers, in winter he must show he can endure cold "
+"“In his campaigns during summer the general must show that he can endure the"
+" sun better than the soldiers, in winter he must show he can endure cold "
 "better; and throughout all difficulties that he can endure hardships better."
-" This will help to make him loved by his men.\" - Xenophon (\"The Education "
-"of Cyrus\", 1.6.25)"
+" This will help to make him loved by his men.” \\n— Xenophon (“The Education"
+" of Cyrus”, 1.6.25)"
 msgstr ""
 
 #: gui/text/quotes.txt:195
 msgid ""
-"\"Battles are decided more by the morale of men than their physical "
-"strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
+"“Battles are decided more by the morale of men than their physical "
+"strength.” \\n— Xenophon (“The Education of Cyrus”, 3.3.20)"
 msgstr ""
 
 #: gui/text/quotes.txt:196
 msgid ""
-"\"Let's not give them enough time to arrange a defense, or to even recognise"
-" that we are human beings! We've got to appear to them like an "
-"uncontrollable nightmare of shields, swords, battle-axes and spears!\" - "
-"Xenophon (\"The Education of Cyrus\", 4.2.22)"
+"“Let's not give them enough time to arrange a defense, or to even recognise "
+"that we are human beings! We've got to appear to them like an uncontrollable"
+" nightmare of shields, swords, battle-axes and spears!” \\n— Xenophon (“The "
+"Education of Cyrus”, 4.2.22)"
 msgstr ""
 
 #: gui/text/quotes.txt:197
 msgid ""
-"\"I suppose you understand, men, that pursuing, dealing blows and death, "
-"plunder, fame, freedom, power - all these are prizes for the winners; the "
-"cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
-"Cyrus\", 7.1.13)"
+"“I suppose you understand, men, that pursuing, dealing blows and death, "
+"plunder, fame, freedom, power – all these are prizes for the winners; the "
+"cowardly, of course, suffer the reverse.” \\n— Xenophon (“The Education of "
+"Cyrus”, 7.1.13)"
 msgstr ""
 
 #: gui/text/quotes.txt:198
 msgid ""
-"\"The man who wants that must be scheming and cunning, wily and deceitful, a"
-" thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
-"how best to gain advantage over the enemy (\"The Education of Cyrus\", "
+"“The man who wants that must be scheming and cunning, wily and deceitful, a "
+"thief and a robber, overreaching the enemy at every point.” \\n— Xenophon on"
+" how best to gain advantage over the enemy (“The Education of Cyrus”, "
 "1.6.26)"
 msgstr ""
 
 #: gui/text/quotes.txt:199
 msgid ""
-"\"My men have turned into women, and my women into men!\" - Xerxes, watching"
-" Artemisia ram a ship while most of his fleet suffered the reverse, not "
-"knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
+"“My men have turned into women, and my women into men!” \\n— Xerxes, "
+"watching Artemisia ram a ship while most of his fleet suffered the reverse, "
+"not knowing that the sunk vessel was his own (Herodotus, “The Histories”, "
 "VIII. 88)"
 msgstr ""
 
 #: gui/text/quotes.txt:200
 msgid ""
-"\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
-"the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
+"“For a thinking man is where Wisdom is at home.” \\n— Zoroaster, founder of "
+"the Zoroastrian religion (“Ahunuvaiti Gatha”, yasna 30.9)"
 msgstr ""

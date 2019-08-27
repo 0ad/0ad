@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-22 06:01+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-24 14:08+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -643,6 +643,10 @@ msgstr "Köknar Ağacı"
 msgid "Fir Sapling"
 msgstr "Göknar Fidanı"
 
+#: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
+msgid "Prickly Juniper"
+msgstr "Dikenli Ardıç"
+
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
 msgstr "Mangrov"
@@ -1078,8 +1082,8 @@ msgstr "Casus"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "At least 16 melee infantry units required."
-msgstr "En az 16 yakın piyade birimi gerekli."
+msgid "Requires at least 16 Melee Infantry."
+msgstr "En az !6 Yakın Dövüş Ğiyadesi gerektirir."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1090,8 +1094,8 @@ msgid "Battle Line"
 msgstr "Savaş Hattı"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "At least 4 units required."
-msgstr "En az 4 birim gerekli."
+msgid "Requires at least 4 Soldiers or Siege engines."
+msgstr "En az 4 Asker ya da Kuşatma Makinesi gerektirir."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1106,8 +1110,8 @@ msgid "Column Open"
 msgstr "Açık Sütun"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "At least 8 units required."
-msgstr "En az 8 birim gerekli."
+msgid "Requires at least 8 Soldiers or Siege engines."
+msgstr "Requires at least 8 Soldiers or Siege engines."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1126,8 +1130,8 @@ msgid "None"
 msgstr "Yok"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "At least 10 hoplite infantry required."
-msgstr "En az 10 hoplite piyadesi gerekli."
+msgid "Requires at least 10 Infantry Hoplites."
+msgstr "En az 10 Hoplit Piyadesi gerektirir."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1138,16 +1142,16 @@ msgid "Scatter"
 msgstr "Dağınık"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed."
-msgstr "Sadece menzilli birimler için."
+msgid "Requires a Ranged Soldier."
+msgstr "Menzilli bir asker gerektirir."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Çatışma"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "At least 16 pike infantry units required."
-msgstr "En az 16 Kargıcı piyade birimi gerekli."
+msgid "Requires at least 16 Infantry Pikemen."
+msgstr "En az 16 Kargıcı Piyade gerektirir."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1158,8 +1162,8 @@ msgid "Testudo"
 msgstr "Kaplumbağa Düzeni"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "At least 6 cavalry units required."
-msgstr "En az 6 süvari birimi gerekli."
+msgid "Requires at least 6 Cavalry."
+msgstr "En az 6 süvari gerektirir."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

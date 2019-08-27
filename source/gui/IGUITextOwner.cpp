@@ -107,7 +107,7 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUITex
 	// loop through all of the TextCall objects again.
 	TextPos.x = ObjSize.left;
 
-	switch (GUI<EVAlign>::GetSetting(this, "text_valign"))
+	switch (GetSetting<EVAlign>("text_valign"))
 	{
 	case EVAlign_Top:
 		TextPos.y = ObjSize.top;

@@ -79,7 +79,9 @@ public:
 	 */
 	void ToJSVal(JSContext* cx, JS::MutableHandleValue Value) override;
 
-private:
+	/**
+	 * These members are public because they are either unmodifiable or free to be modified.
+	 */
 
 	/**
 	 * The object that stores this setting.
@@ -92,7 +94,7 @@ private:
 	const CStr m_Name;
 
 	/**
-	 * Holds the value of the setting..
+	 * Holds the value of the setting.
 	 */
 	T m_pSetting;
 };
@@ -107,15 +109,6 @@ class GUI
 public:
 	NONCOPYABLE(GUI);
 
-	/**
-	 * Get a mutable reference to the setting.
-	 * If no such setting exists, an exception of type std::out_of_range is thrown.
-	 * Use SettingExists if a safeguard is needed.
-	 *
-	 * If the value is modified, there is no GUIM_SETTINGS_UPDATED message sent.
-	 * SetSetting should be used to modify the value if there is a use for the message.
-	 */
-	static T& GetSetting(const IGUIObject* pObject, const CStr& Setting);
 
 	/**
 	 * Sets a value by name using a real datatype as input.

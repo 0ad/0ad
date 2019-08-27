@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-07-20 20:27+0000\n"
-"Last-Translator: Farkas Máté <nyugatkeleti@gmail.com>\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-23 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1581,10 +1581,10 @@ msgstr "Ez a pálya Napata ókori városának rekonstrukcióját mutatja. [color
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 játékos kitartóan küzd a hatalmas Nílus-deltában. Minden város egy nagy akropoliszon befészkelve kezdi, de a nyersanyagok szűkösek, arra sarkallva a játékosokat, hogy terjesszék ki nyersanyagforrás utáni kutatásukat a környező vidékre.\n\nA felderítők szerint a Nílus folyó közeli ágai sekélyek és több helyen átgázolhatóak, tehát csupán egy kis akadályt képeznek az ellenséges csoportok között."
+msgstr ""
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2107,11 +2107,7 @@ msgstr "Hajók demó"
 msgid "Base Temperate Map"
 msgstr "Alap mérsékelt térkép"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Egységmozgás integrációs teszt"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2119,12 +2115,16 @@ msgid ""
 "and weird pathing."
 msgstr "Ez a térkép alapvető egységmozgási esetek tesztelésére készült. Tartalmazza a unitAI-t, a unitMotiont és a releváns útkeresőket, így integrált teszttérképként szolgál. Keress elakadt egységeket, hibás animációkat és furcsa útkereséseket."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Egységmozgás integrációs teszt"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Minden játékos egy nagy fennsíkon ‒ más néven akropoliszon ‒ kezdi a játszmát.\n\nKeleten egy nagy öböl terül el halászati lehetőséggel. Nyugaton egy zord hátország található, melyet egy gazdátlan akropolisz határoz meg a völgy fölött."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2389,8 +2389,8 @@ msgstr "Gambia folyó (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Egy földgyűrű határol egy nyersanyagokban gazdag szigetet a Földközi-tengeren. A játékosok a sziget közepét egy szűk földsávon, vagy csónakkal érhetik el."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr ""
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2410,10 +2410,10 @@ msgstr "Arany oázis (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Két csoport egy sziklás fennsíkon vagy akropoliszon találja magát biztonságban befészkelve.\n\nDerítsd fel a vidékez a szabad kincsek után és az új nyersanyagforrások biztosítása érdekében."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2421,10 +2421,10 @@ msgstr "Görög akropolisz (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Három csoport egy sziklás fennsíkon vagy akropoliszon találja magát biztonságban befészkelve, míg a negyediket egy folyó ága választja el az ellenfeleitől.\n\nDerítsd fel a vidékez a szabad kincsek után és az új nyersanyagforrások biztosítása érdekében."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2659,8 +2659,8 @@ msgstr ""
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "A thesszáliai alföldet szűk folyók keresztezik, melyeken könnyű átgázolni. A tág terek gyors terjeszkedést tesznek lehetővé. Minden játékos a mérkőzést egy biztonságos és nagy akropoliszon kezdi."
+"starts the match safe atop a large plateau."
+msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2668,10 +2668,10 @@ msgstr "Thesszáliai alföld (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Négy csoport egy sziklás fennsíkon vagy akropoliszon találja magát biztonságban befészkelve.\n\nDerítsd fel a vidékez a szabad kincsek után és az új nyersanyagforrások biztosítása érdekében."
+msgstr ""
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

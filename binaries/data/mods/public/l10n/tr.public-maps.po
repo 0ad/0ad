@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-22 05:56+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-24 14:06+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -1589,10 +1589,10 @@ msgstr "Bu harita antik şehir Napata'nın yeniden inşa edilişini gösterir. [
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
-"4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
+"Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 oyuncu geniş Nil Delta'sında kozlarını paylaşır. Her şehir bir tepenin üzerine büyük bir akropolis olarak başlar, ama kaynaklar sınırlıdır ve her oyuncu kaynak işletimlerini çevredeki arazilere taşımaya zorlanırlar.\n\nGözcüler Nil Nehri'nin yakındaki kollarının sığ olduğu ve birden çok noktada yürüyerek geçilebilceğini söylüyorlar, yani düşman taraflar arasında sadece ufak bir engel olabilir."
+msgstr "Dört oyuncu onu büyük Nil Deltası'na atılırlar. Her şehir geniş bir platoda yuvalanmış olarak başlar, ancak kaynaklar azdır ve her oyuncuyu kaynak işlemlerini çevre alanlara genişletmeye zorlar.\n\nİzciler, Nil Nehri'nin yakındaki kollarının çok sayıda yerde sığ ve zorlanabilir olduğunu, bu nedenle düşman hizipleri arasında sadece küçük bir engel görevi görmesi gerektiğini söyledi."
 
 #: maps/scenarios/Necropolis.xml:Name:39
 msgid "Necropolis"
@@ -2115,11 +2115,7 @@ msgstr "Gemi Denemesi"
 msgid "Base Temperate Map"
 msgstr "Ilıman Tabanlı Harita"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:28
-msgid "Unit Motion Integration Test"
-msgstr "Birim Hareketi Uyum Testi"
-
-#: maps/scenarios/unit_motion_integration_test.xml:Description:28
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2127,12 +2123,16 @@ msgid ""
 "and weird pathing."
 msgstr "Bu harita, bazı temel birim hareketi durumlarını test etmek için tasarlanmıştır. UnitAI, unitMotion ve ilgili yol göstericileri içerecek ve böylece entegre bir test haritası gibi davranacaktır. Sıkışmış birimler, yanlış animasyonlar ve garip yamalar gibi şeyleri arayın."
 
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+msgid "Unit Motion Integration Test"
+msgstr "Birim Hareketi Uyum Testi"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:39
 msgid ""
-"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"Each player starts the match atop a large flat plateau.\n"
 "\n"
-"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Her oyuncu büyük bir plato üzerinde başlar, aksitakdirde bilinen bir akropoliste.\n\nDoğuda balıkçılık olanakları ile büyük bir koy bulunmaktadır. Batıdaki yokuşlu merkez ile sahipsiz aşşağı vadideki akropolise hakimdir."
+"To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
+msgstr "Her oyuncu büyük bir düz platoda maça başlar.\n\nDoğuya balıkçılık olanakları olan büyük bir koy. Batıya, aşağıdaki vadiyi yöneten açıklanamayan bir plato ile engebeli bir hinterlanda.\n"
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Name:39
 msgid "Acropolis Bay (2)"
@@ -2397,8 +2397,8 @@ msgstr "Gambiya Nehri (3)"
 #: maps/skirmishes/Golden Island (2).xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
-"can access the center via a narrow strip of land or via boat."
-msgstr "Bir toprak halkası, Akdeniz'de kaynak bakımından zengin bir ada sınır verir. Oyuncular merkeze dar bir şerit arazisi veya tekne vasıtasıyla ulaşabilirler."
+"can access the center via a narrow strip of shallow water or via boat."
+msgstr "Bir kara halkası, Akdeniz'deki kaynak bakımından zengin bir adayı sınırlar. Oyuncular merkeze dar bir sığ su şeridi veya tekne ile erişebilirler."
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2418,10 +2418,10 @@ msgstr "Altın Vahası (2)"
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:39
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
 msgid ""
-"Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "İki hizip kendilerine güvenle büyük kayalık platolar veya akropolis tepesinde tünemiş bulabilirsiniz.\n\nÜcretsiz hazineleri bulmak için toprakları keşif edebilir ve yeni kaynaklar sağlamak sağlayabilirsin."
+msgstr "İki grup kendilerini büyük kayalık platoların tepesinde güvenli bir şekilde tünemiş bulmaktadır.\n\nÖzgür hazineler bulmak ve yeni kaynakları güvence altına almak için arazileri araştırın."
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2429,10 +2429,10 @@ msgstr "Yunan Akropolis (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:39
 msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Üç nifak kendilerini geniş, taşımsı platolarda veya akropolislerde, aynı anda dördüncü nifak ise düşmanlarından bir nehir yatağıyla ayrılır.\n\nHazineler ve yeni kaynakları bulmak için izcilik yap."
+msgstr "Üç grup kendilerini büyük kayalık platoların üzerine güvenli bir şekilde tünemiş bulurken, dördüncüsü düşmanlarından bir nehir dalı ile ayrılıyor.\n\nÜcretsiz hazineler bulmak ve yeni kaynakları güvence altına almak için arazileri araştırın."
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2667,8 +2667,8 @@ msgstr "Ilıman Karayolu (2)"
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
-"starts the match safe atop a large acropolis."
-msgstr "Thessalian düzlüğünden dar ve eğri akarsular geçer, geçilmesi kolaydır. Geniş açık alanlar büyük genişlemelere izin verir, her oyuncu büyük bir akropol tepesinde karşılaşmaya güvenle başlar."
+"starts the match safe atop a large plateau."
+msgstr "Haddeleme Teselya ovası, dar bir akıntıyla geçilir ve kolayca geçer. Geniş açık alanlar büyük genişlemeye izin verirken, her oyuncu büyük bir platoda güvenli bir şekilde maçı başlatır."
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:39
 msgid "Thessalian Plains (4)"
@@ -2676,10 +2676,10 @@ msgstr "Tesalya Ovaları (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
-"Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
+"Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Dört hizip kendilerine güvenle büyük kayalık platolar veya akropolis tepesinde tünemiş bulabilirsiniz.\n\nÜcretsiz hazineleri bulmak için toprakları keşif edebilir ve yeni kaynaklar sağlamak sağlayabilirsin."
+msgstr "Dört grup kendilerini büyük kayalık platoların tepesinde güvenli bir şekilde tünemiş bulmaktadır.\n\nÜcretsiz hazineler bulmak ve yeni kaynakları güvence altına almak için arazileri araştırın."
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"

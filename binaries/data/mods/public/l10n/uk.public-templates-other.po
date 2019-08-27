@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-06-21 09:44+0200\n"
-"PO-Revision-Date: 2019-06-23 08:04+0000\n"
+"POT-Creation-Date: 2019-08-23 07:09+0000\n"
+"PO-Revision-Date: 2019-08-25 23:17+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -209,7 +209,7 @@ msgstr "Бик"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
 msgid "Bos taurus taurus"
-msgstr ""
+msgstr "Бос таурус таурус"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
@@ -571,7 +571,7 @@ msgstr "Молодий Баобаб"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Мертвий Баобаб"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -588,7 +588,7 @@ msgstr "Кедр Атласький"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Мертвий Кедр Атласький"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -606,7 +606,7 @@ msgstr "Фінікова пальма"
 
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
 msgid "Dead Palm"
-msgstr ""
+msgstr "Мертва Пальма"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
@@ -614,7 +614,7 @@ msgstr "Плодоносний Фінік Їстівний"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Мертве Листяне Дерево"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -641,6 +641,10 @@ msgstr "Ялиця"
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
 msgstr "Саджанець Ялиці"
+
+#: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
+msgid "Prickly Juniper"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
@@ -1077,8 +1081,8 @@ msgstr "Шпигун"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "At least 16 melee infantry units required."
-msgstr ""
+msgid "Requires at least 16 Melee Infantry."
+msgstr "Вимагає не менше 16 Піхотинців ближнього бою."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1089,8 +1093,8 @@ msgid "Battle Line"
 msgstr "Лінія Фронту"
 
 #: simulation/templates/special/formations/box.xml:6
-msgid "At least 4 units required."
-msgstr "Необхідно не менше 4-ох юнітів."
+msgid "Requires at least 4 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1105,8 +1109,8 @@ msgid "Column Open"
 msgstr "Колона відкрита"
 
 #: simulation/templates/special/formations/flank.xml:6
-msgid "At least 8 units required."
-msgstr "Необхідно не менше 8-ми юнітів."
+msgid "Requires at least 8 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1125,7 +1129,7 @@ msgid "None"
 msgstr "Нема"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "At least 10 hoplite infantry required."
+msgid "Requires at least 10 Infantry Hoplites."
 msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:7
@@ -1137,7 +1141,7 @@ msgid "Scatter"
 msgstr "Розосередити"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Only ranged units allowed."
+msgid "Requires a Ranged Soldier."
 msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
@@ -1145,7 +1149,7 @@ msgid "Skirmish"
 msgstr "Сутичка"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "At least 16 pike infantry units required."
+msgid "Requires at least 16 Infantry Pikemen."
 msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:8
@@ -1157,8 +1161,8 @@ msgid "Testudo"
 msgstr "Черепаха"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "At least 6 cavalry units required."
-msgstr ""
+msgid "Requires at least 6 Cavalry."
+msgstr "Вимагає не менше 6 Кавалеристів."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
