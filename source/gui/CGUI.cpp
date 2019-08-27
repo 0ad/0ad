@@ -621,14 +621,14 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	CStr argStyle(attributes.GetNamedItem(attr_style));
 
 	if (m_Styles.count("default") == 1)
-		object->LoadStyle(*this, "default");
+		object->LoadStyle("default");
 
 	if (!argStyle.empty())
 	{
 		if (m_Styles.count(argStyle) == 0)
 			LOGERROR("GUI: Trying to use style '%s' that doesn't exist.", argStyle.c_str());
 		else
-			object->LoadStyle(*this, argStyle);
+			object->LoadStyle(argStyle);
 	}
 
 	bool NameSet = false;

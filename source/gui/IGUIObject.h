@@ -296,18 +296,8 @@ protected:
 
 	/**
 	 * Loads a style.
-	 *
-	 * @param GUIinstance Reference to the GUI
-	 * @param StyleName Style by name
 	 */
-	void LoadStyle(CGUI& pGUI, const CStr& StyleName);
-
-	/**
-	 * Loads a style.
-	 *
-	 * @param Style The style object.
-	 */
-	void LoadStyle(const SGUIStyle& Style);
+	void LoadStyle(const CStr& StyleName);
 
 	/**
 	 * Returns not the Z value, but the actual buffered Z value, i.e. if it's
