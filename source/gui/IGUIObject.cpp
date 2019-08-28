@@ -259,28 +259,21 @@ void IGUIObject::UpdateCachedSize()
 	}
 }
 
-void IGUIObject::LoadStyle(CGUI& pGUI, const CStr& StyleName)
+void IGUIObject::LoadStyle(const CStr& StyleName)
 {
-	if (pGUI.HasStyle(StyleName))
-		LoadStyle(pGUI.GetStyle(StyleName));
-	else
+	if (!m_pGUI.HasStyle(StyleName))
 		debug_warn(L"IGUIObject::LoadStyle failed");
-}
 
-void IGUIObject::LoadStyle(const SGUIStyle& Style)
-{
-	// Iterate settings, it won't be able to set them all probably, but that doesn't matter
-	for (const std::pair<CStr, CStrW>& p : Style.m_SettingsDefaults)
+	// The default style may specify settings for any GUI object.
+	// Other styles are reported if they specify a Setting that does not exist,
+	// so that the XML author is informed and can correct the style.
+
+	for (const std::pair<CStr, CStrW>& p : m_pGUI.GetStyle(StyleName).m_SettingsDefaults)
 	{
-		// Try set setting in object
-		SetSetting(p.first, p.second);
-
-		// It doesn't matter if it fail, it's not suppose to be able to set every setting.
-		//  since it's generic.
-
-		// The beauty with styles is that it can contain more settings
-		//  than exists for the objects using it. So if the SetSetting
-		//  fails, don't care.
+		if (SettingExists(p.first))
+			SetSetting(p.first, p.second);
+		else if (StyleName != "default")
+			LOGWARNING("GUI object has no setting \"%s\", but the style \"%s\" defines it", p.first, StyleName.c_str());
 	}
 }
 

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant file="biped/base_cavalry_2_handed_spearman.xml" frequency="100" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
@@ -33,6 +33,42 @@
       <textures>
         <texture file="skeletal/sele_hero_antiochus.png" name="baseTex"/>
         <texture file="skeletal/sele_hero_antiochus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cataphract-splint-1-a">
+      <textures>
+        <texture file="skeletal/sele_cataphract_splint_1_a.png" name="baseTex"/>
+        <texture file="skeletal/sele_cataphract_splint_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cataphract-scale-1-a">
+      <textures>
+        <texture file="skeletal/sele_cataphract_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/sele_cataphract_scale_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cataphract-lamellar-1-a">
+      <textures>
+        <texture file="skeletal/sele_cataphract_lamellar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/sele_cataphract_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cataphract-compound-linothorax-1">
+      <textures>
+        <texture file="skeletal/sele_cataphract_compound_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/sele_cataphract_compound_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cataphract-compound-linothorax-2">
+      <textures>
+        <texture file="skeletal/sele_cataphract_compound_linothorax_2_a.png" name="baseTex"/>
+        <texture file="skeletal/sele_cataphract_compound_linothorax_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cataphract-compound-linothorax-3">
+      <textures>
+        <texture file="skeletal/sele_cataphract_compound_linothorax_3_a.png" name="baseTex"/>
+        <texture file="skeletal/sele_cataphract_compound_linothorax_3_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

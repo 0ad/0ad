@@ -20,15 +20,9 @@
 	/>
 	<style name="ModernWindow"
 		sprite="ModernWindow"
-		buffer_zone="12"
-		text_align="left"
-		text_valign="top"
 	/>
 	<style name="ModernDialog"
 		sprite="ModernDialog"
-		buffer_zone="12"
-		text_align="left"
-		text_valign="top"
 	/>
 	<style name="ModernList"
 		buffer_zone="5"
@@ -41,7 +35,6 @@
 		textcolor="white"
 		textcolor_selected="white"
 		text_align="left"
-		text_valign="center"
 		sound_selected="audio/interface/ui/ui_button_click.ogg"
 	/>
 	<style name="ModernSortedList"
@@ -58,7 +51,6 @@
 		textcolor="white"
 		textcolor_selected="white"
 		text_align="left"
-		text_valign="center"
 		sound_selected="audio/interface/ui/ui_button_click.ogg"
 	/>
 	<style name="ModernDropDown"

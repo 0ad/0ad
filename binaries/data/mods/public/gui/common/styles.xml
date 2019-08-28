@@ -66,18 +66,10 @@
 
 	<style name="TranslucentPanelThinBorder"
 		sprite="TranslucentPanelThinBorder"
-		buffer_zone="10"
-		font="sans-bold-stroke-14"
-		textcolor="white"
-		text_align="left"
-		text_valign="top"
 	/>
 
 	<style name="StonePanelThinBorder"
 		sprite="StonePanelThinBorder"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
 	/>
 
 	<!--
@@ -129,7 +121,6 @@
 		scrollbar_style="ModernScrollBar"
 		scroll_bottom="true"
 		textcolor="white"
-		textcolor_selected="gold"
 		text_align="left"
 		text_valign="center"
 	/>
@@ -141,7 +132,6 @@
 		scrollbar_style="ModernScrollBar"
 		scroll_bottom="true"
 		textcolor="white"
-		textcolor_selected="black"
 		text_align="left"
 		text_valign="center"
 		sprite="ModernDarkBoxGold"
