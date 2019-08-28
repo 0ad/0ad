@@ -77,7 +77,7 @@ CInput::~CInput()
 
 void CInput::UpdateBufferPositionSetting()
 {
-	GUI<i32>::SetSetting(this, "buffer_position", m_iBufferPos, true);
+	SetSetting<i32>("buffer_position", m_iBufferPos, false);
 }
 
 void CInput::ClearComposedText()

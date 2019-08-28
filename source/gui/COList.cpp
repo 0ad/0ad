@@ -32,7 +32,7 @@ COList::COList(CGUI& pGUI)
 	AddSetting<CGUISpriteInstance>("sprite_heading");
 	AddSetting<bool>("sortable"); // The actual sorting is done in JS for more versatility
 	AddSetting<CStr>("selected_column");
-	AddSetting<int>("selected_column_order");
+	AddSetting<i32>("selected_column_order");
 	AddSetting<CGUISpriteInstance>("sprite_asc");  // Show the order of sorting
 	AddSetting<CGUISpriteInstance>("sprite_desc");
 	AddSetting<CGUISpriteInstance>("sprite_not_sorted");
@@ -165,8 +165,8 @@ void COList::HandleMessage(SGUIMessage& Message)
 				else
 					selectedColumnOrder = -selectedColumnOrder;
 
-				GUI<CStr>::SetSetting(this, "selected_column", selectedColumn);
-				GUI<int>::SetSetting(this, "selected_column_order", selectedColumnOrder);
+				SetSetting<CStr>("selected_column", selectedColumn, true);
+				SetSetting<i32>("selected_column_order", selectedColumnOrder, true);
 
 				ScriptEvent("selectioncolumnchange");
 				PlaySound("sound_selected");
@@ -271,7 +271,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 		AddSetting<CGUIList>("list_" + column.m_Id);
 		AddSetting<bool>("hidden_" + column.m_Id);
-		GUI<bool>::SetSetting(this, "hidden_" + column.m_Id, hidden);
+		SetSetting<bool>("hidden_" + column.m_Id, hidden, true);
 
 		m_Columns.emplace_back(std::move(column));
 

@@ -40,10 +40,10 @@ void CRadioButton::HandleMessage(SGUIMessage& Message)
 			// Notice, if you use other objects within the parent object that has got
 			//  the setting "checked", it too will change. Hence NO OTHER OBJECTS THAN
 			//  RADIO BUTTONS SHOULD BE WITHIN IT!
-			GUI<bool>::SetSetting(obj, "checked", false);
+			obj->SetSetting<bool>("checked", false, true);
 		}
 
-		GUI<bool>::SetSetting(this, "checked", true);
+		SetSetting<bool>("checked", true, true);
 		break;
 
 	default:

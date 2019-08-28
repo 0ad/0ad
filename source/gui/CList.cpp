@@ -38,13 +38,13 @@ CList::CList(CGUI& pGUI)
 	AddSetting<CStrW>("sound_selected");
 	AddSetting<CGUISpriteInstance>("sprite");
 	AddSetting<CGUISpriteInstance>("sprite_selectarea");
-	AddSetting<int>(	"cell_id");
+	AddSetting<i32>("cell_id");
 	AddSetting<EAlign>("text_align");
 	AddSetting<CGUIColor>("textcolor");
 	AddSetting<CGUIColor>("textcolor_selected");
-	AddSetting<int>(	"selected");	// Index selected. -1 is none.
+	AddSetting<i32>("selected");	// Index selected. -1 is none.
 	AddSetting<bool>("auto_scroll");
-	AddSetting<int>(	"hovered");
+	AddSetting<i32>("hovered");
 	AddSetting<CStrW>("tooltip");
 	AddSetting<CStr>("tooltip_style");
 
@@ -52,10 +52,10 @@ CList::CList(CGUI& pGUI)
 	AddSetting<CGUIList>("list");
 	AddSetting<CGUIList>("list_data");
 
-	GUI<bool>::SetSetting(this, "scrollbar", false);
-	GUI<int>::SetSetting(this, "selected", -1);
-	GUI<int>::SetSetting(this, "hovered", -1);
-	GUI<bool>::SetSetting(this, "auto_scroll", false);
+	SetSetting<bool>("scrollbar", false, true);
+	SetSetting<i32>("selected", -1, true);
+	SetSetting<i32>("hovered", -1, true);
+	SetSetting<bool>("auto_scroll", false, true);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
@@ -176,7 +176,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		int hovered = GetHoveredItem();
 		if (hovered == -1)
 			break;
-		GUI<int>::SetSetting(this, "selected", hovered);
+		SetSetting<i32>("selected", hovered, true);
 		UpdateAutoScroll();
 		PlaySound("sound_selected");
 
@@ -195,7 +195,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		if (GetSetting<i32>("hovered") == -1)
 			break;
 
-		GUI<int>::SetSetting(this, "hovered", -1);
+		SetSetting<i32>("hovered", -1, true);
 		ScriptEvent("hoverchange");
 		break;
 	}
@@ -206,7 +206,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		if (hovered == GetSetting<i32>("hovered"))
 			break;
 
-		GUI<int>::SetSetting(this, "hovered", hovered);
+		SetSetting<i32>("hovered", hovered, true);
 		ScriptEvent("hoverchange");
 		break;
 	}
@@ -402,7 +402,7 @@ void CList::SelectNextElement()
 	if (selected != static_cast<int>(pList.m_Items.size()) - 1)
 	{
 		++selected;
-		GUI<int>::SetSetting(this, "selected", selected);
+		SetSetting<i32>("selected", selected, true);
 		PlaySound("sound_selected");
 	}
 }
@@ -414,7 +414,7 @@ void CList::SelectPrevElement()
 	if (selected > 0)
 	{
 		--selected;
-		GUI<int>::SetSetting(this, "selected", selected);
+		SetSetting<i32>("selected", selected, true);
 		PlaySound("sound_selected");
 	}
 }
@@ -422,7 +422,7 @@ void CList::SelectPrevElement()
 void CList::SelectFirstElement()
 {
 	if (GetSetting<i32>("selected") >= 0)
-		GUI<int>::SetSetting(this, "selected", 0);
+		SetSetting<i32>("selected", 0, true);
 }
 
 void CList::SelectLastElement()
@@ -430,8 +430,8 @@ void CList::SelectLastElement()
 	const CGUIList& pList = GetSetting<CGUIList>("list");
 	const int index = static_cast<int>(pList.m_Items.size()) - 1;
 
-       if (GetSetting<i32>("selected") != index)
-		GUI<int>::SetSetting(this, "selected", index);
+	if (GetSetting<i32>("selected") != index)
+		SetSetting<i32>("selected", index, true);
 }
 
 void CList::UpdateAutoScroll()

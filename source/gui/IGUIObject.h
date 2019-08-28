@@ -33,7 +33,6 @@
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
 
-#include <functional>
 #include <string>
 #include <vector>
 
@@ -160,6 +159,29 @@ public:
 	const T& GetSetting(const CStr& Setting) const;
 
 	/**
+	 * Set a setting by string, regardless of what type it is.
+	 * Used to parse setting values from XML files.
+	 * For example a CRect(10,10,20,20) is created from "10 10 20 20".
+	 * Returns false if the conversion fails, otherwise true.
+	 */
+	bool SetSettingFromString(const CStr& Setting, const CStrW& Value, const bool SendMessage);
+
+	/**
+	 * Assigns the given value to the setting identified by the given name.
+	 * Uses move semantics, so do not read from Value after this call.
+	 *
+	 * @param SendMessage If true, a GUIM_SETTINGS_UPDATED message will be broadcasted to all GUI objects.
+	 */
+	template <typename T>
+	void SetSetting(const CStr& Setting, T& Value, const bool SendMessage);
+
+	/**
+	 * This variant will copy the value.
+	 */
+	template <typename T>
+	void SetSetting(const CStr& Setting, const T& Value, const bool SendMessage);
+
+	/**
 	 * Returns whether this is object is set to be hidden.
 	 */
 	bool IsHidden() const;
@@ -180,19 +202,6 @@ public:
 	 * Reset internal state of this object.
 	 */
 	virtual void ResetStates();
-
-	/**
-	 * Set a setting by string, regardless of what type it is.
-	 *
-	 * example a CRect(10,10,20,20) would be "10 10 20 20"
-	 *
-	 * @param Setting Setting by name
-	 * @param Value Value to set to
-	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
-	 *
-	 * @return PSRETURN (PSRETURN_OK if successful)
-	 */
-	PSRETURN SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage = false);
 
 	/**
 	 * Set the script handler for a particular object-specific action
@@ -415,6 +424,11 @@ private:
 	/** @name Internal functions */
 	//--------------------------------------------------------
 	//@{
+
+	/**
+	 * Updates some internal data depending on the setting changed.
+	 */
+	void SettingChanged(const CStr& Setting, const bool SendMessage);
 
 	/**
 	 * Inputs a reference pointer, checks if the new inputted object

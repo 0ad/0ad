@@ -30,7 +30,7 @@ CTooltip::CTooltip(CGUI& pGUI)
 	AddSetting<CGUIString>("caption");
 	AddSetting<CStrW>("font");
 	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<int>("delay");
+	AddSetting<i32>("delay"); // in milliseconds
 	AddSetting<CGUIColor>("textcolor");
 	AddSetting<float>("maxwidth");
 	AddSetting<CPos>("offset");
@@ -48,9 +48,9 @@ CTooltip::CTooltip(CGUI& pGUI)
 	AddSetting<CPos>("_mousepos");
 
 	// Defaults
-	GUI<int>::SetSetting(this, "delay", 500);
-	GUI<EVAlign>::SetSetting(this, "anchor", EVAlign_Bottom);
-	GUI<EAlign>::SetSetting(this, "text_align", EAlign_Left);
+	SetSetting<i32>("delay", 500, true);
+	SetSetting<EVAlign>("anchor", EVAlign_Bottom, true);
+	SetSetting<EAlign>("text_align", EAlign_Left, true);
 
 	// Set up a blank piece of text, to be replaced with a more
 	// interesting message later
@@ -123,7 +123,7 @@ void CTooltip::SetupText()
 	else if (size.pixel.right > screenw)
 		size.pixel.left -= (size.pixel.right-screenw), size.pixel.right = screenw;
 
-	GUI<CClientArea>::SetSetting(this, "size", size);
+	SetSetting<CClientArea>("size", size, true);
 }
 
 void CTooltip::HandleMessage(SGUIMessage& Message)

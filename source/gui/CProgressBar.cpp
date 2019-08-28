@@ -50,9 +50,9 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 		{
 			const float value = GetSetting<float>("caption");
 			if (value > 100.f)
-				GUI<float>::SetSetting(this, "caption", 100.f);
+				SetSetting<float>("caption", 100.f, true);
 			else if (value < 0.f)
-				GUI<float>::SetSetting(this, "caption", 0.f);
+				SetSetting<float>("caption", 0.f, true);
 		}
 		break;
 	default:

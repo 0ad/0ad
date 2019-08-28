@@ -665,8 +665,11 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
 
-		if (object->SetSetting(pFile->GetAttributeString(attr.Name), attr.Value.FromUTF8(), true) != PSRETURN_OK)
-			LOGERROR("GUI: (object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName(), pFile->GetAttributeString(attr.Name), attr.Value);
+		const CStr settingName = pFile->GetAttributeString(attr.Name);
+		if (object->SettingExists(settingName))
+			object->SetSettingFromString(settingName, attr.Value.FromUTF8(), false);
+		else
+			LOGERROR("GUI: (object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName(), settingName, attr.Value);
 	}
 
 	// Check if name isn't set, generate an internal name in that case.
@@ -681,7 +684,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	CStrW caption(Element.GetText().FromUTF8());
 	if (!caption.empty())
-		object->SetSetting("caption", caption, true);
+		object->SetSettingFromString("caption", caption, false);
 
 	for (XMBElement child : Element.GetChildNodes())
 	{
@@ -752,16 +755,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				continue;
 
 			CStr context(child.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
-			if (!context.empty())
-			{
-				CStr translatedValue(g_L10n.TranslateWithContext(context, value));
-				object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
-			}
-			else
-			{
-				CStr translatedValue(g_L10n.Translate(value));
-				object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
-			}
+
+			CStr translatedValue = context.empty() ?
+				g_L10n.Translate(value) :
+				g_L10n.TranslateWithContext(context, value);
+
+			object->SetSettingFromString(attributeName, translatedValue.FromUTF8(), false);
 		}
 		else if (element_name == elmt_attribute)
 		{
@@ -783,7 +782,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				else if (grandchild.GetNodeName() == elmt_keep)
 					translatedValue += grandchild.GetText();
 			}
-			object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
+			object->SetSettingFromString(attributeName, translatedValue.FromUTF8(), false);
 		}
 		else if (element_name == elmt_include)
 		{
@@ -867,10 +866,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (object->GetSetting<bool>("absolute"))
 			// If the object is absolute, we'll have to get the parent's Z buffered,
 			// and add to that!
-			GUI<float>::SetSetting(object, "z", pParent->GetBufferedZ() + 10.f, true);
+			object->SetSetting<float>("z", pParent->GetBufferedZ() + 10.f, false);
 		else
 			// If the object is relative, then we'll just store Z as "10"
-			GUI<float>::SetSetting(object, "z", 10.f, true);
+			object->SetSetting<float>("z", 10.f, false);
 	}
 
 	try
@@ -1314,7 +1313,7 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "name")
 			object->SetName("__tooltip_" + attr_value);
 		else
-			object->SetSetting(attr_name, attr_value.FromUTF8());
+			object->SetSettingFromString(attr_name, attr_value.FromUTF8(), true);
 	}
 
 	AddObject(object);

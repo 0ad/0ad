@@ -20,7 +20,6 @@
 #include "GUIutil.h"
 
 #include "gui/GUI.h"
-#include "ps/CLogger.h"
 
 template<typename T>
 CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name)
@@ -29,19 +28,19 @@ CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name)
 }
 
 template<typename T>
-bool CGUISetting<T>::FromString(const CStrW& Value, const bool& SkipMessage)
+bool CGUISetting<T>::FromString(const CStrW& Value, const bool SendMessage)
 {
 	T settingValue;
 
 	if (!GUI<T>::ParseString(&m_pObject.GetGUI(), Value, settingValue))
 		return false;
 
-	GUI<T>::SetSetting(&m_pObject, m_Name, settingValue, SkipMessage);
+	m_pObject.SetSetting<T>(m_Name, settingValue, SendMessage);
 	return true;
 };
 
 template<>
-bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value)
+bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value, const bool SendMessage)
 {
 	CGUIColor settingValue;
 	if (Value.isString())
@@ -59,18 +58,18 @@ bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value)
 	else if (!ScriptInterface::FromJSVal<CColor>(cx, Value, settingValue))
 		return false;
 
-	GUI<CGUIColor>::SetSetting(&m_pObject, m_Name, settingValue);
+	m_pObject.SetSetting<CGUIColor>(m_Name, settingValue, SendMessage);
 	return true;
 };
 
 template<typename T>
-bool CGUISetting<T>::FromJSVal(JSContext* cx, JS::HandleValue Value)
+bool CGUISetting<T>::FromJSVal(JSContext* cx, JS::HandleValue Value, const bool SendMessage)
 {
 	T settingValue;
 	if (!ScriptInterface::FromJSVal<T>(cx, Value, settingValue))
 		return false;
 
-	GUI<T>::SetSetting(&m_pObject, m_Name, settingValue);
+	m_pObject.SetSetting<T>(m_Name, settingValue, SendMessage);
 	return true;
 };
 
@@ -80,76 +79,8 @@ void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
 	ScriptInterface::ToJSVal<T>(cx, Value, m_pSetting);
 };
 
-template <typename T>
-PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage)
-{
-	return SetSettingWrap(pObject, Setting, SkipMessage,
-		[&pObject, &Setting, &Value]() {
-			static_cast<CGUISetting<T>* >(pObject->m_Settings[Setting])->m_pSetting = std::move(Value);
-		});
-}
-
-template <typename T>
-PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
-{
-	return SetSettingWrap(pObject, Setting, SkipMessage,
-		[&pObject, &Setting, &Value]() {
-			static_cast<CGUISetting<T>* >(pObject->m_Settings[Setting])->m_pSetting = Value;
-		});
-}
-
-template <typename T>
-PSRETURN GUI<T>::SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const bool& SkipMessage, const std::function<void()>& valueSet)
-{
-	ENSURE(pObject != NULL);
-
-	if (!pObject->SettingExists(Setting))
-	{
-		LOGWARNING("setting %s was not found on object %s",
-			Setting.c_str(),
-			pObject->GetPresentableName().c_str());
-		return PSRETURN_GUI_InvalidSetting;
-	}
-
-	valueSet();
-
-	//	Some settings needs special attention at change
-
-	// If setting was "size", we need to re-cache itself and all children
-	if (Setting == "size")
-	{
-		pObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
-	}
-	else if (Setting == "hidden")
-	{
-		// Hiding an object requires us to reset it and all children
-		if (pObject->GetSetting<bool>(Setting))
-			pObject->RecurseObject(nullptr, &IGUIObject::ResetStates);
-	}
-
-	if (!SkipMessage)
-	{
-		SGUIMessage msg(GUIM_SETTINGS_UPDATED, Setting);
-		pObject->HandleMessage(msg);
-	}
-
-	return PSRETURN_OK;
-}
-
-// Instantiate templated functions:
-// These functions avoid copies by working with a reference and move semantics.
 #define TYPE(T) \
-	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage); \
 	template class CGUISetting<T>; \
 
 #include "GUItypes.h"
-#undef TYPE
-
-// Copying functions - discouraged except for primitives.
-#define TYPE(T) \
-	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage); \
-
-#define GUITYPE_IGNORE_NONCOPYABLE
-#include "GUItypes.h"
-#undef GUITYPE_IGNORE_NONCOPYABLE
 #undef TYPE

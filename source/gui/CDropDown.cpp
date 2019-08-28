@@ -32,7 +32,7 @@ CDropDown::CDropDown(CGUI& pGUI)
 	AddSetting<float>("button_width");
 	AddSetting<float>("dropdown_size");
 	AddSetting<float>("dropdown_buffer");
-	AddSetting<uint>("minimum_visible_items");
+	AddSetting<u32>("minimum_visible_items");
 //	AddSetting<CStrW, "font");
 	AddSetting<CStrW>("sound_closed");
 	AddSetting<CStrW>("sound_disabled");
@@ -55,7 +55,7 @@ CDropDown::CDropDown(CGUI& pGUI)
 	AddSetting<CGUIColor>("textcolor_disabled");
 
 	// Scrollbar is forced to be true.
-	GUI<bool>::SetSetting(this, "scrollbar", true);
+	SetSetting<bool>("scrollbar", true, true);
 }
 
 CDropDown::~CDropDown()
@@ -215,7 +215,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			break;
 
 		++m_ElementHighlight;
-		GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
+		SetSetting<i32>("selected", m_ElementHighlight, true);
 		break;
 	}
 
@@ -229,8 +229,8 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		if (m_ElementHighlight - 1 < 0)
 			break;
 
-		m_ElementHighlight--;
-		GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
+		--m_ElementHighlight;
+		SetSetting<i32>("selected", m_ElementHighlight, true);
 		break;
 	}
 
@@ -286,7 +286,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 				return IN_PASS;
 			// Set current selected item to highlighted, before
 			//  then really processing these in CList::ManuallyHandleEvent()
-			GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
+			SetSetting<i32>("selected", m_ElementHighlight, true);
 			update_highlight = true;
 			break;
 
@@ -334,7 +334,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 				// let's select the closest element. There should basically always be one.
 				if (closest != -1)
 				{
-					GUI<int>::SetSetting(this, "selected", closest);
+					SetSetting<i32>("selected", closest, true);
 					update_highlight = true;
 					GetScrollBar(0).SetPos(m_ItemsYPositions[closest] - 60);
 				}

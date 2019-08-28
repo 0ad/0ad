@@ -27,7 +27,7 @@ CButton::CButton(CGUI& pGUI)
 {
 	AddSetting<float>("buffer_zone");
 	AddSetting<CGUIString>("caption");
-	AddSetting<int>("cell_id");
+	AddSetting<i32>("cell_id");
 	AddSetting<CStrW>("font");
 	AddSetting<CStrW>("sound_disabled");
 	AddSetting<CStrW>("sound_enter");
