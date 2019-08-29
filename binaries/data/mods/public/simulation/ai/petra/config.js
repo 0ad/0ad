@@ -1,7 +1,4 @@
-var PETRA = function(m)
-{
-
-m.Config = function(difficulty, behavior)
+PETRA.Config = function(difficulty, behavior)
 {
 	// 0 is sandbox, 1 is very easy, 2 is easy, 3 is medium, 4 is hard and 5 is very hard.
 	this.difficulty = difficulty !== undefined ? difficulty : 3;
@@ -108,7 +105,7 @@ m.Config = function(difficulty, behavior)
 		"defensive": 0.5
 	};
 
-	// See m.QueueManager.prototype.wantedGatherRates()
+	// See PETRA.QueueManager.prototype.wantedGatherRates()
 	this.queues =
 	{
 		"firstTurn": {
@@ -132,7 +129,7 @@ m.Config = function(difficulty, behavior)
 	this.garrisonHealthLevel = { "low": 0.4, "medium": 0.55, "high": 0.7 };
 };
 
-m.Config.prototype.setConfig = function(gameState)
+PETRA.Config.prototype.setConfig = function(gameState)
 {
 	if (this.difficulty > 0)
 	{
@@ -246,7 +243,7 @@ m.Config.prototype.setConfig = function(gameState)
 	API3.warn(" >>>  Petra bot: personality = " + uneval(this.personality));
 };
 
-m.Config.prototype.Serialize = function()
+PETRA.Config.prototype.Serialize = function()
 {
 	var data = {};
 	for (let key in this)
@@ -255,11 +252,8 @@ m.Config.prototype.Serialize = function()
 	return data;
 };
 
-m.Config.prototype.Deserialize = function(data)
+PETRA.Config.prototype.Deserialize = function(data)
 {
 	for (let key in data)
 		this[key] = data[key];
 };
-
-return m;
-}(PETRA);

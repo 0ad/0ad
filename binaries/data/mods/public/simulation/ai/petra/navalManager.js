@@ -1,6 +1,3 @@
-var PETRA = function(m)
-{
-
 /**
  * Naval Manager
  * Will deal with anything ships.
@@ -10,8 +7,7 @@ var PETRA = function(m)
  * -Scouting, ultimately.
  * Also deals with handling docks, making sure we have access and stuffs like that.
  */
-
-m.NavalManager = function(Config)
+PETRA.NavalManager = function(Config)
 {
 	this.Config = Config;
 
@@ -36,7 +32,7 @@ m.NavalManager = function(Config)
 };
 
 /** More initialisation for stuff that needs the gameState */
-m.NavalManager.prototype.init = function(gameState, deserializing)
+PETRA.NavalManager.prototype.init = function(gameState, deserializing)
 {
 	// docks
 	this.docks = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Dock", "Shipyard"]));
@@ -156,18 +152,18 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 
 	// Assign our initial docks and ships
 	for (let ship of this.ships.values())
-		m.setSeaAccess(gameState, ship);
+		PETRA.setSeaAccess(gameState, ship);
 	for (let dock of this.docks.values())
-		m.setSeaAccess(gameState, dock);
+		PETRA.setSeaAccess(gameState, dock);
 };
 
-m.NavalManager.prototype.updateFishingBoats = function(sea, num)
+PETRA.NavalManager.prototype.updateFishingBoats = function(sea, num)
 {
 	if (this.wantedFishShips[sea])
 		this.wantedFishShips[sea] = num;
 };
 
-m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
+PETRA.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 {
 	if (sea !== undefined)
 		this.wantedFishShips[sea] = 0;
@@ -176,7 +172,7 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 };
 
 /** Get the sea, cache it if not yet done and check if in opensea */
-m.NavalManager.prototype.getFishSea = function(gameState, fish)
+PETRA.NavalManager.prototype.getFishSea = function(gameState, fish)
 {
 	let sea = fish.getMetadata(PlayerID, "sea");
 	if (sea)
@@ -213,7 +209,7 @@ m.NavalManager.prototype.getFishSea = function(gameState, fish)
 };
 
 /** check if we can safely fish at the fish position */
-m.NavalManager.prototype.canFishSafely = function(gameState, fish)
+PETRA.NavalManager.prototype.canFishSafely = function(gameState, fish)
 {
 	if (fish.getMetadata(PlayerID, "opensea"))
 		return true;
@@ -239,20 +235,20 @@ m.NavalManager.prototype.canFishSafely = function(gameState, fish)
 };
 
 /** get the list of seas (or lands) around this region not connected by a dock */
-m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
+PETRA.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 {
 	let seas = gameState.ai.accessibility.regionLinks[region].slice();
 	this.docks.forEach(dock => {
-		if (!dock.hasClass("Dock") || m.getLandAccess(gameState, dock) != region)
+		if (!dock.hasClass("Dock") || PETRA.getLandAccess(gameState, dock) != region)
 			return;
-		let i = seas.indexOf(m.getSeaAccess(gameState, dock));
+		let i = seas.indexOf(PETRA.getSeaAccess(gameState, dock));
 		if (i != -1)
 			seas.splice(i--, 1);
 	});
 	return seas;
 };
 
-m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
+PETRA.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 {
 	for (let evt of events.Create)
 	{
@@ -260,7 +256,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (ent && ent.isOwn(PlayerID) && ent.foundationProgress() !== undefined && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
-			m.setSeaAccess(gameState, ent);
+			PETRA.setSeaAccess(gameState, ent);
 	}
 
 	for (let evt of events.TrainingFinished)
@@ -272,7 +268,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			let ent = gameState.getEntityById(entId);
 			if (!ent || !ent.hasClass("Ship") || !ent.isOwn(PlayerID))
 				continue;
-			m.setSeaAccess(gameState, ent);
+			PETRA.setSeaAccess(gameState, ent);
 		}
 	}
 
@@ -306,7 +302,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			{
 				if (!ent.position())  // unit from another ship of this plan ... do nothing
 					continue;
-				let access = m.getLandAccess(gameState, ent);
+				let access = PETRA.getLandAccess(gameState, ent);
 				let endPos = ent.getMetadata(PlayerID, "endPos");
 				ent.setMetadata(PlayerID, "transport", undefined);
 				ent.setMetadata(PlayerID, "onBoard", undefined);
@@ -327,12 +323,12 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (ent && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
-			m.setSeaAccess(gameState, ent);
+			PETRA.setSeaAccess(gameState, ent);
 	}
 };
 
 
-m.NavalManager.prototype.getPlan = function(ID)
+PETRA.NavalManager.prototype.getPlan = function(ID)
 {
 	for (let plan of this.transportPlans)
 		if (plan.ID === ID)
@@ -340,7 +336,7 @@ m.NavalManager.prototype.getPlan = function(ID)
 	return undefined;
 };
 
-m.NavalManager.prototype.addPlan = function(plan)
+PETRA.NavalManager.prototype.addPlan = function(plan)
 {
 	this.transportPlans.push(plan);
 };
@@ -350,7 +346,7 @@ m.NavalManager.prototype.addPlan = function(plan)
  * (many units can then call this separately and end up in the same plan)
  * TODO  check garrison classes
  */
-m.NavalManager.prototype.requireTransport = function(gameState, ent, startIndex, endIndex, endPos)
+PETRA.NavalManager.prototype.requireTransport = function(gameState, ent, startIndex, endIndex, endPos)
 {
 	if (!ent.canGarrison())
 		return false;
@@ -368,7 +364,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, ent, startIndex,
 		if (plan.startIndex != startIndex || plan.endIndex != endIndex || plan.state != "boarding")
 			continue;
 		// Limit the number of siege units per transport to avoid problems when ungarrisoning
-		if (m.isSiegeUnit(ent) && plan.units.filter(unit => m.isSiegeUnit(unit)).length > 3)
+		if (PETRA.isSiegeUnit(ent) && plan.units.filter(unit => PETRA.isSiegeUnit(unit)).length > 3)
 			continue;
 		plans.push(plan);
 	}
@@ -380,7 +376,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, ent, startIndex,
 		return true;
 	}
 
-	let plan = new m.TransportPlan(gameState, [ent], startIndex, endIndex, endPos);
+	let plan = new PETRA.TransportPlan(gameState, [ent], startIndex, endIndex, endPos);
 	if (plan.failed)
 	{
 		if (this.Config.debug > 1)
@@ -393,11 +389,11 @@ m.NavalManager.prototype.requireTransport = function(gameState, ent, startIndex,
 };
 
 /** split a transport plan in two, moving all entities not yet affected to a ship in the new plan */
-m.NavalManager.prototype.splitTransport = function(gameState, plan)
+PETRA.NavalManager.prototype.splitTransport = function(gameState, plan)
 {
 	if (this.Config.debug > 1)
 		API3.warn(">>>> split of transport plan started <<<<");
-	let newplan = new m.TransportPlan(gameState, [], plan.startIndex, plan.endIndex, plan.endPos);
+	let newplan = new PETRA.TransportPlan(gameState, [], plan.startIndex, plan.endIndex, plan.endPos);
 	if (newplan.failed)
 	{
 		if (this.Config.debug > 1)
@@ -423,7 +419,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
  * create a transport from a garrisoned ship to a land location
  * needed at start game when starting with a garrisoned ship
  */
-m.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, toPos, toAccess)
+PETRA.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, toPos, toAccess)
 {
 	let fromAccess = gameState.ai.accessibility.getAccessValue(fromPos);
 	if (fromAccess !== 1)
@@ -441,7 +437,7 @@ m.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, 
 		for (let entId of ship.garrisoned())
 			units.push(gameState.getEntityById(entId));
 		// TODO check that the garrisoned units have not another purpose
-		let plan = new m.TransportPlan(gameState, units, fromAccess, toAccess, toPos, ship);
+		let plan = new PETRA.TransportPlan(gameState, units, fromAccess, toAccess, toPos, ship);
 		if (plan.failed)
 			continue;
 		plan.init(gameState);
@@ -450,7 +446,7 @@ m.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, 
 };
 
 // set minimal number of needed ships when a new event (new base or new attack plan)
-m.NavalManager.prototype.setMinimalTransportShips = function(gameState, sea, number)
+PETRA.NavalManager.prototype.setMinimalTransportShips = function(gameState, sea, number)
 {
 	if (!sea)
 		return;
@@ -459,7 +455,7 @@ m.NavalManager.prototype.setMinimalTransportShips = function(gameState, sea, num
 };
 
 // bumps up the number of ships we want if we need more.
-m.NavalManager.prototype.checkLevels = function(gameState, queues)
+PETRA.NavalManager.prototype.checkLevels = function(gameState, queues)
 {
 	if (queues.ships.hasQueuedUnits())
 		return;
@@ -488,7 +484,7 @@ m.NavalManager.prototype.checkLevels = function(gameState, queues)
 			++this.wantedTransportShips[sea];
 };
 
-m.NavalManager.prototype.maintainFleet = function(gameState, queues)
+PETRA.NavalManager.prototype.maintainFleet = function(gameState, queues)
 {
 	if (queues.ships.hasQueuedUnits())
 		return;
@@ -507,7 +503,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 			let template = this.getBestShip(gameState, sea, "transport");
 			if (template)
 			{
-				queues.ships.addPlan(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
+				queues.ships.addPlan(new PETRA.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
 				continue;
 			}
 		}
@@ -518,7 +514,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 			let template = this.getBestShip(gameState, sea, "fishing");
 			if (template)
 			{
-				queues.ships.addPlan(new m.TrainingPlan(gameState, template, { "base": 0, "role": "worker", "sea": sea }, 1, 1));
+				queues.ships.addPlan(new PETRA.TrainingPlan(gameState, template, { "base": 0, "role": "worker", "sea": sea }, 1, 1));
 				continue;
 			}
 		}
@@ -526,7 +522,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 };
 
 /** assigns free ships to plans that need some */
-m.NavalManager.prototype.assignShipsToPlans = function(gameState)
+PETRA.NavalManager.prototype.assignShipsToPlans = function(gameState)
 {
 	for (let plan of this.transportPlans)
 		if (plan.needTransportShips)
@@ -534,7 +530,7 @@ m.NavalManager.prototype.assignShipsToPlans = function(gameState)
 };
 
 /** Return true if this ship is likeky (un)garrisoning units */
-m.NavalManager.prototype.isShipBoarding = function(ship)
+PETRA.NavalManager.prototype.isShipBoarding = function(ship)
 {
 	if (!ship.position())
 		return false;
@@ -548,7 +544,7 @@ m.NavalManager.prototype.isShipBoarding = function(ship)
  * TODO Ships entity collections are currently in two parts as the trader ships are dealt with
  * in the tradeManager. That should be modified to avoid dupplicating all the code here.
  */
-m.NavalManager.prototype.moveApart = function(gameState)
+PETRA.NavalManager.prototype.moveApart = function(gameState)
 {
 	let blockedShips = [];
 	let blockedIds = [];
@@ -595,13 +591,13 @@ m.NavalManager.prototype.moveApart = function(gameState)
 				continue;
 			ship.setMetadata(PlayerID, "stationnary", true);
 			// Check if there are some treasure around
-			if (m.gatherTreasure(gameState, ship, true))
+			if (PETRA.gatherTreasure(gameState, ship, true))
 				continue;
 			// Do not stay idle near a dock to not disturb other ships
 			let sea = ship.getMetadata(PlayerID, "sea");
 			for (let dock of gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).values())
 			{
-				if (m.getSeaAccess(gameState, dock) != sea)
+				if (PETRA.getSeaAccess(gameState, dock) != sea)
 					continue;
 				if (API3.SquareVectorDistance(shipPosition, dock.position()) > 4900)
 					continue;
@@ -652,13 +648,13 @@ m.NavalManager.prototype.moveApart = function(gameState)
 				continue;
 			ship.setMetadata(PlayerID, "stationnary", true);
 			// Check if there are some treasure around
-			if (m.gatherTreasure(gameState, ship, true))
+			if (PETRA.gatherTreasure(gameState, ship, true))
 				continue;
 			// Do not stay idle near a dock to not disturb other ships
 			let sea = ship.getMetadata(PlayerID, "sea");
 			for (let dock of gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).values())
 			{
-				if (m.getSeaAccess(gameState, dock) != sea)
+				if (PETRA.getSeaAccess(gameState, dock) != sea)
 					continue;
 				if (API3.SquareVectorDistance(shipPosition, dock.position()) > 4900)
 					continue;
@@ -710,7 +706,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 	}
 };
 
-m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
+PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 {
 	if (!gameState.ai.HQ.navalMap || !gameState.ai.HQ.baseManagers[1])
 		return;
@@ -735,7 +731,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 						continue;
 					let wantedLand = {};
 					wantedLand[base.accessIndex] = true;
-					queues.dock.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": wantedLand, "sea": sea }));
+					queues.dock.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": wantedLand, "sea": sea }));
 					dockStarted = true;
 					break;
 				}
@@ -765,11 +761,11 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		if (base.anchor)
 			wantedLand[base.accessIndex] = true;
 	let sea = this.docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
-	queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, template, { "land": wantedLand, "sea": sea }));
+	queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, template, { "land": wantedLand, "sea": sea }));
 };
 
 /** goal can be either attack (choose ship with best arrowCount) or transport (choose ship with best capacity) */
-m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
+PETRA.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 {
 	let civ = gameState.getPlayerCiv();
 	let trainableShips = [];
@@ -826,7 +822,7 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 	return bestShip;
 };
 
-m.NavalManager.prototype.update = function(gameState, queues, events)
+PETRA.NavalManager.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Naval Manager update");
 
@@ -857,7 +853,7 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 	Engine.ProfileStop();
 };
 
-m.NavalManager.prototype.Serialize = function()
+PETRA.NavalManager.prototype.Serialize = function()
 {
 	let properties = {
 		"wantedTransportShips": this.wantedTransportShips,
@@ -875,7 +871,7 @@ m.NavalManager.prototype.Serialize = function()
 	return { "properties": properties, "transports": transports };
 };
 
-m.NavalManager.prototype.Deserialize = function(gameState, data)
+PETRA.NavalManager.prototype.Deserialize = function(gameState, data)
 {
 	for (let key in data.properties)
 		this[key] = data.properties[key];
@@ -884,13 +880,9 @@ m.NavalManager.prototype.Deserialize = function(gameState, data)
 	for (let i in data.transports)
 	{
 		let dataPlan = data.transports[i];
-		let plan = new m.TransportPlan(gameState, [], dataPlan.startIndex, dataPlan.endIndex, dataPlan.endPos);
+		let plan = new PETRA.TransportPlan(gameState, [], dataPlan.startIndex, dataPlan.endIndex, dataPlan.endPos);
 		plan.Deserialize(dataPlan);
 		plan.init(gameState);
 		this.transportPlans.push(plan);
 	}
 };
-
-
-return m;
-}(PETRA);

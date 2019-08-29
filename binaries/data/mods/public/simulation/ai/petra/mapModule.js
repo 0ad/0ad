@@ -1,12 +1,9 @@
-var PETRA = function(m)
-{
-
 /** map functions */
 
-m.TERRITORY_PLAYER_MASK = 0x1F;
-m.TERRITORY_BLINKING_MASK = 0x40;
+PETRA.TERRITORY_PLAYER_MASK = 0x1F;
+PETRA.TERRITORY_BLINKING_MASK = 0x40;
 
-m.createObstructionMap = function(gameState, accessIndex, template)
+PETRA.createObstructionMap = function(gameState, accessIndex, template)
 {
 	let passabilityMap = gameState.getPassabilityMap();
 	let territoryMap = gameState.ai.territoryMap;
@@ -44,8 +41,8 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 
 	for (let k = 0; k < territoryMap.data.length; ++k)
 	{
-		let tilePlayer = territoryMap.data[k] & m.TERRITORY_PLAYER_MASK;
-		let isConnected = (territoryMap.data[k] & m.TERRITORY_BLINKING_MASK) == 0;
+		let tilePlayer = territoryMap.data[k] & PETRA.TERRITORY_PLAYER_MASK;
+		let isConnected = (territoryMap.data[k] & PETRA.TERRITORY_BLINKING_MASK) == 0;
 		if (tilePlayer === PlayerID)
 		{
 			if (!buildOwn || !buildNeutral && !isConnected)
@@ -114,14 +111,14 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 };
 
 
-m.createTerritoryMap = function(gameState)
+PETRA.createTerritoryMap = function(gameState)
 {
 	let map = gameState.ai.territoryMap;
 
 	let ret = new API3.Map(gameState.sharedScript, "territory", map.data);
-	ret.getOwner = function(p) { return this.point(p) & m.TERRITORY_PLAYER_MASK; };
-	ret.getOwnerIndex = function(p) { return this.map[p] & m.TERRITORY_PLAYER_MASK; };
-	ret.isBlinking = function(p) { return (this.point(p) & m.TERRITORY_BLINKING_MASK) != 0; };
+	ret.getOwner = function(p) { return this.point(p) & PETRA.TERRITORY_PLAYER_MASK; };
+	ret.getOwnerIndex = function(p) { return this.map[p] & PETRA.TERRITORY_PLAYER_MASK; };
+	ret.isBlinking = function(p) { return (this.point(p) & PETRA.TERRITORY_BLINKING_MASK) != 0; };
 	return ret;
 };
 
@@ -135,14 +132,14 @@ m.createTerritoryMap = function(gameState)
  *     - large border (inside our territory, exclusive of narrow)   => bit 3
  */
 
-m.outside_Mask = 1;
-m.border_Mask = 2;
-m.fullBorder_Mask = m.outside_Mask | m.border_Mask;
-m.narrowFrontier_Mask = 4;
-m.largeFrontier_Mask = 8;
-m.fullFrontier_Mask = m.narrowFrontier_Mask | m.largeFrontier_Mask;
+PETRA.outside_Mask = 1;
+PETRA.border_Mask = 2;
+PETRA.fullBorder_Mask = PETRA.outside_Mask | PETRA.border_Mask;
+PETRA.narrowFrontier_Mask = 4;
+PETRA.largeFrontier_Mask = 8;
+PETRA.fullFrontier_Mask = PETRA.narrowFrontier_Mask | PETRA.largeFrontier_Mask;
 
-m.createBorderMap = function(gameState)
+PETRA.createBorderMap = function(gameState)
 {
 	let map = new API3.Map(gameState.sharedScript, "territory");
 	let width = map.width;
@@ -160,13 +157,13 @@ m.createBorderMap = function(gameState)
 			let radius = dx*dx + dy*dy;
 			if (radius < radcut)
 				continue;
-			map.map[j] = m.outside_Mask;
+			map.map[j] = PETRA.outside_Mask;
 			let ind = API3.getMapIndices(j, map, passabilityMap);
 			for (let k of ind)
 			{
 				if (passabilityMap.data[k] & obstructionMask)
 					continue;
-				map.map[j] = m.border_Mask;
+				map.map[j] = PETRA.border_Mask;
 				break;
 			}
 		}
@@ -180,13 +177,13 @@ m.createBorderMap = function(gameState)
 			let iy = Math.floor(j/width);
 			if (ix < border || ix >= borderCut || iy < border || iy >= borderCut)
 			{
-				map.map[j] = m.outside_Mask;
+				map.map[j] = PETRA.outside_Mask;
 				let ind = API3.getMapIndices(j, map, passabilityMap);
 				for (let k of ind)
 				{
 					if (passabilityMap.data[k] & obstructionMask)
 						continue;
-					map.map[j] = m.border_Mask;
+					map.map[j] = PETRA.border_Mask;
 					break;
 				}
 			}
@@ -197,7 +194,7 @@ m.createBorderMap = function(gameState)
 	return map;
 };
 
-m.debugMap = function(gameState, map)
+PETRA.debugMap = function(gameState, map)
 {
 	let width = map.width;
 	let cell = map.cellSize;
@@ -216,6 +213,3 @@ m.debugMap = function(gameState, map)
 			Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [0, 0, 2] });
 	});
 };
-
-return m;
-}(PETRA);

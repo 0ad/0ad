@@ -1,10 +1,8 @@
-var PETRA = function(m)
-{
 /**
  * Common functions and variables to all queue plans.
  */
 
-m.QueuePlan = function(gameState, type, metadata)
+PETRA.QueuePlan = function(gameState, type, metadata)
 {
 	this.type = gameState.applyCiv(type);
 	this.metadata = metadata;
@@ -24,30 +22,30 @@ m.QueuePlan = function(gameState, type, metadata)
 };
 
 /** Check the content of this queue */
-m.QueuePlan.prototype.isInvalid = function(gameState)
+PETRA.QueuePlan.prototype.isInvalid = function(gameState)
 {
 	return false;
 };
 
 /** if true, the queue manager will begin increasing this plan's account. */
-m.QueuePlan.prototype.isGo = function(gameState)
+PETRA.QueuePlan.prototype.isGo = function(gameState)
 {
 	return true;
 };
 
 /** can we start this plan immediately? */
-m.QueuePlan.prototype.canStart = function(gameState)
+PETRA.QueuePlan.prototype.canStart = function(gameState)
 {
 	return false;
 };
 
 /** process the plan. */
-m.QueuePlan.prototype.start = function(gameState)
+PETRA.QueuePlan.prototype.start = function(gameState)
 {
 	// should call onStart.
 };
 
-m.QueuePlan.prototype.getCost = function()
+PETRA.QueuePlan.prototype.getCost = function()
 {
 	let costs = new API3.Resources();
 	costs.add(this.cost);
@@ -62,9 +60,6 @@ m.QueuePlan.prototype.getCost = function()
  * Need to be updated to actually do something if you want them to.
  * this is called by "Start" if it succeeds.
  */
-m.QueuePlan.prototype.onStart = function(gameState)
+PETRA.QueuePlan.prototype.onStart = function(gameState)
 {
 };
-
-return m;
-}(PETRA);
