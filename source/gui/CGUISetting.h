@@ -15,14 +15,16 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_GUIUTIL
-#define INCLUDED_GUIUTIL
+#ifndef INCLUDED_CGUISETTINGS
+#define INCLUDED_CGUISETTINGS
 
 #include "gui/IGUIObject.h"
 
-class CGUI;
-template<typename T> class GUI;
-
+/**
+ * This setting interface allows GUI objects to call setting function functions without having to know the setting type.
+ * This is fact is used for setting the value from a JS value or XML value (string) and when deleting the setting,
+ * when the type of the setting value is not known in advance.
+ */
 class IGUISetting
 {
 public:
@@ -50,8 +52,6 @@ public:
 template<typename T>
 class CGUISetting : public IGUISetting
 {
-	friend class GUI<T>;
-
 public:
 	NONCOPYABLE(CGUISetting);
 
@@ -93,21 +93,4 @@ public:
 	T m_pSetting;
 };
 
-template <typename T>
-class GUI
-{
-public:
-	NONCOPYABLE(GUI);
-
-	/**
-	 * Sets a value by setting and object name using a real
-	 * datatype as input.
-	 *
-	 * @param Value The value in string form, like "0 0 100% 100%"
-	 * @param tOutput Parsed value of type T
-	 * @return True at success.
-	 */
-	static bool ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput);
-};
-
-#endif // INCLUDED_GUIUTIL
+#endif // INCLUDED_CGUISETTINGS

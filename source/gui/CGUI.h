@@ -292,7 +292,21 @@ public:
 	 */
 	void SetFocusedObject(IGUIObject* pObject);
 
+	/**
+	 * Reads a string value and modifies the given value of type T if successful.
+	 * Does not change the value upon conversion failure.
+	 *
+	 * @param pGUI The GUI page which may contain data relevant to the parsing
+	 *             (for example predefined colors).
+	 * @param Value The value in string form, like "0 0 100% 100%"
+	 * @param tOutput Parsed value of type T
+	 * @return True at success.
+	 */
+	template <typename T>
+	static bool ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput);
+
 private:
+
 	//--------------------------------------------------------
 	/** @name XML Reading Xeromyces specific subroutines
 	 *

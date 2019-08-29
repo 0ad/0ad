@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "GUIutil.h"
+#include "CGUISetting.h"
 
 #include "gui/GUI.h"
 
@@ -32,7 +32,7 @@ bool CGUISetting<T>::FromString(const CStrW& Value, const bool SendMessage)
 {
 	T settingValue;
 
-	if (!GUI<T>::ParseString(&m_pObject.GetGUI(), Value, settingValue))
+	if (!CGUI::ParseString<T>(&m_pObject.GetGUI(), Value, settingValue))
 		return false;
 
 	m_pObject.SetSetting<T>(m_Name, settingValue, SendMessage);
