@@ -27,7 +27,7 @@ CSlider::CSlider(CGUI& pGUI)
 	AddSetting<float>("value");
 	AddSetting<float>("min_value");
 	AddSetting<float>("max_value");
-	AddSetting<int>("cell_id");
+	AddSetting<i32>("cell_id");
 	AddSetting<CGUISpriteInstance>("sprite");
 	AddSetting<CGUISpriteInstance>("sprite_bar");
 	AddSetting<float>("button_width");
@@ -129,7 +129,7 @@ void CSlider::Draw()
 
 void CSlider::UpdateValue()
 {
-	GUI<float>::SetSetting(this, "value", m_Value);
+	SetSetting<float>("value", m_Value, true);
 	ScriptEvent("valuechange");
 }
 

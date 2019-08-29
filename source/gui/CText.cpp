@@ -28,7 +28,7 @@ CText::CText(CGUI& pGUI)
 {
 	AddSetting<float>("buffer_zone");
 	AddSetting<CGUIString>("caption");
-	AddSetting<int>("cell_id");
+	AddSetting<i32>("cell_id");
 	AddSetting<bool>("clip");
 	AddSetting<CStrW>("font");
 	AddSetting<bool>("scrollbar");
@@ -47,9 +47,9 @@ CText::CText(CGUI& pGUI)
 	AddSetting<CStrW>("_icon_tooltip");
 	AddSetting<CStr>("_icon_tooltip_style");
 
-	//GUI<bool>::SetSetting(this, "ghost", true);
-	GUI<bool>::SetSetting(this, "scrollbar", false);
-	GUI<bool>::SetSetting(this, "clip", true);
+	//SetSetting<bool>("ghost", true, true);
+	SetSetting<bool>("scrollbar", false, true);
+	SetSetting<bool>("clip", true, true);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
@@ -228,8 +228,8 @@ bool CText::MouseOverIcon()
 			// If tooltip exists, set the property
 			if (!spritecall.m_Tooltip.empty())
 			{
-				SetSetting("_icon_tooltip_style", spritecall.m_TooltipStyle);
-				SetSetting("_icon_tooltip", spritecall.m_Tooltip);
+				SetSettingFromString("_icon_tooltip_style", spritecall.m_TooltipStyle, true);
+				SetSettingFromString("_icon_tooltip", spritecall.m_Tooltip, true);
 			}
 
 			return true;

@@ -15,17 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-	Contains help class GUI<>, which gives us templated
-	 parameter to all functions within GUI.
-*/
-
 #ifndef INCLUDED_GUIUTIL
 #define INCLUDED_GUIUTIL
 
 #include "gui/IGUIObject.h"
-
-#include <functional>
 
 class CGUI;
 template<typename T> class GUI;
@@ -41,12 +34,12 @@ public:
 	/**
 	 * Parses the given string and assigns to the setting value. Used for parsing XML attributes.
 	 */
-	virtual bool FromString(const CStrW& Value, const bool& SkipMessage) = 0;
+	virtual bool FromString(const CStrW& Value, const bool SendMessage) = 0;
 
 	/**
 	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
 	 */
-	virtual bool FromJSVal(JSContext* cx, JS::HandleValue Value) = 0;
+	virtual bool FromJSVal(JSContext* cx, JS::HandleValue Value, const bool SendMessage) = 0;
 
 	/**
 	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
@@ -67,12 +60,12 @@ public:
 	/**
 	 * Parses the given string and assigns to the setting value. Used for parsing XML attributes.
 	 */
-	bool FromString(const CStrW& Value, const bool& SkipMessage) override;
+	bool FromString(const CStrW& Value, const bool SendMessage) override;
 
 	/**
 	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
 	 */
-	bool FromJSVal(JSContext* cx, JS::HandleValue Value) override;
+	bool FromJSVal(JSContext* cx, JS::HandleValue Value, const bool SendMessage) override;
 
 	/**
 	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
@@ -81,6 +74,7 @@ public:
 
 	/**
 	 * These members are public because they are either unmodifiable or free to be modified.
+	 * In particular it avoids the need for setter templates specialized depending on copiability.
 	 */
 
 	/**
@@ -99,32 +93,11 @@ public:
 	T m_pSetting;
 };
 
-/**
- * Includes static functions that needs one template
- * argument.
- */
 template <typename T>
 class GUI
 {
 public:
 	NONCOPYABLE(GUI);
-
-
-	/**
-	 * Sets a value by name using a real datatype as input.
-	 * This variant will use the move-assignment.
-	 *
-	 * @param pObject Object pointer
-	 * @param Setting Setting by name
-	 * @param Value Sets value to this, note type T!
-	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
-	 */
-	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, T& Value, const bool& SkipMessage = false);
-
-	/**
-	 * This variant will copy the value.
-	 */
-	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage = false);
 
 	/**
 	 * Sets a value by setting and object name using a real
@@ -135,14 +108,6 @@ public:
 	 * @return True at success.
 	 */
 	static bool ParseString(const CGUI* pGUI, const CStrW& Value, T& tOutput);
-
-private:
-
-	/**
-	 * Changes the value of the setting by calling the valueSet functon that performs either a copy or move assignment.
-	 * Updates some internal data depending on the setting changed.
-	 */
-	static PSRETURN SetSettingWrap(IGUIObject* pObject, const CStr& Setting, const bool& SkipMessage, const std::function<void()>& valueSet);
 };
 
 #endif // INCLUDED_GUIUTIL

@@ -33,7 +33,7 @@ CCheckBox::CCheckBox(CGUI& pGUI)
 {
 	AddSetting<float>("buffer_zone");
 	AddSetting<CGUIString>("caption");
-	AddSetting<int>("cell_id");
+	AddSetting<i32>("cell_id");
 	AddSetting<bool>("checked");
 	AddSetting<CStrW>("font");
 	AddSetting<CStrW>("sound_disabled");
@@ -88,7 +88,7 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 	case GUIM_PRESSED:
 	{
 		// Switch to opposite.
-		GUI<bool>::SetSetting(this, "checked", !GetSetting<bool>("checked"));
+		SetSetting<bool>("checked", !GetSetting<bool>("checked"), true);
 		break;
 	}
 

@@ -43,10 +43,10 @@ IGUIObject::IGUIObject(CGUI& pGUI)
 	AddSetting<CStr>("tooltip_style");
 
 	// Setup important defaults
-	GUI<bool>::SetSetting(this, "hidden", false);
-	GUI<bool>::SetSetting(this, "ghost", false);
-	GUI<bool>::SetSetting(this, "enabled", true);
-	GUI<bool>::SetSetting(this, "absolute", true);
+	SetSetting<bool>("hidden", false, true);
+	SetSetting<bool>("ghost", false, true);
+	SetSetting<bool>("enabled", true, true);
+	SetSetting<bool>("absolute", true, true);
 }
 
 IGUIObject::~IGUIObject()
@@ -145,6 +145,46 @@ const T& IGUIObject::GetSetting(const CStr& Setting) const
 	return static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting;
 }
 
+bool IGUIObject::SetSettingFromString(const CStr& Setting, const CStrW& Value, const bool SendMessage)
+{
+	return m_Settings[Setting]->FromString(Value, SendMessage);
+}
+
+template <typename T>
+void IGUIObject::SetSetting(const CStr& Setting, T& Value, const bool SendMessage)
+{
+	static_cast<CGUISetting<T>* >(m_Settings[Setting])->m_pSetting = std::move(Value);
+	SettingChanged(Setting, SendMessage);
+}
+
+template <typename T>
+void IGUIObject::SetSetting(const CStr& Setting, const T& Value, const bool SendMessage)
+{
+	static_cast<CGUISetting<T>* >(m_Settings[Setting])->m_pSetting = Value;
+	SettingChanged(Setting, SendMessage);
+}
+
+void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
+{
+	if (Setting == "size")
+	{
+		// If setting was "size", we need to re-cache itself and all children
+		RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+	}
+	else if (Setting == "hidden")
+	{
+		// Hiding an object requires us to reset it and all children
+		if (GetSetting<bool>(Setting))
+			RecurseObject(nullptr, &IGUIObject::ResetStates);
+	}
+
+	if (SendMessage)
+	{
+		SGUIMessage msg(GUIM_SETTINGS_UPDATED, Setting);
+		HandleMessage(msg);
+	}
+}
+
 bool IGUIObject::IsMouseOver() const
 {
 	return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
@@ -174,17 +214,6 @@ void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 			SendEvent(GUIM_MOUSE_LEAVE, "mouseleave");
 		}
 	}
-}
-
-PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage)
-{
-	if (!SettingExists(Setting))
-		return PSRETURN_GUI_InvalidSetting;
-
-	if (!m_Settings[Setting]->FromString(Value, SkipMessage))
-		return PSRETURN_GUI_UnableToParse;
-
-	return PSRETURN_OK;
 }
 
 void IGUIObject::ChooseMouseOverAndClosest(IGUIObject*& pObject)
@@ -271,7 +300,7 @@ void IGUIObject::LoadStyle(const CStr& StyleName)
 	for (const std::pair<CStr, CStrW>& p : m_pGUI.GetStyle(StyleName).m_SettingsDefaults)
 	{
 		if (SettingExists(p.first))
-			SetSetting(p.first, p.second);
+			SetSettingFromString(p.first, p.second, true);
 		else if (StyleName != "default")
 			LOGWARNING("GUI object has no setting \"%s\", but the style \"%s\" defines it", p.first, StyleName.c_str());
 	}
@@ -483,11 +512,21 @@ void IGUIObject::TraceMember(JSTracer* trc)
 }
 
 // Instantiate templated functions:
+// These functions avoid copies by working with a reference and move semantics.
 #define TYPE(T) \
 	template void IGUIObject::AddSetting<T>(const CStr& Name); \
 	template T& IGUIObject::GetSetting<T>(const CStr& Setting); \
 	template const T& IGUIObject::GetSetting<T>(const CStr& Setting) const; \
+	template void IGUIObject::SetSetting<T>(const CStr& Setting, T& Value, const bool SendMessage); \
 
 #include "gui/GUItypes.h"
+#undef TYPE
 
+// Copying functions - discouraged except for primitives.
+#define TYPE(T) \
+	template void IGUIObject::SetSetting<T>(const CStr& Setting, const T& Value, const bool SendMessage); \
+
+#define GUITYPE_IGNORE_NONCOPYABLE
+#include "gui/GUItypes.h"
+#undef GUITYPE_IGNORE_NONCOPYABLE
 #undef TYPE
