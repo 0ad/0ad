@@ -1,9 +1,8 @@
 Engine.IncludeModule("common-api");
 
-var PETRA = (function() {
-var m = {};
+var PETRA = {};
 
-m.PetraBot = function PetraBot(settings)
+PETRA.PetraBot = function(settings)
 {
 	API3.BaseAI.call(this, settings);
 
@@ -17,14 +16,14 @@ m.PetraBot = function PetraBot(settings)
 		"transports": 1	// transport plans start at 1 because 0 might be used as none
 	};
 
-	this.Config = new m.Config(settings.difficulty, settings.behavior);
+	this.Config = new PETRA.Config(settings.difficulty, settings.behavior);
 
 	this.savedEvents = {};
 };
 
-m.PetraBot.prototype = new API3.BaseAI();
+PETRA.PetraBot.prototype = new API3.BaseAI();
 
-m.PetraBot.prototype.CustomInit = function(gameState)
+PETRA.PetraBot.prototype.CustomInit = function(gameState)
 {
 	if (this.isDeserialized)
 	{
@@ -52,11 +51,11 @@ m.PetraBot.prototype.CustomInit = function(gameState)
 
 		this.Config.Deserialize(this.data.config);
 
-		this.queueManager = new m.QueueManager(this.Config, {});
+		this.queueManager = new PETRA.QueueManager(this.Config, {});
 		this.queueManager.Deserialize(gameState, this.data.queueManager);
 		this.queues = this.queueManager.queues;
 
-		this.HQ = new m.HQ(this.Config);
+		this.HQ = new PETRA.HQ(this.Config);
 		this.HQ.init(gameState, this.queues);
 		this.HQ.Deserialize(gameState, this.data.HQ);
 
@@ -74,11 +73,11 @@ m.PetraBot.prototype.CustomInit = function(gameState)
 		// this.queues can only be modified by the queue manager or things will go awry.
 		this.queues = {};
 		for (let i in this.Config.priorities)
-			this.queues[i] = new m.Queue();
+			this.queues[i] = new PETRA.Queue();
 
-		this.queueManager = new m.QueueManager(this.Config, this.queues);
+		this.queueManager = new PETRA.QueueManager(this.Config, this.queues);
 
-		this.HQ = new m.HQ(this.Config);
+		this.HQ = new PETRA.HQ(this.Config);
 
 		this.HQ.init(gameState, this.queues);
 
@@ -87,7 +86,7 @@ m.PetraBot.prototype.CustomInit = function(gameState)
 	}
 };
 
-m.PetraBot.prototype.OnUpdate = function(sharedScript)
+PETRA.PetraBot.prototype.OnUpdate = function(sharedScript)
 {
 	if (this.gameFinished)
 		return;
@@ -129,7 +128,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 	this.turn++;
 };
 
-m.PetraBot.prototype.Serialize = function()
+PETRA.PetraBot.prototype.Serialize = function()
 {
 	let savedEvents = {};
 	for (let key in this.savedEvents)
@@ -160,11 +159,8 @@ m.PetraBot.prototype.Serialize = function()
 	};
 };
 
-m.PetraBot.prototype.Deserialize = function(data, sharedScript)
+PETRA.PetraBot.prototype.Deserialize = function(data, sharedScript)
 {
 	this.isDeserialized = true;
 	this.data = data;
 };
-
-return m;
-}());

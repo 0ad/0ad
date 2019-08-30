@@ -36,6 +36,7 @@ GUI Object Base - Button Behavior
 #define INCLUDED_IGUIBUTTONBEHAVIOR
 
 #include "gui/GUI.h"
+#include "gui/IGUIObject.h"
 
 class CGUISpriteInstance;
 

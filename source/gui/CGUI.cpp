@@ -286,7 +286,7 @@ CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
 
-       m_BaseObject = new CGUIDummyObject(*this);
+	m_BaseObject = new CGUIDummyObject(*this);
 }
 
 CGUI::~CGUI()
@@ -1031,7 +1031,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "size")
 		{
 			CClientArea ca;
-			if (!GUI<CClientArea>::ParseString(this, attr_value, ca))
+			if (!ParseString<CClientArea>(this, attr_value, ca))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_Size = ca;
@@ -1039,7 +1039,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "texture_size")
 		{
 			CClientArea ca;
-			if (!GUI<CClientArea>::ParseString(this, attr_value, ca))
+			if (!ParseString<CClientArea>(this, attr_value, ca))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_TextureSize = ca;
@@ -1047,7 +1047,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "real_texture_placement")
 		{
 			CRect rect;
-			if (!GUI<CRect>::ParseString(this, attr_value, rect))
+			if (!ParseString<CRect>(this, attr_value, rect))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_TexturePlacementInFile = rect;
@@ -1055,7 +1055,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "cell_size")
 		{
 			CSize size;
-			if (!GUI<CSize>::ParseString(this, attr_value, size))
+			if (!ParseString<CSize>(this, attr_value, size))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_CellSize = size;
@@ -1063,7 +1063,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "fixed_h_aspect_ratio")
 		{
 			float val;
-			if (!GUI<float>::ParseString(this, attr_value, val))
+			if (!ParseString<float>(this, attr_value, val))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_FixedHAspectRatio = val;
@@ -1071,7 +1071,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "round_coordinates")
 		{
 			bool b;
-			if (!GUI<bool>::ParseString(this, attr_value, b))
+			if (!ParseString<bool>(this, attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_RoundCoordinates = b;
@@ -1090,25 +1090,25 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else if (attr_name == "z_level")
 		{
 			float z_level;
-			if (!GUI<float>::ParseString(this, attr_value, z_level))
+			if (!ParseString<float>(this, attr_value, z_level))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_DeltaZ = z_level/100.f;
 		}
 		else if (attr_name == "backcolor")
 		{
-			if (!GUI<CGUIColor>::ParseString(this, attr_value, Image->m_BackColor))
+			if (!ParseString<CGUIColor>(this, attr_value, Image->m_BackColor))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}
 		else if (attr_name == "bordercolor")
 		{
-			if (!GUI<CGUIColor>::ParseString(this, attr_value, Image->m_BorderColor))
+			if (!ParseString<CGUIColor>(this, attr_value, Image->m_BorderColor))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}
 		else if (attr_name == "border")
 		{
 			bool b;
-			if (!GUI<bool>::ParseString(this, attr_value, b))
+			if (!ParseString<bool>(this, attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
 				Image->m_Border = b;
@@ -1201,7 +1201,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "show_edge_buttons")
 		{
 			bool b;
-			if (!GUI<bool>::ParseString(this, attr_value.FromUTF8(), b))
+			if (!ParseString<bool>(this, attr_value.FromUTF8(), b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_UseEdgeButtons = b;
@@ -1209,7 +1209,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "width")
 		{
 			float f;
-			if (!GUI<float>::ParseString(this, attr_value.FromUTF8(), f))
+			if (!ParseString<float>(this, attr_value.FromUTF8(), f))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_Width = f;
@@ -1217,7 +1217,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "minimum_bar_size")
 		{
 			float f;
-			if (!GUI<float>::ParseString(this, attr_value.FromUTF8(), f))
+			if (!ParseString<float>(this, attr_value.FromUTF8(), f))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_MinimumBarSize = f;
@@ -1225,7 +1225,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "maximum_bar_size")
 		{
 			float f;
-			if (!GUI<float>::ParseString(this, attr_value.FromUTF8(), f))
+			if (!ParseString<float>(this, attr_value.FromUTF8(), f))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, attr_value);
 			else
 				scrollbar.m_MaximumBarSize = f;
@@ -1280,7 +1280,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "size")
 		{
 			CSize size;
-			if (!GUI<CSize>::ParseString(this, attr_value.FromUTF8(), size))
+			if (!ParseString<CSize>(this, attr_value.FromUTF8(), size))
 				LOGERROR("Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
 			else
 				icon.m_Size = size;
@@ -1288,7 +1288,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		else if (attr_name == "cell_id")
 		{
 			int cell_id;
-			if (!GUI<int>::ParseString(this, attr_value.FromUTF8(), cell_id))
+			if (!ParseString<int>(this, attr_value.FromUTF8(), cell_id))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
 			else
 				icon.m_CellID = cell_id;

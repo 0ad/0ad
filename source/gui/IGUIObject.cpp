@@ -19,6 +19,7 @@
 
 #include "GUI.h"
 
+#include "gui/CGUISetting.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "ps/GameSetup/Config.h"

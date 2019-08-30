@@ -21,9 +21,9 @@
 
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
+#include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
 #include "gui/CGUISprite.h"
-#include "gui/GUIutil.h"
 #include "gui/GUIMatrix.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
@@ -159,7 +159,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				color = &Image->m_BackColor;
 
 			// Check color is valid
-			if (!GUI<CGUIColor>::ParseString(&pGUI, value, *color))
+			if (!CGUI::ParseString<CGUIColor>(&pGUI, value, *color))
 			{
 				LOGERROR("GUI: Error parsing sprite 'color' (\"%s\")", utf8_from_wstring(value));
 				return;

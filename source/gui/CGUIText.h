@@ -20,7 +20,6 @@
 
 #include "gui/CGUIColor.h"
 #include "gui/CGUISprite.h"
-#include "gui/GUIutil.h"
 #include "graphics/TextRenderer.h"
 #include "ps/CStrIntern.h"
 #include "ps/Shapes.h"
@@ -29,6 +28,7 @@
 #include <list>
 #include <vector>
 
+class CGUI;
 class CGUIString;
 struct SGenerateTextImage;
 using SGenerateTextImages = std::array<std::vector<SGenerateTextImage>, 2>;

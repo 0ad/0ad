@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <textures>
+        <texture file="gaia/tree_cypress_norm.png" name="normTex"/>
+        <texture file="gaia/tree_cypress_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <textures>
+        <texture file="gaia/tree_cypress_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="b">
+      <textures>
+        <texture file="gaia/tree_cypress.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="c">
+      <textures>
+        <texture file="gaia/tree_cypress_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="d">
+      <textures>
+        <texture file="gaia/tree_cypress_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="e">
+      <textures>
+        <texture file="gaia/tree_cypress_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="1">
+      <mesh>gaia/cypress_mediterranean_windswept_1_needles.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/cypress_mediterranean_windswept_2_needles.dae</mesh>
+    </variant>
+    <variant frequency="2" name="3">
+      <mesh>gaia/cypress_mediterranean_windswept_3_needles.dae</mesh>
+    </variant>
+    <variant frequency="2" name="4">
+      <mesh>gaia/cypress_mediterranean_windswept_4_needles.dae</mesh>
+    </variant>
+    <variant frequency="2" name="5">
+      <mesh>gaia/cypress_mediterranean_windswept_5_needles.dae</mesh>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

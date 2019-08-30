@@ -29,7 +29,6 @@
 #include "CGUISeries.h"
 #include "CGUIText.h"
 #include "GUIbase.h"
-#include "GUIutil.h"
 #include "IGUIButtonBehavior.h"
 #include "IGUIObject.h"
 #include "IGUIScrollBarOwner.h" // Required by IGUIScrollBar

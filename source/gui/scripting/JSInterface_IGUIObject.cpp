@@ -21,6 +21,7 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
+#include "gui/CGUISetting.h"
 #include "gui/CList.h"
 #include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
