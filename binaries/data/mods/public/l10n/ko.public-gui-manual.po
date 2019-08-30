@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 14:19+0000\n"
+"PO-Revision-Date: 2019-08-29 12:56+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -433,7 +433,7 @@ msgstr "Alt + L: 대화창에서 함께 놀기 앞마당을 표시합니다."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + H: Toggle in-game diplomacy page."
-msgstr ""
+msgstr "Ctrl + H: 게임 내 외교 페이지를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:95
 msgid "Ctrl + B: Toggle in-game barter/trade page."
@@ -441,7 +441,7 @@ msgstr "Ctrl + B: 놀이 내부의 거래와 교역 페이지를 표시하거나
 
 #: gui/manual/intro.txt:96
 msgid "Ctrl + O: Toggle in-game objectives page."
-msgstr ""
+msgstr "Ctrl + O: 게임 내 목표 페이지를 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + P: Toggle in-game tutorial panel."
@@ -449,7 +449,7 @@ msgstr "Ctrl + P: 놀이 내부의 자습서 패널을 표시하거나 숨깁니
 
 #: gui/manual/intro.txt:98
 msgid "Alt + Shift + T: Toggle structure tree."
-msgstr "Alt + Shift + T: 건축물 도감을 켜고 끕니다."
+msgstr "Alt + Shift + T: 건축물 도감을 표시하거나 숨깁니다."
 
 #: gui/manual/intro.txt:99
 msgid "Alt + Shift + H: Toggle civilization info."
@@ -562,35 +562,35 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "Alt + Shift + W: 와이어프레임 모드로 토글하기 (한번 누르면 텍스쳐 모델에 덮어씌워지고 두번 누르면 텍스쳐 따라 색칠된 와이어프레임만 보입니다. 세번째엔 정상 텍스쳐 모드로 돌아옵니다)"
+msgstr "Alt + Shift + W: 와이어프레임 모드 켜고 끄기 (한번 누르면 텍스쳐 모델에 덮어씌워지고 두번 누르면 텍스쳐 따라 색칠된 와이어프레임만 보입니다. 세번째엔 정상 텍스쳐 모드로 돌아옵니다)"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr "Alt + Shift + S: 유닛 윤곽들을 토글하기 (약간의 성능 향상이 있다)"
+msgstr "Alt + Shift + S: 유닛 윤곽들을 켜고 끄기 (약간의 성능 향상이 있다)"
 
 #: gui/manual/intro.txt:126
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: 하늘 토글하기"
+msgstr "Alt + Z: 하늘을 켜고 끄기"
 
 #: gui/manual/intro.txt:127
 msgid "Alt + X: Toggle diplomacy colors"
-msgstr "Alt + X: 국경 색 토글하기"
+msgstr "Alt + X: 국경 색을 켜고 끄기"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr "Alt + C: 선택한 방어 구조의 공격 범위 시각화 켜고 끄기"
+msgstr "Alt + C: 선택한 방어 구조의 공격 범위 시각화를 켜고 끄기"
 
 #: gui/manual/intro.txt:129
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr "Alt + V: 선택한 유닛과 건축물의 오라 범위 시각화 켜고 끄기"
+msgstr "Alt + V: 선택한 유닛과 건축물의 오라 범위 시각화를 켜고 끄기"
 
 #: gui/manual/intro.txt:130
 msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr "Alt + B: 선택한 유닛의 치유 범위 시각화 켜고 끄기"
+msgstr "Alt + B: 선택한 유닛의 치유 범위 시각화를 켜고 끄기"
 
 #: gui/manual/intro.txt:132
 msgid "[font=\"sans-bold-14\"]Camera manipulation"

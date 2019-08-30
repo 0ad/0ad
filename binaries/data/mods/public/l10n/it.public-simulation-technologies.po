@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-23 14:27+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-28 10:43+0000\n"
+"Last-Translator: Italang\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "Le unità promosse alla classe avanzata guadagnano molte qualità: 20% salute extra, 1 livello di armatura extra di ogni tipo, 20% attacco extra per le unità da mischia, 4m di portata extra e 5% di precisione in più per le unità a distanza, più velocità di movimento e velocità di rigenerazione e portata per i curatori."
+msgstr "Le unità promosse alla classe avanzata guadagnano molte qualità: 20% salute extra, 1 livello di armatura extra di ogni tipo, 20% attacco extra per le unità da mischia, 4m di portata extra e 5% di precisione in più per le unità a distanza, più velocità di movimento e velocità di rigenerazione e portata per i guaritori."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr "Il raggio è aumentato per 10 metri per unità armate di arco. Le unità di arcieri si allenano con -20% tempo, ma anche -20% di salute."
+msgstr "Il raggio è aumentato di 10 metri per unità armate di arco. Le unità di arcieri si allenano con -20% tempo, ma anche -20% di salute."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -466,11 +466,11 @@ msgstr "Una guaina di piombo protegge gli scafi delle navi. +2 livelli per tutti
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr "guaina di piombo per lo scafo"
+msgstr "Guaina di piombo per lo scafo"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr "La struttura portante di una nave era tenuta in tensione dal'hypozomata."
+msgstr "La struttura portante di una nave era tenuta in tensione dall'hypozomata."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
@@ -703,7 +703,7 @@ msgstr "La volontà di combattere è fondamentale per la vittoria."
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "Ispira le truppe con una paga più alta. Tutte le armate terrestri e marittime guadagnano +25% di attacco."
+msgstr "Motiva le truppe con una paga più alta. Tutte le armate terrestri e marittime guadagnano +25% di attacco."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -819,7 +819,7 @@ msgstr "Carriola"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr "Nutrienti supplementari per le fattorie."
+msgstr "Fertilizzanti supplementari per le fattorie."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
@@ -855,7 +855,7 @@ msgstr "Addestramento alla Raccolta"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the productivity of fishing boats."
-msgstr ""
+msgstr "Le reti migliorano la produttività delle barche da pesca."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1017,7 +1017,7 @@ msgstr "Guaritori +5 Visuale e Capacità di Guarigione."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Ampiezza della Guarigione"
+msgstr "Raggio della Guarigione"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
@@ -1027,7 +1027,7 @@ msgstr "Pantheon Olimpico"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "Ampiezza Guarigione 2"
+msgstr "Raggio Guarigione 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
@@ -1057,7 +1057,7 @@ msgstr "Sphágia"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "Ampiezza della Cura 2"
+msgstr "Capacità di Guarigione 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
@@ -1107,7 +1107,7 @@ msgstr "Sblocca la rigenerazione della salute per le unità."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Le unità organiche rigenerano lentamente la salute quando inattive."
+msgstr "Le unità viventi rigenerano lentamente la salute quando inattive."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1115,7 +1115,7 @@ msgstr "Medicina da Campo"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "Utilizzando mura geometriche aumenti la robustezza delle mura difensive."
+msgstr "Utilizzando muratura squadrata aumenti la robustezza delle mura difensive."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
@@ -1123,7 +1123,7 @@ msgstr "Mura della città +2 livelli di armatura, ma +10% tempo di costruzione."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
-msgstr "Mura Geometriche"
+msgstr "Muratura Squadrata"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
@@ -1226,7 +1226,7 @@ msgstr "Costo vs Armatura"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
-msgstr "Visione Notturna vs Merli"
+msgstr "Visione Notturna vs Merlatura"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
@@ -1300,7 +1300,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Avanza da un piccolo villaggio ad una vivace città , pronta per espandersi rapidamente.Questa è la fase cittadina Ateniese , dove la velocità di raccolta del metallo viene potenziata per il bonus \"Gufo d'Argento\""
+msgstr "Avanza da un piccolo villaggio ad una vivace città, pronta per espandersi rapidamente. Questa è la fase cittadina Ateniese, dove la velocità di raccolta del metallo viene potenziata per il bonus \"Civette d'Argento\""
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1469,72 +1469,72 @@ msgid "Amentum"
 msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
-msgid "Increased armor on siege weapons"
-msgstr "Aumenta armatura di armi d'assedio"
+msgid "Increased armor on siege engines."
+msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsontooltip
-msgid "All Siege weapons +2 Hack armor levels."
-msgstr "Tutte le armi d'assedio hanno +2 livelli di armatura."
+msgid "Siege Engines +2 hack armor."
+msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
 msgstr "Blindatura"
 
 #: simulation/data/technologies/siege_attack.jsondescription
-msgid "Advanced technologies improve siege efficiency"
-msgstr "Tecnologie avanzate migliorano l'efficienza dell'assedio"
+msgid "Advanced technologies improve siege efficiency."
+msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsontooltip
-msgid "All siege weapons +25% Crush damage."
-msgstr "Tutte le armi d'assedio hanno +25% danni di frantumazione."
+msgid "Siege Engines +25% attack crush damage."
+msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
 msgstr "Assedio Avanzato"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
-msgid "Improvement to projectile accuracy"
-msgstr "Miglioramento della precisione del proiettile"
+msgid "Improvement to projectile accuracy."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter increased accuracy."
-msgstr "La precisione della balestra è aumentata del 25%."
+msgid "Bolt Shooters −20% ranged attack spread."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
 msgstr "Precisione"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege weapons require less metal resource"
-msgstr "Le armi da assedio richiedono meno metallo."
+msgid "Siege engines require less metal."
+msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege weapons cost 20% less metal"
-msgstr "Le Armi da Assedio costano il 20% in meno di metallo"
+msgid "Siege Engines −20% metal cost."
+msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
 msgstr "Fabbro"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege weapons cost less wood"
-msgstr "Le armi d'assedio hanno un costo di legna minore."
+msgid "Siege engines require less wood."
+msgstr ""
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege weapons cost 20% less wood"
-msgstr "Le armi d'assedio hanno un costo di legna minore del 20%"
+msgid "Siege Engines −20% wood cost."
+msgstr ""
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
 msgstr "Istruttori di artiglieria"
 
 #: simulation/data/technologies/siege_packing.jsondescription
-msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr "Armi da assedio immobili vengono montate e smontate velocemente"
+msgid "Immobile siege engines are assembled and disassembled faster."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr "-25% tempo di montaggio e smontaggio per armi da assedio immobili."
+msgid "Siege Engines −25% pack and unpack time."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2304,7 +2304,7 @@ msgstr "Costruzione in legno"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "I Greci usavano costruzioni in pietra fin dai tempi Micenei."
+msgstr "I Greci usavano costruzioni in pietra fin dall'epoca Micenea."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
@@ -2364,11 +2364,11 @@ msgstr "I Persiani potevano disporre di un gran numero di fanti in tempo di guer
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr "I persiani hanno il 10% di popolazione massima in più"
+msgstr "I persiani hanno il 10% di popolazione massima in più."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
-msgstr "Reale Leva Generale"
+msgstr "Leva Generale Reale"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsondescription
 msgid ""
@@ -2376,7 +2376,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "Gli Spartani non ebbero il più grande esercito del mondo, ma il miglior esercito del mondo di quel tempo. Quello che non fecero grazie alla superiorità numerica, lo fecero con la qualità dell'addestramento militare. Si diceva che Sparta non avesse bisogno di forti mura a difesa della città, i suoi uomini erano le sue mura."
+msgstr "Gli Spartani non ebbero il più grande esercito del mondo, ma il migliore di quel tempo. Quello che non fecero grazie alla superiorità numerica, lo fecero con la qualità dell'addestramento militare. Si diceva che Sparta non avesse bisogno di forti mura a difesa della città, i suoi uomini erano le sue mura."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans have 10% less maximum population."
@@ -2583,7 +2583,7 @@ msgstr "Libri Sibillini"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr "Libri Sibyllini"
+msgstr "Libri Sibillini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
@@ -2606,9 +2606,9 @@ msgstr "Metropoli Ellenistiche"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
-"Significantly increase training speed of champions and siege weapons at the "
-"fortress by training them in large batches or battalions."
-msgstr "Aumenta la velocità di formazione dei campioni e armi d'assedio nella fortezza formandoli in grandi lotti o battaglioni."
+"Significantly increase training speed of champions and siege engines at the "
+"fortress when training them in large batches."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

@@ -54,8 +54,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 15:27+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-08-27 15:51+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,7 +106,7 @@ msgstr "Греки достигли больших успехов в эллин�
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Строительство боевых кораблей союзников на 25% быстрее."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -356,7 +356,7 @@ msgstr "Религия и обычаи друидов вдохновляли в�
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Стоимость целителей союзников снижается на 20%."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -601,7 +601,7 @@ msgstr "Северная Африка мало отличалась от Пир�
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Рынки союзников получают +10% выгоды в международной торговле."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -808,7 +808,7 @@ msgstr "Галлы"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Время исследования технологий в зданиях союзников уменьшается на 20%."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -1008,7 +1008,7 @@ msgstr "Как и Нумидиию в Северной Африке, Пирен�
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen-Soldier Javelinists −20% resource costs."
-msgstr ""
+msgstr "Стоимость копьеметателей-граждан союзников снижается на 20%."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1020,7 +1020,7 @@ msgid ""
 "serve as auxiliaries to their armies in foreign wars. Carthage is the most "
 "well known example, and we have evidence of them serving in such a capacity "
 "in Aquitania."
-msgstr ""
+msgstr "Иберийцы издавна были известны тем, что нанимались на службу к другим народам в качестве вспомогательной силы в походах. Карфаген является наиболее известным примером. Также существуют доказательства использования таких воинов в Аквитании."
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -1147,7 +1147,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "Защитная аура — наделяет все иберийские войска и строения в пределах радиуса видимости монумента бонусом атаки в 10-15%. Максимальное количество: можно построить только 5 на карте."
+msgstr "Защитная аура — наделяет все иберийские юниты и здания в пределах видимости монумента усиленным на 10-15% уроном. Ограничение: пять единиц."
 
 #: simulation/data/civs/iber.jsonStructures[0].History
 msgid ""
@@ -1207,7 +1207,7 @@ msgstr "Поставщики слонов"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Стоимость и время обучения слонов союзников снижается на 20%."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1378,7 +1378,7 @@ msgstr "Македоняне"
 msgid ""
 "Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
 "but -5% attack debonus vs. Romans."
-msgstr "Македонские войска на +10% сильнее в атаке против Персидской и Греческой фракций, но на -5% слабее в атаке против Римлян."
+msgstr "Македоняне наносят на 10% больше урона персам и грекам, но на 5% меньше римлянам."
 
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
@@ -1592,7 +1592,7 @@ msgstr "Эллинское царство граничит с греческим
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr "Эллинизация — бонус к цивилизации. Постройка Театрона увеличивает охват эффектами зданий на 25%. Ограничение постройки: 1."
+msgstr "Эллинизация — бонус к цивилизации. Постройка Театрона увеличивает контроль территории всеми зданиями на 25%. Ограничение: одна единица."
 
 #: simulation/data/civs/mace.jsonStructures[1].Name
 #: simulation/data/civs/ptol.jsonStructures[0].Name
@@ -1604,7 +1604,7 @@ msgstr "Библиотека"
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
-msgstr "Здесь исследуются все уникальные технологии. Постройка одного здания снижает затраты на разработку всех остальных технологий на 10%. Максимальное количество: 1."
+msgstr "Здесь исследуются все уникальные технологии. Постройка одного здания снижает затраты на исследования всех технологий на 10%. Ограничение: одна единица."
 
 #: simulation/data/civs/mace.jsonStructures[1].History
 #: simulation/data/civs/ptol.jsonStructures[0].History
@@ -1680,7 +1680,7 @@ msgstr "Кшатрий или каштрий — воин, принадлежа�
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "На строительство храмов и исследование храмовых технологий союзников затрачивается на 50% меньше времени и ресурсов."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1854,7 +1854,7 @@ msgstr "Персы могли и пользовались возможность
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "Сухопутные торговцы союзников приносят на 15% больше прибыли."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1920,7 +1920,7 @@ msgstr "Ксеркс II"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr ""
+msgstr "Финикийские триремы приобретают уникальную способность обучать конницу."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
@@ -2061,7 +2061,7 @@ msgstr "Птолемеи"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenaries."
-msgstr ""
+msgstr "Птолемеи получают лагерь наёмников — казармы, построенные на нейтральной территории и обучающие наёмных воинов."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2209,7 +2209,7 @@ msgid ""
 "The Ptolemaic Egyptians receive 3 additional farming technologies above and "
 "beyond the maximum number of farming technologies usually available to a "
 "faction."
-msgstr "Птолемейские египтяне получают 3 дополнительных технологии ведения сельского хозяйства сверх максимального количества сельскохозяйственных технологий, обычно доступных для фракции."
+msgstr "Птолемейские египтяне получают 3 дополнительных технологии ведения сельского хозяйства сверх максимального количества технологий, доступных другим."
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2253,7 +2253,7 @@ msgstr "Стратопедо мистофорон"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
-msgstr ""
+msgstr "Должен быть возведён на нейтральной территории. Не влияет на контроль территории. Обучает наёмников."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2263,7 +2263,7 @@ msgstr "Маяк"
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr "При постройке около берега убирает туман войны над водой, показывая береговые линии на всей карте. Лимит: 1."
+msgstr "При постройке около берега убирает туман войны над водой, показывая береговые линии на всей карте. Ограничение: одна единица."
 
 #: simulation/data/civs/ptol.jsonStructures[2].History
 msgid ""
@@ -2321,7 +2321,7 @@ msgstr "Римское гражданство очень высоко ценил
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied Citizen-Soldier Infantry −20% training time."
-msgstr ""
+msgstr "Время обучения воинов-граждан союзников снижается на 20%."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2505,7 +2505,7 @@ msgid ""
 "This unlocks the Seleucid expansion building, the Klēroukhia or Military "
 "Colony, similar to Civic Centers for other factions. It is weaker and "
 "carries a smaller territory influence, but is cheaper and built faster."
-msgstr "Даёт доступ к расширяющим владения строениям селевкидов, таким как Клерухия — военная колония, схожая с городскими центрами других фракций. Она слабее и контролирует меньшие владения, но дешевле и быстрее возводится."
+msgstr "Даёт доступ к расширяющим владения строениям селевкидов, таким как Клерухия — военная колония, схожая с городскими центрами других цивилизаций. Она слабее и контролирует меньшие владения, но дешевле и быстрее возводится."
 
 #: simulation/data/civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
@@ -2531,7 +2531,7 @@ msgstr "Военное дело селевкидов и их преемнико�
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr "Стоимость городских Центров союзников снижается на 20%."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2753,7 +2753,7 @@ msgstr "Греко-македонская династия, правившая �
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr ""
+msgstr "Обучает всю конницу за исключением всадников-граждан."
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2764,7 +2764,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
-msgstr "Это строение, расширяющее владения селевкидов, схожее с городскими центрами других фракций. Она слабее и контролирует меньшие владения, но дешевле и возводится быстрее."
+msgstr "Это здание, расширяющее владения селевкидов, схожее с городскими Центрами других цивилизаций. Оно слабее и контролирует меньшие владения, но дешевле и возводится быстрее."
 
 #: simulation/data/civs/sele.jsonStructures[2].History
 msgid ""
@@ -2821,7 +2821,7 @@ msgstr "В соответствии с Конституцией, разрабо�
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen-Soldier Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Пешие копейщики-граждане союзников получают +10% к здоровью."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

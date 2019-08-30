@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-25 13:31+0000\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-28 15:58+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -78,29 +78,6 @@ msgstr "Городской центр"
 msgid "Military Colony"
 msgstr "Военная колония"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
-msgid "Hellenic Royal Stoa"
-msgstr "Эллинская Царская стоа"
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
-msgid "Recruit special units."
-msgstr "Позволяет нанимать специальных юнитов. "
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
-#: simulation/templates/template_structure_civic_temple.xml:35
-#: simulation/templates/template_structure_defensive_tower_stone.xml:34
-#: simulation/templates/template_structure_economic_market.xml:32
-#: simulation/templates/template_structure_military_blacksmith.xml:27
-#: simulation/templates/template_structure_military_embassy.xml:38
-#: simulation/templates/template_structure_military_kennel.xml:40
-#: simulation/templates/structures/cart_super_dock.xml:47
-#: simulation/templates/structures/gaul_tavern.xml:28
-#: simulation/templates/structures/kush_pyramid_small.xml:29
-#: simulation/templates/structures/maur_elephant_stables.xml:7
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "Малый город"
-
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
 msgstr "Увеличивает предел населения."
@@ -123,6 +100,29 @@ msgstr "Деревня"
 #: simulation/templates/structures/pers_house_a.xml:12
 msgid "House"
 msgstr "Дом"
+
+#: simulation/templates/template_structure_civic_stoa.xml:33
+msgid "Stoa"
+msgstr "Стоа"
+
+#: simulation/templates/template_structure_civic_stoa.xml:34
+msgid "Recruit special units."
+msgstr "Позволяет нанимать специальных юнитов. "
+
+#: simulation/templates/template_structure_civic_stoa.xml:37
+#: simulation/templates/template_structure_civic_temple.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+#: simulation/templates/template_structure_economic_market.xml:32
+#: simulation/templates/template_structure_military_blacksmith.xml:27
+#: simulation/templates/template_structure_military_embassy.xml:38
+#: simulation/templates/template_structure_military_kennel.xml:40
+#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/gaul_tavern.xml:28
+#: simulation/templates/structures/kush_pyramid_small.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:7
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Малый город"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
@@ -319,7 +319,7 @@ msgid "Train elephant units."
 msgstr "Позволяет обучать слонов."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:75
+#: simulation/templates/template_structure_military_fortress.xml:74
 #: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:53
@@ -343,11 +343,11 @@ msgstr "Посольство"
 msgid "Fortress"
 msgstr "Крепость"
 
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:77
 msgid ""
-"Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements."
-msgstr "Позволяет обучать героев, чемпионов, строить осадные орудия, а также исследовать осадные технологии."
+"Train Heroes and Champions, construct Siege Engines, and research "
+"technologies. Garrison Soldiers for additional arrows."
+msgstr "Обучает героев и чемпионов, сооружает осадные орудия и исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -383,10 +383,8 @@ msgid "Siege Workshop"
 msgstr "Осадная мастерская"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
-msgid ""
-"Build siege engines to destroy your opponents buildings. Research siege "
-"technologies to improve the effectiveness of these weapons."
-msgstr "Позволяет строить осадные машины (для разрушения зданий противников) и исследовать осадные технологии для повышения эффективности этого оружия."
+msgid "Construct Siege Engines and research Siege Engine technologies."
+msgstr "Сооружает осадные орудия и исследует осадные технологии."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -512,8 +510,11 @@ msgid "Epiteíkhisma"
 msgstr "Эпитейхизма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
-msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Позволяет строить осадные орудия. Внутри можно разместить воинов для надёжной защиты."
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Construct Siege Engines and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr "Сооружает осадные орудия и исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -682,7 +683,7 @@ msgstr "Островное поселение"
 
 #: simulation/templates/structures/brit_crannog.xml:16
 msgid "Increase population limit and defend waterways."
-msgstr "Увеличение лимита населения и защита водных путей. "
+msgstr "Увеличение предела населения и защита водных путей. "
 
 #: simulation/templates/structures/brit_crannog.xml:17
 msgid "Cranogion"
@@ -716,10 +717,6 @@ msgstr "Олка"
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Dunon"
 msgstr "Дунон"
-
-#: simulation/templates/structures/brit_fortress.xml:16
-msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Позволяет обучать Бриттских героев и чемпионов, а также строить осадные тараны."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:5
@@ -971,10 +968,6 @@ msgstr "Кориоседлон"
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Lissos"
 msgstr "Лиссос"
-
-#: simulation/templates/structures/gaul_fortress.xml:9
-msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Позволяет обучать Галльских героев и чемпионов, а также строить осадные тараны."
 
 #: simulation/templates/structures/gaul_rotarymill.xml:5
 msgid "Brauon"
@@ -1271,9 +1264,11 @@ msgid "Teíchisma"
 msgstr "Тейхисма"
 
 #: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "Позволяет обучать чемпионов и героев. Внутри можно разместить воинов для надёжной защиты."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr "Обучает героев и чемпионов, исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1324,10 +1319,6 @@ msgstr "Кшетра"
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
 msgstr "Дург"
-
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid "Train heroes and champion units."
-msgstr "Обучает героев и чемпионов."
 
 #: simulation/templates/structures/maur_house.xml:8
 msgid "Griham"
@@ -1466,8 +1457,12 @@ msgid "Didā"
 msgstr "Дида"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Позволяет обучать чемпионов кавалерии и строить осадные тараны."
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions, construct Siege Engines, and research technologies. "
+"Garrison Soldiers for additional arrows."
+msgstr "Обучает чемпионов, сооружает осадные орудия и исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1641,7 +1636,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Это птолемейское строение, схожее с городскими центрами других фракций. Оно слабее и контролирует меньшие владения, но дешевле и быстрее возводится. Обучает войнов-поселенцев разных народов."
+msgstr "Это птолемейское строение, схожее с городскими Центрами других уивилизаций. Оно слабее и контролирует меньшие владения, но дешевле и быстрее возводится. Обучает войнов-поселенцев разных народов."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1692,9 +1687,9 @@ msgstr ""
 
 #: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
-"Build in neutral or enemy territory. Construct siege weapons and train "
-"citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Может быть возведено на нейтральной или вражеской территории. Позволяет строить осадные орудия и обучать воинов-граждан. Размещенные внутри юниты медленно восстанавливают здоровье."
+"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
+"Siege Engines. Garrison Soldiers for additional arrows."
+msgstr "Может быть возведено на нейтральной или вражеской территории. Обучает воинов-граждан и сооружает осадные орудия. Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1876,12 +1871,6 @@ msgstr "Ситоболион"
 msgid "Phrourion"
 msgstr "Фрурион"
 
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Build siege engines and train Champions. Garrison soldiers inside for stout "
-"defense."
-msgstr "Позволяет строить осадные орудия и обучать чемпионов. Внутри можно разместить воинов для надёжной защиты."
-
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr "Библиотикон"
@@ -1895,7 +1884,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Это селевкидское строение, схожее с городскими центрами других фракций. Оно слабее и контролирует меньшие владения, но дешевле и быстрее возводится. Обучает войнов-поселенцев разных народов."
+msgstr "Это селевкидское строение, схожее с городскими Центрами других цивилизаций. Оно слабее и контролирует меньшие владения, но дешевле и быстрее возводится. Обучает войнов-поселенцев разных народов."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1912,11 +1901,6 @@ msgstr "Храм Аполлона"
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
 msgstr "Тейхизма"
-
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Позволяет строить осадные орудия. Внутри можно разместить до 20-ти воинов для надёжной защиты."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"

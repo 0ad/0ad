@@ -45,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 15:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-08-27 15:56+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -494,7 +494,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:415
 msgid "Population Limit"
-msgstr "Лимит населения"
+msgstr "Предел населения"
 
 #: gui/common/gamedescription.js:423
 msgid "Treasures"
@@ -996,7 +996,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:338
 msgid "Garrison Limit"
-msgstr "Предел размера гарнизона"
+msgstr "Предел численности гарнизона"
 
 #: gui/common/tooltips.js:345
 #, javascript-format
@@ -3618,7 +3618,7 @@ msgstr "БАРАКИ"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "Позволяет обучать воинов-граждан. Для некоторых фракций открывает также обучение чемпионов."
+msgstr "Позволяет обучать воинов-граждан. Для некоторых цивилизаций открывает также обучение чемпионов."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3770,7 +3770,7 @@ msgstr "КРЕПОСТЬ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest building."
-msgstr "Крепость обычно является самым мощным зданием фракции."
+msgstr "Крепость обычно является самым мощным зданием цивилизации."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
