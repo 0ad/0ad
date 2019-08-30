@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <props>
+        <prop actor="flora/trees/pine_maritime_short_needles.xml" attachpoint="root"/>
+        <prop actor="props/flora/decal_pine.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <textures>
+        <texture file="gaia/tree_pine_maritime_trunk.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="1">
+      <mesh>gaia/pine_maritime_short_1.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/pine_maritime_short_2.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

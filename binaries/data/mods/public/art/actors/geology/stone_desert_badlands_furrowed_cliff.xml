@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="a">
+      <textures>
+        <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="1">
+      <mesh>gaia/stone_cliff_furrowed_1.dae</mesh>
+      <textures>
+        <texture file="gaia/stone_furrowed_norm.png" name="normTex"/>
+        <texture file="gaia/stone_cliff_furrowed_1_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

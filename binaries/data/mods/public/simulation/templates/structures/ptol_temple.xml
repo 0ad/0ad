@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
   <Footprint>
-    <Square width="21" depth="23"/>
+    <Square width="19.0" depth="37.0"/>
     <Height>12.0</Height>
   </Footprint>
   <Health>
@@ -11,7 +11,7 @@
     <Civ>ptol</Civ>
   </Identity>
   <Obstruction>
-    <Static width="20" depth="21"/>
+    <Static width="17.5" depth="35.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/ptolemies/temple.xml</Actor>

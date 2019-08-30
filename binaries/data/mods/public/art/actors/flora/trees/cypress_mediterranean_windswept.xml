@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <props>
+        <prop actor="flora/trees/cypress_mediterranean_windswept_needles.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <textures>
+        <texture file="gaia/tree_pine_maritime_trunk.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="1">
+      <mesh>gaia/cypress_mediterranean_windswept_1.dae</mesh>
+    </variant>
+    <variant frequency="2" name="2">
+      <mesh>gaia/cypress_mediterranean_windswept_2.dae</mesh>
+    </variant>
+    <variant frequency="2" name="3">
+      <mesh>gaia/cypress_mediterranean_windswept_3.dae</mesh>
+    </variant>
+    <variant frequency="2" name="4">
+      <mesh>gaia/cypress_mediterranean_windswept_4.dae</mesh>
+    </variant>
+    <variant frequency="2" name="5">
+      <mesh>gaia/cypress_mediterranean_windswept_5.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

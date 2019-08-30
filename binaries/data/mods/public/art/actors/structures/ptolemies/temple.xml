@@ -2,7 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Ptolemaic Temple">
+    <variant frequency="1" name="base">
+      <textures>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="Ptolemaic Temple">
       <mesh>structural/ptol_temple.dae</mesh>
       <props>
         <prop actor="props/structures/ptolemies/temple_paintings.xml" attachpoint="root"/>
@@ -10,15 +18,26 @@
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="structural/ptol_struct.png" name="baseTex"/>
-        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/kush_struct_2.png" name="baseTex"/>
         <texture file="structural/ptol_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/ptol_temple.png" name="aoTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="hellenized_2">
+      <mesh>structural/ptol_temple_helle_2.dae</mesh>
+      <props>
+        <prop actor="props/structures/ptolemies/temple_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/temple_plants.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/spart_temple.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kush_struct_2.png" name="baseTex"/>
+        <texture file="structural/ao/ptol_temple_helle_2_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
-    <variant name="ungarrisoned" frequency="1"/>
+    <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
@@ -26,7 +45,7 @@
     </variant>
   </group>
   <group>
-    <variant name="alive" frequency="1"/>
+    <variant frequency="1" name="alive"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
