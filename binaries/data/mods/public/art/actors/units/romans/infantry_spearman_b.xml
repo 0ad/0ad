@@ -5,7 +5,6 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/rome_helmet_italo_corinthian_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
@@ -13,6 +12,23 @@
       <textures>
         <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Apulo-Corinthian-A">
+      <props>
+        <prop actor="props/units/helmets/rome_apulo_corinthian_b1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Apulo-Corinthian-B">
+      <props>
+        <prop actor="props/units/helmets/rome_apulo_corinthian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Apulo-Booeotian-C">
+      <props>
+        <prop actor="props/units/helmets/rome_apulo_boeotian_b1.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>
