@@ -1223,10 +1223,7 @@ function openManual()
 {
 	closeOpenDialogs();
 	pauseGame();
-
-	Engine.PushGuiPage("page_manual.xml", {
-		"callback": "resumeGame"
-	});
+	Engine.PushGuiPage("page_manual.xml", {}, resumeGame);
 }
 
 function closeOpenDialogs()
