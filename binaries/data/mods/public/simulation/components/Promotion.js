@@ -33,7 +33,10 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	// If the unit is dead, don't promote it
 	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth && cmpHealth.GetHitpoints() == 0)
+	{
+		this.promotedUnitEntity = INVALID_ENTITY;
 		return;
+	}
 
 	// Save the entity id.
 	this.promotedUnitEntity = ChangeEntityTemplate(this.entity, promotedTemplateName);

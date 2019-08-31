@@ -63,4 +63,15 @@ cmpPromotion.IncreaseXp(4200);
 TS_ASSERT_EQUALS(cmpPromotion.entity, 62);
 TS_ASSERT_EQUALS(cmpPromotion.template.Entity, "end");
 TS_ASSERT_EQUALS(cmpPromotion.GetCurrentXp(), 200);
+
+cmpPromotion = ConstructComponent(ENT_ID, "Promotion", {
+	"Entity": "template_b",
+	"RequiredXp": 1000
+});
+
+let cmpHealth = AddMock(ENT_ID, IID_Health, {
+	"GetHitpoints": () => 0,
+});
+
+cmpPromotion.IncreaseXp(1000);
 })();
