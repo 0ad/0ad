@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-25 12:55+0000\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-28 15:59+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1459,7 +1459,7 @@ msgstr "Чудо привлекает гораздо больше людей в 
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr "Активация Славной экспансии. В дальнейшем увеличение предела населения на 40 за каждое Чудо."
+msgstr "Активация Славной экспансии. В дальнейшем увеличение предела населения на 40 единиц за каждое чудо."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1493,72 +1493,72 @@ msgid "Amentum"
 msgstr "Аментум"
 
 #: simulation/data/technologies/siege_armor.jsondescription
-msgid "Increased armor on siege weapons"
-msgstr "Увеличение брони осадных машин"
+msgid "Increased armor on siege engines."
+msgstr "Усиление брони осадных машин."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
-msgid "All Siege weapons +2 Hack armor levels."
-msgstr "Все осадные орудия получают +2 к защите от рубящего удара."
+msgid "Siege Engines +2 hack armor."
+msgstr "Осадные орудия устойчивее на 2% к рубящему урону."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
 msgstr "Бронеобшивка"
 
 #: simulation/data/technologies/siege_attack.jsondescription
-msgid "Advanced technologies improve siege efficiency"
-msgstr "Улучшенные технологии усиливающие эффективность осады"
+msgid "Advanced technologies improve siege efficiency."
+msgstr "Улучшенные технологии повышают эффективность осады."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
-msgid "All siege weapons +25% Crush damage."
-msgstr "Все осадные орудия получают +25% к крушащему урону."
+msgid "Siege Engines +25% attack crush damage."
+msgstr "Осадные орудия получают +25% к раздробляющему урону."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
 msgstr "Улучшенная осада"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
-msgid "Improvement to projectile accuracy"
-msgstr "Улучшение точности снаряда"
+msgid "Improvement to projectile accuracy."
+msgstr "Улучшение точности снарядов."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter increased accuracy."
-msgstr "Увеличивается точность аркабалист."
+msgid "Bolt Shooters −20% ranged attack spread."
+msgstr "Уменьшение на 20% рассеивания для стреломётов."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
 msgstr "Точность болта"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege weapons require less metal resource"
-msgstr "Осадные орудия требуют меньше металла"
+msgid "Siege engines require less metal."
+msgstr "Осадные орудия требуют меньше металла."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege weapons cost 20% less metal"
-msgstr "Осадные орудия стоят на 20% меньше металла"
+msgid "Siege Engines −20% metal cost."
+msgstr "Стоимость осадных орудий в металле снижается на 20%."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
 msgstr "Жестянщик"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege weapons cost less wood"
-msgstr "Осадные орудия стоят меньше древесины"
+msgid "Siege engines require less wood."
+msgstr "Осадные орудия требуют меньше древесины."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege weapons cost 20% less wood"
-msgstr "Осадные орудия стоят на 20% меньше древисины"
+msgid "Siege Engines −20% wood cost."
+msgstr "Стоимость осадных орудий в древесине снижается на 20%."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
 msgstr "Артиллерийские инструктора"
 
 #: simulation/data/technologies/siege_packing.jsondescription
-msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr "Неподвижные осадные орудия собираются и разбираются быстрее"
+msgid "Immobile siege engines are assembled and disassembled faster."
+msgstr "Стационарные осадные орудия собираются и разбираются быстрее."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr "-25% к времени развертывания и свертывания неподвижных осадных орудий."
+msgid "Siege Engines −25% pack and unpack time."
+msgstr "Осадные орудия сворачиваются и разворачиваются на 25% быстрее."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2300,7 +2300,7 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr "Городские стены Карфагена представляли собой три концентрических контура. Они навсегда остались неприступны. Даже когда город был взят римлянами, это произошло через гавань, а не во время штурма стен."
+msgstr "Городские стены Карфагена представляли собой три концентрических контура. Они навсегда остались неприступны. Даже когда римляне взяли город, они проникли в него через гавань, но не штурмуя стены."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
@@ -2352,7 +2352,7 @@ msgstr "Империя Маурьев охватывала десятки ран
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "У Маурьев на 10% выше лимит населения."
+msgstr "У маурьев на 10% выше предел населения."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2388,7 +2388,7 @@ msgstr "Персы могли и пользовались возможность
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr "У персов на 10% увеличен лимит населения."
+msgstr "У персов на 10% увеличен предел населения."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2630,9 +2630,9 @@ msgstr "Эллинистическая метрополия"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
-"Significantly increase training speed of champions and siege weapons at the "
-"fortress by training them in large batches or battalions."
-msgstr "Существенно ускоряет обучение чемпионов и постройку осадных орудий в крепости, тренируя и строя их большими партиями или батальонами."
+"Significantly increase training speed of champions and siege engines at the "
+"fortress when training them in large batches."
+msgstr "Существенно ускоряет обучение чемпионов и сооружение осадных орудий в крепости, готовя их большими партиями."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

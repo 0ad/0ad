@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-23 14:48+0000\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-26 16:02+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -47,29 +47,6 @@ msgstr "Miesto centras"
 msgid "Military Colony"
 msgstr "Karinė kolonija"
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
-msgid "Hellenic Royal Stoa"
-msgstr ""
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
-msgid "Recruit special units."
-msgstr "Samdyti ypatingus vienetus."
-
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:37
-#: simulation/templates/template_structure_civic_temple.xml:35
-#: simulation/templates/template_structure_defensive_tower_stone.xml:34
-#: simulation/templates/template_structure_economic_market.xml:32
-#: simulation/templates/template_structure_military_blacksmith.xml:27
-#: simulation/templates/template_structure_military_embassy.xml:38
-#: simulation/templates/template_structure_military_kennel.xml:40
-#: simulation/templates/structures/cart_super_dock.xml:47
-#: simulation/templates/structures/gaul_tavern.xml:28
-#: simulation/templates/structures/kush_pyramid_small.xml:29
-#: simulation/templates/structures/maur_elephant_stables.xml:7
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "Miestas"
-
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
 msgstr "Padidinkite populiacijos limitą."
@@ -92,6 +69,29 @@ msgstr "Kaimas"
 #: simulation/templates/structures/pers_house_a.xml:12
 msgid "House"
 msgstr "Namas"
+
+#: simulation/templates/template_structure_civic_stoa.xml:33
+msgid "Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_stoa.xml:34
+msgid "Recruit special units."
+msgstr "Samdyti ypatingus vienetus."
+
+#: simulation/templates/template_structure_civic_stoa.xml:37
+#: simulation/templates/template_structure_civic_temple.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+#: simulation/templates/template_structure_economic_market.xml:32
+#: simulation/templates/template_structure_military_blacksmith.xml:27
+#: simulation/templates/template_structure_military_embassy.xml:38
+#: simulation/templates/template_structure_military_kennel.xml:40
+#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/gaul_tavern.xml:28
+#: simulation/templates/structures/kush_pyramid_small.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:7
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Miestas"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
@@ -288,7 +288,7 @@ msgid "Train elephant units."
 msgstr "Rengti dramblius"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:75
+#: simulation/templates/template_structure_military_fortress.xml:74
 #: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:53
@@ -312,11 +312,11 @@ msgstr "Ambasada"
 msgid "Fortress"
 msgstr "Tvirtovė"
 
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:77
 msgid ""
-"Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements."
-msgstr "Renkite herojus, čempionus ir apgulties ginklus. Tirkite apgulties ginklų patobulinimus."
+"Train Heroes and Champions, construct Siege Engines, and research "
+"technologies. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -352,10 +352,8 @@ msgid "Siege Workshop"
 msgstr "Apgulties dirbtuvės"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
-msgid ""
-"Build siege engines to destroy your opponents buildings. Research siege "
-"technologies to improve the effectiveness of these weapons."
-msgstr "Konstruokite apgulties ginklus priešo pastatų naikinimui. Tirkite apgulties ginklų efektyvumo patobulinimus."
+msgid "Construct Siege Engines and research Siege Engine technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -481,8 +479,11 @@ msgid "Epiteíkhisma"
 msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:10
-msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Konstruokite apgulties ginklus. Sustiprinkite gynybą patalpindami įgulą."
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Construct Siege Engines and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -685,10 +686,6 @@ msgstr ""
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Dunon"
 msgstr ""
-
-#: simulation/templates/structures/brit_fortress.xml:16
-msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Renkite britų herojus ir čempionus. Konstruokite apgulties taranus."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:5
@@ -940,10 +937,6 @@ msgstr ""
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Lissos"
 msgstr ""
-
-#: simulation/templates/structures/gaul_fortress.xml:9
-msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Renkite galų herojus ir čempionus. Konstruokite apgulties taranus."
 
 #: simulation/templates/structures/gaul_rotarymill.xml:5
 msgid "Brauon"
@@ -1240,9 +1233,11 @@ msgid "Teíchisma"
 msgstr ""
 
 #: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "Renkite čempionus ir herojus. Sustiprinkite gynybą patalpindami kareivių įgulą."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1293,10 +1288,6 @@ msgstr ""
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
 msgstr ""
-
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid "Train heroes and champion units."
-msgstr "Rengti herojus ir čempionus."
 
 #: simulation/templates/structures/maur_house.xml:8
 msgid "Griham"
@@ -1435,8 +1426,12 @@ msgid "Didā"
 msgstr ""
 
 #: simulation/templates/structures/pers_fortress.xml:6
-msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Renkite čempionų kavaleriją ir konstruokite apgulties taranus."
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions, construct Siege Engines, and research technologies. "
+"Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1661,9 +1656,9 @@ msgstr ""
 
 #: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
-"Build in neutral or enemy territory. Construct siege weapons and train "
-"citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Statykite neutralioje ar priešo teritorijoje. Konstruokite apgulties ginklus bei renkite miestiečius-karius. Iš lėto gydykite įgulą."
+"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
+"Siege Engines. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1845,12 +1840,6 @@ msgstr ""
 msgid "Phrourion"
 msgstr ""
 
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Build siege engines and train Champions. Garrison soldiers inside for stout "
-"defense."
-msgstr "Konstruokite apgulties ginklus ir renkite čempionus. Sustiprinkite gynybą patalpindami įgulą."
-
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr ""
@@ -1881,11 +1870,6 @@ msgstr "Apolono šventykla"
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
 msgstr ""
-
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Konstruokite apgulties ginklus. Sustiprinkite gynybą patalpindami iki 20 karių įgulą."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"

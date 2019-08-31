@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-23 18:47+0000\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-26 18:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -22,124 +22,120 @@ msgid "Dockyard Repairs"
 msgstr "পোতাশ্রয়ে প্রাপ্ত সুবিধাসমূহ"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "আশ্রয় নেওয়া জাহাজ কে ১০   স্বাস্থ্য মান প্রতি সেকেন্ডে মেরামত করে।"
+msgid "Garrisoned Ships +10 health regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
 msgstr "দৈব অনুগ্রহ"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
-msgid "Heals units at 3 HP per second."
-msgstr "প্রত্যেক কে ৩ স্বাস্থ্য মান প্রতি সেকেন্ডে আরোগ্য করে।"
+msgid "Humans +3 health regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
 msgstr "ধর্মীয়  উৎসাহ"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
-msgid "+20% attack damage for soldiers."
-msgstr "সৈনিকদের বিনষ্টকারী ক্ষমতার ২০ % বৃদ্ধি।"
+msgid "Soldiers +20% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
 msgstr "স্বদেশপ্রেম"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
-msgid "Workers +15% gather rates near pyramids."
-msgstr "শ্রমিকেরা পিরামিডের কাছাকাছি ১৫ % বেশি সম্পদ সংগ্রহ করে। "
+msgid "Workers +15% gather speed."
+msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
 msgstr "প্রণোদক উপস্থিতি"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
-msgid "Soldiers near Large Pyramids +10% attack."
-msgstr "বড় পিরামিডের কাছাকাছি সৈনিকদের আক্রমণ ক্ষমতার ১০ % বৃদ্ধি।"
+msgid "Soldiers +10% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
 msgstr "মেরোটিক পিরামিড"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
-msgid ""
-"Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr "পিরামিড সমুন্নত থাকা পর্যন্ত নাগরিক কেন্দ্রগুলোর সীমানার উপর প্রভাব ১০ % বৃদ্ধি।"
+msgid "Civic Centers +10% territory influence radius."
+msgstr ""
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
 msgstr "প্রভাবশালী পৌরোহিত্য"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
-msgid ""
-"Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
-"-5% health for heroes per temple built."
-msgstr "আমুনের পুরোহিতদের শক্তিবৃদ্ধি ও রাজার প্রভাব হ্রাস।\nপ্রতি মন্দির প্রতিষ্ঠার ফলে বীর দের ৫ % শক্তিক্ষয়।"
+msgid "Heroes −5% health."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
 msgstr "জ্ঞান শক্তি"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid ""
-"Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "প্রতি গ্রন্থাগারের জন্য প্রযুক্তি গবেষণা সংক্রান্ত সময় ১০ % হ্রাস।"
+msgid "Structures −10% technology resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
 msgstr "আনুগত্য"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "আশ্রয় নেওয়ার ফলে অবকাঠামোর স্বদলভুক্ত থাকার প্রবণতা ৫০ % বৃদ্ধি।"
+msgid "Structures +50% capture points garrison regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "অশোকের শিলালিপি"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
-msgid "+20% movement speed for traders."
-msgstr "বণিকদের জন্য ২০ % অধিক চলাচল গতি।"
+msgid "Traders +20% movement speed."
+msgstr ""
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
 msgstr "কৃষক বোনাস"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
-msgid "+25% gather rate for workers in the grainfields."
-msgstr "শস্যক্ষেত্রের শ্রমিকদের জন্য ২৫ % অধিক সংগ্রহ হার।"
+msgid "Workers +25% grain gather rate."
+msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
 msgstr "চিকিৎসা "
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
-msgid "Heals nearby units at 1 HP per second."
-msgstr "কাছাকাছি প্রত্যেক কে ১ স্বাস্থ্য মান প্রতি সেকেন্ডে আরোগ্য করে।"
+msgid "Humans +1 health regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
 msgstr "হেলেনিয়করণ"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% per theatron owned."
-msgstr "প্রতি নাট্যমঞ্চ অধিকারের জন্য সীমানার উপর  ২০ % প্রভাব বৃদ্ধি।"
+msgid "Structures +20% territory influence radius."
+msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
 msgstr "প্রাচীর বেষ্টনী"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
-msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr "প্রাচীরের উপর অবস্থিত সৈনিকদের জন্য ৩ অধিক বর্ম সুরক্ষা এবং প্রসারিত দৃষ্টি।"
+msgid "Garrisoned Soldiers +3 armor and +20 vision range."
+msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
 msgstr "মাহাত্ম্য প্রতীক"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 per wonder owned."
-msgstr "প্রতি আশ্চর্য অধিকারের জন্য জনসংখ্যা সীমা ১০ জন বেড়ে যায়"
+msgid "+10 maximum population limit."
+msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -147,17 +143,16 @@ msgstr "গৌরবময় সম্প্রসারণ "
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 per wonder owned (requires "
-"\"Glorious Expansion\" tech)."
-msgstr "প্রতি আশ্চর্য অধিকারের জন্য জনসংখ্যা সীমা  আরও 8০ জন বেড়ে যায়(\"মহিমান্বিত সম্প্রসারণ \" প্রয়োজন). "
+"+40 maximum population limit (requires the “Glorious Expansion” technology)."
+msgstr ""
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
 msgstr "কর্মশালার মেরামতসমূহ"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "আশ্রয় নেওয়া ধ্বংসাত্মক যন্ত্রকে ৩ স্বাস্থ্য মান প্রতি সেকেন্ডে মেরামত করে।"
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -270,7 +265,7 @@ msgid "Inspiration"
 msgstr "অনুপ্রেরণা"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
-msgid "+10% build rate and gather rate for citizen soldiers."
+msgid "Citizen Soldiers +10% build rate and gather speed."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName

@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-24 14:00+0000\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-27 05:30+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -46,124 +46,120 @@ msgid "Dockyard Repairs"
 msgstr "Tersane Onarımı"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Tersanedeki gemi her saniye 10 Can yeniler."
+msgid "Garrisoned Ships +10 health regeneration rate."
+msgstr "Konuşlanana Gemiler +10 yaşam yenilenme oranı."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
 msgstr "Tanrıların Nimeti"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
-msgid "Heals units at 3 HP per second."
-msgstr "Birimleri saniyede 3 Can iyileştirir"
+msgid "Humans +3 health regeneration rate."
+msgstr "İnsanlara +3 yaşam yenilenme puanı."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
 msgstr "Dini Coşku"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
-msgid "+20% attack damage for soldiers."
-msgstr "Askerler için +20% saldırı hasarı."
+msgid "Soldiers +20% melee and ranged attack damage."
+msgstr "Askerlere +%20 yakın ve menzilli saldırı hasarı."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
 msgstr "Yurtseverlik"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
-msgid "Workers +15% gather rates near pyramids."
-msgstr "Piramitlerin yakınındaki işçiler +%15  verimli çalışırlar."
+msgid "Workers +15% gather speed."
+msgstr "İşçiler +%15 toplama hızı."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
 msgstr "Motive edici varlık"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
-msgid "Soldiers near Large Pyramids +10% attack."
-msgstr "Büyük piramitlerin yakınındaki askerlerin saldırı gücü +%10 artar."
+msgid "Soldiers +10% melee and ranged attack damage."
+msgstr "Askerler +%10 yakın ve menzilli saldırı hasarı."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
 msgstr "Meroit Piramitleri"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
-msgid ""
-"Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr "Şehir merkezleri bir piramit ayakta durduğu sürece +%10 bölge etkisi kazanır"
+msgid "Civic Centers +10% territory influence radius."
+msgstr "Kent Merkezleri +%10 bölge etkinliği alanı."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
 msgstr "Güçlü Rahiplik"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
-msgid ""
-"Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
-"-5% health for heroes per temple built."
-msgstr "Amun'un rahipliğini güçlendirir ve monarşi etkini azaltır. İnşaa edilen her tapınakla kahramanların gücü -%5 azalır."
+msgid "Heroes −5% health."
+msgstr "Kahramanlara -%5 yaşam."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
 msgstr "Bilginin Gücü"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid ""
-"Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "Teknolojilerin araştırma maliyet ve süresini, sahip olunan kütüphane başına %10 azaltın."
+msgid "Structures −10% technology resource costs and research time."
+msgstr "Binalar -%10 teknoloji kaynağı bedeli ve araştırma süresi."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
 msgstr "Sadakat"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "Binalar için +%50 daha fazla garnizon sadakat yenilenme oranı"
+msgid "Structures +50% capture points garrison regeneration rate."
+msgstr "Binalara +%50 ele geçirme puanı ve garrizon yenilenme oranı."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "Ashoka'nın Fermanı"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
-msgid "+20% movement speed for traders."
-msgstr "Tüccarlar için +%20 hareket hızı."
+msgid "Traders +20% movement speed."
+msgstr "Tüccarlar +%20 hareket hızı."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
 msgstr "Tarım Getirisi"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
-msgid "+25% gather rate for workers in the grainfields."
-msgstr "Buğday tarlalarındaki işçiler için +%25 toplama oranı."
+msgid "Workers +25% grain gather rate."
+msgstr "İşçiler +%25 buğday toplama oranı."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
 msgstr "Tıbbi tedavi"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
-msgid "Heals nearby units at 1 HP per second."
-msgstr "Yakındaki birimleri saniyede 1 Can iyileştirir."
+msgid "Humans +1 health regeneration rate."
+msgstr "İnsanlara +1 yaşam yenilenme oranı."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
 msgstr "Helenleştirme"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% per theatron owned."
-msgstr "Sahip olunan  her tiyatro başına bölge etkisini %20 arttırır."
+msgid "Structures +20% territory influence radius."
+msgstr "Binalara +%20 bölge etkililik alanı."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
 msgstr "Duvar Koruma"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
-msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr "Duvarlardaki askerler +3 zırh ve daha yüksek görüş alanına sahiptir."
+msgid "Garrisoned Soldiers +3 armor and +20 vision range."
+msgstr "Konuşlanan askerlere +3 zırh ve +20 görüş alanı."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
 msgstr "Yücelik Sembolü"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 per wonder owned."
-msgstr "Sahip olunan her Harika için nüfus sınırını 10 artırın."
+msgid "+10 maximum population limit."
+msgstr "+10 en yüksek nüfus sınırı."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -171,17 +167,16 @@ msgstr "Şanlı Yayılma"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 per wonder owned (requires "
-"\"Glorious Expansion\" tech)."
-msgstr "Sahip olunan Harika başına tarafından nüfus sınırını  40 kişi daha artırın (\"Görkemli Yayılma\" teknolojisi gerektirir)."
+"+40 maximum population limit (requires the “Glorious Expansion” technology)."
+msgstr "+40 en yüksek nüfus sınırı ('Şanlı Genişleme' teknolojisi gerektirir)."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
 msgstr "Atölye Onarımı"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "Yerleştirilen kuşatma birimlerini her saniyede 3 Can yeniler."
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "Konuşlanan Kuşatma Makinelerine +3 sağlık yenilenme oranı."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -294,8 +289,8 @@ msgid "Inspiration"
 msgstr "İlham"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
-msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr "Vatandaş askerler için +%10 inşa ve toplama oranı."
+msgid "Citizen Soldiers +10% build rate and gather speed."
+msgstr "Vatandaş Askerlere +%10 inşa oranı ve toplama hızı."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"

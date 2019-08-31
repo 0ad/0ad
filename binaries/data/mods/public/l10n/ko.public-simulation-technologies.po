@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-23 14:27+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-08-26 07:09+0000\n"
+"PO-Revision-Date: 2019-08-29 13:31+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -657,7 +657,7 @@ msgstr "청동 대신 철을 사용하는 것은 무기에 추가적인 힘을 �
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr ""
+msgstr "원거리 보병의 공격력을 강화하는 훈련입니다."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -1465,72 +1465,72 @@ msgid "Amentum"
 msgstr "어멘텀ehsms꼬리 모양 꽃차례"
 
 #: simulation/data/technologies/siege_armor.jsondescription
-msgid "Increased armor on siege weapons"
-msgstr "공성 무기의 증가된 갑옷"
+msgid "Increased armor on siege engines."
+msgstr "공성 무기의 갑옷이 증가됩니다."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
-msgid "All Siege weapons +2 Hack armor levels."
-msgstr "모든 공성 무기의 타격 갑옷 수준을 +2 증가합니다."
+msgid "Siege Engines +2 hack armor."
+msgstr "공성 무기의 갑옷 타격이 +2 증가합니다."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
 msgstr "갑옷 도금ehsms 판금갑옷"
 
 #: simulation/data/technologies/siege_attack.jsondescription
-msgid "Advanced technologies improve siege efficiency"
+msgid "Advanced technologies improve siege efficiency."
 msgstr "첨단 기술은 공성 효율성을 향상합니다."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
-msgid "All siege weapons +25% Crush damage."
-msgstr "모든 공성 무기의 충격 데미지가 +25% 증가합니다."
+msgid "Siege Engines +25% attack crush damage."
+msgstr "공성 무기의 충격 공격력이 +25% 증가합니다."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
 msgstr "고급 공성"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
-msgid "Improvement to projectile accuracy"
-msgstr "발사체 정확도 향상"
+msgid "Improvement to projectile accuracy."
+msgstr "발사체 정확도가 향상합니다."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter increased accuracy."
-msgstr "노포의 명중률이 향상합니다."
+msgid "Bolt Shooters −20% ranged attack spread."
+msgstr "노포의 장거리 범위 공격력이 -20% 감소합니다."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
 msgstr "노포의 명중률"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege weapons require less metal resource"
-msgstr "공성 무기에 필요한 금속 자원을 줄어듭니다."
+msgid "Siege engines require less metal."
+msgstr "공성 무기에 필요한 금속이 덜 필요합니다."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege weapons cost 20% less metal"
-msgstr "공성 무기의 금속 비용이 20% 줄어듭니다."
+msgid "Siege Engines −20% metal cost."
+msgstr "공성 무기의 금속 비용이 -20% 감소합니다."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
 msgstr "금속 세공사"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege weapons cost less wood"
-msgstr "공성 무기의 목재 비용이 줄어듭니다."
+msgid "Siege engines require less wood."
+msgstr "공성 무기의 목재가 덜 필요합니다."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege weapons cost 20% less wood"
-msgstr "공성 무기의 목재 비용이 20% 줄어듭니다."
+msgid "Siege Engines −20% wood cost."
+msgstr "공성 무기의 목재 비용이 -20% 줄어듭니다."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
 msgstr "포병 교관"
 
 #: simulation/data/technologies/siege_packing.jsondescription
-msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr "거치식 공성 병기의 조립과 해체가 빨라집니다."
+msgid "Immobile siege engines are assembled and disassembled faster."
+msgstr "거치식 공성 무기의 조립과 해체가 빨라집니다."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr "거치식 공성 무기의 조립과 해체 시간이 -25% 느려집니다."
+msgid "Siege Engines −25% pack and unpack time."
+msgstr "거치식 공성 무기의 조립과 해체 시간이 -25% 빨라집니다."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2513,7 +2513,7 @@ msgstr "초기 아케메네스 통치자들은 페르시아를 바다 지배하�
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
+msgstr "페니키아 3단 노선은 기병을 훈련시킬 수 있는 능력을 얻습니다."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2602,9 +2602,9 @@ msgstr "헬레니즘 메트로폴리스"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
-"Significantly increase training speed of champions and siege weapons at the "
-"fortress by training them in large batches or battalions."
-msgstr "대규모 일괄 또는 대대 단위로 양성하여 요새에서 대표전사와 공성 무기의 양성 속도를 크게 향상합니다. (번역확인??)"
+"Significantly increase training speed of champions and siege engines at the "
+"fortress when training them in large batches."
+msgstr "대규모 양성할때 요새에서 대표전사와 공성 무기의 양성 속도를 크게 향상합니다."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
