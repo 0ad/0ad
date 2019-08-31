@@ -1,10 +1,9 @@
 {
 	"type": "global",
-	"affects": ["Human", "Mechanical", "Structure"],
+	"affects": ["Human", "Siege", "Ship", "Structure"],
 	"modifications": [
 		{ "value": "Looter/Resource/food", "add": 5 },
 		{ "value": "Looter/Resource/wood", "add": 5 }
-
 	],
 	"auraName": "Sacker of Cities",
 	"auraDescription": "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\nHumans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
