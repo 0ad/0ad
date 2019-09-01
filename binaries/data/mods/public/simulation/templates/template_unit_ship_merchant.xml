@@ -25,11 +25,11 @@
   </Health>
   <Identity>
     <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Trader Bribable</VisibleClasses>
     <Formations disable=""/>
     <GenericName>Merchantman</GenericName>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures.</Tooltip>
-    <VisibleClasses datatype="tokens">Trader Bribable</VisibleClasses>
   </Identity>
   <Loot>
     <xp>25</xp>

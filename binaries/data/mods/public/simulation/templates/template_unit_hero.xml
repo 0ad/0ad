@@ -28,9 +28,9 @@
     <Max>600</Max>
   </Health>
   <Identity>
+    <Classes datatype="tokens">Human</Classes>
+    <VisibleClasses datatype="tokens">Soldier Hero</VisibleClasses>
     <GenericName>Hero</GenericName>
-    <Classes datatype="tokens">Organic Human</Classes>
-    <VisibleClasses datatype="tokens">Hero Soldier</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>

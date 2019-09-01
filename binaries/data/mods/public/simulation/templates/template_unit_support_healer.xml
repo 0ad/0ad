@@ -22,11 +22,11 @@
   </Health>
   <Identity>
     <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Healer</VisibleClasses>
     <GenericName>Healer</GenericName>
     <Rank>Basic</Rank>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Heal units.</Tooltip>
-    <VisibleClasses datatype="tokens">Healer</VisibleClasses>
   </Identity>
   <Promotion>
     <RequiredXp>150</RequiredXp>

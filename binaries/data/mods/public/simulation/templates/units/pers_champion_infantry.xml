@@ -2,10 +2,10 @@
 <Entity parent="template_unit_champion_infantry_spearman">
   <Identity>
     <Civ>pers</Civ>
+    <Classes datatype="tokens">Immortal</Classes>
     <Lang>persian</Lang>
     <GenericName>Persian Immortal</GenericName>
     <SpecificName>Anušiya</SpecificName>
-    <Classes datatype="tokens">Immortal</Classes>
     <Icon>units/pers_champion_infantry.png</Icon>
   </Identity>
   <VisualActor>

@@ -17,12 +17,12 @@
   <Identity>
     <Civ>cart</Civ>
     <Classes datatype="tokens">Italian</Classes>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <GenericName>Samnite Swordsman</GenericName>
     <Icon>units/cart_infantry_swordsman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <SelectionGroupName>units/cart_infantry_swordsman_ital_b</SelectionGroupName>
     <SpecificName>Seḫīr Romaḥ</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/cart_infantry_swordsman_ital_a</Entity>

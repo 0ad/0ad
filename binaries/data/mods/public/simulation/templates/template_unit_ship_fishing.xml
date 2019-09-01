@@ -32,7 +32,8 @@
     <Pickup>true</Pickup>
   </GarrisonHolder>
   <Identity>
-    <Classes datatype="tokens">FishingBoat -ConquestCritical</Classes>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">FishingBoat</VisibleClasses>
     <Formations disable=""/>
     <GenericName>Fishing Boat</GenericName>
     <Tooltip>Fish the waters for food.</Tooltip>

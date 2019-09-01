@@ -29,11 +29,11 @@
     <Max>1500</Max>
   </Health>
   <Identity>
+    <VisibleClasses datatype="tokens">Ranged Javelinist</VisibleClasses>
     <Formations datatype="tokens">
       special/formations/skirmish
     </Formations>
     <GenericName>Hero Cavalry Skirmisher</GenericName>
-    <VisibleClasses datatype="tokens">Javelin Ranged</VisibleClasses>
   </Identity>
   <UnitMotion>
     <WalkSpeed op="mul">1.05</WalkSpeed>

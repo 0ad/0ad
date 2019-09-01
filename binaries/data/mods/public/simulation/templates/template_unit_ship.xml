@@ -31,9 +31,10 @@
     <Max>200</Max>
   </Health>
   <Identity>
+    <Classes datatype="tokens">-Organic</Classes>
+    <VisibleClasses datatype="tokens">Ship</VisibleClasses>
     <GenericName>Ship</GenericName>
     <Formations disable=""/>
-    <VisibleClasses datatype="tokens">Ship</VisibleClasses>
   </Identity>
   <Loot>
     <xp>60</xp>

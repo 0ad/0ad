@@ -17,12 +17,12 @@
   <Identity>
     <Civ>cart</Civ>
     <Classes datatype="tokens">Iberian</Classes>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <GenericName>Iberian Mercenary Skirmisher</GenericName>
     <Icon>units/cart_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <SelectionGroupName>units/cart_infantry_javelinist_iber_b</SelectionGroupName>
     <SpecificName>Sǝḫīr Kidōn</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/cart_infantry_javelinist_iber_a</Entity>

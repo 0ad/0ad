@@ -428,7 +428,7 @@ PETRA.DefenseManager.prototype.assignDefenders = function(gameState)
 			return;
 		if (ent.hasClass("Support") || ent.attackTypes() === undefined)
 			return;
-		if (ent.hasClass("Catapult"))
+		if (ent.hasClass("StoneThrower"))
 			return;
 		if (ent.hasClass("FishingBoat") || ent.hasClass("Trader"))
 			return;
@@ -649,7 +649,7 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 
-		// try to garrison any attacked support unit if low healthlevel
+		// Try to garrison any attacked support unit if low health.
 		if (target.hasClass("Support") && target.healthLevel() < this.Config.garrisonHealthLevel.medium &&
 			!target.getMetadata(PlayerID, "transport") && plan != -2 && plan != -3)
 		{
@@ -657,8 +657,8 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 
-		// try to garrison any attacked catapult
-		if (target.hasClass("Catapult") &&
+		// Try to garrison any attacked stone thrower.
+		if (target.hasClass("StoneThrower") &&
 			!target.getMetadata(PlayerID, "transport") && plan != -2 && plan != -3)
 		{
 			this.garrisonSiegeUnit(gameState, target);
@@ -673,7 +673,7 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 
 		if (target.hasClass("Unit") && attacker.hasClass("Unit"))
 		{
-			// Consider if we should retaliate or continue our task
+			// Consider whether we should retaliate or continue our task.
 			if (target.hasClass("Support") || target.attackTypes() === undefined)
 				continue;
 			let orderData = target.unitAIOrderData();

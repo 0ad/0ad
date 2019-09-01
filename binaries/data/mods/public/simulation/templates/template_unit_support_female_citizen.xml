@@ -47,10 +47,10 @@
     <Max>25</Max>
   </Health>
   <Identity>
-    <GenericName>Female Citizen</GenericName>
-    <Phenotype>female</Phenotype>
     <Classes datatype="tokens">FemaleCitizen</Classes>
     <VisibleClasses datatype="tokens">Citizen Worker</VisibleClasses>
+    <GenericName>Female Citizen</GenericName>
+    <Phenotype>female</Phenotype>
     <Formations disable=""/>
   </Identity>
   <ResourceGatherer>

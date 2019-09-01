@@ -31,12 +31,12 @@
   </Health>
   <Identity>
     <Civ>maur</Civ>
+    <VisibleClasses datatype="tokens">-Cavalry Elephant</VisibleClasses>
     <GenericName>Elephant Archer</GenericName>
     <Icon>units/maur_cavalry_archer.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
     <SpecificName>Vachii Gaja</SpecificName>
-    <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
   </Identity>
   <Loot>
     <xp>260</xp>
