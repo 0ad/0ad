@@ -106,9 +106,8 @@ function selectionChanged()
 		return;
 
 	Engine.GetGUIObjectByName("savedMapName").caption = translate(metadata.initAttributes.settings.Name);
-	let mapData = getMapDescriptionAndPreview(metadata.initAttributes.mapType, metadata.initAttributes.map, metadata.initAttributes);
-	setMapPreviewImage("savedInfoPreview", mapData.preview);
-
+	Engine.GetGUIObjectByName("savedInfoPreview").sprite = getMapPreviewImage(
+		getMapDescriptionAndPreview(metadata.initAttributes.mapType, metadata.initAttributes.map, metadata.initAttributes).preview);
 	Engine.GetGUIObjectByName("savedPlayers").caption = metadata.initAttributes.settings.PlayerData.length - 1;
 	Engine.GetGUIObjectByName("savedPlayedTime").caption = timeToString(metadata.gui.timeElapsed ? metadata.gui.timeElapsed : 0);
 	Engine.GetGUIObjectByName("savedMapType").caption = translateMapType(metadata.initAttributes.mapType);

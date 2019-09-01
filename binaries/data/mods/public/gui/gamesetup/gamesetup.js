@@ -1002,6 +1002,22 @@ var g_MiscControls = {
 	"chatInput": {
 		"tooltip": () => colorizeAutocompleteHotkey(translate("Press %(hotkey)s to autocomplete player names or settings.")),
 	},
+	"mapInfoName": {
+		"caption": () => translateMapTitle(getMapDisplayName(g_GameAttributes.map))
+	},
+	"mapInfoDescription": {
+		"caption": getGameDescription
+	},
+	"mapPreview": {
+		"sprite": () => {
+			let biomePreview = g_GameAttributes.settings.Biome && getBiomePreview(g_GameAttributes.map, g_GameAttributes.settings.Biome);
+			if (biomePreview)
+				return getMapPreviewImage(biomePreview);
+
+			let mapData = loadMapData(g_GameAttributes.map);
+			return getMapPreviewImage(mapData && mapData.settings && mapData.settings.Preview || "nopreview.png");
+		}
+	},
 	"cheatWarningText": {
 		"hidden": () => !g_IsNetworked || !g_GameAttributes.settings.CheatsEnabled,
 	},
@@ -1484,7 +1500,6 @@ function distributeSettings()
 			thisColumn = 0;
 		}
 
-		let childSize = child.size;
 		child.size = new GUISize(
 			column * columnWidth,
 			yPos,
@@ -1674,19 +1689,6 @@ function getMapDisplayName(map)
 		return map;
 
 	return mapData.settings.Name;
-}
-
-function getMapPreview(map)
-{
-	let biomePreview = g_GameAttributes.settings.Biome && getBiomePreview(map, g_GameAttributes.settings.Biome);
-	if (biomePreview)
-		return biomePreview;
-
-	let mapData = loadMapData(map);
-	if (!mapData || !mapData.settings || !mapData.settings.Preview)
-		return "nopreview.png";
-
-	return mapData.settings.Preview;
 }
 
 /**
@@ -2193,12 +2195,6 @@ function updateGUIMiscControl(name, playerIdx)
 
 function launchGame()
 {
-	if (!g_IsController)
-	{
-		error("Only host can start game");
-		return;
-	}
-
 	if (!g_GameAttributes.map || g_GameStarted)
 		return;
 
@@ -2351,7 +2347,6 @@ function updateGUIObjects()
 	for (let name in g_MiscControls)
 		updateGUIMiscControl(name);
 
-	updateGameDescription();
 	distributeSettings();
 	rightAlignCancelButton();
 	updateAutocompleteEntries();
@@ -2388,16 +2383,6 @@ function rightAlignCancelButton()
 
 	cancelGameSize.left = right;
 	cancelGame.size = cancelGameSize;
-}
-
-function updateGameDescription()
-{
-	setMapPreviewImage("mapPreview", getMapPreview(g_GameAttributes.map));
-
-	Engine.GetGUIObjectByName("mapInfoName").caption =
-		translateMapTitle(getMapDisplayName(g_GameAttributes.map));
-
-	Engine.GetGUIObjectByName("mapInfoDescription").caption = getGameDescription();
 }
 
 /**

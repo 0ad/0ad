@@ -75,13 +75,11 @@ function getMapDescriptionAndPreview(mapType, mapName, gameAttributes = undefine
  * Sets the mappreview image correctly.
  * It needs to be cropped as the engine only allows loading square textures.
  *
- * @param {string} guiObject
  * @param {string} filename
  */
-function setMapPreviewImage(guiObject, filename)
+function getMapPreviewImage(filename)
 {
-	Engine.GetGUIObjectByName(guiObject).sprite =
-		"cropped:" + 400 / 512 + "," + 300 / 512 + ":" +
+	return "cropped:" + 400 / 512 + "," + 300 / 512 + ":" +
 		g_MapPreviewPath + filename;
 }
 

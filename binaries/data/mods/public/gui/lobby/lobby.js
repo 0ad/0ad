@@ -1157,9 +1157,8 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgMapType").caption = g_MapTypes.Title[mapTypeIdx] || "";
 
 	let mapData = getMapDescriptionAndPreview(game.mapType, game.mapName);
+	Engine.GetGUIObjectByName("sgMapPreview").sprite = getMapPreviewImage(mapData.preview);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
-
-	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
 function selectedGame()
