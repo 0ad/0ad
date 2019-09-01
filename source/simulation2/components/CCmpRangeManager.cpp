@@ -1726,6 +1726,30 @@ public:
 		return GetLosVisibility(handle, player);
 	}
 
+	virtual ELosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const
+	{
+		int i = (x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+
+		// Reveal flag makes all positioned entities visible and all mirages useless
+		if (GetLosRevealAll(player))
+		{
+			if (LosIsOffWorld(i, j))
+				return VIS_HIDDEN;
+			else
+				return VIS_VISIBLE;
+		}
+
+		// Get visible regions
+		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
+
+		if (los.IsVisible(i,j))
+			return VIS_VISIBLE;
+		if (los.IsExplored(i,j))
+			return VIS_FOGGED;
+		return VIS_HIDDEN;
+	}
+
 	i32 PosToLosTilesHelper(entity_pos_t x, entity_pos_t z) const
 	{
 		i32 i = Clamp(
