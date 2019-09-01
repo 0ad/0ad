@@ -1,6 +1,6 @@
 {
 	"type": "global",
-	"affects": ["CitizenSoldier Spear Infantry"],
+	"affects": ["Citizen Infantry Spear"],
 	"modifications": [
 		{ "value": "Cost/Resources/food", "multiply": 0.9 },
 		{ "value": "Cost/Resources/wood", "multiply": 0.9 },
@@ -8,5 +8,5 @@
 		{ "value": "Cost/Resources/stone", "multiply": 0.9 }
 	],
 	"auraName": "Lycurgan Military Reforms",
-	"auraDescription": "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\nCitizen-Soldier Infantry Spearmen −10% resource costs."
+	"auraDescription": "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\nCitizen Infantry Spearmen −10% resource costs."
 }

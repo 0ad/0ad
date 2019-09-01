@@ -1,7 +1,7 @@
 {
 	"type": "range",
 	"radius": 80,
-	"affects": ["Structure", "Mechanical"],
+	"affects": ["Structure", "Ship", "Siege"],
 	"affectedPlayers": ["Enemy"],
 	"modifications": [
 		{ "value": "Health/Max", "multiply": 0.8 }

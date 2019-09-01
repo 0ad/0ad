@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="apulo-Corinthian">
+      <mesh>props/helmet/rome_apulo_corinthian_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/rome_apulo_corinthian_02_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/rome_apulo_corinthian_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_apulo_corinthian_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="Crest + Feather">
+      <props>
+        <prop actor="props/units/helmets/props/rome_bronze_crest.xml" attachpoint="crest_02"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_L"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_R"/>
+      </props>
+    </variant>
+    <variant name="Crest">
+      <props>
+        <prop actor="props/units/helmets/props/rome_bronze_crest.xml" attachpoint="crest_01"/>
+        <prop actor="" attachpoint="feather_b"/>
+        <prop actor="" attachpoint="feather_c"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
