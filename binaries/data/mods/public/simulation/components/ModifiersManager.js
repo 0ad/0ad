@@ -93,8 +93,7 @@ ModifiersManager.prototype.InvalidateCache = function(propertyName, entity, play
 
 	if (playerCache)
 		this.InvalidatePlayerEntCache(valueCache, propertyName, playerCache);
-	else
-		valueCache.set(entity, new Map());
+	valueCache.set(entity, new Map());
 };
 
 /**
