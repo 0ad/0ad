@@ -352,7 +352,6 @@ public:
 	virtual ELosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const = 0;
 
 	/**
-	/**
 	 * Request the update of the visibility cache of ent at next turn.
 	 * Typically used for fogging.
 	 */

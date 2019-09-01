@@ -21,28 +21,27 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
+namespace {
+	std::string VisibilityToString(ICmpRangeManager::ELosVisibility visibility)
+	{
+		switch (visibility)
+		{
+		case ICmpRangeManager::VIS_HIDDEN: return "hidden";
+		case ICmpRangeManager::VIS_FOGGED: return "fogged";
+		case ICmpRangeManager::VIS_VISIBLE: return "visible";
+		default: return "error"; // should never happen
+		}
+	}
+}
+
 std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player) const
 {
-	ELosVisibility visibility = GetLosVisibility(ent, player);
-	switch (visibility)
-	{
-	case VIS_HIDDEN: return "hidden";
-	case VIS_FOGGED: return "fogged";
-	case VIS_VISIBLE: return "visible";
-	default: return "error"; // should never happen
-	}
+	return VisibilityToString(GetLosVisibility(ent, player));
 }
 
 std::string ICmpRangeManager::GetLosVisibilityPosition_wrapper(entity_pos_t x, entity_pos_t z, int player) const
 {
-	ELosVisibility visibility = GetLosVisibilityPosition(x, z, player);
-	switch (visibility)
-	{
-		case VIS_HIDDEN: return "hidden";
-		case VIS_FOGGED: return "fogged";
-		case VIS_VISIBLE: return "visible";
-		default: return "error"; // should never happen
-	}
+	return VisibilityToString(GetLosVisibilityPosition(x, z, player));
 }
 
 BEGIN_INTERFACE_WRAPPER(RangeManager)
