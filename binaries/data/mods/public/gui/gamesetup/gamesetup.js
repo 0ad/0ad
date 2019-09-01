@@ -1022,10 +1022,35 @@ var g_MiscControls = {
 		"hidden": () => !g_IsNetworked || !g_GameAttributes.settings.CheatsEnabled,
 	},
 	"cancelGame": {
+		"caption": () => translate("Back"),
 		"tooltip": () =>
 			Engine.HasXmppClient() ?
 				translate("Return to the lobby.") :
 				translate("Return to the main menu."),
+		"onPress": () => cancelSetup,
+		"size": () => {
+			// Right align the button
+			let offset = 10;
+
+			let startGame = Engine.GetGUIObjectByName("startGame");
+			let right = startGame.hidden ? startGame.size.right : startGame.size.left - offset;
+
+			let cancelGame = Engine.GetGUIObjectByName("cancelGame");
+			let cancelGameSize = cancelGame.size;
+			let buttonWidth = cancelGameSize.right - cancelGameSize.left;
+			cancelGameSize.right = right;
+			right -= buttonWidth;
+
+			for (let element of ["cheatWarningText", "onscreenToolTip"])
+			{
+				let elementSize = Engine.GetGUIObjectByName(element).size;
+				elementSize.right = right - (cancelGameSize.left - elementSize.right);
+				Engine.GetGUIObjectByName(element).size = elementSize;
+			}
+
+			cancelGameSize.left = right;
+			return cancelGameSize;
+		}
 	},
 	"startGame": {
 		"caption": () =>
@@ -1070,9 +1095,23 @@ var g_MiscControls = {
 		}
 	},
 	"civResetButton": {
+		"tooltip": () => translate("Reset any civilizations that have been selected to the default (random)."),
+		"onPress": () => function() {
+			for (let i in g_GameAttributes.settings.PlayerData)
+				g_GameAttributes.settings.PlayerData[i].Civ = "random";
+
+			updateGameAttributes();
+		},
 		"hidden": () => g_GameAttributes.mapType == "scenario" || !g_IsController,
 	},
 	"teamResetButton": {
+		"tooltip": () => translate("Reset all teams to the default."),
+		"onPress": () => function() {
+			for (let i in g_GameAttributes.settings.PlayerData)
+				g_GameAttributes.settings.PlayerData[i].Team = -1;
+
+			updateGameAttributes();
+		},
 		"hidden": () => g_GameAttributes.mapType == "scenario" || !g_IsController,
 	},
 	"lobbyButton": {
@@ -2348,7 +2387,6 @@ function updateGUIObjects()
 		updateGUIMiscControl(name);
 
 	distributeSettings();
-	rightAlignCancelButton();
 	updateAutocompleteEntries();
 
 	g_IsInGuiUpdate = false;
@@ -2359,30 +2397,6 @@ function updateGUIObjects()
 		Engine.PopGuiPage();
 		openAIConfig(g_LastViewedAIPlayer);
 	}
-}
-
-function rightAlignCancelButton()
-{
-	let offset = 10;
-
-	let startGame = Engine.GetGUIObjectByName("startGame");
-	let right = startGame.hidden ? startGame.size.right : startGame.size.left - offset;
-
-	let cancelGame = Engine.GetGUIObjectByName("cancelGame");
-	let cancelGameSize = cancelGame.size;
-	let buttonWidth = cancelGameSize.right - cancelGameSize.left;
-	cancelGameSize.right = right;
-	right -= buttonWidth;
-
-	for (let element of ["cheatWarningText", "onscreenToolTip"])
-	{
-		let elementSize = Engine.GetGUIObjectByName(element).size;
-		elementSize.right = right - (cancelGameSize.left - elementSize.right);
-		Engine.GetGUIObjectByName(element).size = elementSize;
-	}
-
-	cancelGameSize.left = right;
-	cancelGame.size = cancelGameSize;
 }
 
 /**
@@ -2589,22 +2603,6 @@ function clearChatMessages()
 {
 	g_ChatMessages.length = 0;
 	Engine.GetGUIObjectByName("chatText").caption = "";
-}
-
-function resetCivilizations()
-{
-	for (let i in g_GameAttributes.settings.PlayerData)
-		g_GameAttributes.settings.PlayerData[i].Civ = "random";
-
-	updateGameAttributes();
-}
-
-function resetTeams()
-{
-	for (let i in g_GameAttributes.settings.PlayerData)
-		g_GameAttributes.settings.PlayerData[i].Team = -1;
-
-	updateGameAttributes();
 }
 
 function toggleReady()

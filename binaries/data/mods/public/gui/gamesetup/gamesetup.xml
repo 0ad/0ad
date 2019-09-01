@@ -67,32 +67,13 @@
 					</object>
 
 					<object name="civInfoButton" type="button" style="IconButton" sprite="iconInfoGold" sprite_over="iconInfoWhite" size="85%-37 0 85%-21 16"/>
-
-					<object name="civResetButton"
-						type="button"
-						style="IconButton"
-						sprite="iconResetGold"
-						sprite_over="iconResetWhite"
-						size="85%-16 0 85% 16"
-					>
-						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random).</translatableAttribute>
-						<action on="Press">resetCivilizations();</action>
-					</object>
+					<object name="civResetButton" type="button" style="IconButton" sprite="iconResetGold" sprite_over="iconResetWhite" size="85%-16 0 85% 16"/>
 
 					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+5 0 100%-21 100%">
 						<translatableAttribute id="caption">Team</translatableAttribute>
 					</object>
 
-					<object name="teamResetButton"
-						type="button"
-						style="IconButton"
-						sprite="iconResetGold"
-						sprite_over="iconResetWhite"
-						size="100%-21 0 100%-5 16"
-					>
-						<translatableAttribute id="tooltip">Reset all teams to the default.</translatableAttribute>
-						<action on="Press">resetTeams();</action>
-					</object>
+					<object name="teamResetButton" type="button" style="IconButton" sprite="iconResetGold" sprite_over="iconResetWhite" size="100%-21 0 100%-5 16" />
 				</object>
 
 				<object size="1 36 100%-1 100%">
@@ -239,17 +220,7 @@
 			/>
 
 			<!-- Cancel Button -->
-			<object
-				name="cancelGame"
-				type="button"
-				style="StoneButton"
-				size="100%-308 100%-52 100%-168 100%-24"
-				tooltip_style="onscreenToolTip"
-				z="21"
-			>
-				<translatableAttribute id="caption">Back</translatableAttribute>
-				<action on="Press">cancelSetup();</action>
-			</object>
+			<object name="cancelGame" type="button" style="StoneButton" size="100%-308 100%-52 100%-168 100%-24" tooltip_style="onscreenToolTip" z="21"/>
 		</object>
 	</object>
 </objects>
