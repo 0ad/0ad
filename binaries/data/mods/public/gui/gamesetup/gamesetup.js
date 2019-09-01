@@ -49,7 +49,7 @@ var g_PlayerAssignmentColors = {
 /**
  * Used for highlighting the sender of chat messages.
  */
-var g_SenderFont = "sans-bold-13";
+var g_SenderFontTag = { "font": "sans-bold-13" };
 
 /**
  * This yields [1, 2, ..., MaxPlayers].
@@ -160,7 +160,7 @@ var g_FormatChatMessage = {
 	"kicked": (msg, user) => systemMessage(sprintf(translate("%(username)s has been kicked"), { "username": user })),
 	"banned": (msg, user) => systemMessage(sprintf(translate("%(username)s has been banned"), { "username": user })),
 	"chat": (msg, user) => sprintf(translate("%(username)s %(message)s"), {
-		"username": senderFont(sprintf(translate("<%(username)s>"), { "username": user })),
+		"username": setStringTags(sprintf(translate("<%(username)s>"), { "username": user }), g_SenderFontTag),
 		"message": escapeText(msg.text || "")
 	}),
 	"ready": (msg, user) => sprintf(g_ReadyData[msg.status].chat, { "username": user }),
@@ -1059,7 +1059,7 @@ var g_MiscControls = {
 			if (g_IsController)
 				launchGame();
 			else
-				toggleReady();
+				setReady((g_IsReady + 1) % 3, true);
 		},
 		"onPressRight": () => function() {
 			if (!g_IsController && g_IsReady)
@@ -2534,14 +2534,9 @@ function submitChatInput()
 	chatInput.focus();
 }
 
-function senderFont(text)
-{
-	return '[font="' + g_SenderFont + '"]' + text + '[/font]';
-}
-
 function systemMessage(message)
 {
-	return senderFont(sprintf(translate("== %(message)s"), { "message": message }));
+	return setStringTags(sprintf(translate("== %(message)s"), { "message": message }), g_SenderFontTag);
 }
 
 function colorizePlayernameByGUID(guid, username = "")
@@ -2603,11 +2598,6 @@ function clearChatMessages()
 {
 	g_ChatMessages.length = 0;
 	Engine.GetGUIObjectByName("chatText").caption = "";
-}
-
-function toggleReady()
-{
-	setReady((g_IsReady + 1) % 3, true);
 }
 
 function setReady(ready, sendMessage)
