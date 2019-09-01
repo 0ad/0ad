@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/rome_champion_infantry">
+  <Identity>
+    <GenericName>Marian Legionary</GenericName>
+    <SpecificName>Legiōnārius</SpecificName>
+    <Icon>units/rome_champion_legion_marian.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/rome_champion_infantry_swordsman_03</Entity>
+    <RequiredXp>150</RequiredXp>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/romans/infantry_swordsman_c2.xml</Actor>
+  </VisualActor>
+</Entity>

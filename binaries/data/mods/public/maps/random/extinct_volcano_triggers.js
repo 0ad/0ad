@@ -71,7 +71,7 @@ var waterWarningTexts = [
 /**
  * Units to be garrisoned in the wooden towers.
  */
-var garrisonedUnits = "units/rome_legionnaire_marian";
+var garrisonedUnits = "units/rome_champion_infantry_swordsman_02";
 
 Trigger.prototype.RaisingWaterNotification = function()
 {
