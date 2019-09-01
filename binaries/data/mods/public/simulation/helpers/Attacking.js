@@ -239,7 +239,7 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 		let receiver = g_EffectReceiver[effectType];
 		let cmpReceiver = Engine.QueryInterface(target, global[receiver.IID]);
 		if (!cmpReceiver)
-			return;
+			continue;
 
 		Object.assign(targetState, cmpReceiver[receiver.method](attackData[effectType], attacker, attackerOwner, bonusMultiplier));
 	}
