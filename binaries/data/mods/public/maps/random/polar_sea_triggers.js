@@ -51,7 +51,7 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 			continue;
 
 		// The returned entities are sorted by RangeManager already
-		let targets = Attack.EntitiesNearPoint(attackerPos, 200, players).filter(ent => {
+		let targets = Attacking.EntitiesNearPoint(attackerPos, 200, players).filter(ent => {
 			let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 			return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClasses);
 		});

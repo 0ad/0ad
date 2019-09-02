@@ -12,7 +12,7 @@ const PLAYER_ID_FOR_TEST = 2;
 const PLAYER_ENTITY_ID = 3;
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-	"GetEntitiesByPlayer": function(a) { return []; }
+	"GetEntitiesByPlayer": () => [],
 });
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -29,17 +29,20 @@ for (let ent of entitiesToTest)
 		"GetOwner": () => PLAYER_ID_FOR_TEST
 	});
 
+AddMock(PLAYER_ENTITY_ID, IID_Identity, {
+	"GetClassesList": () => "Player",
+});
 AddMock(5, IID_Identity, {
-	"GetClassesList": function() { return "Structure";}
+	"GetClassesList": () => "Structure",
 });
 AddMock(6, IID_Identity, {
-	"GetClassesList": function() { return "Infantry";}
+	"GetClassesList": () => "Infantry",
 });
 AddMock(7, IID_Identity, {
-	"GetClassesList": function() { return "Unit";}
+	"GetClassesList": () => "Unit",
 });
 AddMock(8, IID_Identity, {
-	"GetClassesList": function() { return "Structure Unit";}
+	"GetClassesList": () => "Structure Unit",
 });
 
 // Sprinkle random serialisation cycles.
@@ -50,13 +53,18 @@ function SerializationCycle()
 	cmpModifiersManager.Deserialize(data);
 }
 
-cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: PLAYER_ID_FOR_TEST, from: -1, to: PLAYER_ENTITY_ID });
+cmpModifiersManager.OnGlobalPlayerEntityChanged({ "player": PLAYER_ID_FOR_TEST, "from": -1, "to": PLAYER_ENTITY_ID });
 
 cmpModifiersManager.AddModifier("Test_A", "Test_A_0", { "affects": ["Structure"], "add": 10 }, 10, "testLol");
 
 cmpModifiersManager.AddModifier("Test_A", "Test_A_0", { "affects": ["Structure"], "add": 10 }, PLAYER_ENTITY_ID);
 cmpModifiersManager.AddModifier("Test_A", "Test_A_1", { "affects": ["Infantry"], "add": 5 }, PLAYER_ENTITY_ID);
 cmpModifiersManager.AddModifier("Test_A", "Test_A_2", { "affects": ["Unit"], "add": 3 }, PLAYER_ENTITY_ID);
+
+
+TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Test_A", 5, PLAYER_ENTITY_ID), 5);
+cmpModifiersManager.AddModifier("Test_A", "Test_A_Player", { "affects": ["Player"], "add": 3 }, PLAYER_ENTITY_ID);
+TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Test_A", 5, PLAYER_ENTITY_ID), 8);
 
 TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Test_A", 5, 5), 15);
 TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Test_A", 5, 6), 10);
@@ -113,7 +121,6 @@ SerializationCycle();
 TS_ASSERT(cmpModifiersManager.HasModifier("Test_C", "Test_C_3", PLAYER_ENTITY_ID));
 TS_ASSERT(!cmpModifiersManager.HasModifier("Test_C", "Test_C_2", 5));
 
-//////////////////////////////////////////
 // Test that entities keep local modifications but not global ones when changing owner.
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": (a) => a == PLAYER_ID_FOR_TEST ? PLAYER_ENTITY_ID : PLAYER_ENTITY_ID + 1
@@ -130,11 +137,11 @@ cmpModifiersManager.AddModifier("Test_D", "Test_D_0", { "affects": ["Structure"]
 cmpModifiersManager.AddModifier("Test_D", "Test_D_1", { "affects": ["Structure"], "add": 1 }, PLAYER_ENTITY_ID + 1);
 cmpModifiersManager.AddModifier("Test_D", "Test_D_2", { "affects": ["Structure"], "add": 5 }, 5);
 
-cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: PLAYER_ID_FOR_TEST, from: -1, to: PLAYER_ENTITY_ID });
-cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: PLAYER_ID_FOR_TEST + 1, from: -1, to: PLAYER_ENTITY_ID + 1 });
+cmpModifiersManager.OnGlobalPlayerEntityChanged({ "player": PLAYER_ID_FOR_TEST, "from": -1, "to": PLAYER_ENTITY_ID });
+cmpModifiersManager.OnGlobalPlayerEntityChanged({ "player": PLAYER_ID_FOR_TEST + 1, "from": -1, "to": PLAYER_ENTITY_ID + 1 });
 
 TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Test_D", 10, 5), 25);
-cmpModifiersManager.OnGlobalOwnershipChanged({ entity: 5, from: PLAYER_ID_FOR_TEST, to: PLAYER_ID_FOR_TEST + 1 });
+cmpModifiersManager.OnGlobalOwnershipChanged({ "entity": 5, "from": PLAYER_ID_FOR_TEST, "to": PLAYER_ID_FOR_TEST + 1 });
 AddMock(5, IID_Ownership, {
 	"GetOwner": () => PLAYER_ID_FOR_TEST + 1
 });

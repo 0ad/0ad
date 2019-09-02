@@ -32,7 +32,7 @@ cmpIdentity = ConstructComponent(6, "Identity", {
 		" good as a cheap siege weapon.",
 	"Rank": "Basic",
 	"Classes": { "_string": "CitizenSoldier Human Organic" },
-	"VisibleClasses": { "_string": "Javelin" },
+	"VisibleClasses": { "_string": "Javelinist" },
 	"Formations": { "_string": "special/formations/skirmish" },
 	"Icon": "units/iber_infantry_javelinist.png",
 	"RequiredTechnology": "phase_town"
@@ -42,8 +42,8 @@ TS_ASSERT_EQUALS(cmpIdentity.GetCiv(), "iber");
 TS_ASSERT_EQUALS(cmpIdentity.GetLang(), "iberian");
 TS_ASSERT_EQUALS(cmpIdentity.GetPhenotype(), "female");
 TS_ASSERT_EQUALS(cmpIdentity.GetRank(), "Basic");
-TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetClassesList(), ["CitizenSoldier", "Human", "Organic", "Javelin", "Basic"]);
-TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetVisibleClassesList(), ["Javelin"]);
+TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetClassesList(), ["CitizenSoldier", "Human", "Organic", "Javelinist", "Basic"]);
+TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetVisibleClassesList(), ["Javelinist"]);
 TS_ASSERT_EQUALS(cmpIdentity.HasClass("CitizenSoldier"), true);
 TS_ASSERT_EQUALS(cmpIdentity.HasClass("Female"), false);
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetFormationsList(), ["special/formations/skirmish"]);

@@ -9,12 +9,12 @@
   <Identity>
     <Civ>cart</Civ>
     <Classes datatype="tokens">Iberian</Classes>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <GenericName>Iberian Heavy Cavalry</GenericName>
     <Icon>units/cart_cavalry_swordsman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <SelectionGroupName>units/cart_cavalry_swordsman_iber_b</SelectionGroupName>
     <SpecificName>Ḥayyāl Ḥerev Raḫūv</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/cart_cavalry_swordsman_iber_a</Entity>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman_hoplite">
   <Identity>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <GenericName>Samnite Spearman</GenericName>
     <SpecificName>Samnite Spearman</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/samnite_spearman.png</Icon>
   </Identity>
   <VisualActor>

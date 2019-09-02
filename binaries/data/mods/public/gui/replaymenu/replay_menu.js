@@ -281,15 +281,13 @@ function displayReplayDetails()
 			Engine.GetGUIObjectByName("showSpoiler").checked &&
 				metadata &&
 				metadata.playerStates &&
-				metadata.playerStates.map(pState => pState.state)
-		);
+				metadata.playerStates.map(pState => pState.state));
 
 	let mapData = getMapDescriptionAndPreview(replay.attribs.settings.mapType, replay.attribs.map, replay.attribs);
+	Engine.GetGUIObjectByName("sgMapPreview").sprite = getMapPreviewImage(mapData.preview);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
 
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);
-
-	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
 /**

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_bush">
+  <Identity>
+    <Tooltip>Pick fruit for food.</Tooltip>
+  </Identity>
   <Minimap>
     <Type>food</Type>
     <Color r="155" g="204" b="102"/>

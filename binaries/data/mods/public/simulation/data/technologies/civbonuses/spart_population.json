@@ -3,7 +3,7 @@
 	"autoResearch": true,
 	"description": "The Spartans did not have the largest army in the world, but they did have the best army in the world for their time. What they didn't have in quantity, they made up with quality. It was said that Sparta did not need strong city walls, for its men were its walls.",
 	"icon": "population.png",
-	"tooltip": "Spartans have 10% less maximum population.",
+	"tooltip": "Spartans −10% maximum population limit.",
 	"requirements": { "civ": "spart" },
 	"modifications": [
 		{ "value": "Player/MaxPopulation", "multiply": 0.9 }

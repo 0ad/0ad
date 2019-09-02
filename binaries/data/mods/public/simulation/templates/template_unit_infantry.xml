@@ -61,9 +61,9 @@
     <Max>80</Max>
   </Health>
   <Identity>
+    <Classes datatype="tokens">Human CitizenSoldier</Classes>
+    <VisibleClasses datatype="tokens">Citizen Worker Soldier Infantry</VisibleClasses>
     <GenericName>Infantry</GenericName>
-    <Classes datatype="tokens">CitizenSoldier Human Organic</Classes>
-    <VisibleClasses datatype="tokens">Citizen Infantry Soldier Worker</VisibleClasses>
     <Rank>Basic</Rank>
   </Identity>
   <Loot>

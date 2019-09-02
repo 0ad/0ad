@@ -2,9 +2,9 @@
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
     <Civ>kush</Civ>
+    <Classes datatype="tokens">AmunGuard</Classes>
     <GenericName>Napatan Temple Guard</GenericName>
     <SpecificName>rs ‘Imn</SpecificName>
-    <Classes datatype="tokens">AmunGuard</Classes>
     <Icon>units/kush_champion_amun.png</Icon>
   </Identity>
   <VisualActor>

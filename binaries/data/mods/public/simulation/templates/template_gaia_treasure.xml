@@ -6,7 +6,7 @@
   </Footprint>
   <Identity>
     <GenericName>Treasure</GenericName>
-    <Tooltip>A treasure that can be quickly gathered.</Tooltip>
+    <Tooltip>Collect treasures for resources.</Tooltip>
     <Icon>gaia/special_treasure.png</Icon>
   </Identity>
   <Minimap>
@@ -19,7 +19,6 @@
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>300</Amount>
-    <Type>treasure.metal</Type>
     <MaxGatherers>1</MaxGatherers>
   </ResourceSupply>
   <Selectable>

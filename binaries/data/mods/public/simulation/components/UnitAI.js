@@ -2090,16 +2090,27 @@ UnitAI.prototype.UnitFsmSpec = {
 				"enter": function() {
 					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
 
-					// check that we can gather from the resource we're supposed to gather from.
-					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					var cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
+					// Check that we can gather from the resource we're supposed to gather from.
+					let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					let cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
 					if ((!cmpMirage || !cmpMirage.Mirages(IID_ResourceSupply)) &&
 					    (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity)) ||
 					    !this.MoveTo(this.order.data, IID_ResourceGatherer))
 					{
-						// The GATHERING timer will handle finding a valid resource.
-						this.SetNextState("GATHERING");
+						// If the target's last known position is in FOW, try going there
+						// and hope that we might find it then.
+						let lastPos = this.order.data.lastPos;
+						if (this.gatheringTarget != INVALID_ENTITY &&
+						    lastPos && !this.CheckPositionVisible(lastPos.x, lastPos.z))
+						{
+							this.PushOrderFront("Walk", {
+								"x": lastPos.x, "z": lastPos.z,
+								"force": this.order.data.force
+							});
+							return true;
+						}
+						this.SetNextState("FINDINGNEWTARGET");
 						return true;
 					}
 					return false;
@@ -2107,7 +2118,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"MovementUpdate": function(msg) {
 					// The GATHERING timer will handle finding a valid resource.
-					if (msg.likelyFailure || this.CheckRange(this.order.data, IID_ResourceGatherer))
+					if (msg.likelyFailure)
+						this.SetNextState("FINDINGNEWTARGET");
+					else if (this.CheckRange(this.order.data, IID_ResourceGatherer))
 						this.SetNextState("GATHERING");
 				},
 
@@ -2160,8 +2173,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
 					{
-						this.StartTimer(0);
-						return false;
+						this.SetNextState("FINDINGNEWTARGET");
+						return true;
 					}
 
 					// If this order was forced, the player probably gave it, but now we've reached the target
@@ -2179,9 +2192,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						// Try to find another target if the current one stopped existing
 						if (!Engine.QueryInterface(this.gatheringTarget, IID_Identity))
 						{
-							// Let the Timer logic handle this
-							this.StartTimer(0);
-							return false;
+							this.SetNextState("FINDINGNEWTARGET");
+							return true;
 						}
 
 						// No rate, give up on gathering
@@ -2233,74 +2245,89 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!cmpOwnership)
 						return;
 
+					// TODO: we are leaking information here - if the target died in FOW, we'll know it's dead
+					// straight away.
+					// Seems one would have to listen to ownership changed messages to make it work correctly
+					// but that's likely prohibitively expansive performance wise.
+
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (cmpSupply && cmpSupply.IsAvailable(cmpOwnership.GetOwner(), this.entity))
-						// Check we can still reach and gather from the target
-						if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer) && this.CanGather(this.gatheringTarget))
-						{
-							// Gather the resources:
+					// If we can't gather from the target, find a new one.
+					if (!cmpSupply || !cmpSupply.IsAvailable(cmpOwnership.GetOwner(), this.entity) ||
+					    !this.CanGather(this.gatheringTarget))
+					{
+						this.SetNextState("FINDINGNEWTARGET");
+						return;
+					}
 
-							let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-
-							// Try to gather treasure
-							if (cmpResourceGatherer.TryInstantGather(this.gatheringTarget))
-								return;
-
-							// If we've already got some resources but they're the wrong type,
-							// drop them first to ensure we're only ever carrying one type
-							if (cmpResourceGatherer.IsCarryingAnythingExcept(resourceType.generic))
-								cmpResourceGatherer.DropResources();
-
-							this.FaceTowardsTarget(this.order.data.target);
-
-							// Collect from the target
-							let status = cmpResourceGatherer.PerformGather(this.gatheringTarget);
-
-							// If we've collected as many resources as possible,
-							// return to the nearest dropsite
-							if (status.filled)
-							{
-								let nearby = this.FindNearestDropsite(resourceType.generic);
-								if (nearby)
-								{
-									// (Keep this Gather order on the stack so we'll
-									// continue gathering after returning)
-									this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-									return;
-								}
-
-								// Oh no, couldn't find any drop sites. Give up on gathering.
-								this.FinishOrder();
-								return;
-							}
-
-							// We can gather more from this target, do so in the next timer
-							if (!status.exhausted)
-								return;
-						}
+					if (!this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer))
+					{
+						// Try to follow the target
+						if (this.MoveToTargetRange(this.gatheringTarget, IID_ResourceGatherer))
+							this.SetNextState("APPROACHING");
+						// Our target is no longer visible - go to its last known position first
+						// and then hopefully it will become visible.
+						else if (!this.CheckTargetVisible(this.gatheringTarget) && this.order.data.lastPos)
+							this.PushOrderFront("Walk", {
+								"x": this.order.data.lastPos.x,
+								"z": this.order.data.lastPos.z,
+								"force": this.order.data.force
+							});
 						else
-						{
-							// Try to follow the target
-							if (this.MoveToTargetRange(this.gatheringTarget, IID_ResourceGatherer))
-							{
-								this.SetNextState("APPROACHING");
-								return;
-							}
+							this.SetNextState("FINDINGNEWTARGET");
+						return;
+					}
 
-							// Our target is no longer visible - go to its last known position first
-							// and then hopefully it will become visible.
-							if (!this.CheckTargetVisible(this.gatheringTarget) && this.order.data.lastPos)
-							{
-								this.PushOrderFront("Walk", {
-									"x": this.order.data.lastPos.x,
-									"z": this.order.data.lastPos.z,
-									"force": this.order.data.force
-								});
-								return;
-							}
+					// Gather the resources:
+
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+
+					// Try to gather treasure
+					if (cmpResourceGatherer.TryInstantGather(this.gatheringTarget))
+						return;
+
+					// If we've already got some resources but they're the wrong type,
+					// drop them first to ensure we're only ever carrying one type
+					if (cmpResourceGatherer.IsCarryingAnythingExcept(resourceType.generic))
+						cmpResourceGatherer.DropResources();
+
+					this.FaceTowardsTarget(this.order.data.target);
+
+					// Collect from the target
+					let status = cmpResourceGatherer.PerformGather(this.gatheringTarget);
+
+					// If we've collected as many resources as possible,
+					// return to the nearest dropsite
+					if (status.filled)
+					{
+						let nearby = this.FindNearestDropsite(resourceType.generic);
+						if (nearby)
+						{
+							// (Keep this Gather order on the stack so we'll
+							// continue gathering after returning)
+							// However mark our target as invalid if it's exhausted, so we don't waste time
+							// trying to gather from it.
+							if (status.exhausted)
+								this.order.data.target = INVALID_ENTITY;
+							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+							return;
 						}
 
-					// We're already in range, can't get anywhere near it or the target is exhausted.
+						// Oh no, couldn't find any drop sites. Give up on gathering.
+						this.FinishOrder();
+						return;
+					}
+
+					// Find a new target if the current one is exhausted
+					if (status.exhausted)
+						this.SetNextState("FINDINGNEWTARGET");
+				},
+			},
+
+			"FINDINGNEWTARGET": {
+				"enter": function() {
+					let previousTarget = this.order.data.target;
+					let resourceTemplate = this.order.data.template;
+					let resourceType = this.order.data.type;
 
 					// Give up on this order and try our next queued order
 					// but first check what is our next order and, if needed, insert a returnResource order
@@ -2318,10 +2345,12 @@ UnitAI.prototype.UnitFsmSpec = {
 					let initPos = this.order.data.initPos;
 
 					if (this.FinishOrder())
-						return;
+						return true;
 
 					// No remaining orders - pick a useful default behaviour
 
+					// If we have no known initial position of our target, look around our own position
+					// as a fallback.
 					if (!initPos)
 					{
 						let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -2336,18 +2365,21 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						// Try to find a new resource of the same specific type near the initial resource position:
 						// Also don't switch to a different type of huntable animal
-						let nearby = this.FindNearbyResource(function(ent, type, template) {
-							return (
-								(type.generic == "treasure" && resourceType.generic == "treasure") ||
-								(type.specific == resourceType.specific &&
-									(type.specific != "meat" || resourceTemplate == template))
-							);
+						let nearby = this.FindNearbyResource((ent, type, template) => {
+							if (previousTarget == ent)
+								return false;
+
+							if (type.generic == "treasure" && resourceType.generic == "treasure")
+								return true;
+
+							return type.specific == resourceType.specific &&
+							    (type.specific != "meat" || resourceTemplate == template);
 						}, new Vector2D(initPos.x, initPos.z));
 
 						if (nearby)
 						{
 							this.PerformGather(nearby, false, false);
-							return;
+							return true;
 						}
 
 						// Failing that, try to move there and se if we are more lucky: maybe there are resources in FOW.
@@ -2355,7 +2387,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						if (!this.CheckPointRangeExplicit(initPos.x, initPos.z, 0, 10))
 						{
 							this.GatherNearPosition(initPos.x, initPos.z, resourceType, resourceTemplate);
-							return;
+							return true;
 						}
 					}
 
@@ -2367,10 +2399,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (nearby)
 					{
 						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-						return;
+						return true;
 					}
 
-					// No dropsites - just give up
+					// No dropsites - just give up.
+					return true;
 				},
 			},
 		},
@@ -4478,6 +4511,22 @@ UnitAI.prototype.CheckTargetVisible = function(target)
 
 	// Either visible directly, or visible in fog
 	return true;
+};
+
+/**
+ * Returns true if the given position is currentl visible (not in FoW/SoD).
+ */
+UnitAI.prototype.CheckPositionVisible = function(x, z)
+{
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return false;
+
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (!cmpRangeManager)
+		return false;
+
+	return cmpRangeManager.GetLosVisibilityPosition(x, z, cmpOwnership.GetOwner()) == "visible";
 };
 
 /**

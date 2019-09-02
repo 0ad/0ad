@@ -1385,6 +1385,8 @@ void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoa
 	}
 	else
 	{
+		if (m_FailedPathComputations == MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH)
+			m_FailedPathComputations++; // This makes sure we don't end up stuck in this special state which can break pathing.
 		m_ShortPath.m_Waypoints.clear();
 		RequestLongPath(from, goal);
 	}

@@ -35,7 +35,7 @@
     <DefaultArrowCount>1</DefaultArrowCount>
     <MaxArrowCount>10</MaxArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-    <GarrisonArrowClasses>Catapult</GarrisonArrowClasses>
+    <GarrisonArrowClasses>StoneThrower</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
     <Population>3</Population>
@@ -63,10 +63,10 @@
     <Max>2000</Max>
   </Health>
   <Identity>
+    <VisibleClasses datatype="tokens">Ranged Warship Quinquereme</VisibleClasses>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
-    <VisibleClasses datatype="tokens">Ranged Warship</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
   </Identity>
   <Loot>
     <xp>150</xp>

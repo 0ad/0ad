@@ -49,7 +49,7 @@ var g_PlayerAssignmentColors = {
 /**
  * Used for highlighting the sender of chat messages.
  */
-var g_SenderFont = "sans-bold-13";
+var g_SenderFontTag = { "font": "sans-bold-13" };
 
 /**
  * This yields [1, 2, ..., MaxPlayers].
@@ -160,7 +160,7 @@ var g_FormatChatMessage = {
 	"kicked": (msg, user) => systemMessage(sprintf(translate("%(username)s has been kicked"), { "username": user })),
 	"banned": (msg, user) => systemMessage(sprintf(translate("%(username)s has been banned"), { "username": user })),
 	"chat": (msg, user) => sprintf(translate("%(username)s %(message)s"), {
-		"username": senderFont(sprintf(translate("<%(username)s>"), { "username": user })),
+		"username": setStringTags(sprintf(translate("<%(username)s>"), { "username": user }), g_SenderFontTag),
 		"message": escapeText(msg.text || "")
 	}),
 	"ready": (msg, user) => sprintf(g_ReadyData[msg.status].chat, { "username": user }),
@@ -296,12 +296,6 @@ var g_PlayerAssignments = {};
 var g_DefaultPlayerData = [];
 
 var g_GameAttributes = { "settings": {} };
-
-/**
- * List of translated words that can be used to autocomplete titles of settings
- * and their values (for example playernames).
- */
-var g_Autocomplete = [];
 
 /**
  * Array of strings formatted as displayed, including playername.
@@ -1001,15 +995,82 @@ var g_MiscControls = {
 	},
 	"chatInput": {
 		"tooltip": () => colorizeAutocompleteHotkey(translate("Press %(hotkey)s to autocomplete player names or settings.")),
+		"onPress": () => submitChatInput,
+		"onTab": () => {
+			// Figures out all strings that can be autocompleted and
+			// sorts them by priority (so that playernames are always autocompleted first).
+			let autocomplete = { "0": [] };
+
+			for (let control of [g_Dropdowns, g_Checkboxes])
+				for (let name in control)
+					autocomplete[0] = autocomplete[0].concat(control[name].title());
+
+			for (let dropdown of [g_Dropdowns, g_PlayerDropdowns])
+				for (let name in dropdown)
+				{
+					let priority = dropdown[name].autocomplete;
+					if (priority === undefined)
+						continue;
+
+					autocomplete[priority] = (autocomplete[priority] || []).concat(dropdown[name].labels());
+				}
+
+			autocomplete = Object.keys(autocomplete).sort().reverse().reduce((all, priority) => all.concat(autocomplete[priority]), []);
+
+			return () => {
+				autoCompleteText(Engine.GetGUIObjectByName("chatInput"), autocomplete);
+			};
+		},
+	},
+	"mapInfoName": {
+		"caption": () => translateMapTitle(getMapDisplayName(g_GameAttributes.map))
+	},
+	"mapInfoDescription": {
+		"caption": getGameDescription
+	},
+	"mapPreview": {
+		"sprite": () => {
+			let biomePreview = g_GameAttributes.settings.Biome && getBiomePreview(g_GameAttributes.map, g_GameAttributes.settings.Biome);
+			if (biomePreview)
+				return getMapPreviewImage(biomePreview);
+
+			let mapData = loadMapData(g_GameAttributes.map);
+			return getMapPreviewImage(mapData && mapData.settings && mapData.settings.Preview || "nopreview.png");
+		}
 	},
 	"cheatWarningText": {
 		"hidden": () => !g_IsNetworked || !g_GameAttributes.settings.CheatsEnabled,
 	},
 	"cancelGame": {
+		"caption": () => translate("Back"),
 		"tooltip": () =>
 			Engine.HasXmppClient() ?
 				translate("Return to the lobby.") :
 				translate("Return to the main menu."),
+		"onPress": () => cancelSetup,
+		"size": () => {
+			// Right align the button
+			let offset = 10;
+
+			let startGame = Engine.GetGUIObjectByName("startGame");
+			let right = startGame.hidden ? startGame.size.right : startGame.size.left - offset;
+
+			let cancelGame = Engine.GetGUIObjectByName("cancelGame");
+			let cancelGameSize = cancelGame.size;
+			let buttonWidth = cancelGameSize.right - cancelGameSize.left;
+			cancelGameSize.right = right;
+			right -= buttonWidth;
+
+			for (let element of ["cheatWarningText", "onscreenToolTip"])
+			{
+				let elementSize = Engine.GetGUIObjectByName(element).size;
+				elementSize.right = right - (cancelGameSize.left - elementSize.right);
+				Engine.GetGUIObjectByName(element).size = elementSize;
+			}
+
+			cancelGameSize.left = right;
+			return cancelGameSize;
+		}
 	},
 	"startGame": {
 		"caption": () =>
@@ -1018,7 +1079,7 @@ var g_MiscControls = {
 			if (g_IsController)
 				launchGame();
 			else
-				toggleReady();
+				setReady((g_IsReady + 1) % 3, true);
 		},
 		"onPressRight": () => function() {
 			if (!g_IsController && g_IsReady)
@@ -1054,9 +1115,23 @@ var g_MiscControls = {
 		}
 	},
 	"civResetButton": {
+		"tooltip": () => translate("Reset any civilizations that have been selected to the default (random)."),
+		"onPress": () => function() {
+			for (let i in g_GameAttributes.settings.PlayerData)
+				g_GameAttributes.settings.PlayerData[i].Civ = "random";
+
+			updateGameAttributes();
+		},
 		"hidden": () => g_GameAttributes.mapType == "scenario" || !g_IsController,
 	},
 	"teamResetButton": {
+		"tooltip": () => translate("Reset all teams to the default."),
+		"onPress": () => function() {
+			for (let i in g_GameAttributes.settings.PlayerData)
+				g_GameAttributes.settings.PlayerData[i].Team = -1;
+
+			updateGameAttributes();
+		},
 		"hidden": () => g_GameAttributes.mapType == "scenario" || !g_IsController,
 	},
 	"lobbyButton": {
@@ -1484,7 +1559,6 @@ function distributeSettings()
 			thisColumn = 0;
 		}
 
-		let childSize = child.size;
 		child.size = new GUISize(
 			column * columnWidth,
 			yPos,
@@ -1674,19 +1748,6 @@ function getMapDisplayName(map)
 		return map;
 
 	return mapData.settings.Name;
-}
-
-function getMapPreview(map)
-{
-	let biomePreview = g_GameAttributes.settings.Biome && getBiomePreview(map, g_GameAttributes.settings.Biome);
-	if (biomePreview)
-		return biomePreview;
-
-	let mapData = loadMapData(map);
-	if (!mapData || !mapData.settings || !mapData.settings.Preview)
-		return "nopreview.png";
-
-	return mapData.settings.Preview;
 }
 
 /**
@@ -2193,12 +2254,6 @@ function updateGUIMiscControl(name, playerIdx)
 
 function launchGame()
 {
-	if (!g_IsController)
-	{
-		error("Only host can start game");
-		return;
-	}
-
 	if (!g_GameAttributes.map || g_GameStarted)
 		return;
 
@@ -2351,10 +2406,7 @@ function updateGUIObjects()
 	for (let name in g_MiscControls)
 		updateGUIMiscControl(name);
 
-	updateGameDescription();
 	distributeSettings();
-	rightAlignCancelButton();
-	updateAutocompleteEntries();
 
 	g_IsInGuiUpdate = false;
 
@@ -2364,40 +2416,6 @@ function updateGUIObjects()
 		Engine.PopGuiPage();
 		openAIConfig(g_LastViewedAIPlayer);
 	}
-}
-
-function rightAlignCancelButton()
-{
-	let offset = 10;
-
-	let startGame = Engine.GetGUIObjectByName("startGame");
-	let right = startGame.hidden ? startGame.size.right : startGame.size.left - offset;
-
-	let cancelGame = Engine.GetGUIObjectByName("cancelGame");
-	let cancelGameSize = cancelGame.size;
-	let buttonWidth = cancelGameSize.right - cancelGameSize.left;
-	cancelGameSize.right = right;
-	right -= buttonWidth;
-
-	for (let element of ["cheatWarningText", "onscreenToolTip"])
-	{
-		let elementSize = Engine.GetGUIObjectByName(element).size;
-		elementSize.right = right - (cancelGameSize.left - elementSize.right);
-		Engine.GetGUIObjectByName(element).size = elementSize;
-	}
-
-	cancelGameSize.left = right;
-	cancelGame.size = cancelGameSize;
-}
-
-function updateGameDescription()
-{
-	setMapPreviewImage("mapPreview", getMapPreview(g_GameAttributes.map));
-
-	Engine.GetGUIObjectByName("mapInfoName").caption =
-		translateMapTitle(getMapDisplayName(g_GameAttributes.map));
-
-	Engine.GetGUIObjectByName("mapInfoDescription").caption = getGameDescription();
 }
 
 /**
@@ -2535,14 +2553,9 @@ function submitChatInput()
 	chatInput.focus();
 }
 
-function senderFont(text)
-{
-	return '[font="' + g_SenderFont + '"]' + text + '[/font]';
-}
-
 function systemMessage(message)
 {
-	return senderFont(sprintf(translate("== %(message)s"), { "message": message }));
+	return setStringTags(sprintf(translate("== %(message)s"), { "message": message }), g_SenderFontTag);
 }
 
 function colorizePlayernameByGUID(guid, username = "")
@@ -2604,27 +2617,6 @@ function clearChatMessages()
 {
 	g_ChatMessages.length = 0;
 	Engine.GetGUIObjectByName("chatText").caption = "";
-}
-
-function resetCivilizations()
-{
-	for (let i in g_GameAttributes.settings.PlayerData)
-		g_GameAttributes.settings.PlayerData[i].Civ = "random";
-
-	updateGameAttributes();
-}
-
-function resetTeams()
-{
-	for (let i in g_GameAttributes.settings.PlayerData)
-		g_GameAttributes.settings.PlayerData[i].Team = -1;
-
-	updateGameAttributes();
-}
-
-function toggleReady()
-{
-	setReady((g_IsReady + 1) % 3, true);
 }
 
 function setReady(ready, sendMessage)
@@ -2742,31 +2734,6 @@ function sendRegisterGameStanza()
 		clearTimeout(g_GameStanzaTimer);
 
 	g_GameStanzaTimer = setTimeout(sendRegisterGameStanzaImmediate, g_GameStanzaTimeout * 1000);
-}
-
-/**
- * Figures out all strings that can be autocompleted and sorts
- * them by priority (so that playernames are always autocompleted first).
- */
-function updateAutocompleteEntries()
-{
-	let autocomplete = { "0": [] };
-
-	for (let control of [g_Dropdowns, g_Checkboxes])
-		for (let name in control)
-			autocomplete[0] = autocomplete[0].concat(control[name].title());
-
-	for (let dropdown of [g_Dropdowns, g_PlayerDropdowns])
-		for (let name in dropdown)
-		{
-			let priority = dropdown[name].autocomplete;
-			if (priority === undefined)
-				continue;
-
-			autocomplete[priority] = (autocomplete[priority] || []).concat(dropdown[name].labels());
-		}
-
-	g_Autocomplete = Object.keys(autocomplete).sort().reverse().reduce((all, priority) => all.concat(autocomplete[priority]), []);
 }
 
 function storeCivInfoPage(data)

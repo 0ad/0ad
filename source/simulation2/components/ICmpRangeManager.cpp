@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,16 +21,27 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
+namespace {
+	std::string VisibilityToString(ICmpRangeManager::ELosVisibility visibility)
+	{
+		switch (visibility)
+		{
+		case ICmpRangeManager::VIS_HIDDEN: return "hidden";
+		case ICmpRangeManager::VIS_FOGGED: return "fogged";
+		case ICmpRangeManager::VIS_VISIBLE: return "visible";
+		default: return "error"; // should never happen
+		}
+	}
+}
+
 std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player) const
 {
-	ELosVisibility visibility = GetLosVisibility(ent, player);
-	switch (visibility)
-	{
-	case VIS_HIDDEN: return "hidden";
-	case VIS_FOGGED: return "fogged";
-	case VIS_VISIBLE: return "visible";
-	default: return "error"; // should never happen
-	}
+	return VisibilityToString(GetLosVisibility(ent, player));
+}
+
+std::string ICmpRangeManager::GetLosVisibilityPosition_wrapper(entity_pos_t x, entity_pos_t z, int player) const
+{
+	return VisibilityToString(GetLosVisibilityPosition(x, z, player));
 }
 
 BEGIN_INTERFACE_WRAPPER(RangeManager)
@@ -56,6 +67,7 @@ DEFINE_INTERFACE_METHOD_CONST_1("GetLosRevealAll", bool, ICmpRangeManager, GetLo
 DEFINE_INTERFACE_METHOD_CONST_5("GetElevationAdaptedRange", entity_pos_t, ICmpRangeManager, GetElevationAdaptedRange, CFixedVector3D, CFixedVector3D, entity_pos_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("ActivateScriptedVisibility", void, ICmpRangeManager, ActivateScriptedVisibility, entity_id_t, bool)
 DEFINE_INTERFACE_METHOD_CONST_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t)
+DEFINE_INTERFACE_METHOD_CONST_3("GetLosVisibilityPosition", std::string, ICmpRangeManager, GetLosVisibilityPosition_wrapper, entity_pos_t, entity_pos_t, player_id_t)
 DEFINE_INTERFACE_METHOD_1("RequestVisibilityUpdate", void, ICmpRangeManager, RequestVisibilityUpdate, entity_id_t)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
 DEFINE_INTERFACE_METHOD_CONST_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_javelinist">
   <Identity>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <GenericName>Samnite Skirmisher</GenericName>
     <SpecificName>Samnite Skirmisher</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/samnite_skirmisher.png</Icon>
   </Identity>
   <VisualActor>

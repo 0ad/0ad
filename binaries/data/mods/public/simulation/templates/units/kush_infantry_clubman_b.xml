@@ -28,12 +28,12 @@
   </Cost>
   <Identity>
     <Civ>kush</Civ>
+    <VisibleClasses datatype="tokens">-Swordsman Clubman Mercenary</VisibleClasses>
     <SelectionGroupName>units/kush_infantry_clubman_b</SelectionGroupName>
     <GenericName>Nuba Clubman</GenericName>
     <SpecificName>nhw Noba</SpecificName>
     <Icon>units/kush_infantry_clubman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/kush_infantry_clubman_a</Entity>

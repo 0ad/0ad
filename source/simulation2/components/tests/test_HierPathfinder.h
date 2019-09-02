@@ -388,11 +388,12 @@ public:
 
 		// from the left of the C, goal is unreachable, expect closest navcell to goal
 		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 5 * 5 + 3; pj = 7 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		pi = 5 * 5 + 3; pj = 6 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
-		TS_ASSERT(pi == goal.x.ToInt_RoundToNegInfinity() && pj == goal.z.ToInt_RoundToNegInfinity());
+		TS_ASSERT_EQUALS(pi, goal.x.ToInt_RoundToNegInfinity());
+		TS_ASSERT_EQUALS(pj, goal.z.ToInt_RoundToNegInfinity());
 
 		// random reachable point.
 		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
@@ -465,6 +466,7 @@ public:
 		pi = 36 * 5 + 3; pj = 7 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
+
 		// bit of leeway for cell placement
 		TS_ASSERT(std::fabs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), pi, pj)-20) < 1.5f);
 		TS_ASSERT(std::fabs(euclidian(goal.x.ToInt_RoundToNegInfinity(), goal.z.ToInt_RoundToNegInfinity(), oi, oj) - euclidian(pi, pj, oi, oj)) < 22.0f);

@@ -151,7 +151,7 @@ PETRA.AttackManager.prototype.assignBombers = function(gameState)
 		}
 	}
 
-	let bombers = gameState.updatingCollection("bombers", API3.Filters.byClassesOr(["BoltShooter", "Catapult"]), gameState.getOwnUnits());
+	let bombers = gameState.updatingCollection("bombers", API3.Filters.byClassesOr(["BoltShooter", "StoneThrower"]), gameState.getOwnUnits());
 	for (let ent of bombers.values())
 	{
 		if (!ent.position() || !ent.isIdle() || !ent.attackRange("Ranged"))

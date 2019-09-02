@@ -11,14 +11,14 @@
     <Square width="5.0" depth="12.0"/>
   </Footprint>
   <Identity>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <Classes datatype="tokens">-Organic -ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Relic</VisibleClasses>
     <Formations disable=""/>
     <GenericName>Catafalque</GenericName>
     <Icon>units/catafalque.png</Icon>
     <SelectionGroupName>template_unit_catafalque</SelectionGroupName>
     <Tooltip>A catafalque that holds the remains of a great leader.</Tooltip>
     <Undeletable>true</Undeletable>
-    <VisibleClasses datatype="tokens">Relic</VisibleClasses>
   </Identity>
   <Minimap>
     <Color r="148" g="0" b="211"/>

@@ -260,7 +260,7 @@
 			<object name="chatInput" size="0 100%-26 100%-72 100%-4" type="input" style="ModernInput" font="sans-13">
 				<action on="Press">submitChatInput();</action>
 				<action on="Tab">
-					autoCompleteNick(this, Engine.GetPlayerList().map(player => player.name));
+					autoCompleteText(this, Engine.GetPlayerList().map(player => player.name));
 				</action>
 			</object>
 			<object size="100%-72 100%-26 100%-4 100%-4" type="button" style="StoneButton">
