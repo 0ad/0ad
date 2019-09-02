@@ -51,7 +51,7 @@ PETRA.Config = function(difficulty, behavior)
 		"armyMergeSize": 1400	// squared.
 	};
 
-	// Additional buildings that the AI does not yet know when to build 
+	// Additional buildings that the AI does not yet know when to build
 	// and that it will try to build on phase 3 when enough resources.
 	this.buildings =
 	{

@@ -420,7 +420,7 @@ PETRA.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	let candidate = { "gain": 0 };
 	let potential = { "gain": 0 };
 	let bestIndex = { "gain": 0 };
-	let bestLand  = { "gain": 0 };
+	let bestLand = { "gain": 0 };
 
 	let mapSize = gameState.sharedScript.mapSize;
 	let traderTemplatesGains = gameState.getTraderTemplatesGains();

@@ -167,7 +167,7 @@ PETRA.DefenseArmy.prototype.removeOwn = function(gameState, id, Entity)
 			plan.removeUnit(gameState, ent);
 	}
 
-/*
+	/*
 	// TODO be sure that all units in the transport need the cancelation
 	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
 	{

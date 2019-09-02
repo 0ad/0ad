@@ -237,7 +237,7 @@ PETRA.TransportPlan.prototype.releaseAll = function()
 		ent.setMetadata(PlayerID, "endPos", undefined);
 		ent.setMetadata(PlayerID, "onBoard", undefined);
 		ent.setMetadata(PlayerID, "transport", undefined);
-		// TODO if the index of the endPos of the entity is !=, 
+		// TODO if the index of the endPos of the entity is !=,
 		// require again another transport (we could need land-sea-land-sea-land)
 	}
 

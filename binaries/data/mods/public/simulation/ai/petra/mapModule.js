@@ -190,7 +190,7 @@ PETRA.createBorderMap = function(gameState)
 		}
 	}
 
-//	map.dumpIm("border.png", 5);
+	// map.dumpIm("border.png", 5);
 	return map;
 };
 
