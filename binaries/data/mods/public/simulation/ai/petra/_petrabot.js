@@ -21,7 +21,7 @@ PETRA.PetraBot = function(settings)
 	this.savedEvents = {};
 };
 
-PETRA.PetraBot.prototype = new API3.BaseAI();
+PETRA.PetraBot.prototype = Object.create(API3.BaseAI.prototype);
 
 PETRA.PetraBot.prototype.CustomInit = function(gameState)
 {
