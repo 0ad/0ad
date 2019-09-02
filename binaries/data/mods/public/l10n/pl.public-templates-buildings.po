@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:02+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2019-08-30 07:09+0000\n"
+"PO-Revision-Date: 2019-09-01 11:48+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,6 +131,7 @@ msgid "Defensive Structure"
 msgstr "Budynek obronny"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:21
+#: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Wooden Wall"
 msgstr "Drewniany mur"
 
@@ -338,7 +339,7 @@ msgstr "Forteca"
 msgid ""
 "Train Heroes and Champions, construct Siege Engines, and research "
 "technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Szkoli bohaterów i jednostki elitarne, konstruuje machiny oblężnicze i opracowuje technologie. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -375,7 +376,7 @@ msgstr "Warsztat oblężniczy"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr ""
+msgstr "Konstruuje machiny oblężnicze i opracowuje technologie z nimi związane."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -505,7 +506,7 @@ msgstr "Epiteíkhisma"
 msgid ""
 "Construct Siege Engines and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Konstruuje machiny oblężnicze i opracowuje technologie z nimi związane. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -773,10 +774,9 @@ msgstr "Rate"
 msgid "Does not shoot or garrison."
 msgstr "Nie strzela ani nie okupuje się w budynkach."
 
-#: simulation/templates/structures/brit_wonder.xml:9
-#: simulation/templates/structures/gaul_wonder.xml:9
-msgid "Stonehenge"
-msgstr "Stonehenge"
+#: simulation/templates/structures/brit_wonder.xml:10
+msgid "Uffington White Horse"
+msgstr "Biały Koń z Uffington"
 
 #: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
@@ -983,6 +983,10 @@ msgstr "Zgromadzenie książąt"
 #: simulation/templates/structures/gaul_theatron.xml:7
 msgid "Remogantion"
 msgstr "Remogantion"
+
+#: simulation/templates/structures/gaul_wonder.xml:9
+msgid "Stonehenge"
+msgstr "Stonehenge"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1259,7 +1263,7 @@ msgstr "Teíchisma"
 msgid ""
 "Train Heroes and Champions and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Szkoli bohaterów i jednostki elitarne oraz opracowuje technologie. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1453,7 +1457,7 @@ msgstr "Didā"
 msgid ""
 "Train Champions, construct Siege Engines, and research technologies. "
 "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Szkoli jednostki elitarne, konstruuje machiny oblężnicze i opracowuje technologie. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1680,7 +1684,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Zbuduj na neutralnym lub wrogim terytorium. Szkoli wojowników i konstruuje machiny oblężnicze. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1922,3 +1926,7 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Przynieś chwałę swojej cywilizacji oraz powiększ swoje imperium o nowe połacie ziemi. Skoszaruj jednostki aby leczyć je w szybszym tempie."
+
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Palisada"

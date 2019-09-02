@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-24 14:08+0000\n"
+"POT-Creation-Date: 2019-08-30 07:09+0000\n"
+"PO-Revision-Date: 2019-08-30 22:32+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -598,6 +598,8 @@ msgid "Cretan Date Palm"
 msgstr "Girit Hurma Palmiyesi"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
+#: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
+#: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
 msgid "Cypress Tree"
 msgstr "Selvi Ağacı"
 
@@ -708,6 +710,11 @@ msgstr "Çam Ağacı"
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
 msgstr "Karaçam"
+
+#: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
+#: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
+msgid "Maritime Pine"
+msgstr "Deniz Çamı"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -1001,7 +1008,6 @@ msgstr "Birimlerin kazık duvarı içinden geçmelerini sağlar. Geçişi engell
 #: simulation/templates/other/palisades_rocks_short.xml:18
 #: simulation/templates/other/palisades_rocks_straight.xml:14
 #: simulation/templates/other/palisades_rocks_tower.xml:18
-#: simulation/templates/other/wallset_palisade.xml:5
 msgid "Palisade"
 msgstr "Çit"
 
@@ -1059,10 +1065,6 @@ msgstr "Dikdörtgen Masa"
 #: simulation/templates/other/table_square.xml:20
 msgid "Square Table"
 msgstr "Kare Masa"
-
-#: simulation/templates/other/wallset_palisade.xml:4
-msgid "Wooden Wall"
-msgstr "Ahşap Duvar"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

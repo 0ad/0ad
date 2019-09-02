@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:09+0000\n"
-"PO-Revision-Date: 2019-08-29 13:07+0000\n"
+"POT-Creation-Date: 2019-08-30 07:09+0000\n"
+"PO-Revision-Date: 2019-08-31 03:32+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -608,6 +608,8 @@ msgid "Cretan Date Palm"
 msgstr "크리탄 섬 대추야자 나무"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
+#: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
+#: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
 msgid "Cypress Tree"
 msgstr "사이프러스 나무"
 
@@ -718,6 +720,11 @@ msgstr "소나무"
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
 msgstr "니그라 소나무"
+
+#: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
+#: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
+msgid "Maritime Pine"
+msgstr "해안 소나무"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -1011,7 +1018,6 @@ msgstr "유닛이 울타리 벽을 통해 접근할 수 있도록 허용합니�
 #: simulation/templates/other/palisades_rocks_short.xml:18
 #: simulation/templates/other/palisades_rocks_straight.xml:14
 #: simulation/templates/other/palisades_rocks_tower.xml:18
-#: simulation/templates/other/wallset_palisade.xml:5
 msgid "Palisade"
 msgstr "방어벽"
 
@@ -1069,10 +1075,6 @@ msgstr "직사각형 테이블(탁자)"
 #: simulation/templates/other/table_square.xml:20
 msgid "Square Table"
 msgstr "정사각형 테이블(탁자)"
-
-#: simulation/templates/other/wallset_palisade.xml:4
-msgid "Wooden Wall"
-msgstr "목조 방벽"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
