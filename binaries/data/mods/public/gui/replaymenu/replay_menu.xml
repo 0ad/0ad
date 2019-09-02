@@ -26,7 +26,7 @@
 				<object name="playersFilter" type="input" style="ModernInput" size="12%-5 0 56%-10 100%" font="sans-bold-13">
 					<action on="Press">displayReplayList();</action>
 					<action on="Tab">
-						autoCompleteNick(this, g_Playernames);
+						autoCompleteText(this, g_Playernames);
 					</action>
 				</object>
 

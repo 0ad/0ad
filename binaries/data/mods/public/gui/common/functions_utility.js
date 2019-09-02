@@ -145,7 +145,7 @@ function tryAutoComplete(text, autoCompleteList)
 	return text;
 }
 
-function autoCompleteNick(guiObject, playernames)
+function autoCompleteText(guiObject, words)
 {
 	let text = guiObject.caption;
 	if (!text.length)
@@ -153,7 +153,7 @@ function autoCompleteNick(guiObject, playernames)
 
 	let bufferPosition = guiObject.buffer_position;
 	let textTillBufferPosition = text.substring(0, bufferPosition);
-	let newText = tryAutoComplete(textTillBufferPosition, playernames);
+	let newText = tryAutoComplete(textTillBufferPosition, words);
 
 	guiObject.caption = newText + text.substring(bufferPosition);
 	guiObject.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);

@@ -71,7 +71,7 @@
 				let playernames = [];
 				for (let player in g_PlayerAssignments)
 					playernames.push(g_PlayerAssignments[player].name);
-				autoCompleteNick(this, playernames);
+				autoCompleteText(this, playernames);
 			</action>
 		</object>
 

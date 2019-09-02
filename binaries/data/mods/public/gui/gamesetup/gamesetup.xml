@@ -181,11 +181,7 @@
 			<!-- Chat window -->
 			<object name="chatPanel" size="24 346 100%-795 100%-60" type="image" sprite="ModernDarkBoxGold">
 				<object name="chatText" size="2 2 100%-2 100%-28" type="text" style="ChatPanel"/>
-
-				<object name="chatInput" size="4 100%-26 100%-96 100%-4" type="input" style="ModernInput">
-					<action on="Press">submitChatInput();</action>
-					<action on="Tab">autoCompleteNick(this, g_Autocomplete);</action>
-				</object>
+				<object name="chatInput" size="4 100%-26 100%-96 100%-4" type="input" style="ModernInput"/>
 
 				<object size="100%-92 100%-26 100%-4 100%-4" type="button" style="StoneButton">
 					<translatableAttribute id="caption">Send</translatableAttribute>
