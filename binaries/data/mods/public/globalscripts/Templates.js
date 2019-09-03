@@ -145,13 +145,11 @@ function GetModifiedTemplateDataValue(template, value_path, mod_key, player, mod
  * @param {number} player - An optional player id to get the technology modifications
  *                          of properties.
  * @param {object} auraTemplates - In the form of { key: { "auraName": "", "auraDescription": "" } }.
- * @param {object} resources - An instance of the Resources prototype.
- * @param {object} damageTypes - An instance of the DamageTypes prototype.
  * @param {object} modifiers - Modifications from auto-researched techs, unit upgrades
  *                             etc. Optional as only used if there's no player
  *                             id provided.
  */
-function GetTemplateDataHelper(template, player, auraTemplates, resources, damageTypes, modifiers={})
+function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 {
 	// Return data either from template (in tech tree) or sim state (ingame).
 	// @param {string} value_path - Route to the value within the template.
