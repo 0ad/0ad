@@ -18,7 +18,7 @@ Engine.RegisterComponentType(IID_Test1, "TestScript1A", TestScript1A);
 
 function TestScript1B() {}
 
-TestScript1B.prototype = new TestScript1A();
+TestScript1B.prototype = Object.create(TestScript1A.prototype);
 
 TestScript1B.prototype.Init = function() {
 	this.x = 102000;
