@@ -33,16 +33,22 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="404.373" y="246.916" z="217.003"/>
+		<Position x="404.373" y="287.58" z="158.929"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Unnamed map",
-  "Description": "Give an interesting description of your map.",
+  "AISeed": 0,
+  "CircularMap": true,
+  "Description": "This map is designed to help artists and modders find the adequate foundation for a specific building. This map is not meant to be playable.",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Foundation Testing Map",
   "PlayerData": [
-    null,
+    "",
     {
       "Civ": "athen"
     },
@@ -68,7 +74,8 @@
       "Civ": "spart"
     }
   ],
-  "CircularMap": true,
+  "Preview": "",
+  "RevealMap": true,
   "VictoryConditions": [
     "conquest"
   ]
