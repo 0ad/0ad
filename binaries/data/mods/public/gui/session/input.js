@@ -850,6 +850,8 @@ function handleInputAfterGui(ev)
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
+				if (!controlsPlayer(g_ViewedPlayer))
+					break;
 				g_DragStart = new Vector2D(ev.x, ev.y);
 				inputState = INPUT_UNIT_POSITION_START;
 			}
