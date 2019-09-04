@@ -43,7 +43,6 @@ class PSERROR_GUI_OperationNeedsGUIObject : public PSERROR_GUI { public: PSERROR
 class PSERROR_GUI_UnableToParse : public PSERROR_GUI { public: PSERROR_GUI_UnableToParse(); PSERROR_GUI_UnableToParse(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Game_World_MapLoadFailed : public PSERROR_Game_World { public: PSERROR_Game_World_MapLoadFailed(); PSERROR_Game_World_MapLoadFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Scripting_CallFunctionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_CallFunctionFailed(); PSERROR_Scripting_CallFunctionFailed(const char* msg); PSRETURN getCode() const; };
-class PSERROR_Scripting_ConversionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_ConversionFailed(); PSERROR_Scripting_ConversionFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Scripting_CreateObjectFailed : public PSERROR_Scripting { public: PSERROR_Scripting_CreateObjectFailed(); PSERROR_Scripting_CreateObjectFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Scripting_DefineConstantFailed : public PSERROR_Scripting { public: PSERROR_Scripting_DefineConstantFailed(); PSERROR_Scripting_DefineConstantFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Scripting_DefineType_AlreadyExists : public PSERROR_Scripting_DefineType { public: PSERROR_Scripting_DefineType_AlreadyExists(); PSERROR_Scripting_DefineType_AlreadyExists(const char* msg); PSRETURN getCode() const; };
@@ -90,12 +89,11 @@ extern const PSRETURN PSRETURN_Scripting_DefineType_CreationFailed = 0x08010002;
 extern const PSRETURN PSRETURN_Scripting_LoadFile_EvalErrors = 0x08020001;
 extern const PSRETURN PSRETURN_Scripting_LoadFile_OpenFailed = 0x08020002;
 extern const PSRETURN PSRETURN_Scripting_CallFunctionFailed = 0x08000001;
-extern const PSRETURN PSRETURN_Scripting_ConversionFailed = 0x08000002;
-extern const PSRETURN PSRETURN_Scripting_CreateObjectFailed = 0x08000003;
-extern const PSRETURN PSRETURN_Scripting_DefineConstantFailed = 0x08000004;
-extern const PSRETURN PSRETURN_Scripting_RegisterFunctionFailed = 0x08000005;
-extern const PSRETURN PSRETURN_Scripting_SetupFailed = 0x08000006;
-extern const PSRETURN PSRETURN_Scripting_TypeDoesNotExist = 0x08000007;
+extern const PSRETURN PSRETURN_Scripting_CreateObjectFailed = 0x08000002;
+extern const PSRETURN PSRETURN_Scripting_DefineConstantFailed = 0x08000003;
+extern const PSRETURN PSRETURN_Scripting_RegisterFunctionFailed = 0x08000004;
+extern const PSRETURN PSRETURN_Scripting_SetupFailed = 0x08000005;
+extern const PSRETURN PSRETURN_Scripting_TypeDoesNotExist = 0x08000006;
 extern const PSRETURN PSRETURN_Serialize_InvalidCharInString = 0x09000001;
 extern const PSRETURN PSRETURN_Serialize_InvalidScriptValue = 0x09000002;
 extern const PSRETURN PSRETURN_Serialize_OutOfBounds = 0x09000003;
@@ -189,18 +187,16 @@ extern const PSRETURN MASK__PSRETURN_Scripting_LoadFile_OpenFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile_OpenFailed = 0x08020002;
 extern const PSRETURN MASK__PSRETURN_Scripting_CallFunctionFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_CallFunctionFailed = 0x08000001;
-extern const PSRETURN MASK__PSRETURN_Scripting_ConversionFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_ConversionFailed = 0x08000002;
 extern const PSRETURN MASK__PSRETURN_Scripting_CreateObjectFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_CreateObjectFailed = 0x08000003;
+extern const PSRETURN CODE__PSRETURN_Scripting_CreateObjectFailed = 0x08000002;
 extern const PSRETURN MASK__PSRETURN_Scripting_DefineConstantFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_DefineConstantFailed = 0x08000004;
+extern const PSRETURN CODE__PSRETURN_Scripting_DefineConstantFailed = 0x08000003;
 extern const PSRETURN MASK__PSRETURN_Scripting_RegisterFunctionFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_RegisterFunctionFailed = 0x08000005;
+extern const PSRETURN CODE__PSRETURN_Scripting_RegisterFunctionFailed = 0x08000004;
 extern const PSRETURN MASK__PSRETURN_Scripting_SetupFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_SetupFailed = 0x08000006;
+extern const PSRETURN CODE__PSRETURN_Scripting_SetupFailed = 0x08000005;
 extern const PSRETURN MASK__PSRETURN_Scripting_TypeDoesNotExist = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_TypeDoesNotExist = 0x08000007;
+extern const PSRETURN CODE__PSRETURN_Scripting_TypeDoesNotExist = 0x08000006;
 extern const PSRETURN MASK__PSRETURN_Serialize_InvalidCharInString = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Serialize_InvalidCharInString = 0x09000001;
 extern const PSRETURN MASK__PSRETURN_Serialize_InvalidScriptValue = 0xffffffff;
@@ -343,29 +339,25 @@ PSERROR_Scripting_CallFunctionFailed::PSERROR_Scripting_CallFunctionFailed() : P
 PSERROR_Scripting_CallFunctionFailed::PSERROR_Scripting_CallFunctionFailed(const char* msg) : PSERROR_Scripting(msg) { }
 PSRETURN PSERROR_Scripting_CallFunctionFailed::getCode() const { return 0x08000001; }
 
-PSERROR_Scripting_ConversionFailed::PSERROR_Scripting_ConversionFailed() : PSERROR_Scripting(NULL) { }
-PSERROR_Scripting_ConversionFailed::PSERROR_Scripting_ConversionFailed(const char* msg) : PSERROR_Scripting(msg) { }
-PSRETURN PSERROR_Scripting_ConversionFailed::getCode() const { return 0x08000002; }
-
 PSERROR_Scripting_CreateObjectFailed::PSERROR_Scripting_CreateObjectFailed() : PSERROR_Scripting(NULL) { }
 PSERROR_Scripting_CreateObjectFailed::PSERROR_Scripting_CreateObjectFailed(const char* msg) : PSERROR_Scripting(msg) { }
-PSRETURN PSERROR_Scripting_CreateObjectFailed::getCode() const { return 0x08000003; }
+PSRETURN PSERROR_Scripting_CreateObjectFailed::getCode() const { return 0x08000002; }
 
 PSERROR_Scripting_DefineConstantFailed::PSERROR_Scripting_DefineConstantFailed() : PSERROR_Scripting(NULL) { }
 PSERROR_Scripting_DefineConstantFailed::PSERROR_Scripting_DefineConstantFailed(const char* msg) : PSERROR_Scripting(msg) { }
-PSRETURN PSERROR_Scripting_DefineConstantFailed::getCode() const { return 0x08000004; }
+PSRETURN PSERROR_Scripting_DefineConstantFailed::getCode() const { return 0x08000003; }
 
 PSERROR_Scripting_RegisterFunctionFailed::PSERROR_Scripting_RegisterFunctionFailed() : PSERROR_Scripting(NULL) { }
 PSERROR_Scripting_RegisterFunctionFailed::PSERROR_Scripting_RegisterFunctionFailed(const char* msg) : PSERROR_Scripting(msg) { }
-PSRETURN PSERROR_Scripting_RegisterFunctionFailed::getCode() const { return 0x08000005; }
+PSRETURN PSERROR_Scripting_RegisterFunctionFailed::getCode() const { return 0x08000004; }
 
 PSERROR_Scripting_SetupFailed::PSERROR_Scripting_SetupFailed() : PSERROR_Scripting(NULL) { }
 PSERROR_Scripting_SetupFailed::PSERROR_Scripting_SetupFailed(const char* msg) : PSERROR_Scripting(msg) { }
-PSRETURN PSERROR_Scripting_SetupFailed::getCode() const { return 0x08000006; }
+PSRETURN PSERROR_Scripting_SetupFailed::getCode() const { return 0x08000005; }
 
 PSERROR_Scripting_TypeDoesNotExist::PSERROR_Scripting_TypeDoesNotExist() : PSERROR_Scripting(NULL) { }
 PSERROR_Scripting_TypeDoesNotExist::PSERROR_Scripting_TypeDoesNotExist(const char* msg) : PSERROR_Scripting(msg) { }
-PSRETURN PSERROR_Scripting_TypeDoesNotExist::getCode() const { return 0x08000007; }
+PSRETURN PSERROR_Scripting_TypeDoesNotExist::getCode() const { return 0x08000006; }
 
 PSERROR_Serialize_InvalidCharInString::PSERROR_Serialize_InvalidCharInString() : PSERROR_Serialize(NULL) { }
 PSERROR_Serialize_InvalidCharInString::PSERROR_Serialize_InvalidCharInString(const char* msg) : PSERROR_Serialize(msg) { }
@@ -442,12 +434,11 @@ const char* GetErrorString(PSRETURN code)
 	case 0x08020001: return "Scripting_LoadFile_EvalErrors";
 	case 0x08020002: return "Scripting_LoadFile_OpenFailed";
 	case 0x08000001: return "Scripting_CallFunctionFailed";
-	case 0x08000002: return "Scripting_ConversionFailed";
-	case 0x08000003: return "Scripting_CreateObjectFailed";
-	case 0x08000004: return "Scripting_DefineConstantFailed";
-	case 0x08000005: return "Scripting_RegisterFunctionFailed";
-	case 0x08000006: return "Scripting_SetupFailed";
-	case 0x08000007: return "Scripting_TypeDoesNotExist";
+	case 0x08000002: return "Scripting_CreateObjectFailed";
+	case 0x08000003: return "Scripting_DefineConstantFailed";
+	case 0x08000004: return "Scripting_RegisterFunctionFailed";
+	case 0x08000005: return "Scripting_SetupFailed";
+	case 0x08000006: return "Scripting_TypeDoesNotExist";
 	case 0x09000001: return "Serialize_InvalidCharInString";
 	case 0x09000002: return "Serialize_InvalidScriptValue";
 	case 0x09000003: return "Serialize_OutOfBounds";
@@ -493,12 +484,11 @@ void ThrowError(PSRETURN code)
 	case 0x08020001: throw PSERROR_Scripting_LoadFile_EvalErrors(); break;
 	case 0x08020002: throw PSERROR_Scripting_LoadFile_OpenFailed(); break;
 	case 0x08000001: throw PSERROR_Scripting_CallFunctionFailed(); break;
-	case 0x08000002: throw PSERROR_Scripting_ConversionFailed(); break;
-	case 0x08000003: throw PSERROR_Scripting_CreateObjectFailed(); break;
-	case 0x08000004: throw PSERROR_Scripting_DefineConstantFailed(); break;
-	case 0x08000005: throw PSERROR_Scripting_RegisterFunctionFailed(); break;
-	case 0x08000006: throw PSERROR_Scripting_SetupFailed(); break;
-	case 0x08000007: throw PSERROR_Scripting_TypeDoesNotExist(); break;
+	case 0x08000002: throw PSERROR_Scripting_CreateObjectFailed(); break;
+	case 0x08000003: throw PSERROR_Scripting_DefineConstantFailed(); break;
+	case 0x08000004: throw PSERROR_Scripting_RegisterFunctionFailed(); break;
+	case 0x08000005: throw PSERROR_Scripting_SetupFailed(); break;
+	case 0x08000006: throw PSERROR_Scripting_TypeDoesNotExist(); break;
 	case 0x09000001: throw PSERROR_Serialize_InvalidCharInString(); break;
 	case 0x09000002: throw PSERROR_Serialize_InvalidScriptValue(); break;
 	case 0x09000003: throw PSERROR_Serialize_OutOfBounds(); break;

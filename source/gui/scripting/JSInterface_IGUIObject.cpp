@@ -228,24 +228,7 @@ bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp)
 		return false;
 
 	e->UpdateCachedSize();
-	CRect size = e->m_CachedActualSize;
+	ScriptInterface::ToJSVal(cx, args.rval(), e->m_CachedActualSize);
 
-	JS::RootedValue objVal(cx);
-	try
-	{
-		ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(
-			&objVal,
-			"left", size.left,
-			"right", size.right,
-			"top", size.top,
-			"bottom", size.bottom);
-	}
-	catch (PSERROR_Scripting_ConversionFailed&)
-	{
-		debug_warn(L"Error creating size object!");
-		return false;
-	}
-
-	args.rval().set(objVal);
 	return true;
 }

@@ -33,7 +33,6 @@ ERROR_SUBGROUP(Scripting, LoadFile);
 ERROR_TYPE(Scripting_LoadFile, OpenFailed);
 ERROR_TYPE(Scripting_LoadFile, EvalErrors);
 
-ERROR_TYPE(Scripting, ConversionFailed);
 ERROR_TYPE(Scripting, CallFunctionFailed);
 ERROR_TYPE(Scripting, RegisterFunctionFailed);
 ERROR_TYPE(Scripting, DefineConstantFailed);

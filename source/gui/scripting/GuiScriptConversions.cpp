@@ -211,6 +211,16 @@ template<> bool ScriptInterface::FromJSVal<CPos>(JSContext* cx, JS::HandleValue 
 	return true;
 }
 
+template<> void ScriptInterface::ToJSVal<CRect>(JSContext* cx, JS::MutableHandleValue ret, const CRect& val)
+{
+	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(
+		ret,
+		"left", val.left,
+		"right", val.right,
+		"top", val.top,
+		"bottom", val.bottom);
+}
+
 template<> void ScriptInterface::ToJSVal<CClientArea>(JSContext* cx, JS::MutableHandleValue ret, const CClientArea& val)
 {
 	val.ToJSVal(cx, ret);
