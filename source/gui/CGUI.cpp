@@ -466,6 +466,28 @@ void CGUI::SetFocusedObject(IGUIObject* pObject)
 	}
 }
 
+void CGUI::SetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
+{
+	if (!hotkeyTag.empty())
+		m_HotkeyObjects[hotkeyTag].push_back(pObject);
+}
+
+void CGUI::UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
+{
+	if (hotkeyTag.empty())
+		return;
+
+	std::vector<IGUIObject*>& assignment = m_HotkeyObjects[hotkeyTag];
+
+	assignment.erase(
+		std::remove_if(
+			assignment.begin(),
+			assignment.end(),
+			[&pObject](const IGUIObject* hotkeyObject)
+				{ return pObject == hotkeyObject; }),
+		assignment.end());
+}
+
 const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
 {
 	std::map<CStr, const SGUIScrollBarStyle>::const_iterator it = m_ScrollBarStyles.find(style);
@@ -603,7 +625,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(style);
 	ATTR(type);
 	ATTR(name);
-	ATTR(hotkey);
 	ATTR(z);
 	ATTR(on);
 	ATTR(file);
@@ -635,7 +656,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	bool ManuallySetZ = false;
 
 	CStrW inclusionPath;
-	CStr hotkeyTag;
 
 	for (XMBAttribute attr : attributes)
 	{
@@ -659,9 +679,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			continue;
 		}
 
-		if (attr.Name == attr_hotkey)
-			hotkeyTag = attr.Value;
-
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
 
@@ -678,9 +695,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		object->SetName("__internal(" + CStr::FromInt(m_InternalNameNumber) + ")");
 		++m_InternalNameNumber;
 	}
-
-	if (!hotkeyTag.empty())
-		m_HotkeyObjects[hotkeyTag].push_back(object);
 
 	CStrW caption(Element.GetText().FromUTF8());
 	if (!caption.empty())

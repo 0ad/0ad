@@ -428,6 +428,7 @@ private:
 	/**
 	 * Updates some internal data depending on the setting changed.
 	 */
+	void PreSettingChange(const CStr& Setting);
 	void SettingChanged(const CStr& Setting, const bool SendMessage);
 
 	/**

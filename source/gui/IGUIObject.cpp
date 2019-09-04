@@ -154,6 +154,7 @@ bool IGUIObject::SetSettingFromString(const CStr& Setting, const CStrW& Value, c
 template <typename T>
 void IGUIObject::SetSetting(const CStr& Setting, T& Value, const bool SendMessage)
 {
+	PreSettingChange(Setting);
 	static_cast<CGUISetting<T>* >(m_Settings[Setting])->m_pSetting = std::move(Value);
 	SettingChanged(Setting, SendMessage);
 }
@@ -161,8 +162,15 @@ void IGUIObject::SetSetting(const CStr& Setting, T& Value, const bool SendMessag
 template <typename T>
 void IGUIObject::SetSetting(const CStr& Setting, const T& Value, const bool SendMessage)
 {
+	PreSettingChange(Setting);
 	static_cast<CGUISetting<T>* >(m_Settings[Setting])->m_pSetting = Value;
 	SettingChanged(Setting, SendMessage);
+}
+
+void IGUIObject::PreSettingChange(const CStr& Setting)
+{
+	if (Setting == "hotkey")
+		m_pGUI.UnsetObjectHotkey(this, GetSetting<CStr>(Setting));
 }
 
 void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
@@ -178,6 +186,8 @@ void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
 		if (GetSetting<bool>(Setting))
 			RecurseObject(nullptr, &IGUIObject::ResetStates);
 	}
+	else if (Setting == "hotkey")
+		m_pGUI.SetObjectHotkey(this, GetSetting<CStr>(Setting));
 
 	if (SendMessage)
 	{

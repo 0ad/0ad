@@ -148,6 +148,12 @@ public:
 	void LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths);
 
 	/**
+	 * Allows the JS side to modify the hotkey setting assigned to a GUI object.
+	 */
+	void SetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag);
+	void UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag);
+
+	/**
 	 * Return the object which is an ancestor of every other GUI object.
 	 */
 	IGUIObject* GetBaseObject() const { return m_BaseObject; };
@@ -625,8 +631,6 @@ private:
 	 * Map from hotkey names to objects that listen to the hotkey.
 	 * (This is an optimisation to avoid recursing over the whole GUI
 	 * tree every time a hotkey is pressed).
-	 * Currently this is only set at load time - dynamic changes to an
-	 * object's hotkey property will be ignored.
 	 */
 	std::map<CStr, std::vector<IGUIObject*> > m_HotkeyObjects;
 
