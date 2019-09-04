@@ -73,9 +73,9 @@ CGUIManager::~CGUIManager()
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
-bool CGUIManager::HasPages()
+size_t CGUIManager::GetPageCount() const
 {
-	return !m_PageStack.empty();
+	return m_PageStack.size();
 }
 
 void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptInterface, JS::HandleValue initData)

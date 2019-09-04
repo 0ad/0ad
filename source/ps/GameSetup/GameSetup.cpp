@@ -1667,7 +1667,7 @@ void CancelLoad(const CStrW& message)
 	LDR_Cancel();
 
 	if (g_GUI &&
-	    g_GUI->HasPages() &&
+	    g_GUI->GetPageCount() &&
 	    pScriptInterface->HasProperty(global, "cancelOnLoadGameError"))
 		pScriptInterface->CallFunctionVoid(global, "cancelOnLoadGameError", message);
 }

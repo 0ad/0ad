@@ -59,9 +59,9 @@ public:
 	shared_ptr<CGUI> GetActiveGUI() { return top(); }
 
 	/**
-	 * Returns whether there are any current pages.
+	 * Returns the number of currently open GUI pages.
 	 */
-	bool HasPages();
+	size_t GetPageCount() const;
 
 	/**
 	 * Load a new GUI page and make it active. All current pages will be destroyed.
