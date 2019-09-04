@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="gather_rock">
   <animations>
-    <animation event="0.4" file="biped/gatherer/gather_mine.dae" name="gather_rock" speed="100"/>
+    <animation event="0.4" file="biped/gatherer/gather_mine.dae" name="gather_rock" speed="120"/>
   </animations>
   <props>
-    <prop actor="props/units/tools/pick.xml" attachpoint="weapon_L"/>
-    <prop attachpoint="weapon_R"/>
+    <prop actor="props/units/tools/pick.xml" attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
     <prop attachpoint="shield"/>
     <prop attachpoint="shield_arm"/>
     <prop attachpoint="helmet"/>

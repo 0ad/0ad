@@ -109,7 +109,7 @@ function loadEntityTemplate(templateName)
 		return null;
 
 	let template = loadTemplate(templateName);
-	let parsed = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
+	let parsed = GetTemplateDataHelper(template, null, g_AuraData, g_CurrentModifiers);
 	parsed.name.internal = templateName;
 
 	parsed.history = template.Identity.History;

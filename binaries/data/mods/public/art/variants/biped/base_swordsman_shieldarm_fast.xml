@@ -4,7 +4,9 @@
     <animation file="biped/infantry/swordsman/idle_ready_shieldarm.dae" name="idle" speed="100"/>
     <animation file="biped/infantry/swordsman/idle_ready_shieldarm.dae" name="idle" speed="90"/>
     <animation file="biped/infantry/swordsman/jog_ready_shieldarm.dae" name="Walk" speed="12"/>
-    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" speed="8"/>
+    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" id="run1" speed="8"/>
+    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" id="run2" speed="9"/>
+    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" id="run3" speed="10"/>
     <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_a.dae" name="attack_melee" id="attack1" speed="120"/>
     <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_b.dae" name="attack_melee" id="attack2" speed="100"/>
     <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_c.dae" name="attack_melee" id="attack3" speed="80"/>
