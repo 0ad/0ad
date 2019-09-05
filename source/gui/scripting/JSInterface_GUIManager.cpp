@@ -39,6 +39,14 @@ void JSI_GUIManager::SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const
 
 void JSI_GUIManager::PopGuiPage(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
 {
+	if (g_GUI->GetPageCount() < 2)
+	{
+		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		JS_ReportError(cx, "Can't pop GUI pages when less than two pages are opened!");
+		return;
+	}
+
 	g_GUI->PopPage(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 

@@ -320,7 +320,7 @@ PSRETURN CGame::ReallyStartGame()
 		g_NetClient->LoadFinished();
 
 	// Call the reallyStartGame GUI function, but only if it exists
-	if (g_GUI && g_GUI->HasPages())
+	if (g_GUI && g_GUI->GetPageCount())
 	{
 		JS::RootedValue global(cx, g_GUI->GetActiveGUI()->GetGlobalObject());
 		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(global, "reallyStartGame"))
