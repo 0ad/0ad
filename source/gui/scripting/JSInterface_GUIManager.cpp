@@ -61,6 +61,18 @@ JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPriv
 	return JS::ObjectValue(*guiObj->GetJSObject());
 }
 
+void JSI_GUIManager::SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, JS::HandleValue function)
+{
+	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
+	guiPage->SetGlobalHotkey(hotkeyTag, function);
+}
+
+void JSI_GUIManager::UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag)
+{
+	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
+	guiPage->UnsetGlobalHotkey(hotkeyTag);
+}
+
 std::wstring JSI_GUIManager::SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
 {
 	std::wstring old = g_CursorName;
@@ -87,6 +99,8 @@ void JSI_GUIManager::RegisterScriptFunctions(const ScriptInterface& scriptInterf
 {
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, JS::HandleValue, &PushGuiPage>("PushGuiPage");
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SwitchGuiPage>("SwitchGuiPage");
+	scriptInterface.RegisterFunction<void, std::string, JS::HandleValue, &SetGlobalHotkey>("SetGlobalHotkey");
+	scriptInterface.RegisterFunction<void, std::string, &UnsetGlobalHotkey>("UnsetGlobalHotkey");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &PopGuiPage>("PopGuiPage");
 	scriptInterface.RegisterFunction<JS::Value, std::string, &GetGUIObjectByName>("GetGUIObjectByName");
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");

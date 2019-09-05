@@ -5,18 +5,6 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/gamesetup/"/>
 
-	<object	hotkey="civinfo">
-		<action on="Press">Engine.PushGuiPage("page_civinfo.xml", { "civ": g_CivInfo.civ }, storeCivInfoPage);</action>
-	</object>
-
-	<object	hotkey="structree">
-		<action on="Press">Engine.PushGuiPage("page_structree.xml", { "civ": g_CivInfo.civ }, storeCivInfoPage);</action>
-	</object>
-
-	<object hotkey="cancel">
-		<action on="Press">selectPanel(undefined);</action>
-	</object>
-
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" style="ModernWindow" size="0 0 100% 100%">
 

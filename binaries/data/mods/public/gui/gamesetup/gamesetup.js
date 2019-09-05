@@ -1188,6 +1188,18 @@ var g_PlayerMiscElements = {
 	},
 };
 
+var g_Hotkeys = {
+	"civinfo": () => {
+		Engine.PushGuiPage("page_civinfo.xml", { "civ": g_CivInfo.code }, storeCivInfoPage);
+	},
+	"structree": () => {
+		Engine.PushGuiPage("page_structree.xml", { "civ": g_CivInfo.civ }, storeCivInfoPage);
+	},
+	"cancel": () => {
+		selectPanel(undefined);
+	}
+};
+
 /**
  * Initializes some globals without touching the GUI.
  *
@@ -1273,6 +1285,7 @@ function initGUIObjects()
 {
 	initSettingObjects();
 	initSettingsTabButtons();
+	initHotkeys();
 	initSPTips();
 
 	loadPersistMatchSettings();
@@ -1470,6 +1483,12 @@ function initCheckbox(name)
 		supplementDefaults();
 		updateGameAttributes();
 	};
+}
+
+function initHotkeys()
+{
+	for (let hotkeyName in g_Hotkeys)
+		Engine.SetGlobalHotkey(hotkeyName, g_Hotkeys[hotkeyName]);
 }
 
 function initSettingsTabButtons()

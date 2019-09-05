@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@ namespace JSI_GUIManager
 	void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData);
 	void PopGuiPage(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args);
 	JS::Value GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
+	void SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, JS::HandleValue function);
+	void UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag);
 	std::wstring SetCursor(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 	void ResetCursor(ScriptInterface::CxPrivate* pCxPrivate);
 	bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
