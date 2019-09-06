@@ -152,10 +152,10 @@ public:
 		std::time_t time;
 	};
 	JS::Value GuiMessageToJSVal(const ScriptInterface& scriptInterface, const GUIMessage& message, const bool historic);
+	bool GuiPollPresenceStatusUpdate();
 	JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface);
 	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
 	void SendMUCMessage(const std::string& message);
-	void ClearPresenceUpdates();
 protected:
 	void CreateGUIMessage(
 		const std::string& type,
@@ -181,6 +181,8 @@ private:
 	std::vector<GUIMessage> m_HistoricGuiMessages;
 	/// Current room subject/topic.
 	std::string m_Subject;
+	/// Whether or not a player has changed the presence status since the last time the GUI checked.
+	bool m_PresenceUpdate;
 };
 
 #endif // XMPPCLIENT_H

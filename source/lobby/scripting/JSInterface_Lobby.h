@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,10 +45,10 @@ namespace JSI_Lobby
 	void SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nbp, const std::wstring& players);
 	JS::Value GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
-	void LobbyClearPresenceUpdates(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetProfile(ScriptInterface::CxPrivate* pCxPrivate);
+	bool LobbyGuiPollPresenceStatusUpdate(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate);
 	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& message);

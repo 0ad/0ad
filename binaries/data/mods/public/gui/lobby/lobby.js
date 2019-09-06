@@ -135,12 +135,12 @@ var g_AskedReconnect = false;
 var g_NetMessageTypes = {
 	"system": {
 		// Three cases are handled in prelobby.js
-		"registered": msg => false,
+		"registered": msg => {
+		},
 		"connected": msg => {
 
 			g_AskedReconnect = false;
 			updateConnectedState();
-			return false;
 		},
 		"disconnected": msg => {
 
@@ -157,8 +157,6 @@ var g_NetMessageTypes = {
 				});
 				reconnectMessageBox();
 			}
-
-			return true;
 		},
 		"error": msg => {
 			addChatMessage({
@@ -166,7 +164,6 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"text": msg.text
 			});
-			return false;
 		}
 	},
 	"chat": {
@@ -182,7 +179,6 @@ var g_NetMessageTypes = {
 					"time": msg.time,
 					"isSpecial": true
 				});
-			return false;
 		},
 		"join": msg => {
 			addChatMessage({
@@ -192,7 +188,6 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"isSpecial": true
 			});
-			return true;
 		},
 		"leave": msg => {
 			addChatMessage({
@@ -205,10 +200,7 @@ var g_NetMessageTypes = {
 
 			if (msg.nick == g_Username)
 				Engine.DisconnectXmppClient();
-
-			return true;
 		},
-		"presence": msg => true,
 		"role": msg => {
 			Engine.GetGUIObjectByName("chatInput").hidden = Engine.LobbyGetPlayerRole(g_Username) == "visitor";
 
@@ -239,8 +231,6 @@ var g_NetMessageTypes = {
 
 			if (g_SelectedPlayer == msg.nick)
 				updateUserRoleText(g_SelectedPlayer);
-
-			return false;
 		},
 		"nick": msg => {
 			addChatMessage({
@@ -251,15 +241,12 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"isSpecial": true
 			});
-			return true;
 		},
 		"kicked": msg => {
 			handleKick(false, msg.nick, msg.reason, msg.time, msg.historic);
-			return true;
 		},
 		"banned": msg => {
 			handleKick(true, msg.nick, msg.reason, msg.time, msg.historic);
-			return true;
 		},
 		"room-message": msg => {
 			addChatMessage({
@@ -268,7 +255,6 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"historic": msg.historic
 			});
-			return false;
 		},
 		"private-message": msg => {
 			// Announcements and the Message of the Day are sent by the server directly
@@ -276,8 +262,7 @@ var g_NetMessageTypes = {
 				messageBox(
 					400, 250,
 					msg.text.trim(),
-					translate("Notice")
-				);
+					translate("Notice"));
 
 			// We intend to not support private messages between users
 			if (!msg.from || Engine.LobbyGetPlayerRole(msg.from) == "moderator")
@@ -289,24 +274,19 @@ var g_NetMessageTypes = {
 					"historic": msg.historic,
 					"private": true
 				});
-			return false;
 		}
 	},
 	"game": {
 		"gamelist": msg => {
 			updateGameList();
-			return false;
 		},
 		"profile": msg => {
 			updateProfile();
-			return false;
 		},
 		"leaderboard": msg => {
 			updateLeaderboard();
-			return false;
 		},
 		"ratinglist": msg => {
-			return true;
 		}
 	}
 };
@@ -414,8 +394,6 @@ function init(attribs)
 
 	Engine.LobbySetPlayerPresence("available");
 
-	// When rejoining the lobby after a game, we don't need to process presence changes
-	Engine.LobbyClearPresenceUpdates();
 	updatePlayerList();
 	updateSubject(Engine.LobbyGetRoomSubject());
 	updateLobbyColumns();
@@ -1309,13 +1287,10 @@ function onTick()
 			continue;
 		}
 
-		if (g_NetMessageTypes[msg.type][msg.level](msg))
-			updateList = true;
+		g_NetMessageTypes[msg.type][msg.level](msg);
 	}
 
-	// To improve performance, only update the playerlist GUI when
-	// the last update in the current stack is processed
-	if (updateList)
+	if (Engine.LobbyGuiPollPresenceStatusUpdate())
 		updatePlayerList();
 }
 
