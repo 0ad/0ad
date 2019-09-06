@@ -205,13 +205,12 @@ var g_NetMessageTypes = {
 			Engine.GetGUIObjectByName("chatInput").hidden = Engine.LobbyGetPlayerRole(g_Username) == "visitor";
 
 			let me = g_Username == msg.nick;
-			let newrole = Engine.LobbyGetPlayerRole(msg.nick);
 			let txt =
-				newrole == "visitor" ?
+				msg.newrole == "visitor" ?
 					me ?
 						translate("You have been muted.") :
 						translate("%(nick)s has been muted.") :
-				newrole == "moderator" ?
+				msg.newrole == "moderator" ?
 					me ?
 						translate("You are now a moderator.") :
 						translate("%(nick)s is now a moderator.") :

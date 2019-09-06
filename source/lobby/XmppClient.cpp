@@ -883,7 +883,7 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 		else if (m_PlayerMap.find(nick) == m_PlayerMap.end())
 			CreateGUIMessage("chat", "join", std::time(nullptr), "nick", nick);
 		else if (m_PlayerMap[nick][2] != roleString)
-			CreateGUIMessage("chat", "role", std::time(nullptr), "nick", nick, "oldrole", m_PlayerMap[nick][2]);
+			CreateGUIMessage("chat", "role", std::time(nullptr), "nick", nick, "oldrole", m_PlayerMap[nick][2], "newrole", roleString);
 		else
 			// Don't create a GUI message for regular presence changes, because
 			// several hundreds of them accumulate during a match, impacting performance terribly and
