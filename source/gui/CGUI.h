@@ -154,6 +154,12 @@ public:
 	void UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag);
 
 	/**
+	 * Allows the JS side to add or remove global hotkeys.
+	 */
+	void SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function);
+	void UnsetGlobalHotkey(const CStr& hotkeyTag);
+
+	/**
 	 * Return the object which is an ancestor of every other GUI object.
 	 */
 	IGUIObject* GetBaseObject() const { return m_BaseObject; };
@@ -633,6 +639,12 @@ private:
 	 * tree every time a hotkey is pressed).
 	 */
 	std::map<CStr, std::vector<IGUIObject*> > m_HotkeyObjects;
+
+	/**
+	 * Map from hotkey names to functions that are triggered if the hotkey is pressed.
+	 * Contrary to object hotkeys, this allows for only one global function per hotkey name.
+	 */
+	std::map<CStr, JS::PersistentRootedValue> m_GlobalHotkeys;
 
 	//--------------------------------------------------------
 	//	Databases

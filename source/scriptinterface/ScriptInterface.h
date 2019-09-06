@@ -509,6 +509,12 @@ inline void ScriptInterface::AssignOrToJSVal<JS::PersistentRootedValue>(JSContex
 }
 
 template<>
+inline void ScriptInterface::AssignOrToJSVal<JS::Heap<JS::Value> >(JSContext* UNUSED(cx), JS::MutableHandleValue handle, const JS::Heap<JS::Value>& a)
+{
+	handle.set(a);
+}
+
+template<>
 inline void ScriptInterface::AssignOrToJSVal<JS::RootedValue>(JSContext* UNUSED(cx), JS::MutableHandleValue handle, const JS::RootedValue& a)
 {
 	handle.set(a);

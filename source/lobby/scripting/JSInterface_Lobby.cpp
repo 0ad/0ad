@@ -52,10 +52,10 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendUnregisterGame>("SendUnregisterGame");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::SendChangeStateGame>("SendChangeStateGame");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetPlayerList>("GetPlayerList");
-	scriptInterface.RegisterFunction<void, &JSI_Lobby::LobbyClearPresenceUpdates>("LobbyClearPresenceUpdates");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetGameList>("GetGameList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetBoardList>("GetBoardList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetProfile>("GetProfile");
+	scriptInterface.RegisterFunction<bool, &JSI_Lobby::LobbyGuiPollPresenceStatusUpdate>("LobbyGuiPollPresenceStatusUpdate");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollNewMessage>("LobbyGuiPollNewMessage");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollHistoricMessages>("LobbyGuiPollHistoricMessages");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySendMessage>("LobbySendMessage");
@@ -195,14 +195,6 @@ JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
 	return playerList;
 }
 
-void JSI_Lobby::LobbyClearPresenceUpdates(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (!g_XmppClient)
-		return;
-
-	g_XmppClient->ClearPresenceUpdates();
-}
-
 JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
@@ -243,6 +235,11 @@ JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
 	g_XmppClient->GUIGetProfile(*(pCxPrivate->pScriptInterface), &profileFetch);
 
 	return profileFetch;
+}
+
+bool JSI_Lobby::LobbyGuiPollPresenceStatusUpdate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return g_XmppClient && g_XmppClient->GuiPollPresenceStatusUpdate();
 }
 
 JS::Value JSI_Lobby::LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate)

@@ -652,6 +652,13 @@ JS::Value XmppClient::GuiMessageToJSVal(const ScriptInterface& scriptInterface, 
 	return ret;
 }
 
+bool XmppClient::GuiPollPresenceStatusUpdate()
+{
+	bool hasUpdate = m_PresenceUpdate;
+	m_PresenceUpdate = false;
+	return hasUpdate;
+}
+
 JS::Value XmppClient::GuiPollNewMessage(const ScriptInterface& scriptInterface)
 {
 	if (m_GuiMessageQueue.empty())
@@ -659,10 +666,7 @@ JS::Value XmppClient::GuiPollNewMessage(const ScriptInterface& scriptInterface)
 
 	GUIMessage message = m_GuiMessageQueue.front();
 	m_GuiMessageQueue.pop_front();
-
-	// Since there can be hundreds of presence changes while playing a game, ignore these for performance
-	if (message.type == "chat" && message.level != "presence")
-		m_HistoricGuiMessages.push_back(message);
+	m_HistoricGuiMessages.push_back(message);
 
 	return GuiMessageToJSVal(scriptInterface, message, false);
 }
@@ -690,21 +694,6 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 void XmppClient::SendMUCMessage(const std::string& message)
 {
 	m_mucRoom->send(message);
-}
-
-/**
- * Clears all presence updates from the message queue.
- * Used when rejoining the lobby, since we don't need to handle past presence changes.
- */
-void XmppClient::ClearPresenceUpdates()
-{
-	m_GuiMessageQueue.erase(
-		std::remove_if(m_GuiMessageQueue.begin(), m_GuiMessageQueue.end(),
-			[](XmppClient::GUIMessage& message)
-			{
-				return message.type == "chat" && message.level == "presence";
-			}
-	), m_GuiMessageQueue.end());
 }
 
 /**
@@ -885,7 +874,10 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 		else if (m_PlayerMap[nick][2] != roleString)
 			CreateGUIMessage("chat", "role", "nick", nick, "oldrole", m_PlayerMap[nick][2]);
 		else
-			CreateGUIMessage("chat", "presence", "nick", nick);
+			// Don't create a GUI message for regular presence changes, because
+			// several hundreds of them accumulate during a match, impacting performance terribly and
+			// the only way they are used is to determine whether to update the playerlist.
+			m_PresenceUpdate = true;
 
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
 		m_PlayerMap[nick].resize(3);

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<object name="productLogo" type="image" ghost="true" size="50%-110 30 50%+110 130"/>
+
+	<object type="image" style="TranslucentPanelThinBorder" size="8 100%-420 100%-8 100%-94">
+
+		<object name="productDescription" font="sans-14" type="text" textcolor="white" size="8 8 100%-8 100%-36" ghost="true"/>
+
+		<object name="communityButtons">
+			<repeat count="10">
+				<object type="button" style="StoneButton" tooltip_style="pgToolTip" hidden="true"/>
+			</repeat>
+		</object>
+	</object>
+
+	<object size="4 100%-84 100%-4 100%-56" ghost="true">
+		<object name="organizationLogo" type="image" ghost="true" size="50%-16 0 50%+16 32"/>
+		<object name="organizationName" type="text" style="MediumTitleText" ghost="true" size="50%-128 32 50%+128 48"/>
+	</object>
+
+	<object type="text" name="productBuild" style="MediumTitleText" ghost="true" size="50%-128 100%-36 50%+128 100%"/>
+</object>

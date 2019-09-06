@@ -71,6 +71,18 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	{
 		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
 
+		if (m_GlobalHotkeys.count(hotkey))
+		{
+			HotkeyInputHandler(ev);
+			ret = IN_HANDLED;
+
+			JSContext* cx = m_ScriptInterface->GetContext();
+			JSAutoRequest rq(cx);
+			JS::RootedObject globalObj(cx, &GetGlobalObject().toObject());
+			JS::RootedValue result(cx);
+			JS_CallFunctionValue(cx, globalObj, m_GlobalHotkeys[hotkey], JS::HandleValueArray::empty(), &result);
+		}
+
 		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
 		if (it != m_HotkeyObjects.end())
 			for (IGUIObject* const& obj : it->second)
@@ -486,6 +498,32 @@ void CGUI::UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
 			[&pObject](const IGUIObject* hotkeyObject)
 				{ return pObject == hotkeyObject; }),
 		assignment.end());
+}
+
+void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function)
+{
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	if (hotkeyTag.empty())
+	{
+		JS_ReportError(cx, "Cannot assign a function to an empty hotkey identifier!");
+		return;
+	}
+
+	if (!function.isObject() || !JS_ObjectIsFunction(cx, &function.toObject()))
+	{
+		JS_ReportError(cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
+		return;
+	}
+
+	UnsetGlobalHotkey(hotkeyTag);
+	m_GlobalHotkeys[hotkeyTag].init(cx, function);
+}
+
+void CGUI::UnsetGlobalHotkey(const CStr& hotkeyTag)
+{
+	m_GlobalHotkeys.erase(hotkeyTag);
 }
 
 const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
