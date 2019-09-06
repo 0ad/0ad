@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1251,9 +1251,9 @@ msgstr "Egy nyüzsgő városból igazi metropolisszá fejlődik a modern technol
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. Az „ezüst baglyok” civilizációs bónusz további +10% fémgyűjtési sebességet ad minden munkásnak. A polgár katonák maximális életereje +10%-kal növelve. Minden épületnek +9 beszállásolási regeneráció sebesség."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1275,9 +1275,9 @@ msgstr "Egy nyüzsgő városból igazi metropolisszá fejlődik a modern technol
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. A polgár katonák maximális életereje +10%-kal növelve. Minden épületnek +9 beszállásolási regeneráció sebesség."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1302,9 +1302,9 @@ msgstr "Egy kis faluból nyüzsgő várossá fejlődés, készen állva a gyors 
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Városi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara +30%-kal növelve. Az „ezüst baglyok” civilizációs bónusz további +10% fémgyűjtési sebességet ad minden munkásnak. A polgár katonák maximális életereje +20%-kal növelve. Minden épületnek +7 beszállásolási regeneráció sebesség."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1326,9 +1326,9 @@ msgstr "Egy kis faluból nyüzsgő várossá fejlődés, készen állva a gyors 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Városi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara +30%-kal növelve. A polgár katonák maximális életereje +20%-kal növelve. Minden épületnek +7 beszállásolási regeneráció sebesség."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2276,9 +2276,8 @@ msgstr "A karthágóiak a városfalaikat három koncentrikus körben építetté
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "A karthágói falak, kapuk és tornyok háromszor olyan ellenállóak, mint a hagyományos falak, de kétszer annyiba kerülnek, és kétszer olyan sok idő alatt épülnek fel."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2290,9 +2289,9 @@ msgstr "A kelta épületek többnyire fából készültek, terméskő alapokra."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "A kelta épületeknek 20%-kal kevesebb életerejük van, de 20%-kal olcsóbbak, és gyorsabban épülnek."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2304,9 +2303,9 @@ msgstr "A görögök kőépítményeket használtak a korai mükénei időktől.
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Minden épületnek 10%-kal több életerő és foglalási pontja van, de 10%-kal hosszabb az építési idő is."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2323,8 +2322,8 @@ msgid ""
 msgstr "A Maurja birodalom több tucat, előzőleg független királyságot fogott össze mintegy 5 millió négyzetkilométernyi területen, közel 60 millió fős lakossággal. A Maurja uralkódok címe a császárok császára volt és egy hatalmas állandó seregnek parancsoltak. A 600.000 fős gyalogság, 9000 elefánt, 8000 harci szekér és 30.000 fős lovasság kétség kívül a kor legnagyobb hadserege volt."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "A maurjáknak 10%-kal nagyobb a maximális népességkorlátja."
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2341,8 +2340,8 @@ msgid ""
 msgstr "A maurják a városfalaikat fából építették, amely bőséges nyersanyag volt Indiában."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "A maurja városfalaknak -20%-kal kevesebb az életerejük, és -20%-kal kevesebb idő alatt épülnek fel."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2359,8 +2358,8 @@ msgid ""
 msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, az Óperzsa birodalom puszta méretéből és a felépítéséből adódóan. Általánosságban a perzsa gyalogság jól képzett volt és nagy kitartással harcolt. Viszont a gyalogság gyenge volt a kézitusában és a közelharcban. Emellett az elit csapatokat leszámítva, a perzsa gyalogság nem egy állandó, hivatásos haderő volt."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "A perzsáknak 10%-kal nagyobb a maximális népességkorlátja."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2375,8 +2374,8 @@ msgid ""
 msgstr "A spártaiak hadserege nem a legnagyobb, de az akkori világ legjobbja volt. Ami mennyiségben hiányzott, azt minőséggel kompenzálták. Azt mondták, hogy Spártának nincs szüksége erős városfalakra, mert az emberek maguk a fal."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "A spártaiknak 10%-kal kisebb a maximális népességkorlátja."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

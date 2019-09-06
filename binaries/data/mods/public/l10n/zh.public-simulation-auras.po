@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 18:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-03 10:28+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr "船只修复"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "有单位驻守的船只生命值恢复率 +10 。"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -50,7 +50,7 @@ msgstr "神之赐福"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr ""
+msgstr "人力单位生命值恢复率 +3 。"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -66,7 +66,7 @@ msgstr "爱国主义"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "工人采集食物速度 +15% 。"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -82,7 +82,7 @@ msgstr "麦罗埃金字塔"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "市政中心领土影响半径 +10% 。"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -90,7 +90,7 @@ msgstr "大祭司"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "英雄单位生命值 -5% 。"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -98,7 +98,7 @@ msgstr "知识的力量"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr ""
+msgstr "建筑的科研花费及科研时间 -10% 。"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -114,7 +114,7 @@ msgstr "阿育王法令"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "商人速度 +20% 。"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -122,7 +122,7 @@ msgstr "奖励农耕"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "工人采集效率 +25% 。"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -130,7 +130,7 @@ msgstr "药物治疗"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "人力单位生命恢复 +1 。"
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
@@ -138,7 +138,7 @@ msgstr "希腊化"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "建筑的领土影响半径 +20% 。"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -154,7 +154,7 @@ msgstr "伟大的象征"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr ""
+msgstr "人口数量 +10 。"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -163,7 +163,7 @@ msgstr "荣耀的进步"
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr ""
+msgstr "人口数量限制 +40（需要“荣耀扩张”科技）。"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -179,7 +179,7 @@ msgstr "提洛同盟"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "盟友战船建造时间 -25% 。"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -187,7 +187,7 @@ msgstr "德鲁伊 "
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "盟友的医疗单位花费 -20% 。"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -195,7 +195,7 @@ msgstr "贸易家"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "盟友方市场的外贸奖励 +10%。"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -203,14 +203,14 @@ msgstr "德鲁伊的智慧"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "盟友建筑的科研时间 -20% 。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "雇佣兵"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen-Soldier Javelinists −20% resource costs."
+msgid "Allied Citizen Javelinists −20% resource costs."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
@@ -219,7 +219,7 @@ msgstr "战象供应"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "盟友大象的花费和训练时间 -20% 。"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -237,7 +237,7 @@ msgstr "阿育王的宗教支持"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "盟友的神庙花费和建造时间 -50%；神庙的科研花费和科研时间 -50% 。"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -245,7 +245,7 @@ msgstr "皇家大道"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "盟友的陆上商人贸易收益 +15% 。"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -260,7 +260,7 @@ msgid "Conscription"
 msgstr "募兵"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied Citizen-Soldier Infantry −20% training time."
+msgid "Allied Citizen Infantry −20% training time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
@@ -276,7 +276,7 @@ msgid "Peloponnesian League"
 msgstr "伯罗奔尼撒同盟 "
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Allied Citizen-Soldier Infantry Spearmen +10% health."
+msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
@@ -365,7 +365,7 @@ msgstr "雇佣头子"
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
-"Allied Citizen-Soldier Mercenaries −25% metal cost."
+"Allied Citizen Mercenaries −25% metal cost."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
@@ -506,7 +506,7 @@ msgstr "严厉的军事改革"
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
-"Citizen-Soldier Infantry Spearmen −10% resource costs."
+"Citizen Infantry Spearmen −10% resource costs."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription

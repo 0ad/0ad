@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-09-01 11:45+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 22:21+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -47,8 +47,12 @@ msgid "Fish"
 msgstr "Ryba"
 
 #: simulation/templates/template_gaia_fish.xml:10
-msgid "Gather food from this bountiful oceanic resource."
-msgstr "Zbierz pożywienie z tego obfitego w ryby oceanu."
+msgid "Catch fish for food."
+msgstr "Łów ryby, by zdobyć jedzenie."
+
+#: simulation/templates/template_gaia_flora.xml:6
+msgid "Chop trees for wood."
+msgstr "Rąb drzewa, by zdobyć drewno."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -57,13 +61,14 @@ msgstr "Zbierz pożywienie z tego obfitego w ryby oceanu."
 msgid "Bush"
 msgstr "Krzak"
 
+#: simulation/templates/template_gaia_flora_bush_berry.xml:4
+#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+msgid "Pick fruit for food."
+msgstr "Zbieraj owoce, by zdobyć jedzenie."
+
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Drzewo"
-
-#: simulation/templates/template_gaia_flora_tree.xml:9
-msgid "Chop down to accumulate Wood."
-msgstr "Zetnij aby zgromadzić drewno."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -74,46 +79,46 @@ msgid "Metal Mine"
 msgstr "Kopalnia metalu"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Źródło surowców dające dostęp do rzadkich form cennego metalu."
+msgid "Mine ore for metal."
+msgstr "Wydobądź rudę, by zdobyć metal."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
 msgstr "Kamieniołom"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
-msgid "Mine these to provide Stone building material."
-msgstr "Wykop te rudy w celu wydobycia Kamienia do budowy różnych budowli."
+msgid "Quarry rock for stone."
+msgstr "Wydobądź kamień."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
 msgstr "Ruiny"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-msgid "These ruins that can be mined for resources."
-msgstr "Te ruiny mogą być przekopane w poszukiwaniu surowców."
+msgid "Demolish ruins for stone."
+msgstr "Zniszcz ruiny, by zdobyć kamień."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
 msgstr "Skarb"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-msgid "A treasure that can be quickly gathered."
-msgstr "Skarb, który może szybko zostać zebrany."
+msgid "Collect treasures for resources."
+msgstr "Zbieraj skarby, by zdobyć zasoby."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Struktura"
 
-#: simulation/templates/template_unit.xml:42
+#: simulation/templates/template_unit.xml:43
 msgid "Unit"
 msgstr "Jednostka"
 
-#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
 msgstr "Mury miasta"
 
-#: simulation/templates/template_wallset.xml:12
+#: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
 msgstr "Wybuduj mur, aby zwiększyć możliwości obronne miasta."
 
@@ -523,17 +528,9 @@ msgstr "Odporny krzew"
 msgid "Berries"
 msgstr "Jagody"
 
-#: simulation/templates/gaia/flora_bush_berry.xml:5
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Zbierz owoce z tych krzaków, aby zdobyć żywność."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Winogrono"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
-msgid "Gather grapes from these vines for Food."
-msgstr "Zbierz winogrona z tych winorośli jako Pożywienie"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -559,10 +556,6 @@ msgstr "Dendrokalamus olbrzymi"
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
 msgstr "Bananowiec"
-
-#: simulation/templates/gaia/flora_tree_banana.xml:5
-msgid "Gather bananas for Food."
-msgstr "Zbieraj banany, aby się nimi pożywić."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -642,10 +635,6 @@ msgstr "Brzoza zwisła"
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Figowiec"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:8
-msgid "Gather figs for Food."
-msgstr "Zbierz figi jako Pożywienie"
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
@@ -798,10 +787,6 @@ msgstr "Rzymskie posągi"
 msgid "Unfinished Greek Temple"
 msgstr "Niedokończona grecka świątynia"
 
-#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Ta świątynia nigdy nie została ukończona i popadła w ruinę."
-
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
@@ -848,27 +833,9 @@ msgstr "Pegaz"
 msgid "Shipwreck"
 msgstr "Wrak"
 
-#: simulation/templates/gaia/treasure/shipwreck.xml:9
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Butwiejący wojskowy wrak. Dobra okazja dla każdego kupca."
-
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
 msgstr "Ładunek wraku"
-
-#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Mocno uszkodzony wrak. Dobra okazja dla każdego kupca."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Wrak małego statku transportowego. Dobra okazja dla każdego kupca."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Przepołowiony statek transportowy. Dobra okazja dla każdego kupca."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"

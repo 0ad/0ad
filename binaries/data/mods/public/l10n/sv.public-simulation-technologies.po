@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-09-01 13:28+0000\n"
-"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1252,9 +1252,9 @@ msgstr "Avancera från en livlig stad till en veritabel metropol, full av modern
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avancera till Storstadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscenter ökar med ytterligare +50%. 'Silverugglor' civilisationsbonusen ger +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökad med +10%. Alla strukturer +9 garnisonerad regenerationstakt."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1276,9 +1276,9 @@ msgstr "Avancera från en livlig stad till en veritabel metropol, full av modern
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avancera till Storstadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med ytterligare +50%. Max hälsa för medborgarsoldater ökad med +10%. Alla strukturer +9 garnisonerad regenereringstakt."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1303,9 +1303,9 @@ msgstr "Avancerar från en liten by till en livlig stad, redo att expandera fort
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avancera till Stadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med +30%. 'Silverugglor' civilisationsbonusen ger ytterligare +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +7 garnisonerad regenerationstakt."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1327,9 +1327,9 @@ msgstr "Avancerar från en liten by till en livlig stad, redo att expandera fort
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avancera till Stadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med +30%. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +7 garnisonerad regenerationstakt."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2277,9 +2277,8 @@ msgstr "Kartagerna byggde sina stadsmurar i tre koncentriska cirklar. Dessa väg
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartagiska murar, portar och försvarstorn har 3x hälsan av en vanlig mur, men kostar också dubbelt så mycket och tar dubbelt så lång tid att byggas."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2291,9 +2290,9 @@ msgstr "Keltiska byggnader bestod oftast av trä med fundament av grus."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Keltiska byggnader har 20% mindre hälsa, men är även 20% billigare och snabbare att bygga."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2305,9 +2304,9 @@ msgstr "Grekerna använde sten för sina byggnader från början på den Mykensk
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Alla strukturer har 10% mer hälsa och erövringspoäng, men tar 10% längre att byggas."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2324,8 +2323,8 @@ msgid ""
 msgstr "Mauryariket omfattade tiotals tidigare självständiga riken över ett område på 5 miljoner kvadratkilometer, med en befolkning på närmare 60 miljoner människor. Mauryanska regenter höll titeln Kejsaren av Kejsare och befallde en stående armé på 600.000 infanteri, 9000 elefanter, 8000 vagnar och 30.000 kavalleri, vilket utan tvekan gör den till största armén av sin tid."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Mauryaner har en 10% högre maximal befolkningsgräns."
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2342,8 +2341,8 @@ msgid ""
 msgstr "Mauryanerna byggde sina stadsmurar av trä, en riklig naturresurs i Indien."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Mauryanska stadsmurar har -20% mindre hälsa, men även -20% mindre byggtid."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2360,8 +2359,8 @@ msgid ""
 msgstr "Perserna kunde och uppbådade faktiskt ett sort antal infanteri under krigstid på grund av den enorma storleken av Akemenidiska Riket och sättet på vilket det var organiserat. I allmänhet var persiska infanteriet välutbildat och slogs med stor uthållighet. Men de var också dåliga närstridskämpar. Med undantag av elitregementen, så var det Persiska infanteriet inte en stående professionell styrka."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Perser har en 10% högre maximal befolkningsgräns."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2376,8 +2375,8 @@ msgid ""
 msgstr "Spartanerna hade inte världens största armé, men de hade den bästa i världen i sin tid. Vad de inte hade i kvantitet, gjorde de upp med kvalitet. Det sades att Sparta inte behövde stora stadsmurar, för sina män var dess murar."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Spartaner har 10% lägre maximal befolkning."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

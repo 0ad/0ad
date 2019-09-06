@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -1244,9 +1244,9 @@ msgstr "Framskrider fra et myldrende tettsted til et ekte metropol, full av den 
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avanser til by-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med ytterligere +50%. 'Sølvugler'-sivilisasjonsbonus skjenker ytterligere +10% metall-sankebonus til alle arbeidere. Borgersoldaters høyeste helsenivå økes med +10%. Alle strukturer får +9 helbredingsrate med enheter forskanset i dem."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1268,9 +1268,9 @@ msgstr "Framskrider fra en myldrende by til et ekte metropol, full av den modern
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avanser til by-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med enda +50%. Borgersoldaters høyeste helsenivå økes med +10%. Alle strukturer får +9 helbredingsrate med enheter forskanset i dem."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1295,9 +1295,9 @@ msgstr "Framskrider fra liten landsby til myldrende by til et ekte metropol, kla
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanser til tettstedfasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metall-utvinningsbonus til alle arbeidere. Innbyggersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1319,9 +1319,9 @@ msgstr "Avanserer fra en liten landsby til en yrende by, klar for videre rask ut
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanser til tettstedfasen, som tilgjengeliggjør flere strukturer og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%.\nBorgersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2269,9 +2269,8 @@ msgstr "Karthagerne bygde sine bymurer i tre konsentriske ringer. Disse murene b
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartagiske murer, porter og veggtårn har 3x av helsen til en standardmur men, men koster også dobbelt så mye og tar dobbelt så lang tid å bygge."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2283,9 +2282,9 @@ msgstr "Keltiske byggverk ble for det meste laget av tre, på grusfundament."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Keltiske bygninger har 20% mindre helse, men er også 20% billigere og raskere å konstruere."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2297,9 +2296,9 @@ msgstr "Grekerne brukte steinkonstruksjoner fra tidlig mykensk tid."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Alle konstruksjoner får +10% mer helse og overtakelsespoeng, men tar også +10% lenger å bygge."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2316,7 +2315,7 @@ msgid ""
 msgstr "Det mauriske imperium innbefattet dusinvis av tidligere uavhengige kongedømmer over et areal på 5 millioner kvadratkilometer, med en befolkning på nær 60 millioner innbyggere. De mauriske regentene hadde tittelen Keiser over Keisere og hadde en stående hær på 600.000 infanterister, 9000 elefanter, 8000 hestestridsvogner og 30.000 kavalerister, den største hæren i sin tid."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
+msgid "Mauryas +10% maximum population limit."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
@@ -2334,8 +2333,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Mauryanske byvegger har -20% mindre helse og -20% mindre bygningstid."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2352,8 +2351,8 @@ msgid ""
 msgstr "Perserne kunne tvangsutskrive et stort antall infanterister under krigstid på grunn av Akamenide-dynastiets voldsomme størrelse og måten det var organisert på. Generelt var det persiske infanteriet godt trent, målbevisst og kjempet med fasthet. På den annen side var infanteristene svake i nærkamp uten våpen. Dessuten - med unntak av eliteregimentene - var ikke det persiske infanteriet en permanent profesjonell styrke."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Perserne har et 10% høyere befolkningstak."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2368,8 +2367,8 @@ msgid ""
 msgstr "Spartanerne hadde ikke den største hæren i verden, men de hadde den beste hæren i verden i deres tid. Det de ikke hadde i antall gjorde de opp for i kvalitet. Det ble sagt at Sparta ikke trenge bymurer fordi deres menn var byens murer."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Spartanerne har 10% lavere befolkningstak."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

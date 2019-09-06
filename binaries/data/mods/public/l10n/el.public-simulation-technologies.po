@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1249,9 +1249,9 @@ msgstr "Εξελίσσετε από μια πολυσύχναστη πόλη σ�
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Οι Ασημένιες Κουκουβάγιες δίνουν επιπλέον +10% στο ρυθμό συλλογής μετάλλου για όλους τους εργάτες. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1273,9 +1273,9 @@ msgstr "Εξελίσσετε από μια πολυσύχναστη πόλη σ�
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1300,9 +1300,9 @@ msgstr "Εξελίσσεται από ένα μικρό χωριό σε μια �
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Προχωρήσετε στην Φάση Κωμόπολη, η οποία ξεκλειδώνει περισσότερα κτήρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +30%. Οι \"Ασημένιες Κουκουβάγιες\" δίνουν επιπλέον +10% στο ρυθμό συλλογής μετάλλου για όλους τους εργάτες. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1324,9 +1324,9 @@ msgstr "Εξελίσσεται από ένα μικρό χωριό σε μια �
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται κατά +30%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2274,9 +2274,8 @@ msgstr "Οι Καρχηδόνιοι κατασκεύαζαν τα τείχη τ�
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Τα Καρχηδόνια τείχη, οι πύλες, και οι πύργοι του τοίχους αποκτούν 3x υγεία σε σχέση με ένα κανονικό τείχος, αλλά επίσης κοστίζουν το διπλάσιο και κατασκευάζονται σε διπλάσιο χρόνο."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2288,9 +2287,9 @@ msgstr "Οι κελτικές κατασκευές ήταν κυρίως κατ�
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Τα Κέλτικα κτήρια έχουν 20% λιγότερη αντοχή, αλλά είναι 20% φθηνότερα και γρηγορότερα κατά την κατασκευή."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2302,9 +2301,9 @@ msgstr "Οι Έλληνες χρησιμοποιούσαν πέτρινες κα
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Όλα τα κτίσματα έχουν 10% περισσότερη αντοχή και πόντους κατάληψης, αλλά επίσης και 10% περισσότερο χρόνο αποπεράτωσης."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2321,7 +2320,7 @@ msgid ""
 msgstr "Η Αυτοκρατορία των Μαουρύα περιελάμβανε δεκάδες πρώην ανεξάρτητα βασίλεια σε μια έκταση 5 εκατομμυρίων τετραγωνικών χιλιομέτρων, με πληθυσμό κοντά στα 60 εκατομμύρια ανθρώπους. Οι Μαουρύα αντιβασιλείς κράτησαν τον τίτλο του Αυτοκράτορα των Αυτοκρατόρων και διοικούσαν έναν μόνιμο στρατό από 600.000 πεζικό, 9.000 ελέφαντες, 8.000 άρματα και 30.000 ιππικό, καθιστώντας αναμφισβήτητα το μεγαλύτερο στρατό της εποχής του."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
+msgid "Mauryas +10% maximum population limit."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
@@ -2339,8 +2338,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Τα Μαούρυα τείχη της πόλης έχουν -20% λιγότερη υγεία και -20% λιγότερο χρόνο κατασκευής."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2357,8 +2356,8 @@ msgid ""
 msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρώσει έναν μεγάλο αριθμό πεζικού κατά τη διάρκεια του πολέμου, λόγω του μεγάλου μεγέθους της αυτοκρατορία των Αχαιμενιδών και τον τρόπο με τον οποίο ήταν οργανωμένη. Σε γενικές γραμμές το περσικό πεζικό ήταν καλά εκπαιδευμένο και πολεμούσαν με μεγάλη επιμονή. Ωστόσο, η αλήθεια ήταν ότι το πεζικό ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Οι Πέρσες έχουν 10% περισσότερο στο μέγιστο όριο του πληθυσμού."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2373,8 +2372,8 @@ msgid ""
 msgstr "Οι Σπαρτιάτες δεν είχαν το μεγαλύτερο στρατό στον κόσμο, αλλά είχαν τον καλύτερο στρατό στον κόσμο για την εποχή τους. Αυτό που δεν είχαν σε ποσότητα, το αντικατέστησαν με την ποιότητα. Είχε λεχθεί ότι η Σπάρτη δεν χρειαζόταν ισχυρά τείχη για την πόλη της, γιατί οι άνδρες της ήταν τα τείχη της."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Οι Σπαρτιάτες έχουν 10% λιγότερο στο μέγιστο του πληθυσμού."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

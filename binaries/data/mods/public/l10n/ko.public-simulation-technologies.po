@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-29 13:31+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-03 02:14+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1251,9 +1251,9 @@ msgstr "번화한 도시에서 현대 기술의 경이로움으로 가득찬 진
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 올빼미 은화 문명 보너스는 모든 근로자에게 +10% 금속 채집 비율을 추가로 부여합니다. 시민 군인의 최대 체력이 +10% 증가합니다. 모든 구조물에 주둔시 복구율이 +9% 증가합니다."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 올빼미 은화 문명 보너스는 모든 근로자에게 +10% 금속 채집 비율을 추가로 부여합니다. 시민 군인의 체력이 +10% 증가합니다. 모든 건축물의 수비형 재생률 +9 증가합니다."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1275,9 +1275,9 @@ msgstr "번화한 도시에서 현대 기술의 경이로움으로 가득찬 진
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 시민 군인의 최대 체력이 +10% 증가합니다. 모든 구조물에 주둔시 복구율이 +9% 증가합니다."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 시민 군인의 체력이 +10% 증가합니다. 모든 구조물에 주둔시 복구율이 +9% 증가합니다."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1302,9 +1302,9 @@ msgstr "작은 마을에서 번화한 작은 도시로 빠르게 확장 할 준�
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 발전합니다. 시민 회관의 영토 반경이 +30% 증가했습니다. '은 올빼미' 문명 보너스는 모든 노동자에게 +10% 의 추가 금속 채집률을 부여합니다. 시민 군인 최대 체력이 +20% 증가됩니다. 모든 구조물에 주둔시 복구율이 +7 증가합니다."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 발전합니다. 시민 회관의 영토 반경이 +30% 증가했습니다. '은 올빼미' 문명 보너스는 모든 노동자에게 +10% 의 추가 금속 채집률을 부여합니다. 시민 군인의 건강이 +20% 증가됩니다. 모든 구조물에 주둔시 복구율이 +7 증가합니다."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1326,9 +1326,9 @@ msgstr "작은 마을에서 번화한 작은 도시로 빠르게 확장할 준�
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "작은 도시의 단계로 진행되면 더 다양한 건축물과 유닛을 사용할 수 있습니다. 시민회관의 영지 반경 또한 +30% 증가합니다. 시민 군인의 최대 체력이 +20% 상승합니다. 모든 건축물에 주둔시 수리속도가 +7 증가합니다."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr "작은 도시의 단계로 진행되면 더 다양한 건축물과 유닛을 사용할 수 있습니다. 시민회관의 영지 반경 또한 +30% 증가합니다. 시민 군인의 체력이 +20% 상승합니다. 모든 건축물에 주둔시 수리율이 +7 증가합니다."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1351,7 +1351,7 @@ msgstr "영빈관"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Thólos"
-msgstr "트호로스"
+msgstr "토로스"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
 msgid ""
@@ -1373,7 +1373,7 @@ msgstr "코미티움"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklēsía"
-msgstr "에크크레시아"
+msgstr "엑크레시아"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -2276,9 +2276,8 @@ msgstr "카르타고는 삼중의 성벽을 쌓았습니다. 이 벽은 절때�
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "카르타고의 벽, 관문, 망루는 보통 벽의 3배의 내구력을 가지고 있지만,  짓는데 시간과 비용이 2배가 됩니다."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr "카르타고의 벽의 짓는시간이 +100% 증가하고, 석재 비용이 +100% 증가하고, 내구력이 +200% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2290,9 +2289,9 @@ msgstr "켈트의 건축물은 대부분 목조 건물 잔해를 기초로 사�
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "켈트 건물은 체력이 -20% 낮아지지만 짓는 비용은 20% 저렴하고 짓는 속도는 빨라집니다."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr "브리튼과 갈리아 건축물의 짓는시간이 -20% 단축되고, 내구력이 -20% 낮아지고, 점유 점수가 -20% 낮아집니다."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2304,9 +2303,9 @@ msgstr "그리스는 미케네 문명 초기부터 석조 건설을 이용했습
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "모든 건축물은 내구성과 점령 포인트가 +10% 증가하지만 건설 시간은 +10% 더 걸립니다."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr "아테네, 마케도니아, 스파르타의 건축물의 짓는 시간이 +10% 증가하고, 내구력이 +10% 증가하고, 점유 점수가 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2323,8 +2322,8 @@ msgid ""
 msgstr "마우리야 제국은 수십개의 독립 왕국이 일찍이 있었던 5백만 평방 킬로미터의 지역과 인구는 6천만명에 가까운 인구를 가지고 있었습니다. 마우리아 왕조의 통치자는 황제 속의 황제 칭호를 갖고 이끈 상비군은 6십만 보병, 9천마리의 코끼리, 8천대의 전차,  3만의 기병을 지휘하여 아마도 당대 최대 규모의 군대로 만들었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "마우리야의 최대 인구 한도는 10% 더 높습니다."
+msgid "Mauryas +10% maximum population limit."
+msgstr "마우리야의 최대 인구 한도가 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2341,8 +2340,8 @@ msgid ""
 msgstr "마우리야는 인도의 풍부한 천연 자원인 나무로 도시 벽을 지었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "마우리아 성벽은 체력이 -20% 이고 건설 시간이 -20% 입니다."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr "마우리아 성벽의 짓는 시간이 -20% 단축하고, 내구력이 -20% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2359,8 +2358,8 @@ msgid ""
 msgstr "페르시아는 전시에 대규모 보병의 소집을 아케메네스 왕조 제국의 엄청난 크기와 그것을 실현하는 방법에 의해 가능하게 실제로 했습니다. 일반적으로 페르시아 보병은 훈련이 잘되어있었고 대단히 끈기 있게 싸웠습니다. 그러나 보병은 가난해서 백병전을 수행한 근접 전투원들이었습니다. 또한 정예부대를 제외하고 페르시아 보병은 상비군이 아니었습니다."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "페르시아는 최대 인구가 10% 더 높습니다."
+msgid "Persians +10% maximum population limit."
+msgstr "페르시아의 최대 인구 한도가 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2375,8 +2374,8 @@ msgid ""
 msgstr "스파르타의 육군은 당시 세계 최대는 아니었지만 세계 최강이었습니다. 그들은 양보다 질을 추구했습니다. 스파르타에는 튼튼한 성벽은 필요하지 않다고 합니다.  왜냐면 사람이 곳 성벽이라고 했기때문입니다."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "스파르타는 최대 인구가 10% 적습니다."
+msgid "Spartans −10% maximum population limit."
+msgstr "스파르타의 최대 인구 한도가 -10% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

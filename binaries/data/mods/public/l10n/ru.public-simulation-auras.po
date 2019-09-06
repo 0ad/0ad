@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-09-01 12:49+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-05 16:50+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -208,8 +208,8 @@ msgid "Saripeko"
 msgstr "Сарипеко"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen-Soldier Javelinists −20% resource costs."
-msgstr "Стоимость копьеметателей-граждан союзников снижается на 20%."
+msgid "Allied Citizen Javelinists −20% resource costs."
+msgstr "Стоимость дротометателей-граждан союзников снижается на 20%."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -258,8 +258,8 @@ msgid "Conscription"
 msgstr "Воинская повинность"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied Citizen-Soldier Infantry −20% training time."
-msgstr "Время обучения воинов-граждан союзников снижается на 20%."
+msgid "Allied Citizen Infantry −20% training time."
+msgstr "Время обучения пеших воинов-граждан союзников снижается на 20%."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -274,7 +274,7 @@ msgid "Peloponnesian League"
 msgstr "Пелопоннесский союз"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Allied Citizen-Soldier Infantry Spearmen +10% health."
+msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr "Пешие копейщики-граждане союзников получают +10% к здоровью."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
@@ -324,7 +324,7 @@ msgstr "Набеги застрельщиков"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelinists +20% attack range."
-msgstr "Кассивелаун развернул мобильные отряды застрельщиков, которые наносили быстрые и внезапные атаки по римским войскам и обозам с провиантом.\nЗастрельщики получают +20% к дальности атаки."
+msgstr "Кассивелаун развернул мобильные отряды застрельщиков, которые наносили быстрые и внезапные атаки по римским войскам и обозам с провиантом.\nДротометатели получают +20% к дальности атаки."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -344,7 +344,7 @@ msgstr "Резня из засады"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr ""
+msgstr "Воюя с Римлянами, Амбиорикс осознал бесполезность открытой войны, и вместо этого применил засадную тактику. Галлы быстро поняли, где и когда совершать внезапные атаки.\nВоины требуют на 25% меньше опыта для повышения и получают +5% к урону."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -354,7 +354,7 @@ msgstr "Дань Риму"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr ""
+msgstr "Когда римская армия начала испытывать нужду в припасах, племенам галлов было приказано отдавать часть их и без того скудного урожая. Племя эбуронов под предводительством Амбриорикса отказалось подчиниться, поэтому Цезарь направил войска, чтобы принудить их силой.\n−10% к скорости уборки зерна."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -363,8 +363,8 @@ msgstr "Командир наёмников"
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
-"Allied Citizen-Soldier Mercenaries −25% metal cost."
-msgstr ""
+"Allied Citizen Mercenaries −25% metal cost."
+msgstr "Вместе со своим братом Андобалом, Мандоний командовал иберийскими новобранцами и наёмниками, принимавшими участие в Пунических войнах.\nВербовка всех союзных наёмников-граждан требует на 25% меньше металла."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -374,7 +374,7 @@ msgstr "Спаситель Жизней"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr ""
+msgstr "После того, как Андобал пал в битве, Мандоний вывел выживших в безопасное место.\n+10% к здоровью воинов."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
@@ -384,7 +384,7 @@ msgstr "Ранняя Нубийская Королева"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr ""
+msgstr "Обладая всей полнотой власти в империи Мероэ, а также играя значительную роль в мероитской религии, Шанакдахето олицетворяла могущество государства Куш, с которым приходилось считаться.\nСкорость сбора вражескими женщинами снижается на 15%."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -394,7 +394,7 @@ msgstr "Храм в Наге"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr ""
+msgstr "Как и во всех культурах, религия играла значительную роль в Куше. Около 160 г. до н.э. царица Шанакдакете построила Храм, олицетворявший рассвет Мероэ.\nХрамы получают +1 к скорости лечения гарнизона."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -404,7 +404,7 @@ msgstr "Разграбитель Городов"
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
-msgstr ""
+msgstr "Во время Первой Македонской войны войска Филиппа V разграбили Фермон — центр религиозной и политической жизни Этолии.\nГрабёж приносит по 5 единиц пищи и древесины с каждого поверженного врага, осадного орудия, корабля или здания."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -414,7 +414,7 @@ msgstr "Объединитель Империи"
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Сын Чандрагупты Маурьи, Биндусара объединил империю, передав в правление своему сыну Ашоке стабильное государство.\n+20% к контролю территории зданиями."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -424,7 +424,7 @@ msgstr "Вамба Морияр"
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "Soldiers +15% capture attack strength."
-msgstr ""
+msgstr "Говорят, Биндусара завоевал земли к югу от империи.\nВоины захватывают на 15% лучше."
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -434,7 +434,7 @@ msgstr "Великий Строитель"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr ""
+msgstr "На протяжении своего правления, большая часть сил Артаксеркса уходила на строительные проекты. Он восстановил дворец Дария I в Сузах, а также древний город Экбатаны.\n+5% к прочности и −10% к стоимости всех зданий."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -444,7 +444,7 @@ msgstr "Великий Библиотекарь"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr ""
+msgstr "Продолжая работу своего предшественника над Великой Александрийской библиотекой, он захватил все книги, привезённые в город, оставив своему народу огромный пласт накопленной мудрости.\n−10% к стоимости исследования всех технологий."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -454,7 +454,7 @@ msgstr "Мститель Лукреции"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female Citizens −20% food cost and +10% gather speed."
-msgstr ""
+msgstr "После того, как Лукреция, износилованная сыном царя Тарквиния Гордого, покончила с собой, Луций Юний Брут поклялся отомстить за неё и свергнуть монархию.\nСтоимость обучения женщин ниже на 20%, а скорость сбора ими урожая выше на 10%."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -464,7 +464,7 @@ msgstr "Основатель и Защитник Республики"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 armor."
-msgstr ""
+msgstr "Луций Юний Брут был одной из ключевых фигур в свержении монархии и создании Римской республики. Позднее в должности консула он привел римскую армию к победе в войне с этрусским царём Тарквинием, стремившимся вернуть трон.\n+1 к броне всех людей и осадных орудий."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -474,7 +474,7 @@ msgstr "Основатель Храма Исиды"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "Temples −10% resource costs; Temple technologies −10% resource costs."
-msgstr ""
+msgstr "Антиох I заложил основу храма Исиды в Борсиппе.\n−10% к стоимости возведения храмов и исследования храмовых технологий."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -504,8 +504,8 @@ msgstr "Военные реформы Ликурга"
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
-"Citizen-Soldier Infantry Spearmen −10% resource costs."
-msgstr "Ликург предложил несколько военных реформ, таким образом, полная и безраздельная преданность Спарте со стороны её граждан была претворена в жизнь при его форме правления.\n-10% к стоимости обучения пеших копейщиков-граждан."
+"Citizen Infantry Spearmen −10% resource costs."
+msgstr "Ликург предложил несколько военных реформ, таким образом, полная и безраздельная преданность Спарте со стороны её граждан была претворена в жизнь при его форме правления.\n−10% к стоимости обучения пеших копейщиков-граждан."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
@@ -519,7 +519,7 @@ msgstr "Железные пеланоры"
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "Workers +15% metal gather rate."
-msgstr ""
+msgstr "Для поддержания равенства, Ликург запретил использование золотых и серебряных момент и ввел в обращение новые железные монеты, называемые пеланорами.\n+15% к скорости добычи металла."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -535,7 +535,7 @@ msgstr "Улучшения пельтастов"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr "+15% к скорости пехотинцев-копьеметателей."
+msgstr "+15% к скорости пехотинцев-дротометателей."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -551,7 +551,7 @@ msgstr "Храм Ники Аптерос"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr "-25% к стоимости в камне и +2 к скорости восстановления здоровья для гарнизона храмов."
+msgstr "−25% к стоимости в камне и +2 к скорости восстановления здоровья для гарнизона храмов."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -951,7 +951,7 @@ msgstr "Реформы Илотов"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "+25% к урону и +1 к броне пеших граждан-копьеметателей."
+msgstr "+25% к урону и +1 к броне пеших граждан-дротометателей."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

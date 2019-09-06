@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-31 03:32+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 18:05+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -46,8 +46,12 @@ msgid "Fish"
 msgstr "물고기"
 
 #: simulation/templates/template_gaia_fish.xml:10
-msgid "Gather food from this bountiful oceanic resource."
-msgstr "이 풍부한 해양 자원에서 식량을 모으십시오."
+msgid "Catch fish for food."
+msgstr "식량을 위해 물고기를 잡습니다."
+
+#: simulation/templates/template_gaia_flora.xml:6
+msgid "Chop trees for wood."
+msgstr "목재를 위해 나무를 팹니다."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -56,13 +60,14 @@ msgstr "이 풍부한 해양 자원에서 식량을 모으십시오."
 msgid "Bush"
 msgstr "덤불"
 
+#: simulation/templates/template_gaia_flora_bush_berry.xml:4
+#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+msgid "Pick fruit for food."
+msgstr "식량을 위해 과일을 땁니다."
+
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "나무"
-
-#: simulation/templates/template_gaia_flora_tree.xml:9
-msgid "Chop down to accumulate Wood."
-msgstr "저장된 나무를 자르세요."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -70,49 +75,49 @@ msgstr "일반적인 지질학"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Metal Mine"
-msgstr "금속광산"
+msgstr "금속 광산"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "귀금속의 희귀한 형태의 접근을 제공하는 광물 침전물."
+msgid "Mine ore for metal."
+msgstr "금속을 위해 광물을 캡니다."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
 msgstr "채석장"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
-msgid "Mine these to provide Stone building material."
-msgstr "건물의 토대가 되는 것들을 채굴하세요."
+msgid "Quarry rock for stone."
+msgstr "석재를 위해 바위를 캡니다."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
 msgstr "유적"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-msgid "These ruins that can be mined for resources."
-msgstr "자원을 채굴할 수 있는 유적입니다."
+msgid "Demolish ruins for stone."
+msgstr "석재를 위해 폐허를 철거합니다."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
 msgstr "보물"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-msgid "A treasure that can be quickly gathered."
-msgstr "빨리 채취할 수 있는 보물입니다."
+msgid "Collect treasures for resources."
+msgstr "자원을 위해 보물을 수집합니다."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "건축물"
 
-#: simulation/templates/template_unit.xml:42
+#: simulation/templates/template_unit.xml:43
 msgid "Unit"
 msgstr "유닛"
 
-#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
 msgstr "성벽"
 
-#: simulation/templates/template_wallset.xml:12
+#: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
 msgstr "튼튼한 방어를 위해 마을에 벽을 쌓습니다."
 
@@ -522,17 +527,9 @@ msgstr "거센 초원"
 msgid "Berries"
 msgstr "열매들"
 
-#: simulation/templates/gaia/flora_bush_berry.xml:5
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "식량을 모우기 위해서 이 덤불에서 과일을 수집합니다."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "포도"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
-msgid "Gather grapes from these vines for Food."
-msgstr "식량용 쓰일 포도를 포도나무에서 채집합니다."
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -558,10 +555,6 @@ msgstr "용 대나무??"
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
 msgstr "바나나"
-
-#: simulation/templates/gaia/flora_tree_banana.xml:5
-msgid "Gather bananas for Food."
-msgstr "식량용으로 바나나를 채집합니다."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -641,10 +634,6 @@ msgstr "자작나무"
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "무화과"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:8
-msgid "Gather figs for Food."
-msgstr "음식으로 쓰일 무화과를 모으세요."
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
@@ -797,10 +786,6 @@ msgstr "로마 동상들"
 msgid "Unfinished Greek Temple"
 msgstr "미완성된 그리스 사원"
 
-#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "이 사원은 미완성 되었고, 유적으로 변했습니다."
-
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
@@ -847,27 +832,9 @@ msgstr "페가수스"
 msgid "Shipwreck"
 msgstr "난파선"
 
-#: simulation/templates/gaia/treasure/shipwreck.xml:9
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "썩는 난파선 (군대). 어떤 사업가를 위한 좋은 기회."
-
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
 msgstr "난파선 화물"
-
-#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "생명의 손실이 많은 난파선. 어떤 사업가에게 좋은 기회."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "작은 화물선의 난파. 어떤 사업가에게 좋은 기회."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "절반정도 부딪힌 화물선. 어떤 사업가에게 좋은 기회."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
