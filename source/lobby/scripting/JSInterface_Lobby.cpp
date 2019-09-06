@@ -19,6 +19,7 @@
 
 #include "JSInterface_Lobby.h"
 
+#include "gui/GUIManager.h"
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
 #include "network/NetServer.h"
@@ -92,7 +93,7 @@ void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), 
 {
 	ENSURE(!g_XmppClient);
 
-	g_XmppClient = IXmppClient::create(utf8_from_wstring(username), utf8_from_wstring(password),
+	g_XmppClient = IXmppClient::create(g_GUI->GetScriptInterface().get(), utf8_from_wstring(username), utf8_from_wstring(password),
 		utf8_from_wstring(room), utf8_from_wstring(nick), historyRequestSize);
 	g_rankedGame = true;
 }
@@ -101,7 +102,7 @@ void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPr
 {
 	ENSURE(!g_XmppClient);
 
-	g_XmppClient = IXmppClient::create(utf8_from_wstring(username), utf8_from_wstring(password),
+	g_XmppClient = IXmppClient::create(g_GUI->GetScriptInterface().get(), utf8_from_wstring(username), utf8_from_wstring(password),
 		"", "", 0, true);
 }
 
