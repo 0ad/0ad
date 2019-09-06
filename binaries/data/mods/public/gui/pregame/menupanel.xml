@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+
+	<object name="pgToolTip" style="TranslucentPanel" type="text" hidden="true" size="100%-290 25 100% 140" ghost="true"/>
+
+	<object name="mainMenu" type="image" style="MainMenuPanel" size="60 -2 300 100%+2" z="50">
+
+		<object name="mainMenuButtons" size="8 156 100%-8 356">
+			<repeat count="10">
+				<object name="mainMenuButton[n]" type="button" style="StoneButtonFancy" tooltip_style="pgToolTip"/>
+			</repeat>
+		</object>
+
+		<!-- These are used to make the right side blend in with the submenu -->
+		<object name="MainMenuPanelRightBorderTop" type="image" sprite="MainMenuPanelRightBorder" ghost="true" size="100%-2 0 100% 100%"/>
+		<object name="MainMenuPanelRightBorderBottom" type="image" sprite="MainMenuPanelRightBorder" ghost="true" size="100%-2 0 100% 100%"/>
+
+		<include file="gui/pregame/ProjectInformation.xml"/>
+	</object>
+
+	<object name="submenu" type="image" style="SubmenuPanel" size="60 0 300 0%" hidden="true">
+		<object name="submenuButtons" type="image" size="0 4 100%-4 100%-4" tooltip_style="pgToolTip">
+			<repeat count="30">
+				<object type="button" style="StoneButtonFancy" tooltip_style="pgToolTip"/>
+			</repeat>
+		</object>
+	</object>
+
+	<!-- Hide submenu when user clicks on the background -->
+	<object name="closeMenuButton" type="button" hotkey="cancel"/>
+
+</object>
