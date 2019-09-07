@@ -47,7 +47,7 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 			"radius": data.splash.radius,
 			"shape": data.splash.shape,
 			"direction": data.direction,
-			"playersToDamage": Attacking.GetPlayersToDamage(data.attackerOwner, data.splash.friendlyFire)
+			"friendlyFire": data.splash.friendlyFire
 		});
 	}
 

@@ -47,7 +47,7 @@ let result = {
 	"origin": pos,
 	"radius": template.Range,
 	"shape": template.Shape,
-	"playersToDamage": playersToDamage
+	"friendlyFire": false
 };
 
 Attacking.CauseDamageOverArea = data => TS_ASSERT_UNEVAL_EQUALS(data, result);

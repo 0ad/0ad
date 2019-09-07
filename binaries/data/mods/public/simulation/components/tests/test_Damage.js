@@ -169,7 +169,7 @@ function TestLinearSplashDamage()
 		"radius": 10,
 		"shape": "Linear",
 		"direction": new Vector3D(1, 747, 0),
-		"playersToDamage": [2],
+		"friendlyFire": false,
 	};
 
 	let fallOff = function(x, y)
@@ -178,6 +178,15 @@ function TestLinearSplashDamage()
 	};
 
 	let hitEnts = new Set();
+
+	AddMock(attackerOwner, IID_Player, {
+		"GetEnemies": () => [2]
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": id => attackerOwner,
+		"GetAllPlayers": () => [0, 1, 2]
+	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [60, 61, 62],
@@ -250,11 +259,21 @@ function TestCircularSplashDamage()
 	Engine.PostMessage = (ent, iid, message) => {};
 
 	const radius = 10;
+	let attackerOwner = 1;
 
 	let fallOff = function(r)
 	{
 		return 1 - r * r / (radius * radius);
 	};
+
+	AddMock(attackerOwner, IID_Player, {
+		"GetEnemies": () => [2]
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": id => attackerOwner,
+		"GetAllPlayers": () => [0, 1, 2]
+	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [60, 61, 62, 64],
@@ -319,11 +338,11 @@ function TestCircularSplashDamage()
 		"type": "Ranged",
 		"attackData": { "Damage": { "Hack": 100, "Pierce": 0, "Crush": 0 } },
 		"attacker": 50,
-		"attackerOwner": 1,
+		"attackerOwner": attackerOwner,
 		"origin": new Vector2D(3, 4),
 		"radius": radius,
 		"shape": "Circular",
-		"playersToDamage": [2],
+		"friendlyFire": false,
 	});
 }
 

@@ -182,12 +182,12 @@ Attacking.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
  * @param {number}   data.radius - The radius of the splash damage.
  * @param {string}   data.shape - The shape of the radius.
  * @param {Vector3D} [data.direction] - The unit vector defining the direction. Needed for linear splash damage.
- * @param {number[]} data.playersToDamage - The array of player id's to damage.
+ * @param {boolean}  data.friendlyFire - A flag indicating if allied entities also ought to be damaged.
  */
 Attacking.prototype.CauseDamageOverArea = function(data)
 {
-	// Get nearby entities and define variables
-	let nearEnts = this.EntitiesNearPoint(data.origin, data.radius, data.playersToDamage);
+	let nearEnts = this.EntitiesNearPoint(data.origin, data.radius,
+		this.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
 	let damageMultiplier = 1;
 
 	// Cycle through all the nearby entities and damage it appropriately based on its distance from the origin.
