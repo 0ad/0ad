@@ -423,7 +423,7 @@ static inline void ComputeDirection(float* distanceMap, const u16* heightmap, fl
 #define ABOVEWATER(x, z) (HEIGHT_SCALE * heightmap[z*SideSize + x] >= waterHeight)
 #define UPDATELOOKAHEAD \
 	for (; lookahead <= id2+maxLevel && lookahead < SideSize && \
-	       ((!Transpose && ABOVEWATER(lookahead, id1)) || (Transpose && ABOVEWATER(id1, lookahead))); ++lookahead)
+	       ((!Transpose && !ABOVEWATER(lookahead, id1)) || (Transpose && !ABOVEWATER(id1, lookahead))); ++lookahead)
 	// Algorithm:
 	// We want to know the distance to the closest shore point. Go through each line/column,
 	// keep track of when we encountered the last shore point and how far ahead the next one is.
@@ -953,65 +953,6 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	glDisable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);
 #endif
-}
-
-///////////////////////////////////////////////////////////////////
-// Calculate The blurred normal map to get an idea of where water ought to go.
-void WaterManager::RecomputeBlurredNormalMap()
-{
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	if (!terrain || !terrain->GetHeightMap())
-		return;
-
-	// used to cache terrain normals since otherwise we'd recalculate them a lot (I'm blurring the "normal" map).
-	// this might be updated to actually cache in the terrain manager but that's not for now.
-	if (m_BlurredNormalMap == NULL)
-		m_BlurredNormalMap = new CVector3D[m_MapSize*m_MapSize];
-
-	// It's really slow to calculate normals so cache them first.
-	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
-
-	// Not the edges, we won't care about them.
-	float ii = 8.0f, jj = 8.0f;
-	for (size_t j = 2; j < m_MapSize-2; ++j, jj += 4.0f)
-		for (size_t i = 2; i < m_MapSize-2; ++i, ii += 4.0f)
-		{
-			CVector3D norm;
-			terrain->CalcNormal(i,j,norm);
-			normals[j*m_MapSize + i] = norm;
-		}
-
-	// We could be way fancier (and faster) for our blur but we probably don't need the complexity.
-	// Two pass filter, nothing complicated here.
-	CVector3D blurValue;
-	ii = 8.0f; jj = 8.0f;
-	size_t idx = 2;
-	for (size_t j = 2; j < m_MapSize-2; ++j, jj += 4.0f)
-		for (size_t i = 2; i < m_MapSize-2; ++i, ii += 4.0f,++idx)
-		{
-			blurValue = normals[idx-2];
-			blurValue += normals[idx-1];
-			blurValue += normals[idx];
-			blurValue += normals[idx+1];
-			blurValue += normals[idx+2];
-			m_BlurredNormalMap[idx] = blurValue * 0.2f;
-		}
-	// y direction, probably slower because of cache misses but I don't see an easy way around that.
-	ii = 8.0f; jj = 8.0f;
-	for (size_t i = 2; i < m_MapSize-2; ++i, ii += 4.0f)
-	{
-		for (size_t j = 2; j < m_MapSize-2; ++j, jj += 4.0f)
-		{
-			blurValue = normals[(j-2)*m_MapSize + i];
-			blurValue += normals[(j-1)*m_MapSize + i];
-			blurValue += normals[j*m_MapSize + i];
-			blurValue += normals[(j+1)*m_MapSize + i];
-			blurValue += normals[(j+2)*m_MapSize + i];
-			m_BlurredNormalMap[j*m_MapSize + i] = blurValue * 0.2f;
-		}
-	}
-
-	delete[] normals;
 }
 
 void WaterManager::RecomputeWaterData()
