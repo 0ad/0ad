@@ -23,6 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
+#include "ps/Profile.h"
 #include "ps/Util.h"
 #include "simulation2/Simulation2.h"
 

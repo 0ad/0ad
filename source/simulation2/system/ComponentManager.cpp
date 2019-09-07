@@ -29,6 +29,7 @@
 
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "ps/Filesystem.h"
 #include "ps/scripting/JSInterface_VFS.h"
 

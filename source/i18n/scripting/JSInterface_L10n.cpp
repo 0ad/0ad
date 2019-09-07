@@ -21,7 +21,6 @@
 
 #include "i18n/L10n.h"
 #include "lib/utf8.h"
-#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
 // Returns a translation of the specified English string into the current language.

@@ -25,7 +25,6 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "ps/CLogger.h"
-#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME) \

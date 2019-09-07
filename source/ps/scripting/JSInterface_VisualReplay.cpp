@@ -20,7 +20,6 @@
 #include "JSInterface_VisualReplay.h"
 
 #include "ps/CStr.h"
-#include "ps/Profile.h"
 #include "ps/VisualReplay.h"
 #include "scriptinterface/ScriptInterface.h"
 
