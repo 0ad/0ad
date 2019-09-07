@@ -162,8 +162,6 @@ public:
 
 		JS::RootedValue message(cx);
 		GetScriptInterface().CreateObject(&message, args...);
-		GetScriptInterface().FreezeObject(message, true);
-
 		m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
 	}
 
