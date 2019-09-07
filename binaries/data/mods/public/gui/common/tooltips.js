@@ -8,32 +8,6 @@ var g_TooltipTextFormats = {
 	"nameGeneric": { "font": "sans-bold-16" }
 };
 
-var g_AttackTypes = {
-	"Melee": translate("Melee Attack:"),
-	"Ranged": translate("Ranged Attack:"),
-	"Capture": translate("Capture Attack:")
-};
-
-var g_SplashDamageTypes = {
-	"Circular": translate("Circular Splash Damage"),
-	"Linear": translate("Linear Splash Damage")
-};
-
-var g_RangeTooltipString = {
-	"relative": {
-		// Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2) meters, Interval: 3 arrows / 2 seconds
-		"minRange": translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"),
-		// Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2) meters, Interval: 3 arrows / 2 seconds
-		"no-minRange": translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"),
-	},
-	"non-relative": {
-		// Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 meters, Interval: 3 arrows / 2 seconds
-		"minRange": translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s, %(rate)s"),
-		// Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters, Interval: 3 arrows / 2 seconds
-		"no-minRange": translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"),
-	}
-};
-
 function getCostTypes()
 {
 	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
@@ -177,28 +151,6 @@ function getCurrentHealthTooltip(entState, label)
 	});
 }
 
-function attackRateDetails(template, type)
-{
-	// Either one arrow shot by UnitAI,
-	let timeString = getSecondsString(template.attack[type].repeatTime / 1000);
-
-	// or multiple arrows shot by BuildingAI
-	if (!template.buildingAI || type != "Ranged")
-		return timeString;
-
-	// Show either current rate from simulation or default count if the sim is not running
-	let arrows = template.buildingAI.arrowCount || template.buildingAI.defaultArrowCount;
-	let arrowString = sprintf(translatePlural("%(arrowcount)s %(arrows)s", "%(arrowcount)s %(arrows)s", arrows), {
-		"arrowcount": arrows,
-		"arrows": unitFont(translatePlural("arrow", "arrows", arrows))
-	});
-
-	return sprintf(translate("%(arrowString)s / %(timeString)s"), {
-		"arrowString": arrowString,
-		"timeString": timeString
-	});
-}
-
 /**
  * Converts an armor level into the actual reduction percentage
  */
@@ -231,16 +183,107 @@ function getArmorTooltip(template)
 	});
 }
 
-function damageTypesToText(dmg)
+function attackRateDetails(interval, projectiles)
 {
-	if (!dmg)
-		return '[font="sans-12"]' + translate("(None)") + '[/font]';
+	// ToDo: Get the name of a projectile from the template.
 
-	return Object.keys(dmg).filter(dmgType => dmg[dmgType]).map(
+	if (!interval || projectiles == 0)
+		return "";
+
+	let attackRateString = getSecondsString(interval / 1000);
+	let header = headerFont(translate("Interval:"));
+
+	if (+projectiles > 1)
+	{
+		header = headerFont(translate("Rate:"));
+		let projectileString = sprintf(translatePlural("%(projectileCount)s %(projectileName)s", "%(projectileCount)s %(projectileName)s", projectiles), {
+			"projectileCount": projectiles,
+			"projectileName": unitFont(translatePlural("arrow", "arrows", projectiles))
+		});
+
+		attackRateString = sprintf(translate("%(projectileString)s / %(attackRateString)s"), {
+			"projectileString": projectileString,
+			"attackRateString": attackRateString
+		});
+	}
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": header,
+		"details": attackRateString
+	});
+}
+
+function rangeDetails(attackTypeTemplate)
+{
+	if (!attackTypeTemplate.maxRange)
+		return "";
+
+	let rangeTooltipString = {
+		"relative": {
+			// Translation: For example: Range: 2 to 10 (+2) meters
+			"minRange": translate("%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"),
+			// Translation: For example: Range: 10 (+2) meters
+			"no-minRange": translate("%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"),
+		},
+		"non-relative": {
+			// Translation: For example: Range: 2 to 10 meters
+			"minRange": translate("%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"),
+			// Translation: For example: Range: 10 meters
+			"no-minRange": translate("%(rangeLabel)s %(maxRange)s %(rangeUnit)s"),
+		}
+	};
+
+	let minRange = Math.round(attackTypeTemplate.minRange);
+	let maxRange = Math.round(attackTypeTemplate.maxRange);
+	let realRange = attackTypeTemplate.elevationAdaptedRange;
+	let relativeRange = realRange ? Math.round(realRange - maxRange) : 0;
+
+	return sprintf(rangeTooltipString[relativeRange ? "relative" : "non-relative"][minRange ? "minRange" : "no-minRange"], {
+		"rangeLabel": headerFont(translate("Range:")),
+		"minRange": minRange,
+		"maxRange": maxRange,
+		"relativeRange": relativeRange > 0 ? sprintf(translate("+%(number)s"), { "number": relativeRange }) : relativeRange,
+		"rangeUnit":
+			unitFont(minRange || relativeRange ?
+				// Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3) meters"
+				translate("meters") :
+				translatePlural("meter", "meters", maxRange))
+	});
+}
+
+function damageDetails(damageTemplate)
+{
+	if (!damageTemplate)
+		return "";
+
+	return Object.keys(damageTemplate).filter(dmgType => damageTemplate[dmgType]).map(
 		dmgType => sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg[dmgType].toFixed(1),
+			"damage": damageTemplate[dmgType].toFixed(1),
 			"damageType": unitFont(translateWithContext("damage type", dmgType))
 		})).join(commaFont(translate(", ")));
+}
+
+function captureDetails(captureTemplate)
+{
+	if (!captureTemplate)
+		return "";
+
+	return sprintf(translate("%(amount)s %(name)s"), {
+		"amount": captureTemplate.toFixed(1),
+		"name": unitFont(translateWithContext("damage type", "Capture"))
+	});
+}
+
+function attackEffectsDetails(attackTypeTemplate)
+{
+	if (!attackTypeTemplate)
+		return "";
+
+	let effects = [
+		captureDetails(attackTypeTemplate.Capture || undefined),
+		damageDetails(attackTypeTemplate.Damage || undefined)
+	];
+	return effects.filter(effect => effect).join(commaFont(translate(", ")));
 }
 
 function getAttackTooltip(template)
@@ -249,51 +292,28 @@ function getAttackTooltip(template)
 		return "";
 
 	let tooltips = [];
-	for (let type in template.attack)
+	for (let attackType in template.attack)
 	{
-		if (type == "Slaughter")
-			continue; // Slaughter is used to kill animals, so do not show it.
-
-		let rate = sprintf(translate("%(label)s %(details)s"), {
-			"label":
-				headerFont(
-					template.buildingAI && type == "Ranged" ?
-						translate("Interval:") :
-						translate("Rate:")),
-			"details": attackRateDetails(template, type)
-		});
-
-		let attackLabel = headerFont(g_AttackTypes[type]);
-		if (type == "Capture" || type != "Ranged")
-		{
-			tooltips.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
-				"attackLabel": attackLabel,
-				"details":
-					type == "Capture" ?
-						template.attack.Capture.Capture :
-						damageTypesToText(template.attack[type].Damage),
-				"rate": rate
-			}));
+		// Slaughter is used to kill animals, so do not show it.
+		if (attackType == "Slaughter")
 			continue;
-		}
 
-		let minRange = Math.round(template.attack[type].minRange);
-		let maxRange = Math.round(template.attack[type].maxRange);
-		let realRange = template.attack[type].elevationAdaptedRange;
-		let relativeRange = realRange ? Math.round(realRange - maxRange) : 0;
-		tooltips.push(sprintf(g_RangeTooltipString[relativeRange ? "relative" : "non-relative"][minRange ? "minRange" : "no-minRange"], {
+		let attackLabel = sprintf(headerFont(translate("%(attackType)s Attack")), {
+			"attackType": attackType
+		});
+		let attackTypeTemplate = template.attack[attackType];
+
+		let projectiles;
+		// Use either current rate from simulation or default count if the sim is not running.
+		// ToDo: This ought to be extended to include units which fire multiple projectiles.
+		if (template.buildingAI)
+			projectiles = template.buildingAI.arrowCount || template.buildingAI.defaultArrowCount;
+
+		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s"), {
 			"attackLabel": attackLabel,
-			"damageTypes": damageTypesToText(template.attack[type].Damage),
-			"rangeLabel": headerFont(translate("Range:")),
-			"minRange": minRange,
-			"maxRange": maxRange,
-			"relativeRange": relativeRange > 0 ? sprintf(translate("+%(number)s"), { "number": relativeRange }) : relativeRange,
-			"rangeUnit":
-				unitFont(minRange || relativeRange ?
-					// Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3) meters"
-					translate("meters") :
-					translatePlural("meter", "meters", maxRange)),
-			"rate": rate,
+			"effects": attackEffectsDetails(attackTypeTemplate),
+			"range": rangeDetails(attackTypeTemplate),
+			"rate": attackRateDetails(attackTypeTemplate.repeatTime, projectiles)
 		}));
 	}
 	return tooltips.join("\n");
@@ -305,20 +325,23 @@ function getSplashDamageTooltip(template)
 		return "";
 
 	let tooltips = [];
-	for (let type in template.attack)
+	for (let attackType in template.attack)
 	{
-		let splash = template.attack[type].splash;
-		if (!splash)
+		let splashTemplate = template.attack[attackType].splash;
+		if (!splashTemplate)
 			continue;
 
-		let splashDamageTooltip = sprintf(translate("%(label)s: %(value)s"), {
-			"label": headerFont(g_SplashDamageTypes[splash.shape]),
-			"value": damageTypesToText(splash.Damage)
+		let splashLabel = sprintf(headerFont(translate("%(splashShape)s Splash Damage")), {
+			"splashShape": splashTemplate.shape
+		});
+		let splashDamageTooltip = sprintf(translate("%(label)s: %(effects)s"), {
+			"label": splashLabel,
+			"effects": attackEffectsDetails(splashTemplate)
 		});
 
-		if (g_AlwaysDisplayFriendlyFire || splash.friendlyFire)
+		if (g_AlwaysDisplayFriendlyFire || splashTemplate.friendlyFire)
 			splashDamageTooltip += commaFont(translate(", ")) + sprintf(translate("Friendly Fire: %(enabled)s"), {
-				"enabled": splash.friendlyFire ? translate("Yes") : translate("No")
+				"enabled": splashTemplate.friendlyFire ? translate("Yes") : translate("No")
 			});
 
 		tooltips.push(splashDamageTooltip);
@@ -389,9 +412,9 @@ function getProjectilesTooltip(template)
 function getRepairTimeTooltip(entState)
 {
 	return sprintf(translate("%(label)s %(details)s"), {
-			"label": headerFont(translate("Number of repairers:")),
-			"details": entState.repairable.numBuilders
-		}) + "\n" + (entState.repairable.numBuilders ?
+		"label": headerFont(translate("Number of repairers:")),
+		"details": entState.repairable.numBuilders
+	}) + "\n" + (entState.repairable.numBuilders ?
 		sprintf(translatePlural(
 			"Add another worker to speed up the repairs by %(second)s second.",
 			"Add another worker to speed up the repairs by %(second)s seconds.",
@@ -411,9 +434,9 @@ function getRepairTimeTooltip(entState)
 function getBuildTimeTooltip(entState)
 {
 	return sprintf(translate("%(label)s %(details)s"), {
-			"label": headerFont(translate("Number of builders:")),
-			"details": entState.foundation.numBuilders
-		}) + "\n" + (entState.foundation.numBuilders ?
+		"label": headerFont(translate("Number of builders:")),
+		"details": entState.foundation.numBuilders
+	}) + "\n" + (entState.foundation.numBuilders ?
 		sprintf(translatePlural(
 			"Add another worker to speed up the construction by %(second)s second.",
 			"Add another worker to speed up the construction by %(second)s seconds.",
