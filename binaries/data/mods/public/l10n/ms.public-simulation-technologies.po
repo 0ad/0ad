@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -1239,9 +1239,9 @@ msgstr "Lanjutan dari bandar yang berkembang maju menjadi metropolis yang hebat,
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Maju ke Fasa Bandar, yang membuka lagi banyak struktur dan unit. Jangkauan wilayah bagi Pusat Sivik meningkat sebanyak +50%. Bonus tamadun 'Burung Hantu Perak' menganugerahkan tambahan +10% kadar pengumpulan logam untuk semua pekerja. Hayat maksimum askar rakyat ditingkatkan sebanyak +10%. Semua sruktur +9 kadar penjanaan bergarison."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1263,9 +1263,9 @@ msgstr "Lanjutan dari bandar yang berkembang maju menjadi metropolis yang hebat,
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Maju ke Fasa Bandar, yang membuka lagi banyak struktur dan unit. Jangkauan wilayah bagi Pusat Sivik meningkat sebanyak +50%. Hayat maksimum askar rakyat ditingkatkan sebanyak +10%. Semua sruktur +9 kadar penjanaan bergarison."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1290,9 +1290,9 @@ msgstr "Lanjutan dari kampung kecil  menjadi pekan yang berkembang maju.  Ini ad
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Maju ke Fasa Pekan, yang membuka lagi banyak struktur dan unit. Jangkauan wilayah bagi Pusat Sivik meningkat sebanyak +30%. Bonus tamadun 'Burung Hantu Perak' menganugerahkan tambahan +10% kadar pengumpulan logam untuk semua pekerja. Hayat maksimum askar rakyat ditingkatkan sebanyak +20%. Semua sruktur +7 kadar penjanaan bergarison."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1314,9 +1314,9 @@ msgstr "Maju dari kampung kecil menjadi pekan yang berkembang maju, sedia untuk 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Maju ke Fasa Pekan, yang membuka lagi banyak struktur dan unit. Jangkauan wilayah bagi Pusat Sivik meningkat sebanyak +30%. Hayat maksimum askar rakyat ditingkatkan sebanyak +20%. Semua sruktur +7 kadar penjanaan bergarison."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2264,9 +2264,8 @@ msgstr "Puak Carthage membina tembok bandar mereka dalam tiga lingkaran sepusat.
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Tembok, pintu pagar, dan menara Carthage mempunyai 3x hayat berbanding tembok biasa, juga masa pembinaan 2x ganda."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2278,9 +2277,9 @@ msgstr "Struktur Celt kebanyakannya diperbuat dari kayu dengan tapak puing."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Bangunan Celt kurang 20% hayat, tetapi 20% lebih murah dan pantas dibina."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2292,9 +2291,9 @@ msgstr "Yunani menggunakan pembinaan batu seawal zaman Mycenae"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Semua struktur mempunyai 10% lebih hayat dan mata tangkapan, tetapi perlu 10% lebih lama dibina."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2311,8 +2310,8 @@ msgid ""
 msgstr "Empayar Maurya terdiri daripada berdozen-dozen kerajaan kecil yang meliputi kawasan sejumlah 5 juta kilometer persegi, dengan populasi hampir 60 juta orang. Pemangku raja Maurya memegang jawatan Maharaja bagi Maharaja dan mengetuai sejumlah 600,000 orang askar infantri, 9000 ekor gajah perang, 8000 kereta kuda perang dan 30,000 askar berkuda, menjadikannya ketumbukan tentera terbesar pada zaman tersebut."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Maurya memilik had populasi maksimum 10% lebih tinggi."
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2329,8 +2328,8 @@ msgid ""
 msgstr "Maurya membina tembok dari kayu, yang merupakan sumber asli paling banyak di India."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Tembok bandar Maury kurang -20% hayat dan -20% tempoh pembinaan."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2347,8 +2346,8 @@ msgid ""
 msgstr "Puak Parsi pernah mengerahkan sejumlah besar askar infantri ketika perang kerana saiz empayar Achaemenid dan proses pengerahan yang sebegitu. Umumnya askar infantri Parsi terlatih dan berperang dengan semangat waja. Walaubagaimanapun askar Parsi lemah dari segi pertarungan tanpa senjata, perlawanan jarak dekat. Dan juga selain dari regimen elit, askar infantri Parsi bukanlah kuasa ketenteraan yang terhebat."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Parsi memilik had populasi maksimum 10% lebih tinggi."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2363,8 +2362,8 @@ msgid ""
 msgstr "Puak Sparta tidak mempunyai aksar yang terbesar di dunia, tetapi askar yang terbaik di dunia kerana komitmen mereka. Askar mereka kurang kuantitinya tetapi lebih berkualiti. Pernah disebut Sparta tidak memerlukan tembok bandar yang kuat, kerana tembok yang sebenar adalah penduduknya."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Puak Sparta memiliki had populasi maksimum 10% lebih rendah."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

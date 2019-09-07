@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Gagik Papikyan <gagspapikyan@gmail.com>, 2016
+# Gagik Papikyan <gagspapikyan@gmail.com>, 2016,2019
 # Vahe Avagyan <vahe-a@outlook.fr>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-31 20:39+0000\n"
+"POT-Creation-Date: 2019-09-02 07:09+0000\n"
+"PO-Revision-Date: 2019-09-04 18:19+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -25,17 +25,17 @@ msgstr "Աթենացիներ"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "+10% մետաղի հանքարդյունաբերության արագությանը՝ յուրաքանչյուր անցնող դարաշրջանի համար։"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr ""
+msgstr "Արծաթյա բվեր"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr ""
+msgstr "Ատտիկայում գտնվող Լավրիոնի հանքերն ապահովում էին Աթենքին արծաթի առատությամբ, որից հատվում էր տեղի հայտնի և թանկարժեք մետաղադրամը՝ Աթենքի բուն։"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 #: simulation/data/civs/mace.jsonCivBonuses[2].Description
@@ -43,7 +43,7 @@ msgstr ""
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Թեատրոնի կառուցումն ավելացնում է բոլոր շինությունների տարածքային ազդեցությունը +20%-ով։"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -57,11 +57,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Հույներին հաճախ էր հաջողվում հելլենիզացնել տարբեր օտարազգիների։ Հելլենիստական դարաշրջանի ընթացքում հունարենը Հին Աշխարհի լինգվա ֆրական էր և լայնորեն օգտագործվում էր Իսպանիայից մինչև Հնդկաստան։"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr "-25% դաշնակից ռազմանավերի շինարարության ժամանակին։"
+msgstr "-25% դաշնակից ռազմանավերի կառուցման ժամանակին։"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -73,7 +73,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Սալամիսի և Միկալի փառահեղ ծովային հաղթանակներից կարճ ժամանակ անց հունական քաղաք-պետությունները մ․թ․ա․ 478թ․-ին հիմնեցին Աթենական ծովային միությունը, որի նպատակն էր դուրս մղել պարսիկներին Էգեյան շրջանից։ Դաշնակից երկրներն աջակցեցին նավերով և գումարով, մինչդեռ աթենացիներն առաջարկեցին իրենց ողջ նավատորմը։"
 
 #: simulation/data/civs/athen.jsonAINames[0]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
@@ -140,21 +140,21 @@ msgstr "Դեմոսթենես"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr ""
+msgstr "Աթենական տրիրեմաներին ծովայիններ (Էպիբաստես Աթենաիկոս) պատրաստելու հնարավորություն։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr ""
+msgstr "Իփիկրատեսյան բարեփոխումներ"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr ""
+msgstr "Չեզոք տարածքում քարե պարիսպներ կառուցելու հնարավորություն։ Պատերի կառուցման ժամանակի 50% նվազեցում։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr ""
+msgstr "Երկար պարիսպներ"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -162,13 +162,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Աթենքի Երկար պարիսպները կառուցվել են խորամանկ Թեմիստոկլեսի ղեկավարությամբ և ձգվել են 6 կմ քաղաքից մինչև Պիրեյի նավահանգիստ։ Սա ապահովում էր քաղաքի մատակարարման ծովային ճանապարհները և կանխում էր քաղաքը սովի մատնելը թշնամու կողմից պաշարման ժամանակ։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Խաղացողը ստանում է հնարավորություն հրամայել նիզակավոր զինվորներին ձևավորել փաղանգ՝ ապահովելով առավել մեծ հարձակում և զրահ։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
@@ -181,7 +181,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr ""
+msgstr "Դասական փաղանգը ձևավորվել է մ․թ․ա․ մոտ 8-րդ դարում։ Այն ուներ 8 մարդ խորություն և մինչև 800 մարդ լայնություն։ Ներսի մարդկանց վահանները ծածկում էին միմյանց, ինչն իրենից ներկայացնում էր 8 ոտնաչափ երկարությամբ նիզակներով լի վահանների պատ։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -192,11 +192,11 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "Այն գեներալը, ով համոզեց աթենացիներին ներդնել արծաթի հանքերից ստացված իրենց եկամուտը 200 տրիրեմայով ռազմական նավատորմի մեջ։ Լինելով Պարսկական պատերազմների առանցքային մասնակից՝ նա ղեկավարեց հաղթական աթենական նավատորմը մ․թ․ա․ 479թ․ Սալամիսի վճռական ճակատամարտում։ Հետագայում նա որդեգրեց Էգեյանում պարսիկների դեմ ակտիվ դիրքորոշում՝ դրանով գցելով Աթենքի ապագա հզորության հիմքը։ Այնուամենայնիվ, նա ի վերջո աքսորվեց աթենացիների կողմից և ստիպված էր դիմել պարսիկների պաշտպանությանը։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Պերիկլեսը մ․թ․ա․ 5-րդ դարի ամենաակնառու աթենական քաղաքական գործիչն էր։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
@@ -213,7 +213,7 @@ msgstr "։"
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "Իոնական ցեղի հելլենիստական ազգ։"
 
 #: simulation/data/civs/athen.jsonStructures[0].Name
 #: simulation/data/civs/mace.jsonStructures[0].Name
@@ -226,7 +226,7 @@ msgstr "Թեատրոն"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "Քաղաքակրթության հելլենիզացման բոնուսը։ Թեատրոնի կառուցումն ավելացնում է բոլոր շինությունների տարածքային ազդեցությունը 25%-ով։"
 
 #: simulation/data/civs/athen.jsonStructures[0].History
 #: simulation/data/civs/mace.jsonStructures[0].History
@@ -235,7 +235,7 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr ""
+msgstr "Հունական թատրոններում են բեմադրվել Էսքիլեսի, Սոֆոկլեսի և շատ այլ տաղանդավոր թատերագիրների անմահ ողբերգություններն՝ ի հաճույս հասարակության։ Նրանք կարևոր դեր ունեցան հելլենիստական մշակույթի հարստացման գործում։"
 
 #: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
@@ -244,27 +244,27 @@ msgstr "Գիմնազիոն"
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr ""
+msgstr "Չեմպիոնական միավորների պատրաստում և նրանց հետ կապված տեխնոլոգիաների հետազոտություն։"
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr ""
+msgstr "Գիմնազիոնը կարևոր վայր էր հելլենիստական քաղաքներում, այնտեղ կատարվում էին ֆիզիկական վարժություններ և հաստատվում սոցիալական կապեր։"
 
 #: simulation/data/civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr "Պրիտանեյոն"
+msgstr "Պրիտանեոն"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr ""
+msgstr "Հերոսների պատրաստում և նրանց հետ կապված տեխնոլոգիաների հետազոտություն։"
 
 #: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr ""
+msgstr "Պրիտանեոնը քաղաքի տարեցների՝ ճաշի շուրջ հանդիպման և որոշումների արագ կայացման վայրն է։"
 
 #: simulation/data/civs/athen.jsonHistory
 msgid ""
@@ -272,42 +272,42 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr ""
+msgstr "Լինելով արևմտյան քաղաքակրթության օրրան և ժողովրդավարության ծննդավայր՝ Աթենքը մեծարվում էր որպես արվեստների, ուսուցման և փիլիսոփայության կենտրոն։ Աթենացիները նաև հզոր մարտիկներ էին, հատկապես՝ ծովում։ Իր գագաթնակետին Աթենքը գերակայում էր հելլենիստական աշխարհի մեծ մասում տասնյակ տարիներ։"
 
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Բրիտանացիներ"
+msgstr "Բրիտոններ"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Սննդի ավելացված եկամուտ անասնապահությունից և հողագործությունից։"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr "Արդրոսմանաե"
+msgstr "Արդիոսմանա"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].History
 #: simulation/data/civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Ներկայացնում է հողագործության կելտական մեթոդները։"
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Մոտակա զինվորների հարձակման արագության չնչին ավելացում դրուիդների կողմից։"
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
-msgstr "Deas Celtica"
+msgstr "Դեաս Կելտիկա"
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].History
 #: simulation/data/civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Կելտական կրոնը և դրուիդները ոգեշնչել են նրանց ռազմատենչ մտածելակերպը։"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
@@ -321,7 +321,7 @@ msgstr "Դրուիդներ"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Կելտական դրուիդները պահպանել են կազմակերպված կրոն, որը նպաստում էր նրանց ժողովրդի տեխնոլոգիաներին նույնիսկ պատերազմի ժամանակ։"
 
 #: simulation/data/civs/brit.jsonAINames[0]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
@@ -352,7 +352,7 @@ msgstr "Կոգիդուբնոս"
 
 #: simulation/data/civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr "Կեմմիոս"
+msgstr "Կոմմիուս"
 
 #: simulation/data/civs/brit.jsonAINames[7]
 msgid "Comux"
@@ -372,7 +372,7 @@ msgstr "Վոսենիոս"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Ավելացված հարձակման և շարժման արագություն մերձամարտող զինվորներին։"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
@@ -503,7 +503,7 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonStructures[0].Name
 msgid "Kennel"
-msgstr "Շան բուն"
+msgstr "Շնաբույն"
 
 #: simulation/data/civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
@@ -962,7 +962,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid "Allied Citizen-Soldier Javelinists −20% resource costs."
+msgid "Allied Citizen Javelinists −20% resource costs."
 msgstr "-20% դաշնակից տեգավոր աշխարհազորային հետևակի ռեսուրսային արժեքին։"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
@@ -1186,7 +1186,7 @@ msgstr "Շեբիտկու"
 
 #: simulation/data/civs/kush.jsonAINames[5]
 msgid "Qalhata"
-msgstr "Կալհատա"
+msgstr "Քալհատա"
 
 #: simulation/data/civs/kush.jsonAINames[6]
 msgid "Takahatenamun"
@@ -1268,7 +1268,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[0].Name
 msgid "Temple of Amun"
-msgstr "Ամունի տաճարը"
+msgstr "Ամունի տաճար"
 
 #: simulation/data/civs/kush.jsonStructures[0].Special
 msgid ""
@@ -1283,7 +1283,7 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
-msgstr "Ապեդեմակի տաճարը"
+msgstr "Ապեդեմակի տաճար"
 
 #: simulation/data/civs/kush.jsonStructures[1].Special
 msgid ""
@@ -1401,7 +1401,7 @@ msgstr "Անտիպատեր"
 
 #: simulation/data/civs/mace.jsonAINames[3]
 msgid "Philip IV"
-msgstr "Փիլիպոս IV Մակեդոնացի"
+msgstr "Փիլիպոս IV"
 
 #: simulation/data/civs/mace.jsonAINames[4]
 #: simulation/data/civs/spart.jsonAINames[5]
@@ -1847,7 +1847,7 @@ msgstr "Քսայարսա I"
 
 #: simulation/data/civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
-msgstr "Արտաքշաշա I"
+msgstr "Արտաքշաչա I"
 
 #: simulation/data/civs/pers.jsonAINames[6]
 msgid "Darayavahush II"
@@ -1859,11 +1859,11 @@ msgstr "Դարայավահուշ III"
 
 #: simulation/data/civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
-msgstr "Արտաքշաշա II"
+msgstr "Արտաքշաչա II"
 
 #: simulation/data/civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
-msgstr "Արտաքշաշա III"
+msgstr "Արտաքշաչա III"
 
 #: simulation/data/civs/pers.jsonAINames[10]
 msgid "Haxamanish"
@@ -1946,7 +1946,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
-msgstr "Kurush II"
+msgstr "Կուրուշ II"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1980,7 +1980,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonStructures[1].Name
 msgid "Apadana"
-msgstr "Apadana"
+msgstr "Ապադանա"
 
 #: simulation/data/civs/pers.jsonStructures[1].Special
 msgid ""
@@ -2275,8 +2275,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied Citizen-Soldier Infantry −20% training time."
-msgstr "-20% դաշնակից աշխարհազորային հետևակի պատրաստման ժամանակին։"
+msgid "Allied Citizen Infantry −20% training time."
+msgstr "-20% դաշնակից քաղաքացիական հետևակի պատրաստման ժամանակին։"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2323,11 +2323,11 @@ msgstr "Պուբլիոս Կորնելիոս Րուֆինոս"
 
 #: simulation/data/civs/rome.jsonAINames[7]
 msgid "Lucius Papirius Cursor"
-msgstr "Lucius Papirius Cursor"
+msgstr "Լուցիոս Պապիրիուս Կուրսոր"
 
 #: simulation/data/civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
-msgstr "Աուլոս Մանլիոս Կապիտօլինոս"
+msgstr "Աուլոս Մանլիոս Կապիտոլինոս"
 
 #: simulation/data/civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
@@ -2453,7 +2453,7 @@ msgstr ""
 #: simulation/data/civs/sele.jsonName
 #: simulation/data/civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
-msgstr "Սելևկյաններ"
+msgstr "Սելևկյաներ"
 
 #: simulation/data/civs/sele.jsonCivBonuses[0].Description
 msgid ""
@@ -2504,11 +2504,11 @@ msgstr "Սելևկոս I Նիկատոր"
 
 #: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
-msgstr "Անտիոշոս I Լագոս"
+msgstr "Անտիոչոս I Լագոս"
 
 #: simulation/data/civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
-msgstr "Անտիոշոս II Թեոս"
+msgstr "Անտիոչոս II Թեոս"
 
 #: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
@@ -2520,7 +2520,7 @@ msgstr "Սելևկոս III Կերաունոս"
 
 #: simulation/data/civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
-msgstr "Անտիոշոս III Մեգաս"
+msgstr "Անտիոչոս III Մեգաս"
 
 #: simulation/data/civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
@@ -2528,11 +2528,11 @@ msgstr "Սելևկոս IV Փիլոպատոր"
 
 #: simulation/data/civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
-msgstr "Անտիոշոս IV Եպիփքնես"
+msgstr "Անտիոչոս IV Եպիփքնես"
 
 #: simulation/data/civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
-msgstr "Անտիոշոս V Ըպատոր"
+msgstr "Անտիոչոս V Ըպատոր"
 
 #: simulation/data/civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
@@ -2549,7 +2549,7 @@ msgstr "Դեմետրիոս II Նիկատոր"
 
 #: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr "Անտիոշոս VI Դիոնիսոս"
+msgstr "Անտիոչոս VI Դիոնիսոս"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
@@ -2557,7 +2557,7 @@ msgstr "Դիոդոտոս Տրիփոն"
 
 #: simulation/data/civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
-msgstr "Անտիոշոս VII Սիդետես"
+msgstr "Անտիոչոս VII Սիդետես"
 
 #: simulation/data/civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
@@ -2573,11 +2573,11 @@ msgstr "Սելևկոս V Փիլոմետոր"
 
 #: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
-msgstr "Անտիոշոս VIII Գրիպոս"
+msgstr "Անտիոչոս VIII Գրիպոս"
 
 #: simulation/data/civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr "Անտիոշոս IX Կիզիկենոս"
+msgstr "Անտիոչոս IX Կիզիկենոս"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
@@ -2585,7 +2585,7 @@ msgstr "Սելևկոս VI Եպիփանես"
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr "Անտիոշոս X ևսեբես"
+msgstr "Անտիոչոս X ևսեբես"
 
 #: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
@@ -2593,7 +2593,7 @@ msgstr "Դեմետրիոս III ևկաերոս"
 
 #: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr "Անտիոշոս XI Եպիփքնես"
+msgstr "Անտիոչոս XI Եպիփքնես"
 
 #: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
@@ -2601,7 +2601,7 @@ msgstr "Փիլիպոս I Փիլադելփոս"
 
 #: simulation/data/civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
-msgstr "Անտիոշոս XII Դիոնիսոս"
+msgstr "Անտիոչոս XII Դիոնիսոս"
 
 #: simulation/data/civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
@@ -2609,7 +2609,7 @@ msgstr "Սելևկոս VII Կիբիոակտես"
 
 #: simulation/data/civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
-msgstr "Անտիոշոս XIII Ասիատիկոս"
+msgstr "Անտիոչոս XIII Ասիատիկոս"
 
 #: simulation/data/civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
@@ -2712,7 +2712,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
-msgstr "Ռազմական ճամբար"
+msgstr "Ռազմական գաղութ"
 
 #: simulation/data/civs/sele.jsonStructures[2].Special
 msgid ""
@@ -2775,8 +2775,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allied Citizen-Soldier Infantry Spearmen +10% health."
-msgstr "+10% դաշնակից նիզակավոր աշխարհազորային հետևակի առողջությանը։"
+msgid "Allied Citizen Infantry Spearmen +10% health."
+msgstr "+10% դաշնակից նիզակավոր քաղաքացիական հետևակի առողջությանը։"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2809,7 +2809,7 @@ msgstr "Ագիս"
 
 #: simulation/data/civs/spart.jsonAINames[4]
 msgid "Archidamus"
-msgstr "Արշիդամոս"
+msgstr "Արչիդամոս"
 
 #: simulation/data/civs/spart.jsonAINames[6]
 msgid "Pausanias"
@@ -2821,15 +2821,15 @@ msgstr "Ագեսիլաոս"
 
 #: simulation/data/civs/spart.jsonAINames[8]
 msgid "Echestratus"
-msgstr "Եշեստրատոս"
+msgstr "Եչեստրատոս"
 
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
-msgstr "Ըրիկրատես"
+msgstr "Ըրիիկրատես"
 
 #: simulation/data/civs/spart.jsonAINames[10]
 msgid "Eucleidas"
-msgstr "Ըկլեիդաս"
+msgstr "Ըկլեյդաս"
 
 #: simulation/data/civs/spart.jsonAINames[11]
 msgid "Agesipolis"

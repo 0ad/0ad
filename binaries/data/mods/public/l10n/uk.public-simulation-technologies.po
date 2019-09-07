@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1246,9 +1246,9 @@ msgstr "Збільшіть шумне  містечко до справжньо�
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Перехід на рівень великого міста відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +50%. Срібні сови до видобування металу +10% для усіх працівників. Здоров'я городян-солдат збільшується на +10%. Усі розміщені гарнізони отримують +9 до одужання."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1270,9 +1270,9 @@ msgstr "Перехід від містечка до метрополії пов�
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Перехід на рівень великого міста відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +50%. Максимальне здоров'я городян-солдат збільшується на +10%. Усі структури з розміщеними юнітами на +9 збільшують швидкість одужання."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1297,9 +1297,9 @@ msgstr "Збільшість невелике селище до шумного �
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Перехід на рівень містечка відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +30%. Срібні сови до видобування металу +10% для усіх працівників. Здоров'я городян-солдат збільшується на +20%. Усі розміщені гарнізони отримують +7 до одужання."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1321,9 +1321,9 @@ msgstr "Розширення селища у містечко, яке в под�
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Перехід на рівень містечка, відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +30%. Максимальне здоров'я городян-солдат збільшується на +20%. Усі розміщені гарнізони отримують +7 до одужання."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2271,9 +2271,8 @@ msgstr "Карфагеняни побудували свої стіни у ви�
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Мури в Карфагені, брами та башти міцніші в 3 рази, але коштують вдвічі більше та довше будуються."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2285,9 +2284,9 @@ msgstr "Кельтські будівлі будувались в основно
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Кельтські будівлі на 20% менш міцні, але й на 20% дешевші та швидше зводяться."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2299,9 +2298,9 @@ msgstr "Греки будували у камені з часів Мікенсь
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Усі будівлі на 10% міцніші, але й будуються на 10% довше."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2318,8 +2317,8 @@ msgid ""
 msgstr "Імперія Маур'їв охоплювала десятки раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів з населенням близько 60 мільйонів осіб. Правителі Маур'їв носили титул \"імператора імператорів\" і керували регулярною армією з 600000 піхотинців, 9000 слонів, 8000 колісниць, і 30000 кінноти, що робить її, мабуть, найбільшою армією свого часу."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "У Маур'їв максимальна кількість населення збільшується на 10%."
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2336,8 +2335,8 @@ msgid ""
 msgstr "Маур'ї будували стіни з дерева як найдоступнішого матеріалу в Індії."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Міські стіни у Мауріїв мають на -20% менше міцності та зводять на -20% швидше."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2354,8 +2353,8 @@ msgid ""
 msgstr "Перси могли і користувалися можливістю набирати велику кількість піхоти під час військових дій через величезні розміри Ахеменідської імперії та її організації. В цілому перська піхота була добре натренована і билася з великим завзяттям. Незважаючи на це, піхота була погано підготовлена для близького бою. Також за винятком елітних полків перська піхота не відносилася до професійних військ."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "У персів максимальна кількість населення збільшується на 10%."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2370,8 +2369,8 @@ msgid ""
 msgstr "У спартанців не було найбільшої армії в світі, але у них була найкраща армія у тогочасному світі. Нестачу кількості вони поповнювали якістю. Казали що Спарті не потрібні стіни тому, що стінами були їх чоловіки."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "У спартанців максимальна кількість населення менша на 10%."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

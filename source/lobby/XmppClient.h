@@ -60,8 +60,16 @@ private:
 
 public:
 	// Basic
-	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, const bool regOpt = false);
+	XmppClient(const ScriptInterface* scriptInterface, const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, const bool regOpt = false);
 	virtual ~XmppClient();
+
+	// JS::Heap is better for GC performance than JS::PersistentRooted
+	static void Trace(JSTracer *trc, void *data)
+	{
+		static_cast<XmppClient*>(data)->TraceMember(trc);
+	}
+
+	void TraceMember(JSTracer *trc);
 
 	// Network
 	void connect();
@@ -140,31 +148,18 @@ protected:
 	std::time_t ComputeTimestamp(const glooxwrapper::Message& msg) const;
 
 public:
-	/* Messages */
-	struct GUIMessage
-	{
-		std::string type;
-		std::string level;
-		std::string property1_name;
-		std::string property1_value;
-		std::string property2_name;
-		std::string property2_value;
-		std::time_t time;
-	};
-	JS::Value GuiMessageToJSVal(const ScriptInterface& scriptInterface, const GUIMessage& message, const bool historic);
 	bool GuiPollPresenceStatusUpdate();
 	JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface);
 	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
 	void SendMUCMessage(const std::string& message);
+
 protected:
+	template<typename... Args>
 	void CreateGUIMessage(
 		const std::string& type,
-		const std::string& level = "",
-		const std::string& property1_name = "",
-		const std::string& property1_value = "",
-		const std::string& property2_name = "",
-		const std::string& property2_value = "",
-		const std::time_t time = std::time(nullptr));
+		const std::string& level,
+		const std::time_t time,
+		Args const&... args);
 
 private:
 	/// Map of players
@@ -175,10 +170,12 @@ private:
 	std::vector<const glooxwrapper::Tag*> m_BoardList;
 	/// Profile data
 	std::vector<const glooxwrapper::Tag*> m_Profile;
+	/// ScriptInterface to root the values
+	const ScriptInterface* m_ScriptInterface;
 	/// Queue of messages for the GUI
-	std::deque<GUIMessage> m_GuiMessageQueue;
+	std::deque<JS::Heap<JS::Value> > m_GuiMessageQueue;
 	/// Cache of all GUI messages received since the login
-	std::vector<GUIMessage> m_HistoricGuiMessages;
+	std::vector<JS::Heap<JS::Value> > m_HistoricGuiMessages;
 	/// Current room subject/topic.
 	std::string m_Subject;
 	/// Whether or not a player has changed the presence status since the last time the GUI checked.

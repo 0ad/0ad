@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -1243,9 +1243,9 @@ msgstr "活気ある町から、驚異の最新テクノロジーに満ちた真
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。市民兵士の最大耐久力が +10% 上昇します。すべての建物に駐屯時の修復率が9増加します。 "
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1267,9 +1267,9 @@ msgstr "活気ある町から、驚異の最新テクノロジーに満ちた真
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに 50%増加します。市民兵士の最大耐久力が 10% 上昇します。すべての建物に駐屯時の修復率が9増加します。 "
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1294,9 +1294,9 @@ msgstr "小さな村から活気ある町へ発展し、急拡大への準備が
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに30%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。市民兵士の最大耐久力が +20% 上昇します。すべての建物に駐屯時の修復率が7増加します。 "
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1318,9 +1318,9 @@ msgstr "小さな村から活気ある町へ発展し、迅速な拡大が可能
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに 30%増加します。市民兵士の最大耐久力が 20% 上昇します。すべての建物に駐屯時の修復率が7増加します。 "
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2268,9 +2268,8 @@ msgstr "カルタゴは三重の城壁を築きました。この壁は決して
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "カルタゴの壁、門、櫓は通常の3倍の耐久力がありますが、コストと建設時間は2倍になります。"
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2282,9 +2281,9 @@ msgstr "ケルトの建物はたいてい木造でがれきの基礎を用いて
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "けるとの建築物は 20%耐久度が低いですが、20%安くかつ早く建設できます。"
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2296,9 +2295,9 @@ msgstr "ギリシアはミケーネ文明初期から石造建設を用いまし
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "すべての建築物は耐久性と占領ポイントが 10% 増加しますが、建設時間が 10% 長くなります。"
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2315,7 +2314,7 @@ msgid ""
 msgstr "マウリヤ帝国は、数十の独立王国がかつてあった500万平方キロの地域を含み、人口6000万人に迫りました。マウリヤ朝の統治者は皇帝の中の皇帝の称号を持ち、率いた常備軍は、60万の歩兵、9000の象、8000の戦車、3万の騎兵という、おそらく当時最大の軍隊でした。"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
+msgid "Mauryas +10% maximum population limit."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
@@ -2333,8 +2332,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "マウリヤ朝の城壁の耐久力は20%低いですが、20%早く建設できます。"
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2351,8 +2350,8 @@ msgid ""
 msgstr "ペルシアは戦時に大人数の歩兵の召集を、アケメネス朝帝国の巨大さとそれを実現する手法によって可能にし、実際しました。一般にペルシアの歩兵は良く鍛えられていて、粘り強く戦いました。しかし、その一方で、歩兵はつかみ合いの接近戦に弱かったのでした。また、精鋭部隊を除き、ペルシア歩兵は専任の常備軍ではありませんでした。"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "ペルシアは最大人口が10%大きい。"
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2367,8 +2366,8 @@ msgid ""
 msgstr "スパルタの陸軍は当時世界最大ではありませんでしたが、世界最強でした。彼らは量ではなく、質を追求しました。スパルタには丈夫な城壁は必要ない、人が城壁だと言われました。"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "スパルタは最大人口が10%少ない。"
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

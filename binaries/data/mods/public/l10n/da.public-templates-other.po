@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 15:53+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,11 @@ msgid "Fish"
 msgstr "Fisk"
 
 #: simulation/templates/template_gaia_fish.xml:10
-msgid "Gather food from this bountiful oceanic resource."
+msgid "Catch fish for food."
+msgstr ""
+
+#: simulation/templates/template_gaia_flora.xml:6
+msgid "Chop trees for wood."
 msgstr ""
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
@@ -40,13 +44,14 @@ msgstr ""
 msgid "Bush"
 msgstr "Busk"
 
+#: simulation/templates/template_gaia_flora_bush_berry.xml:4
+#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+msgid "Pick fruit for food."
+msgstr ""
+
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Træ"
-
-#: simulation/templates/template_gaia_flora_tree.xml:9
-msgid "Chop down to accumulate Wood."
-msgstr "Fæld for at samle Træ."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -57,46 +62,46 @@ msgid "Metal Mine"
 msgstr "Metalmine"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "En mineralåre som giver adgang til sjældne former for værdifuldt Metal."
+msgid "Mine ore for metal."
+msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
 msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
-msgid "Mine these to provide Stone building material."
-msgstr "Udgrav disse for at få Sten."
+msgid "Quarry rock for stone."
+msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
 msgstr "Ruiner"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-msgid "These ruins that can be mined for resources."
-msgstr "Ruinerne kan udgraves for at få ressourcer."
+msgid "Demolish ruins for stone."
+msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
 msgstr "Skat"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-msgid "A treasure that can be quickly gathered."
-msgstr "En skat der hurtigt kan indsamles."
+msgid "Collect treasures for resources."
+msgstr ""
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Bygning"
 
-#: simulation/templates/template_unit.xml:42
+#: simulation/templates/template_unit.xml:43
 msgid "Unit"
 msgstr "Enhed"
 
-#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
 msgstr "Bymur"
 
-#: simulation/templates/template_wallset.xml:12
+#: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
 msgstr "Byg mure om din by for at give den et stærkt forsvar."
 
@@ -506,17 +511,9 @@ msgstr "Hårdfør Busk"
 msgid "Berries"
 msgstr "Bær"
 
-#: simulation/templates/gaia/flora_bush_berry.xml:5
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Saml bær fra buskene for at få Mad."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Druer"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
-msgid "Gather grapes from these vines for Food."
-msgstr "Saml druer fra disse rænker for at få Mad."
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -541,10 +538,6 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
-
-#: simulation/templates/gaia/flora_tree_banana.xml:5
-msgid "Gather bananas for Food."
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
@@ -625,10 +618,6 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Figen"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:8
-msgid "Gather figs for Food."
-msgstr "Saml figner for at få Mad."
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
@@ -781,10 +770,6 @@ msgstr "Romerske Statuer"
 msgid "Unfinished Greek Temple"
 msgstr "Ufærdigt Græsk Tempel"
 
-#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Dette tempel blev aldrig færdigt og er blevet til ruiner."
-
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
@@ -831,27 +816,9 @@ msgstr "Pegasus"
 msgid "Shipwreck"
 msgstr "Skibsvrag"
 
-#: simulation/templates/gaia/treasure/shipwreck.xml:9
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Vraget af et krigsskib. En god mulighed for enhver forretningsmand."
-
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
 msgstr "Vraggods"
-
-#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Et skibsvrag med mange tabte liv. En god mulighed for enhver forretningsmand."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Vraget af et lille handelsskib. En god mulighed for enhver forretningsmand."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Et handelsskib vædret midt over. En god mulighed for enhver forretningsmand."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"

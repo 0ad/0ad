@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-31 23:03+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-03 13:11+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,8 +40,12 @@ msgid "Fish"
 msgstr "Рыба"
 
 #: simulation/templates/template_gaia_fish.xml:10
-msgid "Gather food from this bountiful oceanic resource."
-msgstr "Собирайте пищу из этого богатого океанских ресурсов."
+msgid "Catch fish for food."
+msgstr "Ловите рыбу в пищу."
+
+#: simulation/templates/template_gaia_flora.xml:6
+msgid "Chop trees for wood."
+msgstr "Рубите деревья для получения древесины."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -50,13 +54,14 @@ msgstr "Собирайте пищу из этого богатого океан�
 msgid "Bush"
 msgstr "Кустарник"
 
+#: simulation/templates/template_gaia_flora_bush_berry.xml:4
+#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+msgid "Pick fruit for food."
+msgstr "Собирайте фрукты в пищу."
+
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Дерево"
-
-#: simulation/templates/template_gaia_flora_tree.xml:9
-msgid "Chop down to accumulate Wood."
-msgstr "Срубите, чтобы получить древесину."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -67,46 +72,46 @@ msgid "Metal Mine"
 msgstr "Рудник"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Залежи руды обеспечивают доступ к редким формам драгоценного металла."
+msgid "Mine ore for metal."
+msgstr "Добывайте руду, чтобы получить металл."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
 msgstr "Каменоломня"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
-msgid "Mine these to provide Stone building material."
-msgstr "Займитесь разработкой месторождения, чтобы обеспечить себя строительным камнем."
+msgid "Quarry rock for stone."
+msgstr "Ломайте скалы для получения камня."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
 msgstr "Руины"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-msgid "These ruins that can be mined for resources."
-msgstr "В этих руинах могут быть добыты ресурсы."
+msgid "Demolish ruins for stone."
+msgstr "Сносите развалины для получения камня."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
 msgstr "Сокровище"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-msgid "A treasure that can be quickly gathered."
-msgstr "Сокровище, которое можно быстро собрать."
+msgid "Collect treasures for resources."
+msgstr "Собирайте клады для получения ресурсов."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Строение"
 
-#: simulation/templates/template_unit.xml:42
+#: simulation/templates/template_unit.xml:43
 msgid "Unit"
 msgstr "Юнит"
 
-#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
 msgstr "Городская стена"
 
-#: simulation/templates/template_wallset.xml:12
+#: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
 msgstr "Окружите свой город стеной для надёжной защиты."
 
@@ -516,17 +521,9 @@ msgstr "Полукустарник"
 msgid "Berries"
 msgstr "Ягодник"
 
-#: simulation/templates/gaia/flora_bush_berry.xml:5
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Собирайте плоды с этих кустов, чтобы пополнить запасы пищи."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Виноград"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
-msgid "Gather grapes from these vines for Food."
-msgstr "Собирайте виноград с этих виноградников для пополнения запасов пищи."
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -552,10 +549,6 @@ msgstr "Гигантский бамбук"
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
 msgstr "Банан"
-
-#: simulation/templates/gaia/flora_tree_banana.xml:5
-msgid "Gather bananas for Food."
-msgstr "Собирайте бананы в пищу"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -635,10 +628,6 @@ msgstr "Плакучая берёза"
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Инжир"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:8
-msgid "Gather figs for Food."
-msgstr "Собирайте инжир для пищи."
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
@@ -791,10 +780,6 @@ msgstr "Римские статуи"
 msgid "Unfinished Greek Temple"
 msgstr "Недостроенный греческий храм"
 
-#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Недостроенный храм превратился в руины."
-
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
@@ -841,27 +826,9 @@ msgstr "Пегас"
 msgid "Shipwreck"
 msgstr "Обломки корабля"
 
-#: simulation/templates/gaia/treasure/shipwreck.xml:9
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Гниющие останки военного корабля. Хорошая возможность для любого дельца."
-
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
 msgstr "Груз с утонувшего корабля"
-
-#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Кораблекрушение с большими человеческим жертвами. Хорошая возможность для любого дельца."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Обломки небольшого грузового судна. Хорошая возможность для любого дельца."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Грузовое судно, протараненное пополам. Хорошая возможность для любого дельца."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"

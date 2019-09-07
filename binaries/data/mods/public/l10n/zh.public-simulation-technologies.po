@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-04 08:46+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -658,7 +658,7 @@ msgstr "使用铁制而非青铜武器来获得更强的力量。"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr ""
+msgstr "训练可以增加远程步兵单位的伤害力。"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -1252,9 +1252,9 @@ msgstr "从繁华的大城市进展为一个名副其实的大都市，充满着
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "升级到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围也再度增加了 +50%。银鸮的文明奖励让所有的工人都有额外 +10% 的金属采集速度。民兵的最大生命增加了 +10%。所有组织的驻军恢复率 +9。"
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr "升级到城市阶段，解锁更多建筑物及单位。市政中心的领土范围也再度增加了 +50%。银鸮的文明奖励让工人的金属采集率额外 +10% 。民兵的生命值增加 +10%。单位驻军恢复率 +9。"
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1276,9 +1276,9 @@ msgstr "从繁华的城镇进展为一个名副其实的大都市,充满奇迹�
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "升级到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围也再度增加了 +50%。民兵的最大生命增加了 +10%。所有组织的驻军恢复率 +9。"
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr "升级到城市阶段，解锁更多建筑物及单位。市政中心的领土范围也再度增加了 +50% 。工人的金属采集率额外 +10% 。民兵的生命值增加 +10%。单位驻军恢复率 +9。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1303,9 +1303,9 @@ msgstr "从小村庄发展为繁华城镇，准备快速扩张。这就是雅典
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "升级到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围增加了 +30%。“银鸮”的文明奖励让所有的工人都有 +10% 的金属采集速度。民兵的最大生命增加了 +20%。所有组织的驻军恢复率 +7。"
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr "进展到城镇阶段，可解锁更多建筑物及单位。市政中心的领土范围增加 +30% 。民兵生命值增加 +20%。驻守单位恢复速度 +7。"
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1327,9 +1327,9 @@ msgstr "从小乡村进展到繁华的城镇,准备好迅速扩张。"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "进展到城镇阶段，解锁了更多建筑物及单位。城镇中心的领土范围增加了 +30%。民兵的最大生命增加了 +20%。所有组织的驻军恢复率 +7。"
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr "进展到城镇阶段，解锁更多的建筑物及单位。城镇中心的领土范围增加了+30%。民兵的最大生命增加 +20%。所有组织的驻军恢复率 +7。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1467,11 +1467,11 @@ msgstr "安门图"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr ""
+msgstr "攻城武器增加护甲"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack armor."
-msgstr ""
+msgstr "攻城武器的劈砍盔甲 +2 。"
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1479,7 +1479,7 @@ msgstr "装甲"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr ""
+msgstr "提升攻城效率的高级技术"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
@@ -1491,7 +1491,7 @@ msgstr "进阶攻城武器"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr ""
+msgstr "提高砲弹的精度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
@@ -1503,7 +1503,7 @@ msgstr "弩箭精准度"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr ""
+msgstr "攻城武器需要较少的金属。"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
@@ -2277,9 +2277,8 @@ msgstr "迦太基人把他们的城墙修筑成三堵同心圆结构，这些城
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "迦太基的城墙、城门和塔楼的生命值是普通同类建筑的3倍，但所需造价和建造时间也为同类建筑的2倍。"
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2291,9 +2290,9 @@ msgstr "凯尔特建筑大多为建造在碎石地基上的木制结构。"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "凯尔特建筑生命值偏低20%，但花费和建造时间相应缩短20%。"
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2305,9 +2304,9 @@ msgstr "希腊人使用来自于早期迈锡尼时代的石头建筑。"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "所有建筑生命值和分数均偏高10%，但建造时间需相应延长10%。"
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2324,8 +2323,8 @@ msgid ""
 msgstr "印度孔雀王朝，涵盖了原先数十个独立的王国。领土面积约500万平方公里，人口约6000万。统治者有“万王之王”的称号，并有步兵60万、战象9000头、双轮战车8000辆以及骑兵3万名，可以说是当时军队之最。"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "印度孔雀王朝 +10% 人口上限。"
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2342,8 +2341,8 @@ msgid ""
 msgstr "印度用木材建造城墙。"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "孔雀王朝的城墙-20％HP，-20％建造时间。"
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2360,8 +2359,8 @@ msgid ""
 msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精英部队以外，波斯步兵不是职业的常备军。"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "波斯人口上限+10% 。"
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2376,8 +2375,8 @@ msgid ""
 msgstr "斯巴达人并不具有世界上最大型的军队,但他们在当时却有著世界上最好的军队。他们重质不重量。有人说,斯巴达并不需要坚固的城墙,它的军队就是铜墙铁壁。"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "斯巴达最大人口 -10% 。"
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

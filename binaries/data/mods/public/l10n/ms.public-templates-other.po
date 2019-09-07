@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 15:53+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,12 @@ msgid "Fish"
 msgstr "Ikan"
 
 #: simulation/templates/template_gaia_fish.xml:10
-msgid "Gather food from this bountiful oceanic resource."
-msgstr "Dapatkan makanan dari sumber laut yang banyak."
+msgid "Catch fish for food."
+msgstr ""
+
+#: simulation/templates/template_gaia_flora.xml:6
+msgid "Chop trees for wood."
+msgstr ""
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -37,13 +41,14 @@ msgstr "Dapatkan makanan dari sumber laut yang banyak."
 msgid "Bush"
 msgstr "Belukar"
 
+#: simulation/templates/template_gaia_flora_bush_berry.xml:4
+#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+msgid "Pick fruit for food."
+msgstr ""
+
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "pokok"
-
-#: simulation/templates/template_gaia_flora_tree.xml:9
-msgid "Chop down to accumulate Wood."
-msgstr "Tebang untuk dapatkan Kayu."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -54,46 +59,46 @@ msgid "Metal Mine"
 msgstr "Lombong Logam"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Deposit mineral, menyediakan sumber dalam bentuk Logam berharga."
+msgid "Mine ore for metal."
+msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
 msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
-msgid "Mine these to provide Stone building material."
-msgstr "Lombong bahan ini untuk dapatkan bahan pembinaan Batu."
+msgid "Quarry rock for stone."
+msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
 msgstr "runtuhan"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-msgid "These ruins that can be mined for resources."
-msgstr "Runtuhan ini boleh dilombong untuk dapatkan sumber."
+msgid "Demolish ruins for stone."
+msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
 msgstr "Khazahan"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-msgid "A treasure that can be quickly gathered."
-msgstr "Harta karun yang boleh diperoleh dengan cepat."
+msgid "Collect treasures for resources."
+msgstr ""
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Struktur"
 
-#: simulation/templates/template_unit.xml:42
+#: simulation/templates/template_unit.xml:43
 msgid "Unit"
 msgstr "Unit"
 
-#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
 msgstr "Tembok Bandar"
 
-#: simulation/templates/template_wallset.xml:12
+#: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
 msgstr "Lindungi pekan anda dengan pertahanan yang kukuh."
 
@@ -503,17 +508,9 @@ msgstr "Belukar Tahan Lasak"
 msgid "Berries"
 msgstr "Beri"
 
-#: simulation/templates/gaia/flora_bush_berry.xml:5
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Himpun buah dari belukar ini untuk dapatkan Makanan."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Anggur"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
-msgid "Gather grapes from these vines for Food."
-msgstr "Kutip anggur dari pohon ini untuk jadikan Makanan."
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -538,10 +535,6 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
-
-#: simulation/templates/gaia/flora_tree_banana.xml:5
-msgid "Gather bananas for Food."
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
@@ -622,10 +615,6 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Buah Ara"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:8
-msgid "Gather figs for Food."
-msgstr "Kutip buah ara untuk jadikan Makanan."
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
@@ -778,10 +767,6 @@ msgstr "Patung Romawi"
 msgid "Unfinished Greek Temple"
 msgstr "Kuil Yunani Terbengkalai"
 
-#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Kuil ini telah terbengkalai dan menjadi runtuhan."
-
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
@@ -828,27 +813,9 @@ msgstr "Kuda Bersayap"
 msgid "Shipwreck"
 msgstr "Kapal Karam"
 
-#: simulation/templates/gaia/treasure/shipwreck.xml:9
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Bangkai kapal tentera. Peluang baik untuk para usahawan."
-
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
 msgstr "Kargo Kapal Karam"
-
-#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Bangkai kapal dengan mangsa. Peluang baik untuk para usahawan."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Bangkai kapal kargo kecil. Peluang baik untuk para usahawan."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Kapal kargo yang terbelah dua. Peluang baik untuk para usahawan."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"

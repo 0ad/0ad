@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 15:53+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,12 @@ msgid "Fish"
 msgstr "Риба"
 
 #: simulation/templates/template_gaia_fish.xml:10
-msgid "Gather food from this bountiful oceanic resource."
-msgstr "Събирайте храна от този богат океански ресурс."
+msgid "Catch fish for food."
+msgstr ""
+
+#: simulation/templates/template_gaia_flora.xml:6
+msgid "Chop trees for wood."
+msgstr ""
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -44,13 +48,14 @@ msgstr "Събирайте храна от този богат океански 
 msgid "Bush"
 msgstr "Храст"
 
+#: simulation/templates/template_gaia_flora_bush_berry.xml:4
+#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+msgid "Pick fruit for food."
+msgstr ""
+
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Дърво"
-
-#: simulation/templates/template_gaia_flora_tree.xml:9
-msgid "Chop down to accumulate Wood."
-msgstr "Отсечете, за да събирате дървесина."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -61,46 +66,46 @@ msgid "Metal Mine"
 msgstr "Мина за метал"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Минерален залеж, източник на рядък вид скъпоценен метал."
+msgid "Mine ore for metal."
+msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
 msgstr "Каменна кариера"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
-msgid "Mine these to provide Stone building material."
-msgstr "Добивайте тук, за да си набавите камък за строежите."
+msgid "Quarry rock for stone."
+msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
 msgstr "Останки"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-msgid "These ruins that can be mined for resources."
-msgstr "Тези останки могат да бъдат разкопани за ресурси."
+msgid "Demolish ruins for stone."
+msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
 msgstr "Съкровище"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-msgid "A treasure that can be quickly gathered."
-msgstr "Съкровище, което лесно може да бъде взето."
+msgid "Collect treasures for resources."
+msgstr ""
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
 msgstr "Сграда"
 
-#: simulation/templates/template_unit.xml:42
+#: simulation/templates/template_unit.xml:43
 msgid "Unit"
 msgstr "Единица"
 
-#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
 msgstr "Градска стена"
 
-#: simulation/templates/template_wallset.xml:12
+#: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
 msgstr "Обградете града си със стени за надеждна защита."
 
@@ -510,17 +515,9 @@ msgstr "Жилав храст"
 msgid "Berries"
 msgstr "Горски плодове"
 
-#: simulation/templates/gaia/flora_bush_berry.xml:5
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Събирайте плодовете от тези храсти, за да си набавите храна."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Грозде"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
-msgid "Gather grapes from these vines for Food."
-msgstr "Събирайте грозде от тези лози за храна."
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
@@ -546,10 +543,6 @@ msgstr "Гигантски бамбук"
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
 msgstr "Банан"
-
-#: simulation/templates/gaia/flora_tree_banana.xml:5
-msgid "Gather bananas for Food."
-msgstr "Събирайте банани за храна."
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -629,10 +622,6 @@ msgstr "Бяла бреза"
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Смокиня"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:8
-msgid "Gather figs for Food."
-msgstr "Събирайте смокини за храна."
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
@@ -785,10 +774,6 @@ msgstr "Римски статуи"
 msgid "Unfinished Greek Temple"
 msgstr "Незавършен гръцки храм"
 
-#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Това са останки от незавършен храм."
-
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
@@ -835,27 +820,9 @@ msgstr "Пегас"
 msgid "Shipwreck"
 msgstr "Корабокрушение"
 
-#: simulation/templates/gaia/treasure/shipwreck.xml:9
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Разлагащ се разбит военен кораб. Добра възможност за всеки бизнесмен."
-
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
 msgstr "Товар от разбит кораб"
-
-#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Корабокрушение с много загубени животи. Добра възможност за всеки бизнесмен."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Останки от малък товарен кораб. Добра възможност за всеки бизнесмен."
-
-#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Разполовен товарен кораб. Добра възможност за всеки бизнесмен."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"

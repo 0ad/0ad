@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1259,9 +1259,9 @@ msgstr "Avanzar de una bulliciosa ciudad a una verdadera metrópolis, llena de l
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avanza hasta la Fase urbana, que desbloquea más estructuras y unidades. El radio del territorio de los centros urbanos aumenta un +50%. La bonificación ateniense de «los búhos de plata» añade un +10% extra a la velocidad de recolección del metal a todos los trabajadores. Se añade un +10% de salud adicional a los ciudadanos soldado. Todas las unidades guarnecidas en estructuras ganan +9 puntos de velocidad de regeneración."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1283,9 +1283,9 @@ msgstr "Avanzar de una bulliciosa ciudad a una verdadera metrópolis, llena de l
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avanza hasta la Fase urbana, que desbloquea más estructuras y unidades. El radio del territorio de los centros urbanos aumenta un +50%. Se añade un +10% de salud adicional a los ciudadanos soldado. Todas las unidades guarnecidas en estructuras ganan +9 puntos de velocidad de regeneración."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1310,9 +1310,9 @@ msgstr "Avanzar de una pequeña aldea a una bulliciosa ciudad. Ésta es la fase 
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanza hasta la Fase intermedia, que desbloquea más estructuras y unidades. El radio del territorio de los centros urbanos aumenta un +30%. La bonificación ateniense de «los búhos de plata» añade un +10% extra a la velocidad de recolección del metal a todos los trabajadores. Se añade un +20% de salud adicional a los ciudadanos soldado. Todas las unidades guarnecidas en estructuras ganan +7 puntos de velocidad de regeneración."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1334,9 +1334,9 @@ msgstr "Avanza de una pequeña aldea a una bulliciosa población, lista para exp
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanza hasta la Fase intermedia, que desbloquea más estructuras y unidades. El radio del territorio de los centros urbanos aumenta un +30%. Se añade un +20% de salud adicional a los ciudadanos soldado. Todas las unidades guarnecidas en estructuras ganan +7 puntos de velocidad de regeneración."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2284,9 +2284,8 @@ msgstr "Los cartagineses construían sus murallas de la ciudad formando tres cí
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Los muros, puertas y torres cartagineses tienen el triple de resistencia, pero también cuestan dos veces más y tardan dos veces más en construirse."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2298,9 +2297,9 @@ msgstr "Las estructuras celtas se solían construir con madera sobre cimientos d
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Los edificios celtas tienen un 20% menos de resistencia, pero también son un 20% más baratos y rápidos de construir."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2312,9 +2311,9 @@ msgstr "Los griegos usaron construcciones de piedra desde la temprana era micén
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Todas las estructuras tienen un 10% más de resistencia y puntos de captura, pero también tardan un 10% más en construirse."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2331,8 +2330,8 @@ msgid ""
 msgstr "El Imperio Maurya abarcaba decenas de reinos anteriormente independientes sobre una superficie de 5 millones de kilómetros cuadrados, con una población cercana a los 60 millones de personas. Los reyes de Maurya se proclaman como Emperador de emperadores y comandan un ejército permanente de 600.000 infantes, 9.000 elefantes, 8.000 carros y 30.000 caballeros, por lo que es sin duda el mayor ejército de su tiempo."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Las maurias tienen un límite máximo de población del 10% más alto."
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2349,8 +2348,8 @@ msgid ""
 msgstr "Los Mauryas construyeron sus murallas de madera, un recurso natural abundante en la India."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Los muros de ciudad maurianos pierden 20% de resistencia pero reducen su tiempo de construcción un 20%."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2367,8 +2366,8 @@ msgid ""
 msgstr "Los persas pudieron y llevaron a cabo reclutamientos forzosos de un gran número de infantería durante la guerra debido al gran tamaño del imperio Arqueménida y a la forma en la que se instituyó. En general, la infantería persa estaba bien entrenada y luchaba con gran tenacidad, aunque se veía en desventaja en los combates cuerpo a cuerpo. Cabe destacar que con la excepción de los regimientos de élite, la infantería persa no se consideraba una fuerza profesional ni permanente."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "El límite de población de los persas se incrementa un 10%."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2383,8 +2382,8 @@ msgid ""
 msgstr "Los espartanos no contaban con el ejército más grande del mundo, pero contaban con el mejor ejército de su época. Lo que no tenían de cantidad lo compensaban con su calidad. Antiguamente se decía que Esparta no necesitaba grandes y protectoras murallas, ya que sus hombres eran sus muros."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Los espartanos tienen un 10% menos de población máxima."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

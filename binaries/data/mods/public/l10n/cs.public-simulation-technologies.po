@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1251,9 +1251,9 @@ msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků př
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Postoupit do městské fáze, která zpřístupní více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%. Civilizační přídavek Stříbrné sovy poskytne všem dělníkům dalších +10% na rychlosti sbírání kovu. Občanským vojákům se zvýší zdraví o +10% a všechny budovy získají +9 na rychlosti obnovy zdraví jejich posádky."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1275,9 +1275,9 @@ msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků př
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Postoupit do městské fáze, která zpřístupní více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%. Občanským vojákům se zvýší zdraví o +10% a všechny budovy získají +9 na rychlosti obnovy zdraví jejich posádky."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1302,9 +1302,9 @@ msgstr "Postupte z malé vesnice k rušnému městu, připravenému k rychlému 
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Postupuje do městské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +30%. Civilizační přídavek Stříbrné sovy poskytuje všem dělníkům dalších +10% na rychlosti sbírání kovu. Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +7 k regeneraci jejich posádky."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1326,9 +1326,9 @@ msgstr "Postupte z malé vesnice do rušného města, připraveného se rychle r
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Postupuje do městské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +30%.  Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +7 k regeneraci jejich posádky."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2276,9 +2276,8 @@ msgstr "Kartaginci stavěli zdi svých měst ve třech soustředných kruzích. 
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartaginské hradby, brány a hradební věže mají trojnásobek životních bodů běžné hradební zdi, ale také stojí dvakrát tolik a potřebují dvakrát více času na stavbu."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2290,9 +2289,9 @@ msgstr "Keltské budovy byly většinou udělány ze dřeva se základy ze ště
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Keltské stavby mají o 20% méně zdraví, ale jsou také o 20% levnější a rychleji se staví."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2304,9 +2303,9 @@ msgstr "Řekové používali stavby z kamene od rané mykénské doby."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Veškeré stavby +10% ke zdraví a na bodech za kořist, potřebují ale také 10% více času na stavbu."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2323,7 +2322,7 @@ msgid ""
 msgstr "Maurijská říše zahrnovala tucty dříve nezávislých království rozkládajících se na ploše 5 milionů km², s obyvatelstvem v počtu 60 milionů lidí. Maurijští vládci drželi titul císař císařů a veleli stálé armádě 600000 pěšáků, 9000 slonů, 8000 válečných vozů 30000 jezdců, nejspíše největšího vojska své doby."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
+msgid "Mauryas +10% maximum population limit."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
@@ -2341,8 +2340,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Maurijské městské zdi mají o -20% méně zdraví, a k jejich postavení je potřeba o -20% méně času."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2359,8 +2358,8 @@ msgid ""
 msgstr "Peršané mohli na základě prosté velikosti Achjmenovské říše a způsobu, jakým byla vybudována, v době války povolat početnou pěchotu. Obecně byla perská pěchota dobře vycvičena a bojovala s velkou neústupností, byla však navzdory výše řečenému špatná v boji muže proti muži. Obzvláště nebyla perská pěchota - s výjimkou elitních pluků - žádným stálým profesionálním vojskem."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Peršané mají o 10% vyšší největší populační limit."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2375,8 +2374,8 @@ msgid ""
 msgstr "Sparťané neměli největší armádu světa, ale měli ve své době armádu nejlepší. Co neměli v množství, získávali kvalitou. Říkalo se, že Sparta nepotřebovala mohutné městské hradby, neboť těmi byli její muži."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Sparťané mají o 10% menší populační limit."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:09+0000\n"
-"PO-Revision-Date: 2019-08-26 16:07+0000\n"
+"POT-Creation-Date: 2019-09-02 07:10+0000\n"
+"PO-Revision-Date: 2019-09-02 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -1241,9 +1241,9 @@ msgstr "Dul chun cinn ó bhaile bríomhar go hardchathair ceart, lán le hiontai
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Dul chun cinn go Céim Chathracha agus níos mó foirgneamh is aonad a dhíghlasáil. Méadú ar an dtionchar críocha d'Ionaid Chathartha le +50% níos mó. Bronn an bónas 'Ulchabháin Airgid' +10% sa bhreis do ráta bailithe miotail do gach oibrí. Méadú 10% ar an sláinte uasach do mhíle-shaoránaigh. Ráta athghiniúna +9 ar garastúnaí i ngach foirgneamh."
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1265,9 +1265,9 @@ msgstr "Dul chun cinn ó bhaile bríomhar go hardchathair ceart, lán le hiontai
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Dul chun cinn go Céim Cathracha agus níos mó foirgneamh is aonad a dhíghlasáil. Méadú ar an dtionchar críocha d'Ionaid Chathartha le +50% níos mó. Méadú +10% ar an sláinte uasach do mhíle-shaoránaigh. Ráta athghiniúna +9 ar garastúnaí i ngach foirgneamh."
+"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
+"health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1292,9 +1292,9 @@ msgstr "Dul chun cinn ó sráidbhaile beag go baile bríomhar, réidh le leathn�
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Dul chun cinn go Céim Sráidbhaile agus níos mó foirgneamh is aonad a dhíghlasáil. Méadú ar an dtionchar críocha d'Ionaid Chathartha le +30% níos mó. Bronn an bónas 'Ulchabháin Airgid' +10% sa bhreis do ráta bailithe miotail le gach oibrí. Méadú +20% ar an sláinte uasach do mhíle-shaoránaigh. Ráta athghiniúna +7 ar garastúnaí i ngach foirgneamh."
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1316,9 +1316,9 @@ msgstr "Dul chun cinn ó sráidbhaile beag go baile bríomhar, réidh le leathn�
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Dul chun cinn go Céim Sráidbhaile agus níos mó foirgneamh is aonad a dhíghlasáil. Méadú ar an dtionchar críocha d'Ionaid Chathartha le +30% níos mó. Méadú +20% ar an sláinte uasach do mhíle-shaoránaigh. Ráta athghiniúna +7 ar garastúnaí i ngach foirgneamh."
+"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
+"All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2266,9 +2266,8 @@ msgstr "Thógáil na Cartagaigh a mballaí cathracha i dtrí thimpill chomhlárn
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
-"Carthaginian walls, gates, and wall towers have 3x the health of a standard "
-"wall, but also cost twice as much and take twice as long to build."
-msgstr "Tá sláinte x3 do bhallaí, geataí agus túir bhalla Cartagacha i gcomparáid le ballaí normálta, ach tá costas faoi dhó acu agus tá a -n-am tógála níos fada faoi dhó freisin."
+"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2280,9 +2279,9 @@ msgstr "Bhí tógtha den chuid is mó as adhmad iad foirgnimh Cheilteacha, le bu
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
-"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
-"to construct."
-msgstr "Tá sláinte 20% níos lú ag foirgnimh Cheilteacha, ach tá siad 20% níos saoire agus le ham tógála níos lú freisin."
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2294,9 +2293,9 @@ msgstr "D'úsáid na Gréigigh cloch ina bhfoirgníocht ó am luath na Micéinig
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"All structures have 10% more health and capture points, but also take 10% "
-"longer to build."
-msgstr "Tá sláinte is pointí gabhála 10% níos mó do gach foirgneamh, ach tóg siad 10% níos fada a thógáil."
+"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
+"and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2313,8 +2312,8 @@ msgid ""
 msgstr "Chuimsigh Impireacht na Mauiriaigh ar roinnt ríochtaí iarneamhspleácha thar cheantar do 5 mhilliún méadair chearnaigh, agus ag daonra in aice le 60 milliún duine. Tá teideal Ard Impire ar na ríthe Mauiriaigh, agus tá siad ina gceannasaí ar arm seasta le 600,000 coisí, 9000 eilifint, 8000 carbad, agus 30,000 marcra aige, agus chuir sé mar arm is mó san am seo."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas have a 10% higher maximum population limit."
-msgstr "Tá uasdhaonra 10% níos mó ag na Mauiriaigh."
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2331,8 +2330,8 @@ msgid ""
 msgstr "Thóg na Mauiriagh a mballaí cathracha as adhmad, acmhainn flúirseach san India."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Tá sláinte -20% níos lú agus am tógála -20% níos lú ag ballaí cathracha na Mauiriagh."
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2349,8 +2348,8 @@ msgid ""
 msgstr "Is féidir leis na Peirisgh a líostáil agus líostáil siad uimhir mhór coisithe le linn an chogaidh, mar gheall ar an méid mhór Impireacht na hAcaeiméinigh agus na forais atá aige. Go ginearálta, bhí na coisithe Peireacha dea-oilte agus throid siad le láidreacht mhór. Áfach, nuair a bhí fíor é, bhí siad lag sa troid freisin. Agus, ach amháin do na reisimintí éilite, ní arm seasta iad na coisithe Peirseacha."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians have a 10% higher maximum population limit."
-msgstr "Tá uasdhaonra 10% níos mó ag na Peirisigh."
+msgid "Persians +10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2365,8 +2364,8 @@ msgid ""
 msgstr "Ní raibh an t-arm is mó sa domhain ag na Spartaigh, ach bhí an t-arm is fearr san aoise acu. Cad nach raibh siad i méid, bhí siad i mbun caighdeán. Dúradh gur níor theastaíonn ballaí láidre cathracha ar na Spartaigh, mar ba na fir a mballaí."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans have 10% less maximum population."
-msgstr "Tá uasdhaonra 10% níos lú ag na Spartaigh."
+msgid "Spartans −10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
