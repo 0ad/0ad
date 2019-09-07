@@ -22,6 +22,7 @@
 #include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
 #include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include "ps/CStr.h"
 
@@ -153,7 +154,18 @@ public:
 	 * Add a message to the queue, to be read by GuiPoll.
 	 * The script value must be in the GetScriptInterface() JS context.
 	 */
-	void PushGuiMessage(const JS::HandleValue message);
+	template<typename... Args>
+	void PushGuiMessage(Args const&... args)
+	{
+		JSContext* cx = GetScriptInterface().GetContext();
+		JSAutoRequest rq(cx);
+
+		JS::RootedValue message(cx);
+		GetScriptInterface().CreateObject(&message, args...);
+		GetScriptInterface().FreezeObject(message, true);
+
+		m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
+	}
 
 	/**
 	 * Return a concatenation of all messages in the GUI queue,

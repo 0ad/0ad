@@ -151,7 +151,13 @@ public:
 		CNetServer server;
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.Eval("({mapType:'scenario',map:'maps/scenarios/Saharan Oases',mapPath:'maps/scenarios/',thing:'example'})", &attrs);
+		scriptInterface.CreateObject(
+			&attrs,
+			"mapType", "scenario",
+			"map", "maps/scenarios/Saharan Oases",
+			"mapPath", "maps/scenarios/",
+			"thing", "example");
+
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
 		CNetClient client1(&client1Game, false);
@@ -178,13 +184,19 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command]\\n'})", &cmd);
+			client1.GetScriptInterface().CreateObject(
+				&cmd,
+				"type", "debug-print",
+				"message", "[>>> client1 test sim command]\\n");
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
 		{
 			JS::RootedValue cmd(cx);
-			client2.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client2 test sim command]\\n'})", &cmd);
+			client1.GetScriptInterface().CreateObject(
+				&cmd,
+				"type", "debug-print",
+				"message", "[>>> client2 test sim command]\\n");
 			client2Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -216,7 +228,13 @@ public:
 		CNetServer server;
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.Eval("({mapType:'scenario',map:'maps/scenarios/Saharan Oases',mapPath:'maps/scenarios/',thing:'example'})", &attrs);
+		scriptInterface.CreateObject(
+			&attrs,
+			"mapType", "scenario",
+			"map", "maps/scenarios/Saharan Oases",
+			"mapPath", "maps/scenarios/",
+			"thing", "example");
+
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
 		CNetClient client1(&client1Game, false);
@@ -247,7 +265,11 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 1]\\n'})", &cmd);
+			client1.GetScriptInterface().CreateObject(
+				&cmd,
+				"type", "debug-print",
+				"message", "[>>> client1 test sim command 1]\\n");
+
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -259,7 +281,10 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 2]\\n'})", &cmd);
+			client1.GetScriptInterface().CreateObject(
+				&cmd,
+				"type", "debug-print",
+				"message", "[>>> client1 test sim command 2]\\n");
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -314,7 +339,10 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 3]\\n'})", &cmd);
+			client1.GetScriptInterface().CreateObject(
+				&cmd,
+				"type", "debug-print",
+				"message", "[>>> client1 test sim command 3]\\n");
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -327,7 +355,11 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 4]\\n'})", &cmd);
+			client1.GetScriptInterface().CreateObject(
+				&cmd,
+				"type", "debug-print",
+				"message", "[>>> client1 test sim command 4]\\n");
+
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 

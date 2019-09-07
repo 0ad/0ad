@@ -142,21 +142,12 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 
 	LOGERROR("Out-Of-Sync on turn %d\nPlayers: %s\nDumping state to %s", turn, playerNamesString.str().c_str(), oosdumpPath.string8());
 
-	const ScriptInterface& scriptInterface = m_NetClient.GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue msg(cx);
-
-	scriptInterface.CreateObject(
-		&msg,
-		"type", std::wstring(L"out-of-sync"),
+	m_NetClient.PushGuiMessage(
+		"type", "out-of-sync",
 		"turn", turn,
 		"players", playerNamesStrings,
 		"expectedHash", expectedHashHex,
 		"hash", Hexify(hash),
 		"path_oos_dump", wstring_from_utf8(oosdumpPath.string8()),
 		"path_replay", wstring_from_utf8(m_Replay.GetDirectory().string8()));
-
-	m_NetClient.PushGuiMessage(msg);
 }
