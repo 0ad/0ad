@@ -20,6 +20,7 @@
 #include "ReplayTurnManager.h"
 
 #include "gui/GUIManager.h"
+#include "ps/CLogger.h"
 #include "ps/Util.h"
 #include "simulation2/Simulation2.h"
 

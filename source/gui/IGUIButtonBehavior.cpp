@@ -19,8 +19,6 @@
 
 #include "GUI.h"
 
-#include "ps/CLogger.h"
-
 IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	: IGUIObject(pGUI), m_Pressed(false)
 {

@@ -21,7 +21,6 @@
 
 #include "gui/CGUIColor.h"
 #include "graphics/FontMetrics.h"
-#include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
 
 /**

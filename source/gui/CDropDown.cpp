@@ -23,7 +23,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-#include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 CDropDown::CDropDown(CGUI& pGUI)
 	: CList(pGUI), IGUIObject(pGUI),

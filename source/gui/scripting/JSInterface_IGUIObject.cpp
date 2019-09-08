@@ -27,7 +27,6 @@
 #include "gui/IGUIObject.h"
 #include "gui/IGUIScrollBar.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
-#include "ps/CLogger.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 

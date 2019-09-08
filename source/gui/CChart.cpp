@@ -26,6 +26,7 @@
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "third_party/cppformat/format.h"
 

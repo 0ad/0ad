@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -181,9 +181,10 @@ bool CComponentManager::SerializeState(std::ostream& stream) const
 {
 	CStdSerializer serializer(m_ScriptInterface, stream);
 
-	// We don't serialize the destruction queue, since we'd have to be careful to skip local entities etc
-	// and it's (hopefully) easier to just expect callers to flush the queue before serializing
-	ENSURE(m_DestructionQueue.empty());
+	// We don't serialize the destruction queue, since we'd have to be careful to skip local entities etc.
+	// This means we cannot have non-local entities in the destruction queue at this point.
+	ENSURE(m_DestructionQueue.empty() || std::find_if(m_DestructionQueue.begin(), m_DestructionQueue.end(),
+	       [](entity_id_t ent) { return !ENTITY_IS_LOCAL(ent); }) == m_DestructionQueue.end());
 
 	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
 	serializer.NumberU32_Unbounded("next entity id", m_NextEntityId);

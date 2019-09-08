@@ -170,11 +170,6 @@ public:
 	void RecomputeDistanceHeightmap();
 
 	/**
-	 * RecomputeBlurredNormalMap: calculates the blurred normal map of the terrain. Slow.
-	 */
-	void RecomputeBlurredNormalMap();
-
-	/**
 	 * CreateWaveMeshes: Creates the waves objects (and meshes).
 	 */
 	void CreateWaveMeshes();

@@ -22,8 +22,7 @@
 #include "gui/CGUIColor.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "lib/external_libraries/libsdl.h"
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
+#include "lib/timer.h"
 
 CList::CList(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIScrollBarOwner(pGUI),

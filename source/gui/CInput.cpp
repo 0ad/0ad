@@ -28,7 +28,6 @@
 #include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
-#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"

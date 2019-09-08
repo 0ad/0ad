@@ -505,10 +505,10 @@ namespace
 			JSAutoRequest rq(cx);
 
 			JS::RootedValue t(cx);
-			JS::RootedValue rows(cx, DumpRows(table));
-			m_ScriptInterface.Eval(L"({})", &t);
-			m_ScriptInterface.SetProperty(t, "cols", DumpCols(table));
-			m_ScriptInterface.SetProperty(t, "data", rows);
+			m_ScriptInterface.CreateObject(
+				&t,
+				"cols", DumpCols(table),
+				"data", DumpRows(table));
 
 			m_ScriptInterface.SetProperty(m_Root, table->GetTitle().c_str(), t);
 		}

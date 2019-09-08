@@ -22,6 +22,8 @@
 #include "gui/GUIManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Profile.h"
+#include "ps/CLogger.h"
 #include "ps/Replay.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"

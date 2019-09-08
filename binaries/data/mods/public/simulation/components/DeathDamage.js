@@ -58,8 +58,6 @@ DeathDamage.prototype.CauseDeathDamage = function()
 	if (owner == INVALID_PLAYER)
 		warn("Unit causing death damage does not have any owner.");
 
-	let playersToDamage = Attacking.GetPlayersToDamage(owner, this.template.FriendlyFire);
-
 	let radius = ApplyValueModificationsToEntity("DeathDamage/Range", +this.template.Range, this.entity);
 
 	Attacking.CauseDamageOverArea({
@@ -70,7 +68,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 		"origin": pos,
 		"radius": radius,
 		"shape": this.template.Shape,
-		"playersToDamage": playersToDamage,
+		"friendlyFire": this.template.FriendlyFire == "true",
 	});
 };
 

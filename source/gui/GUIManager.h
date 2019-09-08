@@ -23,7 +23,6 @@
 
 #include "lib/input.h"
 #include "lib/file/vfs/vfs_path.h"
-#include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptVal.h"
