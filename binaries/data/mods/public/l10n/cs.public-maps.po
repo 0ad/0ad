@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:11+0000\n"
-"PO-Revision-Date: 2019-09-02 14:17+0000\n"
+"POT-Creation-Date: 2019-09-06 07:09+0000\n"
+"PO-Revision-Date: 2019-09-06 14:26+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -2055,7 +2055,7 @@ msgstr "Každá jednotka ve hře."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27 maps/scenarios/test-foundation.xml:Description:40
+#: map.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Podejte zajímavý popis své mapy."
 
@@ -2080,7 +2080,6 @@ msgid "A quick battle demo map using Roman legionaries."
 msgstr ""
 
 #: maps/scenarios/_default.xml:Name:28
-#: maps/scenarios/test-foundation.xml:Name:40
 msgid "Unnamed map"
 msgstr "Nepojmenovaná mapa"
 
@@ -2111,6 +2110,16 @@ msgstr "Ukázka lodí"
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
 msgstr "Umírněná základní mapa"
+
+#: maps/scenarios/test-foundation.xml:Description:40
+msgid ""
+"This map is designed to help artists and modders find the adequate "
+"foundation for a specific building. This map is not meant to be playable."
+msgstr ""
+
+#: maps/scenarios/test-foundation.xml:Name:40
+msgid "Foundation Testing Map"
+msgstr ""
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""

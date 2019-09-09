@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 15:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-06 07:08+0000\n"
+"PO-Revision-Date: 2019-09-06 14:18+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,17 +146,17 @@ msgid "DELETE"
 msgstr "DILEMEL"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:321
-#: gui/loadgame/load.js:173 gui/options/options.js:295
+#: gui/loadgame/load.js:172 gui/options/options.js:295
 #: gui/options/options.js:345 gui/options/options.js:371
-#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/pregame/MainMenuItems.js:173 gui/pregame/MainMenuItems.js:190
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "No"
 msgstr "Ket"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:321
-#: gui/loadgame/load.js:173 gui/options/options.js:295
+#: gui/loadgame/load.js:172 gui/options/options.js:295
 #: gui/options/options.js:345 gui/options/options.js:371
-#: gui/pregame/mainmenu.js:204 gui/pregame/mainmenu.js:218
+#: gui/pregame/MainMenuItems.js:173 gui/pregame/MainMenuItems.js:190
 #: gui/replaymenu/replay_actions.js:169 gui/savegame/save.js:66
 msgid "Yes"
 msgstr "Ya"
@@ -175,113 +175,113 @@ msgstr "Dalc'hit %(hotkey)s evit dilemel hep kadarnaat."
 msgid "A randomly selected map."
 msgstr "Ur gartenn dibabet dre-zegouezh."
 
-#: gui/common/gamedescription.js:68 gui/common/gamedescription.js:352
+#: gui/common/gamedescription.js:68 gui/common/gamedescription.js:350
 msgid "Sorry, no description available."
 msgstr "N'eus deskrivadur hegerzus ebet, digarezit."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:119
+#: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:122
+#: gui/common/gamedescription.js:120
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:128
+#: gui/common/gamedescription.js:126
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
 msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:131
+#: gui/common/gamedescription.js:129
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:141
+#: gui/common/gamedescription.js:139
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (EZLINENN)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:144
+#: gui/common/gamedescription.js:142
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (EZLINENN, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:151
+#: gui/common/gamedescription.js:149
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:154
+#: gui/common/gamedescription.js:152
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:158
+#: gui/common/gamedescription.js:156
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:161
+#: gui/common/gamedescription.js:159
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:181
+#: gui/common/gamedescription.js:179
 msgid "Unknown Civilization"
 msgstr "Sevenadurezh dianav"
 
-#: gui/common/gamedescription.js:188
+#: gui/common/gamedescription.js:186
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "trec'het"
 
-#: gui/common/gamedescription.js:189
+#: gui/common/gamedescription.js:187
 msgctxt "playerstate"
 msgid "won"
 msgstr "gounezer"
 
-#: gui/common/gamedescription.js:210
+#: gui/common/gamedescription.js:208
 msgid "No Team"
 msgstr "Skipailh ebet"
 
-#: gui/common/gamedescription.js:211
+#: gui/common/gamedescription.js:209
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Skipailh %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:214 gui/common/gamedescription.js:221
+#: gui/common/gamedescription.js:212 gui/common/gamedescription.js:219
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:222
+#: gui/common/gamedescription.js:220
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Arvester"
@@ -290,16 +290,16 @@ msgstr[2] "Arvesterien"
 msgstr[3] "Arvesterien"
 msgstr[4] "Arvesterien"
 
-#: gui/common/gamedescription.js:239
+#: gui/common/gamedescription.js:237
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "C'hoariadenn Difin"
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:238
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr ""
 
-#: gui/common/gamedescription.js:251
+#: gui/common/gamedescription.js:249
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -310,7 +310,7 @@ msgstr[2] "Marzenn (%(min)s munut)"
 msgstr[3] "Marzenn (%(min)s munut)"
 msgstr[4] "Marzenn (%(min)s munut)"
 
-#: gui/common/gamedescription.js:263
+#: gui/common/gamedescription.js:261
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -321,81 +321,81 @@ msgstr[2] "Pakañ ar Relegenn (%(min)s munutenn)"
 msgstr[3] "Pakañ ar Relegenn (%(min)s munutenn)"
 msgstr[4] "Pakañ ar Relegenn (%(min)s munutenn)"
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:277
 msgid "Relic Count"
 msgstr "Niver a relegoù"
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:284
 msgid "Hero Garrison"
 msgstr "Haroz gwarnizonet"
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:285
 msgid "Heroes can be garrisoned."
 msgstr "Harozed a c'hell bet lakaet e-barzh."
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:289
 msgid "Exposed Heroes"
 msgstr "Harozed diskouezet"
 
-#: gui/common/gamedescription.js:292
+#: gui/common/gamedescription.js:290
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr ""
 
-#: gui/common/gamedescription.js:299
+#: gui/common/gamedescription.js:297
 msgid "Rated game"
 msgstr "C'hoariadenn renket"
 
-#: gui/common/gamedescription.js:300
+#: gui/common/gamedescription.js:298
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Ur wech termenet trec'her ar c'hoariadenn-mañ, skor an hall a vo azasaet."
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:303
 msgid "Locked Teams"
 msgstr "Skipailhoù Morailhet"
 
-#: gui/common/gamedescription.js:306
+#: gui/common/gamedescription.js:304
 msgid "Players can't change the initial teams."
 msgstr "Ar c'hoarierien ne c'hallont ket cheñch skipailhoù ar penn-kentañ."
 
-#: gui/common/gamedescription.js:310
+#: gui/common/gamedescription.js:308
 msgid "Diplomacy"
 msgstr "Diplomaterezh"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:309
 msgid "Players can make alliances and declare war on allies."
 msgstr "Ar c'hoarierien a c'hall skoulmañ emglevioù ha diskleriañ ar brezel a-enep d'o c'hevredidi."
 
-#: gui/common/gamedescription.js:316
+#: gui/common/gamedescription.js:314
 msgid "Last Man Standing"
 msgstr "An Den Diwezhañ War-Sav"
 
-#: gui/common/gamedescription.js:317
+#: gui/common/gamedescription.js:315
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr ""
 
-#: gui/common/gamedescription.js:321
+#: gui/common/gamedescription.js:319
 msgid "Allied Victory"
 msgstr "Trec'h ar Gevreded"
 
-#: gui/common/gamedescription.js:322
+#: gui/common/gamedescription.js:320
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr ""
 
-#: gui/common/gamedescription.js:326
+#: gui/common/gamedescription.js:324
 msgid "Ceasefire"
 msgstr "Harz-tennañ"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:327 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "lazhet"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:328
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "E-pad ar munutennoù kentañ e chomo neptu ar c'hoarierien all."
@@ -404,102 +404,102 @@ msgstr[2] "E-pad ar %(min)s munutennoù kentañ e chomo neptu ar c'hoarierien al
 msgstr[3] "E-pad ar %(min)s munutennoù kentañ e chomo neptu ar c'hoarierien all."
 msgstr[4] "E-pad ar %(min)s munutennoù kentañ e chomo neptu ar c'hoarierien all."
 
-#: gui/common/gamedescription.js:339
+#: gui/common/gamedescription.js:337
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Kartenn Dre-zegouezh"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:338
 msgid "Randomly select a map from the list."
 msgstr "Dibab ur gartenn dre-zegouezh el listenn."
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:343
 msgid "Map Name"
 msgstr "Anv ar Gartenn"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:347
 msgid "Map Description"
 msgstr "Deskrivadur ar Gartenn"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:355
 msgid "Map Type"
 msgstr "Doare Kartenn"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:361
 msgid "Map Filter"
 msgstr "Sil kartennoù"
 
-#: gui/common/gamedescription.js:372
+#: gui/common/gamedescription.js:370
 msgid "Map Size"
 msgstr "Ment ar Gartenn"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:379
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Biom Dre-zegouezh"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:380
 msgid "Randomly select a biome from the list."
 msgstr "Dibab ur biom dre-zegouezh el listenn."
 
-#: gui/common/gamedescription.js:396
+#: gui/common/gamedescription.js:394
 msgid "Nomad Mode"
 msgstr "Mod Kantreer"
 
-#: gui/common/gamedescription.js:396
+#: gui/common/gamedescription.js:394
 msgid "Civic Centers"
 msgstr "Kreizennoù Keodedel"
 
-#: gui/common/gamedescription.js:399
+#: gui/common/gamedescription.js:397
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr ""
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:398
 msgid "Players start with a Civic Center."
 msgstr "Ar c'hoarierien a gomañso gant ur Greizenn Geodedel."
 
-#: gui/common/gamedescription.js:404
+#: gui/common/gamedescription.js:402
 msgid "Starting Resources"
 msgstr "Mammennoù el Loc'hañ"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:403
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:413
 msgid "Population Limit"
 msgstr "Bevenn ar Boblañs"
 
-#: gui/common/gamedescription.js:423
+#: gui/common/gamedescription.js:421
 msgid "Treasures"
 msgstr "Teñzoroù"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:423
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Lazhet"
 
-#: gui/common/gamedescription.js:426
+#: gui/common/gamedescription.js:424
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr ""
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:428
 msgid "Revealed Map"
 msgstr "Kartenn Dizoloet"
 
-#: gui/common/gamedescription.js:435
+#: gui/common/gamedescription.js:433
 msgid "Explored Map"
 msgstr "Kartenn Ergerzhet"
 
-#: gui/common/gamedescription.js:440
+#: gui/common/gamedescription.js:438
 msgid "Cheats"
 msgstr "Truchadurioù"
 
-#: gui/common/gamedescription.js:444 gui/common/tooltips.js:162
+#: gui/common/gamedescription.js:442 gui/common/tooltips.js:162
 #: gui/common/tooltips.js:217 gui/common/tooltips.js:257
 #: gui/common/tooltips.js:391 gui/common/tooltips.js:413
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:518
@@ -508,25 +508,25 @@ msgstr "Truchadurioù"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:445
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "enaouet"
 
-#: gui/common/gamedescription.js:448
+#: gui/common/gamedescription.js:446
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "lazhet"
 
-#: gui/common/gamedescription.js:464
+#: gui/common/gamedescription.js:462
 msgid "Victorious"
 msgstr "Trec'her"
 
-#: gui/common/gamedescription.js:469
+#: gui/common/gamedescription.js:467
 msgid "Defeated"
 msgstr "Trec'het"
 
-#: gui/common/gamedescription.js:478
+#: gui/common/gamedescription.js:476
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -626,7 +626,7 @@ msgstr "Implijidi (%(num)s): %(users)s"
 #: gui/common/tooltips.js:320 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:386 gui/common/tooltips.js:681
 #: gui/common/tooltips.js:715 gui/common/tooltips.js:781
-#: gui/loadgame/load.js:116 gui/reference/common/draw.js:51
+#: gui/loadgame/load.js:115 gui/reference/common/draw.js:51
 #: gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ","
@@ -1231,31 +1231,31 @@ msgstr "Klikit evit gwelout muioc'h a ditouroù."
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/loadgame/load.js:118
+#: gui/loadgame/load.js:117
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Modoù : %(mods)s"
 
-#: gui/loadgame/load.js:151
+#: gui/loadgame/load.js:150
 #, javascript-format
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
 msgstr ""
 
-#: gui/loadgame/load.js:156
+#: gui/loadgame/load.js:155
 msgid "This savegame needs an older version of 0 A.D."
 msgstr ""
 
-#: gui/loadgame/load.js:163
+#: gui/loadgame/load.js:162
 msgid "This savegame needs a different sequence of mods:"
 msgstr ""
 
-#: gui/loadgame/load.js:167
+#: gui/loadgame/load.js:166
 msgid "Do you still want to proceed?"
 msgstr ""
 
-#: gui/loadgame/load.js:172 gui/options/options.js:294
+#: gui/loadgame/load.js:171 gui/options/options.js:294
 #: gui/options/options.js:344 gui/options/options.js:370
 msgid "Warning"
 msgstr "Diwallit"
@@ -1303,25 +1303,276 @@ msgstr ""
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:41
+#: gui/pregame/MainMenuItems.js:3
+msgid "Learn To Play"
+msgstr "Deskiñ C'hoari"
+
+#: gui/pregame/MainMenuItems.js:4
+msgid ""
+"Learn how to play, start the tutorial, discover the technology trees, and "
+"the history behind the civilizations"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:7
+msgid "Manual"
+msgstr "Dornlevr"
+
+#: gui/pregame/MainMenuItems.js:8
+msgid "Open the 0 A.D. Game Manual."
+msgstr "Digeriñ dornlevr ar c'hoari 0 A.D."
+
+#: gui/pregame/MainMenuItems.js:14
+msgid "Tutorial"
+msgstr "Tutorek"
+
+#: gui/pregame/MainMenuItems.js:15 gui/pregame/MainMenuItems.js:46
+msgid "Start the economic tutorial."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:23 gui/civinfo/civinfo.xml:(caption):123
+#: gui/reference/structree/structree.xml:(caption):19
+msgid "Structure Tree"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:24
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Sellout ouzh gwezenn ar sevenadurioù kinniget e 0 A.D."
 
-#: gui/pregame/mainmenu.js:45
+#: gui/pregame/MainMenuItems.js:31
+#: gui/reference/structree/structree.xml:(caption):126
+msgid "History"
+msgstr "Istor"
+
+#: gui/pregame/MainMenuItems.js:32
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Deskiñ muioc'h diwar-benn ar sevenadurezhioù niverus kinniget e 0 A.D."
 
-#: gui/pregame/mainmenu.js:49
+#: gui/pregame/MainMenuItems.js:41 gui/replaymenu/replay_filters.js:142
+msgid "Single Player"
+msgstr "C'hoari Solo"
+
+#: gui/pregame/MainMenuItems.js:42
+msgid "Click here to start a new single player game."
+msgstr "Klikit amañ evit loc'hañ gant ur c'hoari nevez en e-unan."
+
+#: gui/pregame/MainMenuItems.js:45
+msgid "Matches"
+msgstr "Krogadoù"
+
+#: gui/pregame/MainMenuItems.js:52
+msgid "Campaigns"
+msgstr "Brezeliadennoù"
+
+#: gui/pregame/MainMenuItems.js:53
+msgid ""
+"Relive history through historical military campaigns. \\[NOT YET "
+"IMPLEMENTED]"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:57 gui/loadgame/load.xml:(caption):14
+msgid "Load Game"
+msgstr "Kargañ ur C'hoariadenn"
+
+#: gui/pregame/MainMenuItems.js:58
+msgid "Click here to load a saved game."
+msgstr "Klikit amañ evit kargañ ur c'hoari enrollet."
+
+#: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:116
+msgid "Replays"
+msgstr "Videdoù "
+
+#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:117
+msgid "Playback previous games."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:81 gui/replaymenu/replay_filters.js:142
+msgid "Multiplayer"
+msgstr "Lies-c'hoarier"
+
+#: gui/pregame/MainMenuItems.js:82
+msgid "Fight against one or more human players in a multiplayer game."
+msgstr "Stourm a-enep ur c'hoarier denel pe muioc'h en ur c'hoari lies-c'hoarier."
+
+#. Translation: Join a game by specifying the host's IP address.
+#: gui/pregame/MainMenuItems.js:86
+msgid "Join Game"
+msgstr "Emezelañ er C'hoariadenn"
+
+#: gui/pregame/MainMenuItems.js:87
+msgid "Joining an existing multiplayer game."
+msgstr "Oc'h emezelañ en ur c'hoari lies-c'hoarier a zo anezhañ."
+
+#: gui/pregame/MainMenuItems.js:95
+msgid "Host Game"
+msgstr "Herbrec'hiañ ur C'hoariadenn"
+
+#: gui/pregame/MainMenuItems.js:96
+msgid "Host a multiplayer game."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:104
+msgid "Game Lobby"
+msgstr "Hall c'hoari"
+
+#: gui/pregame/MainMenuItems.js:106
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Loc'hañ an hall lies-c'hoarier d'emezelañ ha degemer c'hoarioù gwelus en doare foran ha flapva gant c'hoarierien all."
 
-#: gui/pregame/mainmenu.js:118
+#: gui/pregame/MainMenuItems.js:107
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:131
+msgid "Settings"
+msgstr "Arventennoù"
+
+#: gui/pregame/MainMenuItems.js:132
+msgid "Game options and scenario design tools."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:135
+msgid "Options"
+msgstr "Dibarzhioù"
+
+#: gui/pregame/MainMenuItems.js:136
+msgid "Adjust game settings."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:142 gui/locale/locale.xml:(caption):14
+msgid "Language"
+msgstr "Yezh"
+
+#: gui/pregame/MainMenuItems.js:143
+msgid "Choose the language of the game."
+msgstr "Dibab yezh ar c'hoari."
+
+#: gui/pregame/MainMenuItems.js:149
+msgid "Mod Selection"
+msgstr "Mod Diuzañ"
+
+#: gui/pregame/MainMenuItems.js:150
+msgid "Select and download mods for the game."
+msgstr "Diuzañ ha pellgargañ modoù evit ar c'hoari."
+
+#: gui/pregame/MainMenuItems.js:156
+msgid "Welcome Screen"
+msgstr "Skramm Degemer"
+
+#: gui/pregame/MainMenuItems.js:157
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:165
+msgid "Scenario Editor"
+msgstr "Saver Senario"
+
+#: gui/pregame/MainMenuItems.js:166
+msgid ""
+"Open the Atlas Scenario Editor in a new window. You can run this more "
+"reliably by starting the game with the command-line argument \"-editor\"."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:171
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr "Ha c'hoant ho peus kuitaat 0 A.D. da vat ha digeriñ an Aozer Senarioioù?"
+
+#: gui/pregame/MainMenuItems.js:172 gui/pregame/MainMenuItems.js:189
+msgid "Confirmation"
+msgstr "Kadarnadenn"
+
+#: gui/pregame/MainMenuItems.js:178
+msgid ""
+"The scenario editor is not available or failed to load. See the game logs "
+"for additional information."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:179 gui/replaymenu/replay_actions.js:117
+msgid "Error"
+msgstr "Fazi"
+
+#: gui/pregame/MainMenuItems.js:183
+msgid "Exit"
+msgstr "Kuitaat"
+
+#: gui/pregame/MainMenuItems.js:184
+msgid "Exits the game."
+msgstr "Kuitaat ar c'hoari."
+
+#: gui/pregame/MainMenuItems.js:188
+msgid "Are you sure you want to quit 0 A.D.?"
+msgstr "Ha c'hoant ho peus kuitaat 0 A.D. da vat?"
+
+#: gui/pregame/ProjectInformation.js:6
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/pregame/ProjectInformation.js:18
+msgid "Alpha XXIV"
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:19
+msgid ""
+"Notice: This game is under development and many features have not been added"
+" yet."
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:25
+msgid "Website"
+msgstr "Lec'hienn web"
+
+#: gui/pregame/ProjectInformation.js:26
+msgid "Click to open play0ad.com in your web browser."
+msgstr "Klikit evit digeriñ play0ad.com en ho merdeer web."
+
+#: gui/pregame/ProjectInformation.js:33
+msgid "Chat"
+msgstr "Flapva"
+
+#: gui/pregame/ProjectInformation.js:34
+msgid ""
+"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
+"webchat.quakenet.org)"
+msgstr "Klikit evit digeriñ flapva IRC 0 A.D. en ho merdeer. (#0ad war webchat.quakenet.org)"
+
+#: gui/pregame/ProjectInformation.js:41
+msgid "Report a Bug"
+msgstr "Reiñ da anavezout ur veugenn"
+
+#: gui/pregame/ProjectInformation.js:42
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr "Klikit evit dizoloiñ 0 A.D. Klikit amañ evit danevelliñ un draen, ur sac'hadenn, pe ur fazi."
+
+#: gui/pregame/ProjectInformation.js:49
+msgid "Translate the Game"
+msgstr "Treiñ ar C'hoari"
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr "Klikit evit digeriñ pajenn troidigezh 0 A.D. en ho merdeer."
+
+#: gui/pregame/ProjectInformation.js:57
+msgid "Donate"
+msgstr "Donezon"
+
+#: gui/pregame/ProjectInformation.js:58
+msgid "Help with the project expenses by donating."
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:65
+msgid "Credits"
+msgstr "Kreditoù"
+
+#: gui/pregame/ProjectInformation.js:66
+msgid "Click to see the 0 A.D. credits."
+msgstr "Klikit evit diskouez kreditoù 0 A.D."
+
+#: gui/pregame/SplashscreenHandler.js:44
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1334,49 +1585,22 @@ msgstr "%(warning)s Diskouez a rit bezañ oc'h implijout grafikoù nann-shader (
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:126
+#: gui/pregame/SplashscreenHandler.js:52
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Klikit war \"Lenn Muioc'h\" evit muioc'h a ditouroù pe \"OK\" evit kendalc'h."
 
-#: gui/pregame/mainmenu.js:127
+#: gui/pregame/SplashscreenHandler.js:53
 msgid "WARNING!"
 msgstr "DIWALLIT!"
 
-#: gui/pregame/mainmenu.js:128 gui/splashscreen/splashscreen.xml:(caption):30
+#: gui/pregame/SplashscreenHandler.js:54
+#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "Mat eo"
 
-#: gui/pregame/mainmenu.js:128
+#: gui/pregame/SplashscreenHandler.js:54
 msgid "Read More"
 msgstr "Lenn Muioc'h"
-
-#: gui/pregame/mainmenu.js:202
-msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Ha c'hoant ho peus kuitaat 0 A.D. da vat?"
-
-#: gui/pregame/mainmenu.js:203 gui/pregame/mainmenu.js:217
-msgid "Confirmation"
-msgstr "Kadarnadenn"
-
-#: gui/pregame/mainmenu.js:216
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Ha c'hoant ho peus kuitaat 0 A.D. da vat ha digeriñ an Aozer Senarioioù?"
-
-#: gui/pregame/mainmenu.js:224
-msgid ""
-"The scenario editor is not available or failed to load. See the game logs "
-"for additional information."
-msgstr ""
-
-#: gui/pregame/mainmenu.js:225 gui/replaymenu/replay_actions.js:117
-msgid "Error"
-msgstr "Fazi"
-
-#: gui/pregame/mainmenu.js:231
-msgid ""
-"Launch the multiplayer lobby to join and host publicly visible games and "
-"chat with other players. \\[DISABLED BY BUILD]"
-msgstr "Loc'hañ hall al lies-c'hoarierien evit emezelañ ha degemer c'hoarioù gwelus en doare foran ha gellet flapañ gant c'hoarierien all. \\[DISABLED BY BUILD]"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1625,14 +1849,6 @@ msgstr "%(min)s - %(max)s munutenn"
 msgid "Single- and multiplayer"
 msgstr "Solo- ha lies-c'hoarier"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):411
-msgid "Single Player"
-msgstr "C'hoari Solo"
-
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):426
-msgid "Multiplayer"
-msgstr "Lies-c'hoarier"
-
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
 msgstr ""
@@ -1659,11 +1875,11 @@ msgstr ""
 msgid "Players: %(numberOfPlayers)s"
 msgstr "C'hoarierien : %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:300
+#: gui/replaymenu/replay_menu.js:298
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd-MM-yyyy HH:mm"
 
-#: gui/replaymenu/replay_menu.js:330
+#: gui/replaymenu/replay_menu.js:328
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
 
@@ -1998,12 +2214,6 @@ msgstr "Sevenadurezhioù"
 msgid "Civilization Selection"
 msgstr "Dibab ur sevenadurezh"
 
-#: gui/civinfo/civinfo.xml:(caption):123
-#: gui/pregame/mainmenu.xml:(caption):120
-#: gui/reference/structree/structree.xml:(caption):19
-msgid "Structure Tree"
-msgstr ""
-
 #: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
 #: gui/reference/structree/structree.xml:(caption):137
@@ -2015,9 +2225,27 @@ msgstr "Serriñ"
 msgid "0 A.D. Credits"
 msgstr "Kreditoù 0 A.D."
 
-#: gui/loadgame/load.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):179
-msgid "Load Game"
-msgstr "Kargañ ur C'hoariadenn"
+#: gui/loadgame/load.xml:(heading):32
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Deiziad / Eur"
+
+#: gui/loadgame/load.xml:(heading):36
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Doare ar gartenn"
+
+#: gui/loadgame/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Anv ar gartenn"
+
+#: gui/loadgame/load.xml:(heading):44
+msgctxt "replay"
+msgid "Description"
+msgstr "Diskrivadur"
 
 #: gui/loadgame/load.xml:(caption):49
 msgid "No saved games found."
@@ -2064,32 +2292,6 @@ msgstr "Ment ar gartenn:"
 #: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
 msgstr "Trec'h:"
-
-#: gui/loadgame/load.xml:(heading):32
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Deiziad / Eur"
-
-#: gui/loadgame/load.xml:(heading):36
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Doare ar gartenn"
-
-#: gui/loadgame/load.xml:(heading):40
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Anv ar gartenn"
-
-#: gui/loadgame/load.xml:(heading):44
-msgctxt "replay"
-msgid "Description"
-msgstr "Diskrivadur"
-
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):315
-msgid "Language"
-msgstr "Yezh"
 
 #: gui/locale/locale.xml:(caption):17
 msgid "Language:"
@@ -2142,216 +2344,6 @@ msgstr "Enrollañ ar cheñchamantoù"
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
 msgstr ""
-
-#: gui/pregame/mainmenu.xml:492
-msgid "Alpha XXIV"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:494
-msgid ""
-"WARNING: This is an early development version of the game. Many features "
-"have not been added yet."
-msgstr "DIWALL: Un handelv a ziorroadur abred eo eus ar c'hoari. Meur a geweriuster n'int ket bet lakaet c'hoazh."
-
-#: gui/pregame/mainmenu.xml:(caption):89
-msgid "Manual"
-msgstr "Dornlevr"
-
-#: gui/pregame/mainmenu.xml:(caption):104
-msgid "Tutorial"
-msgstr "Tutorek"
-
-#: gui/pregame/mainmenu.xml:(caption):133
-#: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Istor"
-
-#: gui/pregame/mainmenu.xml:(caption):152
-msgid "Matches"
-msgstr "Krogadoù"
-
-#: gui/pregame/mainmenu.xml:(caption):166
-msgid "Campaigns"
-msgstr "Brezeliadennoù"
-
-#: gui/pregame/mainmenu.xml:(caption):193
-#: gui/pregame/mainmenu.xml:(caption):273
-msgid "Replays"
-msgstr "Videdoù "
-
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):221
-msgid "Join Game"
-msgstr "Emezelañ er C'hoariadenn"
-
-#: gui/pregame/mainmenu.xml:(caption):235
-msgid "Host Game"
-msgstr "Herbrec'hiañ ur C'hoariadenn"
-
-#: gui/pregame/mainmenu.xml:(caption):251
-msgid "Game Lobby"
-msgstr "Hall c'hoari"
-
-#: gui/pregame/mainmenu.xml:(caption):301
-msgid "Options"
-msgstr "Dibarzhioù"
-
-#: gui/pregame/mainmenu.xml:(caption):329
-msgid "Mod Selection"
-msgstr "Mod Diuzañ"
-
-#: gui/pregame/mainmenu.xml:(caption):341
-msgid "Welcome Screen"
-msgstr "Skramm Degemer"
-
-#: gui/pregame/mainmenu.xml:(caption):396
-msgid "Learn to Play"
-msgstr "Deskiñ C'hoari"
-
-#: gui/pregame/mainmenu.xml:(caption):441
-msgid "Settings"
-msgstr "Arventennoù"
-
-#: gui/pregame/mainmenu.xml:(caption):456
-msgid "Scenario Editor"
-msgstr "Saver Senario"
-
-#: gui/pregame/mainmenu.xml:(caption):470
-msgid "Exit"
-msgstr "Kuitaat"
-
-#: gui/pregame/mainmenu.xml:(caption):504
-msgid "Website"
-msgstr "Lec'hienn web"
-
-#: gui/pregame/mainmenu.xml:(caption):516
-msgid "Chat"
-msgstr "Flapva"
-
-#: gui/pregame/mainmenu.xml:(caption):528
-msgid "Report a Bug"
-msgstr "Reiñ da anavezout ur veugenn"
-
-#: gui/pregame/mainmenu.xml:(caption):540
-msgid "Translate the Game"
-msgstr "Treiñ ar C'hoari"
-
-#: gui/pregame/mainmenu.xml:(caption):552
-msgid "Donate"
-msgstr "Donezon"
-
-#: gui/pregame/mainmenu.xml:(caption):564
-msgid "Credits"
-msgstr "Kreditoù"
-
-#: gui/pregame/mainmenu.xml:(caption):593
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/pregame/mainmenu.xml:(tooltip):90
-msgid "Open the 0 A.D. Game Manual."
-msgstr "Digeriñ dornlevr ar c'hoari 0 A.D."
-
-#: gui/pregame/mainmenu.xml:(tooltip):105
-msgid "Start the economic tutorial."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):153
-msgid "Click here to start a new single player game."
-msgstr "Klikit amañ evit loc'hañ gant ur c'hoari nevez en e-unan."
-
-#: gui/pregame/mainmenu.xml:(tooltip):167
-msgid ""
-"Relive history through historical military campaigns. \\[NOT YET "
-"IMPLEMENTED]"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):180
-msgid "Click here to load a saved game."
-msgstr "Klikit amañ evit kargañ ur c'hoari enrollet."
-
-#: gui/pregame/mainmenu.xml:(tooltip):194
-#: gui/pregame/mainmenu.xml:(tooltip):274
-msgid "Playback previous games."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):222
-msgid "Joining an existing multiplayer game."
-msgstr "Oc'h emezelañ en ur c'hoari lies-c'hoarier a zo anezhañ."
-
-#: gui/pregame/mainmenu.xml:(tooltip):236
-msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):302
-msgid "Adjust game settings."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):316
-msgid "Choose the language of the game."
-msgstr "Dibab yezh ar c'hoari."
-
-#: gui/pregame/mainmenu.xml:(tooltip):330
-msgid "Select and download mods for the game."
-msgstr "Diuzañ ha pellgargañ modoù evit ar c'hoari."
-
-#: gui/pregame/mainmenu.xml:(tooltip):342
-msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):397
-msgid ""
-"Learn how to play, start the tutorial, discover the technology trees, and "
-"the history behind the civilizations"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):412
-msgid "Challenge the computer player to a single player match."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):427
-msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Stourm a-enep ur c'hoarier denel pe muioc'h en ur c'hoari lies-c'hoarier."
-
-#: gui/pregame/mainmenu.xml:(tooltip):442
-msgid "Game options and mod selection."
-msgstr "Dibarzhioù c'hoari ha diuzañ mod."
-
-#: gui/pregame/mainmenu.xml:(tooltip):457
-msgid ""
-"Open the Atlas Scenario Editor in a new window. You can run this more "
-"reliably by starting the game with the command-line argument \"-editor\"."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):471
-msgid "Exits the game."
-msgstr "Kuitaat ar c'hoari."
-
-#: gui/pregame/mainmenu.xml:(tooltip):505
-msgid "Click to open play0ad.com in your web browser."
-msgstr "Klikit evit digeriñ play0ad.com en ho merdeer web."
-
-#: gui/pregame/mainmenu.xml:(tooltip):517
-msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Klikit evit digeriñ flapva IRC 0 A.D. en ho merdeer. (#0ad war webchat.quakenet.org)"
-
-#: gui/pregame/mainmenu.xml:(tooltip):529
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Klikit evit dizoloiñ 0 A.D. Klikit amañ evit danevelliñ un draen, ur sac'hadenn, pe ur fazi."
-
-#: gui/pregame/mainmenu.xml:(tooltip):541
-msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Klikit evit digeriñ pajenn troidigezh 0 A.D. en ho merdeer."
-
-#: gui/pregame/mainmenu.xml:(tooltip):553
-msgid "Help with the project expenses by donating."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):565
-msgid "Click to see the 0 A.D. credits."
-msgstr "Klikit evit diskouez kreditoù 0 A.D."
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"

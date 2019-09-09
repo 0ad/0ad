@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:11+0000\n"
-"PO-Revision-Date: 2019-09-05 04:34+0000\n"
+"POT-Creation-Date: 2019-09-06 07:09+0000\n"
+"PO-Revision-Date: 2019-09-08 14:00+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -753,7 +753,7 @@ msgstr "다도해"
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
-msgstr ""
+msgstr "강은 선수들 사이에 흐르고 지도의 중심에서 서로 합류합니다."
 
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
@@ -761,7 +761,7 @@ msgstr "강"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
-msgstr ""
+msgstr "각 선수들은 크고 황량한 사막의 무성한 오아시스 근처에서 시작합니다."
 
 #: maps/random/saharan_oases.jsonsettings.Name maps/scenarios/Saharan
 #: Oases.xml:Name:27
@@ -772,7 +772,7 @@ msgstr "사하라 오아시스"
 msgid ""
 "A somewhat open map with an abundance of food and mineral resources, while "
 "wood is somewhat scarce."
-msgstr ""
+msgstr "풍부한 식량과 광물 자원이 있는 다소 개방된 지도이지만 목재는 다소 부족합니다."
 
 #: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:Name:39
 msgid "Sahel"
@@ -791,7 +791,7 @@ msgstr "사헬의 샘 웅덩이"
 
 #: maps/random/schwarzwald.jsonsettings.Description
 msgid "A forest heavy map with a lake in the middle and plenty of resources."
-msgstr ""
+msgstr "깊은 숲으로 이뤄진 지도로 중앙에 호수가 있고 자원이 풍부합니다."
 
 #: maps/random/schwarzwald.jsonsettings.Name
 msgid "Schwarzwald"
@@ -986,7 +986,7 @@ msgstr "서두르십시오! 적이 승리에 가까워지고 있습니다!"
 #: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr ""
+msgstr "승리까지 수집해야할 남은 보물: %(remainingTreasures)s!"
 
 #: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
@@ -2046,7 +2046,7 @@ msgstr "놀이의 모든 부대."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27 maps/scenarios/test-foundation.xml:Description:40
+#: map.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr ""
 
@@ -2071,7 +2071,6 @@ msgid "A quick battle demo map using Roman legionaries."
 msgstr ""
 
 #: maps/scenarios/_default.xml:Name:28
-#: maps/scenarios/test-foundation.xml:Name:40
 msgid "Unnamed map"
 msgstr "이름이 없는 지도"
 
@@ -2101,6 +2100,16 @@ msgstr "배 시연용"
 
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
+msgstr ""
+
+#: maps/scenarios/test-foundation.xml:Description:40
+msgid ""
+"This map is designed to help artists and modders find the adequate "
+"foundation for a specific building. This map is not meant to be playable."
+msgstr ""
+
+#: maps/scenarios/test-foundation.xml:Name:40
+msgid "Foundation Testing Map"
 msgstr ""
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:40
