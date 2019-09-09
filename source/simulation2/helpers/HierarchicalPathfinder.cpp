@@ -716,7 +716,7 @@ void HierarchicalPathfinder::FindNearestPassableNavcell(u16& i, u16& j, pass_cla
 
 void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID, SortByCenterToPoint>& regions, u16& iGoal, u16& jGoal, pass_class_t passClass) const
 {
-	u16 bestI, bestJ;
+	u16 bestI = iGoal, bestJ = jGoal; // Somewhat sensible default-values should regions() be passed empty.
 	u32 bestDist = std::numeric_limits<u32>::max();
 
 	// Because regions are sorted by increasing distance, we can ignore regions that are obviously farther than the current best point.
