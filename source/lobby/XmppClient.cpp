@@ -79,7 +79,19 @@ IXmppClient* IXmppClient::create(const ScriptInterface* scriptInterface, const s
  * @param regOpt If we are just registering or not.
  */
 XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
-	: m_ScriptInterface(scriptInterface), m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_room(sRoom), m_nick(sNick), m_initialLoadComplete(false), m_isConnected(false), m_sessionManager()
+	: m_ScriptInterface(scriptInterface),
+	  m_client(nullptr),
+	  m_mucRoom(nullptr),
+	  m_registration(nullptr),
+	  m_username(sUsername),
+	  m_password(sPassword),
+	  m_room(sRoom),
+	  m_nick(sNick),
+	  m_initialLoadComplete(false),
+	  m_isConnected(false),
+	  m_sessionManager(nullptr),
+	  m_certStatus(gloox::CertStatus::CertOk),
+	  m_PresenceUpdate(false)
 {
 	if (m_ScriptInterface)
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), XmppClient::Trace, this);
