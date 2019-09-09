@@ -694,7 +694,7 @@ bool HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 		}
 
 	// Goal wasn't reachable - get the closest navcell in the nearest reachable region.
-	std::set<RegionID, SortByCenterToPoint> reachableRegions(SortByCenterToPoint(i0, j0));
+	std::set<RegionID, SortByCenterToPoint> reachableRegions(SortByCenterToPoint(iGoal, jGoal));
 	FindReachableRegions(Get(i0, j0, passClass), reachableRegions, passClass);
 
 	FindNearestNavcellInRegions(reachableRegions, iGoal, jGoal, passClass);
@@ -723,6 +723,7 @@ void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID
 	// Since regions are squares, that happens when the center of a region is at least √2 * CHUNK_SIZE farther than the current best point.
 	// Add one to avoid cases where the center navcell is actually slightly off-center (= CHUNK_SIZE is even)
 	u32 maxDistFromBest = (fixed::FromInt(3) / 2 * CHUNK_SIZE).ToInt_RoundToInfinity() + 1;
+	// TODO: update to static_assert with constexpr
 	ENSURE(maxDistFromBest < std::numeric_limits<u16>::max());
 	maxDistFromBest *= maxDistFromBest;
 
@@ -730,6 +731,7 @@ void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID
 	{
 		u32 chunkDist = region.DistanceTo(iGoal, jGoal);
 		// This might overflow, but only if we are already close to the maximal possible distance, so the condition would probably be false anyways.
+		// It's also a bit pessimistic, so we'll still consider a few too many regions.
 		if (bestDist < std::numeric_limits<u32>::max() && chunkDist > maxDistFromBest + bestDist)
 			break; // Break, the set is ordered by increased distance so a closer region will not be found.
 

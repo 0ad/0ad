@@ -323,14 +323,14 @@ public:
 			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
 			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
 			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
-			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
+			{_,_,_,_,_,_,X,X,X,X,X,X,X,X,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
 			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
 			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
 			{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_},
@@ -339,16 +339,18 @@ public:
 		};
 #undef _
 #undef X
-		// upscaled 5 times
+		// upscaled n times
+		const int scale = 6;
+
 		HierarchicalPathfinder hierPath;
-		Grid<NavcellData> grid(40*5, 40*5);
-		Grid<u8> dirtyGrid(40*5, 40*5);
+		Grid<NavcellData> grid(40*scale, 40*scale);
+		Grid<u8> dirtyGrid(40*scale, 40*scale);
 
 		for (size_t i = 0; i < 40; ++i)
 			for (size_t j = 0; j < 40; ++j)
-				for (size_t ii = 0; ii < 5; ++ii)
-					for (size_t jj = 0; jj < 5; ++jj)
-						grid.set(i * 5 + ii, j * 5 + jj, gridDef[i][j]);
+				for (size_t ii = 0; ii < scale; ++ii)
+					for (size_t jj = 0; jj < scale; ++jj)
+						grid.set(i * scale + ii, j * scale + jj, gridDef[i][j]);
 
 		hierPath.Recompute(&grid, nonPathClassMask, pathClassMask);
 
@@ -370,25 +372,25 @@ public:
 	else \
 	{ \
 		TS_ASSERT(IS_PASSABLE(grid.get(pi, pj), PASS_1)); \
-		TS_ASSERT(manhattan(pi, pj, oi, oj) == expected_manhattan); \
+		TS_ASSERT_EQUALS(manhattan(pi, pj, oi, oj), expected_manhattan); \
 	}
 		u16 oi, oj, pi, pj;
 
-		check_closest_passable(4 * 5, 4 * 5, 1);
-		check_closest_passable(4 * 5 + 1, 4 * 5 + 1, 2);
-		check_closest_passable(14 * 5 + 2, 7 * 5 + 2, 8);
-		check_closest_passable(14 * 5 + 2, 7 * 5 + 4, 6);
-		check_closest_passable(14 * 5 + 2, 7 * 5 + 5, 5);
-		check_closest_passable(14 * 5 + 2, 7 * 5 + 6, 4);
-		check_closest_passable(5 * 5 + 3, 7 * 5 + 2, 2);
+		check_closest_passable(4 * scale, 4 * scale, 1);
+		check_closest_passable(4 * scale + 1, 4 * scale + 1, 2);
+		check_closest_passable(14 * scale + 2, 7 * scale + 2, 9);
+		check_closest_passable(14 * scale + 2, 7 * scale + 4, 8);
+		check_closest_passable(14 * scale + 2, 7 * scale + 5, 7);
+		check_closest_passable(14 * scale + 2, 7 * scale + 6, 6);
+		check_closest_passable(5 * scale + 3, 7 * scale + 2, 3);
 #undef check_closest_passable
 
 		PathGoal goal;
 		goal.type = PathGoal::POINT;
 
 		// from the left of the C, goal is unreachable, expect closest navcell to goal
-		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 5 * 5 + 3; pj = 6 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 5 * scale + 3; pj = 6 * scale + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
@@ -396,8 +398,8 @@ public:
 		TS_ASSERT_EQUALS(pj, goal.z.ToInt_RoundToNegInfinity());
 
 		// random reachable point.
-		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 26 * 5 + 3; pj = 5 * 5 + 2; goal.x = fixed::FromInt(pi) + fixed::FromInt(1)/3; goal.z = fixed::FromInt(pj) + fixed::FromInt(1)/3;
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 26 * scale + 3; pj = 5 * scale + 2; goal.x = fixed::FromInt(pi) + fixed::FromInt(1)/3; goal.z = fixed::FromInt(pj) + fixed::FromInt(1)/3;
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		TS_ASSERT(pi == goal.x.ToInt_RoundToNegInfinity() && pj == goal.z.ToInt_RoundToNegInfinity());
 
@@ -416,8 +418,8 @@ public:
 		goal.hw = fixed::FromInt(1) / 2;
 
 		// from the left of the C, goal is unreachable, expect closest navcell to goal
-		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 5 * 5 + 3; pj = 7 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 5 * scale + 3; pj = 7 * scale + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
 		TS_ASSERT(pi == goal.x.ToInt_RoundToNegInfinity() && pj == goal.z.ToInt_RoundToNegInfinity());
@@ -429,14 +431,23 @@ public:
 		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
 		TS_ASSERT(pi == goal.x.ToInt_RoundToNegInfinity() && pj == goal.z.ToInt_RoundToNegInfinity());
 
+		// Same position, but goal is unreachable and much farther away.
+		goal.type = PathGoal::POINT;
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 34 * scale + 3; pj = 6 * scale + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
+		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
+		TS_ASSERT_EQUALS(pi, goal.x.ToInt_RoundToNegInfinity())
+		TS_ASSERT_EQUALS(pj, goal.z.ToInt_RoundToNegInfinity());
+
 		// Square
 		goal.type = PathGoal::SQUARE;
 		goal.hw = fixed::FromInt(1) / 2;
 		goal.hh = fixed::FromInt(1) / 2;
 
 		// from the left of the C, goal is unreachable, expect closest navcell to goal
-		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 5 * 5 + 3; pj = 7 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 5 * scale + 3; pj = 7 * scale + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
 		TS_ASSERT(pi == goal.x.ToInt_RoundToNegInfinity() && pj == goal.z.ToInt_RoundToNegInfinity());
@@ -452,8 +463,8 @@ public:
 		// Goal is reachable diagonally (1 cell away)
 		goal.hw = fixed::FromInt(1);
 		goal.hh = fixed::FromInt(1);
-		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 5 * 5 - 1; pj = 7 * 5 + 3; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 5 * scale - 1; pj = 7 * scale + 3; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 		hierPath.FindNearestPassableNavcell(pi, pj, PASS_1);
 		TS_ASSERT(pi == goal.x.ToInt_RoundToNegInfinity() && pj == goal.z.ToInt_RoundToNegInfinity());
@@ -462,8 +473,8 @@ public:
 		goal.type = PathGoal::CIRCLE;
 		goal.hw = fixed::FromInt(20);
 
-		oi = 5 * 5 + 3; oj = 3 * 5 + 3;
-		pi = 36 * 5 + 3; pj = 7 * 5 + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
+		oi = 5 * scale + 3; oj = 3 * scale + 3;
+		pi = 36 * scale + 3; pj = 7 * scale + 2; goal.x = fixed::FromInt(pi); goal.z = fixed::FromInt(pj);
 
 		hierPath.MakeGoalReachable(oi, oj, goal, PASS_1);
 
