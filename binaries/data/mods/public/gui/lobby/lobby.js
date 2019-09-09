@@ -153,7 +153,7 @@ var g_NetMessageTypes = {
 				addChatMessage({
 					"from": "system",
 					"time": msg.time,
-					"text": translate("Disconnected.") + " " + msg.reason
+					"text": translate("Disconnected.") + " " + msg.reason + msg.certificate_status
 				});
 				reconnectMessageBox();
 			}
