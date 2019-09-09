@@ -5,7 +5,7 @@
     <Height>12.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
@@ -15,6 +15,6 @@
   </Obstruction>
   <VisualActor>
     <Actor>structures/ptolemies/temple.xml</Actor>
-    <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
+    <FoundationActor>structures/fndn_5x9.xml</FoundationActor>
   </VisualActor>
 </Entity>
