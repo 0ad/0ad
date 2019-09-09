@@ -1088,15 +1088,14 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
  */
 std::string XmppClient::TLSErrorToString(gloox::CertStatus status) const
 {
-	// TODO: Use translation
 	std::map<gloox::CertStatus, std::string> certificateErrorStrings = {
-		{ gloox::CertInvalid, ("The certificate is not trusted.") },
-		{ gloox::CertSignerUnknown, ("The certificate hasn't got a known issuer.") },
-		{ gloox::CertRevoked, ("The certificate has been revoked.") },
-		{ gloox::CertExpired, ("The certificate has expired.") },
-		{ gloox::CertNotActive, ("The certifiacte is not yet active.") },
-		{ gloox::CertWrongPeer, ("The certificate has not been issued for the peer we're connected to.") },
-		{ gloox::CertSignerNotCa, ("The signer is not a CA.") }
+		{ gloox::CertInvalid, g_L10n.Translate("The certificate is not trusted.") },
+		{ gloox::CertSignerUnknown, g_L10n.Translate("The certificate hasn't got a known issuer.") },
+		{ gloox::CertRevoked, g_L10n.Translate("The certificate has been revoked.") },
+		{ gloox::CertExpired, g_L10n.Translate("The certificate has expired.") },
+		{ gloox::CertNotActive, g_L10n.Translate("The certifiacte is not yet active.") },
+		{ gloox::CertWrongPeer, g_L10n.Translate("The certificate has not been issued for the peer connected to.") },
+		{ gloox::CertSignerNotCa, g_L10n.Translate("The certificate signer is not a certificate authority.") }
 	};
 
 	std::string result = "";
