@@ -79,7 +79,19 @@ IXmppClient* IXmppClient::create(const ScriptInterface* scriptInterface, const s
  * @param regOpt If we are just registering or not.
  */
 XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
-	: m_ScriptInterface(scriptInterface), m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_room(sRoom), m_nick(sNick), m_initialLoadComplete(false), m_isConnected(false), m_sessionManager()
+	: m_ScriptInterface(scriptInterface),
+	  m_client(nullptr),
+	  m_mucRoom(nullptr),
+	  m_registration(nullptr),
+	  m_username(sUsername),
+	  m_password(sPassword),
+	  m_room(sRoom),
+	  m_nick(sNick),
+	  m_initialLoadComplete(false),
+	  m_isConnected(false),
+	  m_sessionManager(nullptr),
+	  m_certStatus(gloox::CertStatus::CertOk),
+	  m_PresenceUpdate(false)
 {
 	if (m_ScriptInterface)
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), XmppClient::Trace, this);
@@ -267,7 +279,12 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	m_HistoricGuiMessages.clear();
 
 	m_isConnected = false;
-	CreateGUIMessage("system", "disconnected", std::time(nullptr), "reason", ConnectionErrorToString(error));
+	CreateGUIMessage(
+		"system",
+		"disconnected",
+		std::time(nullptr),
+		"reason", ConnectionErrorToString(error),
+		"certificate_status", CertificateErrorToString(m_certStatus));
 }
 
 /**
@@ -1086,20 +1103,19 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
  * Translates a gloox certificate error codes, i.e. gloox certificate statuses except CertOk.
  * Keep in sync with specifications.
  */
-std::string XmppClient::TLSErrorToString(gloox::CertStatus status) const
+std::string XmppClient::CertificateErrorToString(gloox::CertStatus status) const
 {
-	// TODO: Use translation
 	std::map<gloox::CertStatus, std::string> certificateErrorStrings = {
-		{ gloox::CertInvalid, ("The certificate is not trusted.") },
-		{ gloox::CertSignerUnknown, ("The certificate hasn't got a known issuer.") },
-		{ gloox::CertRevoked, ("The certificate has been revoked.") },
-		{ gloox::CertExpired, ("The certificate has expired.") },
-		{ gloox::CertNotActive, ("The certifiacte is not yet active.") },
-		{ gloox::CertWrongPeer, ("The certificate has not been issued for the peer we're connected to.") },
-		{ gloox::CertSignerNotCa, ("The signer is not a CA.") }
+		{ gloox::CertInvalid, g_L10n.Translate("The certificate is not trusted.") },
+		{ gloox::CertSignerUnknown, g_L10n.Translate("The certificate hasn't got a known issuer.") },
+		{ gloox::CertRevoked, g_L10n.Translate("The certificate has been revoked.") },
+		{ gloox::CertExpired, g_L10n.Translate("The certificate has expired.") },
+		{ gloox::CertNotActive, g_L10n.Translate("The certifiacte is not yet active.") },
+		{ gloox::CertWrongPeer, g_L10n.Translate("The certificate has not been issued for the peer connected to.") },
+		{ gloox::CertSignerNotCa, g_L10n.Translate("The certificate signer is not a certificate authority.") }
 	};
 
-	std::string result = "";
+	std::string result;
 
 	for (std::map<gloox::CertStatus, std::string>::iterator it = certificateErrorStrings.begin(); it != certificateErrorStrings.end(); ++it)
 		if (status & it->first)
@@ -1178,7 +1194,7 @@ std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err) cons
 	CASE(ConnDnsError, g_L10n.Translate("Resolving the server's hostname failed"));
 	CASE(ConnOutOfMemory, g_L10n.Translate("This system is out of memory"));
 	DEBUG_CASE(ConnNoSupportedAuth, "The authentication mechanisms the server offered are not supported or no authentication mechanisms were available");
-	CASE(ConnTlsFailed, g_L10n.Translate("The server's certificate could not be verified or the TLS handshake did not complete successfully") + TLSErrorToString(m_certStatus));
+	CASE(ConnTlsFailed, g_L10n.Translate("The server's certificate could not be verified or the TLS handshake did not complete successfully"));
 	CASE(ConnTlsNotAvailable, g_L10n.Translate("The server did not offer required TLS encryption"));
 	DEBUG_CASE(ConnCompressionFailed, "Negotiation/initializing compression failed");
 	CASE(ConnAuthenticationFailed, g_L10n.Translate("Authentication failed. Incorrect password or account does not exist"));

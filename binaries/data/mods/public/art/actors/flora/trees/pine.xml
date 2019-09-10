@@ -3,7 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <textures><texture file="gaia/pine.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/pine.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -52,20 +54,38 @@
     <variant frequency="1" name="c5">
       <mesh>gaia/pine15.dae</mesh>
     </variant>
-    <variant frequency="2" name="mr2">
+    <variant frequency="3" name="mr2">
       <mesh>gaia/tree_pine_02.dae</mesh>
     </variant>
-    <variant frequency="2" name="mr3">
+    <variant frequency="3" name="mr3">
       <mesh>gaia/tree_pine_03.dae</mesh>
     </variant>
-    <variant frequency="2" name="mr4">
+    <variant frequency="3" name="mr4">
       <mesh>gaia/tree_pine_04.dae</mesh>
     </variant>
-    <variant frequency="2" name="mr5">
+    <variant frequency="3" name="mr5">
       <mesh>gaia/tree_pine_05.dae</mesh>
     </variant>
-    <variant frequency="2" name="mr6-tall">
+    <variant frequency="1" name="mr6-tall">
       <mesh>gaia/tree_pine_06.dae</mesh>
+    </variant>
+    <variant frequency="3" name="new1">
+      <mesh>gaia/pine_default_1.dae</mesh>
+    </variant>
+    <variant frequency="3" name="new2">
+      <mesh>gaia/pine_default_2.dae</mesh>
+    </variant>
+    <variant frequency="3" name="new3">
+      <mesh>gaia/pine_default_3.dae</mesh>
+    </variant>
+    <variant frequency="3" name="new4">
+      <mesh>gaia/pine_default_4.dae</mesh>
+    </variant>
+    <variant frequency="3" name="new5">
+      <mesh>gaia/pine_default_5.dae</mesh>
+    </variant>
+    <variant frequency="3" name="new6">
+      <mesh>gaia/pine_default_6.dae</mesh>
     </variant>
   </group>
   <material>basic_trans_wind.xml</material>

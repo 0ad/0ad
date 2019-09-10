@@ -81,7 +81,8 @@ function subHeading(obj)
 		string += '[icon="iconInfo" tooltip="' + escapeQuotation(obj.History) + '" tooltip_style="civInfoTooltip"]';
 	if (obj.Description)
 		string += '\n     ' + obj.Description;
-	return coloredText(string + "\n", "white");
+	// Translation: insert an itemization symbol for each entry.
+	return sprintf(translate("• %(string)s"), { "string": string }) + "\n";
 }
 
 function switchToStrucTreePage()

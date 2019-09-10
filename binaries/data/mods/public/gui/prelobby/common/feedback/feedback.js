@@ -5,7 +5,7 @@ var g_LobbyMessages = {
 		Engine.StopXmppClient();
 	},
 	"disconnected": message => {
-		setFeedback(message.reason);
+		setFeedback(message.reason + message.certificate_status);
 		Engine.StopXmppClient();
 	}
 };

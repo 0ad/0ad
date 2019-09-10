@@ -141,9 +141,9 @@ protected:
 	// Helpers
 	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;
 	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
-	std::string TLSErrorToString(gloox::CertStatus status) const;
 	std::string StanzaErrorToString(gloox::StanzaError err) const;
 	std::string ConnectionErrorToString(gloox::ConnectionError err) const;
+	std::string CertificateErrorToString(gloox::CertStatus status) const;
 	std::string RegistrationResultToString(gloox::RegistrationResult res) const;
 	std::time_t ComputeTimestamp(const glooxwrapper::Message& msg) const;
 

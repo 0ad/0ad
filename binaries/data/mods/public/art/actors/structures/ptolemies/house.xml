@@ -2,57 +2,89 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="base" frequency="1">
+    <variant frequency="1" name="base">
       <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/spart_3x3.xml" attachpoint="root"/>
       </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct.png" name="baseTex"/>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
         <texture file="structural/ptol_struct_spec.png" name="specTex"/>
-	  </textures>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="House A">
       <mesh>structural/ptol_house_a.dae</mesh>
       <textures>
-		<texture file="structural/ao/ptol_house_a.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/ptol_house_a.png" name="aoTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="House B">
+    <variant frequency="0" name="House B">
       <mesh>structural/ptol_house_b.dae</mesh>
       <textures>
-		<texture file="structural/ao/ptol_house_b.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/ptol_house_b.png" name="aoTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="House C">
+    <variant frequency="0" name="House C">
       <mesh>structural/ptol_house_c.dae</mesh>
       <textures>
-		<texture file="structural/ao/ptol_house_c.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/ptol_house_c.png" name="aoTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="House D">
+    <variant frequency="0" name="House D">
       <mesh>structural/ptol_house_d.dae</mesh>
       <textures>
-		<texture file="structural/ao/ptol_house_d.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/ptol_house_d.png" name="aoTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="House E">
+    <variant frequency="0" name="House E">
       <mesh>structural/ptol_house_e.dae</mesh>
       <textures>
-		<texture file="structural/ao/ptol_house_e.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/ptol_house_e.png" name="aoTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="House F">
+    <variant frequency="0" name="House F">
       <mesh>structural/ptol_house_f.dae</mesh>
       <textures>
-		<texture file="structural/ao/ptol_house_f.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/ptol_house_f.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="new_1">
+      <mesh>structural/ptol_house_new_1.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_new_1_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="new_2">
+      <mesh>structural/ptol_house_new_2.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_new_2_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="new_3">
+      <mesh>structural/ptol_house_new_3.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_new_3_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="new_4">
+      <mesh>structural/ptol_house_new_4.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_new_4_AO.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant name="alive" frequency="1"/>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
