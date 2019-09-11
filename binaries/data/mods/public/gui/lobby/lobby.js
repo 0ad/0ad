@@ -1289,7 +1289,7 @@ function onTick()
 		g_NetMessageTypes[msg.type][msg.level](msg);
 	}
 
-	if (Engine.LobbyGuiPollPresenceStatusUpdate())
+	if (Engine.LobbyGuiPollHasPlayerListUpdate())
 		updatePlayerList();
 }
 

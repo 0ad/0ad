@@ -56,9 +56,9 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetGameList>("GetGameList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetBoardList>("GetBoardList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetProfile>("GetProfile");
-	scriptInterface.RegisterFunction<bool, &JSI_Lobby::LobbyGuiPollPresenceStatusUpdate>("LobbyGuiPollPresenceStatusUpdate");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollNewMessage>("LobbyGuiPollNewMessage");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollHistoricMessages>("LobbyGuiPollHistoricMessages");
+	scriptInterface.RegisterFunction<bool, &JSI_Lobby::LobbyGuiPollHasPlayerListUpdate>("LobbyGuiPollHasPlayerListUpdate");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySendMessage>("LobbySendMessage");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySetPlayerPresence>("LobbySetPlayerPresence");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySetNick>("LobbySetNick");
@@ -238,9 +238,9 @@ JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
 	return profileFetch;
 }
 
-bool JSI_Lobby::LobbyGuiPollPresenceStatusUpdate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Lobby::LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	return g_XmppClient && g_XmppClient->GuiPollPresenceStatusUpdate();
+	return g_XmppClient && g_XmppClient->GuiPollHasPlayerListUpdate();
 }
 
 JS::Value JSI_Lobby::LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate)

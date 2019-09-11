@@ -148,9 +148,9 @@ protected:
 	std::time_t ComputeTimestamp(const glooxwrapper::Message& msg) const;
 
 public:
-	bool GuiPollPresenceStatusUpdate();
 	JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface);
 	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
+	bool GuiPollHasPlayerListUpdate();
 	void SendMUCMessage(const std::string& message);
 
 protected:
@@ -164,6 +164,8 @@ protected:
 private:
 	/// Map of players
 	std::map<std::string, std::vector<std::string> > m_PlayerMap;
+	/// Whether or not the playermap has changed since the last time the GUI checked.
+	bool m_PlayerMapUpdate;
 	/// List of games
 	std::vector<const glooxwrapper::Tag*> m_GameList;
 	/// List of rankings
@@ -178,8 +180,6 @@ private:
 	std::vector<JS::Heap<JS::Value> > m_HistoricGuiMessages;
 	/// Current room subject/topic.
 	std::string m_Subject;
-	/// Whether or not a player has changed the presence status since the last time the GUI checked.
-	bool m_PresenceUpdate;
 };
 
 #endif // XMPPCLIENT_H

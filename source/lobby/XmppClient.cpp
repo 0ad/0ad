@@ -91,7 +91,7 @@ XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string
 	  m_isConnected(false),
 	  m_sessionManager(nullptr),
 	  m_certStatus(gloox::CertStatus::CertOk),
-	  m_PresenceUpdate(false)
+	  m_PlayerMapUpdate(false)
 {
 	if (m_ScriptInterface)
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), XmppClient::Trace, this);
@@ -275,10 +275,11 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	m_BoardList.clear();
 	m_GameList.clear();
 	m_PlayerMap.clear();
+	m_PlayerMapUpdate = true;
 	m_Profile.clear();
 	m_HistoricGuiMessages.clear();
-
 	m_isConnected = false;
+
 	CreateGUIMessage(
 		"system",
 		"disconnected",
@@ -681,10 +682,10 @@ void XmppClient::CreateGUIMessage(
 	m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
 }
 
-bool XmppClient::GuiPollPresenceStatusUpdate()
+bool XmppClient::GuiPollHasPlayerListUpdate()
 {
-	bool hasUpdate = m_PresenceUpdate;
-	m_PresenceUpdate = false;
+	bool hasUpdate = m_PlayerMapUpdate;
+	m_PlayerMapUpdate = false;
 	return hasUpdate;
 }
 
@@ -808,9 +809,11 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				{
 					std::string name = t->findAttribute("name").to_string();
 					if (m_PlayerMap.find(name) != m_PlayerMap.end())
+					{
 						m_PlayerMap[name][1] = t->findAttribute("rating").to_string();
+						m_PlayerMapUpdate = true;
+					}
 				}
-
 				CreateGUIMessage("game", "ratinglist", std::time(nullptr));
 			}
 		}
@@ -909,16 +912,19 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 		else if (m_PlayerMap[nick][2] != roleString)
 			CreateGUIMessage("chat", "role", std::time(nullptr), "nick", nick, "oldrole", m_PlayerMap[nick][2], "newrole", roleString);
 		else
+		{
 			// Don't create a GUI message for regular presence changes, because
 			// several hundreds of them accumulate during a match, impacting performance terribly and
 			// the only way they are used is to determine whether to update the playerlist.
-			m_PresenceUpdate = true;
+		}
 
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
 		m_PlayerMap[nick].resize(3);
 		m_PlayerMap[nick][0] = presenceString;
 		m_PlayerMap[nick][2] = roleString;
 	}
+
+	m_PlayerMapUpdate = true;
 }
 
 /**
