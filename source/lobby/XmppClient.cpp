@@ -668,7 +668,13 @@ void XmppClient::CreateGUIMessage(
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue message(cx);
-	m_ScriptInterface->CreateObject(&message, "type", type, "level", level, "time", static_cast<double>(time));
+	m_ScriptInterface->CreateObject(
+		&message,
+		"type", type,
+		"level", level,
+		"historic", false,
+		"time", static_cast<double>(time));
+
 	JS::RootedObject messageObj(cx, message.toObjectOrNull());
 	SetGUIMessageProperty(cx, messageObj, args...);
 	m_ScriptInterface->FreezeObject(message, true);
@@ -697,6 +703,7 @@ JS::Value XmppClient::GuiPollNewMessage(const ScriptInterface& scriptInterface)
 	if (JS_StructuredClone(cx, message, &messageCopy, nullptr, nullptr))
 	{
 		scriptInterface.SetProperty(messageCopy, "historic", true);
+		scriptInterface.FreezeObject(messageCopy, true);
 		m_HistoricGuiMessages.push_back(JS::Heap<JS::Value>(messageCopy));
 	}
 	else
