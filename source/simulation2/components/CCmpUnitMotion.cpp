@@ -1056,28 +1056,40 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 		return true;
 	}
 
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), moveRequest.m_Entity);
-	if (!cmpPosition || !cmpPosition->IsInWorld())
+	CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), moveRequest.m_Entity);
+	if (!cmpTargetPosition || !cmpTargetPosition->IsInWorld())
 		return false;
 
 	if (moveRequest.m_Type == MoveRequest::OFFSET)
 	{
 		// There is an offset, so compute it relative to orientation
-		entity_angle_t angle = cmpPosition->GetRotation().Y;
+		entity_angle_t angle = cmpTargetPosition->GetRotation().Y;
 		CFixedVector2D offset = moveRequest.GetOffset().Rotate(angle);
-		out = cmpPosition->GetPosition2D() + offset;
+		out = cmpTargetPosition->GetPosition2D() + offset;
 	}
 	else
 	{
-		out = cmpPosition->GetPosition2D();
+		out = cmpTargetPosition->GetPosition2D();
 		// If the target is moving, we might never get in range if we just try to reach its current position,
 		// so we have to try and move to a position where we will be in-range, including their movement.
-		// Since we request paths asynchronously a the end of our turn, we need to account for twice the movement speed.
+		// Since we request paths asynchronously a the end of our turn and the order in which two units move is uncertain,
+		// we need to account for twice the movement speed to be sure that we're targeting the correct point.
 		// TODO: be cleverer about this. It fixes fleeing nicely currently, but orthogonal movement should be considered,
 		// and the overall logic could be improved upon.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
 		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested())
-			out += (out - cmpPosition->GetPreviousPosition2D()) * 2;
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+				return true; // Still return true since we don't need a position for the target to have one.
+
+			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D()) * 2;
+
+			// Check if we anticipate the target to go through us, in which case we shouldn't anticipate
+			// (or e.g. units fleeing might suddenly turn around towards their attacker).
+			if ((out - cmpPosition->GetPosition2D()).Dot(tempPos - cmpPosition->GetPosition2D()) >= fixed::Zero())
+				out = tempPos;
+		}
 	}
 	return true;
 }

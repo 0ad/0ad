@@ -2,38 +2,43 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="2" name="male">
+    <variant frequency="100" name="base">
       <animations>
         <animation file="quadraped/deer_idle_01.dae" name="idle" speed="20"/>
         <animation file="quadraped/deer_idle_02.dae" name="idle" speed="20"/>
         <animation file="quadraped/deer_idle_03.dae" name="idle" speed="20"/>
-        <animation file="quadraped/deer_idle_04.dae" name="idle" speed="20"/>
-        <animation file="quadraped/deer_death_01.dae" name="death" speed="40"/>
-        <animation file="quadraped/deer_walk_01.dae" name="walk" speed="20"/>
-        <animation file="quadraped/deer_walk_02.dae" name="walk" speed="20"/>
+        <animation file="quadraped/deer_walk_01.dae" name="walk" speed="35"/>
         <animation file="quadraped/deer_run_01.dae" name="run" speed="15"/>
         <animation file="quadraped/deer_attack_01.dae" name="attack_melee" speed="20"/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>
+      <textures>
+        <texture file="skeletal/animal_gazelle_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="male">
+      <animations>
+        <animation file="quadraped/deer_death_01.dae" name="death" speed="40"/>
+      </animations>
       <props>
         <prop actor="props/fauna/gazelle_horns.xml" attachpoint="antler"/>
       </props>
-      <textures><texture file="skeletal/animal_gazelle_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="female">
       <animations>
-        <animation file="quadraped/deer_idle_01.dae" name="idle" speed="5"/>
-        <animation file="quadraped/deer_idle_02.dae" name="idle" speed="5"/>
-        <animation file="quadraped/deer_idle_03.dae" name="idle" speed="5"/>
-        <animation file="quadraped/deer_idle_04.dae" name="idle" speed="5"/>
         <animation file="quadraped/deer_death_02.dae" name="death" speed="40"/>
-        <animation file="quadraped/deer_walk_01.dae" name="walk" speed="20"/>
-        <animation file="quadraped/deer_walk_02.dae" name="walk" speed="20"/>
-        <animation file="quadraped/deer_run_01.dae" name="run" speed="15"/>
-        <animation file="quadraped/deer_attack_01.dae" name="attack_melee" speed="20"/>
       </animations>
-      <mesh>skeletal/deer_mesh.dae</mesh>
-      <textures><texture file="skeletal/animal_gazelle_02.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="normal"/>
+    <variant frequency="0" name="feeding">
+      <animations>
+        <animation file="quadraped/deer_idle_04.dae" name="idle" speed="20"/>
+        <animation file="quadraped/deer_walk_02.dae" name="walk" speed="20"/>
+      </animations>
     </variant>
   </group>
   <group>
@@ -44,4 +49,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>
