@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Blue berry bush with fence">
+      <mesh>gaia/berry_bush_03.dae</mesh>
+      <props>
+        <prop actor="props/flora/forage_grapes_prop.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/berry_bush_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

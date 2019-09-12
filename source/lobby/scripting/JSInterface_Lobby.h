@@ -48,9 +48,9 @@ namespace JSI_Lobby
 	JS::Value GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetProfile(ScriptInterface::CxPrivate* pCxPrivate);
-	bool LobbyGuiPollPresenceStatusUpdate(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate);
+	bool LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* pCxPrivate);
 	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& message);
 	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& presence);
 	void LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick);

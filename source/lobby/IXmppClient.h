@@ -54,9 +54,11 @@ public:
 	virtual void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
-	virtual bool GuiPollPresenceStatusUpdate() = 0;
+
 	virtual JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface) = 0;
 	virtual JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface) = 0;
+	virtual bool GuiPollHasPlayerListUpdate() = 0;
+
 	virtual void SendMUCMessage(const std::string& message) = 0;
 	virtual void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID) = 0;
 };
