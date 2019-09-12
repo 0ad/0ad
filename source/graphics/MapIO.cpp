@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,11 +85,10 @@ Status ParseHeightmapImage(const shared_ptr<u8>& fileData, size_t fileSize, std:
 			// Repeat the last pixel of the image for the last vertex of the heightmap
 			int offset = std::min(y, tileSize - 1) * mapLineSkip + std::min(x, tileSize - 1) * bytesPP;
 
-			// Pick color channel with highest value
-			u16 value = std::max({mapdata[offset], mapdata[offset + bytesPP], mapdata[offset + bytesPP * 2]});
-			value = mapdata[offset];
-
-			heightmap[(tileSize - y) * (tileSize + 1) + x] = clamp(value * 256, 0, 65535);
+			heightmap[(tileSize - y) * (tileSize + 1) + x] = static_cast<u16>(256) * std::max({
+				mapdata[offset],
+				mapdata[offset + bytesPP],
+				mapdata[offset + bytesPP * 2]});
 		}
 
 	return INFO::OK;
