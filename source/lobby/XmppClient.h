@@ -88,9 +88,9 @@ public:
 	void kick(const std::string& nick, const std::string& reason);
 	void ban(const std::string& nick, const std::string& reason);
 	void SetPresence(const std::string& presence);
-	void GetPresence(const std::string& nickname, std::string& presence);
-	void GetRole(const std::string& nickname, std::string& role);
-	void GetSubject(std::string& subject);
+	const char* GetPresence(const std::string& nickname);
+	const char* GetRole(const std::string& nickname);
+	const std::wstring& GetSubject();
 
 	void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
@@ -98,6 +98,17 @@ public:
 	void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID);
+
+	/**
+	 * Convert gloox values to string or time.
+	 */
+	static const char* GetPresenceString(const gloox::Presence::PresenceType presenceType);
+	static const char* GetRoleString(const gloox::MUCRoomRole role);
+	static std::string StanzaErrorToString(gloox::StanzaError err);
+	static std::string RegistrationResultToString(gloox::RegistrationResult res);
+	static std::string ConnectionErrorToString(gloox::ConnectionError err);
+	static std::string CertificateErrorToString(gloox::CertStatus status);
+	static std::time_t ComputeTimestamp(const glooxwrapper::Message& msg);
 
 protected:
 	/* Xmpp handlers */
@@ -138,15 +149,6 @@ protected:
 	virtual void handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle);
 	virtual void handleSessionInitiation(glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle);
 
-	// Helpers
-	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;
-	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
-	std::string StanzaErrorToString(gloox::StanzaError err) const;
-	std::string ConnectionErrorToString(gloox::ConnectionError err) const;
-	std::string CertificateErrorToString(gloox::CertStatus status) const;
-	std::string RegistrationResultToString(gloox::RegistrationResult res) const;
-	std::time_t ComputeTimestamp(const glooxwrapper::Message& msg) const;
-
 public:
 	JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface);
 	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
@@ -162,8 +164,19 @@ protected:
 		Args const&... args);
 
 private:
+	struct SPlayer {
+		SPlayer(const gloox::Presence::PresenceType presence, const gloox::MUCRoomRole role, const glooxwrapper::string& rating)
+		: m_Presence(presence), m_Role(role), m_Rating(rating)
+		{
+		}
+		gloox::Presence::PresenceType m_Presence;
+		gloox::MUCRoomRole m_Role;
+		glooxwrapper::string m_Rating;
+	};
+	using PlayerMap = std::map<glooxwrapper::string, SPlayer>;
+
 	/// Map of players
-	std::map<std::string, std::vector<std::string> > m_PlayerMap;
+	PlayerMap m_PlayerMap;
 	/// Whether or not the playermap has changed since the last time the GUI checked.
 	bool m_PlayerMapUpdate;
 	/// List of games
@@ -179,7 +192,7 @@ private:
 	/// Cache of all GUI messages received since the login
 	std::vector<JS::Heap<JS::Value> > m_HistoricGuiMessages;
 	/// Current room subject/topic.
-	std::string m_Subject;
+	std::wstring m_Subject;
 };
 
 #endif // XMPPCLIENT_H
