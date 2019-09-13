@@ -397,7 +397,8 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 
 	JS::RootedValue returnValue(cx);
 
-	self->m_ScriptInterface->CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&returnValue,
 		"height", heightmap,
 		"textureNames", textureNames,

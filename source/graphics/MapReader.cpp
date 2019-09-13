@@ -372,7 +372,7 @@ void CMapSummaryReader::GetMapSettings(const ScriptInterface& scriptInterface, J
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateObject(ret);
+	ScriptInterface::CreateObject(cx, ret);
 
 	if (m_ScriptSettings.empty())
 		return;

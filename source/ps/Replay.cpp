@@ -68,7 +68,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	m_ScriptInterface.SetProperty(attribs, "timestamp", (double)std::time(nullptr));
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
-	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
+	m_ScriptInterface.SetProperty(attribs, "engine_version", engine_version);
 	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
 	m_ScriptInterface.SetProperty(attribs, "mods", mods);
 

@@ -92,13 +92,13 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
 	JS::RootedValue mods(cx);
-	scriptInterface->CreateArray(&mods, availableMods.size());
+	ScriptInterface::CreateArray(cx, &mods, availableMods.size());
 
 	u32 i = 0;
 	for (const ModIoModData& mod : availableMods)
 	{
 		JS::RootedValue m(cx);
-		scriptInterface->CreateObject(&m);
+		ScriptInterface::CreateObject(cx, &m);
 
 		for (const std::pair<std::string, std::string>& prop : mod.properties)
 			scriptInterface->SetProperty(m, prop.first.c_str(), prop.second, true);
@@ -139,7 +139,7 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 
 	JS::RootedValue progressData(cx);
-	scriptInterface->CreateObject(&progressData);
+	ScriptInterface::CreateObject(cx, &progressData);
 	scriptInterface->SetProperty(progressData, "status", statusStrings.at(progress.status), true);
 	scriptInterface->SetProperty(progressData, "progress", progress.progress, true);
 	scriptInterface->SetProperty(progressData, "error", progress.error, true);

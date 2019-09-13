@@ -76,7 +76,7 @@ void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idx
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateArray(ret);
+	ScriptInterface::CreateArray(cx, ret);
 
 	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
 	{
@@ -86,7 +86,8 @@ void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idx
 
 		JS::RootedValue cache(cx);
 
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&cache,
 			"type", static_cast<u32>(pcache->m_Type),
 			"level", static_cast<u32>(pcache->m_Level),
@@ -104,7 +105,7 @@ void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue 
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateArray(ret);
+	ScriptInterface::CreateArray(cx, ret);
 
 	for(size_t i = 0; ; i++)
 	{
@@ -114,7 +115,8 @@ void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue 
 
 		JS::RootedValue tlb(cx);
 
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&tlb,
 			"type", static_cast<u32>(ptlb->m_Type),
 			"level", static_cast<u32>(ptlb->m_Level),
@@ -247,7 +249,7 @@ void RunHardwareDetection()
 	// includes some fields that aren't directly useful for the hwdetect script)
 
 	JS::RootedValue settings(cx);
-	scriptInterface.CreateObject(&settings);
+	ScriptInterface::CreateObject(cx, &settings);
 
 	scriptInterface.SetProperty(settings, "os_unix", OS_UNIX);
 	scriptInterface.SetProperty(settings, "os_bsd", OS_BSD);

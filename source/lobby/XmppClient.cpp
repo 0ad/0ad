@@ -539,14 +539,15 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateArray(ret);
+	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
 
 	for (const std::pair<glooxwrapper::string, SPlayer>& p : m_PlayerMap)
 	{
 		JS::RootedValue player(cx);
 
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&player,
 			"name", p.first,
 			"presence", p.second.m_Presence,
@@ -567,7 +568,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateArray(ret);
+	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
 
 	const char* stats[] = { "name", "ip", "port", "stunIP", "stunPort", "hostUsername", "state",
@@ -577,7 +578,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 	for(const glooxwrapper::Tag* const& t : m_GameList)
 	{
 		JS::RootedValue game(cx);
-		scriptInterface.CreateObject(&game);
+		ScriptInterface::CreateObject(cx, &game);
 
 		for (size_t i = 0; i < ARRAY_SIZE(stats); ++i)
 			scriptInterface.SetProperty(game, stats[i], t->findAttribute(stats[i]));
@@ -596,7 +597,7 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateArray(ret);
+	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
 
 	const char* attributes[] = { "name", "rank", "rating" };
@@ -604,7 +605,7 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
 	for(const glooxwrapper::Tag* const& t : m_BoardList)
 	{
 		JS::RootedValue board(cx);
-		scriptInterface.CreateObject(&board);
+		ScriptInterface::CreateObject(cx, &board);
 
 		for (size_t i = 0; i < ARRAY_SIZE(attributes); ++i)
 			scriptInterface.SetProperty(board, attributes[i], t->findAttribute(attributes[i]));
@@ -623,7 +624,7 @@ void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::Mutab
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	scriptInterface.CreateArray(ret);
+	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
 
 	const char* stats[] = { "player", "rating", "totalGamesPlayed", "highestRating", "wins", "losses", "rank" };
@@ -631,7 +632,7 @@ void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::Mutab
 	for (const glooxwrapper::Tag* const& t : m_Profile)
 	{
 		JS::RootedValue profile(cx);
-		scriptInterface.CreateObject(&profile);
+		ScriptInterface::CreateObject(cx, &profile);
 
 		for (size_t i = 0; i < ARRAY_SIZE(stats); ++i)
 			scriptInterface.SetProperty(profile, stats[i], t->findAttribute(stats[i]));
@@ -670,7 +671,8 @@ void XmppClient::CreateGUIMessage(
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue message(cx);
-	m_ScriptInterface->CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&message,
 		"type", type,
 		"level", level,
@@ -720,7 +722,7 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue ret(cx);
-	scriptInterface.CreateArray(&ret);
+	ScriptInterface::CreateArray(cx, &ret);
 
 	int j = 0;
 	for (const JS::Heap<JS::Value>& message : m_HistoricGuiMessages)

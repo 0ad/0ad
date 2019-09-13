@@ -407,7 +407,8 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	const CPos& mousePos = m_pGUI.GetMousePos();
 
-	m_pGUI.GetScriptInterface()->CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&mouse,
 		"x", mousePos.x,
 		"y", mousePos.y,

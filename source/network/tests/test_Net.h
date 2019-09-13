@@ -151,7 +151,8 @@ public:
 		CNetServer server;
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&attrs,
 			"mapType", "scenario",
 			"map", "maps/scenarios/Saharan Oases",
@@ -184,7 +185,8 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command]\\n");
@@ -193,7 +195,8 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client2 test sim command]\\n");
@@ -228,7 +231,8 @@ public:
 		CNetServer server;
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&attrs,
 			"mapType", "scenario",
 			"map", "maps/scenarios/Saharan Oases",
@@ -265,7 +269,8 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 1]\\n");
@@ -281,7 +286,8 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 2]\\n");
@@ -339,7 +345,8 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 3]\\n");
@@ -355,7 +362,8 @@ public:
 
 		{
 			JS::RootedValue cmd(cx);
-			client1.GetScriptInterface().CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 4]\\n");

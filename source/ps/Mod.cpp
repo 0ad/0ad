@@ -146,9 +146,10 @@ JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
 	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(scriptInterface));
 	JS::RootedValue metainfo(cx);
 
-	scriptInterface.CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&metainfo,
-		"engine_version", std::string(engine_version),
+		"engine_version", engine_version,
 		"mods", mods);
 
 	scriptInterface.FreezeObject(metainfo, true);

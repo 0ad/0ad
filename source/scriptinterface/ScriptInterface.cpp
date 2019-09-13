@@ -567,11 +567,11 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	return ok;
 }
 
-bool ScriptInterface::CreateObject_(JS::MutableHandleObject object) const
+bool ScriptInterface::CreateObject_(JSContext* cx, JS::MutableHandleObject object)
 {
 	// JSAutoRequest is the responsibility of the caller
 
-	object.set(JS_NewPlainObject(GetContext()));
+	object.set(JS_NewPlainObject(cx));
 
 	if (!object)
 		throw PSERROR_Scripting_CreateObjectFailed();
@@ -579,9 +579,8 @@ bool ScriptInterface::CreateObject_(JS::MutableHandleObject object) const
 	return true;
 }
 
-void ScriptInterface::CreateArray(JS::MutableHandleValue objectValue, size_t length) const
+void ScriptInterface::CreateArray(JSContext* cx, JS::MutableHandleValue objectValue, size_t length)
 {
-	JSContext* cx = GetContext();
 	JSAutoRequest rq(cx);
 
 	objectValue.setObjectOrNull(JS_NewArrayObject(cx, length));

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/svn_revision.h"
 
-const char engine_version[] = "0.0.24";
+const char* engine_version = "0.0.24";
 
 // convert contents of file <in_filename> from char to wchar_t and
 // append to <out> file.
