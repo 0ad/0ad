@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-04 08:46+0000\n"
+"PO-Revision-Date: 2019-09-09 09:47+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -1483,7 +1483,7 @@ msgstr "提升攻城效率的高级技术"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "攻城器械粉碎破坏 +25% 。"
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1495,7 +1495,7 @@ msgstr "提高砲弹的精度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr ""
+msgstr "弩射手远程攻击速度 -20% 。"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1507,7 +1507,7 @@ msgstr "攻城武器需要较少的金属。"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
-msgstr ""
+msgstr "攻城器械金属花费 -20% 。"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1515,11 +1515,11 @@ msgstr "金属矿工"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege engines require less wood."
-msgstr ""
+msgstr "攻城器械需要较少的木材。"
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
-msgstr ""
+msgstr "攻城器械木材花费 -20% 。"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1527,11 +1527,11 @@ msgstr "砲兵专家"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr ""
+msgstr "静止状态下，攻城器械的组装及拆装更快。"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Siege Engines −25% pack and unpack time."
-msgstr ""
+msgstr "攻城器械的打包及解包时间 -25% 。"
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2278,7 +2278,7 @@ msgstr "迦太基人把他们的城墙修筑成三堵同心圆结构，这些城
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
 "Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr ""
+msgstr "迦太基城墙的建造时间 +100% 、石头花费 +100% 、而血量 +200% 。"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2292,7 +2292,7 @@ msgstr "凯尔特建筑大多为建造在碎石地基上的木制结构。"
 msgid ""
 "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
 " points."
-msgstr ""
+msgstr "布立吞和高卢的建筑：建造时间 -20% ， 血量 -20% ，占领点 -20% 。"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2306,7 +2306,7 @@ msgstr "希腊人使用来自于早期迈锡尼时代的石头建筑。"
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
 "and +10% capture points."
-msgstr ""
+msgstr "雅典、马其顿和斯巴达的建筑：建造时间 +10% ，血量 +10% ，占领点 +10% 。"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2324,7 +2324,7 @@ msgstr "印度孔雀王朝，涵盖了原先数十个独立的王国。领土面
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "孔雀王朝人口上限 +10% 。"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2342,7 +2342,7 @@ msgstr "印度用木材建造城墙。"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "孔雀王朝的城墙血量 -20％，建造时间 -20% 。"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2360,7 +2360,7 @@ msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "波斯人口上限 +10% 。"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2376,7 +2376,7 @@ msgstr "斯巴达人并不具有世界上最大型的军队,但他们在当时�
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "斯巴达人口上限 -10% 。"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
@@ -2513,7 +2513,7 @@ msgstr "早期的阿契美尼德统治者致力于使波斯成为亚洲第一个
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
+msgstr "腓尼基的三列桨战船可训练骑兵单位。"
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2604,7 +2604,7 @@ msgstr "希腊化都市"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr ""
+msgstr "显著增加城堡中的冠勇单位及攻城器械的训练速度。"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
