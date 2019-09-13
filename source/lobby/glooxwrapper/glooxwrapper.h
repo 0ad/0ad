@@ -361,10 +361,10 @@ namespace glooxwrapper
 	{
 	public:
 		virtual ~MUCRoomHandler() {}
-		virtual void handleMUCParticipantPresence(MUCRoom* room, const MUCRoomParticipant participant, const Presence& presence) = 0; // MUCRoom not supported
-		virtual void handleMUCMessage(MUCRoom* room, const Message& msg, bool priv) = 0; // MUCRoom not supported
-		virtual void handleMUCError(MUCRoom* room, gloox::StanzaError error) = 0; // MUCRoom not supported
-		virtual void handleMUCSubject(MUCRoom* room, const string& nick, const string& subject) = 0; // MUCRoom not supported
+		virtual void handleMUCParticipantPresence(MUCRoom& room, const MUCRoomParticipant participant, const Presence& presence) = 0;
+		virtual void handleMUCMessage(MUCRoom& room, const Message& msg, bool priv) = 0;
+		virtual void handleMUCError(MUCRoom& room, gloox::StanzaError error) = 0;
+		virtual void handleMUCSubject(MUCRoom& room, const string& nick, const string& subject) = 0;
 	};
 
 	class GLOOXWRAPPER_API RegistrationHandler
@@ -526,10 +526,14 @@ namespace glooxwrapper
 	private:
 		gloox::MUCRoom* m_Wrapped;
 		MUCRoomHandlerWrapper* m_HandlerWrapper;
+		bool m_Owned;
 	public:
+		MUCRoom(gloox::MUCRoom* room, bool owned);
 		MUCRoom(Client* parent, const JID& nick, MUCRoomHandler* mrh, MUCRoomConfigHandler* mrch = 0);
 		~MUCRoom();
 		const string nick() const;
+		const string name() const;
+		const string service() const;
 		void join(gloox::Presence::PresenceType type = gloox::Presence::Available, const string& status = "", int priority = 0);
 		void leave(const string& msg = "");
 		void send(const string& message);
