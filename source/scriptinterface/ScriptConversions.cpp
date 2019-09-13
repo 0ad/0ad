@@ -314,9 +314,11 @@ TOJSVAL_CHAR(17)
 TOJSVAL_CHAR(18)
 TOJSVAL_CHAR(19)
 TOJSVAL_CHAR(20)
+TOJSVAL_CHAR(24)
 TOJSVAL_CHAR(29)
 TOJSVAL_CHAR(33)
 TOJSVAL_CHAR(35)
+TOJSVAL_CHAR(256)
 #undef TOJSVAL_CHAR
 
 template<> void ScriptInterface::ToJSVal<CStrW>(JSContext* cx, JS::MutableHandleValue ret, const CStrW& val)

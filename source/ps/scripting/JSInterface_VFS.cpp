@@ -169,7 +169,7 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 	std::stringstream ss(contents);
 
 	JS::RootedValue line_array(cx);
-	scriptInterface.CreateArray(&line_array);
+	ScriptInterface::CreateArray(cx, &line_array);
 
 	std::string line;
 	int cur_line = 0;

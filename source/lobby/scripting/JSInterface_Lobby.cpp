@@ -65,8 +65,8 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::wstring, &JSI_Lobby::LobbyGetNick>("LobbyGetNick");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::LobbyKick>("LobbyKick");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::LobbyBan>("LobbyBan");
-	scriptInterface.RegisterFunction<std::wstring, std::wstring, &JSI_Lobby::LobbyGetPlayerPresence>("LobbyGetPlayerPresence");
-	scriptInterface.RegisterFunction<std::wstring, std::wstring, &JSI_Lobby::LobbyGetPlayerRole>("LobbyGetPlayerRole");
+	scriptInterface.RegisterFunction<const char*, std::wstring, &JSI_Lobby::LobbyGetPlayerPresence>("LobbyGetPlayerPresence");
+	scriptInterface.RegisterFunction<const char*, std::wstring, &JSI_Lobby::LobbyGetPlayerRole>("LobbyGetPlayerRole");
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, std::wstring, &JSI_Lobby::EncryptPassword>("EncryptPassword");
 	scriptInterface.RegisterFunction<std::wstring, &JSI_Lobby::LobbyGetRoomSubject>("LobbyGetRoomSubject");
 #endif // CONFIG2_LOBBY
@@ -309,24 +309,20 @@ void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const s
 	g_XmppClient->ban(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-std::wstring JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
+const char* JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
 {
 	if (!g_XmppClient)
-		return L"";
+		return "";
 
-	std::string presence;
-	g_XmppClient->GetPresence(utf8_from_wstring(nickname), presence);
-	return wstring_from_utf8(presence);
+	return g_XmppClient->GetPresence(utf8_from_wstring(nickname));
 }
 
-std::wstring JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
+const char* JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
 {
 	if (!g_XmppClient)
-		return L"";
+		return "";
 
-	std::string role;
-	g_XmppClient->GetRole(utf8_from_wstring(nickname), role);
-	return wstring_from_utf8(role);
+	return g_XmppClient->GetRole(utf8_from_wstring(nickname));
 }
 
 // Non-public secure PBKDF2 hash function with salting and 1,337 iterations
@@ -381,9 +377,7 @@ std::wstring JSI_Lobby::LobbyGetRoomSubject(ScriptInterface::CxPrivate* UNUSED(p
 	if (!g_XmppClient)
 		return L"";
 
-	std::string subject;
-	g_XmppClient->GetSubject(subject);
-	return wstring_from_utf8(subject);
+	return g_XmppClient->GetSubject();
 }
 
 #endif

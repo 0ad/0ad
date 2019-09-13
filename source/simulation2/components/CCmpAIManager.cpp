@@ -145,7 +145,8 @@ private:
 
 			// Set up the data to pass as the constructor argument
 			JS::RootedValue settings(cx);
-			m_ScriptInterface->CreateObject(
+			ScriptInterface::CreateObject(
+				cx,
 				&settings,
 				"player", m_Player,
 				"difficulty", m_Difficulty,
@@ -442,7 +443,7 @@ public:
 
 		// Set up the data to pass as the constructor argument
 		JS::RootedValue playersID(cx);
-		m_ScriptInterface->CreateObject(&playersID);
+		ScriptInterface::CreateObject(cx, &playersID);
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
@@ -454,7 +455,8 @@ public:
 		ENSURE(m_HasLoadedEntityTemplates);
 
 		JS::RootedValue settings(cx);
-		m_ScriptInterface->CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&settings,
 			"players", playersID,
 			"templates", m_EntityTemplates);
@@ -635,7 +637,7 @@ public:
 
 		m_HasLoadedEntityTemplates = true;
 
-		m_ScriptInterface->CreateObject(&m_EntityTemplates);
+		ScriptInterface::CreateObject(cx, &m_EntityTemplates);
 
 		JS::RootedValue val(cx);
 		for (size_t i = 0; i < templates.size(); ++i)
@@ -1188,7 +1190,7 @@ private:
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue classesVal(cx);
-		scriptInterface.CreateObject(&classesVal);
+		ScriptInterface::CreateObject(cx, &classesVal);
 
 		std::map<std::string, pass_class_t> classes;
 		cmpPathfinder->GetPassabilityClasses(classes);

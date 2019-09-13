@@ -102,7 +102,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	}
 	else if (propName == "children")
 	{
-		pScriptInterface->CreateArray(vp);
+		ScriptInterface::CreateArray(cx, vp);
 
 		for (size_t i = 0; i < e->m_Children.size(); ++i)
 			pScriptInterface->SetPropertyInt(vp, i, e->m_Children[i]);

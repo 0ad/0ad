@@ -245,7 +245,7 @@ void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 	GetMouseWorldCoordinates(x, z);
 
 	JS::RootedValue coords(cx);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->CreateObject(&coords, "x", x, "z", z);
+	ScriptInterface::CreateObject(cx, &coords, "x", x, "z", z);
 
 	JS::AutoValueVector paramData(cx);
 	paramData.append(coords);

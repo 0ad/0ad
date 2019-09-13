@@ -47,9 +47,9 @@ public:
 	virtual void kick(const std::string& nick, const std::string& reason) = 0;
 	virtual void ban(const std::string& nick, const std::string& reason) = 0;
 	virtual void SetPresence(const std::string& presence) = 0;
-	virtual void GetPresence(const std::string& nickname, std::string& presence) = 0;
-	virtual void GetRole(const std::string& nickname, std::string& role) = 0;
-	virtual void GetSubject(std::string& subject) = 0;
+	virtual const char* GetPresence(const std::string& nickname) = 0;
+	virtual const char* GetRole(const std::string& nickname) = 0;
+	virtual const std::wstring& GetSubject() = 0;
 	virtual void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;

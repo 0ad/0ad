@@ -6,6 +6,7 @@
         "brace-rules"
     ],
     "rules": {
+        "no-caller": 1,
         "no-cond-assign": 1,
         "no-constant-condition": ["error", { "checkLoops": false }],
         "no-dupe-args": 1,
@@ -62,6 +63,7 @@
         "no-multi-assign": 1,
         "no-trailing-spaces": 1,
         "no-unneeded-ternary": 1,
+        "no-irregular-whitespace": 1,
         "object-curly-spacing": ["warn", "always"],
         "operator-assignment": 1,
         "operator-linebreak": ["warn", "after"],

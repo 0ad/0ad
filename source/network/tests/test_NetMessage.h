@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ public:
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue val(cx);
-		script.CreateArray(&val);
+		ScriptInterface::CreateArray(cx, &val);
 		script.SetPropertyInt(val, 0, 4);
 
 		CSimulationMessage msg(script, 1, 2, 3, val);

@@ -157,7 +157,7 @@ template<> bool ScriptInterface::FromJSVal<CGUIColor>(JSContext* cx, JS::HandleV
 
 template<> void ScriptInterface::ToJSVal<CSize>(JSContext* cx, JS::MutableHandleValue ret, const CSize& val)
 {
-	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "width", val.cx, "height", val.cy);
+	CreateObject(cx, ret, "width", val.cx, "height", val.cy);
 }
 
 template<> bool ScriptInterface::FromJSVal<CSize>(JSContext* cx, JS::HandleValue v, CSize& out)
@@ -185,7 +185,7 @@ template<> bool ScriptInterface::FromJSVal<CSize>(JSContext* cx, JS::HandleValue
 
 template<> void ScriptInterface::ToJSVal<CPos>(JSContext* cx, JS::MutableHandleValue ret, const CPos& val)
 {
-	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(ret, "x", val.x, "y", val.y);
+	CreateObject(cx, ret, "x", val.x, "y", val.y);
 }
 
 template<> bool ScriptInterface::FromJSVal<CPos>(JSContext* cx, JS::HandleValue v, CPos& out)
@@ -213,7 +213,8 @@ template<> bool ScriptInterface::FromJSVal<CPos>(JSContext* cx, JS::HandleValue 
 
 template<> void ScriptInterface::ToJSVal<CRect>(JSContext* cx, JS::MutableHandleValue ret, const CRect& val)
 {
-	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->CreateObject(
+	CreateObject(
+		cx,
 		ret,
 		"left", val.left,
 		"right", val.right,

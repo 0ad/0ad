@@ -161,7 +161,7 @@ public:
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue message(cx);
-		GetScriptInterface().CreateObject(&message, args...);
+		ScriptInterface::CreateObject(cx, &message, args...);
 		m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
 	}
 

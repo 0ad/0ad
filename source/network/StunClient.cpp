@@ -394,7 +394,7 @@ JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterfac
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue stunEndpoint(cx);
-	scriptInterface.CreateObject(&stunEndpoint, "ip", CStr(ipStr), "port", m_Port);
+	ScriptInterface::CreateObject(cx, &stunEndpoint, "ip", ipStr, "port", m_Port);
 	return stunEndpoint;
 }
 

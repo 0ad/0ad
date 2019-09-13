@@ -114,29 +114,13 @@ template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValu
 
 template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandleValue ret, CColor const& val)
 {
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-	if (!obj)
-	{
-		ret.setUndefined();
-		return;
-	}
-
-	JS::RootedValue r(cx);
-	JS::RootedValue g(cx);
-	JS::RootedValue b(cx);
-	JS::RootedValue a(cx);
-	ToJSVal(cx, &r, val.r);
-	ToJSVal(cx, &g, val.g);
-	ToJSVal(cx, &b, val.b);
-	ToJSVal(cx, &a, val.a);
-
-	JS_SetProperty(cx, obj, "r", r);
-	JS_SetProperty(cx, obj, "g", g);
-	JS_SetProperty(cx, obj, "b", b);
-	JS_SetProperty(cx, obj, "a", a);
-
-	ret.setObject(*obj);
+	CreateObject(
+		cx,
+		ret,
+		"r", val.r,
+		"g", val.g,
+		"b", val.b,
+		"a", val.a);
 }
 
 template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, JS::HandleValue v, fixed& out)
@@ -246,17 +230,12 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 	}
 
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
-	JS::RootedValue w(cx);
-	JS::RootedValue h(cx);
-	ScriptInterface::ToJSVal(cx, &w, val.m_W);
-	ScriptInterface::ToJSVal(cx, &h, val.m_H);
-
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-	JS_SetProperty(cx, obj, "width", w);
-	JS_SetProperty(cx, obj, "height", h);
-	JS_SetProperty(cx, obj, "data", data);
-
-	ret.setObject(*obj);
+	CreateObject(
+		cx,
+		ret,
+		"width", val.m_W,
+		"height", val.m_H,
+		"data", data);
 }
 
 template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u16>& val)
@@ -273,17 +252,12 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	}
 
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
-	JS::RootedValue w(cx);
-	JS::RootedValue h(cx);
-	ScriptInterface::ToJSVal(cx, &w, val.m_W);
-	ScriptInterface::ToJSVal(cx, &h, val.m_H);
-
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-	JS_SetProperty(cx, obj, "width", w);
-	JS_SetProperty(cx, obj, "height", h);
-	JS_SetProperty(cx, obj, "data", data);
-
-	ret.setObject(*obj);
+	CreateObject(
+		cx,
+		ret,
+		"width", val.m_W,
+		"height", val.m_H,
+		"data", data);
 }
 
 template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleValue v, TNSpline& out)

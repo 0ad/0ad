@@ -96,13 +96,14 @@ QUERYHANDLER(GenerateMap)
 
 		JS::RootedValue settings(cx);
 		scriptInterface.ParseJSON(*msg->settings, &settings);
-		scriptInterface.SetProperty(settings, "mapType", std::string("random"));
+		scriptInterface.SetProperty(settings, "mapType", "random");
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&attrs,
-			"mapType", std::string("random"),
-			"script", std::wstring(*msg->filename),
+			"mapType", "random",
+			"script", *msg->filename,
 			"settings", settings);
 
 		StartGame(&attrs);
@@ -124,26 +125,28 @@ QUERYHANDLER(GenerateMap)
 
 		// Set up 8-element array of empty objects to satisfy init
 		JS::RootedValue playerData(cx);
-		scriptInterface.CreateArray(&playerData);
+		ScriptInterface::CreateArray(cx, &playerData);
 
 		for (int i = 0; i < 8; ++i)
 		{
 			JS::RootedValue player(cx);
-			scriptInterface.CreateObject(&player);
+			ScriptInterface::CreateObject(cx, &player);
 			scriptInterface.SetPropertyInt(playerData, i, player);
 		}
 
 		JS::RootedValue settings(cx);
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&settings,
-			"mapType", std::string("scenario"),
+			"mapType", "scenario",
 			"PlayerData", playerData);
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&attrs,
-			"mapType", std::string("scenario"),
-			"map", std::wstring(L"maps/scenarios/_default"),
+			"mapType", "scenario",
+			"map", "maps/scenarios/_default",
 			"settings", settings);
 
 		StartGame(&attrs);
@@ -166,10 +169,11 @@ MESSAGEHANDLER(LoadMap)
 
 	JS::RootedValue attrs(cx);
 
-	scriptInterface.CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&attrs,
-		"mapType", std::string("scenario"),
-		"map", std::wstring(mapBase));
+		"mapType", "scenario",
+		"map", mapBase);
 
 	StartGame(&attrs);
 }

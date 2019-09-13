@@ -161,6 +161,9 @@ namespace glooxwrapper
 			glooxwrapper_free(m_Data);
 		}
 
+		/**
+		 * Gloox strings are UTF encoded, so don't forget to decode it before passing it to the GUI!
+		 */
 		std::string to_string() const
 		{
 			return std::string(m_Data, m_Size);
@@ -184,6 +187,16 @@ namespace glooxwrapper
 		bool operator!=(const char* str) const
 		{
 			return strcmp(m_Data, str) != 0;
+		}
+
+		bool operator==(const string& str) const
+		{
+			return strcmp(m_Data, str.m_Data) == 0;
+		}
+
+		bool operator<(const string& str) const
+		{
+			return strcmp(m_Data, str.m_Data) < 0;
 		}
 	};
 

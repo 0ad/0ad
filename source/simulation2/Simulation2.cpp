@@ -983,7 +983,7 @@ std::string CSimulation2::GetAIData()
 	// Build single JSON string with array of AI data
 	JS::RootedValue ais(cx);
 
-	if (!scriptInterface.CreateObject(&ais, "AIData", aiData))
+	if (!ScriptInterface::CreateObject(cx, &ais, "AIData", aiData))
 		return std::string();
 
 	return scriptInterface.StringifyJSON(&ais);

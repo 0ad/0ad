@@ -277,15 +277,16 @@ void CNetClient::PostPlayerAssignmentsToScript()
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue newAssignments(cx);
-	GetScriptInterface().CreateObject(&newAssignments);
+	ScriptInterface::CreateObject(cx, &newAssignments);
 
 	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
 		JS::RootedValue assignment(cx);
 
-		GetScriptInterface().CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&assignment,
-			"name", CStrW(p.second.m_Name),
+			"name", p.second.m_Name,
 			"player", p.second.m_PlayerID,
 			"status", p.second.m_Status);
 

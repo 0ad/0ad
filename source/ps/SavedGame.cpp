@@ -83,9 +83,10 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 
 	JS::RootedValue metadata(cx);
 
-	simulation.GetScriptInterface().CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&metadata,
-		"engine_version", std::string(engine_version),
+		"engine_version", engine_version,
 		"time", static_cast<double>(now),
 		"playerID", g_Game->GetPlayerID(),
 		"mods", mods,
@@ -100,7 +101,8 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 
 	JS::RootedValue cameraMetadata(cx);
 
-	simulation.GetScriptInterface().CreateObject(
+	ScriptInterface::CreateObject(
+		cx,
 		&cameraMetadata,
 		"PosX", cameraPosition.X,
 		"PosY", cameraPosition.Y,
@@ -232,7 +234,7 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue games(cx);
-	scriptInterface.CreateArray(&games);
+	ScriptInterface::CreateArray(cx, &games);
 
 	Status err;
 
@@ -268,7 +270,8 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 		JS::RootedValue metadata(cx, loader.GetMetadata());
 
 		JS::RootedValue game(cx);
-		scriptInterface.CreateObject(
+		ScriptInterface::CreateObject(
+			cx,
 			&game,
 			"id", pathnames[i].Basename(),
 			"metadata", metadata);
