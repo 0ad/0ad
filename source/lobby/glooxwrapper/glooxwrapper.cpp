@@ -121,8 +121,9 @@ public:
 
 	virtual ~MUCRoomHandlerWrapper() {}
 
-	virtual void handleMUCParticipantPresence(gloox::MUCRoom* UNUSED(room), const gloox::MUCRoomParticipant participant, const gloox::Presence& presence)
+	virtual void handleMUCParticipantPresence(gloox::MUCRoom* room, const gloox::MUCRoomParticipant participant, const gloox::Presence& presence)
 	{
+		glooxwrapper::MUCRoom roomWrapper(room, false);
 		glooxwrapper::MUCRoomParticipant part;
 		glooxwrapper::JID nick(*participant.nick);
 		glooxwrapper::JID jid(*participant.jid);
@@ -139,8 +140,7 @@ public:
 		part.status = participant.status;
 		part.alternate = participant.alternate ? &alternate : NULL;
 
-		/* MUCRoom not supported */
-		m_Wrapped->handleMUCParticipantPresence(NULL, part, glooxwrapper::Presence(presence.presence()));
+		m_Wrapped->handleMUCParticipantPresence(roomWrapper, part, glooxwrapper::Presence(presence.presence()));
 
 		/* gloox 1.0 leaks some JIDs (fixed in 1.0.1), so clean them up */
 #if GLOOXVERSION == 0x10000
@@ -150,12 +150,11 @@ public:
 #endif
 	}
 
-	virtual void handleMUCMessage(gloox::MUCRoom* UNUSED(room), const gloox::Message& msg, bool priv)
+	virtual void handleMUCMessage(gloox::MUCRoom* room, const gloox::Message& msg, bool priv)
 	{
+		glooxwrapper::MUCRoom roomWrapper(room, false);
 		glooxwrapper::Message msgWrapper(const_cast<gloox::Message*>(&msg), false);
-
-		/* MUCRoom not supported */
-		m_Wrapped->handleMUCMessage(NULL, msgWrapper, priv);
+		m_Wrapped->handleMUCMessage(roomWrapper, msgWrapper, priv);
 	}
 
 	virtual bool handleMUCRoomCreation(gloox::MUCRoom* UNUSED(room))
@@ -164,10 +163,10 @@ public:
 		return false;
 	}
 
-	virtual void handleMUCSubject(gloox::MUCRoom* UNUSED(room), const std::string& nick, const std::string& subject)
+	virtual void handleMUCSubject(gloox::MUCRoom* room, const std::string& nick, const std::string& subject)
 	{
-		/* MUCRoom not supported */
-		m_Wrapped->handleMUCSubject(NULL, nick, subject);
+		glooxwrapper::MUCRoom roomWrapper(room, false);
+		m_Wrapped->handleMUCSubject(roomWrapper, nick, subject);
 	}
 
 	virtual void handleMUCInviteDecline(gloox::MUCRoom* UNUSED(room), const gloox::JID& UNUSED(invitee), const std::string& UNUSED(reason))
@@ -175,10 +174,10 @@ public:
 		/* Not supported */
 	}
 
-	virtual void handleMUCError(gloox::MUCRoom* UNUSED(room), gloox::StanzaError error)
+	virtual void handleMUCError(gloox::MUCRoom* room, gloox::StanzaError error)
 	{
-		/* MUCRoom not supported */
-		m_Wrapped->handleMUCError(NULL, error);
+		glooxwrapper::MUCRoom roomWrapper(room, false);
+		m_Wrapped->handleMUCError(roomWrapper, error);
 	}
 
 	virtual void handleMUCInfo(gloox::MUCRoom* UNUSED(room), int UNUSED(features), const std::string& UNUSED(name), const gloox::DataForm* UNUSED(infoForm))
@@ -579,22 +578,39 @@ const glooxwrapper::DelayedDelivery* glooxwrapper::Message::when() const
 	return new glooxwrapper::DelayedDelivery(wrapped);
 }
 
+glooxwrapper::MUCRoom::MUCRoom(gloox::MUCRoom* room, bool owned)
+	: m_Wrapped(room), m_Owned(owned), m_HandlerWrapper(nullptr)
+{
+}
 
 glooxwrapper::MUCRoom::MUCRoom(Client* parent, const JID& nick, MUCRoomHandler* mrh, MUCRoomConfigHandler* UNUSED(mrch))
 {
 	m_HandlerWrapper = new MUCRoomHandlerWrapper(mrh);
 	m_Wrapped = new gloox::MUCRoom(parent ? parent->getWrapped() : NULL, nick.getWrapped(), m_HandlerWrapper);
+	m_Owned = true;
 }
 
 glooxwrapper::MUCRoom::~MUCRoom()
 {
-	delete m_Wrapped;
+	if (m_Owned)
+		delete m_Wrapped;
+
 	delete m_HandlerWrapper;
 }
 
 const glooxwrapper::string glooxwrapper::MUCRoom::nick() const
 {
 	return m_Wrapped->nick();
+}
+
+const glooxwrapper::string glooxwrapper::MUCRoom::name() const
+{
+	return m_Wrapped->name();
+}
+
+const glooxwrapper::string glooxwrapper::MUCRoom::service() const
+{
+	return m_Wrapped->service();
 }
 
 void glooxwrapper::MUCRoom::join(gloox::Presence::PresenceType type, const string& status, int priority)

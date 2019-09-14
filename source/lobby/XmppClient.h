@@ -113,10 +113,10 @@ public:
 protected:
 	/* Xmpp handlers */
 	/* MUC handlers */
-	virtual void handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const glooxwrapper::MUCRoomParticipant, const glooxwrapper::Presence&);
-	virtual void handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError);
-	virtual void handleMUCMessage(glooxwrapper::MUCRoom* room, const glooxwrapper::Message& msg, bool priv);
-	virtual void handleMUCSubject(glooxwrapper::MUCRoom*, const glooxwrapper::string& nick, const glooxwrapper::string& subject);
+	virtual void handleMUCParticipantPresence(glooxwrapper::MUCRoom& room, const glooxwrapper::MUCRoomParticipant, const glooxwrapper::Presence&);
+	virtual void handleMUCError(glooxwrapper::MUCRoom& room, gloox::StanzaError);
+	virtual void handleMUCMessage(glooxwrapper::MUCRoom& room, const glooxwrapper::Message& msg, bool priv);
+	virtual void handleMUCSubject(glooxwrapper::MUCRoom& room, const glooxwrapper::string& nick, const glooxwrapper::string& subject);
 	/* MUC handlers not supported by glooxwrapper */
 	// virtual bool handleMUCRoomCreation(glooxwrapper::MUCRoom*) {return false;}
 	// virtual void handleMUCInviteDecline(glooxwrapper::MUCRoom*, const glooxwrapper::JID&, const std::string&) {}

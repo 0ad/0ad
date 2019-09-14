@@ -316,8 +316,9 @@ bool XmppClient::onTLSConnect(const glooxwrapper::CertInfo& info)
 /**
  * Handle MUC room errors
  */
-void XmppClient::handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError err)
+void XmppClient::handleMUCError(glooxwrapper::MUCRoom& UNUSED(room), gloox::StanzaError err)
 {
+	DbgXMPP("MUC Error " << ": " << StanzaErrorToString(err));
 	CreateGUIMessage("system", "error", std::time(nullptr), "text", err);
 }
 
@@ -742,7 +743,7 @@ void XmppClient::SendMUCMessage(const std::string& message)
 /**
  * Handle a room message.
  */
-void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Message& msg, bool priv)
+void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom& UNUSED(room), const glooxwrapper::Message& msg, bool priv)
 {
 	DbgXMPP(msg.from().resource() << " said " << msg.body());
 
@@ -862,7 +863,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 /**
  * Update local data when a user changes presence.
  */
-void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const glooxwrapper::MUCRoomParticipant participant, const glooxwrapper::Presence& presence)
+void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom& UNUSED(room), const glooxwrapper::MUCRoomParticipant participant, const glooxwrapper::Presence& presence)
 {
 	const glooxwrapper::string& nick = participant.nick->resource();
 
@@ -981,7 +982,7 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 /**
  * Update local cache when subject changes.
  */
-void XmppClient::handleMUCSubject(glooxwrapper::MUCRoom*, const glooxwrapper::string& nick, const glooxwrapper::string& subject)
+void XmppClient::handleMUCSubject(glooxwrapper::MUCRoom& UNUSED(room), const glooxwrapper::string& nick, const glooxwrapper::string& subject)
 {
 	m_Subject = wstring_from_utf8(subject.to_string());
 
