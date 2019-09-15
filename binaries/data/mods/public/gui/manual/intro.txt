@@ -1,32 +1,29 @@
-[font="sans-bold-18"]0 A.D. in-game manual
-[font="sans-14"]
+[font="sans-bold-18"]0 A.D. in-game manual[font="sans-14"]
 Thank you for installing 0 A.D.! This page will give a brief overview of the features available in this incomplete, under-development, alpha version of the game.
 
-[font="sans-bold-16"]Graphics settings
-[font="sans-14"]You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the options window: try disabling the "HQ Water Effects" and "Shadows" options.
+[font="sans-bold-16"]Graphics settings[font="sans-14"]
+You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the options window: try disabling the "HQ Water Effects" and "Shadows" options.
 
-[font="sans-bold-16"]Playing the game
-[font="sans-14"]The controls and gameplay should be familiar to players of traditional RTS games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
+[font="sans-bold-16"]Playing the game[font="sans-14"]
+The controls and gameplay should be familiar to players of traditional real-time strategy (RTS) games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
 
 Basic controls:
-• Left-click to select units.
-• Left-click-and-drag to select groups of units.
-• Right-click to order units to the target.
-• Arrow keys or WASD keys to move the camera.
-• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera.
-• Mouse wheel, or "+" and "-" keys, to zoom.
+• Left-click to select units
+• Left-click-and-drag to select groups of units
+• Right-click to order units to the target
+• Arrow keys or WASD keys to move the camera
+• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera
+• Mouse wheel, or "="/"+" and "-"/"−" keys, to zoom
 
-[font="sans-bold-16"]Modes
-[font="sans-14"]The main menu gives access to two game modes:
-
-• [font="sans-bold-14"]Single-player[font="sans-14"] – play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human.
-
+[font="sans-bold-16"]Modes[font="sans-14"]
+The main menu gives access to two game modes:
+• [font="sans-bold-14"]Single-player[font="sans-14"] – play a sandbox game or against one or more computer players (AI). The default AI (Petra) is under development and may not always be up to date on the new features, but you can play the game with or against it nonetheless.
 • [font="sans-bold-14"]Multiplayer[font="sans-14"] – play against human opponents over the internet.
 
 To set up a multiplayer game, one player must select the "Host game" option. The game uses UDP port 20595, so the host must configure their NAT/firewall/etc to allow this. Other players can then select "Join game" and enter the host's IP address.
 
-[font="sans-bold-16"]Game setup
-[font="sans-14"]In a multiplayer game, only the host can alter the game setup options.
+[font="sans-bold-16"]Game setup[font="sans-14"]
+In a multiplayer game, only the host can alter the game setup options.
 
 First, select what type of map you want to play:
 • [font="sans-bold-14"]Random map[font="sans-14"] – A map created automatically from a script
@@ -39,121 +36,122 @@ Finally change the settings. For random maps this includes the number of players
 
 When you are ready to start, click the "Start game" button.
 
-[font="sans-bold-16"]Hotkeys:
-[font="sans-bold-14"]Program-wide
-[font="sans-14"]Alt + F4: Close the game, without confirmation
-Alt + Enter: Toggle between fullscreen and windowed
-~ or F9: Show/hide console
-Alt + F: Show/hide frame counter (FPS)
-F11: Enable/disable real-time profiler (toggles through the displays of information)
-Shift + F11: Save current profiler data to "logs/profile.txt"
-F2: Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
-Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
-Tab, Alt + S: Switch to the next tab.
-Shift + Tab, Alt + W: Switch to the previous tab.
+[font="sans-bold-16"]Hotkeys:[font="sans-14"]
+[font="sans-bold-14"]Program-wide[font="sans-14"]
+  Alt + F4 – Immediately close the game, without asking for confirmation
+  Alt + Enter – Toggle between fullscreen and windowed
+  ~ or F9 – Show/hide console
+  Alt + F – Show/hide frame counter (FPS)
+  F11 – Enable/disable real-time profiler (toggles through the displays of information)
+  Shift + F11 – Save current profiler data to "logs/profile.txt"
+  F2 – Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+  Tab, Alt + S – Switch to the next tab
+  Shift + Tab, Alt + W – Switch to the previous tab
 
-[font="sans-bold-14"]In Game
-[font="sans-14"]Double Left Click \[on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
-Triple Left Click \[on unit]: Select all of your units of the same kind and the same rank on the screen
-Alt + Double Left Click \[on unit]: Select all your units of the same kind on the entire map (even if they have different ranks)
-Alt + Triple Left Click \[on unit]: Select all your units of the same kind and rank on the entire map
-Shift + F5: Quicksave
-Shift + F8: Quickload
-F10: Open/close menu
-F12: Show/hide time elapsed counter
-ESC: Close all dialogs (chat, menu) or clear selected units
-Enter/return: Open/send chat
-T: Send team chat
-L: Chat with the previously selected private chat partner
-Pause: Pause/resume the game
-Delete: Delete currently selected units/buildings
-Shift + Delete: Delete currently selected units/buildings without confirmation
-/ (Slash): Select idle fighter
-Shift + /: Add idle fighter to selection
-Alt + /: Select all idle fighters
-. (Period): Select idle worker (including citizen soldiers)
-Shift + .: Add idle worker to selection (including citizen soldiers)
-Alt + .: Select all idle workers (including citizen soldiers)
-\ (Backslash): Select idle unit
-Shift + \: Add idle unit to selection
-Alt + \: Select all idle units
-H: Stop (halt) the currently selected units.
-Y: The unit will go back to work
-U: Unload the garrisoned units of the selected buildings
-Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the selected units/buildings
-1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)
-Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings
-Ctrl + F5 (and so on up to F8): Mark the current camera position, for jumping back to later.
-F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position.
-Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected buildings.
-PageUp with units selected: Highlights the units/buildings guarded by the selection.
-PageDown with units/buildings selected: Highlights the units guarding the selection.
-Tab: See all status bars (which would also show the building progress)
-Ctrl + Tab: Toggle summary window.
-Alt + L: Show the multiplayer lobby in a dialog window.
-Ctrl + H: Toggle in-game diplomacy page.
-Ctrl + B: Toggle in-game barter/trade page.
-Ctrl + O: Toggle in-game objectives page.
-Ctrl + P: Toggle in-game tutorial panel.
-Alt + Shift + T: Toggle structure tree.
-Alt + Shift + H: Toggle civilization info.
+[font="sans-bold-14"]In Game[font="sans-14"]
+  Double Left Click \[on unit] – Select all of your units of the same kind on the screen (even if they're different ranks)
+  Triple Left Click \[on unit] – Select all of your units of the same kind and the same rank on the screen
+  Alt + Double Left Click \[on unit] – Select all your units of the same kind on the entire map (even if they have different ranks)
+  Alt + Triple Left Click \[on unit] – Select all your units of the same kind and rank on the entire map
+  Shift + F5 – Quicksave
+  Shift + F8 – Quickload
+  F10 – Open/close menu
+  F12 – Show/hide time elapsed counter
+  Esc – Close all dialogs (chat, menu) or clear selected units
+  Enter/Return – Open/send chat
+  T – Send team chat
+  L – Chat with the previously selected private chat partner
+  Pause – Pause/resume the game
+  Delete – Delete currently selected unit(s)/building(s), ask for confirmation
+  Shift + Delete – Immediately delete currently selected unit(s)/building(s), without asking for confirmation
+  / (Slash) – Select idle fighter
+  Shift + / (Slash) – Add idle fighter to selection
+  Alt + / (Slash) – Select all idle fighters
+  . (Period) – Select idle worker (including citizen-soldiers)
+  Shift + . (Period) – Add idle worker to selection (including citizen-soldiers)
+  Alt + . (Period) – Select all idle workers (including citizen-soldiers)
+  \\ (Backslash) – Select idle unit
+  Shift + \\ (Backslash) – Add idle unit to selection
+  Alt + \\ (Backslash) – Select all idle units
+  H – Stop (halt) the currently selected units
+  Y – The unit will go back to work
+  U – Unload the garrisoned units of the selected buildings
+  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from the selected unit(s)/building(s)
+  1 (and so on up to 0) – Select the units/buildings in control group 1 (to 0)
+  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected units/buildings
+  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for jumping back to later
+  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
+  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected buildings
+  PageUp with units selected – Highlights the units/buildings guarded by the selection
+  PageDown with units/buildings selected – Highlights the units guarding the selection
+  Tab – See all status bars (which would also show the building progress)
+  Ctrl + Tab – Toggle summary window
+  Alt + L – Show the multiplayer lobby in a dialog window
+  Ctrl + H – Toggle in-game diplomacy panel
+  Ctrl + B – Toggle in-game barter and trade panel
+  Ctrl + O – Toggle in-game objectives panel
+  Ctrl + P – Toggle in-game tutorial panel
+  Alt + Shift + T – Toggle structure tree panel
+  Alt + Shift + H – Toggle civilization info panel
 
-[font="sans-bold-14"]Modify mouse action
-[font="sans-14"]Ctrl + Right Click on building: Garrison
-J + Right Click on building: Repair
-P + Right Click: Patrol
-Shift + Right Click: Queue the move/build/gather/etc order
-Alt + Right Click: Order one unit from the current selection to move/build/gather/etc and unselect it. Used to quickly dispatch units with specific tasks.
-Shift + Left Click when training units: Add units in batches (the batch size is 5 by default and can be changed in the options)
-Shift + Left Click or Left Drag over unit on map: Add unit to selection
-Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection
-Alt + Left Drag over units on map: Only select military units
-Alt + Y + Left Drag over units on map: Only select non-military units
-I + Left Drag over units on map: Only select idle units
-O + Left Drag over units on map: Only select wounded units
-Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
-Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building.
-Ctrl + Right Click with units selected:
-  • If the cursor is over an allied structure: Garrison
-  • If the cursor is over a non-allied unit or building: Attack (instead of capture or gather)
-  • Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units).
+[font="sans-bold-14"]Modify mouse action[font="sans-14"]
+  Ctrl + Right Click on building – Garrison
+  J + Right Click on building – Repair
+  P + Right Click – Patrol
+  Shift + Right Click – Queue the move/build/gather/etc order
+  Alt + Right Click – Order one unit from the current selection to move/build/gather/etc and unselect it. Used to quickly dispatch units with specific tasks
+  Shift + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)
+  Shift + Left Click or Left Drag over unit on map – Add unit to selection
+  Ctrl + Left Click or Left Drag over unit on map – Remove unit from selection
+  Alt + Left Drag over units on map – Only select military units
+  Alt + Y + Left Drag over units on map – Only select non-military units
+  I + Left Drag over units on map – Only select idle units
+  O + Left Drag over units on map – Only select wounded units
+  Ctrl + Left Click on unit/group icon with multiple units selected – Deselect
+  Right Click with a building(s) selected – sets a rally point for units created/ungarrisoned from that building
+  Ctrl + Right Click with unit(s) selected:
+    • If the cursor is over an own or allied structure – Garrison
+    • If the cursor is over an enemy unit or building – Attack (instead of capture or gather)
+    • Otherwise – Attack move (by default all enemy units and structures along the way are targeted)
+  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units along the way are targeted
 
-[font="sans-bold-14"]Overlays
-[font="sans-14"]Alt + G: Hide/show the GUI
-Alt + D: Show/hide developer overlay (with developer options)
-Alt + Shift + W: Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
-Alt + Shift + S: Toggle unit silhouettes (might give a small performance boost)
-Alt + Z: Toggle sky
-Alt + X: Toggle diplomacy colors
-Alt + C: Toggle attack range visualizations of selected defensive structures
-Alt + V: Toggle aura range visualizations of selected units and structures
-Alt + B: Toggle heal range visualizations of selected units
+[font="sans-bold-14"]Overlays[font="sans-14"]
+  Alt + G – Hide/show the GUI
+  Alt + D – Show/hide developer overlay (with developer options)
+  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
+  Alt + Shift + S – Toggle unit silhouettes (might give a small performance boost)
+  Alt + Z – Toggle sky
+  Alt + X – Toggle diplomacy colors
+  Alt + C – Toggle attack range visualizations of selected units and structures
+  Alt + V – Toggle aura range visualizations of selected units and structures
+  Alt + B – Toggle heal range visualizations of selected units
 
-[font="sans-bold-14"]Camera manipulation
-[font="sans-14"]W or \[up]: Pan screen up
-S or \[down]: Pan screen down
-A or \[left]: Pan screen left
-D or \[right]: Pan screen right
-Ctrl + W or \[up]: Rotate camera to look upward
-Ctrl + S or \[down]: Rotate camera to look downward
-Ctrl + A or \[left]: Rotate camera clockwise around terrain
-Ctrl + D or \[right]: Rotate camera counter-clockwise around terrain
-Q: Rotate camera clockwise around terrain
-E: Rotate camera counter-clockwise around terrain
-Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain
-Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around terrain
-F: Follow the selected unit (move the camera to stop it from following the unit)
-R: Reset camera zoom/orientation
-= or +: Zoom in (keep pressed for continuous zoom)
--: Zoom out (keep pressed for continuous zoom)
-Alt + W: Toggle through wireframe modes
-Middle Mouse Button: Keep pressed and move the mouse to pan
+[font="sans-bold-14"]Camera manipulation[font="sans-14"]
+  W or ↑ (Up) – Pan screen up
+  S or ↓ (Down) – Pan screen down
+  A or ← (Left) – Pan screen left
+  D or → (Right) – Pan screen right
+  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward
+  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward
+  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain
+  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around terrain
+  Q – Rotate camera clockwise around terrain
+  E – Rotate camera counter-clockwise around terrain
+  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain
+  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around terrain
+  F – Follow the selected unit (move the camera to stop following the unit)
+  R – Reset camera zoom/orientation
+  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)
+  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)
+  Middle Mouse Button – Keep pressed and move the mouse to pan
 
-[font="sans-bold-14"]During Building Placement
-[font="sans-14"]\[: Rotate building 15 degrees counter-clockwise
-]: Rotate building 15 degrees clockwise
-Left Drag: Rotate building using mouse (foundation will be placed on mouse release)
+[font="sans-bold-14"]During Building Placement[font="sans-14"]
+  \[ (Left Bracket) – Rotate building 15 degrees counter-clockwise
+  ] (Right Bracket) – Rotate building 15 degrees clockwise
+  Left Drag – Rotate building using mouse (foundation will be placed on mouse release)
 
-[font="sans-bold-14"]When loading a saved game
-[font="sans-14"]Delete: delete the selected saved game asking confirmation
-Shift: do not ask confirmation when deleting a saved game
+[font="sans-bold-14"]When loading a saved game[font="sans-14"]
+  Esc – Cancel
+  Delete – Delete the selected saved game, ask for confirmation
+  Shift + Delete – Immediately delete the selected saved game, without asking for confirmation
