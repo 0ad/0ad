@@ -185,15 +185,16 @@ function getArmorTooltip(template)
 
 function attackRateDetails(interval, projectiles)
 {
-	// ToDo: Get the name of a projectile from the template.
-
-	if (!interval || projectiles == 0)
+	if (!interval)
 		return "";
+
+	if (projectiles === 0)
+		return translate("Garrison to fire arrows");
 
 	let attackRateString = getSecondsString(interval / 1000);
 	let header = headerFont(translate("Interval:"));
 
-	if (+projectiles > 1)
+	if (projectiles && +projectiles > 1)
 	{
 		header = headerFont(translate("Rate:"));
 		let projectileString = sprintf(translatePlural("%(projectileCount)s %(projectileName)s", "%(projectileCount)s %(projectileName)s", projectiles), {
@@ -258,7 +259,7 @@ function damageDetails(damageTemplate)
 
 	return Object.keys(damageTemplate).filter(dmgType => damageTemplate[dmgType]).map(
 		dmgType => sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": damageTemplate[dmgType].toFixed(1),
+			"damage": (+damageTemplate[dmgType]).toFixed(1),
 			"damageType": unitFont(translateWithContext("damage type", dmgType))
 		})).join(commaFont(translate(", ")));
 }
@@ -269,8 +270,18 @@ function captureDetails(captureTemplate)
 		return "";
 
 	return sprintf(translate("%(amount)s %(name)s"), {
-		"amount": captureTemplate.toFixed(1),
+		"amount": (+captureTemplate).toFixed(1),
 		"name": unitFont(translateWithContext("damage type", "Capture"))
+	});
+}
+
+function giveStatusDetails(giveStatusTemplate)
+{
+	if (!giveStatusTemplate)
+		return "";
+
+	return sprintf(translate("gives %(name)s"), {
+		"name": Object.keys(giveStatusTemplate).map(x => unitFont(translateWithContext("status effect", x))).join(', '),
 	});
 }
 
@@ -281,7 +292,8 @@ function attackEffectsDetails(attackTypeTemplate)
 
 	let effects = [
 		captureDetails(attackTypeTemplate.Capture || undefined),
-		damageDetails(attackTypeTemplate.Damage || undefined)
+		damageDetails(attackTypeTemplate.Damage || undefined),
+		giveStatusDetails(attackTypeTemplate.GiveStatus || undefined)
 	];
 	return effects.filter(effect => effect).join(commaFont(translate(", ")));
 }
@@ -309,11 +321,19 @@ function getAttackTooltip(template)
 		if (template.buildingAI)
 			projectiles = template.buildingAI.arrowCount || template.buildingAI.defaultArrowCount;
 
-		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s"), {
+		// Show the effects of status effects below
+		let statusEffectsDetails = [];
+		if (attackTypeTemplate.GiveStatus)
+			for (let status in attackTypeTemplate.GiveStatus)
+				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(status, attackTypeTemplate.GiveStatus[status]));
+		statusEffectsDetails = statusEffectsDetails.join("");
+
+		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"), {
 			"attackLabel": attackLabel,
 			"effects": attackEffectsDetails(attackTypeTemplate),
 			"range": rangeDetails(attackTypeTemplate),
-			"rate": attackRateDetails(attackTypeTemplate.repeatTime, projectiles)
+			"rate": attackRateDetails(attackTypeTemplate.repeatTime, projectiles),
+			"statusEffects": statusEffectsDetails
 		}));
 	}
 	return tooltips.join("\n");
@@ -349,6 +369,23 @@ function getSplashDamageTooltip(template)
 
 	// If multiple attack types deal splash damage, the attack type should be shown to differentiate.
 	return tooltips.join("\n");
+}
+
+function getStatusEffectsTooltip(name, template)
+{
+	let durationString = "";
+	if (template.Duration)
+		durationString = sprintf(translate(", %(durName)s: %(duration)s"), {
+			"durName": headerFont(translate("Duration")),
+			"duration": getSecondsString((template.TimeElapsed ? +template.Duration - template.TimeElapsed : +template.Duration) / 1000),
+		});
+
+	return sprintf(translate("%(statusName)s: %(effects)s, %(rate)s%(durationString)s"), {
+		"statusName": headerFont(translateWithContext("status effect", name)),
+		"effects": attackEffectsDetails(template),
+		"rate": attackRateDetails(+template.Interval),
+		"durationString": durationString
+	});
 }
 
 function getGarrisonTooltip(template)

@@ -93,6 +93,26 @@ function displaySingle(entState)
 		Engine.GetGUIObjectByName("rankIcon").tooltip = "";
 	}
 
+	if (entState.statusEffects)
+	{
+		let statusIcons = Engine.GetGUIObjectByName("statusEffectsIcons").children;
+		let i = 0;
+		for (let effectName in entState.statusEffects)
+		{
+			let effect = entState.statusEffects[effectName];
+			statusIcons[i].hidden = false;
+			statusIcons[i].sprite = "stretched:session/icons/status_effects/" + (effect.Icon || "default") + ".png";
+			statusIcons[i].tooltip = getStatusEffectsTooltip(effectName, effect);
+			let size = statusIcons[i].size;
+			size.top = i * 18;
+			size.bottom = i * 18 + 16;
+			statusIcons[i].size = size;
+			i++;
+		}
+		for (; i < statusIcons.length; ++i)
+			statusIcons[i].hidden = true;
+	}
+
 	let showHealth = entState.hitpoints;
 	let showResource = entState.resourceSupply;
 

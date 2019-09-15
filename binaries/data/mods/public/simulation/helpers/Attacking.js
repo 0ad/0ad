@@ -5,38 +5,44 @@ function Attacking() {}
 
 /**
  * Builds a RelaxRNG schema of possible attack effects.
- * Currently harcoded to "Damage", "Capture" and "StatusEffects".
+ * See globalscripts/AttackEffects.js for possible elements.
  * Attacks may also have a "Bonuses" element.
  *
  * @return {string}	- RelaxNG schema string
  */
+const DamageSchema = "" +
+	"<oneOrMore>" +
+		"<element a:help='One or more elements describing damage types'>" +
+			"<anyName>" +
+				// Armour requires Foundation to not be a damage type.
+				"<except><name>Foundation</name></except>" +
+			"</anyName>" +
+			"<ref name='nonNegativeDecimal' />" +
+		"</element>" +
+	"</oneOrMore>";
+
 Attacking.prototype.BuildAttackEffectsSchema = function()
 {
 	return "" +
 	"<oneOrMore>" +
 		"<choice>" +
 			"<element name='Damage'>" +
-				"<oneOrMore>" +
-					"<element a:help='One or more elements describing damage types'>" +
-						"<anyName>" +
-							// Armour requires Foundation to not be a damage type.
-							"<except><name>Foundation</name></except>" +
-						"</anyName>" +
-						"<ref name='nonNegativeDecimal' />" +
-					"</element>" +
-				"</oneOrMore>" +
+				DamageSchema +
 			"</element>" +
 			"<element name='Capture' a:help='Capture points value'>" +
 				"<ref name='nonNegativeDecimal'/>" +
 			"</element>" +
-			"<element name='StatusEffects' a:help='Effects like poisoning or burning a unit.'>" +
+			"<element name='GiveStatus' a:help='Effects like poisoning or burning a unit.'>" +
 				"<oneOrMore>" +
 					"<element>" +
 						"<anyName/>" +
 						"<interleave>" +
+								"<optional>" +
+									"<element name='Icon' a:help='Icon for the status effect'><text/></element>" +
+								"</optional>" +
 								"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
 								"<element name='Interval' a:help='Interval between the occurances of the effect.'><ref name='nonNegativeDecimal'/></element>" +
-								"<element name='Damage' a:help='Damage caused by the effect.'><ref name='nonNegativeDecimal'/></element>" +
+								"<element name='Damage' a:help='Damage caused by the effect.'>" + DamageSchema + "</element>" +
 						"</interleave>" +
 					"</element>" +
 				"</oneOrMore>" +
@@ -79,8 +85,8 @@ Attacking.prototype.GetAttackEffectsData = function(valueModifRoot, template, en
 	if (template.Capture)
 		ret.Capture = ApplyValueModificationsToEntity(valueModifRoot + "/Capture", +(template.Capture || 0), entity);
 
-	if (template.StatusEffects)
-		ret.StatusEffects = template.StatusEffects;
+	if (template.GiveStatus)
+		ret.GiveStatus = template.GiveStatus;
 
 	if (template.Bonuses)
 		ret.Bonuses = template.Bonuses;
