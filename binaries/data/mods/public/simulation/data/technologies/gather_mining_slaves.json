@@ -5,14 +5,14 @@
 		"spart": "Andrápoda",
 		"athen": "Andrápoda"
 	},
-	"description": "Increases stone gathering rates.",
+	"description": "Buy slaves to help your workers quarry stone. Increases stone gathering rates.",
 	"cost": { "food": 1000, "wood": 0, "stone": 150, "metal": 150 },
 	"supersedes": "gather_mining_serfs",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "mining_stone.png",
 	"researchTime": 40,
-	"tooltip": "Buy slaves to help your workers mine for stone. +50% stone gathering rate.",
+	"tooltip": "Workers +50% stone gather rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.5 }
 	],

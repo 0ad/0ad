@@ -4,14 +4,14 @@
 		"athen": "Mines of Laureion",
 		"mace": "Mines of Krenides"
 	},
-	"description": "Increases metal gathering rates.",
+	"description": "Strike a vein of precious silver. Increases metal gathering rates.",
 	"cost": { "food": 0, "wood": 1000, "stone": 150, "metal": 150 },
 	"supersedes": "gather_mining_shaftmining",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "mining_metal.png",
 	"researchTime": 40,
-	"tooltip": "Strike a vein of precious silver. +50% metal gathering rate.",
+	"tooltip": "Workers +50% metal gather rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.5 }
 	],

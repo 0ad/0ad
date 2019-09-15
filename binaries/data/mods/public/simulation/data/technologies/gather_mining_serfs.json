@@ -5,14 +5,14 @@
 		"spart": "Heílōtes",
 		"athen": "Heílōtes"
 	},
-	"description": "Increases stone gathering rates.",
+	"description": "Compel serfs to help your workers quarry stone. Increases stone gathering rates.",
 	"cost": { "food": 250, "wood": 0, "stone": 0, "metal": 50 },
 	"supersedes": "gather_mining_servants",
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "mining_stone.png",
 	"researchTime": 40,
-	"tooltip": "Compel serfs to help your workers mine stone. +15% stone gathering rate.",
+	"tooltip": "Workers +15% stone gather rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.15 }
 	],

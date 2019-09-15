@@ -1,12 +1,12 @@
 {
 	"genericName": "Fishing Net",
-	"description": "Nets improve the productivity of fishing boats.",
+	"description": "Use nets to improve the productivity of fishing boats.",
 	"cost": { "food": 0, "wood": 100, "stone": 0, "metal": 0 },
 	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "fishing_net.png",
 	"researchTime": 30,
-	"tooltip": "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish.",
+	"tooltip": "Fishing Boats +30% fish gather rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/food.fish", "multiply": 1.3 }
 	],
