@@ -5,9 +5,10 @@
 	"modifications": [
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
 	],
 	"auraName": "Zooiarchos",
-	"auraDescription": "+20% attack and movement speed for war elephants.",
+	"auraDescription": "Champion Elephants +20% melee attack damage, +20% movement speed.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }
