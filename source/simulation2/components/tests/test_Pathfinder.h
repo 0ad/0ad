@@ -183,7 +183,7 @@ public:
 			PathGoal goal = { PathGoal::POINT, x1, z1 };
 
 			WaypointPath path;
-			cmp->ComputePath(x0, z0, goal, cmp->GetPassabilityClass("default"), path);
+			cmp->ComputePathImmediate(x0, z0, goal, cmp->GetPassabilityClass("default"), path);
 		}
 
 		t = timer_Time() - t;
@@ -214,7 +214,7 @@ public:
 		}
 
 		PathGoal goal = { PathGoal::POINT, range, range };
-		WaypointPath path = cmpPathfinder->ComputeShortPath(ShortPathRequest{ 0, range/3, range/3, fixed::FromInt(2), range, goal, 0, false, 0, 0 });
+		WaypointPath path = cmpPathfinder->ComputeShortPathImmediate(ShortPathRequest{ 0, range/3, range/3, fixed::FromInt(2), range, goal, 0, false, 0, 0 });
 		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
 			printf("# %d: %f %f\n", (int)i, path.m_Waypoints[i].x.ToFloat(), path.m_Waypoints[i].z.ToFloat());
 	}
@@ -369,7 +369,7 @@ public:
 		PathGoal goal = { PathGoal::POINT, x1, z1 };
 
 		WaypointPath path;
-		cmpPathfinder->ComputePath(x0, z0, goal, cmpPathfinder->GetPassabilityClass("default"), path);
+		cmpPathfinder->ComputePathImmediate(x0, z0, goal, cmpPathfinder->GetPassabilityClass("default"), path);
 
 		u32 debugSteps;
 		double debugTime;
@@ -418,7 +418,7 @@ public:
 		for (int i = 0; i < n; ++i)
 		{
 			WaypointPath path;
-			cmpPathfinder->ComputePath(x0, z0, goal, cmpPathfinder->GetPassabilityClass("default"), path);
+			cmpPathfinder->ComputePathImmediate(x0, z0, goal, cmpPathfinder->GetPassabilityClass("default"), path);
 		}
 		t = timer_Time() - t;
 		debug_printf("### RepeatPath %fms each (%fs total)\n", 1000*t / n, t);

@@ -55,8 +55,6 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
 	m_AtlasOverlay = NULL;
 
-	m_SameTurnMovesCount = 0;
-
 	m_VertexPathfinder = std::unique_ptr<VertexPathfinder>(new VertexPathfinder(m_MapSize, m_TerrainOnlyGrid));
 	m_LongPathfinder = std::unique_ptr<LongPathfinder>(new LongPathfinder());
 	m_PathfinderHier = std::unique_ptr<HierarchicalPathfinder>(new HierarchicalPathfinder());
@@ -98,12 +96,16 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 		m_PassClasses.push_back(PathfinderPassability(mask, it->second));
 		m_PassClassMasks[name] = mask;
 	}
+
+	m_Workers.emplace_back(PathfinderWorker{});
 }
 
 CCmpPathfinder::~CCmpPathfinder() {};
 
 void CCmpPathfinder::Deinit()
 {
+	m_Workers.clear();
+
 	SetDebugOverlay(false); // cleans up memory
 	SAFE_DELETE(m_AtlasOverlay);
 
@@ -149,7 +151,6 @@ void CCmpPathfinder::SerializeCommon(S& serialize)
 	SerializeVector<SerializeLongRequest>()(serialize, "long requests", m_LongPathRequests);
 	SerializeVector<SerializeShortRequest>()(serialize, "short requests", m_ShortPathRequests);
 	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
-	serialize.NumberU16_Unbounded("same turn moves count", m_SameTurnMovesCount);
 	serialize.NumberU16_Unbounded("map size", m_MapSize);
 }
 
@@ -183,9 +184,6 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	case MT_ObstructionMapShapeChanged:
 		m_TerrainDirty = true;
 		UpdateGrid();
-		break;
-	case MT_TurnStart:
-		m_SameTurnMovesCount = 0;
 		break;
 	}
 }
@@ -703,10 +701,46 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 
 //////////////////////////////////////////////////////////
 
+// Async pathfinder workers
 
-void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const
+CCmpPathfinder::PathfinderWorker::PathfinderWorker() {}
+
+template<typename T>
+void CCmpPathfinder::PathfinderWorker::PushRequests(std::vector<T>&, ssize_t)
 {
-	m_LongPathfinder->ComputePath(*m_PathfinderHier, x0, z0, goal, passClass, ret);
+	static_assert(sizeof(T) == 0, "Only specializations can be used");
+}
+
+template<> void CCmpPathfinder::PathfinderWorker::PushRequests(std::vector<LongPathRequest>& from, ssize_t amount)
+{
+	m_LongRequests.insert(m_LongRequests.end(), std::make_move_iterator(from.end() - amount), std::make_move_iterator(from.end()));
+}
+
+template<> void CCmpPathfinder::PathfinderWorker::PushRequests(std::vector<ShortPathRequest>& from, ssize_t amount)
+{
+	m_ShortRequests.insert(m_ShortRequests.end(), std::make_move_iterator(from.end() - amount), std::make_move_iterator(from.end()));
+}
+
+void CCmpPathfinder::PathfinderWorker::Work(const CCmpPathfinder& pathfinder)
+{
+	while (!m_LongRequests.empty())
+	{
+		const LongPathRequest& req = m_LongRequests.back();
+		WaypointPath path;
+		pathfinder.m_LongPathfinder->ComputePath(*pathfinder.m_PathfinderHier, req.x0, req.z0, req.goal, req.passClass, path);
+		m_Results.emplace_back(req.ticket, req.notify, path);
+
+		m_LongRequests.pop_back();
+	}
+
+	while (!m_ShortRequests.empty())
+	{
+		const ShortPathRequest& req = m_ShortRequests.back();
+		WaypointPath path = pathfinder.m_VertexPathfinder->ComputeShortPath(req, CmpPtr<ICmpObstructionManager>(pathfinder.GetSystemEntity()));
+		m_Results.emplace_back(req.ticket, req.notify, path);
+
+		m_ShortRequests.pop_back();
+	}
 }
 
 u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify)
@@ -716,118 +750,98 @@ u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Pat
 	return req.ticket;
 }
 
-u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify)
+u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range,
+                                          const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits,
+                                          entity_id_t group, entity_id_t notify)
 {
 	ShortPathRequest req = { m_NextAsyncTicket++, x0, z0, clearance, range, goal, passClass, avoidMovingUnits, group, notify };
 	m_ShortPathRequests.push_back(req);
 	return req.ticket;
 }
 
-WaypointPath CCmpPathfinder::ComputeShortPath(const ShortPathRequest& request) const
+void CCmpPathfinder::ComputePathImmediate(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const
+{
+	m_LongPathfinder->ComputePath(*m_PathfinderHier, x0, z0, goal, passClass, ret);
+}
+
+WaypointPath CCmpPathfinder::ComputeShortPathImmediate(const ShortPathRequest& request) const
 {
 	return m_VertexPathfinder->ComputeShortPath(request, CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
 }
 
-// Async processing:
-
-void CCmpPathfinder::FinishAsyncRequests()
+void CCmpPathfinder::FetchAsyncResultsAndSendMessages()
 {
-	PROFILE2("Finish Async Requests");
-	// Save the request queue in case it gets modified while iterating
-	std::vector<LongPathRequest> longRequests;
-	m_LongPathRequests.swap(longRequests);
+	PROFILE2("FetchAsyncResults");
 
-	std::vector<ShortPathRequest> shortRequests;
-	m_ShortPathRequests.swap(shortRequests);
-
-	// TODO: we should only compute one path per entity per turn
-
-	// TODO: this computation should be done incrementally, spread
-	// across multiple frames (or even multiple turns)
-
-	ProcessLongRequests(longRequests);
-	ProcessShortRequests(shortRequests);
-}
-
-void CCmpPathfinder::ProcessLongRequests(const std::vector<LongPathRequest>& longRequests)
-{
-	PROFILE2("Process Long Requests");
-	for (size_t i = 0; i < longRequests.size(); ++i)
+	// WARNING: the order in which moves are pulled must be consistent when using 1 or n workers.
+	// We fetch in the same order we inserted in, but we push moves backwards, so this works.
+	std::vector<PathResult> results;
+	for (PathfinderWorker& worker : m_Workers)
 	{
-		const LongPathRequest& req = longRequests[i];
-		WaypointPath path;
-		ComputePath(req.x0, req.z0, req.goal, req.passClass, path);
-		CMessagePathResult msg(req.ticket, path);
-		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
+		results.insert(results.end(), std::make_move_iterator(worker.m_Results.begin()), std::make_move_iterator(worker.m_Results.end()));
+		worker.m_Results.clear();
+	}
+
+	{
+		PROFILE2("PostMessages");
+		for (PathResult& path : results)
+		{
+			CMessagePathResult msg(path.ticket, path.path);
+			GetSimContext().GetComponentManager().PostMessage(path.notify, msg);
+		}
 	}
 }
 
-void CCmpPathfinder::ProcessShortRequests(const std::vector<ShortPathRequest>& shortRequests)
+void CCmpPathfinder::StartProcessingMoves(bool useMax)
 {
-	PROFILE2("Process Short Requests");
-	for (size_t i = 0; i < shortRequests.size(); ++i)
-	{
-		const ShortPathRequest& req = shortRequests[i];
-		WaypointPath path = m_VertexPathfinder->ComputeShortPath(req, CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
-		CMessagePathResult msg(req.ticket, path);
-		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
-	}
+	std::vector<LongPathRequest> longRequests = PopMovesToProcess(m_LongPathRequests, useMax, m_MaxSameTurnMoves);
+	std::vector<ShortPathRequest> shortRequests = PopMovesToProcess(m_ShortPathRequests, useMax, m_MaxSameTurnMoves - longRequests.size());
+
+	PushRequestsToWorkers(longRequests);
+	PushRequestsToWorkers(shortRequests);
+
+	for (PathfinderWorker& worker : m_Workers)
+		worker.Work(*this);
 }
 
-void CCmpPathfinder::ProcessSameTurnMoves()
+template <typename T>
+std::vector<T> CCmpPathfinder::PopMovesToProcess(std::vector<T>& requests, bool useMax, size_t maxMoves)
 {
-	if (!m_LongPathRequests.empty())
+	std::vector<T> poppedRequests;
+	if (useMax)
 	{
-		// Figure out how many moves we can do this time
-		i32 moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
-
-		if (moveCount <= 0)
-			return;
-
-		// Copy the long request elements we are going to process into a new array
-		std::vector<LongPathRequest> longRequests;
-		if ((i32)m_LongPathRequests.size() <= moveCount)
+		size_t amount = std::min(requests.size(), maxMoves);
+		if (amount > 0)
 		{
-			m_LongPathRequests.swap(longRequests);
-			moveCount = (i32)longRequests.size();
+			poppedRequests.insert(poppedRequests.begin(), std::make_move_iterator(requests.end() - amount), std::make_move_iterator(requests.end()));
+			requests.erase(requests.end() - amount, requests.end());
 		}
-		else
-		{
-			longRequests.resize(moveCount);
-			copy(m_LongPathRequests.begin(), m_LongPathRequests.begin() + moveCount, longRequests.begin());
-			m_LongPathRequests.erase(m_LongPathRequests.begin(), m_LongPathRequests.begin() + moveCount);
-		}
-
-		ProcessLongRequests(longRequests);
-
-		m_SameTurnMovesCount = (u16)(m_SameTurnMovesCount + moveCount);
+	}
+	else
+	{
+		poppedRequests.swap(requests);
+		requests.clear();
 	}
 
-	if (!m_ShortPathRequests.empty())
+	return poppedRequests;
+}
+
+template <typename T>
+void CCmpPathfinder::PushRequestsToWorkers(std::vector<T>& from)
+{
+	if (from.empty())
+		return;
+
+	// Trivial load-balancing, / rounds towards zero so add 1 to ensure we do push all requests.
+	size_t amount = from.size() / m_Workers.size() + 1;
+
+	// WARNING: the order in which moves are pushed must be consistent when using 1 or n workers.
+	// In this instance, work is distributed in a strict LIFO order, effectively reversing tickets.
+	for (PathfinderWorker& worker : m_Workers)
 	{
-		// Figure out how many moves we can do now
-		i32 moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
-
-		if (moveCount <= 0)
-			return;
-
-		// Copy the short request elements we are going to process into a new array
-		std::vector<ShortPathRequest> shortRequests;
-		if ((i32)m_ShortPathRequests.size() <= moveCount)
-		{
-			m_ShortPathRequests.swap(shortRequests);
-			moveCount = (i32)shortRequests.size();
-		}
-		else
-		{
-			shortRequests.resize(moveCount);
-			copy(m_ShortPathRequests.begin(), m_ShortPathRequests.begin() + moveCount, shortRequests.begin());
-			m_ShortPathRequests.erase(m_ShortPathRequests.begin(), m_ShortPathRequests.begin() + moveCount);
-		}
-
-		ProcessShortRequests(shortRequests);
-
-		m_SameTurnMovesCount = (u16)(m_SameTurnMovesCount + moveCount);
+		amount = std::min(amount, from.size()); // Since we are rounding up before, ensure we aren't pushing beyond the end.
+		worker.PushRequests(from, amount);
+		from.erase(from.end() - amount, from.end());
 	}
 }
 

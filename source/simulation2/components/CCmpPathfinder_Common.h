@@ -57,6 +57,33 @@ class AtlasOverlay;
  */
 class CCmpPathfinder final : public ICmpPathfinder
 {
+protected:
+
+	class PathfinderWorker
+	{
+		friend CCmpPathfinder;
+	public:
+		PathfinderWorker();
+
+		// Process path requests, checking if we should stop before each new one.
+		void Work(const CCmpPathfinder& pathfinder);
+
+	private:
+		// Insert requests in m_[Long/Short]Requests depending on from.
+		// This could be removed when we may use if-constexpr in CCmpPathfinder::PushRequestsToWorkers
+		template<typename T>
+		void PushRequests(std::vector<T>& from, ssize_t amount);
+
+		// Stores our results, the main thread will fetch this.
+		std::vector<PathResult> m_Results;
+
+		std::vector<LongPathRequest> m_LongRequests;
+		std::vector<ShortPathRequest> m_ShortRequests;
+	};
+
+	// Allow the workers to access our private variables
+	friend class PathfinderWorker;
+
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
@@ -81,8 +108,8 @@ public:
 
 	std::vector<LongPathRequest> m_LongPathRequests;
 	std::vector<ShortPathRequest> m_ShortPathRequests;
-	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
-	u16 m_SameTurnMovesCount; // current number of same turn moves we have processed this turn
+	u32 m_NextAsyncTicket; // Unique IDs for asynchronous path requests.
+	u16 m_MaxSameTurnMoves; // Compute only this many paths when useMax is true in StartProcessingMoves.
 
 	// Lazily-constructed dynamic state (not serialized):
 
@@ -101,9 +128,8 @@ public:
 	std::unique_ptr<HierarchicalPathfinder> m_PathfinderHier;
 	std::unique_ptr<LongPathfinder> m_LongPathfinder;
 
-	// For responsiveness we will process some moves in the same turn they were generated in
-
-	u16 m_MaxSameTurnMoves; // max number of moves that can be created and processed in the same turn
+	// Workers process pathing requests.
+	std::vector<PathfinderWorker> m_Workers;
 
 	AtlasOverlay* m_AtlasOverlay;
 
@@ -168,11 +194,11 @@ public:
 
 	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false);
 
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const;
+	virtual void ComputePathImmediate(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const;
 
 	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify);
 
-	virtual WaypointPath ComputeShortPath(const ShortPathRequest& request) const;
+	virtual WaypointPath ComputeShortPathImmediate(const ShortPathRequest& request) const;
 
 	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify);
 
@@ -194,13 +220,15 @@ public:
 
 	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) const;
 
-	virtual void FinishAsyncRequests();
+	virtual void FetchAsyncResultsAndSendMessages();
 
-	void ProcessLongRequests(const std::vector<LongPathRequest>& longRequests);
+	virtual void StartProcessingMoves(bool useMax);
 
-	void ProcessShortRequests(const std::vector<ShortPathRequest>& shortRequests);
+	template <typename T>
+	std::vector<T> PopMovesToProcess(std::vector<T>& requests, bool useMax = false, size_t maxMoves = 0);
 
-	virtual void ProcessSameTurnMoves();
+	template <typename T>
+	void PushRequestsToWorkers(std::vector<T>& from);
 
 	/**
 	 * Regenerates the grid based on the current obstruction list, if necessary
