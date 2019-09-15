@@ -22,6 +22,7 @@
 
 namespace JSI_Game
 {
+	bool IsGameStarted(ScriptInterface::CxPrivate* pCxPrivate);
 	void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID);
 	void Script_EndGame(ScriptInterface::CxPrivate* pCxPrivate);
 	int GetPlayerID(ScriptInterface::CxPrivate* pCxPrivate);

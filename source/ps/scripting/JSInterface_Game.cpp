@@ -33,6 +33,11 @@
 
 extern void EndGame();
 
+bool JSI_Game::IsGameStarted(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return g_Game;
+}
+
 void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID)
 {
 	ENSURE(!g_NetServer);
@@ -162,6 +167,7 @@ void JSI_Game::DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 
 void JSI_Game::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
+	scriptInterface.RegisterFunction<bool, &IsGameStarted>("IsGameStarted");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
 	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
