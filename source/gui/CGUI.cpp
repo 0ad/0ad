@@ -87,15 +87,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		if (it != m_HotkeyObjects.end())
 			for (IGUIObject* const& obj : it->second)
 			{
-				// Update hotkey status before sending the event,
-				// else the status will be outdated when processing the GUI event.
-				HotkeyInputHandler(ev);
-				ret = IN_HANDLED;
-
 				if (ev->ev.type == SDL_HOTKEYDOWN)
-					obj->SendEvent(GUIM_PRESSED, "press");
+					ret = obj->SendEvent(GUIM_PRESSED, "press");
 				else
-					obj->SendEvent(GUIM_RELEASED, "release");
+					ret = obj->SendEvent(GUIM_RELEASED, "release");
 			}
 	}
 

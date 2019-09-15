@@ -635,6 +635,9 @@ static bool isUnprintableChar(SDL_Keysym key)
 
 InReaction conInputHandler(const SDL_Event_* ev)
 {
+	if (!g_Console)
+		return IN_PASS;
+
 	if ((int)ev->ev.type == SDL_HOTKEYDOWN)
 	{
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);

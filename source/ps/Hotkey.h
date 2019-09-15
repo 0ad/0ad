@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,8 @@ const int SDL_HOTKEYUP = SDL_USEREVENT + 1;
 
 extern void LoadHotkeys();
 extern void UnloadHotkeys();
+
+extern InReaction HotkeyStateChange(const SDL_Event_* ev);
 extern InReaction HotkeyInputHandler(const SDL_Event_* ev);
 
 extern bool HotkeyIsPressed(const CStr& keyname);

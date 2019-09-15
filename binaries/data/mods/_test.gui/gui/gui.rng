@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <a:documentation/>
+    <!--
+      NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+        and use a converter tool like trang to generate the Relax NG XML (.rng) file
+    -->
+    <a:documentation/>
+    <choice>
+      <ref name="objects"/>
+    </choice>
+  </start>
+  <define name="objects">
+    <element name="objects">
+      <zeroOrMore>
+        <choice>
+          <ref name="script"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="script">
+    <element name="script">
+      <interleave>
+        <text/>
+        <optional>
+          <attribute name="file"/>
+        </optional>
+        <optional>
+          <attribute name="directory"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+</grammar>

@@ -44,6 +44,9 @@ CGUIManager* g_GUI = NULL;
 // trampoline: we don't want to make the HandleEvent implementation static
 InReaction gui_handler(const SDL_Event_* ev)
 {
+	if (!g_GUI)
+		return IN_PASS;
+
 	PROFILE("GUI event handler");
 	return g_GUI->HandleEvent(ev);
 }
