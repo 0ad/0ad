@@ -19,25 +19,11 @@
     <variant frequency="1" name="Masked">
       <props>
         <prop actor="props/units/helmets/props/hele_thracian_mask_b3.xml" attachpoint="root"/>
-        <prop actor="props/units/helmets/props/hele_crest_thracian_b3.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="No-Mask">
       <props>
-        <prop actor="props/units/helmets/props/hele_crest_thracian_b3.xml" attachpoint="root"/>
         <prop actor="" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="No - Mask">
-      <props>
-        <prop actor="" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Masked">
-      <props>
-        <prop actor="props/units/helmets/props/hele_thracian_mask_b3.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

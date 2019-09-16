@@ -49,6 +49,11 @@
         <prop actor="props/units/helmets/celt_helmet_mihovo.xml" attachpoint="helmet"/>
       </props>
     </variant>
+    <variant frequency="1" name="Celtic Monte Bibele">
+      <props>
+        <prop actor="props/units/helmets/celt_monte_bibele.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="chainmail-1">
