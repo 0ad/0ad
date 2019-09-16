@@ -715,11 +715,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
 
-		const CStr settingName = pFile->GetAttributeString(attr.Name);
-		if (object->SettingExists(settingName))
-			object->SetSettingFromString(settingName, attr.Value.FromUTF8(), false);
-		else
-			LOGERROR("GUI: (object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName(), settingName, attr.Value);
+		object->SetSettingFromString(pFile->GetAttributeString(attr.Name), attr.Value.FromUTF8(), false);
 	}
 
 	// Check if name isn't set, generate an internal name in that case.
