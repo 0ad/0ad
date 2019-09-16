@@ -508,7 +508,8 @@ namespace glooxwrapper
 	private:
 		gloox::Message* m_Wrapped;
 		bool m_Owned;
-		glooxwrapper::JID* m_From;
+		glooxwrapper::JID m_From;
+		glooxwrapper::DelayedDelivery* m_DelayedDelivery;
 	public:
 		Message(gloox::Message* wrapped, bool owned);
 		~Message();

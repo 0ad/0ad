@@ -1,11 +1,11 @@
 {
 	"genericName": "Stockbreeding",
-	"description": "Breeding livestock for food.",
+	"description": "Breed livestock (sheep, goats, cattle, etc.) for food.",
 	"cost": { "food": 50, "wood": 0, "stone": 0, "metal": 0 },
 	"requirements": { "tech": "phase_village" },
 	"icon": "meat.png",
 	"researchTime": 40,
-	"tooltip": "Breed time -25% for domestic animals (sheep, goats, cattle, etc.).",
+	"tooltip": "Domestic Animals −25% breeding time.",
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.75 }
 	],

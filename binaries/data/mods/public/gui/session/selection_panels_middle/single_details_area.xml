@@ -82,8 +82,17 @@
 			<object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip_style="sessionToolTip">
 				<translatableAttribute id="tooltip">Rank</translatableAttribute>
 			</object>
+
+			<!-- Status Effecst icons -->
+			<object  name="statusEffectsIcons" size="100%-20 4 100%-4 100%">
+				<repeat count="5">
+					<object type="image" size="0 0 16 16" z="200" tooltip_style="sessionToolTip"/>
+				</repeat>
+			</object>
+
 		</object>
 	</object>
+
 
 	<!-- Names (this must come before the attack and armor icon to avoid clipping issues) -->
 	<object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,21 +123,35 @@ public:
 		TS_ASSERT_EQUALS(str1.ToLong(), 1);
 		TS_ASSERT_EQUALS(str1.ToULong(), 1u);
 
-		CStr8 str2("bogus");
-		TS_ASSERT_EQUALS(str2.ToFloat(), 0.0f);
-		TS_ASSERT_EQUALS(str2.ToDouble(), 0.0);
-		TS_ASSERT_EQUALS(str2.ToInt(), 0);
-		TS_ASSERT_EQUALS(str2.ToUInt(), 0u);
-		TS_ASSERT_EQUALS(str2.ToLong(), 0);
-		TS_ASSERT_EQUALS(str2.ToULong(), 0u);
+		CStr8 str2("+1,234");
+		TS_ASSERT_DELTA(str2.ToFloat(), 1.f, 0.0001f);
+		TS_ASSERT_DELTA(str2.ToDouble(), 1., 0.0001);
+		TS_ASSERT_EQUALS(str2.ToInt(), 1);
+		TS_ASSERT_EQUALS(str2.ToUInt(), 1u);
+		TS_ASSERT_EQUALS(str2.ToLong(), 1);
+		TS_ASSERT_EQUALS(str2.ToULong(), 1u);
 
-		CStr8 str3("3bogus");
-		TS_ASSERT_EQUALS(str3.ToFloat(), 3.0f);
-		TS_ASSERT_EQUALS(str3.ToDouble(), 3.0);
-		TS_ASSERT_EQUALS(str3.ToInt(), 3);
-		TS_ASSERT_EQUALS(str3.ToUInt(), 3u);
-		TS_ASSERT_EQUALS(str3.ToLong(), 3);
-		TS_ASSERT_EQUALS(str3.ToULong(), 3u);
+		CStr8 str3("bogus");
+		TS_ASSERT_EQUALS(str3.ToFloat(), 0.0f);
+		TS_ASSERT_EQUALS(str3.ToDouble(), 0.0);
+		TS_ASSERT_EQUALS(str3.ToInt(), 0);
+		TS_ASSERT_EQUALS(str3.ToUInt(), 0u);
+		TS_ASSERT_EQUALS(str3.ToLong(), 0);
+		TS_ASSERT_EQUALS(str3.ToULong(), 0u);
+
+		CStr8 str4("3bogus");
+		TS_ASSERT_DELTA(str4.ToFloat(), 3.0f, 0.0001f);
+		TS_ASSERT_DELTA(str4.ToDouble(), 3.0, 0.0001);
+		TS_ASSERT_EQUALS(str4.ToInt(), 3);
+		TS_ASSERT_EQUALS(str4.ToUInt(), 3u);
+		TS_ASSERT_EQUALS(str4.ToLong(), 3);
+		TS_ASSERT_EQUALS(str4.ToULong(), 3u);
+
+		CStr8 str5("-3bogus");
+		TS_ASSERT_DELTA(str5.ToFloat(), -3.0f, 0.0001f);
+		TS_ASSERT_DELTA(str5.ToDouble(), -3.0, 0.0001);
+		TS_ASSERT_EQUALS(str5.ToInt(), -3);
+		TS_ASSERT_EQUALS(str5.ToLong(), -3);
 
 		setlocale(LC_NUMERIC, old);
 	}

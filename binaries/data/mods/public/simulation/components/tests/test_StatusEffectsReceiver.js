@@ -28,7 +28,9 @@ function testInflictEffects()
 	cmpStatusReceiver.AddStatus(statusName, {
 		"Duration": 20000,
 		"Interval": 10000,
-		"Damage": 1
+		"Damage": {
+			[statusName]: 1
+		}
 	});
 
 	cmpTimer.OnUpdate({ "turnLength": 1 });
@@ -65,12 +67,16 @@ function testMultipleEffects()
 		"Burn": {
 			"Duration": 20000,
 			"Interval": 10000,
-			"Damage": 10
+			"Damage": {
+				"Burn": 10
+			}
 		},
 		"Poison": {
 			"Duration": 3000,
 			"Interval": 1000,
-			"Damage": 1
+			"Damage": {
+				"Poison": 1
+			}
 		}
 	});
 
@@ -102,7 +108,9 @@ function testRemoveStatus()
 	cmpStatusReceiver.AddStatus(statusName, {
 		"Duration": 20000,
 		"Interval": 10000,
-		"Damage": 1
+		"Damage": {
+			[statusName]: 1
+		}
 	});
 
 	cmpTimer.OnUpdate({ "turnLength": 1 });

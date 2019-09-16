@@ -541,7 +541,7 @@ void InitPsAutostart(bool networked, JS::HandleValue attrs)
 }
 
 
-static void InitInput()
+void InitInput()
 {
 	g_Joystick.Initialise();
 
@@ -569,6 +569,10 @@ static void InitInput()
 
 	// must be registered after (called before) the GUI which relies on these globals
 	in_add_handler(GlobalsInputHandler);
+
+	// Should be called first, this updates our hotkey press state
+	// so that js calls to HotkeyIsPressed are synched with events.
+	in_add_handler(HotkeyStateChange);
 }
 
 

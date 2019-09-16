@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@
 #include "lib/byte_order.h"
 #include "network/Serialization.h"
 
+#include <cctype>
 #include <iomanip>
 #include <sstream>
 
@@ -154,10 +155,24 @@ unsigned long CStr::ToULong() const
 	return ret;
 }
 
+/**
+ * libc++ and libstd++ differ on how they handle string-to-number parsing for floating-points numbers.
+ * See https://trac.wildfiregames.com/ticket/2780#comment:4 for details.
+ * To prevent this, only consider [0-9.-+], replace the others in-place with a neutral character.
+ */
+CStr ParseableAsNumber(CStr cleaned_copy)
+{
+	for (tchar& c : cleaned_copy)
+		if (!std::isdigit(c) && c != '.' && c != '-' && c != '+')
+			c = ' ';
+
+	return cleaned_copy;
+}
+
 float CStr::ToFloat() const
 {
 	float ret = 0;
-	std::tstringstream str(*this);
+	std::tstringstream str(ParseableAsNumber(*this));
 	str >> ret;
 	return ret;
 }
@@ -165,7 +180,7 @@ float CStr::ToFloat() const
 double CStr::ToDouble() const
 {
 	double ret = 0;
-	std::tstringstream str(*this);
+	std::tstringstream str(ParseableAsNumber(*this));
 	str >> ret;
 	return ret;
 }

@@ -291,6 +291,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"template": cmpUpgrade.GetUpgradingTo()
 		};
 
+	let cmpStatusEffects = Engine.QueryInterface(ent, IID_StatusEffectsReceiver);
+	if (cmpStatusEffects)
+		ret.statusEffects = cmpStatusEffects.GetActiveStatuses();
+
 	let cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		ret.production = {

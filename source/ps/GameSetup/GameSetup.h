@@ -92,8 +92,8 @@ extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
  * In the latter case the caller should call Shutdown() with SHUTDOWN_FROM_CONFIG.
  */
 extern bool Init(const CmdLineArgs& args, int flags);
-extern void InitGraphics(const CmdLineArgs& args, int flags,
-	const std::vector<CStr>& installedMods = std::vector<CStr>());
+extern void InitInput();
+extern void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods = std::vector<CStr>());
 extern void InitNonVisual(const CmdLineArgs& args);
 extern void Shutdown(int flags);
 extern void CancelLoad(const CStrW& message);

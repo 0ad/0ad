@@ -5,12 +5,12 @@
 		"spart": "Doûloi",
 		"athen": "Doûloi"
 	},
-	"description": "Increases stone gathering rates.",
+	"description": "Hire servants to help quarry stone. Increases stone gathering rates.",
 	"cost": { "food": 200, "wood": 0, "stone": 0, "metal": 50 },
 	"requirements": { "tech": "phase_village" },
 	"icon": "mining_stone.png",
 	"researchTime": 40,
-	"tooltip": "Hire servants to help mine stone. +15% stone gathering rate.",
+	"tooltip": "Workers +15% stone gather rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.15 }
 	],

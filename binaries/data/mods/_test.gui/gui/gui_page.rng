@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="page" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <zeroOrMore>
+    <element name="include">
+      <text/>
+    </element>
+  </zeroOrMore>
+</element>

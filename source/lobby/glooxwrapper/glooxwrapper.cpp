@@ -533,16 +533,18 @@ glooxwrapper::string glooxwrapper::JID::resource() const
 
 
 glooxwrapper::Message::Message(gloox::Message* wrapped, bool owned)
-	: m_Wrapped(wrapped), m_Owned(owned)
+	: m_Wrapped(wrapped),
+	  m_Owned(owned),
+	  m_From(m_Wrapped->from()),
+	  m_DelayedDelivery(m_Wrapped->when() ? new glooxwrapper::DelayedDelivery(m_Wrapped->when()) : nullptr)
 {
-	m_From = new glooxwrapper::JID(m_Wrapped->from());
 }
 
 glooxwrapper::Message::~Message()
 {
 	if (m_Owned)
 		delete m_Wrapped;
-	delete m_From;
+	delete m_DelayedDelivery;
 }
 
 gloox::Message::MessageType glooxwrapper::Message::subtype() const
@@ -552,7 +554,7 @@ gloox::Message::MessageType glooxwrapper::Message::subtype() const
 
 const glooxwrapper::JID& glooxwrapper::Message::from() const
 {
-	return *m_From;
+	return m_From;
 }
 
 glooxwrapper::string glooxwrapper::Message::body() const
@@ -572,10 +574,7 @@ glooxwrapper::string glooxwrapper::Message::thread() const
 
 const glooxwrapper::DelayedDelivery* glooxwrapper::Message::when() const
 {
-	const gloox::DelayedDelivery* wrapped = m_Wrapped->when();
-	if (wrapped == 0)
-		return 0;
-	return new glooxwrapper::DelayedDelivery(wrapped);
+	return m_DelayedDelivery;
 }
 
 glooxwrapper::MUCRoom::MUCRoom(gloox::MUCRoom* room, bool owned)

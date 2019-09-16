@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -152,6 +152,15 @@ bool isNegated(const SKey& key)
 		return true;
 }
 
+InReaction HotkeyStateChange(const SDL_Event_* ev)
+{
+	if (ev->ev.type == SDL_HOTKEYDOWN)
+		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = true;
+	else if (ev->ev.type == SDL_HOTKEYUP)
+		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = false;
+	return IN_PASS;
+}
+
 InReaction HotkeyInputHandler(const SDL_Event_* ev)
 {
 	int keycode = 0;
@@ -196,13 +205,6 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		}
 		return IN_PASS;
 
-	case SDL_HOTKEYDOWN:
-		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = true;
-		return IN_PASS;
-
-	case SDL_HOTKEYUP:
-		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = false;
-		return IN_PASS;
 
 	default:
 		return IN_PASS;
@@ -248,7 +250,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	bool consoleCapture = false;
 
-	if (g_Console->IsActive() && keycode < SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES))
+	if (g_Console && g_Console->IsActive() && keycode < SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES))
 		consoleCapture = true;
 
 	// Here's an interesting bit:

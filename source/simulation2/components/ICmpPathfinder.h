@@ -33,6 +33,19 @@ class IObstructionTestFilter;
 
 template<typename T> class Grid;
 
+// Returned by asynchronous workers, used to send messages in the main thread.
+struct WaypointPath;
+
+struct PathResult
+{
+	PathResult() = default;
+	PathResult(u32 t, entity_id_t n, WaypointPath p) : ticket(t), notify(n), path(p) {};
+
+	u32 ticket;
+	entity_id_t notify;
+	WaypointPath path;
+};
+
 /**
  * Pathfinder algorithms.
  *
@@ -89,40 +102,36 @@ public:
 	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false) = 0;
 
 	/**
-	 * Compute a tile-based path from the given point to the goal, and return the set of waypoints.
-	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
-	 * along the path.
-	 */
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const = 0;
-
-	/**
 	 * Asynchronous version of ComputePath.
+	 * Request a long path computation, asynchronously.
 	 * The result will be sent as CMessagePathResult to 'notify'.
 	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
 	 * so callers can recognise each individual request they make.
 	 */
 	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify) = 0;
 
-	/**
-	 * If the debug overlay is enabled, render the path that will computed by ComputePath.
+	/*
+	 * Request a long-path computation immediately
 	 */
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass) = 0;
+	virtual void ComputePathImmediate(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const = 0;
 
 	/**
-	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
-	 * The path is based on the full set of obstructions that pass the filter, such that
-	 * a unit of clearance 'clearance' will be able to follow the path with no collisions.
-	 * The path is restricted to a box of radius 'range' from the starting point.
-	 */
-	virtual WaypointPath ComputeShortPath(const ShortPathRequest& request) const = 0;
-
-	/**
-	 * Asynchronous version of ComputeShortPath (using ControlGroupObstructionFilter).
+	 * Request a short path computation, asynchronously.
 	 * The result will be sent as CMessagePathResult to 'notify'.
 	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
 	 * so callers can recognise each individual request they make.
 	 */
-	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify) = 0;
+	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify) = 0;
+
+	/*
+	 * Request a short-path computation immediately.
+	 */
+	virtual WaypointPath ComputeShortPathImmediate(const ShortPathRequest& request) const = 0;
+
+	/**
+	 * If the debug overlay is enabled, render the path that will computed by ComputePath.
+	 */
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass) = 0;
 
 	/**
 	 * Check whether the given movement line is valid and doesn't hit any obstructions
@@ -171,12 +180,12 @@ public:
 	/**
 	 * Finish computing asynchronous path requests and send the CMessagePathResult messages.
 	 */
-	virtual void FinishAsyncRequests() = 0;
+	virtual void FetchAsyncResultsAndSendMessages() = 0;
 
 	/**
-	 * Process moves during the same turn they were created in to improve responsiveness.
+	 * Tell asynchronous pathfinder threads that they can begin computing paths.
 	 */
-	virtual void ProcessSameTurnMoves() = 0;
+	virtual void StartProcessingMoves(bool useMax) = 0;
 
 	/**
 	 * Regenerates the grid based on the current obstruction list, if necessary

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -88,9 +88,13 @@ TraceEntry::TraceEntry(const std::wstring& text)
 
 std::wstring TraceEntry::EncodeAsText() const
 {
+	// Ensure timestamp gets correctly encoded.
+	char* oldLocale = setlocale(LC_ALL, "C");
+
 	const wchar_t action = (wchar_t)m_action;
 	wchar_t buf[1000];
 	swprintf_s(buf, ARRAY_SIZE(buf), L"%#010f: %c \"%ls\" %lu\n", m_timestamp, action, m_pathname.string().c_str(), (unsigned long)m_size);
+	setlocale(LC_ALL, oldLocale);
 	return buf;
 }
 

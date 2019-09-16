@@ -1,11 +1,11 @@
 {
 	"genericName": "Wicker Baskets",
-	"description": "Baskets for foraging.",
+	"description": "Equip your foragers with wicker baskets for foraging.",
 	"cost": { "food": 0, "wood": 100, "stone": 0, "metal": 0 },
 	"requirements": { "tech": "phase_village" },
 	"icon": "gather_basket.png",
 	"researchTime": 40,
-	"tooltip": "Equip your foragers with wicker baskets. +50% fruit foraging rate.",
+	"tooltip": "Workers +50% fruit gather rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/food.fruit", "multiply": 1.5 }
 	],

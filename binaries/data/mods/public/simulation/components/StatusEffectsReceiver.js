@@ -5,6 +5,11 @@ StatusEffectsReceiver.prototype.Init = function()
 	this.activeStatusEffects = {};
 };
 
+StatusEffectsReceiver.prototype.GetActiveStatuses = function()
+{
+	return this.activeStatusEffects;
+};
+
 // Called by attacking effects.
 StatusEffectsReceiver.prototype.GiveStatus = function(effectData, attacker, attackerOwner, bonusMultiplier)
 {
@@ -23,23 +28,23 @@ StatusEffectsReceiver.prototype.AddStatus = function(statusName, data)
 
 	this.activeStatusEffects[statusName] = {};
 	let status = this.activeStatusEffects[statusName];
-	status.duration = +data.Duration;
-	status.interval = +data.Interval;
-	status.damage = +data.Damage;
-	status.timeElapsed = 0;
-	status.firstTime = true;
+	Object.assign(status, data);
+	status.Interval = +data.Interval;
+	status.TimeElapsed = 0;
+	status.FirstTime = true;
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	status.timer = cmpTimer.SetInterval(this.entity, IID_StatusEffectsReceiver, "ExecuteEffect", 0, +status.interval, statusName);
+	status.Timer = cmpTimer.SetInterval(this.entity, IID_StatusEffectsReceiver, "ExecuteEffect", 0, +status.Interval, statusName);
 };
 
-StatusEffectsReceiver.prototype.RemoveStatus = function(statusName) {
+StatusEffectsReceiver.prototype.RemoveStatus = function(statusName)
+{
 	if (!this.activeStatusEffects[statusName])
 		return;
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	cmpTimer.CancelTimer(this.activeStatusEffects[statusName].timer);
-	this.activeStatusEffects[statusName] = undefined;
+	cmpTimer.CancelTimer(this.activeStatusEffects[statusName].Timer);
+	delete this.activeStatusEffects[statusName];
 };
 
 StatusEffectsReceiver.prototype.ExecuteEffect = function(statusName, lateness)
@@ -48,17 +53,17 @@ StatusEffectsReceiver.prototype.ExecuteEffect = function(statusName, lateness)
 	if (!status)
 		return;
 
-	if (status.firstTime)
+	if (status.FirstTime)
 	{
-		status.firstTime = false;
-		status.timeElapsed += lateness;
+		status.FirstTime = false;
+		status.TimeElapsed += lateness;
 	}
 	else
-		status.timeElapsed += status.interval + lateness;
+		status.TimeElapsed += status.Interval + lateness;
 
-	Attacking.HandleAttackEffects(statusName, { "Damage": { [statusName]: status.damage } }, this.entity, -1, -1);
+	Attacking.HandleAttackEffects(statusName, status, this.entity, -1, -1);
 
-	if (status.timeElapsed >= status.duration)
+	if (status.Duration && status.TimeElapsed >= +status.Duration)
 		this.RemoveStatus(statusName);
 };
 

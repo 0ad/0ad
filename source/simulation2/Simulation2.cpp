@@ -540,8 +540,8 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
 	if (cmpPathfinder)
 	{
+		cmpPathfinder->FetchAsyncResultsAndSendMessages();
 		cmpPathfinder->UpdateGrid();
-		cmpPathfinder->FinishAsyncRequests();
 	}
 
 	// Push AI commands onto the queue before we use them
@@ -555,14 +555,17 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	// Process newly generated move commands so the UI feels snappy
 	if (cmpPathfinder)
-		cmpPathfinder->ProcessSameTurnMoves();
-
+	{
+		cmpPathfinder->StartProcessingMoves(true);
+		cmpPathfinder->FetchAsyncResultsAndSendMessages();
+	}
 	// Send all the update phases
 	{
 		PROFILE2("Sim - Update");
 		CMessageUpdate msgUpdate(turnLengthFixed);
 		componentManager.BroadcastMessage(msgUpdate);
 	}
+
 	{
 		CMessageUpdate_MotionFormation msgUpdate(turnLengthFixed);
 		componentManager.BroadcastMessage(msgUpdate);
@@ -570,7 +573,10 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	// Process move commands for formations (group proxy)
 	if (cmpPathfinder)
-		cmpPathfinder->ProcessSameTurnMoves();
+	{
+		cmpPathfinder->StartProcessingMoves(true);
+		cmpPathfinder->FetchAsyncResultsAndSendMessages();
+	}
 
 	{
 		PROFILE2("Sim - Motion Unit");
@@ -583,12 +589,12 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 		componentManager.BroadcastMessage(msgUpdate);
 	}
 
-	// Process moves resulting from group proxy movement (unit needs to catch up or realign) and any others
-	if (cmpPathfinder)
-		cmpPathfinder->ProcessSameTurnMoves();
-
 	// Clean up any entities destroyed during the simulation update
 	componentManager.FlushDestroyedComponents();
+
+	// Process all remaining moves
+	if (cmpPathfinder)
+		cmpPathfinder->StartProcessingMoves(false);
 }
 
 void CSimulation2Impl::Interpolate(float simFrameLength, float frameOffset, float realFrameLength)
