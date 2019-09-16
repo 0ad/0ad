@@ -16,13 +16,13 @@
 # sicey <sicey224@hotmail.com>, 2015
 # Taha Karadoğan <tahakaradogan@gmail.com>, 2016
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014
-# yakup <mutouk@yandex.ru>, 2014,2016-2017
+# yakup <mutouk@yandex.ru>, 2014,2016-2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-03-29 09:11+0000\n"
-"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
+"POT-Creation-Date: 2019-09-13 07:08+0000\n"
+"PO-Revision-Date: 2019-09-14 05:32+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,170 +34,198 @@ msgstr ""
 msgid "Long strings"
 msgstr "Uzun dizgeler"
 
-#: lobby/XmppClient.cpp:800
+#: lobby/XmppClient.cpp:855
 msgid "unknown subtype (see logs)"
 msgstr "bilinmeyen alttür (kayıtlara bakın)"
 
-#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
-#: lobby/XmppClient.cpp:1180
+#: lobby/XmppClient.cpp:1169
+msgid "The certificate is not trusted."
+msgstr "Sertifikaya güvenilmiyor."
+
+#: lobby/XmppClient.cpp:1170
+msgid "The certificate hasn't got a known issuer."
+msgstr "Sertifikanın bilinen bir yayıncısı yok."
+
+#: lobby/XmppClient.cpp:1171
+msgid "The certificate has been revoked."
+msgstr "Sertifika iptal edildi."
+
+#: lobby/XmppClient.cpp:1172
+msgid "The certificate has expired."
+msgstr "Sertifikanın süresi doldu."
+
+#: lobby/XmppClient.cpp:1173
+msgid "The certifiacte is not yet active."
+msgstr "Sertifika henüz aktif değil."
+
+#: lobby/XmppClient.cpp:1174
+msgid "The certificate has not been issued for the peer connected to."
+msgstr "Sertifika, bağlı olan eş için verilmemiş."
+
+#: lobby/XmppClient.cpp:1175
+msgid "The certificate signer is not a certificate authority."
+msgstr "Sertifika imzalayan bir sertifika yetkilisi değil."
+
+#: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
+#: lobby/XmppClient.cpp:1280
 msgid "Error"
 msgstr "Hata"
 
-#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1200 lobby/XmppClient.cpp:1244
 msgid "No error"
 msgstr "Hata yok"
 
-#: lobby/XmppClient.cpp:1102
+#: lobby/XmppClient.cpp:1202
 msgid "Player already logged in"
 msgstr "Oyuncu zaten giriş yaptı"
 
-#: lobby/XmppClient.cpp:1104
+#: lobby/XmppClient.cpp:1204
 msgid "Forbidden"
 msgstr "Yasaklanmış"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1206
 msgid "Internal server error"
 msgstr "Sunucu içi hata"
 
-#: lobby/XmppClient.cpp:1110
+#: lobby/XmppClient.cpp:1210
 msgid "Not allowed"
 msgstr "İzin verilmemektedir"
 
-#: lobby/XmppClient.cpp:1111
+#: lobby/XmppClient.cpp:1211
 msgid "Not authorized"
 msgstr "Yetkiniz yok"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1214
 msgid "Recipient temporarily unavailable"
 msgstr "Alıcı geçici olarak kullanılamıyor"
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1216
 msgid "Registration required"
 msgstr "Kayıt gerekli"
 
-#: lobby/XmppClient.cpp:1120
+#: lobby/XmppClient.cpp:1220
 msgid "Service unavailable"
 msgstr "Hizmet kullanım dışı"
 
-#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
+#: lobby/XmppClient.cpp:1225 lobby/XmppClient.cpp:1264
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1245
 msgid "Stream error"
 msgstr "Akış hatası"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1246
 msgid "The incoming stream version is unsupported"
 msgstr "Gelen akış sürümü desteklenmiyor."
 
-#: lobby/XmppClient.cpp:1147
+#: lobby/XmppClient.cpp:1247
 msgid "The stream has been closed by the server"
 msgstr "Bu akış sunucu tarafından kapatıldı."
 
-#: lobby/XmppClient.cpp:1151
+#: lobby/XmppClient.cpp:1251
 msgid "An I/O error occurred"
 msgstr "Bir G/Ç hatası oluştu"
 
-#: lobby/XmppClient.cpp:1153
+#: lobby/XmppClient.cpp:1253
 msgid "The connection was refused by the server"
 msgstr "Bu bağlantı sunucu tarafından reddedildi"
 
-#: lobby/XmppClient.cpp:1154
+#: lobby/XmppClient.cpp:1254
 msgid "Resolving the server's hostname failed"
 msgstr "Sunucu isim hatası çözülüyor"
 
-#: lobby/XmppClient.cpp:1155
+#: lobby/XmppClient.cpp:1255
 msgid "This system is out of memory"
 msgstr "Sistem belleği yetersiz."
 
-#: lobby/XmppClient.cpp:1157
+#: lobby/XmppClient.cpp:1257
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Sunucu sertifikası onaylanamıyor veya bu TLS başarılı şekilde doğrulanamıyor"
 
-#: lobby/XmppClient.cpp:1158
+#: lobby/XmppClient.cpp:1258
 msgid "The server did not offer required TLS encryption"
 msgstr "Bu sunucu TLS şifreleme gerekliliklerini sunamıyor"
 
-#: lobby/XmppClient.cpp:1160
+#: lobby/XmppClient.cpp:1260
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Kimlik doğrulama başarısız oldu. Geçersiz şifre veya hesap yok"
 
-#: lobby/XmppClient.cpp:1161
+#: lobby/XmppClient.cpp:1261
 msgid "The user or system requested a disconnect"
 msgstr "Bu kullanıcı veya sistem bağlantının kesilmesine ihtiyaç duyuyor"
 
-#: lobby/XmppClient.cpp:1162
+#: lobby/XmppClient.cpp:1262
 msgid "There is no active connection"
 msgstr "Aktif bağlantı yok"
 
-#: lobby/XmppClient.cpp:1183
+#: lobby/XmppClient.cpp:1283
 msgid "Your account has been successfully registered"
 msgstr "Hesabın başarıyla kaydedildi"
 
-#: lobby/XmppClient.cpp:1184
+#: lobby/XmppClient.cpp:1284
 msgid "Not all necessary information provided"
 msgstr "bütün önemli bilgi karşılanamadı"
 
-#: lobby/XmppClient.cpp:1185
+#: lobby/XmppClient.cpp:1285
 msgid "Username already exists"
 msgstr "Kullanıcı adı zaten var"
 
-#: ps/ModIo.cpp:245
+#: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Oyun ID'sini sorgulamaya başlarken hata oluştu. Hata: %s; %s."
 
-#: ps/ModIo.cpp:275
+#: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Modları sorgulamaya başlarken hata oluştu. Hata: %s; %s."
 
-#: ps/ModIo.cpp:301
+#: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Mod dizini oluşturulamıyor: %s."
 
-#: ps/ModIo.cpp:326
+#: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Mod yüklemesi için geçici dosya açılamıyor: %s."
 
-#: ps/ModIo.cpp:336
+#: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Yüklemeyi başlatmada hata. Hata: %s; %s."
 
-#: ps/ModIo.cpp:381
+#: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Asenkron yükleme hatası: %s, %s."
 
-#: ps/ModIo.cpp:410
+#: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Yükleme hatası. Server cevabı: %s; %s."
 
-#: ps/ModIo.cpp:513
+#: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
 msgstr "Eşleşmeyen dosya boyutu."
 
-#: ps/ModIo.cpp:531
+#: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Geçersiz dosya. md5 umduk %s, %s bulduk."
 
-#: ps/ModIo.cpp:545
+#: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
 msgstr "Son HASH hesaplamasında hata."
 
-#: ps/ModIo.cpp:551
+#: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
 msgstr "İmza doğrulamasında hata."
 
-#: ps/SavedGame.cpp:128
+#: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Oyun buraya kaydedildi: '%s'"

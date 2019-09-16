@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-09 07:14+0000\n"
-"PO-Revision-Date: 2019-09-10 06:45+0000\n"
+"POT-Creation-Date: 2019-09-13 07:08+0000\n"
+"PO-Revision-Date: 2019-09-14 06:33+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -45,38 +45,44 @@ msgstr "%(hotkey)s: Yapı Ağacına geçiş yap."
 msgid "%(hotkey)s: Close History."
 msgstr "%(hotkey)s: Geçmişi kapat."
 
-#: gui/civinfo/civinfo.js:112
+#. Translation: insert an itemization symbol for each entry.
+#: gui/civinfo/civinfo.js:85
+#, javascript-format
+msgid "• %(string)s"
+msgstr "%(string)s"
+
+#: gui/civinfo/civinfo.js:113
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Oynanış"
 
-#: gui/civinfo/civinfo.js:115
+#: gui/civinfo/civinfo.js:116
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Uygarlık Ödülü"
 msgstr[1] "Uygarlık Bonusları"
 
-#: gui/civinfo/civinfo.js:120
+#: gui/civinfo/civinfo.js:121
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Takım Ödülü"
 msgstr[1] "Takım Bonusları"
 
-#: gui/civinfo/civinfo.js:127
+#: gui/civinfo/civinfo.js:128
 msgid "Special Technologies"
 msgstr "Özel Teknolojiler"
 
-#: gui/civinfo/civinfo.js:133
+#: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Özel Yapı"
 msgstr[1] "Özel Yapılar"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Kahramanlar"
 
-#: gui/civinfo/civinfo.js:150
+#: gui/civinfo/civinfo.js:151
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr " %(civilization)sin tarihi"
