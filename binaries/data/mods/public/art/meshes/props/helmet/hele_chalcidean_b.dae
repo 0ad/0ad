@@ -3,11 +3,11 @@
   <asset>
     <contributor>
       <author>Blender User</author>
-      <authoring_tool>Blender 2.80.54 commit date:2019-04-06, commit time:12:26, hash:cc73d59ad580</authoring_tool>
+      <authoring_tool>Blender 2.80.75 commit date:2019-07-29, commit time:14:47, hash:f6cb5f54494e</authoring_tool>
     </contributor>
-    <created>2019-07-30T23:54:20</created>
-    <modified>2019-07-30T23:54:20</modified>
-    <unit name="inch" meter="0.0254"/>
+    <created>2019-09-04T15:02:58</created>
+    <modified>2019-09-04T15:02:58</modified>
+    <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
@@ -15,6 +15,9 @@
       <profile_COMMON>
         <technique sid="common">
           <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
             <diffuse>
               <color sid="diffuse">0.8 0.8 0.8 1</color>
             </diffuse>
@@ -87,7 +90,7 @@
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="Escena" name="Escena">
+    <visual_scene id="Scene" name="Scene">
       <node id="Hele_Chalcidean_02" name="Hele_Chalcidean_02" type="NODE">
         <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
         <instance_geometry url="#Esfera_344-mesh" name="Hele_Chalcidean_02">
@@ -100,10 +103,22 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_crest" name="prop.crest" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 0.962369 0.2717445 0.008171545 0 -0.2717445 0.962369 0.5081087 0 0 0 1</matrix>
+        </node>
+        <node id="prop_crest_transversal" name="prop.crest_transversal" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 0.9633259 0.268333 0.04072785 0 -0.268333 0.9633259 0.4951909 0 0 0 1</matrix>
+        </node>
+        <node id="prop-crest_transversal" name="prop-crest_transversal" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 0.9633259 0.268333 0.04072785 0 -0.268333 0.9633259 0.4951909 0 0 0 1</matrix>
+        </node>
+        <node id="prop-crest" name="prop-crest" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 0.962369 0.2717445 0.008171545 0 -0.2717445 0.962369 0.5081087 0 0 0 1</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#Escena"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>

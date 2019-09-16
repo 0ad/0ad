@@ -11,7 +11,7 @@
       <textures>
         <texture file="props/helmet/hele_attic_02_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_attic_02_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_attic_02_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_attic_02_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -38,7 +38,7 @@
     </variant>
     <variant frequency="1" name="Feather-02">
       <props>
-        <prop actor="props/units/helmets/props/rome_bronze_crest.xml" attachpoint="rome_crest"/>
+        <prop actor="props/units/helmets/props/rome_crest_bronze_01.xml" attachpoint="crest"/>
         <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_R"/>
         <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_L"/>
       </props>

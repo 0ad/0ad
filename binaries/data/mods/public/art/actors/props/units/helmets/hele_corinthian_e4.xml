@@ -11,31 +11,47 @@
       <textures>
         <texture file="props/helmet/hele_corinthian_04_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_corinthian_04_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_corinthian_04_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_corinthian_04_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="crest">
+    <variant frequency="3" name="crest-01">
       <props>
-        <prop actor="props/units/helmets/props/hele_corinthian_crest_a.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_01.xml" attachpoint="crest"/>
       </props>
     </variant>
-    <variant frequency="1" name="High Crest">
+    <variant frequency="3" name="crest-02">
       <props>
-        <prop actor="props/units/helmets/props/chalcidean_high_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_02.xml" attachpoint="crest"/>
       </props>
     </variant>
-    <variant frequency="1" name="Snake_crest_a">
+    <variant frequency="3" name="High Crest-01">
       <props>
-        <prop actor="props/units/helmets/props/hele_snake_crest.xml" attachpoint="snake_crest_right_a"/>
-        <prop actor="props/units/helmets/props/hele_snake_crest.xml" attachpoint="snake_crest_left_a"/>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_01.xml" attachpoint="highcrest"/>
       </props>
     </variant>
-    <variant frequency="1" name="Snake_crest_b">
+    <variant frequency="3" name="High Crest-02">
       <props>
-        <prop actor="props/units/helmets/props/hele_snake_crest.xml" attachpoint="snake_crest_right_b"/>
-        <prop actor="props/units/helmets/props/hele_snake_crest.xml" attachpoint="snake_crest_left_b"/>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_02.xml" attachpoint="highcrest"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Python-Crest-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_python_bronze_01.xml" attachpoint="snake_crest_R1"/>
+        <prop actor="props/units/helmets/props/hele_crest_python_bronze_01.xml" attachpoint="snake_crest_L1"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Python-Crest-02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_python_bronze_01.xml" attachpoint="snake_crest_R2"/>
+        <prop actor="props/units/helmets/props/hele_crest_python_bronze_01.xml" attachpoint="snake_crest_L2"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Python-Crest-03">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_python_bronze_01.xml" attachpoint="snake_crest_R3"/>
+        <prop actor="props/units/helmets/props/hele_crest_python_bronze_01.xml" attachpoint="snake_crest_L3"/>
       </props>
     </variant>
   </group>

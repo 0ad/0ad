@@ -11,7 +11,7 @@
       <textures>
         <texture file="props/helmet/hele_thracian_03_silver.png" name="baseTex"/>
         <texture file="props/helmet/hele_thracian_03_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_thracian_03_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_thracian_03_silver_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -19,12 +19,12 @@
     <variant frequency="1" name="Masked">
       <props>
         <prop actor="props/units/helmets/props/hele_thracian_mask_s3.xml" attachpoint="root"/>
-        <prop actor="props/units/helmets/props/hele_thracian_crest_s3.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_thracian_s3.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="No-Mask">
       <props>
-        <prop actor="props/units/helmets/props/hele_thracian_crest_s3.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_thracian_s3.xml" attachpoint="root"/>
         <prop actor="" attachpoint="root"/>
       </props>
     </variant>

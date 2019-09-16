@@ -3,9 +3,9 @@
   <castshadow/>
   <group>
     <variant name="Pilos-01">
-      <mesh>props/helmet/hele_pilos_a1.dae</mesh>
+      <mesh>props/helmet/hele_pilos_a.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/props/pilos_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_pilos_bronze_01.xml" attachpoint="crest"/>
       </props>
     </variant>
   </group>
@@ -14,7 +14,7 @@
       <textures>
         <texture file="props/helmet/hele_pilos_01_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_pilos_01_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_pilos_01_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_pilos_01_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

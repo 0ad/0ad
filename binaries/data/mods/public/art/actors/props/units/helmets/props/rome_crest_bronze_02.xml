@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/helmet/props/hele_crest_f.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_hair_05.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/crest_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/crest_01_bronze_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze-01">
+      <textures>
+        <texture file="props/helmet/crest_05_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

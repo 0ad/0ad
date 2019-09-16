@@ -7,6 +7,7 @@
       <props>
         <prop actor="props/units/helmets/props/hele_attic_wings.xml" attachpoint="wing_R"/>
         <prop actor="props/units/helmets/props/hele_attic_wings.xml" attachpoint="wing_L"/>
+        <prop actor="props/units/helmets/props/hele_crest_phrygian_bronze_04.xml" attachpoint="crest"/>
       </props>
     </variant>
   </group>
@@ -15,26 +16,23 @@
       <textures>
         <texture file="props/helmet/hele_phrygian_11_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_phrygian_11_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_phrygian_11_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_phrygian_11_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Mask-01">
       <props>
-        <prop actor="props/units/helmets/props/hele_phrygian_crest_k.xml" attachpoint="root"/>
         <prop actor="props/units/helmets/props/hele_attic_mask_b1.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="Mask-02">
       <props>
-        <prop actor="props/units/helmets/props/hele_phrygian_crest_k.xml" attachpoint="root"/>
         <prop actor="props/units/helmets/props/hele_attic_mask_b2.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="No-Mask">
       <props>
-        <prop actor="props/units/helmets/props/hele_phrygian_crest_k.xml" attachpoint="root"/>
         <prop actor="" attachpoint="root"/>
       </props>
     </variant>

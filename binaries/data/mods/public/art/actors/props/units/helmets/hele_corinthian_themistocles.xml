@@ -7,9 +7,14 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="High Crest">
+    <variant frequency="1" name="High Crest-01">
       <props>
-        <prop actor="props/units/helmets/props/chalcidean_high_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_01.xml" attachpoint="highcrest"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="High Crest-02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_02.xml" attachpoint="highcrest"/>
       </props>
     </variant>
   </group>
@@ -18,7 +23,7 @@
       <textures>
         <texture file="props/helmet/hele_corinthian_03_checker.png" name="baseTex"/>
         <texture file="props/helmet/hele_corinthian_03_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_corinthian_03_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_corinthian_03_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

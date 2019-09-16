@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/helmet/props/hele_highcrest_b.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/hele_highcrest_hair_02.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/highcrest_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/highcrest_01_bronze_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Checker-01">
+      <textures>
+        <texture file="props/helmet/highcrest_01_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Greek-01">
+      <textures>
+        <texture file="props/helmet/highcrest_02_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Greek-02">
+      <textures>
+        <texture file="props/helmet/highcrest_03_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

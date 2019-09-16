@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Phrygian-01">
+      <mesh>props/helmet/hele_phrygian_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze-Type-A">
+      <textures>
+        <texture file="props/helmet/hele_phrygian_01_type_a_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_01_type_a_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_01_type_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze-Type-B">
+      <textures>
+        <texture file="props/helmet/hele_phrygian_01_type_b_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_01_type_b_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_01_type_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze-Type-C">
+      <textures>
+        <texture file="props/helmet/hele_phrygian_01_type_c_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_01_type_c_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_01_type_c_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Masked">
+      <props>
+        <prop actor="props/units/helmets/props/hele_phrygian_mask_silver.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="No-Mask">
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

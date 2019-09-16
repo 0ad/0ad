@@ -11,21 +11,31 @@
       <textures>
         <texture file="props/helmet/hele_chalcidean_01_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_chalcidean_01_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_chalcidean_01_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_chalcidean_01_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Mask-01">
       <props>
-        <prop actor="props/units/helmets/props/chalcidean_crest.xml" attachpoint="root"/>
         <prop actor="props/units/helmets/props/hele_attic_mask_b1.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="Mask-03">
+    <variant frequency="1" name="Mask-02">
       <props>
-        <prop actor="props/units/helmets/props/chalcidean_crest.xml" attachpoint="root"/>
         <prop actor="props/units/helmets/props/hele_chalcidean_mask_b1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Crest-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_illyrian_01.xml" attachpoint="crest"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crest-02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_03.xml" attachpoint="crest"/>
       </props>
     </variant>
   </group>
