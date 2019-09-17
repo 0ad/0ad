@@ -148,7 +148,13 @@ const T& IGUIObject::GetSetting(const CStr& Setting) const
 
 bool IGUIObject::SetSettingFromString(const CStr& Setting, const CStrW& Value, const bool SendMessage)
 {
-	return m_Settings[Setting]->FromString(Value, SendMessage);
+	const std::map<CStr, IGUISetting*>::iterator it = m_Settings.find(Setting);
+	if (it == m_Settings.end())
+	{
+		LOGERROR("GUI object '%s' has no property called '%s', can't set parse and set value '%s'", GetPresentableName().c_str(), Setting.c_str(), Value.ToUTF8().c_str());
+		return false;
+	}
+	return it->second->FromString(Value, SendMessage);
 }
 
 template <typename T>

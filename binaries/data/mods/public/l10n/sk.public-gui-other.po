@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-09 07:14+0000\n"
-"PO-Revision-Date: 2019-09-09 15:14+0000\n"
+"POT-Creation-Date: 2019-09-13 07:08+0000\n"
+"PO-Revision-Date: 2019-09-13 14:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -39,12 +39,18 @@ msgstr "%(hotkey)s: Prepni na strom Štruktúry. "
 msgid "%(hotkey)s: Close History."
 msgstr "%(hotkey)s: Zrušiť Históriu. "
 
-#: gui/civinfo/civinfo.js:112
+#. Translation: insert an itemization symbol for each entry.
+#: gui/civinfo/civinfo.js:85
+#, javascript-format
+msgid "• %(string)s"
+msgstr ""
+
+#: gui/civinfo/civinfo.js:113
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Hra za civilizáciu %(civilization)s"
 
-#: gui/civinfo/civinfo.js:115
+#: gui/civinfo/civinfo.js:116
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilizačný bonus"
@@ -52,7 +58,7 @@ msgstr[1] "Civilizačné bonusy"
 msgstr[2] "Civilizačných bonusov"
 msgstr[3] "Civilizačných bonusov"
 
-#: gui/civinfo/civinfo.js:120
+#: gui/civinfo/civinfo.js:121
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Tímový bonus"
@@ -60,11 +66,11 @@ msgstr[1] "Tímové bonusy"
 msgstr[2] "Tímových bonusov"
 msgstr[3] "Tímových bonusov"
 
-#: gui/civinfo/civinfo.js:127
+#: gui/civinfo/civinfo.js:128
 msgid "Special Technologies"
 msgstr "Špeciálne technológie"
 
-#: gui/civinfo/civinfo.js:133
+#: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Špeciálna budova"
@@ -72,11 +78,11 @@ msgstr[1] "Špeciálne budovy"
 msgstr[2] "Špeciálne budovy"
 msgstr[3] "Špeciálne budovy"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Hrdinovia"
 
-#: gui/civinfo/civinfo.js:150
+#: gui/civinfo/civinfo.js:151
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "História civilizácie %(civilization)s"

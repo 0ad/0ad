@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-01-07 09:44+0100\n"
-"PO-Revision-Date: 2019-01-07 13:41+0000\n"
+"POT-Creation-Date: 2019-09-13 07:08+0000\n"
+"PO-Revision-Date: 2019-09-13 12:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -24,170 +24,198 @@ msgstr ""
 msgid "Long strings"
 msgstr "長い文字列"
 
-#: lobby/XmppClient.cpp:800
+#: lobby/XmppClient.cpp:855
 msgid "unknown subtype (see logs)"
 msgstr "未知のサブタイプ（ログを参照）"
 
-#: lobby/XmppClient.cpp:1097 lobby/XmppClient.cpp:1141
-#: lobby/XmppClient.cpp:1180
+#: lobby/XmppClient.cpp:1169
+msgid "The certificate is not trusted."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1170
+msgid "The certificate hasn't got a known issuer."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1171
+msgid "The certificate has been revoked."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1172
+msgid "The certificate has expired."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1173
+msgid "The certifiacte is not yet active."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1174
+msgid "The certificate has not been issued for the peer connected to."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1175
+msgid "The certificate signer is not a certificate authority."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
+#: lobby/XmppClient.cpp:1280
 msgid "Error"
 msgstr "エラー"
 
-#: lobby/XmppClient.cpp:1100 lobby/XmppClient.cpp:1144
+#: lobby/XmppClient.cpp:1200 lobby/XmppClient.cpp:1244
 msgid "No error"
 msgstr "エラーなし"
 
-#: lobby/XmppClient.cpp:1102
+#: lobby/XmppClient.cpp:1202
 msgid "Player already logged in"
 msgstr "プレイヤーは既にログイン済みです"
 
-#: lobby/XmppClient.cpp:1104
+#: lobby/XmppClient.cpp:1204
 msgid "Forbidden"
 msgstr "禁止された"
 
-#: lobby/XmppClient.cpp:1106
+#: lobby/XmppClient.cpp:1206
 msgid "Internal server error"
 msgstr "内部サーバーエラー"
 
-#: lobby/XmppClient.cpp:1110
+#: lobby/XmppClient.cpp:1210
 msgid "Not allowed"
 msgstr "許可されていない"
 
-#: lobby/XmppClient.cpp:1111
+#: lobby/XmppClient.cpp:1211
 msgid "Not authorized"
 msgstr "認証されていない"
 
-#: lobby/XmppClient.cpp:1114
+#: lobby/XmppClient.cpp:1214
 msgid "Recipient temporarily unavailable"
 msgstr "受信先が一時的に利用不能"
 
-#: lobby/XmppClient.cpp:1116
+#: lobby/XmppClient.cpp:1216
 msgid "Registration required"
 msgstr "登録が必要"
 
-#: lobby/XmppClient.cpp:1120
+#: lobby/XmppClient.cpp:1220
 msgid "Service unavailable"
 msgstr "サービスが利用不能"
 
-#: lobby/XmppClient.cpp:1125 lobby/XmppClient.cpp:1164
+#: lobby/XmppClient.cpp:1225 lobby/XmppClient.cpp:1264
 msgid "Unknown error"
 msgstr "不明なエラー"
 
-#: lobby/XmppClient.cpp:1145
+#: lobby/XmppClient.cpp:1245
 msgid "Stream error"
 msgstr "ストリームエラー"
 
-#: lobby/XmppClient.cpp:1146
+#: lobby/XmppClient.cpp:1246
 msgid "The incoming stream version is unsupported"
 msgstr "受信したストリームのバージョンが未対応です"
 
-#: lobby/XmppClient.cpp:1147
+#: lobby/XmppClient.cpp:1247
 msgid "The stream has been closed by the server"
 msgstr "ストリームはサーバーに閉じられました"
 
-#: lobby/XmppClient.cpp:1151
+#: lobby/XmppClient.cpp:1251
 msgid "An I/O error occurred"
 msgstr "I/O エラーが発生しました"
 
-#: lobby/XmppClient.cpp:1153
+#: lobby/XmppClient.cpp:1253
 msgid "The connection was refused by the server"
 msgstr "接続はサーバーに拒否されました"
 
-#: lobby/XmppClient.cpp:1154
+#: lobby/XmppClient.cpp:1254
 msgid "Resolving the server's hostname failed"
 msgstr "サーバーのホスト名の解決に失敗しました"
 
-#: lobby/XmppClient.cpp:1155
+#: lobby/XmppClient.cpp:1255
 msgid "This system is out of memory"
 msgstr "このシステムのメモリが足りません"
 
-#: lobby/XmppClient.cpp:1157
+#: lobby/XmppClient.cpp:1257
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "このサーバーは証明書の正当性が検証できなかったか、TLS ハンドシェイクが正しく完了しませんでした"
 
-#: lobby/XmppClient.cpp:1158
+#: lobby/XmppClient.cpp:1258
 msgid "The server did not offer required TLS encryption"
 msgstr "このサーバーは必要な TLS 暗号化を提供しませんでした"
 
-#: lobby/XmppClient.cpp:1160
+#: lobby/XmppClient.cpp:1260
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "認証に失敗しました。パスワードが違うかアカウントが存在しません"
 
-#: lobby/XmppClient.cpp:1161
+#: lobby/XmppClient.cpp:1261
 msgid "The user or system requested a disconnect"
 msgstr "ユーザーもしくはシステムが切断を要請しました"
 
-#: lobby/XmppClient.cpp:1162
+#: lobby/XmppClient.cpp:1262
 msgid "There is no active connection"
 msgstr "有効な接続がありません"
 
-#: lobby/XmppClient.cpp:1183
+#: lobby/XmppClient.cpp:1283
 msgid "Your account has been successfully registered"
 msgstr "アカウントが登録されました"
 
-#: lobby/XmppClient.cpp:1184
+#: lobby/XmppClient.cpp:1284
 msgid "Not all necessary information provided"
 msgstr "すべての必要な情報が示されていません"
 
-#: lobby/XmppClient.cpp:1185
+#: lobby/XmppClient.cpp:1285
 msgid "Username already exists"
 msgstr "ユーザー名は既に存在します"
 
-#: ps/ModIo.cpp:245
+#: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "ゲームIDの照会開始中にエラーが発生しました。エラー: %s; %s"
 
-#: ps/ModIo.cpp:275
+#: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "MODの照会開始中にエラーが発生しました。エラー: %s; %s"
 
-#: ps/ModIo.cpp:301
+#: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "MODディレクトリー%sを作成できませんでした。"
 
-#: ps/ModIo.cpp:326
+#: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "MODダウンロードのための一時ファイルを開くことが出来ませんでした。: %s"
 
-#: ps/ModIo.cpp:336
+#: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "ダウンロードの開始に失敗しました。エラー: %s; %s"
 
-#: ps/ModIo.cpp:381
+#: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "非同期ダウンロードに失敗しました。:%s, %s"
 
-#: ps/ModIo.cpp:410
+#: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "ダウンロードに失敗しました。サーバーレスポンス: %s; %s"
 
-#: ps/ModIo.cpp:513
+#: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
 msgstr "ファイルサイズが一致しませんでした。"
 
-#: ps/ModIo.cpp:531
+#: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "無効なファイルです。md5ハッシュ値 %sを期待していましたが、実際には%sでした。"
 
-#: ps/ModIo.cpp:545
+#: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
 msgstr "最終ハッシュの計算に失敗しました。"
 
-#: ps/ModIo.cpp:551
+#: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
 msgstr "署名の検証に失敗しました。"
 
-#: ps/SavedGame.cpp:128
+#: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "'%s'にゲームを保存"

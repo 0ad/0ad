@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant name="apulo-Corinthian">
-      <mesh>props/helmet/rome_apulo_corinthian_01.dae</mesh>
+      <mesh>props/helmet/rome_apulo_b.dae</mesh>
       <textures>
         <texture file="props/helmet/rome_apulo_corinthian_01_bronze.png" name="baseTex"/>
         <texture file="props/helmet/rome_apulo_corinthian_01_norm.png" name="normTex"/>
@@ -16,7 +16,7 @@
       <props>
         <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_L"/>
         <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_R"/>
-        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="crest_01"/>
+        <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="crest"/>
       </props>
     </variant>
     <variant name="Crest + Feather">

@@ -53,9 +53,19 @@
         <prop actor="props/units/helmets/hele_chalcidean_b5.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Hele Illyrian Helmet-04">
+    <variant frequency="1" name="Hele Illyrian Helmet-01">
       <props>
-        <prop actor="props/units/helmets/hele_illyrian_crested.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_illyrian_b1_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Illyrian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Illyrian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_b3_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

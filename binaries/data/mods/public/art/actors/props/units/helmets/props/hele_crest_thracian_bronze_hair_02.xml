@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Crest Bronze">
+      <mesh>props/helmet/props/hele_thracian_crest_a.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_thracian_02_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_thracian_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_thracian_02_bronze_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_thracian_hair_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

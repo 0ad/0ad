@@ -409,11 +409,8 @@ Health.prototype.UpdateActor = function()
 		cmpVisual.SetVariant("health", newDamageVariant);
 };
 
-Health.prototype.OnValueModification = function(msg)
+Health.prototype.RecalculateValues = function()
 {
-	if (msg.component != "Health")
-		return;
-
 	let oldMaxHitpoints = this.GetMaxHitpoints();
 	let newMaxHitpoints = ApplyValueModificationsToEntity("Health/Max", +this.template.Max, this.entity);
 	if (oldMaxHitpoints != newMaxHitpoints)
@@ -431,7 +428,19 @@ Health.prototype.OnValueModification = function(msg)
 
 	if (this.regenRate != oldRegenRate || this.idleRegenRate != oldIdleRegenRate)
 		this.CheckRegenTimer();
+}
+
+Health.prototype.OnValueModification = function(msg)
+{
+	if (msg.component == "Health")
+		this.RecalculateValues();
 };
+
+Health.prototype.OnOwnershipChanged = function(msg)
+{
+	if (msg.to != INVALID_PLAYER)
+		this.RecalculateValues();
+}
 
 Health.prototype.RegisterHealthChanged = function(from)
 {

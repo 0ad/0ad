@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Mask Scale">
-      <mesh>props/helmet/props/hele_phrygian_mask_c.dae</mesh>
+    <variant frequency="1" name="Mask Cheeck">
+      <mesh>props/helmet/props/hele_phrygian_mask_b.dae</mesh>
       <textures>
-        <texture file="props/helmet/hele_phrygian_mask_b_bronze.png" name="baseTex"/>
-        <texture file="props/helmet/hele_phrygian_mask_b_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_phrygian_mask_b_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_02_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_phrygian_mask_02_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Illyrian-02">
+      <mesh>props/helmet/hele_illyrian_b.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_illyrian_01.xml" attachpoint="crest"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze">
+      <textures>
+        <texture file="props/helmet/hele_illyrian_02_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_illyrian_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_illyrian_02_bronze_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

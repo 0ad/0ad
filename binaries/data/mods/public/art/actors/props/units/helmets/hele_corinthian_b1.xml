@@ -7,11 +7,25 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Bronze">
+    <variant frequency="1" name="Bronze Type-A">
       <textures>
-        <texture file="props/helmet/hele_corinthian_01_bronze.png" name="baseTex"/>
-        <texture file="props/helmet/hele_corinthian_01_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_corinthian_01_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_a_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_a_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_a_bronze_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze Type-B">
+      <textures>
+        <texture file="props/helmet/hele_corinthian_01_type_b_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_b_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_b_bronze_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze Type-C">
+      <textures>
+        <texture file="props/helmet/hele_corinthian_01_type_c_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_c_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_corinthian_01_type_c_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

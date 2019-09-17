@@ -4,9 +4,6 @@
   <group>
     <variant name="Chalcidean-04">
       <mesh>props/helmet/hele_chalcidean_d.dae</mesh>
-      <props>
-        <prop actor="props/units/helmets/props/chalcidean_crest.xml" attachpoint="root"/>
-      </props>
     </variant>
   </group>
   <group>
@@ -14,8 +11,20 @@
       <textures>
         <texture file="props/helmet/hele_chalcidean_04_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_chalcidean_04_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_chalcidean_04_spec.png" name="specTex"/>
+        <texture file="props/helmet/hele_chalcidean_04_bronze_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Crest-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_illyrian_01.xml" attachpoint="crest"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Crest-02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_03.xml" attachpoint="crest"/>
+      </props>
     </variant>
   </group>
   <material>basic_trans_parallax_spec.xml</material>

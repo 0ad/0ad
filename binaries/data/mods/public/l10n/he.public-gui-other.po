@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-09 07:14+0000\n"
-"PO-Revision-Date: 2019-09-09 15:14+0000\n"
+"POT-Creation-Date: 2019-09-13 07:08+0000\n"
+"PO-Revision-Date: 2019-09-13 14:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -28,12 +28,18 @@ msgstr ""
 msgid "%(hotkey)s: Close History."
 msgstr ""
 
-#: gui/civinfo/civinfo.js:112
+#. Translation: insert an itemization symbol for each entry.
+#: gui/civinfo/civinfo.js:85
+#, javascript-format
+msgid "• %(string)s"
+msgstr ""
+
+#: gui/civinfo/civinfo.js:113
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s משחק"
 
-#: gui/civinfo/civinfo.js:115
+#: gui/civinfo/civinfo.js:116
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
@@ -41,7 +47,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: gui/civinfo/civinfo.js:120
+#: gui/civinfo/civinfo.js:121
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
@@ -49,11 +55,11 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: gui/civinfo/civinfo.js:127
+#: gui/civinfo/civinfo.js:128
 msgid "Special Technologies"
 msgstr "טכנולוגיות מיוחדות "
 
-#: gui/civinfo/civinfo.js:133
+#: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
@@ -61,11 +67,11 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: gui/civinfo/civinfo.js:140 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "גיבורים "
 
-#: gui/civinfo/civinfo.js:150
+#: gui/civinfo/civinfo.js:151
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr ""

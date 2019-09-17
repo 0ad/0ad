@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-09 07:14+0000\n"
-"PO-Revision-Date: 2019-09-09 15:14+0000\n"
+"POT-Creation-Date: 2019-09-13 07:08+0000\n"
+"PO-Revision-Date: 2019-09-13 14:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -31,41 +31,47 @@ msgstr ""
 msgid "%(hotkey)s: Close History."
 msgstr ""
 
-#: gui/civinfo/civinfo.js:112
+#. Translation: insert an itemization symbol for each entry.
+#: gui/civinfo/civinfo.js:85
+#, javascript-format
+msgid "• %(string)s"
+msgstr ""
+
+#: gui/civinfo/civinfo.js:113
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s scenarii de joc pe civilizații"
 
-#: gui/civinfo/civinfo.js:115
+#: gui/civinfo/civinfo.js:116
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonus de civilizație"
 msgstr[1] "Bonusuri de civilizație"
 msgstr[2] "Bonusuri de civilizație"
 
-#: gui/civinfo/civinfo.js:120
+#: gui/civinfo/civinfo.js:121
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonus"
 msgstr[1] "Bonusuri de echipă"
 msgstr[2] "Bonusuri de echipă"
 
-#: gui/civinfo/civinfo.js:127
+#: gui/civinfo/civinfo.js:128
 msgid "Special Technologies"
 msgstr "Tehnologii speciale"
 
-#: gui/civinfo/civinfo.js:133
+#: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Clădire specială"
 msgstr[1] "Clădiri speciale"
 msgstr[2] "Clădiri speciale"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Eroi"
 
-#: gui/civinfo/civinfo.js:150
+#: gui/civinfo/civinfo.js:151
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Istoria %(civilization)s"

@@ -6,7 +6,6 @@
       <mesh>props/helmet/props/hele_thracian_mask_f.dae</mesh>
       <textures>
         <texture file="props/helmet/hele_thracian_mask_norm.png" name="normTex"/>
-        <texture file="props/helmet/hele_thracian_mask_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -14,11 +13,13 @@
     <variant frequency="1" name="Bronze">
       <textures>
         <texture file="props/helmet/hele_thracian_mask_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/hele_thracian_mask_bronze_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Silver">
       <textures>
         <texture file="props/helmet/hele_thracian_mask_silver.png" name="baseTex"/>
+        <texture file="props/helmet/hele_thracian_mask_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
