@@ -621,7 +621,7 @@ void CNetServerWorker::CheckClientConnections()
 void CNetServerWorker::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
 {
 	// Handle non-FSM messages first
-	Status status = session->GetFileTransferer().HandleMessageReceive(message);
+	Status status = session->GetFileTransferer().HandleMessageReceive(*message);
 	if (status != INFO::SKIPPED)
 		return;
 
