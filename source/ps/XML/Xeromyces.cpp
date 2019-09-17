@@ -178,8 +178,10 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 		std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 		RelaxNGValidator& validator = GetValidator(validatorName);
 		if (validator.CanValidate() && !validator.ValidateEncoded(doc))
-			// For now, log the error and continue, in the future we might fail
+		{
 			LOGERROR("CXeromyces: failed to validate XML file %s", filename.string8());
+			return PSRETURN_Xeromyces_XMLValidationFailed;
+		}
 	}
 
 	WriteBuffer writeBuffer;
@@ -187,7 +189,8 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 
 	xmlFreeDoc(doc);
 
-	// Save the file to disk, so it can be loaded quickly next time
+	// Save the file to disk, so it can be loaded quickly next time.
+	// Don't save if invalid, because we want the syntax error every program start.
 	vfs->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
 
 	m_XMBBuffer = writeBuffer.Data(); // add a reference
@@ -233,8 +236,10 @@ PSRETURN CXeromyces::LoadString(const char* xml, const std::string& validatorNam
 		std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 		RelaxNGValidator& validator = GetValidator(validatorName);
 		if (validator.CanValidate() && !validator.ValidateEncoded(doc))
-			// For now, log the error and continue, in the future we might fail
+		{
 			LOGERROR("CXeromyces: failed to validate XML string");
+			return PSRETURN_Xeromyces_XMLValidationFailed;
+		}
 	}
 
 	WriteBuffer writeBuffer;

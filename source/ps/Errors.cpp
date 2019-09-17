@@ -61,6 +61,7 @@ class PSERROR_System_SDLInitFailed : public PSERROR_System { public: PSERROR_Sys
 class PSERROR_System_VmodeFailed : public PSERROR_System { public: PSERROR_System_VmodeFailed(); PSERROR_System_VmodeFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Xeromyces_XMLOpenFailed : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLOpenFailed(); PSERROR_Xeromyces_XMLOpenFailed(const char* msg); PSRETURN getCode() const; };
 class PSERROR_Xeromyces_XMLParseError : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLParseError(); PSERROR_Xeromyces_XMLParseError(const char* msg); PSRETURN getCode() const; };
+class PSERROR_Xeromyces_XMLValidationFailed : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLValidationFailed(); PSERROR_Xeromyces_XMLValidationFailed(const char* msg); PSRETURN getCode() const; };
 
 extern const PSRETURN PSRETURN_CVFSFile_AlreadyLoaded = 0x01000001;
 extern const PSRETURN PSRETURN_CVFSFile_LoadFailed = 0x01000002;
@@ -103,6 +104,7 @@ extern const PSRETURN PSRETURN_System_SDLInitFailed = 0x0a000002;
 extern const PSRETURN PSRETURN_System_VmodeFailed = 0x0a000003;
 extern const PSRETURN PSRETURN_Xeromyces_XMLOpenFailed = 0x0b000001;
 extern const PSRETURN PSRETURN_Xeromyces_XMLParseError = 0x0b000002;
+extern const PSRETURN PSRETURN_Xeromyces_XMLValidationFailed = 0x0b000003;
 
 extern const PSRETURN MASK__PSRETURN_CVFSFile = 0xff000000;
 extern const PSRETURN CODE__PSRETURN_CVFSFile = 0x01000000;
@@ -215,6 +217,8 @@ extern const PSRETURN MASK__PSRETURN_Xeromyces_XMLOpenFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLOpenFailed = 0x0b000001;
 extern const PSRETURN MASK__PSRETURN_Xeromyces_XMLParseError = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLParseError = 0x0b000002;
+extern const PSRETURN MASK__PSRETURN_Xeromyces_XMLValidationFailed = 0xffffffff;
+extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLValidationFailed = 0x0b000003;
 
 PSERROR_CVFSFile::PSERROR_CVFSFile(const char* msg) : PSERROR(msg) { }
 PSERROR_Deserialize::PSERROR_Deserialize(const char* msg) : PSERROR(msg) { }
@@ -395,6 +399,10 @@ PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError() : PSERROR_Xer
 PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError(const char* msg) : PSERROR_Xeromyces(msg) { }
 PSRETURN PSERROR_Xeromyces_XMLParseError::getCode() const { return 0x0b000002; }
 
+PSERROR_Xeromyces_XMLValidationFailed::PSERROR_Xeromyces_XMLValidationFailed() : PSERROR_Xeromyces(NULL) { }
+PSERROR_Xeromyces_XMLValidationFailed::PSERROR_Xeromyces_XMLValidationFailed(const char* msg) : PSERROR_Xeromyces(msg) { }
+PSRETURN PSERROR_Xeromyces_XMLValidationFailed::getCode() const { return 0x0b000003; }
+
 
 PSERROR::PSERROR(const char* msg) : m_msg(msg) { }
 
@@ -448,6 +456,7 @@ const char* GetErrorString(PSRETURN code)
 	case 0x0a000003: return "System_VmodeFailed";
 	case 0x0b000001: return "Xeromyces_XMLOpenFailed";
 	case 0x0b000002: return "Xeromyces_XMLParseError";
+	case 0x0b000003: return "Xeromyces_XMLValidationFailed";
 
 	default: return "Unrecognised error";
 	}
@@ -498,6 +507,7 @@ void ThrowError(PSRETURN code)
 	case 0x0a000003: throw PSERROR_System_VmodeFailed(); break;
 	case 0x0b000001: throw PSERROR_Xeromyces_XMLOpenFailed(); break;
 	case 0x0b000002: throw PSERROR_Xeromyces_XMLParseError(); break;
+	case 0x0b000003: throw PSERROR_Xeromyces_XMLValidationFailed(); break;
 
 	default: throw PSERROR_Error_InvalidError(); // Hmm...
 	}
