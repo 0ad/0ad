@@ -24,15 +24,23 @@ var g_MainMenuItems = [
 				"tooltip": colorizeHotkey(translate("%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."), "structree"),
 				"hotkey": "structree",
 				"onPress": () => {
-					Engine.PushGuiPage("page_structree.xml");
-				}
+					let callback = data => {
+						if (data.nextPage)
+							Engine.PushGuiPage(data.nextPage, { "civ": data.civ }, callback);
+					};
+					Engine.PushGuiPage("page_structree.xml", {}, callback);
+				},
 			},
 			{
 				"caption": translate("History"),
 				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the many civilizations featured in 0 A.D."), "civinfo"),
 				"hotkey": "civinfo",
 				"onPress": () => {
-					Engine.PushGuiPage("page_civinfo.xml");
+					let callback = data => {
+						if (data.nextPage)
+							Engine.PushGuiPage(data.nextPage, { "civ": data.civ }, callback);
+					};
+					Engine.PushGuiPage("page_civinfo.xml", {}, callback);
 				}
 			}
 		]

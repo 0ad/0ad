@@ -71,7 +71,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	{
 		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
 
-		if (m_GlobalHotkeys.count(hotkey))
+		if (m_GlobalHotkeys.count(hotkey) && ev->ev.type == SDL_HOTKEYDOWN)
 		{
 			HotkeyInputHandler(ev);
 			ret = IN_HANDLED;
