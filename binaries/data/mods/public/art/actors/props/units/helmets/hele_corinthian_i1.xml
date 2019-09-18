@@ -16,14 +16,24 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="crest">
+    <variant frequency="3" name="crest-01">
       <props>
-        <prop actor="props/units/helmets/props/hele_corinthian_crest_a.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_01.xml" attachpoint="crest"/>
       </props>
     </variant>
-    <variant frequency="1" name="High Crest">
+    <variant frequency="3" name="crest-02">
       <props>
-        <prop actor="props/units/helmets/props/chalcidean_high_crest.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_02.xml" attachpoint="crest"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="High Crest-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_01.xml" attachpoint="highcrest"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="High Crest-02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_02.xml" attachpoint="highcrest"/>
       </props>
     </variant>
   </group>

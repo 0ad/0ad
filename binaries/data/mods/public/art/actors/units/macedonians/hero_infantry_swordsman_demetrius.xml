@@ -7,7 +7,6 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/heads/hele_demetrius.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/aspis_mace_h_02.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
         <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
@@ -21,7 +20,7 @@
   <group>
     <variant frequency="1" name="Helmet Phrygian Silver-01">
       <props>
-        <prop actor="props/units/helmets/hele_phrygian_s.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_phrygian_s1.xml" attachpoint="helmet"/>
       </props>
     </variant>
     <variant frequency="1" name="Helmet Phrygian Silver-02">
