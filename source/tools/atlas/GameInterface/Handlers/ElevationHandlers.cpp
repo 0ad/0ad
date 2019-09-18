@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ public:
 		if (size_t(x) >= size_t(m_VertsPerSide) || size_t(y) >= size_t(m_VertsPerSide))
 			return;
 
-		set(x,y, (u16)clamp(get(x,y) + amount, 0, 65535));
+		set(x, y, static_cast<u16>(Clamp(get(x,y) + amount, 0, 65535)));
 	}
 
 	void MoveVertexTowards(ssize_t x, ssize_t y, int target, int amount)
@@ -66,7 +66,7 @@ public:
 		else
 			return;
 
-		set(x,y, (u16)clamp(h, 0, 65535));
+		set(x, y, static_cast<u16>(Clamp(h, 0, 65535)));
 	}
 
 	void SetVertex(ssize_t x, ssize_t y, u16 value)
@@ -79,7 +79,7 @@ public:
 
 	u16 GetVertex(ssize_t x, ssize_t y)
 	{
-		return get(clamp(x, ssize_t(0), ssize_t(m_VertsPerSide-1)), clamp(y, ssize_t(0), ssize_t(m_VertsPerSide-1)));
+		return get(Clamp<ssize_t>(x, 0, m_VertsPerSide - 1), Clamp<ssize_t>(y, 0, m_VertsPerSide - 1));
 	}
 
 protected:
@@ -415,7 +415,7 @@ BEGIN_COMMAND(PikeElevation)
 				{
 					float x = (float)dx - ((float)g_CurrentBrush.m_H - 1) / 2.f;
 					float y = (float)dy - ((float)g_CurrentBrush.m_W - 1) / 2.f;
-					float distance = clamp(1 - (float)sqrt(x * x + y * y) / h, 0.01f, 1.0f);
+					float distance = Clamp(1 - static_cast<float>(sqrt(x * x + y * y)) / h, 0.01f, 1.0f);
 					distance *= distance;
 					m_TerrainDelta.RaiseVertex(x0 + dx, y0 + dy, (int)(amount * distance));
 				}

@@ -217,7 +217,7 @@ void CTurnManager::Interpolate(float simFrameLength, float realFrameLength)
 	// TODO: using m_TurnLength might be a bit dodgy when length changes - maybe
 	// we need to save the previous turn length?
 
-	float offset = clamp(m_DeltaSimTime / (m_TurnLength / 1000.f) + 1.0, 0.0, 1.0);
+	float offset = Clamp(m_DeltaSimTime / (m_TurnLength / 1000.f) + 1.0, 0.0, 1.0);
 
 	// Stop animations while still updating the selection highlight
 	if (m_CurrentTurn > m_FinalTurn)

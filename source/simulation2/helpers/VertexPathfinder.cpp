@@ -265,10 +265,10 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 	// won't have a boundary with any passable navcells. TODO: is that definitely
 	// safe enough?)
 
-	i0 = clamp(i0, 1, grid.m_W-2);
-	j0 = clamp(j0, 1, grid.m_H-2);
-	i1 = clamp(i1, 1, grid.m_W-2);
-	j1 = clamp(j1, 1, grid.m_H-2);
+	i0 = Clamp(i0, 1, grid.m_W-2);
+	j0 = Clamp(j0, 1, grid.m_H-2);
+	i1 = Clamp(i1, 1, grid.m_W-2);
+	j1 = Clamp(j1, 1, grid.m_H-2);
 
 	for (int j = j0; j <= j1; ++j)
 	{
@@ -750,8 +750,8 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 				// To prevent integer overflows later on, we need to ensure all vertexes are
 				// 'close' to the source. The goal might be far away (not a good idea but
 				// sometimes it happens), so clamp it to the current search range
-				npos.X = clamp(npos.X, rangeXMin + EDGE_EXPAND_DELTA, rangeXMax - EDGE_EXPAND_DELTA);
-				npos.Y = clamp(npos.Y, rangeZMin + EDGE_EXPAND_DELTA, rangeZMax - EDGE_EXPAND_DELTA);
+				npos.X = Clamp(npos.X, rangeXMin + EDGE_EXPAND_DELTA, rangeXMax - EDGE_EXPAND_DELTA);
+				npos.Y = Clamp(npos.Y, rangeZMin + EDGE_EXPAND_DELTA, rangeZMax - EDGE_EXPAND_DELTA);
 			}
 			else
 				npos = m_Vertexes[n].p;

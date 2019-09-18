@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -786,7 +786,7 @@ public:
 				if (delta < 0) delta += 2*(float)M_PI; // range 0..2PI
 				delta -= (float)M_PI; // range -M_PI..M_PI
 				// Clamp to max rate
-				float deltaClamped = clamp(delta, -m_RotYSpeed*msgData.deltaSimTime, +m_RotYSpeed*msgData.deltaSimTime);
+				float deltaClamped = Clamp(delta, -m_RotYSpeed*msgData.deltaSimTime, +m_RotYSpeed*msgData.deltaSimTime);
 				// Calculate new orientation, in a peculiar way in order to make sure the
 				// result gets close to m_orientation (rather than being n*2*M_PI out)
 				m_InterpolatedRotY = rotY + deltaClamped - delta;

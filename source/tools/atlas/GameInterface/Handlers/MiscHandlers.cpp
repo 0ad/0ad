@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -173,8 +173,8 @@ MESSAGEHANDLER(GuiMouseButtonEvent)
 	ev.ev.button.clicks = msg->clicks;
 	float x, y;
 	msg->pos->GetScreenSpace(x, y);
-	ev.ev.button.x = (u16)clamp((int)x, 0, g_xres);
-	ev.ev.button.y = (u16)clamp((int)y, 0, g_yres);
+	ev.ev.button.x = static_cast<u16>(Clamp<int>(x, 0, g_xres));
+	ev.ev.button.y = static_cast<u16>(Clamp<int>(y, 0, g_yres));
 	in_dispatch_event(&ev);
 }
 
@@ -184,8 +184,8 @@ MESSAGEHANDLER(GuiMouseMotionEvent)
 	ev.ev.type = SDL_MOUSEMOTION;
 	float x, y;
 	msg->pos->GetScreenSpace(x, y);
-	ev.ev.motion.x = (u16)clamp((int)x, 0, g_xres);
-	ev.ev.motion.y = (u16)clamp((int)y, 0, g_yres);
+	ev.ev.motion.x = static_cast<u16>(Clamp<int>(x, 0, g_xres));
+	ev.ev.motion.y = static_cast<u16>(Clamp<int>(y, 0, g_yres));
 	in_dispatch_event(&ev);
 }
 

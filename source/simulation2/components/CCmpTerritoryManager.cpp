@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -362,8 +362,8 @@ struct Tile
 static void NearestTerritoryTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
 	entity_pos_t scale = Pathfinding::NAVCELL_SIZE * ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE;
-	i = clamp((x / scale).ToInt_RoundToNegInfinity(), 0, w - 1);
-	j = clamp((z / scale).ToInt_RoundToNegInfinity(), 0, h - 1);
+	i = Clamp((x / scale).ToInt_RoundToNegInfinity(), 0, w - 1);
+	j = Clamp((z / scale).ToInt_RoundToNegInfinity(), 0, h - 1);
 }
 
 void CCmpTerritoryManager::CalculateCostGrid()
