@@ -73,6 +73,8 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 				cmpNewUnitAI.SetGuardOf(guarded);
 			}
 		}
+		if (cmpUnitAI.IsGarrisoned())
+			cmpNewUnitAI.SetGarrisoned();
 	}
 
 	let cmpPromotion = Engine.QueryInterface(oldEnt, IID_Promotion);
