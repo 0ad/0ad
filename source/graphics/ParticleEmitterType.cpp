@@ -587,8 +587,8 @@ void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt
 		// TODO: this should probably be done as a variable or something,
 		// instead of hardcoding
 		float ageFrac = p.age / p.maxAge;
-		float a = std::min(1.f-ageFrac, 5.f*ageFrac);
-		p.color.A = clamp((int)(a*255.f), 0, 255);
+		float a = std::min(1.f - ageFrac, 5.f * ageFrac);
+		p.color.A = Clamp(static_cast<int>(a * 255.f), 0, 255);
 	}
 
 	for (size_t i = 0; i < m_Effectors.size(); ++i)

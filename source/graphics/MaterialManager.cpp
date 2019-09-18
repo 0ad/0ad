@@ -35,7 +35,7 @@ CMaterialManager::CMaterialManager()
 {
 	qualityLevel = 5.0;
 	CFG_GET_VAL("materialmgr.quality", qualityLevel);
-	qualityLevel = clamp(qualityLevel, 0.0f, 10.0f);
+	qualityLevel = Clamp(qualityLevel, 0.0f, 10.0f);
 
 	if (VfsDirectoryExists(L"art/materials/") && !CXeromyces::AddValidator(g_VFS, "material", "art/materials/material.rng"))
 		LOGERROR("CMaterialManager: failed to load grammar file 'art/materials/material.rng'");

@@ -32,9 +32,9 @@
 static SColor4ub fallback_ConvertRGBColorTo4ub(const RGBColor& src)
 {
 	SColor4ub result;
-	result.R = clamp(static_cast<int>(src.X * 255), 0, 255);
-	result.G = clamp(static_cast<int>(src.Y * 255), 0, 255);
-	result.B = clamp(static_cast<int>(src.Z * 255), 0, 255);
+	result.R = Clamp(static_cast<int>(src.X * 255), 0, 255);
+	result.G = Clamp(static_cast<int>(src.Y * 255), 0, 255);
+	result.B = Clamp(static_cast<int>(src.Z * 255), 0, 255);
 	result.A = 255;
 	return result;
 }
@@ -53,7 +53,7 @@ static SColor4ub sse_ConvertRGBColorTo4ub(const RGBColor& src)
 	__m128 g = _mm_load_ss(&src.Y);
 	__m128 b = _mm_load_ss(&src.Z);
 
-	// C = min(255, 255*max(C, 0)) ( == clamp(255*C, 0, 255) )
+	// C = min(255, 255*max(C, 0)) ( == Clamp(255*C, 0, 255) )
 	r = _mm_max_ss(r, zero);
 	g = _mm_max_ss(g, zero);
 	b = _mm_max_ss(b, zero);
