@@ -19,6 +19,7 @@
 
 #include "COList.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
 #include "i18n/L10n.h"
 #include "ps/CLogger.h"

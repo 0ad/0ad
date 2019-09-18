@@ -25,9 +25,6 @@
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
 
-#include "IGUIObject.h"
-
-#include "gui/CGUI.h"
 #include "gui/GUIbase.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "lib/input.h" // just for IN_PASS
@@ -268,7 +265,7 @@ public:
 	template<typename... Args>
 	void RecurseObject(bool(IGUIObject::*isRestricted)() const, void(IGUIObject::*callbackFunction)(Args... args), Args&&... args)
 	{
-		if (this != m_pGUI.GetBaseObject())
+		if (!IsBaseObject())
 		{
 			if (isRestricted && (this->*isRestricted)())
 				return;
@@ -445,9 +442,14 @@ private:
 	 */
 	void ChooseMouseOverAndClosest(IGUIObject*& pObject);
 
-	// Is the object a Root object, in philosophy, this means it
-	//  has got no parent, and technically, it's got the m_BaseObject
-	//  as parent.
+	/**
+	 * Returns whether this is the object all other objects are descendants of.
+	 */
+	bool IsBaseObject() const;
+
+	/**
+	 * Returns whether this object is a child of the base object.
+	 */
 	bool IsRootObject() const;
 
 	static void Trace(JSTracer* trc, void* data)
@@ -510,23 +512,6 @@ protected:
 
 	// Cached JSObject representing this GUI object
 	JS::PersistentRootedObject				m_JSObject;
-};
-
-
-/**
- * Dummy object used primarily for the root object
- * or objects of type 'empty'
- */
-class CGUIDummyObject : public IGUIObject
-{
-	GUI_OBJECT(CGUIDummyObject)
-
-public:
-	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}
-
-	virtual void Draw() {}
-	// Empty can never be hovered. It is only a category.
-	virtual bool IsMouseOver() const { return false; }
 };
 
 #endif // INCLUDED_IGUIOBJECT

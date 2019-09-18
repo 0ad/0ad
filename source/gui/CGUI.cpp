@@ -20,7 +20,7 @@
 #include <stdarg.h>
 #include <string>
 
-#include "GUI.h"
+#include "CGUI.h"
 
 // Types - when including them into the engine.
 #include "CButton.h"
@@ -102,7 +102,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		m_MousePos = CPos((float)ev->ev.motion.x / g_GuiScale, (float)ev->ev.motion.y / g_GuiScale);
 
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
-		m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::HandleMessage, msg);
+		m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::HandleMessage, msg);
 	}
 
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
@@ -143,7 +143,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
 		//  update their own data and send messages accordingly
-		m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
+		m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
 
 		if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
 		{
@@ -204,10 +204,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			}
 
 			// Reset all states on all visible objects
-			m_BaseObject->RecurseObject(&IGUIObject::IsHidden, &IGUIObject::ResetStates);
+			m_BaseObject.RecurseObject(&IGUIObject::IsHidden, &IGUIObject::ResetStates);
 
 			// Since the hover state will have been reset, we reload it.
-			m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
+			m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
 		}
 	}
 	catch (PSERROR_GUI& e)
@@ -260,7 +260,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 void CGUI::TickObjects()
 {
 	const CStr action = "tick";
-	m_BaseObject->RecurseObject(nullptr, &IGUIObject::ScriptEvent, action);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, action);
 
 	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, *this);
 }
@@ -275,33 +275,28 @@ void CGUI::SendEventToAll(const CStr& EventName)
 	// leading to a similar problem.
 	// now fixed; case is irrelevant since all are converted to lower.
 	const CStr EventNameLower = EventName.LowerCase();
-	m_BaseObject->RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower);
 }
 
 void CGUI::SendEventToAll(const CStr& EventName, const JS::HandleValueArray& paramData)
 {
 	const CStr EventNameLower = EventName.LowerCase();
-	m_BaseObject->RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower, paramData);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower, paramData);
 }
 
 CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
-	: m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
+	: m_MouseButtons(0), m_FocusedObject(nullptr), m_InternalNameNumber(0), m_BaseObject(*this)
 {
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
 	m_ScriptInterface->SetCallbackData(this);
 
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
-
-	m_BaseObject = new CGUIDummyObject(*this);
 }
 
 CGUI::~CGUI()
 {
 	Destroy();
-
-	if (m_BaseObject)
-		delete m_BaseObject;
 }
 
 IGUIObject* CGUI::ConstructObject(const CStr& str)
@@ -343,7 +338,7 @@ void CGUI::Draw()
 
 	try
 	{
-		m_BaseObject->RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
+		m_BaseObject.RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
 	}
 	catch (PSERROR_GUI& e)
 	{
@@ -392,14 +387,14 @@ void CGUI::Destroy()
 void CGUI::UpdateResolution()
 {
 	// Update ALL cached
-	m_BaseObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
 }
 
 void CGUI::AddObject(IGUIObject* pObject)
 {
 	try
 	{
-		m_BaseObject->AddChild(pObject);
+		m_BaseObject.AddChild(pObject);
 
 		// Cache tree
 		pObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
@@ -421,7 +416,7 @@ void CGUI::UpdateObjects()
 	try
 	{
 		// Fill freshly
-		m_BaseObject->RecurseObject(nullptr, &IGUIObject::AddToPointersMap, AllObjects);
+		m_BaseObject.RecurseObject(nullptr, &IGUIObject::AddToPointersMap, AllObjects);
 	}
 	catch (PSERROR_GUI&)
 	{
@@ -446,10 +441,10 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 		return it->second;
 }
 
-IGUIObject* CGUI::FindObjectUnderMouse() const
+IGUIObject* CGUI::FindObjectUnderMouse()
 {
 	IGUIObject* pNearest = NULL;
-	m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::ChooseMouseOverAndClosest, pNearest);
+	m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::ChooseMouseOverAndClosest, pNearest);
 	return pNearest;
 }
 
@@ -588,7 +583,7 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boos
 			Xeromyces_ReadScript(child, pFile, Paths);
 		else
 			// Read in this whole object into the GUI
-			Xeromyces_ReadObject(child, pFile, m_BaseObject, subst, Paths, 0);
+			Xeromyces_ReadObject(child, pFile, &m_BaseObject, subst, Paths, 0);
 	}
 }
 
@@ -917,7 +912,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	try
 	{
-		if (pParent == m_BaseObject)
+		if (pParent == &m_BaseObject)
 			AddObject(object);
 		else
 			pParent->AddChild(object);

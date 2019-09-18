@@ -28,6 +28,7 @@
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
+#include "gui/CGUI.h"
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
 #include "gui/GUIMatrix.h"

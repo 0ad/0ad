@@ -16,8 +16,11 @@
  */
 
 #include "precompiled.h"
+
 #include "CSlider.h"
-#include "GUI.h"
+
+#include "gui/CGUI.h"
+#include "gui/GUI.h"
 #include "lib/ogl.h"
 
 CSlider::CSlider(CGUI& pGUI)

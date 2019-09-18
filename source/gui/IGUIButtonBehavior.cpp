@@ -19,6 +19,8 @@
 
 #include "GUI.h"
 
+#include "gui/CGUI.h"
+
 IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	: IGUIObject(pGUI), m_Pressed(false)
 {

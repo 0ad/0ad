@@ -17,9 +17,10 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
 #include "CProgressBar.h"
 
+#include "gui/CGUI.h"
+#include "gui/GUI.h"
 #include "lib/ogl.h"
 
 CProgressBar::CProgressBar(CGUI& pGUI)

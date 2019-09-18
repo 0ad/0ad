@@ -19,6 +19,7 @@
 
 #include "GUI.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
@@ -516,9 +517,14 @@ bool IGUIObject::IsFocused() const
 	return m_pGUI.GetFocusedObject() == this;
 }
 
+bool IGUIObject::IsBaseObject() const
+{
+	return this == &m_pGUI.GetBaseObject();
+}
+
 bool IGUIObject::IsRootObject() const
 {
-	return m_pParent == m_pGUI.GetBaseObject();
+	return m_pParent == &m_pGUI.GetBaseObject();
 }
 
 void IGUIObject::TraceMember(JSTracer* trc)

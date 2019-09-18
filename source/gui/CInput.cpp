@@ -19,6 +19,7 @@
 
 #include "CInput.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/GUI.h"
 #include "graphics/FontMetrics.h"

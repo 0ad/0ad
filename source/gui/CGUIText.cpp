@@ -19,6 +19,7 @@
 
 #include "CGUIText.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUIString.h"
 #include "gui/IGUIObject.h"
 #include "graphics/FontMetrics.h"

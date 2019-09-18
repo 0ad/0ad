@@ -19,6 +19,7 @@
 
 #include "CList.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "lib/external_libraries/libsdl.h"

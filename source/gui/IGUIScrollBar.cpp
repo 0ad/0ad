@@ -18,6 +18,8 @@
 #include "precompiled.h"
 
 #include "GUI.h"
+
+#include "gui/CGUI.h"
 #include "maths/MathUtil.h"
 
 IGUIScrollBar::IGUIScrollBar(CGUI& pGUI)

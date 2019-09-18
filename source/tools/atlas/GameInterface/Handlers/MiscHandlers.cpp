@@ -26,6 +26,7 @@
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
 #include "gui/GUI.h"
+#include "gui/CGUI.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/sysdep/cpu.h"
 #include "maths/MathUtil.h"

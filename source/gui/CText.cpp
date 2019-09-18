@@ -19,6 +19,7 @@
 
 #include "CText.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/GUI.h"
 #include "lib/ogl.h"

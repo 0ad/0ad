@@ -35,6 +35,7 @@
 #include "graphics/MapReader.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/TerrainTextureManager.h"
+#include "gui/CGUI.h"
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
 #include "i18n/L10n.h"

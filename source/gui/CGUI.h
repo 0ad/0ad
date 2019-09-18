@@ -23,9 +23,9 @@
 #ifndef INCLUDED_CGUI
 #define INCLUDED_CGUI
 
-#include "GUITooltip.h"
-#include "GUIbase.h"
-
+#include "gui/GUITooltip.h"
+#include "gui/GUIbase.h"
+#include "gui/CGUIDummyObject.h"
 #include "lib/input.h"
 #include "ps/Shapes.h"
 #include "ps/XML/Xeromyces.h"
@@ -50,8 +50,6 @@ struct SGUIStyle
 	std::map<CStr, CStrW> m_SettingsDefaults;
 };
 
-class JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
-class IGUIObject;
 class CGUISpriteInstance;
 struct CGUIColor;
 class CGUIText;
@@ -60,7 +58,6 @@ class CGUIString;
 class CGUISprite;
 struct SGUIImageEffects;
 struct SGUIScrollBarStyle;
-class GUITooltip;
 
 /**
  * The main object that represents a whole GUI page.
@@ -162,7 +159,7 @@ public:
 	/**
 	 * Return the object which is an ancestor of every other GUI object.
 	 */
-	IGUIObject* GetBaseObject() const { return m_BaseObject; };
+	CGUIDummyObject& GetBaseObject() { return m_BaseObject; };
 
 	/**
 	 * Checks if object exists and return true or false accordingly
@@ -184,7 +181,7 @@ public:
 	/**
 	 * Returns the GUI object under the mouse, or NULL if none.
 	 */
-	IGUIObject* FindObjectUnderMouse() const;
+	IGUIObject* FindObjectUnderMouse();
 
 	/**
 	 * Returns the current screen coordinates of the cursor.
@@ -600,7 +597,7 @@ private:
 	 * Base Object, all its children are considered parentless
 	 * because this is not a real object per se.
 	 */
-	IGUIObject* m_BaseObject;
+	CGUIDummyObject m_BaseObject;
 
 	/**
 	 * Focused object!
