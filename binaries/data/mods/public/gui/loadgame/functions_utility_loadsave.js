@@ -64,8 +64,7 @@ function reallyDeleteGame(gameID)
 	if (!Engine.DeleteSavedGame(gameID))
 		error("Could not delete saved game: " + gameID);
 
-	// Run init again to refresh saved game list
-	init();
+	updateSavegameList();
 }
 
 function deleteTooltip()
