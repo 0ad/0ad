@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ namespace JSI_SavedGame
 	bool DeleteSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 	void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata);
 	void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata);
-	void QuickSave(ScriptInterface::CxPrivate* pCxPrivate);
+	void QuickSave(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue GUIMetadata);
 	void QuickLoad(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 

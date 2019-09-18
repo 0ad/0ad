@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -130,7 +130,7 @@ public:
 	 */
 	void RewindTimeWarp();
 
-	void QuickSave();
+	void QuickSave(JS::HandleValue GUIMetadata);
 	void QuickLoad();
 
 	u32 GetCurrentTurn() { return m_CurrentTurn; }
@@ -189,7 +189,7 @@ private:
 	size_t m_TimeWarpNumTurns; // 0 if disabled
 	std::list<std::string> m_TimeWarpStates;
 	std::string m_QuickSaveState; // TODO: should implement a proper disk-based quicksave system
-	std::string m_QuickSaveMetadata;
+	JS::PersistentRootedValue m_QuickSaveMetadata;
 };
 
 #endif // INCLUDED_TURNMANAGER

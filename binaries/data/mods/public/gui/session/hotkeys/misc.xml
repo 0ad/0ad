@@ -56,7 +56,7 @@
 	</object>
 
 	<object hotkey="quicksave">
-		<action on="Press">Engine.QuickSave();</action>
+		<action on="Press">Engine.QuickSave(getSavedGameData());</action>
 	</object>
 
 	<object hotkey="quickload">

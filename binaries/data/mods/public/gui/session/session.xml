@@ -15,6 +15,10 @@
 		onWindowResized();
 	</action>
 
+	<action on="SavegameLoaded">
+		restoreSavedGameData(arguments[0]);
+	</action>
+
 	<action on="SimulationUpdate">
 		onSimulationUpdate();
 	</action>

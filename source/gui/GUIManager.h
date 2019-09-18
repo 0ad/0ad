@@ -122,13 +122,6 @@ public:
 	 */
 	void UpdateResolution();
 
- 	/**
- 	 * Calls the current page's script function getSavedGameData() and returns the result.
- 	 */
-	std::string GetSavedGameData();
-
-	void RestoreSavedGameData(const std::string& jsonData);
-
 	/**
 	 * Check if a template with this name exists
 	 */

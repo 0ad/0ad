@@ -82,10 +82,3 @@ function closeSave()
 {
 	Engine.PopGuiPage();
 }
-
-// HACK: Engine.SaveGame* expects this function to be defined on the current page.
-// That's why we have to pass the data to this page even if we don't need it.
-function getSavedGameData()
-{
-	return g_SavedGameData;
-}
