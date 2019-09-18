@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Asakura, 2015,2017
 # Cheung Hung, 2015
 # 이정희 <daemul72@gmail.com>, 2019
@@ -22,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 14:39+0000\n"
+"POT-Creation-Date: 2019-09-16 07:10+0000\n"
+"PO-Revision-Date: 2019-09-18 16:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +148,7 @@ msgstr "저장된 놀이가 완전히 삭제됩니다, 삭제할까요?"
 msgid "DELETE"
 msgstr "삭제"
 
-#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:344
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:364
 #: gui/loadgame/load.js:172 gui/options/options.js:295
 #: gui/options/options.js:345 gui/options/options.js:371
 #: gui/pregame/MainMenuItems.js:173 gui/pregame/MainMenuItems.js:190
@@ -155,7 +156,7 @@ msgstr "삭제"
 msgid "No"
 msgstr "아니오"
 
-#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:344
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:364
 #: gui/loadgame/load.js:172 gui/options/options.js:295
 #: gui/options/options.js:345 gui/options/options.js:371
 #: gui/pregame/MainMenuItems.js:173 gui/pregame/MainMenuItems.js:190
@@ -486,10 +487,10 @@ msgid "Cheats"
 msgstr "치트"
 
 #: gui/common/gamedescription.js:442 gui/common/tooltips.js:136
-#: gui/common/tooltips.js:169 gui/common/tooltips.js:210
-#: gui/common/tooltips.js:414 gui/common/tooltips.js:436
-#: gui/common/tooltips.js:520 gui/common/tooltips.js:541
-#: gui/common/tooltips.js:839
+#: gui/common/tooltips.js:169 gui/common/tooltips.js:211
+#: gui/common/tooltips.js:451 gui/common/tooltips.js:473
+#: gui/common/tooltips.js:557 gui/common/tooltips.js:578
+#: gui/common/tooltips.js:876
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -608,11 +609,11 @@ msgid "Users (%(num)s): %(users)s"
 msgstr "사용자 (%(num)s): %(users)s"
 
 #: gui/common/network.js:158 gui/common/tooltips.js:55
-#: gui/common/tooltips.js:182 gui/common/tooltips.js:263
-#: gui/common/tooltips.js:286 gui/common/tooltips.js:343
-#: gui/common/tooltips.js:376 gui/common/tooltips.js:409
-#: gui/common/tooltips.js:704 gui/common/tooltips.js:738
-#: gui/common/tooltips.js:804 gui/loadgame/load.js:115
+#: gui/common/tooltips.js:182 gui/common/tooltips.js:264
+#: gui/common/tooltips.js:298 gui/common/tooltips.js:363
+#: gui/common/tooltips.js:413 gui/common/tooltips.js:446
+#: gui/common/tooltips.js:741 gui/common/tooltips.js:775
+#: gui/common/tooltips.js:841 gui/loadgame/load.js:115
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
 msgid ", "
 msgstr ", "
@@ -771,8 +772,8 @@ msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:84 gui/common/tooltips.js:372
-#: gui/common/tooltips.js:736
+#: gui/common/tooltips.js:84 gui/common/tooltips.js:409
+#: gui/common/tooltips.js:773
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "초"
@@ -805,32 +806,36 @@ msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/common/tooltips.js:194
+#: gui/common/tooltips.js:192
+msgid "Garrison to fire arrows"
+msgstr ""
+
+#: gui/common/tooltips.js:195
 msgid "Interval:"
 msgstr "간격:"
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:734
+#: gui/common/tooltips.js:199 gui/common/tooltips.js:771
 msgid "Rate:"
 msgstr "비율:"
 
-#: gui/common/tooltips.js:199
+#: gui/common/tooltips.js:200
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:201
+#: gui/common/tooltips.js:202
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "발의 화살이 발사됨"
 
-#: gui/common/tooltips.js:204
+#: gui/common/tooltips.js:205
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
 msgstr ""
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
-#: gui/common/tooltips.js:224
+#: gui/common/tooltips.js:225
 #, javascript-format
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
@@ -838,253 +843,272 @@ msgid ""
 msgstr ""
 
 #. Translation: For example: Range: 10 (+2) meters
-#: gui/common/tooltips.js:226
+#: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 msgstr ""
 
 #. Translation: For example: Range: 2 to 10 meters
-#: gui/common/tooltips.js:230
+#: gui/common/tooltips.js:231
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
 #. Translation: For example: Range: 10 meters
-#: gui/common/tooltips.js:232
+#: gui/common/tooltips.js:233
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:242 gui/common/tooltips.js:729
+#: gui/common/tooltips.js:243 gui/common/tooltips.js:766
 msgid "Range:"
 msgstr "범위:"
 
-#: gui/common/tooltips.js:245
+#: gui/common/tooltips.js:246
 #, javascript-format
 msgid "+%(number)s"
 msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
-#: gui/common/tooltips.js:249
+#: gui/common/tooltips.js:250
 msgid "meters"
 msgstr "미터"
 
-#: gui/common/tooltips.js:250 gui/common/tooltips.js:731
-#: gui/common/tooltips.js:761
+#: gui/common/tooltips.js:251 gui/common/tooltips.js:768
+#: gui/common/tooltips.js:798
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "미터"
 
-#: gui/common/tooltips.js:260
+#: gui/common/tooltips.js:261
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:271
+#: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(amount)s %(name)s"
 msgstr ""
 
-#: gui/common/tooltips.js:273
+#: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
 msgstr ""
 
-#: gui/common/tooltips.js:301
+#: gui/common/tooltips.js:283
+#, javascript-format
+msgid "gives %(name)s"
+msgstr ""
+
+#: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
 msgstr ""
 
-#: gui/common/tooltips.js:312
+#: gui/common/tooltips.js:331
 #, javascript-format
-msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s"
+msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 msgstr ""
 
-#: gui/common/tooltips.js:334
+#: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
 msgstr ""
 
-#: gui/common/tooltips.js:337
+#: gui/common/tooltips.js:357
 #, javascript-format
 msgid "%(label)s: %(effects)s"
 msgstr ""
 
-#: gui/common/tooltips.js:343
+#: gui/common/tooltips.js:363
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
 msgstr "아군의 포격: %(enabled)s"
 
-#: gui/common/tooltips.js:360
+#: gui/common/tooltips.js:378
+#, javascript-format
+msgid ", %(durName)s: %(duration)s"
+msgstr ""
+
+#: gui/common/tooltips.js:379
+msgid "Duration"
+msgstr "기한"
+
+#: gui/common/tooltips.js:383
+#, javascript-format
+msgid "%(statusName)s: %(effects)s, %(rate)s%(durationString)s"
+msgstr ""
+
+#: gui/common/tooltips.js:397
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
 msgstr "%(label)s: %(garrisonLimit)s"
 
-#: gui/common/tooltips.js:361
+#: gui/common/tooltips.js:398
 msgid "Garrison Limit"
 msgstr "수비대 한계"
 
-#: gui/common/tooltips.js:368
+#: gui/common/tooltips.js:405
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:369 gui/common/tooltips.js:723
+#: gui/common/tooltips.js:406 gui/common/tooltips.js:760
 msgid "Heal:"
 msgstr "회복:"
 
-#: gui/common/tooltips.js:371
+#: gui/common/tooltips.js:408
 msgid "Health"
 msgstr "체력"
 
-#: gui/common/tooltips.js:395 gui/common/tooltips.js:400
-#: gui/common/tooltips.js:405
+#: gui/common/tooltips.js:432 gui/common/tooltips.js:437
+#: gui/common/tooltips.js:442
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:396
+#: gui/common/tooltips.js:433
 msgid "Projectile Limit"
 msgstr "발사체 한계"
 
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:438
 msgctxt "projectiles"
 msgid "Default"
 msgstr "기본값"
 
-#: gui/common/tooltips.js:406
+#: gui/common/tooltips.js:443
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "유닛 당"
 
-#: gui/common/tooltips.js:415
+#: gui/common/tooltips.js:452
 msgid "Number of repairers:"
 msgstr "수리 갯수:"
 
-#: gui/common/tooltips.js:421
+#: gui/common/tooltips.js:458
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
 msgstr[0] "다른 노동자를 추가하면 수리 속도를 %(second)s 초 향상합니다."
 
-#: gui/common/tooltips.js:428
+#: gui/common/tooltips.js:465
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "노동자를 추가하면 %(second)s 초 이내에 수리를 마칩니다."
 
-#: gui/common/tooltips.js:437
+#: gui/common/tooltips.js:474
 msgid "Number of builders:"
 msgstr "짓는 유닛의 숫자:"
 
-#: gui/common/tooltips.js:443
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
 msgstr[0] "다른 노동자를 추가하면 짓는 속도를 %(second)s 초 향상합니다."
 
-#: gui/common/tooltips.js:450
+#: gui/common/tooltips.js:487
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "노동자를 추가하면 %(second)s 초 이내에 짓는것을 마칩니다."
 
-#: gui/common/tooltips.js:485 gui/common/tooltips.js:676
+#: gui/common/tooltips.js:522 gui/common/tooltips.js:713
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:521
+#: gui/common/tooltips.js:558
 msgid "Gather Rates:"
 msgstr "채집 속도:"
 
-#: gui/common/tooltips.js:524 gui/common/tooltips.js:546
+#: gui/common/tooltips.js:561 gui/common/tooltips.js:583
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:542
+#: gui/common/tooltips.js:579
 msgid "Resource Trickle:"
 msgstr "자원 흐름??:"
 
-#: gui/common/tooltips.js:543
+#: gui/common/tooltips.js:580
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:595
+#: gui/common/tooltips.js:632
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s to(번역확인할것) %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:624
+#: gui/common/tooltips.js:661
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "장벽: %(costs)s"
 
-#: gui/common/tooltips.js:625
+#: gui/common/tooltips.js:662
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "탑: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:633
+#: gui/common/tooltips.js:670
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:634
+#: gui/common/tooltips.js:671
 msgid "Cost:"
 msgstr "비용:"
 
-#: gui/common/tooltips.js:647
+#: gui/common/tooltips.js:684
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s 이(가) 필요합니다"
 
-#: gui/common/tooltips.js:659
+#: gui/common/tooltips.js:696
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:660
+#: gui/common/tooltips.js:697
 msgid "Population Bonus:"
 msgstr "인구 보너스:"
 
-#: gui/common/tooltips.js:681
+#: gui/common/tooltips.js:718
 msgid "Insufficient resources:"
 msgstr "부족한 자원:"
 
-#: gui/common/tooltips.js:697
+#: gui/common/tooltips.js:734
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:698
+#: gui/common/tooltips.js:735
 msgid "Speed:"
 msgstr "이동 속도:"
 
-#: gui/common/tooltips.js:700 gui/common/tooltips.js:705
+#: gui/common/tooltips.js:737 gui/common/tooltips.js:742
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:702
+#: gui/common/tooltips.js:739
 msgid "Walk"
 msgstr "걷기"
 
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:744
 msgid "Run"
 msgstr "뛰기"
 
-#: gui/common/tooltips.js:722 gui/common/tooltips.js:728
-#: gui/common/tooltips.js:733 gui/common/tooltips.js:758
+#: gui/common/tooltips.js:759 gui/common/tooltips.js:765
+#: gui/common/tooltips.js:770 gui/common/tooltips.js:795
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1092,62 +1116,62 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:763
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "체력"
 
-#: gui/common/tooltips.js:750
+#: gui/common/tooltips.js:787
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:751
+#: gui/common/tooltips.js:788
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:759
+#: gui/common/tooltips.js:796
 msgctxt "aura"
 msgid "Range:"
 msgstr "범위:"
 
-#: gui/common/tooltips.js:776
+#: gui/common/tooltips.js:813
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:788
+#: gui/common/tooltips.js:825
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:803
+#: gui/common/tooltips.js:840
 msgid "Classes:"
 msgstr "분류:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:830
+#: gui/common/tooltips.js:867
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:840
+#: gui/common/tooltips.js:877
 msgid "Loot:"
 msgstr "이 유닛이 약탈 당했을때 보상:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:848
+#: gui/common/tooltips.js:885
 msgid "Right-click to view more information."
 msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭하십시오."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:854
+#: gui/common/tooltips.js:891
 msgid "Click to view more information."
 msgstr "클릭하면 더많은 정보를 볼수 있습니다."
 
@@ -1200,7 +1224,7 @@ msgstr "최소: %(min)s, Max: %(max)s"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr "최소: %(min)s, Max: %(max)s"
+msgstr "최소: %(min)s"
 
 #: gui/options/options.js:125
 #, javascript-format
