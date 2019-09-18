@@ -385,7 +385,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 			std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 			int linesShown = (int)m_fHeight/m_iFontHeight - 4;
-			m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
+			m_iMsgHistPos = Clamp(static_cast<int>(m_deqMsgHistory.size()) - linesShown, 1, static_cast<int>(m_deqMsgHistory.size()));
 		}
 		else
 		{

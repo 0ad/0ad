@@ -392,7 +392,7 @@ void CTexturedLineRData::CreateLineCap(const SOverlayTexturedLine& line, const C
 				// Let v range from 0 to 1 as we move along the semi-circle, keep u fixed at 0 (i.e. curve the left vertical edge
 				// of the texture around the edge of the semicircle)
 				float u = 0.f;
-				float v = clamp((i/(float)(roundCapPoints-1)), 0.f, 1.f); // pos, u, v
+				float v = Clamp((i / static_cast<float>(roundCapPoints - 1)), 0.f, 1.f); // pos, u, v
 				verticesOut.push_back(SVertex(worldPos3D, u, v));
 			}
 

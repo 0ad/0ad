@@ -285,7 +285,7 @@ void TerrainRenderer::RenderTerrain(int cullGroup)
 	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colors
 
 	// The vertex color is scaled by 0.5 to permit overbrightness without clamping.
-	// We therefore need to draw clamp((texture*lighting)*2.0), where 'texture'
+	// We therefore need to draw Clamp((texture*lighting)*2.0), where 'texture'
 	// is what previous passes drew onto the framebuffer, and 'lighting' is the
 	// color computed by this pass.
 	// We can do that with blending by getting it to draw dst*src + src*dst:
@@ -623,8 +623,8 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CMatrix3D
 			continue;
 		scissor += screenBounds;
 	}
-	return CBoundingBoxAligned(CVector3D(clamp(scissor[0].X, -1.0f, 1.0f), clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
-				  CVector3D(clamp(scissor[1].X, -1.0f, 1.0f), clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));
+	return CBoundingBoxAligned(CVector3D(Clamp(scissor[0].X, -1.0f, 1.0f), Clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
+				  CVector3D(Clamp(scissor[1].X, -1.0f, 1.0f), Clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));
 }
 
 // Render fancy water

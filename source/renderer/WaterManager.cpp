@@ -782,7 +782,7 @@ void WaterManager::CreateWaveMeshes()
 				float baseHeight = 0.04f;
 
 				float halfWidth = (width-1.0f)/2.0f;
-				float sideNess = sqrtf(clamp( (halfWidth - fabsf(a-halfWidth))/3.0f, 0.0f,1.0f));
+				float sideNess = sqrtf(Clamp( (halfWidth - fabsf(a - halfWidth)) / 3.0f, 0.0f, 1.0f));
 
 				point[0].m_UV[0] = a; point[0].m_UV[1] = 8;
 				point[1].m_UV[0] = a; point[1].m_UV[1] = 7;
