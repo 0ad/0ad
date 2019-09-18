@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,9 @@
 #include <map>
 
 class CNetMessage;
+class CFileTransferResponseMessage;
+class CFileTransferDataMessage;
+class CFileTransferAckMessage;
 class CNetClientSession;
 class CNetServerSession;
 class INetSession;
@@ -84,7 +87,7 @@ public:
 	 * Returns INFO::OK if the message is handled successfully,
 	 * or ERR::FAIL if handled unsuccessfully.
 	 */
-	Status HandleMessageReceive(const CNetMessage* message);
+	Status HandleMessageReceive(const CNetMessage& message);
 
 	/**
 	 * Registers a file-receiving task.
@@ -105,6 +108,10 @@ public:
 	void Poll();
 
 private:
+	Status OnFileTransferResponse(const CFileTransferResponseMessage& message);
+	Status OnFileTransferData(const CFileTransferDataMessage& message);
+	Status OnFileTransferAck(const CFileTransferAckMessage& message);
+
 	/**
 	 * Asynchronous file-sending task.
 	 */
@@ -121,10 +128,10 @@ private:
 
 	u32 m_NextRequestID;
 
-	typedef std::map<u32, shared_ptr<CNetFileReceiveTask>> FileReceiveTasksMap;
+	using FileReceiveTasksMap = std::map<u32, shared_ptr<CNetFileReceiveTask> >;
 	FileReceiveTasksMap m_FileReceiveTasks;
 
-	typedef std::map<u32, CNetFileSendTask> FileSendTasksMap;
+	using FileSendTasksMap = std::map<u32, CNetFileSendTask>;
 	FileSendTasksMap m_FileSendTasks;
 
 	double m_LastProgressReportTime;

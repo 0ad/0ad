@@ -25,7 +25,6 @@
 #endif
 
 #include "i18n/L10n.h"
-#include "lobby/scripting/GlooxScriptConversions.cpp"
 #include "lib/external_libraries/enet.h"
 #include "lib/utf8.h"
 #include "network/NetServer.h"

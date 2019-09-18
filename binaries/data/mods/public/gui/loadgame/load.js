@@ -1,3 +1,5 @@
+var g_SavegameWriter;
+
 var g_SavedGamesMetadata = [];
 
 /**
@@ -5,7 +7,29 @@ var g_SavedGamesMetadata = [];
  */
 const g_CivData = loadCivData(false, false);
 
-function init()
+function init(data)
+{
+	let save = Engine.IsGameStarted();
+	if (save)
+		g_SavegameWriter = new SavegameWriter(data);
+
+	let confirmButton = Engine.GetGUIObjectByName("confirmButton");
+	confirmButton.caption = save ? translate("Save") : translate("Load");
+	confirmButton.onPress = save ? () => { g_SavegameWriter.saveGame(); } : loadGame;
+	Engine.GetGUIObjectByName("title").caption = save ? translate("Save Game") : translate("Load Game")
+	Engine.GetGUIObjectByName("saveGameDesc").hidden = !save;
+
+	updateSavegameList();
+
+	// Select the most recent savegame to be loaded, or no savegame to be overwritten
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	if (!save && gameSelection.list.length)
+		gameSelection.selected = 0;
+	else
+		selectionChanged();
+}
+
+function updateSavegameList()
 {
 	let savedGames = Engine.GetSavedGames();
 
@@ -17,6 +41,10 @@ function init()
 
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	gameSelection.enabled = !!savedGames.length;
+	gameSelection.onSelectionChange = selectionChanged;
+	gameSelection.onSelectionColumnChange = updateSavegameList;
+	gameSelection.onMouseLeftDoubleClickItem = loadGame;
+
 	Engine.GetGUIObjectByName("gameSelectionFeedback").hidden = !!savedGames.length;
 
 	let selectedGameId = gameSelection.list_data[gameSelection.selected];
@@ -87,9 +115,6 @@ function init()
 		gameSelection.selected = selectedGameIndex;
 	else if (gameSelection.selected >= g_SavedGamesMetadata.length) // happens when deleting the last saved game
 		gameSelection.selected = g_SavedGamesMetadata.length - 1;
-	else if (gameSelection.selected == -1 && g_SavedGamesMetadata.length)
-		gameSelection.selected = 0;
-	selectionChanged();
 
 	Engine.GetGUIObjectByName("deleteGameButton").tooltip = deleteTooltip();
 }
@@ -99,7 +124,7 @@ function selectionChanged()
 	let metadata = g_SavedGamesMetadata[Engine.GetGUIObjectByName("gameSelection").selected];
 	Engine.GetGUIObjectByName("invalidGame").hidden = !!metadata;
 	Engine.GetGUIObjectByName("validGame").hidden = !metadata;
-	Engine.GetGUIObjectByName("loadGameButton").enabled = !!metadata;
+	Engine.GetGUIObjectByName("confirmButton").enabled = !!metadata || Engine.IsGameStarted();
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = !!metadata;
 
 	if (!metadata)
@@ -170,8 +195,7 @@ function loadGame()
 		message,
 		translate("Warning"),
 		[translate("No"), translate("Yes")],
-		[init, function(){ reallyLoadGame(gameId); }]
-	);
+		[undefined, () => { reallyLoadGame(gameId); }]);
 }
 
 function reallyLoadGame(gameId)
@@ -179,10 +203,7 @@ function reallyLoadGame(gameId)
 	let metadata = Engine.StartSavedGame(gameId);
 	if (!metadata)
 	{
-		// Probably the file wasn't found
-		// Show error and refresh saved game list
 		error("Could not load saved game: " + gameId);
-		init();
 		return;
 	}
 

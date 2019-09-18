@@ -290,30 +290,6 @@ void CGUIManager::ResetCursor()
 	g_CursorName = g_DefaultCursor;
 }
 
-std::string CGUIManager::GetSavedGameData()
-{
-	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue data(cx);
-	JS::RootedValue global(cx, top()->GetGlobalObject());
-	scriptInterface->CallFunction(global, "getSavedGameData", &data);
-	return scriptInterface->StringifyJSON(&data, false);
-}
-
-void CGUIManager::RestoreSavedGameData(const std::string& jsonData)
-{
-	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue global(cx, top()->GetGlobalObject());
-	JS::RootedValue dataVal(cx);
-	scriptInterface->ParseJSON(jsonData, &dataVal);
-	scriptInterface->CallFunctionVoid(global, "restoreSavedGameData", dataVal);
-}
-
 InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 {
 	// We want scripts to have access to the raw input events, so they can do complex

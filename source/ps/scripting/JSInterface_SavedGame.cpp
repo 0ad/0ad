@@ -52,14 +52,20 @@ void JSI_SavedGame::SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const
 		LOGERROR("Failed to save game");
 }
 
-void JSI_SavedGame::QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_SavedGame::QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), JS::HandleValue GUIMetadata)
 {
-	g_Game->GetTurnManager()->QuickSave();
+	if (g_Game)
+		g_Game->GetTurnManager()->QuickSave(GUIMetadata);
+	else
+		LOGERROR("Can't store quicksave if game is not running!");
 }
 
 void JSI_SavedGame::QuickLoad(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	g_Game->GetTurnManager()->QuickLoad();
+	if (g_Game)
+		g_Game->GetTurnManager()->QuickLoad();
+	else
+		LOGERROR("Can't load quicksave if game is not running!");
 }
 
 JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
@@ -111,7 +117,7 @@ void JSI_SavedGame::RegisterScriptFunctions(const ScriptInterface& scriptInterfa
 	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGame>("SaveGame");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGamePrefix>("SaveGamePrefix");
-	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
+	scriptInterface.RegisterFunction<void, JS::HandleValue, &QuickSave>("QuickSave");
 	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");
 }

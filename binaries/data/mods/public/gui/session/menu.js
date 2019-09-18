@@ -226,7 +226,7 @@ function openSave()
 	pauseGame();
 
 	Engine.PushGuiPage(
-		"page_savegame.xml",
+		"page_loadgame.xml",
 		{ "savedGameData": getSavedGameData() },
 		resumeGame);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,107 +24,119 @@
 #include "network/NetSession.h"
 #include "ps/CLogger.h"
 
-Status CNetFileTransferer::HandleMessageReceive(const CNetMessage* message)
+Status CNetFileTransferer::HandleMessageReceive(const CNetMessage& message)
 {
-	if (message->GetType() == NMT_FILE_TRANSFER_RESPONSE)
+	switch (message.GetType())
 	{
-		CFileTransferResponseMessage* respMessage = (CFileTransferResponseMessage*)message;
+	case NMT_FILE_TRANSFER_RESPONSE:
+		return OnFileTransferResponse(static_cast<const CFileTransferResponseMessage&>(message));
 
-		if (m_FileReceiveTasks.find(respMessage->m_RequestID) == m_FileReceiveTasks.end())
-		{
-			LOGERROR("Net transfer: Unsolicited file transfer response (id=%d)", (int)respMessage->m_RequestID);
-			return ERR::FAIL;
-		}
+	case NMT_FILE_TRANSFER_DATA:
+		return OnFileTransferData(static_cast<const CFileTransferDataMessage&>(message));
 
-		if (respMessage->m_Length == 0 || respMessage->m_Length > MAX_FILE_TRANSFER_SIZE)
-		{
-			LOGERROR("Net transfer: Invalid size for file transfer response (length=%d)", (int)respMessage->m_Length);
-			return ERR::FAIL;
-		}
+	case NMT_FILE_TRANSFER_ACK:
+		return OnFileTransferAck(static_cast<const CFileTransferAckMessage&>(message));
 
-		shared_ptr<CNetFileReceiveTask> task = m_FileReceiveTasks[respMessage->m_RequestID];
-
-		task->m_Length = respMessage->m_Length;
-		task->m_Buffer.reserve(respMessage->m_Length);
-
-		LOGMESSAGERENDER("Downloading data over network (%d KB) - please wait...", (int)(task->m_Length/1024));
-		m_LastProgressReportTime = timer_Time();
-
-		return INFO::OK;
+	default:
+		return INFO::SKIPPED;
 	}
-	else if (message->GetType() == NMT_FILE_TRANSFER_DATA)
-	{
-		CFileTransferDataMessage* dataMessage = (CFileTransferDataMessage*)message;
-
-		if (m_FileReceiveTasks.find(dataMessage->m_RequestID) == m_FileReceiveTasks.end())
-		{
-			LOGERROR("Net transfer: Unsolicited file transfer data (id=%d)", (int)dataMessage->m_RequestID);
-			return ERR::FAIL;
-		}
-
-		shared_ptr<CNetFileReceiveTask> task = m_FileReceiveTasks[dataMessage->m_RequestID];
-
-		task->m_Buffer += dataMessage->m_Data;
-
-		if (task->m_Buffer.size() > task->m_Length)
-		{
-			LOGERROR("Net transfer: Invalid size for file transfer data (length=%d actual=%d)", (int)task->m_Length, (int)task->m_Buffer.size());
-			return ERR::FAIL;
-		}
-
-		CFileTransferAckMessage ackMessage;
-		ackMessage.m_RequestID = task->m_RequestID;
-		ackMessage.m_NumPackets = 1; // TODO: would be nice to send a single ack for multiple packets at once
-		m_Session->SendMessage(&ackMessage);
-
-		if (task->m_Buffer.size() == task->m_Length)
-		{
-			LOGMESSAGERENDER("Download completed");
-
-			task->OnComplete();
-			m_FileReceiveTasks.erase(dataMessage->m_RequestID);
-			return INFO::OK;
-		}
-
-		// TODO: should report progress using proper GUI
-
-		// Report the download status occassionally
-		double t = timer_Time();
-		if (t > m_LastProgressReportTime + 0.5)
-		{
-			LOGMESSAGERENDER("Downloading data: %.1f%% of %d KB", 100.f*task->m_Buffer.size()/task->m_Length, (int)(task->m_Length/1024));
-			m_LastProgressReportTime = t;
-		}
-
-		return INFO::OK;
-	}
-	else if (message->GetType() == NMT_FILE_TRANSFER_ACK)
-	{
-		CFileTransferAckMessage* ackMessage = (CFileTransferAckMessage*)message;
-
-		if (m_FileSendTasks.find(ackMessage->m_RequestID) == m_FileSendTasks.end())
-		{
-			LOGERROR("Net transfer: Unsolicited file transfer ack (id=%d)", (int)ackMessage->m_RequestID);
-			return ERR::FAIL;
-		}
-
-		CNetFileSendTask& task = m_FileSendTasks[ackMessage->m_RequestID];
-
-		if (ackMessage->m_NumPackets > task.packetsInFlight)
-		{
-			LOGERROR("Net transfer: Invalid num packets for file transfer ack (num=%d inflight=%d)",
-				(int)ackMessage->m_NumPackets, (int)task.packetsInFlight);
-			return ERR::FAIL;
-		}
-
-		task.packetsInFlight -= ackMessage->m_NumPackets;
-
-		return INFO::OK;
-	}
-
-	return INFO::SKIPPED;
 }
 
+Status CNetFileTransferer::OnFileTransferResponse(const CFileTransferResponseMessage& message)
+{
+	const FileReceiveTasksMap::iterator it = m_FileReceiveTasks.find(message.m_RequestID);
+	if (it == m_FileReceiveTasks.end())
+	{
+		LOGERROR("Net transfer: Unsolicited file transfer response (id=%lu)", message.m_RequestID);
+		return ERR::FAIL;
+	}
+
+	if (message.m_Length == 0 || message.m_Length > MAX_FILE_TRANSFER_SIZE)
+	{
+		LOGERROR("Net transfer: Invalid size for file transfer response (length=%lu)", message.m_Length);
+		return ERR::FAIL;
+	}
+
+	CNetFileReceiveTask& task = *it->second;
+
+	task.m_Length = message.m_Length;
+	task.m_Buffer.reserve(message.m_Length);
+
+	LOGMESSAGERENDER("Downloading data over network (%lu KB) - please wait...", task.m_Length / 1024);
+	m_LastProgressReportTime = timer_Time();
+
+	return INFO::OK;
+}
+
+Status CNetFileTransferer::OnFileTransferData(const CFileTransferDataMessage& message)
+{
+	FileReceiveTasksMap::iterator it = m_FileReceiveTasks.find(message.m_RequestID);
+	if (it == m_FileReceiveTasks.end())
+	{
+		LOGERROR("Net transfer: Unsolicited file transfer data (id=%lu)", message.m_RequestID);
+		return ERR::FAIL;
+	}
+
+	CNetFileReceiveTask& task = *it->second;
+
+	task.m_Buffer += message.m_Data;
+
+	if (task.m_Buffer.size() > task.m_Length)
+	{
+		LOGERROR("Net transfer: Invalid size for file transfer data (length=%lu actual=%zu)", task.m_Length, task.m_Buffer.size());
+		return ERR::FAIL;
+	}
+
+	CFileTransferAckMessage ackMessage;
+	ackMessage.m_RequestID = task.m_RequestID;
+	ackMessage.m_NumPackets = 1; // TODO: would be nice to send a single ack for multiple packets at once
+	m_Session->SendMessage(&ackMessage);
+
+	if (task.m_Buffer.size() == task.m_Length)
+	{
+		LOGMESSAGERENDER("Download completed");
+
+		task.OnComplete();
+		m_FileReceiveTasks.erase(message.m_RequestID);
+		return INFO::OK;
+	}
+
+	// TODO: should report progress using proper GUI
+
+	// Report the download status occassionally
+	double t = timer_Time();
+	if (t > m_LastProgressReportTime + 0.5)
+	{
+		LOGMESSAGERENDER("Downloading data: %.1f%% of %lu KB", 100.f * task.m_Buffer.size() / task.m_Length, task.m_Length / 1024);
+		m_LastProgressReportTime = t;
+	}
+
+	return INFO::OK;
+}
+
+Status CNetFileTransferer::OnFileTransferAck(const CFileTransferAckMessage& message)
+{
+	FileSendTasksMap::iterator it = m_FileSendTasks.find(message.m_RequestID);
+	if (it == m_FileSendTasks.end())
+	{
+		LOGERROR("Net transfer: Unsolicited file transfer ack (id=%lu)", message.m_RequestID);
+		return ERR::FAIL;
+	}
+
+	CNetFileSendTask& task = it->second;
+
+	if (message.m_NumPackets > task.packetsInFlight)
+	{
+		LOGERROR("Net transfer: Invalid num packets for file transfer ack (num=%lu inflight=%lu)",
+			message.m_NumPackets, task.packetsInFlight);
+		return ERR::FAIL;
+	}
+
+	task.packetsInFlight -= message.m_NumPackets;
+
+	return INFO::OK;
+
+}
 
 void CNetFileTransferer::StartTask(const shared_ptr<CNetFileReceiveTask>& task)
 {

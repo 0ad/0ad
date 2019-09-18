@@ -28,6 +28,7 @@
 ERROR_GROUP(Xeromyces);
 ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
+ERROR_TYPE(Xeromyces, XMLValidationFailed);
 
 #include "XeroXMB.h"
 

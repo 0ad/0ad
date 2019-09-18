@@ -391,7 +391,7 @@ bool CNetClient::HandleMessage(CNetMessage* message)
 {
 	// Handle non-FSM messages first
 
-	Status status = m_Session->GetFileTransferer().HandleMessageReceive(message);
+	Status status = m_Session->GetFileTransferer().HandleMessageReceive(*message);
 	if (status == INFO::OK)
 		return true;
 	if (status != INFO::SKIPPED)
