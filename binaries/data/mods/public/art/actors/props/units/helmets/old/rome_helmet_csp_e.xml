@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base"/>
+  </group>
+  <group>
+    <variant frequency="1" name="helmet-feathers-temple">
+      <mesh>props/helmet/old/rome_helmet_d.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-feathers-top">
+      <mesh>props/helmet/old/rome_helmet_e.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-feathers-all">
+      <mesh>props/helmet/old/rome_helmet_f.dae</mesh>
+    </variant>
+    <variant frequency="2" name="helmet-plume">
+      <mesh>props/helmet/old/rome_helmet_g.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-plume-feathers-top">
+      <mesh>props/helmet/old/rome_helmet_h.dae</mesh>
+    </variant>
+    <variant frequency="2" name="helmet-all">
+      <mesh>props/helmet/old/rome_helmet_i.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="helmet-cross-brace">
+      <textures><texture file="props/helmet/old/rome-b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="helmet-smooth">
+      <textures><texture file="props/helmet/old/rome-d.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

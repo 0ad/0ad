@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-01-03T03:34:32</created>
+    <modified>2018-01-03T03:34:32</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Material_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material_002-material" name="Material_002">
+      <instance_effect url="#Material_002-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="hele_helmet_j-Geometry_001-mesh" name="hele_helmet_j-Geometry.001">
+      <mesh>
+        <source id="hele_helmet_j-Geometry_001-mesh-positions">
+          <float_array id="hele_helmet_j-Geometry_001-mesh-positions-array" count="69">0.002340137 0.4139075 0.06602966 0.02695214 0.294409 0.2991558 -0.03211271 0.2943639 0.2991241 -0.02014428 0.1897627 0.3650739 0.01402926 0.1897627 0.3650739 0.01402926 -0.1403311 0.6750125 0.04141551 -0.3083885 0.8148942 -0.04752963 -0.3083885 0.8148942 -0.02014338 -0.1403311 0.6750125 -0.04752963 0.3878145 0.4423509 -0.02014338 0.1755047 0.5828567 -0.04752963 0.4004884 0.6230942 -0.02040219 0.1069153 0.675163 -0.04752963 0.2585859 0.872087 -0.02290451 -0.02425533 0.7192646 -0.05029076 -0.03881669 0.951121 0.03865438 -0.03881669 0.951121 0.04141551 0.2585859 0.872087 0.04141551 0.4004884 0.6230942 0.04141551 0.3878145 0.4423509 0.01126813 -0.02425533 0.7192646 0.01377052 0.1069153 0.675163 0.01402926 0.1755047 0.5828567</float_array>
+          <technique_common>
+            <accessor source="#hele_helmet_j-Geometry_001-mesh-positions-array" count="23" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_helmet_j-Geometry_001-mesh-normals">
+          <float_array id="hele_helmet_j-Geometry_001-mesh-normals-array" count="69">0.01657176 0.2667051 -0.9636358 0.7586882 -0.4753742 -0.4454344 -0.7606555 -0.457846 -0.460196 -0.7597194 -0.4109437 -0.5039363 0.7590435 -0.4131997 -0.5031093 0.7526406 -0.3446258 -0.5610394 0.5951243 -0.7998775 0.07761025 -0.5899961 -0.8038133 0.07608419 -0.7433543 -0.3612549 -0.5629557 -0.7696226 0.6379952 -0.02536106 -0.9921874 -0.1163401 -0.04504668 -0.6837477 0.711642 0.161415 -0.9935888 -0.06207638 -0.09448796 -0.6613205 0.4595275 0.5928659 -0.9930473 -0.00112915 -0.1177105 -0.6743626 -0.07910698 0.7341507 0.6687785 -0.07788628 0.7393707 0.6650497 0.4529089 0.5937867 0.6839681 0.7113744 0.1616607 0.7692454 0.6386522 -0.01962405 0.9936482 0.00915575 -0.1121585 0.9934544 -0.07837277 -0.08310317 0.9922471 -0.1168283 -0.04239141</float_array>
+          <technique_common>
+            <accessor source="#hele_helmet_j-Geometry_001-mesh-normals-array" count="23" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_helmet_j-Geometry_001-mesh-map-0">
+          <float_array id="hele_helmet_j-Geometry_001-mesh-map-0-array" count="204">0.6514874 0.6449125 0.8270346 0.571761 0.8270339 0.720971 0.904025 0.763946 0.7825944 0.6041381 0.7825367 0.6041895 0.7825367 0.6041895 0.904025 0.763946 0.904025 0.763946 0.892699 0.9020689 0.6514874 0.9005159 0.6514874 0.9795272 0.6514874 0.9795272 0.892699 0.9799233 0.892699 0.9020689 0.6869836 0.1452095 0.7825944 0.6041381 0.649042 0.8724409 0.649042 0.8724409 0.7825944 0.6041381 0.904025 0.763946 0.6502849 0.1438308 0.8999096 0.2972097 0.8999096 0.7058222 0.8999096 0.7058222 0.6502849 0.8721497 0.6502849 0.1438308 0.6502849 0.1438308 0.8999096 0.3101582 0.8999096 0.7187706 0.8999096 0.7187706 0.6502849 0.8721497 0.6502849 0.1438308 0.6502849 0.1438308 0.8999096 0.2972097 0.8999096 0.7058222 0.8999096 0.7058222 0.6502849 0.8721497 0.6502849 0.1438308 0.6502849 0.1438308 0.8999096 0.3101582 0.8999096 0.7187706 0.8999096 0.7187706 0.6502849 0.8721497 0.6502849 0.1438308 0.7278273 0.1438308 0.7278273 0.8721497 0.6502849 0.8721497 0.6502849 0.8721497 0.6502849 0.1438308 0.7278273 0.1438308 0.7278273 0.1436917 0.7278273 0.8722023 0.6502849 0.8722023 0.6502849 0.8722023 0.6502849 0.1436917 0.7278273 0.1436917 0.7278176 0.1452095 0.7278176 0.872148 0.650212 0.872148 0.650212 0.872148 0.650212 0.1452095 0.7278176 0.1452095 0.6501178 0.8722075 0.6501178 0.1449785 0.7278047 0.1449785 0.7278047 0.1449785 0.7278047 0.8722075 0.6501178 0.8722075 0.649042 0.8724409 0.7266027 0.8724409 0.6869836 0.1452095 0.6502849 0.8721497 0.6502849 0.1438308 0.8999096 0.2972097 0.8999096 0.2972097 0.8999096 0.7058222 0.6502849 0.8721497 0.6502849 0.1438308 0.6502849 0.8721497 0.8999096 0.7187706 0.8999096 0.7187706 0.8999096 0.3101582 0.6502849 0.1438308 0.6502849 0.1438308 0.6502849 0.8721497 0.8999096 0.7058222 0.8999096 0.7058222 0.8999096 0.2972097 0.6502849 0.1438308 0.6502849 0.8721497 0.6502849 0.1438308 0.8999096 0.2972097 0.8999096 0.2972097 0.8999096 0.7058222 0.6502849 0.8721497 0.649042 0.8724409 0.904025 0.763946 0.7825367 0.6041895 0.649042 0.8724409 0.7825367 0.6041895 0.6869836 0.1452095</float_array>
+          <technique_common>
+            <accessor source="#hele_helmet_j-Geometry_001-mesh-map-0-array" count="102" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_helmet_j-Geometry_001-mesh-vertices">
+          <input semantic="POSITION" source="#hele_helmet_j-Geometry_001-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_002-material" count="34">
+          <input semantic="VERTEX" source="#hele_helmet_j-Geometry_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#hele_helmet_j-Geometry_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#hele_helmet_j-Geometry_001-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 2 2 4 1 1 5 1 1 6 4 4 7 3 3 8 5 5 9 6 6 10 7 7 11 7 7 12 8 8 13 5 5 14 0 0 15 2 2 16 9 9 17 9 9 18 2 2 19 3 3 20 9 9 21 3 3 22 10 10 23 10 10 24 11 11 25 9 9 26 11 11 27 10 10 28 12 12 29 12 12 30 13 13 31 11 11 32 13 13 33 12 12 34 14 14 35 14 14 36 15 15 37 13 13 38 15 15 39 14 14 40 8 8 41 8 8 42 7 7 43 15 15 44 15 15 45 7 7 46 6 6 47 6 6 48 16 16 49 15 15 50 13 13 51 15 15 52 16 16 53 16 16 54 17 17 55 13 13 56 11 11 57 13 13 58 17 17 59 17 17 60 18 18 61 11 11 62 9 9 63 11 11 64 18 18 65 18 18 66 19 19 67 9 9 68 9 9 69 19 19 70 0 0 71 16 16 72 6 6 73 5 5 74 5 5 75 20 20 76 16 16 77 17 17 78 16 16 79 20 20 80 20 20 81 21 21 82 17 17 83 18 18 84 17 17 85 21 21 86 21 21 87 22 22 88 18 18 89 19 19 90 18 18 91 22 22 92 22 22 93 4 4 94 19 19 95 19 19 96 4 4 97 1 1 98 19 19 99 1 1 100 0 0 101</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_helmet_j_001" name="hele_helmet_j_001" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#hele_helmet_j-Geometry_001-mesh" name="hele_helmet_j_001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_002-material" target="#Material_002-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

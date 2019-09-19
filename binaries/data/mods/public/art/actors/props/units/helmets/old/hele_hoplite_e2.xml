@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="helmets/hele_illyrian_crested_bronze_01.xml" name="illyrian-crested-bronze-a"/>
+    <variant frequency="1" file="helmets/hele_illyrian_crested_bronze_02.xml" name="illyrian-crested-bronze-b"/>
+    <variant frequency="1" file="helmets/hele_illyrian_crested_tin_01.xml" name="illyrian-crested-tin-a"/>
+    <variant frequency="1" file="helmets/hele_illyrian_crested_black_01.xml" name="illyrian-crested-black-a"/>
+    <variant frequency="1" file="helmets/hele_illyrian_crested_gold_01.xml" name="illyrian-crested-gold-a"/>
+    <variant frequency="1" name="Helmet-Attic-Crested">
+      <mesh>props/helmet/old/hele_helmet_s.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_h1.dds" name="baseTex"/>
+        <texture file="props/helmet/old/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_01.xml" name="chalcidean-crested-bronze-a"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_02.xml" name="chalcidean-crested-bronze-b"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_03.xml" name="chalcidean-crested-bronze-c"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_04.xml" name="chalcidean-crested-bronze-d"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_gold_01.xml" name="chalcidean-crested-gold_a"/>
+  </group>
+  <material>player_trans_spec_helmet.xml</material>
+</actor>

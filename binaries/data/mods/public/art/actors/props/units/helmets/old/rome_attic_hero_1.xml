@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Helmet-Attic-Crested-Bronze">
+      <mesh>props/helmet/old/rome_attic_a_feathers.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/rome_attic_hero1.dds" name="baseTex"/>
+        <texture file="props/helmet/old/rome_attic_hero1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec_helmet.xml</material>
+</actor>

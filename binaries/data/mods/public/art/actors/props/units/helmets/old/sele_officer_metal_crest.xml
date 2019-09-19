@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/helmet/old/sele_officer_metal_crested.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_spec.png" name="specTex"/>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_crest_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="metal">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bronze">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="painted">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_crest_painted.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

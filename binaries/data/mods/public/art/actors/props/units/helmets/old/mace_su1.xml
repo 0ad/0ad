@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="helmet-phrygian-mask-beard">
+      <mesh>props/helmet/old/mace_helmet_a.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_a2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-mask-beard-feathers">
+      <mesh>props/helmet/old/mace_helmet_k.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_a2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-mask-nobeard">
+      <mesh>props/helmet/old/mace_helmet_a.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_a4.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-mask-nobeard-feathers">
+      <mesh>props/helmet/old/mace_helmet_k.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_a4.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-feathers">
+      <mesh>props/helmet/old/mace_helmet_d.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_b2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-crest">
+      <mesh>props/helmet/old/mace_helmet_f.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_b2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-plume">
+      <mesh>props/helmet/old/mace_helmet_h.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_c2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-crested">
+      <mesh>props/helmet/old/helmet_thracian_4.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_c2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="helmet-thracian-crest-feathers">
+      <mesh>props/helmet/old/helmet_thracian_5.dae</mesh>
+      <textures><texture file="props/helmet/old/mace_c2.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

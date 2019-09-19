@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="2" name="Helmet-Corinthian-Crestsmall">
+      <mesh>props/helmet/old/hele_helmet_m.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Helmet-Corinthian-Crestmedium">
+      <mesh>props/helmet/old/hele_helmet_n.dae</mesh>
+    </variant>
+    <variant frequency="5" name="Helmet-Corinthian-Crestlarge">
+      <mesh>props/helmet/old/hele_helmet_o.dae</mesh>
+    </variant>
+    <variant frequency="3" name="Helmet-Corinthian-Cresthigh">
+      <mesh>props/helmet/old/hele_highcrest.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Helmet-Corinthian-CresDual">
+      <mesh>props/helmet/old/helmet_corinthian_dual.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Solid Crest">
+      <textures><texture file="props/helmet/old/hele_d1_black.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="Striped Crest">
+      <textures><texture file="props/helmet/old/hele_d2_black.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

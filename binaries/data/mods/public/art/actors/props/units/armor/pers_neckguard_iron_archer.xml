@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_archer_chariot_ready.xml" frequency="100" name="Base">
+      <mesh>props/helmet/pers_neckguard.dae</mesh>
+      <textures>
+        <texture file="props/helmet/pers_neckguard_iron.png" name="baseTex"/>
+        <texture file="props/helmet/pers_neckguard_norm.png" name="normTex"/>
+        <texture file="props/helmet/pers_neckguard_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

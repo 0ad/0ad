@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Seleucid romanized helmet visor brass 1">
+      <mesh>props/helmet/old/sele_romanized_visor.dae</mesh>
+      <textures>
+		   <texture file="props/helmet/old/sele_romanized_visor_brass_1.png" name="baseTex"/>
+		   <texture file="props/helmet/old/sele_romanized_norm.png" name="normTex"/>
+       <texture file="props/helmet/old/sele_romanized_visor_spec.png" name="specTex"/>
+	  </textures>
+   </variant>
+    <variant frequency="1" name="Seleucid romanized helmet visor brass 2">
+      <mesh>props/helmet/old/sele_romanized_visor.dae</mesh>
+      <textures>
+       <texture file="props/helmet/old/sele_romanized_visor_brass_2.png" name="baseTex"/>
+       <texture file="props/helmet/old/sele_romanized_norm.png" name="normTex"/>
+       <texture file="props/helmet/old/sele_romanized_visor_spec.png" name="specTex"/>
+    </textures>
+   </variant>
+    <variant frequency="1" name="Seleucid romanized helmet visor brass 3">
+      <mesh>props/helmet/old/sele_romanized_visor.dae</mesh>
+      <textures>
+       <texture file="props/helmet/old/sele_romanized_visor_brass_3.png" name="baseTex"/>
+       <texture file="props/helmet/old/sele_romanized_norm.png" name="normTex"/>
+       <texture file="props/helmet/old/sele_romanized_visor_spec.png" name="specTex"/>
+    </textures>
+   </variant>   
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

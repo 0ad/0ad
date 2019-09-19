@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Type-H">
+      <mesh>props/helmet/rome_gallic_type_b_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/rome_gallic_type_b_01.png" name="baseTex"/>
+        <texture file="props/helmet/rome_gallic_type_b_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_gallic_type_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

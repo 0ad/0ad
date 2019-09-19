@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/helmet/old/hele_a3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Hair-01">
+      <mesh>props/helmet/props/hele_crest_pilos_small_hair_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Hair-02">
+      <mesh>props/helmet/props/hele_crest_pilos_small_hair_b.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/helmet/rome_gallic_type_h_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/rome_gallic_type_h_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_gallic_type_h_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="Type-H-01">
+      <textures>
+        <texture file="props/helmet/rome_gallic_type_h_01.png" name="baseTex"/>
+        <texture file="props/helmet/rome_gallic_type_h_01_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="Type-H-02">
+      <textures>
+        <texture file="props/helmet/rome_gallic_type_h_02.png" name="baseTex"/>
+        <texture file="props/helmet/rome_gallic_type_i_01_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

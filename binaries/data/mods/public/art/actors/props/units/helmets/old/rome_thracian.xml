@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="helmet-thracian-n">
+      <mesh>props/helmet/old/rome_helmet_n.dae</mesh>
+    </variant>
+    <variant frequency="2" name="helmet-thracian-o">
+      <mesh>props/helmet/old/rome_helmet_o.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-p">
+      <mesh>props/helmet/old/rome_helmet_p.dae</mesh>
+    </variant>
+    <variant frequency="3" name="helmet-thracian-q">
+      <mesh>props/helmet/old/rome_helmet_q.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <textures><texture file="props/helmet/old/rome-c.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

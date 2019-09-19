@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2017-12-27T14:24:48</created>
+    <modified>2017-12-27T14:24:48</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="hele_helmet_uMesh_007-mesh" name="hele_helmet_uMesh.007">
+      <mesh>
+        <source id="hele_helmet_uMesh_007-mesh-positions">
+          <float_array id="hele_helmet_uMesh_007-mesh-positions-array" count="33">-0.001620769 0.0278241 0.9370675 -0.103706 0.1473206 0.777563 0.00229752 0.01472818 0.6796157 -8.88809e-4 0.2666388 0.9694315 -0.07256186 0.2305211 0.7685219 -0.00101757 0.3935866 0.7839153 -0.04288357 0.2955213 0.7309585 -8.87841e-4 0.3320409 0.557328 0.1032868 0.1752048 0.7749604 0.07314473 0.2434301 0.7683573 0.04518789 0.284904 0.7328349</float_array>
+          <technique_common>
+            <accessor source="#hele_helmet_uMesh_007-mesh-positions-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_helmet_uMesh_007-mesh-normals">
+          <float_array id="hele_helmet_uMesh_007-mesh-normals-array" count="33">0.008362293 -0.7130839 0.7010288 -0.9298686 -0.01281815 -0.3676686 0.02951246 -0.6074019 -0.7938464 -0.007385671 0.4210469 0.9070089 -0.812481 0.122626 -0.5699453 -0.009979605 0.9870699 0.1599796 -0.8592401 -0.1283641 -0.495206 -0.005707144 0.06552529 -0.9978347 0.9148753 0.04175031 -0.4015722 0.8315203 0.1543345 -0.5336245 0.766521 -0.1995042 -0.6104457</float_array>
+          <technique_common>
+            <accessor source="#hele_helmet_uMesh_007-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_helmet_uMesh_007-mesh-map-0">
+          <float_array id="hele_helmet_uMesh_007-mesh-map-0-array" count="108">0.905929 0.751686 0.665642 0.751686 0.751131 0.969011 0.905929 0.53436 0.665642 0.53436 0.665642 0.751686 0.905929 0.317035 0.665642 0.317035 0.665642 0.53436 0.756217 0.09970897 0.665642 0.317035 0.905929 0.317035 0.665642 0.53436 0.905929 0.53436 0.905929 0.317035 0.665642 0.751686 0.905929 0.751686 0.905929 0.53436 0.906127 0.754154 0.66584 0.754154 0.785486 0.97148 0.66584 0.536829 0.66584 0.754154 0.906127 0.754154 0.906127 0.754154 0.906127 0.536829 0.66584 0.536829 0.66584 0.319503 0.66584 0.536829 0.906127 0.536829 0.906127 0.536829 0.906127 0.319503 0.66584 0.319503 0.785473 0.102177 0.66584 0.319503 0.906127 0.319503 0.819592 0.973948 0.904582 0.756622 0.664295 0.756622 0.664295 0.756622 0.904582 0.756622 0.664295 0.539297 0.904582 0.756622 0.904582 0.539297 0.664295 0.539297 0.664295 0.539297 0.904582 0.539297 0.664295 0.321971 0.814517 0.104646 0.664295 0.321971 0.904582 0.321972 0.904582 0.321972 0.664295 0.321971 0.904582 0.539297</float_array>
+          <technique_common>
+            <accessor source="#hele_helmet_uMesh_007-mesh-map-0-array" count="54" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_helmet_uMesh_007-mesh-vertices">
+          <input semantic="POSITION" source="#hele_helmet_uMesh_007-mesh-positions"/>
+        </vertices>
+        <triangles count="18">
+          <input semantic="VERTEX" source="#hele_helmet_uMesh_007-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#hele_helmet_uMesh_007-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#hele_helmet_uMesh_007-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 1 1 5 5 5 6 6 6 7 4 4 8 7 7 9 6 6 10 5 5 11 4 4 12 3 3 13 5 5 14 1 1 15 0 0 16 3 3 17 1 1 18 8 8 19 2 2 20 9 9 21 8 8 22 1 1 23 1 1 24 4 4 25 9 9 26 10 10 27 9 9 28 4 4 29 4 4 30 6 6 31 10 10 32 7 7 33 10 10 34 6 6 35 2 2 36 8 8 37 0 0 38 0 0 39 8 8 40 3 3 41 8 8 42 9 9 43 3 3 44 3 3 45 9 9 46 5 5 47 7 7 48 5 5 49 10 10 50 10 10 51 5 5 52 9 9 53</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_helmet_u_002" name="hele_helmet_u_002" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#hele_helmet_uMesh_007-mesh" name="hele_helmet_u_002"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

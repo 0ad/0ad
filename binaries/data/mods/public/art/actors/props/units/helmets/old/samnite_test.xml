@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="2" name="plume_feathers_top">
+      <mesh>props/helmet/old/samnite_b.dae</mesh>
+      <textures><texture file="props/helmet/old/samnite-b1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="plume_feathers_sides">
+      <mesh>props/helmet/old/samnite_c.dae</mesh>
+      <textures><texture file="props/helmet/old/samnite-c1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

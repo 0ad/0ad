@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Seleucid Cataphract helmet">
+      <mesh>props/helmet/old/cataphract_helmet.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/sele_cataphract_helmet.png" name="baseTex"/>
+        <texture file="props/helmet/old/sele_cataphract_helmet_norm.png" name="normTex"/>
+        <texture file="props/helmet/old/sele_cataphract_helmet_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/old/sele_cataphract_mask.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

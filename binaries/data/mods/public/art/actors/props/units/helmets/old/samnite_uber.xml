@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Uber helmet">
+      <mesh>props/helmet/old/samnite_d_uber.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/old/samnite_uber_wings.xml" attachpoint="root"/>
+      </props>
+      <textures><texture file="props/helmet/old/mace_b.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

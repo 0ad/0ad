@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Seleucid Cataphract mask">
+      <mesh>props/helmet/old/cataphract_mask.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/cataphract_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="50" name="Seleucid Cataphract mask A">
+      <textures>
+        <texture file="props/helmet/old/cataphract_diffuse.png" name="baseTex"/>
+        <texture file="props/helmet/old/cataphract_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="50" name="Seleucid Cataphract mask B">
+      <textures>
+        <texture file="props/helmet/old/cataphract_diffuse_2.png" name="baseTex"/>
+        <texture file="props/helmet/old/cataphract_diffuse_2_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="helmet-pilos">
+      <mesh>props/helmet/old/hele_hoplite.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_hoplite_norm.png" name="normTex"/>
+        <texture file="props/helmet/old/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="gold_a">
+      <props>
+        <prop actor="props/units/helmets/props/old/hoplite_high_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="gold-b">
+      <props>
+        <prop actor="props/units/helmets/props/old/hoplite_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="gold-c">
+      <props/>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hoplite-bronze-a">
+      <textures>
+        <texture file="props/helmet/old/hele_hoplite_bronze_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hoplite-bronze-b">
+      <textures>
+        <texture file="props/helmet/old/hele_hoplite_bronze_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hoplite-bronze-c">
+      <textures>
+        <texture file="props/helmet/old/hele_hoplite_bronze_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

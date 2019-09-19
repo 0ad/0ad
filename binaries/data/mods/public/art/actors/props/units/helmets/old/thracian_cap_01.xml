@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="thracian cap">
+      <mesh>props/helmet/old/pers_floppy_a.dae</mesh>
+      <textures><texture file="props/helmet/old/floppycap_thracian_2.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
