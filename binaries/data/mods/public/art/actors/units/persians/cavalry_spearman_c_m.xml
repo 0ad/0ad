@@ -7,6 +7,12 @@
       <props>
         <prop actor="units/persians/cavalry_spearman_c_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/pers_cav_knot.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Cataphract-Armor-01">
+      <props>
         <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_pers.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_winged_armor_02.xml" attachpoint="root"/>
