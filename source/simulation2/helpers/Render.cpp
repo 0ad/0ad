@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ static void ConstructCircleOrClosedArc(
 	}
 
 	// Adapt the circle resolution to look reasonable for small and largeish radiuses
-	size_t numPoints = clamp((size_t)(radius*(end-start)), (size_t)12, (size_t)48);
+	size_t numPoints = Clamp<size_t>(radius * (end - start), 12, 48);
 
 	if (!isCircle)
 		overlay.m_Coords.reserve((numPoints + 1 + 2) * 3);

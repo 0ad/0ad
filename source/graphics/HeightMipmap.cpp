@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,11 +63,11 @@ void CHeightMipmap::Update(const u16* ptr, size_t left, size_t bottom, size_t ri
 	for (size_t i = 0; i < m_Mipmap.size(); ++i)
 	{
 		// update window
-		left = clamp<size_t>((size_t)floorf((float)left / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize - 1);
-		bottom = clamp<size_t>((size_t)floorf((float)bottom / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize - 1);
+		left = Clamp<size_t>(floorf(static_cast<float>(left) / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize - 1);
+		bottom = Clamp<size_t>(floorf(static_cast<float>(bottom) / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize - 1);
 
-		right = clamp<size_t>((size_t)ceilf((float)right / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize);
-		top = clamp<size_t>((size_t)ceilf((float)top / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize);
+		right = Clamp<size_t>(ceilf(static_cast<float>(right) / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize);
+		top = Clamp<size_t>(ceilf(static_cast<float>(top) / mapSize * m_Mipmap[i].m_MapSize), 0, m_Mipmap[i].m_MapSize);
 
 		// TODO: should verify that the bounds calculations are actually correct
 
@@ -104,9 +104,9 @@ float CHeightMipmap::GetTrilinearGroundLevel(float x, float z, float radius) con
 	if (radius <= 0.0f) // avoid logf of non-positive value
 		y = 0.0f;
 	else
-		y = clamp<float>(logf(radius * m_Mipmap[0].m_MapSize) / logf(2), 0, m_Mipmap.size());
+		y = Clamp<float>(logf(radius * m_Mipmap[0].m_MapSize) / logf(2), 0.0f, m_Mipmap.size());
 
-	const size_t iy = (size_t)clamp<ssize_t>((ssize_t)floorf(y), 0, m_Mipmap.size() - 2);
+	const size_t iy = static_cast<size_t>(Clamp<ssize_t>(floorf(y), 0, m_Mipmap.size() - 2));
 
 	const float fy = y - iy;
 
@@ -121,11 +121,11 @@ float CHeightMipmap::BilinearFilter(const SMipmap &mipmap, float x, float z) con
 	x *= mipmap.m_MapSize;
 	z *= mipmap.m_MapSize;
 
-	const size_t xi = (size_t)clamp<ssize_t>((ssize_t)floor(x), 0, mipmap.m_MapSize - 2);
-	const size_t zi = (size_t)clamp<ssize_t>((ssize_t)floor(z), 0, mipmap.m_MapSize - 2);
+	const size_t xi = static_cast<size_t>(Clamp<ssize_t>(floor(x), 0, mipmap.m_MapSize - 2));
+	const size_t zi = static_cast<size_t>(Clamp<ssize_t>(floor(z), 0, mipmap.m_MapSize - 2));
 
-	const float xf = clamp<float>(x-xi, 0.0f, 1.0f);
-	const float zf = clamp<float>(z-zi, 0.0f, 1.0f);
+	const float xf = Clamp<float>(x-xi, 0.0f, 1.0f);
+	const float zf = Clamp<float>(z-zi, 0.0f, 1.0f);
 
 	const float h00 = mipmap.m_Heightmap[zi*mipmap.m_MapSize + xi];
 	const float h01 = mipmap.m_Heightmap[(zi+1)*mipmap.m_MapSize + xi];
@@ -198,11 +198,11 @@ void CHeightMipmap::BilinearUpdate(SMipmap &out_mipmap, size_t mapSize, const u1
 				const float x = ((float)dstX / (float)out_mipmap.m_MapSize) * mapSize;
 				const float z = ((float)dstZ / (float)out_mipmap.m_MapSize) * mapSize;
 
-				const size_t srcX = clamp<size_t>((size_t)x, 0, mapSize - 2);
-				const size_t srcZ = clamp<size_t>((size_t)z, 0, mapSize - 2);
+				const size_t srcX = Clamp<size_t>(x, 0, mapSize - 2);
+				const size_t srcZ = Clamp<size_t>(z, 0, mapSize - 2);
 
-				const float fx = clamp<float>(x - srcX, 0.0f, 1.0f);
-				const float fz = clamp<float>(z - srcZ, 0.0f, 1.0f);
+				const float fx = Clamp<float>(x - srcX, 0.0f, 1.0f);
+				const float fz = Clamp<float>(z - srcZ, 0.0f, 1.0f);
 
 				const float h00 = ptr[srcX + 0 + srcZ * mapSize];
 				const float h10 = ptr[srcX + 1 + srcZ * mapSize];

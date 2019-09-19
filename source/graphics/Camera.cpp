@@ -231,8 +231,8 @@ CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const
 	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	if (gotWater)
 	{
-		waterPoint.X = clamp(waterPoint.X, 0.f, (float)((mapSize-1)*TERRAIN_TILE_SIZE));
-		waterPoint.Z = clamp(waterPoint.Z, 0.f, (float)((mapSize-1)*TERRAIN_TILE_SIZE));
+		waterPoint.X = Clamp(waterPoint.X, 0.f, static_cast<float>((mapSize - 1) * TERRAIN_TILE_SIZE));
+		waterPoint.Z = Clamp(waterPoint.Z, 0.f, static_cast<float>((mapSize - 1) * TERRAIN_TILE_SIZE));
 	}
 
 	if (gotTerrain)
@@ -309,8 +309,8 @@ CVector3D CCamera::GetFocus() const
 	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	if (gotWater)
 	{
-		waterPoint.X = clamp(waterPoint.X, 0.f, (float)((mapSize-1)*TERRAIN_TILE_SIZE));
-		waterPoint.Z = clamp(waterPoint.Z, 0.f, (float)((mapSize-1)*TERRAIN_TILE_SIZE));
+		waterPoint.X = Clamp(waterPoint.X, 0.f, static_cast<float>((mapSize - 1) * TERRAIN_TILE_SIZE));
+		waterPoint.Z = Clamp(waterPoint.Z, 0.f, static_cast<float>((mapSize - 1) * TERRAIN_TILE_SIZE));
 	}
 
 	if (gotTerrain)

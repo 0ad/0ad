@@ -173,11 +173,11 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 					else if (ae.Name == at_speed)
 						anim.m_Speed = ae.Value.ToInt() > 0 ? ae.Value.ToInt() / 100.f : 1.f;
 					else if (ae.Name == at_event)
-						anim.m_ActionPos = clamp(ae.Value.ToFloat(), 0.f, 1.f);
+						anim.m_ActionPos = Clamp(ae.Value.ToFloat(), 0.f, 1.f);
 					else if (ae.Name == at_load)
-						anim.m_ActionPos2 = clamp(ae.Value.ToFloat(), 0.f, 1.f);
+						anim.m_ActionPos2 = Clamp(ae.Value.ToFloat(), 0.f, 1.f);
 					else if (ae.Name == at_sound)
-						anim.m_SoundPos = clamp(ae.Value.ToFloat(), 0.f, 1.f);
+						anim.m_SoundPos = Clamp(ae.Value.ToFloat(), 0.f, 1.f);
 				}
 				currentVariant.m_Anims.push_back(anim);
 			}

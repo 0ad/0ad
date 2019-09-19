@@ -18,6 +18,8 @@
 #include "precompiled.h"
 
 #include "GUI.h"
+
+#include "gui/CGUI.h"
 #include "maths/MathUtil.h"
 
 IGUIScrollBar::IGUIScrollBar(CGUI& pGUI)
@@ -60,7 +62,7 @@ void IGUIScrollBar::SetupBarSize()
 		max = length;
 
 	// Clamp size to not exceed a minimum or maximum.
-	m_BarSize = clamp(length * std::min((float)m_ScrollSpace / (float)m_ScrollRange, 1.f), min, max);
+	m_BarSize = Clamp(length * std::min(m_ScrollSpace / m_ScrollRange, 1.f), min, max);
 }
 
 const SGUIScrollBarStyle* IGUIScrollBar::GetStyle() const

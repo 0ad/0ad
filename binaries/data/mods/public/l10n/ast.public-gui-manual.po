@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 14:19+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
+"POT-Creation-Date: 2019-09-16 07:10+0000\n"
+"PO-Revision-Date: 2019-09-16 15:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,96 +31,91 @@ msgid "View Online"
 msgstr "Ver na rede"
 
 #: gui/manual/intro.txt:1
-msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]Manual del xuegu 0 A.D."
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:2
-msgid "[font=\"sans-14\"]"
-msgstr "[font=\"sans-14\"]"
-
-#: gui/manual/intro.txt:3
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
 msgstr "¡Gracies por instalar 0 A.D.! Esta páxina va facer un resumín de les carauterístiques disponibles nesta versión alfa del xuegu, que sigue en desendolcu. "
 
-#: gui/manual/intro.txt:5
-msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr "[font=\"sans-bold-16\"]Axustes de los gráficos"
+#: gui/manual/intro.txt:4
+msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
+msgstr ""
 
-#: gui/manual/intro.txt:6
+#: gui/manual/intro.txt:5
 msgid ""
-"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
-"pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the options window: "
-"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr "[font=\"sans-14\"]Pues alternar ente'l mou pantalla completa y el mou ventana primiendo Alt + Intro. Nel mou ventana, pues cambiar el tamañu de la ventana. Si'l xuegu va demasiao amodo, pues cambiar dellos axustes na ventana d'opciones: prueba a desactivar les opciones «Efeutos del agua calidables» y «Solombres»."
+"You can switch between fullscreen and windowed mode by pressing Alt + Enter."
+" In windowed mode, you can resize the window. If the game runs too slowly, "
+"you can change some settings in the options window: try disabling the \"HQ "
+"Water Effects\" and \"Shadows\" options."
+msgstr ""
+
+#: gui/manual/intro.txt:7
+msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:8
-msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr "[font=\"sans-bold-16\"]Xugar al xuegu"
-
-#: gui/manual/intro.txt:9
 msgid ""
-"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
-" traditional RTS games. There are currently a lot of missing features and "
-"poorly-balanced stats – you will probably have to wait until a beta release "
-"for it to work well."
-msgstr "[font=\"sans-14\"]Los mandos y xugabilidá resultarán famliares al xugador de xuegos RTS tradicionales. Desta-y falten munches carauterístiques y les estadístiques tán mal equilibraes – tendrás d'esperar a que s'asoleye una versión beta pa que furrule a xeitu."
+"The controls and gameplay should be familiar to players of traditional real-"
+"time strategy (RTS) games. There are currently a lot of missing features and"
+" poorly-balanced stats – you will probably have to wait until a beta release"
+" for it to work well."
+msgstr ""
 
-#: gui/manual/intro.txt:11
+#: gui/manual/intro.txt:10
 msgid "Basic controls:"
 msgstr "Mandos básicos:"
 
+#: gui/manual/intro.txt:11
+msgid "• Left-click to select units"
+msgstr ""
+
 #: gui/manual/intro.txt:12
-msgid "• Left-click to select units."
-msgstr "• Calca col botón esquierdu pa esbillar unidaes."
+msgid "• Left-click-and-drag to select groups of units"
+msgstr ""
 
 #: gui/manual/intro.txt:13
-msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Calca col botón esquierdu y arrastra pa esbillar cuelmos d'unidaes."
+msgid "• Right-click to order units to the target"
+msgstr ""
 
 #: gui/manual/intro.txt:14
-msgid "• Right-click to order units to the target."
-msgstr "• Calca col botón derechu pa mandar unidaes al oxetivu."
+msgid "• Arrow keys or WASD keys to move the camera"
+msgstr ""
 
 #: gui/manual/intro.txt:15
-msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• Les fleches o les tecles WASD pa mover la cámara."
+msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
+msgstr ""
 
 #: gui/manual/intro.txt:16
-msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + les fleches o Mayús + la rueda'l mur pa rodar la cámara."
+msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
+msgstr ""
 
-#: gui/manual/intro.txt:17
-msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• La rueda'l mur o les tecles «+» y «-» p'averar y allonxar."
+#: gui/manual/intro.txt:18
+msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:19
-msgid "[font=\"sans-bold-16\"]Modes"
-msgstr "[font=\"sans-bold-16\"]Moos"
+msgid "The main menu gives access to two game modes:"
+msgstr ""
 
 #: gui/manual/intro.txt:20
-msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]El menú principal ufre dos moos del xuegu:"
-
-#: gui/manual/intro.txt:22
 msgid ""
 "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
-"game or against one or more AI opponents. The AI/AIs are under development "
-"and may not always be up to date on the new features, but you can test "
-"playing the game against an actual opponent if you aren't able to play with "
-"a human."
-msgstr "• [font=\"sans-bold-14\"]Un xugador[font=\"sans-14\"] – xuega una partida pacífica o escontra un oponente d'IA o más. Les IAs siguen en desendolcu y nun tarán siempres anovaes coles carauterístiques caberes, pero pues probar a xugar escontra un oponente de verdá si nun tienes naide col que xugar. "
+"game or against one or more computer players (AI). The default AI (Petra) is"
+" under development and may not always be up to date on the new features, but"
+" you can play the game with or against it nonetheless."
+msgstr ""
 
-#: gui/manual/intro.txt:24
+#: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
 msgstr "• [font=\"sans-bold-14\"]Multixugador[font=\"sans-14\"] – xuega escontra otra xente pela rede. "
 
-#: gui/manual/intro.txt:26
+#: gui/manual/intro.txt:23
 msgid ""
 "To set up a multiplayer game, one player must select the \"Host game\" "
 "option. The game uses UDP port 20595, so the host must configure their "
@@ -128,39 +123,37 @@ msgid ""
 "and enter the host's IP address."
 msgstr "Pa entamar una partida multixugador, daqué xugador tien d'esbillar la opción «Agospiar partida». La partida emplega'l puertu UDP 20595, asina que l'agospiu ha configurar el tornafuéu pa permitilu. Darréu, otros xugadores puen esbillar «Xunise a la partida» y introducir les señes IP del agospiu."
 
+#: gui/manual/intro.txt:25
+msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:26
+msgid "In a multiplayer game, only the host can alter the game setup options."
+msgstr ""
+
 #: gui/manual/intro.txt:28
-msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr "[font=\"sans-bold-16\"]Configuración de partíes."
-
-#: gui/manual/intro.txt:29
-msgid ""
-"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
-"setup options."
-msgstr "[font=\"sans-14\"]Nes partíes multixugador, namái l'agospiu pue camudar les opciones de configuración de partida."
-
-#: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
 msgstr "De mano, esbilla qué tipu de mapa quies xugar:"
 
-#: gui/manual/intro.txt:32
+#: gui/manual/intro.txt:29
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
 msgstr "• [font=\"sans-bold-14\"]Mapa al debalu[font=\"sans-14\"] – Un mapa criáu automáticamente a partir d'un script "
 
-#: gui/manual/intro.txt:33
+#: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
 msgstr "• [font=\"sans-bold-14\"]Mapa d'escenariu[font=\"sans-14\"] – Un mapa criáu por diseñadores de mapes y con civilizaciones fixes. "
 
-#: gui/manual/intro.txt:34
+#: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
 msgstr "• [font=\"sans-bold-14\"]Mapa d'amarradiella[font=\"sans-14\"] – Un mapa criáu por diseñadores de mapes onde les civilizaciones puen escoyese. "
 
-#: gui/manual/intro.txt:36
+#: gui/manual/intro.txt:33
 msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
@@ -169,7 +162,7 @@ msgid ""
 "list."
 msgstr "Llueu los mapes puen peñerase más. Los mapes por defeutu suelen ser xugables. Los mapes navales son mapes u non tolos oponentes puen algamase per tierra y los mapes de demostranza empléguense pa facer pruebes (polo xeneral nun val xugar nellos). La peñera «tolos mapes» amuesa'l conxuntu de los mapes nuna llista."
 
-#: gui/manual/intro.txt:38
+#: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
@@ -178,514 +171,538 @@ msgid ""
 " be idle)."
 msgstr "Finalmente cambia los axustes. Nos mapes al debalu estos inclúin el númberu de xugadores, el tamañu del mapa, etc. Nos escenarios pues escoyer namái quién remana qué xugador, (determina ónde entames en mapa, etc.). Les opciones son un xugador humanu, una IA o nengún xugador (l'oponente va quedar baleru)."
 
-#: gui/manual/intro.txt:40
+#: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the \"Start game\" button."
 msgstr "Cuando tas preparáu pa entamar, calca nel botón «Entamar partida»."
 
+#: gui/manual/intro.txt:39
+msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:40
+msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:41
+msgid ""
+"  Alt + F4 – Immediately close the game, without asking for confirmation"
+msgstr ""
+
 #: gui/manual/intro.txt:42
-msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr "[font=\"sans-bold-16\"]Atayos del tecláu:"
+msgid "  Alt + Enter – Toggle between fullscreen and windowed"
+msgstr ""
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr "[font=\"sans-bold-14\"]En tol programa"
+msgid "  ~ or F9 – Show/hide console"
+msgstr ""
 
 #: gui/manual/intro.txt:44
-msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: Zarrar la partida, ensin confirmanza"
+msgid "  Alt + F – Show/hide frame counter (FPS)"
+msgstr ""
 
 #: gui/manual/intro.txt:45
-msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Intro: Alternar ente la pantalla completa y la ventana"
+msgid ""
+"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"information)"
+msgstr ""
 
 #: gui/manual/intro.txt:46
-msgid "~ or F9: Show/hide console"
-msgstr "~ o F9: Amosar/anubrir la consola"
+msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
+msgstr ""
 
 #: gui/manual/intro.txt:47
-msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: Amosar/anubrir el cuntador de cuadros (FPS)"
+msgid ""
+"  F2 – Take screenshot (in .png format, location is displayed in the top "
+"left of the GUI after the file has been saved, and can also be seen in the "
+"console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:48
 msgid ""
-"F11: Enable/disable real-time profiler (toggles through the displays of "
-"information)"
-msgstr "F11: Activar/desactivar el perfilador en tiempu real, (navega pente les amosances d'información)"
+"  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
+"location is displayed in the top left of the GUI after the file has been "
+"saved, and can also be seen in the console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:49
-msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Mayús + F11: Guardar los datos actuales del perfilador en «logs/profile.txt»"
+msgid "  Tab, Alt + S – Switch to the next tab"
+msgstr ""
 
 #: gui/manual/intro.txt:50
-msgid ""
-"F2: Take screenshot (in .png format, location is displayed in the top left "
-"of the GUI after the file has been saved, and can also be seen in the "
-"console/logs if you miss it there)"
-msgstr "F2: Facer una semeya de la pantalla (en formatu .png. L'allugamientu amuésase na parte cimera esquierda de la GUI en guardándose'l ficheru y tamién pue vese na consola/rexistros si nun lu atopes ende)"
-
-#: gui/manual/intro.txt:51
-msgid ""
-"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
-" is displayed in the top left of the GUI after the file has been saved, and "
-"can also be seen in the console/logs if you miss it there)"
-msgstr "Mayús + F2: Facer una semeyona de la pantalla (6400px por 4800px, en formatu .bmp. L'allugamientu amuésase na parte cimera esquierda de la GUI en guardándose'l ficheru y tamién pue vese na consola/rexistros si nun lu atopes ende)"
+msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
+msgstr ""
 
 #: gui/manual/intro.txt:52
-msgid "Tab, Alt + S: Switch to the next tab."
-msgstr "Tabulador, Alt + S: Cambiar a la llingüeta siguiente."
+msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:53
-msgid "Shift + Tab, Alt + W: Switch to the previous tab."
-msgstr "Mayús + Tabulador, Alt + W: Cambiar a la llingüeta anterior."
+msgid ""
+"  Double Left Click \\[on unit] – Select all of your units of the same kind "
+"on the screen (even if they're different ranks)"
+msgstr ""
+
+#: gui/manual/intro.txt:54
+msgid ""
+"  Triple Left Click \\[on unit] – Select all of your units of the same kind "
+"and the same rank on the screen"
+msgstr ""
 
 #: gui/manual/intro.txt:55
-msgid "[font=\"sans-bold-14\"]In Game"
-msgstr "[font=\"sans-bold-14\"]En xuegu"
+msgid ""
+"  Alt + Double Left Click \\[on unit] – Select all your units of the same "
+"kind on the entire map (even if they have different ranks)"
+msgstr ""
 
 #: gui/manual/intro.txt:56
 msgid ""
-"[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
-" the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Clic esquierdu doble \\[nuna unidá]: Esbillar toles unidaes de la mesma triba na pantalla (inda que tengan rangos estremaos)"
+"  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
+"kind and rank on the entire map"
+msgstr ""
 
 #: gui/manual/intro.txt:57
-msgid ""
-"Triple Left Click \\[on unit]: Select all of your units of the same kind and"
-" the same rank on the screen"
-msgstr "Clic esquierdu triple \\[nuna unidá]: Esbillar toles unidaes de la mesma triba y el mesmu rangu na pantalla"
+msgid "  Shift + F5 – Quicksave"
+msgstr ""
 
 #: gui/manual/intro.txt:58
-msgid ""
-"Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
-"on the entire map (even if they have different ranks)"
-msgstr "Alt + Clic esquierdu doble \\[n'unidá]: Esbillar toles unidaes de la mesma triba a lo llargo del mapa (inda que tengan rangos estremaos)"
+msgid "  Shift + F8 – Quickload"
+msgstr ""
 
 #: gui/manual/intro.txt:59
-msgid ""
-"Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
-"and rank on the entire map"
-msgstr "Alt + Clic esquierdu triple \\[n'unidá]: Esbillar toles unidaes de la mesma triba y rangu a lo llargo del mapa"
+msgid "  F10 – Open/close menu"
+msgstr ""
 
 #: gui/manual/intro.txt:60
-msgid "Shift + F5: Quicksave"
-msgstr "Mayús + F5: Guardáu rápidu"
+msgid "  F12 – Show/hide time elapsed counter"
+msgstr ""
 
 #: gui/manual/intro.txt:61
-msgid "Shift + F8: Quickload"
-msgstr "Mayús + F8: Carga rápida"
+msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:62
-msgid "F10: Open/close menu"
-msgstr "F10: Abrir/zarrar el menú"
+msgid "  Enter/Return – Open/send chat"
+msgstr ""
 
 #: gui/manual/intro.txt:63
-msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: Amosar/anubrir el cuntador del tiempu trescurrío"
+msgid "  T – Send team chat"
+msgstr ""
 
 #: gui/manual/intro.txt:64
-msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: Zarrar tolos diálogos (charra, menú) o llimpiar la esbilla d'unidaes"
+msgid "  L – Chat with the previously selected private chat partner"
+msgstr ""
 
 #: gui/manual/intro.txt:65
-msgid "Enter/return: Open/send chat"
-msgstr "Intro/tornar: Abrir/unviar mensaxe de charra"
+msgid "  Pause – Pause/resume the game"
+msgstr ""
 
 #: gui/manual/intro.txt:66
-msgid "T: Send team chat"
-msgstr "T: Unviar mensaxe de charra al equipu"
+msgid ""
+"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:67
-msgid "L: Chat with the previously selected private chat partner"
-msgstr "L: Charrar en privao col contautu esbilláu previamente"
+msgid ""
+"  Shift + Delete – Immediately delete currently selected "
+"unit(s)/building(s), without asking for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:68
-msgid "Pause: Pause/resume the game"
-msgstr "Posa: Posar/siguir cola partida"
+msgid "  / (Slash) – Select idle fighter"
+msgstr ""
 
 #: gui/manual/intro.txt:69
-msgid "Delete: Delete currently selected units/buildings"
-msgstr "Desaniciar: Desaniciar unidaes/construcciones esbillaes"
+msgid "  Shift + / (Slash) – Add idle fighter to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:70
-msgid ""
-"Shift + Delete: Delete currently selected units/buildings without "
-"confirmation"
-msgstr "Mayús + Desaniciar: Desaniciar unidaes/construcciones esbillaes ensin confirmanza"
+msgid "  Alt + / (Slash) – Select all idle fighters"
+msgstr ""
 
 #: gui/manual/intro.txt:71
-msgid "/ (Slash): Select idle fighter"
-msgstr "/ (Barra): Esbillar combatiente baleru"
+msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:72
-msgid "Shift + /: Add idle fighter to selection"
-msgstr "Mayús + /: Amestar combatiente baleru a esbilla"
+msgid ""
+"  Shift + . (Period) – Add idle worker to selection (including citizen-"
+"soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:73
-msgid "Alt + /: Select all idle fighters"
-msgstr "Alt + /: Esbillar tolos combatientes baleros"
+msgid ""
+"  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:74
-msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ". (Puntu): Esbillar trabayador baleru (incluyíos milicianos populares)"
+msgid "  \\\\ (Backslash) – Select idle unit"
+msgstr ""
 
 #: gui/manual/intro.txt:75
-msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr "Mayús + .: Amestar trabayador baleru a esbilla (incluyíos milicianos populares)"
+msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:76
-msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt + .: Esbillar tolos trabayadores baleros (incluyíos milicianos populares)"
+msgid "  Alt + \\\\ (Backslash) – Select all idle units"
+msgstr ""
 
 #: gui/manual/intro.txt:77
-msgid "\\ (Backslash): Select idle unit"
-msgstr "\\ (Barra invertida): Esbillar unidá balera"
+msgid "  H – Stop (halt) the currently selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:78
-msgid "Shift + \\: Add idle unit to selection"
-msgstr "Mayús + \\: Amestar unidá balera a esbilla"
+msgid "  Y – The unit will go back to work"
+msgstr ""
 
 #: gui/manual/intro.txt:79
-msgid "Alt + \\: Select all idle units"
-msgstr "Alt + \\: Esbillar toles unidaes baleres"
+msgid "  U – Unload the garrisoned units of the selected buildings"
+msgstr ""
 
 #: gui/manual/intro.txt:80
-msgid "H: Stop (halt) the currently selected units."
-msgstr "H: Parar les unidaes esbillaes."
+msgid ""
+"  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
+"the selected unit(s)/building(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:81
-msgid "Y: The unit will go back to work"
-msgstr "Y: La unidá va volver al trabayu"
+msgid ""
+"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
+"0)"
+msgstr ""
 
 #: gui/manual/intro.txt:82
-msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr "U: Sacar les unidaes guarecíes de les construcciones esbillaes"
+msgid ""
+"  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
+"units/buildings"
+msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid ""
-"Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
-"selected units/buildings"
-msgstr "Ctrl + 1 (etcétera fasta Ctrl + 0): Criar grupu control 1 (fasta 0) de les unidaes/construcciones esbillaes"
+"  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
+"jumping back to later"
+msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid ""
-"1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (etcétera fasta 0): Esbillar les unidaes/construcciones del grupu control 1 (fasta 0)"
+"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
+"the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
-"Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Mayús + 1 (fasta 0): Amestar grupu control 1 (fasta 0) a les unidaes/construcciones esbillaes"
+"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected buildings"
+msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
-"jumping back to later."
-msgstr "Ctrl + F5 (etcétera fasta F8): Conseñar l'allugamientu de la cámara, pa volver equí más tarde."
+"  PageUp with units selected – Highlights the units/buildings guarded by the"
+" selection"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
-"last location if the camera is already over the marked position."
-msgstr "F5, F6, F7 y F8: Mover la cámara a un allugamientu conseñáu. Volver al allugamientu últimu si la cámara yá ta enriba del allugamientu conseñáu."
+"  PageDown with units/buildings selected – Highlights the units guarding the"
+" selection"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
-"unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Con construcciones d'allistamientu esbillaes. Amestar la 1a, 2a, … unidá amosada a la cola d'allistamientu de toles construcciones esbillaes. "
+"  Tab – See all status bars (which would also show the building progress)"
+msgstr ""
 
 #: gui/manual/intro.txt:89
-msgid ""
-"PageUp with units selected: Highlights the units/buildings guarded by the "
-"selection."
-msgstr "PáxAr con unidaes esbillaes: Resaltar les unidaes/construcciones protexíes pola esbilla."
+msgid "  Ctrl + Tab – Toggle summary window"
+msgstr ""
 
 #: gui/manual/intro.txt:90
-msgid ""
-"PageDown with units/buildings selected: Highlights the units guarding the "
-"selection."
-msgstr "PáxAb con unidaes/construcciones esbillaes: Resaltar les unidaes que protexen la esbilla."
+msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
+msgstr ""
 
 #: gui/manual/intro.txt:91
-msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr "Tabulador: Ver toles barres d'estáu (que tamién amosaría'l progresu de construcción)"
+msgid "  Ctrl + H – Toggle in-game diplomacy panel"
+msgstr ""
 
 #: gui/manual/intro.txt:92
-msgid "Ctrl + Tab: Toggle summary window."
-msgstr "Ctrl + Tabulador: Activar/desactivar ventana de resume."
+msgid "  Ctrl + B – Toggle in-game barter and trade panel"
+msgstr ""
 
 #: gui/manual/intro.txt:93
-msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr "Alt + L: Amosar la sala multixugador nun ventanu de diálogu."
+msgid "  Ctrl + O – Toggle in-game objectives panel"
+msgstr ""
 
 #: gui/manual/intro.txt:94
-msgid "Ctrl + H: Toggle in-game diplomacy page."
+msgid "  Ctrl + P – Toggle in-game tutorial panel"
 msgstr ""
 
 #: gui/manual/intro.txt:95
-msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr "Ctrl + B: Activar/desactivar páxina de troqueos/cambeos en xuegu."
-
-#: gui/manual/intro.txt:96
-msgid "Ctrl + O: Toggle in-game objectives page."
+msgid "  Alt + Shift + T – Toggle structure tree panel"
 msgstr ""
 
-#: gui/manual/intro.txt:97
-msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr "Ctrl + P: Activar/desactivar panel de tutorial en xuegu."
+#: gui/manual/intro.txt:96
+msgid "  Alt + Shift + H – Toggle civilization info panel"
+msgstr ""
 
 #: gui/manual/intro.txt:98
-msgid "Alt + Shift + T: Toggle structure tree."
-msgstr "Alt + Mayús + T: Activar/desactivar árbole de construcciones."
+msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:99
-msgid "Alt + Shift + H: Toggle civilization info."
-msgstr "Alt + Mayús + H: Activar/desactivar información sobro civilizaciones."
+msgid "  Ctrl + Right Click on building – Garrison"
+msgstr ""
+
+#: gui/manual/intro.txt:100
+msgid "  J + Right Click on building – Repair"
+msgstr ""
 
 #: gui/manual/intro.txt:101
-msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]Camudar aición del mur"
+msgid "  P + Right Click – Patrol"
+msgstr ""
 
 #: gui/manual/intro.txt:102
-msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + Clic drechu en construcción: Guarecer"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
-msgid "J + Right Click on building: Repair"
-msgstr "J + Clic drechu en construcción: Iguar"
+msgid ""
+"  Alt + Right Click – Order one unit from the current selection to "
+"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"specific tasks"
+msgstr ""
 
 #: gui/manual/intro.txt:104
-msgid "P + Right Click: Patrol"
-msgstr "P + Clic drechu: Roldar"
+msgid ""
+"  Shift + Left Click when training units – Add units in batches (the batch "
+"size is 5 by default and can be changed in the options)"
+msgstr ""
 
 #: gui/manual/intro.txt:105
-msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Mayús + Clic drechu: Poner orde de movimientu/construcción/recueya/etc. na cola"
+msgid ""
+"  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:106
 msgid ""
-"Alt + Right Click: Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
-"specific tasks."
-msgstr "Alt + Clic drechu: Ordenar a una unidá de la esbilla movese/construyir/recoyer/etc. y quitala de la esbilla. Emplégase pa rápidamente despachar unidaes con xeres concretes."
+"  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
+"selection"
+msgstr ""
 
 #: gui/manual/intro.txt:107
-msgid ""
-"Shift + Left Click when training units: Add units in batches (the batch size"
-" is 5 by default and can be changed in the options)"
-msgstr "Mayús + Clic esquierdu al allistar unidaes: Amestar unidaes en conxuntos (el tamañu de los conxuntos ye por defeutu 5 y pue camudase nes opciones)"
+msgid "  Alt + Left Drag over units on map – Only select military units"
+msgstr ""
 
 #: gui/manual/intro.txt:108
 msgid ""
-"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Mayús + Clic esquierdu o Clic esquierdu + Arrastrar sobro unidá en mapa: Amestar unidá a esbilla"
+"  Alt + Y + Left Drag over units on map – Only select non-military units"
+msgstr ""
 
 #: gui/manual/intro.txt:109
-msgid ""
-"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Clic esquierdu o Clic esquierdu + Arrastrar sobro unidá en mapa: Quitar unidá d'esbilla"
+msgid "  I + Left Drag over units on map – Only select idle units"
+msgstr ""
 
 #: gui/manual/intro.txt:110
-msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + Clic esquierdu + Arrastrar sobro unidaes en mapa: Esbillar namái unidaes militares"
+msgid "  O + Left Drag over units on map – Only select wounded units"
+msgstr ""
 
 #: gui/manual/intro.txt:111
-msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr "Alt + Y + Clic esquierdu + Arrastar sobro unidaes en mapa: Esbillar namái unidaes civiles"
+msgid ""
+"  Ctrl + Left Click on unit/group icon with multiple units selected – "
+"Deselect"
+msgstr ""
 
 #: gui/manual/intro.txt:112
-msgid "I + Left Drag over units on map: Only select idle units"
-msgstr "I + Clic esquierdu + Arrastrar sobro unidaes en mapa: Esbillar namái unidaes baleres"
+msgid ""
+"  Right Click with a building(s) selected – sets a rally point for units "
+"created/ungarrisoned from that building"
+msgstr ""
 
 #: gui/manual/intro.txt:113
-msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr "O + Clic esquierdu + Arrastrar sobro unidaes en mapa: Esbillar namái unidaes mancaes"
+msgid "  Ctrl + Right Click with unit(s) selected:"
+msgstr ""
 
 #: gui/manual/intro.txt:114
-msgid ""
-"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + Clic esquierdu n'iconu unidá/grupu con múltiples unidaes esbillaes: Quitar de la esbilla"
+msgid "    • If the cursor is over an own or allied structure – Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:115
 msgid ""
-"Right Click with a building/buildings selected: sets a rally point for units"
-" created/ungarrisoned from that building."
-msgstr "Clic drechu con una construcción/-es esbillada/-aes: Afitar un puntu d'alcuentru pa unidaes criaes/sacaes d'esa construcción."
+"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"capture or gather)"
+msgstr ""
 
 #: gui/manual/intro.txt:116
-msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + Clic drechu con unidaes esbillaes:"
+msgid ""
+"    • Otherwise – Attack move (by default all enemy units and structures "
+"along the way are targeted)"
+msgstr ""
 
 #: gui/manual/intro.txt:117
-msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr " • Si'l cursor ta enriba d'una construcción aliada: Guarecese"
-
-#: gui/manual/intro.txt:118
 msgid ""
-"  • If the cursor is over a non-allied unit or building: Attack (instead of "
-"capture or gather)"
-msgstr " • Si'l cursor ta enriba d'una unidá o construcción non aliada: Atacar (en cuenta de prindar o recoyer)"
+"  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units "
+"along the way are targeted"
+msgstr ""
 
 #: gui/manual/intro.txt:119
-msgid ""
-"  • Otherwise: Attack move (by default all enemy units and structures along "
-"the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr "• Otramiente: Movese atacando (por defeutu, toles unidaes y construcciones enemigues a lo llargo del camín se fixen como oxetivos, emplega Ctrl + Q + Clic drechu pa fixar namái a les unidaes). "
+msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:120
+msgid "  Alt + G – Hide/show the GUI"
+msgstr ""
 
 #: gui/manual/intro.txt:121
-msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr "[font=\"sans-bold-14\"]Sobrecapes"
+msgid "  Alt + D – Show/hide developer overlay (with developer options)"
+msgstr ""
 
 #: gui/manual/intro.txt:122
-msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"sans-14\"]Alt + G: Anubrir/amosar la GUI"
-
-#: gui/manual/intro.txt:123
-msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Amosar/anubrir sobrecapa desendolcadora, (con opciones desendolcadores)"
-
-#: gui/manual/intro.txt:124
 msgid ""
-"Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
+"  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "Alt + Mayús + W: Activar/desactivar el mou wireframe (primi una vegada pa sobreponer cadarmes nos modelos con testura, dos vegaes pa quedar con namái les cadarmes pintaes coles testures, tres vegaes pa volver al mou normal)"
+msgstr ""
+
+#: gui/manual/intro.txt:123
+msgid ""
+"  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
+"boost)"
+msgstr ""
+
+#: gui/manual/intro.txt:124
+msgid "  Alt + Z – Toggle sky"
+msgstr ""
 
 #: gui/manual/intro.txt:125
-msgid ""
-"Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
-"boost)"
-msgstr "Alt + Mayús + S: Activar/desactivar contornos de les unidaes (quiciabes dea dello más de rindimientu)"
+msgid "  Alt + X – Toggle diplomacy colors"
+msgstr ""
 
 #: gui/manual/intro.txt:126
-msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Activar/desactivar cielu"
+msgid ""
+"  Alt + C – Toggle attack range visualizations of selected units and "
+"structures"
+msgstr ""
 
 #: gui/manual/intro.txt:127
-msgid "Alt + X: Toggle diplomacy colors"
-msgstr "Alt + X: Activar/desactivar colores diplomátiques"
+msgid ""
+"  Alt + V – Toggle aura range visualizations of selected units and "
+"structures"
+msgstr ""
 
 #: gui/manual/intro.txt:128
-msgid ""
-"Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr "Alt + C: Activar/desactivar visualizaciones del algame ataque de les construcciones de defensa esbillaes"
-
-#: gui/manual/intro.txt:129
-msgid ""
-"Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr "Alt + V: Activar/desactivar visualizaciones del algame aura de les unidaes y construcciones esbillaes"
+msgid "  Alt + B – Toggle heal range visualizations of selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:130
-msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr "Alt + B: Activar/desactivar visualizaciones del algame curamientu de les unidaes esbillaes"
+msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:131
+msgid "  W or ↑ (Up) – Pan screen up"
+msgstr ""
 
 #: gui/manual/intro.txt:132
-msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]Remanamientu la cámara"
+msgid "  S or ↓ (Down) – Pan screen down"
+msgstr ""
 
 #: gui/manual/intro.txt:133
-msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr "[font=\"sans-14\"]W o \\[p'arriba]: Mover vista p'arriba"
+msgid "  A or ← (Left) – Pan screen left"
+msgstr ""
 
 #: gui/manual/intro.txt:134
-msgid "S or \\[down]: Pan screen down"
-msgstr "S o \\[p'abaxo]: Mover vista p'abaxo"
+msgid "  D or → (Right) – Pan screen right"
+msgstr ""
 
 #: gui/manual/intro.txt:135
-msgid "A or \\[left]: Pan screen left"
-msgstr "A o \\[a la esquierda]: Mover vista a la manzorga"
+msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
+msgstr ""
 
 #: gui/manual/intro.txt:136
-msgid "D or \\[right]: Pan screen right"
-msgstr "D o \\[a la drecha]: Mover vista a la mandrecha"
+msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
+msgstr ""
 
 #: gui/manual/intro.txt:137
-msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr "Ctrl + W o \\[p'arriba]: Rodar cámara pa mirar escontra arriba"
+msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr "Ctrl + S o \\[p'abaxo]: Rodar cámara pa mirar escontra abaxo"
+msgid ""
+"  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:139
-msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A o \\[a la esquierda]: Rodar cámara en sen horariu alredor del tarrén"
+msgid "  Q – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:140
-msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr "Ctrl + D o \\[a la drecha]: Rodar cámara en sen antihorariu alredor del tarrén"
+msgid "  E – Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:141
-msgid "Q: Rotate camera clockwise around terrain"
-msgstr "Q: Rodar cámara en sen horariu alredor del tarrén"
+msgid ""
+"  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:142
-msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr "E: Rodar cámara en sen antihorariu alredor del tarrén"
+msgid ""
+"  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:143
-msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr "Mayús + Rueda'l mur rodala p'arriba: Rodar cámara en sen horariu alredor del tarrén"
+msgid ""
+"  F – Follow the selected unit (move the camera to stop following the unit)"
+msgstr ""
 
 #: gui/manual/intro.txt:144
-msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
-"terrain"
-msgstr "Mayús + Rueda'l mur rodala p'abaxo: Rodar cámara en sen antihorariu alredor del tarrén "
+msgid "  R – Reset camera zoom/orientation"
+msgstr ""
 
 #: gui/manual/intro.txt:145
-msgid ""
-"F: Follow the selected unit (move the camera to stop it from following the "
-"unit)"
-msgstr "F: Siguir la unidá esbillada (movi la cámara pa torgar que siga la unidá)"
+msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:146
-msgid "R: Reset camera zoom/orientation"
-msgstr "R: Reafitar la orientación/averamientu la cámara"
+msgid ""
+"  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:147
-msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr "= o +: Averar (caltén primíu p'averar de contino)"
-
-#: gui/manual/intro.txt:148
-msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr "-: Allonxar (caltén primíu p'allonxar de contino)"
+msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
+msgstr ""
 
 #: gui/manual/intro.txt:149
-msgid "Alt + W: Toggle through wireframe modes"
-msgstr "Alt + W: Alternar ente los moos wireframe"
+msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:150
-msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr "Botón mediu'l mur: Caltén calcáu y movi'l mur pa treslladar la vista la cámara."
+msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
+msgstr ""
+
+#: gui/manual/intro.txt:151
+msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:152
-msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr "[font=\"sans-bold-14\"]Nel allugamientu de construcciones"
-
-#: gui/manual/intro.txt:153
-msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"sans-14\"]\\[: Rodar construcción 15 graos en sen antihorariu"
+msgid ""
+"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"mouse release)"
+msgstr ""
 
 #: gui/manual/intro.txt:154
-msgid "]: Rotate building 15 degrees clockwise"
-msgstr "]: Rodar construcción 15 graos en sen horariu"
+msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:155
-msgid ""
-"Left Drag: Rotate building using mouse (foundation will be placed on mouse "
-"release)"
-msgstr "Clic esquierdu + Arrastrar: Rodar construcción col mur (les murueques van ponese en soltando'l mur)"
+msgid "  Esc – Cancel"
+msgstr ""
+
+#: gui/manual/intro.txt:156
+msgid "  Delete – Delete the selected saved game, ask for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:157
-msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr "[font=\"sans-bold-14\"]Al cargar una partida guardada"
-
-#: gui/manual/intro.txt:158
 msgid ""
-"[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr "[font=\"sans-14\"]Desaniciar: desaniciar la partida guardada esbillada pidiendo confirmanza"
-
-#: gui/manual/intro.txt:159
-msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr "Mayús: nun pidir confirmanza al desaniciar una partida guardada"
+"  Shift + Delete – Immediately delete the selected saved game, without "
+"asking for confirmation"
+msgstr ""

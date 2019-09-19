@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 16:16+0000\n"
+"POT-Creation-Date: 2019-09-16 07:11+0000\n"
+"PO-Revision-Date: 2019-09-16 17:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,7 @@ msgid "Patriotism"
 msgstr "Abertzaletasuna"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
 msgstr ""
 
@@ -511,32 +512,32 @@ msgid "Formation Reforms"
 msgstr "Formazio berrikuntzak"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "All soldiers in his formation +15% speed and +3 armor."
-msgstr "Formazio honetako gudari guztiek abiaduraren +%15+ irabaziko dute eta babesaren 3+."
+msgid "Soldiers in his formation +3 armor, +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
 msgstr "Peltasta berrikuntzak"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
-msgid "All javelin infantry +15% speed."
-msgstr "Xabalina infanteria guztiak abiaduraren %15+ irabaziko du. "
+msgid "Infantry Javelinists +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
 msgstr "Periclesen Eraikitze Programa"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "+15% build and repair rate for workers."
-msgstr "%15+ eraikitze eta konpontze erritmoan langileentzat."
+msgid "Workers +15% build rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
 msgstr "Atenea Nikeren Tenplua"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
-msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr "% 25- harri kostuan eta +2 babesean tenpluentzako."
+msgid "Temples −25% stone cost, +2 garrisoned heal rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -544,33 +545,35 @@ msgstr "Ontzi-komandantea"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
-"When garrisoned in a ship, the ship is +50% faster and trains batches of "
-"units faster."
-msgstr "Itsasontzi batean babestean itsasontzi hau %50+ azkarragoa izango da eta unitateak azkarrago entrenatzen ditu."
+"When garrisoned, the Ship has −30% batch training time and +50% movement "
+"speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
 msgstr "Itsasontzi Arkitektoa"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
-msgid "-20% build time and -50% metal cost for ships during his lifespan."
-msgstr "%20- eraikitzean eta %50- metal kostuan itsasontzientzako bere bizitzan zehar."
+msgid "Ships −50% metal cost, −20% construction time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
 msgstr "Armada Aldezkaria"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
-msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr "%20+ erasoan. 2+ atzematean eta %10+ abiaduran unitate txapeldunentzat."
+msgid ""
+"Champions +2 capture attack strength, +20% melee and ranged attack damage, "
+"+10% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
 msgstr "Gerrillari Nagusia "
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-msgid "All soldiers and siege engines +15% speed and +1 armor."
-msgstr "Gudari eta setio makina guztiek abiaduraren %15+ irabaziko dute eta 1+ armaduran."
+msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -578,24 +581,24 @@ msgstr "Britannorum Rex"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
-msgid "+0.8 HP per second healing rate."
-msgstr "0.8HP+ segundoko sendatze tasan."
+msgid "Humans +0.8 health regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Tximistaren Jenerala."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
-msgid "Nearby soldiers and siege engines +15% speed."
-msgstr "Gertuko gudari eta setio makinek abiaduraren %15+ irabaziko dute."
+msgid "Soldiers and Siege Engines +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
 msgstr "Saripekoak menperatzea"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
-msgid "-20% attack for enemy mercenaries."
-msgstr "%20- erasoan etsaien soldatapekoentzat."
+msgid "Enemy Mercenaries −20% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -603,40 +606,39 @@ msgstr "Taktika"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
-"+20% attack and +1 capture for nearby allied soldiers and siege engines."
-msgstr "%20+ erasoan eta +1 atzematean gertuko gudari aliatuentzat eta setio makinentzat."
+"Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
+"melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
 msgstr "Zalditeria Komandantea"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+30% attack for cavalry melee soldiers."
-msgstr "%30+ erasoan buruz-buruko zalditeria soldaduentzako."
+msgid "Melee Cavalry +30% melee attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
 msgstr "Erromako Lapurra"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
-msgid "+15 Metal loot for every enemy unit killed."
-msgstr "+15 eko metal harrapakina hildako etsai bakoitzeko."
+msgid "Humans, Siege Engines, and Ships gain +15 metal loot."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Guda Jauntxo Zelta"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
-msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr "%20+ erasoan eta +1 atzematean gudari eta setio makinentzat."
+msgid ""
+"Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
+" attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
 msgstr "Gerraren Prestakuntzak"
-
-#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Baliabideen biltze abiadura %15+ igoko da bere bizitzan zehar."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -644,49 +646,45 @@ msgstr "Babes Pizgarria"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
-"When garrisoned in a structure or a siege engine, the hero gives it a bonus "
-"of +2 capture points recovery rate."
-msgstr "Eraikin edo setio makina batean babestean heroiak honen defendatzaileak sarituko ditu +2 ko abiadurarekin eraikin atzemate berreskuratzean. "
+"When garrisoned, the Structure or Siege Engine has +2 capture points "
+"garrison regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
 msgstr "Valiant Defendatzailea"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
-msgid ""
-"75% more arrows per soldier for the building or siege tower he is garrisoned"
-" in."
-msgstr "%75 gezi gehiago soldadu bakoitzeko gordeta dagoen eraikin edo setio dorrearentzako."
+msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
 msgstr "Borrokaren Beroa"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
-msgid "+1 armor for soldiers."
-msgstr "+1 soldaduentzako armaduran."
+msgid "Soldiers +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
 msgstr "Mobilizazioa"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
-msgid "-20% training time and -15% resources cost for soldiers."
-msgstr "%20- entrenatze denboran eta %15- soldaduentzako baliabideen kostuan."
+msgid "Soldiers −15% resources costs, −20% training time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
-msgid "+20% movement speed for soldiers."
-msgstr "%20+ mugitze abiaduran soldaduentzat."
+msgid "Soldiers +20% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
 msgstr "Ebasketa"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
-msgid ""
-"+100% resources loot increase for every enemy unit killed or structure "
-"destroyed."
-msgstr "%100+ eko baliabide harrapakinean hildako etsai edo birrindutako egitura bakoitzeko."
+msgid "Soldiers and Siege Engines gain +100% resource loot."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
@@ -694,84 +692,88 @@ msgstr "Erregina Gerlaria"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
-msgid "+20% attack and +2 capture for champion units."
-msgstr "%20+ erasoan eta +2 atzitzean unitate txapeldunentzat."
+msgid ""
+"Champions +2 capture attack strength, +20% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
 msgstr "Tradizioaren Defierra"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
-msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
-msgstr "Amungo tenplua eta Napatan tenpluko zaindariak %20+ kostuan eta eraikuntza denboran."
+msgid ""
+"Temple of Amun +20% resource costs and build time. Amun Temple Guard +20% "
+"resource costs and training time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
 msgstr "Apedemaken jarraitzailea"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
-msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
-msgstr "Apedemak tenpluak eta bere Meroe Tenploaren Zaindaria %20- kostuan eta eraikuntza denboran."
+msgid ""
+"Temple of Apedemak −20% resource costs and build time. Apedemak Temple Guard"
+" −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
 msgstr "Fededunaren hilketa"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healers −50% healing rate."
-msgstr "Arerioaren sendagileek %50- txikitzen dute sendatzeko abiadura."
+msgid "Enemy Healers −50% healing strength."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
 msgstr "Kushen salbatzailea"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
-msgid ""
-"Own units +10% attack.\n"
-"Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
-msgstr "Unitate propioak %10+ erasoan.\nNastasenek inbasorearen garaipenetatik ondare asko lortu zuen. Harrapakinetako %50+ etsaiaren unitateak hiltzean."
+msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
 msgstr "Gudaontzien oparia"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
-msgid ""
-"Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
-"Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
-msgstr "Trebatu Ptolemaiko Trirreme Mertzenarioak baliabideen-%25 -eko kostuarekin\nKushen inbasio Ptolrmaikoa zapalduz, Nastasenek etsaien guda-ontzi asko eskuratu zituen."
+msgid "Kushite Triremes −50 wood and metal cost."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
 msgstr "Inperialismo"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
-msgid "+10% territory effect for all buildings while he lives."
-msgstr "%10+ eragin gehiago lurraldean eraikin guztientzako bizirik dirauen bitartean."
+msgid "Structures +10% territory influence radius."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
 msgstr "Konkistatzailea"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
-msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr "-50% birsortze tasan babestutako etsaien gizarte zentroentzat."
+msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
 msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
-msgid "+20% attack and +20% capture for pikemen."
-msgstr "%20+ erasoan eta %20+ atzitzean pikari soldaduentzako."
+msgid ""
+"Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
 msgstr "Setioa"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
-msgid "+20% attack, +10% range and +1 armor for siege engines."
-msgstr "%20+ erasoan eta %10+ mailan eta +1 armaduran seti makinen motoreentzat.."
+msgid ""
+"Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
+"attack range, +10% vision range."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -782,17 +784,18 @@ msgid "Pyrrhic Victory"
 msgstr "Garaipen Pirrikoa"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
-msgid ""
-"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr "Gudari guztiek %20+ irabazten dute Pirri bizi bitartean, baino %15- galtzen dute osasunean ordea."
+msgid "Soldiers +20% melee and ranged attack damage, −15% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
 msgstr "Budismoa"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
-msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr "Norberaren tenpluek eta teknologiek ikerketaren denbora eta kostua %50- gutxitzen dute."
+msgid ""
+"Temples −50% resource costs and build time. Temple technologies −50% "
+"resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -800,9 +803,9 @@ msgstr "Irakaslea"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time for technologies "
-"while he is garrisoned in it."
-msgstr "Eraikinak balioztatzen ditu ikerketaren %20- kostuarekin eta %50 azkarragoarekin teknologietan bere barnean babestean."
+"When garrisoned, the Structure's technologies have −20% resource cost and "
+"−50% research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -813,7 +816,8 @@ msgid "Forefront Leader"
 msgstr "Abangoardiaren Liderra"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
-msgid "+20% attack and +1 capture for cavalry."
+msgid ""
+"Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
@@ -821,24 +825,25 @@ msgid "Leadership"
 msgstr "Lidergoa"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+15% movement speed for all soldiers, siege engines and traders."
-msgstr "%15+ mugitze abiaduran gudari, setio makina eta merkatarientzat."
+msgid ""
+"Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
 msgstr "Administratzailea"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
-msgid "+15% gather rate and build rate for workers."
-msgstr "%15+ eraikitze eta biltze erritmoan langileentzat."
+msgid "Workers +15% build rate and gather speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
 msgstr "Abertzalea"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
-msgid "-20% attack repeat time for soldiers and siege engines."
-msgstr "%20+ erasoa berrekitean  gudari eta setio makinentzat."
+msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -846,36 +851,36 @@ msgid "Consort"
 msgstr "Ezkontide"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
-msgid "+10% health for allied heroes."
-msgstr "%10+ osasunean heroi aliatuentzat."
+msgid "Allied Heroes +10% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
-msgid "-10% health for enemy heroes."
-msgstr "%10- osasunean etsai heroientzat."
+msgid "Enemy Heroes −10% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
 msgstr "Raphia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Pikemen have 40% greater health during his lifetime."
-msgstr "Pikatzaileek %40 irabazten dute osasunean bizitza osorako. "
+msgid "Pikemen +40% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
 msgstr "Eraikitzaile Ugazaba"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "+10% build and repair rate for workers."
-msgstr "%10+ eraikitze eta konpontze erritmoan langileentzat."
+msgid "Workers +10% build rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
 msgstr "Soldatapeko Nagusia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr "Soldatapekoen kostua baliabideen %35- da bere bizitzan zehar."
+msgid "Mercenaries −35% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -883,65 +888,68 @@ msgid "Sword of Rome"
 msgstr "Erromako Ezpata"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
-msgid "+15% attack for cavalry."
-msgstr "%15+ erasoan zalditeriarentzat."
+msgid "Cavalry +15% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
-msgid "-10% attack for enemy infantry."
-msgstr "%10- erasoan etsaien infanteriarentzat."
+msgid "Enemy Infantry −10% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
 msgstr "Erromako Ezkutua"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "+1 armor for all units and structures."
-msgstr "+1 babesean unitate eta eraikin guztientzat."
+msgid "Humans and Structures +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
 msgstr "Garaipena"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
-msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr "%20+ erasoan eta +2 atzematean gudari eta setio makinentzat."
+msgid ""
+"Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
+" attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
 msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
-msgid "Nearby cavalry gains +2 levels of all armor types."
-msgstr "Gertuko zalditeriak +2 maila gehiago lortzen du babes orokorrean."
+msgid "Cavalry +2 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
 msgstr "Konkistatzaile Handia"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
-msgid "-20% health for enemy buildings, siege engines and ships."
-msgstr "%20- osasunean etsaiaren eraikin, setio makina eta itsasontzientzat ."
+msgid "Enemy Structures, Ships, and Siege Engines -20% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
 msgstr "Elefanteen Nagusia"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
-msgid "+20% attack and movement speed for war elephants."
-msgstr "%20+ erasoan eta mugitze abiaduran gerra elefanteentzat."
+msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
 msgstr "Morroi Aldaketak"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "%25+ erasoan eta +1 armaduran xabalinako infanteriako hiritar soldaduentzat."
+msgid ""
+"Citizen Infantry Javelinists +1 armor, +25% ranged attack pierce damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
 msgstr "Azken Borroka"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+25% attack and +1 capture for spear soldiers."
-msgstr "%25+ erasoan eta +1 atzitzean lantzari soldaduentzat."
+msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
+msgstr ""

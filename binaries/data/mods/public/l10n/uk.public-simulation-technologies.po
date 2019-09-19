@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 14:42+0000\n"
+"POT-Creation-Date: 2019-09-16 07:11+0000\n"
+"PO-Revision-Date: 2019-09-16 14:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -751,34 +751,39 @@ msgid ""
 msgstr "Юніти, підвищені до вдосконаленого класу, отримують: + 20% до здоров'я, +1 до обладунків для кожного типу, + 20% до награбованого, + 20% до атаки рукопашних юнітів, збільшення радіусу дії на 4м і підвищену влучність для далекобійних юнітів, збільшення швидкості пересування, а також збільшення швидкості зцілення і радіусу дії у цілителів."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breeding livestock for food."
-msgstr "Розведення худоби для їжі."
+msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
-msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "Час розведення худоби -25% (вівці, кози, корови і т. д.)."
+msgid "Domestic Animals −25% breeding time."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
 msgstr "Тваринництво"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
-#: simulation/data/technologies/gather_capacity_carts.jsondescription
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
-msgid "Increases shuttling capacity for all resources."
-msgstr "Збільшує кількість всіх ресурсів, що переносяться."
+msgid "Workers use baskets. Increases shuttling capacity for all resources."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
-msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "Працівники використовують кошики. +5 до об'єму, що переноситься за один раз."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
+msgid "Workers +5 resource capacity."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
 msgstr "Кошики"
 
+#: simulation/data/technologies/gather_capacity_carts.jsondescription
+msgid ""
+"Workers use horse-drawn carts. Increases shuttling capacity for all "
+"resources."
+msgstr ""
+
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "Працівники використовують кінні вози. +10 до об'єму, що переноситься за один раз."
+msgid "Workers +10 resource capacity."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -800,9 +805,10 @@ msgstr "Засолка риби"
 msgid "Unlocked in Town Phase. Requires Fishing Net."
 msgstr "Доступно в Фазі Містечка. Необхідні рибальські сіті."
 
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
-msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr "Працівники використовують тачки. +5 до об'єму, що переноситься за один раз."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
+msgid ""
+"Workers use wheelbarrows. Increases shuttling capacity for all resources."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -813,20 +819,23 @@ msgid "Extra nutrients for farms."
 msgstr "Додаткові добрива для ферм."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% farming rate."
-msgstr "Працівники збирають урожай на +25% швидше."
+msgid "Workers +25% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Добриво"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
-msgid "A horse drawn instrument to turn the sod."
-msgstr "Пристрій для оранки за допомогою коня."
+msgid ""
+"Equip your workers with iron plows, animal-drawn instruments to turn the "
+"sod."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
-msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Надайте своїм працівникам залізні плуги. Швидкість збору урожаю +15%."
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -836,22 +845,17 @@ msgstr "Залізний плуг"
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Навчання працівників швидше збирати урожай."
 
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% farming rate."
-msgstr "Працівники на +15% швидше збирають урожай."
-
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Навчання збору урожаю"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the productivity of fishing boats."
-msgstr "Сіті збільшують ефективність риболовних суден."
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid ""
-"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr "Використовуйте сіті на рибальських човнах. +30% до швидкості вилову. Відкриває засолку риби."
+msgid "Fishing Boats +30% fish gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -865,16 +869,16 @@ msgstr "Збільшує швидкість збору деревини."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% lumbering rate for trees."
-msgstr "Працівники на +15% швидше добувають деревину."
+msgid "Workers +15% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "Залізні леза сокир"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% lumbering rate for trees."
-msgstr "Працівники на +50% швидше добувають деревину."
+msgid "Workers +50% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -885,15 +889,15 @@ msgid "Stronger Ax"
 msgstr "Міцна сокира"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
-#: simulation/data/technologies/gather_mining_servants.jsondescription
-#: simulation/data/technologies/gather_mining_slaves.jsondescription
-msgid "Increases stone gathering rates."
-msgstr "Збільшує швидкість видобування каменю."
+msgid ""
+"Compel serfs to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
-msgid ""
-"Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "Змусити кріпаків допомагати працівникам у шахті. +15 до швидкості видобування каменю."
+#: simulation/data/technologies/gather_mining_servants.jsontooltip
+msgid "Workers +15% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -905,9 +909,9 @@ msgstr "Кріпаки"
 msgid "Heílōtes"
 msgstr "Ілоти"
 
-#: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr "Найняти працівників для допомоги у видобуванні каменю. +15% до швидкості видобування каменю."
+#: simulation/data/technologies/gather_mining_servants.jsondescription
+msgid "Hire servants to help quarry stone. Increases stone gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -920,22 +924,25 @@ msgid "Doûloi"
 msgstr "Дулої"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
-#: simulation/data/technologies/gather_mining_silvermining.jsondescription
-#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
-msgid "Increases metal gathering rates."
-msgstr "Збільшує швидкість видобування металу."
+msgid "Develop shaft mining. Increases metal gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
-msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "Розробити стовбур шахти. +15% до швидкості видобування металу."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
+msgid "Workers +15% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
 msgstr "Стовбур шахти"
 
+#: simulation/data/technologies/gather_mining_silvermining.jsondescription
+msgid "Strike a vein of precious silver. Increases metal gathering rates."
+msgstr ""
+
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "Знайти жилу дорогоцінного срібла. +50% до швидкості видобування металу."
+msgid "Workers +50% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -949,10 +956,15 @@ msgstr "Шахти в Кренидісі"
 msgid "Mines of Laureion"
 msgstr "Шахти в Лавріоні"
 
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+#: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid ""
-"Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Купити рабів для допомоги працівникам у видобуванню каміння. +50% до швидкості видобування каменю."
+"Buy slaves to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr ""
+
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +50% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -964,21 +976,22 @@ msgstr "Раби"
 msgid "Andrápoda"
 msgstr "Андрапода"
 
-#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "Надайте працівникам допоміжні засоби. +15% до швидкості видобування металу."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
+msgid ""
+"Equip your workers with helpful tools. Increases metal gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Молоток та зубило"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets for foraging."
-msgstr "Кошики для збору."
+msgid "Equip your foragers with wicker baskets for foraging."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
-msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Надайте своїм фуражирам плетені кошики. +50 до швидкості збору фруктів."
+msgid "Workers +50% fruit gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"

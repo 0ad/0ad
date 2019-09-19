@@ -20,6 +20,7 @@
 #include "CGUIScrollBarVertical.h"
 
 #include "GUI.h"
+#include "CGUI.h"
 
 #include "ps/CLogger.h"
 

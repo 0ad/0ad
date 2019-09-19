@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 16:16+0000\n"
+"POT-Creation-Date: 2019-09-16 07:11+0000\n"
+"PO-Revision-Date: 2019-09-16 17:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,7 @@ msgid "Patriotism"
 msgstr "Патриотизъм"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
 msgstr ""
 
@@ -509,32 +510,32 @@ msgid "Formation Reforms"
 msgstr "Реформи във формациите"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "All soldiers in his formation +15% speed and +3 armor."
-msgstr "+15% бързина и +3 защита за всички во̀ини във формацията му."
+msgid "Soldiers in his formation +3 armor, +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
 msgstr "Пелтаски реформи"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
-msgid "All javelin infantry +15% speed."
-msgstr "+15% бързина за всички пехотни копиехвъргачи."
+msgid "Infantry Javelinists +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
 msgstr "Периклийска строителна програма"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "+15% build and repair rate for workers."
-msgstr "+15% бързина на строене и поправяне за работниците."
+msgid "Workers +15% build rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
 msgstr "Храм на Атина Нике"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
-msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr "-25% цена в камъни и +2 скорост на лечение за единиците на гарнизон за храмовете."
+msgid "Temples −25% stone cost, +2 garrisoned heal rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -542,33 +543,35 @@ msgstr "Военноморски командир"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
-"When garrisoned in a ship, the ship is +50% faster and trains batches of "
-"units faster."
-msgstr "Когато е поставен на гарнизон в кораб, корабът е +50% по-бърз и обучава партиди единици по-бързо."
+"When garrisoned, the Ship has −30% batch training time and +50% movement "
+"speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
 msgstr "Военноморски архитект"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
-msgid "-20% build time and -50% metal cost for ships during his lifespan."
-msgstr "-20% време за строеж и -50% цена в метал на корабите, докато той е жив."
+msgid "Ships −50% metal cost, −20% construction time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
 msgstr "Гвардия"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
-msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr "+20 атака, +2 пленяване и +10% бързина за гвардейските единици."
+msgid ""
+"Champions +2 capture attack strength, +20% melee and ranged attack damage, "
+"+10% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
 msgstr "Партизански предводител"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-msgid "All soldiers and siege engines +15% speed and +1 armor."
-msgstr "+15% бързина и +1 защита за всички во̀ини и обсадни машини."
+msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -576,24 +579,24 @@ msgstr "Британорум рекс"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
-msgid "+0.8 HP per second healing rate."
-msgstr "+0,8 ЖТ излекувани на секунда."
+msgid "Humans +0.8 health regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Светкавичен генерал"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
-msgid "Nearby soldiers and siege engines +15% speed."
-msgstr "+15% бързина за близките во̀ини и обсадни машини."
+msgid "Soldiers and Siege Engines +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
 msgstr "Покорител на наемници"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
-msgid "-20% attack for enemy mercenaries."
-msgstr "-20% атака за вражеските наемници."
+msgid "Enemy Mercenaries −20% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -601,40 +604,39 @@ msgstr "Тактик"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
-"+20% attack and +1 capture for nearby allied soldiers and siege engines."
-msgstr "+20 атака и +1 пленяване за близките съюзнически во̀ини и обсадни машини."
+"Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
+"melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
 msgstr "Командир на конницата"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+30% attack for cavalry melee soldiers."
-msgstr "+30% атака за близкобойните конници."
+msgid "Melee Cavalry +30% melee attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
 msgstr "Грабител на Рим"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
-msgid "+15 Metal loot for every enemy unit killed."
-msgstr "+15 плячкосан метал за всяка убита вражеска единица."
+msgid "Humans, Siege Engines, and Ships gain +15 metal loot."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Келтски военачалник"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
-msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr "+20 атака и +1 пленяване за всички во̀ини и обсадни машини."
+msgid ""
+"Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
+" attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
 msgstr "Подготовка за война"
-
-#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "+15% бързина на събиране на ресурси, докато е жив."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -642,49 +644,45 @@ msgstr "Вдъхновена защита"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
-"When garrisoned in a structure or a siege engine, the hero gives it a bonus "
-"of +2 capture points recovery rate."
-msgstr "Когато е поставен на гарнизон в сграда или обсадна машина, героят ѝ дава +2 бързина на възстановяване на пленителните точки."
+"When garrisoned, the Structure or Siege Engine has +2 capture points "
+"garrison regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
 msgstr "Доблестен защитник"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
-msgid ""
-"75% more arrows per soldier for the building or siege tower he is garrisoned"
-" in."
-msgstr "75% повече стрели за всеки войник в сградата или обсадната кула, в която той е на гарнизон."
+msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
 msgstr "Боен плам"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
-msgid "+1 armor for soldiers."
-msgstr "+1 защита за во̀ините."
+msgid "Soldiers +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
 msgstr "Мобилизация"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
-msgid "-20% training time and -15% resources cost for soldiers."
-msgstr "-20% време за обучение и -15% цена за во̀ините."
+msgid "Soldiers −15% resources costs, −20% training time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
-msgid "+20% movement speed for soldiers."
-msgstr "+20% бързина на придвижване за во̀ините."
+msgid "Soldiers +20% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
 msgstr "Плячка"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
-msgid ""
-"+100% resources loot increase for every enemy unit killed or structure "
-"destroyed."
-msgstr "+100% плячка в ресурси за всяка убита вражеска единица или разрушена сграда."
+msgid "Soldiers and Siege Engines gain +100% resource loot."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
@@ -692,84 +690,88 @@ msgstr "Царица-во̀ин"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
-msgid "+20% attack and +2 capture for champion units."
-msgstr "+20% атака и +2 пленяване за гвардейските единици."
+msgid ""
+"Champions +2 capture attack strength, +20% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
 msgstr "Противник на традицията"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
-msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
-msgstr "+20% цена и време за строеж на храма на Амон и неговите напатски храмови пазители."
+msgid ""
+"Temple of Amun +20% resource costs and build time. Amun Temple Guard +20% "
+"resource costs and training time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
 msgstr "Последовател на Апедемак"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
-msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
-msgstr "-20% цена и време за строеж на храмовете на Апедемак и техния меройски храмов пазител."
+msgid ""
+"Temple of Apedemak −20% resource costs and build time. Apedemak Temple Guard"
+" −20% resource costs and training time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
 msgstr "Клане на верните"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
-msgid "Enemy healers −50% healing rate."
-msgstr "Вражеските лечители лекуват -50% по-бавно."
+msgid "Enemy Healers −50% healing strength."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
 msgstr "Спасител на Куш"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
-msgid ""
-"Own units +10% attack.\n"
-"Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
-msgstr "+10% атака за собствените единици.\nНастасен получил много плячка от победените нашественици. +50% плячка за убиване на вражески единици."
+msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
 msgstr "Дарени военни кораби"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
-msgid ""
-"Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
-"Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
-msgstr "-25% цена за птолемейските наемни триери.\nРазбивайки нападението на птолемейците над Куш, Настасен си присвоил много вражески военни кораби."
+msgid "Kushite Triremes −50 wood and metal cost."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
 msgstr "Империализъм"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
-msgid "+10% territory effect for all buildings while he lives."
-msgstr "+10% териториален обхват за всички сгради, докато той е жив."
+msgid "Structures +10% territory influence radius."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
 msgstr "Завоевател"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
-msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr "Намалява възстановяването на верността на вражеските селищни центрове с гарнизон с +50%."
+msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
 msgstr "Таксиархѐс"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
-msgid "+20% attack and +20% capture for pikemen."
-msgstr "+20% атака и +20% пленяване за пиконосците."
+msgid ""
+"Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
 msgstr "Обсадител"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
-msgid "+20% attack, +10% range and +1 armor for siege engines."
-msgstr "+20% атака, +10% обхват и +1 броня за обсадните машини."
+msgid ""
+"Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
+"attack range, +10% vision range."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -780,17 +782,18 @@ msgid "Pyrrhic Victory"
 msgstr "Пирова победа"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
-msgid ""
-"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr "+20% атака, но и -15% здраве за всички воѝни, докато Пир е жив.."
+msgid "Soldiers +20% melee and ranged attack damage, −15% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
 msgstr "Будизъм"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
-msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr "Времето за проучване и цената на храмовете и технологиите в тях се намаляват с 50%."
+msgid ""
+"Temples −50% resource costs and build time. Temple technologies −50% "
+"resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -798,9 +801,9 @@ msgstr "Учител"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -20% cost and -50% research time for technologies "
-"while he is garrisoned in it."
-msgstr "Намалява цената с -20% и времето за извършване на проучвания на технологии в една сграда с -50% когато той е на гарнизон в нея."
+"When garrisoned, the Structure's technologies have −20% resource cost and "
+"−50% research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -811,7 +814,8 @@ msgid "Forefront Leader"
 msgstr "Фронтови водач"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
-msgid "+20% attack and +1 capture for cavalry."
+msgid ""
+"Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
@@ -819,24 +823,25 @@ msgid "Leadership"
 msgstr "Предводител"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+15% movement speed for all soldiers, siege engines and traders."
-msgstr "+15% бързина на придвижване на всички во̀ини, обсадни машини и търговци."
+msgid ""
+"Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
 msgstr "Администратор"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
-msgid "+15% gather rate and build rate for workers."
-msgstr "+15% бързина на строеж и събиране на ресурси за работниците."
+msgid "Workers +15% build rate and gather speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
 msgstr "Патриот"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
-msgid "-20% attack repeat time for soldiers and siege engines."
-msgstr "-20% време за повторение на атаката за всички во̀ини и обсадни машини."
+msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -844,36 +849,36 @@ msgid "Consort"
 msgstr "Спътница"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
-msgid "+10% health for allied heroes."
-msgstr "+10% здраве за съюзническите герои."
+msgid "Allied Heroes +10% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
-msgid "-10% health for enemy heroes."
-msgstr "-10% здраве за вражеските герои."
+msgid "Enemy Heroes −10% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
 msgstr "Рафия"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Pikemen have 40% greater health during his lifetime."
-msgstr "Пиконосците имат 40% повече здраве, докато е жив."
+msgid "Pikemen +40% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
 msgstr "Покровител на строителството"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "+10% build and repair rate for workers."
-msgstr "+10% бързина на строене и поправяне за работниците."
+msgid "Workers +10% build rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
 msgstr "Покровител на наемниците"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr "Наемниците струват -35% по-малко ресурси, докато е жив."
+msgid "Mercenaries −35% resource costs."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -881,65 +886,68 @@ msgid "Sword of Rome"
 msgstr "Мечът на рим"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
-msgid "+15% attack for cavalry."
-msgstr "+15% атака за конниците."
+msgid "Cavalry +15% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
-msgid "-10% attack for enemy infantry."
-msgstr "-10% атака за вражеските пехотинци."
+msgid "Enemy Infantry −10% melee and ranged attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
 msgstr "Щитът на Рим"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "+1 armor for all units and structures."
-msgstr "+1 защита за всички единици и сгради."
+msgid "Humans and Structures +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
 msgstr "Триумф"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
-msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr "+20 атака и +2 пленяване за всички во̀ини и обсадни машини."
+msgid ""
+"Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
+" attack damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
 msgstr "Илархѐс"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
-msgid "Nearby cavalry gains +2 levels of all armor types."
-msgstr "+2 нива на всички видове защита за близките конници."
+msgid "Cavalry +2 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
 msgstr "Прославен завоевател"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
-msgid "-20% health for enemy buildings, siege engines and ships."
-msgstr "-20% здраве за вражеските сгради, обсадни оръжия и кораби."
+msgid "Enemy Structures, Ships, and Siege Engines -20% health."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
 msgstr "Зооиархос"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
-msgid "+20% attack and movement speed for war elephants."
-msgstr "+20% атака и бързина на придвижване за бойните слонове."
+msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
 msgstr "Илотски реформи"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "+25% атака и +1 защита за пехотните граждани-во̀ини с копия."
+msgid ""
+"Citizen Infantry Javelinists +1 armor, +25% ranged attack pierce damage."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
 msgstr "Последен отпор"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+25% attack and +1 capture for spear soldiers."
-msgstr "+25% атака и +1 пленяване за во̀ините с копие."
+msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
+msgstr ""

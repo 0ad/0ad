@@ -15,32 +15,35 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+/*
+ * This is the top class of the whole GUI, all objects
+ * and settings are stored within this class.
+ */
 
-#include "CImage.h"
+#ifndef INCLUDED_CGUIDUMMYOBJECT
+#define INCLUDED_CGUIDUMMYOBJECT
 
-#include "gui/CGUI.h"
-#include "gui/GUI.h"
-#include "lib/ogl.h"
+#include "gui/IGUIObject.h"
 
-CImage::CImage(CGUI& pGUI)
-	: IGUIObject(pGUI)
+/**
+ * Dummy object are used for the base object and objects of type "empty".
+ */
+class CGUIDummyObject : public IGUIObject
 {
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<i32>("cell_id");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
-}
+	GUI_OBJECT(CGUIDummyObject)
 
-CImage::~CImage()
-{
-}
+public:
+	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}
 
-void CImage::Draw()
-{
-	m_pGUI.DrawSprite(
-		GetSetting<CGUISpriteInstance>("sprite"),
-		GetSetting<i32>("cell_id"),
-		GetBufferedZ(),
-		m_CachedActualSize);
-}
+	virtual void Draw() {}
+
+	/**
+	 * Empty can never be hovered. It is only a category.
+	 */
+	virtual bool IsMouseOver() const
+	{
+		return false;
+	}
+};
+
+#endif // INCLUDED_CGUIDUMMYOBJECT

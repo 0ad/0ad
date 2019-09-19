@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-09-03 05:52+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2019-09-16 07:10+0000\n"
+"PO-Revision-Date: 2019-09-16 15:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,96 +39,91 @@ msgid "View Online"
 msgstr "在线查看"
 
 #: gui/manual/intro.txt:1
-msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]0 A.D. 游戏手册"
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:2
-msgid "[font=\"sans-14\"]"
-msgstr "[font=\"sans-14\"]"
-
-#: gui/manual/intro.txt:3
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
 msgstr "感谢安装 0 A.D.！这里将向你展示一个仍在开发中的游戏的概述。"
 
-#: gui/manual/intro.txt:5
-msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr "[font=\"sans-bold-16\"]图形设置"
+#: gui/manual/intro.txt:4
+msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
+msgstr ""
 
-#: gui/manual/intro.txt:6
+#: gui/manual/intro.txt:5
 msgid ""
-"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
-"pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the options window: "
-"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr "[font=\"sans-14\"]您可以通过按 Alt + Enter 在全屏模式和窗口模式之间切换。在窗口模式下，您可以调整窗口的大小。如果游戏运行速度过慢，则可以在设置界面尝试取消\"高清水效果\"和\"阴影\"选项。"
+"You can switch between fullscreen and windowed mode by pressing Alt + Enter."
+" In windowed mode, you can resize the window. If the game runs too slowly, "
+"you can change some settings in the options window: try disabling the \"HQ "
+"Water Effects\" and \"Shadows\" options."
+msgstr ""
+
+#: gui/manual/intro.txt:7
+msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:8
-msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr "[font=\"sans-bold-16\"]进行游戏"
-
-#: gui/manual/intro.txt:9
 msgid ""
-"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
-" traditional RTS games. There are currently a lot of missing features and "
-"poorly-balanced stats – you will probably have to wait until a beta release "
-"for it to work well."
-msgstr "[font=\"sans-14\"]对传统的 RTS 游戏的玩家应当十分熟悉此操控"
+"The controls and gameplay should be familiar to players of traditional real-"
+"time strategy (RTS) games. There are currently a lot of missing features and"
+" poorly-balanced stats – you will probably have to wait until a beta release"
+" for it to work well."
+msgstr ""
 
-#: gui/manual/intro.txt:11
+#: gui/manual/intro.txt:10
 msgid "Basic controls:"
 msgstr "基本控制:"
 
+#: gui/manual/intro.txt:11
+msgid "• Left-click to select units"
+msgstr ""
+
 #: gui/manual/intro.txt:12
-msgid "• Left-click to select units."
-msgstr "左键单击选中一个单位"
+msgid "• Left-click-and-drag to select groups of units"
+msgstr ""
 
 #: gui/manual/intro.txt:13
-msgid "• Left-click-and-drag to select groups of units."
-msgstr "左键单击并且拖动来选择一组单位"
+msgid "• Right-click to order units to the target"
+msgstr ""
 
 #: gui/manual/intro.txt:14
-msgid "• Right-click to order units to the target."
-msgstr "右键单击来命令单位到目标"
+msgid "• Arrow keys or WASD keys to move the camera"
+msgstr ""
 
 #: gui/manual/intro.txt:15
-msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "方向键或者WASD键用来移动视角"
+msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
+msgstr ""
 
 #: gui/manual/intro.txt:16
-msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "使用Ctrl + 方向键, 或者 shift + 鼠标滚轮, 来旋转摄像机视角。"
+msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
+msgstr ""
 
-#: gui/manual/intro.txt:17
-msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "使用鼠标滚轮或者\"+\"  \"-\" 键进行缩放"
+#: gui/manual/intro.txt:18
+msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:19
-msgid "[font=\"sans-bold-16\"]Modes"
-msgstr "[font=\"sans-bold-16\"]模式"
+msgid "The main menu gives access to two game modes:"
+msgstr ""
 
 #: gui/manual/intro.txt:20
-msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]在主菜单可选择两种游戏模式："
-
-#: gui/manual/intro.txt:22
 msgid ""
 "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
-"game or against one or more AI opponents. The AI/AIs are under development "
-"and may not always be up to date on the new features, but you can test "
-"playing the game against an actual opponent if you aren't able to play with "
-"a human."
-msgstr "• [font=\"sans-bold-14\"]单人模式[font=\"sans-14\"]  -沙箱模式。AI系统正在开发，可能不具备最新特性。可对游戏进行测试。"
+"game or against one or more computer players (AI). The default AI (Petra) is"
+" under development and may not always be up to date on the new features, but"
+" you can play the game with or against it nonetheless."
+msgstr ""
 
-#: gui/manual/intro.txt:24
+#: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
 msgstr "• [font=\"sans-bold-14\"]多人模式[font=\"sans-14\"]  -联网和他人对战。"
 
-#: gui/manual/intro.txt:26
+#: gui/manual/intro.txt:23
 msgid ""
 "To set up a multiplayer game, one player must select the \"Host game\" "
 "option. The game uses UDP port 20595, so the host must configure their "
@@ -136,39 +131,37 @@ msgid ""
 "and enter the host's IP address."
 msgstr "要进行多人游戏，至少需要一个玩家选择“建立主机”来创建一个游戏。游戏使用UDP端口20595，所以确保此端口没有被NAT或者防火墙之类的程序屏蔽。接下来其他玩家可以选择“加入游戏”，然后输入游戏主机的IP地址."
 
+#: gui/manual/intro.txt:25
+msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:26
+msgid "In a multiplayer game, only the host can alter the game setup options."
+msgstr ""
+
 #: gui/manual/intro.txt:28
-msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr "[font=\"sans-bold-16\"]建立游戏"
-
-#: gui/manual/intro.txt:29
-msgid ""
-"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
-"setup options."
-msgstr "[font=\"sans-14\"]在多人游戏，只有主机可以改变游戏设置选项。"
-
-#: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
 msgstr "首先，请选择您想玩的地图类型:"
 
-#: gui/manual/intro.txt:32
+#: gui/manual/intro.txt:29
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
 msgstr "• [font=\"sans-bold-14\"]随机地图[font=\"sans-14\"] -从脚本自动创建地图"
 
-#: gui/manual/intro.txt:33
+#: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
 msgstr "• [font=\"sans-bold-14\"]剧情地图[font=\"sans-14\"]  -专门设计的地图，文明固定。"
 
-#: gui/manual/intro.txt:34
+#: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
 msgstr "• [font=\"sans-bold-14\"]遭遇战地图[font=\"sans-14\"] — 由地图设计师创建的地图，可自由选择文明"
 
-#: gui/manual/intro.txt:36
+#: gui/manual/intro.txt:33
 msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
@@ -177,7 +170,7 @@ msgid ""
 "list."
 msgstr "地图将进一步过滤。 默认地图为通常可玩地图。 海军地图是部分国家无法通过陆地到达的地图，演示地图用于测试(通常不适用于正常游戏)。 “所有地图”是在一个列表中显示所有地图。"
 
-#: gui/manual/intro.txt:38
+#: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
@@ -186,514 +179,538 @@ msgid ""
 " be idle)."
 msgstr "最后，更改设置。对于随机地图，您可以设置玩家数量、地图大小等。对于剧情地图，您只能选择控制玩家的角色(决定您在地图上的起始位置)。选项包括人类玩家、AI 或无玩家(对手将留空)。"
 
-#: gui/manual/intro.txt:40
+#: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the \"Start game\" button."
 msgstr "当您准备好时，请单击“开始游戏”按钮"
 
+#: gui/manual/intro.txt:39
+msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:40
+msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:41
+msgid ""
+"  Alt + F4 – Immediately close the game, without asking for confirmation"
+msgstr ""
+
 #: gui/manual/intro.txt:42
-msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr "[font=\"sans-bold-16\"]热键:"
+msgid "  Alt + Enter – Toggle between fullscreen and windowed"
+msgstr ""
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr "[font=\"sans-bold-14\"]程序范围"
+msgid "  ~ or F9 – Show/hide console"
+msgstr ""
 
 #: gui/manual/intro.txt:44
-msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: 无需确认关闭游戏"
+msgid "  Alt + F – Show/hide frame counter (FPS)"
+msgstr ""
 
 #: gui/manual/intro.txt:45
-msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: 在窗口模式和全屏模式之间切换"
+msgid ""
+"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"information)"
+msgstr ""
 
 #: gui/manual/intro.txt:46
-msgid "~ or F9: Show/hide console"
-msgstr "~ or F9: 显示/隐藏 控制台"
+msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
+msgstr ""
 
 #: gui/manual/intro.txt:47
-msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: 显示/隐藏 帧率 (FPS)"
+msgid ""
+"  F2 – Take screenshot (in .png format, location is displayed in the top "
+"left of the GUI after the file has been saved, and can also be seen in the "
+"console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:48
 msgid ""
-"F11: Enable/disable real-time profiler (toggles through the displays of "
-"information)"
-msgstr "F11: 启用/禁用 实时性能分析器 (切换显示信息)"
+"  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
+"location is displayed in the top left of the GUI after the file has been "
+"saved, and can also be seen in the console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:49
-msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11: 保存当前分析数据到 \"logs/profile.txt\""
+msgid "  Tab, Alt + S – Switch to the next tab"
+msgstr ""
 
 #: gui/manual/intro.txt:50
-msgid ""
-"F2: Take screenshot (in .png format, location is displayed in the top left "
-"of the GUI after the file has been saved, and can also be seen in the "
-"console/logs if you miss it there)"
-msgstr "F2: 截屏 (保存为PNG格式。文件被保存后，保存路径会在用户界面的左上方显示出来，您也可以在日志文件console/logs里找到它)"
-
-#: gui/manual/intro.txt:51
-msgid ""
-"Shift + F2: Take huge screenshot (6400px by 4800px, in .bmp format, location"
-" is displayed in the top left of the GUI after the file has been saved, and "
-"can also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: 巨型屏幕截图（6400*4800 px , bmp格式，保存位置显示在界面的左上方，也可以在控制台/日志中查看位置）"
+msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
+msgstr ""
 
 #: gui/manual/intro.txt:52
-msgid "Tab, Alt + S: Switch to the next tab."
-msgstr "Tab, Alt + S: 切换到下一个选项卡。"
+msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:53
-msgid "Shift + Tab, Alt + W: Switch to the previous tab."
-msgstr "Shift + Tab, Alt + W: 切换到上一个选项卡"
+msgid ""
+"  Double Left Click \\[on unit] – Select all of your units of the same kind "
+"on the screen (even if they're different ranks)"
+msgstr ""
+
+#: gui/manual/intro.txt:54
+msgid ""
+"  Triple Left Click \\[on unit] – Select all of your units of the same kind "
+"and the same rank on the screen"
+msgstr ""
 
 #: gui/manual/intro.txt:55
-msgid "[font=\"sans-bold-14\"]In Game"
-msgstr "[font=\"sans-bold-14\"]游戏中"
+msgid ""
+"  Alt + Double Left Click \\[on unit] – Select all your units of the same "
+"kind on the entire map (even if they have different ranks)"
+msgstr ""
 
 #: gui/manual/intro.txt:56
 msgid ""
-"[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
-" the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]双击左键 \\[单位上]：选择屏幕上所有同类单位(即使他们的等级不同)"
+"  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
+"kind and rank on the entire map"
+msgstr ""
 
 #: gui/manual/intro.txt:57
-msgid ""
-"Triple Left Click \\[on unit]: Select all of your units of the same kind and"
-" the same rank on the screen"
-msgstr "左键点击三次\\[单位上]：选择萤幕上所有相同种类与等级的单位"
+msgid "  Shift + F5 – Quicksave"
+msgstr ""
 
 #: gui/manual/intro.txt:58
-msgid ""
-"Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
-"on the entire map (even if they have different ranks)"
-msgstr "Alt+ + 左键点击两次\\[单位上]:选择地图上所有相同种类的单位(即使他们有者不同的等级)"
+msgid "  Shift + F8 – Quickload"
+msgstr ""
 
 #: gui/manual/intro.txt:59
-msgid ""
-"Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
-"and rank on the entire map"
-msgstr "Alt+ + 左键点击三次\\[单位上]:选择地图上所有相同种类与等级的单位"
+msgid "  F10 – Open/close menu"
+msgstr ""
 
 #: gui/manual/intro.txt:60
-msgid "Shift + F5: Quicksave"
-msgstr "Shift + F5: 快速保存"
+msgid "  F12 – Show/hide time elapsed counter"
+msgstr ""
 
 #: gui/manual/intro.txt:61
-msgid "Shift + F8: Quickload"
-msgstr "Shift + F8: 快速加载"
+msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:62
-msgid "F10: Open/close menu"
-msgstr "F10: 打开/关闭 菜单"
+msgid "  Enter/Return – Open/send chat"
+msgstr ""
 
 #: gui/manual/intro.txt:63
-msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: 显示/隐藏 已进行游戏时间"
+msgid "  T – Send team chat"
+msgstr ""
 
 #: gui/manual/intro.txt:64
-msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: 关闭所有对话框 (聊天, 菜单) 或取消选中的单位"
+msgid "  L – Chat with the previously selected private chat partner"
+msgstr ""
 
 #: gui/manual/intro.txt:65
-msgid "Enter/return: Open/send chat"
-msgstr "Enter/return: 打开/发送 聊天信息"
+msgid "  Pause – Pause/resume the game"
+msgstr ""
 
 #: gui/manual/intro.txt:66
-msgid "T: Send team chat"
-msgstr "T: 发送团队聊天"
+msgid ""
+"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:67
-msgid "L: Chat with the previously selected private chat partner"
-msgstr "L: 与之前选择的私人聊天者聊天"
+msgid ""
+"  Shift + Delete – Immediately delete currently selected "
+"unit(s)/building(s), without asking for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:68
-msgid "Pause: Pause/resume the game"
-msgstr "暂停：暂停/恢复"
+msgid "  / (Slash) – Select idle fighter"
+msgstr ""
 
 #: gui/manual/intro.txt:69
-msgid "Delete: Delete currently selected units/buildings"
-msgstr "Delete: 删除当前选中的单位/建筑"
+msgid "  Shift + / (Slash) – Add idle fighter to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:70
-msgid ""
-"Shift + Delete: Delete currently selected units/buildings without "
-"confirmation"
-msgstr "Shift + Delete: 删除当前选中的单位/建筑而无需确认"
+msgid "  Alt + / (Slash) – Select all idle fighters"
+msgstr ""
 
 #: gui/manual/intro.txt:71
-msgid "/ (Slash): Select idle fighter"
-msgstr "/ (斜杠): 选取空闲的战斗单位"
+msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:72
-msgid "Shift + /: Add idle fighter to selection"
-msgstr "Shift + /:添加空闲的战斗单位加入到选择中。"
+msgid ""
+"  Shift + . (Period) – Add idle worker to selection (including citizen-"
+"soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:73
-msgid "Alt + /: Select all idle fighters"
-msgstr "Alt + /: 选择所有空闲的战士"
+msgid ""
+"  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:74
-msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ". (Period): 选择空闲的工人 (包括民兵)"
+msgid "  \\\\ (Backslash) – Select idle unit"
+msgstr ""
 
 #: gui/manual/intro.txt:75
-msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr "Shift + .: 添加空闲的居民 (包括民兵) 到选择中"
+msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:76
-msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt + .: 选择所有空闲的工人 (包括民兵)"
+msgid "  Alt + \\\\ (Backslash) – Select all idle units"
+msgstr ""
 
 #: gui/manual/intro.txt:77
-msgid "\\ (Backslash): Select idle unit"
-msgstr "\\ (反斜杠):选择空闲单位"
+msgid "  H – Stop (halt) the currently selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:78
-msgid "Shift + \\: Add idle unit to selection"
-msgstr "Shift + \\:将空闲单位加入到选择中。"
+msgid "  Y – The unit will go back to work"
+msgstr ""
 
 #: gui/manual/intro.txt:79
-msgid "Alt + \\: Select all idle units"
-msgstr "Alt + \\: 选择所有空闲单位。"
+msgid "  U – Unload the garrisoned units of the selected buildings"
+msgstr ""
 
 #: gui/manual/intro.txt:80
-msgid "H: Stop (halt) the currently selected units."
-msgstr "H: 停止(立定)当前选中单位"
+msgid ""
+"  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
+"the selected unit(s)/building(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:81
-msgid "Y: The unit will go back to work"
-msgstr "Y：单位将返回工作"
+msgid ""
+"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
+"0)"
+msgstr ""
 
 #: gui/manual/intro.txt:82
-msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr "U：撤出所选建筑内的守卫部队。"
+msgid ""
+"  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
+"units/buildings"
+msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid ""
-"Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
-"selected units/buildings"
-msgstr "选择一些单位或者建筑，然后按Ctrl+数字(0到9)，进行编队。(Ctrl+1即编号为1的组队，以此类推。)"
+"  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
+"jumping back to later"
+msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid ""
-"1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "按数字键1 (以此类推，包含0到9): 选择相应编号的编队(编号可以是0)"
+"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
+"the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
-"Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Shift + 1 (可以是0到9的数字): 把选中的单位/建筑加到已有的组队里面(范围0到9)"
+"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected buildings"
+msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
-"jumping back to later."
-msgstr "Ctrl + F5 (一直到 F8): 调整相机的位置"
+"  PageUp with units selected – Highlights the units/buildings guarded by the"
+" selection"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
-"last location if the camera is already over the marked position."
-msgstr "F5, F6, F7, and F8: 移动相机到一个被标记的位置。如果相机已经在这个位置，将会跳回到上一个位置。"
+"  PageDown with units/buildings selected – Highlights the units guarding the"
+" selection"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
-"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, … "
-"unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: 选择建筑训练序列。 将显示的第1个，第2个......单元添加到所有选定建筑物的训练队列中。"
+"  Tab – See all status bars (which would also show the building progress)"
+msgstr ""
 
 #: gui/manual/intro.txt:89
-msgid ""
-"PageUp with units selected: Highlights the units/buildings guarded by the "
-"selection."
-msgstr "向上翻页已选择的单位：谨慎选择突出的单位/建筑。"
+msgid "  Ctrl + Tab – Toggle summary window"
+msgstr ""
 
 #: gui/manual/intro.txt:90
-msgid ""
-"PageDown with units/buildings selected: Highlights the units guarding the "
-"selection."
-msgstr "向下翻页已选择的单位/建筑 : 校验检查突出的单位。"
+msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
+msgstr ""
 
 #: gui/manual/intro.txt:91
-msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr "Tab : 查看所有状态栏 ( 这也将显示建设进度 ) "
+msgid "  Ctrl + H – Toggle in-game diplomacy panel"
+msgstr ""
 
 #: gui/manual/intro.txt:92
-msgid "Ctrl + Tab: Toggle summary window."
-msgstr "Ctrl + Tab:切换至统计窗口。"
+msgid "  Ctrl + B – Toggle in-game barter and trade panel"
+msgstr ""
 
 #: gui/manual/intro.txt:93
-msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr "Alt + L: 在对话框窗口显示多人游戏大厅。"
+msgid "  Ctrl + O – Toggle in-game objectives panel"
+msgstr ""
 
 #: gui/manual/intro.txt:94
-msgid "Ctrl + H: Toggle in-game diplomacy page."
-msgstr "Ctrl + H：切换至外交界面。"
+msgid "  Ctrl + P – Toggle in-game tutorial panel"
+msgstr ""
 
 #: gui/manual/intro.txt:95
-msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr "Ctrl + B: 切换至贸易界面"
+msgid "  Alt + Shift + T – Toggle structure tree panel"
+msgstr ""
 
 #: gui/manual/intro.txt:96
-msgid "Ctrl + O: Toggle in-game objectives page."
-msgstr "Ctrl + O: 切换至游戏目标页面。"
-
-#: gui/manual/intro.txt:97
-msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr "Ctrl + P：切换至教学面板。"
+msgid "  Alt + Shift + H – Toggle civilization info panel"
+msgstr ""
 
 #: gui/manual/intro.txt:98
-msgid "Alt + Shift + T: Toggle structure tree."
-msgstr "Alt + Shift + T: 切换为建筑树"
+msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:99
-msgid "Alt + Shift + H: Toggle civilization info."
-msgstr "Alt + Shift + T: 切换为文明信息"
+msgid "  Ctrl + Right Click on building – Garrison"
+msgstr ""
+
+#: gui/manual/intro.txt:100
+msgid "  J + Right Click on building – Repair"
+msgstr ""
 
 #: gui/manual/intro.txt:101
-msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]修改鼠标操作"
+msgid "  P + Right Click – Patrol"
+msgstr ""
 
 #: gui/manual/intro.txt:102
-msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl +右击 （建筑上）:  驻军"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
-msgid "J + Right Click on building: Repair"
-msgstr "对建筑 J + 右击 ：修复"
+msgid ""
+"  Alt + Right Click – Order one unit from the current selection to "
+"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"specific tasks"
+msgstr ""
 
 #: gui/manual/intro.txt:104
-msgid "P + Right Click: Patrol"
-msgstr "P + 右击：巡逻"
+msgid ""
+"  Shift + Left Click when training units – Add units in batches (the batch "
+"size is 5 by default and can be changed in the options)"
+msgstr ""
 
 #: gui/manual/intro.txt:105
-msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + 单击右键: 将会给被选中的单位一个动作序列。包括移动，建造，采集等等。"
+msgid ""
+"  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:106
 msgid ""
-"Alt + Right Click: Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
-"specific tasks."
-msgstr "Alt + Right Click: 从当前选择一个单元以移动/构建/收集/等，并取消选择它。 用于快速调度特定任务的单元。"
+"  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
+"selection"
+msgstr ""
 
 #: gui/manual/intro.txt:107
-msgid ""
-"Shift + Left Click when training units: Add units in batches (the batch size"
-" is 5 by default and can be changed in the options)"
-msgstr "Shift +左击训练单位：批量添加单位（默认情况下大小为5，可在选项中更改）"
+msgid "  Alt + Left Drag over units on map – Only select military units"
+msgstr ""
 
 #: gui/manual/intro.txt:108
 msgid ""
-"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + 左键单击或拖动地图上的单位: 把新的单位加到选择队列里。"
+"  Alt + Y + Left Drag over units on map – Only select non-military units"
+msgstr ""
 
 #: gui/manual/intro.txt:109
-msgid ""
-"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + 左键单击或者拖动地图上的单位: 将目标单位从选择队列中移除。"
+msgid "  I + Left Drag over units on map – Only select idle units"
+msgstr ""
 
 #: gui/manual/intro.txt:110
-msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + 左键拖动地图上的单位: 只选择可以战斗的单位"
+msgid "  O + Left Drag over units on map – Only select wounded units"
+msgstr ""
 
 #: gui/manual/intro.txt:111
-msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr "Alt + Y + 在地图上向左拖动单位：仅选择非军事单位"
+msgid ""
+"  Ctrl + Left Click on unit/group icon with multiple units selected – "
+"Deselect"
+msgstr ""
 
 #: gui/manual/intro.txt:112
-msgid "I + Left Drag over units on map: Only select idle units"
-msgstr "I + 左键点击并拖曳地图上的单位：只选取军事单位"
+msgid ""
+"  Right Click with a building(s) selected – sets a rally point for units "
+"created/ungarrisoned from that building"
+msgstr ""
 
 #: gui/manual/intro.txt:113
-msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr "O + 在地图上向左拖动单位：仅选择受伤单位"
+msgid "  Ctrl + Right Click with unit(s) selected:"
+msgstr ""
 
 #: gui/manual/intro.txt:114
-msgid ""
-"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "当多个单位被选中时Ctrl + 左键单击单位/组: 从选择队列里移除这些单位"
+msgid "    • If the cursor is over an own or allied structure – Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:115
 msgid ""
-"Right Click with a building/buildings selected: sets a rally point for units"
-" created/ungarrisoned from that building."
-msgstr "选中一个或多个建筑，然后右键单击一个地方: 设置这些建筑的集合点."
+"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"capture or gather)"
+msgstr ""
 
 #: gui/manual/intro.txt:116
-msgid "Ctrl + Right Click with units selected:"
-msgstr "对已选中的单位使用Ctrl + 右键点击:"
+msgid ""
+"    • Otherwise – Attack move (by default all enemy units and structures "
+"along the way are targeted)"
+msgstr ""
 
 #: gui/manual/intro.txt:117
-msgid "  • If the cursor is over an allied structure: Garrison"
-msgstr "- 光标在建筑上: 驻军"
-
-#: gui/manual/intro.txt:118
 msgid ""
-"  • If the cursor is over a non-allied unit or building: Attack (instead of "
-"capture or gather)"
-msgstr "- 若光标悬在非同盟的建筑物上：攻击 (而非占领或收集资源)"
+"  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units "
+"along the way are targeted"
+msgstr ""
 
 #: gui/manual/intro.txt:119
-msgid ""
-"  • Otherwise: Attack move (by default all enemy units and structures along "
-"the way are targeted, use Ctrl + Q + Right Click to target only units)."
-msgstr "- 此外：移动攻击 (默认条件下，将路径上所有的敌方单位和建筑物作为目标， 点击“Ctrl + Q + 右键”仅选取单位为目标)。"
+msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:120
+msgid "  Alt + G – Hide/show the GUI"
+msgstr ""
 
 #: gui/manual/intro.txt:121
-msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr "[font=\"sans-bold-14\"]覆盖"
+msgid "  Alt + D – Show/hide developer overlay (with developer options)"
+msgstr ""
 
 #: gui/manual/intro.txt:122
-msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"sans-14\"]Alt + G：隐藏/显示 界面"
-
-#: gui/manual/intro.txt:123
-msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: 显示/隐藏 开发者视图 (开发者选项)"
-
-#: gui/manual/intro.txt:124
 msgid ""
-"Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
+"  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "Alt + Shift + W: 切换线框模式（按一次以使线框覆盖在纹理模型上，两次以获得由纹理着色的线框，三次以恢复到正常纹理模式）"
+msgstr ""
+
+#: gui/manual/intro.txt:123
+msgid ""
+"  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
+"boost)"
+msgstr ""
+
+#: gui/manual/intro.txt:124
+msgid "  Alt + Z – Toggle sky"
+msgstr ""
 
 #: gui/manual/intro.txt:125
-msgid ""
-"Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
-"boost)"
-msgstr "Alt + Shift + S:切换单位轮廓（可能会提升游戏性能）"
+msgid "  Alt + X – Toggle diplomacy colors"
+msgstr ""
 
 #: gui/manual/intro.txt:126
-msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: 切换天空"
+msgid ""
+"  Alt + C – Toggle attack range visualizations of selected units and "
+"structures"
+msgstr ""
 
 #: gui/manual/intro.txt:127
-msgid "Alt + X: Toggle diplomacy colors"
-msgstr "Alt + X: 切换政策颜色"
+msgid ""
+"  Alt + V – Toggle aura range visualizations of selected units and "
+"structures"
+msgstr ""
 
 #: gui/manual/intro.txt:128
-msgid ""
-"Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr "Alt + C:切换为防御建筑的攻击范围"
-
-#: gui/manual/intro.txt:129
-msgid ""
-"Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr "Alt + V:切换所选单位和建筑的光环范围可视化"
+msgid "  Alt + B – Toggle heal range visualizations of selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:130
-msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr "Alt + B: 切换所选单位的治疗范围可视化"
+msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
+msgstr ""
+
+#: gui/manual/intro.txt:131
+msgid "  W or ↑ (Up) – Pan screen up"
+msgstr ""
 
 #: gui/manual/intro.txt:132
-msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]相机操作"
+msgid "  S or ↓ (Down) – Pan screen down"
+msgstr ""
 
 #: gui/manual/intro.txt:133
-msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr "[font=\"sans-14\"]W 或\\[上方向键]：视野往上移动"
+msgid "  A or ← (Left) – Pan screen left"
+msgstr ""
 
 #: gui/manual/intro.txt:134
-msgid "S or \\[down]: Pan screen down"
-msgstr "S 或 \\[下方向键]：视野向下移动"
+msgid "  D or → (Right) – Pan screen right"
+msgstr ""
 
 #: gui/manual/intro.txt:135
-msgid "A or \\[left]: Pan screen left"
-msgstr "A 或 \\[左方向键]：视野向左移动"
+msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
+msgstr ""
 
 #: gui/manual/intro.txt:136
-msgid "D or \\[right]: Pan screen right"
-msgstr "D 或 \\[右方向键]：视野向右移动"
+msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
+msgstr ""
 
 #: gui/manual/intro.txt:137
-msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr "Ctrl + W 或 \\[上方向键]：旋转视野以向上看"
+msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:138
-msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr "Ctrl + S 或 \\[下方向键]：旋转视野以向下看"
+msgid ""
+"  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:139
-msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A 或 \\[左方向键]：绕地形顺时针旋转视野"
+msgid "  Q – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:140
-msgid "Ctrl + D or \\[right]: Rotate camera counter-clockwise around terrain"
-msgstr "Ctrl + A 或 \\[右方向键]：绕地形逆时针旋转视野"
+msgid "  E – Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:141
-msgid "Q: Rotate camera clockwise around terrain"
-msgstr "Q: 顺时针旋转相机视角"
+msgid ""
+"  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:142
-msgid "E: Rotate camera counter-clockwise around terrain"
-msgstr "E: 逆时针旋转相机视角"
+msgid ""
+"  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
+"terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:143
-msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr "Shift + 鼠标滚轮向上: 顺时针旋转相机视角"
+msgid ""
+"  F – Follow the selected unit (move the camera to stop following the unit)"
+msgstr ""
 
 #: gui/manual/intro.txt:144
-msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera counter-clockwise around "
-"terrain"
-msgstr "Shift + 鼠标滚轮向下: 逆时针旋转相机视角"
+msgid "  R – Reset camera zoom/orientation"
+msgstr ""
 
 #: gui/manual/intro.txt:145
-msgid ""
-"F: Follow the selected unit (move the camera to stop it from following the "
-"unit)"
-msgstr "F:跟随所选单位"
+msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:146
-msgid "R: Reset camera zoom/orientation"
-msgstr "R: 重置相机的缩放和方向"
+msgid ""
+"  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:147
-msgid "= or +: Zoom in (keep pressed for continuous zoom)"
-msgstr "= 或 + ：放大 (保持按着将会连续放大)"
-
-#: gui/manual/intro.txt:148
-msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr "-: 缩小 (保持按着将会连续缩小)"
+msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
+msgstr ""
 
 #: gui/manual/intro.txt:149
-msgid "Alt + W: Toggle through wireframe modes"
-msgstr "Alt + W: 切换的线条模式"
+msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:150
-msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr "滑鼠中键 ：持续按着并移动滑鼠以平移"
+msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
+msgstr ""
+
+#: gui/manual/intro.txt:151
+msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:152
-msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr "[font=\"sans-bold-14\"]摆放建筑物时"
-
-#: gui/manual/intro.txt:153
-msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"sans-14\"]\\[: 逆时针转动建筑物15度"
+msgid ""
+"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"mouse release)"
+msgstr ""
 
 #: gui/manual/intro.txt:154
-msgid "]: Rotate building 15 degrees clockwise"
-msgstr "]: 顺时针旋转建筑15度"
+msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:155
-msgid ""
-"Left Drag: Rotate building using mouse (foundation will be placed on mouse "
-"release)"
-msgstr "向左拖拽: 用鼠标旋转建筑 (当鼠标松开时建筑的基础会被放置)"
+msgid "  Esc – Cancel"
+msgstr ""
+
+#: gui/manual/intro.txt:156
+msgid "  Delete – Delete the selected saved game, ask for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:157
-msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr "[font=\"sans-bold-14\"]当正在载入已储存的游戏时"
-
-#: gui/manual/intro.txt:158
 msgid ""
-"[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr "[font=\"sans-14\"]Delete：删除选取的已储存游戏，删除前会先询问以确认"
-
-#: gui/manual/intro.txt:159
-msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr "Shift：删除存档时不询问"
+"  Shift + Delete – Immediately delete the selected saved game, without "
+"asking for confirmation"
+msgstr ""

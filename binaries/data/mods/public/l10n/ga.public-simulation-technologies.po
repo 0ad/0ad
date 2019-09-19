@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 14:42+0000\n"
+"POT-Creation-Date: 2019-09-16 07:11+0000\n"
+"PO-Revision-Date: 2019-09-16 14:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -746,34 +746,39 @@ msgid ""
 msgstr "Faigh aonaid ardaithe go an rang éilite bónais go leor: sláinte 20% sa bhreis, +1 léibheal do gach cineál armúir, creach 20% níos mó, ionsaí 20% sa bhreis d'aonaid throda, raon 4m sa bhreis is cruinneas níos fearr d'aonaid raonta, luas gluaiseachta níos tapa agus luas is raon leighis sa bhreis do chneasaithe."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breeding livestock for food."
-msgstr "Síolraigh beostoc do bhia a dhéanamh."
+msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
-msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "Am síolraithe -25% d'ainmhithe clóise (.i. caora, gabhair, ba)."
+msgid "Domestic Animals −25% breeding time."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
 msgstr "Tógáil Beostoic"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
-#: simulation/data/technologies/gather_capacity_carts.jsondescription
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
-msgid "Increases shuttling capacity for all resources."
-msgstr "Méadú ar an dtoilleadh tointeáilte do gach acmhainn."
+msgid "Workers use baskets. Increases shuttling capacity for all resources."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
-msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "Úsáideann oibrithe cléibh. Toilleadh tointeáilte +5 do gach acmhainn."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
+msgid "Workers +5 resource capacity."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
 msgstr "Cléibh"
 
+#: simulation/data/technologies/gather_capacity_carts.jsondescription
+msgid ""
+"Workers use horse-drawn carts. Increases shuttling capacity for all "
+"resources."
+msgstr ""
+
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "Úsáideann oibrithe carranna capaill. Toilleadh tointeáilte +10 do gach acmhainn."
+msgid "Workers +10 resource capacity."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -795,9 +800,10 @@ msgstr "Éisc ar Salann"
 msgid "Unlocked in Town Phase. Requires Fishing Net."
 msgstr "Díghlasáilte sa Chéim Bhaile. Tá Líon Iascaireachta ag teastáil."
 
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
-msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr "Úsáideann oibrithe baraí rotha. Toilleadh tointeáilte +5 do gach acmhainn."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
+msgid ""
+"Workers use wheelbarrows. Increases shuttling capacity for all resources."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -808,20 +814,23 @@ msgid "Extra nutrients for farms."
 msgstr "Cothaithigh sa bhreise d'fheirmeacha."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% farming rate."
-msgstr "Ráta feirmeoireachta +25% d'oibrithe."
+msgid "Workers +25% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Leasachán"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
-msgid "A horse drawn instrument to turn the sod."
-msgstr "Uirlis capaill atá in úsáid ag iompú an fhóid."
+msgid ""
+"Equip your workers with iron plows, animal-drawn instruments to turn the "
+"sod."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
-msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Feistigh céachtaí iarainn ar d'oibrithe. Ráta feirmeoireachta +15%."
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -831,22 +840,17 @@ msgstr "Céachta Iarainn"
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Traenáil d'oibrithe agus ráta bailithe a mhéadú sna feirmeacha. "
 
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% farming rate."
-msgstr "Ráta bailithe +15% d'oibrithe."
-
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Oiliúint Bailithe"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the productivity of fishing boats."
-msgstr "Feabhsaigh líonta ar an dtáirgiúlacht iascaireachta."
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid ""
-"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr "Úsáid líonta ar do Bháid Iascaireachta. Ráta iascaireachta +30%. Díghlasáil an teicneolaíocht Éisc ar Salann."
+msgid "Fishing Boats +30% fish gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -860,16 +864,16 @@ msgstr "Méadú ar na rátaí lománaíochta do chrainn."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% lumbering rate for trees."
-msgstr "Ráta lománaíochta +15% d'oibrithe as crainn."
+msgid "Workers +15% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "Ceann Tua Iarainn"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% lumbering rate for trees."
-msgstr "Ráta lománaíochta +50% d'oibrithe as crainn."
+msgid "Workers +50% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -880,15 +884,15 @@ msgid "Stronger Ax"
 msgstr "Tua Níos Laidre"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
-#: simulation/data/technologies/gather_mining_servants.jsondescription
-#: simulation/data/technologies/gather_mining_slaves.jsondescription
-msgid "Increases stone gathering rates."
-msgstr "Méadú ar na rátaí bailithe do chloch."
+msgid ""
+"Compel serfs to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
-msgid ""
-"Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "Éiligh ar na héalótaí agus cloch a bhaint le d'oibrithe. Ráta bailithe +15% do chloch."
+#: simulation/data/technologies/gather_mining_servants.jsontooltip
+msgid "Workers +15% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -900,9 +904,9 @@ msgstr "Héalótaí"
 msgid "Heílōtes"
 msgstr "Heílōtes"
 
-#: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr "Fostaigh giollaí agus mianadóireacht na cloiche a chabhrú. Ráta bailithe +15% do chloch."
+#: simulation/data/technologies/gather_mining_servants.jsondescription
+msgid "Hire servants to help quarry stone. Increases stone gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -915,22 +919,25 @@ msgid "Doûloi"
 msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
-#: simulation/data/technologies/gather_mining_silvermining.jsondescription
-#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
-msgid "Increases metal gathering rates."
-msgstr "Méadú ar na rátaí bailithe miotail."
+msgid "Develop shaft mining. Increases metal gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
-msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "Forbair mianadóireacht sloic. Ráta bailithe +15% do mhiotal."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
+msgid "Workers +15% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
 msgstr "Mianadóireacht Sloic"
 
+#: simulation/data/technologies/gather_mining_silvermining.jsondescription
+msgid "Strike a vein of precious silver. Increases metal gathering rates."
+msgstr ""
+
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "Buail le féith airgid luachmhair. Ráta bailithe +50% do mhiotal."
+msgid "Workers +50% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -944,10 +951,15 @@ msgstr "Mianaigh Chréinaodacha"
 msgid "Mines of Laureion"
 msgstr "Mianaigh Lauraíocha"
 
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+#: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid ""
-"Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Ceannaigh mogha agus cloch a bhaint le d'oibrithe. Ráta bailithe +50% do chloch."
+"Buy slaves to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr ""
+
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +50% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -959,21 +971,22 @@ msgstr "Mogha"
 msgid "Andrápoda"
 msgstr "Andrápoda"
 
-#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "Fesitigh uirlisí úsáideacha ar d'oibrithe. Ráta bailithe +15% do mhiotal."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
+msgid ""
+"Equip your workers with helpful tools. Increases metal gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Ding is Máilléad"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets for foraging."
-msgstr "Cléibh ar son na sealgaireachta."
+msgid "Equip your foragers with wicker baskets for foraging."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
-msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Feistigh cléibh caolaigh ar do sheilgeoirí. Ráta sealgaireachta +50% do thorthaí."
+msgid "Workers +50% fruit gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"

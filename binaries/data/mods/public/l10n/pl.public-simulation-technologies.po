@@ -35,8 +35,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 22:18+0000\n"
+"POT-Creation-Date: 2019-09-16 07:11+0000\n"
+"PO-Revision-Date: 2019-09-16 17:00+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -772,34 +772,39 @@ msgid ""
 msgstr "Jednostki wypromowane do klasy elitarnej zyskują większą jakość: 20% dodatkowego zdrowia, 1 dodatkowy poziom zbroi każdego rodzaju, 20% dodatkowego ataku na jednostki walki w zwarciu, 4m dodatkowego zasięgu i lepsza precyzja dla jednostek dystansowych, szybsze ruchy i dodatkowa szybkość leczenia oraz większy zasięg dla uzdrowicieli."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breeding livestock for food."
-msgstr "Hodowla żywego inwentarza na żywność."
+msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
+msgstr "Hoduje zwierzęta (owce, kozy, krowy, itd.), by dostarczyć żywność."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
-msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "Czas hodowli zwierząt domowych -25% (owce, kozy, bydło itd.)"
+msgid "Domestic Animals −25% breeding time."
+msgstr "Hodowla udomowionych zwierząt skrócona o 25%."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
 msgstr "Hodowla bydła"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
-#: simulation/data/technologies/gather_capacity_carts.jsondescription
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
-msgid "Increases shuttling capacity for all resources."
-msgstr "Zwiększenie przenoszonej ilości dla wszystkich materiałów."
+msgid "Workers use baskets. Increases shuttling capacity for all resources."
+msgstr "Robotnicy używają koszy, dzięki czemu zbierają więcej surowców, zanim je składują."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
-msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "Robotnicy używają koszy. Otrzymują +5 do ilości przenoszonych surowców."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
+msgid "Workers +5 resource capacity."
+msgstr "Robotnicy otrzymują +5 pojemności zbierania."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
 msgstr "Kosze"
 
+#: simulation/data/technologies/gather_capacity_carts.jsondescription
+msgid ""
+"Workers use horse-drawn carts. Increases shuttling capacity for all "
+"resources."
+msgstr "Robotnicy używają zaprzęgów konnych, dzięki czemu zbierają więcej surowców, zanim je składują."
+
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "Robotnicy używają wózków zaprzęgniętych w konie. Otrzymują +10 do ilości przenoszonych surowców."
+msgid "Workers +10 resource capacity."
+msgstr "Robotnicy otrzymują +10 pojemności zbierania."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -821,9 +826,10 @@ msgstr "Solenie ryb"
 msgid "Unlocked in Town Phase. Requires Fishing Net."
 msgstr "Odblokowane w fazie miasta. Wymaga Sieci Rybackiej."
 
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
-msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr "Robotnicy używają taczek. +5 do przenoszonej ilości dla wszystkich materiałów."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
+msgid ""
+"Workers use wheelbarrows. Increases shuttling capacity for all resources."
+msgstr "Robotnicy używają taczek, dzięki czemu zbierają więcej surowców, zanim je składują."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -834,20 +840,23 @@ msgid "Extra nutrients for farms."
 msgstr "Dodatkowy nawóz dla pól uprawnych."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% farming rate."
-msgstr "Robotnicy otrzymują +25% do szybkości uprawy roli."
+msgid "Workers +25% grain gather rate."
+msgstr "Farmerzy zbierają o 25% szybciej."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Nawóz"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
-msgid "A horse drawn instrument to turn the sod."
-msgstr "Urządzenia do orania ziemi, ciągnięte przez konie."
+msgid ""
+"Equip your workers with iron plows, animal-drawn instruments to turn the "
+"sod."
+msgstr "Wyposaż robotników w żelazne pługi, które ciągną zwierzęta w celu orania gleby."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
-msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Wyposaż swoich robotników w żelazne pługi. +15% do szybkości uprawy roli."
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr "Robotnicy zbierają 15% szybciej."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -857,22 +866,17 @@ msgstr "Pług żelazny"
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Szkolenie dla robotników zwiększające szybkość uprawy roli."
 
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% farming rate."
-msgstr "Robotnicy otrzymują +15% do szybkości uprawy roli."
-
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Szkolenie zbieractwa"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the productivity of fishing boats."
-msgstr "Sieci polepszają produktywność łodzi rybackich."
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr "Użyj sieci, by zwiększyć produktywność łodzi rybackich."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid ""
-"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr "Używaj sieci na Łodziach Rybackich. Łodzie otrzymują +30% do szybkości połowu. Odblokowuje Solenie Ryb."
+msgid "Fishing Boats +30% fish gather rate."
+msgstr "Łodzie rybackie łowią ryby 30% szybciej."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -886,16 +890,16 @@ msgstr "Zwiększenie szybkości rąbania drewna."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% lumbering rate for trees."
-msgstr "Robotnicy otrzymują +15% do szybkości rąbania drewna."
+msgid "Workers +15% wood gather rate."
+msgstr "Robotnicy zbierają drewno 15% szybciej."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "Żelazne ostrze siekiery."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% lumbering rate for trees."
-msgstr "Robotnicy otrzymują +50% do szybkości rąbania drewna."
+msgid "Workers +50% wood gather rate."
+msgstr "Robotnicy zbierają drewno 50% szybciej."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -906,15 +910,15 @@ msgid "Stronger Ax"
 msgstr "Wzmocnione siekiery"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
-#: simulation/data/technologies/gather_mining_servants.jsondescription
-#: simulation/data/technologies/gather_mining_slaves.jsondescription
-msgid "Increases stone gathering rates."
-msgstr "Zwiększ szybkość zbierania kamieni."
+msgid ""
+"Compel serfs to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr "Zmuś poddanych, by pomagali robotnikom łupać kamień. Przyspiesza gromadzenie kamienia."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
-msgid ""
-"Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "Przymuszenie poddanych do pomocy w kopalniach kamienia. Robotnicy otrzymują +15% do szybkości wydobycia kamienia."
+#: simulation/data/technologies/gather_mining_servants.jsontooltip
+msgid "Workers +15% stone gather rate."
+msgstr "Robotnicy zbierają kamień 15% szybciej."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -926,9 +930,9 @@ msgstr "Poddani"
 msgid "Heílōtes"
 msgstr "Heílōtes"
 
-#: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr "Najmij poddanych do pomocy w wydobyciu kamienia. Wydobycie kamienia zwiększone o +15%."
+#: simulation/data/technologies/gather_mining_servants.jsondescription
+msgid "Hire servants to help quarry stone. Increases stone gathering rates."
+msgstr "Zatrudnij sługi, by pomagali łupać kamień. Przyspiesza gromadzenie kamienia."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -941,22 +945,25 @@ msgid "Doûloi"
 msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
-#: simulation/data/technologies/gather_mining_silvermining.jsondescription
-#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
-msgid "Increases metal gathering rates."
-msgstr "Zwiększa szybkość wydobycia metalu."
+msgid "Develop shaft mining. Increases metal gathering rates."
+msgstr "Rozwiń szyb górniczy. Przyspiesza gromadzenie metalu."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
-msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "Odkrywa górnictwo głębinowe. +15% do szybkości wydobycia metalu."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
+msgid "Workers +15% metal gather rate."
+msgstr "Robotnicy zbierają metal 15% szybciej."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
 msgstr "Górnictwo głębinowe."
 
+#: simulation/data/technologies/gather_mining_silvermining.jsondescription
+msgid "Strike a vein of precious silver. Increases metal gathering rates."
+msgstr "Odnajdź żyłę drogocennego srebra. Zwiększa tempo gromadzenia metalu."
+
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "Odkrywa żyłę drogocennego srebra. +50% do szybkości wydobycia metalu."
+msgid "Workers +50% metal gather rate."
+msgstr "Robotnicy zbierają metal 50% szybciej."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -970,10 +977,15 @@ msgstr "Kopalnie w Krenides"
 msgid "Mines of Laureion"
 msgstr "Kopalnie Lawrio"
 
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+#: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid ""
-"Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Kup niewolników do pomocy w kopalniach kamienia. +50% do szybkości wydobycia kamienia."
+"Buy slaves to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr "Zakup niewolników, którzy pomogą łupać kamień. Zwiększa tempo gromadzenia tego surowca."
+
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +50% stone gather rate."
+msgstr "Robotnicy gromadzą kamień 50% szybciej."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -985,21 +997,22 @@ msgstr "Niewolnicy"
 msgid "Andrápoda"
 msgstr "Andrápoda"
 
-#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "Wyposaż swoich robotników przydatne narzędzia. +15 do szybkości wydobywania metalu."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
+msgid ""
+"Equip your workers with helpful tools. Increases metal gathering rates."
+msgstr "Wyposaż robotników w przydatne narzędzia. Zwiększa tempo gromadzenia metalu."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Klin i młotek"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets for foraging."
-msgstr "Kosze do zbierania"
+msgid "Equip your foragers with wicker baskets for foraging."
+msgstr "Wyposaż zbieraczy w kosze wiklinowe."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
-msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Wyposaż robotników zbierających żywność w kosze wiklinowe. +50% do szybkości zbierania żywności."
+msgid "Workers +50% fruit gather rate."
+msgstr "Robotnicy zbierają owoce 50% szybciej."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"

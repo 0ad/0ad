@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -323,8 +323,8 @@ bool CHFTracer::PatchRayIntersect(CPatch* patch, const CVector3D& origin, const 
 	// should be extremely rare, and it's safe and simple).)
 
 	// Work out which tile we're starting in
-	int i = clamp((int)(entryPatch.X / TERRAIN_TILE_SIZE), 0, (int)PATCH_SIZE-1);
-	int j = clamp((int)(entryPatch.Z / TERRAIN_TILE_SIZE), 0, (int)PATCH_SIZE-1);
+	int i = Clamp(static_cast<int>(entryPatch.X / TERRAIN_TILE_SIZE), 0, static_cast<int>(PATCH_SIZE) - 1);
+	int j = Clamp(static_cast<int>(entryPatch.Z / TERRAIN_TILE_SIZE), 0, static_cast<int>(PATCH_SIZE) - 1);
 
 	// Work out which direction the ray is going in
 	int di = (dir.X >= 0 ? 1 : 0);

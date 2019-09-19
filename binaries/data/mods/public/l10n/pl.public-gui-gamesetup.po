@@ -59,8 +59,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-26 07:08+0000\n"
-"PO-Revision-Date: 2019-09-01 13:59+0000\n"
+"POT-Creation-Date: 2019-09-16 07:10+0000\n"
+"PO-Revision-Date: 2019-09-16 16:44+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -215,177 +215,177 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Wszystkie mapy dla wybranego typu mapy."
 
-#: gui/gamesetup/gamesetup.js:410
+#: gui/gamesetup/gamesetup.js:404
 msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/gamesetup.js:425
+#: gui/gamesetup/gamesetup.js:419
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Gracz"
 
-#: gui/gamesetup/gamesetup.js:435
+#: gui/gamesetup/gamesetup.js:429
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Rodzaj gry"
 
-#: gui/gamesetup/gamesetup.js:475
+#: gui/gamesetup/gamesetup.js:469
 msgid "Map Type"
 msgstr "Typ mapy"
 
-#: gui/gamesetup/gamesetup.js:476
+#: gui/gamesetup/gamesetup.js:470
 msgid "Select a map type."
 msgstr "Wybierz typ mapy."
 
-#: gui/gamesetup/gamesetup.js:499
+#: gui/gamesetup/gamesetup.js:493
 msgid "Map Filter"
 msgstr "Filtr mapy"
 
-#: gui/gamesetup/gamesetup.js:500
+#: gui/gamesetup/gamesetup.js:494
 msgid "Select a map filter."
 msgstr "Wybierz filtr mapy."
 
-#: gui/gamesetup/gamesetup.js:515
+#: gui/gamesetup/gamesetup.js:509
 msgid "Select Map"
 msgstr "Wybierz mapę"
 
-#: gui/gamesetup/gamesetup.js:516
+#: gui/gamesetup/gamesetup.js:510
 msgid "Select a map to play on."
 msgstr "Wybierz mapę, na której chcesz zagrać."
 
-#: gui/gamesetup/gamesetup.js:530
+#: gui/gamesetup/gamesetup.js:524
 msgid "Map Size"
 msgstr "Rozmiar mapy"
 
-#: gui/gamesetup/gamesetup.js:531
+#: gui/gamesetup/gamesetup.js:525
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Wybierz rozmiar mapy (większe rozmiary mogą obniżyć wydajność)."
 
-#: gui/gamesetup/gamesetup.js:545
+#: gui/gamesetup/gamesetup.js:539
 msgid "Biome"
 msgstr "Fauna i flora"
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:540
 msgid "Select the flora and fauna."
 msgstr "Wybierz florę i faunę."
 
-#: gui/gamesetup/gamesetup.js:561
+#: gui/gamesetup/gamesetup.js:555
 msgid "Number of Players"
 msgstr "Liczba graczy"
 
-#: gui/gamesetup/gamesetup.js:562
+#: gui/gamesetup/gamesetup.js:556
 msgid "Select number of players."
 msgstr "Wybierz liczbę graczy."
 
-#: gui/gamesetup/gamesetup.js:582
+#: gui/gamesetup/gamesetup.js:576
 msgid "Population Cap"
 msgstr "Limit populacji"
 
-#: gui/gamesetup/gamesetup.js:589
+#: gui/gamesetup/gamesetup.js:583
 msgid "Select population limit."
 msgstr "Wybierz limit populacji."
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:586
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Ostrzeżenie: Wydajność może spaść jeżeli wszyscy %(players)s gracze osiągną %(popCap)s populacji."
 
-#: gui/gamesetup/gamesetup.js:610
+#: gui/gamesetup/gamesetup.js:604
 msgid "Starting Resources"
 msgstr "Zasoby początkowe"
 
-#: gui/gamesetup/gamesetup.js:613
+#: gui/gamesetup/gamesetup.js:607
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Początkowa wartość każdego zasobu: %(resources)s"
 
-#: gui/gamesetup/gamesetup.js:616
+#: gui/gamesetup/gamesetup.js:610
 msgid "Select the game's starting resources."
 msgstr "Wybierz początkowe zasoby w grze."
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:625
 msgid "Ceasefire"
 msgstr "Zawieszenie broni"
 
-#: gui/gamesetup/gamesetup.js:632
+#: gui/gamesetup/gamesetup.js:626
 msgid "Set time where no attacks are possible."
 msgstr "Ustaw czas gdy nie są możliwe ataki."
 
-#: gui/gamesetup/gamesetup.js:645
+#: gui/gamesetup/gamesetup.js:639
 msgid "Relic Count"
 msgstr "Liczba reliktów"
 
-#: gui/gamesetup/gamesetup.js:646
+#: gui/gamesetup/gamesetup.js:640
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Łączna liczba relikwii iskrzących się na mapie. Zwycięstwo relikwii jest najbardziej realistyczne, z jednym lub dwoma reliktami. Przy większej liczbie relikwii są ważne do przechwytywania, aby otrzymać premie aury."
 
-#: gui/gamesetup/gamesetup.js:660
+#: gui/gamesetup/gamesetup.js:654
 msgid "Relic Duration"
 msgstr "Czas do relikwii "
 
-#: gui/gamesetup/gamesetup.js:661
+#: gui/gamesetup/gamesetup.js:655
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Minuty zanim gracz wygra poprzez utrzymanie Relikwii."
 
-#: gui/gamesetup/gamesetup.js:675
+#: gui/gamesetup/gamesetup.js:669
 msgid "Wonder Duration"
 msgstr "Czas do zbudowania Cudu"
 
-#: gui/gamesetup/gamesetup.js:676
+#: gui/gamesetup/gamesetup.js:670
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Minuty zanim gracz wygra poprzez wybudowanie Cudu."
 
-#: gui/gamesetup/gamesetup.js:690
+#: gui/gamesetup/gamesetup.js:684
 msgid "Game Speed"
 msgstr "Prędkość Rozgrywki"
 
-#: gui/gamesetup/gamesetup.js:691
+#: gui/gamesetup/gamesetup.js:685
 msgid "Select game speed."
 msgstr "Wybierz szybkość gry."
 
-#: gui/gamesetup/gamesetup.js:705
+#: gui/gamesetup/gamesetup.js:699
 msgid "Difficulty"
 msgstr "Poziom trudności"
 
-#: gui/gamesetup/gamesetup.js:707
+#: gui/gamesetup/gamesetup.js:701
 msgid "Select the difficulty of this scenario."
 msgstr "Wybierz poziom trudności dla tego scenariusza."
 
-#: gui/gamesetup/gamesetup.js:727
+#: gui/gamesetup/gamesetup.js:721
 msgid "Select player."
 msgstr "Wybierz gracza"
 
-#: gui/gamesetup/gamesetup.js:762
+#: gui/gamesetup/gamesetup.js:756
 msgid "Select player's team."
 msgstr "Wybierz drużynę gracza."
 
-#: gui/gamesetup/gamesetup.js:774
+#: gui/gamesetup/gamesetup.js:768
 msgid "Choose the civilization for this player."
 msgstr "Wybierz cywilizację dla tego gracza."
 
-#: gui/gamesetup/gamesetup.js:788
+#: gui/gamesetup/gamesetup.js:782
 msgid "Pick a color."
 msgstr "Wybierz kolor."
 
-#: gui/gamesetup/gamesetup.js:842
+#: gui/gamesetup/gamesetup.js:836
 msgid "Hero Garrison"
 msgstr "Garnizon Bohatera"
 
-#: gui/gamesetup/gamesetup.js:843
+#: gui/gamesetup/gamesetup.js:837
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Włącz lub wyłącz garnizonowanie bohaterów."
 
-#: gui/gamesetup/gamesetup.js:855
+#: gui/gamesetup/gamesetup.js:849
 msgid "Nomad"
 msgstr "Koczownik"
 
-#: gui/gamesetup/gamesetup.js:856
+#: gui/gamesetup/gamesetup.js:850
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -393,208 +393,221 @@ msgstr "W trybie Koczowniczym, gracze zaczynają z kilkoma jednostkami i muszą 
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:869
+#: gui/gamesetup/gamesetup.js:863
 msgid "Revealed Map"
 msgstr "Mapa ujawniona"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:872
+#: gui/gamesetup/gamesetup.js:866
 msgid "Toggle revealed map (see everything)."
 msgstr "Wł./Wył.  odsłonięcie mapy (pełna widoczność)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:882
 msgid "Explored Map"
 msgstr "Mapa zbadana"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:891
+#: gui/gamesetup/gamesetup.js:885
 msgid "Toggle explored map (see initial map)."
 msgstr "Wł./Wył. zbadaną mapę (widać startową mapę)."
 
-#: gui/gamesetup/gamesetup.js:902
+#: gui/gamesetup/gamesetup.js:896
 msgid "Disable Treasures"
 msgstr "Wyłącz skarby"
 
-#: gui/gamesetup/gamesetup.js:903
+#: gui/gamesetup/gamesetup.js:897
 msgid "Do not add treasures to the map."
 msgstr "Wyłącz wszystkie skarby na mapie."
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:908
 msgid "Disable Spies"
 msgstr "Wyłącz szpiegów"
 
-#: gui/gamesetup/gamesetup.js:915
+#: gui/gamesetup/gamesetup.js:909
 msgid "Disable spies during the game."
 msgstr "Wyłącz szpiegów w trakcie rozgrywki."
 
-#: gui/gamesetup/gamesetup.js:926
+#: gui/gamesetup/gamesetup.js:920
 msgid "Teams Locked"
 msgstr "Drużyny zablokowane"
 
-#: gui/gamesetup/gamesetup.js:927
+#: gui/gamesetup/gamesetup.js:921
 msgid "Toggle locked teams."
 msgstr "Wł./Wył. sztywne drużyny."
 
-#: gui/gamesetup/gamesetup.js:941
+#: gui/gamesetup/gamesetup.js:935
 msgid "Last Man Standing"
 msgstr "Ostatni na polu bitwy"
 
-#: gui/gamesetup/gamesetup.js:942
+#: gui/gamesetup/gamesetup.js:936
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Przełącza czy ostatni pozostały gracz lub ostatni pozostały zbiór sojuszników wygrywa."
 
-#: gui/gamesetup/gamesetup.js:955
+#: gui/gamesetup/gamesetup.js:949
 msgid "Cheats"
 msgstr "Oszustwa"
 
-#: gui/gamesetup/gamesetup.js:956
+#: gui/gamesetup/gamesetup.js:950
 msgid "Toggle the usability of cheats."
 msgstr "Wł./Wył. kody."
 
-#: gui/gamesetup/gamesetup.js:969
+#: gui/gamesetup/gamesetup.js:963
 msgid "Rated Game"
 msgstr "Gra rankingowa"
 
-#: gui/gamesetup/gamesetup.js:970
+#: gui/gamesetup/gamesetup.js:964
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Wł./Wył. ocenę gry w tabeli wyników."
 
-#: gui/gamesetup/gamesetup.js:1003
+#: gui/gamesetup/gamesetup.js:997
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "Naciśnij %(hotkey)s, aby automatycznie uzupełnić nazwy graczy lub ustawienia."
 
-#: gui/gamesetup/gamesetup.js:1011
+#: gui/gamesetup/gamesetup.js:1045
+msgid "Back"
+msgstr "Powrót"
+
+#: gui/gamesetup/gamesetup.js:1048
 msgid "Return to the lobby."
 msgstr "Powróć do menu głównego."
 
-#: gui/gamesetup/gamesetup.js:1012
+#: gui/gamesetup/gamesetup.js:1049
 msgid "Return to the main menu."
 msgstr "Powróć do menu głównego."
 
-#: gui/gamesetup/gamesetup.js:1016
+#: gui/gamesetup/gamesetup.js:1077
 msgid "Start Game!"
 msgstr "Zaczynamy grę!"
 
-#: gui/gamesetup/gamesetup.js:1032
+#: gui/gamesetup/gamesetup.js:1093
 msgid "Start a new game with the current settings."
 msgstr "Rozpocznij grę z bieżącymi ustawieniami."
 
-#: gui/gamesetup/gamesetup.js:1033
+#: gui/gamesetup/gamesetup.js:1094
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
 msgstr "Rozpocznij nową grę z obecnymi ustawieniami (tylko gdy wszyscy gracze są gotowi)."
 
-#: gui/gamesetup/gamesetup.js:1045
+#: gui/gamesetup/gamesetup.js:1106
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Widok Historii / Drzewko konstrukcyjne\nOstatni widok zostanie otwarty ponownie po kliknięciu. "
 
-#: gui/gamesetup/gamesetup.js:1110
+#: gui/gamesetup/gamesetup.js:1118
+msgid ""
+"Reset any civilizations that have been selected to the default (random)."
+msgstr "Przywróć każdą wybraną cywilizację do ustawień domyślnych (losowych)."
+
+#: gui/gamesetup/gamesetup.js:1128
+msgid "Reset all teams to the default."
+msgstr "Resetuj wszystkie zespoły do domyślnych."
+
+#: gui/gamesetup/gamesetup.js:1185
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "Wybierz SI: %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1404
+#: gui/gamesetup/gamesetup.js:1498
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Przełącz %(name)s ustawienia."
 
-#: gui/gamesetup/gamesetup.js:1405
+#: gui/gamesetup/gamesetup.js:1499
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Użyj %(hotkey)s by przesunąć opcję niżej."
 
-#: gui/gamesetup/gamesetup.js:1406
+#: gui/gamesetup/gamesetup.js:1500
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Użyj %(hotkey)s by przesunąć opcję wyżej."
 
-#: gui/gamesetup/gamesetup.js:1754
+#: gui/gamesetup/gamesetup.js:1834
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe "
 
-#: gui/gamesetup/gamesetup.js:1756
+#: gui/gamesetup/gamesetup.js:1836
 msgid "Pick any of the given maps at random."
 msgstr "Wybierz losowo jedną z dostępnych map."
 
-#: gui/gamesetup/gamesetup.js:1788
+#: gui/gamesetup/gamesetup.js:1868
 msgctxt "biome"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/gamesetup/gamesetup.js:1789
+#: gui/gamesetup/gamesetup.js:1869
 msgid "Pick a biome at random."
 msgstr "Wybierz faunę i florę losowo"
 
-#: gui/gamesetup/gamesetup.js:2130
+#: gui/gamesetup/gamesetup.js:2210
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2135
+#: gui/gamesetup/gamesetup.js:2215
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: gui/gamesetup/gamesetup.js:2165
+#: gui/gamesetup/gamesetup.js:2245
 msgid "Yes"
 msgstr "Tak"
 
-#: gui/gamesetup/gamesetup.js:2165
+#: gui/gamesetup/gamesetup.js:2245
 msgid "No"
 msgstr "Nie"
 
-#: gui/gamesetup/gamesetup.js:2172
+#: gui/gamesetup/gamesetup.js:2252
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2260
+#: gui/gamesetup/gamesetup.js:2334
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2461
+#: gui/gamesetup/gamesetup.js:2498
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2469
+#: gui/gamesetup/gamesetup.js:2506
 msgid "Unassigned"
 msgstr "Nieprzypisane"
 
-#: gui/gamesetup/gamesetup.js:2545
+#: gui/gamesetup/gamesetup.js:2577
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2552
+#: gui/gamesetup/gamesetup.js:2584
 msgid "Unknown Player"
 msgstr "Nieznany gracz"
 
-#: gui/gamesetup/gamesetup.js:2591
+#: gui/gamesetup/gamesetup.js:2623
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2592
+#: gui/gamesetup/gamesetup.js:2624
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2593
+#: gui/gamesetup/gamesetup.js:2625
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -698,64 +711,51 @@ msgstr "Anuluj"
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):24
+#: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
 msgstr "Ustawienia rozgrywki"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):18
 msgid "Loading"
 msgstr "Wczytywanie"
 
-#: gui/gamesetup/gamesetup.xml:(caption):34
+#: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
 msgstr "Ładowanie mapy. Proszę czekać..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
 msgstr "Nazwa gracza"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Color"
 msgstr "Kolor"
 
-#: gui/gamesetup/gamesetup.xml:(caption):62
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Player Placement"
 msgstr "Umiejscowienie gracza"
 
-#: gui/gamesetup/gamesetup.xml:(caption):66
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Civilization"
 msgstr "Cywilizacja"
 
-#: gui/gamesetup/gamesetup.xml:(caption):83
+#: gui/gamesetup/gamesetup.xml:(caption):61
 msgid "Team"
 msgstr "Drużyna"
 
-#: gui/gamesetup/gamesetup.xml:(caption):121
+#: gui/gamesetup/gamesetup.xml:(caption):90
 msgid "Show this message in the future."
 msgstr "Pokazuj powiadomienie w przyszłości."
 
-#: gui/gamesetup/gamesetup.xml:(caption):210
+#: gui/gamesetup/gamesetup.xml:(caption):175
 msgid "Send"
 msgstr "Wyślij"
 
-#: gui/gamesetup/gamesetup.xml:(caption):227
+#: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Cheats enabled."
 msgstr "Kody aktywowane."
 
-#: gui/gamesetup/gamesetup.xml:(caption):250
-msgid "Back"
-msgstr "Powrót"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):78
-msgid ""
-"Reset any civilizations that have been selected to the default (random)."
-msgstr "Przywróć każdą wybraną cywilizację do ustawień domyślnych (losowych)."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):93
-msgid "Reset all teams to the default."
-msgstr "Resetuj wszystkie zespoły do domyślnych."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):192
+#: gui/gamesetup/gamesetup.xml:(tooltip):161
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Pokaż poczekalnię w oknie dialogowym"
 
@@ -1720,7 +1720,7 @@ msgstr "\"Przyszłość będzie się nad nami zastanawiać, tak jak teraźniejsz
 
 #: gui/text/quotes.txt:135
 msgid ""
-"“When you realise the power of Athens, consider it was won by valiant men "
+"“When you realize the power of Athens, consider it was won by valiant men "
 "who knew their duty, had a sense of dishonor in fight and, if their "
 "enterprises failed, would rather give their lives than lack in civic "
 "virtue.” \\n— Pericles in his Funeral Oration for Athenians that died in the"
@@ -2189,11 +2189,11 @@ msgstr "\"Bitwy bardziej wpływają na morale mężczyzn niż ich siła fizyczna
 
 #: gui/text/quotes.txt:196
 msgid ""
-"“Let's not give them enough time to arrange a defense, or to even recognise "
+"“Let's not give them enough time to arrange a defense, or to even recognize "
 "that we are human beings! We've got to appear to them like an uncontrollable"
 " nightmare of shields, swords, battle-axes and spears!” \\n— Xenophon (“The "
 "Education of Cyrus”, 4.2.22)"
-msgstr "\"Nie dawaj im wystarczająco dużo czasu na obronę, a nawet na zrozumienie, że jesteśmy ludźmi! Musimy im ukazywać się jak niepokonany koszmar tarcz, mieczy, toporów bojowych i włóczni!\"- Ksenofont (\"Edukacja Cyrusa\", 4.2.22)\""
+msgstr "\"Nie dawaj im wystarczająco dużo czasu na obronę, a nawet na zrozumienie, że jesteśmy ludźmi! Musimy im ukazywać się jako niepokonany koszmar tarcz, mieczy, toporów bojowych i włóczni!\"- Ksenofont (\"Edukacja Cyrusa\", 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""

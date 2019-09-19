@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 14:42+0000\n"
+"POT-Creation-Date: 2019-09-16 07:11+0000\n"
+"PO-Revision-Date: 2019-09-16 14:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -764,34 +764,39 @@ msgid ""
 msgstr "Las unidades ascendidas a clase de élite ganan numerosas cualidades: un 20% extra de salud, 1 punto extra de armadura de cada tipo, un 20% extra de saqueo, un 20% extra de ataque a las unidades cuerpo a cuerpo, 4m de aumento de alcance y mayor precisión a las unidades a distancia, mayor velocidad de movimiento y mayor velocidad de sanación y alcance para las unidades sanadoras."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breeding livestock for food."
-msgstr "Cría ganado para conseguir comida."
+msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
-msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "El tiempo de cría se reduce un -25% para los animales domésticos (ovejas, cabras, vacas, y demás)"
+msgid "Domestic Animals −25% breeding time."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
 msgstr "Ganadería"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
-#: simulation/data/technologies/gather_capacity_carts.jsondescription
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
-msgid "Increases shuttling capacity for all resources."
-msgstr "Mejora sensiblemente la capacidad de transporte de todos los recursos."
+msgid "Workers use baskets. Increases shuttling capacity for all resources."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
-msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "Los trabajadores utilizan cestas. +5 de capacidad de transporte para todos los recursos."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
+msgid "Workers +5 resource capacity."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
 msgstr "Cestas"
 
+#: simulation/data/technologies/gather_capacity_carts.jsondescription
+msgid ""
+"Workers use horse-drawn carts. Increases shuttling capacity for all "
+"resources."
+msgstr ""
+
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "Los trabajadores utilizan carretas tiradas por caballos. +10 de capacidad de transporte para todos los recursos."
+msgid "Workers +10 resource capacity."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -813,9 +818,10 @@ msgstr "Pescado en salazón"
 msgid "Unlocked in Town Phase. Requires Fishing Net."
 msgstr "Se desbloquea en la Fase intermedia. Necesita Red de pesca."
 
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
-msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr "Los trabajadores utilizan carretas de mano. +5 de capacidad de transporte para todos los recursos."
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
+msgid ""
+"Workers use wheelbarrows. Increases shuttling capacity for all resources."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -826,20 +832,23 @@ msgid "Extra nutrients for farms."
 msgstr "Nutrientes adicionales para tus cultivos."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% farming rate."
-msgstr "Los trabajadores obtienen un +25% de velocidad de cultivo."
+msgid "Workers +25% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Fertilizante"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
-msgid "A horse drawn instrument to turn the sod."
-msgstr "Un apero tirado por caballos con el que arar las tierras."
+msgid ""
+"Equip your workers with iron plows, animal-drawn instruments to turn the "
+"sod."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
-msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Equipa a tus trabajadores con arados de hierro. +15% de velocidad de cultivo."
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -849,22 +858,17 @@ msgstr "Arado de hierro"
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Entrenamiento para mejorar la velocidad de cultivo de tus trabajadores."
 
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% farming rate."
-msgstr "Los trabajadores obtienen un +15% de velocidad de cultivo."
-
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Entrenamiento de recolección"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Nets improve the productivity of fishing boats."
-msgstr "Las redes mejoran la productividad de los barcos pesqueros."
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid ""
-"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr "Utiliza redes en tus botes pesqueros. +30% de velocidad de pesca. Desbloquea Pescado en salazón."
+msgid "Fishing Boats +30% fish gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -878,16 +882,16 @@ msgstr "Mejora el ritmo de recogida de leña."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% lumbering rate for trees."
-msgstr "Los trabajadores obtienen un +15% en velocidad de tala de árboles."
+msgid "Workers +15% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "Hachas con cabeza de hierro"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% lumbering rate for trees."
-msgstr "Los trabajadores obtienen un +50% en velocidad de tala de árboles."
+msgid "Workers +50% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -898,15 +902,15 @@ msgid "Stronger Ax"
 msgstr "Hachas más resistentes"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
-#: simulation/data/technologies/gather_mining_servants.jsondescription
-#: simulation/data/technologies/gather_mining_slaves.jsondescription
-msgid "Increases stone gathering rates."
-msgstr "Mejora el ritmo de explotación pedrera"
+msgid ""
+"Compel serfs to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
-msgid ""
-"Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "Obliga a tus siervos a ayudar a tus trabajadores a extraer piedra. +15% de ritmo de explotación pedrera."
+#: simulation/data/technologies/gather_mining_servants.jsontooltip
+msgid "Workers +15% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -918,9 +922,9 @@ msgstr "Siervos"
 msgid "Heílōtes"
 msgstr "Heílōtes"
 
-#: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr "Obliga a tus siervos a extraer piedra. +15% de ritmo de explotación pedrera."
+#: simulation/data/technologies/gather_mining_servants.jsondescription
+msgid "Hire servants to help quarry stone. Increases stone gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -933,22 +937,25 @@ msgid "Doûloi"
 msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
-#: simulation/data/technologies/gather_mining_silvermining.jsondescription
-#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
-msgid "Increases metal gathering rates."
-msgstr "Mejora el ritmo de explotación del metal."
+msgid "Develop shaft mining. Increases metal gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
-msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "Inventa los pozos mineros. +15% de explotación de metal."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
+msgid "Workers +15% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
 msgstr "Pozo minero"
 
+#: simulation/data/technologies/gather_mining_silvermining.jsondescription
+msgid "Strike a vein of precious silver. Increases metal gathering rates."
+msgstr ""
+
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "Da con una mena de valiosa plata. +50% de explotación de metal."
+msgid "Workers +50% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -962,10 +969,15 @@ msgstr "Minas de Krenides"
 msgid "Mines of Laureion"
 msgstr "Minas de Laureion"
 
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+#: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid ""
-"Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Compra esclavos para mejorar la explotación de piedra. +50% de ritmo de explotación pedrera."
+"Buy slaves to help your workers quarry stone. Increases stone gathering "
+"rates."
+msgstr ""
+
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +50% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -977,21 +989,22 @@ msgstr "Esclavos"
 msgid "Andrápoda"
 msgstr "Andrápoda"
 
-#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "Equipa tus trabajadores con útiles de trabajo. +15% de velocidad de explotación de metal."
+#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
+msgid ""
+"Equip your workers with helpful tools. Increases metal gathering rates."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Cuña y mazo"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets for foraging."
-msgstr "Cestas para recolección."
+msgid "Equip your foragers with wicker baskets for foraging."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
-msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Equipa a tus recolectores con cestas de mimbre. +50% a la tasa de recolección de frutales."
+msgid "Workers +50% fruit gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"

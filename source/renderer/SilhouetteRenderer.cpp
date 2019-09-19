@@ -189,10 +189,10 @@ static void ComputeScreenBounds(Occluder& occluder, const CBoundingBoxAligned& b
 	// TODO: there must be a quicker way to do this than to test every vertex,
 	// given the symmetry of the bounding box
 
-	occluder.x0 = clamp(x0, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
-	occluder.y0 = clamp(y0, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
-	occluder.x1 = clamp(x1, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
-	occluder.y1 = clamp(y1, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.x0 = Clamp(x0, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.y0 = Clamp(y0, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.x1 = Clamp(x1, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.y1 = Clamp(y1, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
 	occluder.z = z0;
 }
 
@@ -201,8 +201,8 @@ static void ComputeScreenPos(Caster& caster, const CVector3D& pos, CMatrix3D& pr
 	CVector4D svec = proj.Transform(CVector4D(pos.X, pos.Y, pos.Z, 1.0f));
 	u16 x = g_HalfMaxCoord + static_cast<int>(g_HalfMaxCoord * svec.X / svec.W);
 	u16 y = g_HalfMaxCoord + static_cast<int>(g_HalfMaxCoord * svec.Y / svec.W);
-	caster.x = clamp(x, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
-	caster.y = clamp(y, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	caster.x = Clamp(x, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	caster.y = Clamp(y, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
 	caster.z = svec.Z / svec.W;
 }
 

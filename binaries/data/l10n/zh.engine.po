@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 15:46+0000\n"
+"PO-Revision-Date: 2019-09-16 07:57+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -44,15 +44,15 @@ msgstr "证书不受信任。"
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "证书无已知的发行人。"
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "证书已被撤销。"
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "证书已过期。"
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
@@ -60,11 +60,11 @@ msgstr "未激活证书。"
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "尚未为连接方颁发证书。"
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "证书签名者非授权。"
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280

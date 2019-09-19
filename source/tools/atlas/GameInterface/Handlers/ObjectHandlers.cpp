@@ -378,14 +378,14 @@ static CVector3D GetUnitPos(const Position& pos, bool floating)
 
 	// Clamp the position to the edges of the world:
 
-	// Use 'clamp' with a value slightly less than the width, so that converting
+	// Use 'Clamp' with a value slightly less than the width, so that converting
 	// to integer (rounding towards zero) will put it on the tile inside the edge
 	// instead of just outside
 	float mapWidth = (g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*TERRAIN_TILE_SIZE;
 	float delta = 1e-6f; // fraction of map width - must be > FLT_EPSILON
 
-	float xOnMap = clamp(vec.X, 0.f, mapWidth * (1.f - delta));
-	float zOnMap = clamp(vec.Z, 0.f, mapWidth * (1.f - delta));
+	float xOnMap = Clamp(vec.X, 0.f, mapWidth * (1.f - delta));
+	float zOnMap = Clamp(vec.Z, 0.f, mapWidth * (1.f - delta));
 
 	// Don't waste time with GetExactGroundLevel unless we've changed
 	if (xOnMap != vec.X || zOnMap != vec.Z)

@@ -19,6 +19,7 @@
 
 #include "CGUISetting.h"
 
+#include "gui/CGUI.h"
 #include "gui/GUI.h"
 
 template<typename T>

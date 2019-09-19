@@ -19,6 +19,7 @@
 
 #include "CDropDown.h"
 
+#include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
