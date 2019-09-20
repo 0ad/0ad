@@ -1342,6 +1342,15 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
+	if (g_RenderingOptions.GetPostProc())
+	{
+		// We have to update the post process manager with real near/far planes
+		// that we use for the scene rendering.
+		m->postprocManager.SetDepthBufferClipPlanes(
+			m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane()
+		);
+	}
+
 	ogl_WarnIfError();
 
 	if (m_WaterManager->m_RenderWater)

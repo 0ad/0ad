@@ -427,8 +427,8 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 
 	shader->Uniform(str_width, m_Width);
 	shader->Uniform(str_height, m_Height);
-	shader->Uniform(str_zNear, g_Game->GetView()->GetNear());
-	shader->Uniform(str_zFar, g_Game->GetView()->GetFar());
+	shader->Uniform(str_zNear, m_NearPlane);
+	shader->Uniform(str_zFar, m_FarPlane);
 
 	shader->Uniform(str_brightness, g_LightEnv.m_Brightness);
 	shader->Uniform(str_hdr, g_LightEnv.m_Contrast);
@@ -544,6 +544,12 @@ void CPostprocManager::SetPostEffect(const CStrW& name)
 	m_PostProcEffect = name;
 }
 
+void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
+{
+	m_NearPlane = nearPlane;
+	m_FarPlane = farPlane;
+}
+
 #else
 
 #warning TODO: implement PostprocManager for GLES
@@ -590,6 +596,10 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 }
 
 void CPostprocManager::SetPostEffect(const CStrW& UNUSED(name))
+{
+}
+
+void CPostprocManager::SetDepthBufferClipPlanes(float UNUSED(nearPlane), float UNUSED(farPlane))
 {
 }
 
