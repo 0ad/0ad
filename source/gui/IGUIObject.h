@@ -243,12 +243,6 @@ protected:
 	 */
 	template<typename T> void AddSetting(const CStr& Name);
 
-	/**
-	 * Calls Destroy on all children, and deallocates all memory.
-	 * MEGA TODO Should it destroy it's children?
-	 */
-	virtual void Destroy();
-
 public:
 	/**
      * This function is called with different messages

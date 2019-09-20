@@ -296,7 +296,11 @@ CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 
 CGUI::~CGUI()
 {
-	Destroy();
+	for (const std::pair<CStr, IGUIObject*>& p : m_pAllObjects)
+		delete p.second;
+
+	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
+		delete p.second;
 }
 
 IGUIObject* CGUI::ConstructObject(const CStr& str)
@@ -355,33 +359,6 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 	// TODO: Clipping?
 
 	Sprite.Draw(*this, Rect, CellID, m_Sprites, Z);
-}
-
-void CGUI::Destroy()
-{
-	// We can use the map to delete all
-	//  now we don't want to cancel all if one Destroy fails
-	for (const std::pair<CStr, IGUIObject*>& p : m_pAllObjects)
-	{
-		try
-		{
-			p.second->Destroy();
-		}
-		catch (PSERROR_GUI& e)
-		{
-			UNUSED2(e);
-			debug_warn(L"CGUI::Destroy error");
-			// TODO Gee: Handle
-		}
-
-		delete p.second;
-	}
-	m_pAllObjects.clear();
-
-	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
-		delete p.second;
-	m_Sprites.clear();
-	m_Icons.clear();
 }
 
 void CGUI::UpdateResolution()

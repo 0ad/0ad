@@ -123,12 +123,6 @@ public:
 	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
 
 	/**
-	 * Clean up, call this to clean up all memory allocated
-	 * within the GUI.
-	 */
-	void Destroy();
-
-	/**
 	 * The replacement of Process(), handles an SDL_Event_
 	 *
 	 * @param ev SDL Event, like mouse/keyboard input

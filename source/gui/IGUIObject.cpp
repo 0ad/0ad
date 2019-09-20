@@ -113,11 +113,6 @@ void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 	}
 }
 
-void IGUIObject::Destroy()
-{
-	// Is there anything besides the children to destroy?
-}
-
 template<typename T>
 void IGUIObject::AddSetting(const CStr& Name)
 {
