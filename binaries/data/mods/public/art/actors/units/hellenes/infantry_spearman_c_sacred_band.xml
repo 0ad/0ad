@@ -13,9 +13,54 @@
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="Helmets-boeotian Varieties">
+    <variant frequency="1" name="Hele Pilos Helmet-01">
       <props>
-        <prop actor="props/units/helmets/hele_sacredband.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_pilos.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Boeotian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_crest.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Chalcidean Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_a1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Chalcidean Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_a2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Chalcidean Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_a3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Chalcidean Helmet-04">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_a4.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Chalcidean Helmet-05">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_a5.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Illyrian Helmet-01">
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_b1_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Illyrian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Illyrian Helmet-03">
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_b3_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
