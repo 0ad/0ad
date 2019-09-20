@@ -101,7 +101,9 @@ bool JSI_Game::IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_Game)
 	{
-		JS_ReportError(pCxPrivate->pScriptInterface->GetContext(), "Game is not started");
+		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		JS_ReportError(cx, "Game is not started");
 		return false;
 	}
 
@@ -112,7 +114,9 @@ void JSI_Game::SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, boo
 {
 	if (!g_Game)
 	{
-		JS_ReportError(pCxPrivate->pScriptInterface->GetContext(), "Game is not started");
+		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		JS_ReportError(cx, "Game is not started");
 		return;
 	}
 

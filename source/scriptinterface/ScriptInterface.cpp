@@ -214,6 +214,7 @@ bool deepfreeze(JSContext* cx, uint argc, JS::Value* vp)
 
 	if (args.length() != 1 || !args.get(0).isObject())
 	{
+		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "deepfreeze requires exactly one object as an argument.");
 		return false;
 	}

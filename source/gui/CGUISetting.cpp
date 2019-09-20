@@ -51,6 +51,7 @@ bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value, con
 
 		if (!settingValue.ParseString(m_pObject.GetGUI(), name))
 		{
+			JSAutoRequest rq(cx);
 			JS_ReportError(cx, "Invalid color '%s'", name.c_str());
 			return false;
 		}
