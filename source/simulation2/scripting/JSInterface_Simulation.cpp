@@ -117,7 +117,7 @@ std::vector<entity_id_t> JSI_Simulation::PickNonGaiaEntitiesOnScreen(ScriptInter
 	return EntitySelection::PickNonGaiaEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, false);
 }
 
-std::vector<entity_id_t> JSI_Simulation::GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::CxPrivate* pCxPrivate)
+std::vector<entity_id_t> JSI_Simulation::GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	struct StaticObstructionFilter
 	{
