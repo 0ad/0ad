@@ -20,7 +20,6 @@
 #include "CGUISetting.h"
 
 #include "gui/CGUI.h"
-#include "gui/GUI.h"
 
 template<typename T>
 CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name)

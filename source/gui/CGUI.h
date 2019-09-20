@@ -32,6 +32,8 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/unordered_set.hpp>
+#include <map>
+#include <vector>
 
 ERROR_TYPE(GUI, JSOpenFailed);
 

@@ -18,7 +18,6 @@
 #ifndef INCLUDED_CRADIOBUTTON
 #define INCLUDED_CRADIOBUTTON
 
-#include "GUI.h"
 #include "CCheckBox.h"
 
 /**

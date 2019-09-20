@@ -18,7 +18,7 @@
 #ifndef INCLUDED_CIMAGE
 #define INCLUDED_CIMAGE
 
-#include "GUI.h"
+#include "gui/IGUIObject.h"
 
 /**
  * Object just for drawing a sprite. Like CText, without the
@@ -29,8 +29,6 @@
  * without functionality used, and that is a lot of unnecessary
  * overhead. That's why I thought I'd go with an intuitive
  * control.
- *
- * @see IGUIObject
  */
 class CImage : public IGUIObject
 {

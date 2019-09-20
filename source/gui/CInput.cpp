@@ -21,7 +21,6 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
-#include "gui/GUI.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"

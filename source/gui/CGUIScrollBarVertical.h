@@ -16,29 +16,15 @@
  */
 
 /*
-A GUI ScrollBar
-
---Overview--
-
 	A GUI Scrollbar, this class doesn't present all functionality
 	to the scrollbar, it just controls the drawing and a wrapper
 	for interaction with it.
-
---Usage--
-
-	Used in everywhere scrollbars are needed, like in a combobox for instance.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_CGUISCROLLBARVERTICAL
 #define INCLUDED_CGUISCROLLBARVERTICAL
 
 #include "IGUIScrollBar.h"
-#include "GUI.h"
 
 /**
  * Vertical implementation of IGUIScrollBar

@@ -17,8 +17,9 @@
 #ifndef INCLUDED_COLIST
 #define INCLUDED_COLIST
 
-#include "GUI.h"
 #include "CList.h"
+
+#include <vector>
 
 /**
  * Represents a column.

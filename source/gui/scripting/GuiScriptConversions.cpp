@@ -27,6 +27,8 @@
 #include "ps/Hotkey.h"
 #include "scriptinterface/ScriptConversions.h"
 
+#include <string>
+
 #define SET(obj, name, value) STMT(JS::RootedValue v_(cx); AssignOrToJSVal(cx, &v_, (value)); JS_SetProperty(cx, obj, (name), v_))
 	// ignore JS_SetProperty return value, because errors should be impossible
 	// and we can't do anything useful in the case of errors anyway

@@ -18,7 +18,9 @@
 #ifndef INCLUDED_IGUISCROLLBAROWNER
 #define INCLUDED_IGUISCROLLBAROWNER
 
-#include "GUI.h"
+#include "gui/IGUIObject.h"
+
+#include <vector>
 
 struct SGUIScrollBarStyle;
 class IGUIScrollBar;
@@ -26,9 +28,6 @@ class IGUIScrollBar;
 /**
  * Base-class this if you want an object to contain
  * one, or several, scroll-bars.
- *
- * @see IGUIObject
- * @see IGUIScrollBar
  */
 class IGUIScrollBarOwner : virtual public IGUIObject
 {

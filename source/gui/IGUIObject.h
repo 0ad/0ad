@@ -30,6 +30,7 @@
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
 
+#include <map>
 #include <string>
 #include <vector>
 

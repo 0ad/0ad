@@ -25,23 +25,19 @@ GUI Object Base - Text Owner
 	 and many controls that will use CGUIStrings might
 	 not use this, but does help for regular usage such
 	 as a text-box, a button, a radio button etc.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_IGUITEXTOWNER
 #define INCLUDED_IGUITEXTOWNER
 
-#include "GUI.h"
+#include "gui/CGUIText.h"
+#include "gui/IGUIObject.h"
 #include "gui/scripting/JSInterface_IGUITextOwner.h"
+
+#include <vector>
 
 /**
  * Framework for handling Output text.
- *
- * @see IGUIObject
  */
 class IGUITextOwner : virtual public IGUIObject
 {

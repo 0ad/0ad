@@ -19,9 +19,8 @@
 
 #include "GUITooltip.h"
 
-#include "CGUI.h"
-#include "IGUIObject.h"
-
+#include "gui/CGUI.h"
+#include "gui/IGUIObject.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 

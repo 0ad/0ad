@@ -16,26 +16,16 @@
  */
 
 /*
-GUI Object Base - Button Behavior
-
---Overview--
-
 	Interface class that enhance the IGUIObject with
 	 buttony behavior (click and release to click a button),
 	 and the GUI message GUIM_PRESSED.
 	When creating a class with extended settings and
 	 buttony behavior, just do a multiple inheritance.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_IGUIBUTTONBEHAVIOR
 #define INCLUDED_IGUIBUTTONBEHAVIOR
 
-#include "gui/GUI.h"
 #include "gui/IGUIObject.h"
 
 class CGUISpriteInstance;
@@ -44,8 +34,6 @@ class CGUISpriteInstance;
  * Appends button behaviours to the IGUIObject.
  * Can be used with multiple inheritance alongside
  * IGUISettingsObject and such.
- *
- * @see IGUIObject
  */
 class IGUIButtonBehavior : virtual public IGUIObject
 {

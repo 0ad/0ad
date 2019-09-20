@@ -18,14 +18,10 @@
 #ifndef INCLUDED_CBUTTON
 #define INCLUDED_CBUTTON
 
-#include "GUI.h"
+#include "gui/IGUIButtonBehavior.h"
+#include "gui/IGUIObject.h"
+#include "gui/IGUITextOwner.h"
 
-/**
- * Button
- *
- * @see IGUIObject
- * @see IGUIButtonBehavior
- */
 class CButton : public IGUIButtonBehavior, public IGUITextOwner
 {
 	GUI_OBJECT(CButton)

@@ -18,12 +18,11 @@
 #ifndef INCLUDED_CTEXT
 #define INCLUDED_CTEXT
 
-#include "GUI.h"
+#include "gui/IGUIScrollBarOwner.h"
+#include "gui/IGUITextOwner.h"
 
 /**
  * Text field that just displays static text.
- *
- * @see IGUIObject
  */
 class CText : public IGUIScrollBarOwner, public IGUITextOwner
 {

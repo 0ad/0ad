@@ -21,6 +21,8 @@
 
 #include "maths/Vector2D.h"
 
+#include <vector>
+
 class CGUISeries
 {
 public:

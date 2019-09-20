@@ -20,7 +20,6 @@
 #include "CSlider.h"
 
 #include "gui/CGUI.h"
-#include "gui/GUI.h"
 #include "lib/ogl.h"
 
 CSlider::CSlider(CGUI& pGUI)

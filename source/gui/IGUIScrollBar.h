@@ -16,28 +16,17 @@
  */
 
 /*
-A GUI ScrollBar
-
---Overview--
-
 	A GUI Scrollbar, this class doesn't present all functionality
 	to the scrollbar, it just controls the drawing and a wrapper
 	for interaction with it.
-
---Usage--
-
-	Used in everywhere scrollbars are needed, like in a combobox for instance.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_IGUISCROLLBAR
 #define INCLUDED_IGUISCROLLBAR
 
-#include "GUI.h"
+#include "gui/CGUISprite.h"
+
+class IGUIScrollBarOwner;
 
 /**
  * The GUI Scroll-bar style. Tells us how scroll-bars look and feel.
@@ -386,12 +375,12 @@ protected:
 	/**
 	 * Pointer to scroll bar style used.
 	 */
-	SGUIScrollBarStyle *m_pStyle;
+	SGUIScrollBarStyle* m_pStyle;
 
 	/**
 	 * Host object, prerequisite!
 	 */
-	IGUIScrollBarOwner *m_pHostObject;
+	IGUIScrollBarOwner* m_pHostObject;
 
 	/**
 	 * Reference to CGUI object, these cannot work stand-alone

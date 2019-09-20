@@ -25,6 +25,9 @@ places, and to make it much easier to add a new type). Just do
 to handle every possible type.
 */
 
+#include "gui/CGUIList.h"
+#include "gui/CGUISeries.h"
+
 #ifndef GUITYPE_IGNORE_COPYABLE
 TYPE(bool)
 TYPE(i32)

@@ -18,7 +18,10 @@
 #ifndef INCLUDED_CLIST
 #define INCLUDED_CLIST
 
-#include "IGUIScrollBar.h"
+#include "gui/IGUIScrollBarOwner.h"
+#include "gui/IGUITextOwner.h"
+
+#include <vector>
 
 /**
  * Create a list of elements, where one can be selected

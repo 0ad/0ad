@@ -18,35 +18,24 @@
 /*
 GUI Core, stuff that the whole GUI uses
 
---Overview--
-
 	Contains defines, includes, types etc that the whole
 	 GUI should have included.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_GUIBASE
 #define INCLUDED_GUIBASE
 
-#include <map>
-#include <vector>
-
 #include "gui/CGUIColor.h"
 #include "ps/CStr.h"
 #include "ps/Errors.h"
-// I would like to just forward declare CSize, but it doesn't
-//  seem to be defined anywhere in the predefined header.
 #include "ps/Shapes.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <map>
+#include <vector>
+
 class IGUIObject;
 
-// Object settings setups
-// Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
 public:																	\
 	static IGUIObject* ConstructObject(CGUI& pGUI)					\
@@ -130,8 +119,8 @@ enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
 enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };
 
 // Typedefs
-typedef	std::map<CStr, IGUIObject*> map_pObjects;
-typedef std::vector<IGUIObject*> vector_pObjects;
+using map_pObjects = std::map<CStr, IGUIObject*>;
+using vector_pObjects = std::vector<IGUIObject*>;
 
 // Icon, you create them in the XML file with root element <setup>
 //  you use them in text owned by different objects... Such as CText.

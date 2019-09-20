@@ -23,18 +23,16 @@ GUI Object - Drop Down (list)
 	Works just like a list-box, but it hides
 	all the elements that aren't selected. They
 	can be brought up by pressing the control.
-
---More info--
-
-	Check GUI.h
-
 */
 
 #ifndef INCLUDED_CDROPDOWN
 #define INCLUDED_CDROPDOWN
 
-#include "GUI.h"
-#include "CList.h"
+#include "gui/CGUIList.h"
+#include "gui/CList.h"
+#include "gui/IGUIScrollBar.h"
+
+#include <string>
 
 /**
  * Drop Down

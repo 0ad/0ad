@@ -20,6 +20,8 @@
 
 #include "gui/CGUIString.h"
 
+#include <vector>
+
 class CGUIList
 {
 public: // struct:ish (but for consistency I call it _C_GUIList, and
