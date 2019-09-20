@@ -8,18 +8,11 @@
         <prop actor="props/units/heads/new/head_caradoc.xml" attachpoint="head"/>
         <prop actor="props/units/shields/brit_shield_spear_sq_d_03.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/heads/celt_helmet_caradoc.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
       </props>
       <textures>
         <texture file="skeletal/celt_caradoc.dds" name="baseTex"/>
       </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Celtic Agen Helmet">
-      <props>
-        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
-      </props>
     </variant>
   </group>
   <group>
