@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Becancon">
+      <mesh>props/helmet/rome_gallic_type_f_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/rome_gallic_type_f_01.png" name="baseTex"/>
+        <texture file="props/helmet/rome_gallic_type_f_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_gallic_type_f_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Nijemegen">
+      <mesh>props/helmet/rome_gallic_type_f_02.dae</mesh>
+      <textures>
+        <texture file="props/helmet/rome_gallic_type_f_02.png" name="baseTex"/>
+        <texture file="props/helmet/rome_gallic_type_f_02_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_gallic_type_f_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

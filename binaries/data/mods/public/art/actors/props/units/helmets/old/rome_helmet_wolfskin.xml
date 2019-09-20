@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="helmet_wolfskin_a">
+      <mesh>props/helmet/old/rome_wolfskin_a.dae</mesh>
+      <textures><texture file="props/helmet/old/rome_wolfskin_a.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet_wolfskin_b">
+      <mesh>props/helmet/old/rome_wolfskin_a.dae</mesh>
+      <textures><texture file="props/helmet/old/rome_wolfskin_b.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet_wolfskin_c">
+      <mesh>props/helmet/old/rome_wolfskin_a.dae</mesh>
+      <textures><texture file="props/helmet/old/rome_wolfskin_c.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

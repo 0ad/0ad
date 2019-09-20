@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="pers cav helm">
+      <mesh>props/helmet/old/pers_cav_crest.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="helmet texture a1">
+      <textures><texture file="props/helmet/old/hele_a1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="helmet texture a3">
+      <textures><texture file="props/helmet/old/hele_a3.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

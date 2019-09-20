@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="helmets/sele_chalkaspides_base.xml">
+      <mesh>props/helmet/old/sele_officer_chalkaspides_metal_crested.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chalkaspides-iron-a">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="chalkaspides-bronze-a">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

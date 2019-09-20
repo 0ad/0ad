@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="10" name="f1">
+      <mesh>props/helmet/old/celt_helmet_f.dae</mesh>
+      <textures><texture file="props/helmet/old/celt_f1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="10" name="h1">
+      <mesh>props/helmet/old/celt_helmet_h.dae</mesh>
+      <textures><texture file="props/helmet/old/celt_h1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="10" name="i1">
+      <mesh>props/helmet/old/celt_helmet_i.dae</mesh>
+      <textures><texture file="props/helmet/old/celt_i1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

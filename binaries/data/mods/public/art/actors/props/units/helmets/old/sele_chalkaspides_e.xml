@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="helmets/sele_chalkaspides_base.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="high-crest">
+      <props>
+        <prop actor="props/units/helmets/props/old/chalkaspides_high_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="crest">
+      <props>
+        <prop actor="props/units/helmets/props/old/chalkaspides_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="paint">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_crest_painted.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="red">
+      <textures>
+        <texture file="props/helmet/old/sele_officer_helmet_metal_red.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

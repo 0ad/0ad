@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Winged Helmet">
+      <mesh>props/helmet/old/samnite_a.dae</mesh>
+      <textures><texture file="props/helmet/old/samnite_a1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="Uber Helmet">
+      <mesh>props/helmet/old/samnite_d_uber.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/old/samnite_uber_wings.xml" attachpoint="root"/>
+      </props>
+      <textures><texture file="props/helmet/old/mace_b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="Four Feathers">
+      <mesh>props/helmet/old/rome_montefortino_x.dae</mesh>
+      <textures><texture file="props/helmet/old/rome-e-coolus.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

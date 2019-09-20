@@ -18,5 +18,17 @@
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="3" name="Crest">
+      <props>
+        <prop actor="props/units/helmets/props/hele_crest_bronze_01.xml" attachpoint="crest"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="No Crest">
+      <props>
+        <prop actor="" attachpoint="crest"/>
+      </props>
+    </variant>
+  </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>

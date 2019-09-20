@@ -3,10 +3,7 @@
   <castshadow/>
   <group>
     <variant name="boeotian-01">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <props>
-        <prop actor="props/units/helmets/props/chalkaspides_high_crest.xml" attachpoint="root"/>
-      </props>
+      <mesh>props/helmet/hele_boeotian_a.dae</mesh>
     </variant>
   </group>
   <group>
@@ -16,6 +13,18 @@
         <texture file="props/helmet/hele_boeotian_01_norm.png" name="normTex"/>
         <texture file="props/helmet/hele_boeotian_01_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="High Crest-01">
+      <props>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_01.xml" attachpoint="highcrest"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="High Crest-02">
+      <props>
+        <prop actor="props/units/helmets/props/hele_highcrest_bronze_02.xml" attachpoint="highcrest"/>
+      </props>
     </variant>
   </group>
   <material>basic_trans_parallax_spec.xml</material>

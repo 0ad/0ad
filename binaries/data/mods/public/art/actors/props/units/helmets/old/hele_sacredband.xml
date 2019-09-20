@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="helmets/hele_boeotian_gold_01.xml" frequency="3"/>
+    <variant file="helmets/hele_boeotian_plumed_tin_01.xml" />
+    <variant file="helmets/hele_boeotian_plumed_gold_01.xml" frequency="3"/>
+    <variant file="helmets/hele_boeotian_high_crested_gold_01.xml" frequency="4"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_01.xml" name="chalcidean-crested-bronze-a"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_02.xml" name="chalcidean-crested-bronze-b"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_03.xml" name="chalcidean-crested-bronze-c"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_04.xml" name="chalcidean-crested-bronze-d"/>
+    <variant file="helmets/hele_chalcidean_crested_gold_01.xml" name="chalcidean-crested-gold-a"/>
+    <variant name="Helmet-Thracian-Early">
+      <mesh>props/helmet/old/mace_helmet_g.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/mace_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Early-Plume">
+      <mesh>props/helmet/old/mace_helmet_h.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/mace_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Helmet-Thracian-Crested">
+      <mesh>props/helmet/old/helmet_thracian_4.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/mace_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Attic-Crested">
+      <mesh>props/helmet/old/hele_helmet_s.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_h1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Helmet-Pilos-Crested">
+      <mesh>props/helmet/old/hele_helmet_j.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/old/hele_a3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

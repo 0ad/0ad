@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Agema helmet">
+      <textures>
+        <texture file="props/helmet/old/sele_agema_helmet_spec.png" name="specTex"/>
+        <texture file="props/helmet/old/sele_agema_helmet_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="crest metal">
+      <mesh>props/helmet/old/sele_agema_feathered.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/sele_agema_helmet_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="crest bronze">
+      <mesh>props/helmet/old/sele_agema_feathered.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/sele_agema_helmet_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bronze">
+      <mesh>props/helmet/old/sele_agema.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/sele_agema_helmet_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="metal">
+      <mesh>props/helmet/old/sele_agema.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/sele_agema_helmet_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="helmet-thracian-plume">
+      <mesh>props/helmet/old/mace_helmet_h.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-bump">
+      <mesh>props/helmet/old/mace_helmet_g.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-feathers">
+      <mesh>props/helmet/old/helmet_thracian_3.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-kart-1">
+      <mesh>props/helmet/old/kart_helmet_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-kart-2">
+      <mesh>props/helmet/old/kart_helmet_2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <textures><texture file="props/helmet/old/kart_thracian_1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

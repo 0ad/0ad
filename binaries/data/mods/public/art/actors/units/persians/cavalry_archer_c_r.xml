@@ -6,8 +6,7 @@
       <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/pers_conical_champcav.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/pers_neckguard_champ.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/pers_conical_a1.xml" attachpoint="helmet"/>
         <prop actor="props/units/pers_quiver_back.xml" attachpoint="quiver_back"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
@@ -20,60 +19,90 @@
         <texture file="skeletal/pers_champ_cav_r_1.png" name="baseTex"/>
         <texture file="skeletal/pers_champ_cav_r_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="Rider-Armour-Bronze">
       <textures>
         <texture file="skeletal/pers_champ_cav_r_2.png" name="baseTex"/>
         <texture file="skeletal/pers_champ_cav_r_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-full-1a">
       <textures>
         <texture file="skeletal/pers_scale_sleeve_full_1_a.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-full-1b">
       <textures>
         <texture file="skeletal/pers_scale_sleeve_full_1_b.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-armband-full-1a">
       <textures>
         <texture file="skeletal/pers_scale_amband_full_1_a.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_amband_full_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-armband-full-1b">
       <textures>
         <texture file="skeletal/pers_scale_amband_full_1_b.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_amband_full_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-top-1a">
       <textures>
         <texture file="skeletal/pers_scale_sleeve_top_1_a.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_sleeve_top_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-top-1b">
       <textures>
         <texture file="skeletal/pers_scale_sleeve_top_1_b.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_sleeve_top_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-bottom-1a">
       <textures>
         <texture file="skeletal/pers_scale_sleeve_bottom_1_a.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-bottom-1b">
       <textures>
         <texture file="skeletal/pers_scale_sleeve_bottom_1_b.png" name="baseTex"/>
         <texture file="skeletal/pers_scale_sleeve_bottom_1_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>

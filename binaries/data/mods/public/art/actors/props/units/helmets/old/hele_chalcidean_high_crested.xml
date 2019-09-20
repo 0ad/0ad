@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" file="helmets/hele_chalcidean_gold_01.xml" name="gold_a">
+      <props>
+        <prop actor="props/units/helmets/props/old/chalcidean_high_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

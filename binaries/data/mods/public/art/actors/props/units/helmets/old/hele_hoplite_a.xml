@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarD">
+      <mesh>props/helmet/old/hele_helmet_d.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/old/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarE">
+      <mesh>props/helmet/old/hele_helmet_e.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/old/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarF">
+      <mesh>props/helmet/old/hele_helmet_f.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/old/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" file="helmets/hele_illyrian_bronze_01.xml" name="illyrian-no-crest-bronze-a"/>
+    <variant frequency="1" file="helmets/hele_illyrian_bronze_02.xml" name="illyrian-no-crest-bronze-b"/>
+  </group>
+  <material>player_trans_spec_helmet.xml</material>
+</actor>
