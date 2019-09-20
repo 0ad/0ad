@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,12 @@ public:
 		FOUNDATION_CHECK_FAIL_TERRAIN_CLASS
 	};
 
+	enum EObstructionType {
+		STATIC,
+		UNIT,
+		CLUSTER
+	};
+
 	virtual ICmpObstructionManager::tag_t GetObstruction() const = 0;
 
 	/**
@@ -55,6 +61,8 @@ public:
 	virtual entity_pos_t GetSize() const = 0;
 
 	virtual entity_pos_t GetUnitRadius() const = 0;
+
+	virtual EObstructionType GetObstructionType() const = 0;
 
 	virtual void SetUnitClearance(const entity_pos_t& clearance) = 0;
 

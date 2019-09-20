@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,18 +18,17 @@
 #ifndef INCLUDED_SELECTION
 #define INCLUDED_SELECTION
 
-/**
- * @file
- * Helper functions related to entity selection
- */
-
+#include "simulation2/components/ICmpObstruction.h"
+#include "simulation2/helpers/Player.h"
+#include "simulation2/Simulation2.h"
 #include "simulation2/system/Entity.h"
-#include "Player.h"
 
 #include <vector>
 
 class CSimulation2;
 class CCamera;
+
+bool CheckEntityInRect(CEntityHandle handle, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, bool allowEditorSelectables);
 
 namespace EntitySelection
 {
@@ -69,6 +68,42 @@ std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCam
  * belonging to any given player (excluding Gaia). Used for status bars.
  */
 std::vector<entity_id_t> PickNonGaiaEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, bool allowEditorSelectables);
+
+/**
+ * Finds all entities with a given component belonging to any given player.
+ */
+struct DefaultComponentFilter
+{
+	bool operator()(IComponent* UNUSED(cmp))
+	{
+		return true;
+	}
+};
+template<typename Filter = DefaultComponentFilter>
+std::vector<entity_id_t> GetEntitiesWithComponentInRect(CSimulation2& simulation, int cid, const CCamera& camera, int sx0, int sy0, int sx1, int sy1)
+{
+	PROFILE2("GetEntitiesWithObstructionInRect");
+
+	// Make sure sx0 <= sx1, and sy0 <= sy1
+	if (sx0 > sx1)
+		std::swap(sx0, sx1);
+	if (sy0 > sy1)
+		std::swap(sy0, sy1);
+
+	std::vector<entity_id_t> hitEnts;
+
+	Filter filter;
+	const CSimulation2::InterfaceListUnordered& entities = simulation.GetEntitiesWithInterfaceUnordered(cid);
+	for (const std::pair<const entity_id_t, IComponent*>& item : entities)
+	{
+		if (!filter(item.second))
+			continue;
+		if (CheckEntityInRect(item.second->GetEntityHandle(), camera, sx0, sy0, sx1, sy1, false))
+			hitEnts.push_back(item.first);
+	}
+
+	return hitEnts;
+}
 
 /**
  * Finds all entities with the given entity template name, belonging to the given player.
