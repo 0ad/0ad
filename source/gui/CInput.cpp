@@ -60,8 +60,6 @@ CInput::CInput(CGUI& pGUI)
 	AddSetting<CGUISpriteInstance>("sprite_selectarea");
 	AddSetting<CGUIColor>("textcolor");
 	AddSetting<CGUIColor>("textcolor_selected");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
 
 	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 

@@ -37,8 +37,6 @@ CCheckBox::CCheckBox(CGUI& pGUI)
 	AddSetting<CGUISpriteInstance>("sprite2_over");
 	AddSetting<CGUISpriteInstance>("sprite2_pressed");
 	AddSetting<CGUISpriteInstance>("sprite2_disabled");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
 }
 
 CCheckBox::~CCheckBox()
