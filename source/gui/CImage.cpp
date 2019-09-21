@@ -20,7 +20,6 @@
 #include "CImage.h"
 
 #include "gui/CGUI.h"
-#include "gui/GUI.h"
 #include "lib/ogl.h"
 
 CImage::CImage(CGUI& pGUI)

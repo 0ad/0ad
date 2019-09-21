@@ -17,8 +17,6 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
-
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
@@ -113,11 +111,6 @@ void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 	{
 		ObjectMap[m_Name] = this;
 	}
-}
-
-void IGUIObject::Destroy()
-{
-	// Is there anything besides the children to destroy?
 }
 
 template<typename T>

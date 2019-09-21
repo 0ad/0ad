@@ -18,7 +18,8 @@
 #ifndef INCLUDED_MINIMAP
 #define INCLUDED_MINIMAP
 
-#include "gui/GUI.h"
+#include "gui/IGUIObject.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "renderer/VertexArray.h"
 
 class CCamera;

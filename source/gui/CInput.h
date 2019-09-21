@@ -18,8 +18,10 @@
 #ifndef INCLUDED_CINPUT
 #define INCLUDED_CINPUT
 
-#include "GUI.h"
+#include "gui/IGUIScrollBarOwner.h"
 #include "lib/external_libraries/libsdl.h"
+
+#include <vector>
 
 /**
  * Text field where you can input and edit the text.
@@ -27,8 +29,6 @@
  * It doesn't use IGUITextOwner, because we don't need
  * any other features than word-wrapping, and we need to be
  * able to rapidly change the string.
- *
- * @see IGUIObject
  */
 class CInput : public IGUIScrollBarOwner
 {

@@ -17,9 +17,9 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
-
 #include "gui/CGUI.h"
+#include "gui/CGUISprite.h"
+#include "gui/IGUIButtonBehavior.h"
 
 IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	: IGUIObject(pGUI), m_Pressed(false)

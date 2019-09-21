@@ -90,10 +90,11 @@ template<> void ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, JS::M
 
 template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValue v, CColor& out)
 {
+	JSAutoRequest rq(cx);
+
 	if (!v.isObject())
 		FAIL("JS::HandleValue not an object");
 
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, &v.toObject());
 
 	JS::RootedValue r(cx);
@@ -262,10 +263,11 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 
 template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleValue v, TNSpline& out)
 {
+	JSAutoRequest rq(cx);
+
 	if (!v.isObject())
 		FAIL("Argument must be an object");
 
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, &v.toObject());
 	bool isArray;
 	if (!JS_IsArrayObject(cx, obj, &isArray) || !isArray)
@@ -300,10 +302,11 @@ template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleVa
 
 template<> bool ScriptInterface::FromJSVal<CCinemaPath>(JSContext* cx, JS::HandleValue v, CCinemaPath& out)
 {
+	JSAutoRequest rq(cx);
+
 	if (!v.isObject())
 		FAIL("Argument must be an object");
 
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, &v.toObject());
 
 	CCinemaData pathData;

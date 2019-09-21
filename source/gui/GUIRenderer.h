@@ -25,6 +25,7 @@
 #include "ps/CStr.h"
 #include "ps/Shapes.h"
 
+#include <map>
 #include <vector>
 
 class CGUISprite;

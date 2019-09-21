@@ -18,7 +18,8 @@
 #include "precompiled.h"
 
 #include "CTooltip.h"
-#include "CGUI.h"
+
+#include "gui/CGUI.h"
 
 #include <algorithm>
 

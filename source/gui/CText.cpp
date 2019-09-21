@@ -21,7 +21,6 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
-#include "gui/GUI.h"
 #include "lib/ogl.h"
 
 CText::CText(CGUI& pGUI)

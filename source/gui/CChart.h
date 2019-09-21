@@ -18,12 +18,10 @@
 #ifndef INCLUDED_CCHART
 #define INCLUDED_CCHART
 
-#include "gui/GUI.h"
 #include "gui/IGUITextOwner.h"
 #include "maths/Vector2D.h"
 
 #include <vector>
-
 
 struct CChartData
 {
@@ -38,8 +36,6 @@ struct CChartData
 
 /**
  * Chart for a data visualization as lines or points
- *
- * @see IGUIObject
  */
 class CChart : public IGUITextOwner
 {

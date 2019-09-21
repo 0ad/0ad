@@ -32,6 +32,8 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/unordered_set.hpp>
+#include <map>
+#include <vector>
 
 ERROR_TYPE(GUI, JSOpenFailed);
 
@@ -119,12 +121,6 @@ public:
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
 	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
-
-	/**
-	 * Clean up, call this to clean up all memory allocated
-	 * within the GUI.
-	 */
-	void Destroy();
 
 	/**
 	 * The replacement of Process(), handles an SDL_Event_

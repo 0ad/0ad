@@ -48,6 +48,8 @@ public:
 	// Sets the current effect.
 	void SetPostEffect(const CStrW& name);
 
+	void SetDepthBufferClipPlanes(float nearPlane, float farPlane);
+
 	// Clears the two color buffers and depth buffer, and redirects all rendering
 	// to our textures instead of directly to the system framebuffer.
 	// @note CPostprocManager must be initialized first
@@ -73,6 +75,7 @@ private:
 
 	// The framebuffers share a depth/stencil texture.
 	GLuint m_DepthTex;
+	float m_NearPlane, m_FarPlane;
 
 	// A framebuffer and textures x2 for each blur level we render.
 	GLuint m_BloomFbo, m_BlurTex2a, m_BlurTex2b, m_BlurTex4a, m_BlurTex4b, m_BlurTex8a, m_BlurTex8b;

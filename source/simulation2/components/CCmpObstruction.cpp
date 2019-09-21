@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,11 +48,7 @@ public:
 
 	// Template state:
 
-	enum {
-		STATIC,
-		UNIT,
-		CLUSTER
-	} m_Type;
+	EObstructionType m_Type;
 
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
@@ -460,6 +456,11 @@ public:
 	virtual bool GetBlockMovementFlag() const
 	{
 		return (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT) != 0;
+	}
+
+	virtual EObstructionType GetObstructionType() const
+	{
+		return m_Type;
 	}
 
 	virtual ICmpObstructionManager::tag_t GetObstruction() const

@@ -28,7 +28,9 @@
 #include "gui/GUIRenderer.h"
 #include "lib/res/graphics/ogl_tex.h"
 
+#include <map>
 #include <memory>
+#include <vector>
 
 struct SGUIImageEffects
 {

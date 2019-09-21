@@ -20,6 +20,8 @@
 #include "CChart.h"
 
 #include "gui/CGUIColor.h"
+#include "gui/CGUIList.h"
+#include "gui/CGUISeries.h"
 #include "gui/CGUIString.h"
 #include "gui/GUIMatrix.h"
 #include "graphics/ShaderManager.h"

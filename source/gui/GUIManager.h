@@ -28,6 +28,8 @@
 #include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <string>
+
 class CGUI;
 class JSObject;
 class IGUIObject;
@@ -175,7 +177,7 @@ private:
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 
-	typedef std::vector<SGUIPage> PageStackType;
+	using PageStackType = std::vector<SGUIPage>;
 	PageStackType m_PageStack;
 
 	CTemplateLoader m_TemplateLoader;

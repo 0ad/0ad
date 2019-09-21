@@ -23,9 +23,14 @@
         <prop actor="props/units/helmets/hele_boeotian.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Helmets-Illyrian-01">
+    <variant frequency="1" name="Hele Illyrian Helmet-01">
       <props>
-        <prop actor="props/units/helmets/hele_illyrian.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_illyrian_b1_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hele Illyrian Helmet-02">
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_b2_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
     <variant frequency="1" name="Hele Chalcidean Helmet-01">

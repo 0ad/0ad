@@ -17,8 +17,10 @@
 
 #include "precompiled.h"
 
-#include "GUI.h"
+#include "IGUIScrollBarOwner.h"
+
 #include "gui/CGUI.h"
+#include "gui/IGUIScrollBar.h"
 
 IGUIScrollBarOwner::IGUIScrollBarOwner(CGUI& pGUI)
 	: IGUIObject(pGUI)

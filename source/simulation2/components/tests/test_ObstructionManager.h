@@ -31,6 +31,7 @@ public:
 	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& UNUSED(out)) const { return true; }
 	virtual entity_pos_t GetSize() const { return entity_pos_t::Zero(); }
 	virtual entity_pos_t GetUnitRadius() const { return entity_pos_t::Zero(); }
+	virtual EObstructionType GetObstructionType() const { return ICmpObstruction::STATIC; }
 	virtual void SetUnitClearance(const entity_pos_t& UNUSED(clearance)) { }
 	virtual bool IsControlPersistent() const { return true; }
 	virtual bool CheckShorePlacement() const { return true; }

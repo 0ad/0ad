@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 17:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-09-19 11:17+0000\n"
+"Last-Translator: Gagik Papikyan <gagspapikyan@gmail.com>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,11 +36,11 @@ msgstr "+3 մարդկանց առողջության վերականգնմանը:"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr "Կրոնական Եռանդ"
+msgstr "Կրոնական եռանդ"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "+20% զինվորների ձեռնամարտի և հեռահար հարձակման ուժին:"
+msgstr "+20% զինվորների մերձամարտի և հեռահար հարձակման վնասին:"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -57,7 +57,7 @@ msgstr "Հորդորական ներկայություն"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr "+10% զինվորների ձեռնամարտի և հեռահար հարձակման ուժին:"
+msgstr "+10% զինվորների մերձամարտի և հեռահար հարձակման վնասին:"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -329,7 +329,7 @@ msgstr "Որոգայթով սպանդ"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "Պատերազմելով հռոմեացիների դեմ՝ Ամբիորիքսը գիտակցեց, որ բաց պատերազմն ապարդյուն է, և փոխարենը դիմեց ծուղակային մարտավարության: Գալերն արագորեն իմացան, թե որտեղ իրականացնել անակնկալ գրոհներ։\n+5 ձեռնամարտի և հեռահար հարձակման վնաս և -25% առաջխաղացման փորձ զինվորներին։"
+msgstr "Պատերազմելով հռոմեացիների դեմ՝ Ամբիորիքսը գիտակցեց, որ բաց պատերազմն ապարդյուն է, և փոխարենը դիմեց ծուղակային մարտավարության: Գալերն արագորեն իմացան, թե որտեղ իրականացնել անակնկալ գրոհներ։\n+5 մերձամարտի և հեռահար հարձակման վնաս և -25% առաջխաղացման փորձ զինվորներին։"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -512,7 +512,7 @@ msgstr "Շարային բարեփոխումներ"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers in his formation +3 armor, +15% movement speed."
-msgstr ""
+msgstr "+15% արագություն և +3 զրահ իր մարտակարգի բոլոր զինվորներին։"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -536,7 +536,7 @@ msgstr "Աթենաս Նիկե աստվածուհու տաճար"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr ""
+msgstr "-25% քարի արժեք և +2 կայազորի բուժման արագություն տաճարներին։"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -554,7 +554,7 @@ msgstr "Նավեր նախագծող"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
-msgstr ""
+msgstr "-20% կառուցման ժամանակ և -50% մետաղական արժեք նավերին իր կյանքի ընթացքում։"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -564,7 +564,7 @@ msgstr "Չեմպիոնական բանակ"
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage, "
 "+10% movement speed."
-msgstr ""
+msgstr "+20% մերձամարտի և հեռահար հարձակման վնաս, +2 գրավման արագություն և +10% արագություն չեմպիոնական միավորներին:"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -572,7 +572,7 @@ msgstr "Պարտիզանների առաջնորդ"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
-msgstr ""
+msgstr "+15% արագություն և +1 զրահ զինվորներին և պաշարողական մեքենաներին։"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -663,7 +663,7 @@ msgstr "Պայքարի եռանդ"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 armor."
-msgstr ""
+msgstr "+1 զինվորների զրահին։"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -671,7 +671,7 @@ msgstr "Զորահավաք"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr ""
+msgstr "-20% պատրաստման ժամանակ և -15% ռեսուրսային արժեք զինվորներին։"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
@@ -721,7 +721,7 @@ msgstr "Հավատացյալների սպանդ"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy Healers −50% healing strength."
-msgstr ""
+msgstr "-50% թշնամական բուժակների բուժման արագությանը։"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -834,7 +834,7 @@ msgstr "Կառավարիչ"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
-msgstr ""
+msgstr "+15% աշխատավորների հավաքչության և կառուցման արագությանը։"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
@@ -851,11 +851,11 @@ msgstr "Ուղեկից"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
-msgstr ""
+msgstr "+10% դաշնակից հերոսների առողջությանը։"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr ""
+msgstr "-10% թշնամական հերոսների առողջությանը։"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -918,7 +918,7 @@ msgstr "Թևի հրամանատար"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Cavalry +2 armor."
-msgstr ""
+msgstr "+2 հեծելազորի զրահին։"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
@@ -926,7 +926,7 @@ msgstr "Անվանի Նվաճող"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
-msgstr ""
+msgstr "-20% թշնամական կառույցների, պաշարողական մեքենաների և նավերի առողջությանը։"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"

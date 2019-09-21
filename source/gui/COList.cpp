@@ -21,6 +21,8 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
+#include "gui/CGUIList.h"
+#include "gui/IGUIScrollBar.h"
 #include "i18n/L10n.h"
 #include "ps/CLogger.h"
 

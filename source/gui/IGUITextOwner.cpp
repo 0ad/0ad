@@ -19,7 +19,6 @@
 
 #include "IGUITextOwner.h"
 
-#include "gui/GUI.h"
 #include "gui/CGUI.h"
 #include "gui/scripting/JSInterface_IGUITextOwner.h"
 

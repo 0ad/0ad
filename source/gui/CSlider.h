@@ -18,8 +18,7 @@
 #ifndef INCLUDED_CSLIDER
 #define INCLUDED_CSLIDER
 
-#include "GUI.h"
-
+#include "gui/IGUIObject.h"
 
 class CSlider : public IGUIObject
 {

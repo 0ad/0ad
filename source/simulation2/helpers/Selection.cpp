@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,8 @@
 #include "Selection.h"
 
 #include "graphics/Camera.h"
-#include "simulation2/Simulation2.h"
+#include "ps/CLogger.h"
+#include "ps/Profiler2.h"
 #include "simulation2/components/ICmpIdentity.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -29,8 +30,6 @@
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpUnitRenderer.h"
 #include "simulation2/system/ComponentManager.h"
-#include "ps/CLogger.h"
-#include "ps/Profiler2.h"
 
 entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
 {
@@ -92,7 +91,7 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
  * Returns true if the given entity is visible in the given screen area.
  * If the entity is a decorative, the function will only return true if allowEditorSelectables.
  */
-static bool CheckEntityInRect(CEntityHandle handle, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, bool allowEditorSelectables)
+bool CheckEntityInRect(CEntityHandle handle, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, bool allowEditorSelectables)
 {
 	// Check if this entity is only selectable in Atlas
 	CmpPtr<ICmpSelectable> cmpSelectable(handle);

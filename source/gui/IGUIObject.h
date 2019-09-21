@@ -30,6 +30,7 @@
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -241,12 +242,6 @@ protected:
 	 * @param Name Setting reference name
 	 */
 	template<typename T> void AddSetting(const CStr& Name);
-
-	/**
-	 * Calls Destroy on all children, and deallocates all memory.
-	 * MEGA TODO Should it destroy it's children?
-	 */
-	virtual void Destroy();
 
 public:
 	/**

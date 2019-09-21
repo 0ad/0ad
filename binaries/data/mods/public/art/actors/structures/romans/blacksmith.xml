@@ -16,12 +16,12 @@
 		<prop actor="props/structures/romans/blacksmith_bucket_water.xml" attachpoint="bucket"/>
 		<prop actor="props/structures/romans/blacksmith_bucket.xml" attachpoint="bucket"/>
 		<prop actor="props/structures/romans/blacksmith_shields.xml" attachpoint="romeshields"/>
-		<prop actor="props/units/heads/rome_monte_e.xml" attachpoint="rome_helmet_b"/>
-		<prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="rome_helmet_b1"/>
-		<prop actor="props/units/heads/rome_helmet_hero.xml" attachpoint="rome_helmet_c"/>
-		<prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="rome_helmet_c1"/>
-		<prop actor="props/units/heads/rome_imp_gallic_g_cent.xml" attachpoint="rome_helmet_c2"/>
-		<prop actor="props/units/heads/rome_monte_e.xml" attachpoint="rome_helmet_c_3"/>
+		<prop actor="props/units/helmets/rome_apulo_corinthian_b2.xml" attachpoint="rome_helmet_b"/>
+		<prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="rome_helmet_b1"/>
+		<prop actor="props/units/helmets/rome_apulo_itallic_e1.xml" attachpoint="rome_helmet_c"/>
+		<prop actor="props/units/helmets/hele_attic_r2.xml" attachpoint="rome_helmet_c1"/>
+		<prop actor="props/units/helmets/rome_gallic_type_h_cent.xml" attachpoint="rome_helmet_c2"/>
+		<prop actor="props/units/helmets/rome_helmet_montefortino_c.xml" attachpoint="rome_helmet_c_3"/>
       </props>
       <textures>
         <texture file="structural/rome_struct_2.png" name="baseTex"/>
