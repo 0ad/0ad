@@ -112,11 +112,9 @@
 		<!-- Player Name and Civ -->
 		<object size="0 40 100% 100%">
 			<object size="50%-64 50%-64 50%+64 50%+64" name="playerCivIcon" type="image" ghost="true"/>
-			<object size="0 0 100% 100%" name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
-			<object size="0 0 100% 100%" type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
-
-			<!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
-			<object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
+			<object name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
+			<object type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
+			<object size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
 		</object>
 	</object>
 

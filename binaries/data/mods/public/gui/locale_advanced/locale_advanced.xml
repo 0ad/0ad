@@ -6,7 +6,7 @@
 	<script directory="gui/locale_advanced/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="ModernFade"/>
+	<object type="image" sprite="ModernFade"/>
 	<object type="image" style="ModernDialog" size="50%-220 50%-210 50%+220 50%+210">
 		<action on="Tick">onTick();</action>
 		<object size="15 0 100%-15 100%">

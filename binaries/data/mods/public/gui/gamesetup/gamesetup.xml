@@ -6,7 +6,7 @@
 	<script directory="gui/gamesetup/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" style="ModernWindow" size="0 0 100% 100%">
+	<object type="image" style="ModernWindow">
 
 		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
 			<translatableAttribute id="caption">Match Setup</translatableAttribute>
@@ -67,7 +67,7 @@
 				<object size="1 36 100%-1 100%">
 					<repeat count="8">
 						<object name="playerBox[n]" size="0 0 100% 32">
-							<object name="playerColor[n]" type="image" size="0 0 100% 100%"/>
+							<object name="playerColor[n]" type="image"/>
 							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 22% 30"/>
 							<object name="playerColorPicker[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 22%+33 30" sprite="" scrollbar="false" button_width="22" font="sans-stroke-14" tooltip_style="onscreenToolTip"/>
 							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+37 2 50%+35 30" tooltip_style="onscreenToolTip"/>
@@ -163,7 +163,7 @@
 
 			<!-- Map Description -->
 			<object name="mapInfoDescriptionFrame" type="image" sprite="ModernDarkBoxGold" size="100%-315 550 100%-25 100%-60" z="21">
-				<object name="mapInfoDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
+				<object name="mapInfoDescription" type="text" style="ModernText"/>
 			</object>
 
 			<!-- Chat window -->

@@ -12,7 +12,7 @@
 	<script directory="gui/credits/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="ModernFade"/>
+	<object type="image" sprite="ModernFade"/>
 
 	<object type="image" style="ModernDialog" size="50%-473 24 50%+473 100%-24">
 		<object style="ModernLabelText" name="dialogTitle" type="text" size="50%-128 -18 50%+128 14">

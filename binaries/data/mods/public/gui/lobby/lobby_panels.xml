@@ -16,7 +16,6 @@
 			selected_column_order="1"
 			type="olist"
 			sortable="true"
-			size="0 0 100% 100%"
 			font="sans-bold-stroke-13"
 		>
 			<column id="buddy" width="12"/>
@@ -44,8 +43,8 @@
 	</object>
 
 	<object name="profilePanel" size="20 100%-310 20% 100%-104">
-		<object name="profileBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
-			<object name="profileArea" size="0 0 100% 100%" hidden="true">
+		<object name="profileBox" type="image" sprite="ModernDarkBoxGold">
+			<object name="profileArea" hidden="true">
 				<object name="usernameText" size="0 0 100% 45" type="text" style="ModernLabelText" font="sans-bold-16" />
 				<object name="roleText" size="0 45 100% 70" type="text" style="ModernLabelText" font="sans-bold-stroke-12" />
 				<object size="0 70 40%+40 90" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
@@ -98,7 +97,7 @@
 
 	<!-- Right panel: Game details. -->
 	<object name="rightPanel">
-		<object name="gameInfoEmpty" type="image" sprite="ModernDarkBoxGold" hidden="false">
+		<object name="gameInfoEmpty" type="image" sprite="ModernDarkBoxGold">
 			<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
 			<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
 				<object name="subject" size="5 5 100%-5 100%-5" type="text" style="ModernText" text_align="center"/>
@@ -121,7 +120,7 @@
 				</object>
 			</object>
 			<object size="50% 195 100%-5 240" type="image" sprite="ModernItemBackShadeRight">
-				<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+				<object name="sgMapType" type="text" style="ModernLeftLabelText"/>
 			</object>
 
 			<object size="5 239 100%-5 240" type="image" sprite="ModernWhiteLine" z="25"/>
@@ -133,14 +132,14 @@
 				</object>
 			</object>
 			<object size="50% 240 100%-5 285" type="image" sprite="ModernItemBackShadeRight">
-				<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+				<object name="sgMapSize" type="text" style="ModernLeftLabelText"/>
 			</object>
 
 			<object size="5 284 100%-5 285" type="image" sprite="ModernWhiteLine" z="25"/>
 
 			<!-- Map Description -->
 			<object type="image" sprite="ModernDarkBoxWhite" size="3% 290 97% 65%">
-				<object name="sgMapDescription" size="0 0 100% 100%" type="text" style="ModernText" font="sans-12"/>
+				<object name="sgMapDescription" type="text" style="ModernText" font="sans-12"/>
 			</object>
 
 			<object type="image" sprite="ModernDarkBoxWhite" size="3% 65%+5 97% 99%">
@@ -150,7 +149,7 @@
 				<object name="sgGameStartTime" size="3%+24 6% 97% 3%+35" type="text" style="ModernLabelText"/>
 
 				<!-- Player Names -->
-				<object name="sgPlayersNames" size="0 0 100% 100%" type="text" style="MapPlayerList"/>
+				<object name="sgPlayersNames" type="text" style="MapPlayerList"/>
 			</object>
 		</object>
 		<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-79 100% 100%-54" hidden="true">
@@ -319,8 +318,8 @@
 			<action on="Press">lookupUserProfile();</action>
 		</object>
 		<object name="profileWindowPanel" size="25 95 100%-25 100%-60">
-		<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
-			<object name="profileWindowArea" size="0 0 100% 100%" hidden="true">
+		<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold">
+			<object name="profileWindowArea" hidden="true">
 				<object name="profileUsernameText" size="0 0 100% 25" type="text" style="ModernLabelText" font="sans-bold-16" />
 				<object size="0 30 40%+40 50" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 					<translatableAttribute id="caption">Current Rank:</translatableAttribute>
@@ -347,7 +346,7 @@
 				</object>
 				<object name="profileRatioText" size="40%+45 130 100% 150" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
 			</object>
-			<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" font="sans-bold-stroke-13" hidden="false">
+			<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" font="sans-bold-stroke-13">
 				<translatableAttribute id="caption">Please enter a player name.</translatableAttribute>
 			</object>
 		</object>

@@ -6,7 +6,7 @@
 	<script directory="gui/replaymenu/" />
 
 	<!-- Everything displayed in the replay menu. -->
-	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="replayWindow">
+	<object type="image" style="ModernWindow" name="replayWindow">
 
 		<!-- Title -->
 		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
@@ -125,7 +125,7 @@
 			</object>
 
 			<!-- Placeholder to show if no replay is selected -->
-			<object name="replayInfoEmpty" size="0 120 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
+			<object name="replayInfoEmpty" size="0 120 100% 100%-60" type="image" sprite="ModernDarkBoxGold">
 				<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
 				<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
 					<object name="subject" size="5 5 100%-5 100%-5" type="text" style="ModernText" text_align="center"/>
@@ -153,7 +153,7 @@
 
 				<!-- Map Type Label -->
 				<object size="50% 195 100%-5 225" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="sgMapType" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<!-- Separator Line -->
@@ -168,7 +168,7 @@
 
 				<!-- Map Size Label -->
 				<object size="50% 225 100%-5 255" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="sgMapSize" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<!-- Separator Line -->
@@ -183,7 +183,7 @@
 
 				<!-- Victory Condition Label -->
 				<object size="50% 255 100%-5 295" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgVictory" size="0 0 100% 100%" type="text" style="ModernText" font="sans-bold-stroke-14"/>
+					<object name="sgVictory" type="text" style="ModernText" font="sans-bold-stroke-14"/>
 				</object>
 
 				<!-- Separator Line -->

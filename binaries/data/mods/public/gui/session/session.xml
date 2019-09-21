@@ -49,40 +49,39 @@
 	</object>
 
 	<!-- Network status -->
-	<object name="netStatus" type="text" style="netStatus" z="0" hidden="true">
+	<object name="netStatus" type="text" style="netStatus" hidden="true">
 		<object type="button"
 			name="disconnectedExitButton"
 			style="StoneButton"
 			size="50%-84 50%+128 50%+84 50%+160"
 			tooltip_style="sessionToolTip"
-			z="0"
 		>
 			<translatableAttribute id="caption">Exit</translatableAttribute>
 			<action on="Press">leaveGame();</action>
 		</object>
-		<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true" z="0"/>
+		<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true"/>
 	</object>
 
 	<!-- Pause Overlay -->
-	<object type="button" name="pauseOverlay" size="0 0 100% 100%" tooltip_style="sessionToolTip" hidden="true" z="0">
-		<object size="0 0 100% 100%" type="image" sprite="sessionOverlayBackground" ghost="true" z="0"/>
-		<object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true" z="0">
+	<object type="button" name="pauseOverlay" tooltip_style="sessionToolTip" hidden="true">
+		<object type="image" sprite="sessionOverlayBackground" ghost="true"/>
+		<object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true">
 			<translatableAttribute id="caption">Game Paused</translatableAttribute>
 		</object>
-		<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true" z="0">
+		<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true">
 			<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
 		</object>
-		<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="netStatusPlayersText" ghost="true" hidden="true" z="0"/>
+		<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="netStatusPlayersText" ghost="true" hidden="true"/>
 		<action on="Press">togglePause();</action>
 	</object>
 
 	<!-- Notification Area -->
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
-		<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
+		<object name="notificationText" type="text" style="notificationPanel" ghost="true"/>
 	</object>
 
 	<!-- Chat messages -->
-	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">
+	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" absolute="true">
 		<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanelOverlay" ghost="true"/>
 	</object>
 
@@ -138,7 +137,6 @@
 			type="image"
 			sprite="selectionDetailsPanel"
 			size="50%-114 100%-205 50%+114 100%"
-			hidden="false"
 		>
 			<include directory="gui/session/selection_panels_middle/"/>
 		</object>
@@ -148,7 +146,6 @@
 			type="image"
 			sprite="unitCommandsPanel"
 			size="50%+110 100%-170 50%+512 100%"
-			hidden="false"
 			z="20"
 		>
 			<include directory="gui/session/selection_panels_right/"/>

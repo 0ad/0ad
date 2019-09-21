@@ -4,7 +4,16 @@
 	<translatableAttribute id="caption">ALPHA XXIV</translatableAttribute>
 
 	<!-- Displays build date and revision number-->
-	<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
+	<object
+		name="buildTimeLabel"
+		type="text"
+		size="50%-128 0 50%+128 100%-2"
+		ghost="true"
+		font="sans-stroke-12"
+		textcolor="white"
+		text_align="center"
+		text_valign="bottom"
+	>
 		<action on="Load">this.caption = getBuildString()</action>
 	</object>
 </object>

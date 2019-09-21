@@ -2,7 +2,7 @@
 <object name="unitConstructionPanel"
 	size="10 12 100% 100%"
 >
-	<object size="0 0 100% 100%">
+	<object>
 	<repeat count="24">
 		<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 		<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
