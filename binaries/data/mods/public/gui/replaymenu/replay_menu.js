@@ -193,7 +193,16 @@ function initHotkeyTooltips()
 		translate("Filter replays by typing one or more, partial or complete player names.") +
 		" " + colorizeAutocompleteHotkey();
 
-	Engine.GetGUIObjectByName("deleteReplayButton").tooltip = deleteTooltip();
+	let deleteTooltip = colorizeHotkey(
+		translate("Delete the selected replay using %(hotkey)s."),
+		"session.savedgames.delete");
+
+	if (deleteTooltip)
+		deleteTooltip += colorizeHotkey(
+			"\n" + translate("Hold %(hotkey)s to skip the confirmation dialog while deleting."),
+			"session.savedgames.noconfirmation");
+
+	Engine.GetGUIObjectByName("deleteReplayButton").tooltip = deleteTooltip;
 }
 
 /**
