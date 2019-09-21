@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Sheath-Gladius">
+      <mesh>props/weapons/sheath_gladius_01.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="sword"/>
+      </props>
+      <textures>
+        <texture file="props/sheaths/gladius_norm.png" name="normTex"/>
+        <texture file="props/sheaths/gladius_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Red">
+      <textures>
+        <texture file="props/sheaths/gladius_red.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Black">
+      <textures>
+        <texture file="props/sheaths/gladius_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brown">
+      <textures>
+        <texture file="props/sheaths/gladius_brown.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
