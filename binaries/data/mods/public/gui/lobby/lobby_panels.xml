@@ -243,12 +243,7 @@
 			<object type="text" size="22 0 52%-10 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Show only open games</translatableAttribute>
 			</object>
-			<object name="filterOpenGames"
-				type="checkbox"
-				checked="false"
-				style="ModernTickBox"
-				size="0 0 20 20"
-				font="sans-bold-13">
+			<object name="filterOpenGames" type="checkbox" checked="false" style="ModernTickBox" size="0 0 20 20">
 				<action on="Press">
 					applyFilters();
 				</action>

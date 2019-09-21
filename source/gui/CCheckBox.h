@@ -19,10 +19,8 @@
 #define INCLUDED_CCHECKBOX
 
 #include "gui/IGUIButtonBehavior.h"
-#include "gui/IGUIObject.h"
-#include "gui/IGUITextOwner.h"
 
-class CCheckBox : public IGUIButtonBehavior, public IGUITextOwner
+class CCheckBox : public IGUIButtonBehavior
 {
 	GUI_OBJECT(CCheckBox)
 
@@ -44,13 +42,6 @@ public:
 	 * Draws the control
 	 */
 	virtual void Draw();
-
-protected:
-	/**
-	 * Sets up text, should be called every time changes has been
-	 * made that can change the visual.
-	 */
-	void SetupText();
 };
 
 #endif // INCLUDED_CCHECKBOX

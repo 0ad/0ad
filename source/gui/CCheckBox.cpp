@@ -19,22 +19,11 @@
 
 #include "CCheckBox.h"
 
-#include "gui/CGUIColor.h"
-#include "graphics/FontMetrics.h"
-#include "ps/CStrIntern.h"
-
-/**
- * TODO: Since there is no call to DrawText, the checkbox won't render any text.
- * Thus the font, caption, textcolor and other settings have no effect.
- */
 CCheckBox::CCheckBox(CGUI& pGUI)
-	: IGUIObject(pGUI), IGUITextOwner(pGUI), IGUIButtonBehavior(pGUI)
+	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI)
 {
-	AddSetting<float>("buffer_zone");
-	AddSetting<CGUIString>("caption");
 	AddSetting<i32>("cell_id");
 	AddSetting<bool>("checked");
-	AddSetting<CStrW>("font");
 	AddSetting<CStrW>("sound_disabled");
 	AddSetting<CStrW>("sound_enter");
 	AddSetting<CStrW>("sound_leave");
@@ -48,39 +37,18 @@ CCheckBox::CCheckBox(CGUI& pGUI)
 	AddSetting<CGUISpriteInstance>("sprite2_over");
 	AddSetting<CGUISpriteInstance>("sprite2_pressed");
 	AddSetting<CGUISpriteInstance>("sprite2_disabled");
-	AddSetting<float>("square_side");
-	AddSetting<CGUIColor>("textcolor");
-	AddSetting<CGUIColor>("textcolor_over");
-	AddSetting<CGUIColor>("textcolor_pressed");
-	AddSetting<CGUIColor>("textcolor_disabled");
 	AddSetting<CStrW>("tooltip");
 	AddSetting<CStr>("tooltip_style");
-
-	AddText();
 }
 
 CCheckBox::~CCheckBox()
 {
 }
 
-void CCheckBox::SetupText()
-{
-	ENSURE(m_GeneratedTexts.size() == 1);
-
-	m_GeneratedTexts[0] = CGUIText(
-		m_pGUI,
-		GetSetting<CGUIString>("caption"),
-		GetSetting<CStrW>("font"),
-		m_CachedActualSize.GetWidth() - GetSetting<float>("square_side"),
-		GetSetting<float>("buffer_zone"),
-		this);
-}
-
 void CCheckBox::HandleMessage(SGUIMessage& Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
-	IGUITextOwner::HandleMessage(Message);
 
 	switch (Message.type)
 	{
