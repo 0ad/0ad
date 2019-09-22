@@ -31,7 +31,7 @@
 		<object type="button" style="ModernButtonRed" size="100%-200 100%-45 100%-17 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">Close</translatableAttribute>
 			<action on="Press">
-				Engine.SwitchGuiPage("page_pregame.xml");
+				Engine.PopGuiPage();
 			</action>
 		</object>
 	</object>

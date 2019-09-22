@@ -60,6 +60,9 @@ function openAdvancedMenu()
 
 function applyFromAdvancedMenu(locale)
 {
+	if (!locale)
+		return;
+
 	var languageList = Engine.GetGUIObjectByName("languageList");
 
 	var currentLocaleDictName = Engine.GetFallbackToAvailableDictLocale(locale);
