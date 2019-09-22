@@ -757,8 +757,8 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	if (WaterMgr->m_WaterRefraction)
 		m->fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
-
-	m->fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
+	if (WaterMgr->m_WaterReflection)
+		m->fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
 	m->fancyWaterShader->BindTexture(str_losMap, losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
@@ -774,6 +774,11 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		skyBoxRotation.SetIdentity();
 		skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
 		m->fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
+
+		if (WaterMgr->m_WaterRefraction)
+			m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
+		if (WaterMgr->m_WaterReflection)
+			m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
 	}
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
 	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
@@ -783,8 +788,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);
 	m->fancyWaterShader->Uniform(str_windAngle, WaterMgr->m_WindAngle);
 	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
-	m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
-	m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
 	m->fancyWaterShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
 	m->fancyWaterShader->Uniform(str_cameraPos, camPos);
 	m->fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
