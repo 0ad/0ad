@@ -20,7 +20,6 @@
 #include "CProgressBar.h"
 
 #include "gui/CGUI.h"
-#include "lib/ogl.h"
 
 CProgressBar::CProgressBar(CGUI& pGUI)
 	: IGUIObject(pGUI)

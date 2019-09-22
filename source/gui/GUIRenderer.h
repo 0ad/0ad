@@ -29,7 +29,6 @@
 #include <vector>
 
 class CGUISprite;
-struct SGUIImageEffects;
 struct SGUIImage;
 
 namespace GUIRenderer

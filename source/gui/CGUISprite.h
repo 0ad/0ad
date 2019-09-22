@@ -23,10 +23,8 @@
 #ifndef INCLUDED_CGUISPRITE
 #define INCLUDED_CGUISPRITE
 
-#include "GUIbase.h"
-
+#include "gui/GUIbase.h"
 #include "gui/GUIRenderer.h"
-#include "lib/res/graphics/ogl_tex.h"
 
 #include <map>
 #include <memory>
@@ -55,41 +53,41 @@ public:
 	}
 
 	// Filename of the texture
-	VfsPath			m_TextureName;
+	VfsPath m_TextureName;
 
 	// Image placement (relative to object)
-	CClientArea		m_Size;
+	CClientArea m_Size;
 
 	// Texture placement (relative to image placement)
-	CClientArea		m_TextureSize;
+	CClientArea m_TextureSize;
 
 	// Because OpenGL wants textures in squares with a power of 2 (64x64, 256x256)
 	//  it's sometimes tedious to adjust this. So this value simulates which area
 	//  is the real texture
-	CRect			m_TexturePlacementInFile;
+	CRect m_TexturePlacementInFile;
 
 	// For textures that contain a collection of icons (e.g. unit portraits), this
 	//  will be set to the size of one icon. An object's cell-id will determine
 	//  which part of the texture is used.
 	//  Equal to CSize(0,0) for non-celled textures.
-	CSize			m_CellSize;
+	CSize m_CellSize;
 
 	/**
 	 * If non-zero, then the image's width will be adjusted when rendering so that
 	 * the width:height ratio equals this value.
 	 */
-	float			m_FixedHAspectRatio;
+	float m_FixedHAspectRatio;
 
 	/**
 	 * If true, the image's coordinates will be rounded to integer pixels when
 	 * rendering, to avoid blurry filtering.
 	 */
-	bool			m_RoundCoordinates;
+	bool m_RoundCoordinates;
 
 	/**
 	 * Texture wrapping mode (GL_REPEAT, GL_CLAMP_TO_EDGE, etc)
 	 */
-	GLint			m_WrapMode;
+	GLint m_WrapMode;
 
 	// Visual effects (e.g. color modulation)
 	std::shared_ptr<SGUIImageEffects> m_Effects;
@@ -99,14 +97,14 @@ public:
 	CGUIColor m_BorderColor;
 
 	// 0 or 1 pixel border is the only option
-	bool			m_Border;
+	bool m_Border;
 
 	/**
 	 * Z value modification of the image.
 	 * Inputted in XML as x-level, although it just an easier and safer
 	 * way of declaring delta-z.
 	 */
-	float			m_DeltaZ;
+	float m_DeltaZ;
 };
 
 /**

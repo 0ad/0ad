@@ -21,8 +21,9 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
+#include "gui/CGUIList.h"
+#include "gui/IGUIScrollBar.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "ps/Profile.h"
 

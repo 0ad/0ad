@@ -17,9 +17,6 @@
 
 #include "precompiled.h"
 
-#include <stdarg.h>
-#include <string>
-
 #include "CGUI.h"
 
 // Types - when including them into the engine.
@@ -38,8 +35,7 @@
 #include "CTooltip.h"
 #include "MiniMap.h"
 
-#include "graphics/FontMetrics.h"
-#include "graphics/ShaderManager.h"
+#include "gui/IGUIScrollBar.h"
 #include "i18n/L10n.h"
 #include "lib/bits.h"
 #include "lib/input.h"
@@ -58,6 +54,8 @@
 #include "scripting/ScriptFunctions.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <string>
+
 extern int g_yres;
 
 const double SELECT_DBLCLICK_RATE = 0.5;
@@ -71,7 +69,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	{
 		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
 
-		if (m_GlobalHotkeys.count(hotkey) && ev->ev.type == SDL_HOTKEYDOWN)
+		if (m_GlobalHotkeys.find(hotkey) != m_GlobalHotkeys.end() && ev->ev.type == SDL_HOTKEYDOWN)
 		{
 			ret = IN_HANDLED;
 
@@ -127,7 +125,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	}
 
 	// Only one object can be hovered
-	IGUIObject* pNearest = NULL;
+	IGUIObject* pNearest = nullptr;
 
 	// TODO Gee: (2004-09-08) Big TODO, don't do the below if the SDL_Event is something like a keypress!
 	try
@@ -136,7 +134,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// TODO Gee: Optimizations needed!
 		//  these two recursive function are quite overhead heavy.
 
-		// pNearest will after this point at the hovered object, possibly NULL
+		// pNearest will after this point at the hovered object, possibly nullptr
 		pNearest = FindObjectUnderMouse();
 
 		// Now we'll call UpdateMouseOver on *all* objects,
@@ -304,8 +302,9 @@ CGUI::~CGUI()
 
 IGUIObject* CGUI::ConstructObject(const CStr& str)
 {
-	if (m_ObjectTypes.count(str) > 0)
-		return (*m_ObjectTypes[str])(*this);
+	std::map<CStr, ConstructObjectFunction>::iterator it = m_ObjectTypes.find(str);
+	if (it != m_ObjectTypes.end())
+		return (*it->second)(*this);
 
 	// Error reporting will be handled with the nullptr return.
 	return nullptr;
@@ -405,21 +404,22 @@ void CGUI::UpdateObjects()
 
 bool CGUI::ObjectExists(const CStr& Name) const
 {
-	return m_pAllObjects.count(Name) != 0;
+	return m_pAllObjects.find(Name) != m_pAllObjects.end();
 }
 
 IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 {
 	map_pObjects::const_iterator it = m_pAllObjects.find(Name);
+
 	if (it == m_pAllObjects.end())
-		return NULL;
-	else
-		return it->second;
+		return nullptr;
+
+	return it->second;
 }
 
 IGUIObject* CGUI::FindObjectUnderMouse()
 {
-	IGUIObject* pNearest = NULL;
+	IGUIObject* pNearest = nullptr;
 	m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::ChooseMouseOverAndClosest, pNearest);
 	return pNearest;
 }
@@ -645,12 +645,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 	CStr argStyle(attributes.GetNamedItem(attr_style));
 
-	if (m_Styles.count("default") == 1)
+	if (m_Styles.find("default") != m_Styles.end())
 		object->LoadStyle("default");
 
 	if (!argStyle.empty())
 	{
-		if (m_Styles.count(argStyle) == 0)
+		if (m_Styles.find(argStyle) == m_Styles.end())
 			LOGERROR("GUI: Trying to use style '%s' that doesn't exist.", argStyle.c_str());
 		else
 			object->LoadStyle(argStyle);

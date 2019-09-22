@@ -20,7 +20,7 @@
 #include "CButton.h"
 
 #include "gui/CGUIColor.h"
-#include "lib/ogl.h"
+#include "gui/CGUIText.h"
 
 CButton::CButton(CGUI& pGUI)
 	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI), IGUITextOwner(pGUI)

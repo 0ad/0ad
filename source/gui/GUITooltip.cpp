@@ -75,7 +75,7 @@ enum
 };
 
 GUITooltip::GUITooltip()
-: m_State(ST_IN_MOTION), m_PreviousObject(NULL), m_PreviousTooltipName()
+: m_State(ST_IN_MOTION), m_PreviousObject(nullptr), m_PreviousTooltipName()
 {
 }
 

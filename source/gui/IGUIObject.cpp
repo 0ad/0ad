@@ -17,18 +17,20 @@
 
 #include "precompiled.h"
 
+#include "gui/IGUIObject.h"
+
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
-#include "ps/GameSetup/Config.h"
 #include "ps/CLogger.h"
+#include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
 
 IGUIObject::IGUIObject(CGUI& pGUI)
-	: m_pGUI(pGUI), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
+	: m_pGUI(pGUI), m_pParent(nullptr), m_MouseHovering(false), m_LastClickTime()
 {
 	AddSetting<bool>("enabled");
 	AddSetting<bool>("hidden");
@@ -93,7 +95,7 @@ void IGUIObject::AddChild(IGUIObject* pChild)
 void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 {
 	// Just don't do anything about the top node
-	if (m_pParent == NULL)
+	if (m_pParent == nullptr)
 		return;
 
 	// Now actually add this one
@@ -103,7 +105,8 @@ void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 	{
 		throw PSERROR_GUI_ObjectNeedsName();
 	}
-	if (ObjectMap.count(m_Name) > 0)
+
+	if (ObjectMap.find(m_Name) != ObjectMap.end())
 	{
 		throw PSERROR_GUI_NameAmbiguity(m_Name.c_str());
 	}
@@ -124,7 +127,7 @@ void IGUIObject::AddSetting(const CStr& Name)
 
 bool IGUIObject::SettingExists(const CStr& Setting) const
 {
-	return m_Settings.count(Setting) == 1;
+	return m_Settings.find(Setting) != m_Settings.end();
 }
 
 template <typename T>
@@ -232,7 +235,7 @@ void IGUIObject::ChooseMouseOverAndClosest(IGUIObject*& pObject)
 		return;
 
 	// Check if we've got competition at all
-	if (pObject == NULL)
+	if (pObject == nullptr)
 	{
 		pObject = this;
 		return;
@@ -250,11 +253,8 @@ IGUIObject* IGUIObject::GetParent() const
 {
 	// Important, we're not using GetParent() for these
 	//  checks, that could screw it up
-	if (m_pParent)
-	{
-		if (m_pParent->m_pParent == NULL)
-			return NULL;
-	}
+	if (m_pParent && m_pParent->m_pParent == nullptr)
+		return nullptr;
 
 	return m_pParent;
 }

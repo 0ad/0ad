@@ -22,7 +22,6 @@
 #include "gui/CGUI.h"
 #include "ps/CLogger.h"
 
-
 CGUIScrollBarVertical::CGUIScrollBarVertical(CGUI& pGUI)
  : IGUIScrollBar(pGUI)
 {

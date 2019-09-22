@@ -18,8 +18,9 @@
 #include "precompiled.h"
 
 #include "CGUIColor.h"
-#include "ps/CStr.h"
+
 #include "gui/CGUI.h"
+#include "ps/CStr.h"
 
 bool CGUIColor::ParseString(const CGUI& pGUI, const CStr& value, int defaultAlpha)
 {

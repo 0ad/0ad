@@ -121,5 +121,5 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 
 void JSI_GUITypes::init(ScriptInterface& scriptInterface)
 {
-	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, nullptr,  JSI_GUISize::JSI_methods,  NULL, NULL);
+	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, nullptr,  JSI_GUISize::JSI_methods, nullptr, nullptr);
 }

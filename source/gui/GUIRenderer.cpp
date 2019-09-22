@@ -27,16 +27,14 @@
 #include "gui/GUIMatrix.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
-#include "lib/utf8.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 
-
 using namespace GUIRenderer;
-
 
 DrawCalls::DrawCalls()
 {

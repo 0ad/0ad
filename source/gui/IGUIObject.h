@@ -34,13 +34,7 @@
 #include <string>
 #include <vector>
 
-struct SGUIStyle;
-class JSObject;
 class IGUISetting;
-
-template <typename T> class GUI;
-
-ERROR_TYPE(GUI, UnableToParse);
 
 /**
  * GUI object such as a button or an input-box.
@@ -49,8 +43,6 @@ ERROR_TYPE(GUI, UnableToParse);
 class IGUIObject
 {
 	friend class CGUI;
-	friend class IGUIScrollBar;
-	friend class GUITooltip;
 
 	// Allow getProperty to access things like GetParent()
 	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
@@ -339,7 +331,7 @@ protected:
 	 * <b>NOTE!</b> This will not just return m_pParent, when that is
 	 * need use it! There is one exception to it, when the parent is
 	 * the top-node (the object that isn't a real object), this
-	 * will return NULL, so that the top-node's children are
+	 * will return nullptr, so that the top-node's children are
 	 * seemingly parentless.
 	 *
 	 * @return Pointer to parent
@@ -400,8 +392,7 @@ protected:
 	 * updates this object accordingly (i.e. if it's the object
 	 * being inputted one thing happens, and not, another).
 	 *
-	 * @param pMouseOver	Object that is currently hovered,
-	 *						can OF COURSE be NULL too!
+	 * @param pMouseOver Object that is currently hovered, can be nullptr too!
 	 */
 	void UpdateMouseOver(IGUIObject* const& pMouseOver);
 
@@ -428,9 +419,9 @@ private:
 	 * if hovered, if so, then check if this's Z value is greater
 	 * than the inputted object... If so then the object is closer
 	 * and we'll replace the pointer with this.
-	 * Also Notice input can be NULL, which means the Z value demand
-	 *  is out. NOTICE you can't input NULL as const so you'll have
-	 * to set an object to NULL.
+	 * Also Notice input can be nullptr, which means the Z value demand
+	 *  is out. NOTICE you can't input nullptr as const so you'll have
+	 * to set an object to nullptr.
 	 *
 	 * @param pObject	Object pointer, can be either the old one, or
 	 *					the new one.
@@ -454,18 +445,16 @@ private:
 
 	void TraceMember(JSTracer* trc);
 
-	// Variables
-
+// Variables
 protected:
 	// Name of object
-	CStr									m_Name;
+	CStr m_Name;
 
-	// Constructed on the heap, will be destroyed along with the the object
-	// TODO Gee: really the above?
-	vector_pObjects							m_Children;
+	// Constructed on the heap, will be destroyed along with the the CGUI
+	vector_pObjects m_Children;
 
 	// Pointer to parent
-	IGUIObject								*m_pParent;
+	IGUIObject* m_pParent;
 
 	//This represents the last click time for each mouse button
 	double m_LastClickTime[6];
@@ -485,7 +474,7 @@ protected:
 	// More variables
 
 	// Is mouse hovering the object? used with the function IsMouseOver()
-	bool									m_MouseHovering;
+	bool m_MouseHovering;
 
 	/**
 	 * Settings pool, all an object's settings are located here
@@ -503,10 +492,10 @@ protected:
 	CGUI& m_pGUI;
 
 	// Internal storage for registered script handlers.
-	std::map<CStr, JS::Heap<JSObject*> >	m_ScriptHandlers;
+	std::map<CStr, JS::Heap<JSObject*> > m_ScriptHandlers;
 
 	// Cached JSObject representing this GUI object
-	JS::PersistentRootedObject				m_JSObject;
+	JS::PersistentRootedObject m_JSObject;
 };
 
 #endif // INCLUDED_IGUIOBJECT
