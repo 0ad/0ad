@@ -17,13 +17,21 @@
 
 #include "precompiled.h"
 
+#include "IGUIButtonBehavior.h"
+
 #include "gui/CGUI.h"
 #include "gui/CGUISprite.h"
-#include "gui/IGUIButtonBehavior.h"
 
 IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
-	: IGUIObject(pGUI), m_Pressed(false)
+	: IGUIObject(pGUI),
+	  m_Pressed(false),
+	  m_PressedRight(false)
 {
+	AddSetting<CStrW>("sound_disabled");
+	AddSetting<CStrW>("sound_enter");
+	AddSetting<CStrW>("sound_leave");
+	AddSetting<CStrW>("sound_pressed");
+	AddSetting<CStrW>("sound_released");
 }
 
 IGUIButtonBehavior::~IGUIButtonBehavior()
@@ -34,7 +42,6 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 {
 	const bool enabled = GetSetting<bool>("enabled");
 
-	CStrW soundPath;
 	// TODO Gee: easier access functions
 	switch (Message.type)
 	{
@@ -116,25 +123,6 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	default:
 		break;
 	}
-}
-
-const CGUIColor& IGUIButtonBehavior::ChooseColor()
-{
-	// Yes, the object must possess these settings. They are standard
-	const CGUIColor& color = GetSetting<CGUIColor>("textcolor");
-
-	if (!GetSetting<bool>("enabled"))
-		return GetSetting<CGUIColor>("textcolor_disabled") || color;
-
-	if (m_MouseHovering)
-	{
-		if (m_Pressed)
-			return GetSetting<CGUIColor>("textcolor_pressed") || color;
-		else
-			return GetSetting<CGUIColor>("textcolor_over") || color;
-	}
-
-	return color;
 }
 
 void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id)

@@ -29,11 +29,6 @@ CButton::CButton(CGUI& pGUI)
 	AddSetting<CGUIString>("caption");
 	AddSetting<i32>("cell_id");
 	AddSetting<CStrW>("font");
-	AddSetting<CStrW>("sound_disabled");
-	AddSetting<CStrW>("sound_enter");
-	AddSetting<CStrW>("sound_leave");
-	AddSetting<CStrW>("sound_pressed");
-	AddSetting<CStrW>("sound_released");
 	AddSetting<CGUISpriteInstance>("sprite");
 	AddSetting<CGUISpriteInstance>("sprite_over");
 	AddSetting<CGUISpriteInstance>("sprite_pressed");
@@ -96,4 +91,20 @@ void CButton::Draw()
 	DrawButton(m_CachedActualSize, bz, sprite, sprite_over, sprite_pressed, sprite_disabled, cell_id);
 
 	DrawText(0, ChooseColor(), m_TextPos, bz + 0.1f);
+}
+
+const CGUIColor& CButton::ChooseColor()
+{
+	const CGUIColor& color = GetSetting<CGUIColor>("textcolor");
+
+	if (!GetSetting<bool>("enabled"))
+		return GetSetting<CGUIColor>("textcolor_disabled") || color;
+
+	if (!m_MouseHovering)
+		return color;
+
+	if (m_Pressed)
+		return GetSetting<CGUIColor>("textcolor_pressed") || color;
+
+	return GetSetting<CGUIColor>("textcolor_over") || color;
 }

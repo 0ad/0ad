@@ -51,8 +51,6 @@ public:
 	CDropDown(CGUI& pGUI);
 	virtual ~CDropDown();
 
-//	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
-
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */

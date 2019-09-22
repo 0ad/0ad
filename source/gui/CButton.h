@@ -53,6 +53,11 @@ protected:
 	void SetupText();
 
 	/**
+	 * Picks the text color depending on current object settings.
+	 */
+	const CGUIColor& ChooseColor();
+
+	/**
 	 * Placement of text.
 	 */
 	CPos m_TextPos;
