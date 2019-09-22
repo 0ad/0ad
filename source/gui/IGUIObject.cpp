@@ -116,11 +116,10 @@ void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 template<typename T>
 void IGUIObject::AddSetting(const CStr& Name)
 {
-	// This can happen due to inheritance
 	if (SettingExists(Name))
-		return;
-
-	m_Settings[Name] = new CGUISetting<T>(*this, Name);
+		LOGERROR("The setting '%s' already exists on the object '%s'!", Name.c_str(), GetPresentableName().c_str());
+	else
+		m_Settings.emplace(Name, new CGUISetting<T>(*this, Name));
 }
 
 bool IGUIObject::SettingExists(const CStr& Setting) const
