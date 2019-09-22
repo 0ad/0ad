@@ -96,9 +96,7 @@ Pack.prototype.CancelPack = function()
 
 Pack.prototype.GetPackTime = function()
 {
-	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-
-	return ApplyValueModificationsToEntity("Pack/Time", +this.template.Time, this.entity) * cmpPlayer.GetTimeMultiplier();
+	return ApplyValueModificationsToEntity("Pack/Time", +this.template.Time, this.entity);
 };
 
 Pack.prototype.GetElapsedTime = function()

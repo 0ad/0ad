@@ -44,9 +44,7 @@ Cost.prototype.GetPopBonus = function()
 
 Cost.prototype.GetBuildTime = function()
 {
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	var buildTime = (+this.template.BuildTime) * cmpPlayer.GetTimeMultiplier();
-	return ApplyValueModificationsToEntity("Cost/BuildTime", buildTime, this.entity);
+	return ApplyValueModificationsToEntity("Cost/BuildTime", +this.template.BuildTime, this.entity);
 };
 
 Cost.prototype.GetResourceCosts = function(owner)

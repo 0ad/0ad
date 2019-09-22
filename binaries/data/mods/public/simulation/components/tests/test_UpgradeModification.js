@@ -110,7 +110,6 @@ AddMock(SYSTEM_ENTITY, IID_ModifiersManager, {
 AddMock(10, IID_Player, {
 	"AddResources": () => {}, // Called in components/Upgrade.js::CancelUpgrade().
 	"GetPlayerID": () => playerID, // Called in helpers/Player.js::QueryOwnerInterface() (and several times below).
-	"GetTimeMultiplier": () => 1.0, // Called in components/Upgrade.js::GetUpgradeTime().
 	"TrySubtractResources": () => true // Called in components/Upgrade.js::Upgrade().
 });
 

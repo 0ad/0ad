@@ -335,7 +335,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 
 			let template = TechnologyTemplates.Get(templateName);
 			let techCostMultiplier = this.GetTechCostMultiplier();
-			let time = techCostMultiplier.time * template.researchTime * cmpPlayer.GetTimeMultiplier();
+			let time = techCostMultiplier.time * template.researchTime;
 
 			let cost = {};
 			for (let res in template.cost)
@@ -498,12 +498,8 @@ ProductionQueue.prototype.ResetQueue = function()
  */
 ProductionQueue.prototype.GetBatchTime = function(batchSize)
 {
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-
-	var batchTimeModifier = ApplyValueModificationsToEntity("ProductionQueue/BatchTimeModifier", +this.template.BatchTimeModifier, this.entity);
-
 	// TODO: work out what equation we should use here.
-	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.GetTimeMultiplier();
+	return Math.pow(batchSize, ApplyValueModificationsToEntity("ProductionQueue/BatchTimeModifier", +this.template.BatchTimeModifier, this.entity));
 };
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)

@@ -64,11 +64,7 @@ Player.prototype.Init = function()
 	this.startCam = undefined;
 	this.controlAllUnits = false;
 	this.isAI = false;
-	this.timeMultiplier = 1;
-	this.gatherRateMultiplier = 1;
-	this.tradeRateMultiplier = 1;
 	this.cheatsEnabled = false;
-	this.cheatTimeMultiplier = 1;
 	this.panelEntities = [];
 	this.resourceNames = {};
 	this.disabledTemplates = {};
@@ -224,21 +220,6 @@ Player.prototype.GetBarterMultiplier = function()
 	return this.barterMultiplier;
 };
 
-Player.prototype.GetGatherRateMultiplier = function()
-{
-	return this.gatherRateMultiplier / this.cheatTimeMultiplier;
-};
-
-Player.prototype.GetTimeMultiplier = function()
-{
-	return this.timeMultiplier * this.cheatTimeMultiplier;
-};
-
-Player.prototype.GetTradeRateMultiplier = function()
-{
-	return this.tradeRateMultiplier;
-};
-
 Player.prototype.GetSpyCostMultiplier = function()
 {
 	return this.spyCostMultiplier;
@@ -247,22 +228,6 @@ Player.prototype.GetSpyCostMultiplier = function()
 /**
  * Setters currently used by the AI to set the difficulty level
  */
-Player.prototype.SetGatherRateMultiplier = function(value)
-{
-	this.gatherRateMultiplier = value;
-	Engine.BroadcastMessage(MT_MultiplierChanged, { "player": this.playerID, "type": "gather" });
-};
-
-Player.prototype.SetTimeMultiplier = function(value)
-{
-	this.timeMultiplier = value;
-	Engine.BroadcastMessage(MT_MultiplierChanged, { "player": this.playerID, "type": "time" });
-};
-
-Player.prototype.SetTradeRateMultiplier = function(value)
-{
-	this.tradeRateMultiplier = value;
-};
 
 Player.prototype.GetPanelEntities = function()
 {
@@ -843,17 +808,6 @@ Player.prototype.SetCheatsEnabled = function(flag)
 Player.prototype.GetCheatsEnabled = function()
 {
 	return this.cheatsEnabled;
-};
-
-Player.prototype.SetCheatTimeMultiplier = function(time)
-{
-	this.cheatTimeMultiplier = time;
-	Engine.BroadcastMessage(MT_MultiplierChanged, { "player": this.playerID, "type": "cheat" });
-};
-
-Player.prototype.GetCheatTimeMultiplier = function()
-{
-	return this.cheatTimeMultiplier;
 };
 
 Player.prototype.TributeResource = function(player, amounts)

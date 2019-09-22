@@ -69,10 +69,17 @@ function Cheat(input)
 			cmpProductionQueue.SpawnUnits(input.templates[i % input.templates.length], 1, null);
 		return;
 	case "fastactions":
-		cmpPlayer.SetCheatTimeMultiplier((cmpPlayer.GetCheatTimeMultiplier() == 1) ? 0.01 : 1);
-		return;
-	case "changespeed":
-		cmpPlayer.SetCheatTimeMultiplier(input.parameter);
+		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
+		if (cmpModifiersManager.HasAnyModifier("cheat/fastactions", playerEnt))
+			cmpModifiersManager.RemoveAllModifiers("cheat/fastactions", playerEnt);
+		else
+			cmpModifiersManager.AddModifiers("cheat/fastactions", {
+				"Cost/BuildTime": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 },
+				"ResourceGatherer/BaseSpeed": { "affects": [["Structure"], ["Unit"]], "multiply": 1000 },
+				"Pack/Time": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 },
+				"Upgrade/Time": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 },
+				"ProductionQueue/TechCostMultiplier/time": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }
+			}, playerEnt);
 		return;
 	case "changephase":
 		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);

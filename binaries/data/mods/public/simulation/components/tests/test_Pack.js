@@ -33,10 +33,6 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": id => 11
 });
 
-AddMock(11, IID_Player, {
-	"GetTimeMultiplier": () => 1
-});
-
 AddMock(ent, IID_Sound, {
 	"PlaySoundGroup": name => {}
 });

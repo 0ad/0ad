@@ -27,7 +27,7 @@ function CalculateTraderGain(firstMarket, secondMarket, traderTemplate, trader)
 			return null;
 		gainMultiplier *= cmpTrader.GetTraderGainMultiplier();
 	}
-	else	//called from the gui, modifications already applied
+	else	// Called from the gui, modifications already applied.
 	{
 		if (!traderTemplate || !traderTemplate.GainMultiplier)
 			return null;
@@ -50,19 +50,15 @@ function CalculateTraderGain(firstMarket, secondMarket, traderTemplate, trader)
 	if (!cmpPlayer)
 		return null;
 	gain.traderOwner = cmpPlayer.GetPlayerID();
-	// Add potential player trade multipliers
-	let playerBonus = cmpPlayer.GetTradeRateMultiplier();
+
 	// If markets belong to different players, add gain from international trading
 	if (gain.market1Owner != gain.market2Owner)
 	{
-		let market1PlayerBonus = cmpMarket1Player.GetTradeRateMultiplier();
-		let market2PlayerBonus = cmpMarket2Player.GetTradeRateMultiplier();
 		let internationalBonus1 = cmpMarket1.GetInternationalBonus();
 		let internationalBonus2 = cmpMarket2.GetInternationalBonus();
-		gain.market1Gain = Math.round(gain.traderGain * internationalBonus1 * market1PlayerBonus);
-		gain.market2Gain = Math.round(gain.traderGain * internationalBonus2 * market2PlayerBonus);
+		gain.market1Gain = Math.round(gain.traderGain * internationalBonus1);
+		gain.market2Gain = Math.round(gain.traderGain * internationalBonus2);
 	}
-	gain.traderGain = Math.round(gain.traderGain * playerBonus);
 
 	return gain;
 }
