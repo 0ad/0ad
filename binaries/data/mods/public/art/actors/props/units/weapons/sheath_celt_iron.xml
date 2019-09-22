@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <textures>
+        <texture file="props/sheaths/celt_scabbard_iron.png" name="baseTex"/>
+        <texture file="props/sheaths/celt_scabbard_spec.png" name="specTex"/>
+        <texture file="props/sheaths/celt_scabbard_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="sword"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scabbard-A">
+      <mesh>props/weapons/sheath_celt_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Scabbard-B">
+      <mesh>props/weapons/sheath_celt_b.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
