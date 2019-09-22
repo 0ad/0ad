@@ -99,7 +99,7 @@ function test_items(map)
 	TS_ASSERT("prim_c" in items);
 	let sum = 0;
 	for (let key in items)
-		items[key].forEach(item => (sum += item.value * item._count));
+		items[key].forEach(item => { sum += item.value.value * item._count; });
 	TS_ASSERT(sum == 22);
 }
 

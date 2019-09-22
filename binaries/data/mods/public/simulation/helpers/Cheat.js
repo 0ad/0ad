@@ -74,11 +74,11 @@ function Cheat(input)
 			cmpModifiersManager.RemoveAllModifiers("cheat/fastactions", playerEnt);
 		else
 			cmpModifiersManager.AddModifiers("cheat/fastactions", {
-				"Cost/BuildTime": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 },
-				"ResourceGatherer/BaseSpeed": { "affects": [["Structure"], ["Unit"]], "multiply": 1000 },
-				"Pack/Time": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 },
-				"Upgrade/Time": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 },
-				"ProductionQueue/TechCostMultiplier/time": { "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }
+				"Cost/BuildTime": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }],
+				"ResourceGatherer/BaseSpeed": [{ "affects": [["Structure"], ["Unit"]], "multiply": 1000 }],
+				"Pack/Time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }],
+				"Upgrade/Time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }],
+				"ProductionQueue/TechCostMultiplier/time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }]
 			}, playerEnt);
 		return;
 	case "changephase":

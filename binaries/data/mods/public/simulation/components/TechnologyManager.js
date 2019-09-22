@@ -220,10 +220,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	if (template.modifications)
 	{
 		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
-		let derivedModifiers = DeriveModificationsFromTech(template);
-		for (let modifierPath in derivedModifiers)
-			for (let modifier of derivedModifiers[modifierPath])
-				cmpModifiersManager.AddModifier(modifierPath, "tech/" + tech, modifier, this.entity);
+		cmpModifiersManager.AddModifiers("tech/" + tech, DeriveModificationsFromTech(template), this.entity);
 	}
 
 	if (template.replaces && template.replaces.length > 0)

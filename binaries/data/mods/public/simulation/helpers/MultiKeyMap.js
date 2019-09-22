@@ -183,7 +183,7 @@ MultiKeyMap.prototype._AddItem = function(primaryKey, itemID, item, secondaryKey
 			it._count++;
 			return stackable;
 		}
-	items.push(Object.assign({ "_ID": itemID, "_count": 1 }, item));
+	items.push({ "_ID": itemID, "_count": 1, "value": item });
 	return true;
 };
 

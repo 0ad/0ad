@@ -59,9 +59,9 @@ function InitGame(settings)
 			cmpPlayer.SetAI(true);
 			AIDiff = Math.min(AIDiff, rate.length - 1);
 			cmpModifiersManager.AddModifiers("AI Bonus", {
-				"ResourceGatherer/BaseSpeed": { "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] },
-				"Trader/GainMultiplier": { "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] },
-				"Cost/BuildTime": { "affects": ["Unit", "Structure"], "multiply": time[AIDiff] },
+				"ResourceGatherer/BaseSpeed": [{ "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] }],
+				"Trader/GainMultiplier": [{ "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] }],
+				"Cost/BuildTime": [{ "affects": ["Unit", "Structure"], "multiply": time[AIDiff] }],
 			}, cmpPlayer.entity);
 		}
 		if (settings.PopulationCap)
