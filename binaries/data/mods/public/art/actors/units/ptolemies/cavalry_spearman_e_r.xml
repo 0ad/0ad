@@ -28,6 +28,32 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_07_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_12_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_09_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-04">
+      <props>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant file="biped/base_cavalry_spearman_relax_shield_aspis.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
