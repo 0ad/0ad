@@ -10,7 +10,7 @@ Engine.LoadComponentScript("Barter.js");
 const truePrice = 110;
 
 Resources = {
-	"GetCodes": () => ["wood", "stone", "metal"],
+	"GetBarterableCodes": () => ["wood", "stone", "metal"],
 	"GetResource": (resource) => ({ "truePrice": truePrice })
 };
 

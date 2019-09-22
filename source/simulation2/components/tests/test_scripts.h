@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,6 +54,19 @@ public:
 	{
 		CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 		TS_ASSERT(componentManager->LoadScript(VfsPath(L"simulation/helpers") / pathname));
+	}
+
+	void test_global_scripts()
+	{
+		VfsPaths paths;
+		TS_ASSERT_OK(vfs::GetPathnames(g_VFS, L"globalscripts/tests/", L"test_*.js", paths));
+		for (const VfsPath& path : paths)
+		{
+			CSimContext context;
+			CComponentManager componentManager(context, g_ScriptRuntime, true);
+			ScriptTestSetup(componentManager.GetScriptInterface());
+			load_script(componentManager.GetScriptInterface(), path);
+		}
 	}
 
 	void test_scripts()

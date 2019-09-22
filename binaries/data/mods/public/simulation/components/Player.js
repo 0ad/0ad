@@ -76,20 +76,22 @@ Player.prototype.Init = function()
 		"sell": clone(this.template.BarterMultiplier.Sell)
 	};
 
-	// Initial resources and trading goods probability in steps of 5
+	// Initial resources
 	let resCodes = Resources.GetCodes();
-	let quotient = Math.floor(20 / resCodes.length);
-	let remainder = 20 % resCodes.length;
-	for (let i in resCodes)
+	for (let res of resCodes)
 	{
-		let res = resCodes[i];
 		this.resourceCount[res] = 300;
 		this.resourceNames[res] = Resources.GetResource(res).name;
+	}
+	// Trading goods probability in steps of 5
+	let resTradeCodes = Resources.GetTradableCodes();
+	let quotient = Math.floor(20 / resTradeCodes.length);
+	let remainder = 20 % resTradeCodes.length;
+	for (let i in resTradeCodes)
 		this.tradingGoods.push({
-			"goods": res,
+			"goods": resTradeCodes[i],
 			"proba": 5 * (quotient + (+i < remainder ? 1 : 0))
 		});
-	}
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -385,11 +387,11 @@ Player.prototype.GetTradingGoods = function()
 
 Player.prototype.SetTradingGoods = function(tradingGoods)
 {
-	let resCodes = Resources.GetCodes();
+	let resTradeCodes = Resources.GetTradableCodes();
 	let sumProba = 0;
 	for (let resource in tradingGoods)
 	{
-		if (resCodes.indexOf(resource) == -1 || tradingGoods[resource] < 0)
+		if (resTradeCodes.indexOf(resource) == -1 || tradingGoods[resource] < 0)
 		{
 			error("Invalid trading goods: " + uneval(tradingGoods));
 			return;
@@ -399,7 +401,7 @@ Player.prototype.SetTradingGoods = function(tradingGoods)
 
 	if (sumProba != 100)
 	{
-		error("Invalid trading goods: " + uneval(tradingGoods));
+		error("Invalid trading goods probability: " + uneval(sumProba));
 		return;
 	}
 
@@ -812,19 +814,20 @@ Player.prototype.GetCheatsEnabled = function()
 
 Player.prototype.TributeResource = function(player, amounts)
 {
-	var cmpPlayer = QueryPlayerIDInterface(player);
+	let cmpPlayer = QueryPlayerIDInterface(player);
 	if (!cmpPlayer)
 		return;
 
 	if (this.state != "active" || cmpPlayer.state != "active")
 		return;
 
+	let resTribCodes = Resources.GetTributableCodes();
 	for (let resCode in amounts)
-		if (Resources.GetCodes().indexOf(resCode) == -1 ||
+		if (resTribCodes.indexOf(resCode) == -1 ||
 		    !Number.isInteger(amounts[resCode]) ||
 		    amounts[resCode] < 0)
 		{
-			warn("Invalid tribute amounts: " + uneval(amounts));
+			warn("Invalid tribute amounts: " + uneval(resCode) + ": " + uneval(amounts));
 			return;
 		}
 

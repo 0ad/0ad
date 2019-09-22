@@ -692,7 +692,8 @@ function updateTopPanel()
 
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("diplomacyButton").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("tradeButton").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("tradeButton").hidden = !isPlayer ||
+		(!g_ResourceData.GetTradableCodes().length && !g_ResourceData.GetBarterableCodes().length);
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
 	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");

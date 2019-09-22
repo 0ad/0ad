@@ -63,6 +63,9 @@ PETRA.DiplomacyManager.prototype.init = function(gameState)
 PETRA.DiplomacyManager.prototype.tributes = function(gameState)
 {
 	this.nextTributeUpdate = gameState.ai.elapsedTime + 30;
+	let resTribCodes = Resources.GetTributableCodes();
+	if (!resTribCodes.length)
+		return;
 	let totalResources = gameState.getResources();
 	let availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
 	let mostNeeded;
@@ -75,7 +78,7 @@ PETRA.DiplomacyManager.prototype.tributes = function(gameState)
 		let allyPop = gameState.sharedScript.playersData[i].popCount;
 		let tribute = {};
 		let toSend = false;
-		for (let res in allyResources)
+		for (let res in resTribCodes)
 		{
 			if (donor && availableResources[res] > 200 && allyResources[res] < 0.2 * availableResources[res])
 			{
@@ -94,8 +97,8 @@ PETRA.DiplomacyManager.prototype.tributes = function(gameState)
 				if (this.nextTributeRequest.has(res) && gameState.ai.elapsedTime < this.nextTributeRequest.get(res))
 					continue;
 				if (!mostNeeded)
-					mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-				for (let k = 0; k < 2; ++k)
+					mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState, resTribCodes);
+				for (let k = 0; k < mostNeeded.length; ++k)
 				{
 					if (mostNeeded[k].type == res && mostNeeded[k].wanted > 0)
 					{
@@ -399,17 +402,29 @@ PETRA.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, pl
 	}
 	else
 	{
-		response = "acceptWithTribute";
-		requiredTribute = gameState.ai.HQ.pickMostNeededResources(gameState)[0];
-		requiredTribute.wanted = Math.max(1000, gameState.getOwnUnits().length * (requestType === "ally" ? 10 : 5));
-		this.receivedDiplomacyRequests.set(player, {
-			"status": "waitingForTribute",
-			"wanted": requiredTribute.wanted,
-			"type": requiredTribute.type,
-			"warnTime": gameState.ai.elapsedTime + 60,
-			"sentWarning": false,
-			"requestType": requestType
-		});
+		// Try to request a tribute.
+		// If a resource is not tributable, do not request it.
+		// If no resources are tributable, decline.
+		let resTribCodes = Resources.GetTributableCodes();
+		if (resTribCodes.length)
+		{
+			requiredTribute = gameState.ai.HQ.pickMostNeededResources(gameState, resTribCodes)[0];
+			response = "acceptWithTribute";
+			requiredTribute.wanted = Math.max(1000, gameState.getOwnUnits().length * (requestType === "ally" ? 10 : 5));
+			this.receivedDiplomacyRequests.set(player, {
+				"status": "waitingForTribute",
+				"wanted": requiredTribute.wanted,
+				"type": requiredTribute.type,
+				"warnTime": gameState.ai.elapsedTime + 60,
+				"sentWarning": false,
+				"requestType": requestType
+			});
+		}
+		else
+		{
+			this.receivedDiplomacyRequests.set(player, { "requestType": requestType, "status": "declinedRequest" });
+			response = "decline";
+		}
 	}
 	PETRA.chatAnswerRequestDiplomacy(gameState, player, requestType, response, requiredTribute);
 };
@@ -508,7 +523,7 @@ PETRA.DiplomacyManager.prototype.update = function(gameState, events)
 {
 	this.checkEvents(gameState, events);
 
-	if (!gameState.ai.HQ.saveResources && gameState.ai.elapsedTime > this.nextTributeUpdate)
+	if (Resources.GetTributableCodes().length && !gameState.ai.HQ.saveResources && gameState.ai.elapsedTime > this.nextTributeUpdate)
 		this.tributes(gameState);
 
 	if (this.waitingToBetray && gameState.ai.elapsedTime > this.betrayLapseTime)
