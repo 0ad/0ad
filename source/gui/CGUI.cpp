@@ -73,7 +73,6 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 
 		if (m_GlobalHotkeys.count(hotkey) && ev->ev.type == SDL_HOTKEYDOWN)
 		{
-			HotkeyInputHandler(ev);
 			ret = IN_HANDLED;
 
 			JSContext* cx = m_ScriptInterface->GetContext();

@@ -55,17 +55,20 @@ public:
 
 	void test_hotkeysState()
 	{
-
 		// Load up a fake test hotkey when pressing 'a'.
 		const char* test_hotkey_name = "hotkey.test";
 		g_ConfigDB.SetValueString(CFG_USER, test_hotkey_name, "A");
 		LoadHotkeys();
 
 		// Load up a test page.
-		JS::RootedValue val(g_GUI->GetScriptInterface()->GetContext());
-		g_GUI->GetScriptInterface()->Eval("({})", &val);
-		std::shared_ptr<ScriptInterface::StructuredClone> data = g_GUI->GetScriptInterface()->WriteStructuredClone(JS::NullHandleValue);
-		g_GUI->PushPage(L"page_hotkey.xml", data, JS::UndefinedHandleValue);
+		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue val(cx);
+		scriptInterface.CreateObject(cx, &val);
+
+		std::shared_ptr<ScriptInterface::StructuredClone> data = scriptInterface.WriteStructuredClone(JS::NullHandleValue);
+		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data, JS::UndefinedHandleValue);
 
 		// Press 'a'.
 		SDL_Event_ hotkeyNotification;
@@ -79,16 +82,22 @@ public:
 		while (in_poll_event(&ev))
 			in_dispatch_event(&ev);
 
+		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
+		JSContext* pcx = pageScriptInterface.GetContext();
+		JSAutoRequest pagerq(pcx);
+		JS::RootedValue global(pcx, pageScriptInterface.GetGlobalObject());
+
 		// Ensure that our hotkey state was synchronised with the event itself.
 		bool hotkey_pressed_value = false;
-		JS::RootedValue js_hotkey_pressed_value(g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext());
-		g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("state_before", &js_hotkey_pressed_value);
-		g_GUI->GetActiveGUI()->GetScriptInterface()->FromJSVal(g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext(), js_hotkey_pressed_value, hotkey_pressed_value);
+		JS::RootedValue js_hotkey_pressed_value(pageScriptInterface.GetContext());
+
+		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
+		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkey_pressed_value = false;
-		g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("state_after", &js_hotkey_pressed_value);
-		g_GUI->GetActiveGUI()->GetScriptInterface()->FromJSVal(g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext(), js_hotkey_pressed_value, hotkey_pressed_value);
+		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
+		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkeyNotification.ev.type = SDL_KEYUP;
@@ -97,13 +106,13 @@ public:
 			in_dispatch_event(&ev);
 
 		hotkey_pressed_value = true;
-		g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("state_before", &js_hotkey_pressed_value);
-		g_GUI->GetActiveGUI()->GetScriptInterface()->FromJSVal(g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext(), js_hotkey_pressed_value, hotkey_pressed_value);
+		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
+		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
 		hotkey_pressed_value = true;
-		g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("state_after", &js_hotkey_pressed_value);
-		g_GUI->GetActiveGUI()->GetScriptInterface()->FromJSVal(g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext(), js_hotkey_pressed_value, hotkey_pressed_value);
+		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
+		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
 	}
