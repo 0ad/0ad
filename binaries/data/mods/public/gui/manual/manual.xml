@@ -6,7 +6,7 @@
 	<script directory="gui/manual/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="ModernFade"/>
+	<object type="image" sprite="ModernFade"/>
 
 	<object type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
 		<object name="title" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">

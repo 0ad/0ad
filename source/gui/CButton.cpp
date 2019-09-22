@@ -44,8 +44,6 @@ CButton::CButton(CGUI& pGUI)
 	AddSetting<CGUIColor>("textcolor_over");
 	AddSetting<CGUIColor>("textcolor_pressed");
 	AddSetting<CGUIColor>("textcolor_disabled");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
 
 	AddText();
 }

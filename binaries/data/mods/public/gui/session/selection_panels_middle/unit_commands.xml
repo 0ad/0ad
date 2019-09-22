@@ -8,8 +8,8 @@
 	<object size="0 1 100% 100%">
 	<repeat count="6">
 		<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="sessionToolTipBottomBold">
-		<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>
-		<object name="unitCommandCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+		<object name="unitCommandIcon[n]" ghost="true" type="image" style="commandIcon"/>
+		<object name="unitCommandCount[n]" ghost="true" style="groupIconsText" type="text"/>
 		</object>
 	</repeat>
 	</object>

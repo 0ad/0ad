@@ -8,8 +8,8 @@
 	<object size="0 1 100% 100%">
 	<repeat count="2">
 		<object name="unitAllyCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="sessionToolTipBottomBold">
-		<object name="unitAllyCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>
-		<object name="unitAllyCommandCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+		<object name="unitAllyCommandIcon[n]" ghost="true" type="image" style="commandIcon"/>
+		<object name="unitAllyCommandCount[n]" ghost="true" style="groupIconsText" type="text"/>
 		</object>
 	</repeat>
 	</object>

@@ -28,7 +28,6 @@ void CRadioButton::HandleMessage(SGUIMessage& Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
-	IGUITextOwner::HandleMessage(Message);
 
 	switch (Message.type)
 	{

@@ -5,7 +5,7 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/modmod/"/>
 
-	<object type="image" style="ModernWindow" size="0 0 100% 100%">
+	<object type="image" style="ModernWindow">
 
 		<!-- Page Title -->
 		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
@@ -29,7 +29,6 @@
 				checked="false"
 				style="ModernTickBox"
 				size="186 0 206 100%"
-				font="serif-bold-13"
 			>
 				<action on="Press">applyFilters();</action>
 			</object>

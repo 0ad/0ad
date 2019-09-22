@@ -46,8 +46,6 @@ CList::CList(CGUI& pGUI)
 	AddSetting<i32>("selected");	// Index selected. -1 is none.
 	AddSetting<bool>("auto_scroll");
 	AddSetting<i32>("hovered");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
 
 	// Each list item has both a name (in 'list') and an associated data string (in 'list_data')
 	AddSetting<CGUIList>("list");

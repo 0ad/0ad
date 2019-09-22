@@ -58,13 +58,13 @@
 				<object size="430 0 100%-80 100%">
 					<repeat count="8" var="r">
 						<object name="diplomacyPlayer[n]_tribute[r]" size="0 0 20 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
-							<object name="diplomacyPlayer[n]_tribute[r]_image" type="image" size="0 0 100% 100%" ghost="true"/>
+							<object name="diplomacyPlayer[n]_tribute[r]_image" type="image" ghost="true"/>
 						</object>
 					</repeat>
 				</object>
 
 				<object name="diplomacyAttackRequest[n]" size="100%-58 0 100%-38 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
-					<object name="diplomacyAttackRequestImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/attack-request.png" ghost="true"/>
+					<object name="diplomacyAttackRequestImage[n]" type="image" sprite="stretched:session/icons/attack-request.png" ghost="true"/>
 				</object>
 
 				<object name="diplomacySpyRequest[n]" size="100%-30 0 100%-10 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
@@ -78,7 +78,7 @@
 
 	<object size="50%-228 100%-50 50%+100 100%-22">
 		<object name="diplomacyColorsWindowButton" size="0 0 28 28" type="button" style="iconButton" tooltip_style="sessionToolTip">
-			<object name="diplomacyColorsWindowButtonIcon" size="0 0 100% 100%" type="image" sprite="stretched:session/icons/diplomacy.png" ghost="true"/>
+			<object name="diplomacyColorsWindowButtonIcon" type="image" sprite="stretched:session/icons/diplomacy.png" ghost="true"/>
 			<action on="Press">updateDiplomacyColorsButton();</action>
 		</object>
 		<object size="32 0 100% 28" type="text" style="DiplomacyText" text_valign="center">

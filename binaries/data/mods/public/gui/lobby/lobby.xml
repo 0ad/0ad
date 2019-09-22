@@ -7,7 +7,7 @@
 
 	<object type="image" sprite="ModernFade" name="fadeImage"/>
 
-	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="lobbyWindow">
+	<object type="image" style="ModernWindow" name="lobbyWindow">
 
 		<object name="lobbyWindowTitle" style="ModernLabelText" type="text" size="50%-128 0%+4 50%+128 36">
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>

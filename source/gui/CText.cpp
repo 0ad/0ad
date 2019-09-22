@@ -40,8 +40,6 @@ CText::CText(CGUI& pGUI)
 	AddSetting<EVAlign>("text_valign");
 	AddSetting<CGUIColor>("textcolor");
 	AddSetting<CGUIColor>("textcolor_disabled");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
 
 	// Private settings
 	AddSetting<CStrW>("_icon_tooltip");

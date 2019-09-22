@@ -6,7 +6,7 @@
 	<script directory="gui/reference/viewer/"/>
 
 	<!-- Add a translucent black background to fade out whatever's behind this -->
-	<object type="image" z="0" sprite="BackgroundTranslucent"/>
+	<object type="image" sprite="BackgroundTranslucent"/>
 
 	<object type="image" sprite="ModernDialog" size="50%-250 50%-300 50%+250 50%+300">
 		<object style="TitleText" type="text" size="50%-128 -18 50%+128 14">

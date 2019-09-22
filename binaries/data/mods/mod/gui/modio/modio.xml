@@ -5,7 +5,7 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/modio/"/>
 
-	<object type="image" sprite="ModernFade" z="0"/>
+	<object type="image" sprite="ModernFade"/>
 
 	<object name="modio" type="image" style="ModernDialog" size="10% 10% 90% 90%">
 
@@ -89,7 +89,7 @@
 	<!-- Download/Request-in-progress Dialog -->
 	<!-- Captions are supplied in modio.js -->
 	<!-- This must be after the buttons, and with "z" > 20, else it and/or other objects will not be drawn correctly -->
-	<object name="downloadDialog" type="image" sprite="ModernFade" z="30" size="0 0 100% 100%">
+	<object name="downloadDialog" type="image" sprite="ModernFade" z="30">
 		<object type="image" style="ModernDialog" size="50%-210 50%-96 50%+210 50%+96">
 
 			<object name="downloadDialog_title" type="text" style="ModernLabelText" size="50%-128 0%-16 50%+128 16"/>
