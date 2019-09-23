@@ -43,27 +43,21 @@
 				<translatableAttribute id="caption">No saved games found.</translatableAttribute>
 			</object>
 
-			<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="ModernInput">
-				<action on="Press">saveGame();</action>
-			</object>
+			<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="ModernInput" hidden="true"/>
 
-			<object type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
+			<object name="cancel" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
 				<translatableAttribute id="caption">Cancel</translatableAttribute>
-				<action on="Press">Engine.PopGuiPage();</action>
 			</object>
 
-			<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" hotkey="session.savedgames.delete">
+			<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" enabled="false" hotkey="session.savedgames.delete">
 				<translatableAttribute id="caption">Delete</translatableAttribute>
-				<action on="Press">deleteGame();</action>
 			</object>
 
 			<object name="confirmButton" type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32"/>
 		</object>
 
 		<object name="filterPanel" size="630 25 100%-20 60">
-			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 0 20 20">
-				<action on="Press">updateSavegameList();</action>
-			</object>
+			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 0 20 20"/>
 
 			<object type="text" size="25 0 100% 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Filter compatible saved games</translatableAttribute>
