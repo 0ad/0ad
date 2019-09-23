@@ -78,7 +78,7 @@ PETRA.DiplomacyManager.prototype.tributes = function(gameState)
 		let allyPop = gameState.sharedScript.playersData[i].popCount;
 		let tribute = {};
 		let toSend = false;
-		for (let res in resTribCodes)
+		for (let res of resTribCodes)
 		{
 			if (donor && availableResources[res] > 200 && allyResources[res] < 0.2 * availableResources[res])
 			{
