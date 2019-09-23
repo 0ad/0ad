@@ -74,7 +74,7 @@
     <VisibleClasses datatype="tokens">City</VisibleClasses>
     <Icon>structures/fortress.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
-    <Tooltip>Train Heroes and Champions, construct Siege Engines, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Train Heroes and Champions and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -86,15 +86,6 @@
   </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_siege_ballista_packed
-      units/{civ}_siege_scorpio_packed
-      units/{civ}_siege_oxybeles_packed
-      units/{civ}_siege_lithobolos_packed
-      units/{civ}_siege_polybolos_packed
-      units/{civ}_siege_ram
-      units/{civ}_siege_tower
-    </Entities>
     <Technologies datatype="tokens">
       attack_soldiers_will
     </Technologies>

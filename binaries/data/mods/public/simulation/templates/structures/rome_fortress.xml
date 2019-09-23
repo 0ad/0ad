@@ -12,13 +12,6 @@
       units/{civ}_champion_infantry
       units/{civ}_champion_cavalry
     </Entities>
-    <Technologies datatype="tokens">
-      siege_attack
-      siege_armor
-      siege_cost_metal
-      siege_cost_wood
-      siege_bolt_accuracy
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/romans/fortress.xml</Actor>
