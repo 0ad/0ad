@@ -18,23 +18,17 @@
 #ifndef INCLUDED_GUIMANAGER
 #define INCLUDED_GUIMANAGER
 
-#include <boost/unordered_set.hpp>
-#include <set>
-
-#include "lib/input.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/input.h"
 #include "ps/CStr.h"
 #include "ps/TemplateLoader.h"
-#include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <boost/unordered_set.hpp>
 #include <string>
+#include <set>
 
 class CGUI;
-class JSObject;
-class IGUIObject;
-struct CGUIColor;
-struct SGUIIcon;
 
 /**
  * External interface to the GUI system.

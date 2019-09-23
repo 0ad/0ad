@@ -21,8 +21,9 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIColor.h"
+#include "gui/CGUIList.h"
+#include "gui/IGUIScrollBar.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "ps/Profile.h"
 
@@ -34,13 +35,11 @@ CDropDown::CDropDown(CGUI& pGUI)
 	AddSetting<float>("dropdown_size");
 	AddSetting<float>("dropdown_buffer");
 	AddSetting<u32>("minimum_visible_items");
-//	AddSetting<CStrW, "font");
 	AddSetting<CStrW>("sound_closed");
-	AddSetting<CStrW>("sound_disabled");
 	AddSetting<CStrW>("sound_enter");
 	AddSetting<CStrW>("sound_leave");
 	AddSetting<CStrW>("sound_opened");
-	AddSetting<CGUISpriteInstance>("sprite");				// Background that sits around the size
+	// Setting "sprite" is registered by CList and used as the background
 	AddSetting<CGUISpriteInstance>("sprite_disabled");
 	AddSetting<CGUISpriteInstance>("sprite_list");			// Background of the drop down list
 	AddSetting<CGUISpriteInstance>("sprite2");				// Button that sits to the right
@@ -52,7 +51,6 @@ CDropDown::CDropDown(CGUI& pGUI)
 	// Add these in CList! And implement TODO
 	//AddSetting<CGUIColor>("textcolor_over");
 	//AddSetting<CGUIColor>("textcolor_pressed");
-	AddSetting<CGUIColor>("textcolor_selected");
 	AddSetting<CGUIColor>("textcolor_disabled");
 
 	// Scrollbar is forced to be true.

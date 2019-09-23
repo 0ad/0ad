@@ -23,9 +23,10 @@
 #ifndef INCLUDED_CGUI
 #define INCLUDED_CGUI
 
-#include "gui/GUITooltip.h"
-#include "gui/GUIbase.h"
+#include "gui/CGUIColor.h"
 #include "gui/CGUIDummyObject.h"
+#include "gui/GUIbase.h"
+#include "gui/GUITooltip.h"
 #include "lib/input.h"
 #include "ps/Shapes.h"
 #include "ps/XML/Xeromyces.h"
@@ -53,10 +54,6 @@ struct SGUIStyle
 };
 
 class CGUISpriteInstance;
-struct CGUIColor;
-class CGUIText;
-struct SGUIIcon;
-class CGUIString;
 class CGUISprite;
 struct SGUIImageEffects;
 struct SGUIScrollBarStyle;
@@ -166,16 +163,16 @@ public:
 	bool ObjectExists(const CStr& Name) const;
 
 	/**
-	 * Returns the GUI object with the desired name, or NULL
+	 * Returns the GUI object with the desired name, or nullptr
 	 * if no match is found,
 	 *
 	 * @param Name String name of object
-	 * @return Matching object, or NULL
+	 * @return Matching object, or nullptr
 	 */
 	IGUIObject* FindObjectByName(const CStr& Name) const;
 
 	/**
-	 * Returns the GUI object under the mouse, or NULL if none.
+	 * Returns the GUI object under the mouse, or nullptr if none.
 	 */
 	IGUIObject* FindObjectUnderMouse();
 
@@ -222,7 +219,7 @@ public:
 	/**
 	 * Check if an icon exists
 	 */
-	bool HasIcon(const CStr& name) const { return (m_Icons.count(name) != 0); }
+	bool HasIcon(const CStr& name) const { return (m_Icons.find(name) != m_Icons.end()); }
 
 	/**
 	 * Get Icon (a const reference, can never be changed)
@@ -232,7 +229,7 @@ public:
 	/**
 	 * Check if a style exists
 	 */
-	bool HasStyle(const CStr& name) const { return (m_Styles.count(name) != 0); }
+	bool HasStyle(const CStr& name) const { return (m_Styles.find(name) != m_Styles.end()); }
 
 	/**
 	 * Get Style if it exists, otherwise throws an exception.
@@ -242,7 +239,7 @@ public:
 	/**
 	 * Check if a predefined color of that name exists.
 	 */
-	bool HasPreDefinedColor(const CStr& name) const { return (m_PreDefinedColors.count(name) != 0); }
+	bool HasPreDefinedColor(const CStr& name) const { return (m_PreDefinedColors.find(name) != m_PreDefinedColors.end()); }
 
 	/**
 	 * Resolve the predefined color if it exists, otherwise throws an exception.
@@ -293,7 +290,7 @@ public:
 	/**
 	 * Change focus to new object.
 	 * Will send LOST_FOCUS/GOT_FOCUS messages as appropriate.
-	 * pObject can be NULL to remove all focus.
+	 * pObject can be nullptr to remove all focus.
 	 */
 	void SetFocusedObject(IGUIObject* pObject);
 
@@ -624,7 +621,7 @@ private:
 	 * IGUIObjects by name... For instance m_ObjectTypes["button"]
 	 * is filled with a function that will "return new CButton();"
 	 */
-	std::map<CStr, ConstructObjectFunction>	m_ObjectTypes;
+	std::map<CStr, ConstructObjectFunction> m_ObjectTypes;
 
 	/**
 	 * Map from hotkey names to objects that listen to the hotkey.

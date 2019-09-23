@@ -101,9 +101,7 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 // Since this code is very performancecritical and applying technologies quite slow, cache it.
 ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
 {
-	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	let multiplier = cmpPlayer ? cmpPlayer.GetGatherRateMultiplier() : 1;
-	this.baseSpeed = multiplier * ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
+	this.baseSpeed = ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
 
 	this.rates = {};
 	for (let r in this.template.Rates)

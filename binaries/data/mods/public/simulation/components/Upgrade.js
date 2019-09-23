@@ -275,9 +275,7 @@ Upgrade.prototype.GetUpgradeTime = function(templateArg)
 	if (!this.template[choice].Time)
 		return 0;
 
-	let cmpPlayer = QueryPlayerIDInterface(this.owner, IID_Player);
-	return ApplyValueModificationsToEntity("Upgrade/Time", +this.template[choice].Time, this.entity) *
-		cmpPlayer.GetTimeMultiplier();
+	return ApplyValueModificationsToEntity("Upgrade/Time", +this.template[choice].Time, this.entity);
 };
 
 Upgrade.prototype.GetElapsedTime = function()

@@ -21,15 +21,15 @@
 
 #include "gui/CGUI.h"
 #include "lib/timer.h"
-#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
-#include "ps/GameSetup/Config.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
 
-CGUIManager* g_GUI = NULL;
+CGUIManager* g_GUI = nullptr;
 
 
 // General TODOs:
@@ -266,7 +266,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 {
 	for (SGUIPage& p : m_PageStack)
-		if (p.inputs.count(path))
+		if (p.inputs.find(path) != p.inputs.end())
 		{
 			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(p.name));
 			p.LoadPage(m_ScriptRuntime);

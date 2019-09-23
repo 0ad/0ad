@@ -1,5 +1,7 @@
 Resources = {
 	"GetCodes": () => ["food", "metal", "stone", "wood"],
+	"GetTradableCodes": () => ["food", "metal", "stone", "wood"],
+	"GetBarterableCodes": () => ["food", "metal", "stone", "wood"],
 	"GetResource": () => ({}),
 	"BuildSchema": (type) => {
 		let schema = "";

@@ -29,8 +29,12 @@ varying vec2 waterInfo;
 varying vec3 v;
 
 varying vec4 normalCoords;
+#if USE_REFLECTION
 varying vec3 reflectionCoords;
+#endif
+#if USE_REFRACTION
 varying vec3 refractionCoords;
+#endif
 varying vec2 losCoords;
 
 varying float fwaviness;
@@ -58,8 +62,12 @@ void main()
 	normalCoords = vec4(newX, newY, time, 0.0);
 	normalCoords.xy *= repeatScale;
 	// Projective texturing
+#if USE_REFLECTION
 	reflectionCoords = (reflectionMatrix * vec4(a_vertex, 1.0)).rga;
+#endif
+#if USE_REFRACTION
 	refractionCoords = (refractionMatrix * vec4(a_vertex, 1.0)).rga;
+#endif
 	losCoords = (losMatrix * vec4(a_vertex, 1.0)).rg;
 	
 #if USE_SHADOW && USE_SHADOWS_ON_WATER

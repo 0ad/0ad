@@ -95,11 +95,6 @@ function LoadPlayerSettings(settings, newPlayers)
 			continue;
 		}
 
-		// Note: this is not yet implemented but I leave it commented to highlight it's easy
-		// If anyone ever adds handicap.
-		//if (getSetting(playerData, playerDefaults, i, "GatherRateMultiplier") !== undefined)
-		//	cmpPlayer.SetGatherRateMultiplier(getSetting(playerData, playerDefaults, i, "GatherRateMultiplier"));
-
 		if (getSetting(playerData, playerDefaults, i, "PopulationLimit") !== undefined)
 			cmpPlayer.SetMaxPopulation(getSetting(playerData, playerDefaults, i, "PopulationLimit"));
 

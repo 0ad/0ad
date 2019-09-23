@@ -25,7 +25,6 @@ GUI Core, stuff that the whole GUI uses
 #ifndef INCLUDED_GUIBASE
 #define INCLUDED_GUIBASE
 
-#include "gui/CGUIColor.h"
 #include "ps/CStr.h"
 #include "ps/Errors.h"
 #include "ps/Shapes.h"
@@ -34,6 +33,7 @@ GUI Core, stuff that the whole GUI uses
 #include <map>
 #include <vector>
 
+class CGUI;
 class IGUIObject;
 
 #define GUI_OBJECT(obj)													\

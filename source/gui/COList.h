@@ -18,6 +18,7 @@
 #define INCLUDED_COLIST
 
 #include "CList.h"
+#include "gui/CGUIColor.h"
 
 #include <vector>
 

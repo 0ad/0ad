@@ -2,172 +2,118 @@ var API3 = function(m)
 {
 
 m.Filters = {
-	"byType": function(type){
-		return { "func": function(ent){
-			return ent.templateName() == type;
-		},
-		"dynamicProperties": [] };
-	},
+	"byType": type => ({
+		"func": ent => ent.templateName() == type,
+		"dynamicProperties": []
+	}),
 
-	"byClass": function(cls){
-		return { "func": function(ent){
-			return ent.hasClass(cls);
-		},
-		"dynamicProperties": [] };
-	},
+	"byClass": cls => ({
+		"func": ent => ent.hasClass(cls),
+		"dynamicProperties": []
+	}),
 
-	"byClassesAnd": function(clsList){
-		return { "func": function(ent){
-			let ret = true;
-			for (let cls of clsList)
-				ret = ret && ent.hasClass(cls);
-			return ret;
-		},
-		"dynamicProperties": [] };
-	},
+	"byClassesAnd": clsList => ({
+		"func": ent => clsList.every(cls => ent.hasClass(cls)),
+		"dynamicProperties": []
+	}),
 
-	"byClassesOr": function(clsList){
-		return { "func": function(ent){
-			let ret = false;
-			for (let cls of clsList)
-				ret = ret || ent.hasClass(cls);
-			return ret;
-		},
-		"dynamicProperties": [] };
-	},
+	"byClassesOr": clsList => ({
+		"func": ent => clsList.some(cls => ent.hasClass(cls)),
+		"dynamicProperties": []
+	}),
 
-	"byMetadata": function(player, key, value){
-		return { "func": function(ent){
-			return ent.getMetadata(player, key) == value;
-		},
-		"dynamicProperties": ['metadata.' + key] };
-	},
+	"byMetadata": (player, key, value) => ({
+		"func": ent => ent.getMetadata(player, key) == value,
+		"dynamicProperties": ['metadata.' + key]
+	}),
 
-	"byHasMetadata": function(player, key){
-		return { "func": function(ent){
-			return ent.getMetadata(player, key) !== undefined;
-		},
-		"dynamicProperties": ['metadata.' + key] };
-	},
+	"byHasMetadata": (player, key) => ({
+		"func": ent => ent.getMetadata(player, key) !== undefined,
+		"dynamicProperties": ['metadata.' + key]
+	}),
 
-	"and": function(filter1, filter2){
-		return { "func": function(ent){
-			return filter1.func(ent) && filter2.func(ent);
-		},
-		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties) };
-	},
+	"and": (filter1, filter2) => ({
+		"func": ent => filter1.func(ent) && filter2.func(ent),
+		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)
+	}),
 
-	"or": function(filter1, filter2){
-		return { "func": function(ent){
-			return filter1.func(ent) || filter2.func(ent);
-		},
-		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties) };
-	},
+	"or": (filter1, filter2) => ({
+		"func": ent => filter1.func(ent) || filter2.func(ent),
+		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)
+	}),
 
-	"not": function(filter){
-		return { "func": function(ent){
-			return !filter.func(ent);
-		},
-		"dynamicProperties": filter.dynamicProperties };
-	},
+	"not": (filter) => ({
+		"func": ent => !filter.func(ent),
+		"dynamicProperties": filter.dynamicProperties
+	}),
 
-	"byOwner": function(owner){
-		return { "func": function(ent){
-			return ent.owner() == owner;
-		},
-		"dynamicProperties": ['owner'] };
-	},
+	"byOwner": owner => ({
+		"func": ent => ent.owner() == owner,
+		"dynamicProperties": ['owner']
+	}),
 
-	"byNotOwner": function(owner){
-		return { "func": function(ent){
-			return ent.owner() != owner;
-		},
-		"dynamicProperties": ['owner'] };
-	},
+	"byNotOwner": owner => ({
+		"func": ent => ent.owner() != owner,
+		"dynamicProperties": ['owner']
+	}),
 
-	"byOwners": function(owners){
-		return { "func": function(ent){
-			for (let owner of owners)
-				if (ent.owner() == owner)
-					return true;
-			return false;
-		},
-		"dynamicProperties": ['owner'] };
-	},
+	"byOwners": owners => ({
+		"func": ent => owners.some(owner => owner == ent.owner()),
+		"dynamicProperties": ['owner']
+	}),
 
-	"byCanGarrison": function(){
-		return { "func": function(ent){
-			return ent.garrisonMax() > 0;
-		},
-		"dynamicProperties": [] };
-	},
+	"byCanGarrison": () => ({
+		"func": ent => ent.garrisonMax() > 0,
+		"dynamicProperties": []
+	}),
 
-	"byTrainingQueue": function(){
-		return { "func": function(ent){
-			return ent.trainingQueue();
-		},
-		"dynamicProperties": ['trainingQueue'] };
-	},
+	"byTrainingQueue": () => ({
+		"func": ent => ent.trainingQueue(),
+		"dynamicProperties": ['trainingQueue']
+	}),
 
-	"byResearchAvailable": function(gameState, civ){
-		return { "func": function(ent){
-			return ent.researchableTechs(gameState, civ) !== undefined;
-		},
-		"dynamicProperties": [] };
-	},
+	"byResearchAvailable": (gameState, civ) => ({
+		"func": ent => ent.researchableTechs(gameState, civ) !== undefined,
+		"dynamicProperties": []
+	}),
 
-	"byCanAttackClass": function(aClass)
-	{
-		return { "func": function(ent){
-			return ent.canAttackClass(aClass);
-		},
-		"dynamicProperties": [] };
-	},
+	"byCanAttackClass": aClass => ({
+		"func": ent => ent.canAttackClass(aClass),
+		"dynamicProperties": []
+	}),
 
-	"isGarrisoned": function(){
-		return { "func": function(ent){
-			return ent.position() === undefined;
-		},
-		"dynamicProperties": [] };
-	},
+	"isGarrisoned": () => ({
+		"func": ent => ent.position() === undefined,
+		"dynamicProperties": []
+	}),
 
-	"isIdle": function(){
-		return { "func": function(ent){
-			return ent.isIdle();
-		},
-		"dynamicProperties": ['idle'] };
-	},
+	"isIdle": () => ({
+		"func": ent => ent.isIdle(),
+		"dynamicProperties": ['idle']
+	}),
 
-	"isFoundation": function(){
-		return { "func": function(ent){
-			return ent.foundationProgress() !== undefined;
-		},
-		"dynamicProperties": [] };
-	},
+	"isFoundation": () => ({
+		"func": ent => ent.foundationProgress() !== undefined,
+		"dynamicProperties": []
+	}),
 
-	"isBuilt": function(){
-		return { "func": function(ent){
-			return ent.foundationProgress() === undefined;
-		},
-		"dynamicProperties": [] };
-	},
+	"isBuilt": () => ({
+		"func": ent => ent.foundationProgress() === undefined,
+		"dynamicProperties": []
+	}),
 
-	"hasDefensiveFire": function(){
-		return { "func": function(ent){
-			return ent.hasDefensiveFire();
-		},
-		"dynamicProperties": [] };
-	},
+	"hasDefensiveFire": () => ({
+		"func": ent => ent.hasDefensiveFire(),
+		"dynamicProperties": []
+	}),
 
-	"isDropsite": function(resourceType){
-		return { "func": function(ent){
-			return ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) != -1);
-		},
-		"dynamicProperties": [] };
-	},
+	"isDropsite": resourceType => ({
+		"func": ent => ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) != -1),
+		"dynamicProperties": []
+	}),
 
-	"byResource": function(resourceType){
-		return { "func": function(ent){
+	"byResource": resourceType => ({
+		"func": ent => {
 			if (!ent.resourceSupplyMax())
 				return false;
 
@@ -189,36 +135,21 @@ m.Filters = {
 
 			return resourceType == type.generic;
 		},
-		"dynamicProperties": [] };
-	},
+		"dynamicProperties": []
+	}),
 
-	"isHuntable": function(){
-		return { "func": function(ent){
-			if (!ent.hasClass("Animal"))
-				return false;
-			if (!ent.resourceSupplyMax())
-				return false;
-			// Skip targets that are too hard to hunt
-			if (!ent.isHuntable())
-				return false;
-			// And don't go for the fish! TODO: better accessibility checks
-			if (ent.hasClass("SeaCreature"))
-				return false;
-			return true;
-		},
-		"dynamicProperties": [] };
-	},
+	"isHuntable": () => ({
+		// Skip targets that are too hard to hunt and don't go for the fish! TODO: better accessibility checks
+		"func": ent => ent.hasClass("Animal") && ent.resourceSupplyMax() &&
+		               ent.isHuntable() && !ent.hasClass("SeaCreature"),
+		"dynamicProperties": []
+	}),
 
-	"isFishable": function(){
-		return { "func": function(ent){
-			if (ent.get("UnitMotion"))   // temporarily do not fish moving fish (i.e. whales)
-				return false;
-			if (ent.hasClass("SeaCreature") && ent.resourceSupplyMax())
-				return true;
-			return false;
-		},
-		"dynamicProperties": [] };
-	}
+	"isFishable": () => ({
+		// temporarily do not fish moving fish (i.e. whales)
+		"func": ent => !ent.get("UnitMotion") && ent.hasClass("SeaCreature") && ent.resourceSupplyMax(),
+		"dynamicProperties": []
+	})
 };
 
 return m;

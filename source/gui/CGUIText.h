@@ -20,7 +20,6 @@
 
 #include "gui/CGUIColor.h"
 #include "gui/CGUISprite.h"
-#include "graphics/TextRenderer.h"
 #include "ps/CStrIntern.h"
 #include "ps/Shapes.h"
 
@@ -96,7 +95,7 @@ public:
 		STextCall() :
 			m_UseCustomColor(false),
 			m_Bold(false), m_Italic(false), m_Underlined(false),
-			m_pSpriteCall(NULL) {}
+			m_pSpriteCall(nullptr) {}
 
 		/**
 		 * Position
@@ -135,7 +134,7 @@ public:
 		bool m_Bold, m_Italic, m_Underlined;
 
 		/**
-		 * *IF* an icon, then this is not NULL.
+		 * *IF* an icon, then this is not nullptr.
 		 */
 		std::list<SSpriteCall>::pointer m_pSpriteCall;
 	};

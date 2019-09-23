@@ -276,10 +276,16 @@ function resizeDiplomacyDialog()
 	let dialog = Engine.GetGUIObjectByName("diplomacyDialogPanel");
 	let size = dialog.size;
 
-	let tribSize = Engine.GetGUIObjectByName("diplomacyPlayer[0]_tribute[0]").size;
-	let widthOffset = g_ResourceData.GetCodes().length * (tribSize.right - tribSize.left) / 2;
-	size.left -= widthOffset;
-	size.right += widthOffset;
+	let resTribCodesLength = g_ResourceData.GetTributableCodes().length;
+	if (resTribCodesLength)
+	{
+		let tribSize = Engine.GetGUIObjectByName("diplomacyPlayer[0]_tribute[0]").size;
+		let widthOffset = resTribCodesLength * (tribSize.right - tribSize.left) / 2;
+		size.left -= widthOffset;
+		size.right += widthOffset;
+	}
+	else
+		Engine.GetGUIObjectByName("diplomacyHeaderTribute").hidden = true;
 
 	let firstRow = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
 	let heightOffset = (g_Players.length - 1) * (firstRow.bottom - firstRow.top) / 2;
@@ -478,9 +484,9 @@ function diplomacyFormatStanceButtons(i, hidden)
 
 function diplomacyFormatTributeButtons(i, hidden)
 {
-	let resCodes = g_ResourceData.GetCodes();
+	let resTribCodes = g_ResourceData.GetTributableCodes();
 	let r = 0;
-	for (let resCode of resCodes)
+	for (let resCode of resTribCodes)
 	{
 		let button = Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]_tribute[" + r + "]");
 		if (!button)
@@ -503,15 +509,15 @@ function diplomacyFormatTributeButtons(i, hidden)
 			// See INPUT_MASSTRIBUTING in input.js
 			let multiplier = 1;
 			return function() {
-				let isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
-				if (isBatchTrainPressed)
+				let isMassTributePressed = Engine.HotkeyIsPressed("session.masstribute");
+				if (isMassTributePressed)
 				{
 					inputState = INPUT_MASSTRIBUTING;
 					multiplier += multiplier == 1 ? 4 : 5;
 				}
 
 				let amounts = {};
-				for (let res of resCodes)
+				for (let res of resTribCodes)
 					amounts[res] = 0;
 				amounts[resCode] = 100 * multiplier;
 
@@ -525,7 +531,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 					button.tooltip = formatTributeTooltip(i, resCode, 100);
 				};
 
-				if (!isBatchTrainPressed)
+				if (!isMassTributePressed)
 					g_FlushTributing();
 			};
 		})(i, resCode, button);
@@ -624,8 +630,15 @@ function resizeTradeDialog()
 	let size = dialog.size;
 	let width = size.right - size.left;
 
+	let resTradCodesLength = g_ResourceData.GetTradableCodes().length;
+	Engine.GetGUIObjectByName("tradeDialogPanelTrade").hidden = !resTradCodesLength;
+
+	let resBarterCodesLength = g_ResourceData.GetBarterableCodes().length;
+	Engine.GetGUIObjectByName("tradeDialogPanelBarter").hidden = !resBarterCodesLength;
+
 	let tradeSize = Engine.GetGUIObjectByName("tradeResource[0]").size;
-	width += g_ResourceData.GetCodes().length * (tradeSize.right - tradeSize.left);
+	let length = Math.max(resTradCodesLength, resBarterCodesLength);
+	width += length * (tradeSize.right - tradeSize.left);
 
 	size.left = -width / 2;
 	size.right = width / 2;
@@ -643,8 +656,9 @@ function openTrade()
 
 	let proba = Engine.GuiInterfaceCall("GetTradingGoods", g_ViewedPlayer);
 	let button = {};
-	let resCodes = g_ResourceData.GetCodes();
-	let currTradeSelection = resCodes[0];
+	let resTradeCodes = g_ResourceData.GetTradableCodes();
+	let resBarterCodes = g_ResourceData.GetBarterableCodes();
+	let currTradeSelection = resTradeCodes[0];
 
 	let updateTradeButtons = function()
 	{
@@ -658,12 +672,13 @@ function openTrade()
 		}
 	};
 
-	hideRemaining("tradeResources", resCodes.length);
+	hideRemaining("tradeResources", resTradeCodes.length);
 	Engine.GetGUIObjectByName("tradeHelp").hidden = false;
 
-	for (let i = 0; i < resCodes.length; ++i)
+
+	for (let i = 0; i < resBarterCodes.length; ++i)
 	{
-		let resCode = resCodes[i];
+		let resBarterCode = resBarterCodes[i];
 
 		let barterResource = Engine.GetGUIObjectByName("barterResource[" + i + "]");
 		if (!barterResource)
@@ -672,11 +687,14 @@ function openTrade()
 			 break;
 		}
 
-		// Barter:
-		barterOpenCommon(resCode, i, "barter");
+		barterOpenCommon(resBarterCode, i, "barter");
 		setPanelObjectPosition(barterResource, i, i + 1);
+	}
 
-		// Trade:
+	for (let i = 0; i < resTradeCodes.length; ++i)
+	{
+		let resTradeCode = resTradeCodes[i];
+
 		let tradeResource = Engine.GetGUIObjectByName("tradeResource[" + i + "]");
 		if (!tradeResource)
 		{
@@ -687,19 +705,19 @@ function openTrade()
 		setPanelObjectPosition(tradeResource, i, i + 1);
 
 		let icon = Engine.GetGUIObjectByName("tradeResourceIcon[" + i + "]");
-		icon.sprite = "stretched:session/icons/resources/" + resCode + ".png";
+		icon.sprite = "stretched:session/icons/resources/" + resTradeCode + ".png";
 
 		let buttonUp = Engine.GetGUIObjectByName("tradeArrowUp[" + i + "]");
 		let buttonDn = Engine.GetGUIObjectByName("tradeArrowDn[" + i + "]");
 
-		button[resCode] = {
+		button[resTradeCode] = {
 			"up": buttonUp,
 			"dn": buttonDn,
 			"label": Engine.GetGUIObjectByName("tradeResourceText[" + i + "]"),
 			"sel": Engine.GetGUIObjectByName("tradeResourceSelection[" + i + "]")
 		};
 
-		proba[resCode] = proba[resCode] || 0;
+		proba[resTradeCode] = proba[resTradeCode] || 0;
 
 		let buttonResource = Engine.GetGUIObjectByName("tradeResourceButton[" + i + "]");
 		buttonResource.enabled = controlsPlayer(g_ViewedPlayer);
@@ -707,7 +725,7 @@ function openTrade()
 			return () => {
 				if (Engine.HotkeyIsPressed("session.fulltradeswap"))
 				{
-					for (let res of resCodes)
+					for (let res of resTradeCodes)
 						proba[res] = 0;
 					proba[resource] = 100;
 					Engine.PostNetworkCommand({ "type": "set-trading-goods", "tradingGoods": proba });
@@ -715,7 +733,7 @@ function openTrade()
 				currTradeSelection = resource;
 				updateTradeButtons();
 			};
-		})(resCode);
+		})(resTradeCode);
 
 		buttonUp.enabled = controlsPlayer(g_ViewedPlayer);
 		buttonUp.onPress = (resource => {
@@ -725,7 +743,7 @@ function openTrade()
 				Engine.PostNetworkCommand({ "type": "set-trading-goods", "tradingGoods": proba });
 				updateTradeButtons();
 			};
-		})(resCode);
+		})(resTradeCode);
 
 		buttonDn.enabled = controlsPlayer(g_ViewedPlayer);
 		buttonDn.onPress = (resource => {
@@ -735,7 +753,7 @@ function openTrade()
 				Engine.PostNetworkCommand({ "type": "set-trading-goods", "tradingGoods": proba });
 				updateTradeButtons();
 			};
-		})(resCode);
+		})(resTradeCode);
 	}
 
 	updateTradeButtons();
@@ -752,7 +770,8 @@ function updateTraderTexts()
 
 function initBarterButtons()
 {
-	g_BarterSell = g_ResourceData.GetCodes()[0];
+	let resBartCodes = g_ResourceData.GetBarterableCodes();
+	g_BarterSell = resBartCodes.length ? resBartCodes[0] : undefined;
 }
 
 /**
@@ -860,7 +879,9 @@ function updateBarterButtons()
 	Engine.GetGUIObjectByName("barterHelp").hidden = !canBarter;
 
 	if (canBarter)
-		g_ResourceData.GetCodes().forEach((resCode, i) => { barterUpdateCommon(resCode, i, "barter", g_ViewedPlayer); });
+		g_ResourceData.GetBarterableCodes().forEach((resCode, i) => {
+			barterUpdateCommon(resCode, i, "barter", g_ViewedPlayer);
+		});
 }
 
 function getIdleLandTradersText(traderNumber)

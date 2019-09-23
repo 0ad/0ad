@@ -20,6 +20,7 @@
 #include "IGUITextOwner.h"
 
 #include "gui/CGUI.h"
+#include "gui/CGUIString.h"
 #include "gui/scripting/JSInterface_IGUITextOwner.h"
 
 #include <math.h>

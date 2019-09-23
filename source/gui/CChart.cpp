@@ -19,18 +19,14 @@
 
 #include "CChart.h"
 
-#include "gui/CGUIColor.h"
+#include "graphics/ShaderManager.h"
 #include "gui/CGUIList.h"
 #include "gui/CGUISeries.h"
 #include "gui/CGUIString.h"
 #include "gui/GUIMatrix.h"
-#include "graphics/ShaderManager.h"
-#include "i18n/L10n.h"
-#include "lib/ogl.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
-#include "third_party/cppformat/format.h"
 
 #include <cmath>
 

@@ -20,7 +20,6 @@
 #include "CSlider.h"
 
 #include "gui/CGUI.h"
-#include "lib/ogl.h"
 
 CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI), m_IsPressed(false), m_ButtonSide(0)

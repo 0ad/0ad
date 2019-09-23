@@ -32,8 +32,12 @@ varying vec2 waterInfo;
 varying vec3 v;
 
 varying vec4 normalCoords;
+#if USE_REFLECTION
 varying vec3 reflectionCoords;
+#endif
+#if USE_REFRACTION
 varying vec3 refractionCoords;
+#endif
 varying vec2 losCoords;
 
 varying float fwaviness;
@@ -53,7 +57,9 @@ uniform sampler2D normalMap2;
 uniform vec4 waveParams1; // wavyEffect, BaseScale, Flattenism, Basebump
 uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmovement
 
-uniform sampler2D reflectionMap;
+#if USE_REFLECTION
+	uniform sampler2D reflectionMap;
+#endif
 
 #if USE_REFRACTION
 	uniform sampler2D refractionMap;
@@ -157,13 +163,13 @@ void main()
 	// Flatten them based on waviness.
 	vec3 n = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
 
-	#if USE_FANCY_EFFECTS
-		vec4 fancyeffects = texture2D(waterEffectsTexNorm, gl_FragCoord.xy / screenSize);
-		n = mix(vec3(0.0, 1.0, 0.0), n, 0.5 + waterInfo.r / 2.0);
-		n.xz = mix(n.xz, fancyeffects.rb, fancyeffects.a / 2.0);
-	#else
-		n = mix(vec3(0.0, 1.0, 0.0), n, 0.5 + waterInfo.r / 2.0);
-	#endif
+#if USE_FANCY_EFFECTS
+	vec4 fancyeffects = texture2D(waterEffectsTexNorm, gl_FragCoord.xy / screenSize);
+	n = mix(vec3(0.0, 1.0, 0.0), n, 0.5 + waterInfo.r / 2.0);
+	n.xz = mix(n.xz, fancyeffects.rb, fancyeffects.a / 2.0);
+#else
+	n = mix(vec3(0.0, 1.0, 0.0), n, 0.5 + waterInfo.r / 2.0);
+#endif
 
 	n = vec3(-n.x, n.y, -n.z); // The final wave normal vector.
 
@@ -212,7 +218,6 @@ void main()
 	// fake depth computation: take the value at the vertex, add some if we are looking at a more oblique angle.
 	depth = waterDepth / (min(0.5, v.y) * 1.5 * min(0.5, v.y) * 2.0);
 #endif
-
 
 #if USE_REFRACTION
 	// for refraction we want to distort more as depth goes down.
@@ -266,26 +271,19 @@ void main()
 	float blurFactor = (distoFactor / 7.0);
 	refColor = (refColor + blurColor.rgb * blurFactor) / (1.0 + blurFactor);
 
-	// Apply water tint and murk color.
-	float extFact = max(0.0, 1.0 - (depth * fixedVy / murky));
-	float ColextFact = max(0.0, 1.0 - (depth * fixedVy / murky));
-	vec3 colll = mix(refColor * tint, refColor, ColextFact);
-
-
-	refrColor = mix(color, colll, extFact);
-#else
+#else // !USE_REFRACTION
 
 #if USE_FANCY_EFFECTS
 	depth = max(depth, fancyeffects.a);
 #endif
+	vec3 refColor = color;
+#endif
 
-	// Apply water tint and murk color only.
+	// Apply water tint and murk color.
 	float extFact = max(0.0, 1.0 - (depth * fixedVy / murky));
 	float ColextFact = max(0.0, 1.0 - (depth * fixedVy / murky));
-	vec3 colll = mix(color * tint, color, ColextFact);
-
+	vec3 colll = mix(refColor * tint, refColor, ColextFact);
 	refrColor = mix(color, colll, extFact);
-#endif
 
 	// Reflections
 	// 3 level of settings:
@@ -318,7 +316,7 @@ void main()
 	reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
 #endif
 
-#else
+#else // !USE_REFLECTION && !USE_REFRACTION
 	// Simplest case for reflection, return a gradient of blue based on Y component.
 	reflColor = mix(vec3(0.76, 0.84, 0.92), vec3(0.24, 0.43, 0.71), -eye.y);
 #endif

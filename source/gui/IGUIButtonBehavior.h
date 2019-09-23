@@ -65,15 +65,6 @@ public:
 	 */
 	void DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id);
 
-	/**
-	 * Choosing which color of the following according to object enabled/hovered/pressed status:
-	 *		textcolor_disabled	-- disabled
-	 *		textcolor_pressed	-- pressed
-	 *		textcolor_over		-- hovered
-	 */
-	const CGUIColor& ChooseColor();
-
-
 protected:
 	/**
 	 * @see IGUIObject#ResetStates()
@@ -93,8 +84,8 @@ protected:
 	 * area, as long as you release it within the button area... Anyway
 	 * this lets us know we are done with step one (clicking).
 	 */
-	bool							m_Pressed;
-	bool							m_PressedRight;
+	bool m_Pressed;
+	bool m_PressedRight;
 };
 
 #endif // INCLUDED_IGUIBUTTONBEHAVIOR

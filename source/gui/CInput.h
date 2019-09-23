@@ -146,8 +146,11 @@ protected:
 	//  pointer should be placed when the input control is pressed.
 	struct SRow
 	{
-		int					m_ListStart;	/// Where does the Row starts
-		std::vector<float>	m_ListOfX;		/// List of X values for each character.
+		// Where the Row starts
+		int m_ListStart;
+
+		// List of X values for each character.
+		std::vector<float> m_ListOfX;
 	};
 
 	/**

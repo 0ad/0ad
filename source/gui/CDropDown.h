@@ -28,9 +28,7 @@ GUI Object - Drop Down (list)
 #ifndef INCLUDED_CDROPDOWN
 #define INCLUDED_CDROPDOWN
 
-#include "gui/CGUIList.h"
 #include "gui/CList.h"
-#include "gui/IGUIScrollBar.h"
 
 #include <string>
 
@@ -50,8 +48,6 @@ class CDropDown : public CList
 public:
 	CDropDown(CGUI& pGUI);
 	virtual ~CDropDown();
-
-//	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
 
 	/**
 	 * @see IGUIObject#HandleMessage()

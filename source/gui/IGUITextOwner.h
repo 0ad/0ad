@@ -30,11 +30,14 @@ GUI Object Base - Text Owner
 #ifndef INCLUDED_IGUITEXTOWNER
 #define INCLUDED_IGUITEXTOWNER
 
-#include "gui/CGUIText.h"
 #include "gui/IGUIObject.h"
 #include "gui/scripting/JSInterface_IGUITextOwner.h"
 
 #include <vector>
+
+struct CGUIColor;
+class CGUIText;
+class CGUIString;
 
 /**
  * Framework for handling Output text.

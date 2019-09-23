@@ -123,7 +123,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 
 template<> void ScriptInterface::ToJSVal<IGUIObject*>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, IGUIObject* const& val)
 {
-	if (val == NULL)
+	if (val == nullptr)
 		ret.setNull();
 	else
 		ret.setObject(*val->GetJSObject());

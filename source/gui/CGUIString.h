@@ -18,7 +18,6 @@
 #ifndef INCLUDED_CGUISTRING
 #define INCLUDED_CGUISTRING
 
-#include "gui/CGUISprite.h"
 #include "gui/CGUIText.h"
 #include "ps/CStrIntern.h"
 
@@ -188,12 +187,12 @@ public:
 	 * @param from From character n,
 	 * @param to to character n.
 	 * @param FirstLine Whether this is the first line of text, to calculate its height correctly
-	 * @param pObject Only for Error outputting, optional! If NULL
+	 * @param pObject Only for Error outputting, optional! If nullptr
 	 *		  then no Errors will be reported! Useful when you need
 	 *		  to make several GenerateTextCall in different phases,
 	 *		  it avoids duplicates.
 	 */
-	void GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject = NULL) const;
+	void GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject = nullptr) const;
 
 	/**
 	 * Words

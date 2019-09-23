@@ -10,7 +10,7 @@
 	</object>
 
 	<!-- Barter Goods -->
-	<object size="24 24 100%-24 33%">
+	<object size="24 24 100%-24 33%" name="tradeDialogPanelBarter">
 
 		<object type="text" size="8 0 100% 32" style="ModernLeftLabelText">
 			<translatableAttribute id="caption">Barter</translatableAttribute>
@@ -60,7 +60,7 @@
 	</object>
 
 	<!-- Trading goods -->
-	<object size="24 33%+32 100%-24 100%-64">
+	<object size="24 33%+32 100%-24 100%-64" name="tradeDialogPanelTrade">
 
 		<object type="text" size="8 0 100% 32" style="ModernLeftLabelText">
 			<translatableAttribute id="caption">Trade</translatableAttribute>

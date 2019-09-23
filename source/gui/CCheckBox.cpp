@@ -24,11 +24,6 @@ CCheckBox::CCheckBox(CGUI& pGUI)
 {
 	AddSetting<i32>("cell_id");
 	AddSetting<bool>("checked");
-	AddSetting<CStrW>("sound_disabled");
-	AddSetting<CStrW>("sound_enter");
-	AddSetting<CStrW>("sound_leave");
-	AddSetting<CStrW>("sound_pressed");
-	AddSetting<CStrW>("sound_released");
 	AddSetting<CGUISpriteInstance>("sprite");
 	AddSetting<CGUISpriteInstance>("sprite_over");
 	AddSetting<CGUISpriteInstance>("sprite_pressed");

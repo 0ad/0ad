@@ -6,6 +6,7 @@
 	- DEFAULT STYLE: The style with the name 'default' is special, it will
 	- be called by every object before any other style is loaded.
 	==========================================
+	Note that the default z value is determined by GUI engine regardless of what is specified here.
 	-->
 	<style name="default"
 		absolute="false"
@@ -13,10 +14,8 @@
 		ghost="false"
 		hidden="false"
 		size="0 0 100% 100%"
-		z="0"
 		font="sans-14"
 		buffer_zone="5"
-		multiline="false"
 	/>
 	<style name="ModernWindow"
 		sprite="ModernWindow"

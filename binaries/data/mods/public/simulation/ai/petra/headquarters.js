@@ -898,13 +898,15 @@ PETRA.HQ.prototype.GetWantedGatherRates = function(gameState)
  * We compare; we pick the one where the discrepancy is highest.
  * Need to balance long-term needs and possible short-term needs.
  */
-PETRA.HQ.prototype.pickMostNeededResources = function(gameState)
+PETRA.HQ.prototype.pickMostNeededResources = function(gameState, allowedResources = [])
 {
 	let wantedRates = this.GetWantedGatherRates(gameState);
 	let currentRates = this.GetCurrentGatherRates(gameState);
+	if (!allowedResources.length)
+		allowedResources = Resources.GetCodes();
 
 	let needed = [];
-	for (let res in wantedRates)
+	for (let res of allowedResources)
 		needed.push({ "type": res, "wanted": wantedRates[res], "current": currentRates[res] });
 
 	needed.sort((a, b) => {
@@ -1285,6 +1287,10 @@ PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	if (!markets.length)	// this is the first market. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
+
+	// No need for more than one market when we cannot trade.
+	if (!Resources.GetTradableCodes().length)
+		return false;
 
 	// obstruction map
 	let obstructions = PETRA.createObstructionMap(gameState, 0, template);

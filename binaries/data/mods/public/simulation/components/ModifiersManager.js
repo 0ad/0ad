@@ -104,7 +104,10 @@ ModifiersManager.prototype.FetchModifiedProperty = function(classesList, propert
 	let modifs = this.modifiersStorage.GetItems(propertyName, target);
 	if (!modifs.length)
 		return originalValue;
-	return GetTechModifiedProperty(modifs, classesList, originalValue);
+	// Flatten the list of modifications
+	let modifications = [];
+	modifs.forEach(item => { modifications = modifications.concat(item.value); });
+	return GetTechModifiedProperty(modifications, classesList, originalValue);
 };
 
 /**
@@ -238,13 +241,13 @@ ModifiersManager.prototype.OnGlobalOwnershipChanged = function(msg)
 		let component = propertyName.split("/")[0];
 		// Only inform if the modifier actually applies to the entity as an optimisation.
 		// TODO: would it be better to call FetchModifiedProperty here and compare values?
-		playerModifs[propertyName].forEach(modif => {
+		playerModifs[propertyName].forEach(item => item.value.forEach(modif => {
 			if (!DoesModificationApply(modif, classes))
 				return;
 			if (!modifiedComponents[component])
 				modifiedComponents[component] = [];
 			modifiedComponents[component].push(propertyName);
-		});
+		}));
 	}
 
 	for (let component in modifiedComponents)

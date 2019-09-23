@@ -20,6 +20,7 @@
 #include "CTooltip.h"
 
 #include "gui/CGUI.h"
+#include "gui/CGUIText.h"
 
 #include <algorithm>
 

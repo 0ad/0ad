@@ -157,16 +157,19 @@ PETRA.TradeManager.prototype.updateTrader = function(gameState, ent)
 
 PETRA.TradeManager.prototype.setTradingGoods = function(gameState)
 {
+	let resTradeCodes = Resources.GetTradableCodes();
+	if (!resTradeCodes.length)
+		return;
 	let tradingGoods = {};
-	for (let res of Resources.GetCodes())
+	for (let res of resTradeCodes)
 		tradingGoods[res] = 0;
 	// first, try to anticipate future needs
 	let stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
-	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState, resTradeCodes);
 	let wantedRates = gameState.ai.HQ.GetWantedGatherRates(gameState);
 	let remaining = 100;
 	let targetNum = this.Config.Economy.targetNumTraders;
-	for (let res in stocks)
+	for (let res of resTradeCodes)
 	{
 		if (res == "food")
 			continue;
@@ -196,7 +199,7 @@ PETRA.TradeManager.prototype.setTradingGoods = function(gameState)
 	let nextNeed = remaining - mainNeed;
 
 	tradingGoods[mostNeeded[0].type] += mainNeed;
-	if (mostNeeded[1].wanted > 0)
+	if (mostNeeded[1] && mostNeeded[1].wanted > 0)
 		tradingGoods[mostNeeded[1].type] += nextNeed;
 	else
 		tradingGoods[mostNeeded[0].type] += nextNeed;
@@ -214,6 +217,9 @@ PETRA.TradeManager.prototype.performBarter = function(gameState)
 	let barterers = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).toEntityArray();
 	if (barterers.length == 0)
 		return false;
+	let resBarterCodes = Resources.GetBarterableCodes();
+	if (!resBarterCodes.length)
+		return false;
 
 	// Available resources after account substraction
 	let available = gameState.ai.queueManager.getAvailableResources(gameState);
@@ -226,7 +232,7 @@ PETRA.TradeManager.prototype.performBarter = function(gameState)
 	let getBarterRate = (prices, buy, sell) => Math.round(100 * prices.sell[sell] / prices.buy[buy]);
 
 	// loop through each missing resource checking if we could barter and help finishing a queue quickly.
-	for (let buy of Resources.GetCodes())
+	for (let buy of resBarterCodes)
 	{
 		// Check if our rate allows to gather it fast enough
 		if (needs[buy] == 0 || needs[buy] < rates[buy] * 30)
@@ -235,7 +241,7 @@ PETRA.TradeManager.prototype.performBarter = function(gameState)
 		// Pick the best resource to barter.
 		let bestToSell;
 		let bestRate = 0;
-		for (let sell of Resources.GetCodes())
+		for (let sell of resBarterCodes)
 		{
 			if (sell == buy)
 				continue;
@@ -287,11 +293,11 @@ PETRA.TradeManager.prototype.performBarter = function(gameState)
 	}
 
 	// now do contingency bartering, selling food to buy finite resources (and annoy our ennemies by increasing prices)
-	if (available.food < 1000 || needs.food > 0)
+	if (available.food < 1000 || needs.food > 0 || resBarterCodes.indexOf("food") == -1)
 		return false;
 	let bestToBuy;
 	let bestChoice = 0;
-	for (let buy of Resources.GetCodes())
+	for (let buy of resBarterCodes)
 	{
 		if (buy == "food")
 			continue;
@@ -405,6 +411,14 @@ PETRA.TradeManager.prototype.activateProspection = function(gameState)
  */
 PETRA.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {
+	// If we cannot trade, do not bother checking routes.
+	if (!Resources.GetTradableCodes().length)
+	{
+		this.tradeRoute = undefined;
+		this.potentialTradeRoute = undefined;
+		return false;
+	}
+
 	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures());
 	let market2 = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities());
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
@@ -616,6 +630,8 @@ PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 
 PETRA.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
 {
+	if (!Resources.GetTradableCodes().length)
+		return false;
 	if (expectedGain < this.minimalGain)
 		return false;
 	if (this.potentialTradeRoute && expectedGain < 2*this.potentialTradeRoute.gain &&
@@ -626,7 +642,7 @@ PETRA.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
 
 PETRA.TradeManager.prototype.update = function(gameState, events, queues)
 {
-	if (gameState.ai.HQ.canBarter)
+	if (gameState.ai.HQ.canBarter && Resources.GetBarterableCodes().length)
 		this.performBarter(gameState);
 
 	if (this.Config.difficulty <= 1)

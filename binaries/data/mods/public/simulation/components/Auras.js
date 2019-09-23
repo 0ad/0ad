@@ -346,12 +346,7 @@ Auras.prototype.ApplyTemplateAura = function(name, players)
 
 	let modifName = this.GetModifierIdentifier(name);
 	for (let player of players)
-	{
-		let playerId = cmpPlayerManager.GetPlayerByID(player);
-		for (let modifierPath in derivedModifiers)
-			for (let modifier of derivedModifiers[modifierPath])
-				cmpModifiersManager.AddModifier(modifierPath, modifName, modifier, playerId);
-	}
+		cmpModifiersManager.AddModifiers(modifName, derivedModifiers, cmpPlayerManager.GetPlayerByID(player));
 };
 
 Auras.prototype.RemoveFormationAura = function(memberList)
@@ -386,8 +381,7 @@ Auras.prototype.RemoveTemplateAura = function(name)
 	{
 		let playerId = cmpPlayerManager.GetPlayerByID(player);
 		for (let modifierPath in derivedModifiers)
-			for (let modifier of derivedModifiers[modifierPath])
-				cmpModifiersManager.RemoveModifier(modifierPath, modifName, playerId);
+			cmpModifiersManager.RemoveModifier(modifierPath, modifName, playerId);
 	}
 };
 
@@ -425,10 +419,7 @@ Auras.prototype.ApplyAura = function(name, ents)
 
 	let modifName = this.GetModifierIdentifier(name);
 	for (let ent of validEnts)
-		for (let modifierPath in derivedModifiers)
-			for (let modifier of derivedModifiers[modifierPath])
-				cmpModifiersManager.AddModifier(modifierPath, modifName, modifier, ent);
-
+		cmpModifiersManager.AddModifiers(modifName, derivedModifiers, ent);
 };
 
 Auras.prototype.RemoveAura = function(name, ents, skipModifications = false)
@@ -466,8 +457,7 @@ Auras.prototype.RemoveAura = function(name, ents, skipModifications = false)
 	let modifName = this.GetModifierIdentifier(name);
 	for (let ent of ents)
 		for (let modifierPath in derivedModifiers)
-			for (let modifier of derivedModifiers[modifierPath])
-				cmpModifiersManager.RemoveModifier(modifierPath, modifName, ent);
+			cmpModifiersManager.RemoveModifier(modifierPath, modifName, ent);
 };
 
 Auras.prototype.OnOwnershipChanged = function(msg)
