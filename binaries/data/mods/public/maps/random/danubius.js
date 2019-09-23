@@ -66,16 +66,16 @@ const oHouse = "uncapturable|structures/gaul_house";
 const oLongHouse = "uncapturable|other/celt_longhouse";
 const oHut = "uncapturable|other/celt_hut";
 const oSentryTower = "uncapturable|structures/gaul_sentry_tower";
-const oWatchTower = "uncapturable|other/palisades_rocks_watchtower";
+const oWatchTower = "uncapturable|structures/palisades_watchtower";
 
-const oPalisadeTallSpikes = "uncapturable|other/palisades_tall_spikes";
-const oPalisadeAngleSpikes = "uncapturable|other/palisades_angle_spike";
-const oPalisadeCurve = "uncapturable|other/palisades_rocks_curve";
-const oPalisadeShort = "uncapturable|other/palisades_rocks_short";
-const oPalisadeMedium = "uncapturable|other/palisades_rocks_medium";
-const oPalisadeLong = "uncapturable|other/palisades_rocks_long";
-const oPalisadeGate = "uncapturable|other/palisades_rocks_gate";
-const oPalisadePillar = "uncapturable|other/palisades_rocks_tower";
+const oPalisadeTallSpikes = "uncapturable|structures/palisades_spikes_tall";
+const oPalisadeAngleSpikes = "uncapturable|structures/palisades_spike_angle";
+const oPalisadeCurve = "uncapturable|structures/palisades_curve";
+const oPalisadeShort = "uncapturable|structures/palisades_short";
+const oPalisadeMedium = "uncapturable|structures/palisades_medium";
+const oPalisadeLong = "uncapturable|structures/palisades_long";
+const oPalisadeGate = "uncapturable|structures/palisades_gate";
+const oPalisadePillar = "uncapturable|structures/palisades_tower";
 
 const oFemale = "units/gaul_support_female_citizen";
 const oHealer = "units/gaul_support_healer_b";

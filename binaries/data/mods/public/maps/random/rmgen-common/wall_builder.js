@@ -193,7 +193,7 @@ function getWallElement(element, style)
 		break;
 
 	case "entryTower":
-		ret.templateName = g_CivData[civ] ? "structures/" + civ + "_defense_tower" : "other/palisades_rocks_watchtower";
+		ret.templateName = g_CivData[civ] ? "structures/" + civ + "_defense_tower" : "structures/palisades_watchtower";
 		ret.indent = ret.length * -3;
 		ret.length = wallset.gate.length;
 		break;

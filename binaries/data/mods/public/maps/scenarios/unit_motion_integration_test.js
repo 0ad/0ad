@@ -158,20 +158,20 @@ experiments.units_running_into_eachother = {
 
 experiments.enclosed = {
 	"spawn": () => {
-		QuickSpawn(gx, gy - 8, "other/palisades_rocks_long");
-		QuickSpawn(gx, gy + 8, "other/palisades_rocks_long");
-		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy, "other/palisades_rocks_long"));
-		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy, "other/palisades_rocks_long"));
+		QuickSpawn(gx, gy - 8, "structures/palisades_long");
+		QuickSpawn(gx, gy + 8, "structures/palisades_long");
+		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy, "structures/palisades_long"));
+		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy, "structures/palisades_long"));
 
 		WalkTo(gx + 100, gy + 100, QuickSpawn(gx - 1, gy - 1, UNIT_TEMPLATE));
 		WalkTo(gx - 100, gy + 100, QuickSpawn(gx + 1, gy - 1, UNIT_TEMPLATE));
 		WalkTo(gx - 100, gy - 100, QuickSpawn(gx + 1, gy + 1, UNIT_TEMPLATE));
 		WalkTo(gx + 100, gy - 100, QuickSpawn(gx - 1, gy + 1, UNIT_TEMPLATE));
 
-		QuickSpawn(gx, gy + 20, "other/palisades_rocks_long");
-		experiments.enclosed.remove = QuickSpawn(gx, gy + 36, "other/palisades_rocks_long");
-		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy + 28, "other/palisades_rocks_long"));
-		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy + 28, "other/palisades_rocks_long"));
+		QuickSpawn(gx, gy + 20, "structures/palisades_long");
+		experiments.enclosed.remove = QuickSpawn(gx, gy + 36, "structures/palisades_long");
+		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy + 28, "structures/palisades_long"));
+		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy + 28, "structures/palisades_long"));
 		WalkTo(gx, gy + 100, QuickSpawn(gx, gy + 28, UNIT_TEMPLATE));
 	},
 
@@ -221,18 +221,18 @@ experiments.units_superdense_forest_of_units = {
 
 experiments.u_shape_tight_exit = {
 	"spawn": () => {
-		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy, "other/palisades_rocks_long"));
-		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy + 12, "other/palisades_rocks_long"));
-		QuickSpawn(gx, gy + 16, "other/palisades_rocks_long");
-		Rotate(Math.PI / 2, QuickSpawn(gx, gy + 4, "other/palisades_rocks_medium"));
-		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy + 12, "other/palisades_rocks_long"));
-		Rotate(Math.PI / 2, QuickSpawn(gx - 16, gy + 8, "other/palisades_rocks_long"));
-		QuickSpawn(gx - 4, gy, "other/palisades_rocks_medium");
-		QuickSpawn(gx - 12, gy, "other/palisades_rocks_medium");
-		Rotate(Math.PI/4, QuickSpawn(gx - 10, gy + 8, "other/palisades_rocks_short"));
-		QuickSpawn(gx, gy - 10, "other/palisades_rocks_long");
-		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy - 5, "other/palisades_rocks_long"));
-		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy - 7, "other/palisades_rocks_long"));
+		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy, "structures/palisades_long"));
+		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy + 12, "structures/palisades_long"));
+		QuickSpawn(gx, gy + 16, "structures/palisades_long");
+		Rotate(Math.PI / 2, QuickSpawn(gx, gy + 4, "structures/palisades_medium"));
+		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy + 12, "structures/palisades_long"));
+		Rotate(Math.PI / 2, QuickSpawn(gx - 16, gy + 8, "structures/palisades_long"));
+		QuickSpawn(gx - 4, gy, "structures/palisades_medium");
+		QuickSpawn(gx - 12, gy, "structures/palisades_medium");
+		Rotate(Math.PI/4, QuickSpawn(gx - 10, gy + 8, "structures/palisades_short"));
+		QuickSpawn(gx, gy - 10, "structures/palisades_long");
+		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy - 5, "structures/palisades_long"));
+		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy - 7, "structures/palisades_long"));
 
 		let tree = QuickSpawn(gx, gy + 80, "gaia/flora_tree_acacia");
 
