@@ -14,38 +14,46 @@
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="new_1">
-      <mesh>structural/ptol_house_new_1.dae</mesh>
+    <variant frequency="1" name="House A">
+      <mesh>structural/ptol_house_a.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_1_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_a.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="new_2">
-      <mesh>structural/ptol_house_new_2.dae</mesh>
+    <variant frequency="1" name="House B">
+      <mesh>structural/ptol_house_b.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_2_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_b.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="new_3">
-      <mesh>structural/ptol_house_new_3.dae</mesh>
+    <variant frequency="1" name="House C">
+      <mesh>structural/ptol_house_c.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_3_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_c.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="new_4">
-      <mesh>structural/ptol_house_new_4.dae</mesh>
+    <variant frequency="1" name="House D">
+      <mesh>structural/ptol_house_d.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_4_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_d.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="House E">
+      <mesh>structural/ptol_house_e.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_e.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="House F">
+      <mesh>structural/ptol_house_f.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_f.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="ungarrisoned"/>
-    <variant name="garrisoned">
-      <props>
-        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
-      </props>
-    </variant>
+    <variant name="garrisoned"/>
   </group>
   <group>
     <variant frequency="1" name="alive"/>
