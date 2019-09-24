@@ -87,6 +87,7 @@ protected:
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_Update);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
@@ -225,7 +226,7 @@ public:
 	virtual void StartProcessingMoves(bool useMax);
 
 	template <typename T>
-	std::vector<T> PopMovesToProcess(std::vector<T>& requests, bool useMax = false, size_t maxMoves = 0);
+	std::vector<T> GetMovesToProcess(std::vector<T>& requests, bool useMax = false, size_t maxMoves = 0);
 
 	template <typename T>
 	void PushRequestsToWorkers(std::vector<T>& from);

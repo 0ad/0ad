@@ -4,25 +4,34 @@
  */
 class SavegameWriter
 {
-	constructor(data)
+	constructor(savedGameData)
 	{
-		this.savedGameData = data && data.savedGameData || {};
-		let simulationState = Engine.GuiInterfaceCall("GetSimulationState");
-		this.savedGameData.timeElapsed = simulationState.timeElapsed;
-		this.savedGameData.states = simulationState.players.map(pState => pState.state);
+		this.savedGameData = savedGameData;
+
+		let saveNew = () => {
+			this.saveGame();
+		};
+
+		this.confirmButton = Engine.GetGUIObjectByName("confirmButton");
+		this.confirmButton.caption = translate("Save");
+		this.confirmButton.onPress = saveNew;
+
+		this.saveGameDesc = Engine.GetGUIObjectByName("saveGameDesc");
+		this.saveGameDesc.hidden = false;
+		this.saveGameDesc.onPress = saveNew;
 	}
 
-	getSavedGameData()
+	onSelectionChange(gameID, metadata, label)
 	{
-		return this.savedGameData;
+		this.confirmButton.enabled = !!metadata || Engine.IsGameStarted();
+		this.confirmButton.onPress = () => {
+			this.saveGame(gameID, label);
+		};
 	}
 
-	saveGame()
+	saveGame(gameID, label)
 	{
-		let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-		let gameLabel = gameSelection.list[gameSelection.selected];
-		let gameID = gameSelection.list_data[gameSelection.selected];
-		let desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
+		let desc = this.saveGameDesc.caption;
 		let name = gameID || "savegame";
 
 		if (!gameID)
@@ -33,7 +42,7 @@ class SavegameWriter
 
 		messageBox(
 			500, 200,
-			sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
+			sprintf(translate("\"%(label)s\""), { "label": label }) + "\n" +
 				translate("Saved game will be permanently overwritten, are you sure?"),
 			translate("OVERWRITE SAVE"),
 			[translate("No"), translate("Yes")],
@@ -42,6 +51,10 @@ class SavegameWriter
 
 	reallySaveGame(name, desc, nameIsPrefix)
 	{
+		let simulationState = Engine.GuiInterfaceCall("GetSimulationState");
+		this.savedGameData.timeElapsed = simulationState.timeElapsed;
+		this.savedGameData.states = simulationState.players.map(pState => pState.state);
+
 		if (nameIsPrefix)
 			Engine.SaveGamePrefix(name, desc, this.savedGameData);
 		else

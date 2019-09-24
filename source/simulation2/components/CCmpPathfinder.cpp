@@ -185,6 +185,15 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		m_TerrainDirty = true;
 		UpdateGrid();
 		break;
+	case MT_Deserialized:
+		UpdateGrid();
+		// In case we were serialised with requests pending, we need to process them.
+		if (!m_ShortPathRequests.empty() || !m_LongPathRequests.empty())
+		{
+			ENSURE(CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
+			StartProcessingMoves(false);
+		}
+		break;
 	}
 }
 
@@ -773,6 +782,10 @@ void CCmpPathfinder::FetchAsyncResultsAndSendMessages()
 {
 	PROFILE2("FetchAsyncResults");
 
+	// We may now clear existing requests.
+	m_ShortPathRequests.clear();
+	m_LongPathRequests.clear();
+
 	// WARNING: the order in which moves are pulled must be consistent when using 1 or n workers.
 	// We fetch in the same order we inserted in, but we push moves backwards, so this works.
 	std::vector<PathResult> results;
@@ -794,8 +807,8 @@ void CCmpPathfinder::FetchAsyncResultsAndSendMessages()
 
 void CCmpPathfinder::StartProcessingMoves(bool useMax)
 {
-	std::vector<LongPathRequest> longRequests = PopMovesToProcess(m_LongPathRequests, useMax, m_MaxSameTurnMoves);
-	std::vector<ShortPathRequest> shortRequests = PopMovesToProcess(m_ShortPathRequests, useMax, m_MaxSameTurnMoves - longRequests.size());
+	std::vector<LongPathRequest> longRequests = GetMovesToProcess(m_LongPathRequests, useMax, m_MaxSameTurnMoves);
+	std::vector<ShortPathRequest> shortRequests = GetMovesToProcess(m_ShortPathRequests, useMax, m_MaxSameTurnMoves - longRequests.size());
 
 	PushRequestsToWorkers(longRequests);
 	PushRequestsToWorkers(shortRequests);
@@ -805,25 +818,20 @@ void CCmpPathfinder::StartProcessingMoves(bool useMax)
 }
 
 template <typename T>
-std::vector<T> CCmpPathfinder::PopMovesToProcess(std::vector<T>& requests, bool useMax, size_t maxMoves)
+std::vector<T> CCmpPathfinder::GetMovesToProcess(std::vector<T>& requests, bool useMax, size_t maxMoves)
 {
-	std::vector<T> poppedRequests;
+	// Keep the original requests in which we need to serialize.
+	std::vector<T> copiedRequests;
 	if (useMax)
 	{
 		size_t amount = std::min(requests.size(), maxMoves);
 		if (amount > 0)
-		{
-			poppedRequests.insert(poppedRequests.begin(), std::make_move_iterator(requests.end() - amount), std::make_move_iterator(requests.end()));
-			requests.erase(requests.end() - amount, requests.end());
-		}
+			copiedRequests.insert(copiedRequests.begin(), requests.end() - amount, requests.end());
 	}
 	else
-	{
-		poppedRequests.swap(requests);
-		requests.clear();
-	}
+		copiedRequests = requests;
 
-	return poppedRequests;
+	return copiedRequests;
 }
 
 template <typename T>

@@ -3,25 +3,31 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# 이정희 <daemul72@gmail.com>, 2019
 # 신 희윤 <eustaph7725@gmail.com>, 2017
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hn Dsu <lomio97@naver.com>, 2016
 # moolow <copyhyeon@gmail.com>, 2018
+# jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019
 # moolow <copyhyeon@gmail.com>, 2018
 # Muk Myung-Hee MyungHee <exploration@ponp.be>, 2018
 # VictoriaKim <sis2468@hotmail.co.kr>, 2014
+# Suhyeon Park <qkr5145@gmail.com>, 2018
+# Taejin Kim <manowar72@gmail.com>, 2015
+# Valtiel <shinhs6291@naver.com>, 2014
 # VictoriaKim <sis2468@hotmail.co.kr>, 2014
+# zen kiss <gxaryu456@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-09-21 13:51+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,31 +45,31 @@ msgstr "알 수 없는 하위 유형(로그 참조)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "인증서를 신뢰할 수 없습니다."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "인증서에 알려진 발급자가 없습니다."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "인증서가 해지되었습니다."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "인증서가 만료되었습니다."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "인증서가 아직 활성화되지 않았습니다."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "연결된 또래에 대한 인증서가 발급되지 않았습니다."
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "인증 서명자는 인증 기관이 아닙니다."
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280

@@ -29,7 +29,7 @@ const oBear = "gaia/fauna_bear";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";
-const oTower = "other/palisades_rocks_fort";
+const oTower = "structures/palisades_fort";
 
 const aRockLarge = "actor|geology/stone_granite_med.xml";
 const aRockMedium = "actor|geology/stone_granite_med.xml";

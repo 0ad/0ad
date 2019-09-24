@@ -65,9 +65,7 @@ var g_MainMenuItems = [
 				"caption": translate("Load Game"),
 				"tooltip": translate("Click here to load a saved game."),
 				"onPress": () => {
-					Engine.PushGuiPage("page_loadgame.xml", {
-						"type": "offline"
-					});
+					Engine.PushGuiPage("page_loadgame.xml");
 				}
 			},
 			{

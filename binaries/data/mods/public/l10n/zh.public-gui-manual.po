@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-09-21 11:15+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "在线查看"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. 游戏手册[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -51,7 +51,7 @@ msgstr "感谢安装 0 A.D.！这里将向你展示一个仍在开发中的游�
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]图像设置[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -59,11 +59,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the \"HQ "
 "Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "可以按下 Alt + Enter ，在全屏模式和窗口模式之间切换。窗口模式下，可以调整窗口的大小。如果游戏运行速度过慢，则可以在设置界面尝试取消\"高清水效果\"和\"阴影\"选项。"
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]开始游戏[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -79,35 +79,35 @@ msgstr "基本控制:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• 鼠标左击选中一个单位"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• 鼠标左击且拖动，来选取一组单位"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• 鼠标右击，命令单位到指定地点"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• 方向键，或者WASD键来移动视角"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• 使用Ctrl + 方向键, 或者 shift + 鼠标滚轮，来旋转视角"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr ""
+msgstr "• 使用鼠标滚轮，或者+ - 键进行缩放"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]模式[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "主菜单中，提供两种游戏模式："
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -115,7 +115,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]单人模式[font=\"sans-14\"]  -沙箱模式。AI系统正在开发，可能不具备最新特性。可对游戏进行测试。"
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -133,11 +133,11 @@ msgstr "要进行多人游戏，至少需要一个玩家选择“建立主机”
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]游戏设置[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "多人游戏中，只有主机能改动游戏设置。"
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -185,28 +185,28 @@ msgstr "当您准备好时，请单击“开始游戏”按钮"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]热键：[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]程序范围[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  Alt + F4 – 无需确认，立即退出游戏"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter – 在窗口模式和全屏模式间切换"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "~ or F9 –  显示/隐藏控制台"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F: 显示/隐藏 帧率 (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
@@ -216,14 +216,14 @@ msgstr ""
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr "Shift + F11 — 保存当前分析数据到 “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2 — 截屏 (图片格式为 PNG。文件被保存后，路径会显示在在用户界面的左上方，也可在日志文件 console/logs 里找到)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -274,11 +274,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "Shift + F8 — 快速加载"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Open/close menu"
-msgstr ""
+msgstr "F10 — 打开/关闭 菜单"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
@@ -703,7 +703,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "  Esc – Cancel"
-msgstr ""
+msgstr "Esc — 取消"
 
 #: gui/manual/intro.txt:156
 msgid "  Delete – Delete the selected saved game, ask for confirmation"

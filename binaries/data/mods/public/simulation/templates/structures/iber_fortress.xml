@@ -25,12 +25,6 @@
       units/{civ}_champion_infantry
       units/{civ}_champion_cavalry
     </Entities>
-    <Technologies datatype="tokens">
-      siege_attack
-      siege_armor
-      siege_cost_metal
-      siege_cost_wood
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/fortress.xml</Actor>

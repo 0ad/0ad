@@ -7,7 +7,7 @@
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>mktr-'a</SpecificName>
-    <Tooltip>Train Champions, construct Siege Engines, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Train Champions and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
@@ -18,13 +18,6 @@
       units/{civ}_champion_cavalry
       units/{civ}_champion_elephant
     </Entities>
-    <Technologies datatype="tokens">
-      siege_attack
-      siege_armor
-      siege_cost_metal
-      siege_cost_wood
-      siege_bolt_accuracy
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/ptolemies/fortress.xml</Actor>

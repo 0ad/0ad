@@ -3,18 +3,12 @@
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Didā</SpecificName>
-    <Tooltip>Train Champions, construct Siege Engines, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Train Champions and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_champion_cavalry
     </Entities>
-    <Technologies datatype="tokens">
-      siege_attack
-      siege_armor
-      siege_cost_metal
-      siege_cost_wood
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/fortress.xml</Actor>
