@@ -102,7 +102,7 @@ CGame::~CGame()
 	if (CProfileManager::IsInitialised())
 		g_Profiler.StructuralReset();
 
-	if (m_ReplayLogger)
+	if (m_ReplayLogger && m_GameStarted)
 		m_ReplayLogger->SaveMetadata(*m_Simulation2);
 
 	delete m_TurnManager;
