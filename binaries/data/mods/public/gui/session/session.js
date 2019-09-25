@@ -42,7 +42,7 @@ var g_Ambient = ["audio/ambient/dayscape/day_temperate_gen_03.ogg"];
 /**
  * Map, player and match settings set in gamesetup.
  */
-const g_GameAttributes = deepfreeze(Engine.GetInitAttributes());
+const g_GameAttributes = deepfreeze(Engine.GuiInterfaceCall("GetInitAttributes"));
 
 /**
  * True if this is a multiplayer game.
@@ -733,7 +733,7 @@ function leaveGame(willRejoin)
 
 	// Before ending the game
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
-	let simData = getReplayMetadata();
+	let simData = Engine.GuiInterfaceCall("GetReplayMetadata");
 	let playerID = Engine.GetPlayerID();
 
 	Engine.EndGame();

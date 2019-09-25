@@ -37,8 +37,11 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptStats.h"
-#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpGuiInterface.h"
+#include "simulation2/helpers/Player.h"
 #include "simulation2/helpers/SimulationCommand.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/system/CmpPtr.h"
 
 #include <ctime>
 #include <fstream>
@@ -99,6 +102,32 @@ void CReplayLogger::Hash(const std::string& hash, bool quick)
 		*m_Stream << "hash-quick " << Hexify(hash) << "\n";
 	else
 		*m_Stream << "hash " << Hexify(hash) << "\n";
+}
+
+void CReplayLogger::SaveMetadata(const CSimulation2& simulation)
+{
+	CmpPtr<ICmpGuiInterface> cmpGuiInterface(simulation, SYSTEM_ENTITY);
+	if (!cmpGuiInterface)
+	{
+		LOGERROR("Could not save replay metadata!");
+		return;
+	}
+
+	ScriptInterface& scriptInterface = simulation.GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue arg(cx);
+	JS::RootedValue metadata(cx);
+	cmpGuiInterface->ScriptCall(INVALID_PLAYER, L"GetReplayMetadata", arg, &metadata);
+
+	const OsPath fileName = g_Game->GetReplayLogger().GetDirectory() / L"metadata.json";
+	CreateDirectories(fileName.Parent(), 0700);
+
+	std::ofstream stream (OsString(fileName).c_str(), std::ofstream::out | std::ofstream::trunc);
+	stream << scriptInterface.StringifyJSON(&metadata, false);
+	stream.close();
+	debug_printf("Saved replay metadata to %s\n", fileName.string8().c_str());
 }
 
 OsPath CReplayLogger::GetDirectory() const

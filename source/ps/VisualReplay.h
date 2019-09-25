@@ -115,11 +115,6 @@ bool HasReplayMetadata(const OsPath& directoryName);
 JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName);
 
 /**
- * Saves the metadata from the session to metadata.json.
- */
-void SaveReplayMetadata(ScriptInterface* scriptInterface);
-
-/**
 * Adds a replay to the replayCache.
 */
 void AddReplayToCache(const ScriptInterface& scriptInterface, const CStrW& directoryName);

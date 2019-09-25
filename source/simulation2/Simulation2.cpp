@@ -861,6 +861,9 @@ void CSimulation2::LoadMapSettings()
 	// Initialize here instead of in Update()
 	GetScriptInterface().CallFunctionVoid(global, "LoadMapSettings", m->m_MapSettings);
 
+	GetScriptInterface().FreezeObject(m->m_InitAttributes, true);
+	GetScriptInterface().SetGlobal("InitAttributes", m->m_InitAttributes, true, true, true);
+
 	if (!m->m_StartupScript.empty())
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
 
