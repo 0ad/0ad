@@ -215,7 +215,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 	g_Game = new CGame(false);
 	if (serializationtest)
 		g_Game->GetSimulation2()->EnableSerializationTest();
-	if (rejointestturn > 0)
+	if (rejointestturn >= 0)
 		g_Game->GetSimulation2()->EnableRejoinTest(rejointestturn);
 	if (ooslog)
 		g_Game->GetSimulation2()->EnableOOSLog();
