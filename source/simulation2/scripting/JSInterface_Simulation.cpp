@@ -34,22 +34,6 @@
 
 #include <fstream>
 
-JS::Value JSI_Simulation::GetInitAttributes(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	if (!g_Game)
-		return JS::UndefinedValue();
-
-	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue initAttribs(cx);
-	g_Game->GetSimulation2()->GetInitAttributes(&initAttribs);
-
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
-		g_Game->GetSimulation2()->GetScriptInterface(),
-		initAttribs);
-}
-
 JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data)
 {
 	if (!g_Game)
@@ -147,7 +131,6 @@ void JSI_Simulation::SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* UNUS
 
 void JSI_Simulation::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
-	scriptInterface.RegisterFunction<JS::Value, &GetInitAttributes>("GetInitAttributes");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, JS::HandleValue, &GuiInterfaceCall>("GuiInterfaceCall");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &PostNetworkCommand>("PostNetworkCommand");
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");

@@ -473,30 +473,6 @@ void VisualReplay::AddReplayToCache(const ScriptInterface& scriptInterface, cons
 	StoreCacheFile(scriptInterface, cachedReplaysObject);
 }
 
-void VisualReplay::SaveReplayMetadata(ScriptInterface* scriptInterface)
-{
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue metadata(cx);
-	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
-
-	if (!scriptInterface->CallFunction(global, "getReplayMetadata", &metadata))
-	{
-		LOGERROR("Could not save replay metadata!");
-		return;
-	}
-
-	// Get the directory of the currently active replay
-	const OsPath fileName = g_Game->GetReplayLogger().GetDirectory() / L"metadata.json";
-	CreateDirectories(fileName.Parent(), 0700);
-
-	std::ofstream stream (OsString(fileName).c_str(), std::ofstream::out | std::ofstream::trunc);
-	stream << scriptInterface->StringifyJSON(&metadata, false);
-	stream.close();
-	debug_printf("Saved replay metadata to %s\n", fileName.string8().c_str());
-}
-
 bool VisualReplay::HasReplayMetadata(const OsPath& directoryName)
 {
 	const OsPath filePath(GetDirectoryPath() / directoryName / L"metadata.json");

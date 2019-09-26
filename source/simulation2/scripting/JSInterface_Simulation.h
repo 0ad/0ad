@@ -23,7 +23,6 @@
 
 namespace JSI_Simulation
 {
-	JS::Value GetInitAttributes(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data);
 	void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue cmd);
 	entity_id_t PickEntityAtPoint(ScriptInterface::CxPrivate* pCxPrivate, int x, int y);

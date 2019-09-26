@@ -191,6 +191,27 @@ GuiInterface.prototype.GetExtendedSimulationState = function()
 	return ret;
 };
 
+/**
+ * Returns the gamesettings that were chosen at the time the match started.
+ */
+GuiInterface.prototype.GetInitAttributes = function()
+{
+	return InitAttributes;
+};
+
+/**
+ * This data will be stored in the replay metadata file after a match has been finished recording.
+ */
+GuiInterface.prototype.GetReplayMetadata = function()
+{
+	let extendedSimState = this.GetExtendedSimulationState();
+	return {
+		"timeElapsed": extendedSimState.timeElapsed,
+		"playerStates": extendedSimState.players,
+		"mapSettings": InitAttributes.settings
+	};
+};
+
 GuiInterface.prototype.GetRenamedEntities = function(player)
 {
 	if (this.miragedEntities[player])
@@ -1917,6 +1938,8 @@ let exposedFunctions = {
 
 	"GetSimulationState": 1,
 	"GetExtendedSimulationState": 1,
+	"GetInitAttributes": 1,
+	"GetReplayMetadata": 1,
 	"GetRenamedEntities": 1,
 	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,
