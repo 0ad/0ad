@@ -297,7 +297,7 @@ function resizeDiplomacyDialog()
 
 function initChatWindow()
 {
-	let filters = prepareForDropdown(g_ChatHistoryFilters);
+	let filters = prepareForDropdown(g_ChatHistoryFilters.filter(chatFilter => !chatFilter.hidden));
 	let chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
 	chatHistoryFilter.list = filters.text;
 	chatHistoryFilter.list_data = filters.key;
