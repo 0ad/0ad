@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,24 +23,28 @@
 #define SQR(x)						((x) * (x))
 
 template <typename T>
-inline T Interpolate(const T& a, const T& b, float l)
+inline T Interpolate(const T& a, const T& b, float t)
 {
-	return a + (b - a) * l;
+	return a + (b - a) * t;
 }
 
 template <typename T>
-inline T clamp(T value, T min, T max)
+inline T Clamp(T value, T min, T max)
 {
-	if (value <= min) return min;
-	else if (value >= max) return max;
-	else return value;
+	if (value <= min)
+		return min;
+	else if (value >= max)
+		return max;
+	return value;
 }
 
 inline float sgn(float a)
 {
-    if (a > 0.0f) return 1.0f;
-    if (a < 0.0f) return -1.0f;
+    if (a > 0.0f)
+    	return 1.0f;
+    if (a < 0.0f)
+    	return -1.0f;
     return 0.0f;
 }
 
-#endif
+#endif // INCLUDED_MATHUTIL

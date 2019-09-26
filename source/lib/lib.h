@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -63,14 +63,6 @@ scope
 #include <cmath>	// fabsf
 #include <limits>	// numeric_limits
 #include <stdexcept>	// out_of_range
-#include <algorithm>	// min, max
-
-template<typename T>
-T Clamp(T val, T min, T max)
-{
-	ASSERT(min <= max);
-	return std::max(min, std::min(val, max));
-}
 
 template<typename T>
 T DivideRoundUp(T dividend, T divisor)
