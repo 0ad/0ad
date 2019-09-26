@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -115,12 +115,15 @@ bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool i
 	return true;
 }
 
-void CNetClientSession::Disconnect(u32 reason)
+void CNetClientSession::Disconnect(NetDisconnectReason reason)
 {
+	if (reason == NDR_UNKNOWN)
+		LOGWARNING("Disconnecting from the server without communicating the disconnect reason!");
+
 	ENSURE(m_Host && m_Server);
 
 	// TODO: ought to do reliable async disconnects, probably
-	enet_peer_disconnect_now(m_Server, reason);
+	enet_peer_disconnect_now(m_Server, static_cast<enet_uint32>(reason));
 	enet_host_destroy(m_Host);
 
 	m_Host = NULL;
@@ -252,16 +255,22 @@ u32 CNetServerSession::GetMeanRTT() const
 	return m_Peer->roundTripTime;
 }
 
-void CNetServerSession::Disconnect(u32 reason)
+void CNetServerSession::Disconnect(NetDisconnectReason reason)
 {
+	if (reason == NDR_UNKNOWN)
+		LOGWARNING("Disconnecting client without communicating the disconnect reason!");
+
 	Update((uint)NMT_CONNECTION_LOST, NULL);
 
-	enet_peer_disconnect(m_Peer, reason);
+	enet_peer_disconnect(m_Peer, static_cast<enet_uint32>(reason));
 }
 
-void CNetServerSession::DisconnectNow(u32 reason)
+void CNetServerSession::DisconnectNow(NetDisconnectReason reason)
 {
-	enet_peer_disconnect_now(m_Peer, reason);
+	if (reason == NDR_UNKNOWN)
+		LOGWARNING("Disconnecting client without communicating the disconnect reason!");
+
+	enet_peer_disconnect_now(m_Peer, static_cast<enet_uint32>(reason));
 }
 
 bool CNetServerSession::SendMessage(const CNetMessage* message)

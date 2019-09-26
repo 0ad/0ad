@@ -923,7 +923,7 @@ bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 	{
 		if (++count > 100)
 		{
-			session->Disconnect(NDR_UNKNOWN);
+			session->Disconnect(NDR_GUID_FAILED);
 			return true;
 		}
 		guid = ps_generate_guid();
