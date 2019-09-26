@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special_theatron">
   <Auras disable=""/>
+  <Footprint replace="">
+    <Circle radius="17"/>
+    <Height>10.0</Height>
+  </Footprint>
   <Identity>
     <Civ>gaul</Civ>
     <GenericName>Assembly of Princes</GenericName>
     <SpecificName>Remogantion</SpecificName>
   </Identity>
-  <Footprint replace="">
-    <Circle radius="17"/>
-    <Height>10.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="30" depth="30"/>
   </Obstruction>

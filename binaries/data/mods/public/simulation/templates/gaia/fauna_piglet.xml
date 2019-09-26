@@ -13,10 +13,10 @@
     <Type>food.meat</Type>
     <MaxGatherers>1</MaxGatherers>
   </ResourceSupply>
-  <VisualActor>
-    <Actor>fauna/piglet.xml</Actor>
-  </VisualActor>
   <UnitMotion>
     <WalkSpeed op="mul">0.25</WalkSpeed>
   </UnitMotion>
+  <VisualActor>
+    <Actor>fauna/piglet.xml</Actor>
+  </VisualActor>
 </Entity>
