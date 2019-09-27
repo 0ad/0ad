@@ -7,6 +7,7 @@
 # Anakine Capdecomme-Mabit <anakine.capmab@gmail.com>, 2019
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
+# Cyril Mercier, 2019
 # François Magimel, 2019
 # Glorfindel Of Gondolin, 2019
 # gorius <gorius05@gmail.com>, 2014
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 14:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-09-23 17:00+0000\n"
+"Last-Translator: Cyril Mercier\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,11 +48,11 @@ msgstr "Poisson"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Pêcher des poissons pour obtenir de la nourriture."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Couper des arbres pour obtenir du bois."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -63,7 +64,7 @@ msgstr "Buisson"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Cueillir des fruits pour de la nourriture."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -79,7 +80,7 @@ msgstr "Mine de métal"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Miner du minerais pour obtenir du métal."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -87,7 +88,7 @@ msgstr "Carrière de pierres"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Miner des rochers pour obtenir de la pierre."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -95,7 +96,7 @@ msgstr "Ruines"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Démolir des ruines pour obtenir de la pierre."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -103,7 +104,7 @@ msgstr "Trésor"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Récupérer des Trésors pour obtenir des ressources."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -583,16 +584,16 @@ msgstr "Caroubier"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Pousse de cèdre de l'atlas"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Cèdre de l'atlas"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Cèdre de l'atlas mort"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -616,11 +617,11 @@ msgstr "Palmier mort"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
-msgstr ""
+msgstr "Palmier dattier fructifères"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Arbre caduc mort"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -629,7 +630,7 @@ msgstr "Hêtre européen"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Bouleau argenté"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -638,11 +639,11 @@ msgstr "Figuier"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir Tree"
-msgstr ""
+msgstr "Sapin"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Pousse de sapin"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"

@@ -5,6 +5,7 @@
 # Translators:
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014
+# Cyril Mercier, 2019
 # François Poirotte <clicky@erebot.net>, 2016
 # gZen <gzen.tb@free.fr>, 2014
 # Hadri man <hadriman@live.fr>, 2018
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-09-23 15:49+0000\n"
+"Last-Translator: Cyril Mercier\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,23 +42,23 @@ msgstr "sous-type inconnu (voir les journaux)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Le certificat n'est pas approuvé."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Le certificat n'a pas d'émetteur connu."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Le certificat a été révoqué."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Le certificat a expiré."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "Le certificat n'est pas encore actif."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
@@ -65,7 +66,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Le signataire du certificat n'est pas une autorité de certification."
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280

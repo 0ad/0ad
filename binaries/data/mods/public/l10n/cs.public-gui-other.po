@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-18 18:46+0200\n"
-"PO-Revision-Date: 2019-09-19 03:47+0000\n"
+"POT-Creation-Date: 2019-09-23 07:17+0000\n"
+"PO-Revision-Date: 2019-09-23 16:02+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -580,7 +580,7 @@ msgstr "Uživatelé (%(num)s): %(users)s"
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
 #: gui/common/tooltips.js:841 gui/loadgame/load.js:140
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:281
 msgid ", "
 msgstr ", "
 
@@ -1896,16 +1896,26 @@ msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "Filtrování záznamů her, podle jednoho či více anebo částečných jmen hráčů."
 
-#: gui/replaymenu/replay_menu.js:273
+#: gui/replaymenu/replay_menu.js:197
+#, javascript-format
+msgid "Delete the selected replay using %(hotkey)s."
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:202
+#, javascript-format
+msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:282
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Hráči: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:298
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "rrrr-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:328
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "rrrr-MM"
 
