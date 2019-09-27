@@ -22,10 +22,12 @@
 #include "gui/CGUI.h"
 
 CImage::CImage(CGUI& pGUI)
-	: IGUIObject(pGUI)
+	: IGUIObject(pGUI),
+	  m_Sprite(),
+	  m_CellID()
 {
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<i32>("cell_id");
+	RegisterSetting("sprite", m_Sprite);
+	RegisterSetting("cell_id", m_CellID);
 }
 
 CImage::~CImage()
@@ -34,9 +36,5 @@ CImage::~CImage()
 
 void CImage::Draw()
 {
-	m_pGUI.DrawSprite(
-		GetSetting<CGUISpriteInstance>("sprite"),
-		GetSetting<i32>("cell_id"),
-		GetBufferedZ(),
-		m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, m_CellID, GetBufferedZ(), m_CachedActualSize);
 }

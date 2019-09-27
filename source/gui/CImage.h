@@ -18,6 +18,7 @@
 #ifndef INCLUDED_CIMAGE
 #define INCLUDED_CIMAGE
 
+#include "gui/CGUISprite.h"
 #include "gui/IGUIObject.h"
 
 /**
@@ -43,6 +44,10 @@ protected:
 	 * Draws the Image
 	 */
 	virtual void Draw();
+
+	// Settings
+	CGUISpriteInstance m_Sprite;
+	i32 m_CellID;
 };
 
 #endif // INCLUDED_CIMAGE

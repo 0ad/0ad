@@ -55,7 +55,7 @@ class CGUISetting : public IGUISetting
 public:
 	NONCOPYABLE(CGUISetting);
 
-	CGUISetting(IGUIObject& pObject, const CStr& Name);
+	CGUISetting(IGUIObject& pObject, const CStr& Name, T& Value);
 
 	/**
 	 * Parses the given string and assigns to the setting value. Used for parsing XML attributes.
@@ -88,9 +88,10 @@ public:
 	const CStr m_Name;
 
 	/**
-	 * Holds the value of the setting.
+	 * Holds a reference to the value of the setting.
+	 * The setting value is stored in the member class to optimize for draw calls of that class.
 	 */
-	T m_pSetting;
+	T& m_pSetting;
 };
 
 #endif // INCLUDED_CGUISETTINGS

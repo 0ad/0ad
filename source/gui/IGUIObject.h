@@ -228,12 +228,14 @@ protected:
 	//@{
 
 	/**
-	 * Add a setting to m_Settings
+	 * Registers the given setting variables with the GUI object.
+	 * Enable XML and JS to modify the given variable.
 	 *
 	 * @param Type Setting type
 	 * @param Name Setting reference name
 	 */
-	template<typename T> void AddSetting(const CStr& Name);
+	template<typename T>
+	void RegisterSetting(const CStr& Name, T& Value);
 
 public:
 	/**
@@ -352,6 +354,12 @@ protected:
 	}
 
 	/**
+	 * Allow the GUI object to process after all child items were handled.
+	 * Useful to avoid iterator invalidation with push_back calls.
+	 */
+	virtual void AdditionalChildrenHandled() {}
+
+	/**
 	 * Cached size, real size m_Size is actually dependent on resolution
 	 * and can have different *real* outcomes, this is the real outcome
 	 * cached to avoid slow calculations in real time.
@@ -399,7 +407,7 @@ protected:
 	/**
 	 * Retrieves the configured sound filename from the given setting name and plays that once.
 	 */
-	void PlaySound(const CStr& settingName) const;
+	void PlaySound(const CStrW& soundPath) const;
 
 	//@}
 private:
@@ -496,6 +504,19 @@ protected:
 
 	// Cached JSObject representing this GUI object
 	JS::PersistentRootedObject m_JSObject;
+
+	// Cache references to settings for performance
+	bool m_Enabled;
+	bool m_Hidden;
+	CClientArea m_Size;
+	CStr m_Style;
+	CStr m_Hotkey;
+	float m_Z;
+	bool m_Absolute;
+	bool m_Ghost;
+	float m_AspectRatio;
+	CStrW m_Tooltip;
+	CStr m_TooltipStyle;
 };
 
 #endif // INCLUDED_IGUIOBJECT

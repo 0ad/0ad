@@ -23,20 +23,23 @@
 #include "maths/MathUtil.h"
 
 CSlider::CSlider(CGUI& pGUI)
-	: IGUIObject(pGUI), m_IsPressed(false), m_ButtonSide(0)
+	: IGUIObject(pGUI),
+	  m_IsPressed(),
+	  m_ButtonSide()
+	  m_CellID(),
+	  m_MaxValue(),
+	  m_MinValue(),
+	  m_Sprite(),
+	  m_SpriteBar(),
+	  m_Value(),
 {
-	AddSetting<float>("value");
-	AddSetting<float>("min_value");
-	AddSetting<float>("max_value");
-	AddSetting<i32>("cell_id");
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<CGUISpriteInstance>("sprite_bar");
-	AddSetting<float>("button_width");
-
-	m_Value = GetSetting<float>("value");
-	m_MinValue = GetSetting<float>("min_value");
-	m_MaxValue = GetSetting<float>("max_value");
-	m_ButtonSide = GetSetting<float>("button_width");
+	RegisterSetting("button_width", m_ButtonSide);
+	RegisterSetting("cell_id", m_CellID);
+	RegisterSetting("max_value", m_MaxValue);
+	RegisterSetting("min_value", m_MinValue);
+	RegisterSetting("sprite", m_Sprite);
+	RegisterSetting("sprite_bar", m_SpriteBar);
+	RegisterSetting("value", m_Value);
 
 	m_Value = Clamp(m_Value, m_MinValue, m_MaxValue);
 }
@@ -62,11 +65,6 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	{
 	case GUIM_SETTINGS_UPDATED:
 	{
-		m_Value = GetSetting<float>("value");
-		m_MinValue = GetSetting<float>("min_value");
-		m_MaxValue = GetSetting<float>("max_value");
-		m_ButtonSide = GetSetting<float>("button_width");
-
 		m_Value = Clamp(m_Value, m_MinValue, m_MaxValue);
 		break;
 	}
@@ -116,16 +114,12 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 
 void CSlider::Draw()
 {
-	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>("sprite_bar");
-	CGUISpriteInstance& sprite_button = GetSetting<CGUISpriteInstance>("sprite");
-	const int cell_id = GetSetting<i32>("cell_id");
-
 	CRect slider_line(m_CachedActualSize);
 	slider_line.left += m_ButtonSide / 2.0f;
 	slider_line.right -= m_ButtonSide / 2.0f;
 	float bz = GetBufferedZ();
-	m_pGUI.DrawSprite(sprite, cell_id, bz, slider_line);
-	m_pGUI.DrawSprite(sprite_button, cell_id, bz, GetButtonRect());
+	m_pGUI.DrawSprite(m_SpriteBar, m_CellID, bz, slider_line);
+	m_pGUI.DrawSprite(m_Sprite, m_CellID, bz, GetButtonRect());
 }
 
 void CSlider::UpdateValue()

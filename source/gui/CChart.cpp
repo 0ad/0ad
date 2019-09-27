@@ -31,21 +31,27 @@
 #include <cmath>
 
 CChart::CChart(CGUI& pGUI)
-	: IGUIObject(pGUI), IGUITextOwner(pGUI)
+	: IGUIObject(pGUI),
+	  IGUITextOwner(pGUI),
+	  m_AxisColor(),
+	  m_AxisWidth(),
+	  m_BufferZone(),
+	  m_Font(),
+	  m_FormatX(),
+	  m_FormatY(),
+	  m_SeriesColor(),
+	  m_SeriesSetting(),
+	  m_TextAlign()
 {
-	AddSetting<CGUIColor>("axis_color");
-	AddSetting<float>("axis_width");
-	AddSetting<float>("buffer_zone");
-	AddSetting<CStrW>("font");
-	AddSetting<CStrW>("format_x");
-	AddSetting<CStrW>("format_y");
-	AddSetting<CGUIList>("series_color");
-	AddSetting<CGUISeries>("series");
-	AddSetting<EAlign>("text_align");
-
-	m_AxisWidth = GetSetting<float>("axis_width");
-	m_FormatX = GetSetting<CStrW>("format_x");
-	m_FormatY = GetSetting<CStrW>("format_y");
+	RegisterSetting("axis_color", m_AxisColor);
+	RegisterSetting("axis_width", m_AxisWidth);
+	RegisterSetting("buffer_zone", m_BufferZone);
+	RegisterSetting("font", m_Font);
+	RegisterSetting("format_x", m_FormatX);
+	RegisterSetting("format_y", m_FormatY);
+	RegisterSetting("series_color", m_SeriesColor);
+	RegisterSetting("series", m_SeriesSetting);
+	RegisterSetting("text_align", m_TextAlign);
 }
 
 CChart::~CChart()
@@ -59,10 +65,6 @@ void CChart::HandleMessage(SGUIMessage& Message)
 	{
 	case GUIM_SETTINGS_UPDATED:
 	{
-		m_AxisWidth = GetSetting<float>("axis_width");
-		m_FormatX = GetSetting<CStrW>("format_x");
-		m_FormatY = GetSetting<CStrW>("format_y");
-
 		UpdateSeries();
 		break;
 	}
@@ -107,7 +109,7 @@ void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 	ADD(m_CachedActualSize.left, m_CachedActualSize.top);
 	ADD(rect.left, rect.top - m_AxisWidth);
 #undef ADD
-	DrawTriangleStrip(shader, GetSetting<CGUIColor>("axis_color"), vertices);
+	DrawTriangleStrip(shader, m_AxisColor, vertices);
 }
 
 void CChart::Draw()
@@ -181,19 +183,17 @@ CRect CChart::GetChartRect() const
 
 void CChart::UpdateSeries()
 {
-	const CGUISeries& pSeries = GetSetting<CGUISeries>("series");
-	const CGUIList& pSeriesColor = GetSetting<CGUIList>("series_color");
-
 	m_Series.clear();
-	m_Series.resize(pSeries.m_Series.size());
-	for (size_t i = 0; i < pSeries.m_Series.size(); ++i)
+	m_Series.resize(m_SeriesSetting.m_Series.size());
+
+	for (size_t i = 0; i < m_SeriesSetting.m_Series.size(); ++i)
 	{
 		CChartData& data = m_Series[i];
 
-		if (i < pSeriesColor.m_Items.size() && !data.m_Color.ParseString(m_pGUI, pSeriesColor.m_Items[i].GetOriginalString().ToUTF8(), 0))
-			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(pSeriesColor.m_Items[i].GetOriginalString()));
+		if (i < m_SeriesColor.m_Items.size() && !data.m_Color.ParseString(m_pGUI, m_SeriesColor.m_Items[i].GetOriginalString().ToUTF8(), 0))
+			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(m_SeriesColor.m_Items[i].GetOriginalString()));
 
-		data.m_Points = pSeries.m_Series[i];
+		data.m_Points = m_SeriesSetting.m_Series[i];
 	}
 	UpdateBounds();
 
@@ -208,38 +208,33 @@ void CChart::SetupText()
 	if (m_Series.empty())
 		return;
 
-	const CStrW& font = GetSetting<CStrW>("font");
-	const float buffer_zone = GetSetting<float>("buffer_zone");
-
 	// Add Y-axis
-	m_FormatY = GetSetting<CStrW>("format_y");
 	const float height = GetChartRect().GetHeight();
 	// TODO: split values depend on the format;
 	if (m_EqualY)
 	{
 		// We don't need to generate many items for equal values
-		AddFormattedValue(m_FormatY, m_RightTop.Y, font, buffer_zone);
+		AddFormattedValue(m_FormatY, m_RightTop.Y, m_Font, m_BufferZone);
 		m_TextPositions.emplace_back(GetChartRect().TopLeft());
 	}
 	else
 		for (int i = 0; i < 3; ++i)
 		{
-			AddFormattedValue(m_FormatY, m_RightTop.Y - (m_RightTop.Y - m_LeftBottom.Y) / 3.f * i, font, buffer_zone);
+			AddFormattedValue(m_FormatY, m_RightTop.Y - (m_RightTop.Y - m_LeftBottom.Y) / 3.f * i, m_Font, m_BufferZone);
 			m_TextPositions.emplace_back(GetChartRect().TopLeft() + CPos(0.f, height / 3.f * i));
 		}
 
 	// Add X-axis
-	m_FormatX = GetSetting<CStrW>("format_x");
 	const float width = GetChartRect().GetWidth();
 	if (m_EqualX)
 	{
-		CSize text_size = AddFormattedValue(m_FormatX, m_RightTop.X, font, buffer_zone);
+		CSize text_size = AddFormattedValue(m_FormatX, m_RightTop.X, m_Font, m_BufferZone);
 		m_TextPositions.emplace_back(GetChartRect().BottomRight() - text_size);
 	}
 	else
 		for (int i = 0; i < 3; ++i)
 		{
-			CSize text_size = AddFormattedValue(m_FormatX, m_RightTop.X - (m_RightTop.X - m_LeftBottom.X) / 3 * i, font, buffer_zone);
+			CSize text_size = AddFormattedValue(m_FormatX, m_RightTop.X - (m_RightTop.X - m_LeftBottom.X) / 3 * i, m_Font, m_BufferZone);
 			m_TextPositions.emplace_back(GetChartRect().BottomRight() - text_size - CPos(width / 3 * i, 0.f));
 		}
 }

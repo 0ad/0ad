@@ -24,26 +24,43 @@
 #include "gui/CGUIText.h"
 
 CText::CText(CGUI& pGUI)
-	: IGUIObject(pGUI), IGUIScrollBarOwner(pGUI), IGUITextOwner(pGUI)
+	: IGUIObject(pGUI),
+	  IGUIScrollBarOwner(pGUI),
+	  IGUITextOwner(pGUI),
+	  m_BufferZone(),
+	  m_Caption(),
+	  m_CellID(),
+	  m_Clip(),
+	  m_Font(),
+	  m_ScrollBar(),
+	  m_ScrollBarStyle(),
+	  m_ScrollBottom(),
+	  m_ScrollTop(),
+	  m_Sprite(),
+	  m_TextAlign(),
+	  m_TextVAlign(),
+	  m_TextColor(),
+	  m_TextColorDisabled(),
+	  m_IconTooltip(),
+	  m_IconTooltipStyle()
 {
-	AddSetting<float>("buffer_zone");
-	AddSetting<CGUIString>("caption");
-	AddSetting<i32>("cell_id");
-	AddSetting<bool>("clip");
-	AddSetting<CStrW>("font");
-	AddSetting<bool>("scrollbar");
-	AddSetting<CStr>("scrollbar_style");
-	AddSetting<bool>("scroll_bottom");
-	AddSetting<bool>("scroll_top");
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<EAlign>("text_align");
-	AddSetting<EVAlign>("text_valign");
-	AddSetting<CGUIColor>("textcolor");
-	AddSetting<CGUIColor>("textcolor_disabled");
-
+	RegisterSetting("buffer_zone", m_BufferZone);
+	RegisterSetting("caption", m_Caption);
+	RegisterSetting("cell_id", m_CellID);
+	RegisterSetting("clip", m_Clip);
+	RegisterSetting("font", m_Font);
+	RegisterSetting("scrollbar", m_ScrollBar);
+	RegisterSetting("scrollbar_style", m_ScrollBarStyle);
+	RegisterSetting("scroll_bottom", m_ScrollBottom);
+	RegisterSetting("scroll_top", m_ScrollTop);
+	RegisterSetting("sprite", m_Sprite);
+	RegisterSetting("text_align", m_TextAlign);
+	RegisterSetting("text_valign", m_TextVAlign);
+	RegisterSetting("textcolor", m_TextColor);
+	RegisterSetting("textcolor_disabled", m_TextColorDisabled);
 	// Private settings
-	AddSetting<CStrW>("_icon_tooltip");
-	AddSetting<CStr>("_icon_tooltip_style");
+	RegisterSetting("_icon_tooltip", m_IconTooltip);
+	RegisterSetting("_icon_tooltip_style", m_IconTooltipStyle);
 
 	//SetSetting<bool>("ghost", true, true);
 	SetSetting<bool>("scrollbar", false, true);
@@ -67,34 +84,25 @@ void CText::SetupText()
 	if (m_GeneratedTexts.empty())
 		return;
 
-	const bool scrollbar = GetSetting<bool>("scrollbar");
-
 	float width = m_CachedActualSize.GetWidth();
 	// remove scrollbar if applicable
-	if (scrollbar && GetScrollBar(0).GetStyle())
+	if (m_ScrollBar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	const CGUIString& caption = GetSetting<CGUIString>("caption");
-	const CStrW& font = GetSetting<CStrW>("font");
-	const float buffer_zone = GetSetting<float>("buffer_zone");
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, width, m_BufferZone, this);
 
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, width, buffer_zone, this);
-
-	if (!scrollbar)
+	if (!m_ScrollBar)
 		CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 
 	// Setup scrollbar
-	if (scrollbar)
+	if (m_ScrollBar)
 	{
-		const bool scroll_bottom = GetSetting<bool>("scroll_bottom");
-		const bool scroll_top = GetSetting<bool>("scroll_top");
-
 		// If we are currently scrolled to the bottom of the text,
 		// then add more lines of text, update the scrollbar so we
 		// stick to the bottom.
 		// (Use 1.5px delta so this triggers the first time caption is set)
 		bool bottom = false;
-		if (scroll_bottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
+		if (m_ScrollBottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
 			bottom = true;
 
 		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0].GetSize().cy);
@@ -107,7 +115,8 @@ void CText::SetupText()
 
 		if (bottom)
 			GetScrollBar(0).SetPos(GetScrollBar(0).GetMaxPos());
-		if (scroll_top)
+
+		if (m_ScrollTop)
 			GetScrollBar(0).SetPos(0.0f);
 	}
 }
@@ -126,7 +135,7 @@ void CText::HandleMessage(SGUIMessage& Message)
 		// Update scrollbar
 		if (Message.value == "scrollbar_style")
 		{
-			GetScrollBar(0).SetScrollBarStyle(GetSetting<CStr>(Message.value));
+			GetScrollBar(0).SetScrollBarStyle(m_ScrollBarStyle);
 			SetupText();
 		}
 
@@ -156,7 +165,7 @@ void CText::HandleMessage(SGUIMessage& Message)
 		GetScrollBar(0).SetY(m_CachedActualSize.top);
 		GetScrollBar(0).SetZ(GetBufferedZ());
 		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
-		GetScrollBar(0).SetScrollBarStyle(GetSetting<CStr>("scrollbar_style"));
+		GetScrollBar(0).SetScrollBarStyle(m_ScrollBarStyle);
 		break;
 	}
 
@@ -171,28 +180,22 @@ void CText::Draw()
 {
 	float bz = GetBufferedZ();
 
-	const bool scrollbar = GetSetting<bool>("scrollbar");
-
-	if (scrollbar)
+	if (m_ScrollBar)
 		IGUIScrollBarOwner::Draw();
 
-	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>("sprite");
-	const int cell_id = GetSetting<i32>("cell_id");
-	const bool clip = GetSetting<bool>("clip");
-
-	m_pGUI.DrawSprite(sprite, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, m_CellID, bz, m_CachedActualSize);
 
 	float scroll = 0.f;
-	if (scrollbar)
+	if (m_ScrollBar)
 		scroll = GetScrollBar(0).GetPos();
 
 	// Clipping area (we'll have to subtract the scrollbar)
 	CRect cliparea;
-	if (clip)
+	if (m_Clip)
 	{
 		cliparea = m_CachedActualSize;
 
-		if (scrollbar)
+		if (m_ScrollBar)
 		{
 			// subtract scrollbar from cliparea
 			if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
@@ -205,10 +208,9 @@ void CText::Draw()
 		}
 	}
 
-	const bool enabled = GetSetting<bool>("enabled");
-	const CGUIColor& color = GetSetting<CGUIColor>(enabled ? "textcolor" : "textcolor_disabled");
+	const CGUIColor& color = m_Enabled ? m_TextColor : m_TextColorDisabled;
 
-	if (scrollbar)
+	if (m_ScrollBar)
 		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz + 0.1f, cliparea);
 	else
 		DrawText(0, color, m_TextPos, bz + 0.1f, cliparea);

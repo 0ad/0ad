@@ -30,12 +30,13 @@ struct COListColumn
 	// Avoid copying the strings.
 	NONCOPYABLE(COListColumn);
 	MOVABLE(COListColumn);
-	COListColumn() = default;
-
+	COListColumn() : m_Width(0), m_Hidden(false) {}
 	CGUIColor m_TextColor;
 	CStr m_Id;
 	float m_Width;
-	CStrW m_Heading;
+	CStrW m_Heading; // CGUIString??
+	CGUIList m_List;
+	bool m_Hidden;
 };
 
 /**
@@ -61,8 +62,9 @@ protected:
 	 * Handle the \<item\> tag.
 	 */
 	virtual bool HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile);
+	virtual void AdditionalChildrenHandled();
 
-	void DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor);
+	void DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor);
 
 	virtual CRect GetListRect() const;
 
@@ -70,6 +72,15 @@ protected:
 	 * Available columns.
 	 */
 	std::vector<COListColumn> m_Columns;
+
+	// Settings
+	CGUISpriteInstance m_SpriteHeading;
+	bool m_Sortable;
+	CStr m_SelectedColumn;
+	i32 m_SelectedColumnOrder;
+	CGUISpriteInstance m_SpriteAsc;
+	CGUISpriteInstance m_SpriteDesc;
+	CGUISpriteInstance m_SpriteNotSorted;
 
 private:
 	// Width of space available for columns

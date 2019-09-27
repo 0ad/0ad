@@ -21,6 +21,8 @@
 #include "gui/IGUIButtonBehavior.h"
 #include "gui/IGUIObject.h"
 #include "gui/IGUITextOwner.h"
+#include "gui/CGUISprite.h"
+#include "gui/CGUIString.h"
 
 class CButton : public IGUIButtonBehavior, public IGUITextOwner
 {
@@ -61,6 +63,22 @@ protected:
 	 * Placement of text.
 	 */
 	CPos m_TextPos;
+
+	// Settings
+	float m_BufferZone;
+	i32 m_CellID;
+	CGUIString m_Caption;
+	CStrW m_Font;
+	CGUISpriteInstance m_Sprite;
+	CGUISpriteInstance m_SpriteOver;
+	CGUISpriteInstance m_SpritePressed;
+	CGUISpriteInstance m_SpriteDisabled;
+	EAlign m_TextAlign;
+	EVAlign m_TextVAlign;
+	CGUIColor m_TextColor;
+	CGUIColor m_TextColorOver;
+	CGUIColor m_TextColorPressed;
+	CGUIColor m_TextColorDisabled;
 };
 
 #endif // INCLUDED_CBUTTON

@@ -23,22 +23,38 @@
 #include "gui/CGUIText.h"
 
 CButton::CButton(CGUI& pGUI)
-	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI), IGUITextOwner(pGUI)
+	: IGUIObject(pGUI),
+	  IGUIButtonBehavior(pGUI),
+	  IGUITextOwner(pGUI),
+	  m_BufferZone(),
+	  m_CellID(),
+	  m_Caption(),
+	  m_Font(),
+	  m_Sprite(),
+	  m_SpriteOver(),
+	  m_SpritePressed(),
+	  m_SpriteDisabled(),
+	  m_TextAlign(),
+	  m_TextVAlign(),
+	  m_TextColor(),
+	  m_TextColorOver(),
+	  m_TextColorPressed(),
+	  m_TextColorDisabled()
 {
-	AddSetting<float>("buffer_zone");
-	AddSetting<CGUIString>("caption");
-	AddSetting<i32>("cell_id");
-	AddSetting<CStrW>("font");
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<CGUISpriteInstance>("sprite_over");
-	AddSetting<CGUISpriteInstance>("sprite_pressed");
-	AddSetting<CGUISpriteInstance>("sprite_disabled");
-	AddSetting<EAlign>("text_align");
-	AddSetting<EVAlign>("text_valign");
-	AddSetting<CGUIColor>("textcolor");
-	AddSetting<CGUIColor>("textcolor_over");
-	AddSetting<CGUIColor>("textcolor_pressed");
-	AddSetting<CGUIColor>("textcolor_disabled");
+	RegisterSetting("buffer_zone", m_BufferZone);
+	RegisterSetting("cell_id", m_CellID);
+	RegisterSetting("caption", m_Caption);
+	RegisterSetting("font", m_Font);
+	RegisterSetting("sprite", m_Sprite);
+	RegisterSetting("sprite_over", m_SpriteOver);
+	RegisterSetting("sprite_pressed", m_SpritePressed);
+	RegisterSetting("sprite_disabled", m_SpriteDisabled);
+	RegisterSetting("text_align", m_TextAlign);
+	RegisterSetting("text_valign", m_TextVAlign);
+	RegisterSetting("textcolor", m_TextColor);
+	RegisterSetting("textcolor_over", m_TextColorOver);
+	RegisterSetting("textcolor_pressed", m_TextColorPressed);
+	RegisterSetting("textcolor_disabled", m_TextColorDisabled);
 
 	AddText();
 }
@@ -51,14 +67,7 @@ void CButton::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	m_GeneratedTexts[0] = CGUIText(
-		m_pGUI,
-		GetSetting<CGUIString>("caption"),
-		GetSetting<CStrW>("font"),
-		m_CachedActualSize.GetWidth(),
-		GetSetting<float>("buffer_zone"),
-		this);
-
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, m_CachedActualSize.GetWidth(), m_BufferZone, this);
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 }
 
@@ -72,39 +81,20 @@ void CButton::HandleMessage(SGUIMessage& Message)
 void CButton::Draw()
 {
 	const float bz = GetBufferedZ();
-
-	// Statically initialise some strings, so we don't have to do
-	// lots of allocation every time this function is called
-	static const CStr strSprite("sprite");
-	static const CStr strSpriteOver("sprite_over");
-	static const CStr strSpritePressed("sprite_pressed");
-	static const CStr strSpriteDisabled("sprite_disabled");
-	static const CStr strCellId("cell_id");
-
-	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>(strSprite);
-	CGUISpriteInstance& sprite_over = GetSetting<CGUISpriteInstance>(strSpriteOver);
-	CGUISpriteInstance& sprite_pressed = GetSetting<CGUISpriteInstance>(strSpritePressed);
-	CGUISpriteInstance& sprite_disabled = GetSetting<CGUISpriteInstance>(strSpriteDisabled);
-
-	const i32 cell_id = GetSetting<i32>(strCellId);
-
-	DrawButton(m_CachedActualSize, bz, sprite, sprite_over, sprite_pressed, sprite_disabled, cell_id);
-
+	DrawButton(m_CachedActualSize, bz, m_Sprite, m_SpriteOver, m_SpritePressed, m_SpriteDisabled, m_CellID);
 	DrawText(0, ChooseColor(), m_TextPos, bz + 0.1f);
 }
 
 const CGUIColor& CButton::ChooseColor()
 {
-	const CGUIColor& color = GetSetting<CGUIColor>("textcolor");
-
-	if (!GetSetting<bool>("enabled"))
-		return GetSetting<CGUIColor>("textcolor_disabled") || color;
+	if (!m_Enabled)
+		return m_TextColorDisabled || m_TextColor;
 
 	if (!m_MouseHovering)
-		return color;
+		return m_TextColor;
 
 	if (m_Pressed)
-		return GetSetting<CGUIColor>("textcolor_pressed") || color;
+		return m_TextColorPressed || m_TextColor;
 
-	return GetSetting<CGUIColor>("textcolor_over") || color;
+	return m_TextColorOver || m_TextColor;
 }

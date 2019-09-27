@@ -30,21 +30,36 @@
 #include "soundmanager/ISoundManager.h"
 
 IGUIObject::IGUIObject(CGUI& pGUI)
-	: m_pGUI(pGUI), m_pParent(nullptr), m_MouseHovering(false), m_LastClickTime()
+	: m_pGUI(pGUI),
+	  m_pParent(),
+	  m_MouseHovering(),
+	  m_LastClickTime(),
+	  m_Enabled(),
+	  m_Hidden(),
+	  m_Size(),
+	  m_Style(),
+	  m_Hotkey(),
+	  m_Z(),
+	  m_Absolute(),
+	  m_Ghost(),
+	  m_AspectRatio(),
+	  m_Tooltip(),
+	  m_TooltipStyle()
 {
-	AddSetting<bool>("enabled");
-	AddSetting<bool>("hidden");
-	AddSetting<CClientArea>("size");
-	AddSetting<CStr>("style");
-	AddSetting<CStr>("hotkey");
-	AddSetting<float>("z");
-	AddSetting<bool>("absolute");
-	AddSetting<bool>("ghost");
-	AddSetting<float>("aspectratio");
-	AddSetting<CStrW>("tooltip");
-	AddSetting<CStr>("tooltip_style");
+	RegisterSetting("enabled", m_Enabled);
+	RegisterSetting("hidden", m_Hidden);
+	RegisterSetting("size", m_Size);
+	RegisterSetting("style", m_Style);
+	RegisterSetting("hotkey", m_Hotkey);
+	RegisterSetting("z", m_Z);
+	RegisterSetting("absolute", m_Absolute);
+	RegisterSetting("ghost", m_Ghost);
+	RegisterSetting("aspectratio", m_AspectRatio);
+	RegisterSetting("tooltip", m_Tooltip);
+	RegisterSetting("tooltip_style", m_TooltipStyle);
 
 	// Setup important defaults
+	// TODO: Should be in the default style?
 	SetSetting<bool>("hidden", false, true);
 	SetSetting<bool>("ghost", false, true);
 	SetSetting<bool>("enabled", true, true);
@@ -117,12 +132,12 @@ void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 }
 
 template<typename T>
-void IGUIObject::AddSetting(const CStr& Name)
+void IGUIObject::RegisterSetting(const CStr& Name, T& Value)
 {
 	if (SettingExists(Name))
 		LOGERROR("The setting '%s' already exists on the object '%s'!", Name.c_str(), GetPresentableName().c_str());
 	else
-		m_Settings.emplace(Name, new CGUISetting<T>(*this, Name));
+		m_Settings.emplace(Name, new CGUISetting<T>(*this, Name, Value));
 }
 
 bool IGUIObject::SettingExists(const CStr& Setting) const
@@ -157,7 +172,7 @@ template <typename T>
 void IGUIObject::SetSetting(const CStr& Setting, T& Value, const bool SendMessage)
 {
 	PreSettingChange(Setting);
-	static_cast<CGUISetting<T>* >(m_Settings[Setting])->m_pSetting = std::move(Value);
+	static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting = std::move(Value);
 	SettingChanged(Setting, SendMessage);
 }
 
@@ -165,7 +180,7 @@ template <typename T>
 void IGUIObject::SetSetting(const CStr& Setting, const T& Value, const bool SendMessage)
 {
 	PreSettingChange(Setting);
-	static_cast<CGUISetting<T>* >(m_Settings[Setting])->m_pSetting = Value;
+	static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting = Value;
 	SettingChanged(Setting, SendMessage);
 }
 
@@ -185,7 +200,7 @@ void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
 	else if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
-		if (GetSetting<bool>(Setting))
+		if (m_Hidden)
 			RecurseObject(nullptr, &IGUIObject::ResetStates);
 	}
 	else if (Setting == "hotkey")
@@ -267,31 +282,28 @@ void IGUIObject::ResetStates()
 
 void IGUIObject::UpdateCachedSize()
 {
-	const CClientArea& ca = GetSetting<CClientArea>("size");
-	const float aspectratio = GetSetting<float>("aspectratio");
-
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
-	if (!GetSetting<bool>("absolute") && m_pParent && !IsRootObject())
-		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
+	if (!m_Absolute && m_pParent && !IsRootObject())
+		m_CachedActualSize = m_Size.GetClientArea(m_pParent->m_CachedActualSize);
 	else
-		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
+		m_CachedActualSize = m_Size.GetClientArea(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
 
 	// In a few cases, GUI objects have to resize to fill the screen
 	// but maintain a constant aspect ratio.
 	// Adjust the size to be the max possible, centered in the original size:
-	if (aspectratio)
+	if (m_AspectRatio)
 	{
-		if (m_CachedActualSize.GetWidth() > m_CachedActualSize.GetHeight()*aspectratio)
+		if (m_CachedActualSize.GetWidth() > m_CachedActualSize.GetHeight() * m_AspectRatio)
 		{
-			float delta = m_CachedActualSize.GetWidth() - m_CachedActualSize.GetHeight()*aspectratio;
+			float delta = m_CachedActualSize.GetWidth() - m_CachedActualSize.GetHeight() * m_AspectRatio;
 			m_CachedActualSize.left += delta/2.f;
 			m_CachedActualSize.right -= delta/2.f;
 		}
 		else
 		{
-			float delta = m_CachedActualSize.GetHeight() - m_CachedActualSize.GetWidth()/aspectratio;
+			float delta = m_CachedActualSize.GetHeight() - m_CachedActualSize.GetWidth() / m_AspectRatio;
 			m_CachedActualSize.bottom -= delta/2.f;
 			m_CachedActualSize.top += delta/2.f;
 		}
@@ -318,22 +330,16 @@ void IGUIObject::LoadStyle(const CStr& StyleName)
 
 float IGUIObject::GetBufferedZ() const
 {
-	const float Z = GetSetting<float>("z");
+	if (m_Absolute)
+		return m_Z;
 
-	if (GetSetting<bool>("absolute"))
-		return Z;
+	if (GetParent())
+		return GetParent()->GetBufferedZ() + m_Z;
 
-	{
-		if (GetParent())
-			return GetParent()->GetBufferedZ() + Z;
-		else
-		{
-			// In philosophy, a parentless object shouldn't be able to have a relative sizing,
-			//  but we'll accept it so that absolute can be used as default without a complaint.
-			//  Also, you could consider those objects children to the screen resolution.
-			return Z;
-		}
-	}
+	// In philosophy, a parentless object shouldn't be able to have a relative sizing,
+	//  but we'll accept it so that absolute can be used as default without a complaint.
+	//  Also, you could consider those objects children to the screen resolution.
+	return m_Z;
 }
 
 void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI& pGUI)
@@ -463,26 +469,17 @@ JSObject* IGUIObject::GetJSObject()
 
 bool IGUIObject::IsHidden() const
 {
-	// Statically initialise some strings, so we don't have to do
-	// lots of allocation every time this function is called
-	static const CStr strHidden("hidden");
-	return GetSetting<bool>(strHidden);
+	return m_Hidden;
 }
 
 bool IGUIObject::IsHiddenOrGhost() const
 {
-	static const CStr strGhost("ghost");
-	return IsHidden() || GetSetting<bool>(strGhost);
+	return m_Hidden || m_Ghost;
 }
 
-void IGUIObject::PlaySound(const CStr& settingName) const
+void IGUIObject::PlaySound(const CStrW& soundPath) const
 {
-	if (!g_SoundManager)
-		return;
-
-	const CStrW& soundPath = GetSetting<CStrW>(settingName);
-
-	if (!soundPath.empty())
+	if (g_SoundManager && !soundPath.empty())
 		g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 }
 
@@ -530,7 +527,7 @@ void IGUIObject::TraceMember(JSTracer* trc)
 // Instantiate templated functions:
 // These functions avoid copies by working with a reference and move semantics.
 #define TYPE(T) \
-	template void IGUIObject::AddSetting<T>(const CStr& Name); \
+	template void IGUIObject::RegisterSetting<T>(const CStr& Name, T& Value); \
 	template T& IGUIObject::GetSetting<T>(const CStr& Setting); \
 	template const T& IGUIObject::GetSetting<T>(const CStr& Setting) const; \
 	template void IGUIObject::SetSetting<T>(const CStr& Setting, T& Value, const bool SendMessage); \

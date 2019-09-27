@@ -18,6 +18,8 @@
 #ifndef INCLUDED_CTEXT
 #define INCLUDED_CTEXT
 
+#include "gui/CGUISprite.h"
+#include "gui/CGUIString.h"
 #include "gui/IGUIScrollBarOwner.h"
 #include "gui/IGUITextOwner.h"
 
@@ -63,6 +65,24 @@ protected:
 	 * Placement of text. Ignored when scrollbars are active.
 	 */
 	CPos m_TextPos;
+
+	// Settings
+	float m_BufferZone;
+	CGUIString m_Caption;
+	i32 m_CellID;
+	bool m_Clip;
+	CStrW m_Font;
+	bool m_ScrollBar;
+	CStr m_ScrollBarStyle;
+	bool m_ScrollBottom;
+	bool m_ScrollTop;
+	CGUISpriteInstance m_Sprite;
+	EAlign m_TextAlign;
+	EVAlign m_TextVAlign;
+	CGUIColor m_TextColor;
+	CGUIColor m_TextColorDisabled;
+	CStrW m_IconTooltip;
+	CStr m_IconTooltipStyle;
 };
 
 #endif // INCLUDED_CTEXT

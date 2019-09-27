@@ -24,14 +24,19 @@
 
 IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  m_Pressed(false),
-	  m_PressedRight(false)
+	  m_Pressed(),
+	  m_PressedRight(),
+	  m_SoundDisabled(),
+	  m_SoundEnter(),
+	  m_SoundLeave(),
+	  m_SoundPressed(),
+	  m_SoundReleased()
 {
-	AddSetting<CStrW>("sound_disabled");
-	AddSetting<CStrW>("sound_enter");
-	AddSetting<CStrW>("sound_leave");
-	AddSetting<CStrW>("sound_pressed");
-	AddSetting<CStrW>("sound_released");
+	RegisterSetting("sound_disabled", m_SoundDisabled);
+	RegisterSetting("sound_enter", m_SoundEnter);
+	RegisterSetting("sound_leave", m_SoundLeave);
+	RegisterSetting("sound_pressed", m_SoundPressed);
+	RegisterSetting("sound_released", m_SoundReleased);
 }
 
 IGUIButtonBehavior::~IGUIButtonBehavior()
@@ -40,23 +45,21 @@ IGUIButtonBehavior::~IGUIButtonBehavior()
 
 void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 {
-	const bool enabled = GetSetting<bool>("enabled");
-
 	// TODO Gee: easier access functions
 	switch (Message.type)
 	{
 	case GUIM_MOUSE_ENTER:
-		if (enabled)
-			PlaySound("sound_enter");
+		if (m_Enabled)
+			PlaySound(m_SoundEnter);
 		break;
 
 	case GUIM_MOUSE_LEAVE:
-		if (enabled)
-			PlaySound("sound_leave");
+		if (m_Enabled)
+			PlaySound(m_SoundLeave);
 		break;
 
 	case GUIM_MOUSE_DBLCLICK_LEFT:
-		if (!enabled)
+		if (!m_Enabled)
 			break;
 
 		// Since GUIM_MOUSE_PRESS_LEFT also gets called twice in a
@@ -65,19 +68,19 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 		break;
 
 	case GUIM_MOUSE_PRESS_LEFT:
-		if (!enabled)
+		if (!m_Enabled)
 		{
-			PlaySound("sound_disabled");
+			PlaySound(m_SoundDisabled);
 			break;
 		}
 
-		PlaySound("sound_pressed");
+		PlaySound(m_SoundPressed);
 		SendEvent(GUIM_PRESSED, "press");
 		m_Pressed = true;
 		break;
 
 	case GUIM_MOUSE_DBLCLICK_RIGHT:
-		if (!enabled)
+		if (!m_Enabled)
 			break;
 
 		// Since GUIM_MOUSE_PRESS_RIGHT also gets called twice in a
@@ -86,37 +89,37 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 		break;
 
 	case GUIM_MOUSE_PRESS_RIGHT:
-		if (!enabled)
+		if (!m_Enabled)
 		{
-			PlaySound("sound_disabled");
+			PlaySound(m_SoundDisabled);
 			break;
 		}
 
 		// Button was right-clicked
-		PlaySound("sound_pressed");
+		PlaySound(m_SoundPressed);
 		SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
 		m_PressedRight = true;
 		break;
 
 	case GUIM_MOUSE_RELEASE_RIGHT:
-		if (!enabled)
+		if (!m_Enabled)
 			break;
 
 		if (m_PressedRight)
 		{
 			m_PressedRight = false;
-			PlaySound("sound_released");
+			PlaySound(m_SoundReleased);
 		}
 		break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
-		if (!enabled)
+		if (!m_Enabled)
 			break;
 
 		if (m_Pressed)
 		{
 			m_Pressed = false;
-			PlaySound("sound_released");
+			PlaySound(m_SoundReleased);
 		}
 		break;
 
@@ -125,9 +128,9 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id)
+void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled, int cell_id)
 {
-	if (!GetSetting<bool>("enabled"))
+	if (!m_Enabled)
 		m_pGUI.DrawSprite(sprite_disabled || sprite, cell_id, z, rect);
 	else if (m_MouseHovering)
 	{
