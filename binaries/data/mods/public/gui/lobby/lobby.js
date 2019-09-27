@@ -81,6 +81,15 @@ var g_SenderFont = "sans-bold-13";
 var g_ChatCommandColor = "200 200 255";
 
 /**
+ * Color for the player count number in the games list.
+ */
+var g_PlayerCountTags = {
+	"CurrentPlayers": { "color": "0 160 160" },
+	"MaxPlayers": { "color": "0 160 160" },
+	"Observers": { "color": "0 128 128" }
+};
+
+/**
  * Indicates if the lobby is opened as a dialog or window.
  */
 var g_Dialog = false;
@@ -973,6 +982,7 @@ function updateGameList()
 	g_GameList = Engine.GetGameList().map(game => {
 
 		game.hasBuddies = 0;
+		game.observerCount = 0;
 
 		// Compute average rating of participating players
 		let playerRatings = [];
@@ -983,6 +993,8 @@ function updateGameList()
 
 			if (player.Team != "observer")
 				playerRatings.push(playerNickRating.rating || g_DefaultLobbyRating);
+			else
+				++game.observerCount;
 
 			// Sort games with playing buddies above games with spectating buddies
 			if (game.hasBuddies < 2 && g_Buddies.indexOf(playerNickRating.nick) != -1)
@@ -1064,7 +1076,18 @@ function updateGameList()
 		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
-		list_nPlayers.push(game.nbp + "/" + game.maxnbp);
+		list_nPlayers.push(
+			sprintf(
+				game.observerCount ?
+					// Translation: The number of players and observers in this game
+					translate("%(current)s/%(max)s +%(observercount)s") :
+					// Translation: The number of players in this game
+					translate("%(current)s/%(max)s"),
+				{
+					"current": setStringTags(game.nbp, g_PlayerCountTags.CurrentPlayers),
+					"max": setStringTags(game.maxnbp, g_PlayerCountTags.MaxPlayers),
+					"observercount": setStringTags(game.observerCount, g_PlayerCountTags.Observers)
+				}));
 		list_gameRating.push(game.gameRating);
 		list.push(gameName);
 		list_data.push(i);

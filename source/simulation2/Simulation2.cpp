@@ -67,7 +67,7 @@ public:
 			CFG_GET_VAL("ooslog", m_EnableOOSLog);
 			CFG_GET_VAL("serializationtest", m_EnableSerializationTest);
 			CFG_GET_VAL("rejointest", m_RejoinTestTurn);
-			if (m_RejoinTestTurn <= 0) // Handle bogus values of the arg
+			if (m_RejoinTestTurn < 0) // Handle bogus values of the arg
 				m_RejoinTestTurn = -1;
 		}
 

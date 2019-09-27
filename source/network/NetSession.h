@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ public:
 	 * Disconnect from the server.
 	 * Sends a disconnection notification to the server.
 	 */
-	void Disconnect(u32 reason);
+	void Disconnect(NetDisconnectReason reason);
 
 	/**
 	 * Send a message to the server.
@@ -175,14 +175,14 @@ public:
 	 * The server will receive a disconnection notification after a while.
 	 * The server will not receive any further messages sent via this session.
 	 */
-	void Disconnect(u32 reason);
+	void Disconnect(NetDisconnectReason reason);
 
 	/**
 	 * Sends an unreliable disconnection notification to the client.
 	 * The server will not receive any disconnection notification.
 	 * The server will not receive any further messages sent via this session.
 	 */
-	void DisconnectNow(u32 reason);
+	void DisconnectNow(NetDisconnectReason reason);
 
 	/**
 	 * Prevent timeouts for the client running in the same process as the server.

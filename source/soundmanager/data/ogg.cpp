@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,14 +20,13 @@
 
 #if CONFIG2_AUDIO
 
+#include "lib/byte_order.h"
 #include "lib/external_libraries/openal.h"
 #include "lib/external_libraries/vorbis.h"
-
-#include "lib/byte_order.h"
-#include "lib/file/io/io.h"
 #include "lib/file/file_system.h"
-
+#include "lib/file/io/io.h"
 #include "lib/file/vfs/vfs_util.h"
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 

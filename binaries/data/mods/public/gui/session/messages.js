@@ -251,6 +251,17 @@ var g_ChatHistoryFilters = [
 		"key": "private",
 		"text": translateWithContext("chat history filter", "Private chat"),
 		"filter": (msg, senderID) => !!msg.isVisiblePM
+	},
+	{
+		"key": "gamenotifications",
+		"text": translateWithContext("chat history filter", "Game notifications"),
+		"filter": (msg, senderID) => msg.type != "message" && msg.guid === undefined
+	},
+	{
+		"key": "chatnotifications",
+		"text": translateWithContext("chat history filter", "Network notifications"),
+		"filter": (msg, senderID) => msg.type != "message" && msg.guid !== undefined,
+		"hidden": !Engine.HasNetClient()
 	}
 ];
 

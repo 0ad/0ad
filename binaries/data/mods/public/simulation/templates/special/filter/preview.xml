@@ -17,6 +17,9 @@
   </Obstruction>
   <Ownership merge=""/>
   <Position merge=""/>
+  <!-- Displays attack range -->
+  <RangeOverlayManager merge=""/>
+  <RangeOverlayRenderer merge=""/>
   <Sound merge=""/> <!-- Needed for the Actor Viewer -->
   <UnitMotion merge=""/> <!-- Needed for the Actor Viewer -->
   <!-- Previews should always be visible in fog-of-war/etc -->
@@ -24,9 +27,6 @@
     <AlwaysVisible>true</AlwaysVisible>
     <Preview>true</Preview>
   </Visibility>
-  <!-- Displays attack range -->
-  <RangeOverlayManager merge=""/>
-  <RangeOverlayRenderer merge=""/>
   <!-- Previews should not cast shadows -->
   <VisualActor merge="">
     <DisableShadows/>

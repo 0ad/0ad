@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_defensive">
-  <Footprint>
-    <Square width="1.9" depth="3.8"/>
-    <Height>2.0</Height>
-  </Footprint>
   <Attack>
     <Melee>
       <Damage>
@@ -17,6 +13,10 @@
       <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
+  <Footprint>
+    <Square width="1.9" depth="3.8"/>
+    <Height>2.0</Height>
+  </Footprint>
   <Loot>
     <xp>50</xp>
   </Loot>

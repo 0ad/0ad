@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,7 +58,7 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(CNetServerSession& sess
 			turn,
 			m_ClientsReady[client] + 1);
 
-		session.Disconnect(NDR_UNKNOWN);
+		session.Disconnect(NDR_INCORRECT_READY_TURN_COMMANDS);
 	}
 
 	m_ClientsReady[client] = turn;
@@ -106,7 +106,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 			turn,
 			m_ClientsReady[client] + 1);
 
-		session.Disconnect(NDR_UNKNOWN);
+		session.Disconnect(NDR_INCORRECT_READY_TURN_SIMULATED);
 	}
 
 	m_ClientsSimulated[client] = turn;
