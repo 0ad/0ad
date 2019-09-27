@@ -25,13 +25,13 @@
 CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  m_IsPressed(),
-	  m_ButtonSide()
+	  m_ButtonSide(),
 	  m_CellID(),
 	  m_MaxValue(),
 	  m_MinValue(),
 	  m_Sprite(),
 	  m_SpriteBar(),
-	  m_Value(),
+	  m_Value()
 {
 	RegisterSetting("button_width", m_ButtonSide);
 	RegisterSetting("cell_id", m_CellID);
