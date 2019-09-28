@@ -48,10 +48,10 @@ CGUIText& IGUITextOwner::AddText()
 	return m_GeneratedTexts.back();
 }
 
-CGUIText& IGUITextOwner::AddText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone, const IGUIObject* pObject)
+CGUIText& IGUITextOwner::AddText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone)
 {
 	// Avoids a move constructor
-	m_GeneratedTexts.emplace_back(m_pGUI, Text, Font, Width, BufferZone, pObject);
+	m_GeneratedTexts.emplace_back(m_pGUI, Text, Font, Width, BufferZone, this);
 	return m_GeneratedTexts.back();
 }
 

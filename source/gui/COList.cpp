@@ -74,7 +74,7 @@ void COList::SetupText()
 		CGUIString gui_string;
 		gui_string.SetValue(column.m_Heading);
 
-		const CGUIText& text = AddText(gui_string, m_Font, width, m_BufferZone, this);
+		const CGUIText& text = AddText(gui_string, m_Font, width, m_BufferZone);
 		m_HeadingHeight = std::max(m_HeadingHeight, text.GetSize().cy + COLUMN_SHIFT.y);
 	}
 
@@ -93,13 +93,13 @@ void COList::SetupText()
 
 			CGUIText* text;
 			if (!column.m_List.m_Items[i].GetOriginalString().empty())
-				text = &AddText(column.m_List.m_Items[i], m_Font, width, m_BufferZone, this);
+				text = &AddText(column.m_List.m_Items[i], m_Font, width, m_BufferZone);
 			else
 			{
 				// Minimum height of a space character of the current font size
 				CGUIString align_string;
 				align_string.SetValue(L" ");
-				text = &AddText(align_string, m_Font, width, m_BufferZone, this);
+				text = &AddText(align_string, m_Font, width, m_BufferZone);
 			}
 			shift = std::max(shift, text->GetSize().cy);
 		}

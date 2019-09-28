@@ -110,13 +110,13 @@ void CList::SetupText()
 		CGUIText* text;
 
 		if (!m_List.m_Items[i].GetOriginalString().empty())
-			text = &AddText(m_List.m_Items[i], m_Font, width, m_BufferZone, this);
+			text = &AddText(m_List.m_Items[i], m_Font, width, m_BufferZone);
 		else
 		{
 			// Minimum height of a space character of the current font size
 			CGUIString align_string;
 			align_string.SetValue(L" ");
-			text = &AddText(align_string, m_Font, width, m_BufferZone, this);
+			text = &AddText(align_string, m_Font, width, m_BufferZone);
 		}
 
 		m_ItemsYPositions[i] = buffered_y;
