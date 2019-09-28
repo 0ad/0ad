@@ -20,18 +20,29 @@
 #include "CCheckBox.h"
 
 CCheckBox::CCheckBox(CGUI& pGUI)
-	: IGUIObject(pGUI), IGUIButtonBehavior(pGUI)
+	: IGUIObject(pGUI),
+	  IGUIButtonBehavior(pGUI),
+	  m_CellID(),
+	  m_Checked(),
+	  m_SpriteUnchecked(),
+	  m_SpriteUncheckedOver(),
+	  m_SpriteUncheckedPressed(),
+	  m_SpriteUncheckedDisabled(),
+	  m_SpriteChecked(),
+	  m_SpriteCheckedOver(),
+	  m_SpriteCheckedPressed(),
+	  m_SpriteCheckedDisabled()
 {
-	AddSetting<i32>("cell_id");
-	AddSetting<bool>("checked");
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<CGUISpriteInstance>("sprite_over");
-	AddSetting<CGUISpriteInstance>("sprite_pressed");
-	AddSetting<CGUISpriteInstance>("sprite_disabled");
-	AddSetting<CGUISpriteInstance>("sprite2");
-	AddSetting<CGUISpriteInstance>("sprite2_over");
-	AddSetting<CGUISpriteInstance>("sprite2_pressed");
-	AddSetting<CGUISpriteInstance>("sprite2_disabled");
+	RegisterSetting("cell_id", m_CellID);
+	RegisterSetting("checked", m_Checked),
+	RegisterSetting("sprite", m_SpriteUnchecked);
+	RegisterSetting("sprite_over", m_SpriteUncheckedOver);
+	RegisterSetting("sprite_pressed", m_SpriteUncheckedPressed);
+	RegisterSetting("sprite_disabled", m_SpriteUncheckedDisabled);
+	RegisterSetting("sprite2", m_SpriteChecked);
+	RegisterSetting("sprite2_over", m_SpriteCheckedOver);
+	RegisterSetting("sprite2_pressed", m_SpriteCheckedPressed);
+	RegisterSetting("sprite2_disabled", m_SpriteCheckedDisabled);
 }
 
 CCheckBox::~CCheckBox()
@@ -48,7 +59,7 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 	case GUIM_PRESSED:
 	{
 		// Switch to opposite.
-		SetSetting<bool>("checked", !GetSetting<bool>("checked"), true);
+		SetSetting<bool>("checked", !m_Checked, true);
 		break;
 	}
 
@@ -59,22 +70,21 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 
 void CCheckBox::Draw()
 {
-	if (GetSetting<bool>("checked"))
+	if (m_Checked)
 		DrawButton(
 			m_CachedActualSize,
 			GetBufferedZ(),
-			GetSetting<CGUISpriteInstance>("sprite2"),
-			GetSetting<CGUISpriteInstance>("sprite2_over"),
-			GetSetting<CGUISpriteInstance>("sprite2_pressed"),
-			GetSetting<CGUISpriteInstance>("sprite2_disabled"),
-			GetSetting<i32>("cell_id"));
+			m_SpriteChecked,
+			m_SpriteCheckedOver,
+			m_SpriteCheckedPressed,
+			m_SpriteCheckedDisabled,
+			m_CellID);
 	else
-		DrawButton(
-			m_CachedActualSize,
-			GetBufferedZ(),
-			GetSetting<CGUISpriteInstance>("sprite"),
-			GetSetting<CGUISpriteInstance>("sprite_over"),
-			GetSetting<CGUISpriteInstance>("sprite_pressed"),
-			GetSetting<CGUISpriteInstance>("sprite_disabled"),
-			GetSetting<i32>("cell_id"));
+		DrawButton(m_CachedActualSize,
+			 GetBufferedZ(),
+			 m_SpriteUnchecked,
+			 m_SpriteUncheckedOver,
+			 m_SpriteUncheckedPressed,
+			 m_SpriteUncheckedDisabled,
+			 m_CellID);
 }

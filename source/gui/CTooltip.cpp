@@ -20,34 +20,48 @@
 #include "CTooltip.h"
 
 #include "gui/CGUI.h"
+#include "gui/CGUIString.h"
 #include "gui/CGUIText.h"
 
 #include <algorithm>
 
 CTooltip::CTooltip(CGUI& pGUI)
-	: IGUIObject(pGUI), IGUITextOwner(pGUI)
+	: IGUIObject(pGUI),
+	  IGUITextOwner(pGUI),
+	  m_BufferZone(),
+	  m_Caption(),
+	  m_Font(),
+	  m_Sprite(),
+	  m_Delay(),
+	  m_TextColor(),
+	  m_MaxWidth(),
+	  m_Offset(),
+	  m_Anchor(),
+	  m_TextAlign(),
+	  m_Independent(),
+	  m_MousePos(),
+	  m_UseObject(),
+	  m_HideObject()
 {
 	// If the tooltip is an object by itself:
-	AddSetting<float>("buffer_zone");
-	AddSetting<CGUIString>("caption");
-	AddSetting<CStrW>("font");
-	AddSetting<CGUISpriteInstance>("sprite");
-	AddSetting<i32>("delay"); // in milliseconds
-	AddSetting<CGUIColor>("textcolor");
-	AddSetting<float>("maxwidth");
-	AddSetting<CPos>("offset");
-	AddSetting<EVAlign>("anchor");
-	AddSetting<EAlign>("text_align");
+	RegisterSetting("buffer_zone", m_BufferZone);
+	RegisterSetting("caption", m_Caption);
+	RegisterSetting("font", m_Font);
+	RegisterSetting("sprite", m_Sprite);
+	RegisterSetting("delay", m_Delay); // in milliseconds
+	RegisterSetting("textcolor", m_TextColor);
+	RegisterSetting("maxwidth", m_MaxWidth);
+	RegisterSetting("offset", m_Offset);
+	RegisterSetting("anchor", m_Anchor);
+	RegisterSetting("text_align", m_TextAlign);
 	// This is used for tooltips that are hidden/revealed manually by scripts, rather than through the standard tooltip display mechanism
-	AddSetting<bool>("independent");
-
-	// If the tooltip is just a reference to another object:
-	AddSetting<CStr>("use_object");
-	AddSetting<bool>("hide_object");
-
+	RegisterSetting("independent", m_Independent);
 	// Private settings:
 	// This is set by GUITooltip
-	AddSetting<CPos>("_mousepos");
+	RegisterSetting("_mousepos", m_MousePos);
+	// If the tooltip is just a reference to another object:
+	RegisterSetting("use_object", m_UseObject);
+	RegisterSetting("hide_object", m_HideObject);
 
 	// Defaults
 	SetSetting<i32>("delay", 500, true);
@@ -67,40 +81,31 @@ void CTooltip::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	const CGUIString& caption = GetSetting<CGUIString>("caption");
-	const CStrW& font = GetSetting<CStrW>("font");
-	const float max_width = GetSetting<float>("maxwidth");
-	const float buffer_zone = GetSetting<float>("buffer_zone");
-
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, caption, font, max_width, buffer_zone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, m_MaxWidth, m_BufferZone, this);
 
 	// Position the tooltip relative to the mouse:
 
-	const CPos& mousepos = GetSetting<bool>("independent") ?
-		m_pGUI.GetMousePos() :
-		GetSetting<CPos>("_mousepos");
-
-	const CPos& offset = GetSetting<CPos>("offset");
+	const CPos& mousepos = m_Independent ? m_pGUI.GetMousePos() : m_MousePos;
 
 	float textwidth = m_GeneratedTexts[0].GetSize().cx;
 	float textheight = m_GeneratedTexts[0].GetSize().cy;
 
 	CClientArea size;
-	size.pixel.left = mousepos.x + offset.x;
+	size.pixel.left = mousepos.x + m_Offset.x;
 	size.pixel.right = size.pixel.left + textwidth;
 
-	switch (GetSetting<EVAlign>("anchor"))
+	switch (m_Anchor)
 	{
 	case EVAlign_Top:
-		size.pixel.top = mousepos.y + offset.y;
+		size.pixel.top = mousepos.y + m_Offset.y;
 		size.pixel.bottom = size.pixel.top + textheight;
 		break;
 	case EVAlign_Bottom:
-		size.pixel.bottom = mousepos.y + offset.y;
+		size.pixel.bottom = mousepos.y + m_Offset.y;
 		size.pixel.top = size.pixel.bottom - textheight;
 		break;
 	case EVAlign_Center:
-		size.pixel.top = mousepos.y + offset.y - textheight/2.f;
+		size.pixel.top = mousepos.y + m_Offset.y - textheight/2.f;
 		size.pixel.bottom = size.pixel.top + textwidth;
 		break;
 	default:
@@ -137,8 +142,6 @@ void CTooltip::Draw()
 {
 	float z = 900.f; // TODO: Find a nicer way of putting the tooltip on top of everything else
 
-	CGUISpriteInstance& sprite = GetSetting<CGUISpriteInstance>("sprite");
-
 	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
 	// we need to call it now *before* we do the rest of the drawing
 	if (!m_GeneratedTextsValid)
@@ -147,8 +150,7 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
-	m_pGUI.DrawSprite(sprite, 0, z, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, 0, z, m_CachedActualSize);
 
-	const CGUIColor& color = GetSetting<CGUIColor>("textcolor");
-	DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
+	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft(), z + 0.1f);
 }

@@ -18,6 +18,8 @@
 #ifndef INCLUDED_CLIST
 #define INCLUDED_CLIST
 
+#include "gui/CGUIList.h"
+#include "gui/CGUISprite.h"
 #include "gui/IGUIScrollBarOwner.h"
 #include "gui/IGUITextOwner.h"
 
@@ -90,7 +92,7 @@ protected:
 
 	// Extended drawing interface, this is so that classes built on the this one
 	//  can use other sprite names.
-	virtual void DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor);
+	virtual void DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor);
 
 	// Get the area of the list. This is so that it can easily be changed, like in CDropDown
 	//  where the area is not equal to m_CachedActualSize.
@@ -109,6 +111,25 @@ protected:
 	std::vector<float> m_ItemsYPositions;
 
 	virtual int GetHoveredItem();
+
+	// Settings
+	float m_BufferZone;
+	CStrW m_Font;
+	bool m_ScrollBar;
+	CStr m_ScrollBarStyle;
+	CStrW m_SoundDisabled;
+	CStrW m_SoundSelected;
+	CGUISpriteInstance m_Sprite;
+	CGUISpriteInstance m_SpriteSelectArea;
+	i32 m_CellID;
+	EAlign m_TextAlign;
+	CGUIColor m_TextColor;
+	CGUIColor m_TextColorSelected;
+	i32 m_Selected;
+	bool m_AutoScroll;
+	i32 m_Hovered;
+	CGUIList m_List;
+	CGUIList m_ListData;
 
 private:
 	// Whether the list's items have been modified since last handling a message.

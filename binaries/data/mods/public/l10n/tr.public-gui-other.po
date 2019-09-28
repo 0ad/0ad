@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-18 18:46+0200\n"
-"PO-Revision-Date: 2019-09-19 03:47+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-23 07:17+0000\n"
+"PO-Revision-Date: 2019-09-24 05:54+0000\n"
+"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -570,7 +570,7 @@ msgstr "Kullanıcılar (%(num)s): %(users)s"
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
 #: gui/common/tooltips.js:841 gui/loadgame/load.js:140
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
+#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:281
 msgid ", "
 msgstr ","
 
@@ -768,7 +768,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Ateş etmek için birim yerleştirin."
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -862,7 +862,7 @@ msgstr "Ele geçir"
 #: gui/common/tooltips.js:283
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "%(name)s verir."
 
 #: gui/common/tooltips.js:313
 #, javascript-format
@@ -872,7 +872,7 @@ msgstr "%(attackType)s Saldırısı"
 #: gui/common/tooltips.js:331
 #, javascript-format
 msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s %(statusEffects)s"
 
 #: gui/common/tooltips.js:354
 #, javascript-format
@@ -908,7 +908,7 @@ msgstr "Hayır"
 #: gui/common/tooltips.js:378
 #, javascript-format
 msgid ", %(durName)s: %(duration)s"
-msgstr ""
+msgstr ", %(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:379
 msgid "Duration"
@@ -917,7 +917,7 @@ msgstr "Süre"
 #: gui/common/tooltips.js:383
 #, javascript-format
 msgid "%(statusName)s: %(effects)s, %(rate)s%(durationString)s"
-msgstr ""
+msgstr "%(statusName)s: %(effects)s, %(rate)s, %(durationString)s"
 
 #: gui/common/tooltips.js:397
 #, javascript-format
@@ -1856,16 +1856,26 @@ msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "Bir veya daha fazla, kısmi veya tam oyuncu adı yazarak tekrarları filtreleme."
 
-#: gui/replaymenu/replay_menu.js:273
+#: gui/replaymenu/replay_menu.js:197
+#, javascript-format
+msgid "Delete the selected replay using %(hotkey)s."
+msgstr "%(hotkey)s tuşunu kullanarak seçili kayıtları sil."
+
+#: gui/replaymenu/replay_menu.js:202
+#, javascript-format
+msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
+msgstr "Silerken onay mesajını geçmek için %(hotkey)s tuşuna basılı tutun."
+
+#: gui/replaymenu/replay_menu.js:282
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Oyuncular:  %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:298
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-AA-gg SS:dd"
 
-#: gui/replaymenu/replay_menu.js:328
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-AA"
 

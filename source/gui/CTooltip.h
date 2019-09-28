@@ -18,7 +18,9 @@
 #ifndef INCLUDED_CTOOLTIP
 #define INCLUDED_CTOOLTIP
 
-#include "IGUITextOwner.h"
+#include "gui/IGUITextOwner.h"
+#include "gui/CGUISprite.h"
+#include "gui/CGUIString.h"
 
 /**
  * Dynamic tooltips. Similar to CText.
@@ -40,6 +42,22 @@ protected:
 	virtual void HandleMessage(SGUIMessage& Message);
 
 	virtual void Draw();
+
+	// Settings
+	float m_BufferZone;
+	CGUIString m_Caption;
+	CStrW m_Font;
+	CGUISpriteInstance m_Sprite;
+	i32 m_Delay;
+	CGUIColor m_TextColor;
+	float m_MaxWidth;
+	CPos m_Offset;
+	EVAlign m_Anchor;
+	EAlign m_TextAlign;
+	bool m_Independent;
+	CPos m_MousePos;
+	CStr m_UseObject;
+	bool m_HideObject;
 };
 
 #endif // INCLUDED_CTOOLTIP

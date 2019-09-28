@@ -18,6 +18,7 @@
 #ifndef INCLUDED_CCHECKBOX
 #define INCLUDED_CCHECKBOX
 
+#include "gui/CGUISprite.h"
 #include "gui/IGUIButtonBehavior.h"
 
 class CCheckBox : public IGUIButtonBehavior
@@ -42,6 +43,19 @@ public:
 	 * Draws the control
 	 */
 	virtual void Draw();
+
+protected:
+	// Settings
+	i32 m_CellID;
+	bool m_Checked;
+	CGUISpriteInstance m_SpriteUnchecked;
+	CGUISpriteInstance m_SpriteUncheckedOver;
+	CGUISpriteInstance m_SpriteUncheckedPressed;
+	CGUISpriteInstance m_SpriteUncheckedDisabled;
+	CGUISpriteInstance m_SpriteChecked;
+	CGUISpriteInstance m_SpriteCheckedOver;
+	CGUISpriteInstance m_SpriteCheckedPressed;
+	CGUISpriteInstance m_SpriteCheckedDisabled;
 };
 
 #endif // INCLUDED_CCHECKBOX

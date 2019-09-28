@@ -22,8 +22,9 @@
 #include "gui/CGUI.h"
 
 template<typename T>
-CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name)
-	: m_pSetting(T()), m_Name(Name), m_pObject(pObject)
+
+CGUISetting<T>::CGUISetting(IGUIObject& pObject, const CStr& Name, T& Value)
+	: m_pSetting(Value), m_Name(Name), m_pObject(pObject)
 {
 }
 

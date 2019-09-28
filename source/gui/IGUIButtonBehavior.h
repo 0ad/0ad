@@ -63,7 +63,7 @@ public:
 	 * @param cell_id Identifies the icon to be used (if the sprite contains
 	 *                cell-using images)
 	 */
-	void DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id);
+	void DrawButton(const CRect& rect, const float& z, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled, int cell_id);
 
 protected:
 	/**
@@ -86,6 +86,13 @@ protected:
 	 */
 	bool m_Pressed;
 	bool m_PressedRight;
+
+	// Settings
+	CStrW m_SoundDisabled;
+	CStrW m_SoundEnter;
+	CStrW m_SoundLeave;
+	CStrW m_SoundPressed;
+	CStrW m_SoundReleased;
 };
 
 #endif // INCLUDED_IGUIBUTTONBEHAVIOR

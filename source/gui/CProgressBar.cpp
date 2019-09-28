@@ -22,11 +22,14 @@
 #include "gui/CGUI.h"
 
 CProgressBar::CProgressBar(CGUI& pGUI)
-	: IGUIObject(pGUI)
+	: IGUIObject(pGUI),
+	  m_SpriteBackground(),
+	  m_SpriteBar(),
+	  m_Caption()
 {
-	AddSetting<CGUISpriteInstance>("sprite_background");
-	AddSetting<CGUISpriteInstance>("sprite_bar");
-	AddSetting<float>("caption"); // aka value from 0 to 100
+	RegisterSetting("sprite_background", m_SpriteBackground);
+	RegisterSetting("sprite_bar", m_SpriteBar);
+	RegisterSetting("caption", m_Caption); // aka value from 0 to 100
 }
 
 CProgressBar::~CProgressBar()
@@ -43,12 +46,11 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 	case GUIM_SETTINGS_UPDATED:
 		// Update scroll-bar
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
-		if (Message.value == CStr("caption"))
+		if (Message.value == "caption")
 		{
-			const float value = GetSetting<float>("caption");
-			if (value > 100.f)
+			if (m_Caption > 100.f)
 				SetSetting<float>("caption", 100.f, true);
-			else if (value < 0.f)
+			else if (m_Caption < 0.f)
 				SetSetting<float>("caption", 0.f, true);
 		}
 		break;
@@ -59,18 +61,14 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 
 void CProgressBar::Draw()
 {
-	CGUISpriteInstance& sprite_bar = GetSetting<CGUISpriteInstance>("sprite_bar");
-	CGUISpriteInstance& sprite_background = GetSetting<CGUISpriteInstance>("sprite_background");
-
 	float bz = GetBufferedZ();
 
 	int cell_id = 0;
-	const float value = GetSetting<float>("caption");
 
-	m_pGUI.DrawSprite(sprite_background, cell_id, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_SpriteBackground, cell_id, bz, m_CachedActualSize);
 
 	// Get size of bar (notice it is drawn slightly closer, to appear above the background)
 	CRect bar_size(m_CachedActualSize.left, m_CachedActualSize.top,
-				   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(value/100.f), m_CachedActualSize.bottom);
-	m_pGUI.DrawSprite(sprite_bar, cell_id, bz+0.01f, bar_size);
+				   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(m_Caption/100.f), m_CachedActualSize.bottom);
+	m_pGUI.DrawSprite(m_SpriteBar, cell_id, bz+0.01f, bar_size);
 }

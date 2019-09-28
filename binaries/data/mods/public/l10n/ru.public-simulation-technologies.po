@@ -48,7 +48,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-22 12:28+0000\n"
+"PO-Revision-Date: 2019-09-26 16:07+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -90,12 +90,12 @@ msgstr "Традиции стрельбы из лука"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Доступны на этапе деревни."
+msgstr "Доступно на этапе деревни."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "Металлический доспех на голове лошади. "
+msgstr "Металлический доспех для конской морды."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
@@ -163,7 +163,7 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Станет доступным на этапе небольшого города."
+msgstr "Доступно на этапе небольшого города."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -260,23 +260,23 @@ msgstr "Доступно на этапе большого города."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Экипируйте свою конницу бронёй. Вся конница получает +1 к защите от рубящих ударов."
+msgstr "Оснастите конскую амуницию бронёй. Вся конница получает +1 к защите от рубящих ударов."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "Нательная защита, полностью изготовленная из железа, самого труднообрабатываемого металла древности."
+msgstr "Панцирь, полностью изготовленный из железа — самого труднообрабатываемого металла древности."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Все герои получают +2 к защите от рубящих и колющих ударов, но за дополнительные +50 металла к стоимости."
+msgstr "Все герои получают +2 к защите от рубящих и колющих ударов, но за +50 к стоимости в металле."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr "Железная броня героя"
+msgstr "Железный доспех героя"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -293,7 +293,7 @@ msgstr "Лорика ферреа"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Стёганая или кожаная броня для пехоты."
+msgstr "Стёганый льняной или кожаный панцирь для пехоты."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
@@ -303,7 +303,7 @@ msgstr "Вся пехота получает +1 к защите от рубящ�
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "Стёганая броня"
+msgstr "Стёганый панцирь"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -333,12 +333,12 @@ msgstr "Сполас"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "Панцирь из льняной ткани для пехоты."
+msgstr "Многослойный льняной панцирь для пехоты."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "Панцирь из льняной ткани"
+msgstr "Многослойный льняной панцирь"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -367,7 +367,7 @@ msgstr "Вся пехота получает +1 к защите от рубящ�
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr "Доспех, усиленный бронзовыми пластинами."
+msgstr "Панцирь с нашитой бронзовой чешуёй."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
@@ -382,11 +382,11 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Нательная защита, полностью изготовленная из бронзы. Только лучшие воины экипировались такими доспехами из-за их высокой цены и трудоёмкости изготовления."
+msgstr "Панцирь, полностью изготовленный из бронзы. Только лучшие воины оснащались такими доспехами из-за их высокой цены и трудоёмкости изготовления."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Чемпионы получают +2 к защите от рубящих ударов за дополнительные +10 металла к стоимости."
+msgstr "Чемпионы получают +2 к защите от рубящих ударов за дополнительные +10 к стоимости в металле."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -785,11 +785,11 @@ msgstr "Юниты, повышенные до улучшенного класс�
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr ""
+msgstr "Разведения домашнего скота (овец, коз, коров и др.) в пищу."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "Выращивание домашнего скота на 25% быстрее."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -802,7 +802,7 @@ msgstr ""
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Работники несут на 5% больше ресурсов."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -816,7 +816,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers +10 resource capacity."
-msgstr ""
+msgstr "Работники несут на 10% больше ресурсов."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -836,7 +836,7 @@ msgstr "Посол рыбы"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Станет доступным на этапе небольшого города. Необходима Рыбацкая Сеть."
+msgstr "Доступно на этапе небольшого города. Требуется технология рыбацкой сети."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
@@ -868,7 +868,7 @@ msgstr "Снабдите своих работников железными пл
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Работники собирают зерно на 15% быстрее."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -888,7 +888,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
+msgstr "Рыбацкие лодки ловят рыбу на 30% быстрее."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -911,7 +911,7 @@ msgstr "Железные лезвия топоров"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% wood gather rate."
-msgstr ""
+msgstr "Работники добывают древесину на 50% быстрее."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -930,7 +930,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Workers +15% stone gather rate."
-msgstr ""
+msgstr "Работники добывают камень на 15% быстрее."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -963,7 +963,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +15% metal gather rate."
-msgstr ""
+msgstr "Работники добывают металл на 15% быстрее."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -975,7 +975,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Workers +50% metal gather rate."
-msgstr ""
+msgstr "Работники добывают металл на 50% быстрее."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -997,7 +997,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
-msgstr ""
+msgstr "Работники добывают камень на 50% быстрее."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1012,7 +1012,7 @@ msgstr "Андрапода"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Снабдите ваших работников полезными инструментами. Увеличивает скорость добычи металла.  "
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1299,7 +1299,7 @@ msgstr "Переход на этап города, открывающий нов
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Требуется 4 новых постройки этапа небольшого города (кроме стен и городского Центра)."
+msgstr "Требуются 4 новых строения этапа небольшого города (не считая стены и городские центры)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1351,7 +1351,7 @@ msgstr "Переход на этап небольшого города, откр
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Требует 5 строений этапа деревни (исключая частокол и фермерские поля)"
+msgstr "Требуются 5 строений этапа деревни (не считая частоколы и поля)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
