@@ -128,17 +128,16 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void IGUIButtonBehavior::DrawButton(const CRect& rect, const float& z, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled, int cell_id)
+const CGUISpriteInstance& IGUIButtonBehavior::GetButtonSprite(const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled) const
 {
 	if (!m_Enabled)
-		m_pGUI.DrawSprite(sprite_disabled || sprite, cell_id, z, rect);
-	else if (m_MouseHovering)
-	{
-		if (m_Pressed)
-			m_pGUI.DrawSprite(sprite_pressed || sprite, cell_id, z, rect);
-		else
-			m_pGUI.DrawSprite(sprite_over || sprite, cell_id, z, rect);
-	}
-	else
-		m_pGUI.DrawSprite(sprite, cell_id, z, rect);
+		return sprite_disabled || sprite;
+
+	if (!m_MouseHovering)
+		return sprite;
+
+	if (m_Pressed)
+		return sprite_pressed || sprite;
+
+	return sprite_over || sprite;
 }
