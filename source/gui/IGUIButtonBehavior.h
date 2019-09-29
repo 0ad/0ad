@@ -49,21 +49,13 @@ public:
 	/**
 	 * This is a function that lets a button being drawn,
 	 * it regards if it's over, disabled, pressed and such.
-	 * You input sprite names and area and it'll output
-	 * it accordingly.
 	 *
-	 * This class is meant to be used manually in Draw()
-	 *
-	 * @param rect Rectangle in which the sprite should be drawn
-	 * @param z Z-value
 	 * @param sprite Sprite drawn when not pressed, hovered or disabled
 	 * @param sprite_over Sprite drawn when m_MouseHovering is true
 	 * @param sprite_pressed Sprite drawn when m_Pressed is true
 	 * @param sprite_disabled Sprite drawn when "enabled" is false
-	 * @param cell_id Identifies the icon to be used (if the sprite contains
-	 *                cell-using images)
 	 */
-	void DrawButton(const CRect& rect, const float& z, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled, int cell_id);
+	const CGUISpriteInstance& GetButtonSprite(const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled) const;
 
 protected:
 	/**

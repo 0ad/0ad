@@ -164,7 +164,7 @@ public:
 	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
 	 *		  and we need to be able to output which object the error occurred in to aid the user.
 	 */
-	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject = nullptr);
+	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject);
 
 	/**
 	 * Draw this CGUIText object

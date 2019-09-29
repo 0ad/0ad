@@ -274,7 +274,7 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 		return CSize();
 	}
 
-	return AddText(gui_str, font, 0, buffer_zone, this).GetSize();
+	return AddText(gui_str, font, 0, buffer_zone).GetSize();
 }
 
 void CChart::UpdateBounds()

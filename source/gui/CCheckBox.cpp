@@ -19,6 +19,8 @@
 
 #include "CCheckBox.h"
 
+#include "gui/CGUI.h"
+
 CCheckBox::CCheckBox(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIButtonBehavior(pGUI),
@@ -70,21 +72,11 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 
 void CCheckBox::Draw()
 {
-	if (m_Checked)
-		DrawButton(
-			m_CachedActualSize,
-			GetBufferedZ(),
-			m_SpriteChecked,
-			m_SpriteCheckedOver,
-			m_SpriteCheckedPressed,
-			m_SpriteCheckedDisabled,
-			m_CellID);
-	else
-		DrawButton(m_CachedActualSize,
-			 GetBufferedZ(),
-			 m_SpriteUnchecked,
-			 m_SpriteUncheckedOver,
-			 m_SpriteUncheckedPressed,
-			 m_SpriteUncheckedDisabled,
-			 m_CellID);
+	m_pGUI.DrawSprite(
+		m_Checked ?
+			GetButtonSprite(m_SpriteChecked, m_SpriteCheckedOver, m_SpriteCheckedPressed, m_SpriteCheckedDisabled) :
+			GetButtonSprite(m_SpriteUnchecked, m_SpriteUncheckedOver, m_SpriteUncheckedPressed, m_SpriteUncheckedDisabled),
+		m_CellID,
+		GetBufferedZ(),
+		m_CachedActualSize);
 }
