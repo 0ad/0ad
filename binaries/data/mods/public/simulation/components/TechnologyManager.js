@@ -259,8 +259,19 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	if (cmpPlayerEntityLimits)
 		cmpPlayerEntityLimits.UpdateLimitsFromTech(tech);
 
-	// always send research finished message
-	Engine.PostMessage(this.entity, MT_ResearchFinished, {"player": playerID, "tech": tech});
+	// Always send research finished message.
+	Engine.PostMessage(this.entity, MT_ResearchFinished, { "player": playerID, "tech": tech });
+
+	if (tech.startsWith("phase") && !template.autoResearch)
+	{
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
+			"type": "phase",
+			"players": [playerID],
+			"phaseName": tech,
+			"phaseState": "completed"
+		});
+	}
 };
 
 /**
