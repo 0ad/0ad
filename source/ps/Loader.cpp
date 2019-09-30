@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,18 +62,17 @@ struct LoadRequest
 	// member documentation is in LDR_Register (avoid duplication).
 
 	LoadFunc func;
-	void* param;
 
+	// MemFun_t<T> instance
+	std::shared_ptr<void> param;
+
+	// Translatable string shown to the player.
 	CStrW description;
-		// rationale for storing as CStrW here:
-		// - needs to be WCS because it's user-visible and will be translated.
-		// - don't just store a pointer - the caller's string may be volatile.
-		// - the module interface must work in C, so we get/set as wchar_t*.
 
 	int estimated_duration_ms;
 
 	// LDR_Register gets these as parameters; pack everything together.
-	LoadRequest(LoadFunc func_, void* param_, const wchar_t* desc_, int ms_)
+	LoadRequest(LoadFunc func_, std::shared_ptr<void> param_, const wchar_t* desc_, int ms_)
 		: func(func_), param(param_), description(desc_),
 		  estimated_duration_ms(ms_)
 	{
@@ -109,13 +108,13 @@ void LDR_BeginRegistering()
 
 // register a task (later processed in FIFO order).
 // <func>: function that will perform the actual work; see LoadFunc.
-// <param>: (optional) parameter/persistent state; must be freed by func.
+// <param>: (optional) parameter/persistent state.
 // <description>: user-visible description of the current task, e.g.
 //   "Loading Textures".
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-void LDR_Register(LoadFunc func, void* param, const wchar_t* description,
+void LDR_Register(LoadFunc func, std::shared_ptr<void> param, const wchar_t* description,
 	int estimated_duration_ms)
 {
 	ENSURE(state == REGISTERING);	// must be called between LDR_(Begin|End)Register
