@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 15:38+0000\n"
-"Last-Translator: Stephanos C. Siopoulos\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-28 20:29+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,6 +159,7 @@ msgstr "Χτίσε σε ουδέτερες και φιλικές περιοχέ�
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Προφυλακή"
 
@@ -216,6 +217,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr "Μεγάλα τμήματα του τείχους μπορούν να μετατραπούν σε πύλες"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Αυτό θα επιτρέψει στις μονάδες να κυκλοφορούν γύρω από τις οχυρώσεις σου."
@@ -340,9 +342,11 @@ msgid "Fortress"
 msgstr "Φρούριο"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
 msgstr ""
 
 #: simulation/templates/template_structure_military_kennel.xml:38
@@ -507,10 +511,8 @@ msgstr "Επιτείχισμα"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
+msgid "Garrison Soldiers for additional arrows."
+msgstr "Οχύρωσε τους Στρατιώτες για επιπλέων βέλη."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -980,11 +982,11 @@ msgstr "Ταβέρνα"
 msgid "Recruit Naked Fanatics."
 msgstr "Επιστράτευσε Γυμνούς Φανατικούς"
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr ""
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr ""
 
@@ -1262,13 +1264,6 @@ msgstr "Σιδηρουργείον"
 msgid "Teíchisma"
 msgstr "Τείχισμα"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1397,6 +1392,56 @@ msgstr "Στρατόπεδο Μισθοφόρων Αιγυπτιακών"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Αιχμαλώτισε αυτό το κατασκεύασμα για να εκπαιδεύσεις μισθοφόρους από την Ελληνιστική Αίγυπτο."
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "Φράγμα από Πασσάλους"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "Τέλος Περίφραξης με Πασσάλους"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "Οχυρό από Πασσάλους"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "Ξύλινος Πύργος"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "Πύλη από Πασσάλους"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr ""
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Περίφραγμα με πασσάλους"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "Επικλινές Καρφί"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "Μικρά καρφιά"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "Μακριά Καρφιά"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "Παρατηρητήριο"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr ""
@@ -1459,8 +1504,8 @@ msgstr "Διδά"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:29
@@ -1930,7 +1975,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Κομίστε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.. Οχυρώστε μονάδες  για να θεραπευτούν με εξαιρετικά γρήγορο ρυθμό."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "Περίφραγμα με πασσάλους"

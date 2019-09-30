@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 15:38+0000\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-27 16:10+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -132,6 +132,7 @@ msgstr "Tog seo air ranntair neo-phàirteach no air an ranntair agad fhèin gus 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Gearastan"
 
@@ -189,6 +190,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr "Gabhaidh geata a dhèanamh de phìos fhada dhen bhalla."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Leigidh seo leis na h-aonadan agad cuairteachadh tron daigneachadh agad."
@@ -313,9 +315,11 @@ msgid "Fortress"
 msgstr "Dùn"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
 msgstr ""
 
 #: simulation/templates/template_structure_military_kennel.xml:38
@@ -480,9 +484,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
+msgid "Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
@@ -953,11 +955,11 @@ msgstr "Taberna"
 msgid "Recruit Naked Fanatics."
 msgstr "Trus fanataich loma."
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr "Seanadh nam prionnsachan"
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr "Remogantion"
 
@@ -1235,13 +1237,6 @@ msgstr "Sidērourgeîon"
 msgid "Teíchisma"
 msgstr "Teíchisma"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1370,6 +1365,56 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Glac an structar seo ach an trèanaich thu saighdearan-duaise às an Èipheit Ghreugach."
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "Lùb sonnaich"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "Deireadh sonnaich"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "Dùn sonnaich"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "Tùr fiodha"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "Geata sonnaich"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr "Leigidh seo aonadan tro bhalla sonnaich. Gabhaidh a ghlasadh gus inntrigeadh a bhacadh."
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Sonnach"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "Spìc chlaon"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "Spìcean beaga"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "Spìcean àrda"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "Tùr-faire"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr ""
@@ -1432,8 +1477,8 @@ msgstr "Didā"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:29
@@ -1903,7 +1948,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Thoir cliù air an t‑sìobhaltas agad is cuir cnap mòr de thìr ris an impireachd agad. Cuir aonadan ’nan gearastan ann gus an slànachadh gu luath."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "Sonnach"

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 17:02+0000\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-28 13:16+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -144,6 +144,7 @@ msgstr "지도의 지역을 정찰하기 위해 중립 지역과 자신의 영�
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "전초기지"
 
@@ -201,6 +202,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr "긴 성벽 조각은 문으로 변환될 수 있습니다."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "이것은 유닛이 요새를 왔다갔다할 수 있게 합니다."
@@ -325,10 +327,12 @@ msgid "Fortress"
 msgstr "요새"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
-msgstr "영웅과 대표전사를 양성하고 공성 무기를 제작하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr "영웅과 대표전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -492,10 +496,8 @@ msgstr "에피테이키스마"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "공성 무기를 제작하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
+msgid "Garrison Soldiers for additional arrows."
+msgstr "군인이 주둔하면 화살 공격이 추가됩니다."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -965,11 +967,11 @@ msgstr "타베르나"
 msgid "Recruit Naked Fanatics."
 msgstr "알몸 광전사를 고용합니다."
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr "왕세자 의회"
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr "레모간티온"
 
@@ -1247,13 +1249,6 @@ msgstr "시데로우르게온"
 msgid "Teíchisma"
 msgstr "테이치스마"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "영웅과 대표전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1382,6 +1377,56 @@ msgstr "스트라토페도 미스토포론 아이깁티아코스"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "이 건물을 빼앗아 헬레니즘 이집트에서 용병을 양성합니다."
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "방어벽 곡선부분"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "방어벽 끝부분"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "방어벽 요새부분"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "목 탑"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "방어벽 입구"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr "유닛이 울타리 벽을 통해 접근할 수 있도록 허용합니다. 접근을 막기 위해 잠글 수 있다."
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "방어벽"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "모서리 못"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "작은 못"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "큰 못"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "망루"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr "왕궁"
@@ -1444,9 +1489,9 @@ msgstr "디다"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
-msgstr "대표전사를 양성하고 공성 무기를 제작하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "대표전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살공격이 더 추가됩니다."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1915,7 +1960,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "당신의 문명에 영광을 가져오게하고 제국의 영토를 넓힙니다. 유닛을 주둔시켜 빠르게 치료합니다."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "방어벽"

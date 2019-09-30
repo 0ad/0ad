@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-24 07:36+0000\n"
+"PO-Revision-Date: 2019-09-29 01:03+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Çevrimiçi Göster"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Oyun İçi Kılavuzu[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -51,7 +51,7 @@ msgstr "0 A.D.'yi yüklediğin için teşekkür ederiz! Bu sayfa geliştirilmekt
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Görsel Ayarlar[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -59,11 +59,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the \"HQ "
 "Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "Alt + Enter tuşlarına basarak tam ekran ve pencereli mod arasında geçiş yapabilirsiniz. Pencereli modda pencereyi yeniden boyutlandırabilirsiniz. Oyun çok yavaş çalışırsa, seçenekler penceresinde bazı ayarları değiştirebilirsiniz: \"HQ Su Efektleri\" ve \"Gölgeler\" seçeneklerini devre dışı bırakmayı deneyin."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Oyun Oynuyor[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -71,7 +71,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Kontroller ve oyun, geleneksel gerçek zamanlı strateji (RTS) oyunlarının oyuncularına aşina olmalıdır. Şu anda birçok eksik özellik ve düşük dengeli istatistikler var - muhtemelen iyi çalışması için beta sürümüne kadar beklemeniz gerekecek."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -103,11 +103,11 @@ msgstr "• Yakınlaştırmak için fare tekeri, =/+ ya da _/- tuşlarını kull
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modlar[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Ana menü iki oyun moduna erişim sağlar:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -115,7 +115,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Tek Oyunculu[font=\"sans-14\"]  - bir sanal oyun veya bir veya daha fazla bilgisayar oynatıcısına (AI) karşı oynayabilir. Varsayılan AI (Petra) geliştirilme aşamasındadır ve yeni özellikler konusunda her zaman güncel olmayabilir, ancak yine de oyunu oynayabilir veya buna karşı oynayabilirsiniz."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -133,11 +133,11 @@ msgstr "Çoklu oyuncu bir oyun kurmak için, bir oyuncu mutlaka \"Oyunu Kur\" se
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Oyun Kurulumu[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Çok oyunculu bir oyunda, sadece ev sahibi oyun kurulum seçeneklerini değiştirebilir."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -185,24 +185,24 @@ msgstr "Başlamak için hazır olduğunuzda, \"Oyunu başlat\" butonuna tıklay�
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kısayollar:[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Program-genişliği[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "Alt + F4 - Oyunu sormadan hemen kapatır"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter - Tam ekran ve pencereli arasında geçiş yap"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "~ veya F9 - Konsolu göster / gizle"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
@@ -212,61 +212,61 @@ msgstr "Alt + F : Kare Sayısını (FPS) göster gizle"
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11 - Gerçek zamanlı profil oluşturucuyu etkinleştirme / devre dışı bırakma (bilgi ekranları arasında geçiş yapar)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr "Shift + F11 - Geçerli profil oluşturucu verilerini \"logs / profile.txt\" konumuna kaydedin"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2 - Ekran görüntüsünü al (.png biçiminde, dosya GUI'nin sol üst kısmında konum görüntülenir ve dosya özlüyorsa konsolda / günlüklerde de görülebilir)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Shift + F2 - Büyük ekran görüntüsü al (6400 × 4800 piksel, .bmp formatında, dosya kaydedildikten sonra GUI'nin sol üst kısmında konum görüntülenir ve dosya özlüyorsa konsolda / günlüklerde de görülebilir. )"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "Tab, Alt + S - Bir sonraki sekmeye geçin"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "Shift + Tab, Alt + W - Bir önceki sekmeye geç"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Oyun İçi[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "Çift Sol Tıklama \\ [birim üzerine] - Ekranda aynı türde tüm birimlerinizi seçin (farklı derecelerde olsalar bile)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "Üçlü Sol Tıklama \\ [birim üzerine] - Aynı tür ve aynı sıralamadaki tüm birimlerinizi ekranda seçin"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Çift Sol Tıklama \\ [birim üzerine] - Tüm harita üzerinde aynı tür tüm birimlerinizi seçin (farklı derecelerde olsalar bile)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "Alt + Üçlü Sol Tıklama \\ [birim üzerine] - Aynı türden tüm birimlerinizi seçin ve tüm harita üzerinde sıralayın"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
@@ -290,7 +290,7 @@ msgstr "Esc : Tüm konuşmaları kapa (chat, menu) ya da seçili birimleri temiz
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr " Enter / Return - Sohbeti aç / gönder"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -298,419 +298,419 @@ msgstr "T : Takım mesajı gönder"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L - Daha önce seçilen özel sohbet partneri ile sohbet et"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "Pause - Oyunu duraklat / sürdür"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/building(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "Delete - Seçili birimleri / binaları silin, onay isteyin"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/building(s), without asking for confirmation"
-msgstr ""
+msgstr "Shift + Delete - Seçili üniteleri / binaları hemen onay istemeden silin"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
-msgstr ""
+msgstr "/ (Slash) - Boşta savaşçı seç"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + / (Slash) - Seçime boşta savaşçı ekler"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "Alt + / (Slash) - Tüm boşta savaşçıları seç"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr ". (Period) - Boşta çalışanı seç (vatandaş-askerler dahil)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "Shift + . (Period) - Seçime boşta çalışan işçi ekle (vatandaş-askerler dahil)"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "Alt + . (Period) - Tüm boş işçileri seç (vatandaş-askerler dahil)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "\\\\ (Backslash) - Boştaki birimi seçin"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\\\ (Backslash) - Seçime boşta kalma birimi ekle"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "Alt + \\\\ (Backslash) - Tüm boşta kalan birimleri seç"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "H - Seçili birimleri durdurur"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "Y - Birimler çalışmaya geri dönecek"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U - Seçilen binalarda konuşlanan birimleri boşalt"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/building(s)"
-msgstr ""
+msgstr "Ctrl + 1 (ve benzeri Ctrl + 0'a kadar) - Seçili birim (ler) / binalardan 1 (ila 0) arası kontrol grubu oluşturun"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
 "0)"
-msgstr ""
+msgstr "1 (ve benzeri 0'a kadar) - 1 kontrol grubundaki birimleri / binaları seçin (ila 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "units/buildings"
-msgstr ""
+msgstr "Shift + 1 (ila 0) - Seçili birimlere / binalara kontrol grubu 1 (ila 0) ekleyin"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "Ctrl + F5 (ve benzeri F8'e kadar) - Geçerli kamera konumunu işaretler, daha sonra geri atlamak için"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "F5, F6, F7 ve F8 - Kamerayı işaretli bir konuma getirin. Kamera zaten işaretlenmiş konumdaysa, son konuma geri dönün"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected buildings"
-msgstr ""
+msgstr "Z, X, C, V, B, N, M - Eğitim binaları seçiliyken. Seçilen tüm binalar için eğitim kuyruğuna gösterilen 1., 2.,… birimini ekleyin"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with units selected – Highlights the units/buildings guarded by the"
 " selection"
-msgstr ""
+msgstr "Seçili birimlerle PageUp - Seçimle korunan birimleri / binaları vurgular"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with units/buildings selected – Highlights the units guarding the"
 " selection"
-msgstr ""
+msgstr "PageDown seçili birimler / binalar - Seçimi koruyan birimleri işaretler"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  Tab – See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab - Tüm durum çubuklarını görün (bu, inşaatın ilerleyişini de gösterir)"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "Ctrl + Tab - Özet penceresini aç"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "Alt + L - Çok oyunculu lobiyi bir iletişim penceresinde göster"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "Ctrl + H - Oyun içi diplomasi paneline geç"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "Ctrl + B - Oyun içi takas ve takas panelini aç"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "Ctrl + O - Oyun içi hedefler paneline geç"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "Ctrl + P - Oyun içi eğitim panosunu değiştir"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "Alt + Shift + T - Yapı ağacı paneline geç"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "Alt + Shift + H - Uygarlık bilgi panelini aç"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Fare Hareketini Yönlendir[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on building – Garrison"
-msgstr ""
+msgstr "Ctrl + Binaya sağ tıklayın - Konuşlandır"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on building – Repair"
-msgstr ""
+msgstr "J + Binaya Sağ Tıkla - Onar"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "P + Sağ Tıklama - Devriye"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + Sağ Tıklama - move / build / gather / vb sırasını sıraya koy"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr ""
+msgstr "Alt + Sağ Tıklama - Taşımak / derlemek / seçmek / seçimini kaldırmak ve geçerli seçimi kaldırmak için bir birim sipariş edin. Belirli görevlere sahip birimleri hızlı bir şekilde göndermek için kullanılır"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "Eğitim birimleri varken Shift + Sol Tıkla - Gruplara birim ekle (parti boyutu varsayılan olarak 5'tir ve seçeneklerde değiştirilebilir)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
-msgstr ""
+msgstr "Shift + Sol Tıklama veya Sola Harita üzerinde birim üzerine sürükleyin - Seçime birim ekle"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
 "selection"
-msgstr ""
+msgstr "Ctrl + Sol Tıklama veya Sola Birim üzerinde harita üzerinde sürükleyin - Birimi seçimden kaldırın"
 
 #: gui/manual/intro.txt:107
 msgid "  Alt + Left Drag over units on map – Only select military units"
-msgstr ""
+msgstr "Alt + Sol Haritadaki birimlerin üzerine sürükleyin - Yalnızca askeri birimleri seçin"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  Alt + Y + Left Drag over units on map – Only select non-military units"
-msgstr ""
+msgstr "Alt + Y + Sol Haritada birimlerin üzerine sürükleyin - Yalnızca askeri olmayan birimleri seçin"
 
 #: gui/manual/intro.txt:109
 msgid "  I + Left Drag over units on map – Only select idle units"
-msgstr ""
+msgstr "I + Sol Haritada birimleri üzerinde sürükleyin - Yalnızca boş birimleri seçin"
 
 #: gui/manual/intro.txt:110
 msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr ""
+msgstr "O + Sol Haritada birimleri üzerinde sürükleyin - Sadece yaralı birimleri seçin"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  Ctrl + Left Click on unit/group icon with multiple units selected – "
 "Deselect"
-msgstr ""
+msgstr "Ctrl + Sol tıklama ile birden fazla birim seçili birim / grup simgesine tıklayın - Seçimi kaldırın"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a building(s) selected – sets a rally point for units "
 "created/ungarrisoned from that building"
-msgstr ""
+msgstr "Seçili bir bina (lar) ile Sağ Tıkla - bu binadan oluşturulan / konuşlandırılmış birimler için bir toplanma noktası belirler"
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
-msgstr ""
+msgstr "Ctrl + Sağ tıklama ile birim seçili:"
 
 #: gui/manual/intro.txt:114
 msgid "    • If the cursor is over an own or allied structure – Garrison"
-msgstr ""
+msgstr "• İmleç kendi veya müttefik bir yapının üzerindeyse - Konuşlandır"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "    • If the cursor is over an enemy unit or building – Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "• İmleç düşman biriminin veya binasının üzerindeyse - Saldır (yakalamak veya toplamak yerine)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "    • Otherwise – Attack move (by default all enemy units and structures "
 "along the way are targeted)"
-msgstr ""
+msgstr "• Aksi takdirde - Saldırı hareketi (varsayılan olarak tüm düşman birimleri ve yol boyunca yapılar hedeflenir)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units "
 "along the way are targeted"
-msgstr ""
+msgstr "Ctrl + Q + Birim / birimleri seçili iken Sağ Tıkla - Saldırı hareketi, yalnızca yol boyunca birimleri hedef al"
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kaplamalar[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:120
 msgid "  Alt + G – Hide/show the GUI"
-msgstr ""
+msgstr "Alt + G - arayüzü gizle / göster"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D - Geliştirici kaplamasını göster / gizle (geliştirici seçenekleriyle)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Shift + W - Tel kafes modunu değiştirin (dokulu modellerin üzerine tel kafeslerin üzerine binmek için bir kez basın, yalnızca dokular tarafından renklendirilen tel kafeslerin iki kez, normal dokulu moda geri dönmek için iki kez basın)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Shift + S - Ünite siluetlerini aç / kapat (küçük bir performans artışı sağlayabilir)"
 
 #: gui/manual/intro.txt:124
 msgid "  Alt + Z – Toggle sky"
-msgstr ""
+msgstr "Alt + Z - Gökyüzü aç / kapat"
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + X – Toggle diplomacy colors"
-msgstr ""
+msgstr "Alt + X - Diplomasi renklerini değiştir"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "Alt + C - Seçili birimlerin ve yapıların saldırı menzili görselleştirmelerinde geçiş yap"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "Alt + V - Seçilen birimlerin ve yapıların aura aralığı görselleştirmelerini değiştirir"
 
 #: gui/manual/intro.txt:128
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "Alt + B - Seçilen birimlerin iyileştirme aralığı görselleştirmesini değiştirir"
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kamera Manipülasyonunda[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:131
 msgid "  W or ↑ (Up) – Pan screen up"
-msgstr ""
+msgstr "W veya ↑ (Yukarı) - Ekranı yukarı kaydır"
 
 #: gui/manual/intro.txt:132
 msgid "  S or ↓ (Down) – Pan screen down"
-msgstr ""
+msgstr "S veya ↓ (Aşağı) - Ekranı aşağı kaydır"
 
 #: gui/manual/intro.txt:133
 msgid "  A or ← (Left) – Pan screen left"
-msgstr ""
+msgstr "A veya ← (Sol) - Pan ekranı sola"
 
 #: gui/manual/intro.txt:134
 msgid "  D or → (Right) – Pan screen right"
-msgstr ""
+msgstr "D veya → (Sağ) - Ekranı sağa kaydır"
 
 #: gui/manual/intro.txt:135
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W veya Ctrl + ↑ (Yukarı) - Yukarı bakacak şekilde kamerayı döndürün"
 
 #: gui/manual/intro.txt:136
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S veya Ctrl + ↓ (Aşağı) - Aşağı bakacak şekilde kamerayı döndürün"
 
 #: gui/manual/intro.txt:137
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A veya Ctrl + ← (Sol) - Fotoğraf makinesini arazinin etrafında saat yönünde döndür"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Ctrl + D veya Ctrl + → (Sağ) - Kamerayı arazinin etrafında saat yönünün tersine döndür"
 
 #: gui/manual/intro.txt:139
 msgid "  Q – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q - Kamerayı arazinin etrafında saat yönünde çevirin"
 
 #: gui/manual/intro.txt:140
 msgid "  E – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "E - Kamerayı saatin tersi yönde arazinin etrafında döndür"
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Fare Tekerleği Yukarı Döndür - Fotoğraf makinesini arazinin etrafında saat yönünde döndürün"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Shift + Fare Tekerleği Aşağı Döndürme - Kamerayı arazinin etrafında saat yönünün tersine döndür"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
-msgstr ""
+msgstr "F - Seçilen birimi takip et (birimi izlemeyi durdurmak için kamerayı hareket ettir)"
 
 #: gui/manual/intro.txt:144
 msgid "  R – Reset camera zoom/orientation"
-msgstr ""
+msgstr "R - Kamera yakınlaştırma / yönlendirmesini sıfırla"
 
 #: gui/manual/intro.txt:145
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "= (Eşittir) veya + (Artı) - Yakınlaştır (sürekli yakınlaştırma için basılı tut)"
 
 #: gui/manual/intro.txt:146
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "- (Kısa çizgi) veya - (Eksi) - Uzaklaştır (sürekli yakınlaştırma için basılı tutun)"
 
 #: gui/manual/intro.txt:147
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "Orta Fare Düğmesi - Basılı tutun ve fareyi kaydırmak için hareket ettirin"
 
 #: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Bina Yerleştirirken[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:150
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "\\ [(Sol Braket) - Binanın saat yönünün tersine 15 derece döndürülür"
 
 #: gui/manual/intro.txt:151
 msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "] (Sağ Dirsek) - Binayı saat yönünde 15 derece döndürün"
 
 #: gui/manual/intro.txt:152
 msgid ""
 "  Left Drag – Rotate building using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "Sola Sürükle - Binayı fareyi kullanarak döndürün (temel fare bırakılınca atılır)"
 
 #: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Bir oyun kaydını yüklerken[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:155
 msgid "  Esc – Cancel"
-msgstr ""
+msgstr "Esc - İptal"
 
 #: gui/manual/intro.txt:156
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr ""
+msgstr "Delete - Seçili kaydedilmiş oyunu silin, onay isteyin"
 
 #: gui/manual/intro.txt:157
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr ""
+msgstr "Shift + Delete - Seçili kaydedilmiş oyunu derhal onay istemeden siler"

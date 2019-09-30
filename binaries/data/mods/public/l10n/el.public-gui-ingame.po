@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 14:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-27 07:08+0000\n"
+"PO-Revision-Date: 2019-09-28 20:29+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,12 +157,12 @@ msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
 #: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
-#: gui/session/session.js:908 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:909 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Όχι"
 
 #: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
-#: gui/session/session.js:908 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:909 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ναι"
 
@@ -195,135 +195,135 @@ msgstr "Να κατεστραφεί ό,τι είναι αυτή τη στιγμ�
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: gui/session/menu.js:343
+#: gui/session/menu.js:349
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/session/menu.js:420
+#: gui/session/menu.js:426
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
 msgstr "Εναπομένον χρόνος κατάπαυσης πυρός: %(time)s."
 
-#: gui/session/menu.js:447
+#: gui/session/menu.js:453
 msgctxt "team"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/session/menu.js:452 gui/session/messages.js:175
+#: gui/session/menu.js:458 gui/session/messages.js:175
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Σύμμαχος"
 
-#: gui/session/menu.js:453 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:459 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Ουδέτερος"
 
-#: gui/session/menu.js:453 gui/session/messages.js:176
+#: gui/session/menu.js:459 gui/session/messages.js:176
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Εχθρός"
 
-#: gui/session/menu.js:466
+#: gui/session/menu.js:472
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:543
+#: gui/session/menu.js:549
 msgid "Request your allies to attack this enemy"
 msgstr "Ζήτηστε από τους συμμάχους σας να επιτεθούν τον εχθρό."
 
-#: gui/session/menu.js:560
+#: gui/session/menu.js:566
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
 msgstr "Δωροδόκησε μια τυχαία μονάδα από αυτόν τον παίκτη και μοιράσου αυτό που βλέπει για περιορισμένο χρονικό διάστημα."
 
-#: gui/session/menu.js:592
+#: gui/session/menu.js:598
 msgid "A failed bribe will cost you:"
 msgstr "Μία αποτυχημένη δωροδοκία θα σας κοστίσει:"
 
-#: gui/session/menu.js:773
+#: gui/session/menu.js:792
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Αγοράστε %(resource)s"
 
-#: gui/session/menu.js:774
+#: gui/session/menu.js:793
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Πωλήστε %(resource)s"
 
-#: gui/session/menu.js:875
+#: gui/session/menu.js:896
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, και %(garrisonedString)s."
 
-#: gui/session/menu.js:876
+#: gui/session/menu.js:897
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, και %(inactiveString)s."
 
-#: gui/session/menu.js:879 gui/session/menu.js:952
+#: gui/session/menu.js:900 gui/session/menu.js:973
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:880 gui/session/menu.js:951
+#: gui/session/menu.js:901 gui/session/menu.js:972
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, και %(inactiveString)s."
 
-#: gui/session/menu.js:885
+#: gui/session/menu.js:906
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:886
+#: gui/session/menu.js:907
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, και %(inactiveString)s."
 
-#: gui/session/menu.js:889 gui/session/menu.js:955
+#: gui/session/menu.js:910 gui/session/menu.js:976
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Υπάρχει %(inactiveString)s."
 msgstr[1] "Υπάρχουν %(inactiveString)s."
 
-#: gui/session/menu.js:890
+#: gui/session/menu.js:911
 msgid "There are no land traders."
 msgstr "Δεν υπάρχουν έμποροι ξηράς."
 
-#: gui/session/menu.js:898
+#: gui/session/menu.js:919
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Υπάρχει %(numberTrading)s έμπορος στεριάς που εμπορεύεται."
 msgstr[1] "Υπάρχουν %(numberTrading)s έμποροι ξηράς που εμπορεύονται"
 
-#: gui/session/menu.js:908
+#: gui/session/menu.js:929
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s αδρανής"
 msgstr[1] "%(numberOfLandTraders)s αδρανείς"
 
-#: gui/session/menu.js:913
+#: gui/session/menu.js:934
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s έμπορος στεριάς αδρανής"
 msgstr[1] "%(numberOfLandTraders)s έμποροι ξηράς  αδρανείς"
 
-#: gui/session/menu.js:923
+#: gui/session/menu.js:944
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s φρουρούμενοι σε ένα εμπορικό πλοίο"
 msgstr[1] "%(numberGarrisoned)s τοποθετημένοι σε ένα εμπορικό πλοίο "
 
-#: gui/session/menu.js:928
+#: gui/session/menu.js:949
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -334,50 +334,50 @@ msgid_plural ""
 msgstr[0] "Υπάρχουν %(numberGarrisoned)s έμποροι γής φρουρούμενοι σε ένα εμπορικό πλοίο"
 msgstr[1] "Υπάρχουν %(numberGarrisoned)s έμποροι ξηράς φρουρούμενοι σε ένα εμπορικό πλοίο"
 
-#: gui/session/menu.js:956
+#: gui/session/menu.js:977
 msgid "There are no merchant ships."
 msgstr "Δεν υπάρχουν εμπορικά πλοία."
 
-#: gui/session/menu.js:963
+#: gui/session/menu.js:984
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Υπάρχει %(numberTrading)s εμπορικό πλοίο με εμπόριο"
 msgstr[1] "Υπάρχουν %(numberTrading)s εμπορικά πλοία με εμπόριο"
 
-#: gui/session/menu.js:973
+#: gui/session/menu.js:994
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s αδρανής"
 msgstr[1] "%(numberOfShipTraders)s αδρανείς"
 
-#: gui/session/menu.js:978
+#: gui/session/menu.js:999
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s εμπορικό πλοίο αδρανές"
 msgstr[1] "%(numberOfShipTraders)s εμπορικά πλοία αδρανοί"
 
-#: gui/session/menu.js:1211
+#: gui/session/menu.js:1232
 msgid "Resume"
 msgstr "Συνέχεια"
 
-#: gui/session/menu.js:1211 gui/session/menu.xml:(caption):87
+#: gui/session/menu.js:1232 gui/session/menu.xml:(caption):86
 msgid "Pause"
 msgstr "Παύση"
 
-#: gui/session/menu.js:1215
+#: gui/session/menu.js:1236
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Σε κατάσταση παύσης με εντολή του παίκτη %(players)s"
 
-#: gui/session/menu.js:1216 gui/session/messages.js:698
+#: gui/session/menu.js:1237 gui/session/messages.js:709
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:1243
+#: gui/session/menu.js:1261
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -510,228 +510,238 @@ msgctxt "chat history filter"
 msgid "Private chat"
 msgstr "Ιδιωτική συνομιλία"
 
-#: gui/session/messages.js:258
+#: gui/session/messages.js:257
+msgctxt "chat history filter"
+msgid "Game notifications"
+msgstr "Ειδοποιήσεις παιχνιδιού"
+
+#: gui/session/messages.js:262
+msgctxt "chat history filter"
+msgid "Network notifications"
+msgstr ""
+
+#: gui/session/messages.js:269
 msgid "You have won!"
 msgstr "Κερδίσατε !"
 
-#: gui/session/messages.js:259
+#: gui/session/messages.js:270
 msgid "You have been defeated!"
 msgstr "Ηττηθήκατε!"
 
-#: gui/session/messages.js:267
+#: gui/session/messages.js:278
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Είσαι τώρα σύμμαχος με %(player)s."
 
-#: gui/session/messages.js:268
+#: gui/session/messages.js:279
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Είσαι τώρα σε πόλεμο με %(player)s."
 
-#: gui/session/messages.js:269
+#: gui/session/messages.js:280
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Είσαι τώρα ουδέτερος με %(player)s."
 
-#: gui/session/messages.js:272
+#: gui/session/messages.js:283
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s είναι τώρα σε συμμαχία με εσένα."
 
-#: gui/session/messages.js:273
+#: gui/session/messages.js:284
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s είναι τώρα σε πόλεμο με εσένα."
 
-#: gui/session/messages.js:274
+#: gui/session/messages.js:285
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s είναι τώρα ουδέτερα με εσένα."
 
-#: gui/session/messages.js:277
+#: gui/session/messages.js:288
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον σύμμαχος με τον %(player2)s."
 
-#: gui/session/messages.js:278
+#: gui/session/messages.js:289
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον σε πόλεμο με τον %(player2)s"
 
-#: gui/session/messages.js:279
+#: gui/session/messages.js:290
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον ουδέτερος με τον %(player2)s."
 
-#: gui/session/messages.js:587
+#: gui/session/messages.js:598
 msgid "Click to quit this tutorial."
 msgstr "Κάνε κλικ για να βγεις από αυτήν την εκπαίδευση."
 
-#: gui/session/messages.js:588
+#: gui/session/messages.js:599
 msgid "Quit"
 msgstr "Έξοδος"
 
-#: gui/session/messages.js:592
+#: gui/session/messages.js:603
 msgid "Click when ready."
 msgstr "Κάνε κλικ όταν είσαι έτοιμος."
 
-#: gui/session/messages.js:596
+#: gui/session/messages.js:607
 msgid "Follow the instructions."
 msgstr "Ακολούθησε τις οδηγίες."
 
-#: gui/session/messages.js:687
+#: gui/session/messages.js:698
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:693 gui/session/messages.js:733
+#: gui/session/messages.js:704 gui/session/messages.js:744
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr "Σφάλμα αποσυγχρονισμού στο γύρο %(turn)s."
 
-#: gui/session/messages.js:697
+#: gui/session/messages.js:708
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
 msgstr "Παίχτες: %(players)s"
 
-#: gui/session/messages.js:702
+#: gui/session/messages.js:713
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
 msgstr "Η κατάσταση του παιχνιδιού σας είναι ίδια με την κατάσταση του παιχνιδιού των εξυπηρετητών."
 
-#: gui/session/messages.js:703
+#: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
 msgstr "Η κατάσταση του παιχνιδιού σας είναι διαφορετική με την κατάσταση του παιχνιδιού των εξυπηρετητών."
 
-#: gui/session/messages.js:709
+#: gui/session/messages.js:720
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr "Η επανασύνδεση των παιχνιδιών για Πολλούς Παίκτες με Τεχνητή Νοημοσύνη δεν υποστηρίζεται ακόμα!"
 
-#: gui/session/messages.js:712
+#: gui/session/messages.js:723
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
 msgstr "Βεβαιωθήτε ότι όλοι οι παίκτες χρησιμοποιούν τα ίδια mods."
 
-#: gui/session/messages.js:713
+#: gui/session/messages.js:724
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
 msgstr "Κάνε κλικ στο \"Αναφορά ενός Σφάλματος\" στο κεντρικό μενού για να βοηθήσεις στην επιδιόρθωσή του."
 
-#: gui/session/messages.js:714
+#: gui/session/messages.js:725
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
 msgstr "Η επανάληψη σώθηκε σε %(filepath)s"
 
-#: gui/session/messages.js:717
+#: gui/session/messages.js:728
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr "Εναπόθεση τρέχων κατάστασης σε %(filepath)s"
 
-#: gui/session/messages.js:725 gui/session/messages.js:738
+#: gui/session/messages.js:736 gui/session/messages.js:749
 msgid "Out of Sync"
 msgstr "Αποσυγχρονίστηκε"
 
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:737
+#: gui/session/messages.js:748
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr "Η τρέχουσα κατάσταση του παιχνιδιού είναι διαφορετική από τη κατάσταση του πρωτότυπου παιχνιδιού."
 
-#: gui/session/messages.js:801
+#: gui/session/messages.js:812
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Όλοι"
 
-#: gui/session/messages.js:809
+#: gui/session/messages.js:820
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Σύμμαχοι"
 
-#: gui/session/messages.js:813
+#: gui/session/messages.js:824
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Εχθροί"
 
-#: gui/session/messages.js:819
+#: gui/session/messages.js:830
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Παρατηρητές"
 
-#: gui/session/messages.js:848 gui/session/selection_details.js:79
+#: gui/session/messages.js:859 gui/session/selection_details.js:79
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "[ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ] %(player)s"
 
-#: gui/session/messages.js:929
+#: gui/session/messages.js:940
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:930
+#: gui/session/messages.js:941
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:985
+#: gui/session/messages.js:996
 msgid "Unknown Player"
 msgstr "Άγνωστος παίκτης"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:1010
+#: gui/session/messages.js:1021
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:1042
+#: gui/session/messages.js:1053
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 
-#: gui/session/messages.js:1044
+#: gui/session/messages.js:1055
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Έχεις στείλει %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:1049
+#: gui/session/messages.js:1060
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s έστειλε %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:1069
+#: gui/session/messages.js:1080
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s ανταλλάσσονται με %(amountsBought)s για %(amountsSold)s."
 
-#: gui/session/messages.js:1082
+#: gui/session/messages.js:1093
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Η κτηνοτροφία σου δέχεται επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:1083
+#: gui/session/messages.js:1094
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Δέχθηκες επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:1100
+#: gui/session/messages.js:1111
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "Ο %(player)s προόδευσε στη %(phaseName)s."
 
-#: gui/session/messages.js:1102
+#: gui/session/messages.js:1113
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "Έχει ακυρωθεί η %(phaseName)s από τον %(player)s."
 
-#: gui/session/messages.js:1105
+#: gui/session/messages.js:1116
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "Ο %(player)s ανακάλυψε την %(phaseName)s."
 
-#: gui/session/messages.js:1157
+#: gui/session/messages.js:1168
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -746,107 +756,107 @@ msgstr "%(genericName)s — Πλήρη"
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Βαθμίδα"
 
-#: gui/session/selection_details.js:114
+#: gui/session/selection_details.js:134
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:153
+#: gui/session/selection_details.js:173
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:193
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:174 gui/session/selection_details.js:180
+#: gui/session/selection_details.js:194 gui/session/selection_details.js:200
 msgid "Experience:"
 msgstr "Εμπειρία:"
 
-#: gui/session/selection_details.js:179
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:189
+#: gui/session/selection_details.js:209
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:190 gui/session/selection_details.js:220
-#: gui/session/selection_details.js:248
+#: gui/session/selection_details.js:210 gui/session/selection_details.js:240
+#: gui/session/selection_details.js:268
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:202
+#: gui/session/selection_details.js:222
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:233 gui/session/unit_actions.js:562
+#: gui/session/selection_details.js:253 gui/session/unit_actions.js:562
 #: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
 #: gui/session/unit_actions.js:907
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Κέρδος: %(gain)s"
 
-#: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1302
+#: gui/session/selection_details.js:263 gui/session/selection_details.js:279
+#: gui/session/selection_panels.js:596 gui/session/session.js:1303
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
 
-#: gui/session/selection_details.js:252
+#: gui/session/selection_details.js:272
 msgid "Current/max gatherers"
 msgstr "Τρέχων/Μέγιστος συλλεκτών"
 
-#: gui/session/selection_details.js:271
+#: gui/session/selection_details.js:291
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:402
+#: gui/session/selection_details.js:422
 msgid "Capture Points:"
 msgstr "Πόντοι Κατάκτησης:"
 
-#: gui/session/selection_details.js:410
+#: gui/session/selection_details.js:430
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s⏎"
 
-#: gui/session/selection_details.js:411
+#: gui/session/selection_details.js:431
 msgid "Carrying:"
 msgstr "Κουβαλάει:"
 
-#: gui/session/selection_details.js:414 gui/session/selection_details.js:423
+#: gui/session/selection_details.js:434 gui/session/selection_details.js:443
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:419
+#: gui/session/selection_details.js:439
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:420
+#: gui/session/selection_details.js:440
 msgid "Loot:"
 msgstr "Λάφυρα:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:481
+#: gui/session/selection_details.js:501
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:505
+#: gui/session/selection_details.js:525
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:512
+#: gui/session/selection_details.js:532
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1103,86 +1113,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Προβολή Ιστορίας / Δέντρο Κατασκευών\nΤο τελευταίο που άνοιξε θα ανοίξει εκ νέου με κλικ."
 
-#: gui/session/session.js:900
+#: gui/session/session.js:901
 msgid "Do you want to quit?"
 msgstr "Θέλετε να αποχωρήσετε;"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:907
 msgid "VICTORIOUS!"
 msgstr "ΕΙΣΤΕ ΝΙΚΗΤΗΣ!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:908
 msgid "DEFEATED!"
 msgstr "ΗΤΤΗΘΗΚΑΤΕ!"
 
-#: gui/session/session.js:908
+#: gui/session/session.js:909
 msgid "OK"
 msgstr "Εντάξει"
 
-#: gui/session/session.js:986
+#: gui/session/session.js:987
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Η επανάληψη έχει τελειώσει. Θέλετε να αποχωρήσετε;"
 
-#: gui/session/session.js:987
+#: gui/session/session.js:988
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
-#: gui/session/session.js:988
+#: gui/session/session.js:989
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Όχι"
 
-#: gui/session/session.js:988
+#: gui/session/session.js:989
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ναι"
 
-#: gui/session/session.js:1183
+#: gui/session/session.js:1184
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1190
+#: gui/session/session.js:1191
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1213
+#: gui/session/session.js:1214
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s για να αλλάξεις σειρά."
 
-#: gui/session/session.js:1215
+#: gui/session/session.js:1216
 msgid "Unordered"
 msgstr "Χωρίς ταξινόμηση"
 
-#: gui/session/session.js:1215
+#: gui/session/session.js:1216
 msgid "Descending"
 msgstr "Φθίνουσα σειρά"
 
-#: gui/session/session.js:1215
+#: gui/session/session.js:1216
 msgid "Ascending"
 msgstr "Αύξουσα σειρά"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1242
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1242
+#: gui/session/session.js:1243
 msgid "Population (current / limit)"
 msgstr "Πληθυσμός (τρέχων / όριο)"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1244
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Μέγιστος πληθυσμός: %(popCap)s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1451
+#: gui/session/session.js:1452
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1370,52 +1380,52 @@ msgid "Tribute"
 msgstr "Φόρος υποτελείας"
 
 #: gui/session/diplomacy_window.xml:(caption):90
-#: gui/session/objectives_window.xml:(caption):44
+#: gui/session/objectives_window.xml:(caption):43
 #: gui/session/trade_window.xml:(caption):108
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: gui/session/menu.xml:(caption):17
+#: gui/session/menu.xml:(caption):16
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
-#: gui/session/menu.xml:(caption):28
+#: gui/session/menu.xml:(caption):27
 msgid "Chat"
 msgstr "Συνομιλία"
 
-#: gui/session/menu.xml:(caption):39
+#: gui/session/menu.xml:(caption):38
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gui/session/menu.xml:(caption):52
+#: gui/session/menu.xml:(caption):51
 msgid "Summary"
 msgstr "Σύνοψη"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Lobby"
 msgstr "Προθάλαμος"
 
-#: gui/session/menu.xml:(caption):76
+#: gui/session/menu.xml:(caption):75
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gui/session/menu.xml:(caption):98
+#: gui/session/menu.xml:(caption):97
 msgid "Resign"
 msgstr "Παραίτηση"
 
-#: gui/session/menu.xml:(caption):109 gui/session/session.xml:(caption):56
+#: gui/session/menu.xml:(caption):108 gui/session/session.xml:(caption):59
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/session/menu.xml:(tooltip):65
+#: gui/session/menu.xml:(tooltip):64
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Εμφάνιση του λόμπι πολλαπλών παικτών σε ένα παράθυρο διαλόγου."
 
-#: gui/session/session.xml:(caption):66
+#: gui/session/session.xml:(caption):69
 msgid "Game Paused"
 msgstr "Παύση Παιχνιδιού"
 
-#: gui/session/session.xml:(caption):69
+#: gui/session/session.xml:(caption):72
 msgid "Click to Resume Game"
 msgstr "Κλικ για Επαναφορά Παιχνιδιού"
 
