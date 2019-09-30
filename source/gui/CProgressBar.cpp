@@ -38,7 +38,6 @@ CProgressBar::~CProgressBar()
 
 void CProgressBar::HandleMessage(SGUIMessage& Message)
 {
-	// Important
 	IGUIObject::HandleMessage(Message);
 
 	switch (Message.type)

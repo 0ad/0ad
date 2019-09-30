@@ -22,8 +22,8 @@
 #include "gui/CGUI.h"
 #include "gui/IGUIScrollBar.h"
 
-IGUIScrollBarOwner::IGUIScrollBarOwner(CGUI& pGUI)
-	: IGUIObject(pGUI)
+IGUIScrollBarOwner::IGUIScrollBarOwner(IGUIObject& pObject)
+	: m_pObject(pObject)
 {
 }
 
@@ -35,8 +35,6 @@ IGUIScrollBarOwner::~IGUIScrollBarOwner()
 
 void IGUIScrollBarOwner::ResetStates()
 {
-	IGUIObject::ResetStates();
-
 	for (IGUIScrollBar* const& sb : m_ScrollBars)
 		sb->SetBarPressed(false);
 }
@@ -49,7 +47,7 @@ void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
 
 const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
-	return m_pGUI.GetScrollBarStyle(style);
+	return m_pObject.GetGUI().GetScrollBarStyle(style);
 }
 
 void IGUIScrollBarOwner::HandleMessage(SGUIMessage& msg)

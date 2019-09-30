@@ -453,6 +453,8 @@ void IGUIObject::CreateJSObject()
 
 	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);
+
+	RegisterScriptFunctions();
 }
 
 JSObject* IGUIObject::GetJSObject()
@@ -463,6 +465,11 @@ JSObject* IGUIObject::GetJSObject()
 		CreateJSObject();
 
 	return m_JSObject.get();
+}
+
+bool IGUIObject::IsEnabled() const
+{
+	return m_Enabled;
 }
 
 bool IGUIObject::IsHidden() const

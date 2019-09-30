@@ -35,10 +35,12 @@ class CGUISpriteInstance;
  * Can be used with multiple inheritance alongside
  * IGUISettingsObject and such.
  */
-class IGUIButtonBehavior : virtual public IGUIObject
+class IGUIButtonBehavior
 {
+	NONCOPYABLE(IGUIButtonBehavior);
+
 public:
-	IGUIButtonBehavior(CGUI& pGUI);
+	IGUIButtonBehavior(IGUIObject& pObject);
 	virtual ~IGUIButtonBehavior();
 
 	/**
@@ -61,13 +63,7 @@ protected:
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */
-	virtual void ResetStates()
-	{
-		// Notify the gui that we aren't hovered anymore
-		UpdateMouseOver(nullptr);
-		m_Pressed = false;
-		m_PressedRight = false;
-	}
+	virtual void ResetStates();
 
 	/**
 	 * Everybody knows how a button works, you don't simply press it,
@@ -85,6 +81,13 @@ protected:
 	CStrW m_SoundLeave;
 	CStrW m_SoundPressed;
 	CStrW m_SoundReleased;
+
+private:
+	/**
+	 * Reference to the IGUIObject.
+	 * Private, because we don't want to inherit it in multiple classes.
+	 */
+	IGUIObject& m_pObject;
 };
 
 #endif // INCLUDED_IGUIBUTTONBEHAVIOR

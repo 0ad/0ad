@@ -19,11 +19,10 @@
 
 #include "IGUIButtonBehavior.h"
 
-#include "gui/CGUI.h"
 #include "gui/CGUISprite.h"
 
-IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
-	: IGUIObject(pGUI),
+IGUIButtonBehavior::IGUIButtonBehavior(IGUIObject& pObject)
+	: m_pObject(pObject),
 	  m_Pressed(),
 	  m_PressedRight(),
 	  m_SoundDisabled(),
@@ -32,15 +31,21 @@ IGUIButtonBehavior::IGUIButtonBehavior(CGUI& pGUI)
 	  m_SoundPressed(),
 	  m_SoundReleased()
 {
-	RegisterSetting("sound_disabled", m_SoundDisabled);
-	RegisterSetting("sound_enter", m_SoundEnter);
-	RegisterSetting("sound_leave", m_SoundLeave);
-	RegisterSetting("sound_pressed", m_SoundPressed);
-	RegisterSetting("sound_released", m_SoundReleased);
+	m_pObject.RegisterSetting("sound_disabled", m_SoundDisabled);
+	m_pObject.RegisterSetting("sound_enter", m_SoundEnter);
+	m_pObject.RegisterSetting("sound_leave", m_SoundLeave);
+	m_pObject.RegisterSetting("sound_pressed", m_SoundPressed);
+	m_pObject.RegisterSetting("sound_released", m_SoundReleased);
 }
 
 IGUIButtonBehavior::~IGUIButtonBehavior()
 {
+}
+
+void IGUIButtonBehavior::ResetStates()
+{
+	m_Pressed = false;
+	m_PressedRight = false;
 }
 
 void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
@@ -49,77 +54,77 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	switch (Message.type)
 	{
 	case GUIM_MOUSE_ENTER:
-		if (m_Enabled)
-			PlaySound(m_SoundEnter);
+		if (m_pObject.IsEnabled())
+			m_pObject.PlaySound(m_SoundEnter);
 		break;
 
 	case GUIM_MOUSE_LEAVE:
-		if (m_Enabled)
-			PlaySound(m_SoundLeave);
+		if (m_pObject.IsEnabled())
+			m_pObject.PlaySound(m_SoundLeave);
 		break;
 
 	case GUIM_MOUSE_DBLCLICK_LEFT:
-		if (!m_Enabled)
+		if (!m_pObject.IsEnabled())
 			break;
 
 		// Since GUIM_MOUSE_PRESS_LEFT also gets called twice in a
 		// doubleclick event, we let it handle playing sounds.
-		SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
+		m_pObject.SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
 		break;
 
 	case GUIM_MOUSE_PRESS_LEFT:
-		if (!m_Enabled)
+		if (!m_pObject.IsEnabled())
 		{
-			PlaySound(m_SoundDisabled);
+			m_pObject.PlaySound(m_SoundDisabled);
 			break;
 		}
 
-		PlaySound(m_SoundPressed);
-		SendEvent(GUIM_PRESSED, "press");
+		m_pObject.PlaySound(m_SoundPressed);
+		m_pObject.SendEvent(GUIM_PRESSED, "press");
 		m_Pressed = true;
 		break;
 
 	case GUIM_MOUSE_DBLCLICK_RIGHT:
-		if (!m_Enabled)
+		if (!m_pObject.IsEnabled())
 			break;
 
 		// Since GUIM_MOUSE_PRESS_RIGHT also gets called twice in a
 		// doubleclick event, we let it handle playing sounds.
-		SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
+		m_pObject.SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
 		break;
 
 	case GUIM_MOUSE_PRESS_RIGHT:
-		if (!m_Enabled)
+		if (!m_pObject.IsEnabled())
 		{
-			PlaySound(m_SoundDisabled);
+			m_pObject.PlaySound(m_SoundDisabled);
 			break;
 		}
 
 		// Button was right-clicked
-		PlaySound(m_SoundPressed);
-		SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
+		m_pObject.PlaySound(m_SoundPressed);
+		m_pObject.SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
 		m_PressedRight = true;
 		break;
 
 	case GUIM_MOUSE_RELEASE_RIGHT:
-		if (!m_Enabled)
+		if (!m_pObject.IsEnabled())
 			break;
 
 		if (m_PressedRight)
 		{
 			m_PressedRight = false;
-			PlaySound(m_SoundReleased);
+			m_pObject.PlaySound(m_SoundReleased);
 		}
 		break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
-		if (!m_Enabled)
+		if (!m_pObject.IsEnabled())
 			break;
 
 		if (m_Pressed)
 		{
 			m_Pressed = false;
-			PlaySound(m_SoundReleased);
+			m_pObject.PlaySound(m_SoundReleased);
 		}
 		break;
 
@@ -130,10 +135,10 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 
 const CGUISpriteInstance& IGUIButtonBehavior::GetButtonSprite(const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled) const
 {
-	if (!m_Enabled)
+	if (!m_pObject.IsEnabled())
 		return sprite_disabled || sprite;
 
-	if (!m_MouseHovering)
+	if (!m_pObject.IsMouseOver())
 		return sprite;
 
 	if (m_Pressed)

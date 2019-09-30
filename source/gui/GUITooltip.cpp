@@ -117,7 +117,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 	if (style.empty())
 		return;
 
-	// Must be a CTooltip*, but we avoid dynamic_cast
+	// Must be a CTooltip*
 	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 	if (!tooltipobj || !tooltipobj->SettingExists("use_object"))
 	{
@@ -172,7 +172,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 	if (style.empty())
 		return;
 
-	// Must be a CTooltip*, but we avoid dynamic_cast
+	// Must be a CTooltip*
 	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 	if (!tooltipobj || !tooltipobj->SettingExists("use_object") || !tooltipobj->SettingExists("hide_object"))
 	{
@@ -204,7 +204,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 
 static i32 GetTooltipDelay(const CStr& style, CGUI& pGUI)
 {
-	// Must be a CTooltip*, but we avoid dynamic_cast
+	// Must be a CTooltip*
 	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
 
 	if (!tooltipobj)

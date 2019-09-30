@@ -28,8 +28,8 @@
 
 CList::CList(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  IGUITextOwner(pGUI),
-	  IGUIScrollBarOwner(pGUI),
+	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
+	  IGUIScrollBarOwner(*static_cast<IGUIObject*>(this)),
 	  m_Modified(false),
 	  m_PrevSelectedItem(-1),
 	  m_LastItemClickTime(0),
@@ -139,8 +139,21 @@ void CList::SetupText()
 	}
 }
 
+void CList::ResetStates()
+{
+	IGUIObject::ResetStates();
+	IGUIScrollBarOwner::ResetStates();
+}
+
+void CList::UpdateCachedSize()
+{
+	IGUIObject::UpdateCachedSize();
+	IGUITextOwner::UpdateCachedSize();
+}
+
 void CList::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
 	IGUIScrollBarOwner::HandleMessage(Message);
 	//IGUITextOwner::HandleMessage(Message); <== placed it after the switch instead!
 

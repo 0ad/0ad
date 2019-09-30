@@ -29,7 +29,6 @@
 
 CDropDown::CDropDown(CGUI& pGUI)
 	: CList(pGUI),
-	  IGUIObject(pGUI),
 	  m_Open(),
 	  m_HideScrollBar(),
 	  m_ElementHighlight(-1),
@@ -93,7 +92,7 @@ void CDropDown::UpdateCachedSize()
 
 void CDropDown::HandleMessage(SGUIMessage& Message)
 {
-	// Important
+	// CList::HandleMessage(Message); placed after the switch!
 
 	switch (Message.type)
 	{

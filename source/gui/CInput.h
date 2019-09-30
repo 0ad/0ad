@@ -31,7 +31,7 @@
  * any other features than word-wrapping, and we need to be
  * able to rapidly change the string.
  */
-class CInput : public IGUIScrollBarOwner
+class CInput : public IGUIObject, public IGUIScrollBarOwner
 {
 	GUI_OBJECT(CInput)
 
@@ -45,7 +45,7 @@ public:
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */
-	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
+	virtual void ResetStates();
 
 	// Check where the mouse is hovering, and get the appropriate text position.
 	//  return is the text-position index.

@@ -21,7 +21,7 @@
 #include "gui/CGUISprite.h"
 #include "gui/IGUIButtonBehavior.h"
 
-class CCheckBox : public IGUIButtonBehavior
+class CCheckBox : public IGUIObject, public IGUIButtonBehavior
 {
 	GUI_OBJECT(CCheckBox)
 
@@ -32,7 +32,7 @@ public:
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */
-	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
+	virtual void ResetStates();
 
 	/**
 	 * @see IGUIObject#HandleMessage()

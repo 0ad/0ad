@@ -41,7 +41,7 @@ struct CChartData
 /**
  * Chart for a data visualization as lines or points
  */
-class CChart : public IGUITextOwner
+class CChart : public IGUIObject, public IGUITextOwner
 {
 	GUI_OBJECT(CChart)
 
@@ -50,6 +50,11 @@ public:
 	virtual ~CChart();
 
 protected:
+	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	void UpdateCachedSize();
+
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
