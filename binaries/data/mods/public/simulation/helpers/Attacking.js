@@ -234,13 +234,13 @@ Attacking.prototype.CauseDamageOverArea = function(data)
 
 Attacking.prototype.HandleAttackEffects = function(attackType, attackData, target, attacker, attackerOwner, bonusMultiplier = 1)
 {
+	bonusMultiplier *= !attackData.Bonuses ? 1 : GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
+
 	let targetState = {};
 	for (let effectType of g_EffectTypes)
 	{
 		if (!attackData[effectType])
 			continue;
-
-		bonusMultiplier *= !attackData.Bonuses ? 1 : GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
 
 		let receiver = g_EffectReceiver[effectType];
 		let cmpReceiver = Engine.QueryInterface(target, global[receiver.IID]);
@@ -281,7 +281,16 @@ Attacking.prototype.EntitiesNearPoint = function(origin, radius, players)
 	if (!origin || !radius || !players)
 		return [];
 
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQueryAroundPos(origin, 0, radius, players, IID_Resistance);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
+	// Return all entities, except for Gaia: IID_Health is required to avoid returning trees and such.
+	let gaiaEntities = [];
+	let gaiaIndex = players.indexOf(0);
+	if (gaiaIndex !== -1)
+		// splice() modifies players in-place and returns [0]
+		gaiaEntities = gaiaEntities.concat(cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players.splice(gaiaIndex, 1), IID_Health));
+
+	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, 0).concat(gaiaEntities);
 };
 
 /**

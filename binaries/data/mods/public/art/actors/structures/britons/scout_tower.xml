@@ -2,25 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="gaul outpost a">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
-      <mesh>structural/brit_scout_tower_struct.dae</mesh>
-      <props>
-        <prop actor="props/structures/britons/outpost_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/outpost_palisade.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/brit_scout_tower.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="gaul outpost a test">
+    <variant frequency="1" name="Briton Scout Tower">
       <animations>
         <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
@@ -40,7 +22,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="alive"/>
+    <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>

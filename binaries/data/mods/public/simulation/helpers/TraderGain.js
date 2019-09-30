@@ -41,7 +41,7 @@ function CalculateTraderGain(firstMarket, secondMarket, traderTemplate, trader)
 	let distanceSq = firstMarketPosition.distanceToSquared(secondMarketPosition);
 	// We calculate gain as square of distance to encourage trading between remote markets
 	// and gainMultiplier corresponds to the gain for a 100m distance
-	gain.traderGain = gainMultiplier * TradeGain(distanceSq, mapSize);
+	gain.traderGain = Math.round(gainMultiplier * TradeGain(distanceSq, mapSize));
 
 	gain.market1Owner = cmpMarket1Player.GetPlayerID();
 	gain.market2Owner = cmpMarket2Player.GetPlayerID();
