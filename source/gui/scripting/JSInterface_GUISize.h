@@ -15,28 +15,24 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_JSI_GUITYPES
-#define INCLUDED_JSI_GUITYPES
+#ifndef INCLUDED_JSI_GUISIZE
+#define INCLUDED_JSI_GUISIZE
 
 #include "scriptinterface/ScriptInterface.h"
+#include "ps/CStr.h"
 
-#define GUISTDTYPE(x)							\
-	namespace JSI_GUI##x						\
-	{											\
-		extern JSClass JSI_class;				\
-		extern JSPropertySpec JSI_props[];		\
-		extern JSFunctionSpec JSI_methods[];	\
-		bool construct(JSContext* cx, uint argc, JS::Value* vp); \
-		bool toString(JSContext* cx, uint argc, JS::Value* vp);	\
-	}
-
-GUISTDTYPE(Size)
-
-#undef GUISTDTYPE // avoid unnecessary pollution
-
-namespace JSI_GUITypes
+namespace JSI_GUISize
 {
-	void init(ScriptInterface& scriptInterface);
+	extern JSClass JSI_class;
+	extern JSPropertySpec JSI_props[];
+	extern JSFunctionSpec JSI_methods[];
+
+	void RegisterScriptClass(ScriptInterface& scriptInterface);
+
+	bool construct(JSContext* cx, uint argc, JS::Value* vp);
+	bool toString(JSContext* cx, uint argc, JS::Value* vp);
+
+	CStr ToPercentString(double pix, double per);
 }
 
-#endif // INCLUDED_JSI_GUITYPES
+#endif // INCLUDED_JSI_GUISIZE

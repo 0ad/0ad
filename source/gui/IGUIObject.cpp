@@ -17,12 +17,10 @@
 
 #include "precompiled.h"
 
-#include "gui/IGUIObject.h"
+#include "IGUIObject.h"
 
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
-#include "gui/scripting/JSInterface_IGUIObject.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"

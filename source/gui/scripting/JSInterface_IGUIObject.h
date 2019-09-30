@@ -24,6 +24,9 @@ namespace JSI_IGUIObject
 {
 	extern JSClass JSI_class;
 	extern JSFunctionSpec JSI_methods[];
+
+	void RegisterScriptClass(ScriptInterface& scriptInterface);
+
 	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
 	bool toString(JSContext* cx, uint argc, JS::Value* vp);
@@ -31,7 +34,6 @@ namespace JSI_IGUIObject
 	bool blur(JSContext* cx, uint argc, JS::Value* vp);
 	bool getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 	bool getTextSize(JSContext* cx, uint argc, JS::Value* vp);
-	void init(ScriptInterface& scriptInterface);
 }
 
 #endif // INCLUDED_JSI_IGUIOBJECT

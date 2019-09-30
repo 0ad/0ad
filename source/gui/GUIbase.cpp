@@ -19,7 +19,7 @@
 
 #include "GUIbase.h"
 
-#include "gui/scripting/JSInterface_GUITypes.h"
+#include "gui/scripting/JSInterface_GUISize.h"
 #include "ps/CLogger.h"
 
 CClientArea::CClientArea() : pixel(0.f,0.f,0.f,0.f), percent(0.f,0.f,0.f,0.f)
