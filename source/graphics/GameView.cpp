@@ -29,6 +29,7 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
 #include "graphics/SkeletonAnimManager.h"
+#include "graphics/SmoothedValue.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
@@ -64,100 +65,7 @@ extern int g_xres, g_yres;
 
 // Maximum distance outside the edge of the map that the camera's
 // focus point can be moved
-static const float CAMERA_EDGE_MARGIN = 2.0f*TERRAIN_TILE_SIZE;
-
-/**
- * A value with exponential decay towards the target value.
- */
-class CSmoothedValue
-{
-public:
-	CSmoothedValue(float value, float smoothness, float minDelta)
-		: m_Target(value), m_Current(value), m_Smoothness(smoothness), m_MinDelta(minDelta)
-	{
-	}
-
-	float GetSmoothedValue() const
-	{
-		return m_Current;
-	}
-
-	void SetValueSmoothly(float value)
-	{
-		m_Target = value;
-	}
-
-	void AddSmoothly(float value)
-	{
-		m_Target += value;
-	}
-
-	void Add(float value)
-	{
-		m_Target += value;
-		m_Current += value;
-	}
-
-	float GetValue() const
-	{
-		return m_Target;
-	}
-
-	void SetValue(float value)
-	{
-		m_Target = value;
-		m_Current = value;
-	}
-
-	float Update(float time)
-	{
-		if (fabs(m_Target - m_Current) < m_MinDelta)
-			return 0.0f;
-
-		double p = pow(static_cast<double>(m_Smoothness), 10.0 * static_cast<double>(time));
-		// (add the factor of 10 so that smoothnesses don't have to be tiny numbers)
-
-		double delta = (m_Target - m_Current) * (1.0 - p);
-		m_Current += delta;
-		return static_cast<float>(delta);
-	}
-
-	void ClampSmoothly(float min, float max)
-	{
-		m_Target = Clamp(m_Target, static_cast<double>(min), static_cast<double>(max));
-	}
-
-	// Wrap so 'target' is in the range [min, max]
-	void Wrap(float min, float max)
-	{
-		double t = fmod(m_Target - min, static_cast<double>(max - min));
-		if (t < 0)
-			t += max - min;
-		t += min;
-
-		m_Current += t - m_Target;
-		m_Target = t;
-	}
-
-	float GetSmoothness() const
-	{
-		return m_Smoothness;
-	}
-
-	void SetSmoothness(float smoothness)
-	{
-		m_Smoothness = smoothness;
-	}
-
-private:
-	float m_Smoothness;
-
-	double m_Target; // the value which m_Current is tending towards
-	double m_Current;
-	// (We use double because the extra precision is worthwhile here)
-
-	float m_MinDelta; // cutoff where we stop moving (to avoid ugly shimmering effects)
-};
+static const float CAMERA_EDGE_MARGIN = 2.0f * TERRAIN_TILE_SIZE;
 
 class CGameViewImpl
 {
