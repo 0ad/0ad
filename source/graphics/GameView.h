@@ -61,8 +61,6 @@ public:
 	CVector3D GetCameraPosition() const;
 	CVector3D GetCameraRotation() const;
 	float GetCameraZoom() const;
-	float GetNear() const;
-	float GetFar() const;
 
 	void SetCamera(const CVector3D& pos, float rotX, float rotY, float zoom);
 	void MoveCameraTarget(const CVector3D& target);

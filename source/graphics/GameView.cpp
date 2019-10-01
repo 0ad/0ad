@@ -119,7 +119,7 @@ public:
 
 		double delta = (m_Target - m_Current) * (1.0 - p);
 		m_Current += delta;
-		return (float)delta;
+		return static_cast<float>(delta);
 	}
 
 	void ClampSmoothly(float min, float max)
@@ -139,9 +139,19 @@ public:
 		m_Target = t;
 	}
 
-	float m_Smoothness;
+	float GetSmoothness() const
+	{
+		return m_Smoothness;
+	}
+
+	void SetSmoothness(float smoothness)
+	{
+		m_Smoothness = smoothness;
+	}
 
 private:
+	float m_Smoothness;
+
 	double m_Target; // the value which m_Current is tending towards
 	double m_Current;
 	// (We use double because the extra precision is worthwhile here)
@@ -438,12 +448,20 @@ int CGameView::Initialize()
 	CFG_GET_VAL("view.height.smoothness", m->HeightSmoothness);
 	CFG_GET_VAL("view.height.min", m->HeightMin);
 
-	CFG_GET_VAL("view.pos.smoothness", m->PosX.m_Smoothness);
-	CFG_GET_VAL("view.pos.smoothness", m->PosY.m_Smoothness);
-	CFG_GET_VAL("view.pos.smoothness", m->PosZ.m_Smoothness);
-	CFG_GET_VAL("view.zoom.smoothness", m->Zoom.m_Smoothness);
-	CFG_GET_VAL("view.rotate.x.smoothness", m->RotateX.m_Smoothness);
-	CFG_GET_VAL("view.rotate.y.smoothness", m->RotateY.m_Smoothness);
+#define SETUP_SMOOTHNESS(CFG_PREFIX, SMOOTHED_VALUE) \
+	{ \
+		float smoothness = SMOOTHED_VALUE.GetSmoothness(); \
+		CFG_GET_VAL(CFG_PREFIX ".smoothness", smoothness); \
+		SMOOTHED_VALUE.SetSmoothness(smoothness); \
+	}
+
+	SETUP_SMOOTHNESS("view.pos", m->PosX);
+	SETUP_SMOOTHNESS("view.pos", m->PosY);
+	SETUP_SMOOTHNESS("view.pos", m->PosZ);
+	SETUP_SMOOTHNESS("view.zoom", m->Zoom);
+	SETUP_SMOOTHNESS("view.rotate.x", m->RotateX);
+	SETUP_SMOOTHNESS("view.rotate.y", m->RotateY);
+#undef SETUP_SMOOTHNESS
 
 	CFG_GET_VAL("view.near", m->ViewNear);
 	CFG_GET_VAL("view.far", m->ViewFar);
@@ -723,7 +741,7 @@ void CGameView::Update(const float deltaRealTime)
 				cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, angle);
 				float height = 4.f;
 				m->ViewCamera.m_Orientation.SetIdentity();
-				m->ViewCamera.m_Orientation.RotateX((float)M_PI/24.f);
+				m->ViewCamera.m_Orientation.RotateX(static_cast<float>(M_PI) / 24.f);
 				m->ViewCamera.m_Orientation.RotateY(angle);
 				m->ViewCamera.m_Orientation.Translate(pos.X, pos.Y + height, pos.Z);
 
@@ -881,7 +899,7 @@ void CGameView::Update(const float deltaRealTime)
 	}
 	*/
 
-	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
+	m->RotateY.Wrap(-static_cast<float>(M_PI), static_cast<float>(M_PI));
 
 	// Update the camera matrix
 	SetCameraProjection();
@@ -1001,16 +1019,6 @@ void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
 entity_id_t CGameView::GetFollowedEntity()
 {
 	return m->FollowEntity;
-}
-
-float CGameView::GetNear() const
-{
-	return m->ViewNear;
-}
-
-float CGameView::GetFar() const
-{
-	return m->ViewFar;
 }
 
 void CGameView::SetCameraProjection()
