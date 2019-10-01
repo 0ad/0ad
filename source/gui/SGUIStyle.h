@@ -15,36 +15,24 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-This file is used by all bits of GUI code that need to repeat some code
-for a variety of types (to avoid repeating the list of types in half a dozen
-places, and to make it much easier to add a new type). Just do
-		#define TYPE(T) your_code_involving_T;
-		#include "GUItypes.h"
-		#undef TYPE
-to handle every possible type.
-*/
+#ifndef INCLUDED_SGUISTYLE
+#define INCLUDED_SGUISTYLE
 
-#ifndef GUITYPE_IGNORE_COPYABLE
-#include "gui/EAlign.h"
-TYPE(bool)
-TYPE(i32)
-TYPE(u32)
-TYPE(float)
-TYPE(EAlign)
-TYPE(EVAlign)
-TYPE(CPos)
-#endif
+#include "ps/CStr.h"
 
-#ifndef GUITYPE_IGNORE_NONCOPYABLE
-#include "gui/CGUIList.h"
-#include "gui/CGUISeries.h"
-TYPE(CClientArea)
-TYPE(CGUIColor)
-TYPE(CGUIList)
-TYPE(CGUISeries)
-TYPE(CGUISpriteInstance)
-TYPE(CGUIString)
-TYPE(CStr)
-TYPE(CStrW)
-#endif
+#include <map>
+
+/**
+ * Contains a list of values for new defaults to objects.
+ */
+struct SGUIStyle
+{
+	// Take advantage of moving the entire map instead and avoiding unintended copies.
+	NONCOPYABLE(SGUIStyle);
+	MOVABLE(SGUIStyle);
+	SGUIStyle() = default;
+
+	std::map<CStr, CStrW> m_SettingsDefaults;
+};
+
+#endif // INCLUDED_SGUISTYLE

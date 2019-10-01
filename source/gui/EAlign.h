@@ -15,36 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-This file is used by all bits of GUI code that need to repeat some code
-for a variety of types (to avoid repeating the list of types in half a dozen
-places, and to make it much easier to add a new type). Just do
-		#define TYPE(T) your_code_involving_T;
-		#include "GUItypes.h"
-		#undef TYPE
-to handle every possible type.
-*/
+#ifndef INCLUDED_EALIGN
+#define INCLUDED_EALIGN
 
-#ifndef GUITYPE_IGNORE_COPYABLE
-#include "gui/EAlign.h"
-TYPE(bool)
-TYPE(i32)
-TYPE(u32)
-TYPE(float)
-TYPE(EAlign)
-TYPE(EVAlign)
-TYPE(CPos)
-#endif
+enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
+enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };
 
-#ifndef GUITYPE_IGNORE_NONCOPYABLE
-#include "gui/CGUIList.h"
-#include "gui/CGUISeries.h"
-TYPE(CClientArea)
-TYPE(CGUIColor)
-TYPE(CGUIList)
-TYPE(CGUISeries)
-TYPE(CGUISpriteInstance)
-TYPE(CGUIString)
-TYPE(CStr)
-TYPE(CStrW)
-#endif
+#endif // INCLUDED_EALIGN

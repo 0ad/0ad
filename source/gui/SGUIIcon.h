@@ -15,36 +15,32 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-This file is used by all bits of GUI code that need to repeat some code
-for a variety of types (to avoid repeating the list of types in half a dozen
-places, and to make it much easier to add a new type). Just do
-		#define TYPE(T) your_code_involving_T;
-		#include "GUItypes.h"
-		#undef TYPE
-to handle every possible type.
-*/
+#ifndef INCLUDED_SGUIICON
+#define INCLUDED_SGUIICON
 
-#ifndef GUITYPE_IGNORE_COPYABLE
-#include "gui/EAlign.h"
-TYPE(bool)
-TYPE(i32)
-TYPE(u32)
-TYPE(float)
-TYPE(EAlign)
-TYPE(EVAlign)
-TYPE(CPos)
-#endif
+#include "ps/CStr.h"
+#include "ps/Shapes.h"
 
-#ifndef GUITYPE_IGNORE_NONCOPYABLE
-#include "gui/CGUIList.h"
-#include "gui/CGUISeries.h"
-TYPE(CClientArea)
-TYPE(CGUIColor)
-TYPE(CGUIList)
-TYPE(CGUISeries)
-TYPE(CGUISpriteInstance)
-TYPE(CGUIString)
-TYPE(CStr)
-TYPE(CStrW)
-#endif
+/**
+ * Icon, you create them in the XML file with root element <setup>.
+ * You use them in text owned by different objects... Such as CText.
+ */
+struct SGUIIcon
+{
+	// This struct represents an immutable type, so ensure to avoid copying the strings.
+	NONCOPYABLE(SGUIIcon);
+	MOVABLE(SGUIIcon);
+
+	SGUIIcon() : m_CellID(0) {}
+
+	// Sprite name of icon
+	CStr m_SpriteName;
+
+	// Size
+	CSize m_Size;
+
+	// Cell of texture to use; ignored unless the texture has specified cell-size
+	int m_CellID;
+};
+
+#endif // INCLUDED_SGUIICON

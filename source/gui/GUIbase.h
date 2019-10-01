@@ -15,13 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Core, stuff that the whole GUI uses
-
-	Contains defines, includes, types etc that the whole
-	 GUI should have included.
-*/
-
 #ifndef INCLUDED_GUIBASE
 #define INCLUDED_GUIBASE
 
@@ -29,118 +22,6 @@ GUI Core, stuff that the whole GUI uses
 #include "ps/Errors.h"
 #include "ps/Shapes.h"
 #include "scriptinterface/ScriptInterface.h"
-
-#include <map>
-#include <vector>
-
-class CGUI;
-class IGUIObject;
-
-#define GUI_OBJECT(obj)													\
-public:																	\
-	static IGUIObject* ConstructObject(CGUI& pGUI)					\
-		{ return new obj(pGUI); }
-
-
-/**
- * Message types.
- * @see SGUIMessage
- */
-enum EGUIMessageType
-{
-	GUIM_MOUSE_OVER,
-	GUIM_MOUSE_ENTER,
-	GUIM_MOUSE_LEAVE,
-	GUIM_MOUSE_PRESS_LEFT,
-	GUIM_MOUSE_PRESS_LEFT_ITEM,
-	GUIM_MOUSE_PRESS_RIGHT,
-	GUIM_MOUSE_DOWN_LEFT,
-	GUIM_MOUSE_DOWN_RIGHT,
-	GUIM_MOUSE_DBLCLICK_LEFT,
-	GUIM_MOUSE_DBLCLICK_LEFT_ITEM, // Triggered when doubleclicking on a list item
-	GUIM_MOUSE_DBLCLICK_RIGHT,
-	GUIM_MOUSE_RELEASE_LEFT,
-	GUIM_MOUSE_RELEASE_RIGHT,
-	GUIM_MOUSE_WHEEL_UP,
-	GUIM_MOUSE_WHEEL_DOWN,
-	GUIM_SETTINGS_UPDATED,	// SGUIMessage.m_Value = name of setting
-	GUIM_PRESSED,
-	GUIM_RELEASED,
-	GUIM_DOUBLE_PRESSED,
-	GUIM_MOUSE_MOTION,
-	GUIM_LOAD,				// Called when an object is added to the GUI.
-	GUIM_GOT_FOCUS,
-	GUIM_LOST_FOCUS,
-	GUIM_PRESSED_MOUSE_RIGHT,
-	GUIM_DOUBLE_PRESSED_MOUSE_RIGHT,
-	GUIM_TAB,				// Used by CInput
-	GUIM_TEXTEDIT
-};
-
-/**
- * Message send to IGUIObject::HandleMessage() in order
- * to give life to Objects manually with
- * a derived HandleMessage().
- */
-struct SGUIMessage
-{
-	// This should be passed as a const reference or pointer.
-	NONCOPYABLE(SGUIMessage);
-
-	SGUIMessage(EGUIMessageType _type) : type(_type), skipped(false) {}
-	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value), skipped(false) {}
-
-	/**
-	 * This method can be used to allow other event handlers to process this GUI event,
-	 * by default an event is not skipped (only the first handler will process it).
-	 *
-	 * @param skip true to allow further event handling, false to prevent it
-	 */
-	void Skip(bool skip = true) { skipped = skip; }
-
-	/**
-	 * Describes what the message regards
-	 */
-	EGUIMessageType type;
-
-	/**
-	 * Optional data
-	 */
-	CStr value;
-
-	/**
-	 * Flag that specifies if object skipped handling the event
-	 */
-	bool skipped;
-};
-
-// Text alignments
-enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
-enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };
-
-// Typedefs
-using map_pObjects = std::map<CStr, IGUIObject*>;
-using vector_pObjects = std::vector<IGUIObject*>;
-
-// Icon, you create them in the XML file with root element <setup>
-//  you use them in text owned by different objects... Such as CText.
-struct SGUIIcon
-{
-	// This struct represents an immutable type, so ensure to avoid copying the strings.
-	NONCOPYABLE(SGUIIcon);
-	MOVABLE(SGUIIcon);
-
-	SGUIIcon() : m_CellID(0) {}
-
-	// Sprite name of icon
-	CStr m_SpriteName;
-
-	// Size
-	CSize m_Size;
-
-	// Cell of texture to use; ignored unless the texture has specified cell-size
-	int m_CellID;
-};
 
 /**
  * Client Area is a rectangle relative to a parent rectangle

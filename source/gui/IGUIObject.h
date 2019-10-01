@@ -27,6 +27,7 @@
 
 #include "gui/GUIbase.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/SGUIMessage.h"
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
 
@@ -34,7 +35,16 @@
 #include <string>
 #include <vector>
 
+class CGUI;
+class IGUIObject;
 class IGUISetting;
+
+using map_pObjects = std::map<CStr, IGUIObject*>;
+
+#define GUI_OBJECT(obj) \
+public: \
+	static IGUIObject* ConstructObject(CGUI& pGUI) \
+		{ return new obj(pGUI); }
 
 /**
  * GUI object such as a button or an input-box.
@@ -463,7 +473,7 @@ protected:
 	CStr m_Name;
 
 	// Constructed on the heap, will be destroyed along with the the CGUI
-	vector_pObjects m_Children;
+	std::vector<IGUIObject*> m_Children;
 
 	// Pointer to parent
 	IGUIObject* m_pParent;
