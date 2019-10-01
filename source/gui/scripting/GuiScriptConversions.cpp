@@ -20,7 +20,7 @@
 #include "gui/CGUIColor.h"
 #include "gui/CGUIList.h"
 #include "gui/CGUISeries.h"
-#include "gui/GUIbase.h"
+#include "gui/CGUISize.h"
 #include "gui/IGUIObject.h"
 #include "lib/external_libraries/libsdl.h"
 #include "maths/Vector2D.h"
@@ -230,12 +230,12 @@ template<> void ScriptInterface::ToJSVal<CRect>(JSContext* cx, JS::MutableHandle
 		"bottom", val.bottom);
 }
 
-template<> void ScriptInterface::ToJSVal<CClientArea>(JSContext* cx, JS::MutableHandleValue ret, const CClientArea& val)
+template<> void ScriptInterface::ToJSVal<CGUISize>(JSContext* cx, JS::MutableHandleValue ret, const CGUISize& val)
 {
 	val.ToJSVal(cx, ret);
 }
 
-template<> bool ScriptInterface::FromJSVal<CClientArea>(JSContext* cx, JS::HandleValue v, CClientArea& out)
+template<> bool ScriptInterface::FromJSVal<CGUISize>(JSContext* cx, JS::HandleValue v, CGUISize& out)
 {
 	return out.FromJSVal(cx, v);
 }

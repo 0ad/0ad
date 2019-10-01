@@ -23,7 +23,7 @@
 #ifndef INCLUDED_CGUISPRITE
 #define INCLUDED_CGUISPRITE
 
-#include "gui/GUIbase.h"
+#include "gui/CGUISize.h"
 #include "gui/GUIRenderer.h"
 
 #include <map>
@@ -47,8 +47,14 @@ struct SGUIImage
 	NONCOPYABLE(SGUIImage);
 public:
 	SGUIImage() :
-		m_FixedHAspectRatio(0.f), m_RoundCoordinates(true), m_WrapMode(GL_REPEAT),
-		m_Effects(), m_Border(false), m_DeltaZ(0.f)
+		m_FixedHAspectRatio(0.f),
+		m_RoundCoordinates(true),
+		m_WrapMode(GL_REPEAT),
+		m_Effects(),
+		m_Border(false),
+		m_DeltaZ(0.f),
+		m_Size(CGUISize::Full()),
+		m_TextureSize(CGUISize::Full())
 	{
 	}
 
@@ -56,10 +62,10 @@ public:
 	VfsPath m_TextureName;
 
 	// Image placement (relative to object)
-	CClientArea m_Size;
+	CGUISize m_Size;
 
 	// Texture placement (relative to image placement)
-	CClientArea m_TextureSize;
+	CGUISize m_TextureSize;
 
 	// Because OpenGL wants textures in squares with a power of 2 (64x64, 256x256)
 	//  it's sometimes tedious to adjust this. So this value simulates which area

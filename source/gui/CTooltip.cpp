@@ -90,7 +90,7 @@ void CTooltip::SetupText()
 	float textwidth = m_GeneratedTexts[0].GetSize().cx;
 	float textheight = m_GeneratedTexts[0].GetSize().cy;
 
-	CClientArea size;
+	CGUISize size;
 	size.pixel.left = mousepos.x + m_Offset.x;
 	size.pixel.right = size.pixel.left + textwidth;
 
@@ -130,7 +130,7 @@ void CTooltip::SetupText()
 	else if (size.pixel.right > screenw)
 		size.pixel.left -= (size.pixel.right-screenw), size.pixel.right = screenw;
 
-	SetSetting<CClientArea>("size", size, true);
+	SetSetting<CGUISize>("size", size, true);
 }
 
 void CTooltip::UpdateCachedSize()

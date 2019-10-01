@@ -1028,10 +1028,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite& parent)
 {
-	SGUIImage* Image = new SGUIImage;
-
-	Image->m_TextureSize = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-	Image->m_Size = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
+	SGUIImage* Image = new SGUIImage();
 
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
@@ -1046,19 +1043,11 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else if (attr_name == "size")
 		{
-			CClientArea ca;
-			if (!ParseString<CClientArea>(this, attr_value, ca))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_Size = ca;
+			Image->m_Size.FromString(attr.Value);
 		}
 		else if (attr_name == "texture_size")
 		{
-			CClientArea ca;
-			if (!ParseString<CClientArea>(this, attr_value, ca))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_TextureSize = ca;
+			Image->m_TextureSize.FromString(attr.Value);
 		}
 		else if (attr_name == "real_texture_placement")
 		{

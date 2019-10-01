@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_GUIBASE
-#define INCLUDED_GUIBASE
+#ifndef INCLUDED_CGUISIZE
+#define INCLUDED_CGUISIZE
 
 #include "ps/CStr.h"
 #include "ps/Errors.h"
@@ -24,19 +24,18 @@
 #include "scriptinterface/ScriptInterface.h"
 
 /**
- * Client Area is a rectangle relative to a parent rectangle
- *
- * You can input the whole value of the Client Area by
- * string. Like used in the GUI.
+ * This class represents a rectangle relative to a parent rectangle
+ * The value can be initialized from a string or JS object.
  */
-class CClientArea
+class CGUISize
 {
 public:
 	// COPYABLE, since there are only primitives involved, making move and copy identical,
 	// and since some temporaries cannot be avoided.
-	CClientArea();
-	CClientArea(const CStr& Value);
-	CClientArea(const CRect& pixel, const CRect& percent);
+	CGUISize();
+	CGUISize(const CRect& pixel, const CRect& percent);
+
+	static CGUISize Full();
 
 	/// Pixel modifiers
 	CRect pixel;
@@ -47,10 +46,10 @@ public:
 	/**
 	 * Get client area rectangle when the parent is given
 	 */
-	CRect GetClientArea(const CRect& parent) const;
+	CRect GetSize(const CRect& parent) const;
 
 	/**
-	 * The ClientArea can be set from a string looking like:
+	 * The value can be set from a string looking like:
 	 *
 	 * "0 0 100% 100%"
 	 * "50%-10 50%-10 50%+10 50%+10"
@@ -60,12 +59,11 @@ public:
 	 * though that the percent modifier must always be the first when
 	 * both modifiers are inputted.
 	 *
-	 * @return true if success, false if failure. If false then the client area
-	 *			will be unchanged.
+	 * @return true if success, otherwise size will remain unchanged.
 	 */
-	bool SetClientArea(const CStr& Value);
+	bool FromString(const CStr& Value);
 
-	bool operator==(const CClientArea& other) const
+	bool operator==(const CGUISize& other) const
 	{
 		return pixel == other.pixel && percent == other.percent;
 	}
@@ -82,4 +80,4 @@ ERROR_TYPE(GUI, OperationNeedsGUIObject);
 ERROR_TYPE(GUI, NameAmbiguity);
 ERROR_TYPE(GUI, ObjectNeedsName);
 
-#endif // INCLUDED_GUIBASE
+#endif // INCLUDED_CGUISIZE

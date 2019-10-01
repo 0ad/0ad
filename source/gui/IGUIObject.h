@@ -25,7 +25,7 @@
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
 
-#include "gui/GUIbase.h"
+#include "gui/CGUISize.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/SGUIMessage.h"
 #include "lib/input.h" // just for IN_PASS
@@ -522,7 +522,7 @@ protected:
 	// Cache references to settings for performance
 	bool m_Enabled;
 	bool m_Hidden;
-	CClientArea m_Size;
+	CGUISize m_Size;
 	CStr m_Style;
 	CStr m_Hotkey;
 	float m_Z;

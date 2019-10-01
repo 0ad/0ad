@@ -39,7 +39,7 @@ TYPE(CPos)
 #ifndef GUITYPE_IGNORE_NONCOPYABLE
 #include "gui/CGUIList.h"
 #include "gui/CGUISeries.h"
-TYPE(CClientArea)
+TYPE(CGUISize)
 TYPE(CGUIColor)
 TYPE(CGUIList)
 TYPE(CGUISeries)
