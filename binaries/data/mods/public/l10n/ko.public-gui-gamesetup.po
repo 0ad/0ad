@@ -3,12 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # 이정희 <daemul72@gmail.com>, 2019
+# Dalrae Jin <lovely.serotonin@gmail.com>, 2014
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# Hong Won Gi <timmy0807@naver.com>, 2016
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
+# jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019
@@ -18,12 +22,13 @@
 # Taejin Kim <manowar72@gmail.com>, 2015
 # Valtiel <shinhs6291@naver.com>, 2014
 # VictoriaKim <sis2468@hotmail.co.kr>, 2014
+# YongNam Kim <darkgem11@gmail.com>, 2016
 # zen kiss <gxaryu456@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-21 13:51+0000\n"
+"PO-Revision-Date: 2019-09-28 09:13+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -106,12 +111,12 @@ msgstr "%(username)s 님이 나갔습니다"
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s 님이 쫓겨"
+msgstr "%(username)s 님이 쫓겨났습니다(킥)"
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s 님이 추방당함"
+msgstr "%(username)s 님이 접근금지 당했습니다(밴)"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -720,7 +725,7 @@ msgstr "치트를 사용하였습니다."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):161
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "대화창에서 함께 놀기 앞마당을 표시합니다."
+msgstr "함께 놀기 앞마당을 대화창으로 표시합니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"

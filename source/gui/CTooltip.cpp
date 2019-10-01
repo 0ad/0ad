@@ -27,7 +27,7 @@
 
 CTooltip::CTooltip(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  IGUITextOwner(pGUI),
+	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
 	  m_BufferZone(),
 	  m_Caption(),
 	  m_Font(),
@@ -133,8 +133,15 @@ void CTooltip::SetupText()
 	SetSetting<CClientArea>("size", size, true);
 }
 
+void CTooltip::UpdateCachedSize()
+{
+	IGUIObject::UpdateCachedSize();
+	IGUITextOwner::UpdateCachedSize();
+}
+
 void CTooltip::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
 	IGUITextOwner::HandleMessage(Message);
 }
 

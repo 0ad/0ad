@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-23 07:08+0000\n"
-"PO-Revision-Date: 2019-08-23 14:16+0000\n"
+"POT-Creation-Date: 2019-09-27 07:08+0000\n"
+"PO-Revision-Date: 2019-09-27 15:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -134,12 +134,12 @@ msgid "Confirmation"
 msgstr "Patvirtinimas"
 
 #: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
-#: gui/session/session.js:908 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:909 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ne"
 
 #: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
-#: gui/session/session.js:908 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:909 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Taip"
 
@@ -172,96 +172,96 @@ msgstr "Sunaikinti viską kas pažymėta?"
 msgid "Delete"
 msgstr "Trinti"
 
-#: gui/session/menu.js:343
+#: gui/session/menu.js:349
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/session/menu.js:420
+#: gui/session/menu.js:426
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
 msgstr "Likęs paliaubų laikas: %(time)s"
 
-#: gui/session/menu.js:447
+#: gui/session/menu.js:453
 msgctxt "team"
 msgid "None"
 msgstr "Nieko"
 
-#: gui/session/menu.js:452 gui/session/messages.js:175
+#: gui/session/menu.js:458 gui/session/messages.js:175
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Sąjungininkas"
 
-#: gui/session/menu.js:453 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:459 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Neutralus"
 
-#: gui/session/menu.js:453 gui/session/messages.js:176
+#: gui/session/menu.js:459 gui/session/messages.js:176
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Priešas"
 
-#: gui/session/menu.js:466
+#: gui/session/menu.js:472
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:543
+#: gui/session/menu.js:549
 msgid "Request your allies to attack this enemy"
 msgstr "Paprašyti sąjungininkų pulti šį priešininką"
 
-#: gui/session/menu.js:560
+#: gui/session/menu.js:566
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
 msgstr "Papirkti atsitiktinį šio žaidėjo vienetą ir ribotą laiką dalytis jo matomu vaizdu."
 
-#: gui/session/menu.js:592
+#: gui/session/menu.js:598
 msgid "A failed bribe will cost you:"
 msgstr "Nesėkmingas bandymas papirkti jums kainuos:"
 
-#: gui/session/menu.js:773
+#: gui/session/menu.js:792
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Pirkti %(resource)s"
 
-#: gui/session/menu.js:774
+#: gui/session/menu.js:793
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Parduoti %(resource)s"
 
-#: gui/session/menu.js:875
+#: gui/session/menu.js:896
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, ir %(garrisonedString)s."
 
-#: gui/session/menu.js:876
+#: gui/session/menu.js:897
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, ir %(inactiveString)s."
 
-#: gui/session/menu.js:879 gui/session/menu.js:952
+#: gui/session/menu.js:900 gui/session/menu.js:973
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:880 gui/session/menu.js:951
+#: gui/session/menu.js:901 gui/session/menu.js:972
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, ir %(inactiveString)s."
 
-#: gui/session/menu.js:885
+#: gui/session/menu.js:906
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:886
+#: gui/session/menu.js:907
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, ir %(inactiveString)s."
 
-#: gui/session/menu.js:889 gui/session/menu.js:955
+#: gui/session/menu.js:910 gui/session/menu.js:976
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
@@ -270,11 +270,11 @@ msgstr[1] "Yra %(inactiveString)s."
 msgstr[2] "Yra %(inactiveString)s."
 msgstr[3] "Yra %(inactiveString)s."
 
-#: gui/session/menu.js:890
+#: gui/session/menu.js:911
 msgid "There are no land traders."
 msgstr "Nėra sausumos pirklių."
 
-#: gui/session/menu.js:898
+#: gui/session/menu.js:919
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
@@ -283,7 +283,7 @@ msgstr[1] "Prekiaujantys pirkliai: %(numberTrading)s"
 msgstr[2] "Prekiaujantys pirkliai: %(numberTrading)s"
 msgstr[3] "Prekiaujantys pirkliai:%(numberTrading)s"
 
-#: gui/session/menu.js:908
+#: gui/session/menu.js:929
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
@@ -292,7 +292,7 @@ msgstr[1] "%(numberOfLandTraders)s nieko neveikia"
 msgstr[2] "%(numberOfLandTraders)s nieko neveikia"
 msgstr[3] "%(numberOfLandTraders)s nieko neveikia"
 
-#: gui/session/menu.js:913
+#: gui/session/menu.js:934
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
@@ -301,7 +301,7 @@ msgstr[1] "Nieko neveikiantys sausumos pirkliai: %(numberOfLandTraders)s"
 msgstr[2] "Nieko neveikiantys sausumos pirkliai: %(numberOfLandTraders)s"
 msgstr[3] "Nieko neveikiantys sausumos pirkliai: %(numberOfLandTraders)s"
 
-#: gui/session/menu.js:923
+#: gui/session/menu.js:944
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
@@ -310,7 +310,7 @@ msgstr[1] "Įlaipintų prekybiniame laive: %(numberGarrisoned)s"
 msgstr[2] "Įlaipintų prekybiniame laive: %(numberGarrisoned)s"
 msgstr[3] "Įlaipintų prekybiniame laive: %(numberGarrisoned)s"
 
-#: gui/session/menu.js:928
+#: gui/session/menu.js:949
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -323,11 +323,11 @@ msgstr[1] "Prekybiniame laive įlaipintų sausumos pirklių: %(numberGarrisoned)
 msgstr[2] "Prekybiniame laive įlaipintų sausumos pirklių: %(numberGarrisoned)s"
 msgstr[3] "Prekybiniame laive įlaipintų sausumos pirklių: %(numberGarrisoned)s"
 
-#: gui/session/menu.js:956
+#: gui/session/menu.js:977
 msgid "There are no merchant ships."
 msgstr "Nėra prekybinių laivų."
 
-#: gui/session/menu.js:963
+#: gui/session/menu.js:984
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
@@ -336,7 +336,7 @@ msgstr[1] "Prekiaujančių prekybinių laivų: %(numberTrading)s"
 msgstr[2] "Prekiaujančių prekybinių laivų: %(numberTrading)s"
 msgstr[3] "Prekiaujančių prekybinių laivų: %(numberTrading)s"
 
-#: gui/session/menu.js:973
+#: gui/session/menu.js:994
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
@@ -345,7 +345,7 @@ msgstr[1] "%(numberOfShipTraders)s nieko neveikia"
 msgstr[2] "%(numberOfShipTraders)s nieko neveikia"
 msgstr[3] "%(numberOfShipTraders)s nieko neveikia"
 
-#: gui/session/menu.js:978
+#: gui/session/menu.js:999
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
@@ -354,25 +354,25 @@ msgstr[1] "Nieko neveikiančių prekybinių laivų: %(numberOfShipTraders)s"
 msgstr[2] "Nieko neveikiančių prekybinių laivų: %(numberOfShipTraders)s"
 msgstr[3] "Nieko neveikiančių prekybinių laivų: %(numberOfShipTraders)s"
 
-#: gui/session/menu.js:1211
+#: gui/session/menu.js:1232
 msgid "Resume"
 msgstr "Tęsti"
 
-#: gui/session/menu.js:1211 gui/session/menu.xml:(caption):87
+#: gui/session/menu.js:1232 gui/session/menu.xml:(caption):86
 msgid "Pause"
 msgstr "Pauzė"
 
-#: gui/session/menu.js:1215
+#: gui/session/menu.js:1236
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "%(players)s padarė pauzę"
 
-#: gui/session/menu.js:1216 gui/session/messages.js:698
+#: gui/session/menu.js:1237 gui/session/messages.js:709
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:1243
+#: gui/session/menu.js:1261
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -505,228 +505,238 @@ msgctxt "chat history filter"
 msgid "Private chat"
 msgstr "Privatus pokalbis"
 
-#: gui/session/messages.js:258
+#: gui/session/messages.js:257
+msgctxt "chat history filter"
+msgid "Game notifications"
+msgstr ""
+
+#: gui/session/messages.js:262
+msgctxt "chat history filter"
+msgid "Network notifications"
+msgstr ""
+
+#: gui/session/messages.js:269
 msgid "You have won!"
 msgstr "Jūs laimėjote!"
 
-#: gui/session/messages.js:259
+#: gui/session/messages.js:270
 msgid "You have been defeated!"
 msgstr "Jūs buvote nugalėtas!"
 
-#: gui/session/messages.js:267
+#: gui/session/messages.js:278
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Jūs tapote %(player)ssąjungininku."
 
-#: gui/session/messages.js:268
+#: gui/session/messages.js:279
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Jūs pradėjote karą su %(player)s."
 
-#: gui/session/messages.js:269
+#: gui/session/messages.js:280
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Jūs tapote neutralus %(player)s atžvilgiu."
 
-#: gui/session/messages.js:272
+#: gui/session/messages.js:283
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)stapo jūsų sąjungininku."
 
-#: gui/session/messages.js:273
+#: gui/session/messages.js:284
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)spradėjo su jumis karą."
 
-#: gui/session/messages.js:274
+#: gui/session/messages.js:285
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)stapo neutralus jūsų atžvilgiu."
 
-#: gui/session/messages.js:277
+#: gui/session/messages.js:288
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)stapo %(player2)ssąjungininku."
 
-#: gui/session/messages.js:278
+#: gui/session/messages.js:289
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)spradėjo karą su %(player2)s."
 
-#: gui/session/messages.js:279
+#: gui/session/messages.js:290
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)stapo neutralus %(player2)s atžvilgiu."
 
-#: gui/session/messages.js:587
+#: gui/session/messages.js:598
 msgid "Click to quit this tutorial."
 msgstr "Paspauskite norėdami išeiti iš šios pamokos."
 
-#: gui/session/messages.js:588
+#: gui/session/messages.js:599
 msgid "Quit"
 msgstr "Išeiti"
 
-#: gui/session/messages.js:592
+#: gui/session/messages.js:603
 msgid "Click when ready."
 msgstr "Paspauskite kai būsite pasiruošę."
 
-#: gui/session/messages.js:596
+#: gui/session/messages.js:607
 msgid "Follow the instructions."
 msgstr "Sekite nurodymus."
 
-#: gui/session/messages.js:687
+#: gui/session/messages.js:698
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:693 gui/session/messages.js:733
+#: gui/session/messages.js:704 gui/session/messages.js:744
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr "Sinchronizacijos klaida %(turn)s-ame ėjime."
 
-#: gui/session/messages.js:697
+#: gui/session/messages.js:708
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
 msgstr "Žaidėjai: %(players)s"
 
-#: gui/session/messages.js:702
+#: gui/session/messages.js:713
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
 msgstr "Jūsų žaidimo būsena sutampa su šeimininko žaidimo būsena."
 
-#: gui/session/messages.js:703
+#: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
 msgstr "Jūsų žaidimo būsena skiriasi nuo šeimininko žaidimo būsenos."
 
-#: gui/session/messages.js:709
+#: gui/session/messages.js:720
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr "Pakartotinis prisijungimas prie daugelio žaidėjų žaidimo režimo su DI kol kas nepalaikomas!"
 
-#: gui/session/messages.js:712
+#: gui/session/messages.js:723
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
 msgstr "Užtikrinkite, kad visi žaidėjai naudoja tas pačias modifikacijas."
 
-#: gui/session/messages.js:713
+#: gui/session/messages.js:724
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
 msgstr "Padėkite tai ištaisyti paspausdami \"Pranešti apie klaidą\" pagrindiniame meniu."
 
-#: gui/session/messages.js:714
+#: gui/session/messages.js:725
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
 msgstr "Pakartojimas įrašytas į %(filepath)s"
 
-#: gui/session/messages.js:717
+#: gui/session/messages.js:728
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr "Dabartinė būsena įrašyta į %(filepath)s"
 
-#: gui/session/messages.js:725 gui/session/messages.js:738
+#: gui/session/messages.js:736 gui/session/messages.js:749
 msgid "Out of Sync"
 msgstr "Nesutampa"
 
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:737
+#: gui/session/messages.js:748
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr "Dabartinė žaidimo būsena skiriasi nuo pradinės žaidimo būsenos."
 
-#: gui/session/messages.js:801
+#: gui/session/messages.js:812
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Visi"
 
-#: gui/session/messages.js:809
+#: gui/session/messages.js:820
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Sąjungininkai"
 
-#: gui/session/messages.js:813
+#: gui/session/messages.js:824
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Priešai"
 
-#: gui/session/messages.js:819
+#: gui/session/messages.js:830
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Stebėtojai"
 
-#: gui/session/messages.js:848 gui/session/selection_details.js:79
+#: gui/session/messages.js:859 gui/session/selection_details.js:79
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[NEPRISIJUNGĘS] %(player)s"
 
-#: gui/session/messages.js:929
+#: gui/session/messages.js:940
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:930
+#: gui/session/messages.js:941
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:985
+#: gui/session/messages.js:996
 msgid "Unknown Player"
 msgstr "Nežinomas žaidėjas"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:1010
+#: gui/session/messages.js:1021
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:1042
+#: gui/session/messages.js:1053
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)sjums atsiuntė %(amounts)s."
 
-#: gui/session/messages.js:1044
+#: gui/session/messages.js:1055
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Jūs %(player2)s nusiuntėte %(amounts)s."
 
-#: gui/session/messages.js:1049
+#: gui/session/messages.js:1060
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)snusiuntė %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:1069
+#: gui/session/messages.js:1080
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s išmainė %(amountsSold)s į %(amountsBought)s."
 
-#: gui/session/messages.js:1082
+#: gui/session/messages.js:1093
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "%(attacker)s užpuolė jūsų gyvulius!"
 
-#: gui/session/messages.js:1083
+#: gui/session/messages.js:1094
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Jus užpuolė %(attacker)s!"
 
-#: gui/session/messages.js:1100
+#: gui/session/messages.js:1111
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s žengia į %(phaseName)s."
 
-#: gui/session/messages.js:1102
+#: gui/session/messages.js:1113
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "%(player)s perėjimas į %(phaseName)s nutrauktas."
 
-#: gui/session/messages.js:1105
+#: gui/session/messages.js:1116
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s peržengė į %(phaseName)s."
 
-#: gui/session/messages.js:1157
+#: gui/session/messages.js:1168
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -741,107 +751,107 @@ msgstr "%(genericName)s — supakuotas"
 msgid "%(rank)s Rank"
 msgstr "%(rank)s rangas"
 
-#: gui/session/selection_details.js:114
+#: gui/session/selection_details.js:134
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:153
+#: gui/session/selection_details.js:173
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:193
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:174 gui/session/selection_details.js:180
+#: gui/session/selection_details.js:194 gui/session/selection_details.js:200
 msgid "Experience:"
 msgstr "Patirtis:"
 
-#: gui/session/selection_details.js:179
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:189
+#: gui/session/selection_details.js:209
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:190 gui/session/selection_details.js:220
-#: gui/session/selection_details.js:248
+#: gui/session/selection_details.js:210 gui/session/selection_details.js:240
+#: gui/session/selection_details.js:268
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:202
+#: gui/session/selection_details.js:222
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:233 gui/session/unit_actions.js:562
+#: gui/session/selection_details.js:253 gui/session/unit_actions.js:562
 #: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
 #: gui/session/unit_actions.js:907
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Padidėjimas: %(gain)s"
 
-#: gui/session/selection_details.js:243 gui/session/selection_details.js:259
-#: gui/session/selection_panels.js:596 gui/session/session.js:1302
+#: gui/session/selection_details.js:263 gui/session/selection_details.js:279
+#: gui/session/selection_panels.js:596 gui/session/session.js:1303
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
 
-#: gui/session/selection_details.js:252
+#: gui/session/selection_details.js:272
 msgid "Current/max gatherers"
 msgstr "Dabartinis / maksimalus rankiotojų skaičius"
 
-#: gui/session/selection_details.js:271
+#: gui/session/selection_details.js:291
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:402
+#: gui/session/selection_details.js:422
 msgid "Capture Points:"
 msgstr "Užgrobimo taškai:"
 
-#: gui/session/selection_details.js:410
+#: gui/session/selection_details.js:430
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:411
+#: gui/session/selection_details.js:431
 msgid "Carrying:"
 msgstr "Neša:"
 
-#: gui/session/selection_details.js:414 gui/session/selection_details.js:423
+#: gui/session/selection_details.js:434 gui/session/selection_details.js:443
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:419
+#: gui/session/selection_details.js:439
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:420
+#: gui/session/selection_details.js:440
 msgid "Loot:"
 msgstr "Grobis:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:481
+#: gui/session/selection_details.js:501
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:505
+#: gui/session/selection_details.js:525
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:512
+#: gui/session/selection_details.js:532
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1100,86 +1110,86 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Rodyti istoriją / statinių medį\nPaspaudus bus atvertas paskiausias."
 
-#: gui/session/session.js:900
+#: gui/session/session.js:901
 msgid "Do you want to quit?"
 msgstr "Ar norite išeiti?"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:907
 msgid "VICTORIOUS!"
 msgstr "PERGALĖ!"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:908
 msgid "DEFEATED!"
 msgstr "PRALAIMĖJIMAS!"
 
-#: gui/session/session.js:908
+#: gui/session/session.js:909
 msgid "OK"
 msgstr "Gerai"
 
-#: gui/session/session.js:986
+#: gui/session/session.js:987
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Pakartojimas baigtas. Ar norite išeiti?"
 
-#: gui/session/session.js:987
+#: gui/session/session.js:988
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Patvirtinimas"
 
-#: gui/session/session.js:988
+#: gui/session/session.js:989
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ne"
 
-#: gui/session/session.js:988
+#: gui/session/session.js:989
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Taip"
 
-#: gui/session/session.js:1183
+#: gui/session/session.js:1184
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1190
+#: gui/session/session.js:1191
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1213
+#: gui/session/session.js:1214
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: spauskite %(hotkey)s norėdami pakeisti įsakymą."
 
-#: gui/session/session.js:1215
+#: gui/session/session.js:1216
 msgid "Unordered"
 msgstr "Nerūšiuotas"
 
-#: gui/session/session.js:1215
+#: gui/session/session.js:1216
 msgid "Descending"
 msgstr "Mažėjantis"
 
-#: gui/session/session.js:1215
+#: gui/session/session.js:1216
 msgid "Ascending"
 msgstr "Didėjantis"
 
-#: gui/session/session.js:1241
+#: gui/session/session.js:1242
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1242
+#: gui/session/session.js:1243
 msgid "Population (current / limit)"
 msgstr "Populiacija (dabartinė/maksimali)"
 
-#: gui/session/session.js:1243
+#: gui/session/session.js:1244
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksimali populiacija: %(popCap)s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1451
+#: gui/session/session.js:1452
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1367,52 +1377,52 @@ msgid "Tribute"
 msgstr "Duoklė"
 
 #: gui/session/diplomacy_window.xml:(caption):90
-#: gui/session/objectives_window.xml:(caption):44
+#: gui/session/objectives_window.xml:(caption):43
 #: gui/session/trade_window.xml:(caption):108
 msgid "Close"
 msgstr "Uždaryti"
 
-#: gui/session/menu.xml:(caption):17
+#: gui/session/menu.xml:(caption):16
 msgid "Manual"
 msgstr "Instrukcija"
 
-#: gui/session/menu.xml:(caption):28
+#: gui/session/menu.xml:(caption):27
 msgid "Chat"
 msgstr "Pokalbis"
 
-#: gui/session/menu.xml:(caption):39
+#: gui/session/menu.xml:(caption):38
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: gui/session/menu.xml:(caption):52
+#: gui/session/menu.xml:(caption):51
 msgid "Summary"
 msgstr "Suvestinė"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Lobby"
 msgstr "Žaidimo prieangis"
 
-#: gui/session/menu.xml:(caption):76
+#: gui/session/menu.xml:(caption):75
 msgid "Options"
 msgstr "Nustatymai"
 
-#: gui/session/menu.xml:(caption):98
+#: gui/session/menu.xml:(caption):97
 msgid "Resign"
 msgstr "Atsistatydinti"
 
-#: gui/session/menu.xml:(caption):109 gui/session/session.xml:(caption):56
+#: gui/session/menu.xml:(caption):108 gui/session/session.xml:(caption):59
 msgid "Exit"
 msgstr "Išeiti"
 
-#: gui/session/menu.xml:(tooltip):65
+#: gui/session/menu.xml:(tooltip):64
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Rodyti žaidimo prieangį dialogo lange."
 
-#: gui/session/session.xml:(caption):66
+#: gui/session/session.xml:(caption):69
 msgid "Game Paused"
 msgstr "Žaidimas pristabdytas"
 
-#: gui/session/session.xml:(caption):69
+#: gui/session/session.xml:(caption):72
 msgid "Click to Resume Game"
 msgstr "Spustelėkite norėdami pratęsti žaidimą"
 

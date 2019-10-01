@@ -20,13 +20,12 @@
 #include "CRadioButton.h"
 
 CRadioButton::CRadioButton(CGUI& pGUI)
-	: CCheckBox(pGUI), IGUIObject(pGUI)
+	: CCheckBox(pGUI)
 {
 }
 
 void CRadioButton::HandleMessage(SGUIMessage& Message)
 {
-	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
 
 	switch (Message.type)

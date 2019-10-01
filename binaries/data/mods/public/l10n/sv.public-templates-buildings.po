@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-09-26 12:03+0000\n"
-"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-29 14:50+0000\n"
+"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,6 +144,7 @@ msgstr "Bygg i neutrala och egna territorier för att utforska områden. Konvert
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Utpost"
 
@@ -201,6 +202,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr "Långa murdelar kan göras om till portar."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Detta gör att du kan låta enheter passera dina murar."
@@ -325,10 +327,12 @@ msgid "Fortress"
 msgstr "Fästning"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr "Utbilda hjältar, mästare och forska fram teknologier. Garnisonera soldater för ytterligare pilar."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -365,7 +369,7 @@ msgstr "Belägrings Verkstad"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr ""
+msgstr "Konstruera belägringsvapen och forska fram belägringsvapenteknik."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -492,10 +496,8 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
+msgid "Garrison Soldiers for additional arrows."
+msgstr "Garnisonera soldater för ytterligare pilar."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -765,7 +767,7 @@ msgstr "Skjuter inte, kan inte ha någon garnison."
 
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
-msgstr ""
+msgstr "Uffington vit häst"
 
 #: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
@@ -965,11 +967,11 @@ msgstr "Taberna"
 msgid "Recruit Naked Fanatics."
 msgstr "Rekrytera nakna fanatiker."
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr "Prinsförsamling"
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr "Remogantion"
 
@@ -1247,13 +1249,6 @@ msgstr "Sidērourgeîon"
 msgid "Teíchisma"
 msgstr "Teíchisma"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1382,6 +1377,56 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Överta denna byggnad för att träna legosoldater från Hellenistiska Egypten."
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "Palissad Kurva"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "Palissad Slut"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "Palissad Fästning"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "Trätorn"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "Palissad Port"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr "Gör det möjligt för enheter att passera en palissadvägg. Kan låsas för att neka åtkomst."
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Palissad"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "Vinkelspets"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "Små Taggar"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "Stora Taggar"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "Vakttorn"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr "Tronsal"
@@ -1406,7 +1451,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-soldier infantry."
-msgstr ""
+msgstr "Uppbåda medborgarsoldatinfanteri."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1444,9 +1489,9 @@ msgstr "Didā"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
-msgstr ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "Utbilda mästare och forska fram teknologier. Garnisonera soldater för ytterligare pilar."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1673,7 +1718,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Bygga i neutral eller fiendeterritorium. Utbilda medborgarsoldater och konstruera belägringsvapen. Garnisonera soldater för ytterligare pilar."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1701,7 +1746,7 @@ msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:8
 msgid "Vīlla"
-msgstr ""
+msgstr "Vīlla"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1915,7 +1960,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Ge ära till din civilisation och lägg till stora ytor till ditt imperium. Garnisonera enheter för att läka dem snabbt."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "Palissad"

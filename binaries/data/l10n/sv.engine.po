@@ -5,6 +5,7 @@
 # Translators:
 # Anders Persson <anders@utophia.se>, 2014
 # Erik Johansson <erik@feneur.com>, 2014,2016
+# Hans Kunkell <hanzukun@gmail.com>, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-26 12:10+0000\n"
-"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
+"PO-Revision-Date: 2019-09-27 12:26+0000\n"
+"Last-Translator: Hans Kunkell <hanzukun@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr "Okänd subtyp (se loggar)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Certifikatet är ej betrott."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
@@ -41,7 +42,7 @@ msgstr "Certifikatet har ingen känd ägare."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Certifikatet har återkallats."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
@@ -53,7 +54,7 @@ msgstr "Certifikatet är inte aktiverat än."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Certifikatet har inte utfärdats för denna nod."
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."

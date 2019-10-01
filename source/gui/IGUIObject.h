@@ -130,6 +130,16 @@ public:
 	//@{
 
 	/**
+	 * Registers the given setting variables with the GUI object.
+	 * Enable XML and JS to modify the given variable.
+	 *
+	 * @param Type Setting type
+	 * @param Name Setting reference name
+	 */
+	template<typename T>
+	void RegisterSetting(const CStr& Name, T& Value);
+
+	/**
 	 * Returns whether there is a setting with the given name registered.
 	 *
 	 * @param Setting setting name
@@ -172,6 +182,11 @@ public:
 	void SetSetting(const CStr& Setting, const T& Value, const bool SendMessage);
 
 	/**
+	 * Returns whether this object is set to be hidden or ghost.
+	 */
+	bool IsEnabled() const;
+
+	/**
 	 * Returns whether this is object is set to be hidden.
 	 */
 	bool IsHidden() const;
@@ -180,6 +195,20 @@ public:
 	 * Returns whether this object is set to be hidden or ghost.
 	 */
 	bool IsHiddenOrGhost() const;
+
+	/**
+	 * Retrieves the configured sound filename from the given setting name and plays that once.
+	 */
+	void PlaySound(const CStrW& soundPath) const;
+
+	/**
+	 * Send event to this GUI object (HandleMessage and ScriptEvent)
+	 *
+	 * @param type Type of GUI message to be handled
+	 * @param EventName String representation of event name
+	 * @return IN_HANDLED if event was handled, or IN_PASS if skipped
+	 */
+	InReaction SendEvent(EGUIMessageType type, const CStr& EventName);
 
 	/**
 	 * All sizes are relative to resolution, and the calculation
@@ -203,10 +232,9 @@ public:
 	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI& pGUI);
 
 	/**
-	 * Creates the JS Object representing this page upon first use.
-	 * Can be overridden by derived classes to extend it.
+	 * Inheriting classes may append JS functions to the JS object representing this class.
 	 */
-	virtual void CreateJSObject();
+	virtual void RegisterScriptFunctions() {}
 
 	/**
 	 * Retrieves the JSObject representing this GUI object.
@@ -226,16 +254,6 @@ protected:
 	 */
 	//--------------------------------------------------------
 	//@{
-
-	/**
-	 * Registers the given setting variables with the GUI object.
-	 * Enable XML and JS to modify the given variable.
-	 *
-	 * @param Type Setting type
-	 * @param Name Setting reference name
-	 */
-	template<typename T>
-	void RegisterSetting(const CStr& Name, T& Value);
 
 public:
 	/**
@@ -318,11 +336,6 @@ public:
 	 */
 	void SetFocus();
 
-	/**
-	 * Workaround to avoid a dynamic_cast which can be 80 times slower than this.
-	 */
-	virtual void* GetTextOwner() { return nullptr; }
-
 protected:
 	/**
 	 * Check if object is focused.
@@ -367,15 +380,6 @@ protected:
 	CRect m_CachedActualSize;
 
 	/**
-	 * Send event to this GUI object (HandleMessage and ScriptEvent)
-	 *
-	 * @param type Type of GUI message to be handled
-	 * @param EventName String representation of event name
-	 * @return IN_HANDLED if event was handled, or IN_PASS if skipped
-	 */
-	InReaction SendEvent(EGUIMessageType type, const CStr& EventName);
-
-	/**
 	 * Execute the script for a particular action.
 	 * Does nothing if no script has been registered for that action.
 	 * The mouse coordinates will be passed as the first argument.
@@ -404,17 +408,17 @@ protected:
 	 */
 	void UpdateMouseOver(IGUIObject* const& pMouseOver);
 
-	/**
-	 * Retrieves the configured sound filename from the given setting name and plays that once.
-	 */
-	void PlaySound(const CStrW& soundPath) const;
-
 	//@}
 private:
 	//--------------------------------------------------------
 	/** @name Internal functions */
 	//--------------------------------------------------------
 	//@{
+
+	/**
+	 * Creates the JS object representing this page upon first use.
+	 */
+	void CreateJSObject();
 
 	/**
 	 * Updates some internal data depending on the setting changed.

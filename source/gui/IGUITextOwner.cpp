@@ -21,25 +21,17 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIString.h"
-#include "gui/scripting/JSInterface_IGUITextOwner.h"
 
 #include <math.h>
 
-IGUITextOwner::IGUITextOwner(CGUI& pGUI)
-	: IGUIObject(pGUI), m_GeneratedTextsValid(false)
+IGUITextOwner::IGUITextOwner(IGUIObject& pObject)
+	: m_pObject(pObject),
+	  m_GeneratedTextsValid()
 {
 }
 
 IGUITextOwner::~IGUITextOwner()
 {
-}
-
-void IGUITextOwner::CreateJSObject()
-{
-	IGUIObject::CreateJSObject();
-
-	JSI_IGUITextOwner::RegisterScriptFunctions(
-		m_pGUI.GetScriptInterface()->GetContext(), m_JSObject);
 }
 
 CGUIText& IGUITextOwner::AddText()
@@ -51,7 +43,7 @@ CGUIText& IGUITextOwner::AddText()
 CGUIText& IGUITextOwner::AddText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone)
 {
 	// Avoids a move constructor
-	m_GeneratedTexts.emplace_back(m_pGUI, Text, Font, Width, BufferZone, this);
+	m_GeneratedTexts.emplace_back(m_pObject.GetGUI(), Text, Font, Width, BufferZone, &m_pObject);
 	return m_GeneratedTexts.back();
 }
 
@@ -82,24 +74,26 @@ void IGUITextOwner::HandleMessage(SGUIMessage& Message)
 
 void IGUITextOwner::UpdateCachedSize()
 {
-	// If an ancestor's size changed, this will let us intercept the change and
 	// update our text positions
-
-	IGUIObject::UpdateCachedSize();
 	m_GeneratedTextsValid = false;
 }
 
-void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping)
+void IGUITextOwner::UpdateText()
 {
 	if (!m_GeneratedTextsValid)
 	{
 		SetupText();
 		m_GeneratedTextsValid = true;
 	}
+}
+
+void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping)
+{
+	UpdateText();
 
 	ENSURE(index < m_GeneratedTexts.size() && "Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
 
-	m_GeneratedTexts.at(index).Draw(m_pGUI, color, pos, z, clipping);
+	m_GeneratedTexts.at(index).Draw(m_pObject.GetGUI(), color, pos, z, clipping);
 }
 
 void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUIText& Text)
@@ -108,7 +102,7 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUITex
 	// loop through all of the TextCall objects again.
 	TextPos.x = ObjSize.left;
 
-	switch (GetSetting<EVAlign>("text_valign"))
+	switch (m_pObject.GetSetting<EVAlign>("text_valign"))
 	{
 	case EVAlign_Top:
 		TextPos.y = ObjSize.top;
@@ -124,21 +118,6 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUITex
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");
 		break;
 	}
-}
-
-CSize IGUITextOwner::CalculateTextSize()
-{
-	if (!m_GeneratedTextsValid)
-	{
-		SetupText();
-		m_GeneratedTextsValid = true;
-	}
-
-	if (m_GeneratedTexts.empty())
-		return CSize();
-
-	// GUI Object types that use multiple texts may override this function.
-	return m_GeneratedTexts[0].GetSize();
 }
 
 bool IGUITextOwner::MouseOverIcon()

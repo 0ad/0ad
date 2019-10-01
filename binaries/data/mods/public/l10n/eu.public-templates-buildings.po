@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 15:38+0000\n"
-"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-27 16:10+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,6 +134,7 @@ msgstr "Lur neutral eta zureetan eraiki maparen inguruak aztertzeko. Lur neutral
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Aurreralekua"
 
@@ -191,6 +192,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr "Horma segmentu luzeak atetan bihurtu daitezke"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Unitateei gotorlekuetan zehar mugitzea ahalbidetzen die."
@@ -315,9 +317,11 @@ msgid "Fortress"
 msgstr "Gotorlekua"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
 msgstr ""
 
 #: simulation/templates/template_structure_military_kennel.xml:38
@@ -482,9 +486,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
+msgid "Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
@@ -955,11 +957,11 @@ msgstr "Taberna"
 msgid "Recruit Naked Fanatics."
 msgstr "Erreklutatu Sutsu Biluziak"
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr "Printzeen asanblada"
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr "Remogantion"
 
@@ -1237,13 +1239,6 @@ msgstr "Sidērourgeîon"
 msgid "Teíchisma"
 msgstr "Teíchisma"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1372,6 +1367,56 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Atzitu egitura hau Egipto heleniarren mertzenarioak erreklutatzeko"
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "Hesi kurba"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "Hesi bukaera"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "Hesi fortea"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "Zurezko Dorretxea"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "Hesi atea"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr "Unitateei hiriko hesi baten zehar sartzen uzten die. Itxi egin daiteke sarrera eragozteko."
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Hesia"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "Angelua duen ziria"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "Ziri Txikiak"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "Ziri Garaiak"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "Begirale Dorrea"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr ""
@@ -1434,8 +1479,8 @@ msgstr "Didā"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:29
@@ -1905,7 +1950,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Zure zibilizazioari ospea ekarri eta zure inperioari lur eremu handiak gehitu. Babestu unitateak azkar sendatzeko."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "Hesia"

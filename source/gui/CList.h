@@ -34,7 +34,7 @@
  * A scroll-bar will appear when needed. This will be
  * achieved with the IGUIScrollBarOwner structure.
  */
-class CList : public IGUIScrollBarOwner, public IGUITextOwner
+class CList : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
 	GUI_OBJECT(CList)
 
@@ -45,7 +45,12 @@ public:
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */
-	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
+	virtual void ResetStates();
+
+	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	virtual void UpdateCachedSize();
 
 	/**
 	 * Adds an item last to the list.
@@ -53,6 +58,7 @@ public:
 	virtual void AddItem(const CStrW& str, const CStrW& data);
 
 protected:
+
 	/**
 	 * Sets up text, should be called every time changes has been
 	 * made that can change the visual.

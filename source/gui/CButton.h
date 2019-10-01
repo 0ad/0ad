@@ -24,7 +24,7 @@
 #include "gui/CGUISprite.h"
 #include "gui/CGUIString.h"
 
-class CButton : public IGUIButtonBehavior, public IGUITextOwner
+class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavior
 {
 	GUI_OBJECT(CButton)
 
@@ -35,7 +35,12 @@ public:
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */
-	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
+	virtual void ResetStates();
+
+	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	virtual void UpdateCachedSize();
 
 	/**
 	 * @see IGUIObject#HandleMessage()

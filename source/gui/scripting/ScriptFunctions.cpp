@@ -20,9 +20,9 @@
 #include "ScriptFunctions.h"
 
 #include "graphics/scripting/JSInterface_GameView.h"
-#include "gui/IGUIObject.h"
 #include "gui/scripting/JSInterface_GUIManager.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
+#include "gui/scripting/JSInterface_GUISize.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
 #include "i18n/scripting/JSInterface_L10n.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
 #include "network/scripting/JSInterface_Network.h"
@@ -50,8 +50,8 @@
  */
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
-	JSI_IGUIObject::init(scriptInterface);
-	JSI_GUITypes::init(scriptInterface);
+	JSI_GUISize::RegisterScriptClass(scriptInterface);
+	JSI_IGUIObject::RegisterScriptClass(scriptInterface);
 
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);

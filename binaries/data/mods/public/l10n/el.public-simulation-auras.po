@@ -9,6 +9,7 @@
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2019
 # Natalia V <inactive+irida@transifex.com>, 2016
+# Nicko Karamanos <nickogr92@gmail.com>, 2019
 # Steven Gikas <stevengk123@gmail.com>, 2016-2018
 # Vasilis Drosos <basilisd@gmail.com>, 2016-2019
 # Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>, 2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 17:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-09-29 20:07+0000\n"
+"Last-Translator: Nicko Karamanos <nickogr92@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Ευλογία των Θεών"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr ""
+msgstr "Αύξηση ρυθμού ανάκτησης υγείας +3 για τους ανθρώπους"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -57,7 +58,7 @@ msgstr "Φιλοπατρία"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "+15% αύξηση ταχύτητας συγκομιδής για τους εργάτες"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -73,7 +74,7 @@ msgstr "Μεροϊτικές Πυραμίδες"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "Αύξηση της ακτίνας εδαφικής επιρροής του αστικού κέντρου κατά +10% "
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -81,7 +82,7 @@ msgstr "Ισχυρή Ιεροσύνη"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "Μείωση υγέιας -5% για τους ήρωες"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -89,7 +90,7 @@ msgstr "Η Δύναμη της Γνώσης"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr ""
+msgstr "Μείωση κατά 10% στο κόστος των τεχνολογικών πόρων και του χρόνου έρευνας, για τα κτίσματα"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -105,7 +106,7 @@ msgstr "Διάταγμα του Ασόκα"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "Αύξηση ταχύτητας των εμπόρων κατά +20%"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -121,7 +122,7 @@ msgstr "Ιατρική Περίθαλψη"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "+1 αύξηση του ρυθμού ανάκτησης υγείας για τους ανθώπους"
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
@@ -129,11 +130,11 @@ msgstr "Ελληνισμός"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Αύξηση κατά +20% της εδαφικής επιρροής των κτισμάτων"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "Προστασία Τοίχου"
+msgstr "Προστασία Τοίχους"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
@@ -863,7 +864,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr ""
+msgstr "Οι εχθρικοί ήρωες −10% ζωή."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"

@@ -25,7 +25,7 @@
 /**
  * Dynamic tooltips. Similar to CText.
  */
-class CTooltip : public IGUITextOwner
+class CTooltip : public IGUIObject, public IGUITextOwner
 {
 	GUI_OBJECT(CTooltip)
 
@@ -35,6 +35,11 @@ public:
 
 protected:
 	void SetupText();
+
+	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	void UpdateCachedSize();
 
 	/**
 	 * @see IGUIObject#HandleMessage()

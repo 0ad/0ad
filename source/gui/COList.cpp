@@ -31,7 +31,6 @@ const CPos COLUMN_SHIFT = CPos(0, 4);
 
 COList::COList(CGUI& pGUI)
 	: CList(pGUI),
-	  IGUIObject(pGUI),
 	  m_SpriteHeading(),
 	  m_Sortable(),
 	  m_SelectedColumn(),

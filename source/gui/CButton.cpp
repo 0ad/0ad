@@ -25,8 +25,8 @@
 
 CButton::CButton(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  IGUIButtonBehavior(pGUI),
-	  IGUITextOwner(pGUI),
+	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
+	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
 	  m_BufferZone(),
 	  m_CellID(),
 	  m_Caption(),
@@ -72,9 +72,21 @@ void CButton::SetupText()
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 }
 
+void CButton::ResetStates()
+{
+	IGUIObject::ResetStates();
+	IGUIButtonBehavior::ResetStates();
+}
+
+void CButton::UpdateCachedSize()
+{
+	IGUIObject::UpdateCachedSize();
+	IGUITextOwner::UpdateCachedSize();
+}
+
 void CButton::HandleMessage(SGUIMessage& Message)
 {
-	// Important
+	IGUIObject::HandleMessage(Message);
 	IGUIButtonBehavior::HandleMessage(Message);
 	IGUITextOwner::HandleMessage(Message);
 }

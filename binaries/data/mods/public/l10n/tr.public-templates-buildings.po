@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-08-30 22:32+0000\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-28 05:04+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -149,6 +149,7 @@ msgstr "Haritanın alanlarını keşfetmek için tarafsız ve kendi bölgelerini
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Karakol"
 
@@ -206,6 +207,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr " Uzun duvar parçaları kapılara dönüştürülebilir."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Bu, birimlerinizin savunma binalarında dolaşmalarına olanak sağlar."
@@ -330,10 +332,12 @@ msgid "Fortress"
 msgstr "Kale"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
-msgstr "Kahraman ve Şampiyonlar eğit, Kuşatma Makineler inşa et ve teknolojiler araştır. Ek oklar için asker konuşlandır."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr "Kahraman ve Şampiyonlar eğit ve teknolojiler araştır. Ek oklar için asker konuşlandır."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -497,10 +501,8 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "Kuşatma Makineleri inşa et ve Kuşatma Makinesi teknolojilerini araştır. Ek oklar için asker konuşlandır."
+msgid "Garrison Soldiers for additional arrows."
+msgstr "Daha fazla ok atmak için asker konuşlandırın."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -970,11 +972,11 @@ msgstr "Taverna"
 msgid "Recruit Naked Fanatics."
 msgstr "Çıplak fanatik eğitin."
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr "Prensler Meclisi"
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr "Remogantion"
 
@@ -1252,13 +1254,6 @@ msgstr "Sidērourgeîon"
 msgid "Teíchisma"
 msgstr "Teíchisma"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "Kahraman ve Şampiyonlar eğit ve teknolojiler araştır. Ek oklar için asker konuşlandır."
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1387,6 +1382,56 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Bu yapıyı ele geçirerek Yunanlaşmış  Mısır'dan paralı asker yetiştirin."
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "Eğri Çit"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "Çit duvar Sonu"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "Çif Hisar"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "Ahşap Kule"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "Çit Geçidi"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr "Birimlerin kazık duvarı içinden geçmelerini sağlar. Geçişi engellemek için kilitlenebilir."
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Çit"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "Köşe başak"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "Küçük Çiviler"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "Uzun Çiviler"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "Gözetleme Kulesi"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr "Taht Salonu"
@@ -1449,9 +1494,9 @@ msgstr "Didā"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
-msgstr "Şampiyonlar eğit, Kuşatma Makineleri inşa et ve teknolojiler araştır. Ek oklar için asker konuşlandır."
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "Şampiyonlar eğit ve teknolojiler araştır. Daha fazla ok atmak için asker konuşlandırın."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1920,7 +1965,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Medeniyetinize zafer kazandırın ve imparatorluğunuza büyük toprak parçalarını ekleyin. Yerleştirilen birimleri hızlı bir oranda iyileştirecekler."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "Çit"

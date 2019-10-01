@@ -61,6 +61,8 @@ void CSlider::IncrementallyChangeValue(const float difference)
 
 void CSlider::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
+
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:

@@ -20,13 +20,8 @@
 #include "JSInterface_IGUIObject.h"
 
 #include "gui/CGUI.h"
-#include "gui/CGUIColor.h"
 #include "gui/CGUISetting.h"
-#include "gui/CList.h"
-#include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
-#include "gui/IGUIScrollBar.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -46,6 +41,11 @@ JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 	JS_FN("getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0),
 	JS_FS_END
 };
+
+void JSI_IGUIObject::RegisterScriptClass(ScriptInterface& scriptInterface)
+{
+	scriptInterface.DefineCustomObjectType(&JSI_class, nullptr, 0, nullptr, JSI_methods, nullptr, nullptr);
+}
 
 bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp)
 {
@@ -172,11 +172,6 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	JS_ReportError(cx, "Property '%s' does not exist!", propName.c_str());
 	return result.fail(JSMSG_UNDEFINED_PROP);
-}
-
-void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
-{
-	scriptInterface.DefineCustomObjectType(&JSI_class, nullptr, 1, nullptr, JSI_methods, nullptr, nullptr);
 }
 
 bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)

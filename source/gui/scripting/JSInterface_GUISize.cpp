@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "JSInterface_GUITypes.h"
+#include "JSInterface_GUISize.h"
 
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -35,6 +35,11 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 	JS_FN("toString", JSI_GUISize::toString, 0, 0),
 	JS_FS_END
 };
+
+void JSI_GUISize::RegisterScriptClass(ScriptInterface& scriptInterface)
+{
+	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class, JSI_GUISize::construct, 0, nullptr, JSI_GUISize::JSI_methods, nullptr, nullptr);
+}
 
 bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
@@ -84,7 +89,7 @@ bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 }
 
 // Produces "10", "-10", "50%", "50%-10", "50%+10", etc
-CStr ToPercentString(double pix, double per)
+CStr JSI_GUISize::ToPercentString(double pix, double per)
 {
 	if (per == 0)
 		return CStr::FromDouble(pix);
@@ -117,9 +122,4 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 
 	ScriptInterface::ToJSVal(cx, args.rval(), buffer);
 	return true;
-}
-
-void JSI_GUITypes::init(ScriptInterface& scriptInterface)
-{
-	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, nullptr,  JSI_GUISize::JSI_methods, nullptr, nullptr);
 }

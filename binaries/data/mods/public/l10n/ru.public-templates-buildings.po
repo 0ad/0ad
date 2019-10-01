@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-08-30 07:09+0000\n"
-"PO-Revision-Date: 2019-09-12 16:11+0000\n"
+"POT-Creation-Date: 2019-09-27 07:09+0000\n"
+"PO-Revision-Date: 2019-09-27 16:10+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -164,6 +164,7 @@ msgstr "Постройте на нейтральной или на собств�
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Застава"
 
@@ -221,6 +222,7 @@ msgid "Long wall segments can be converted to gates."
 msgstr "Длинные участки стен могут быть перестроены в ворота. "
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
+#: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Это позволит Вашим юнитам проходить через Ваши укрепления."
@@ -345,10 +347,12 @@ msgid "Fortress"
 msgstr "Крепость"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/structures/mace_fortress.xml:10
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions, construct Siege Engines, and research "
-"technologies. Garrison Soldiers for additional arrows."
-msgstr "Обучает героев и чемпионов, сооружает осадные орудия и исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
+"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"additional arrows."
+msgstr "Обучает героев и чемпионов, исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -512,10 +516,8 @@ msgstr "Эпитейхизма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Construct Siege Engines and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "Сооружает осадные орудия и исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
+msgid "Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -985,11 +987,11 @@ msgstr "Таберна"
 msgid "Recruit Naked Fanatics."
 msgstr "Добавляет +10 к пределу населения и позволяет нанимать Голых Фанатиков."
 
-#: simulation/templates/structures/gaul_theatron.xml:6
+#: simulation/templates/structures/gaul_theatron.xml:10
 msgid "Assembly of Princes"
 msgstr "Собрание вождей"
 
-#: simulation/templates/structures/gaul_theatron.xml:7
+#: simulation/templates/structures/gaul_theatron.xml:11
 msgid "Remogantion"
 msgstr "Ремогантион"
 
@@ -1267,13 +1269,6 @@ msgstr "Сидерургеон"
 msgid "Teíchisma"
 msgstr "Тейхисма"
 
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
-msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "Обучает героев и чемпионов, исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
@@ -1402,6 +1397,56 @@ msgstr "Стратопедо Мистофорон Аигиптиакос"
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Захватите это строение, чтобы нанимать наёмников из Эллинистического Египта."
 
+#: simulation/templates/structures/palisades_curve.xml:14
+msgid "Palisade Curve"
+msgstr "Кривой частокол"
+
+#: simulation/templates/structures/palisades_end.xml:14
+msgid "Palisade End"
+msgstr "Край частокола"
+
+#: simulation/templates/structures/palisades_fort.xml:9
+msgid "Palisade Fort"
+msgstr "Укрепление из частокола"
+
+#: simulation/templates/structures/palisades_fort.xml:10
+msgid "Wooden Tower"
+msgstr "Деревянная башня"
+
+#: simulation/templates/structures/palisades_gate.xml:21
+msgid "Palisade Gate"
+msgstr "Ворота из частокола"
+
+#: simulation/templates/structures/palisades_gate.xml:23
+msgid ""
+"Allow units access through a palisade wall. Can be locked to prevent access."
+msgstr "Позволяют юнитам проходить через стену. Могут быть заперты для предотвращения доступа."
+
+#: simulation/templates/structures/palisades_long.xml:18
+#: simulation/templates/structures/palisades_medium.xml:18
+#: simulation/templates/structures/palisades_short.xml:18
+#: simulation/templates/structures/palisades_straight.xml:14
+#: simulation/templates/structures/palisades_tower.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:5
+msgid "Palisade"
+msgstr "Частокол"
+
+#: simulation/templates/structures/palisades_spike_angle.xml:17
+msgid "Angle Spike"
+msgstr "Угол частокола"
+
+#: simulation/templates/structures/palisades_spikes_small.xml:17
+msgid "Small Spikes"
+msgstr "Небольшие шипы"
+
+#: simulation/templates/structures/palisades_spikes_tall.xml:17
+msgid "Tall Spikes"
+msgstr "Высокие шипы"
+
+#: simulation/templates/structures/palisades_watchtower.xml:14
+msgid "Watchtower"
+msgstr "Сторожевая башня"
+
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
 msgstr "Тронный зал"
@@ -1464,9 +1509,9 @@ msgstr "Дида"
 #: simulation/templates/structures/ptol_fortress.xml:10
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Train Champions, construct Siege Engines, and research technologies. "
-"Garrison Soldiers for additional arrows."
-msgstr "Обучает чемпионов, сооружает осадные орудия и исследует технологии. Размещайте воинов внутри для усиления оборонительной стрельбы."
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1935,7 +1980,3 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Приносит славу Вашей цивилизации и значительно расширяет территорию Вашей империи. Позволяет разместить гарнизон для ускоренного его лечения."
-
-#: simulation/templates/structures/wallset_palisade.xml:5
-msgid "Palisade"
-msgstr "Частокол"

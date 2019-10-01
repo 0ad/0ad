@@ -40,7 +40,7 @@ extern int g_yres;
 CInput::CInput(CGUI& pGUI)
 	:
 	IGUIObject(pGUI),
-	IGUIScrollBarOwner(pGUI),
+	IGUIScrollBarOwner(*static_cast<IGUIObject*>(this)),
 	m_iBufferPos(-1),
 	m_iBufferPos_Tail(-1),
 	m_SelectingText(),
@@ -842,9 +842,15 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 	return IN_PASS;
 }
 
+void CInput::ResetStates()
+{
+	IGUIObject::ResetStates();
+	IGUIScrollBarOwner::ResetStates();
+}
 
 void CInput::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
 	IGUIScrollBarOwner::HandleMessage(Message);
 
 	switch (Message.type)

@@ -17,12 +17,10 @@
 
 #include "precompiled.h"
 
-#include "gui/IGUIObject.h"
+#include "IGUIObject.h"
 
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
-#include "gui/scripting/JSInterface_IGUIObject.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
@@ -455,6 +453,8 @@ void IGUIObject::CreateJSObject()
 
 	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);
+
+	RegisterScriptFunctions();
 }
 
 JSObject* IGUIObject::GetJSObject()
@@ -465,6 +465,11 @@ JSObject* IGUIObject::GetJSObject()
 		CreateJSObject();
 
 	return m_JSObject.get();
+}
+
+bool IGUIObject::IsEnabled() const
+{
+	return m_Enabled;
 }
 
 bool IGUIObject::IsHidden() const

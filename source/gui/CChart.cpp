@@ -32,7 +32,7 @@
 
 CChart::CChart(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  IGUITextOwner(pGUI),
+	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
 	  m_AxisColor(),
 	  m_AxisWidth(),
 	  m_BufferZone(),
@@ -58,8 +58,17 @@ CChart::~CChart()
 {
 }
 
+void CChart::UpdateCachedSize()
+{
+	IGUIObject::UpdateCachedSize();
+	IGUITextOwner::UpdateCachedSize();
+}
+
 void CChart::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
+	// IGUITextOwner::HandleMessage(Message); performed in UpdateSeries
+
 	// TODO: implement zoom
 	switch (Message.type)
 	{

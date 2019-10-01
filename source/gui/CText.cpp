@@ -22,11 +22,12 @@
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/CGUIText.h"
+#include "scriptinterface/ScriptInterface.h"
 
 CText::CText(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  IGUIScrollBarOwner(pGUI),
-	  IGUITextOwner(pGUI),
+	  IGUIScrollBarOwner(*static_cast<IGUIObject*>(this)),
+	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
 	  m_BufferZone(),
 	  m_Caption(),
 	  m_CellID(),
@@ -121,8 +122,21 @@ void CText::SetupText()
 	}
 }
 
+void CText::ResetStates()
+{
+	IGUIObject::ResetStates();
+	IGUIScrollBarOwner::ResetStates();
+}
+
+void CText::UpdateCachedSize()
+{
+	IGUIObject::UpdateCachedSize();
+	IGUITextOwner::UpdateCachedSize();
+}
+
 void CText::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
 	IGUIScrollBarOwner::HandleMessage(Message);
 	//IGUITextOwner::HandleMessage(Message); <== placed it after the switch instead!
 
@@ -236,4 +250,35 @@ bool CText::MouseOverIcon()
 		}
 
 	return false;
+}
+
+void CText::RegisterScriptFunctions()
+{
+	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
+	JS_DefineFunctions(cx, m_JSObject, CText::JSI_methods);
+}
+
+JSFunctionSpec CText::JSI_methods[] =
+{
+	JS_FN("getTextSize", CText::GetTextSize, 0, 0),
+	JS_FS_END
+};
+
+bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
+{
+	// No JSAutoRequest needed for these calls
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	CText* thisObj = ScriptInterface::GetPrivate<CText>(cx, args, &JSI_IGUIObject::JSI_class);
+	if (!thisObj)
+	{
+		JSAutoRequest rq(cx);
+		JS_ReportError(cx, "This is not a CText object!");
+		return false;
+	}
+
+	thisObj->UpdateText();
+
+	ScriptInterface::ToJSVal(cx, args.rval(), thisObj->m_GeneratedTexts[0].GetSize());
+	return true;
 }

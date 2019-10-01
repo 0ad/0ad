@@ -141,6 +141,7 @@ CMiniMap::~CMiniMap()
 
 void CMiniMap::HandleMessage(SGUIMessage& Message)
 {
+	IGUIObject::HandleMessage(Message);
 	switch (Message.type)
 	{
 	case GUIM_MOUSE_PRESS_LEFT:

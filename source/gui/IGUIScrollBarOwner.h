@@ -29,12 +29,14 @@ class IGUIScrollBar;
  * Base-class this if you want an object to contain
  * one, or several, scroll-bars.
  */
-class IGUIScrollBarOwner : virtual public IGUIObject
+class IGUIScrollBarOwner
 {
+	NONCOPYABLE(IGUIScrollBarOwner);
+
 	friend class IGUIScrollBar;
 
 public:
-	IGUIScrollBarOwner(CGUI& pGUI);
+	IGUIScrollBarOwner(IGUIObject& m_pObject);
 	virtual ~IGUIScrollBarOwner();
 
 	virtual void Draw();
@@ -75,12 +77,18 @@ public:
 	virtual float GetScrollBarPos(const int index) const;
 
 protected:
-
 	/**
 	 * Predominately you will only have one, but you can have
 	 * as many as you like.
 	 */
 	std::vector<IGUIScrollBar*> m_ScrollBars;
+
+private:
+	/**
+	 * Reference to the IGUIObject.
+	 * Private, because we don't want to inherit it in multiple classes.
+	 */
+	IGUIObject& m_pObject;
 };
 
 #endif // INCLUDED_IGUISCROLLBAROWNER

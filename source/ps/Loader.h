@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -116,17 +116,17 @@ extern void LDR_BeginRegistering();
 //   != 0, or it's treated as "finished")
 // - on failure, return a negative error code or 'warning' (see above);
 //   LDR_ProgressiveLoad will abort immediately and return that.
-typedef int (*LoadFunc)(void* param, double time_left);
+typedef int (*LoadFunc)(std::shared_ptr<void> param, double time_left);
 
 // register a task (later processed in FIFO order).
 // <func>: function that will perform the actual work; see LoadFunc.
-// <param>: (optional) parameter/persistent state; must be freed by func.
+// <param>: (optional) parameter/persistent state.
 // <description>: user-visible description of the current task, e.g.
 //   "Loading Textures".
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-extern void LDR_Register(LoadFunc func, void* param, const wchar_t* description,
+extern void LDR_Register(LoadFunc func, std::shared_ptr<void> param, const wchar_t* description,
 	int estimated_duration_ms);
 
 

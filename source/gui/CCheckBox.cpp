@@ -23,7 +23,7 @@
 
 CCheckBox::CCheckBox(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  IGUIButtonBehavior(pGUI),
+	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
 	  m_CellID(),
 	  m_Checked(),
 	  m_SpriteUnchecked(),
@@ -51,16 +51,21 @@ CCheckBox::~CCheckBox()
 {
 }
 
+void CCheckBox::ResetStates()
+{
+	IGUIObject::ResetStates();
+	IGUIButtonBehavior::ResetStates();
+}
+
 void CCheckBox::HandleMessage(SGUIMessage& Message)
 {
-	// Important
+	IGUIObject::HandleMessage(Message);
 	IGUIButtonBehavior::HandleMessage(Message);
 
 	switch (Message.type)
 	{
 	case GUIM_PRESSED:
 	{
-		// Switch to opposite.
 		SetSetting<bool>("checked", !m_Checked, true);
 		break;
 	}

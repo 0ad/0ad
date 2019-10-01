@@ -26,7 +26,7 @@
 /**
  * Text field that just displays static text.
  */
-class CText : public IGUIScrollBarOwner, public IGUITextOwner
+class CText : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
 	GUI_OBJECT(CText)
 
@@ -37,7 +37,12 @@ public:
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */
-	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
+	virtual void ResetStates();
+
+	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	virtual void UpdateCachedSize();
 
 	/**
 	 * Test if mouse position is over an icon
@@ -51,6 +56,8 @@ protected:
 	 */
 	void SetupText();
 
+	virtual void RegisterScriptFunctions();
+
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
@@ -60,6 +67,13 @@ protected:
 	 * Draws the Text
 	 */
 	virtual void Draw();
+
+	/**
+	 * Script accessors to this GUI object.
+	 */
+	static JSFunctionSpec JSI_methods[];
+
+	static bool GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
 
 	/**
 	 * Placement of text. Ignored when scrollbars are active.

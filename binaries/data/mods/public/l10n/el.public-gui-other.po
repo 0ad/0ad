@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-23 07:17+0000\n"
-"PO-Revision-Date: 2019-09-23 16:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-27 07:08+0000\n"
+"PO-Revision-Date: 2019-09-28 20:21+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -530,40 +530,52 @@ msgstr ""
 msgid "Secure lobby authentication failed. Join via lobby."
 msgstr ""
 
+#: gui/common/network.js:76
+msgid "Error: Server failed to allocate a unique client identifier."
+msgstr ""
+
+#: gui/common/network.js:77
+msgid "Error: Client commands were ready for an unexpected game turn."
+msgstr ""
+
 #: gui/common/network.js:78
+msgid "Error: Client simulated an unexpected game turn."
+msgstr ""
+
+#: gui/common/network.js:81
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Μη έγκυρη τιμή %(id)s]"
 
-#: gui/common/network.js:92
+#: gui/common/network.js:95
 msgid "Lost connection to the server."
 msgstr "Χάθηκε η σύνδεση με τον εξυπηρετητή (server)."
 
-#: gui/common/network.js:93
+#: gui/common/network.js:96
 msgid "Failed to connect to the server."
 msgstr "Αποτυχία σύνδεσης με τον εξυπηρετητή."
 
-#: gui/common/network.js:95
+#: gui/common/network.js:98
 msgid "Disconnected"
 msgstr "Αποσυνδεθήκατε"
 
-#: gui/common/network.js:103
+#: gui/common/network.js:106
 msgid "Only the host can kick clients!"
 msgstr "Μόνο ο εξυπηρετητής μπορεί να διώξει παίχτες!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:157
+#: gui/common/network.js:160
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Χρήστες (%(num)s): %(users)s"
 
-#: gui/common/network.js:158 gui/common/tooltips.js:55
+#: gui/common/network.js:161 gui/common/tooltips.js:55
 #: gui/common/tooltips.js:182 gui/common/tooltips.js:264
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/load.js:140
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:32
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:281
 msgid ", "
 msgstr ", "
@@ -762,7 +774,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Φρουρά με βέλη φωτιάς"
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -856,7 +868,7 @@ msgstr ""
 #: gui/common/tooltips.js:283
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "δίνει στον %(name)s"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
@@ -866,7 +878,7 @@ msgstr ""
 #: gui/common/tooltips.js:331
 #, javascript-format
 msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 
 #: gui/common/tooltips.js:354
 #, javascript-format
@@ -883,19 +895,19 @@ msgstr ""
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Φίλια Πυρά: %(enabled)s"
 
-#: gui/common/tooltips.js:364 gui/loadgame/SavegameWriter.js:39
-#: gui/loadgame/functions_utility_loadsave.js:57 gui/loadgame/load.js:197
+#: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
+#: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:345
-#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:181
-#: gui/pregame/MainMenuItems.js:198 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:179
+#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Ναι"
 
-#: gui/common/tooltips.js:364 gui/loadgame/SavegameWriter.js:39
-#: gui/loadgame/functions_utility_loadsave.js:57 gui/loadgame/load.js:197
+#: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
+#: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:345
-#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:181
-#: gui/pregame/MainMenuItems.js:198 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:179
+#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Όχι"
 
@@ -1159,96 +1171,95 @@ msgstr "Κάνε κλικ για να δεις περισσότερες πληρ
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/loadgame/SavegameWriter.js:36
-#: gui/loadgame/functions_utility_loadsave.js:53
+#: gui/loadgame/SavegameDeleter.js:34
+#, javascript-format
+msgid "Delete the selected savegame using %(hotkey)s."
+msgstr ""
+
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:202
+#, javascript-format
+msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
+msgstr ""
+
+#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/loadgame/SavegameWriter.js:37
-msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Το σωσμένο παιχνίδι θα αντικατασταθεί μόνιμα, είστε σίγουρος;"
-
-#: gui/loadgame/SavegameWriter.js:38
-msgid "OVERWRITE SAVE"
-msgstr "ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΣΩΣΜΕΝΟΥ ΠΑΙΧΝΙΔΙΟΥ"
-
-#: gui/loadgame/functions_utility_loadsave.js:14
-msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "yyyy-MM-dd HH:mm:ss"
-
-#: gui/loadgame/functions_utility_loadsave.js:22
-#, javascript-format
-msgid "%(dateString)s %(map)s - %(description)s"
-msgstr "%(dateString)s %(map)s - %(description)s"
-
-#: gui/loadgame/functions_utility_loadsave.js:23
-#, javascript-format
-msgid "%(dateString)s %(map)s"
-msgstr "%(dateString)s %(map)s"
-
-#: gui/loadgame/functions_utility_loadsave.js:55
+#: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Το σοσμένο παιχνίδι θα διαγραφεί μόνιμα, είστε σύγουρος;"
 
-#: gui/loadgame/functions_utility_loadsave.js:56
+#: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
-#: gui/loadgame/functions_utility_loadsave.js:73
-#, javascript-format
-msgid "Delete the selected entry using %(hotkey)s."
-msgstr "Διαγραφή της επιλεγμένης καταχώρισης χρησιμοποιώντας το πλήκτρο %(hotkey)s."
-
-#: gui/loadgame/functions_utility_loadsave.js:78
-#, javascript-format
-msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr "Κράτα πατημένο το πλήκτρο %(hotkey)s για διαγράφη χωρίς επιβαιβέωση."
-
-#: gui/loadgame/load.js:17 gui/options/options.xml:(caption):54
-msgid "Save"
-msgstr "Αποθήκευση"
-
-#: gui/loadgame/load.js:17
-msgid "Load"
-msgstr "Φόρτωση"
-
-#: gui/loadgame/load.js:19
-msgid "Save Game"
-msgstr "Αποθήκευση Παιχνιδιού"
-
-#: gui/loadgame/load.js:19 gui/pregame/MainMenuItems.js:65
-msgid "Load Game"
-msgstr "Φόρτωση παιχνιδιού"
-
-#: gui/loadgame/load.js:142
+#: gui/loadgame/SavegameDetails.js:34
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods: %(mods)s"
 
-#: gui/loadgame/load.js:175
+#: gui/loadgame/SavegameList.js:158
+msgid "yyyy-MM-dd HH:mm:ss"
+msgstr "yyyy-MM-dd HH:mm:ss"
+
+#: gui/loadgame/SavegameList.js:169
+#, javascript-format
+msgid "%(dateString)s %(map)s - %(description)s"
+msgstr "%(dateString)s %(map)s - %(description)s"
+
+#: gui/loadgame/SavegameList.js:170
+#, javascript-format
+msgid "%(dateString)s %(map)s"
+msgstr "%(dateString)s %(map)s"
+
+#: gui/loadgame/SavegameLoader.js:9
+msgid "Load"
+msgstr "Φόρτωση"
+
+#: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
 msgstr "Αυτή η αποθήκευση παιχνιδιού χρειάζεται την έκδοση%(requiredVersion)s του 0 A.D., ενώ έχει σωθεί στην έκδοση %(currentVersion)s."
 
-#: gui/loadgame/load.js:180
+#: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
 msgstr "Αυτό το σωσμένο παιχνίδι χρειάζεται μία παλαιότερη έκδοση του 0 A.D."
 
-#: gui/loadgame/load.js:187
+#: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
 msgstr "Αυτή η αποθήκευση παιχνιδιού χρειάζεται μια διαφορετική αλληλουχία από mods:"
 
-#: gui/loadgame/load.js:191
+#: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
 msgstr "Θέλετε ακόμα να συνεχίσετε?"
 
-#: gui/loadgame/load.js:196 gui/options/options.js:294
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
 #: gui/options/options.js:344 gui/options/options.js:370
 msgid "Warning"
 msgstr "Προειδοποίηση"
+
+#: gui/loadgame/SavegamePage.js:42
+msgid "Save Game"
+msgstr "Αποθήκευση Παιχνιδιού"
+
+#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:65
+msgid "Load Game"
+msgstr "Φόρτωση παιχνιδιού"
+
+#: gui/loadgame/SavegameWriter.js:16 gui/options/options.xml:(caption):54
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: gui/loadgame/SavegameWriter.js:46
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "Το σωσμένο παιχνίδι θα αντικατασταθεί μόνιμα, είστε σίγουρος;"
+
+#: gui/loadgame/SavegameWriter.js:47
+msgid "OVERWRITE SAVE"
+msgstr "ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΣΩΣΜΕΝΟΥ ΠΑΙΧΝΙΔΙΟΥ"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -1366,131 +1377,131 @@ msgstr "Αναβιώστε την Ιστορία μέσω ιστορικών π�
 msgid "Click here to load a saved game."
 msgstr "Κλικ εδώ για φόρτωση ενός αποθηκευμένου παιχνιδιού."
 
-#: gui/pregame/MainMenuItems.js:74 gui/pregame/MainMenuItems.js:124
+#: gui/pregame/MainMenuItems.js:72 gui/pregame/MainMenuItems.js:122
 msgid "Replays"
 msgstr "Επαναλήψεις"
 
-#: gui/pregame/MainMenuItems.js:75 gui/pregame/MainMenuItems.js:125
+#: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Playback previous games."
 msgstr "Αναπαραγωγή προηγούμενων παιχνιδιών."
 
-#: gui/pregame/MainMenuItems.js:89 gui/replaymenu/replay_filters.js:142
+#: gui/pregame/MainMenuItems.js:87 gui/replaymenu/replay_filters.js:142
 msgid "Multiplayer"
 msgstr "Παιχνίδι για πολλούς παίκτες"
 
-#: gui/pregame/MainMenuItems.js:90
+#: gui/pregame/MainMenuItems.js:88
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες (multiplayer)."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:94
+#: gui/pregame/MainMenuItems.js:92
 msgid "Join Game"
 msgstr "Συμμετοχή στο παιχνίδι"
 
-#: gui/pregame/MainMenuItems.js:95
+#: gui/pregame/MainMenuItems.js:93
 msgid "Joining an existing multiplayer game."
 msgstr "Συμμετοχή σε υπάρχον παιχνίδι για πολλούς παίκτες."
 
-#: gui/pregame/MainMenuItems.js:103
+#: gui/pregame/MainMenuItems.js:101
 msgid "Host Game"
 msgstr "Φιλοξενία παιχνιδιού"
 
-#: gui/pregame/MainMenuItems.js:104
+#: gui/pregame/MainMenuItems.js:102
 msgid "Host a multiplayer game."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:112
+#: gui/pregame/MainMenuItems.js:110
 msgid "Game Lobby"
 msgstr "Λόμπι Παιχνιδιού"
 
-#: gui/pregame/MainMenuItems.js:114
+#: gui/pregame/MainMenuItems.js:112
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Ξεκίνησε το λόμπι για πολλούς παίκτες για να συμμετάσχεις και να φιλοξενήσεις δημόσια ορατά παιχνίδια και να συνομιλήσεις με άλλους παίκτες."
 
-#: gui/pregame/MainMenuItems.js:115
+#: gui/pregame/MainMenuItems.js:113
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/MainMenuItems.js:139
+#: gui/pregame/MainMenuItems.js:137
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: gui/pregame/MainMenuItems.js:140
+#: gui/pregame/MainMenuItems.js:138
 msgid "Game options and scenario design tools."
 msgstr "Επιλογές παιχνιδιού και εργαλεία σχεδίασης σεναρίων."
 
-#: gui/pregame/MainMenuItems.js:143
+#: gui/pregame/MainMenuItems.js:141
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gui/pregame/MainMenuItems.js:144
+#: gui/pregame/MainMenuItems.js:142
 msgid "Adjust game settings."
 msgstr "Προσαρμόστε τις ρυθμίσεις του παιχνιδιού."
 
-#: gui/pregame/MainMenuItems.js:150 gui/locale/locale.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:148 gui/locale/locale.xml:(caption):14
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: gui/pregame/MainMenuItems.js:151
+#: gui/pregame/MainMenuItems.js:149
 msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
-#: gui/pregame/MainMenuItems.js:157
+#: gui/pregame/MainMenuItems.js:155
 msgid "Mod Selection"
 msgstr "Επιλογή Mod"
 
-#: gui/pregame/MainMenuItems.js:158
+#: gui/pregame/MainMenuItems.js:156
 msgid "Select and download mods for the game."
 msgstr "Επέλεξε και κατέβασε mods για το παιχνίδι."
 
-#: gui/pregame/MainMenuItems.js:164
+#: gui/pregame/MainMenuItems.js:162
 msgid "Welcome Screen"
 msgstr "Οθόνη Καλωσορίσματος"
 
-#: gui/pregame/MainMenuItems.js:165
+#: gui/pregame/MainMenuItems.js:163
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Εμφάνιση της Οθόνης Υποδοχής. Χρήσιμο αν αποκρύφθηκε κατά λάθος."
 
-#: gui/pregame/MainMenuItems.js:173
+#: gui/pregame/MainMenuItems.js:171
 msgid "Scenario Editor"
 msgstr "Επεξεργαστής Σεναρίων"
 
-#: gui/pregame/MainMenuItems.js:174
+#: gui/pregame/MainMenuItems.js:172
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ανοίξτε τον επεξεργαστή σεναρίων \"Atlas Scenario Editor\" σε νέο παράθυρο. Για πιο αξιόπιστη λειτουργία του, εκκινήστε το παιχνίδι από γραμμή εντολών, με το όρισμα \"-editor\"."
 
-#: gui/pregame/MainMenuItems.js:179
+#: gui/pregame/MainMenuItems.js:177
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D. και να ανοίξετε τον Επεξεργαστή Σεναρίων;"
 
-#: gui/pregame/MainMenuItems.js:180 gui/pregame/MainMenuItems.js:197
+#: gui/pregame/MainMenuItems.js:178 gui/pregame/MainMenuItems.js:195
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
-#: gui/pregame/MainMenuItems.js:186
+#: gui/pregame/MainMenuItems.js:184
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Ο Επεξεργαστής Σεναρίων δεν είναι διαθέσιμος ή η φόρτωσή του απέτυχε.Κοιτάξτε τις εγγραφές παιχνιδιού για περισσότερες πληροφορίες."
 
-#: gui/pregame/MainMenuItems.js:187 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:185 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/pregame/MainMenuItems.js:191
+#: gui/pregame/MainMenuItems.js:189
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/pregame/MainMenuItems.js:192
+#: gui/pregame/MainMenuItems.js:190
 msgid "Exits the game."
 msgstr "Βγαίνει από το παιχνίδι"
 
-#: gui/pregame/MainMenuItems.js:196
+#: gui/pregame/MainMenuItems.js:194
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
@@ -1853,11 +1864,6 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:197
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
-
-#: gui/replaymenu/replay_menu.js:202
-#, javascript-format
-msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr ""
 
 #: gui/replaymenu/replay_menu.js:282
@@ -2229,38 +2235,38 @@ msgstr "Περιγραφή"
 msgid "No saved games found."
 msgstr "Δεν βρέθηκαν αποθηκευμένα παιχνίδια."
 
-#: gui/loadgame/load.xml:(caption):51 gui/locale/locale.xml:(caption):36
+#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: gui/loadgame/load.xml:(caption):56
+#: gui/loadgame/load.xml:(caption):53
 #: gui/replaymenu/replay_menu.xml:(caption):231
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: gui/loadgame/load.xml:(caption):69
+#: gui/loadgame/load.xml:(caption):63
 msgid "Filter compatible saved games"
 msgstr "Φίλτρο συμβατών αποθηκευμένων παιχνιδιών"
 
-#: gui/loadgame/load.xml:(caption):79
+#: gui/loadgame/load.xml:(caption):73
 msgid "Players:"
 msgstr "Παίκτες:"
 
-#: gui/loadgame/load.xml:(caption):83
+#: gui/loadgame/load.xml:(caption):77
 msgid "Played time:"
 msgstr "Διάρκεια παιχνιδιού:"
 
-#: gui/loadgame/load.xml:(caption):87
+#: gui/loadgame/load.xml:(caption):81
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
 msgstr "Τύπος Χάρτη:"
 
-#: gui/loadgame/load.xml:(caption):91
+#: gui/loadgame/load.xml:(caption):85
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
 msgstr "Μέγεθος Χάρτη:"
 
-#: gui/loadgame/load.xml:(caption):95
+#: gui/loadgame/load.xml:(caption):89
 #: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
 msgstr "Νίκη:"
