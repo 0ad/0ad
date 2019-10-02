@@ -99,7 +99,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		if (SpriteName.Find("stretched:") != -1)
 		{
 			// TODO: Should check (nicely) that this is a valid file?
-			SGUIImage* Image = new SGUIImage;
+			SGUIImage* Image = new SGUIImage();
 
 			Image->m_TextureName = TextureName;
 			// Allow grayscale images for disabled portraits
@@ -109,10 +109,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				Image->m_Effects->m_Greyscale = true;
 			}
 
-			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-			Image->m_Size = ca;
-			Image->m_TextureSize = ca;
-
 			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
@@ -120,18 +116,14 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		else if (SpriteName.Find("cropped:") != -1)
 		{
 			// TODO: Should check (nicely) that this is a valid file?
-			SGUIImage* Image = new SGUIImage;
+			SGUIImage* Image = new SGUIImage();
 
 			CStr info = SpriteName.AfterLast("cropped:").BeforeFirst(":");
 			double xRatio = info.BeforeFirst(",").ToDouble();
 			double yRatio = info.AfterLast(",").ToDouble();
+			Image->m_TextureSize = CGUISize(CRect(0, 0, 0, 0), CRect(0, 0, 100/xRatio, 100/yRatio));
 
 			Image->m_TextureName = TextureName;
-
-			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-			CClientArea cb(CRect(0, 0, 0, 0), CRect(0, 0, 100/xRatio, 100/yRatio));
-			Image->m_Size = ca;
-			Image->m_TextureSize = cb;
 
 			Sprite->AddImage(Image);
 
@@ -141,7 +133,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		{
 			CStrW value = wstring_from_utf8(SpriteName.AfterLast("color:").BeforeFirst(":"));
 
-			SGUIImage* Image = new SGUIImage;
+			SGUIImage* Image = new SGUIImage();
 			CGUIColor* color;
 
 			// If we are using a mask, this is an effect.
@@ -162,10 +154,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				LOGERROR("GUI: Error parsing sprite 'color' (\"%s\")", utf8_from_wstring(value));
 				return;
 			}
-
-			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-			Image->m_Size = ca;
-			Image->m_TextureSize = ca;
 
 			Sprite->AddImage(Image);
 
@@ -191,7 +179,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 	{
 		SDrawCall Call(*cit); // pointers are safe since we never modify sprites/images after startup
 
-		CRect ObjectSize = (*cit)->m_Size.GetClientArea(Size);
+		CRect ObjectSize = (*cit)->m_Size.GetSize(Size);
 
 		if (ObjectSize.GetWidth() == 0.0 || ObjectSize.GetHeight() == 0.0)
 		{
@@ -286,7 +274,7 @@ CRect SDrawCall::ComputeTexCoords() const
 	// the screen. The texture is positioned to make those blocks line up.
 
 	// Get the screen's position/size for the block
-	CRect BlockScreen = m_Image->m_TextureSize.GetClientArea(m_ObjectSize);
+	CRect BlockScreen = m_Image->m_TextureSize.GetSize(m_ObjectSize);
 
 	if (m_Image->m_FixedHAspectRatio)
 		BlockScreen.right = BlockScreen.left + BlockScreen.GetHeight() * m_Image->m_FixedHAspectRatio;

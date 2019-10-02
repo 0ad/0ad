@@ -27,6 +27,7 @@
 #include "gui/CGUISprite.h"
 
 class IGUIScrollBarOwner;
+struct SGUIMessage;
 
 /**
  * The GUI Scroll-bar style. Tells us how scroll-bars look and feel.

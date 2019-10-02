@@ -17,29 +17,30 @@
 
 #include "precompiled.h"
 
-#include "GUIbase.h"
+#include "CGUISize.h"
 
 #include "gui/scripting/JSInterface_GUISize.h"
 #include "ps/CLogger.h"
 
-CClientArea::CClientArea() : pixel(0.f,0.f,0.f,0.f), percent(0.f,0.f,0.f,0.f)
+CGUISize::CGUISize()
+	: pixel(), percent()
 {
 }
 
-CClientArea::CClientArea(const CStr& Value)
-{
-	SetClientArea(Value);
-}
-
-CClientArea::CClientArea(const CRect& pixel, const CRect& percent)
+CGUISize::CGUISize(const CRect& pixel, const CRect& percent)
 	: pixel(pixel), percent(percent)
 {
 }
 
-CRect CClientArea::GetClientArea(const CRect& parent) const
+CGUISize CGUISize::Full()
+{
+	return CGUISize(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
+}
+
+CRect CGUISize::GetSize(const CRect& parent) const
 {
 	// If it's a 0 0 100% 100% we need no calculations
-	if (percent == CRect(0.f,0.f,100.f,100.f) && pixel == CRect(0.f,0.f,0.f,0.f))
+	if (percent == CRect(0.f, 0.f, 100.f, 100.f) && pixel == CRect())
 		return parent;
 
 	CRect client;
@@ -53,9 +54,10 @@ CRect CClientArea::GetClientArea(const CRect& parent) const
 	return client;
 }
 
-bool CClientArea::SetClientArea(const CStr& Value)
+bool CGUISize::FromString(const CStr& Value)
 {
-	/* ClientAreas contain a left, top, right, and bottom
+	/*
+	 * GUISizes contain a left, top, right, and bottom
 	 *  for example: "50%-150 10%+9 50%+150 10%+25" means
 	 *  the left edge is at 50% minus 150 pixels, the top
 	 *  edge is at 10% plus 9 pixels, the right edge is at
@@ -107,19 +109,19 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			++coord;
 			break;
 		default:
-			LOGWARNING("ClientArea definitions may only contain numerics. Your input: '%s'", Value.c_str());
+			LOGERROR("CGUISize definition may only include numbers. Your input: '%s'", Value.c_str());
 			return false;
 		}
 		if (coord > 3)
 		{
-			LOGWARNING("Too many CClientArea parameters (4 max). Your input: '%s'", Value.c_str());
+			LOGERROR("Too many CGUISize parameters (4 max). Your input: '%s'", Value.c_str());
 			return false;
 		}
 	}
 
 	if (coord < 3)
 	{
-		LOGWARNING("Too few CClientArea parameters (4 min). Your input: '%s'", Value.c_str());
+		LOGERROR("Too few CGUISize parameters (4 min). Your input: '%s'", Value.c_str());
 		return false;
 	}
 
@@ -138,7 +140,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	return true;
 }
 
-void CClientArea::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
+void CGUISize::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 {
 	JSAutoRequest rq(cx);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
@@ -146,14 +148,14 @@ void CClientArea::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 	if (!ret.isObject())
 	{
-		JS_ReportError(cx, "CClientArea value is not an Object");
+		JS_ReportError(cx, "CGUISize value is not an Object");
 		return;
 	}
 
 	JS::RootedObject obj(cx, &ret.toObject());
 	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(cx, "CClientArea value is not a CClientArea class instance");
+		JS_ReportError(cx, "CGUISize value is not a CGUISize class instance");
 		return;
 	}
 
@@ -174,7 +176,7 @@ void CClientArea::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 #undef P
 }
 
-bool CClientArea::FromJSVal(JSContext* cx, JS::HandleValue v)
+bool CGUISize::FromJSVal(JSContext* cx, JS::HandleValue v)
 {
 	JSAutoRequest rq(cx);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
@@ -184,13 +186,13 @@ bool CClientArea::FromJSVal(JSContext* cx, JS::HandleValue v)
 		CStrW str;
 		if (!ScriptInterface::FromJSVal(cx, v, str))
 		{
-			JS_ReportError(cx, "Could not read CClientArea string");
+			JS_ReportError(cx, "CGUISize could not read JS string");
 			return false;
 		}
 
-		if (!SetClientArea(str.ToUTF8()))
+		if (!FromString(str.ToUTF8()))
 		{
-			JS_ReportError(cx, "Could not set SetClientArea");
+			JS_ReportError(cx, "CGUISize could not parse JS string");
 			return false;
 		}
 		return true;
@@ -198,21 +200,21 @@ bool CClientArea::FromJSVal(JSContext* cx, JS::HandleValue v)
 
 	if (!v.isObject())
 	{
-		JS_ReportError(cx, "CClientArea value is not an String, nor Object");
+		JS_ReportError(cx, "CGUISize value is not an String, nor Object");
 		return false;
 	}
 
 	JS::RootedObject obj(cx, &v.toObject());
 	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(cx, "CClientArea value is not a CClientArea class instance");
+		JS_ReportError(cx, "CGUISize value is not a CGUISize class instance");
 		return false;
 	}
 
 #define P(x, y, z) \
 	if (!pScriptInterface->GetProperty(v, #z, x.y))\
 	{\
-		JS_ReportError(cx, "CClientArea could not get object property '%s'", #z);\
+		JS_ReportError(cx, "CGUISize could not get object property '%s'", #z);\
 		return false;\
 	}
 

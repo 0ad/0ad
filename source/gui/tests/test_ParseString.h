@@ -17,50 +17,50 @@
 
 #include "lib/self_test.h"
 
-#include "gui/GUIbase.h"
+#include "gui/CGUISize.h"
 #include "gui/CGUI.h"
 #include "ps/CLogger.h"
 
 class TestGuiParseString : public CxxTest::TestSuite
 {
 public:
-	void test_clientarea()
+	void test_guisize()
 	{
 		TestLogger nolog;
-		CClientArea ca;
+		CGUISize size;
 
 		// Test only pixels
-		TS_ASSERT(ca.SetClientArea("0.0 -10 20.0 -30"));
-		TS_ASSERT_EQUALS(ca, CClientArea(CRect(0, -10, 20, -30), CRect(0, 0, 0, 0)));
+		TS_ASSERT(size.FromString("0.0 -10 20.0 -30"));
+		TS_ASSERT_EQUALS(size, CGUISize(CRect(0, -10, 20, -30), CRect(0, 0, 0, 0)));
 
 		// Test only pixels, but with math
-		TS_ASSERT(ca.SetClientArea("0 -100-10+100 20+200-200 -30"));
-		TS_ASSERT_EQUALS(ca, CClientArea(CRect(0, -10, 20, -30), CRect(0, 0, 0, 0)));
+		TS_ASSERT(size.FromString("0 -100-10+100 20+200-200 -30"));
+		TS_ASSERT_EQUALS(size, CGUISize(CRect(0, -10, 20, -30), CRect(0, 0, 0, 0)));
 
 		// Test only percent
-		TS_ASSERT(ca.SetClientArea("-5% 10.0% -20% 30.0%"));
-		TS_ASSERT_EQUALS(ca, CClientArea(CRect(0, 0, 0, 0), CRect(-5, 10, -20, 30)));
+		TS_ASSERT(size.FromString("-5% 10.0% -20% 30.0%"));
+		TS_ASSERT_EQUALS(size, CGUISize(CRect(0, 0, 0, 0), CRect(-5, 10, -20, 30)));
 
 		// Test only percent, but with math
-		TS_ASSERT(ca.SetClientArea("15%-5%-15% 10% -20% 30%+500%-500%"));
-		TS_ASSERT_EQUALS(ca, CClientArea(CRect(0, 0, 0, 0), CRect(-5, 10, -20, 30)));
+		TS_ASSERT(size.FromString("15%-5%-15% 10% -20% 30%+500%-500%"));
+		TS_ASSERT_EQUALS(size, CGUISize(CRect(0, 0, 0, 0), CRect(-5, 10, -20, 30)));
 
 		// Test mixed
-		TS_ASSERT(ca.SetClientArea("5% -10 -20% 30"));
-		TS_ASSERT_EQUALS(ca, CClientArea(CRect(0, -10, 0, 30), CRect(5, 0, -20, 0)));
+		TS_ASSERT(size.FromString("5% -10 -20% 30"));
+		TS_ASSERT_EQUALS(size, CGUISize(CRect(0, -10, 0, 30), CRect(5, 0, -20, 0)));
 
 		// Test mixed with math
-		TS_ASSERT(ca.SetClientArea("5%+10%-10% 30%-10-30% 50-20%-50 30-100+100"));
-		TS_ASSERT_EQUALS(ca, CClientArea(CRect(0, -10, 0, 30), CRect(5, 0, -20, 0)));
+		TS_ASSERT(size.FromString("5%+10%-10% 30%-10-30% 50-20%-50 30-100+100"));
+		TS_ASSERT_EQUALS(size, CGUISize(CRect(0, -10, 0, 30), CRect(5, 0, -20, 0)));
 
 		// Test for fail with too many/few parameters
-		TS_ASSERT(!ca.SetClientArea("10 20 30 40 50"));
-		TS_ASSERT(!ca.SetClientArea("10 20 30"));
+		TS_ASSERT(!size.FromString("10 20 30 40 50"));
+		TS_ASSERT(!size.FromString("10 20 30"));
 
 		// Test for fail with garbage data
-		TS_ASSERT(!ca.SetClientArea("Hello world!"));
-		TS_ASSERT(!ca.SetClientArea("abc 123 xyz 789"));
-		TS_ASSERT(!ca.SetClientArea("300 wide, 400 high"));
+		TS_ASSERT(!size.FromString("Hello world!"));
+		TS_ASSERT(!size.FromString("abc 123 xyz 789"));
+		TS_ASSERT(!size.FromString("300 wide, 400 high"));
 	}
 
 	void test_rect()

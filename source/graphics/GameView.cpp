@@ -29,6 +29,7 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
 #include "graphics/SkeletonAnimManager.h"
+#include "graphics/SmoothedValue.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
@@ -64,90 +65,7 @@ extern int g_xres, g_yres;
 
 // Maximum distance outside the edge of the map that the camera's
 // focus point can be moved
-static const float CAMERA_EDGE_MARGIN = 2.0f*TERRAIN_TILE_SIZE;
-
-/**
- * A value with exponential decay towards the target value.
- */
-class CSmoothedValue
-{
-public:
-	CSmoothedValue(float value, float smoothness, float minDelta)
-		: m_Target(value), m_Current(value), m_Smoothness(smoothness), m_MinDelta(minDelta)
-	{
-	}
-
-	float GetSmoothedValue() const
-	{
-		return m_Current;
-	}
-
-	void SetValueSmoothly(float value)
-	{
-		m_Target = value;
-	}
-
-	void AddSmoothly(float value)
-	{
-		m_Target += value;
-	}
-
-	void Add(float value)
-	{
-		m_Target += value;
-		m_Current += value;
-	}
-
-	float GetValue() const
-	{
-		return m_Target;
-	}
-
-	void SetValue(float value)
-	{
-		m_Target = value;
-		m_Current = value;
-	}
-
-	float Update(float time)
-	{
-		if (fabs(m_Target - m_Current) < m_MinDelta)
-			return 0.0f;
-
-		double p = pow(static_cast<double>(m_Smoothness), 10.0 * static_cast<double>(time));
-		// (add the factor of 10 so that smoothnesses don't have to be tiny numbers)
-
-		double delta = (m_Target - m_Current) * (1.0 - p);
-		m_Current += delta;
-		return (float)delta;
-	}
-
-	void ClampSmoothly(float min, float max)
-	{
-		m_Target = Clamp(m_Target, static_cast<double>(min), static_cast<double>(max));
-	}
-
-	// Wrap so 'target' is in the range [min, max]
-	void Wrap(float min, float max)
-	{
-		double t = fmod(m_Target - min, static_cast<double>(max - min));
-		if (t < 0)
-			t += max - min;
-		t += min;
-
-		m_Current += t - m_Target;
-		m_Target = t;
-	}
-
-	float m_Smoothness;
-
-private:
-	double m_Target; // the value which m_Current is tending towards
-	double m_Current;
-	// (We use double because the extra precision is worthwhile here)
-
-	float m_MinDelta; // cutoff where we stop moving (to avoid ugly shimmering effects)
-};
+static const float CAMERA_EDGE_MARGIN = 2.0f * TERRAIN_TILE_SIZE;
 
 class CGameViewImpl
 {
@@ -438,12 +356,20 @@ int CGameView::Initialize()
 	CFG_GET_VAL("view.height.smoothness", m->HeightSmoothness);
 	CFG_GET_VAL("view.height.min", m->HeightMin);
 
-	CFG_GET_VAL("view.pos.smoothness", m->PosX.m_Smoothness);
-	CFG_GET_VAL("view.pos.smoothness", m->PosY.m_Smoothness);
-	CFG_GET_VAL("view.pos.smoothness", m->PosZ.m_Smoothness);
-	CFG_GET_VAL("view.zoom.smoothness", m->Zoom.m_Smoothness);
-	CFG_GET_VAL("view.rotate.x.smoothness", m->RotateX.m_Smoothness);
-	CFG_GET_VAL("view.rotate.y.smoothness", m->RotateY.m_Smoothness);
+#define SETUP_SMOOTHNESS(CFG_PREFIX, SMOOTHED_VALUE) \
+	{ \
+		float smoothness = SMOOTHED_VALUE.GetSmoothness(); \
+		CFG_GET_VAL(CFG_PREFIX ".smoothness", smoothness); \
+		SMOOTHED_VALUE.SetSmoothness(smoothness); \
+	}
+
+	SETUP_SMOOTHNESS("view.pos", m->PosX);
+	SETUP_SMOOTHNESS("view.pos", m->PosY);
+	SETUP_SMOOTHNESS("view.pos", m->PosZ);
+	SETUP_SMOOTHNESS("view.zoom", m->Zoom);
+	SETUP_SMOOTHNESS("view.rotate.x", m->RotateX);
+	SETUP_SMOOTHNESS("view.rotate.y", m->RotateY);
+#undef SETUP_SMOOTHNESS
 
 	CFG_GET_VAL("view.near", m->ViewNear);
 	CFG_GET_VAL("view.far", m->ViewFar);
@@ -723,7 +649,7 @@ void CGameView::Update(const float deltaRealTime)
 				cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, angle);
 				float height = 4.f;
 				m->ViewCamera.m_Orientation.SetIdentity();
-				m->ViewCamera.m_Orientation.RotateX((float)M_PI/24.f);
+				m->ViewCamera.m_Orientation.RotateX(static_cast<float>(M_PI) / 24.f);
 				m->ViewCamera.m_Orientation.RotateY(angle);
 				m->ViewCamera.m_Orientation.Translate(pos.X, pos.Y + height, pos.Z);
 
@@ -881,7 +807,7 @@ void CGameView::Update(const float deltaRealTime)
 	}
 	*/
 
-	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
+	m->RotateY.Wrap(-static_cast<float>(M_PI), static_cast<float>(M_PI));
 
 	// Update the camera matrix
 	SetCameraProjection();
@@ -1001,16 +927,6 @@ void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
 entity_id_t CGameView::GetFollowedEntity()
 {
 	return m->FollowEntity;
-}
-
-float CGameView::GetNear() const
-{
-	return m->ViewNear;
-}
-
-float CGameView::GetFar() const
-{
-	return m->ViewFar;
 }
 
 void CGameView::SetCameraProjection()

@@ -94,9 +94,9 @@ bool CGUI::ParseString<CRect>(const CGUI* UNUSED(pGUI), const CStrW& Value, CRec
 }
 
 template <>
-bool CGUI::ParseString<CClientArea>(const CGUI* UNUSED(pGUI), const CStrW& Value, CClientArea& Output)
+bool CGUI::ParseString<CGUISize>(const CGUI* UNUSED(pGUI), const CStrW& Value, CGUISize& Output)
 {
-	return Output.SetClientArea(Value.ToUTF8());
+	return Output.FromString(Value.ToUTF8());
 }
 
 template <>

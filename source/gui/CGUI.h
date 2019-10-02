@@ -25,8 +25,9 @@
 
 #include "gui/CGUIColor.h"
 #include "gui/CGUIDummyObject.h"
-#include "gui/GUIbase.h"
 #include "gui/GUITooltip.h"
+#include "gui/SGUIIcon.h"
+#include "gui/SGUIStyle.h"
 #include "lib/input.h"
 #include "ps/Shapes.h"
 #include "ps/XML/Xeromyces.h"
@@ -40,21 +41,9 @@ ERROR_TYPE(GUI, JSOpenFailed);
 
 extern const double SELECT_DBLCLICK_RATE;
 
-/**
- * Contains a list of values for new defaults to objects.
- */
-struct SGUIStyle
-{
-	// Take advantage of moving the entire map instead and avoiding unintended copies.
-	NONCOPYABLE(SGUIStyle);
-	MOVABLE(SGUIStyle);
-	SGUIStyle() = default;
-
-	std::map<CStr, CStrW> m_SettingsDefaults;
-};
-
 class CGUISpriteInstance;
 class CGUISprite;
+class IGUIObject;
 struct SGUIImageEffects;
 struct SGUIScrollBarStyle;
 
