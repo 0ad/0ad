@@ -16,468 +16,63 @@
  */
 
 #include "precompiled.h"
-#include "ICmpRallyPointRenderer.h"
+#include "CCmpRallyPointRenderer.h"
 
-#include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpFootprint.h"
-#include "simulation2/components/ICmpObstructionManager.h"
-#include "simulation2/components/ICmpOwnership.h"
-#include "simulation2/components/ICmpPathfinder.h"
-#include "simulation2/components/ICmpPlayer.h"
-#include "simulation2/components/ICmpPlayerManager.h"
-#include "simulation2/components/ICmpPosition.h"
-#include "simulation2/components/ICmpRangeManager.h"
-#include "simulation2/components/ICmpTerrain.h"
-#include "simulation2/components/ICmpVisual.h"
-#include "simulation2/components/ICmpWaterManager.h"
-#include "simulation2/helpers/Render.h"
-#include "simulation2/helpers/Geometry.h"
-#include "simulation2/system/Component.h"
-
-#include "graphics/Overlay.h"
-#include "graphics/TextureManager.h"
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
-#include "renderer/Renderer.h"
-
-struct SVisibilitySegment
+std::string CCmpRallyPointRenderer::GetSchema()
 {
-	bool m_Visible;
-	size_t m_StartIndex;
-	size_t m_EndIndex; // inclusive
-
-	SVisibilitySegment(bool visible, size_t startIndex, size_t endIndex)
-		: m_Visible(visible), m_StartIndex(startIndex), m_EndIndex(endIndex)
-	{}
-
-	bool operator==(const SVisibilitySegment& other) const
-	{
-		return (m_Visible == other.m_Visible && m_StartIndex == other.m_StartIndex && m_EndIndex == other.m_EndIndex);
-	}
-
-	bool operator!=(const SVisibilitySegment& other) const
-	{
-		return !(*this == other);
-	}
-
-	bool IsSinglePoint() const
-	{
-		return (m_StartIndex == m_EndIndex);
-	}
-};
-
-class CCmpRallyPointRenderer : public ICmpRallyPointRenderer
-{
-	// import some types for less verbosity
-	typedef WaypointPath Path;
-	typedef PathGoal Goal;
-	typedef ICmpRangeManager::CLosQuerier CLosQuerier;
-	typedef SOverlayTexturedLine::LineCapType LineCapType;
-
-public:
-	static void ClassInit(CComponentManager& componentManager)
-	{
-		componentManager.SubscribeGloballyToMessageType(MT_PlayerColorChanged);
-		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
-		componentManager.SubscribeToMessageType(MT_TurnStart);
-		componentManager.SubscribeToMessageType(MT_Destroy);
-		componentManager.SubscribeToMessageType(MT_PositionChanged);
-	}
-
-	DEFAULT_COMPONENT_ALLOCATOR(RallyPointRenderer)
-
-protected:
-
-	/// Display position of the rally points. Note that this are merely the display positions; they not necessarily the same as the
-	/// actual positions used in the simulation at any given time. In particular, we need this separate copy to support
-	/// instantaneously rendering the rally point markers/lines when the user sets one in-game (instead of waiting until the
-	/// network-synchronization code sets it on the RallyPoint component, which might take up to half a second).
-	std::vector<CFixedVector2D> m_RallyPoints;
-	/// Full path to the rally points as returned by the pathfinder, with some post-processing applied to reduce zig/zagging.
-	std::vector<std::vector<CVector2D> > m_Path;
-	/// Visibility segments of the rally point paths; splits the path into SoD/non-SoD segments.
-	std::deque<std::deque<SVisibilitySegment> > m_VisibilitySegments;
-
-	bool m_Displayed; ///< Should we render the rally points and the path lines? (set from JS when e.g. the unit is selected/deselected)
-	bool m_SmoothPath; ///< Smooth the path before rendering?
-
-	std::vector<entity_id_t> m_MarkerEntityIds; ///< Entity IDs of the rally point markers.
-	size_t m_LastMarkerCount;
-	player_id_t m_LastOwner; ///< Last seen owner of this entity (used to keep track of ownership changes).
-	std::wstring m_MarkerTemplate;  ///< Template name of the rally point markers.
-
-	/// Marker connector line settings (loaded from XML)
-	float m_LineThickness;
-	CColor m_LineColor;
-	CColor m_LineDashColor;
-	LineCapType m_LineStartCapType;
-	LineCapType m_LineEndCapType;
-	std::wstring m_LineTexturePath;
-	std::wstring m_LineTextureMaskPath;
-	std::string m_LinePassabilityClass; ///< Pathfinder passability class to use for computing the (long-range) marker line path.
-
-	CTexturePtr m_Texture;
-	CTexturePtr m_TextureMask;
-
-	/// Textured overlay lines to be used for rendering the marker line. There can be multiple because we may need to render
-	/// dashes for segments that are inside the SoD.
-	std::vector<std::vector<SOverlayTexturedLine> > m_TexturedOverlayLines;
-
-	/// Draw little overlay circles to indicate where the exact path points are?
-	bool m_EnableDebugNodeOverlay;
-	std::vector<std::vector<SOverlayLine> > m_DebugNodeOverlays;
-
-public:
-
-	static std::string GetSchema()
-	{
-		return
-			"<a:help>Displays a rally point marker where created units will gather when spawned</a:help>"
-			"<a:example>"
-				"<MarkerTemplate>special/rallypoint</MarkerTemplate>"
-				"<LineThickness>0.75</LineThickness>"
-				"<LineStartCap>round</LineStartCap>"
-				"<LineEndCap>square</LineEndCap>"
-				"<LineDashColor r='158' g='11' b='15'></LineDashColor>"
-				"<LinePassabilityClass>default</LinePassabilityClass>"
-			"</a:example>"
-			"<element name='MarkerTemplate' a:help='Template name for the rally point marker entity (typically a waypoint flag actor)'>"
-				"<text/>"
-			"</element>"
-			"<element name='LineTexture' a:help='Texture file to use for the rally point line'>"
-				"<text />"
-			"</element>"
-			"<element name='LineTextureMask' a:help='Texture mask to indicate where overlay colors are to be applied (see LineColor and LineDashColor)'>"
-				"<text />"
-			"</element>"
-			"<element name='LineThickness' a:help='Thickness of the marker line connecting the entity to the rally point marker'>"
-				"<data type='decimal'/>"
-			"</element>"
-			"<element name='LineDashColor'>"
-				"<attribute name='r'>"
-					"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
-				"</attribute>"
-				"<attribute name='g'>"
-					"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
-				"</attribute>"
-				"<attribute name='b'>"
-					"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
-				"</attribute>"
-			"</element>"
-			"<element name='LineStartCap'>"
-				"<choice>"
-					"<value a:help='Abrupt line ending; line endings are not closed'>flat</value>"
-					"<value a:help='Semi-circular line end cap'>round</value>"
-					"<value a:help='Sharp, pointy line end cap'>sharp</value>"
-					"<value a:help='Square line end cap'>square</value>"
-				"</choice>"
-			"</element>"
-			"<element name='LineEndCap'>"
-				"<choice>"
-					"<value a:help='Abrupt line ending; line endings are not closed'>flat</value>"
-					"<value a:help='Semi-circular line end cap'>round</value>"
-					"<value a:help='Sharp, pointy line end cap'>sharp</value>"
-					"<value a:help='Square line end cap'>square</value>"
-				"</choice>"
-			"</element>"
-			"<element name='LinePassabilityClass' a:help='The pathfinder passability class to use for computing the rally point marker line path'>"
-				"<text />"
-			"</element>";
-	}
-
-	virtual void Init(const CParamNode& paramNode);
-
-	virtual void Deinit()
-	{
-	}
-
-	virtual void Serialize(ISerializer& UNUSED(serialize))
-	{
-		// do NOT serialize anything; this is a rendering-only component, it does not and should not affect simulation state
-	}
-
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
-	{
-		Init(paramNode);
-		// The dependent components have not been deserialized, so the color is loaded on first SetDisplayed
-	}
-
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
-	{
-		switch (msg.GetType())
-		{
-		case MT_PlayerColorChanged:
-			{
-				const CMessagePlayerColorChanged& msgData = static_cast<const CMessagePlayerColorChanged&> (msg);
-
-				CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
-				if (!cmpOwnership || msgData.player != cmpOwnership->GetOwner())
-					break;
-
-				UpdateLineColor();
-				ConstructAllOverlayLines();
-			}
-			break;
-		case MT_RenderSubmit:
-			{
-				PROFILE("RallyPoint::RenderSubmit");
-				if (m_Displayed && IsSet())
-				{
-					const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-					RenderSubmit(msgData.collector);
-				}
-			}
-			break;
-		case MT_OwnershipChanged:
-			{
-				const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
-
-				// Ignore destroyed entities
-				if (msgData.to == INVALID_PLAYER)
-					break;
-
-				// Required for both the initial and capturing players color
-				UpdateLineColor();
-
-				// Support capturing, even though RallyPoint is typically deleted then
-				UpdateMarkers();
-				ConstructAllOverlayLines();
-			}
-			break;
-		case MT_TurnStart:
-			{
-				UpdateOverlayLines(); // check for changes to the SoD and update the overlay lines accordingly
-			}
-			break;
-		case MT_Destroy:
-			{
-				Reset();
-			}
-			break;
-		case MT_PositionChanged:
-			{
-				// Unlikely to happen in-game, but can occur in atlas
-				// Just recompute the path from the entity to the first rally point
-				RecomputeRallyPointPath_wrapper(0);
-			}
-			break;
-		}
-	}
-
-	/*
-	 * Must be called whenever m_Displayed or the size of m_RallyPoints change,
-	 * to determine whether we need to respond to render messages.
-	 */
-	void UpdateMessageSubscriptions()
-	{
-		bool needRender = m_Displayed && IsSet();
-		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
-	}
-
-	virtual void AddPosition_wrapper(const CFixedVector2D& pos)
-	{
-		AddPosition(pos, false);
-	}
-
-	virtual void SetPosition(const CFixedVector2D& pos)
-	{
-		if (!(m_RallyPoints.size() == 1 && m_RallyPoints.front() == pos))
-		{
-			m_RallyPoints.clear();
-			AddPosition(pos, true);
-			// Don't need to UpdateMessageSubscriptions here since AddPosition already calls it
-		}
-	}
-
-	virtual void UpdatePosition(u32 rallyPointId, const CFixedVector2D& pos)
-	{
-		if (rallyPointId >= m_RallyPoints.size())
-			return;
-
-		m_RallyPoints[rallyPointId] = pos;
-
-		UpdateMarkers();
-
-		// Compute a new path for the current, and if existing the next rally point
-		RecomputeRallyPointPath_wrapper(rallyPointId);
-		if (rallyPointId+1 < m_RallyPoints.size())
-			RecomputeRallyPointPath_wrapper(rallyPointId+1);
-	}
-
-	virtual void SetDisplayed(bool displayed)
-	{
-		if (m_Displayed != displayed)
-		{
-			m_Displayed = displayed;
-
-			// Set color after all dependent components are deserialized
-			if (displayed && m_LineColor.r < 0)
-			{
-				UpdateLineColor();
-				ConstructAllOverlayLines();
-			}
-
-			// move the markers out of oblivion and back into the real world, or vice-versa
-			UpdateMarkers();
-
-			// Check for changes to the SoD and update the overlay lines accordingly. We need to do this here because this method
-			// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred
-			// while this rally point was not being displayed.
-			UpdateOverlayLines();
-
-			UpdateMessageSubscriptions();
-		}
-	}
-
-	virtual void Reset()
-	{
-		for (entity_id_t& componentId : m_MarkerEntityIds)
-		{
-			if (componentId != INVALID_ENTITY)
-			{
-				GetSimContext().GetComponentManager().DestroyComponentsSoon(componentId);
-				componentId = INVALID_ENTITY;
-			}
-		}
-
-		m_MarkerEntityIds.clear();
-		m_LastOwner = INVALID_PLAYER;
-		m_LastMarkerCount = 0;
-		m_RallyPoints.clear();
-		RecomputeAllRallyPointPaths();
-		UpdateMessageSubscriptions();
-	}
-
-	/**
-	 * Returns true if at least one display rally point is set; i.e., if we have a point to render our marker/line at.
-	 */
-	bool IsSet() const
-	{
-		return !m_RallyPoints.empty();
-	}
-
-	void UpdateColor()
-	{
-		UpdateLineColor();
-		ConstructAllOverlayLines();
-	}
-
-private:
-
-	/**
-	 * Helper function for AddPosition_wrapper and SetPosition.
-	 */
-	void AddPosition(CFixedVector2D pos, bool recompute)
-	{
-		m_RallyPoints.push_back(pos);
-		UpdateMarkers();
-
-		if (recompute)
-			RecomputeAllRallyPointPaths();
-		else
-			RecomputeRallyPointPath_wrapper(m_RallyPoints.size()-1);
-
-		UpdateMessageSubscriptions();
-	}
-
-	/**
-	* Helper function to set the line color to its owner's color.
-	*/
-	void UpdateLineColor();
-
-	/**
-	 * Repositions the rally point markers; moves them outside of the world (ie. hides them), or positions them at the currently
-	 * set rally points. Also updates the actor's variation according to the entity's current owning player's civilization.
-	 *
-	 * Should be called whenever either the position of a rally point changes (including whether it is set or not), or the display
-	 * flag changes, or the ownership of the entity changes.
-	 */
-	void UpdateMarkers();
-
-	/**
-	 * Recomputes all the full paths from this entity to the rally point and from the rally point to the next, and does all the necessary
-	 * post-processing to make them prettier.
-	 *
-	 * Should be called whenever all rally points' position changes.
-	 */
-	void RecomputeAllRallyPointPaths();
-
-	/**
-	 * Recomputes the full path for m_Path[ @p index], and does all the necessary post-processing to make it prettier.
-	 *
-	 * Should be called whenever either the starting position or the rally point's position changes.
-	 */
-	void RecomputeRallyPointPath_wrapper(size_t index);
-
-	/**
-	 * Recomputes the full path from this entity/the previous rally point to the next rally point, and does all the necessary
-	 * post-processing to make it prettier. This doesn't check if we have a valid position or if a rally point is set.
-	 *
-	 * You shouldn't need to call this method directly.
-	 */
-	void RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPosition>& cmpPosition, CmpPtr<ICmpFootprint>& cmpFootprint, CmpPtr<ICmpPathfinder> cmpPathfinder);
-
-	/**
-	 * Checks for changes to the SoD to the previously saved state, and reconstructs the visibility segments and overlay lines to
-	 * match if necessary. Does nothing if the rally point lines are not currently set to be displayed, or if no rally point is set.
-	 */
-	void UpdateOverlayLines();
-
-	/**
-	 * Sets up all overlay lines for rendering according to the current full path and visibility segments. Splits the line into solid
-	 * and dashed pieces (for the SoD). Should be called whenever the SoD has changed. If no full path is currently set, this method
-	 * does nothing.
-	 */
-	void ConstructAllOverlayLines();
-
-	/**
-	 * Sets up the overlay lines for rendering according to the full path and visibility segments at @p index. Splits the line into
-	 * solid and dashed pieces (for the SoD). Should be called whenever the SoD of the path at @p index has changed.
-	 */
-	void ConstructOverlayLines(size_t index);
-
-	/**
-	 * Removes points from @p coords that are obstructed by the originating building's footprint, and links up the last point
-	 * nicely to the edge of the building's footprint. Only needed if the pathfinder can possibly return obstructed tile waypoints,
-	 * i.e. when pathfinding is started from an obstructed tile.
-	 */
-	void FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const;
-
-	/**
-	 * Get the point on the footprint edge that's as close from "start" as possible.
-	 */
-	void GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const;
-
-	/**
-	 * Returns a list of indices of waypoints in the current path (m_Path[index]) where the LOS visibility changes, ordered from
-	 * building/previous rally point to rally point. Used to construct the overlay line segments and track changes to the SoD.
-	 */
-	void GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index) const;
-
-	/**
-	 * Simplifies the path by removing waypoints that lie between two points that are visible from one another. This is primarily
-	 * intended to reduce some unnecessary curviness of the path; the pathfinder returns a mathematically (near-)optimal path, which
-	 * will happily curve and bend to reduce costs. Visually, it doesn't make sense for a rally point path to curve and bend when it
-	 * could just as well have gone in a straight line; that's why we have this, to make it look more natural.
-	 *
-	 * @p coords array of path coordinates to simplify
-	 * @p maxSegmentLinks if non-zero, indicates the maximum amount of consecutive node-to-node links that can be joined into a
-	 *                    single link. If this value is set to e.g. 1, then no reductions will be performed. A value of 3 means that
-	 *                    at most 3 consecutive node links will be joined into a single link.
-	 * @p floating whether to consider nodes who are under the water level as floating on top of the water
-	 */
-	void ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks = 0, bool floating = true) const;
-
-	/**
-	 * Helper function to GetVisibilitySegments, factored out for testing. Merges single-point segments with its neighbouring
-	 * segments. You should not have to call this method directly.
-	 */
-	static void MergeVisibilitySegments(std::deque<SVisibilitySegment>& segments);
-
-	void RenderSubmit(SceneCollector& collector);
-};
-
-REGISTER_COMPONENT_TYPE(RallyPointRenderer)
+	return
+		"<a:help>Displays a rally point marker where created units will gather when spawned</a:help>"
+		"<a:example>"
+			"<MarkerTemplate>special/rallypoint</MarkerTemplate>"
+			"<LineThickness>0.75</LineThickness>"
+			"<LineStartCap>round</LineStartCap>"
+			"<LineEndCap>square</LineEndCap>"
+			"<LineDashColor r='158' g='11' b='15'></LineDashColor>"
+			"<LinePassabilityClass>default</LinePassabilityClass>"
+		"</a:example>"
+		"<element name='MarkerTemplate' a:help='Template name for the rally point marker entity (typically a waypoint flag actor)'>"
+			"<text/>"
+		"</element>"
+		"<element name='LineTexture' a:help='Texture file to use for the rally point line'>"
+			"<text />"
+		"</element>"
+		"<element name='LineTextureMask' a:help='Texture mask to indicate where overlay colors are to be applied (see LineColor and LineDashColor)'>"
+			"<text />"
+		"</element>"
+		"<element name='LineThickness' a:help='Thickness of the marker line connecting the entity to the rally point marker'>"
+			"<data type='decimal'/>"
+		"</element>"
+		"<element name='LineDashColor'>"
+			"<attribute name='r'>"
+				"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
+			"</attribute>"
+			"<attribute name='g'>"
+				"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
+			"</attribute>"
+			"<attribute name='b'>"
+				"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
+			"</attribute>"
+		"</element>"
+		"<element name='LineStartCap'>"
+			"<choice>"
+				"<value a:help='Abrupt line ending; line endings are not closed'>flat</value>"
+				"<value a:help='Semi-circular line end cap'>round</value>"
+				"<value a:help='Sharp, pointy line end cap'>sharp</value>"
+				"<value a:help='Square line end cap'>square</value>"
+			"</choice>"
+		"</element>"
+		"<element name='LineEndCap'>"
+			"<choice>"
+				"<value a:help='Abrupt line ending; line endings are not closed'>flat</value>"
+				"<value a:help='Semi-circular line end cap'>round</value>"
+				"<value a:help='Sharp, pointy line end cap'>sharp</value>"
+				"<value a:help='Square line end cap'>square</value>"
+			"</choice>"
+		"</element>"
+		"<element name='LinePassabilityClass' a:help='The pathfinder passability class to use for computing the rally point marker line path'>"
+			"<text />"
+		"</element>";
+}
 
 void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 {
@@ -489,7 +84,7 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 
 	UpdateLineColor();
 	// ---------------------------------------------------------------------------------------------
-	// load some XML configuration data (schema guarantees that all these nodes are valid)
+	// Load some XML configuration data (schema guarantees that all these nodes are valid)
 
 	m_MarkerTemplate = paramNode.GetChild("MarkerTemplate").ToString();
 	const CParamNode& lineDashColor = paramNode.GetChild("LineDashColor");
@@ -508,7 +103,7 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	m_LinePassabilityClass = paramNode.GetChild("LinePassabilityClass").ToUTF8();
 
 	// ---------------------------------------------------------------------------------------------
-	// load some textures
+	// Load some textures
 
 	if (CRenderer::IsInitialised())
 	{
@@ -524,6 +119,97 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	}
 }
 
+void CCmpRallyPointRenderer::ClassInit(CComponentManager& componentManager)
+{
+	componentManager.SubscribeGloballyToMessageType(MT_PlayerColorChanged);
+	componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+	componentManager.SubscribeToMessageType(MT_TurnStart);
+	componentManager.SubscribeToMessageType(MT_Destroy);
+	componentManager.SubscribeToMessageType(MT_PositionChanged);
+}
+
+void CCmpRallyPointRenderer::Deinit()
+{
+}
+
+void CCmpRallyPointRenderer::Serialize(ISerializer& UNUSED(serialize))
+{
+	// Do NOT serialize anything; this is a rendering-only component, it does not and should not affect simulation state
+}
+
+void CCmpRallyPointRenderer::Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+{
+	Init(paramNode);
+	// The dependent components have not been deserialized, so the color is loaded on first SetDisplayed
+}
+
+void CCmpRallyPointRenderer::HandleMessage(const CMessage& msg, bool UNUSED(global))
+{
+	switch (msg.GetType())
+	{
+	case MT_PlayerColorChanged:
+	{
+		const CMessagePlayerColorChanged& msgData = static_cast<const CMessagePlayerColorChanged&> (msg);
+
+		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
+		if (!cmpOwnership || msgData.player != cmpOwnership->GetOwner())
+			break;
+
+		UpdateLineColor();
+		ConstructAllOverlayLines();
+	}
+	break;
+	case MT_RenderSubmit:
+	{
+		PROFILE("RallyPoint::RenderSubmit");
+		if (m_Displayed && IsSet())
+		{
+			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
+			RenderSubmit(msgData.collector);
+		}
+	}
+	break;
+	case MT_OwnershipChanged:
+	{
+		const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
+
+		// Ignore destroyed entities
+		if (msgData.to == INVALID_PLAYER)
+			break;
+		Reset();
+		// Required for both the initial and capturing players color
+		UpdateLineColor();
+
+		// Support capturing, even though RallyPoint is typically deleted then
+		UpdateMarkers();
+		ConstructAllOverlayLines();
+	}
+	break;
+	case MT_TurnStart:
+	{
+		UpdateOverlayLines(); // Check for changes to the SoD and update the overlay lines accordingly
+	}
+	break;
+	case MT_Destroy:
+	{
+		Reset();
+	}
+	break;
+	case MT_PositionChanged:
+	{
+		// Unlikely to happen in-game, but can occur in atlas
+		// Just recompute the path from the entity to the first rally point
+		RecomputeRallyPointPath_wrapper(0);
+	}
+	break;
+	}
+}
+
+void CCmpRallyPointRenderer::UpdateMessageSubscriptions()
+{
+	GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, m_Displayed && IsSet());
+}
+
 void CCmpRallyPointRenderer::UpdateMarkers()
 {
 	player_id_t previousOwner = m_LastOwner;
@@ -534,10 +220,10 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 
 		if (m_MarkerEntityIds[i] == INVALID_ENTITY)
 		{
-			// no marker exists yet, create one first
+			// No marker exists yet, create one first
 			CComponentManager& componentMgr = GetSimContext().GetComponentManager();
 
-			// allocate a new entity for the marker
+			// Allocate a new entity for the marker
 			if (!m_MarkerTemplate.empty())
 			{
 				m_MarkerEntityIds[i] = componentMgr.AllocateNewLocalEntity();
@@ -546,7 +232,7 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 			}
 		}
 
-		// the marker entity should be valid at this point, otherwise something went wrong trying to allocate it
+		// The marker entity should be valid at this point, otherwise something went wrong trying to allocate it
 		if (m_MarkerEntityIds[i] == INVALID_ENTITY)
 			LOGERROR("Failed to create rally point marker entity");
 
@@ -559,11 +245,11 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 			}
 			else
 			{
-				markerCmpPosition->MoveOutOfWorld(); // hide it
+				markerCmpPosition->MoveOutOfWorld();
 			}
 		}
 
-		// set rally point flag selection based on player civilization
+		// Set rally point flag selection based on player civilization
 		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 		if (!cmpOwnership)
 			continue;
@@ -589,7 +275,6 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 	}
 	m_LastMarkerCount = m_RallyPoints.size() - 1;
 }
-
 
 void CCmpRallyPointRenderer::UpdateLineColor()
 {
@@ -618,17 +303,17 @@ void CCmpRallyPointRenderer::RecomputeAllRallyPointPaths()
 	m_VisibilitySegments.clear();
 	m_TexturedOverlayLines.clear();
 
-	//// <DEBUG> ///////////////////////////////////////////////
 	if (m_EnableDebugNodeOverlay)
 		m_DebugNodeOverlays.clear();
-	//// </DEBUG> //////////////////////////////////////////////
 
+	// No use computing a path if the rally point isn't set
 	if (!IsSet())
-		return; // no use computing a path if the rally point isn't set
+		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	// No point going on if this entity doesn't have a position or is outside of the world
 	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return; // no point going on if this entity doesn't have a position or is outside of the world
+		return;
 
 	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
@@ -641,12 +326,14 @@ void CCmpRallyPointRenderer::RecomputeAllRallyPointPaths()
 
 void CCmpRallyPointRenderer::RecomputeRallyPointPath_wrapper(size_t index)
 {
+	// No use computing a path if the rally point isn't set
 	if (!IsSet())
-		return; // no use computing a path if the rally point isn't set
+		return;
 
+	// No point going on if this entity doesn't have a position or is outside of the world
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return; // no point going on if this entity doesn't have a position or is outside of the world
+		return;
 
 	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
@@ -665,7 +352,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 
 	while (index >= m_VisibilitySegments.size())
 	{
-		std::deque<SVisibilitySegment> tmp;
+		std::vector<SVisibilitySegment> tmp;
 		m_VisibilitySegments.push_back(tmp);
 	}
 	m_VisibilitySegments[index].clear();
@@ -673,11 +360,11 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	// Find a long path to the goal point -- this uses the tile-based pathfinder, which will return a
 	// list of waypoints (i.e. a Path) from the goal to the foundation/previous rally point, where each
 	// waypoint is centered at a tile. We'll have to do some post-processing on the path to get it smooth.
-	Path path;
+	WaypointPath path;
 	std::vector<Waypoint>& waypoints = path.m_Waypoints;
 
 	CFixedVector2D start(cmpPosition->GetPosition2D());
-	Goal goal = { Goal::POINT, m_RallyPoints[index].X, m_RallyPoints[index].Y };
+	PathGoal goal = { PathGoal::POINT, m_RallyPoints[index].X, m_RallyPoints[index].Y };
 
 	if (index == 0)
 		GetClosestsEdgePointFrom(start,m_RallyPoints[index], cmpPosition, cmpFootprint);
@@ -697,7 +384,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	}
 	else if (index == 0)
 	{
-		// sometimes this ends up not being optimal if you asked for a long path, so improve.
+		// Sometimes this ends up not being optimal if you asked for a long path, so improve.
 		CFixedVector2D newend(waypoints[waypoints.size()-2].x,waypoints[waypoints.size()-2].z);
 		GetClosestsEdgePointFrom(newend,newend, cmpPosition, cmpFootprint);
 		waypoints.back().x = newend.X;
@@ -705,12 +392,12 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	}
 	else
 	{
-		// make sure we actually start at the rallypoint because the pathfinder moves us to a usable tile.
+		// Make sure we actually start at the rallypoint because the pathfinder moves us to a usable tile.
 		waypoints.back().x = m_RallyPoints[index-1].X;
 		waypoints.back().z = m_RallyPoints[index-1].Y;
 	}
 
-	// pathfinder makes us go to the nearest passable cell which isn't always what we want
+	// Pathfinder makes us go to the nearest passable cell which isn't always what we want
 	waypoints[0].x = m_RallyPoints[index].X;
 	waypoints[0].z = m_RallyPoints[index].Y;
 
@@ -721,9 +408,6 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	for (Waypoint& waypoint : waypoints)
 		m_Path[index].emplace_back(waypoint.x.ToFloat(), waypoint.z.ToFloat());
 
-	// add the start position
-	// m_Path[index].emplace_back(m_RallyPoints[index].X.ToFloat(), m_RallyPoints[index].Y.ToFloat());
-
 	// Post-processing
 
 	// Linearize the path;
@@ -733,10 +417,6 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	// TODO: see if we can do this at the same time as the waypoint -> coord conversion above
 	for(size_t i = m_Path[index].size() - 2; i > 0; --i)
 		m_Path[index][i] = (m_Path[index][i] + m_Path[index][i-1]) / 2.0f;
-
-	// if there's a footprint and this path starts from this entity, remove any points returned by the pathfinder that may be on obstructed footprint tiles
-	//if (index == 0 && cmpFootprint)
-	//	FixFootprintWaypoints(m_Path[index], cmpPosition, cmpFootprint);
 
 	// Eliminate some consecutive waypoints that are visible from eachother. Reduce across a maximum distance of approx. 6 tiles
 	// (prevents segments that are too long to properly stick to the terrain)
@@ -754,7 +434,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	{
 		// Create separate control point overlays so we can differentiate when using smoothing (offset them a little higher from the
 		// terrain so we can still see them after the interpolated points are added)
-		for (CVector2D& point : m_Path[index])
+		for (const CVector2D& point : m_Path[index])
 		{
 			SOverlayLine overlayLine;
 			overlayLine.m_Color = CColor(1.0f, 0.0f, 0.0f, 1.0f);
@@ -768,12 +448,13 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 		// The number of points to interpolate goes hand in hand with the maximum amount of node links allowed to be joined together
 		// by the visibility reduction. The more node links that can be joined together, the more interpolated points you need to
 		// generate to be able to deal with local terrain height changes.
-		SimRender::InterpolatePointsRNS(m_Path[index], false, 0, 4); // no offset, keep line at its exact path
+		// no offset, keep line at its exact path
+		SimRender::InterpolatePointsRNS(m_Path[index], false, 0, 4);
 
-	// find which point is the last visible point before going into the SoD, so we have a point to compare to on the next turn
+	// Find which point is the last visible point before going into the SoD, so we have a point to compare to on the next turn
 	GetVisibilitySegments(m_VisibilitySegments[index], index);
 
-	// build overlay lines for the new path
+	// Build overlay lines for the new path
 	ConstructOverlayLines(index);
 }
 
@@ -800,19 +481,18 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 	if (m_Path[index].size() < 2)
 		return;
 
-	LineCapType dashesLineCapType = SOverlayTexturedLine::LINECAP_ROUND; // line caps to use for the dashed segments (and any other segment's edges that border it)
+	SOverlayTexturedLine::LineCapType dashesLineCapType = SOverlayTexturedLine::LINECAP_ROUND; // line caps to use for the dashed segments (and any other segment's edges that border it)
 
-	for (std::deque<SVisibilitySegment>::const_iterator it = m_VisibilitySegments[index].begin(); it != m_VisibilitySegments[index].end(); ++it)
+
+	for(const SVisibilitySegment& segment : m_VisibilitySegments[index])
 	{
-		const SVisibilitySegment& segment = (*it);
-
 		if (segment.m_Visible)
 		{
-			// does this segment border on the building or rally point flag on either side?
+			// Does this segment border on the building or rally point flag on either side?
 			bool bordersBuilding = (segment.m_EndIndex == m_Path[index].size() - 1);
 			bool bordersFlag = (segment.m_StartIndex == 0);
 
-			// construct solid textured overlay line along a subset of the full path points from startPointIdx to endPointIdx
+			// Construct solid textured overlay line along a subset of the full path points from startPointIdx to endPointIdx
 			SOverlayTexturedLine overlayLine;
 			overlayLine.m_Thickness = m_LineThickness;
 			overlayLine.m_SimContext = &GetSimContext();
@@ -820,16 +500,17 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 			overlayLine.m_TextureMask = m_TextureMask;
 			overlayLine.m_Color = m_LineColor;
 			overlayLine.m_Closed = false;
-			// we should take care to only use m_LineXCap for the actual end points at the building and the rally point; any intermediate
+			// We should take care to only use m_LineXCap for the actual end points at the building and the rally point; any intermediate
 			// end points (i.e., that border a dashed segment) should have the dashed cap
 			// the path line is actually in reverse order as well, so let's swap out the start and end caps
 			overlayLine.m_StartCapType = (bordersFlag ? m_LineEndCapType : dashesLineCapType);
 			overlayLine.m_EndCapType = (bordersBuilding ? m_LineStartCapType : dashesLineCapType);
 			overlayLine.m_AlwaysVisible = true;
 
-			// push overlay line coordinates
+			// Push overlay line coordinates
 			ENSURE(segment.m_EndIndex > segment.m_StartIndex);
-			for (size_t j = segment.m_StartIndex; j <= segment.m_EndIndex; ++j) // end index is inclusive here
+			// End index is inclusive here
+			for (size_t j = segment.m_StartIndex; j <= segment.m_EndIndex; ++j)
 			{
 				overlayLine.m_Coords.push_back(m_Path[index][j].X);
 				overlayLine.m_Coords.push_back(m_Path[index][j].Y);
@@ -839,7 +520,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 		}
 		else
 		{
-			// construct dashed line from startPointIdx to endPointIdx; add textured overlay lines for it to the render list
+			// Construct dashed line from startPointIdx to endPointIdx; add textured overlay lines for it to the render list
 			std::vector<CVector2D> straightLine;
 			straightLine.push_back(m_Path[index][segment.m_StartIndex]);
 			straightLine.push_back(m_Path[index][segment.m_EndIndex]);
@@ -853,9 +534,11 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 
 			float dashSize = maxDashSize;
 			float clearSize = maxClearSize;
-			float pairDashRatio = (dashSize / (dashSize + clearSize)); // ratio of the dash's length to a (dash + clear) pair's length
+			// Ratio of the dash's length to a (dash + clear) pair's length
+			float pairDashRatio = dashSize / (dashSize + clearSize);
 
-			float distance = (m_Path[index][segment.m_StartIndex] - m_Path[index][segment.m_EndIndex]).Length(); // straight-line distance between the points
+			// Straight-line distance between the points
+			float distance = (m_Path[index][segment.m_StartIndex] - m_Path[index][segment.m_EndIndex]).Length();
 
 			// See how many pairs (dash + clear) of unmodified size can fit into the distance. Then check the remaining distance; if it's not exactly
 			// a dash size's worth (which it probably won't be), then adjust the dash/clear sizes slightly so that it is.
@@ -868,10 +551,11 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 			// (which will be positive or negative accordingly). This number can then be distributed further proportionally among the dash's
 			// length and the clear's length.
 
-			// we always want to have at least one dash/clear pair (i.e., "|===|   |===|"); also, we need to avoid division by zero below.
+			// We always want to have at least one dash/clear pair (i.e., "|===|   |===|"); also, we need to avoid division by zero below.
 			numFitUnmodified = std::max(1, numFitUnmodified);
 
-			float pairwiseLengthDifference = (remainderDistance - maxDashSize)/numFitUnmodified; // can be either positive or negative
+			// Can be either positive or negative
+			float pairwiseLengthDifference = (remainderDistance - maxDashSize)/numFitUnmodified;
 			dashSize += pairDashRatio * pairwiseLengthDifference;
 			clearSize += (1 - pairDashRatio) * pairwiseLengthDifference;
 
@@ -880,7 +564,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 			SDashedLine dashedLine;
 			SimRender::ConstructDashedLine(straightLine, dashedLine, dashSize, clearSize);
 
-			// build overlay lines for dashes
+			// Build overlay lines for dashes
 			size_t numDashes = dashedLine.m_StartIndices.size();
 			for (size_t i=0; i < numDashes; i++)
 			{
@@ -940,11 +624,11 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 	if (!m_Displayed || !IsSet())
 		return;
 
-	// see if there have been any changes to the SoD by grabbing the visibility edge points and comparing them to the previous ones
-	std::deque<std::deque<SVisibilitySegment> > newVisibilitySegments;
+	// See if there have been any changes to the SoD by grabbing the visibility edge points and comparing them to the previous ones
+	std::vector<std::vector<SVisibilitySegment> > newVisibilitySegments;
 	for (size_t i = 0; i < m_Path.size(); ++i)
 	{
-		std::deque<SVisibilitySegment> tmp;
+		std::vector<SVisibilitySegment> tmp;
 		newVisibilitySegments.push_back(tmp);
 		GetVisibilitySegments(newVisibilitySegments[i], i);
 	}
@@ -952,7 +636,8 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 	// Check if the full path changed, then reconstruct all overlay lines, otherwise check if a segment changed and update that.
 	if (m_VisibilitySegments.size() != newVisibilitySegments.size())
 	{
-		m_VisibilitySegments = newVisibilitySegments; // save the new visibility segments to compare against next time
+		// Save the new visibility segments to compare against next time
+		m_VisibilitySegments = newVisibilitySegments;
 		ConstructAllOverlayLines();
 	}
 	else
@@ -963,7 +648,8 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 			{
 				// The visibility segments have changed, reconstruct the overlay lines to match. NOTE: The path itself doesn't
 				// change, only the overlay lines we construct from it.
-				m_VisibilitySegments[i] = newVisibilitySegments[i]; // save the new visibility segments to compare against next time
+				// Save the new visibility segments to compare against next time
+				m_VisibilitySegments[i] = newVisibilitySegments[i];
 				ConstructOverlayLines(i);
 			}
 		}
@@ -975,30 +661,32 @@ void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CF
 	ENSURE(cmpPosition);
 	ENSURE(cmpFootprint);
 
-	// grab the shape and dimensions of the footprint
+	// Grab the shape and dimensions of the footprint
 	entity_pos_t footprintSize0, footprintSize1, footprintHeight;
 	ICmpFootprint::EShape footprintShape;
 	cmpFootprint->GetShape(footprintShape, footprintSize0, footprintSize1, footprintHeight);
 
-	// grab the center of the footprint
+	// Grab the center of the footprint
 	CFixedVector2D center = cmpPosition->GetPosition2D();
 
 	switch (footprintShape)
 	{
 		case ICmpFootprint::SQUARE:
 		{
-			// in this case, footprintSize0 and 1 indicate the size along the X and Z axes, respectively.
-
-			// the building's footprint could be rotated any which way, so let's get the rotation around the Y axis
+			// In this case, footprintSize0 and 1 indicate the size along the X and Z axes, respectively.
+			// The building's footprint could be rotated any which way, so let's get the rotation around the Y axis
 			// and the rotated unit vectors in the X/Z plane of the shape's footprint
 			// (the Footprint itself holds only the outline, the Position holds the orientation)
 
-			fixed s, c; // sine and cosine of the Y axis rotation angle (aka the yaw)
+			// Sinus and cosinus of the Y axis rotation angle (aka the yaw)
+			fixed s, c;
 			fixed a = cmpPosition->GetRotation().Y;
 			sincos_approx(a, s, c);
-			CFixedVector2D u(c, -s); // unit vector along the rotated X axis
-			CFixedVector2D v(s, c); // unit vector along the rotated Z axis
-			CFixedVector2D halfSize(footprintSize0/2, footprintSize1/2);
+			// Unit vector along the rotated X axis
+			CFixedVector2D u(c, -s);
+			// Unit vector along the rotated Z axis
+			CFixedVector2D v(s, c);
+			CFixedVector2D halfSize(footprintSize0 / 2, footprintSize1 / 2);
 
 			CFixedVector2D footprintEdgePoint = Geometry::NearestPointOnSquare(start - center, u, v, halfSize);
 			result = center + footprintEdgePoint;
@@ -1006,7 +694,7 @@ void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CF
 		}
 		case ICmpFootprint::CIRCLE:
 		{
-			// in this case, both footprintSize0 and 1 indicate the circle's radius
+			// In this case, both footprintSize0 and 1 indicate the circle's radius
 			// Transform target to the point nearest on the edge.
 			CFixedVector2D centerVec2D(center.X, center.Y);
 			CFixedVector2D centerToLast(start - centerVec2D);
@@ -1014,91 +702,6 @@ void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CF
 			result = centerVec2D + (centerToLast.Multiply(footprintSize0));
 			break;
 		}
-	}
-}
-
-void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const
-{
-	ENSURE(cmpPosition);
-	ENSURE(cmpFootprint);
-
-	// -----------------------------------------------------------------------------------------------------
-	// TODO: nasty fixed/float conversions everywhere
-
-	// grab the shape and dimensions of the footprint
-	entity_pos_t footprintSize0, footprintSize1, footprintHeight;
-	ICmpFootprint::EShape footprintShape;
-	cmpFootprint->GetShape(footprintShape, footprintSize0, footprintSize1, footprintHeight);
-
-	// grab the center of the footprint
-	CFixedVector2D center = cmpPosition->GetPosition2D();
-
-	// -----------------------------------------------------------------------------------------------------
-
-	switch (footprintShape)
-	{
-	case ICmpFootprint::SQUARE:
-		{
-			// in this case, footprintSize0 and 1 indicate the size along the X and Z axes, respectively.
-
-			// the building's footprint could be rotated any which way, so let's get the rotation around the Y axis
-			// and the rotated unit vectors in the X/Z plane of the shape's footprint
-			// (the Footprint itself holds only the outline, the Position holds the orientation)
-
-			fixed s, c; // sine and cosine of the Y axis rotation angle (aka the yaw)
-			fixed a = cmpPosition->GetRotation().Y;
-			sincos_approx(a, s, c);
-			CFixedVector2D u(c, -s); // unit vector along the rotated X axis
-			CFixedVector2D v(s, c); // unit vector along the rotated Z axis
-			CFixedVector2D halfSize(footprintSize0/2, footprintSize1/2);
-
-			// starting from the start position, check if any points are within the footprint of the building
-			// (this is possible if the pathfinder was started from a point located within the footprint)
-			for(int i = (int)(coords.size() - 1); i >= 0; i--)
-			{
-				const CVector2D& wp = coords[i];
-				if (Geometry::PointIsInSquare(CFixedVector2D(fixed::FromFloat(wp.X), fixed::FromFloat(wp.Y)) - center, u, v, halfSize))
-				{
-					coords.erase(coords.begin() + i);
-				}
-				else
-				{
-					break; // point no longer inside footprint, from this point on neither will any of the following be
-				}
-			}
-
-			// add a point right on the edge of the footprint (nearest to the last waypoint) so that it links up nicely with the rest of the path
-			CFixedVector2D lastWaypoint(fixed::FromFloat(coords.back().X), fixed::FromFloat(coords.back().Y));
-			CFixedVector2D footprintEdgePoint = Geometry::NearestPointOnSquare(lastWaypoint - center, u, v, halfSize); // relative to the shape origin (center)
-			CVector2D footprintEdge((center.X + footprintEdgePoint.X).ToFloat(), (center.Y + footprintEdgePoint.Y).ToFloat());
-			coords.push_back(footprintEdge);
-
-		}
-		break;
-	case ICmpFootprint::CIRCLE:
-		{
-			// in this case, both footprintSize0 and 1 indicate the circle's radius
-
-			for(int i = (int)(coords.size() - 1); i >= 0; i--)
-			{
-				const CVector2D& wp = coords[i];
-				fixed pointDistance = (CFixedVector2D(fixed::FromFloat(wp.X), fixed::FromFloat(wp.Y)) - center).Length();
-				if (pointDistance <= footprintSize0)
-				{
-					coords.erase(coords.begin() + i);
-				}
-				else
-				{
-					break; // point no longer inside footprint, from this point on neither will any of the following be
-				}
-			}
-
-			// add a point right on the edge of the footprint so that it links up nicely with the rest of the path
-			CVector2D centerVec2D(center.X.ToFloat(), center.Y.ToFloat());
-			CVector2D centerToLast(coords.back() - centerVec2D);
-			coords.push_back(centerVec2D + (centerToLast.Normalized() * footprintSize0.ToFloat()));
-		}
-		break;
 	}
 }
 
@@ -1121,7 +724,8 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	entity_pos_t lineRadius = fixed::FromFloat(m_LineThickness);
 	pass_class_t passabilityClass = cmpPathFinder->GetPassabilityClass(m_LinePassabilityClass);
 
-	newCoords.push_back(coords[0]); // save the first base node
+	// Save the first base node
+	newCoords.push_back(coords[0]);
 
 	size_t baseNodeIdx = 0;
 	size_t curNodeIdx = 1;
@@ -1130,7 +734,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	entity_pos_t baseNodeX;
 	entity_pos_t baseNodeZ;
 
-	// set initial base node coords
+	// Set initial base node coords
 	baseNodeX = fixed::FromFloat(coords[baseNodeIdx].X);
 	baseNodeZ = fixed::FromFloat(coords[baseNodeIdx].Y);
 	baseNodeY = cmpTerrain->GetExactGroundLevel(coords[baseNodeIdx].X, coords[baseNodeIdx].Y);
@@ -1139,7 +743,8 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 
 	while (curNodeIdx < coords.size())
 	{
-		ENSURE(curNodeIdx > baseNodeIdx); // this needs to be true at all times, otherwise we're checking visibility between a point and itself
+		// This needs to be true at all times, otherwise we're checking visibility between a point and itself.
+		ENSURE(curNodeIdx > baseNodeIdx);
 
 		entity_pos_t curNodeX = fixed::FromFloat(coords[curNodeIdx].X);
 		entity_pos_t curNodeZ = fixed::FromFloat(coords[curNodeIdx].Y);
@@ -1147,22 +752,23 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 		if (floating)
 			curNodeY = std::max(curNodeY, cmpWaterManager->GetExactWaterLevel(coords[curNodeIdx].X, coords[curNodeIdx].Y));
 
-		// find out whether curNode is visible from baseNode (careful; this is in 2D only; terrain height differences are ignored!)
+		// Find out whether curNode is visible from baseNode (careful; this is in 2D only; terrain height differences are ignored!)
 		bool curNodeVisible = cmpPathFinder->CheckMovement(obstructionFilter, baseNodeX, baseNodeZ, curNodeX, curNodeZ, lineRadius, passabilityClass);
 
-		// since height differences are ignored by CheckMovement, let's call two points visible from one another only if they're at
+		// Since height differences are ignored by CheckMovement, let's call two points visible from one another only if they're at
 		// roughly the same terrain elevation
-		curNodeVisible = curNodeVisible && (fabsf(curNodeY - baseNodeY) < 3.f); // TODO: this could probably use some tuning
+		// TODO: this could probably use some tuning
+		curNodeVisible = curNodeVisible && (fabsf(curNodeY - baseNodeY) < 3.f);
 		if (maxSegmentLinks > 0)
-			// max. amount of node-to-node links to be eliminated (unsigned subtraction is valid because curNodeIdx is always > baseNodeIdx)
+			// Max. amount of node-to-node links to be eliminated (unsigned subtraction is valid because curNodeIdx is always > baseNodeIdx)
 			curNodeVisible = curNodeVisible && ((curNodeIdx - baseNodeIdx) <= maxSegmentLinks);
 
 		if (!curNodeVisible)
 		{
-			// current node is not visible from the base node, so the previous one was the last visible point from baseNode and should
+			// Current node is not visible from the base node, so the previous one was the last visible point from baseNode and should
 			// hence become the new base node for further iterations.
 
-			// if curNodeIdx is adjacent to the current baseNode (which is possible due to steep height differences, e.g. hills), then
+			// If curNodeIdx is adjacent to the current baseNode (which is possible due to steep height differences, e.g. hills), then
 			// we should take care not to stay stuck at the current base node
 			if (curNodeIdx > baseNodeIdx + 1)
 			{
@@ -1172,12 +778,14 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 			{
 				// curNodeIdx == baseNodeIdx + 1
 				baseNodeIdx = curNodeIdx;
-				curNodeIdx++; // move the next candidate node one forward so that we don't test a point against itself in the next iteration
+				// Move the next candidate node one forward so that we don't test a point against itself in the next iteration
+				++curNodeIdx;
 			}
 
-			newCoords.push_back(coords[baseNodeIdx]); // add new base node to output list
+			// Add new base node to output list
+			newCoords.push_back(coords[baseNodeIdx]);
 
-			// update base node coordinates
+			// Update base node coordinates
 			baseNodeX = fixed::FromFloat(coords[baseNodeIdx].X);
 			baseNodeZ = fixed::FromFloat(coords[baseNodeIdx].Y);
 			baseNodeY = cmpTerrain->GetExactGroundLevel(coords[baseNodeIdx].X, coords[baseNodeIdx].Y);
@@ -1185,10 +793,10 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 				baseNodeY = std::max(baseNodeY, cmpWaterManager->GetExactWaterLevel(coords[baseNodeIdx].X, coords[baseNodeIdx].Y));
 		}
 
-		curNodeIdx++;
+		++curNodeIdx;
 	}
 
-	// we always need to add the last point back to the array; if e.g. all the points up to the last one are all visible from the current
+	// We always need to add the last point back to the array; if e.g. all the points up to the last one are all visible from the current
 	// base node, then the loop above just ends and no endpoint is ever added to the list.
 	ENSURE(curNodeIdx == coords.size());
 	newCoords.push_back(coords[coords.size() - 1]);
@@ -1196,7 +804,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	coords.swap(newCoords);
 }
 
-void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index) const
+void CCmpRallyPointRenderer::GetVisibilitySegments(std::vector<SVisibilitySegment>& out, size_t index) const
 {
 	out.clear();
 
@@ -1205,50 +813,51 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment
 
 	CmpPtr<ICmpRangeManager> cmpRangeMgr(GetSystemEntity());
 
-	player_id_t currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
-	CLosQuerier losQuerier(cmpRangeMgr->GetLosQuerier(currentPlayer));
+	player_id_t currentPlayer = static_cast<player_id_t>(GetSimContext().GetCurrentDisplayedPlayer());
+	ICmpRangeManager::CLosQuerier losQuerier(cmpRangeMgr->GetLosQuerier(currentPlayer));
 
-	// go through the path node list, comparing each node's visibility with the previous one. If it changes, end the current segment and start
+	// Go through the path node list, comparing each node's visibility with the previous one. If it changes, end the current segment and start
 	// a new one at the next point.
 
+	const float terrainSize = static_cast<float>(TERRAIN_TILE_SIZE);
 	bool lastVisible = losQuerier.IsExplored(
-		(fixed::FromFloat(m_Path[index][0].X) / (int) TERRAIN_TILE_SIZE).ToInt_RoundToNearest(),
-		(fixed::FromFloat(m_Path[index][0].Y) / (int) TERRAIN_TILE_SIZE).ToInt_RoundToNearest()
+		(fixed::FromFloat(m_Path[index][0].X / terrainSize)).ToInt_RoundToNearest(),
+		(fixed::FromFloat(m_Path[index][0].Y / terrainSize)).ToInt_RoundToNearest()
 	);
-	size_t curSegmentStartIndex = 0; // starting node index of the current segment
+	// Starting node index of the current segment
+	size_t curSegmentStartIndex = 0;
 
 	for (size_t k = 1; k < m_Path[index].size(); ++k)
 	{
-		// grab tile indices for this coord
-		int i = (fixed::FromFloat(m_Path[index][k].X) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
-		int j = (fixed::FromFloat(m_Path[index][k].Y) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		// Grab tile indices for this coord
+		int i = (fixed::FromFloat(m_Path[index][k].X / terrainSize)).ToInt_RoundToNearest();
+		int j = (fixed::FromFloat(m_Path[index][k].Y / terrainSize)).ToInt_RoundToNearest();
 
 		bool nodeVisible = losQuerier.IsExplored(i, j);
 		if (nodeVisible != lastVisible)
 		{
-			// visibility changed; write out the segment that was just completed and get ready for the new one
+			// Visibility changed; write out the segment that was just completed and get ready for the new one
 			out.push_back(SVisibilitySegment(lastVisible, curSegmentStartIndex, k - 1));
 
-			//curSegmentStartIndex = k; // new segment starts here
 			curSegmentStartIndex = k - 1;
 			lastVisible = nodeVisible;
 		}
 
 	}
 
-	// terminate the last segment
+	// Terminate the last segment
 	out.push_back(SVisibilitySegment(lastVisible, curSegmentStartIndex, m_Path[index].size() - 1));
 
 	MergeVisibilitySegments(out);
 }
 
-void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegment>& segments)
+void CCmpRallyPointRenderer::MergeVisibilitySegments(std::vector<SVisibilitySegment>& segments)
 {
 	// Scan for single-point segments; if they are inbetween two other segments, delete them and merge the surrounding segments.
 	// If they're at either end of the path, include them in their bordering segment (but only if those bordering segments aren't
 	// themselves single-point segments, because then we would want those to get absorbed by its surrounding ones first).
 
-	// first scan for absorptions of single-point surrounded segments (i.e. excluding edge segments)
+	// First scan for absorptions of single-point surrounded segments (i.e. excluding edge segments)
 	size_t numSegments = segments.size();
 
 	// WARNING: FOR LOOP TRICKERY AHEAD!
@@ -1257,14 +866,18 @@ void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegme
 		SVisibilitySegment& segment = segments[i];
 		if (segment.IsSinglePoint())
 		{
-			// since the segments' visibility alternates, the surrounding ones should have the same visibility
+			// Since the segments' visibility alternates, the surrounding ones should have the same visibility
 			ENSURE(segments[i-1].m_Visible == segments[i+1].m_Visible);
 
-			segments[i-1].m_EndIndex = segments[i+1].m_EndIndex; // make previous segment span all the way across to the next
-			segments.erase(segments.begin() + i); // erase this segment ...
-			segments.erase(segments.begin() + i); // and the next (we removed [i], so [i+1] is now at position [i])
-			numSegments -= 2; // we removed 2 segments, so update the loop condition
-			// in the next iteration, i should still point to the segment right after the one that got expanded, which is now
+			// Make previous segment span all the way across to the next
+			segments[i-1].m_EndIndex = segments[i+1].m_EndIndex;
+			// Erase this segment
+			segments.erase(segments.begin() + i);
+			// And the next (we removed [i], so [i+1] is now at position [i])
+			segments.erase(segments.begin() + i);
+			// We removed 2 segments, so update the loop condition
+			numSegments -= 2;
+			// In the next iteration, i should still point to the segment right after the one that got expanded, which is now
 			// at position i; so don't increment i here
 		}
 		else
@@ -1275,12 +888,13 @@ void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegme
 
 	ENSURE(numSegments == segments.size());
 
-	// check to see if the first segment needs to be merged with its neighbour
+	// Check to see if the first segment needs to be merged with its neighbour
 	if (segments.size() >= 2 && segments[0].IsSinglePoint())
 	{
 		int firstSegmentStartIndex = segments.front().m_StartIndex;
 		ENSURE(firstSegmentStartIndex == 0);
-		ENSURE(!segments[1].IsSinglePoint()); // at this point, the second segment should never be a single-point segment
+		// At this point, the second segment should never be a single-point segment
+		ENSURE(!segments[1].IsSinglePoint());
 
 		segments.erase(segments.begin());
 		segments.front().m_StartIndex = firstSegmentStartIndex;
@@ -1290,14 +904,15 @@ void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegme
 	if (segments.size() >= 2 && segments[segments.size()-1].IsSinglePoint())
 	{
 		int lastSegmentEndIndex = segments.back().m_EndIndex;
-		ENSURE(!segments[segments.size()-2].IsSinglePoint()); // at this point, the second-to-last segment should never be a single-point segment
+		// At this point, the second-to-last segment should never be a single-point segment
+		ENSURE(!segments[segments.size()-2].IsSinglePoint());
 
-		segments.erase(segments.end());
+		segments.pop_back();
 		segments.back().m_EndIndex = lastSegmentEndIndex;
 	}
 
 	// --------------------------------------------------------------------------------------------------------
-	// at this point, every segment should have at least 2 points
+	// At this point, every segment should have at least 2 points
 	for (size_t i = 0; i < segments.size(); ++i)
 	{
 		ENSURE(!segments[i].IsSinglePoint());
@@ -1307,20 +922,114 @@ void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegme
 
 void CCmpRallyPointRenderer::RenderSubmit(SceneCollector& collector)
 {
-	// we only get here if the rally point is set and should be displayed
-	for (size_t i = 0; i < m_TexturedOverlayLines.size(); ++i)
-	{
-		for (size_t j = 0; j < m_TexturedOverlayLines[i].size(); ++j)
-		{
-			if (!m_TexturedOverlayLines[i][j].m_Coords.empty())
-				collector.Submit(&m_TexturedOverlayLines[i][j]);
-		}
-	}
+	// We only get here if the rally point is set and should be displayed
+	for(std::vector<SOverlayTexturedLine>& row : m_TexturedOverlayLines)
+		for (SOverlayTexturedLine& col : row)
+			if (!col.m_Coords.empty())
+				collector.Submit(&col);
 
 	if (m_EnableDebugNodeOverlay && !m_DebugNodeOverlays.empty())
 	{
-		for (size_t i = 0; i < m_DebugNodeOverlays.size(); ++i)
-			for (size_t j = 0; j < m_DebugNodeOverlays[i].size(); ++j)
-				collector.Submit(&m_DebugNodeOverlays[i][j]);
+		for (std::vector<SOverlayLine>& row : m_DebugNodeOverlays)
+			for (SOverlayLine& col : row)
+				if (!col.m_Coords.empty())
+					collector.Submit(&col);
 	}
+}
+
+void CCmpRallyPointRenderer::AddPosition_wrapper(const CFixedVector2D& pos)
+{
+	AddPosition(pos, false);
+}
+
+void CCmpRallyPointRenderer::SetPosition(const CFixedVector2D& pos)
+{
+	if (!(m_RallyPoints.size() == 1 && m_RallyPoints.front() == pos))
+	{
+		m_RallyPoints.clear();
+		AddPosition(pos, true);
+		// Don't need to UpdateMessageSubscriptions here since AddPosition already calls it
+	}
+}
+
+void CCmpRallyPointRenderer::UpdatePosition(u32 rallyPointId, const CFixedVector2D& pos)
+{
+	if (rallyPointId >= m_RallyPoints.size())
+		return;
+
+	m_RallyPoints[rallyPointId] = pos;
+
+	UpdateMarkers();
+
+	// Compute a new path for the current, and if existing the next rally point
+	RecomputeRallyPointPath_wrapper(rallyPointId);
+	if (rallyPointId + 1 < m_RallyPoints.size())
+		RecomputeRallyPointPath_wrapper(rallyPointId + 1);
+}
+
+void CCmpRallyPointRenderer::SetDisplayed(bool displayed)
+{
+	if (m_Displayed != displayed)
+	{
+		m_Displayed = displayed;
+
+		// Set color after all dependent components are deserialized
+		if (displayed && m_LineColor.r < 0)
+		{
+			UpdateLineColor();
+			ConstructAllOverlayLines();
+		}
+
+		// Move the markers out of oblivion and back into the real world, or vice-versa
+		UpdateMarkers();
+
+		// Check for changes to the SoD and update the overlay lines accordingly. We need to do this here because this method
+		// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred
+		// while this rally point was not being displayed.
+		UpdateOverlayLines();
+
+		UpdateMessageSubscriptions();
+	}
+}
+
+void CCmpRallyPointRenderer::Reset()
+{
+	for (entity_id_t& componentId : m_MarkerEntityIds)
+	{
+		if (componentId != INVALID_ENTITY)
+		{
+			GetSimContext().GetComponentManager().DestroyComponentsSoon(componentId);
+			componentId = INVALID_ENTITY;
+		}
+	}
+	m_RallyPoints.clear();
+	m_MarkerEntityIds.clear();
+	m_LastOwner = INVALID_PLAYER;
+	m_LastMarkerCount = 0;
+	RecomputeAllRallyPointPaths();
+	UpdateMessageSubscriptions();
+}
+
+void CCmpRallyPointRenderer::UpdateColor()
+{
+	UpdateLineColor();
+	ConstructAllOverlayLines();
+}
+
+void CCmpRallyPointRenderer::AddPosition(CFixedVector2D pos, bool recompute)
+{
+	m_RallyPoints.push_back(pos);
+	UpdateMarkers();
+
+	if (recompute)
+		RecomputeAllRallyPointPaths();
+	else
+		RecomputeRallyPointPath_wrapper(m_RallyPoints.size() - 1);
+
+	UpdateMessageSubscriptions();
+}
+
+bool CCmpRallyPointRenderer::IsSet() const
+{
+	return !m_RallyPoints.empty();
 }
