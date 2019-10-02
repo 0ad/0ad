@@ -23,8 +23,8 @@
 #ifndef INCLUDED_CGUISPRITE
 #define INCLUDED_CGUISPRITE
 
-#include "gui/CGUISize.h"
 #include "gui/GUIRenderer.h"
+#include "gui/SettingTypes/CGUISize.h"
 
 #include <map>
 #include <memory>

@@ -15,18 +15,39 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define MINIMAL_PCH 2
-#include "lib/precompiled.h"	// common precompiled header
+#ifndef INCLUDED_CPROGRESSBAR
+#define INCLUDED_CPROGRESSBAR
 
-#if MSC_VERSION
-# pragma warning(disable:4250)	// "inherits 'IGUITextOwner::IGUITextOwner::UpdateCachedSize' via dominance"
-#endif
-
-#if HAVE_PCH
-
-#include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
-#include "ps/CStr.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "gui/CGUISprite.h"
 
-#endif // HAVE_PCH
+/**
+ * Object used to draw a value (e.g. progress) from 0 to 100 visually.
+ */
+class CProgressBar : public IGUIObject
+{
+	GUI_OBJECT(CProgressBar)
+
+public:
+	CProgressBar(CGUI& pGUI);
+	virtual ~CProgressBar();
+
+protected:
+	/**
+	 * Draws the progress bar
+	 */
+	virtual void Draw();
+
+	// If caption is set, make sure it's within the interval 0-100
+	/**
+	 * @see IGUIObject#HandleMessage()
+	 */
+	void HandleMessage(SGUIMessage& Message);
+
+	// Settings
+	CGUISpriteInstance m_SpriteBackground;
+	CGUISpriteInstance m_SpriteBar;
+	float m_Caption;
+};
+
+#endif // INCLUDED_CPROGRESSBAR

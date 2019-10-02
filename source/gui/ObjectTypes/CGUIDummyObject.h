@@ -15,18 +15,35 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define MINIMAL_PCH 2
-#include "lib/precompiled.h"	// common precompiled header
+/*
+ * This is the top class of the whole GUI, all objects
+ * and settings are stored within this class.
+ */
 
-#if MSC_VERSION
-# pragma warning(disable:4250)	// "inherits 'IGUITextOwner::IGUITextOwner::UpdateCachedSize' via dominance"
-#endif
+#ifndef INCLUDED_CGUIDUMMYOBJECT
+#define INCLUDED_CGUIDUMMYOBJECT
 
-#if HAVE_PCH
-
-#include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
-#include "ps/CStr.h"
-#include "scriptinterface/ScriptInterface.h"
 
-#endif // HAVE_PCH
+/**
+ * Dummy object are used for the base object and objects of type "empty".
+ */
+class CGUIDummyObject : public IGUIObject
+{
+	GUI_OBJECT(CGUIDummyObject)
+
+public:
+	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}
+
+	virtual void Draw() {}
+
+	/**
+	 * Empty can never be hovered. It is only a category.
+	 */
+	virtual bool IsMouseOver() const
+	{
+		return false;
+	}
+};
+
+#endif // INCLUDED_CGUIDUMMYOBJECT

@@ -15,18 +15,28 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define MINIMAL_PCH 2
-#include "lib/precompiled.h"	// common precompiled header
+#ifndef INCLUDED_CRADIOBUTTON
+#define INCLUDED_CRADIOBUTTON
 
-#if MSC_VERSION
-# pragma warning(disable:4250)	// "inherits 'IGUITextOwner::IGUITextOwner::UpdateCachedSize' via dominance"
-#endif
+#include "gui/ObjectTypes/CCheckBox.h"
 
-#if HAVE_PCH
+/**
+ * Just like a check box, but it'll nullify its siblings (of the same kind),
+ * and it won't switch itself.
+ *
+ * @see CCheckBox
+ */
+class CRadioButton : public CCheckBox
+{
+	GUI_OBJECT(CRadioButton)
 
-#include "gui/CGUI.h"
-#include "gui/ObjectBases/IGUIObject.h"
-#include "ps/CStr.h"
-#include "scriptinterface/ScriptInterface.h"
+public:
+	CRadioButton(CGUI& pGUI);
 
-#endif // HAVE_PCH
+	/**
+	 * @see IGUIObject#HandleMessage()
+	 */
+	virtual void HandleMessage(SGUIMessage& Message);
+};
+
+#endif // INCLUDED_CRADIOBUTTON

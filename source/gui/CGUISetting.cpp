@@ -84,5 +84,5 @@ void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
 #define TYPE(T) \
 	template class CGUISetting<T>; \
 
-#include "GUItypes.h"
+#include "gui/GUISettingTypes.h"
 #undef TYPE

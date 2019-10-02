@@ -759,7 +759,10 @@ function setup_all_libs ()
 
 	source_dirs = {
 		"gui",
-		"gui/scripting",
+		"gui/ObjectTypes",
+		"gui/ObjectBases",
+		"gui/Scripting",
+		"gui/SettingTypes",
 		"i18n"
 	}
 	extern_libs = {

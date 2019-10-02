@@ -20,7 +20,7 @@
 
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
-#include "gui/CGUIColor.h"
+#include "gui/SettingTypes/CGUIColor.h"
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "ps/Shapes.h"

@@ -19,8 +19,8 @@
 
 #include "IGUIScrollBar.h"
 
-#include "gui/IGUIScrollBarOwner.h"
 #include "gui/CGUI.h"
+#include "gui/ObjectBases/IGUIScrollBarOwner.h"
 #include "maths/MathUtil.h"
 
 IGUIScrollBar::IGUIScrollBar(CGUI& pGUI)
