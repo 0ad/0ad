@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/citizen/idle_relax_m.dae" name="Idle" id="idle1" speed="30"/>
-    <animation file="biped/citizen/idle_relax_m.dae" name="Idle" id="idle2" speed="31"/>
-    <animation file="biped/citizen/idle_relax_m.dae" name="Idle" id="idle3" speed="32"/>
-    <animation file="biped/citizen/walk_relax_m.dae" name="Walk" id="walk1" speed="20"/>
-    <animation file="biped/citizen/walk_relax_m.dae" name="Walk" id="walk2" speed="18"/>
+    <animation file="biped/citizen/idle_relax_m_a.dae" name="Idle" id="idle1" frequency="8" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_b.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_c.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_d.dae" name="Idle" id="idle4" frequency="3" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_e.dae" name="Idle" id="idle5" frequency="3" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_f.dae" name="Idle" id="idle6" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_g.dae" name="Idle" id="idle7" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_h.dae" name="Idle" id="idle8" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_i.dae" name="Idle" id="idle9" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_j.dae" name="Idle" id="idle10" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_k.dae" name="Idle" id="idle11" frequency="1" speed="80"/>
+    <animation file="biped/citizen/idle_relax_m_l.dae" name="Idle" id="idle12" frequency="1" speed="80"/>
+    <animation file="biped/citizen/walk_relax_m.dae" name="Walk" id="walk1" speed="30"/>
+    <animation file="biped/citizen/walk_relax_m.dae" name="Walk" id="walk2" speed="31"/>
     <animation file="biped/citizen/run.dae" name="Run" id="run1" speed="4"/>
     <animation file="biped/citizen/run.dae" name="Run" id="run2" speed="5"/>
     <animation file="biped/citizen/run.dae" name="Run" id="run3" speed="6"/>
