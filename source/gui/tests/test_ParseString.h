@@ -17,7 +17,7 @@
 
 #include "lib/self_test.h"
 
-#include "gui/CGUISize.h"
+#include "gui/SettingTypes/CGUISize.h"
 #include "gui/CGUI.h"
 #include "ps/CLogger.h"
 

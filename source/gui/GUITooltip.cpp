@@ -20,7 +20,7 @@
 #include "GUITooltip.h"
 
 #include "gui/CGUI.h"
-#include "gui/IGUIObject.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 

@@ -18,7 +18,7 @@
 #ifndef INCLUDED_CGUISETTINGS
 #define INCLUDED_CGUISETTINGS
 
-#include "gui/IGUIObject.h"
+#include "gui/ObjectBases/IGUIObject.h"
 
 /**
  * This setting interface allows GUI objects to call setting function functions without having to know the setting type.

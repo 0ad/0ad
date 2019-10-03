@@ -97,9 +97,6 @@ private:
 	// Checks whether lighting environment has changed and update vertex data if necessary.
 	void CheckLightEnv();
 
-	CVector3D GetSmoothPivot(CCamera &camera) const;
-	void ResetCameraAngleZoom();
-
 	CGameViewImpl* m;
 };
 

@@ -23,8 +23,8 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
-#include "gui/CGUIString.h"
-#include "gui/IGUIObject.h"
+#include "gui/ObjectBases/IGUIObject.h"
+#include "gui/SettingTypes/CGUIString.h"
 #include "renderer/Renderer.h"
 
 #include <math.h>

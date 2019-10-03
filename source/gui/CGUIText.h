@@ -18,9 +18,9 @@
 #ifndef INCLUDED_GUITEXT
 #define INCLUDED_GUITEXT
 
-#include "gui/CGUIColor.h"
 #include "gui/CGUISprite.h"
-#include "gui/EAlign.h"
+#include "gui/SettingTypes/CGUIColor.h"
+#include "gui/SettingTypes/EAlign.h"
 #include "ps/CStrIntern.h"
 #include "ps/Shapes.h"
 

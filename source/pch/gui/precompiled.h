@@ -25,7 +25,7 @@
 #if HAVE_PCH
 
 #include "gui/CGUI.h"
-#include "gui/IGUIObject.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 

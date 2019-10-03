@@ -23,9 +23,9 @@
 #ifndef INCLUDED_CGUI
 #define INCLUDED_CGUI
 
-#include "gui/CGUIColor.h"
-#include "gui/CGUIDummyObject.h"
 #include "gui/GUITooltip.h"
+#include "gui/ObjectTypes/CGUIDummyObject.h"
+#include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SGUIIcon.h"
 #include "gui/SGUIStyle.h"
 #include "lib/input.h"

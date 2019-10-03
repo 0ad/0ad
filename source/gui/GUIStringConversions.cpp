@@ -18,7 +18,7 @@
 #include "precompiled.h"
 
 #include "gui/CGUI.h"
-#include "gui/CGUIString.h"
+#include "gui/SettingTypes/CGUIString.h"
 #include "ps/CLogger.h"
 
 class CGUIList;
