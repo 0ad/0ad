@@ -35,7 +35,7 @@
 #include "renderer/WaterManager.h"
 
 CCamera::CCamera()
-	: m_NearPlane(0.0f), m_FarPlane(0.0f), m_FOV(0.0f)
+	: m_NearPlane(0.0f), m_FarPlane(0.0f), m_FOV(0.0f), m_ProjType(CUSTOM)
 {
 	// Set viewport to something anything should handle, but should be initialised
 	// to window size before use.
@@ -47,26 +47,32 @@ CCamera::CCamera()
 
 CCamera::~CCamera() = default;
 
+void CCamera::SetProjection(const CMatrix3D& matrix)
+{
+	m_ProjType = CUSTOM;
+	m_ProjMat = matrix;
+}
+
 void CCamera::SetProjectionFromCamera(const CCamera& camera)
 {
+	m_ProjType = camera.m_ProjType;
 	m_NearPlane = camera.m_NearPlane;
 	m_FarPlane = camera.m_FarPlane;
-	m_FOV = camera.m_FOV;
+	if (m_ProjType == PERSPECTIVE)
+	{
+		m_FOV = camera.m_FOV;
+	}
 	m_ProjMat = camera.m_ProjMat;
 }
 
 void CCamera::SetPerspectiveProjection(float nearp, float farp, float fov)
 {
+	m_ProjType = PERSPECTIVE;
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
 	m_FOV = fov;
 
 	m_ProjMat.SetPerspective(m_FOV, GetAspectRatio(), m_NearPlane, m_FarPlane);
-}
-
-void CCamera::SetPerspectiveProjectionTile(int tiles, int tile_x, int tile_y)
-{
-	m_ProjMat.SetPerspectiveTile(m_FOV, GetAspectRatio(), m_NearPlane, m_FarPlane, tiles, tile_x, tile_y);
 }
 
 // Updates the frustum planes. Should be called
@@ -145,6 +151,7 @@ float CCamera::GetAspectRatio() const
 
 void CCamera::GetViewQuad(float dist, Quad& quad) const
 {
+	ENSURE(m_ProjType == PERSPECTIVE);
 	const float y = dist * tanf(m_FOV * 0.5f);
 	const float x = y * GetAspectRatio();
 

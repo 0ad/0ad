@@ -943,6 +943,7 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 {
 	WaterManager& wm = m->waterManager;
 
+	ENSURE(m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE);
 	float fov = m_ViewCamera.GetFOV();
 
 	// Expand fov slightly since ripples can reflect parts of the scene that
@@ -984,6 +985,7 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 {
 	WaterManager& wm = m->waterManager;
 
+	ENSURE(m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE);
 	float fov = m_ViewCamera.GetFOV();
 
 	// Expand fov slightly since ripples can reflect parts of the scene that

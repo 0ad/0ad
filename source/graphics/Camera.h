@@ -44,16 +44,22 @@ class CCamera
 		// Represents camera viewport or frustum side in 3D space.
 		using Quad = std::array<CVector3D, 4>;
 
+		enum ProjectionType
+		{
+			CUSTOM,
+			PERSPECTIVE,
+		};
+
 		CCamera();
 		~CCamera();
 
 		CMatrix3D& GetProjection() { return m_ProjMat; }
 		const CMatrix3D& GetProjection() const { return m_ProjMat; }
 		CMatrix3D GetViewProjection() const { return m_ProjMat * m_Orientation.GetInverse(); }
-		void SetProjection(const CMatrix3D& matrix) { m_ProjMat = matrix; }
+		void SetProjection(const CMatrix3D& matrix);
 		void SetProjectionFromCamera(const CCamera& camera);
 		void SetPerspectiveProjection(float nearp, float farp, float fov);
-		void SetPerspectiveProjectionTile(int tiles, int tile_x, int tile_y);
+		ProjectionType GetProjectionType() const { return m_ProjType; }
 
 		CMatrix3D& GetOrientation() { return m_Orientation; }
 		const CMatrix3D& GetOrientation() const { return m_Orientation; }
@@ -113,10 +119,12 @@ class CCamera
 	public:
 		// This is the orientation matrix. The inverse of this
 		// is the view matrix
-		CMatrix3D		m_Orientation;
+		CMatrix3D m_Orientation;
 
 	private:
-		CMatrix3D		m_ProjMat;
+		CMatrix3D m_ProjMat;
+		ProjectionType m_ProjType;
+
 
 		float			m_NearPlane;
 		float			m_FarPlane;

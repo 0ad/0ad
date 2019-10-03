@@ -342,6 +342,8 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 
 	ogl_WarnIfError();
 
+	CCamera oldCamera = *g_Game->GetView()->GetCamera();
+
 	// Resize various things so that the sizes and aspect ratios are correct
 	{
 		g_Renderer.Resize(tile_w, tile_h);
@@ -366,12 +368,19 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	g_CursorName = L"";
 
 	// Render each tile
+	CMatrix3D projection;
+	projection.SetIdentity();
+	const CCamera& camera = *(g_Game->GetView()->GetCamera());
 	for (int tile_y = 0; tile_y < tiles; ++tile_y)
 	{
 		for (int tile_x = 0; tile_x < tiles; ++tile_x)
 		{
 			// Adjust the camera to render the appropriate region
-			g_Game->GetView()->GetCamera()->SetPerspectiveProjectionTile(tiles, tile_x, tile_y);
+			if (oldCamera.GetProjectionType() == CCamera::PERSPECTIVE)
+			{
+				projection.SetPerspectiveTile(oldCamera.GetFOV(), oldCamera.GetAspectRatio(), oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tile_x, tile_y);
+			}
+			g_Game->GetView()->GetCamera()->SetProjection(projection);
 
 			RenderLogger(false);
 			RenderGui(false);
@@ -404,7 +413,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 		g_Renderer.Resize(g_xres, g_yres);
 		SViewPort vp = { 0, 0, g_xres, g_yres };
 		g_Game->GetView()->SetViewport(vp);
-		g_Game->GetView()->GetCamera()->SetPerspectiveProjectionTile(1, 0, 0);
+		g_Game->GetView()->GetCamera()->SetProjectionFromCamera(oldCamera);
 	}
 
 	if (tex_write(&t, filename) == INFO::OK)
