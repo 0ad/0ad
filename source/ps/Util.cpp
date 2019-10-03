@@ -346,8 +346,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	{
 		g_Renderer.Resize(tile_w, tile_h);
 		SViewPort vp = { 0, 0, tile_w, tile_h };
-		g_Game->GetView()->GetCamera()->SetViewPort(vp);
-		g_Game->GetView()->SetCameraProjection();
+		g_Game->GetView()->SetViewport(vp);
 	}
 
 #if !CONFIG2_GLES
@@ -404,8 +403,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	{
 		g_Renderer.Resize(g_xres, g_yres);
 		SViewPort vp = { 0, 0, g_xres, g_yres };
-		g_Game->GetView()->GetCamera()->SetViewPort(vp);
-		g_Game->GetView()->SetCameraProjection();
+		g_Game->GetView()->SetViewport(vp);
 		g_Game->GetView()->GetCamera()->SetPerspectiveProjectionTile(1, 0, 0);
 	}
 

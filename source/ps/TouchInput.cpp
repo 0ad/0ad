@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -128,7 +128,7 @@ void CTouchInput::OnFingerMotion(int id, int x, int y)
 		{
 			m_State = STATE_PANNING;
 
-			CCamera& camera = *(g_Game->GetView()->GetCamera());
+			const CCamera& camera = *(g_Game->GetView()->GetCamera());
 			m_PanFocus = camera.GetWorldCoordinates(m_FirstTouchPos.X, m_FirstTouchPos.Y, true);
 			m_PanDist = (m_PanFocus - camera.GetOrientation().GetTranslation()).Y;
 		}

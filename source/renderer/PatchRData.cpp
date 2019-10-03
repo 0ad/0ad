@@ -1253,7 +1253,7 @@ void CPatchRData::RenderSides(CShaderProgramPtr& shader)
 void CPatchRData::RenderPriorities(CTextRenderer& textRenderer)
 {
 	CTerrain* terrain = m_Patch->m_Parent;
-	CCamera* camera = g_Game->GetView()->GetCamera();
+	const CCamera& camera = *(g_Game->GetView()->GetCamera());
 
 	for (ssize_t j = 0; j < PATCH_SIZE; ++j)
 	{
@@ -1270,7 +1270,7 @@ void CPatchRData::RenderPriorities(CTextRenderer& textRenderer)
 			pos.Z += TERRAIN_TILE_SIZE/4.f;
 
 			float x, y;
-			camera->GetScreenCoordinates(pos, x, y);
+			camera.GetScreenCoordinates(pos, x, y);
 
 			textRenderer.PrintfAt(x, y, L"%d", m_Patch->m_MiniPatches[j][i].Priority);
 		}

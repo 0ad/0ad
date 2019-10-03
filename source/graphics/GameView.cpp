@@ -206,7 +206,7 @@ CTerritoryTexture& CGameView::GetTerritoryTexture()
 
 int CGameView::Initialize()
 {
-	m->CameraController.Initialize();
+	m->CameraController.LoadConfig();
 	return 0;
 }
 
@@ -351,19 +351,14 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 	m->CameraController.ResetCameraTarget(target);
 }
 
-void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
+void CGameView::FollowEntity(entity_id_t entity, bool firstPerson)
 {
-	m->CameraController.CameraFollow(entity, firstPerson);
+	m->CameraController.FollowEntity(entity, firstPerson);
 }
 
 entity_id_t CGameView::GetFollowedEntity()
 {
 	return m->CameraController.GetFollowedEntity();
-}
-
-void CGameView::SetCameraProjection()
-{
-	m->CameraController.SetCameraProjection();
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)
