@@ -12,8 +12,8 @@ We're always interested in getting more people involved, to help bring the game
 towards completion and to share the interesting experience of developing a
 project of this scope.
 
-這是一個正在開發中的為完成版本
-我們永遠歡迎更多人加入我們使遊戲更加完善並分享開發此專案的樂趣
+這是一個正在開發中的未完成版本
+我們一直歡迎更多人加入我們使遊戲更加完善並分享開發此專案的樂趣
 
 There are several ways to contact us and find more information:
 
