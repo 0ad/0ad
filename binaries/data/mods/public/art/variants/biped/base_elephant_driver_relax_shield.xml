@@ -1,0 +1,11 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/rider/elephantry/driver/idle_relax.dae" name="idle" id="idle1" speed="25"/>
+    <animation file="biped/rider/elephantry/driver/walk_relax.dae" name="Walk" speed="20"/>
+    <animation file="biped/rider/elephantry/driver/walk_relax.dae" name="Run" speed="20"/>
+    <animation event="0.5" file="biped/rider/elephantry/driver/attack_melee_shield.dae" name="attack_melee" speed="120"/>
+    <animation file="biped/rider/elephantry/driver/idle_ready.dae" name="attack_ranged" speed="120"/>
+    <animation file="biped/rider/elephantry/driver/death.dae" name="death" id="death1" speed="75"/>
+    <animation file="biped/rider/elephantry/driver/death.dae" name="death" id="death2" speed="75"/>
+  </animations>
+</variant>

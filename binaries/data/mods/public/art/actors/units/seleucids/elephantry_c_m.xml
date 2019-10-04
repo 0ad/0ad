@@ -2,8 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_elephant_asian.xml">
-      <mesh>skeletal/sele_champion_elephant.dae</mesh>
+    <variant frequency="1" name="Armor-02">
+      <mesh>skeletal/elephant_asian_armored_04.dae</mesh>
       <props>
         <prop actor="units/seleucids/elephantry_c_d.xml" attachpoint="rider"/>
         <prop actor="props/units/turret_sele_champ_ele.xml" attachpoint="turret"/>
@@ -14,6 +14,9 @@
         <texture file="skeletal/sele_champion_elephant_norm.png" name="normTex"/>
       </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/base_elephant_asian.xml"/>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
