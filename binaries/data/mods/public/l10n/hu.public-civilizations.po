@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-02 07:09+0000\n"
-"PO-Revision-Date: 2019-09-02 15:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-09-30 07:12+0000\n"
+"PO-Revision-Date: 2019-10-01 15:33+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +80,7 @@ msgstr "A görögök sikerrel hellenizáltak különböző idegeneket. A helleni
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "A szövetségeknek -25% gyártási idő a hadihajóknál."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -330,7 +330,7 @@ msgstr "A kelta vallás és a druidák inspirálták harcias természetüket."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -20% nyersanyagköltség a gyógyítóknál."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -575,7 +575,7 @@ msgstr "Mint az Ibériai-félsziget, Észak-Afrika is a lovasságáról volt ism
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "A szövetségeseknek +10% nemzetközi kereskedelmi bónusz a piacoknál."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -782,7 +782,7 @@ msgstr "Gallok"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "A szövetségeknek -20% kutatási idő a műszaki technológiáknál."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -982,7 +982,7 @@ msgstr "Az észak-afrikai Numidiához hasonlóan, az Ibériai-félszigetet is �
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -20% nyersanyagköltség a lándzsás polgári katonáknál."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -994,7 +994,7 @@ msgid ""
 "serve as auxiliaries to their armies in foreign wars. Carthage is the most "
 "well known example, and we have evidence of them serving in such a capacity "
 "in Aquitania."
-msgstr ""
+msgstr "Az ibériaiak zsoldosaikról voltak ismertek, akik idegen népek háborúiban kiegészítő csapatokként szolgáltak. A legismertebb példa Karthágó, bizonyíték van rá hogy ekképpen szolgáltak Aquitaniaban."
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -1181,7 +1181,7 @@ msgstr "Elefántellátók"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "A szövetségeknek -20% nyersanyagköltség és kiképzési idő az elefántoknál."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1589,18 +1589,6 @@ msgid ""
 "Hellenistic culture."
 msgstr "Nagy Sándor könyvtárakat alapított szerte új birodalmában. Ezek később a tanulás és egy teljesen új kultúra központjai lettek: a hellenisztikus kultúráé."
 
-#: simulation/data/civs/mace.jsonStructures[2].Name
-msgid "Siege Workshop"
-msgstr "Ostromgépgyár"
-
-#: simulation/data/civs/mace.jsonStructures[2].Special
-msgid "Constructs and upgrades all Macedonian siege engines."
-msgstr "Az összes makedón ostromgépet gyártja és fejleszti"
-
-#: simulation/data/civs/mace.jsonStructures[2].History
-msgid "The Macedonians were innovators in area of siegecraft."
-msgstr "A makedónok az ostromlás tudományának megújítói voltak."
-
 #: simulation/data/civs/mace.jsonHistory
 msgid ""
 "Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
@@ -1654,7 +1642,7 @@ msgstr "A ksatriják, jelentése harcos, a négy nagy varna (társadalmi osztál
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "Minden szövetséges templomnál -50% nyersanyagköltség és építési idő; minden templomi technológiánál -50% nyersanyagköltség és kutatási idő."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1828,7 +1816,7 @@ msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, 
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "A szövetséges szárazföldi kereskedőknek +15% kereskedelmi haszon."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1894,7 +1882,7 @@ msgstr "II. Khsajársá"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr ""
+msgstr "A föníciai triérészek megkapják a lovasság kiképzésének egyedi képességet."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
@@ -2035,7 +2023,7 @@ msgstr "Ptolemaioszok"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenaries."
-msgstr ""
+msgstr "A Ptolemaioszok megkapják a Zsoldostábort, egy laktanyát amely semleges területre építhető és zsoldosokat képez ki."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2227,7 +2215,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
-msgstr ""
+msgstr "Semleges területre kell építeni. Nincs területi hatása. Zsoldosokat képez ki."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2295,7 +2283,7 @@ msgstr "A római polgárjog nagyra értékelt volt az ókori világban. Olyan al
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry −20% training time."
-msgstr ""
+msgstr "A szövetségeseknek -20% kiképzési idő a polgári gyalogságnál."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2505,7 +2493,7 @@ msgstr "A szeleukidák és az örökösök hadászata is fejlődött a 3. és 2.
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -20% nyersanyagköltség a városházáknál."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2727,7 +2715,7 @@ msgstr "A makedón-görög dinasztia amely Nagy Sándor egykori birodalmának ke
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr ""
+msgstr "Minden lovassági egységet ki tud képezni, kivéve a polgári katona lovasokat."
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2795,7 +2783,7 @@ msgstr "A mitikus törvényhozó, Lükurgosz alkotmánya alapította meg az agó
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "A szövetségeseknek +10% életerő a lándzsás gyalogos polgári katonáknál."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 15:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-01 15:34+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,11 +35,11 @@ msgstr "Hal"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Halászat élelemért."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Fák kivágása fáért."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -51,7 +51,7 @@ msgstr "Bokor"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Gyümölcs szedése élemért."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -67,7 +67,7 @@ msgstr "Fémbánya"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Érc bányászása fémért."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -75,7 +75,7 @@ msgstr "Kőbánya"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Kő fejtése kőért."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -83,7 +83,7 @@ msgstr "Romok"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Romok lerombolása kőért."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -91,7 +91,7 @@ msgstr "Kincs"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Kincsek gyűjtése nyersanyagért."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -541,7 +541,7 @@ msgstr "Bambusz"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Óriásbambusz"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
@@ -611,7 +611,7 @@ msgstr "Gyümölcsöző datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Halott lombhullató fa"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -620,7 +620,7 @@ msgstr "Európai bükkfa"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Közönséges nyír"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -637,7 +637,7 @@ msgstr "Jegenyefenyő csemete"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Vörös boróka"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
@@ -704,7 +704,7 @@ msgstr "Feketefenyő"
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Tengerparti fenyő"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -720,7 +720,7 @@ msgstr "Szenegáli datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_strangler.xml:8
 msgid "Strangler Fig"
-msgstr ""
+msgstr "Fojtogató füge"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
@@ -734,7 +734,7 @@ msgstr "Tikfa"
 #: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr ""
+msgstr "Lombhullató fa"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -742,7 +742,7 @@ msgstr "Túnafa"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "Esőerdei fa"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -995,7 +995,7 @@ msgstr "Kém"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Requires at least 16 Melee Infantry."
-msgstr ""
+msgstr "Legalább 16 közelharci gyalogos szükséges."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1007,7 +1007,7 @@ msgstr "Harcvonal"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Legalább 4 katona vagy ostromgép szükséges."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1023,7 +1023,7 @@ msgstr "Nyílt oszlop"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Legalább 8 katona vagy ostromgép szükséges."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1043,7 +1043,7 @@ msgstr "Nincs"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Requires at least 10 Infantry Hoplites."
-msgstr ""
+msgstr "Legalább 10 hoplita gyalogos szükséges."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1055,7 +1055,7 @@ msgstr "Szétszóródás"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Requires a Ranged Soldier."
-msgstr ""
+msgstr "Egy távolsági katona szükséges."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1063,7 +1063,7 @@ msgstr "Csatározás"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Requires at least 16 Infantry Pikemen."
-msgstr ""
+msgstr "Legalább 16 pikás gyalogos szükséges."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1075,7 +1075,7 @@ msgstr "Teknős"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Requires at least 6 Cavalry."
-msgstr ""
+msgstr "Legalább 6 lovas szükséges."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
