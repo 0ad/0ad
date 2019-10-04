@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ AtlasDialog::AtlasDialog(wxWindow* parent, const wxString& title, const wxSize& 
 
 
 	wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-	mainSizer->Add(buttonSizer, wxSizerFlags().Expand().Align(wxALIGN_RIGHT).Border(wxALL, 5));
+	mainSizer->Add(buttonSizer, wxSizerFlags().Expand().Border(wxALL, 5));
 
 	buttonSizer->Add(new wxButton(this, wxID_OK, _("OK")), wxSizerFlags().Border(wxRIGHT, 25));
 	buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), wxSizerFlags().Border(wxRIGHT, 5));

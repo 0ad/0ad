@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,7 +76,8 @@ void EditableListCtrl::OnMouseEvent(wxMouseEvent& event)
 		wxPoint pt = event.GetPosition();
 		int col = GetColumnAtPosition(pt);
 
-		wxCHECK2(col >= 0 && col < (int)m_ColumnTypes.size(), return);
+		if (col < 0 || col >= static_cast<int>(m_ColumnTypes.size()))
+			return;
 
 		int flags;
 		long row = HitTest(pt, flags);

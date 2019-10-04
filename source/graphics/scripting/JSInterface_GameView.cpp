@@ -141,7 +141,7 @@ void JSI_GameView::CameraFollow(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), 
 	if (!g_Game || !g_Game->GetView())
 		return;
 
-	g_Game->GetView()->CameraFollow(entityid, false);
+	g_Game->GetView()->FollowEntity(entityid, false);
 }
 
 /**
@@ -153,7 +153,7 @@ void JSI_GameView::CameraFollowFPS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	if (!g_Game || !g_Game->GetView())
 		return;
 
-	g_Game->GetView()->CameraFollow(entityid, true);
+	g_Game->GetView()->FollowEntity(entityid, true);
 }
 
 entity_id_t JSI_GameView::GetFollowedEntity(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

@@ -43,6 +43,7 @@ public:
 			CVector3D(0.0f, 1.0f, 0.0f)
 		);
 		camera.SetPerspectiveProjection(1.0f, 101.0f, DEGTORAD(90.0f));
+		TS_ASSERT_EQUALS(camera.GetProjectionType(), CCamera::PERSPECTIVE);
 		camera.UpdateFrustum();
 
 		const float sqrt2 = sqrtf(2.0f) / 2.0f;
@@ -75,6 +76,7 @@ public:
 		CMatrix3D projection;
 		projection.SetOrtho(-10.0f, 10.0f, -10.0f, 10.0f, -10.0f, 10.0f);
 		camera.SetProjection(projection);
+		TS_ASSERT_EQUALS(camera.GetProjectionType(), CCamera::CUSTOM);
 		camera.UpdateFrustum();
 
 		const std::vector<CPlane> expectedPlanes = {

@@ -30,7 +30,7 @@ class CCameraController
 public:
 	CCameraController(CCamera& camera);
 
-	void Initialize();
+	void LoadConfig();
 
 	InReaction HandleEvent(const SDL_Event_* ev);
 
@@ -42,11 +42,8 @@ public:
 	void SetCamera(const CVector3D& pos, float rotX, float rotY, float zoom);
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
-	void CameraFollow(entity_id_t entity, bool firstPerson);
+	void FollowEntity(entity_id_t entity, bool firstPerson);
 	entity_id_t GetFollowedEntity();
-
-	// Set projection of current camera using near, far, and FOV values
-	void SetCameraProjection();
 
 	void Update(const float deltaRealTime);
 	void SetViewport(const SViewPort& vp);
@@ -68,6 +65,11 @@ private:
 	void SetupCameraMatrixSmoothRot(CMatrix3D* orientation);
 	void SetupCameraMatrixNonSmooth(CMatrix3D* orientation);
 	void FocusHeight(bool smooth);
+
+	/**
+	 * Set projection of current camera using near, far, and FOV values
+	 */
+	void SetCameraProjection();
 
 	CCamera& m_Camera;
 

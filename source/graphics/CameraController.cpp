@@ -102,7 +102,7 @@ CCameraController::CCameraController(CCamera& camera)
 	m_Camera.UpdateFrustum();
 }
 
-void CCameraController::Initialize()
+void CCameraController::LoadConfig()
 {
 	CFG_GET_VAL("view.scroll.speed", m_ViewScrollSpeed);
 	CFG_GET_VAL("view.scroll.speed.modifier", m_ViewScrollSpeedModifier);
@@ -516,7 +516,7 @@ void CCameraController::ResetCameraTarget(const CVector3D& target)
 	m_FollowEntity = INVALID_ENTITY;
 }
 
-void CCameraController::CameraFollow(entity_id_t entity, bool firstPerson)
+void CCameraController::FollowEntity(entity_id_t entity, bool firstPerson)
 {
 	m_FollowEntity = entity;
 	m_FollowFirstPerson = firstPerson;
