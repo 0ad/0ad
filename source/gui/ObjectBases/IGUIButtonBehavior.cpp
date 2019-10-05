@@ -138,7 +138,7 @@ const CGUISpriteInstance& IGUIButtonBehavior::GetButtonSprite(const CGUISpriteIn
 	if (!m_pObject.IsEnabled())
 		return sprite_disabled || sprite;
 
-	if (!m_pObject.IsMouseOver())
+	if (!m_pObject.IsMouseHovering())
 		return sprite;
 
 	if (m_Pressed)
