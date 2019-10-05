@@ -370,7 +370,6 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	// Render each tile
 	CMatrix3D projection;
 	projection.SetIdentity();
-	const CCamera& camera = *(g_Game->GetView()->GetCamera());
 	for (int tile_y = 0; tile_y < tiles; ++tile_y)
 	{
 		for (int tile_x = 0; tile_x < tiles; ++tile_x)

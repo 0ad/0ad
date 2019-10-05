@@ -7,6 +7,8 @@
     <animation file="biped/citizen/idle_relax_f.dae" name="Idle" speed="100"/>
     <animation file="biped/citizen/idle_relax_f_long.dae" name="Idle" speed="100"/>
     <animation file="biped/citizen/walk_relax_f.dae" name="Walk" speed="20"/>
-    <animation file="biped/citizen/walk_relax_f.dae" name="Run" speed="15"/>
+    <animation file="biped/citizen/run.dae" name="Run" id="run1" speed="8"/>
+    <animation file="biped/citizen/run.dae" name="Run" id="run2" speed="9"/>
+    <animation file="biped/citizen/run.dae" name="Run" id="run3" speed="10"/>
   </animations>
 </variant>

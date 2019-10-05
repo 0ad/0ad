@@ -2,8 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_elephant_asian_armor.xml">
-      <mesh>skeletal/sele_champion_elephant.dae</mesh>
+    <variant file="quadraped/base_elephant_asian.xml">
+      <mesh>skeletal/elephant_asian_armored_04.dae</mesh>
       <props>
         <prop actor="units/seleucids/hero_elephantry_seleucus_victor_d.xml" attachpoint="rider"/>
         <prop actor="units/seleucids/hero_elephantry_seleucus_victor_r.xml" attachpoint="turret"/>

@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Elephantidae_Asian_Quadraped" title="Elephantidae Asian Quadraped">
+    <bone name="Elephantidae">
+      <bone name="Elephantidae_Vertebrae_Dorsal">
+        <bone name="Elephantidae_Vertebrae_Lumbar">
+          <bone name="Elephantidae_Pelvis">
+            <bone name="Elephantidae_Tail_1">
+              <bone name="Elephantidae_Tail_2">
+                <bone name="Elephantidae_Tail_3">
+                  <bone name="Elephantidae_Tail_4">
+                    <bone name="Elephantidae_Tail_5">
+                      <bone name="Elephantidae_Tail_6">
+                        <bone name="Elephantidae_Tail_7" />
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Elephantidae_Thigh_R">
+            <bone name="Elephantidae_Leg_R">
+              <bone name="Elephantidae_Shin_R">
+                <bone name="Elephantidae_Foot_R" />
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Elephantidae_Thigh_L">
+            <bone name="Elephantidae_Leg_L">
+              <bone name="Elephantidae_Shin_L">
+                <bone name="Elephantidae_Foot_L" />
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Elephantidae_Belly" />
+        <bone name="Elephantidae_Shouder_R">
+          <bone name="Elephantidae_Arm_R">
+            <bone name="Elephantidae_Forearm_R">
+              <bone name="Elephantidae_Hand_R" />
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Elephantidae_Vertebrae_Cervical">
+          <bone name="Elephantidae_Head">
+            <bone name="Elephantidae_Trunk_1">
+              <bone name="Elephantidae_Trunk_2">
+                <bone name="Elephantidae_Trunk_3">
+                  <bone name="Elephantidae_Trunk_4">
+                    <bone name="Elephantidae_Trunk_5">
+                      <bone name="Elephantidae_Trunk_6">
+                        <bone name="Elephantidae_Trunk_7">
+                          <bone name="Elephantidae_Trunk_8">
+                            <bone name="Elephantidae_Trunk_9">
+                              <bone name="Elephantidae_Trunk_10">
+                                <bone name="Elephantidae_Trunk_11" />
+                              </bone>
+                            </bone>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Elephantidae_Ear_1_R">
+              <bone name="Elephantidae_Ear_2_R">
+                <bone name="Elephantidae_Ear_3_R" />
+              </bone>
+            </bone>
+            <bone name="Elephantidae_Maxila_1">
+              <bone name="Elephantidae_Maxila_2" />
+            </bone>
+            <bone name="Elephantidae_Ear_1_L">
+              <bone name="Elephantidae_Ear_2_L">
+                <bone name="Elephantidae_Ear_3_L" />
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Elephantidae_Shouder_L">
+          <bone name="Elephantidae_Arm_L">
+            <bone name="Elephantidae_Forearm_L">
+              <bone name="Elephantidae_Hand_L" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Elephantidae_Back_Knee_R" />
+    <bone name="Elephantidae_Elbow_Target_R" />
+    <bone name="Elephantidae_Shouder_Target_R" />
+    <bone name="Elephantidae_Back_Knee_L" />
+    <bone name="Elephantidae_Elbow_Target_L" />
+    <bone name="Elephantidae_Shouder_Target_L" />
+    <bone name="Elephantidae_HandIK_R" />
+    <bone name="Elephantidae_HandIK_L" />
+    <bone name="elephant_asian" />
+  </standard_skeleton>
+  <skeleton target="Elephantidae_Asian_Quadraped" title="Elephantidae Asian Quadraped">
+    <identifier>
+      <root>Elephantidae</root>
+    </identifier>
+    <bone name="Elephantidae">
+      <target>Elephantidae</target>
+      <bone name="Elephantidae_Vertebrae_Dorsal">
+        <target>Elephantidae_Vertebrae_Dorsal</target>
+        <bone name="Elephantidae_Vertebrae_Lumbar">
+          <target>Elephantidae_Vertebrae_Lumbar</target>
+          <bone name="Elephantidae_Pelvis">
+            <target>Elephantidae_Pelvis</target>
+            <bone name="Elephantidae_Tail_1">
+              <target>Elephantidae_Tail_1</target>
+              <bone name="Elephantidae_Tail_2">
+                <target>Elephantidae_Tail_2</target>
+                <bone name="Elephantidae_Tail_3">
+                  <target>Elephantidae_Tail_3</target>
+                  <bone name="Elephantidae_Tail_4">
+                    <target>Elephantidae_Tail_4</target>
+                    <bone name="Elephantidae_Tail_5">
+                      <target>Elephantidae_Tail_5</target>
+                      <bone name="Elephantidae_Tail_6">
+                        <target>Elephantidae_Tail_6</target>
+                        <bone name="Elephantidae_Tail_7">
+                          <target>Elephantidae_Tail_7</target>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Elephantidae_Thigh_R">
+            <target>Elephantidae_Thigh_R</target>
+            <bone name="Elephantidae_Leg_R">
+              <target>Elephantidae_Leg_R</target>
+              <bone name="Elephantidae_Shin_R">
+                <target>Elephantidae_Shin_R</target>
+                <bone name="Elephantidae_Foot_R">
+                  <target>Elephantidae_Foot_R</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Elephantidae_Thigh_L">
+            <target>Elephantidae_Thigh_L</target>
+            <bone name="Elephantidae_Leg_L">
+              <target>Elephantidae_Leg_L</target>
+              <bone name="Elephantidae_Shin_L">
+                <target>Elephantidae_Shin_L</target>
+                <bone name="Elephantidae_Foot_L">
+                  <target>Elephantidae_Foot_L</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Elephantidae_Belly">
+          <target>Elephantidae_Belly</target>
+        </bone>
+        <bone name="Elephantidae_Shouder_R">
+          <target>Elephantidae_Shouder_R</target>
+          <bone name="Elephantidae_Arm_R">
+            <target>Elephantidae_Arm_R</target>
+            <bone name="Elephantidae_Forearm_R">
+              <target>Elephantidae_Forearm_R</target>
+              <bone name="Elephantidae_Hand_R">
+                <target>Elephantidae_Hand_R</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Elephantidae_Vertebrae_Cervical">
+          <target>Elephantidae_Vertebrae_Cervical</target>
+          <bone name="Elephantidae_Head">
+            <target>Elephantidae_Head</target>
+            <bone name="Elephantidae_Trunk_1">
+              <target>Elephantidae_Trunk_1</target>
+              <bone name="Elephantidae_Trunk_2">
+                <target>Elephantidae_Trunk_2</target>
+                <bone name="Elephantidae_Trunk_3">
+                  <target>Elephantidae_Trunk_3</target>
+                  <bone name="Elephantidae_Trunk_4">
+                    <target>Elephantidae_Trunk_4</target>
+                    <bone name="Elephantidae_Trunk_5">
+                      <target>Elephantidae_Trunk_5</target>
+                      <bone name="Elephantidae_Trunk_6">
+                        <target>Elephantidae_Trunk_6</target>
+                        <bone name="Elephantidae_Trunk_7">
+                          <target>Elephantidae_Trunk_7</target>
+                          <bone name="Elephantidae_Trunk_8">
+                            <target>Elephantidae_Trunk_8</target>
+                            <bone name="Elephantidae_Trunk_9">
+                              <target>Elephantidae_Trunk_9</target>
+                              <bone name="Elephantidae_Trunk_10">
+                                <target>Elephantidae_Trunk_10</target>
+                                <bone name="Elephantidae_Trunk_11">
+                                  <target>Elephantidae_Trunk_11</target>
+                                </bone>
+                              </bone>
+                            </bone>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Elephantidae_Ear_1_R">
+              <target>Elephantidae_Ear_1_R</target>
+              <bone name="Elephantidae_Ear_2_R">
+                <target>Elephantidae_Ear_2_R</target>
+                <bone name="Elephantidae_Ear_3_R">
+                  <target>Elephantidae_Ear_3_R</target>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Elephantidae_Maxila_1">
+              <target>Elephantidae_Maxila_1</target>
+              <bone name="Elephantidae_Maxila_2">
+                <target>Elephantidae_Maxila_2</target>
+              </bone>
+            </bone>
+            <bone name="Elephantidae_Ear_1_L">
+              <target>Elephantidae_Ear_1_L</target>
+              <bone name="Elephantidae_Ear_2_L">
+                <target>Elephantidae_Ear_2_L</target>
+                <bone name="Elephantidae_Ear_3_L">
+                  <target>Elephantidae_Ear_3_L</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Elephantidae_Shouder_L">
+          <target>Elephantidae_Shouder_L</target>
+          <bone name="Elephantidae_Arm_L">
+            <target>Elephantidae_Arm_L</target>
+            <bone name="Elephantidae_Forearm_L">
+              <target>Elephantidae_Forearm_L</target>
+              <bone name="Elephantidae_Hand_L">
+                <target>Elephantidae_Hand_L</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Elephantidae_Back_Knee_R">
+      <target>Elephantidae_Back_Knee_R</target>
+    </bone>
+    <bone name="Elephantidae_Elbow_Target_R">
+      <target>Elephantidae_Elbow_Target_R</target>
+    </bone>
+    <bone name="Elephantidae_Shouder_Target_R">
+      <target>Elephantidae_Shouder_Target_R</target>
+    </bone>
+    <bone name="Elephantidae_Back_Knee_L">
+      <target>Elephantidae_Back_Knee_L</target>
+    </bone>
+    <bone name="Elephantidae_Elbow_Target_L">
+      <target>Elephantidae_Elbow_Target_L</target>
+    </bone>
+    <bone name="Elephantidae_Shouder_Target_L">
+      <target>Elephantidae_Shouder_Target_L</target>
+    </bone>
+    <bone name="Elephantidae_HandIK_L">
+      <target>Elephantidae_HandIK_L</target>
+    </bone>
+    <bone name="Elephantidae_HandIK_R">
+      <target>Elephantidae_HandIK_R</target>
+    </bone>
+    <bone name="elephant_asian">
+      <target>elephant_asian</target>
+    </bone>
+  </skeleton>
+</skeletons>

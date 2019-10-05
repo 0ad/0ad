@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 17:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-03 12:17+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "Hajógyári javítások"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "+10 életerő regenerációs sebesség a beszállásolt hajóknál."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -37,7 +37,7 @@ msgstr "Az istenek áldása"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr ""
+msgstr "+3 életerő regenerációs sebesség az embereknél."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -45,7 +45,7 @@ msgstr "Vallási buzgalom"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "+20% közelharci és távolsági támadás a katonáknál."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -54,7 +54,7 @@ msgstr "Hazafiasság"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "+15% begyűjtési sebesség a munkásoknál."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -62,7 +62,7 @@ msgstr "Buzdító jelenlét"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr ""
+msgstr "+10% közelharci és távolsági támadás a katonáknál."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -70,7 +70,7 @@ msgstr "Meroita piramisok"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "+10% területhatás a városházáknál."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -78,7 +78,7 @@ msgstr "Erős papság"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "-5% életerő a hősöknél."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -86,7 +86,7 @@ msgstr "A tudás hatalma"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr ""
+msgstr "-20% műszaki nyersanyagköltség és kutatási idő az épületeknél."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -102,7 +102,7 @@ msgstr "Asóka rendelete"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "+20% mozgási sebesség a kereskedőknél."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -110,7 +110,7 @@ msgstr "Termesztési bónusz"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "+25% gabonabegyűjtési sebesség a munkásoknál."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -118,7 +118,7 @@ msgstr "Orvosi ellátás"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "+1 életerő regenerációs sebesség az embereknél."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
@@ -126,7 +126,7 @@ msgstr "Hellenizáció"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "+10% területhatás az épületeknél."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -167,7 +167,7 @@ msgstr "Déloszi szövetség"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "A szövetségeknek -25% gyártási idő a hadihajóknál."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -175,7 +175,7 @@ msgstr "Druidák"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -20% nyersanyagköltség a gyógyítóknál."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -183,7 +183,7 @@ msgstr "Kereskedőmesterek"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "A szövetségeseknek +10% nemzetközi kereskedelmi bónusz a piacoknál."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -191,7 +191,7 @@ msgstr "Druida bölcsesség"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "A szövetségeknek -20% kutatási idő a műszaki technológiáknál."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -199,7 +199,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -20% nyersanyagköltség a lándzsás polgári katonáknál."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -207,7 +207,7 @@ msgstr "Elefántellátók"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "A szövetségeknek -20% nyersanyagköltség és kiképzési idő az elefántoknál."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -225,7 +225,7 @@ msgstr "Asóka vallási támogatása"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "Minden szövetséges templomnál -50% nyersanyagköltség és építési idő; minden templomi technológiánál -50% nyersanyagköltség és kutatási idő."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -233,7 +233,7 @@ msgstr "A királyi út"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "A szövetséges szárazföldi kereskedőknek +15% kereskedelmi haszon."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -249,7 +249,7 @@ msgstr "Sorozás"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −20% training time."
-msgstr ""
+msgstr "A szövetségeseknek -20% kiképzési idő a polgári gyalogságnál."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -257,7 +257,7 @@ msgstr "Szír tetrapolisz"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -20% nyersanyagköltség a városházáknál."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -265,7 +265,7 @@ msgstr "Peloponnészoszi szövetség"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "A szövetségeseknek +10% életerő a lándzsás gyalogos polgári katonáknál."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"

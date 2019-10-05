@@ -48,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-28 22:26+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2019-10-02 16:10+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -398,7 +398,7 @@ msgstr "Лорика мускулата"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr "Большие фанерные щиты."
+msgstr "Фанерный каркас для больших щитов."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
@@ -406,7 +406,7 @@ msgstr "Пешие копейщики получают +2 к защите от �
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr "Фанерный щит"
+msgstr "Фанерный каркас щита"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
@@ -462,7 +462,7 @@ msgstr "Хризаспис"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Только наиболее прославленные воины имели посеребрённые щиты, как, например, знаменитая агема аргираспидов в войске Александра Великого."
+msgstr "Только наиболее прославленные воины имели посеребрённые щиты, как, например, знаменитые аргираспиды в войске Александра Великого."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -482,11 +482,11 @@ msgstr "Аргираспис"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr "Свинцовая обшивка корпусов судов."
+msgstr "Свинцовая обшивка защищает корпуса кораблей."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Свинцовая обшивка корпуса даёт +2 ко всем типам защиты корабля."
+msgstr "Свинцовая обшивка корпуса даёт +2 к защите корабля от любого урона."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -494,17 +494,17 @@ msgstr "Свинцовая обшивка корпуса"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr "Гипозоматы — льняные канаты, туго натянутые вдоль судна."
+msgstr "Обвязка гипозоматой укрепляет конструкцию корабля."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "Обвязка корпуса корабля тросами даёт +2 ко всем типам защиты корабля. "
+msgstr "Обвязка гипозоматой даёт +2 к защите корабля от любого урона."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr "Обвязка тросами"
+msgstr "Гипозомата (обвязка тросами)"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1890,7 +1890,7 @@ msgstr "Диаспора"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr "Требуется 3 торговца"
+msgstr "Требуются 3 торговца"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""

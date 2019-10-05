@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,11 @@
  */
 
 #include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/serialization/IDeserializer.h"
+#include "simulation2/serialization/ISerializer.h"
+
+#include <boost/unordered_map.hpp>
+#include <utility>
 
 template<typename ELEM>
 struct SerializeVector
@@ -100,6 +105,32 @@ struct SerializeRepetitiveVector
 	}
 };
 
+template<typename ELEM>
+struct SerializeSet
+{
+	template<typename T>
+	void operator()(ISerializer& serialize, const char* name, const std::set<T>& value)
+	{
+		serialize.NumberU32_Unbounded("size", static_cast<u32>(value.size()));
+		for (const T& elem : value)
+			ELEM()(serialize, name, elem);
+	}
+
+	template<typename T>
+	void operator()(IDeserializer& deserialize, const char* name, std::set<T>& value)
+	{
+		value.clear();
+		u32 size;
+		deserialize.NumberU32_Unbounded("size", size);
+		for (size_t i = 0; i < size; ++i)
+		{
+			T el;
+			ELEM()(deserialize, name, el);
+			value.emplace(std::move(el));
+		}
+	}
+};
+
 template<typename KS, typename VS>
 struct SerializeMap
 {
@@ -141,7 +172,7 @@ struct SerializeMap
 			V v;
 			KS()(deserialize, "key", k);
 			VS()(deserialize, "value", v);
-			value.insert(std::make_pair(k, v));
+			value.emplace(std::move(k), std::move(v));
 		}
 	}
 
@@ -159,7 +190,7 @@ struct SerializeMap
 			V v;
 			KS()(deserialize, "key", k);
 			VS()(deserialize, "value", v, context);
-			value.insert(std::make_pair(k, v));
+			value.emplace(std::move(k), std::move(v));
 		}
 	}
 };
@@ -194,7 +225,7 @@ struct SerializeU8_Enum
 	{
 		u8 val;
 		deserialize.NumberU8(name, val, 0, max);
-		value = (T)val;
+		value = static_cast<T>(val);
 	}
 };
 

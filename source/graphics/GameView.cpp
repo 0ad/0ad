@@ -61,10 +61,6 @@
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
-// Maximum distance outside the edge of the map that the camera's
-// focus point can be moved
-static const float CAMERA_EDGE_MARGIN = 2.0f * TERRAIN_TILE_SIZE;
-
 class CGameViewImpl
 {
 	NONCOPYABLE(CGameViewImpl);

@@ -1,8 +1,9 @@
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/elephant_rider_archer_idle_3.dae" name="idle" speed="25"/>
-    <animation file="biped/elephant_rider_archer_walk_3.dae" name="Walk" speed="20"/>
-    <animation file="biped/elephant_rider_archer_walk_3.dae" name="Run" speed="20"/>
-    <animation file="biped/elephant_rider_archer_death_3.dae" name="Death" speed="75"/>
+    <animation file="biped/rider/elephantry/archer/r3_idle_ready.dae" name="idle" speed="25"/>
+    <animation file="biped/rider/elephantry/archer/r3_walk_ready.dae" name="Walk" speed="20"/>
+    <animation file="biped/rider/elephantry/archer/r3_walk_ready.dae" name="Run" speed="20"/>
+    <animation file="biped/rider/elephantry/archer/r3_death_archer.dae" id="death1" name="Death" speed="75"/>
+    <animation file="biped/rider/elephantry/archer/r3_death_archer.dae" id="death2" name="Death" speed="75"/>
   </animations>
 </variant>
