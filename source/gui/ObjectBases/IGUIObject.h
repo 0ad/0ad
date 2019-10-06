@@ -66,18 +66,25 @@ public:
 	virtual ~IGUIObject();
 
 	/**
-	 * Checks if mouse is hovering this object.
-     * The mouse position is cached in CGUI.
-	 *
 	 * This function checks if the mouse is hovering the
 	 * rectangle that the base setting "size" makes.
 	 * Although it is virtual, so one could derive
 	 * an object from CButton, which changes only this
 	 * to checking the circle that "size" makes.
 	 *
-	 * @return true if mouse is hovering
+	 * This function also returns true if there is a different
+	 * GUI object shown on top of this one.
 	 */
 	virtual bool IsMouseOver() const;
+
+	/**
+	 * This function returns true if the mouse is hovering
+	 * over this GUI object and if this GUI object is the
+	 * topmost object in that screen location.
+	 * For example when hovering dropdown list items, the
+	 * buttons beneath the list won't return true here.
+	 */
+	virtual bool IsMouseHovering() const { return m_MouseHovering; }
 
 	/**
 	 * Test if mouse position is over an icon
@@ -482,34 +489,16 @@ protected:
 	double m_LastClickTime[6];
 
 	/**
-	 * This is an array of true or false, each element is associated with
-	 * a string representing a setting. Number of elements is equal to
-	 * number of settings.
-	 *
-	 * A true means the setting has been manually set in the file when
-	 * read. This is important to know because I don't want to force
-	 * the user to include its \<styles\>-XML-files first, so somehow
-	 * the GUI needs to know which settings were set, and which is meant
-	 * to.
+	 * This variable is true if the mouse is hovering this object and
+	 * this object is the topmost object shown in this location.
 	 */
-
-	// More variables
-
-	// Is mouse hovering the object? used with the function IsMouseOver()
 	bool m_MouseHovering;
 
 	/**
 	 * Settings pool, all an object's settings are located here
-	 * If a derived object has got more settings that the base
-	 * settings, it's because they have a new version of the
-	 * function SetupSettings().
-	 *
-	 * @see SetupSettings()
 	 */
-public:
 	std::map<CStr, IGUISetting*> m_Settings;
 
-protected:
 	// An object can't function stand alone
 	CGUI& m_pGUI;
 

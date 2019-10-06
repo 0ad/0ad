@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="temple">
+    <variant frequency="1" name="Temple A">
       <mesh>structural/kart_temple_big.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/temple_big.xml" attachpoint="root"/>
@@ -15,7 +15,7 @@
         <texture file="structural/ao/kart_temple_big.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Base">
+    <variant frequency="1" name="Temple B">
       <mesh>structural/kart_temple_b.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/temple_b_decor.xml" attachpoint="root"/>
@@ -27,6 +27,14 @@
         <texture file="structural/kart_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/kart_temple_b.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <group>

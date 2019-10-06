@@ -2,16 +2,16 @@
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author>Alexander Morgado</author>
-      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.75 commit date:2019-07-29, commit time:14:47, hash:f6cb5f54494e</authoring_tool>
     </contributor>
-    <created>2018-12-06T16:08:34</created>
-    <modified>2018-12-06T16:08:34</modified>
+    <created>2019-10-05T10:01:28</created>
+    <modified>2019-10-05T10:01:28</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images/>
   <library_effects/>
+  <library_images/>
   <library_geometries>
     <geometry id="hele_trireme_sailVertex_Group_005-mesh" name="hele_trireme_sailVertex Group.005">
       <mesh>
@@ -69,7 +69,7 @@
           </technique_common>
         </source>
         <source id="Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-bind_poses">
-          <float_array id="Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-bind_poses-array" count="656">1 -5.37317e-5 1.3264e-5 -1.10867e-4 -5.37317e-5 -1 0 0 1.3264e-5 0 -1 0.7857764 0 0 0 1 1 -4.03563e-5 0 6.091123 0 0 -1 0 4.03563e-5 1 0 2.45752e-4 0 0 0 1 1 0 0 6.091123 0 0 -1 -0.864354 0 1 0 0 0 0 0 1 1 0 0 6.091123 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -5.51668e-7 5.51668e-7 6.091124 5.66244e-7 0 -1 -2.593059 5.51672e-7 1 0 3.38609e-6 0 0 0 1 0.001453161 -0.999999 0 0.008851289 -1.32322e-5 0 -1 -3.457498 0.9999991 0.001453161 -1.324e-5 6.09107 0 0 0 1 1 -4.03563e-5 0 4.350797 0 0 -1 0 4.03563e-5 1 0 1.7557e-4 0 0 0 1 1 0 0 4.350797 0 -1.52834e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 4.350797 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -8.64918e-7 1.10334e-6 4.3508 1.13249e-6 0 -1 -2.593057 8.64925e-7 1 0 3.77992e-6 0 0 0 1 0.001452922 -0.9999991 0 0.00632143 -1.37091e-5 0 -1 -3.457478 0.999999 0.001452922 -1.37917e-5 4.350744 0 0 0 1 1 -4.03563e-5 0 2.610494 0 0 -1 -0.001591205 4.03563e-5 1 0 -0.008474826 0 0 0 1 1 0 0 2.610494 0 0 -1 -0.8659454 0 1 0 -0.008580207 0 0 0 1 1 0 0 2.610494 0 0 -1 -1.7303 0 1 0 -0.008580148 0 0 0 1 1 -5.89084e-7 8.27502e-7 2.610496 8.34465e-7 0 -1 -2.594651 5.89062e-7 1 0 -0.008578658 0 0 0 1 0.001452386 -0.999999 0 0.01237159 -1.35045e-5 0 -1 -3.459044 0.999999 0.001452386 -1.35303e-5 2.610432 0 0 0 1 1 -4.03563e-5 0 0.8701798 0 0 -1 0 4.03563e-5 1 0 3.50853e-5 0 0 0 1 1 0 0 0.8701798 0 -1.53413e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 0.8701798 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -5.89084e-7 8.64267e-7 0.870182 8.27499e-7 0 -1 -2.593062 5.89091e-7 1 0 5.10127e-7 0 0 0 1 0.001452624 -0.9999991 0 0.001263976 -1.37595e-5 0 -1 -3.457429 0.999999 0.001452624 -1.37687e-5 0.8701305 0 0 0 1 1 -4.03563e-5 0 -0.8701338 0 0 -1 0 4.03563e-5 1 0 -3.50973e-5 0 0 0 1 1 0 0 -0.8701338 0 -1.53413e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 -0.8701338 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -6.58042e-7 8.64267e-7 -0.8701314 8.96458e-7 0 -1 -2.593063 6.5805e-7 1 0 -5.25108e-7 0 0 0 1 0.001452684 -0.9999991 0 -0.001264154 -1.37595e-5 0 -1 -3.457406 0.9999992 0.001452684 -1.37687e-5 -0.8701813 0 0 0 1 1 -4.03563e-5 0 -2.61046 0 0 -1 0 4.03563e-5 1 0 -1.05399e-4 0 0 0 1 1 0 0 -2.61046 0 0 -1 -0.8643539 0 1 0 0 0 0 0 1 1 0 0 -2.61046 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -5.89084e-7 8.27502e-7 -2.610457 8.9407e-7 0 -1 -2.593064 5.89084e-7 1 0 -1.55886e-6 0 0 0 1 0.001452386 -0.999999 0 -0.003791451 -1.33949e-5 0 -1 -3.457382 0.9999991 0.001452386 -1.35303e-5 -2.610505 0 0 0 1 1 -4.03563e-5 0 -4.350774 0 0 -1 0 4.03563e-5 1 0 -1.75582e-4 0 0 0 1 1 0 0 -4.350774 0 -1.53413e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 -4.350774 0 0 -1 -1.728709 0 1 0 0 0 0 0 1 1 -3.1325e-7 5.51668e-7 -4.350772 5.36442e-7 0 -1 -2.593065 3.13257e-7 1 0 -1.33401e-6 0 0 0 1 0.001452684 -0.9999991 0 -0.006320357 -1.38283e-5 0 -1 -3.457358 0.9999989 0.001452684 -1.37917e-5 -4.350817 0 0 0 1 1 -4.03563e-5 0 -6.091089 0 0 -1 -1.45985e-7 4.03563e-5 1 0 -2.45824e-4 0 0 0 1 1 0 0 -6.091089 0 0 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 -6.091089 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -8.64918e-7 1.10334e-6 -6.091086 1.07288e-6 0 -1 -2.593069 8.64918e-7 1 0 -5.24896e-6 0 0 0 1 0.001452684 -0.999999 0 -0.008848786 -1.37091e-5 0 -1 -3.457333 0.999999 0.001452684 -1.37917e-5 -6.091131 0 0 0 1</float_array>
+          <float_array id="Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-bind_poses-array" count="656">1 -5.37317e-5 1.3264e-5 -1.10867e-4 -5.37317e-5 -1 0 0 1.3264e-5 0 -1 0.7857764 0 0 0 1 1 -4.03563e-5 0 6.091123 0 0 -1 0 4.03563e-5 1 0 2.45752e-4 0 0 0 1 1 0 0 6.091123 0 0 -1 -0.864354 0 1 0 0 0 0 0 1 1 0 0 6.091123 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -5.51668e-7 5.51668e-7 6.091124 5.51667e-7 0 -1 -2.593059 5.51672e-7 1 0 3.38609e-6 0 0 0 1 0.001453161 -0.9999991 0 0.008851289 -1.32401e-5 0 -1 -3.457498 0.9999991 0.001453161 -1.324e-5 6.091071 0 0 0 1 1 -4.03563e-5 0 4.350796 0 0 -1 0 4.03563e-5 1 0 1.7557e-4 0 0 0 1 1 0 0 4.350797 0 -1.52834e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 4.350797 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -8.64918e-7 1.10334e-6 4.3508 1.10333e-6 0 -1 -2.593058 8.64925e-7 1 0 3.77992e-6 0 0 0 1 0.001452922 -0.9999992 0 0.00632143 -1.37917e-5 0 -1 -3.457479 0.9999991 0.001452922 -1.37917e-5 4.350744 0 0 0 1 1 -4.03563e-5 0 2.610494 0 0 -1 -0.001591205 4.03563e-5 1 0 -0.008474826 0 0 0 1 1 0 0 2.610494 0 0 -1 -0.8659454 0 1 0 -0.008580207 0 0 0 1 1 0 0 2.610494 0 0 -1 -1.7303 0 1 0 -0.008580148 0 0 0 1 1 -5.89084e-7 8.27502e-7 2.610496 8.27502e-7 0 -1 -2.594651 5.89084e-7 1 0 -0.008578658 0 0 0 1 0.001452386 -0.9999991 0 0.01237159 -1.35159e-5 0 -1 -3.459044 0.9999991 0.001452386 -1.35159e-5 2.610432 0 0 0 1 1 -4.03563e-5 0 0.8701798 0 0 -1 0 4.03563e-5 1 0 3.50853e-5 0 0 0 1 1 0 0 0.8701798 0 -1.53413e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 0.8701798 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -5.89084e-7 8.27502e-7 0.8701819 8.27499e-7 0 -1 -2.593062 5.89091e-7 1 0 5.10127e-7 0 0 0 1 0.001452624 -0.9999991 0 0.001263976 -1.37595e-5 0 -1 -3.457429 0.999999 0.001452624 -1.37595e-5 0.8701306 0 0 0 1 1 -4.03563e-5 0 -0.8701338 0 0 -1 0 4.03563e-5 1 0 -3.50973e-5 0 0 0 1 1 0 0 -0.8701338 0 -1.53413e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 -0.8701338 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -6.58042e-7 8.96461e-7 -0.8701314 8.96458e-7 0 -1 -2.593063 6.5805e-7 1 0 -5.25108e-7 0 0 0 1 0.001452684 -0.9999992 0 -0.001264154 -1.37595e-5 0 -1 -3.457406 0.9999991 0.001452684 -1.37595e-5 -0.8701813 0 0 0 1 1 -4.03563e-5 0 -2.61046 0 0 -1 0 4.03563e-5 1 0 -1.05399e-4 0 0 0 1 1 0 0 -2.61046 0 0 -1 -0.864354 0 1 0 0 0 0 0 1 1 0 0 -2.61046 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -5.89084e-7 8.27502e-7 -2.610458 8.27502e-7 0 -1 -2.593064 5.89084e-7 1 0 -1.55886e-6 0 0 0 1 0.001452386 -0.9999991 0 -0.003791451 -1.35159e-5 0 -1 -3.457382 0.9999991 0.001452386 -1.35159e-5 -2.610505 0 0 0 1 1 -4.03563e-5 0 -4.350773 0 0 -1 0 4.03563e-5 1 0 -1.75582e-4 0 0 0 1 1 0 0 -4.350774 0 -1.53413e-7 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 -4.350774 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -3.1325e-7 5.51668e-7 -4.350772 5.51665e-7 0 -1 -2.593065 3.13257e-7 1 0 -1.33401e-6 0 0 0 1 0.001452684 -0.9999992 0 -0.006320357 -1.37917e-5 0 -1 -3.457358 0.9999991 0.001452684 -1.37917e-5 -4.350818 0 0 0 1 1 -4.03563e-5 0 -6.091089 0 0 -1 -1.45985e-7 4.03563e-5 1 0 -2.45824e-4 0 0 0 1 1 0 0 -6.091089 0 0 -1 -0.8643541 0 1 0 0 0 0 0 1 1 0 0 -6.091089 0 0 -1 -1.728708 0 1 0 0 0 0 0 1 1 -8.64918e-7 1.10334e-6 -6.091086 1.10334e-6 0 -1 -2.593069 8.64918e-7 1 0 -5.24896e-6 0 0 0 1 0.001452684 -0.9999991 0 -0.008848786 -1.37917e-5 0 -1 -3.457333 0.9999991 0.001452684 -1.37917e-5 -6.091132 0 0 0 1</float_array>
           <technique_common>
             <accessor source="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-bind_poses-array" count="41" stride="16">
               <param name="TRANSFORM" type="float4x4"/>
@@ -77,9 +77,9 @@
           </technique_common>
         </source>
         <source id="Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-weights">
-          <float_array id="Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-weights-array" count="211">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5012894 0.4987105 0.5000002 0.4999998 0.4999998 0.5000002 0.4987106 0.5012894 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5012865 0.4987135 0.5000002 0.4999998 0.4999998 0.5000002 0.4987136 0.5012864 0.4987136 0.5012864 0.4999998 0.5000002 0.5000002 0.4999998 0.5012865 0.4987135 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.4987106 0.5012894 0.4999999 0.5000001 0.5000001 0.4999999 0.5012894 0.4987106 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <float_array id="Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-weights-array" count="250">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5012894 0.4987105 0.5000002 0.4999998 0.4999998 0.5000002 0.4987106 0.5012894 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5012865 0.4987135 0.5000002 0.4999998 0.4999998 0.5000002 0.4987136 0.5012864 0.4987136 0.5012864 0.4999998 0.5000002 0.5000002 0.4999998 0.5012865 0.4987135 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.4987106 0.5012894 0.4999999 0.5000001 0.5000001 0.4999999 0.5012894 0.4987106 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
           <technique_common>
-            <accessor source="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-weights-array" count="211" stride="1">
+            <accessor source="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-weights-array" count="250" stride="1">
               <param name="WEIGHT" type="float"/>
             </accessor>
           </technique_common>
@@ -91,15 +91,15 @@
         <vertex_weights count="186">
           <input semantic="JOINT" source="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-joints" offset="0"/>
           <input semantic="WEIGHT" source="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin-weights" offset="1"/>
-          <vcount>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 1 0 1 0 1 0 1 0 1 0 1 0 1 1 </vcount>
-          <v>36 0 1 1 40 2 5 3 31 4 26 5 21 6 16 7 11 8 6 9 10 10 15 11 20 12 25 13 30 14 35 15 39 16 40 17 38 18 39 19 37 20 38 21 36 22 37 23 1 24 2 25 2 26 3 27 3 28 4 29 4 30 5 31 31 32 32 33 32 34 33 35 33 36 34 37 34 38 35 39 26 40 27 41 27 42 28 43 28 44 29 45 29 46 30 47 21 48 22 49 22 50 23 51 23 52 24 53 24 54 25 55 16 56 17 57 17 58 18 59 18 60 19 61 19 62 20 63 11 64 12 65 12 66 13 67 13 68 14 69 14 70 15 71 6 72 7 73 7 74 8 75 8 76 9 77 9 78 10 79 9 80 10 81 8 82 9 83 7 84 8 85 6 86 7 87 14 88 15 89 13 90 14 91 12 92 13 93 11 94 12 95 19 96 20 97 18 98 19 99 17 100 18 101 16 102 17 103 24 104 25 105 23 106 24 107 22 108 23 109 21 110 22 111 29 112 30 113 28 114 29 115 27 116 28 117 26 118 27 119 34 120 35 121 33 122 34 123 32 124 33 125 31 126 32 127 4 128 5 129 3 130 4 131 2 132 3 133 1 134 2 135 36 136 37 137 37 138 38 139 38 140 39 141 39 142 40 143 35 144 30 145 25 146 20 147 15 148 10 149 6 150 11 151 16 152 21 153 26 154 31 155 5 156 40 157 1 158 36 159 11 160 11 161 11 162 11 163 11 164 0 165 26 166 0 167 26 168 0 169 26 170 0 171 26 172 26 173 1 174 1 175 1 176 1 177 1 178 0 179 0 180 0 181 0 182 0 183 0 184 0 185 0 186 0 187 0 188 0 189 0 190 0 191 36 192 36 193 36 194 36 195 36 196 40 197 40 198 40 199 40 200 40 201 40 202 40 203 5 204 5 205 5 206 5 207 5 208 5 209 5 210</v>
+          <vcount>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 </vcount>
+          <v>36 0 1 1 40 2 5 3 31 4 26 5 21 6 16 7 11 8 6 9 10 10 15 11 20 12 25 13 30 14 35 15 39 16 40 17 38 18 39 19 37 20 38 21 36 22 37 23 1 24 2 25 2 26 3 27 3 28 4 29 4 30 5 31 31 32 32 33 32 34 33 35 33 36 34 37 34 38 35 39 26 40 27 41 27 42 28 43 28 44 29 45 29 46 30 47 21 48 22 49 22 50 23 51 23 52 24 53 24 54 25 55 16 56 17 57 17 58 18 59 18 60 19 61 19 62 20 63 11 64 12 65 12 66 13 67 13 68 14 69 14 70 15 71 6 72 7 73 7 74 8 75 8 76 9 77 9 78 10 79 9 80 10 81 8 82 9 83 7 84 8 85 6 86 7 87 14 88 15 89 13 90 14 91 12 92 13 93 11 94 12 95 19 96 20 97 18 98 19 99 17 100 18 101 16 102 17 103 24 104 25 105 23 106 24 107 22 108 23 109 21 110 22 111 29 112 30 113 28 114 29 115 27 116 28 117 26 118 27 119 34 120 35 121 33 122 34 123 32 124 33 125 31 126 32 127 4 128 5 129 3 130 4 131 2 132 3 133 1 134 2 135 36 136 37 137 37 138 38 139 38 140 39 141 39 142 40 143 35 144 30 145 25 146 20 147 15 148 10 149 6 150 11 151 16 152 21 153 26 154 31 155 5 156 40 157 1 158 36 159 11 160 11 161 11 162 11 163 11 164 0 165 26 166 0 167 26 168 0 169 26 170 0 171 26 172 26 173 1 174 1 175 1 176 1 177 1 178 0 179 0 180 0 181 0 182 0 183 0 184 0 185 0 186 0 187 0 188 0 189 0 190 0 191 36 192 36 193 36 194 36 195 36 196 0 197 0 198 0 199 0 200 0 201 0 202 0 203 0 204 0 205 0 206 0 207 0 208 0 209 0 210 0 211 0 212 0 213 0 214 0 215 0 216 0 217 0 218 0 219 0 220 0 221 0 222 0 223 0 224 40 225 0 226 40 227 0 228 40 229 0 230 40 231 0 232 40 233 0 234 40 235 40 236 0 237 5 238 0 239 5 240 0 241 5 242 0 243 5 244 0 245 5 246 0 247 5 248 5 249</v>
         </vertex_weights>
       </skin>
     </controller>
   </library_controllers>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Bireme_Sail_Armature_000" name="Bireme_Sail_Armature_000" type="NODE">
+      <node id="Bireme_Sail_Armature_000" name="Bireme_Sail_Armature.000" type="NODE">
         <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
         <node id="Bireme_Sail_Armature_000_Bireme_Sail_Root" name="Bireme_Sail_Root" sid="Bireme_Sail_Root" type="JOINT">
           <matrix sid="transform">1 -5.37317e-5 1.3264e-5 1.00444e-4 -5.37317e-5 -1 -3.56349e-10 0 1.3264e-5 -3.56349e-10 -1 0.7857764 0 0 0 1</matrix>
@@ -108,11 +108,11 @@
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_A_2" name="Bireme_Sail_A_2" sid="Bireme_Sail_A_2" type="JOINT">
               <matrix sid="transform">1 -2.3963e-8 -4.03563e-5 0 2.39615e-8 1 -3.48035e-8 0.864354 4.03563e-5 3.48025e-8 1 0 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_A_3" name="Bireme_Sail_A_3" sid="Bireme_Sail_A_3" type="JOINT">
-                <matrix sid="transform">1 5.98696e-16 0 0 1.15082e-12 1 -3.38001e-8 0.8643543 4.44128e-16 3.38001e-8 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 5.98696e-16 0 0 -5.98696e-16 1 -3.38001e-8 0.8643543 0 3.38001e-8 1 1.77636e-15 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_A_4" name="Bireme_Sail_A_4" sid="Bireme_Sail_A_4" type="JOINT">
-                  <matrix sid="transform">1 5.51668e-7 5.51668e-7 0 -5.51667e-7 1 -2.98428e-13 0.8643538 -5.51668e-7 -4.79602e-15 1 0 0 0 0 1</matrix>
+                  <matrix sid="transform">1 5.51668e-7 5.51668e-7 0 -5.51668e-7 1 -2.98428e-13 0.8643537 -5.51668e-7 -4.79602e-15 1 0 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_A_5" name="Bireme_Sail_A_5" sid="Bireme_Sail_A_5" type="JOINT">
-                    <matrix sid="transform">0.001453713 -1.37917e-5 0.9999989 4.76837e-7 2.00628e-8 1 1.38063e-5 0.8643548 -0.9999989 -7.287e-12 0.001453713 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001453713 -1.37917e-5 0.9999989 0 2.00416e-8 1 1.37917e-5 0.8643548 -0.9999989 -7.287e-12 0.001453713 -2.27374e-13 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -155,13 +155,13 @@
           <node id="Bireme_Sail_Armature_000_Bireme_Sail_B_1" name="Bireme_Sail_B_1" sid="Bireme_Sail_B_1" type="JOINT">
             <matrix sid="transform">1 -1.32401e-5 -1.33754e-5 -4.350908 -1.33754e-5 0 -0.9999999 2.33769e-4 1.32401e-5 0.9999999 1.18857e-7 0.7857187 0 0 0 1</matrix>
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_B_2" name="Bireme_Sail_B_2" sid="Bireme_Sail_B_2" type="JOINT">
-              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 0 2.39661e-8 1 3.41551e-8 0.8643541 4.03563e-5 -3.41561e-8 1 0 0 0 0 1</matrix>
+              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 -4.76837e-7 2.39661e-8 0.9999999 3.41551e-8 0.864354 4.03563e-5 -3.41561e-8 0.9999999 -1.45519e-11 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_B_3" name="Bireme_Sail_B_3" sid="Bireme_Sail_B_3" type="JOINT">
-                <matrix sid="transform">1 0 0 0 2.9669e-12 1 -3.38001e-8 0.8643544 0 3.38001e-8 1 -3.55271e-15 0 0 0 1</matrix>
+                <matrix sid="transform">1 0 0 0 0 1 -3.38001e-8 0.8643544 0 3.38001e-8 1 0 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_B_4" name="Bireme_Sail_B_4" sid="Bireme_Sail_B_4" type="JOINT">
-                  <matrix sid="transform">1 1.10334e-6 8.64918e-7 0 -1.10333e-6 1 -9.59233e-13 0.8643537 -8.64918e-7 3.00321e-15 1 0 0 0 0 1</matrix>
+                  <matrix sid="transform">1 1.10334e-6 8.64918e-7 0 -1.10334e-6 1 -9.66338e-13 0.8643537 -8.64918e-7 3.00321e-15 1 0 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_B_5" name="Bireme_Sail_B_5" sid="Bireme_Sail_B_5" type="JOINT">
-                    <matrix sid="transform">0.001453832 -1.48951e-5 0.9999989 0 2.16838e-8 0.9999998 1.49242e-5 0.8643551 -0.9999989 -1.27516e-11 0.001453832 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001453832 -1.48951e-5 0.9999989 0 2.16414e-8 0.9999998 1.4895e-5 0.8643548 -0.9999989 -1.27516e-11 0.001453832 0 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -205,13 +205,13 @@
           <node id="Bireme_Sail_Armature_000_Bireme_Sail_C_1" name="Bireme_Sail_C_1" sid="Bireme_Sail_C_1" type="JOINT">
             <matrix sid="transform">1 -1.32401e-5 -1.33754e-5 -2.610605 -1.33754e-5 0 -1 -0.008439958 1.32401e-5 1 -3.5239e-10 0.7873331 0 0 0 1</matrix>
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_C_2" name="Bireme_Sail_C_2" sid="Bireme_Sail_C_2" type="JOINT">
-              <matrix sid="transform">0.9999999 -2.39656e-8 -4.03563e-5 2.38419e-7 2.39815e-8 1 3.48344e-8 0.8643541 4.03563e-5 -3.48353e-8 1 0 0 0 0 1</matrix>
+              <matrix sid="transform">1 -2.39656e-8 -4.03563e-5 0 2.3967e-8 1 3.48344e-8 0.8643541 4.03563e-5 -3.48353e-8 1 0 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_C_3" name="Bireme_Sail_C_3" sid="Bireme_Sail_C_3" type="JOINT">
-                <matrix sid="transform">1 -1.05027e-15 0 0 -2.21685e-14 1 -3.44793e-8 0.8643543 0 3.44793e-8 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 -1.05027e-15 0 0 1.05027e-15 1 -3.44793e-8 0.8643543 0 3.44793e-8 1 0 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_C_4" name="Bireme_Sail_C_4" sid="Bireme_Sail_C_4" type="JOINT">
-                  <matrix sid="transform">1 8.27502e-7 5.89084e-7 0 -8.27502e-7 1 -4.87471e-13 0.864354 -5.89084e-7 0 1 0 0 0 0 1</matrix>
+                  <matrix sid="transform">1 8.27502e-7 5.89084e-7 0 -8.27502e-7 1 -4.87471e-13 0.8643539 -5.89084e-7 0 1 0 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_C_5" name="Bireme_Sail_C_5" sid="Bireme_Sail_C_5" type="JOINT">
-                    <matrix sid="transform">0.001452998 -1.43434e-5 0.9999989 0 2.0843e-8 1 1.43503e-5 0.8643548 -0.9999989 -8.19757e-12 0.001452998 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001452998 -1.43434e-5 0.9999989 0 2.08329e-8 1 1.43434e-5 0.8643548 -0.9999989 -8.19773e-12 0.001452998 0 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -255,13 +255,13 @@
           <node id="Bireme_Sail_Armature_000_Bireme_Sail_D_1" name="Bireme_Sail_D_1" sid="Bireme_Sail_D_1" type="JOINT">
             <matrix sid="transform">1 -1.32401e-5 -1.33754e-5 -0.8702906 -1.33754e-5 0 -0.9999999 4.673e-5 1.32401e-5 0.9999999 1.18857e-7 0.7857648 0 0 0 1</matrix>
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_D_2" name="Bireme_Sail_D_2" sid="Bireme_Sail_D_2" type="JOINT">
-              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 0 2.39661e-8 1 3.47343e-8 0.8643541 4.03563e-5 -3.47352e-8 1 -3.63798e-12 0 0 0 1</matrix>
+              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 0 2.39661e-8 0.9999999 3.47343e-8 0.864354 4.03563e-5 -3.47352e-8 0.9999999 0 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_D_3" name="Bireme_Sail_D_3" sid="Bireme_Sail_D_3" type="JOINT">
-                <matrix sid="transform">1 2.39392e-16 0 0 -2.39392e-16 1 -3.43792e-8 0.8643544 0 3.43792e-8 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 2.39392e-16 0 0 -2.39392e-16 1 -3.43792e-8 0.8643544 0 3.43792e-8 1 -2.22045e-16 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_D_4" name="Bireme_Sail_D_4" sid="Bireme_Sail_D_4" type="JOINT">
-                  <matrix sid="transform">1 8.27502e-7 5.89084e-7 0 -8.27502e-7 1 -4.90274e-13 0.8643537 -5.89084e-7 3.33669e-15 1 -2.22045e-16 0 0 0 1</matrix>
+                  <matrix sid="transform">1 8.27502e-7 5.89084e-7 0 -8.27502e-7 1 -4.9738e-13 0.8643537 -5.89084e-7 3.44771e-15 1 -4.44089e-16 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_D_5" name="Bireme_Sail_D_5" sid="Bireme_Sail_D_5" type="JOINT">
-                    <matrix sid="transform">0.001453236 -1.46238e-5 0.9999989 0 2.11903e-8 1 1.4587e-5 0.8643551 -0.999999 -8.19371e-12 0.001453236 5.68434e-14 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001453236 -1.4587e-5 0.9999989 0 2.11903e-8 1 1.4587e-5 0.8643548 -0.999999 -8.1979e-12 0.001453236 0 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -305,13 +305,13 @@
           <node id="Bireme_Sail_Armature_000_Bireme_Sail_E_1" name="Bireme_Sail_E_1" sid="Bireme_Sail_E_1" type="JOINT">
             <matrix sid="transform">1 -1.32401e-5 -1.33754e-5 0.8700229 -1.33754e-5 0 -0.9999999 -4.673e-5 1.32401e-5 0.9999999 1.18857e-7 0.7857879 0 0 0 1</matrix>
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_E_2" name="Bireme_Sail_E_2" sid="Bireme_Sail_E_2" type="JOINT">
-              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 0 2.39661e-8 1 3.47343e-8 0.8643541 4.03563e-5 -3.47352e-8 1 -3.63798e-12 0 0 0 1</matrix>
+              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 0 2.39661e-8 0.9999999 3.47343e-8 0.864354 4.03563e-5 -3.47352e-8 0.9999999 -3.63798e-12 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_E_3" name="Bireme_Sail_E_3" sid="Bireme_Sail_E_3" type="JOINT">
-                <matrix sid="transform">1 2.39717e-16 0 0 -2.39609e-16 1 -3.43792e-8 0.8643544 0 3.43792e-8 1 -1.77636e-15 0 0 0 1</matrix>
+                <matrix sid="transform">1 2.39717e-16 0 0 -2.39609e-16 1 -3.43792e-8 0.8643544 0 3.43792e-8 1 0 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_E_4" name="Bireme_Sail_E_4" sid="Bireme_Sail_E_4" type="JOINT">
-                  <matrix sid="transform">1 8.96461e-7 6.58042e-7 -5.96046e-8 -8.96461e-7 1 -5.96856e-13 0.8643537 -6.58042e-7 0 1 0 0 0 0 1</matrix>
+                  <matrix sid="transform">1 8.96461e-7 6.58042e-7 0 -8.96461e-7 1 -5.96856e-13 0.8643537 -6.58042e-7 0 1 -3.55271e-15 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_E_5" name="Bireme_Sail_E_5" sid="Bireme_Sail_E_5" type="JOINT">
-                    <matrix sid="transform">0.001453355 -1.46238e-5 0.9999989 1.19209e-7 2.12895e-8 0.9999998 1.4656e-5 0.8643551 -0.9999989 -1.00112e-11 0.001453355 5.68434e-14 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001453355 -1.4656e-5 0.9999989 0 2.12895e-8 0.9999998 1.4656e-5 0.8643549 -0.9999989 -1.00185e-11 0.001453355 5.68434e-14 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -355,13 +355,13 @@
           <node id="Bireme_Sail_Armature_000_Bireme_Sail_F_1" name="Bireme_Sail_F_1" sid="Bireme_Sail_F_1" type="JOINT">
             <matrix sid="transform">1 -1.32401e-5 -1.33754e-5 2.610349 -1.33754e-5 0 -1 -1.40309e-4 1.32401e-5 1 -3.52391e-10 0.785811 0 0 0 1</matrix>
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_F_2" name="Bireme_Sail_F_2" sid="Bireme_Sail_F_2" type="JOINT">
-              <matrix sid="transform">1 -2.39638e-8 -4.03563e-5 0 2.39652e-8 1 3.47343e-8 0.864354 4.03563e-5 -3.47352e-8 1 7.27596e-12 0 0 0 1</matrix>
+              <matrix sid="transform">1 -2.39638e-8 -4.03563e-5 0 2.39652e-8 1 3.47343e-8 0.864354 4.03563e-5 -3.47352e-8 1 0 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_F_3" name="Bireme_Sail_F_3" sid="Bireme_Sail_F_3" type="JOINT">
-                <matrix sid="transform">1 2.01607e-15 0 0 -2.16821e-14 1 -3.43792e-8 0.8643544 0 3.43792e-8 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 2.01607e-15 0 0 -2.01607e-15 1 -3.43792e-8 0.8643543 0 3.43792e-8 1 1.77636e-15 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_F_4" name="Bireme_Sail_F_4" sid="Bireme_Sail_F_4" type="JOINT">
                   <matrix sid="transform">1 8.27502e-7 5.89084e-7 0 -8.27502e-7 1 -4.87471e-13 0.8643537 -5.89084e-7 0 1 0 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_F_5" name="Bireme_Sail_F_5" sid="Bireme_Sail_F_5" type="JOINT">
-                    <matrix sid="transform">0.001452998 -1.43434e-5 0.9999989 0 2.09296e-8 1 1.44099e-5 0.8643551 -0.9999989 -8.19773e-12 0.001452998 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001452998 -1.43434e-5 0.9999989 0 2.08329e-8 1 1.43434e-5 0.8643548 -0.9999989 -8.19773e-12 0.001452998 0 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -405,13 +405,13 @@
           <node id="Bireme_Sail_Armature_000_Bireme_Sail_G_1" name="Bireme_Sail_G_1" sid="Bireme_Sail_G_1" type="JOINT">
             <matrix sid="transform">1 -1.32401e-5 -1.33754e-5 4.350663 -1.33754e-5 0 -0.9999999 -2.33769e-4 1.32401e-5 0.9999999 1.18857e-7 0.7858341 0 0 0 1</matrix>
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_G_2" name="Bireme_Sail_G_2" sid="Bireme_Sail_G_2" type="JOINT">
-              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 0 2.39661e-8 1 3.47343e-8 0.8643541 4.03563e-5 -3.47352e-8 1 0 0 0 0 1</matrix>
+              <matrix sid="transform">1 -2.39647e-8 -4.03563e-5 4.76837e-7 2.39661e-8 0.9999999 3.47343e-8 0.864354 4.03563e-5 -3.47352e-8 0.9999999 0 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_G_3" name="Bireme_Sail_G_3" sid="Bireme_Sail_G_3" type="JOINT">
-                <matrix sid="transform">1 2.39717e-16 0 0 2.96662e-12 1 -3.43792e-8 0.8643544 -4.44855e-16 3.43792e-8 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 2.39717e-16 0 0 -2.39609e-16 1 -3.43792e-8 0.8643544 0 3.43792e-8 1 1.77636e-15 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_G_4" name="Bireme_Sail_G_4" sid="Bireme_Sail_G_4" type="JOINT">
-                  <matrix sid="transform">1 5.51668e-7 3.1325e-7 0 -5.51665e-7 1 -1.7053e-13 0.8643535 -3.1325e-7 0 1 1.77636e-15 0 0 0 1</matrix>
+                  <matrix sid="transform">1 5.51668e-7 3.1325e-7 0 -5.51668e-7 1 -1.77636e-13 0.8643537 -3.1325e-7 0 1 0 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_G_5" name="Bireme_Sail_G_5" sid="Bireme_Sail_G_5" type="JOINT">
-                    <matrix sid="transform">0.001452998 -1.43434e-5 0.9999989 0 2.08135e-8 0.9999998 1.43281e-5 0.8643548 -0.9999989 -4.554e-12 0.001452998 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001452998 -1.43434e-5 0.9999989 0 2.08356e-8 0.9999998 1.43434e-5 0.8643548 -0.9999989 -4.554e-12 0.001452998 1.13687e-13 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -457,11 +457,11 @@
             <node id="Bireme_Sail_Armature_000_Bireme_Sail_H_2" name="Bireme_Sail_H_2" sid="Bireme_Sail_H_2" type="JOINT">
               <matrix sid="transform">1 -2.39656e-8 -4.03563e-5 0 2.3967e-8 1 3.47343e-8 0.8643541 4.03563e-5 -3.47352e-8 1 0 0 0 0 1</matrix>
               <node id="Bireme_Sail_Armature_000_Bireme_Sail_H_3" name="Bireme_Sail_H_3" sid="Bireme_Sail_H_3" type="JOINT">
-                <matrix sid="transform">1 -1.53664e-15 0 0 -2.16821e-14 1 -3.43792e-8 0.8643541 4.44088e-16 3.43792e-8 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 -1.53664e-15 0 0 1.53664e-15 1 -3.43792e-8 0.8643542 0 3.43792e-8 1 1.77636e-15 0 0 0 1</matrix>
                 <node id="Bireme_Sail_Armature_000_Bireme_Sail_H_4" name="Bireme_Sail_H_4" sid="Bireme_Sail_H_4" type="JOINT">
                   <matrix sid="transform">1 1.10334e-6 8.64918e-7 0 -1.10334e-6 1 -9.54292e-13 0.8643537 -8.64918e-7 0 1 0 0 0 0 1</matrix>
                   <node id="Bireme_Sail_Armature_000_Bireme_Sail_H_5" name="Bireme_Sail_H_5" sid="Bireme_Sail_H_5" type="JOINT">
-                    <matrix sid="transform">0.001453594 -1.48951e-5 0.9999989 -4.76837e-7 2.15945e-8 1 1.48646e-5 0.8643546 -0.9999989 -1.27517e-11 0.001453594 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.001453594 -1.48951e-5 0.9999989 0 2.16387e-8 1 1.4895e-5 0.8643549 -0.9999989 -1.27517e-11 0.001453594 0 0 0 0 1</matrix>
                     <extra>
                       <technique profile="blender">
                         <connect sid="connect" type="bool">1</connect>
@@ -512,16 +512,12 @@
             </technique>
           </extra>
         </node>
-      </node>
-      <node id="hele_trireme_sail_003" name="hele_trireme_sail_003" type="NODE">
-        <translate sid="location">0 0 0</translate>
-        <rotate sid="rotationZ">0 0 1 0</rotate>
-        <rotate sid="rotationY">0 1 0 0</rotate>
-        <rotate sid="rotationX">1 0 0 0</rotate>
-        <scale sid="scale">1 1 1</scale>
-        <instance_controller url="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin">
-          <skeleton>#Bireme_Sail_Armature_000_Bireme_Sail_Root</skeleton>
-        </instance_controller>
+        <node id="hele_trireme_sail_003" name="hele_trireme_sail.003" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <instance_controller url="#Bireme_Sail_Armature_000_hele_trireme_sail_003-skin">
+            <skeleton>#Bireme_Sail_Armature_000_Bireme_Sail_Root</skeleton>
+          </instance_controller>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

@@ -34,6 +34,12 @@
     <variant frequency="100" name="Idle"/>
     <variant file="quadraped/base_camel_run.xml" />
     <variant file="quadraped/base_camel_death.xml" />
+    <variant name="gather_meat">
+      <props>
+        <prop actor="" attachpoint="rider"/>
+        <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="rider_root"/>
+      </props>
+    </variant>
   </group>
   <material>default.xml</material>
 </actor>
