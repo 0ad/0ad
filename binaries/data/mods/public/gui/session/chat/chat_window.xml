@@ -27,12 +27,11 @@
 			tooltip_style="sessionToolTipBold"
 		>
 			<translatableAttribute id="tooltip" context="chat input">Filter the chat history.</translatableAttribute>
-			<action on="SelectionChange">updateChatHistory();</action>
 		</object>
 
 		<object
 			type="text"
-			name="chatHistory"
+			name="chatHistoryText"
 			size="10 46 100%-10 100%"
 			sprite="ModernDarkBoxGold"
 			style="ChatPanel"
@@ -65,20 +64,11 @@
 			name="chatInput"
 			size="75 100%-76 100%-16 100%-52"
 			style="ModernInput"
-		>
-			<action on="Press">submitChatInput();</action>
-			<action on="Tab">
-				let playernames = [];
-				for (let player in g_PlayerAssignments)
-					playernames.push(g_PlayerAssignments[player].name);
-				autoCompleteText(this, playernames);
-			</action>
-		</object>
+		/>
 
 		<!-- Cancel Button -->
-		<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
+		<object name="closeChat" size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">closeChat();</action>
 		</object>
 
 		<!-- Extended Chat Checkbox -->
@@ -88,9 +78,7 @@
 			checked="false"
 			style="ModernTickBox"
 			size="50%-40 100%-38 50%-20 100%-12"
-		>
-			<action on="Press">onToggleChatWindowExtended();</action>
-		</object>
+		/>
 
 		<!-- Extended Chat Label -->
 		<object type="text" size="50%-20 100%-38 50%+50 100%-12" text_align="left" textcolor="white">
@@ -98,9 +86,8 @@
 		</object>
 
 		<!-- Send Button -->
-		<object size="70%-16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
+		<object name="sendChat" size="70%-16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Send</translatableAttribute>
-			<action on="Press">submitChatInput();</action>
 		</object>
 	</object>
 

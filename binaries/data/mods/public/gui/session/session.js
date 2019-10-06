@@ -10,6 +10,8 @@ const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.Starting
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
+var g_Chat;
+
 var g_GameSpeeds;
 
 /**
@@ -271,13 +273,19 @@ function init(initData, hotloadData)
 	}
 
 	g_DeveloperOverlay = new DeveloperOverlay();
+	g_Chat = new Chat();
+
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
 	initGUIObjects();
 
 	if (hotloadData)
+	{
 		g_Selection.selected = hotloadData.selection;
+		g_PlayerAssignments = hotloadData.playerAssignments;
+		g_Players = hotloadData.player;
+	}
 
 	sendLobbyPlayerlistUpdate();
 	onSimulationUpdate();
@@ -293,7 +301,6 @@ function initGUIObjects()
 	initBarterButtons();
 	initPanelEntities();
 	initViewedPlayerDropdown();
-	initChatWindow();
 	Engine.SetBoundingBoxDebugOverlay(false);
 	updateEnabledRangeOverlayTypes();
 }
@@ -416,17 +423,6 @@ function updateDisplayedPlayerColors()
  */
 function updateHotkeyTooltips()
 {
-	Engine.GetGUIObjectByName("chatInput").tooltip =
-		translateWithContext("chat input", "Type the message to send.") + "\n" +
-		colorizeAutocompleteHotkey() +
-		colorizeHotkey("\n" + translate("Press %(hotkey)s to open the public chat."), "chat") +
-		colorizeHotkey(
-			"\n" + (g_IsObserver ?
-				translate("Press %(hotkey)s to open the observer chat.") :
-				translate("Press %(hotkey)s to open the ally chat.")),
-			"teamchat") +
-		colorizeHotkey("\n" + translate("Press %(hotkey)s to open the previously selected private chat."), "privatechat");
-
 	Engine.GetGUIObjectByName("idleWorkerButton").tooltip =
 		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
 		translate("Find idle worker");
@@ -557,7 +553,7 @@ function selectViewPlayer(playerID)
 	Engine.SetViewedPlayer(g_ViewedPlayer);
 	updateDisplayedPlayerColors();
 	updateTopPanel();
-	updateChatAddressees();
+	g_Chat.onUpdatePlayers();
 	updateHotkeyTooltips();
 
 	// Update GUI and clear player-dependent cache
@@ -605,7 +601,7 @@ function controlsPlayer(playerID)
 function playersFinished(players, victoryString, won)
 {
 	addChatMessage({
-		"type": "defeat-victory",
+		"type": "playerstate",
 		"message": victoryString,
 		"players": players
 	});
@@ -616,7 +612,7 @@ function playersFinished(players, victoryString, won)
 	sendLobbyPlayerlistUpdate();
 
 	updatePlayerData();
-	updateChatAddressees();
+	g_Chat.onUpdatePlayers();
 	updateGameSpeedControl();
 
 	if (players.indexOf(g_ViewedPlayer) == -1)
@@ -762,7 +758,11 @@ function leaveGame(willRejoin)
 // Return some data that we'll use when hotloading this file after changes
 function getHotloadData()
 {
-	return { "selection": g_Selection.selected };
+	return {
+		"selection": g_Selection.selected,
+		"playerAssignments": g_PlayerAssignments,
+		"player": g_Players,
+	};
 }
 
 function getSavedGameData()
@@ -837,7 +837,7 @@ function onWindowResized()
 	// Update followPlayerLabel
 	updateTopPanel();
 
-	resizeChatWindow();
+	g_Chat.ChatWindow.resizeChatWindow();
 }
 
 function changeGameSpeed(speed)
