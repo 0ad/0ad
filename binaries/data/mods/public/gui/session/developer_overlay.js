@@ -202,7 +202,7 @@ DeveloperOverlay.prototype.toggle = function()
 
 	// Only players can send the simulation chat command
 	if (Engine.GetPlayerID() == -1)
-		submitChatDirectly(message);
+		g_Chat.submitChat(message);
 	else
 		Engine.PostNetworkCommand({
 			"type": "aichat",

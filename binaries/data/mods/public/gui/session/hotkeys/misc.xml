@@ -4,18 +4,6 @@
 		<action on="Press">closeOpenDialogs();</action>
 	</object>
 
-	<object hotkey="chat">
-		<action on="Press">openChat();</action>
-	</object>
-
-	<object hotkey="teamchat">
-		<action on="Press">openChat(g_IsObserver ? "/observers" : "/allies");</action>
-	</object>
-
-	<object hotkey="privatechat">
-		<action on="Press">openChat(g_LastChatAddressee);</action>
-	</object>
-
 	<object hotkey="session.gui.toggle">
 		<action on="Press">toggleGUI();</action>
 	</object>

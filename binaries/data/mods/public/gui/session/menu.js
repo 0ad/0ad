@@ -136,8 +136,7 @@ function lobbyDialogButton()
 
 function chatMenuButton()
 {
-	closeOpenDialogs();
-	openChat();
+	g_Chat.openPage();
 }
 
 function resignMenuButton()
@@ -248,29 +247,6 @@ function openOptions()
 		});
 }
 
-function openChat(command = "")
-{
-	if (g_Disconnected)
-		return;
-
-	closeOpenDialogs();
-
-	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
-	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
-
-	Engine.GetGUIObjectByName("chatInput").focus();
-	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
-
-	updateChatHistory();
-}
-
-function closeChat()
-{
-	Engine.GetGUIObjectByName("chatInput").caption = "";
-	Engine.GetGUIObjectByName("chatInput").blur(); // Remove focus
-	Engine.GetGUIObjectByName("chatDialogPanel").hidden = true;
-}
-
 function resizeDiplomacyDialog()
 {
 	let dialog = Engine.GetGUIObjectByName("diplomacyDialogPanel");
@@ -293,74 +269,6 @@ function resizeDiplomacyDialog()
 	size.bottom += heightOffset;
 
 	dialog.size = size;
-}
-
-function initChatWindow()
-{
-	let filters = prepareForDropdown(g_ChatHistoryFilters.filter(chatFilter => !chatFilter.hidden));
-	let chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
-	chatHistoryFilter.list = filters.text;
-	chatHistoryFilter.list_data = filters.key;
-	chatHistoryFilter.selected = 0;
-
-	Engine.GetGUIObjectByName("extendedChat").checked =
-		Engine.ConfigDB_GetValue("user", "chat.session.extended") == "true";
-
-	resizeChatWindow();
-}
-
-function resizeChatWindow()
-{
-	// Hide/show the panel
-	let chatHistoryPage = Engine.GetGUIObjectByName("chatHistoryPage");
-	let extended = Engine.GetGUIObjectByName("extendedChat").checked;
-	chatHistoryPage.hidden = !extended;
-
-	// Resize the window
-	let chatDialogPanel = Engine.GetGUIObjectByName("chatDialogPanel");
-	if (extended)
-	{
-		chatDialogPanel.size = Engine.GetGUIObjectByName("chatDialogPanelLarge").size;
-		// Adjust the width so that the chat history is in the golden ratio
-		let chatHistory = Engine.GetGUIObjectByName("chatHistory");
-		let height = chatHistory.getComputedSize().bottom - chatHistory.getComputedSize().top;
-		let width = (1 + Math.sqrt(5)) / 2 * height;
-		let size = chatDialogPanel.size;
-		size.left = -width / 2 - chatHistory.size.left;
-		size.right = width / 2 + chatHistory.size.left;
-		chatDialogPanel.size = size;
-	}
-	else
-		chatDialogPanel.size = Engine.GetGUIObjectByName("chatDialogPanelSmall").size;
-}
-
-function updateChatHistory()
-{
-	if (Engine.GetGUIObjectByName("chatDialogPanel").hidden ||
-	    !Engine.GetGUIObjectByName("extendedChat").checked)
-		return;
-
-	let chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
-	let selected = chatHistoryFilter.list_data[chatHistoryFilter.selected];
-
-	Engine.GetGUIObjectByName("chatHistory").caption =
-		g_ChatHistory.filter(msg => msg.filter[selected]).map(msg =>
-			Engine.ConfigDB_GetValue("user", "chat.timestamp") == "true" ?
-				sprintf(translate("%(time)s %(message)s"), {
-					"time": msg.timePrefix,
-					"message": msg.txt
-				}) :
-				msg.txt
-		).join("\n");
-}
-
-function onToggleChatWindowExtended()
-{
-	Engine.ConfigDB_CreateAndWriteValueToFile("user", "chat.session.extended", String(Engine.GetGUIObjectByName("extendedChat").checked), "config/user.cfg");
-
-	resizeChatWindow();
-
-	Engine.GetGUIObjectByName("chatInput").focus();
 }
 
 function openDiplomacy()
@@ -1250,10 +1158,11 @@ function openManual()
 function closeOpenDialogs()
 {
 	closeMenu();
-	closeChat();
 	closeDiplomacy();
 	closeTrade();
 	closeObjectives();
+
+	g_Chat.closePage();
 }
 
 function formatTributeTooltip(playerID, resourceCode, amount)

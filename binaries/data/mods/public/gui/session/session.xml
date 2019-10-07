@@ -4,6 +4,7 @@
 
 <script directory="gui/common/"/>
 <script directory="gui/session/"/>
+<script directory="gui/session/chat/"/>
 
 <object name="session">
 
@@ -94,8 +95,8 @@
 		font="mono-stroke-10"
 	/>
 
+	<include directory="gui/session/chat/"/>
 	<include directory="gui/session/dialogs/"/>
-	<include file="gui/session/chat_window.xml"/>
 	<include file="gui/session/developer_overlay.xml"/>
 	<include file="gui/session/diplomacy_window.xml"/>
 	<include file="gui/session/objectives_window.xml"/>
