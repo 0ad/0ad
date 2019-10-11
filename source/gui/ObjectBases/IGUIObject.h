@@ -280,11 +280,6 @@ public:
 protected:
 	/**
 	 * Draws the object.
-	 *
-	 * @throws	PSERROR if any. But this will mostlikely be
-	 *			very rare since if an object is drawn unsuccessfully
-	 *			it'll probably only output in the Error log, and not
-	 *			disrupt the whole GUI drawing.
 	 */
 	virtual void Draw() = 0;
 

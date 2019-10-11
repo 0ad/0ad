@@ -891,14 +891,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 	if (!file.empty())
 	{
 		Paths.insert(file);
-		try
-		{
-			m_ScriptInterface->LoadGlobalScriptFile(file);
-		}
-		catch (PSERROR_Scripting& e)
-		{
-			LOGERROR("GUI: Error executing script %s: %s", utf8_from_wstring(file), e.what());
-		}
+		m_ScriptInterface->LoadGlobalScriptFile(file);
 	}
 
 	// If it has a directory attribute, read all JS files in that directory
@@ -911,28 +904,13 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 		{
 			// Only load new files (so when the insert succeeds)
 			if (Paths.insert(path).second)
-				try
-				{
-					m_ScriptInterface->LoadGlobalScriptFile(path);
-				}
-				catch (PSERROR_Scripting& e)
-				{
-					LOGERROR("GUI: Error executing script %s: %s", path.string8(), e.what());
-				}
+				m_ScriptInterface->LoadGlobalScriptFile(path);
 		}
 	}
 
-	// Execute inline scripts
-	try
-	{
-		CStr code(Element.GetText());
-		if (!code.empty())
-			m_ScriptInterface->LoadGlobalScript(L"Some XML file", code.FromUTF8());
-	}
-	catch (PSERROR_Scripting& e)
-	{
-		LOGERROR("GUI: Error executing inline script: %s", e.what());
-	}
+	CStr code(Element.GetText());
+	if (!code.empty())
+		m_ScriptInterface->LoadGlobalScript(L"Some XML file", code.FromUTF8());
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)

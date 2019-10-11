@@ -47,8 +47,6 @@ struct SGUIScrollBarStyle;
 
 /**
  * The main object that represents a whole GUI page.
- *
- * No interfacial functions throws.
  */
 class CGUI
 {
