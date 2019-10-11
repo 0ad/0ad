@@ -134,8 +134,7 @@ var g_NotificationsTypes =
 	"diplomacy": function(notification, player)
 	{
 		updatePlayerData();
-		if (g_DiplomacyColorsToggle)
-			updateDisplayedPlayerColors();
+		g_DiplomacyColors.onDiplomacyChange();
 
 		addChatMessage({
 			"type": "diplomacy",
@@ -147,8 +146,7 @@ var g_NotificationsTypes =
 	"ceasefire-ended": function(notification, player)
 	{
 		updatePlayerData();
-		if (g_DiplomacyColorsToggle)
-			updateDisplayedPlayerColors();
+		g_DiplomacyColors.OnCeasefireEnded();
 	},
 	"tutorial": function(notification, player)
 	{
@@ -176,12 +174,11 @@ var g_NotificationsTypes =
 	},
 	"spy-response": function(notification, player)
 	{
-		if (g_BribeButtonsWaiting[player])
-			g_BribeButtonsWaiting[player] = g_BribeButtonsWaiting[player].filter(p => p != notification.target);
+		g_DiplomacyDialog.onSpyResponse(notification, player);
 
 		if (notification.entity && g_ViewedPlayer == player)
 		{
-			closeDiplomacy();
+			g_DiplomacyDialog.close();
 			setCameraFollow(notification.entity);
 		}
 	},
@@ -622,7 +619,7 @@ function colorizePlayernameByGUID(guid)
 
 function colorizePlayernameHelper(username, playerID)
 {
-	let playerColor = playerID > -1 ? rgbToGuiColor(g_DisplayedPlayerColors[playerID]) : "white";
+	let playerColor = playerID > -1 ? g_DiplomacyColors.getPlayerColor(playerID) : "white";
 	return coloredText(username || translate("Unknown Player"), playerColor);
 }
 

@@ -418,7 +418,7 @@ function updatePanelData(panelInfo)
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
 
-		setOutcomeIcon(playerState.state, playerOutcome);
+		setOutcomeIcon(playerState.state, Engine.GetGUIObjectByName(playerOutcome));
 
 		playerNameColumn = Engine.GetGUIObjectByName(playerNameColumn);
 		playerNameColumn.caption = g_GameData.sim.playerStates[i + 1].name;

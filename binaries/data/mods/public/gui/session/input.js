@@ -29,9 +29,8 @@ const INPUT_BATCHTRAINING = 6;
 const INPUT_PRESELECTEDACTION = 7;
 const INPUT_BUILDING_WALL_CLICK = 8;
 const INPUT_BUILDING_WALL_PATHING = 9;
-const INPUT_MASSTRIBUTING = 10;
-const INPUT_UNIT_POSITION_START = 11;
-const INPUT_UNIT_POSITION = 12;
+const INPUT_UNIT_POSITION_START = 10;
+const INPUT_UNIT_POSITION = 11;
 
 var inputState = INPUT_NORMAL;
 
@@ -767,14 +766,6 @@ function handleInputBeforeGui(ev, hoveredObject)
 		}
 		break;
 
-	case INPUT_MASSTRIBUTING:
-		if (ev.type == "hotkeyup" && ev.hotkey == "session.masstribute")
-		{
-			g_FlushTributing();
-			inputState = INPUT_NORMAL;
-		}
-		break;
-
 	case INPUT_BATCHTRAINING:
 		if (ev.type == "hotkeyup" && ev.hotkey == "session.batchtrain")
 		{
@@ -1217,21 +1208,6 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	});
 
 	return true;
-}
-
-function handleMinimapEvent(target)
-{
-	// Partly duplicated from handleInputAfterGui(), but with the input being
-	// world coordinates instead of screen coordinates.
-
-	if (inputState != INPUT_NORMAL)
-		return false;
-
-	let action = determineAction(undefined, undefined, true);
-	if (!action)
-		return false;
-
-	return handleUnitAction(target, action);
 }
 
 function handleUnitAction(target, action)

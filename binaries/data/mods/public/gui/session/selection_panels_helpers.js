@@ -31,11 +31,6 @@ function hasSameRestrictionCategory(templateName1, templateName2)
 	return false;
 }
 
-function getPlayerHighlightColor(player)
-{
-	return "color:" + rgbToGuiColor(g_DisplayedPlayerColors[player], 160);
-}
-
 /**
  * Returns a "color:255 0 0 Alpha" string based on how many resources are needed.
  */

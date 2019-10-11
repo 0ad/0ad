@@ -56,30 +56,20 @@ var g_BarterSell;
 
 var g_IsMenuOpen = false;
 
-var g_IsDiplomacyOpen = false;
 var g_IsTradeOpen = false;
 var g_IsObjectivesOpen = false;
-
-/**
- * Used to disable a specific bribe button for the time we are waiting for the result of the bribe after it was clicked.
- * It contains an array per viewedPlayer. This array is a list of the players that were bribed.
- */
-var g_BribeButtonsWaiting = {};
 
 /**
  * Remember last viewed summary panel and charts.
  */
 var g_SummarySelectedData;
 
-// Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
-var g_FlushTributing = function() {};
-
 function initMenu()
 {
 	Engine.GetGUIObjectByName("menu").size = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 
 	// TODO: Atlas should pass g_GameAttributes.settings
-	for (let button of ["menuExitButton", "summaryButton", "objectivesButton", "diplomacyButton"])
+	for (let button of ["menuExitButton", "summaryButton", "objectivesButton"])
 		Engine.GetGUIObjectByName(button).enabled = !Engine.IsAtlasRunning();
 }
 
@@ -245,291 +235,6 @@ function openOptions()
 
 			resumeGame();
 		});
-}
-
-function resizeDiplomacyDialog()
-{
-	let dialog = Engine.GetGUIObjectByName("diplomacyDialogPanel");
-	let size = dialog.size;
-
-	let resTribCodesLength = g_ResourceData.GetTributableCodes().length;
-	if (resTribCodesLength)
-	{
-		let tribSize = Engine.GetGUIObjectByName("diplomacyPlayer[0]_tribute[0]").size;
-		let widthOffset = resTribCodesLength * (tribSize.right - tribSize.left) / 2;
-		size.left -= widthOffset;
-		size.right += widthOffset;
-	}
-	else
-		Engine.GetGUIObjectByName("diplomacyHeaderTribute").hidden = true;
-
-	let firstRow = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
-	let heightOffset = (g_Players.length - 1) * (firstRow.bottom - firstRow.top) / 2;
-	size.top -= heightOffset;
-	size.bottom += heightOffset;
-
-	dialog.size = size;
-}
-
-function openDiplomacy()
-{
-	closeOpenDialogs();
-
-	if (g_ViewedPlayer < 1)
-		return;
-
-	g_IsDiplomacyOpen = true;
-
-	updateDiplomacy(true);
-
-	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
-}
-
-function closeDiplomacy()
-{
-	g_IsDiplomacyOpen = false;
-	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = true;
-}
-
-function toggleDiplomacy()
-{
-	let open = g_IsDiplomacyOpen;
-	closeOpenDialogs();
-
-	if (!open)
-		openDiplomacy();
-}
-
-function updateDiplomacy(opening = false)
-{
-	if (g_ViewedPlayer < 1 || !g_IsDiplomacyOpen)
-		return;
-
-	let simState = GetSimState();
-	let isCeasefireActive = simState.ceasefireActive;
-	let hasSharedLos = GetSimState().players[g_ViewedPlayer].hasSharedLos;
-
-	// Get offset for one line
-	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
-	let rowsize = onesize.bottom - onesize.top;
-
-	// We don't include gaia
-	for (let i = 1; i < g_Players.length; ++i)
-	{
-		let myself = i == g_ViewedPlayer;
-		let playerInactive = isPlayerObserver(g_ViewedPlayer) || isPlayerObserver(i);
-		let hasAllies = g_Players.filter(player => player.isMutualAlly[g_ViewedPlayer]).length > 1;
-
-		diplomacySetupTexts(i, rowsize);
-		diplomacyFormatStanceButtons(i, myself || playerInactive || isCeasefireActive || g_Players[g_ViewedPlayer].teamsLocked);
-		// Tribute buttons do not need to be updated onTick, and should not because of massTributing
-		if (opening)
-			diplomacyFormatTributeButtons(i, myself || playerInactive);
-		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
-		diplomacyFormatSpyRequestButton(i, myself || playerInactive || g_Players[i].isMutualAlly[g_ViewedPlayer] && hasSharedLos);
-	}
-
-	let diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
-	diplomacyCeasefireCounter.caption = sprintf(
-		translateWithContext("ceasefire", "Remaining ceasefire time: %(time)s."),
-		{ "time": timeToString(simState.ceasefireTimeRemaining) }
-	);
-	diplomacyCeasefireCounter.hidden = !isCeasefireActive;
-}
-
-function diplomacySetupTexts(i, rowsize)
-{
-	// Apply offset
-	let row = Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]");
-	let size = row.size;
-	size.top = rowsize * (i - 1);
-	size.bottom = rowsize * i;
-	row.size = size;
-	row.hidden = false;
-
-	row.sprite = "color:" + rgbToGuiColor(g_DisplayedPlayerColors[i], 32);
-
-	setOutcomeIcon(g_Players[i].state, "diplomacyPlayerOutcome[" + (i - 1) + "]");
-
-	let diplomacyPlayerName = Engine.GetGUIObjectByName("diplomacyPlayerName[" + (i - 1) + "]");
-	diplomacyPlayerName.caption = colorizePlayernameByID(i);
-	diplomacyPlayerName.tooltip = translateAISettings(g_GameAttributes.settings.PlayerData[i]);
-
-	Engine.GetGUIObjectByName("diplomacyPlayerCiv[" + (i - 1) + "]").caption = g_CivData[g_Players[i].civ].Name;
-
-	Engine.GetGUIObjectByName("diplomacyPlayerTeam[" + (i - 1) + "]").caption =
-		g_Players[i].team < 0 ? translateWithContext("team", "None") : g_Players[i].team + 1;
-
-	Engine.GetGUIObjectByName("diplomacyPlayerTheirs[" + (i - 1) + "]").caption =
-		i == g_ViewedPlayer ? "" :
-			g_Players[i].isAlly[g_ViewedPlayer] ?
-				translate("Ally") :
-				g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy");
-}
-
-function diplomacyFormatStanceButtons(i, hidden)
-{
-	for (let stance of ["Ally", "Neutral", "Enemy"])
-	{
-		let button = Engine.GetGUIObjectByName("diplomacyPlayer" + stance + "[" + (i - 1) + "]");
-		button.hidden = hidden;
-		if (hidden)
-			continue;
-
-		let isCurrentStance = g_Players[g_ViewedPlayer]["is" + stance][i];
-		button.caption = isCurrentStance ? translate("x") : "";
-		button.enabled = controlsPlayer(g_ViewedPlayer) && !isCurrentStance;
-
-		button.onPress = (function(player, stance) { return function() {
-			Engine.PostNetworkCommand({
-				"type": "diplomacy",
-				"player": i,
-				"to": stance.toLowerCase()
-			});
-		}; })(i, stance);
-	}
-}
-
-function diplomacyFormatTributeButtons(i, hidden)
-{
-	let resTribCodes = g_ResourceData.GetTributableCodes();
-	let r = 0;
-	for (let resCode of resTribCodes)
-	{
-		let button = Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]_tribute[" + r + "]");
-		if (!button)
-		{
-			warn("Current GUI limits prevent displaying more than " + r + " tribute buttons!");
-			break;
-		}
-
-		Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]_tribute[" + r + "]_image").sprite = "stretched:session/icons/resources/" + resCode + ".png";
-		button.hidden = hidden;
-		setPanelObjectPosition(button, r, r + 1, 0);
-		++r;
-		if (hidden)
-			continue;
-
-		button.enabled = controlsPlayer(g_ViewedPlayer);
-		button.tooltip = formatTributeTooltip(i, resCode, 100);
-		button.onPress = (function(i, resCode, button) {
-			// Shift+click to send 500, shift+click+click to send 1000, etc.
-			// See INPUT_MASSTRIBUTING in input.js
-			let multiplier = 1;
-			return function() {
-				let isMassTributePressed = Engine.HotkeyIsPressed("session.masstribute");
-				if (isMassTributePressed)
-				{
-					inputState = INPUT_MASSTRIBUTING;
-					multiplier += multiplier == 1 ? 4 : 5;
-				}
-
-				let amounts = {};
-				for (let res of resTribCodes)
-					amounts[res] = 0;
-				amounts[resCode] = 100 * multiplier;
-
-				button.tooltip = formatTributeTooltip(i, resCode, amounts[resCode]);
-
-				// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
-				// evil global variable hackery.
-				g_FlushTributing = function() {
-					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts": amounts });
-					multiplier = 1;
-					button.tooltip = formatTributeTooltip(i, resCode, 100);
-				};
-
-				if (!isMassTributePressed)
-					g_FlushTributing();
-			};
-		})(i, resCode, button);
-	}
-}
-
-function diplomacyFormatAttackRequestButton(i, hidden)
-{
-	let button = Engine.GetGUIObjectByName("diplomacyAttackRequest[" + (i - 1) + "]");
-	button.hidden = hidden;
-	if (hidden)
-		return;
-
-	button.enabled = controlsPlayer(g_ViewedPlayer);
-	button.tooltip = translate("Request your allies to attack this enemy");
-	button.onPress = (function(i) { return function() {
-		Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "player": i });
-	}; })(i);
-}
-
-function diplomacyFormatSpyRequestButton(i, hidden)
-{
-	let button = Engine.GetGUIObjectByName("diplomacySpyRequest[" + (i - 1) + "]");
-	let template = GetTemplateData("special/spy");
-	button.hidden = hidden || !template || !!GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
-	if (button.hidden)
-		return;
-
-	button.enabled = controlsPlayer(g_ViewedPlayer) &&
-	                 !(g_BribeButtonsWaiting[g_ViewedPlayer] && g_BribeButtonsWaiting[g_ViewedPlayer].indexOf(i) != -1);
-	let modifier = "";
-	let tooltips = [translate("Bribe a random unit from this player and share its vision during a limited period.")];
-	if (!button.enabled)
-		modifier = "color:0 0 0 127:grayscale:";
-	else
-	{
-		if (template.requiredTechnology)
-		{
-			let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-				"tech": template.requiredTechnology,
-				"player": g_ViewedPlayer
-			});
-			if (!technologyEnabled)
-			{
-				modifier = "color:0 0 0 127:grayscale:";
-				button.enabled = false;
-				tooltips.push(getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[g_ViewedPlayer].civ));
-			}
-		}
-
-		if (template.cost)
-		{
-			let modifiedTemplate = clone(template);
-			for (let res in template.cost)
-				modifiedTemplate.cost[res] = Math.floor(GetSimState().players[i].spyCostMultiplier * template.cost[res]);
-			tooltips.push(getEntityCostTooltip(modifiedTemplate));
-			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": modifiedTemplate.cost,
-				"player": g_ViewedPlayer
-			});
-			let costRatio = Engine.GetTemplate("special/spy").VisionSharing.FailureCostRatio;
-			if (costRatio > 0)
-			{
-				tooltips.push(translate("A failed bribe will cost you:"));
-				for (let res in modifiedTemplate.cost)
-					modifiedTemplate.cost[res] = Math.floor(costRatio * modifiedTemplate.cost[res]);
-				tooltips.push(getEntityCostTooltip(modifiedTemplate));
-			}
-
-			if (neededResources)
-			{
-				if (button.enabled)
-					modifier = resourcesToAlphaMask(neededResources) + ":";
-				button.enabled = false;
-				tooltips.push(getNeededResourcesTooltip(neededResources));
-			}
-		}
-	}
-	let icon = Engine.GetGUIObjectByName("diplomacySpyRequestImage[" + (i - 1) + "]");
-	icon.sprite = modifier + "stretched:session/icons/bribes.png";
-	button.tooltip = tooltips.filter(tip => tip).join("\n");
-	button.onPress = (function(i, button) { return function() {
-		Engine.PostNetworkCommand({ "type": "spy-request", "source": g_ViewedPlayer, "player": i });
-		if (!g_BribeButtonsWaiting[g_ViewedPlayer])
-			g_BribeButtonsWaiting[g_ViewedPlayer] = [];
-		// Don't push i twice
-		if (g_BribeButtonsWaiting[g_ViewedPlayer].indexOf(i) == -1)
-			g_BribeButtonsWaiting[g_ViewedPlayer].push(i);
-		diplomacyFormatSpyRequestButton(i, false);
-	}; })(i, button);
 }
 
 function resizeTradeDialog()
@@ -1158,19 +863,9 @@ function openManual()
 function closeOpenDialogs()
 {
 	closeMenu();
-	closeDiplomacy();
 	closeTrade();
 	closeObjectives();
 
 	g_Chat.closePage();
-}
-
-function formatTributeTooltip(playerID, resourceCode, amount)
-{
-	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
-		"resourceAmount": amount,
-		"resourceType": resourceNameWithinSentence(resourceCode),
-		"playerName": colorizePlayernameByID(playerID),
-		"greaterAmount": amount < 500 ? 500 : amount + 500
-	});
+	g_DiplomacyDialog.close();
 }

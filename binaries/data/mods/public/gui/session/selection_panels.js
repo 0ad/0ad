@@ -382,7 +382,7 @@ g_SelectionPanels.Garrison = {
 				"playername": g_Players[entState.player].name
 			});
 
-		data.guiSelection.sprite = getPlayerHighlightColor(entState.player);
+		data.guiSelection.sprite = "color:" + g_DiplomacyColors.getPlayerColor(entState.player, 160);
 		data.button.sprite_disabled = data.button.sprite;
 
 		// Selection panel buttons only appear disabled if they
@@ -873,7 +873,7 @@ g_SelectionPanels.Selection = {
 			});
 		data.button.tooltip = tooltip;
 
-		data.guiSelection.sprite = getPlayerHighlightColor(unitOwner);
+		data.guiSelection.sprite = "color:" + g_DiplomacyColors.getPlayerColor(unitOwner, 160);
 		data.guiSelection.hidden = !g_IsObserver;
 
 		data.countDisplay.caption = data.item.ents.length || "";

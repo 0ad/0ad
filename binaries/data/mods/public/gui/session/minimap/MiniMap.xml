@@ -6,9 +6,9 @@
 	sprite="mapPanel"
 >
 	<!-- Minimap -->
-	<object size="8 8 100%-8 100%-8" type="minimap" z="20">
-		<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
-	</object>
+	<object name="minimap" size="8 8 100%-8 100%-8" type="minimap" z="20"/>
+
+	<!-- Background image -->
 	<object
 		type="image"
 		size="4 4 100%-4 100%-4"
@@ -26,9 +26,7 @@
 		sprite="stretched:session/minimap-idle.png"
 		sprite_over="stretched:session/minimap-idle-highlight.png"
 		sprite_disabled="stretched:session/minimap-idle-disabled.png"
-	>
-		<action on="Press">findIdleUnit(g_WorkerTypes);</action>
-	</object>
+	/>
 
 	<!-- Diplomacy Colors Button -->
 	<object
@@ -37,9 +35,5 @@
 		size="4 100%-120 119 100%-5"
 		tooltip_style="sessionToolTip"
 		hotkey="session.diplomacycolors"
-		sprite="stretched:session/minimap-diplomacy-off.png"
-		sprite_over="stretched:session/minimap-diplomacy-off-highlight.png"
-	>
-		<action on="Press">updateDiplomacyColorsButton();</action>
-	</object>
+	/>
 </object>
