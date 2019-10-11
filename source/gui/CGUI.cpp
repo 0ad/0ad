@@ -126,7 +126,6 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	IGUIObject* pNearest = nullptr;
 
 	// TODO Gee: (2004-09-08) Big TODO, don't do the below if the SDL_Event is something like a keypress!
-	try
 	{
 		PROFILE("mouse events");
 		// TODO Gee: Optimizations needed!
@@ -204,12 +203,6 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			// Since the hover state will have been reset, we reload it.
 			m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
 		}
-	}
-	catch (PSERROR_GUI& e)
-	{
-		UNUSED2(e);
-		debug_warn(L"CGUI::HandleEvent error");
-		// TODO Gee: Handle
 	}
 
 	// BUTTONUP's effect on m_MouseButtons is handled after
@@ -336,14 +329,7 @@ void CGUI::Draw()
 	// drawn on top of everything else
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	try
-	{
-		m_BaseObject.RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
-	}
-	catch (PSERROR_GUI& e)
-	{
-		LOGERROR("GUI draw error: %s", e.what());
-	}
+	m_BaseObject.RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
 }
 
 void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
@@ -359,45 +345,26 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 
 void CGUI::UpdateResolution()
 {
-	// Update ALL cached
 	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
 }
 
-void CGUI::AddObject(IGUIObject* pObject)
+bool CGUI::AddObject(IGUIObject& parent, IGUIObject& child)
 {
-	try
+	if (child.m_Name.empty())
 	{
-		m_BaseObject.AddChild(pObject);
-
-		// Cache tree
-		pObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
-
-		SGUIMessage msg(GUIM_LOAD);
-		pObject->RecurseObject(nullptr, &IGUIObject::HandleMessage, msg);
-	}
-	catch (PSERROR_GUI&)
-	{
-		throw;
-	}
-}
-
-void CGUI::UpdateObjects()
-{
-	// We'll fill a temporary map until we know everything succeeded
-	map_pObjects AllObjects;
-
-	try
-	{
-		// Fill freshly
-		m_BaseObject.RecurseObject(nullptr, &IGUIObject::AddToPointersMap, AllObjects);
-	}
-	catch (PSERROR_GUI&)
-	{
-		throw;
+		LOGERROR("Can't register an object without name!");
+		return false;
 	}
 
-	// Else actually update the real one
-	m_pAllObjects.swap(AllObjects);
+	if (m_pAllObjects.find(child.m_Name) != m_pAllObjects.end())
+	{
+		LOGERROR("Can't register more than one object of the name %s", child.m_Name.c_str());
+		return false;
+	}
+
+	m_pAllObjects[child.m_Name] = &child;
+	parent.AddChild(child);
+	return true;
 }
 
 bool CGUI::ObjectExists(const CStr& Name) const
@@ -511,31 +478,28 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 		return;
 
 	XMBElement node = XeroFile.GetRoot();
-
 	CStr root_name(XeroFile.GetElementString(node.GetNodeName()));
-	try
-	{
-		if (root_name == "objects")
-		{
-			Xeromyces_ReadRootObjects(node, &XeroFile, Paths);
 
-			// Re-cache all values so these gets cached too.
-			//UpdateResolution();
-		}
-		else if (root_name == "sprites")
-			Xeromyces_ReadRootSprites(node, &XeroFile);
-		else if (root_name == "styles")
-			Xeromyces_ReadRootStyles(node, &XeroFile);
-		else if (root_name == "setup")
-			Xeromyces_ReadRootSetup(node, &XeroFile);
-		else
-			debug_warn(L"CGUI::LoadXmlFile error");
-	}
-	catch (PSERROR_GUI& e)
-	{
-		LOGERROR("Errors loading GUI file %s (%u)", Filename.string8(), e.getCode());
-		return;
-	}
+	if (root_name == "objects")
+		Xeromyces_ReadRootObjects(node, &XeroFile, Paths);
+	else if (root_name == "sprites")
+		Xeromyces_ReadRootSprites(node, &XeroFile);
+	else if (root_name == "styles")
+		Xeromyces_ReadRootStyles(node, &XeroFile);
+	else if (root_name == "setup")
+		Xeromyces_ReadRootSetup(node, &XeroFile);
+	else
+		LOGERROR("CGUI::LoadXmlFile encountered an unknown XML root node type: %s", root_name.c_str());
+}
+
+void CGUI::LoadedXmlFiles()
+{
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+
+	SGUIMessage msg(GUIM_LOAD);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::HandleMessage, msg);
+
+	SendEventToAll("load");
 }
 
 //===================================================================
@@ -662,7 +626,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	for (XMBAttribute attr : attributes)
 	{
 		// If value is "null", then it is equivalent as never being entered
-		if (CStr(attr.Value) == "null")
+		if (attr.Value == "null")
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
@@ -725,7 +689,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				if (scriptfile.Load(g_VFS, filename) != PSRETURN_OK)
 				{
 					LOGERROR("Error opening GUI script action file '%s'", utf8_from_wstring(filename));
-					throw PSERROR_GUI_JSOpenFailed();
+					continue;
 				}
 
 				code = scriptfile.DecodeUTF8(); // assume it's UTF-8
@@ -886,17 +850,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			object->SetSetting<float>("z", 10.f, false);
 	}
 
-	try
-	{
-		if (pParent == &m_BaseObject)
-			AddObject(object);
-		else
-			pParent->AddChild(object);
-	}
-	catch (PSERROR_GUI& e)
-	{
-		LOGERROR("GUI error: %s", e.what());
-	}
+	if (!AddObject(*pParent, *object))
+		delete object;
 }
 
 void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
@@ -1319,7 +1274,8 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 			object->SetSettingFromString(attr_name, attr_value.FromUTF8(), true);
 	}
 
-	AddObject(object);
+	if (!AddObject(m_BaseObject, *object))
+		delete object;
 }
 
 void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)

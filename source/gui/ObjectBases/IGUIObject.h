@@ -107,33 +107,9 @@ public:
 	CStr GetPresentableName() const;
 
 	/**
-	 * Adds object and its children to the map, it's name being the
-	 * first part, and the second being itself.
-	 *
-	 * @param ObjectMap Adds this to the map_pObjects.
-	 *
-	 * @throws PSERROR_GUI_ObjectNeedsName Name is missing
-	 * @throws PSERROR_GUI_NameAmbiguity Name is already taken
+	 * Builds the object hierarchy with references.
 	 */
-	void AddToPointersMap(map_pObjects& ObjectMap);
-
-	/**
-	 * Notice nothing will be returned or thrown if the child hasn't
-	 * been inputted into the GUI yet. This is because that's were
-	 * all is checked. Now we're just linking two objects, but
-	 * it's when we're inputting them into the GUI we'll check
-	 * validity! Notice also when adding it to the GUI this function
-	 * will inevitably have been called by CGUI::AddObject which
-	 * will catch the throw and return the error code.
-	 * i.e. The user will never put in the situation wherein a throw
-	 * must be caught, the GUI's internal error handling will be
-	 * completely transparent to the interfacially sequential model.
-	 *
-	 * @param pChild Child to add
-	 *
-	 * @throws PSERROR_GUI from CGUI::UpdateObjects().
-	 */
-	void AddChild(IGUIObject* pChild);
+	void AddChild(IGUIObject& pChild);
 
 	/**
 	 * Return all child objects of the current object.

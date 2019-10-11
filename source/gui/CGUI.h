@@ -37,8 +37,6 @@
 #include <map>
 #include <vector>
 
-ERROR_TYPE(GUI, JSOpenFailed);
-
 extern const double SELECT_DBLCLICK_RATE;
 
 class CGUISpriteInstance;
@@ -125,6 +123,11 @@ public:
 	 * @param Paths Set of paths; all XML and JS files loaded will be added to this
 	 */
 	void LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths);
+
+	/**
+	 * Called after all XML files linked in the page file were loaded.
+	 */
+	void LoadedXmlFiles();
 
 	/**
 	 * Allows the JS side to modify the hotkey setting assigned to a GUI object.
@@ -238,27 +241,12 @@ public:
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 	JS::Value GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
 
-	/**
-	 * Updates the object pointers, needs to be called each
-	 * time an object has been added or removed.
-	 *
-	 * This function is atomic, meaning if it throws anything, it will
-	 * have seen it through that nothing was ultimately changed.
-	 *
-	 * @throws PSERROR_GUI that is thrown from IGUIObject::AddToPointersMap().
-	 */
-	void UpdateObjects();
-
 private:
 	/**
-	 * Adds an object to the GUI's object database
-	 * Private, since you can only add objects through
-	 * XML files. Why? Because it enables the GUI to
-	 * be much more encapsulated and safe.
-	 *
-	 * @throws	Rethrows PSERROR_GUI from IGUIObject::AddChild().
+	 * The CGUI takes ownership of the child object and links the parent with the child.
+	 * Returns false on failure to take over ownership of the child object.
 	 */
-	void AddObject(IGUIObject* pObject);
+	bool AddObject(IGUIObject& parent, IGUIObject& child);
 
 	/**
 	 * You input the name of the object type, and let's
