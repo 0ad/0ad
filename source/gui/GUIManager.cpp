@@ -196,7 +196,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 		}
 	}
 
-	gui->SendEventToAll("load");
+	gui->LoadedXmlFiles();
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();

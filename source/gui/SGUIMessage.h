@@ -46,7 +46,7 @@ enum EGUIMessageType
 	GUIM_RELEASED,
 	GUIM_DOUBLE_PRESSED,
 	GUIM_MOUSE_MOTION,
-	GUIM_LOAD,				// Called when an object is added to the GUI.
+	GUIM_LOAD, // Called after all objects were added to the GUI.
 	GUIM_GOT_FOCUS,
 	GUIM_LOST_FOCUS,
 	GUIM_PRESSED_MOUSE_RIGHT,

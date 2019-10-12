@@ -19,7 +19,6 @@
 #define INCLUDED_CGUISIZE
 
 #include "ps/CStr.h"
-#include "ps/Errors.h"
 #include "ps/Shapes.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -71,13 +70,5 @@ public:
 	void ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const;
 	bool FromJSVal(JSContext* cx, JS::HandleValue v);
 };
-
-
-ERROR_GROUP(GUI);
-
-ERROR_TYPE(GUI, InvalidSetting);
-ERROR_TYPE(GUI, OperationNeedsGUIObject);
-ERROR_TYPE(GUI, NameAmbiguity);
-ERROR_TYPE(GUI, ObjectNeedsName);
 
 #endif // INCLUDED_CGUISIZE

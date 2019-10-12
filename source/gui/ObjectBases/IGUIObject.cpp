@@ -71,62 +71,14 @@ IGUIObject::~IGUIObject()
 
 	if (!m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+
+	// m_Children is deleted along all other GUI Objects in the CGUI destructor
 }
 
-//-------------------------------------------------------------------
-//  Functions
-//-------------------------------------------------------------------
-
-void IGUIObject::AddChild(IGUIObject* pChild)
+void IGUIObject::AddChild(IGUIObject& pChild)
 {
-//	ENSURE(pChild);
-
-	pChild->SetParent(this);
-
-	m_Children.push_back(pChild);
-
-	{
-		try
-		{
-			// Atomic function, if it fails it won't
-			//  have changed anything
-			//UpdateObjects();
-			pChild->GetGUI().UpdateObjects();
-		}
-		catch (PSERROR_GUI&)
-		{
-			// If anything went wrong, reverse what we did and throw
-			//  an exception telling it never added a child
-			m_Children.erase(m_Children.end()-1);
-
-			throw;
-		}
-	}
-	// else do nothing
-}
-
-void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
-{
-	// Just don't do anything about the top node
-	if (m_pParent == nullptr)
-		return;
-
-	// Now actually add this one
-	//  notice we won't add it if it's doesn't have any parent
-	//  (i.e. being the base object)
-	if (m_Name.empty())
-	{
-		throw PSERROR_GUI_ObjectNeedsName();
-	}
-
-	if (ObjectMap.find(m_Name) != ObjectMap.end())
-	{
-		throw PSERROR_GUI_NameAmbiguity(m_Name.c_str());
-	}
-	else
-	{
-		ObjectMap[m_Name] = this;
-	}
+	pChild.SetParent(this);
+	m_Children.push_back(&pChild);
 }
 
 template<typename T>

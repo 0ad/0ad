@@ -11,19 +11,12 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Chat;
+var g_DiplomacyButton;
+var g_DiplomacyColors;
+var g_DiplomacyDialog;
+var g_MiniMapPanel;
 
 var g_GameSpeeds;
-
-/**
- * Whether to display diplomacy colors (where players see self/ally/neutral/enemy each in different colors and
- * observers see each team in a different color) or regular player colors.
- */
-var g_DiplomacyColorsToggle = false;
-
-/**
- * The array of displayed player colors (either the diplomacy color or regular color for each player).
- */
-var g_DisplayedPlayerColors;
 
 /**
  * Colors to flash when pop limit reached.
@@ -272,8 +265,12 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
-	g_DeveloperOverlay = new DeveloperOverlay();
 	g_Chat = new Chat();
+	g_DeveloperOverlay = new DeveloperOverlay();
+	g_DiplomacyColors = new DiplomacyColors();
+	g_DiplomacyDialog = new DiplomacyDialog(g_DiplomacyColors);
+	g_DiplomacyButton = new DiplomacyButton(g_DiplomacyDialog);
+	g_MiniMapPanel = new MiniMapPanel(g_DiplomacyColors, g_WorkerTypes);
 
 	LoadModificationTemplates();
 	updatePlayerData();
@@ -296,13 +293,14 @@ function initGUIObjects()
 {
 	initMenu();
 	updateGameSpeedControl();
-	resizeDiplomacyDialog();
 	resizeTradeDialog();
 	initBarterButtons();
 	initPanelEntities();
+	g_DiplomacyColors.onPlayerInit();
 	initViewedPlayerDropdown();
 	Engine.SetBoundingBoxDebugOverlay(false);
 	updateEnabledRangeOverlayTypes();
+	g_DiplomacyDialog.onPlayerInit();
 }
 
 function updatePlayerData()
@@ -353,69 +351,13 @@ function updatePlayerData()
 	g_Players = playerData;
 }
 
-function updateDiplomacyColorsButton()
-{
-	g_DiplomacyColorsToggle = !g_DiplomacyColorsToggle;
-
-	let diplomacyColorsButton = Engine.GetGUIObjectByName("diplomacyColorsButton");
-
-	diplomacyColorsButton.sprite = g_DiplomacyColorsToggle ?
-		"stretched:session/minimap-diplomacy-on.png" :
-		"stretched:session/minimap-diplomacy-off.png";
-
-	diplomacyColorsButton.sprite_over = g_DiplomacyColorsToggle ?
-		"stretched:session/minimap-diplomacy-on-highlight.png" :
-		"stretched:session/minimap-diplomacy-off-highlight.png";
-
-	Engine.GetGUIObjectByName("diplomacyColorsWindowButtonIcon").sprite = g_DiplomacyColorsToggle ?
-		"stretched:session/icons/diplomacy-on.png" :
-		"stretched:session/icons/diplomacy.png";
-
-	updateDisplayedPlayerColors();
-}
-
 /**
- * Updates the displayed colors of players in the simulation and GUI.
+ * Called when the user changed the diplomacy colors in the options.
+ * TODO: Remove this proxy and make the options page agnostic of the session page.
  */
 function updateDisplayedPlayerColors()
 {
-	if (g_DiplomacyColorsToggle)
-	{
-		let getDiplomacyColor = stance =>
-			guiToRgbColor(Engine.ConfigDB_GetValue("user", "gui.session.diplomacycolors." + stance)) ||
-			guiToRgbColor(Engine.ConfigDB_GetValue("default", "gui.session.diplomacycolors." + stance));
-
-		let teamRepresentatives = {};
-		for (let i = 1; i < g_Players.length; ++i)
-			if (g_ViewedPlayer <= 0)
-			{
-				// Observers and gaia see team colors
-				let team = g_Players[i].team;
-				g_DisplayedPlayerColors[i] = g_Players[teamRepresentatives[team] || i].color;
-				if (team != -1 && !teamRepresentatives[team])
-					teamRepresentatives[team] = i;
-			}
-			else
-				// Players see colors depending on diplomacy
-				g_DisplayedPlayerColors[i] =
-					g_ViewedPlayer == i ? getDiplomacyColor("self") :
-					g_Players[g_ViewedPlayer].isAlly[i] ? getDiplomacyColor("ally") :
-					g_Players[g_ViewedPlayer].isNeutral[i] ? getDiplomacyColor("neutral") :
-					getDiplomacyColor("enemy");
-
-		g_DisplayedPlayerColors[0] = g_Players[0].color;
-	}
-	else
-		g_DisplayedPlayerColors = g_Players.map(player => player.color);
-
-	Engine.GuiInterfaceCall("UpdateDisplayedPlayerColors", {
-		"displayedPlayerColors": g_DisplayedPlayerColors,
-		"displayDiplomacyColors": g_DiplomacyColorsToggle,
-		"showAllStatusBars": g_ShowAllStatusBars,
-		"selected": g_Selection.toList()
-	});
-
-	updateGUIObjects();
+	g_DiplomacyColors.updateDisplayedPlayerColors();
 }
 
 /**
@@ -423,22 +365,6 @@ function updateDisplayedPlayerColors()
  */
 function updateHotkeyTooltips()
 {
-	Engine.GetGUIObjectByName("idleWorkerButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
-		translate("Find idle worker");
-
-	Engine.GetGUIObjectByName("diplomacyColorsButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
-		translate("Toggle Diplomacy Colors");
-
-	Engine.GetGUIObjectByName("diplomacyColorsWindowButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
-		translate("Toggle Diplomacy Colors");
-
-	Engine.GetGUIObjectByName("diplomacyButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "session.gui.diplomacy.toggle") +
-		translate("Diplomacy");
-
 	Engine.GetGUIObjectByName("tradeButton").tooltip =
 		colorizeHotkey("%(hotkey)s" + " ", "session.gui.barter.toggle") +
 		translate("Barter & Trade");
@@ -506,7 +432,6 @@ function initializeMusic()
 
 function initViewedPlayerDropdown()
 {
-	g_DisplayedPlayerColors = g_Players.map(player => player.color);
 	updateViewedPlayerDropdown();
 
 	// Select "observer" in the view player dropdown when rejoining as a defeated player
@@ -551,7 +476,7 @@ function selectViewPlayer(playerID)
 	}
 
 	Engine.SetViewedPlayer(g_ViewedPlayer);
-	updateDisplayedPlayerColors();
+	g_DiplomacyColors.updateDisplayedPlayerColors();
 	updateTopPanel();
 	g_Chat.onUpdatePlayers();
 	updateHotkeyTooltips();
@@ -561,8 +486,7 @@ function selectViewPlayer(playerID)
 	Engine.GuiInterfaceCall("ResetTemplateModified");
 	onSimulationUpdate();
 
-	if (g_IsDiplomacyOpen)
-		openDiplomacy();
+	g_DiplomacyDialog.update();
 
 	if (g_IsTradeOpen)
 		openTrade();
@@ -687,7 +611,8 @@ function updateTopPanel()
 	resPop.size = resPopSize;
 
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("diplomacyButton").hidden = !isPlayer;
+	g_DiplomacyButton.update();
+
 	Engine.GetGUIObjectByName("tradeButton").hidden = !isPlayer ||
 		(!g_ResourceData.GetTradableCodes().length && !g_ResourceData.GetBarterableCodes().length);
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
@@ -846,15 +771,6 @@ function changeGameSpeed(speed)
 		Engine.SetSimRate(speed);
 }
 
-function updateIdleWorkerButton()
-{
-	Engine.GetGUIObjectByName("idleWorkerButton").enabled = Engine.GuiInterfaceCall("HasIdleUnits", {
-		"viewedPlayer": g_ViewedPlayer,
-		"idleClasses": g_WorkerTypes,
-		"excludeUnits": []
-	});
-}
-
 function onSimulationUpdate()
 {
 	// Templates change depending on technologies and auras, so they have to be reloaded after such a change.
@@ -946,7 +862,6 @@ function updateGUIObjects()
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
-	updateIdleWorkerButton();
 
 	if (g_IsTradeOpen)
 	{
@@ -969,8 +884,9 @@ function updateGUIObjects()
 	}
 
 	updateViewedPlayerDropdown();
-	updateDiplomacy();
 	g_DeveloperOverlay.update();
+	g_DiplomacyDialog.update();
+	g_MiniMapPanel.update();
 }
 
 function saveResPopTooltipSort()

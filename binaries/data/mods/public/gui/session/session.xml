@@ -5,6 +5,10 @@
 <script directory="gui/common/"/>
 <script directory="gui/session/"/>
 <script directory="gui/session/chat/"/>
+<script directory="gui/session/diplomacy/"/>
+<script directory="gui/session/diplomacy/playercontrols/"/>
+<script directory="gui/session/minimap/"/>
+<script directory="gui/session/top_panel/"/>
 
 <object name="session">
 
@@ -97,8 +101,8 @@
 
 	<include directory="gui/session/chat/"/>
 	<include directory="gui/session/dialogs/"/>
+	<include directory="gui/session/diplomacy/"/>
 	<include file="gui/session/developer_overlay.xml"/>
-	<include file="gui/session/diplomacy_window.xml"/>
 	<include file="gui/session/objectives_window.xml"/>
 	<include file="gui/session/top_panel.xml"/>
 	<include file="gui/session/trade_window.xml"/>
@@ -120,7 +124,7 @@
 	<!-- limit to the minimal supported width of 1024px -->
 	<object size="50%-512 0 50%+512 100%">
 
-		<include file="gui/session/minimap_panel.xml"/>
+		<include directory="gui/session/minimap/"/>
 
 		<!-- Supplemental Details Panel (Left of Selection Details) -->
 		<object
