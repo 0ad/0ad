@@ -2,13 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="celt cc pieces 6x6">
+    <variant frequency="1" name="Brit civic center pieces">
       <mesh>props/celt_cc_pieces.dae</mesh>
       <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="structural/destroyed/brit_struct_1.png" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
         <texture file="props/ao/celt_cc_rubble.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

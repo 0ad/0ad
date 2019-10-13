@@ -4,6 +4,9 @@
     <Square width="28.0" depth="28.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>decay|rubble/rubble_gaul_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Lissos</SpecificName>
