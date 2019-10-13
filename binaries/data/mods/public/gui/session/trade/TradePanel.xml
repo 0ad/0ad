@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="tradeDialogPanelTrade">
+
+	<object type="text" size="8 0 100% 32" style="ModernLeftLabelText">
+		<translatableAttribute id="caption">Trade</translatableAttribute>
+	</object>
+
+	<object type="image" size="0 28 100% 29" sprite="ModernGoldLine"/>
+
+	<object name="tradeGoods" size="0 38 100% 70">
+
+		<object type="text" size="0 0 60 100%" style="ModernRightLabelText">
+			<!-- Translation: Used in the Trade Dialog -->
+			<translatableAttribute id="caption">Goods:</translatableAttribute>
+		</object>
+
+		<object name="tradeResources" size="72 0 100% 100%">
+			<repeat count="8">
+				<object name="tradeResource[n]" size="0 0 58 32">
+
+					<object name="tradeResourceButton[n]" type="button" size="4 0 36 100%" style="StoneButton">
+						<object name="tradeResourceIcon[n]" type="image" ghost="true"/>
+						<object name="tradeResourceSelection[n]" type="image" sprite="stretched:session/icons/corners.png" ghost="true"/>
+						<object name="tradeResourceText[n]" type="text" style="ModernLabelText" ghost="true"/>
+					</object>
+					<object name="tradeArrowUp[n]" type="button" size="36 0 52 50%" style="iconButton">
+						<object type="image" sprite="StoneArrowUp" ghost="true"/>
+					</object>
+					<object name="tradeArrowDn[n]" type="button" size="36 50% 52 100%" style="iconButton">
+						<object type="image" sprite="StoneArrowDn" ghost="true"/>
+					</object>
+
+				</object>
+			</repeat>
+		</object>
+
+		<object name="tradeHelp" type="button" size="100%-24 4 100% 28" style="StoneButton" tooltip_style="sessionToolTipBold" enabled="false">
+			<object type="image" size="20% 15% 80% 75%" sprite="iconInfoWhite" ghost="true"/>
+		</object>
+
+	</object>
+
+	<object name="traderCountText" type="text" size="8 88 100% 100%" style="ModernLeftTopLabelText"/>
+
+</object>

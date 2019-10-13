@@ -72,18 +72,6 @@
 		<action on="Release">updateSelectionDetails();</action>
 	</object>
 
-	<object hotkey="session.massbarter">
-		<action on="Press">
-			updateSelectionDetails();
-			updateBarterButtons();
-		</action>
-
-		<action on="Release">
-			updateSelectionDetails();
-			updateBarterButtons();
-		</action>
-	</object>
-
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
 		<action on="Press">findIdleUnit(g_MilitaryTypes);</action>

@@ -7,7 +7,4 @@
 	hotkey="session.gui.barter.toggle"
 >
 	<object name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
-	<action on="Press">
-		toggleTrade();
-	</action>
 </object>

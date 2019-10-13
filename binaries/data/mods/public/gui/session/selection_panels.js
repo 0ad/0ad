@@ -28,10 +28,12 @@
 
 // Cache some formation info
 // Available formations per player
-let g_AvailableFormations = new Map();
-let g_FormationsInfo = new Map();
+var g_AvailableFormations = new Map();
+var g_FormationsInfo = new Map();
 
-let g_SelectionPanels = {};
+var g_SelectionPanels = {};
+
+var g_SelectionPanelBarterButtonManager;
 
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
@@ -90,15 +92,11 @@ g_SelectionPanels.Barter = {
 	},
 	"setupButton": function(data)
 	{
-		barterOpenCommon(data.item, data.i, "unitBarter");
-		barterUpdateCommon(data.item, data.i, "unitBarter", data.player);
-
-		let button = {};
-		for (let action of g_BarterActions)
-			button[action] = Engine.GetGUIObjectByName("unitBarter" + action + "Button[" + data.i + "]");
-
-		setPanelObjectPosition(button.Sell, data.i, data.rowLength);
-		setPanelObjectPosition(button.Buy, data.i + data.rowLength, data.rowLength);
+		if (g_SelectionPanelBarterButtonManager)
+		{
+			g_SelectionPanelBarterButtonManager.setViewedPlayer(data.player);
+			g_SelectionPanelBarterButtonManager.update();
+		}
 		return true;
 	}
 };
@@ -1130,6 +1128,14 @@ g_SelectionPanels.Upgrade = {
 		return true;
 	}
 };
+
+function initSelectionPanels()
+{
+
+	let unitBarterPanel = Engine.GetGUIObjectByName("unitBarterPanel");
+	if (BarterButtonManager.IsAvailable(unitBarterPanel))
+		g_SelectionPanelBarterButtonManager = new BarterButtonManager(unitBarterPanel);
+}
 
 /**
  * Pauses game and opens the template details viewer for a selected entity or technology.
