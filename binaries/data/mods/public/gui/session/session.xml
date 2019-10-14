@@ -9,6 +9,7 @@
 <script directory="gui/session/diplomacy/playercontrols/"/>
 <script directory="gui/session/minimap/"/>
 <script directory="gui/session/top_panel/"/>
+<script directory="gui/session/trade/"/>
 
 <object name="session">
 
@@ -105,7 +106,7 @@
 	<include file="gui/session/developer_overlay.xml"/>
 	<include file="gui/session/objectives_window.xml"/>
 	<include file="gui/session/top_panel.xml"/>
-	<include file="gui/session/trade_window.xml"/>
+	<include file="gui/session/trade/TradeDialog.xml"/>
 	<include file="gui/session/tutorial_panel.xml"/>
 	<include file="gui/session/menu.xml"/>
 

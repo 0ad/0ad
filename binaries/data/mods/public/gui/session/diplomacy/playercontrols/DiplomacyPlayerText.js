@@ -21,6 +21,10 @@ DiplomacyDialogPlayerControl.prototype.DiplomacyPlayerText = class
 
 	init()
 	{
+		// TODO: Atlas should pass this
+		if (!g_GameAttributes.settings)
+			return;
+
 		this.diplomacyPlayerCiv.caption = g_CivData[g_Players[this.playerID].civ].Name;
 		this.diplomacyPlayerName.tooltip = translateAISettings(g_GameAttributes.settings.PlayerData[this.playerID]);
 

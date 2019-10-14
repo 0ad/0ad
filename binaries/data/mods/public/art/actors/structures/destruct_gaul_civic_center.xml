@@ -2,15 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="celt dock rubble struct">
-      <mesh>props/celt_dock_rubble_struct.dae</mesh>
+    <variant frequency="1" name="Destroyed Gaul Civic Center">
+      <mesh>structural/gaul_civic_centre_destroyed.dae</mesh>
       <textures>
         <texture file="structural/destroyed/celt_struct_1.png" name="baseTex"/>
         <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
         <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="props/ao/celt_dock_rubble_ao.png" name="aoTex"/>
       </textures>
+      <props>
+        <prop actor="structures/destruct_stone_3x3.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/destruct_5x5.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -15,6 +15,8 @@ var g_DiplomacyButton;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
 var g_MiniMapPanel;
+var g_TradeDialog;
+var g_TradeDialogButton;
 
 var g_GameSpeeds;
 
@@ -271,7 +273,10 @@ function init(initData, hotloadData)
 	g_DiplomacyDialog = new DiplomacyDialog(g_DiplomacyColors);
 	g_DiplomacyButton = new DiplomacyButton(g_DiplomacyDialog);
 	g_MiniMapPanel = new MiniMapPanel(g_DiplomacyColors, g_WorkerTypes);
+	g_TradeDialog = new TradeDialog();
+	g_TradeDialogButton = new TradeDialogButton(g_TradeDialog);
 
+	initSelectionPanels();
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
@@ -293,8 +298,7 @@ function initGUIObjects()
 {
 	initMenu();
 	updateGameSpeedControl();
-	resizeTradeDialog();
-	initBarterButtons();
+	g_TradeDialog.resize();
 	initPanelEntities();
 	g_DiplomacyColors.onPlayerInit();
 	initViewedPlayerDropdown();
@@ -365,21 +369,6 @@ function updateDisplayedPlayerColors()
  */
 function updateHotkeyTooltips()
 {
-	Engine.GetGUIObjectByName("tradeButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "session.gui.barter.toggle") +
-		translate("Barter & Trade");
-
-	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
-		translate("Select one type of goods you want to modify by clicking on it, and then use the arrows of the other types to modify their shares. You can also press %(hotkey)s while selecting one type of goods to bring its share to 100%%."),
-		"session.fulltradeswap");
-
-	Engine.GetGUIObjectByName("barterHelp").tooltip = sprintf(
-		translate("Start by selecting the resource you wish to sell from the upper row. For each time the lower buttons are pressed, %(quantity)s of the upper resource will be sold for the displayed quantity of the lower. Press and hold %(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."), {
-			"quantity": g_BarterResourceSellQuantity,
-			"hotkey": colorizeHotkey("%(hotkey)s", "session.massbarter"),
-			"multiplier": g_BarterMultiplier
-		});
-
 	Engine.GetGUIObjectByName("objectivesButton").tooltip =
 		colorizeHotkey("%(hotkey)s" + " ", "session.gui.objectives.toggle") +
 		translate("Objectives");
@@ -487,9 +476,7 @@ function selectViewPlayer(playerID)
 	onSimulationUpdate();
 
 	g_DiplomacyDialog.update();
-
-	if (g_IsTradeOpen)
-		openTrade();
+	g_TradeDialog.update();
 }
 
 /**
@@ -612,9 +599,8 @@ function updateTopPanel()
 
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
 	g_DiplomacyButton.update();
+	g_TradeDialogButton.update();
 
-	Engine.GetGUIObjectByName("tradeButton").hidden = !isPlayer ||
-		(!g_ResourceData.GetTradableCodes().length && !g_ResourceData.GetBarterableCodes().length);
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
 	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
@@ -863,12 +849,6 @@ function updateGUIObjects()
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
 
-	if (g_IsTradeOpen)
-	{
-		updateTraderTexts();
-		updateBarterButtons();
-	}
-
 	if (g_ViewedPlayer > 0)
 	{
 		let playerState = GetSimState().players[g_ViewedPlayer];
@@ -887,6 +867,7 @@ function updateGUIObjects()
 	g_DeveloperOverlay.update();
 	g_DiplomacyDialog.update();
 	g_MiniMapPanel.update();
+	g_TradeDialog.update();
 }
 
 function saveResPopTooltipSort()

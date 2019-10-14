@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="tradeDialogPanelBarter">
+
+	<object type="text" size="8 0 100% 32" style="ModernLeftLabelText">
+		<translatableAttribute id="caption">Barter</translatableAttribute>
+	</object>
+
+	<object type="image" size="0 28 100% 29" sprite="ModernGoldLine"/>
+
+	<object size="0 38 100% 122">
+
+		<object type="text" size="0 0 60 41" style="ModernRightLabelText">
+			<translatableAttribute id="caption">Sell:</translatableAttribute>
+		</object>
+
+		<object type="text" size="0 100%-41 60 100%" style="ModernRightLabelText">
+			<translatableAttribute id="caption">Buy:</translatableAttribute>
+		</object>
+
+		<object name="barterNoMarketsMessage" type="text" size="72 0 100% 100%" style="ModernLabelText">
+			<translatableAttribute id="caption">No Markets Available</translatableAttribute>
+		</object>
+
+		<object name="barterResources" size="72 0 100% 100%" hotkey="session.massbarter">
+			<repeat count="10">
+				<object size="0 0 58 100%">
+					<include file="gui/session/trade/BarterButton.xml"/>
+				</object>
+			</repeat>
+		</object>
+
+		<object name="barterHelp" type="button" size="100%-24 50%-12 100% 50%+12" style="StoneButton" tooltip_style="sessionToolTipBold" enabled="false">
+			<object type="image" size="20% 15% 80% 75%" sprite="iconInfoWhite" ghost="true"/>
+		</object>
+
+	</object>
+</object>

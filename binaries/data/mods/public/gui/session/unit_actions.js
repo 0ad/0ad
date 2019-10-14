@@ -1258,7 +1258,7 @@ var g_EntityCommands =
 		},
 		"execute": function()
 		{
-			toggleTrade();
+			g_TradeDialog.toggle();
 		},
 	},
 
