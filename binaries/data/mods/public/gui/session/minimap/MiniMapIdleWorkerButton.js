@@ -3,19 +3,26 @@
  */
 class MiniMapIdleWorkerButton
 {
-	constructor(idleClasses)
+	constructor(playerViewControl, idleClasses)
 	{
 		this.idleWorkerButton = Engine.GetGUIObjectByName("idleWorkerButton");
 		this.idleWorkerButton.onPress = this.onPress.bind(this);
 		this.idleClasses = idleClasses;
+
+		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
+		registerSimulationUpdateHandler(this.rebuild.bind(this));
+		playerViewControl.registerViewedPlayerChangeHandler(this.rebuild.bind(this));
 	}
 
-	update()
+	onHotkeyChange()
 	{
 		this.idleWorkerButton.tooltip =
 			colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
 			translate(this.Tooltip);
+	}
 
+	rebuild()
+	{
 		this.idleWorkerButton.enabled = Engine.GuiInterfaceCall("HasIdleUnits", {
 			"viewedPlayer": g_ViewedPlayer,
 			"idleClasses": this.idleClasses,

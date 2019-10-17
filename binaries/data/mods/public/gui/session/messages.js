@@ -30,7 +30,7 @@ var g_NetMessageTypes = {
 		handlePlayerAssignmentsMessage(msg);
 	},
 	"paused": msg => {
-		setClientPauseState(msg.guid, msg.pause);
+		g_PauseControl.setClientPauseState(msg.guid, msg.pause);
 	},
 	"clients-loading": msg => {
 		handleClientsLoadingMessage(msg.guids);
@@ -388,7 +388,7 @@ function updateTutorial(notification)
 		{
 			Engine.GetGUIObjectByName("tutorialWarning").caption = translate("Click to quit this tutorial.");
 			Engine.GetGUIObjectByName("tutorialReady").caption = translate("Quit");
-			Engine.GetGUIObjectByName("tutorialReady").onPress = leaveGame;
+			Engine.GetGUIObjectByName("tutorialReady").onPress = endGame;
 		}
 		else
 			Engine.GetGUIObjectByName("tutorialWarning").caption = translate("Click when ready.");
@@ -579,7 +579,7 @@ function onClientJoin(guid)
 
 function onClientLeave(guid)
 {
-	setClientPauseState(guid, false);
+	g_PauseControl.setClientPauseState(guid, false);
 
 	for (let id in g_Players)
 		if (g_Players[id].guid == guid)
@@ -689,5 +689,5 @@ function openDialog(dialogName, data, player)
 		}
 	}
 
-	pauseGame();
+	g_PauseControl.implicitPause();
 }

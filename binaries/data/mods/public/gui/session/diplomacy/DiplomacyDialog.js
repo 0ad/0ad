@@ -4,7 +4,7 @@
  */
 class DiplomacyDialog
 {
-	constructor(diplomacyColors)
+	constructor(playerViewControl, diplomacyColors)
 	{
 		this.diplomacyDialogCeasefireCounter = new DiplomacyDialogCeasefireCounter();
 		this.diplomacyDialogColorsButton = new DiplomacyDialogColorsButton(diplomacyColors);
@@ -12,12 +12,24 @@ class DiplomacyDialog
 
 		this.diplomacyDialogPanel = Engine.GetGUIObjectByName("diplomacyDialogPanel");
 		Engine.GetGUIObjectByName("diplomacyClose").onPress = this.close.bind(this);
+
+		registerPlayersInitHandler(this.onPlayersInit.bind(this));
+		registerSimulationUpdateHandler(this.onViewedPlayerChange.bind(this));
+		playerViewControl.registerViewedPlayerChangeHandler(this.updateIfOpen.bind(this));
 	}
 
-	onPlayerInit()
+	onPlayersInit()
 	{
 		this.diplomacyDialogPlayerControlManager = new DiplomacyDialogPlayerControlManager();
 		this.resize();
+	}
+
+	onViewedPlayerChange()
+	{
+		if (g_ViewedPlayer >= 1)
+			this.updateIfOpen();
+		else
+			this.close();
 	}
 
 	onSpyResponse(notification, player)
@@ -25,21 +37,15 @@ class DiplomacyDialog
 		this.diplomacyDialogPlayerControlManager.onSpyResponse(notification, player);
 	}
 
-	update()
+	updateIfOpen()
 	{
-		if (!this.isOpen())
-			return;
-
-		if (g_ViewedPlayer >= 1)
+		if (this.isOpen())
 			this.updatePanels();
-		else
-			this.close();
 	}
 
 	updatePanels()
 	{
 		this.diplomacyDialogCeasefireCounter.update();
-		this.diplomacyDialogColorsButton.update();
 		this.diplomacyDialogPlayerControlManager.update();
 	}
 

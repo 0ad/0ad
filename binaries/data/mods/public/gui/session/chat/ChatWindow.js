@@ -35,6 +35,7 @@ class ChatWindow
 
 		this.extendedChat.checked = Engine.ConfigDB_GetValue("user", "chat.session.extended") == "true";
 
+		this.chatDialogPanel.onWindowResized = this.resizeChatWindow.bind(this);
 		this.resizeChatWindow();
 	}
 

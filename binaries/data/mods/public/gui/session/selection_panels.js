@@ -1147,7 +1147,7 @@ function initSelectionPanels()
  */
 function showTemplateDetails(templateName, civCode)
 {
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	Engine.PushGuiPage(
 		"page_viewer.xml",

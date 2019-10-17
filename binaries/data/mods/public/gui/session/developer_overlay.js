@@ -1,13 +1,15 @@
-function DeveloperOverlay()
+function DeveloperOverlay(playerViewControl)
 {
 	this.commandHeight = 20;
 	this.displayState = false;
 	this.timeWarp = false;
-	this.changePerspective = false;
 	this.controlAll = false;
-
+	this.playerViewControl = playerViewControl;
 	Engine.GetGUIObjectByName("devCommandsOverlay").onPress = this.toggle;
 	this.layout();
+
+	registerSimulationUpdateHandler(this.update.bind(this));
+	registerEntitySelectionChangeHandler(this.update.bind(this));
 }
 
 DeveloperOverlay.prototype.getCommands = function() {
@@ -25,13 +27,14 @@ DeveloperOverlay.prototype.getCommands = function() {
 		{
 			"label": translate("Change perspective"),
 			"onPress": checked => {
-				this.setChangePerspective(checked);
+				this.playerViewControl.setChangePerspective(checked);
 			},
 		},
 		{
 			"label": translate("Display selection state"),
 			"onPress": checked => {
 				this.displayState = checked;
+				this.update();
 			},
 		},
 		{
@@ -173,19 +176,11 @@ DeveloperOverlay.prototype.layout = function()
 
 DeveloperOverlay.prototype.updateValues = function()
 {
-	let commands = this.getCommands();
-	for (let i = 0; i < commands.length; ++i)
-	{
-		let command = commands[i];
-
-		let body = Engine.GetGUIObjectByName("dev_command[" + i + "]");
-		if (body.hidden)
-			continue;
-
+	this.getCommands().forEach((command, i) => {
 		let checkbox = Engine.GetGUIObjectByName("dev_command_checkbox[" + i + "]");
 		if (command.checked)
 			checkbox.checked = command.checked();
-	}
+	});
 };
 
 DeveloperOverlay.prototype.toggle = function()
@@ -215,8 +210,15 @@ DeveloperOverlay.prototype.toggle = function()
 
 DeveloperOverlay.prototype.update = function()
 {
-	this.updateValues();
+	let playerState = g_SimState.players[g_ViewedPlayer];
+	this.controlAll = playerState ? playerState.controlsAll : false;
 
+	this.updateValues();
+	this.updateEntityState();
+}
+
+DeveloperOverlay.prototype.updateEntityState = function()
+{
 	let debug = Engine.GetGUIObjectByName("debugEntityState");
 
 	if (!this.displayState)
@@ -252,19 +254,6 @@ DeveloperOverlay.prototype.isTimeWarpEnabled = function() {
 	return this.timeWarp;
 };
 
-DeveloperOverlay.prototype.isChangePerspective = function() {
-	return this.changePerspective;
-};
-
-DeveloperOverlay.prototype.setChangePerspective = function(value) {
-	this.changePerspective = value;
-	selectViewPlayer(g_ViewedPlayer);
-};
-
 DeveloperOverlay.prototype.isControlAll = function() {
 	return this.controlAll;
-};
-
-DeveloperOverlay.prototype.setControlAll = function(value) {
-	this.controlAll = value;
 };

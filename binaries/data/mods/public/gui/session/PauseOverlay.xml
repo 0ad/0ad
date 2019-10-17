@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object type="button" name="pauseOverlay" tooltip_style="sessionToolTip" hidden="true" z="0">
+
+	<object type="image" sprite="sessionOverlayBackground" ghost="true"/>
+
+	<object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true">
+		<translatableAttribute id="caption">Game Paused</translatableAttribute>
+	</object>
+
+	<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true">
+		<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
+	</object>
+
+	<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="netStatusPlayersText" ghost="true" hidden="true"/>
+
+</object>

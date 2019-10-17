@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- This list encompasses resources and population -->
 <object size="0 0 50%-90-52 100%" name="resourceCounts">
-	<repeat count="4">
+	<repeat count="5">
 		<object name="resource[n]" size="0 0 89 100%" type="button" style="resourceCounter" tooltip_style="sessionToolTipBold">
 			<object size="0 -2 40 38" type="image" name="resource[n]_icon" ghost="true"/>
 			<object size="34 0 100%-2 100%-2" type="text" style="resourceText" name="resource[n]_count"/>
-			<action on="Press">
-				saveResPopTooltipSort();
-				updatePlayerDisplay();
-			</action>
 		</object>
 	</repeat>
 </object>

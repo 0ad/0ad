@@ -8,22 +8,26 @@ class MiniMapDiplomacyColorsButton
 		this.diplomacyColorsButton = Engine.GetGUIObjectByName("diplomacyColorsButton");
 		this.diplomacyColorsButton.onPress = diplomacyColors.toggle.bind(diplomacyColors);
 
-		this.diplomacyColors = diplomacyColors;
+		diplomacyColors.registerDiplomacyColorsChangeHandler(this.onDiplomacyColorsChange.bind(this));
+		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
 	}
 
-	update()
+	onHotkeyChange()
 	{
 		this.diplomacyColorsButton.tooltip =
 			colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
 			translate(this.Tooltip);
+	}
 
+	onDiplomacyColorsChange(enabled)
+	{
 		this.diplomacyColorsButton.sprite =
 			"stretched:" +
-			(this.diplomacyColors.isEnabled() ? this.SpriteEnabled : this.SpriteDisabled);
+			(enabled ? this.SpriteEnabled : this.SpriteDisabled);
 
 		this.diplomacyColorsButton.sprite_over =
 			"stretched:" +
-			(this.diplomacyColors.isEnabled() ? this.SpriteEnabledOver : this.SpriteDisabledOver);
+			(enabled ? this.SpriteEnabledOver : this.SpriteDisabledOver);
 	}
 }
 

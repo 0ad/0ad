@@ -11,25 +11,16 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Chat;
-var g_DiplomacyButton;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
+var g_GameSpeedControl;
 var g_MiniMapPanel;
+var g_ObjectivesDialog;
+var g_PauseControl;
+var g_PauseOverlay;
+var g_PlayerViewControl;
 var g_TradeDialog;
-var g_TradeDialogButton;
-
-var g_GameSpeeds;
-
-/**
- * Colors to flash when pop limit reached.
- */
-var g_DefaultPopulationColor = "white";
-var g_PopulationAlertColor = "orange";
-
-/**
- * Seen in the tooltip of the top panel.
- */
-var g_ResourceTitleFont = "sans-bold-16";
+var g_TopPanel;
 
 /**
  * A random file will be played. TODO: more variety
@@ -76,16 +67,6 @@ var g_HasRejoined = false;
  * Shows a message box asking the user to leave if "won" or "defeated".
  */
 var g_ConfirmExit = false;
-
-/**
- * True if the current player has paused the game explicitly.
- */
-var g_Paused = false;
-
-/**
- * The list of GUIDs of players who have currently paused the game, if the game is networked.
- */
-var g_PausingClients = [];
 
 /**
  * The playerID selected in the change perspective tool.
@@ -139,11 +120,6 @@ var g_ShowGUI = true;
 var g_ShowAllStatusBars = false;
 
 /**
- * Blink the population counter if the player can't train more units.
- */
-var g_IsTrainingBlocked = false;
-
-/**
  * Cache of simulation state and template data (apart from TechnologyData, updated on every simulation update).
  */
 var g_SimState;
@@ -152,6 +128,33 @@ var g_TemplateData = {};
 var g_TechnologyData = {};
 
 var g_ResourceData = new Resources();
+
+/**
+ * These handlers are called each time a new turn was simulated.
+ * Use this as sparely as possible.
+ */
+var g_SimulationUpdateHandlers = [];
+
+/**
+ * These handlers are called after the player states have been initialized.
+ */
+var g_PlayersInitHandlers = [];
+
+/**
+ * These handlers are called when a player has been defeated or won the game.
+ */
+var g_PlayerFinishedHandlers = [];
+
+/**
+ * These events are fired whenever the player added or removed entities from the selection.
+ */
+var g_EntitySelectionChangeHandlers = [];
+
+/**
+ * These events are fired when the user has performed a hotkey assignment change.
+ * Currently only fired on init, but to be fired from any hotkey editor dialog.
+ */
+var g_HotkeyChangeHandlers = [];
 
 /**
  * Top coordinate of the research list.
@@ -267,20 +270,40 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
-	g_Chat = new Chat();
-	g_DeveloperOverlay = new DeveloperOverlay();
 	g_DiplomacyColors = new DiplomacyColors();
-	g_DiplomacyDialog = new DiplomacyDialog(g_DiplomacyColors);
-	g_DiplomacyButton = new DiplomacyButton(g_DiplomacyDialog);
-	g_MiniMapPanel = new MiniMapPanel(g_DiplomacyColors, g_WorkerTypes);
-	g_TradeDialog = new TradeDialog();
-	g_TradeDialogButton = new TradeDialogButton(g_TradeDialog);
+
+	g_PlayerViewControl = new PlayerViewControl();
+	g_PlayerViewControl.registerViewedPlayerChangeHandler(g_DiplomacyColors.updateDisplayedPlayerColors.bind(g_DiplomacyColors));
+	g_DiplomacyColors.registerDiplomacyColorsChangeHandler(g_PlayerViewControl.rebuild.bind(g_PlayerViewControl));
+	g_DiplomacyColors.registerDiplomacyColorsChangeHandler(updateGUIObjects);
+	g_PlayerViewControl.registerPreViewedPlayerChangeHandler(removeStatusBarDisplay);
+	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
+
+	g_Chat = new Chat(g_PlayerViewControl);
+	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl);
+	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
+	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
+	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
+	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
+	g_PauseControl = new PauseControl();
+	g_PauseOverlay = new PauseOverlay(g_PauseControl);
+	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
+	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
 
 	initSelectionPanels();
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
-	initGUIObjects();
+	initMenu(g_PlayerViewControl, g_PauseControl);
+	initPanelEntities();
+	Engine.SetBoundingBoxDebugOverlay(false);
+	updateEnabledRangeOverlayTypes();
+
+	for (let handler of g_PlayersInitHandlers)
+		handler();
+
+	for (let handler of g_HotkeyChangeHandlers)
+		handler();
 
 	if (hotloadData)
 	{
@@ -290,21 +313,36 @@ function init(initData, hotloadData)
 	}
 
 	sendLobbyPlayerlistUpdate();
+
+	// TODO: use event instead
 	onSimulationUpdate();
+
 	setTimeout(displayGamestateNotifications, 1000);
 }
 
-function initGUIObjects()
+function registerPlayersInitHandler(handler)
 {
-	initMenu();
-	updateGameSpeedControl();
-	g_TradeDialog.resize();
-	initPanelEntities();
-	g_DiplomacyColors.onPlayerInit();
-	initViewedPlayerDropdown();
-	Engine.SetBoundingBoxDebugOverlay(false);
-	updateEnabledRangeOverlayTypes();
-	g_DiplomacyDialog.onPlayerInit();
+	g_PlayersInitHandlers.push(handler);
+}
+
+function registerPlayersFinishedHandler(handler)
+{
+	g_PlayerFinishedHandlers.push(handler);
+}
+
+function registerSimulationUpdateHandler(handler)
+{
+	g_SimulationUpdateHandlers.push(handler);
+}
+
+function registerEntitySelectionChangeHandler(handler)
+{
+	g_EntitySelectionChangeHandlers.push(handler);
+}
+
+function registerHotkeyChangeHandler(handler)
+{
+	g_HotkeyChangeHandlers.push(handler);
 }
 
 function updatePlayerData()
@@ -364,16 +402,6 @@ function updateDisplayedPlayerColors()
 	g_DiplomacyColors.updateDisplayedPlayerColors();
 }
 
-/**
- * Depends on the current player (g_IsObserver).
- */
-function updateHotkeyTooltips()
-{
-	Engine.GetGUIObjectByName("objectivesButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "session.gui.objectives.toggle") +
-		translate("Objectives");
-}
-
 function initPanelEntities()
 {
 	Engine.GetGUIObjectByName("panelEntityPanel").children.forEach((button, slot) => {
@@ -419,64 +447,14 @@ function initializeMusic()
 	playAmbient();
 }
 
-function initViewedPlayerDropdown()
+function resetTemplates()
 {
-	updateViewedPlayerDropdown();
-
-	// Select "observer" in the view player dropdown when rejoining as a defeated player
-	let player = g_Players[Engine.GetPlayerID()];
-	Engine.GetGUIObjectByName("viewPlayer").selected = player && player.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
-}
-
-function updateViewedPlayerDropdown()
-{
-	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
-	viewPlayer.list_data = [-1].concat(g_Players.map((player, i) => i));
-	viewPlayer.list = [translate("Observer")].concat(g_Players.map(
-		(player, i) => colorizePlayernameHelper("■", i) + " " + player.name
-	));
-}
-
-/**
- * Change perspective tool.
- * Shown to observers or when enabling the developers option.
- */
-function selectViewPlayer(playerID)
-{
-	if (playerID < -1 || playerID > g_Players.length - 1)
-		return;
-
-	if (g_ShowAllStatusBars)
-		recalculateStatusBarDisplay(true);
-
-	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
-
-	if (g_IsObserver || g_DeveloperOverlay.isChangePerspective())
-	{
-		if (g_ViewedPlayer != playerID)
-			clearSelection();
-		g_ViewedPlayer = playerID;
-	}
-
-	if (g_DeveloperOverlay.isChangePerspective())
-	{
-		Engine.SetPlayerID(g_ViewedPlayer);
-		g_IsObserver = isPlayerObserver(g_ViewedPlayer);
-	}
-
-	Engine.SetViewedPlayer(g_ViewedPlayer);
-	g_DiplomacyColors.updateDisplayedPlayerColors();
-	updateTopPanel();
-	g_Chat.onUpdatePlayers();
-	updateHotkeyTooltips();
-
 	// Update GUI and clear player-dependent cache
 	g_TemplateData = {};
 	Engine.GuiInterfaceCall("ResetTemplateModified");
-	onSimulationUpdate();
 
-	g_DiplomacyDialog.update();
-	g_TradeDialog.update();
+	// TODO: do this more selectively
+	onSimulationUpdate();
 }
 
 /**
@@ -523,14 +501,16 @@ function playersFinished(players, victoryString, won)
 	sendLobbyPlayerlistUpdate();
 
 	updatePlayerData();
-	g_Chat.onUpdatePlayers();
-	updateGameSpeedControl();
+
+	// TODO: The other calls in this function should move too
+	for (let handler of g_PlayerFinishedHandlers)
+		handler();
 
 	if (players.indexOf(g_ViewedPlayer) == -1)
 		return;
 
 	// Select "observer" item on loss. On win enable observermode without changing perspective
-	Engine.GetGUIObjectByName("viewPlayer").selected = won ? g_ViewedPlayer + 1 : 0;
+	g_PlayerViewControl.selectViewPlayer(won ? g_ViewedPlayer + 1 : 0);
 
 	if (players.indexOf(Engine.GetPlayerID()) == -1 || Engine.IsAtlasRunning())
 		return;
@@ -544,100 +524,21 @@ function playersFinished(players, victoryString, won)
 	g_ConfirmExit = won ? "won" : "defeated";
 }
 
-/**
- * Sets civ icon for the currently viewed player.
- * Hides most gui objects for observers.
- */
-function updateTopPanel()
+function resumeGame()
 {
-	let isPlayer = g_ViewedPlayer > 0;
-
-	let civIcon = Engine.GetGUIObjectByName("civIcon");
-	civIcon.hidden = !isPlayer;
-	if (isPlayer)
-	{
-		civIcon.sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip =
-			sprintf(
-				translate("%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click."), {
-					"civ": setStringTags(g_CivData[g_Players[g_ViewedPlayer].civ].Name, { "font": "sans-bold-stroke-14" }),
-					"hotkey_civinfo": colorizeHotkey("%(hotkey)s", "civinfo"),
-					"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
-			});
-	}
-
-	// Following gaia can be interesting on scripted maps
-	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || g_ViewedPlayer == -1;
-
-	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
-	viewPlayer.hidden = !g_IsObserver && !g_DeveloperOverlay.isChangePerspective();
-
-	let followPlayerLabel = Engine.GetGUIObjectByName("followPlayerLabel");
-	followPlayerLabel.hidden = Engine.GetTextWidth(followPlayerLabel.font, followPlayerLabel.caption + "  ") +
-		followPlayerLabel.getComputedSize().left > viewPlayer.getComputedSize().left;
-
-	let resCodes = g_ResourceData.GetCodes();
-	let r = 0;
-	for (let res of resCodes)
-	{
-		if (!Engine.GetGUIObjectByName("resource[" + r + "]"))
-		{
-			warn("Current GUI limits prevent displaying more than " + r + " resources in the top panel!");
-			break;
-		}
-		Engine.GetGUIObjectByName("resource[" + r + "]_icon").sprite = "stretched:session/icons/resources/" + res + ".png";
-		Engine.GetGUIObjectByName("resource[" + r + "]").hidden = !isPlayer;
-		++r;
-	}
-	horizontallySpaceObjects("resourceCounts", 5);
-	hideRemaining("resourceCounts", r);
-
-	let resPop = Engine.GetGUIObjectByName("population");
-	let resPopSize = resPop.size;
-	resPopSize.left = Engine.GetGUIObjectByName("resource[" + (r - 1) + "]").size.right;
-	resPop.size = resPopSize;
-
-	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
-	g_DiplomacyButton.update();
-	g_TradeDialogButton.update();
-
-	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
-
-	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
-	alphaLabel.hidden = isPlayer && !viewPlayer.hidden;
-	alphaLabel.size = isPlayer ? "50%+44 0 100%-283 100%" : "155 0 85%-279 100%";
-
-	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
-	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
-	Engine.GetGUIObjectByName("lobbyButton").enabled = Engine.HasXmppClient();
+	g_PauseControl.implicitResume();
 }
 
-/**
- * Resign a player.
- * @param leaveGameAfterResign If player is quitting after resignation.
- */
-function resignGame(leaveGameAfterResign)
+function resignGame()
 {
-	if (g_IsObserver || g_Disconnected)
-		return;
-
 	Engine.PostNetworkCommand({
 		"type": "resign"
 	});
-
-	if (!leaveGameAfterResign)
-		resumeGame(true);
+	g_PauseControl.implicitResume();
 }
 
-/**
- * Leave the game
- * @param willRejoin If player is going to be rejoining a networked game.
- */
-function leaveGame(willRejoin)
+function endGame()
 {
-	if (!willRejoin && !g_IsObserver)
-		resignGame(true);
-
 	// Before ending the game
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
 	let simData = Engine.GuiInterfaceCall("GetReplayMetadata");
@@ -724,6 +625,9 @@ function onTick()
 		// When selection changed, get the entityStates of new entities
 		GetMultipleEntityStates(g_Selection.toList().filter(entId => !g_EntityStates[entId]));
 
+		for (let handler of g_EntitySelectionChangeHandlers)
+			handler();
+
 		updateGUIObjects();
 
 		// Display rally points for selected buildings
@@ -734,27 +638,8 @@ function onTick()
 		recalculateStatusBarDisplay();
 
 	updateTimers();
-
 	updateMenuPosition(tickLength);
-
-	// When training is blocked, flash population (alternates color every 500msec)
-	Engine.GetGUIObjectByName("resourcePop").textcolor = g_IsTrainingBlocked && now % 1000 < 500 ? g_PopulationAlertColor : g_DefaultPopulationColor;
-
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
-}
-
-function onWindowResized()
-{
-	// Update followPlayerLabel
-	updateTopPanel();
-
-	g_Chat.ChatWindow.resizeChatWindow();
-}
-
-function changeGameSpeed(speed)
-{
-	if (!g_IsNetworked)
-		Engine.SetSimRate(speed);
 }
 
 function onSimulationUpdate()
@@ -774,6 +659,10 @@ function onSimulationUpdate()
 
 	GetMultipleEntityStates(g_Selection.toList());
 
+	for (let handler of g_SimulationUpdateHandlers)
+		handler();
+
+	// TODO: Move to handlers
 	updateCinemaPath();
 	handleNotifications();
 	updateGUIObjects();
@@ -791,6 +680,7 @@ function confirmExit()
 		return;
 
 	closeOpenDialogs();
+	g_PauseControl.implicitPause();
 
 	// Don't ask for exit if other humans are still playing
 	let askExit = !Engine.HasNetServer() || g_Players.every((player, i) =>
@@ -809,8 +699,7 @@ function confirmExit()
 			translate("VICTORIOUS!") :
 			translate("DEFEATED!"),
 		askExit ? [translate("No"), translate("Yes")] : [translate("OK")],
-		askExit ? [resumeGame, leaveGame] : [resumeGame]
-	);
+		askExit ? [resumeGame, endGame] : [resumeGame]);
 
 	g_ConfirmExit = false;
 }
@@ -829,6 +718,7 @@ function updateCinemaPath()
 	Engine.Renderer_SetSilhouettesEnabled(!isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true");
 }
 
+// TODO: Use event subscription onSimulationUpdate, onEntitySelectionChange, onPlayerViewChange, ... instead
 function updateGUIObjects()
 {
 	g_Selection.update();
@@ -843,17 +733,10 @@ function updateGUIObjects()
 	displayPanelEntities();
 
 	updateGroups();
-	updatePlayerDisplay();
 	updateResearchDisplay();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
-
-	if (g_ViewedPlayer > 0)
-	{
-		let playerState = GetSimState().players[g_ViewedPlayer];
-		g_DeveloperOverlay.setControlAll(playerState && playerState.controlsAll);
-	}
 
 	if (!g_IsObserver)
 	{
@@ -862,29 +745,18 @@ function updateGUIObjects()
 		if (battleState)
 			global.music.setState(global.music.states[battleState]);
 	}
-
-	updateViewedPlayerDropdown();
-	g_DeveloperOverlay.update();
-	g_DiplomacyDialog.update();
-	g_MiniMapPanel.update();
-	g_TradeDialog.update();
-}
-
-function saveResPopTooltipSort()
-{
-	Engine.ConfigDB_CreateAndWriteValueToFile("user", "gui.session.respoptooltipsort", String((+Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort") + 2) % 3 - 1), "config/user.cfg");
 }
 
 function onReplayFinished()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	messageBox(400, 200,
 		translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"),
 		translateWithContext("replayFinished", "Confirmation"),
 		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
-		[resumeGame, leaveGame]);
+		[resumeGame, endGame]);
 }
 
 /**
@@ -1065,88 +937,6 @@ function updateGroups()
 	}
 }
 
-/**
- * Create ally player stat tooltip.
- * @param {string} resource - Resource type, on which values will be sorted.
- * @param {object} playerStates - Playerstates from players whos stats are viewed in the tooltip.
- * @param {number} sort - 0 no order, -1 descending, 1 ascending order.
- * @returns {string} Tooltip string.
- */
-function getAllyStatTooltip(resource, playerStates, sort)
-{
-	let tooltip = [];
-
-	for (let player in playerStates)
-		tooltip.push({
-			"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
-			"statValue": resource == "pop" ?
-				sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playerStates[player]) :
-				Math.round(playerStates[player].resourceCounts[resource]),
-			"orderValue": resource == "pop" ? playerStates[player].popCount :
-				Math.round(playerStates[player].resourceCounts[resource])
-		});
-	if (sort)
-		tooltip.sort((a, b) => sort * (b.orderValue - a.orderValue));
-	return "\n" + tooltip.map(stat => sprintf(translate("%(playername)s: %(statValue)s"), stat)).join("\n");
-}
-
-function updatePlayerDisplay()
-{
-	let allPlayerStates = GetSimState().players;
-	let viewedPlayerState = allPlayerStates[g_ViewedPlayer];
-	let viewablePlayerStates = {};
-	for (let player in allPlayerStates)
-		if (player != 0 &&
-			player != g_ViewedPlayer &&
-			g_Players[player].state != "defeated" &&
-			(g_IsObserver ||
-				viewedPlayerState.hasSharedLos &&
-				g_Players[player].isMutualAlly[g_ViewedPlayer]))
-			viewablePlayerStates[player] = allPlayerStates[player];
-
-	if (!viewedPlayerState)
-		return;
-
-	let tooltipSort = +Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort");
-
-	let orderHotkeyTooltip = Object.keys(viewablePlayerStates).length <= 1 ? "" :
-		"\n" + sprintf(translate("%(order)s: %(hotkey)s to change order."), {
-		"hotkey": setStringTags("\\[Click]", g_HotkeyTags),
-		"order": tooltipSort == 0 ? translate("Unordered") : tooltipSort == 1 ? translate("Descending") : translate("Ascending")
-	});
-
-	let resCodes = g_ResourceData.GetCodes();
-	for (let r = 0; r < resCodes.length; ++r)
-	{
-		let resourceObj = Engine.GetGUIObjectByName("resource[" + r + "]");
-		if (!resourceObj)
-			break;
-
-		let res = resCodes[r];
-
-		let tooltip = '[font="' + g_ResourceTitleFont + '"]' +
-			resourceNameFirstWord(res) + '[/font]';
-
-		let descr = g_ResourceData.GetResource(res).description;
-		if (descr)
-			tooltip += "\n" + translate(descr);
-
-		tooltip += orderHotkeyTooltip + getAllyStatTooltip(res, viewablePlayerStates, tooltipSort);
-
-		resourceObj.tooltip = tooltip;
-
-		Engine.GetGUIObjectByName("resource[" + r + "]_count").caption = Math.floor(viewedPlayerState.resourceCounts[res]);
-	}
-
-	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), viewedPlayerState);
-	Engine.GetGUIObjectByName("population").tooltip = translate("Population (current / limit)") + "\n" +
-		sprintf(translate("Maximum population: %(popCap)s"), { "popCap": viewedPlayerState.popMax }) +
-		orderHotkeyTooltip +
-		getAllyStatTooltip("pop", viewablePlayerStates, tooltipSort);
-
-	g_IsTrainingBlocked = viewedPlayerState.trainingBlocked;
-}
-
 function selectAndMoveTo(ent)
 {
 	let entState = GetEntityState(ent);
@@ -1241,6 +1031,12 @@ function recalculateStatusBarDisplay(remove = false)
 		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true",
 		"showExperience": Engine.ConfigDB_GetValue("user", "gui.session.experiencestatusbar") == "true"
 	});
+}
+
+function removeStatusBarDisplay()
+{
+	if (g_ShowAllStatusBars)
+		recalculateStatusBarDisplay(true);
 }
 
 /**

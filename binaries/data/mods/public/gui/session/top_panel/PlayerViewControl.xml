@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<object
+		size="85%-282 5 100%-290 31"
+		name="viewPlayer"
+		type="dropdown"
+		hidden="true"
+		z="50"
+		style="ModernDropDown"
+		tooltip_style="sessionToolTipBold"
+		dropdown_size="500"
+	>
+		<translatableAttribute id="tooltip">Choose player to view</translatableAttribute>
+	</object>
+
+	<object size="50 4 50% 100%-2" name="observerText" type="text" style="ModernLeftLabelText" hidden="true">
+		<translatableAttribute id="caption">Observer Mode</translatableAttribute>
+	</object>
+
+</object>

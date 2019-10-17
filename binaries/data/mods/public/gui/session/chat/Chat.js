@@ -4,7 +4,7 @@
  */
 class Chat
 {
-	constructor()
+	constructor(playerViewControl)
 	{
 		this.ChatWindow = new ChatWindow();
 		this.ChatOverlay = new ChatOverlay();
@@ -34,6 +34,9 @@ class Chat
 			if (this.ChatWindow.isOpen() && this.ChatWindow.isExtended())
 				this.ChatHistory.displayChatHistory();
 		});
+
+		registerPlayersFinishedHandler(this.onUpdatePlayers.bind(this));
+		playerViewControl.registerViewedPlayerChangeHandler(this.onUpdatePlayers.bind(this));
 
 		Engine.SetGlobalHotkey("chat", this.openPage.bind(this));
 		Engine.SetGlobalHotkey("privatechat", this.openPage.bind(this));

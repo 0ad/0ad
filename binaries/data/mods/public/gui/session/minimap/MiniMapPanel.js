@@ -3,16 +3,10 @@
  */
 class MiniMapPanel
 {
-	constructor(diplomacyColors, idleWorkerClasses)
+	constructor(playerViewControl, diplomacyColors, idleWorkerClasses)
 	{
 		this.diplomacyColorsButton = new MiniMapDiplomacyColorsButton(diplomacyColors);
-		this.idleWorkerButton = new MiniMapIdleWorkerButton(idleWorkerClasses);
+		this.idleWorkerButton = new MiniMapIdleWorkerButton(playerViewControl, idleWorkerClasses);
 		this.minimap = new Minimap();
-	}
-
-	update()
-	{
-		this.diplomacyColorsButton.update();
-		this.idleWorkerButton.update();
 	}
 }
