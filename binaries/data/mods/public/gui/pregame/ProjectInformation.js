@@ -1,5 +1,5 @@
 /**
- * IMPORTANT: Remember to update session/top_panel/label.xml in sync with this.
+ * IMPORTANT: Remember to update session/top_panel/BuildLabel.xml in sync with this.
  */
 var g_ProjectInformation = {
 	"organizationName": {

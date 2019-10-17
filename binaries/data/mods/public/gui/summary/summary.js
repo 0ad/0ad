@@ -444,7 +444,6 @@ function continueButton()
 	};
 	if (g_GameData.gui.isInGame)
 		Engine.PopGuiPage({
-			"explicitResume": 0,
 			"summarySelectedData": summarySelectedData
 		});
 	else if (g_GameData.gui.dialog)

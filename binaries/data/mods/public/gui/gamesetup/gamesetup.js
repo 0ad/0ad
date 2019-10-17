@@ -1909,6 +1909,11 @@ function reloadTriggerDifficulties()
 	updateGUIDropdown("triggerDifficulty");
 }
 
+function getGameSpeedChoices(allowFastForward)
+{
+	return prepareForDropdown(g_Settings.GameSpeeds.filter(speed => !speed.FastForward || allowFastForward));
+}
+
 function reloadGameSpeedChoices()
 {
 	g_GameSpeeds = getGameSpeedChoices(Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player == -1));
