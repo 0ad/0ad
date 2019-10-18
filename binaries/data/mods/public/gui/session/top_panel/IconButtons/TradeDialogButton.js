@@ -3,20 +3,28 @@
  */
 class TradeDialogButton
 {
-	constructor(tradeDialog)
+	constructor(playerViewControl, tradeDialog)
 	{
 		this.tradeButton = Engine.GetGUIObjectByName("tradeButton");
 		this.tradeButton.onPress = tradeDialog.toggle.bind(tradeDialog);
-		this.isAvailable = g_ResourceData.GetTradableCodes().length || g_ResourceData.GetBarterableCodes().length;
+		this.isAvailable =
+			g_ResourceData.GetTradableCodes().length ||
+			g_ResourceData.GetBarterableCodes().length;
+
+		playerViewControl.registerViewedPlayerChangeHandler(this.onViewedPlayerChange.bind(this));
+		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
 	}
 
-	update()
+	onHotkeyChange()
 	{
-		this.tradeButton.hidden = g_ViewedPlayer < 1 || !this.isAvailable;
-
 		this.tradeButton.tooltip =
 			colorizeHotkey("%(hotkey)s" + " ", "session.gui.barter.toggle") +
 			translate(this.Tooltip);
+	}
+
+	onViewedPlayerChange()
+	{
+		this.tradeButton.hidden = g_ViewedPlayer < 1 || !this.isAvailable;
 	}
 }
 

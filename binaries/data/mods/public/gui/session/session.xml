@@ -9,16 +9,14 @@
 <script directory="gui/session/diplomacy/playercontrols/"/>
 <script directory="gui/session/minimap/"/>
 <script directory="gui/session/top_panel/"/>
+<script directory="gui/session/top_panel/IconButtons/"/>
 <script directory="gui/session/trade/"/>
+<script directory="gui/session/objectives/"/>
 
 <object name="session">
 
 	<action on="Tick">
 		onTick();
-	</action>
-
-	<action on="WindowResized">
-		onWindowResized();
 	</action>
 
 	<action on="SavegameLoaded">
@@ -63,23 +61,12 @@
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Exit</translatableAttribute>
-			<action on="Press">leaveGame();</action>
+			<action on="Press">endGame();</action>
 		</object>
 		<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true"/>
 	</object>
 
-	<!-- Pause Overlay -->
-	<object type="button" name="pauseOverlay" tooltip_style="sessionToolTip" hidden="true" z="0">
-		<object type="image" sprite="sessionOverlayBackground" ghost="true"/>
-		<object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true">
-			<translatableAttribute id="caption">Game Paused</translatableAttribute>
-		</object>
-		<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true">
-			<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
-		</object>
-		<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="netStatusPlayersText" ghost="true" hidden="true"/>
-		<action on="Press">togglePause();</action>
-	</object>
+	<include file="gui/session/PauseOverlay.xml"/>
 
 	<!-- Notification Area -->
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
@@ -103,9 +90,10 @@
 	<include directory="gui/session/chat/"/>
 	<include directory="gui/session/dialogs/"/>
 	<include directory="gui/session/diplomacy/"/>
+	<include directory="gui/session/objectives/"/>
 	<include file="gui/session/developer_overlay.xml"/>
-	<include file="gui/session/objectives_window.xml"/>
-	<include file="gui/session/top_panel.xml"/>
+	<include file="gui/session/GameSpeedControl.xml"/>
+	<include file="gui/session/TopPanel.xml"/>
 	<include file="gui/session/trade/TradeDialog.xml"/>
 	<include file="gui/session/tutorial_panel.xml"/>
 	<include file="gui/session/menu.xml"/>

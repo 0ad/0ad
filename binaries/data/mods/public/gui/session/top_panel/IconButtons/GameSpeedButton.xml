@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object
+	type="button"
+	name="gameSpeedButton"
+	size="100%-284 4 100%-256 32"
+	style="iconButton"
+	tooltip_style="sessionToolTip"
+>
+	<translatableAttribute id="tooltip">Game Speed</translatableAttribute>
+	<object size="5 5 100%-5 100%-5" type="image" sprite="stretched:session/icons/resources/time_small.png" ghost="true"/>
+</object>

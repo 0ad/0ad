@@ -5,7 +5,5 @@
 	name="civIcon"
 	tooltip_style="sessionToolTipBold"
 >
-	<object name="civIconOverlay" style="CivIconOverlay" type="button">
-		<action on="Press">openStrucTree(g_CivInfo.page)</action>
-	</object>
+	<object name="civIconOverlay" style="CivIconOverlay" type="button"/>
 </object>

@@ -12,9 +12,18 @@ class DiplomacyColors
 
 		// The array of displayed player colors (either the diplomacy color or regular color for each player).
 		this.displayedPlayerColors = undefined;
+
+		this.diplomacyColorsChangeHandlers = [];
+
+		registerPlayersInitHandler(this.onPlayersInit.bind(this));
 	}
 
-	onPlayerInit()
+	registerDiplomacyColorsChangeHandler(handler)
+	{
+		this.diplomacyColorsChangeHandlers.push(handler);
+	}
+
+	onPlayersInit()
 	{
 		this.computeTeamColors();
 	}
@@ -61,7 +70,8 @@ class DiplomacyColors
 			"selected": g_Selection.toList()
 		});
 
-		updateGUIObjects();
+		for (let handler of this.diplomacyColorsChangeHandlers)
+			handler(this.enabled);
 	}
 
 	computeTeamColors()

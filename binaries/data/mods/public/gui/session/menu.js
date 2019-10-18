@@ -29,19 +29,21 @@ var g_CivInfo = {
 
 var g_IsMenuOpen = false;
 
-var g_IsObjectivesOpen = false;
-
 /**
  * Remember last viewed summary panel and charts.
  */
 var g_SummarySelectedData;
 
-function initMenu()
+function initMenu(playerViewControl, pauseControl)
 {
 	Engine.GetGUIObjectByName("menu").size = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
+	Engine.GetGUIObjectByName("lobbyButton").enabled = Engine.HasXmppClient();
+	playerViewControl.registerViewedPlayerChangeHandler(updateResignButton);
+	updatePauseButton();
+	pauseControl.registerPauseHandler(updatePauseButton);
 
 	// TODO: Atlas should pass g_GameAttributes.settings
-	for (let button of ["menuExitButton", "summaryButton", "objectivesButton"])
+	for (let button of ["menuExitButton", "summaryButton"])
 		Engine.GetGUIObjectByName(button).enabled = !Engine.IsAtlasRunning();
 }
 
@@ -81,6 +83,22 @@ function toggleMenu()
 	g_IsMenuOpen = !g_IsMenuOpen;
 }
 
+function updatePauseButton()
+{
+	let pauseButton = Engine.GetGUIObjectByName("pauseButton");
+	pauseButton.caption = g_PauseControl.explicitPause ? translate("Resume") : translate("Pause");
+	pauseButton.enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
+	pauseButton.onPress = () => {
+		closeMenu();
+		g_PauseControl.setPaused(!g_PauseControl.explicitPause, true);
+	};
+}
+
+function updateResignButton()
+{
+	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
+}
+
 function optionsMenuButton()
 {
 	closeOpenDialogs();
@@ -104,26 +122,25 @@ function chatMenuButton()
 function resignMenuButton()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	messageBox(
 		400, 200,
 		translate("Are you sure you want to resign?"),
 		translate("Confirmation"),
 		[translate("No"), translate("Yes")],
-		[resumeGame, resignGame]
-	);
+		[resumeGame, resignGame]);
 }
 
 function exitMenuButton()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	let messageTypes = {
 		"host": {
 			"caption": translate("Are you sure you want to quit? Leaving will disconnect all other players."),
-			"buttons": [resumeGame, leaveGame]
+			"buttons": [resumeGame, endGame]
 		},
 		"client": {
 			"caption": translate("Are you sure you want to quit?"),
@@ -131,7 +148,7 @@ function exitMenuButton()
 		},
 		"singleplayer": {
 			"caption": translate("Are you sure you want to quit?"),
-			"buttons": [resumeGame, leaveGame]
+			"buttons": [resumeGame, endGame]
 		}
 	};
 
@@ -154,14 +171,13 @@ function resignQuestion()
 		translate("Do you want to resign or will you return soon?"),
 		translate("Confirmation"),
 		[translate("I will return"), translate("I resign")],
-		[leaveGame, resignGame],
-		[true, false]
-	);
+		[endGame, resignGame]);
 }
 
 function openDeleteDialog(selection)
 {
 	closeOpenDialogs();
+	g_PauseControl.implicitPause();
 
 	let deleteSelectedEntities = function(selectionArg)
 	{
@@ -169,6 +185,7 @@ function openDeleteDialog(selection)
 			"type": "delete-entities",
 			"entities": selectionArg
 		});
+		resumeGame();
 	};
 
 	messageBox(
@@ -184,7 +201,7 @@ function openDeleteDialog(selection)
 function openSave()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	Engine.PushGuiPage(
 		"page_loadgame.xml",
@@ -195,7 +212,7 @@ function openSave()
 function openOptions()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	Engine.PushGuiPage(
 		"page_options.xml",
@@ -216,73 +233,6 @@ function toggleTutorial()
 	                       !Engine.GetGUIObjectByName("tutorialText").caption;
 }
 
-function updateGameSpeedControl()
-{
-	Engine.GetGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
-
-	let player = g_Players[Engine.GetPlayerID()];
-	g_GameSpeeds = getGameSpeedChoices(!player || player.state != "active");
-
-	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
-	gameSpeed.list = g_GameSpeeds.Title;
-	gameSpeed.list_data = g_GameSpeeds.Speed;
-
-	let simRate = Engine.GetSimRate();
-
-	let gameSpeedIdx = g_GameSpeeds.Speed.indexOf(+simRate.toFixed(2));
-	if (gameSpeedIdx == -1)
-		warn("Unknown gamespeed:" + simRate);
-
-	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
-	gameSpeed.onSelectionChange = function() {
-		changeGameSpeed(+this.list_data[this.selected]);
-	};
-}
-
-function toggleGameSpeed()
-{
-	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
-	gameSpeed.hidden = !gameSpeed.hidden;
-}
-
-function toggleObjectives()
-{
-	let open = g_IsObjectivesOpen;
-	closeOpenDialogs();
-
-	if (!open)
-		openObjectives();
-}
-
-function openObjectives()
-{
-	g_IsObjectivesOpen = true;
-
-	let player = g_Players[Engine.GetPlayerID()];
-	let playerState = player && player.state;
-	let isActive = !playerState || playerState == "active";
-
-	Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription();
-
-	let objectivesPlayerstate = Engine.GetGUIObjectByName("objectivesPlayerstate");
-	objectivesPlayerstate.hidden = isActive;
-	objectivesPlayerstate.caption = g_PlayerStateMessages[playerState] || "";
-
-	let gameDescription = Engine.GetGUIObjectByName("gameDescription");
-	let gameDescriptionSize = gameDescription.size;
-	gameDescriptionSize.top = Engine.GetGUIObjectByName(
-		isActive ? "objectivesTitle" : "objectivesPlayerstate").size.bottom;
-	gameDescription.size = gameDescriptionSize;
-
-	Engine.GetGUIObjectByName("objectivesPanel").hidden = false;
-}
-
-function closeObjectives()
-{
-	g_IsObjectivesOpen = false;
-	Engine.GetGUIObjectByName("objectivesPanel").hidden = true;
-}
-
 /**
  * Allows players to see their own summary.
  * If they have shared ally vision researched, they are able to see the summary of there allies too.
@@ -290,7 +240,7 @@ function closeObjectives()
 function openGameSummary()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 	Engine.PushGuiPage(
@@ -309,13 +259,17 @@ function openGameSummary()
 			},
 			"selectedData": g_SummarySelectedData
 		},
-		resumeGameAndSaveSummarySelectedData);
+		data =>
+		{
+			g_SummarySelectedData = data.summarySelectedData;
+			g_PauseControl.implicitResume();
+		});
 }
 
 function openStrucTree(page)
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 
 	Engine.PushGuiPage(
 		page,
@@ -340,103 +294,18 @@ function storeCivInfoPage(data)
 	}
 }
 
-/**
- * Pause or resume the game.
- *
- * @param explicit - true if the player explicitly wants to pause or resume.
- * If this argument isn't set, a multiplayer game won't be paused and the pause overlay
- * won't be shown in single player.
- */
-function pauseGame(pause = true, explicit = false)
-{
-	// The NetServer only supports pausing after all clients finished loading the game.
-	if (g_IsNetworked && (!explicit || !g_IsNetworkedActive))
-		return;
-
-	if (explicit)
-		g_Paused = pause;
-
-	Engine.SetPaused(g_Paused || pause, !!explicit);
-
-	if (g_IsNetworked)
-	{
-		setClientPauseState(Engine.GetPlayerGUID(), g_Paused);
-		return;
-	}
-
-	updatePauseOverlay();
-}
-
-function resumeGame(explicit = false)
-{
-	pauseGame(false, explicit);
-}
-
-function resumeGameAndSaveSummarySelectedData(data)
-{
-	g_SummarySelectedData = data.summarySelectedData;
-	resumeGame(data.explicitResume);
-}
-
-/**
- * Called when the current player toggles a pause button.
- */
-function togglePause()
-{
-	if (!Engine.GetGUIObjectByName("pauseButton").enabled)
-		return;
-
-	closeOpenDialogs();
-
-	pauseGame(!g_Paused, true);
-}
-
-/**
- * Called when a client pauses or resumes in a multiplayer game.
- */
-function setClientPauseState(guid, paused)
-{
-	// Update the list of pausing clients.
-	let index = g_PausingClients.indexOf(guid);
-	if (paused && index == -1)
-		g_PausingClients.push(guid);
-	else if (!paused && index != -1)
-		g_PausingClients.splice(index, 1);
-
-	updatePauseOverlay();
-
-	Engine.SetPaused(!!g_PausingClients.length, false);
-}
-
-/**
- * Update the pause overlay.
- */
-function updatePauseOverlay()
-{
-	Engine.GetGUIObjectByName("pauseButton").caption = g_Paused ? translate("Resume") : translate("Pause");
-	Engine.GetGUIObjectByName("resumeMessage").hidden = !g_Paused;
-
-	Engine.GetGUIObjectByName("pausedByText").hidden = !g_IsNetworked;
-	Engine.GetGUIObjectByName("pausedByText").caption = sprintf(translate("Paused by %(players)s"),
-		{ "players": g_PausingClients.map(guid => colorizePlayernameByGUID(guid)).join(translateWithContext("Separator for a list of players", ", ")) });
-
-	Engine.GetGUIObjectByName("pauseOverlay").hidden = !(g_Paused || g_PausingClients.length);
-	Engine.GetGUIObjectByName("pauseOverlay").onPress = g_Paused ? togglePause : function() {};
-}
-
 function openManual()
 {
 	closeOpenDialogs();
-	pauseGame();
+	g_PauseControl.implicitPause();
 	Engine.PushGuiPage("page_manual.xml", {}, resumeGame);
 }
 
 function closeOpenDialogs()
 {
 	closeMenu();
-	closeObjectives();
-
 	g_Chat.closePage();
 	g_DiplomacyDialog.close();
+	g_ObjectivesDialog.close();
 	g_TradeDialog.close();
 }

@@ -39,9 +39,8 @@
 		/>
 	</object>
 
-	<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
+	<object name="closeObjectives" size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
 		<translatableAttribute id="caption">Close</translatableAttribute>
-		<action on="Press">closeObjectives();</action>
 	</object>
 
 </object>

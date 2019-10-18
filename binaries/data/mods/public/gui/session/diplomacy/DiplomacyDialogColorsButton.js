@@ -5,22 +5,25 @@ class DiplomacyDialogColorsButton
 {
 	constructor(diplomacyColors)
 	{
-		this.diplomacyColors = diplomacyColors;
-
 		this.diplomacyColorsWindowButton = Engine.GetGUIObjectByName("diplomacyColorsWindowButton");
 		this.diplomacyColorsWindowButtonIcon = Engine.GetGUIObjectByName("diplomacyColorsWindowButtonIcon");
 		this.diplomacyColorsWindowButton.onPress = diplomacyColors.toggle.bind(diplomacyColors);
+		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
+		diplomacyColors.registerDiplomacyColorsChangeHandler(this.onDiplomacyColorsChange.bind(this))
 	}
 
-	update()
+	onHotkeyChange()
 	{
 		this.diplomacyColorsWindowButton.tooltip =
 			colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
 			translate(this.Tooltip);
+	}
 
+	onDiplomacyColorsChange(enabled)
+	{
 		this.diplomacyColorsWindowButtonIcon.sprite =
 			"stretched:" +
-			(this.diplomacyColors.isEnabled() ? this.SpriteEnabled : this.SpriteDisabled);
+			(enabled ? this.SpriteEnabled : this.SpriteDisabled);
 	}
 }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="buildLabel" ghost="true">
+
+	<!-- IMPORTANT: remember to update pregame/ProjectInformation.js in sync with this: -->
+	<object type="text" style="ModernLabelText" text_valign="top" ghost="true">
+		<translatableAttribute id="caption">ALPHA XXIV</translatableAttribute>
+	</object>
+
+	<!-- Displays build date and revision number-->
+	<object
+		name="buildTimeLabel"
+		type="text"
+		style="ModernLabelText"
+		ghost="true"
+		size="50%-128 0 50%+128 100%-2"
+		font="sans-stroke-12"
+		text_valign="bottom"
+	/>
+</object>

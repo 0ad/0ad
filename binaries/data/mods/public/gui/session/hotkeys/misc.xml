@@ -39,10 +39,6 @@
 		</action>
 	</object>
 
-	<object hotkey="pause">
-		<action on="Press">togglePause();</action>
-	</object>
-
 	<object hotkey="quicksave">
 		<action on="Press">Engine.QuickSave(getSavedGameData());</action>
 	</object>

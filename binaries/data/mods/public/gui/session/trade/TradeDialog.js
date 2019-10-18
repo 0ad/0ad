@@ -3,14 +3,19 @@
  */
 class TradeDialog
 {
-	constructor()
+	constructor(playerViewControl)
 	{
 		this.tradePanel = new this.TradePanel();
 		this.barterPanel = new this.BarterPanel();
 
 		this.tradeDialogPanel = Engine.GetGUIObjectByName("tradeDialogPanel");
 
+		registerPlayersInitHandler(this.onPlayersInit.bind(this));
 		Engine.GetGUIObjectByName("closeTrade").onPress = this.close.bind(this);
+
+		registerSimulationUpdateHandler(this.updateIfOpen.bind(this))
+		registerEntitySelectionChangeHandler(this.updateIfOpen.bind(this));
+		playerViewControl.registerViewedPlayerChangeHandler(this.onViewedPlayerChange.bind(this));
 	}
 
 	open()
@@ -34,6 +39,14 @@ class TradeDialog
 		return !this.tradeDialogPanel.hidden;
 	}
 
+	onViewedPlayerChange()
+	{
+		if (g_ViewedPlayer >= 1)
+			this.updateIfOpen();
+		else
+			this.close();
+	}
+
 	toggle()
 	{
 		let open = this.isOpen();
@@ -43,12 +56,10 @@ class TradeDialog
 			this.open();
 	}
 
-	update()
+	updateIfOpen()
 	{
-		if (!this.isOpen())
-			return;
-
-		this.updatePanels();
+		if (this.isOpen())
+			this.updatePanels();
 	}
 
 	updatePanels()
@@ -57,7 +68,7 @@ class TradeDialog
 		this.tradePanel.update();
 	}
 
-	resize()
+	onPlayersInit()
 	{
 		let size = this.tradeDialogPanel.size;
 

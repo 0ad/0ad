@@ -79,13 +79,11 @@
 		<!-- Pause / Resume Button -->
 		<object type="button"
 			name="pauseButton"
+			hotkey="pause"
 			style="StoneButtonFancy"
 			size="0 192 100% 220"
 			tooltip_style="sessionToolTip"
-		>
-			<translatableAttribute id="caption">Pause</translatableAttribute>
-			<action on="Press">togglePause();</action>
-		</object>
+		/>
 
 		<!-- Resign button -->
 		<object type="button"
