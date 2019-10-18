@@ -478,7 +478,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 	// Close the menu when interacting with the game world
 	if (!mouseIsOverObject && (ev.type =="mousebuttonup" || ev.type == "mousebuttondown")
 		&& (ev.button == SDL_BUTTON_LEFT || ev.button == SDL_BUTTON_RIGHT))
-		closeMenu();
+		g_Menu.close();
 
 	// State-machine processing:
 	//

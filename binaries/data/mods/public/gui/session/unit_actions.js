@@ -1063,16 +1063,41 @@ var g_EntityCommands =
 		},
 		"execute": function(entStates)
 		{
-			if (!entStates.length || entStates.every(entState => isUndeletable(entState)))
+			let entityIDs = entStates.reduce(
+				(ids, entState) => {
+					if (!isUndeletable(entState))
+						ids.push(entState.id);
+					return ids;
+				},
+				[]);
+
+			if (!entityIDs.length)
 				return;
 
+			let deleteSelection = () => Engine.PostNetworkCommand({
+				"type": "delete-entities",
+				"entities": entityIDs
+			});
+
 			if (Engine.HotkeyIsPressed("session.noconfirmation"))
-				Engine.PostNetworkCommand({
-					"type": "delete-entities",
-					"entities": entStates.map(entState => entState.id)
-				});
+				deleteSelection();
 			else
-				openDeleteDialog(entStates.map(entState => entState.id));
+			{
+				closeOpenDialogs();
+				g_PauseControl.implicitPause();
+				messageBox(
+					400, 200,
+					translate("Destroy everything currently selected?"),
+					translate("Delete"),
+					[translate("No"), translate("Yes")],
+					[
+						resumeGame,
+						() => {
+							deleteSelection();
+							resumeGame();
+						}
+					]);
+			};
 		},
 	},
 

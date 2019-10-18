@@ -8,24 +8,8 @@
 		<action on="Press">toggleGUI();</action>
 	</object>
 
-	<object hotkey="session.gui.menu.toggle">
-		<action on="Press">toggleMenu();</action>
-	</object>
-
 	<object hotkey="session.gui.tutorial.toggle">
 		<action on="Press">toggleTutorial();</action>
-	</object>
-
-	<object hotkey="summary">
-		<action on="Press">openGameSummary();</action>
-	</object>
-
-	<object	hotkey="civinfo">
-		<action on="Press">openStrucTree("page_civinfo.xml");</action>
-	</object>
-
-	<object	hotkey="structree">
-		<action on="Press">openStrucTree("page_structree.xml");</action>
 	</object>
 
 	<object hotkey="silhouettes">

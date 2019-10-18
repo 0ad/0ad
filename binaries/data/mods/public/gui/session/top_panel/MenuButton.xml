@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object type="button"
 	name="menuButton"
+	hotkey="session.gui.menu.toggle"
 	size="100%-164 4 100%-8 32"
 	style="StoneButtonFancy"
 	tooltip_style="sessionToolTip"
@@ -13,7 +14,4 @@
 
 	<translatableAttribute id="caption">Menu</translatableAttribute>
 
-	<action on="Press">
-		toggleMenu();
-	</action>
 </object>

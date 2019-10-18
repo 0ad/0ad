@@ -14,6 +14,7 @@ var g_Chat;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
 var g_GameSpeedControl;
+var g_Menu;
 var g_MiniMapPanel;
 var g_ObjectivesDialog;
 var g_PauseControl;
@@ -287,6 +288,7 @@ function init(initData, hotloadData)
 	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
 	g_PauseControl = new PauseControl();
 	g_PauseOverlay = new PauseOverlay(g_PauseControl);
+	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
 
@@ -294,7 +296,6 @@ function init(initData, hotloadData)
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
-	initMenu(g_PlayerViewControl, g_PauseControl);
 	initPanelEntities();
 	Engine.SetBoundingBoxDebugOverlay(false);
 	updateEnabledRangeOverlayTypes();
@@ -504,13 +505,7 @@ function playersFinished(players, victoryString, won)
 
 	// TODO: The other calls in this function should move too
 	for (let handler of g_PlayerFinishedHandlers)
-		handler();
-
-	if (players.indexOf(g_ViewedPlayer) == -1)
-		return;
-
-	// Select "observer" item on loss. On win enable observermode without changing perspective
-	g_PlayerViewControl.selectViewPlayer(won ? g_ViewedPlayer + 1 : 0);
+		handler(players, won);
 
 	if (players.indexOf(Engine.GetPlayerID()) == -1 || Engine.IsAtlasRunning())
 		return;
@@ -529,12 +524,13 @@ function resumeGame()
 	g_PauseControl.implicitResume();
 }
 
-function resignGame()
+function closeOpenDialogs()
 {
-	Engine.PostNetworkCommand({
-		"type": "resign"
-	});
-	g_PauseControl.implicitResume();
+	g_Menu.close();
+	g_Chat.closePage();
+	g_DiplomacyDialog.close();
+	g_ObjectivesDialog.close();
+	g_TradeDialog.close();
 }
 
 function endGame()
@@ -638,7 +634,6 @@ function onTick()
 		recalculateStatusBarDisplay();
 
 	updateTimers();
-	updateMenuPosition(tickLength);
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
 }
 

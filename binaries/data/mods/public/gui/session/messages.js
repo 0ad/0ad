@@ -359,6 +359,12 @@ function handleNotifications()
 	}
 }
 
+function toggleTutorial()
+{
+	let tutorialPanel = Engine.GetGUIObjectByName("tutorialPanel");
+	tutorialPanel.hidden = !tutorialPanel.hidden || !Engine.GetGUIObjectByName("tutorialText").caption;
+}
+
 /**
  * Updates the tutorial panel when a new goal.
  */
