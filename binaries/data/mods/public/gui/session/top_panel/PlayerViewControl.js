@@ -20,6 +20,7 @@ class PlayerViewControl
 		// Events
 		this.viewPlayer.onSelectionChange = this.onSelectionChange.bind(this);
 		registerPlayersInitHandler(this.onPlayersInit.bind(this));
+		registerPlayersFinishedHandler(this.onPlayersFinished.bind(this));
 		this.registerViewedPlayerChangeHandler(this.rebuild.bind(this));
 	}
 
@@ -48,13 +49,24 @@ class PlayerViewControl
 		this.observerText.hidden = g_ViewedPlayer > 0;
 	}
 
+	/**
+	 * Select "observer" in the view player dropdown when rejoining as a defeated player.
+	 */
 	onPlayersInit()
 	{
 		this.rebuild();
 
-		// Select "observer" in the view player dropdown when rejoining as a defeated player
 		let playerState = g_Players[Engine.GetPlayerID()];
-		this.viewPlayer.selected = playerState && playerState.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
+		this.selectViewPlayer(playerState && playerState.state == "defeated" ? 0 : Engine.GetPlayerID() + 1);
+	}
+
+	/**
+	 * Select "observer" item on loss. On win enable observermode without changing perspective.
+	 */
+	onPlayersFinished(playerIDs, won)
+	{
+		if (playerIDs.indexOf(g_ViewedPlayer) != -1)
+			this.selectViewPlayer(won ? g_ViewedPlayer + 1 : 0);
 	}
 
 	setChangePerspective(enabled)

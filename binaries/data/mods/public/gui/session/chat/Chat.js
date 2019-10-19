@@ -68,6 +68,11 @@ class Chat
 		this.ChatWindow.closePage();
 	}
 
+	getOpenHotkeyTooltip()
+	{
+		return this.ChatInput.getOpenHotkeyTooltip();
+	}
+
 	/**
 	 * Send the given chat message.
 	 */

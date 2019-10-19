@@ -11,9 +11,11 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Chat;
+var g_DeveloperOverlay;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
 var g_GameSpeedControl;
+var g_Menu;
 var g_MiniMapPanel;
 var g_ObjectivesDialog;
 var g_PauseControl;
@@ -106,8 +108,6 @@ var g_ReplaySelectionData;
  */
 var g_PlayerAssignments;
 
-var g_DeveloperOverlay;
-
 /**
  * Whether the entire UI should be hidden (useful for promotional screenshots).
  * Can be toggled with a hotkey.
@@ -133,22 +133,22 @@ var g_ResourceData = new Resources();
  * These handlers are called each time a new turn was simulated.
  * Use this as sparely as possible.
  */
-var g_SimulationUpdateHandlers = [];
+var g_SimulationUpdateHandlers = new Set();
 
 /**
  * These handlers are called after the player states have been initialized.
  */
-var g_PlayersInitHandlers = [];
+var g_PlayersInitHandlers = new Set();
 
 /**
  * These handlers are called when a player has been defeated or won the game.
  */
-var g_PlayerFinishedHandlers = [];
+var g_PlayerFinishedHandlers = new Set();
 
 /**
  * These events are fired whenever the player added or removed entities from the selection.
  */
-var g_EntitySelectionChangeHandlers = [];
+var g_EntitySelectionChangeHandlers = new Set();
 
 /**
  * These events are fired when the user has performed a hotkey assignment change.
@@ -280,13 +280,14 @@ function init(initData, hotloadData)
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
 	g_Chat = new Chat(g_PlayerViewControl);
-	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl);
+	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
 	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
 	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
 	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
 	g_PauseControl = new PauseControl();
 	g_PauseOverlay = new PauseOverlay(g_PauseControl);
+	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
 
@@ -294,7 +295,6 @@ function init(initData, hotloadData)
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
-	initMenu(g_PlayerViewControl, g_PauseControl);
 	initPanelEntities();
 	Engine.SetBoundingBoxDebugOverlay(false);
 	updateEnabledRangeOverlayTypes();
@@ -322,22 +322,32 @@ function init(initData, hotloadData)
 
 function registerPlayersInitHandler(handler)
 {
-	g_PlayersInitHandlers.push(handler);
+	g_PlayersInitHandlers.add(handler);
 }
 
 function registerPlayersFinishedHandler(handler)
 {
-	g_PlayerFinishedHandlers.push(handler);
+	g_PlayerFinishedHandlers.add(handler);
 }
 
 function registerSimulationUpdateHandler(handler)
 {
-	g_SimulationUpdateHandlers.push(handler);
+	g_SimulationUpdateHandlers.add(handler);
+}
+
+function unregisterSimulationUpdateHandler(handler)
+{
+	g_SimulationUpdateHandlers.delete(handler);
 }
 
 function registerEntitySelectionChangeHandler(handler)
 {
-	g_EntitySelectionChangeHandlers.push(handler);
+	g_EntitySelectionChangeHandlers.add(handler);
+}
+
+function unregisterEntitySelectionChangeHandler(handler)
+{
+	g_EntitySelectionChangeHandlers.delete(handler);
 }
 
 function registerHotkeyChangeHandler(handler)
@@ -504,13 +514,7 @@ function playersFinished(players, victoryString, won)
 
 	// TODO: The other calls in this function should move too
 	for (let handler of g_PlayerFinishedHandlers)
-		handler();
-
-	if (players.indexOf(g_ViewedPlayer) == -1)
-		return;
-
-	// Select "observer" item on loss. On win enable observermode without changing perspective
-	g_PlayerViewControl.selectViewPlayer(won ? g_ViewedPlayer + 1 : 0);
+		handler(players, won);
 
 	if (players.indexOf(Engine.GetPlayerID()) == -1 || Engine.IsAtlasRunning())
 		return;
@@ -529,12 +533,13 @@ function resumeGame()
 	g_PauseControl.implicitResume();
 }
 
-function resignGame()
+function closeOpenDialogs()
 {
-	Engine.PostNetworkCommand({
-		"type": "resign"
-	});
-	g_PauseControl.implicitResume();
+	g_Menu.close();
+	g_Chat.closePage();
+	g_DiplomacyDialog.close();
+	g_ObjectivesDialog.close();
+	g_TradeDialog.close();
 }
 
 function endGame()
@@ -638,7 +643,6 @@ function onTick()
 		recalculateStatusBarDisplay();
 
 	updateTimers();
-	updateMenuPosition(tickLength);
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
 }
 

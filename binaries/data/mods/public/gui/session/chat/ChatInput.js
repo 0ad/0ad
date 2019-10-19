@@ -12,18 +12,29 @@ class ChatInput
 		this.chatInput = Engine.GetGUIObjectByName("chatInput");
 		this.chatInput.onPress = this.submitChatInput.bind(this);
 		this.chatInput.onTab = this.autoComplete.bind(this);
-		this.chatInput.tooltip = this.getHotkeyTooltip();
 
 		this.sendChat = Engine.GetGUIObjectByName("sendChat");
 		this.sendChat.onPress = this.submitChatInput.bind(this);
-		this.sendChat.tooltip = this.getHotkeyTooltip();
+
+		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
 	}
 
-	getHotkeyTooltip()
+	onHotkeyChange()
 	{
-		return translateWithContext("chat input", "Type the message to send.") + "\n" +
-			colorizeAutocompleteHotkey() +
-			colorizeHotkey("\n" + translate("Press %(hotkey)s to open the public chat."), "chat") +
+		let tooltip = this.getInputHotkeyTooltip() + this.getOpenHotkeyTooltip();
+		this.chatInput.tooltip = tooltip;
+		this.sendChat.tooltip = tooltip;
+	}
+
+	getInputHotkeyTooltip()
+	{
+		 return translateWithContext("chat input", "Type the message to send.") + "\n" +
+			colorizeAutocompleteHotkey();
+	}
+
+	getOpenHotkeyTooltip()
+	{
+		return colorizeHotkey("\n" + translate("Press %(hotkey)s to open the public chat."), "chat") +
 			colorizeHotkey(
 				"\n" + (g_IsObserver ?
 					translate("Press %(hotkey)s to open the observer chat.") :

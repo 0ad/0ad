@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="menuButtonPanel"
+	style="StonePanelThinBorder"
+	type="image"
+	z="40"
+	size="100%-164 0 100% 0"
+>
+	<repeat count="15">
+		<object
+			type="button"
+			size="4 4 100%-4 32"
+			style="StoneButtonFancy"
+			tooltip_style="sessionToolTip"
+			hidden="true"
+		/>
+	</repeat>
+</object>
