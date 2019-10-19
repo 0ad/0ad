@@ -223,12 +223,7 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	// If the selection isn't friendly units, no action
-	var allOwnedByPlayer = selection.every(ent => {
-		var entState = GetEntityState(ent);
-		return entState && entState.player == g_ViewedPlayer;
-	});
-
-	if (!g_DeveloperOverlay.isControlAll() && !allOwnedByPlayer)
+	if (!selection.every(canControlEntity))
 		return undefined;
 
 	var target = undefined;
@@ -276,6 +271,19 @@ function determineAction(x, y, fromMinimap)
 		}
 
 	return { "type": "none", "cursor": "", "target": target };
+}
+
+function canControlEntity(ent)
+{
+	let entState = GetEntityState(ent);
+	if (!entState)
+		return false;
+
+	if (entState.player == g_ViewedPlayer)
+		return true;
+
+	let playerState = g_SimState.players[entState.player];
+	return playerState && playerState.controlsAll;
 }
 
 function tryPlaceBuilding(queued)
@@ -785,17 +793,6 @@ function handleInputAfterGui(ev)
 
 	if (ev.hotkey === undefined)
 		ev.hotkey = null;
-
-	// Handle the time-warp testing features, restricted to single-player
-	if (!g_IsNetworked && g_DeveloperOverlay.isTimeWarpEnabled())
-	{
-		if (ev.type == "hotkeydown" && ev.hotkey == "session.timewarp.fastforward")
-			Engine.SetSimRate(20.0);
-		else if (ev.type == "hotkeyup" && ev.hotkey == "session.timewarp.fastforward")
-			Engine.SetSimRate(1.0);
-		else if (ev.type == "hotkeyup" && ev.hotkey == "session.timewarp.rewind")
-			Engine.RewindTimeWarp();
-	}
 
 	if (ev.hotkey == "session.highlightguarding")
 	{

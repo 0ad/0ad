@@ -11,6 +11,7 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Chat;
+var g_DeveloperOverlay;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
 var g_GameSpeedControl;
@@ -107,8 +108,6 @@ var g_ReplaySelectionData;
  */
 var g_PlayerAssignments;
 
-var g_DeveloperOverlay;
-
 /**
  * Whether the entire UI should be hidden (useful for promotional screenshots).
  * Can be toggled with a hotkey.
@@ -134,22 +133,22 @@ var g_ResourceData = new Resources();
  * These handlers are called each time a new turn was simulated.
  * Use this as sparely as possible.
  */
-var g_SimulationUpdateHandlers = [];
+var g_SimulationUpdateHandlers = new Set();
 
 /**
  * These handlers are called after the player states have been initialized.
  */
-var g_PlayersInitHandlers = [];
+var g_PlayersInitHandlers = new Set();
 
 /**
  * These handlers are called when a player has been defeated or won the game.
  */
-var g_PlayerFinishedHandlers = [];
+var g_PlayerFinishedHandlers = new Set();
 
 /**
  * These events are fired whenever the player added or removed entities from the selection.
  */
-var g_EntitySelectionChangeHandlers = [];
+var g_EntitySelectionChangeHandlers = new Set();
 
 /**
  * These events are fired when the user has performed a hotkey assignment change.
@@ -281,7 +280,7 @@ function init(initData, hotloadData)
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
 	g_Chat = new Chat(g_PlayerViewControl);
-	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl);
+	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
 	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
 	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
@@ -323,22 +322,32 @@ function init(initData, hotloadData)
 
 function registerPlayersInitHandler(handler)
 {
-	g_PlayersInitHandlers.push(handler);
+	g_PlayersInitHandlers.add(handler);
 }
 
 function registerPlayersFinishedHandler(handler)
 {
-	g_PlayerFinishedHandlers.push(handler);
+	g_PlayerFinishedHandlers.add(handler);
 }
 
 function registerSimulationUpdateHandler(handler)
 {
-	g_SimulationUpdateHandlers.push(handler);
+	g_SimulationUpdateHandlers.add(handler);
+}
+
+function unregisterSimulationUpdateHandler(handler)
+{
+	g_SimulationUpdateHandlers.delete(handler);
 }
 
 function registerEntitySelectionChangeHandler(handler)
 {
-	g_EntitySelectionChangeHandlers.push(handler);
+	g_EntitySelectionChangeHandlers.add(handler);
+}
+
+function unregisterEntitySelectionChangeHandler(handler)
+{
+	g_EntitySelectionChangeHandlers.delete(handler);
 }
 
 function registerHotkeyChangeHandler(handler)

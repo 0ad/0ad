@@ -1465,7 +1465,8 @@ function someCanPatrol(entities)
  */
 function isUndeletable(entState)
 {
-	if (g_DeveloperOverlay.isControlAll())
+	let playerState = g_SimState.players[entState.player];
+	if (playerState && playerState.controlsAll)
 		return false;
 
 	if (entState.resourceSupply && entState.resourceSupply.killBeforeGather)

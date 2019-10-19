@@ -214,8 +214,10 @@ EntitySelection.prototype.update = function()
 {
 	this.checkRenamedEntities();
 
+	let controlsAll = g_SimState.players[g_ViewedPlayer] && g_SimState.players[g_ViewedPlayer].controlsAll;
+	let removeOwnerChanges = !g_IsObserver && !controlsAll && this.toList().length > 1;
+
 	let changed = false;
-	let removeOwnerChanges = !g_IsObserver && !g_DeveloperOverlay.isControlAll() && this.toList().length > 1;
 
 	for (let ent in this.selected)
 	{
@@ -377,6 +379,9 @@ EntitySelection.prototype.getFirstSelected = function()
 	return undefined;
 };
 
+/**
+ * TODO: This array should not be recreated every call
+ */
 EntitySelection.prototype.toList = function()
 {
 	let ents = [];

@@ -5,6 +5,7 @@
 <script directory="gui/common/"/>
 <script directory="gui/session/"/>
 <script directory="gui/session/chat/"/>
+<script directory="gui/session/developer_overlay/"/>
 <script directory="gui/session/diplomacy/"/>
 <script directory="gui/session/diplomacy/playercontrols/"/>
 <script directory="gui/session/minimap/"/>
@@ -78,20 +79,11 @@
 		<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanelOverlay" ghost="true"/>
 	</object>
 
-	<!-- Entity selection state text -->
-	<object name="debugEntityState"
-		type="text"
-		size="0 70 80% 100%"
-		ghost="true"
-		textcolor="yellow"
-		font="mono-stroke-10"
-	/>
-
 	<include directory="gui/session/chat/"/>
+	<include directory="gui/session/developer_overlay/"/>
 	<include directory="gui/session/dialogs/"/>
 	<include directory="gui/session/diplomacy/"/>
 	<include directory="gui/session/objectives/"/>
-	<include file="gui/session/developer_overlay.xml"/>
 	<include file="gui/session/GameSpeedControl.xml"/>
 	<include file="gui/session/TopPanel.xml"/>
 	<include file="gui/session/trade/TradeDialog.xml"/>
