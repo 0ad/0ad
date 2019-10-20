@@ -3,16 +3,15 @@
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Durg</SpecificName>
-    <Tooltip>Train Heroes and Champions and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{civ}_hero_chanakya
-      units/{civ}_hero_maurya
-      units/{civ}_hero_ashoka
       units/{civ}_champion_infantry
       units/{civ}_champion_maiden
       units/{civ}_champion_chariot
+      units/{civ}_hero_chanakya
+      units/{civ}_hero_maurya
+      units/{civ}_hero_ashoka
     </Entities>
     <Technologies datatype="tokens">
       attack_soldiers_will

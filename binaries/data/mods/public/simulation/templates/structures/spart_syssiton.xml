@@ -24,7 +24,7 @@
     <Classes datatype="tokens">ConquestCritical Syssiton</Classes>
     <GenericName>Military Mess Hall</GenericName>
     <SpecificName>Syssítion</SpecificName>
-    <Tooltip>Train Spartan heroes and Spartiate champion hoplites.</Tooltip>
+    <Tooltip>Train Champions and Heroes.</Tooltip>
     <Icon>structures/syssition.png</Icon>
   </Identity>
   <Loot>
@@ -38,10 +38,10 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
+      units/{civ}_champion_infantry_spear
       units/{civ}_hero_leonidas
       units/{civ}_hero_brasidas
       units/{civ}_hero_agis
-      units/{civ}_champion_infantry_spear
     </Entities>
     <Technologies datatype="tokens">
       hellenes/spartans_agoge
