@@ -232,9 +232,9 @@
 				<action on="Press">deleteReplayButtonPressed();</action>
 			</object>
 
-			<!-- Reload Cache Button -->
+			<!-- Rebuild Cache Button -->
 			<object type="button" style="StoneButton" size="40%+25 0 57%+25 100%">
-				<translatableAttribute id="caption">Reload Cache</translatableAttribute>
+				<translatableAttribute id="caption">Rebuild Cache</translatableAttribute>
 				<translatableAttribute id="tooltip">Rebuild the replay cache from scratch. Potentially slow!</translatableAttribute>
 				<action on="Press">reloadCache();</action>
 			</object>
