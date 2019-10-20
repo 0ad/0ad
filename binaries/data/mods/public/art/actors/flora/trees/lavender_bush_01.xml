@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>gaia/lavender_bush_01.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Variant 01">
+      <textures>
+        <texture file="gaia/lavender_bush_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Variant 02">
+      <textures>
+        <texture file="gaia/lavender_bush_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
