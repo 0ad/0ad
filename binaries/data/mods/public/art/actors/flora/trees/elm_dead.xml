@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Dead Elm">
+      <props>
+        <prop actor="props/special/eyecandy/tree_elm_base.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tree_1">
+      <mesh>gaia/tree_elm_01.dae</mesh>
+      <textures>
+        <texture file="gaia/tree_elm_dead_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_2">
+      <mesh>gaia/tree_elm_02.dae</mesh>
+      <textures>
+        <texture file="gaia/tree_elm_dead_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_3">
+      <mesh>gaia/tree_elm_03.dae</mesh>
+      <textures>
+        <texture file="gaia/tree_elm_dead_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tree_4">
+      <mesh>gaia/tree_elm_04.dae</mesh>
+      <textures>
+        <texture file="gaia/tree_elm_dead_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>
