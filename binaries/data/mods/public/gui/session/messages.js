@@ -14,6 +14,11 @@ var g_TutorialMessages = [];
 var g_TutorialNewMessageTags = { "color": "yellow" };
 
 /**
+ * These handlers are called everytime a client joins or disconnects.
+ */
+var g_PlayerAssignmentsChangeHandlers = new Set();
+
+/**
  * Handle all netmessage types that can occur.
  */
 var g_NetMessageTypes = {
@@ -280,6 +285,11 @@ var g_NotificationsTypes =
 		global.music.setLocked(notification.lock);
 	}
 };
+
+function registerPlayerAssignmentsChangeHandler(handler)
+{
+	g_PlayerAssignmentsChangeHandlers.add(handler);
+}
 
 /**
  * Loads all known cheat commands.
@@ -561,9 +571,11 @@ function handlePlayerAssignmentsMessage(message)
 		onClientJoin(guid);
 	});
 
+	for (let handler of g_PlayerAssignmentsChangeHandlers)
+		handler();
+
+	// TODO: use subscription instead
 	updateGUIObjects();
-	g_Chat.onUpdatePlayers();
-	sendLobbyPlayerlistUpdate();
 }
 
 function onClientJoin(guid)

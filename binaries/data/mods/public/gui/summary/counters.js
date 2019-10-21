@@ -120,9 +120,14 @@ function calculateTeamCounterDataHelper()
 	}
 }
 
+/**
+ * Keep this in sync with the score computation in session/ for the lobby rating reports!
+ */
 function calculateEconomyScore(playerState, index)
 {
 	let total = 0;
+
+	// Notice that this skips the vegetarianFood property of resourcesGathered
 	for (let type of g_ResourceData.GetCodes())
 		total += playerState.sequences.resourcesGathered[type][index];
 
@@ -130,6 +135,9 @@ function calculateEconomyScore(playerState, index)
 	return Math.round(total / 10);
 }
 
+/**
+ * Keep this in sync with the score computation in session/ for the lobby rating reports!
+ */
 function calculateMilitaryScore(playerState, index)
 {
 	return Math.round((playerState.sequences.enemyUnitsKilledValue[index] +
@@ -138,12 +146,18 @@ function calculateMilitaryScore(playerState, index)
 		playerState.sequences.buildingsCapturedValue[index]) / 10);
 }
 
+/**
+ * Keep this in sync with the score computation in session/ for the lobby rating reports!
+ */
 function calculateExplorationScore(playerState, index)
 {
 	return playerState.sequences.percentMapExplored[index] * 10;
 }
 
-function calculateScoreTotal(playerState, index)
+/**
+ * Keep this in sync with the score computation in session/ for the lobby rating reports!
+ */
+ function calculateScoreTotal(playerState, index)
 {
 	return calculateEconomyScore(playerState, index) +
 		calculateMilitaryScore(playerState, index) +

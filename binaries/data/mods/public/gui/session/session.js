@@ -154,7 +154,7 @@ var g_EntitySelectionChangeHandlers = new Set();
  * These events are fired when the user has performed a hotkey assignment change.
  * Currently only fired on init, but to be fired from any hotkey editor dialog.
  */
-var g_HotkeyChangeHandlers = [];
+var g_HotkeyChangeHandlers = new Set();
 
 /**
  * Top coordinate of the research list.
@@ -312,8 +312,6 @@ function init(initData, hotloadData)
 		g_Players = hotloadData.player;
 	}
 
-	sendLobbyPlayerlistUpdate();
-
 	// TODO: use event instead
 	onSimulationUpdate();
 
@@ -352,7 +350,7 @@ function unregisterEntitySelectionChangeHandler(handler)
 
 function registerHotkeyChangeHandler(handler)
 {
-	g_HotkeyChangeHandlers.push(handler);
+	g_HotkeyChangeHandlers.add(handler);
 }
 
 function updatePlayerData()
@@ -504,11 +502,6 @@ function playersFinished(players, victoryString, won)
 		"message": victoryString,
 		"players": players
 	});
-
-	if (players.indexOf(Engine.GetPlayerID()) != -1)
-		reportGame();
-
-	sendLobbyPlayerlistUpdate();
 
 	updatePlayerData();
 
@@ -1160,260 +1153,4 @@ function appendSessionCounters(counters)
 		counters.push(timeToString(simState.ceasefireTimeRemaining));
 
 	g_ResearchListTop = 4 + 14 * counters.length;
-}
-
-/**
- * Send the current list of players, teams, AIs, observers and defeated/won and offline states to the lobby.
- * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data.
- */
-function sendLobbyPlayerlistUpdate()
-{
-	if (!g_IsController || !Engine.HasXmppClient())
-		return;
-
-	// Extract the relevant player data and minimize packet load
-	let minPlayerData = [];
-	for (let playerID in g_GameAttributes.settings.PlayerData)
-	{
-		if (+playerID == 0)
-			continue;
-
-		let pData = g_GameAttributes.settings.PlayerData[playerID];
-
-		let minPData = { "Name": pData.Name, "Civ": pData.Civ };
-
-		if (g_GameAttributes.settings.LockTeams)
-			minPData.Team = pData.Team;
-
-		if (pData.AI)
-		{
-			minPData.AI = pData.AI;
-			minPData.AIDiff = pData.AIDiff;
-			minPData.AIBehavior = pData.AIBehavior;
-		}
-
-		if (g_Players[playerID].offline)
-			minPData.Offline = true;
-
-		// Whether the player has won or was defeated
-		let state = g_Players[playerID].state;
-		if (state != "active")
-			minPData.State = state;
-
-		minPlayerData.push(minPData);
-	}
-
-	// Add observers
-	let connectedPlayers = 0;
-	for (let guid in g_PlayerAssignments)
-	{
-		let pData = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player];
-
-		if (pData)
-			++connectedPlayers;
-		else
-			minPlayerData.push({
-				"Name": g_PlayerAssignments[guid].name,
-				"Team": "observer"
-			});
-	}
-
-	Engine.SendChangeStateGame(connectedPlayers, playerDataToStringifiedTeamList(minPlayerData));
-}
-
-/**
- * Send a report on the gamestatus to the lobby.
- * Keep in sync with source/tools/XpartaMuPP/LobbyRanking.py
- */
-function reportGame()
-{
-	// Only 1v1 games are rated (and Gaia is part of g_Players)
-	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() ||
-	    g_Players.length != 3 || Engine.GetPlayerID() == -1)
-		return;
-
-	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-
-	let unitsClasses = [
-		"total",
-		"Infantry",
-		"Worker",
-		"FemaleCitizen",
-		"Cavalry",
-		"Champion",
-		"Hero",
-		"Siege",
-		"Ship",
-		"Trader"
-	];
-
-	let unitsCountersTypes = [
-		"unitsTrained",
-		"unitsLost",
-		"enemyUnitsKilled"
-	];
-
-	let buildingsClasses = [
-		"total",
-		"CivCentre",
-		"House",
-		"Economic",
-		"Outpost",
-		"Military",
-		"Fortress",
-		"Wonder"
-	];
-
-	let buildingsCountersTypes = [
-		"buildingsConstructed",
-		"buildingsLost",
-		"enemyBuildingsDestroyed"
-	];
-
-	let resourcesTypes = [
-		"wood",
-		"food",
-		"stone",
-		"metal"
-	];
-
-	let resourcesCounterTypes = [
-		"resourcesGathered",
-		"resourcesUsed",
-		"resourcesSold",
-		"resourcesBought"
-	];
-
-	let misc = [
-		"tradeIncome",
-		"tributesSent",
-		"tributesReceived",
-		"treasuresCollected",
-		"lootCollected",
-		"percentMapExplored"
-	];
-
-	let playerStatistics = {};
-
-	// Unit Stats
-	for (let unitCounterType of unitsCountersTypes)
-	{
-		if (!playerStatistics[unitCounterType])
-			playerStatistics[unitCounterType] = { };
-		for (let unitsClass of unitsClasses)
-			playerStatistics[unitCounterType][unitsClass] = "";
-	}
-
-	playerStatistics.unitsLostValue = "";
-	playerStatistics.unitsKilledValue = "";
-	// Building stats
-	for (let buildingCounterType of buildingsCountersTypes)
-	{
-		if (!playerStatistics[buildingCounterType])
-			playerStatistics[buildingCounterType] = { };
-		for (let buildingsClass of buildingsClasses)
-			playerStatistics[buildingCounterType][buildingsClass] = "";
-	}
-
-	playerStatistics.buildingsLostValue = "";
-	playerStatistics.enemyBuildingsDestroyedValue = "";
-	// Resources
-	for (let resourcesCounterType of resourcesCounterTypes)
-	{
-		if (!playerStatistics[resourcesCounterType])
-			playerStatistics[resourcesCounterType] = { };
-		for (let resourcesType of resourcesTypes)
-			playerStatistics[resourcesCounterType][resourcesType] = "";
-	}
-	playerStatistics.resourcesGathered.vegetarianFood = "";
-
-	for (let type of misc)
-		playerStatistics[type] = "";
-
-	// Total
-	playerStatistics.economyScore = "";
-	playerStatistics.militaryScore = "";
-	playerStatistics.totalScore = "";
-
-	let mapName = g_GameAttributes.settings.Name;
-	let playerStates = "";
-	let playerCivs = "";
-	let teams = "";
-	let teamsLocked = true;
-
-	// Serialize the statistics for each player into a comma-separated list.
-	// Ignore gaia
-	for (let i = 1; i < extendedSimState.players.length; ++i)
-	{
-		let player = extendedSimState.players[i];
-		let maxIndex = player.sequences.time.length - 1;
-
-		playerStates += player.state + ",";
-		playerCivs += player.civ + ",";
-		teams += player.team + ",";
-		teamsLocked = teamsLocked && player.teamsLocked;
-		for (let resourcesCounterType of resourcesCounterTypes)
-			for (let resourcesType of resourcesTypes)
-				playerStatistics[resourcesCounterType][resourcesType] += player.sequences[resourcesCounterType][resourcesType][maxIndex] + ",";
-		playerStatistics.resourcesGathered.vegetarianFood += player.sequences.resourcesGathered.vegetarianFood[maxIndex] + ",";
-
-		for (let unitCounterType of unitsCountersTypes)
-			for (let unitsClass of unitsClasses)
-				playerStatistics[unitCounterType][unitsClass] += player.sequences[unitCounterType][unitsClass][maxIndex] + ",";
-
-		for (let buildingCounterType of buildingsCountersTypes)
-			for (let buildingsClass of buildingsClasses)
-				playerStatistics[buildingCounterType][buildingsClass] += player.sequences[buildingCounterType][buildingsClass][maxIndex] + ",";
-		let total = 0;
-		for (let type in player.sequences.resourcesGathered)
-			total += player.sequences.resourcesGathered[type][maxIndex];
-
-		playerStatistics.economyScore += total + ",";
-		playerStatistics.militaryScore += Math.round((player.sequences.enemyUnitsKilledValue[maxIndex] +
-			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10) + ",";
-		playerStatistics.totalScore += (total + Math.round((player.sequences.enemyUnitsKilledValue[maxIndex] +
-			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10)) + ",";
-
-		for (let type of misc)
-			playerStatistics[type] += player.sequences[type][maxIndex] + ",";
-	}
-
-	// Send the report with serialized data
-	let reportObject = {};
-	reportObject.timeElapsed = extendedSimState.timeElapsed;
-	reportObject.playerStates = playerStates;
-	reportObject.playerID = Engine.GetPlayerID();
-	reportObject.matchID = g_GameAttributes.matchID;
-	reportObject.civs = playerCivs;
-	reportObject.teams = teams;
-	reportObject.teamsLocked = String(teamsLocked);
-	reportObject.ceasefireActive = String(extendedSimState.ceasefireActive);
-	reportObject.ceasefireTimeRemaining = String(extendedSimState.ceasefireTimeRemaining);
-	reportObject.mapName = mapName;
-	reportObject.economyScore = playerStatistics.economyScore;
-	reportObject.militaryScore = playerStatistics.militaryScore;
-	reportObject.totalScore = playerStatistics.totalScore;
-	for (let rct of resourcesCounterTypes)
-		for (let rt of resourcesTypes)
-			reportObject[rt + rct.substr(9)] = playerStatistics[rct][rt];
-			// eg. rt = food rct.substr = Gathered rct = resourcesGathered
-
-	reportObject.vegetarianFoodGathered = playerStatistics.resourcesGathered.vegetarianFood;
-	for (let type of unitsClasses)
-	{
-		// eg. type = Infantry (type.substr(0,1)).toLowerCase()+type.substr(1) = infantry
-		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "UnitsTrained"] = playerStatistics.unitsTrained[type];
-		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "UnitsLost"] = playerStatistics.unitsLost[type];
-		reportObject["enemy" + type + "UnitsKilled"] = playerStatistics.enemyUnitsKilled[type];
-	}
-	for (let type of buildingsClasses)
-	{
-		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "BuildingsConstructed"] = playerStatistics.buildingsConstructed[type];
-		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "BuildingsLost"] = playerStatistics.buildingsLost[type];
-		reportObject["enemy" + type + "BuildingsDestroyed"] = playerStatistics.enemyBuildingsDestroyed[type];
-	}
-	for (let type of misc)
-		reportObject[type] = playerStatistics[type];
-
-	Engine.SendGameReport(reportObject);
 }
