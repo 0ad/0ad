@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.80.75 commit date:2019-07-29, commit time:14:47, hash:f6cb5f54494e</authoring_tool>
+    </contributor>
+    <created>2019-10-20T22:41:36</created>
+    <modified>2019-10-20T22:41:36</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material_001-effect">
+      <profile_COMMON>
+        <newparam sid="lavender_bush_01_02_png-surface">
+          <surface type="2D">
+            <init_from>lavender_bush_01_02_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="lavender_bush_01_02_png-sampler">
+          <sampler2D>
+            <source>lavender_bush_01_02_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="lavender_bush_01_02_png-sampler" texcoord="Plane_005-mesh-map-0"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="lavender_bush_01_02_png" name="lavender_bush_01_02_png">
+      <init_from>/C:/Dev/trunk/binaries/data/mods/public/art/textures/skins/gaia/lavender_bush_01_02.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_001-material" name="Material.001">
+      <instance_effect url="#Material_001-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane_005-mesh" name="Plane.005">
+      <mesh>
+        <source id="Plane_005-mesh-positions">
+          <float_array id="Plane_005-mesh-positions-array" count="108">-3.867084 0.03499537 -0.9754082 3.867084 0.03499537 -0.9754082 -3.867084 1.68664 7.158263 3.867084 1.68664 7.158263 -3.867084 -0.3475746 2.851844 0 -1.339066 -0.9754082 3.867084 -0.3475746 2.851843 0 0.3125794 7.158263 0 -1.721636 2.851843 3.867084 -0.03499501 -0.9754082 -3.867084 -0.03499579 -0.9754082 3.867084 -1.68664 7.158263 -3.867084 -1.686641 7.158263 3.867084 0.347575 2.851844 0 1.339065 -0.9754082 -3.867084 0.3475742 2.851843 0 -0.3125794 7.158263 -1.5051e-7 1.721636 2.851843 -0.03499525 -3.867084 -0.975408 -0.03499549 3.867084 -0.975408 -1.68664 -3.867084 7.158262 -1.686641 3.867084 7.158262 0.3475747 -3.867084 2.851844 1.339066 0 -0.975408 0.3475745 3.867084 2.851843 -0.3125794 0 7.158262 1.721636 0 2.851843 0.03499484 3.867084 -0.975408 0.03499603 -3.867084 -0.975408 1.68664 3.867084 7.158262 1.686641 -3.867084 7.158262 -0.3475752 3.867084 2.851844 -1.339065 -2.38419e-7 -0.975408 -0.347574 -3.867084 2.851843 0.3125794 0 7.158262 -1.721636 -2.38419e-7 2.851843</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-positions-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_005-mesh-normals">
+          <float_array id="Plane_005-mesh-normals-array" count="108">0.3299149 -0.9285229 0.1702983 0 -0.9041959 0.4271179 0 -0.9869265 0.1611713 -0.3299149 -0.9285229 0.1702983 -0.3058667 -0.8608645 0.4066422 0 -0.9950415 -0.09946137 -0.3333329 -0.938136 -0.0937556 -0.3299149 0.9285229 0.1702983 0 0.9041959 0.4271179 0 0.9869265 0.1611713 0.3299149 0.9285229 0.1702983 0.3058667 0.8608645 0.4066422 0 0.9950415 -0.09946137 0.3333329 0.938136 -0.0937556 0.9285229 0.3299149 0.1702983 0.9041959 0 0.4271179 0.9869265 0 0.1611713 0.9285229 -0.3299149 0.1702983 0.8608645 -0.3058667 0.4066422 0.9950415 0 -0.09946137 0.938136 -0.3333329 -0.0937556 -0.9285229 -0.3299149 0.1702983 -0.9041959 0 0.4271179 -0.9869265 0 0.1611713 -0.9285229 0.3299149 0.1702983 -0.8608645 0.3058667 0.4066422 -0.9950415 0 -0.09946137 -0.938136 0.3333329 -0.0937556 0.3058667 -0.8608645 0.4066422 0.3333329 -0.938136 -0.0937556 -0.3058667 0.8608645 0.4066422 -0.3333329 0.938136 -0.0937556 0.8608645 0.3058667 0.4066422 0.938136 0.3333329 -0.0937556 -0.8608645 -0.3058667 0.4066422 -0.938136 -0.3333329 -0.0937556</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-normals-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_005-mesh-map-0">
+          <float_array id="Plane_005-mesh-map-0-array" count="192">1 0.5 0.5 0.9882813 0.5 0.5 0 0.5 0.5 0.9882813 0 0.9882813 0.5 0 0 0.5 0 0 0.5 0 1 0.5 0.5 0.5 1 0.5 0.5 0.9882813 0.5 0.5 0 0.5 0.5 0.9882813 0 0.9882813 0.5 0 0 0.5 0 0 0.5 0 1 0.5 0.5 0.5 1 0.5 0.5 0.9882813 0.5 0.5 0 0.5 0.5 0.9882813 0 0.9882813 0.5 0 0 0.5 0 0 0.5 0 1 0.5 0.5 0.5 1 0.5 0.5 0.9882813 0.5 0.5 0 0.5 0.5 0.9882813 0 0.9882813 0.5 0 0 0.5 0 0 0.5 0 1 0.5 0.5 0.5 1 0.5 1 0.9882813 0.5 0.9882813 0 0.5 0.5 0.5 0.5 0.9882813 0.5 0 0.5 0.5 0 0.5 0.5 0 1 0 1 0.5 1 0.5 1 0.9882813 0.5 0.9882813 0 0.5 0.5 0.5 0.5 0.9882813 0.5 0 0.5 0.5 0 0.5 0.5 0 1 0 1 0.5 1 0.5 1 0.9882813 0.5 0.9882813 0 0.5 0.5 0.5 0.5 0.9882813 0.5 0 0.5 0.5 0 0.5 0.5 0 1 0 1 0.5 1 0.5 1 0.9882813 0.5 0.9882813 0 0.5 0.5 0.5 0.5 0.9882813 0.5 0 0.5 0.5 0 0.5 0.5 0 1 0 1 0.5</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-map-0-array" count="96" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane_005-mesh-vertices">
+          <input semantic="POSITION" source="#Plane_005-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_001-material" count="32">
+          <input semantic="VERTEX" source="#Plane_005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane_005-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane_005-mesh-map-0" offset="2" set="0"/>
+          <p>6 0 0 7 1 1 8 2 2 4 3 3 7 1 4 2 4 5 5 5 6 4 3 7 0 6 8 5 5 9 6 0 10 8 2 11 15 7 12 16 8 13 17 9 14 13 10 15 16 8 16 11 11 17 14 12 18 13 10 19 9 13 20 14 12 21 15 7 22 17 9 23 24 14 24 25 15 25 26 16 26 22 17 27 25 15 28 20 18 29 23 19 30 22 17 31 18 20 32 23 19 33 24 14 34 26 16 35 33 21 36 34 22 37 35 23 38 31 24 39 34 22 40 29 25 41 32 26 42 31 24 43 27 27 44 32 26 45 33 21 46 35 23 47 6 0 48 3 28 49 7 1 50 4 3 51 8 2 52 7 1 53 5 5 54 8 2 55 4 3 56 5 5 57 1 29 58 6 0 59 15 7 60 12 30 61 16 8 62 13 10 63 17 9 64 16 8 65 14 12 66 17 9 67 13 10 68 14 12 69 10 31 70 15 7 71 24 14 72 21 32 73 25 15 74 22 17 75 26 16 76 25 15 77 23 19 78 26 16 79 22 17 80 23 19 81 19 33 82 24 14 83 33 21 84 30 34 85 34 22 86 31 24 87 35 23 88 34 22 89 32 26 90 35 23 91 31 24 92 32 26 93 28 35 94 33 21 95</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plane_004" name="Plane_004" type="NODE">
+        <matrix sid="transform">0.5428297 0 0 0 0 0.5428297 0 0 0 0 0.5428297 0.2582366 0 0 0 1</matrix>
+        <instance_geometry url="#Plane_005-mesh" name="Plane_004">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_001-material" target="#Material_001-material">
+                <bind_vertex_input semantic="Plane_005-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

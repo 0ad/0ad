@@ -30,7 +30,7 @@
     <SpecificName>Apadāna</SpecificName>
     <Classes datatype="tokens">Apadana ConquestCritical Palace</Classes>
     <Icon>structures/palace.png</Icon>
-    <Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources. Train Persian heroes and their "Immortals" bodyguards.</Tooltip>
+    <Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources. Train Champions and Heroes.</Tooltip>
   </Identity>
   <Loot>
     <wood>0</wood>
@@ -43,10 +43,10 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
+      units/{civ}_champion_infantry
       units/{civ}_hero_cyrus
       units/{civ}_hero_darius
       units/{civ}_hero_xerxes
-      units/{civ}_champion_infantry
     </Entities>
     <Technologies datatype="tokens">
       persians/immortals

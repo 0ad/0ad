@@ -7,18 +7,17 @@
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Teíchisma</SpecificName>
-    <Tooltip>Train Heroes and Champions and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
+      units/{civ}_champion_infantry_a
+      units/{civ}_champion_cavalry
       units/{civ}_hero_philip
       units/{civ}_hero_alexander
       units/{civ}_hero_demetrius
-      units/{civ}_champion_infantry_a
-      units/{civ}_champion_cavalry
     </Entities>
     <Technologies datatype="tokens">
       successors/upgrade_mace_silvershields
