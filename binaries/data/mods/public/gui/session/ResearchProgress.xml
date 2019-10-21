@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object size="100%-50 40 100%-10 100%-200">
+<object size="100%-50 40 100%-10 100%-200" name="researchStartedButtons">
 	<repeat count="10">
 		<object name="researchStartedButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
 			<object name="researchStartedIcon[n]" ghost="true" type="image" size="3 3 37 37"/>

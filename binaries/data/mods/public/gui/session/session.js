@@ -21,6 +21,7 @@ var g_ObjectivesDialog;
 var g_PauseControl;
 var g_PauseOverlay;
 var g_PlayerViewControl;
+var g_ResearchProgress;
 var g_TradeDialog;
 var g_TopPanel;
 
@@ -157,12 +158,6 @@ var g_EntitySelectionChangeHandlers = new Set();
 var g_HotkeyChangeHandlers = new Set();
 
 /**
- * Top coordinate of the research list.
- * Changes depending on the number of displayed counters.
- */
-var g_ResearchListTop = 4;
-
-/**
  * List of additional entities to highlight.
  */
 var g_ShowGuarding = false;
@@ -288,6 +283,7 @@ function init(initData, hotloadData)
 	g_PauseControl = new PauseControl();
 	g_PauseOverlay = new PauseOverlay(g_PauseControl);
 	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
+	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
 
@@ -730,7 +726,6 @@ function updateGUIObjects()
 	displayPanelEntities();
 
 	updateGroups();
-	updateResearchDisplay();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
@@ -947,55 +942,6 @@ function selectAndMoveTo(ent)
 	Engine.CameraMoveTo(position.x, position.z);
 }
 
-function updateResearchDisplay()
-{
-	let researchStarted = Engine.GuiInterfaceCall("GetStartedResearch", g_ViewedPlayer);
-
-	// Set up initial positioning.
-	let buttonSideLength = Engine.GetGUIObjectByName("researchStartedButton[0]").size.right;
-	for (let i = 0; i < 10; ++i)
-	{
-		let button = Engine.GetGUIObjectByName("researchStartedButton[" + i + "]");
-		let size = button.size;
-		size.top = g_ResearchListTop + (4 + buttonSideLength) * i;
-		size.bottom = size.top + buttonSideLength;
-		button.size = size;
-	}
-
-	let numButtons = 0;
-	for (let tech in researchStarted)
-	{
-		// Show at most 10 in-progress techs.
-		if (numButtons >= 10)
-			break;
-
-		let template = GetTechnologyData(tech, g_Players[g_ViewedPlayer].civ);
-		let button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
-		button.hidden = false;
-		button.tooltip = getEntityNames(template);
-		button.onpress = (function(e) { return function() { selectAndMoveTo(e); }; })(researchStarted[tech].researcher);
-
-		let icon = "stretched:session/portraits/" + template.icon;
-		Engine.GetGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;
-
-		// Scale the progress indicator.
-		let size = Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size;
-
-		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
-		size.top = size.left + Math.round(researchStarted[tech].progress * (size.right - size.left));
-		Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size = size;
-
-		Engine.GetGUIObjectByName("researchStartedTimeRemaining[" + numButtons + "]").caption =
-			Engine.FormatMillisecondsIntoDateStringGMT(researchStarted[tech].timeRemaining, translateWithContext("countdown format", "m:ss"));
-
-		++numButtons;
-	}
-
-	// Hide unused buttons.
-	for (let i = numButtons; i < 10; ++i)
-		Engine.GetGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
-}
-
 /**
  * Toggles the display of status bars for all of the player's entities.
  *
@@ -1152,5 +1098,5 @@ function appendSessionCounters(counters)
 	if (simState.ceasefireActive && Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") === "true")
 		counters.push(timeToString(simState.ceasefireTimeRemaining));
 
-	g_ResearchListTop = 4 + 14 * counters.length;
+	g_ResearchProgress.setTopOffset(14 * counters.length);
 }
