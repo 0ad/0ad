@@ -18,6 +18,7 @@ var g_GameSpeedControl;
 var g_Menu;
 var g_MiniMapPanel;
 var g_ObjectivesDialog;
+var g_PanelEntityManager;
 var g_PauseControl;
 var g_PauseOverlay;
 var g_PlayerViewControl;
@@ -165,11 +166,6 @@ var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
 /**
- * Display data of the current players entities shown in the top panel.
- */
-var g_PanelEntities = [];
-
-/**
  * Order in which the panel entities are shown.
  */
 var g_PanelEntityOrder = ["Hero", "Relic"];
@@ -280,10 +276,11 @@ function init(initData, hotloadData)
 	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
 	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
 	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
+	g_PanelEntityManager = new PanelEntityManager(g_PlayerViewControl, g_Selection, g_PanelEntityOrder);
 	g_PauseControl = new PauseControl();
 	g_PauseOverlay = new PauseOverlay(g_PauseControl);
 	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
-	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl);
+	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl, g_Selection);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
 
@@ -291,7 +288,6 @@ function init(initData, hotloadData)
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
-	initPanelEntities();
 	Engine.SetBoundingBoxDebugOverlay(false);
 	updateEnabledRangeOverlayTypes();
 
@@ -404,29 +400,6 @@ function updatePlayerData()
 function updateDisplayedPlayerColors()
 {
 	g_DiplomacyColors.updateDisplayedPlayerColors();
-}
-
-function initPanelEntities()
-{
-	Engine.GetGUIObjectByName("panelEntityPanel").children.forEach((button, slot) => {
-
-		button.onPress = function() {
-			let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
-			if (!panelEnt)
-				return;
-
-			if (!Engine.HotkeyIsPressed("selection.add"))
-				g_Selection.reset();
-
-			g_Selection.addList([panelEnt.ent]);
-		};
-
-		button.onDoublePress = function() {
-			let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
-			if (panelEnt)
-				selectAndMoveTo(getEntityOrHolder(panelEnt.ent));
-		};
-	});
 }
 
 /**
@@ -722,9 +695,6 @@ function updateGUIObjects()
 	if (g_ShowGuarding || g_ShowGuarded)
 		updateAdditionalHighlight();
 
-	updatePanelEntities();
-	displayPanelEntities();
-
 	updateGroups();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
@@ -749,147 +719,6 @@ function onReplayFinished()
 		translateWithContext("replayFinished", "Confirmation"),
 		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
 		[resumeGame, endGame]);
-}
-
-/**
-* updates a status bar on the GUI
-* nameOfBar: name of the bar
-* points: points to show
-* maxPoints: max points
-* direction: gets less from (right to left) 0; (top to bottom) 1; (left to right) 2; (bottom to top) 3;
-*/
-function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
-{
-	// check, if optional direction parameter is valid.
-	if (!direction || !(direction >= 0 && direction < 4))
-		direction = 0;
-
-	// get the bar and update it
-	let statusBar = Engine.GetGUIObjectByName(nameOfBar);
-	if (!statusBar)
-		return;
-
-	let healthSize = statusBar.size;
-	let value = 100 * Math.max(0, Math.min(1, points / maxPoints));
-
-	// inverse bar
-	if (direction == 2 || direction == 3)
-		value = 100 - value;
-
-	if (direction == 0)
-		healthSize.rright = value;
-	else if (direction == 1)
-		healthSize.rbottom = value;
-	else if (direction == 2)
-		healthSize.rleft = value;
-	else if (direction == 3)
-		healthSize.rtop = value;
-
-	statusBar.size = healthSize;
-}
-
-function updatePanelEntities()
-{
-	let panelEnts =
-		g_ViewedPlayer == -1 ?
-			GetSimState().players.reduce((ents, pState) => ents.concat(pState.panelEntities), []) :
-			GetSimState().players[g_ViewedPlayer].panelEntities;
-
-	g_PanelEntities = g_PanelEntities.filter(panelEnt => panelEnts.find(ent => ent == panelEnt.ent));
-
-	for (let ent of panelEnts)
-	{
-		let panelEntState = GetEntityState(ent);
-		let template = GetTemplateData(panelEntState.template);
-
-		let panelEnt = g_PanelEntities.find(pEnt => ent == pEnt.ent);
-
-		if (!panelEnt)
-		{
-			panelEnt = {
-				"ent": ent,
-				"tooltip": undefined,
-				"sprite": "stretched:session/portraits/" + template.icon,
-				"maxHitpoints": undefined,
-				"currentHitpoints": panelEntState.hitpoints,
-				"previousHitpoints": undefined
-			};
-			g_PanelEntities.push(panelEnt);
-		}
-
-		panelEnt.tooltip = createPanelEntityTooltip(panelEntState, template);
-		panelEnt.previousHitpoints = panelEnt.currentHitpoints;
-		panelEnt.currentHitpoints = panelEntState.hitpoints;
-		panelEnt.maxHitpoints = panelEntState.maxHitpoints;
-	}
-
-	let panelEntIndex = ent => g_PanelEntityOrder.findIndex(entClass =>
-		GetEntityState(ent).identity.classes.indexOf(entClass) != -1);
-
-	g_PanelEntities.sort((panelEntA, panelEntB) =>
-		panelEntIndex(panelEntA.ent) - panelEntIndex(panelEntB.ent)
-	).splice(Engine.GetGUIObjectByName("panelEntityPanel").children.length);
-}
-
-function createPanelEntityTooltip(panelEntState, template)
-{
-	let getPanelEntNameTooltip = panelEntState => "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
-
-	return [
-		getPanelEntNameTooltip,
-		getCurrentHealthTooltip,
-		getAttackTooltip,
-		getArmorTooltip,
-		getEntityTooltip,
-		getAurasTooltip
-	].map(tooltip => tooltip(panelEntState)).filter(tip => tip).join("\n");
-}
-
-function displayPanelEntities()
-{
-	let buttons = Engine.GetGUIObjectByName("panelEntityPanel").children;
-
-	buttons.forEach((button, slot) => {
-
-		if (button.hidden || g_PanelEntities.some(ent => ent.slot !== undefined && ent.slot == slot))
-			return;
-
-		button.hidden = true;
-		stopColorFade("panelEntityHitOverlay[" + slot + "]");
-	});
-
-	// The slot identifies the button, displayIndex determines its position.
-	for (let displayIndex = 0; displayIndex < Math.min(g_PanelEntities.length, buttons.length); ++displayIndex)
-	{
-		let panelEnt = g_PanelEntities[displayIndex];
-
-		// Find the first unused slot if new, otherwise reuse previous.
-		let slot = panelEnt.slot === undefined ?
-			buttons.findIndex(button => button.hidden) :
-			panelEnt.slot;
-
-		let panelEntButton = Engine.GetGUIObjectByName("panelEntityButton[" + slot + "]");
-		panelEntButton.tooltip = panelEnt.tooltip;
-
-		updateGUIStatusBar("panelEntityHealthBar[" + slot + "]", panelEnt.currentHitpoints, panelEnt.maxHitpoints);
-
-		if (panelEnt.slot === undefined)
-		{
-			let panelEntImage = Engine.GetGUIObjectByName("panelEntityImage[" + slot + "]");
-			panelEntImage.sprite = panelEnt.sprite;
-
-			panelEntButton.hidden = false;
-			panelEnt.slot = slot;
-		}
-
-		// If the health of the panelEnt changed since the last update, trigger the animation.
-		if (panelEnt.previousHitpoints > panelEnt.currentHitpoints)
-			startColorFade("panelEntityHitOverlay[" + slot + "]", 100, 0,
-				colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
-
-		// TODO: Instead of instant position changes, animate button movement.
-		setPanelObjectPosition(panelEntButton, displayIndex, buttons.length);
-	}
 }
 
 function updateGroups()
@@ -927,19 +756,6 @@ function updateGroups()
 
 		setPanelObjectPosition(button, i, 1);
 	}
-}
-
-function selectAndMoveTo(ent)
-{
-	let entState = GetEntityState(ent);
-	if (!entState || !entState.position)
-		return;
-
-	g_Selection.reset();
-	g_Selection.addList([ent]);
-
-	let position = entState.position;
-	Engine.CameraMoveTo(position.x, position.z);
 }
 
 /**

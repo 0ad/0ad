@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object
-	name="panelEntityPanel"
-	size="0 36 50 93"
->
+<object name="panelEntityButtons" size="0 36 50 93">
 	<!-- Displays buttons for the most important units like heroes and relics -->
 	<repeat count="19" var="n">
 		<object name="panelEntityButton[n]" size="0 0 50 50" type="button" hidden="true" style="iconButton" tooltip_style="sessionToolTip">
+
 			<object name="panelEntityImage[n]" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
 			<object name="panelEntityHitOverlay[n]" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/>
+
 			<!-- Health bar -->
 			<object size="3 100%-7 100%-3 100%-2" name="panelEntityHealthSection[n]" ghost="true">
 				<object size="0 0 100% 5" name="panelEntityHealth[n]" type="image" ghost="true">
@@ -17,7 +16,7 @@
 					<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 				</object>
 			</object>
+
 		</object>
 	</repeat>
-
 </object>
