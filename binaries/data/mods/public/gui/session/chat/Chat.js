@@ -35,8 +35,10 @@ class Chat
 				this.ChatHistory.displayChatHistory();
 		});
 
-		registerPlayersFinishedHandler(this.onUpdatePlayers.bind(this));
-		playerViewControl.registerViewedPlayerChangeHandler(this.onUpdatePlayers.bind(this));
+		let updater = this.onUpdatePlayers.bind(this);
+		registerPlayersFinishedHandler(updater);
+		registerPlayerAssignmentsChangeHandler(updater);
+		playerViewControl.registerViewedPlayerChangeHandler(updater);
 
 		Engine.SetGlobalHotkey("chat", this.openPage.bind(this));
 		Engine.SetGlobalHotkey("privatechat", this.openPage.bind(this));
