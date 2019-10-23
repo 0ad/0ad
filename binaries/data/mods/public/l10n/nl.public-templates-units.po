@@ -12,12 +12,14 @@
 # Ellen Roels, 2015
 # Freagarach . <freagarach@gmail.com>, 2019
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
+# Luc Dekker <cosmoluc@gmail.com>, 2019
 # Mar, 2015
 # 477f07d437f0da0e33ec4ecd7b8e2b62, 2017
 # 05a0224220b7eaac7e017feaa81ae85c, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2015
 # niektb <niektb95@gmail.com>, 2014-2015
 # Peter De Cleyn <peter.decleyn@gmail.com>, 2017
+# Pim de Graaf <pimdegraaf1997@gmail.com>, 2019
 # Reinout De Geest <rlgdegeest@gmail.com>, 2017
 # Robin van der Kruit <Robin.Kruit@hotmail.com>, 2018
 # TheBuG <Ruben.bilo@gmail.com>, 2014
@@ -30,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-04 06:39+0000\n"
-"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
+"PO-Revision-Date: 2019-10-13 13:42+0000\n"
+"Last-Translator: Pim de Graaf <pimdegraaf1997@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,7 +192,7 @@ msgstr "Ruiter Boogschutter"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:30
 msgid "Javelinist"
-msgstr ""
+msgstr "Speervechter"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:27
 msgid "Cavalry Skirmisher"
@@ -210,7 +212,7 @@ msgstr "Kampioen Ruiter"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:31
 msgid "Champion Cavalry Archer"
-msgstr ""
+msgstr "Kampioen ruiter boogschutter"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:31
 msgid "Champion Cavalry Skirmisher"
@@ -307,11 +309,11 @@ msgstr "Kan geen gebouwen aanvallen."
 #: simulation/templates/template_unit_fauna_herd.xml:7
 #: simulation/templates/template_unit_fauna_hunt.xml:8
 msgid "Kill to gather meat for food."
-msgstr ""
+msgstr "Dood om vlees te verzamelen als voedsel."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill to butcher for food."
-msgstr ""
+msgstr "Slacht dieren voor voedsel"
 
 #: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_hero.xml:33
@@ -436,7 +438,7 @@ msgstr "Breng een vijandig schip snel tot zinken. Dit schip brandt zelf traag op
 
 #: simulation/templates/template_unit_ship_fishing.xml:36
 msgid "FishingBoat"
-msgstr ""
+msgstr "vissersboot"
 
 #: simulation/templates/template_unit_ship_fishing.xml:38
 #: simulation/templates/units/kush_ship_fishing.xml:5
@@ -509,7 +511,7 @@ msgstr "Stormram"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:54
 msgid "StoneThrower"
-msgstr ""
+msgstr "steenslingeraar"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "Siege Catapult"
@@ -1437,7 +1439,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/kush_catafalque.xml:9
 msgid "Shanakdakheto"
-msgstr ""
+msgstr "Shanakdakheto"
 
 #: simulation/templates/units/kush_cavalry_javelinist_b.xml:6
 msgid "iry hr ssmwtt"
@@ -1502,7 +1504,7 @@ msgstr "rs ‘Imn"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:24
 msgid "Axeman"
-msgstr ""
+msgstr "Bijl vechter"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:25
 msgid "Meroitic Temple Guard"
@@ -1514,7 +1516,7 @@ msgstr "rs ‘Iprmk"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:27
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
-msgstr ""
+msgstr "Bescherming doorprikkend: Voordeel 1.3x tegen Kampioenen en Helden"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
 #: simulation/templates/units/kush_hero_amanirenas_chariot.xml:8
@@ -1558,7 +1560,7 @@ msgstr ""
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:33
 msgid "Nuba Clubman"
-msgstr ""
+msgstr "Nuba knots vechter"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:34
 msgid "nhw Noba"
@@ -1602,7 +1604,7 @@ msgstr "Wh’-rmw"
 
 #: simulation/templates/units/kush_ship_merchant.xml:9
 msgid "Nile Trading Barge"
-msgstr ""
+msgstr "Nijl handelsboot"
 
 #: simulation/templates/units/kush_ship_merchant.xml:10
 msgid "D3y sbt"
@@ -1694,11 +1696,11 @@ msgstr "Hypaspistḗs"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:22
 msgid "Crossbowman"
-msgstr ""
+msgstr "Kruisboogschutter"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:24
 msgid "Champion Crossbowman"
-msgstr ""
+msgstr "Kampioen kruisboogschutter"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:25
 msgid "Gastraphetophoros"
@@ -2090,7 +2092,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_hero_darius.xml:14
 msgid "Darius I the Great"
-msgstr ""
+msgstr "Darius I de Grote"
 
 #: simulation/templates/units/pers_hero_darius.xml:15
 msgid "Dārayavahuš"
@@ -2425,7 +2427,7 @@ msgstr ""
 #: simulation/templates/units/rome_champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome_champion_infantry_swordsman_03.xml:12
 msgid "Legiōnārius"
-msgstr ""
+msgstr "Legionair"
 
 #: simulation/templates/units/rome_champion_infantry_swordsman_04.xml:14
 msgid "Roman Centurion"
@@ -2433,7 +2435,7 @@ msgstr "Romeinse centurio"
 
 #: simulation/templates/units/rome_champion_infantry_swordsman_04.xml:15
 msgid "Centuriō"
-msgstr ""
+msgstr "Centurion"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:10
 #: simulation/templates/units/rome_hero_marcellus_infantry.xml:10
@@ -2822,4 +2824,4 @@ msgstr "Melanochitones"
 
 #: simulation/templates/units/viking_longship.xml:4
 msgid "Longship"
-msgstr ""
+msgstr "Lang schip"

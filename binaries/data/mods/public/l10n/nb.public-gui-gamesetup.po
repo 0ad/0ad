@@ -6,6 +6,7 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2014
 # Allan Nordhøy <epost@anotheragency.no>, 2016-2017
 # asd, 2014
+# Specced, 2019
 # Erling Ekholt Kristiansen <kongrapemann@gmail.com>, 2014
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2014
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2014
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-16 23:40+0000\n"
+"Last-Translator: Specced\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +177,7 @@ msgstr "Hvert kart for valgt karttype."
 #: gui/gamesetup/gamesetup.js:404
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Kart"
 
 #: gui/gamesetup/gamesetup.js:419
 msgctxt "Match settings tab name"
@@ -186,7 +187,7 @@ msgstr "Spiller"
 #: gui/gamesetup/gamesetup.js:429
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Spilltype"
 
 #: gui/gamesetup/gamesetup.js:469
 msgid "Map Type"
@@ -309,11 +310,11 @@ msgstr "Velg spillhastighet."
 
 #: gui/gamesetup/gamesetup.js:699
 msgid "Difficulty"
-msgstr ""
+msgstr "Vanskelighetsgrad"
 
 #: gui/gamesetup/gamesetup.js:701
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Velg vanskelighetsgraden for dette scenariet."
 
 #: gui/gamesetup/gamesetup.js:721
 msgid "Select player."
@@ -325,7 +326,7 @@ msgstr "Velg spillers lag."
 
 #: gui/gamesetup/gamesetup.js:768
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Velg sivilisasjonstypen for denne spilleren."
 
 #: gui/gamesetup/gamesetup.js:782
 msgid "Pick a color."
@@ -379,7 +380,7 @@ msgstr "Skru av skatter."
 
 #: gui/gamesetup/gamesetup.js:897
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Ikke legg til skatter på dette kartet."
 
 #: gui/gamesetup/gamesetup.js:908
 msgid "Disable Spies"
@@ -452,7 +453,7 @@ msgstr "Start et nytt spill med valgte innstillinger."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Start et nytt spill med de nåværende innstillingene(deaktivert inntil alle spillere er klare)."
 
 #: gui/gamesetup/gamesetup.js:1106
 #, javascript-format
@@ -679,7 +680,7 @@ msgstr "Laster"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Laster kartdata. Vennligst vent.."
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
@@ -703,7 +704,7 @@ msgstr "Lag"
 
 #: gui/gamesetup/gamesetup.xml:(caption):90
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Vis denne meldingen i fremtiden."
 
 #: gui/gamesetup/gamesetup.xml:(caption):175
 msgid "Send"
@@ -728,7 +729,7 @@ msgstr "Å delta i et eksisterende spill."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Spillernavn"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -745,7 +746,7 @@ msgstr "Klargjør din tjener som arrangør"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Tjenernavn: "
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"

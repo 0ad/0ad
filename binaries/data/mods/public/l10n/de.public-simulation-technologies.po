@@ -22,14 +22,15 @@
 # Paul Müller <paulbochynek@web.de>, 2015
 # qwertz, 2015
 # Raymond Vetter, 2014-2019
+# Robert Halbscheffel <robert.halbscheffel@gmail.com>, 2019
 # Tilo S, 2016-2017
 # xtother90, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-26 19:38+0000\n"
-"Last-Translator: xtother90\n"
+"PO-Revision-Date: 2019-10-21 19:54+0000\n"
+"Last-Translator: Robert Halbscheffel <robert.halbscheffel@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -992,7 +993,7 @@ msgstr "Andrápoda"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Statte deine Arbeiter mit nützlichen Werkzeugen aus. Es steigert die Metallgewinnung."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1503,7 +1504,7 @@ msgstr "Fortschrittliche Technologien zur Verbesserung der Belagerungseffizienz.
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "Belagerungsmaschinen +25% Angriffsschaden"
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1523,11 +1524,11 @@ msgstr "Bolzengenauigkeit"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr ""
+msgstr "Belagerungsmaschinen benötigen weniger Metall"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
-msgstr ""
+msgstr "Belagerungsmaschinen -20% Metallkosten"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1535,11 +1536,11 @@ msgstr "Waffenschlosser"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege engines require less wood."
-msgstr ""
+msgstr "Belagerungsmaschinen benötigen weniger Holz."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
-msgstr ""
+msgstr "Belagerungsmaschinen -20% Holzkosten"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1551,7 +1552,7 @@ msgstr "Unbewegliche Belagerungswaffen werden schneller zusammen- und auseinande
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Siege Engines −25% pack and unpack time."
-msgstr ""
+msgstr "Belagerungsmaschinen -25% Zeit für Auf- und Abbau"
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2344,7 +2345,7 @@ msgstr "Das Maurya-Reich umfasste dutzende früher unabhängige Königreiche auf
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "Maurya haben eine um 10% höhere Bevölkerungsgrenze."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2362,7 +2363,7 @@ msgstr "Die Maurya bauten ihre Stadtmauern aus Holz, einer in Indien reichlich v
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Mauryanische Stadtmauern haben 20% weniger Stärke und 20% weniger Bauzeit."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2380,7 +2381,7 @@ msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "Perser haben ein 10% höheres maximales Bevölkerungslimit.   "
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2396,7 +2397,7 @@ msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten 
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "Spartaner haben 10% höheres Bevölkerungslimit"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"

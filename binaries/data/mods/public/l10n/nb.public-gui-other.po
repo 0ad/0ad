@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2016-2018
+# Specced, 2019
 # Henrik Hovrud <henrik.h@online.no>, 2015
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2014-2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 14:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-17 12:38+0000\n"
+"Last-Translator: Specced\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +83,7 @@ msgstr ""
 #: gui/common/color.js:193
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Trykk %(hotkey)s for å autofullføre spillernavn."
 
 #: gui/common/color.js:195
 msgctxt "hotkey"
@@ -236,7 +237,7 @@ msgstr "Endeløst spill"
 
 #: gui/common/gamedescription.js:238
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Ingen vinner vil bli valgt, selv om alle blir beseiret."
 
 #: gui/common/gamedescription.js:249
 #, javascript-format
@@ -337,11 +338,11 @@ msgstr[1] "De første %(min)s vil andre spillere forholde seg nøytrale."
 #: gui/common/gamedescription.js:337
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Tilfeldig kart"
 
 #: gui/common/gamedescription.js:338
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Velg et tilfeldig kart fra listen."
 
 #: gui/common/gamedescription.js:343
 msgid "Map Name"
@@ -378,7 +379,7 @@ msgstr "Nomademodus"
 
 #: gui/common/gamedescription.js:394
 msgid "Civic Centers"
-msgstr ""
+msgstr "Samfunnssenter"
 
 #: gui/common/gamedescription.js:397
 msgid ""
@@ -388,7 +389,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:398
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Spillerne starter med et samfunnssenter."
 
 #: gui/common/gamedescription.js:402
 msgid "Starting Resources"
@@ -485,31 +486,31 @@ msgstr "Dårlig tilkobling til %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Dette har ofte sin årsak i at UDP-port nummer 20595 ikke er åpen på vertsskapets side, av en lukket brannmur, eller antivirusprogramvare."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Verten har avsluttet spillet."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Feil versjon av nettverksprotokoll."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Spillet laster, vennligst prøv igjen senere."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Spillet har allerede startet, ingen tilskuere er tillatt."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Du har blitt kastet ut."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Du har blitt utestengt."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
@@ -517,15 +518,15 @@ msgstr ""
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Tjeneren er full."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Sikker lobbykommunikasjon feilet. Koble til via lobby."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Feil: tjeneren kunne ikke generere en unik klientid-nøkkel."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -711,7 +712,7 @@ msgstr "Ukjent"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Ukjent seiersbetingelse"
 
 #: gui/common/tooltips.js:44
 #, javascript-format
@@ -767,7 +768,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Garnisoner for å avfyre piler"
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -856,7 +857,7 @@ msgstr ""
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Erobre"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
@@ -866,7 +867,7 @@ msgstr ""
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "%(attackType)s Angrep"
 
 #: gui/common/tooltips.js:331
 #, javascript-format
@@ -1504,13 +1505,13 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alfa XXIV"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Merknad: Dette spillet er under utvikling og mange funksjoner er fortsatt ikke lagt til."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1548,11 +1549,11 @@ msgstr "Klikk for å åpne 0 A.D-oversettelsesiden i din nettleser."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Donate"
-msgstr ""
+msgstr "Doner"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Hjelp til med prosjektets utgifter ved å donere."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Credits"
@@ -1595,7 +1596,7 @@ msgstr "Les mer"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Vilkår"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1644,7 +1645,7 @@ msgstr "Takk for at du hjelper til med å forbedre 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Tilbakemeldinger er for øyeblikket aktivert."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1663,7 +1664,7 @@ msgstr "Hjelp til med å forbedre 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Du kan automatisk sende oss tilbakemeldinger som kan hjelpe oss med å fikse feil samt forbedre ytelse og kompatibilitet."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1743,7 +1744,7 @@ msgstr ""
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:213
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Oppgraderbar til:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1835,7 +1836,7 @@ msgstr "Enkelt- og fler-spiller"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Alle seiersbetingelser"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -2003,7 +2004,7 @@ msgstr "Bytte"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "Husdyr avlet"
 
 #: gui/summary/layout.js:126
 #, javascript-format
@@ -2059,7 +2060,7 @@ msgstr "Feminisering"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Bestikkelser"
 
 #: gui/summary/layout.js:194
 #, javascript-format
@@ -2138,7 +2139,7 @@ msgstr "Mislykket"
 
 #: gui/summary/summary.js:335
 msgid "Time elapsed"
-msgstr ""
+msgstr "Tid medgått"
 
 #: gui/summary/summary.js:491
 msgid "Current Scores"
@@ -2410,7 +2411,7 @@ msgstr "Type:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Watch Replay"
-msgstr ""
+msgstr "Se spillopptak"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2522,7 +2523,7 @@ msgstr "Latin"
 
 #: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Persisk"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
@@ -2628,7 +2629,7 @@ msgstr "Spillernavn (flerspiller)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "Pause enspillerspill når vinduet mister fokus"
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2740,7 +2741,7 @@ msgstr "Vis i vindu"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Bruk OpenGL 2.0 shadere (anbefalt)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2748,11 +2749,11 @@ msgstr "Foretrekk  GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "Aktiver skygge."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "Skygge"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
@@ -2772,7 +2773,7 @@ msgstr "Skyggeleggingseffekter"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Slå på skygger."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2811,7 +2812,7 @@ msgstr "Vannkvalitet"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Utjevnede skygger."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -3044,7 +3045,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Standard maskinspiller-vanskelighetsgrad"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3091,7 +3092,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "TLS-kryptering"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3252,7 +3253,7 @@ msgstr "Detaljerte pekertips"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Usortert"
 
 #: gui/options/options.json[5].options[13].list[1].label
 msgid "Ascending"
@@ -3285,7 +3286,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Diplomatfarger: alliert"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3293,7 +3294,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Diplomatfarger: nøytral"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."

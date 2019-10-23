@@ -8,12 +8,14 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # A W <flaco@core-unit.net>, 2016
 # Brian BERNARD <brianbernard16@gmail.com>, 2017
+# Bruno T <brtur2@gmail.com>, 2019
 # Buggi, 2014
 # Caius Julius <samoth-maoly@hotmail.fr>, 2016
 # Calinou, 2013
 # Cyril Mercier, 2018
 # Thibaut Cuvelier <dourouc05@gmail.com>, 2014
 # François Magimel, 2018-2019
+# François O, 2019
 # François Poirotte <clicky@erebot.net>, 2014,2016
 # Glorfindel Of Gondolin, 2019
 # Hadrien Titeux <hadwarez@gmail.com>, 2013
@@ -58,8 +60,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-30 07:12+0000\n"
-"PO-Revision-Date: 2019-09-30 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-22 13:46+0000\n"
+"Last-Translator: François O\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +112,7 @@ msgstr "Les Grecs ont très bien réussi à helléniser de nombreux étrangers. 
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "-25% du temps construction pour les Navires Alliés"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -360,7 +362,7 @@ msgstr "La religion et le druidisme celtes ont inspiré leur mentalité guerriè
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "-20% du coût en ressources pour les Soigneurs Alliés"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -605,7 +607,7 @@ msgstr "À l'instar de la péninsule ibérique, l'Afrique du Nord était connue 
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr " +10% Bonus d'échange général pour les Marchés Alliés "
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -812,7 +814,7 @@ msgstr "Gaulois"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "-20% du temps de recherche pour les Bâtiments Alliés "
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -1168,7 +1170,7 @@ msgid ""
 "proved tenacious when Rome sought to take their land and freedom from them, "
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
-msgstr "Les Ibères étaient un peuple dont les origines et le langage est mystérieux, avec une tradition ancestral d'équitation et de métallurgie. Une culture relativement pacifique, ils ne prenaient part qu'aux batailles des autres en tant que mercenaires. Cependant, ils se sont montrés coriaces lorsque Rome pensa conquérir leur terres et les esclavager, en employant lorsqu'ils ont riposté des tactiques de guérilla innovantes et en enflammant leurs javelots."
+msgstr "Les Ibères étaient un peuple dont les origines et le langage sont mystérieux, avec une tradition ancestrale d'équitation et de métallurgie. Une culture relativement pacifique, ils ne prenaient part qu'aux batailles des autres en tant que mercenaires. Cependant, ils se sont montrés coriaces lorsque Rome pensa conquérir leurs terres et les esclavager, en employant lorsqu'ils ont riposté des tactiques de guérilla innovantes et en enflammant leurs javelots."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -1211,7 +1213,7 @@ msgstr "Fournisseur d'éléphants"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "-20% coût de ressource et temps de formations pour les Éléphants Alliés"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1672,7 +1674,7 @@ msgstr "Kshatriya, ou Kashtriya, qui signifie guerrier, est l'une des quatre var
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "-50% du coût en ressources et du temps de constructions pour les Temples Alliés; -50% du coût en ressources et du temps de recherches technologique du Temple"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -2183,7 +2185,7 @@ msgstr "Arsinoé II"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
-msgstr "La portée de l'aura du héros augement de +50%."
+msgstr "La portée de l'aura du héros augmente de +50%."
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
@@ -2313,7 +2315,7 @@ msgstr "La citoyenneté romaine était très prisée dans le monde antique. Les 
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry −20% training time."
-msgstr ""
+msgstr "-20% du temps de recherche pour les Citoyens Armés Alliés"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
