@@ -3,10 +3,10 @@
  */
 class ResearchProgress
 {
-	constructor(playerViewControl)
+	constructor(playerViewControl, selection)
 	{
 		this.buttons = Engine.GetGUIObjectByName("researchStartedButtons").children;
-		this.buttonHandlers = this.buttons.map((button, i) => new ResearchProgressButton(i));
+		this.buttonHandlers = this.buttons.map((button, i) => new ResearchProgressButton(selection, i));
 
 		/**
 		 * Top coordinate of the research list.
@@ -47,8 +47,9 @@ class ResearchProgress
  */
 class ResearchProgressButton
 {
-	constructor(i)
+	constructor(selection, i)
 	{
+		this.selection = selection;
 		this.button = Engine.GetGUIObjectByName("researchStartedButton[" + i + "]");
 		this.sprite = Engine.GetGUIObjectByName("researchStartedIcon[" + i + "]");
 		this.progress = Engine.GetGUIObjectByName("researchStartedProgressSlider[" + i + "]");
@@ -87,7 +88,7 @@ class ResearchProgressButton
 
 	onPress()
 	{
-		selectAndMoveTo(this.researcher);
+		this.selection.selectAndMoveTo(this.researcher);
 	}
 }
 

@@ -433,6 +433,18 @@ EntitySelection.prototype.onChange = function()
 		onSelectionChange();
 };
 
+EntitySelection.prototype.selectAndMoveTo = function(entityID)
+{
+	let entState = GetEntityState(entityID);
+	if (!entState || !entState.position)
+		return;
+
+	this.reset();
+	this.addList([entityID]);
+
+	Engine.CameraMoveTo(entState.position.x, entState.position.z);
+}
+
 /**
  * Cache some quantities which depends only on selection
  */
